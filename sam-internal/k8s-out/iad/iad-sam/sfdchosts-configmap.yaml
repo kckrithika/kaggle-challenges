@@ -3066,10 +3066,65 @@ data:
           "controlestate": "iad-sam",
           "devicerole": "samcompute",
           "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt1-3-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "c12-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt1-4-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "c12-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-universalsearch_svc",
           "hostname": "shared0-samminionuniversalsearchmt2-1-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
           "rack": "d05-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt2-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "f04-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt2-3-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "f04-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt2-4-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "f04-9a",
           "superpod": "none"
         },
         {
@@ -3081,6 +3136,83 @@ data:
           "kingdom": "iad",
           "pod": "none",
           "rack": "f06-9b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-10-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h06-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-11-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h06-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-12-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h06-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-13-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h06-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-14-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "g15-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-15-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "g15-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-16-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "g15-9a",
           "superpod": "none"
         },
         {
@@ -3121,10 +3253,142 @@ data:
           "controlestate": "iad-sam",
           "devicerole": "searchidx",
           "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-5-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "g15-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-6-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h03-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-7-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h03-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-8-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h03-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-9-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h03-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
           "hostname": "shared0-searchidx2-1-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
           "rack": "f11-9b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-10-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h16-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-11-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h16-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-12-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h16-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-13-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h16-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-14-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h05-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-15-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h05-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-16-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h05-10b",
           "superpod": "none"
         },
         {
@@ -3147,6 +3411,72 @@ data:
           "kingdom": "iad",
           "pod": "none",
           "rack": "g16-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-4-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h05-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-5-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "d17-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-6-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "d17-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-7-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "d17-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-8-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "d17-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-9-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "c12-9a",
           "superpod": "none"
         }
       ]
