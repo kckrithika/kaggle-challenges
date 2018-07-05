@@ -29,12 +29,12 @@ spec:
         - --hostnameoverride=$(NODE_NAME)
         - --port=32556
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --deletePodPeriod=2h
+        - --deletePodPeriod=1h
         - --deleteIpvsStatePeriod=4h
-        - --deleteConfigFilePeriod=5h
-        - --deleteNginxTunnelIntfPeriod=3h
+        - --deleteConfigFilePeriod=4.5h
+        - --deleteNginxTunnelIntfPeriod=2h
         - --deleteIpvsIntfPeriod=1.5h
-        - --deleteCustomerPodPeriod=7h
+        - --deleteBackendPodPeriod=3h
         - --slbPodLabel=name=slb-node-api, name=slb-ipvs, name=slb-portal, name=slb-realsvrcfg,
           name=slb-dns-register, name=slb-node-os-stats, name=slb-vip-watchdog, name=slb-nginx-config,
           name=slb-ipvsdata-watchdog, name=slb-iface-processor, name=slb-echo-client,
@@ -47,7 +47,7 @@ spec:
         - --deleteConfigFileFlag=true
         - --deleteNginxTunnelIntfFlag=true
         - --deleteIpvsIntfFlag=true
-        - --deleteCustomerPodFlag=true
+        - --deleteBackendPodFlag=true
         - --client.serverInterface=lo
         env:
         - name: NODE_NAME
