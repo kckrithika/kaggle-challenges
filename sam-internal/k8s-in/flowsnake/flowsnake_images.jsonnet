@@ -80,7 +80,7 @@ local utils = import "util_functions.jsonnet";
             deployer_image_tag: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180627_145521.117759c3.dirty.jinxingwang-wsm",
             watchdog_canary_image_tag: "681",
             testData_image_tag: "681",
-            cert_secretizer_image_tag: "681",
+            cert_secretizer_image_tag: "662",  # previously was 681, but that silently failed to deploy and be tested in test fleet
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
 
             feature_flags: {
@@ -115,7 +115,7 @@ local utils = import "util_functions.jsonnet";
 
             watchdog_canary_image_tag: "681",
             testData_image_tag: "681",
-            cert_secretizer_image_tag: "681",
+            cert_secretizer_image_tag: "662",
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
 
             feature_flags: {
@@ -143,7 +143,7 @@ local utils = import "util_functions.jsonnet";
 
             watchdog_canary_image_tag: "681",
             testData_image_tag: "681",
-            cert_secretizer_image_tag: "681",
+            cert_secretizer_image_tag: "662",
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
 
             feature_flags: {
