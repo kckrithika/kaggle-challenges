@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + (if configs.estate != "prd-samtwo" then { dirSuffix:: "slb-nginx-config-b" } else {});
 local portconfigs = import "portconfig.jsonnet";
+local slbports = import "slbports.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile };
@@ -286,10 +287,10 @@ if slbconfigs.slbInKingdom then {
                                             configs.sfdchosts_volume_mount,
                                         ]),
                                     },
-                                    slbshared.slbConfigProcessor,
+                                    slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                                     slbshared.slbCleanupConfig,
-                                    slbshared.slbNodeApi,
-                                    slbshared.slbRealSvrCfg,
+                                    slbshared.slbNodeApi(slbports.slb.slbNodeApiPort),
+                                    slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
                                     slbshared.slbLogCleanup,
                                 ] else []
                             ),

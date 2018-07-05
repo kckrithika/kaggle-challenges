@@ -31,7 +31,7 @@ if slbconfigs.slbInKingdom && slbimages.phaseNum > 1 then {
                     slbconfigs.logs_volume,
                 ]),
                 containers: [
-                    slbshared.slbNodeApi,
+                    slbshared.slbNodeApi(slbports.slb.slbNodeApiPort),
                 ],
                 affinity: {
                     nodeAffinity: {

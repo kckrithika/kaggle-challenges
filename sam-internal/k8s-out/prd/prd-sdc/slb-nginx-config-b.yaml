@@ -299,6 +299,7 @@ spec:
         - --client.serverPort=9130
         - --client.serverInterface=lo
         - --control.sentinelExpiration=1200s
+        - --nginxPodMode=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000950-9f20b2db
         name: slb-realsvrcfg
         securityContext:

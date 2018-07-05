@@ -3,6 +3,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-portal" };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-portal" };
 local portconfigs = import "portconfig.jsonnet";
+local slbports = import "slbports.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -80,9 +81,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   },
                               ],
                           },
-                          slbshared.slbConfigProcessor,
+                          slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                           slbshared.slbCleanupConfig,
-                          slbshared.slbNodeApi,
+                          slbshared.slbNodeApi(slbports.slb.slbNodeApiPort),
                           slbshared.slbLogCleanup,
                       ],
                       nodeSelector: {

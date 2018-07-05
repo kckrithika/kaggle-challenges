@@ -1,16 +1,11 @@
 {
     dirSuffix:: "",
     local portconfigs = import "slbports.jsonnet",
-    nodeApiPort:: portconfigs.slb.slbNodeApiPort,
-    configProcessorLivenessPort:: portconfigs.slb.slbConfigProcessorLivenessProbePort,
-    proxyLabelSelector:: "slb-nginx-config-b",
-    servicesToLbOverride:: "",
-    servicesNotToLbOverride:: "illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc",
     local configs = import "config.jsonnet",
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile },
 
-    slbConfigProcessor: {
+    slbConfigProcessor(configProcessorLivenessPort, proxyLabelSelector="slb-nginx-config-b", servicesToLbOverride="", servicesNotToLbOverride="illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc"): {
         name: "slb-config-processor",
         image: slbimages.hypersdn,
         command: [
@@ -36,14 +31,14 @@
             "--processKnEConfigs=" + slbconfigs.processKnEConfigs,
             "--kneConfigDir=" + slbconfigs.kneConfigDir,
             "--kneDomainName=" + slbconfigs.kneDomainName,
-            "--livenessProbePort=" + $.configProcessorLivenessPort,
+            "--livenessProbePort=" + configProcessorLivenessPort,
             "--shouldRemoveConfig=true",
             configs.sfdchosts_arg,
-            "--proxySelectorLabelValue=" + $.proxyLabelSelector,
+            "--proxySelectorLabelValue=" + proxyLabelSelector,
             "--hostnameOverride=$(NODE_NAME)",
         ] + (if configs.estate == "prd-sam" then [
-                 "--servicesToLbOverride=" + $.servicesToLbOverride,
-                 "--servicesNotToLbOverride=" + $.servicesNotToLbOverride,
+                 "--servicesToLbOverride=" + servicesToLbOverride,
+                 "--servicesNotToLbOverride=" + servicesNotToLbOverride,
              ] else []),
         volumeMounts: configs.filter_empty([
             configs.maddog_cert_volume_mount,
@@ -64,19 +59,19 @@
         livenessProbe: {
             httpGet: {
                 path: "/liveness-probe",
-                port: $.configProcessorLivenessPort,
+                port: configProcessorLivenessPort,
             },
             initialDelaySeconds: 600,
             timeoutSeconds: 5,
             periodSeconds: 30,
         },
     },
-    slbNodeApi: {
+    slbNodeApi(nodeApiPort):: {
         name: "slb-node-api",
         image: slbimages.hypersdn,
         command: [
             "/sdn/slb-node-api",
-            "--port=" + $.nodeApiPort,
+            "--port=" + nodeApiPort,
             "--configDir=" + slbconfigs.configDir,
             "--log_dir=" + slbconfigs.logsDir,
             "--netInterface=lo",
@@ -113,7 +108,7 @@
             privileged: true,
         },
     },
-    slbRealSvrCfg: {
+    slbRealSvrCfg(nodeApiPort, nginxPodMode):: {
         name: "slb-realsvrcfg",
         image: slbimages.hypersdn,
         command: [
@@ -123,10 +118,13 @@
             "--netInterfaceName=eth0",
             "--log_dir=" + slbconfigs.logsDir,
             configs.sfdchosts_arg,
-            "--client.serverPort=" + $.nodeApiPort,
+            "--client.serverPort=" + nodeApiPort,
             "--client.serverInterface=lo",
         ] + (if $.dirSuffix == "slb-nginx-config-b" && slbimages.phaseNum <= 3 then [
             "--control.sentinelExpiration=1200s",
+        ] else [])
+        + (if slbimages.phaseNum <= 1 then [
+            "--nginxPodMode=" + nginxPodMode,
         ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
@@ -165,7 +163,7 @@
             configs.sfdchosts_volume_mount,
         ]),
     },
-    slbIfaceProcessor: {
+    slbIfaceProcessor(nodeApiPort): {
         name: "slb-iface-processor",
         image: slbimages.hypersdn,
         command: [
@@ -177,7 +175,7 @@
             "--log_dir=" + slbconfigs.logsDir,
             configs.sfdchosts_arg,
             "--readVipsFromIpvs=true",
-            "--client.serverPort=" + $.nodeApiPort,
+            "--client.serverPort=" + nodeApiPort,
             "--client.serverInterface=lo",
         ],
         volumeMounts: configs.filter_empty([

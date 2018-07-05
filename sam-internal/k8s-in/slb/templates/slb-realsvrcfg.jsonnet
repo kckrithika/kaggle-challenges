@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-realsvrcfg" };
-local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-realsvrcfg", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorRealSvrLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiRealSvrOverridePort }
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-realsvrcfg" }
                   + (if configs.estate == "prd-sam" then { servicesNotToLbOverride:: "" } else {});
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
@@ -39,10 +39,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.cleanup_logs_volume,
                 ]),
                 containers: [
-                    slbshared.slbRealSvrCfg,
-                    slbshared.slbConfigProcessor,
+                    slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiRealSvrOverridePort, false),
+                    slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorRealSvrLivenessProbeOverridePort, "slb-nginx-config-b", "", ""),
                     slbshared.slbCleanupConfig,
-                    slbshared.slbNodeApi,
+                    slbshared.slbNodeApi(slbports.slb.slbNodeApiRealSvrOverridePort),
                     slbshared.slbLogCleanup,
                 ],
                 affinity: {
