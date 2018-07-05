@@ -1,0 +1,6 @@
+apps:
+    disco-ping:
+        - prd/prd-sam
+    disco-pong:
+        - prd/prd-sam
+
