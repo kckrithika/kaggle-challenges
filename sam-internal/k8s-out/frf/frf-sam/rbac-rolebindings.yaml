@@ -561,5 +561,21 @@ items:
     name: samcaas1-caasminion3-2-frf.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion3-3-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: universal-search:frf-universalsearch_svc:rolebinding
+    namespace: universal-search
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-1-frf.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-2-frf.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-1-frf.ops.sfdc.net
 kind: List
 metadata: {}

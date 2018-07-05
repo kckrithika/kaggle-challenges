@@ -1395,6 +1395,12 @@ items:
   - kind: User
     name: shared0-samminionuniversalsearchmt1-2-prd.eng.sfdc.net
   - kind: User
+    name: shared0-samminionuniversalsearchmt1-3-prd.eng.sfdc.net
+  - kind: User
     name: shared0-samminionuniversalsearchmt2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-3-prd.eng.sfdc.net
 kind: List
 metadata: {}

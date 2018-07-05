@@ -1707,6 +1707,171 @@ data:
           "pod": "none",
           "rack": "e14-m306",
           "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt1-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a06-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt1-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a06-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt2-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b06-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "frf-sam",
+          "devicerole": "searchidx",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-searchidx1-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "frf-sam",
+          "devicerole": "searchidx",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-searchidx1-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "frf-sam",
+          "devicerole": "searchidx",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-searchidx1-3-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "frf-sam",
+          "devicerole": "searchidx",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-searchidx1-4-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "frf-sam",
+          "devicerole": "searchidx",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-searchidx1-5-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "frf-sam",
+          "devicerole": "searchidx",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-searchidx1-6-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b06-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "frf-sam",
+          "devicerole": "searchidx",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-searchidx2-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "frf-sam",
+          "devicerole": "searchidx",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-searchidx2-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "frf-sam",
+          "devicerole": "searchidx",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-searchidx2-3-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "frf-sam",
+          "devicerole": "searchidx",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-searchidx2-4-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "frf-sam",
+          "devicerole": "searchidx",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-searchidx2-5-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "frf-sam",
+          "devicerole": "searchidx",
+          "estate": "frf-universalsearch_svc",
+          "hostname": "shared0-searchidx2-6-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a06-m316",
+          "superpod": "none"
         }
       ]
     }

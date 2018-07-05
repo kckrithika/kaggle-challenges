@@ -1674,6 +1674,171 @@ data:
           "pod": "none",
           "rack": "j15-1r113",
           "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt1-1-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "b04-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt1-2-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "b04-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt2-1-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "b09-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "par-sam",
+          "devicerole": "searchidx",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-searchidx1-1-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "a07-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "par-sam",
+          "devicerole": "searchidx",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-searchidx1-2-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "a07-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "par-sam",
+          "devicerole": "searchidx",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-searchidx1-3-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "a07-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "par-sam",
+          "devicerole": "searchidx",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-searchidx1-4-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "a07-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "par-sam",
+          "devicerole": "searchidx",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-searchidx1-5-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "a07-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "par-sam",
+          "devicerole": "searchidx",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-searchidx1-6-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "b09-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "par-sam",
+          "devicerole": "searchidx",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-searchidx2-1-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "a12-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "par-sam",
+          "devicerole": "searchidx",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-searchidx2-2-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "a12-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "par-sam",
+          "devicerole": "searchidx",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-searchidx2-3-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "a12-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "par-sam",
+          "devicerole": "searchidx",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-searchidx2-4-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "a12-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "par-sam",
+          "devicerole": "searchidx",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-searchidx2-5-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "a12-1r050",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "par-sam",
+          "devicerole": "searchidx",
+          "estate": "par-universalsearch_svc",
+          "hostname": "shared0-searchidx2-6-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "b04-1r050",
+          "superpod": "none"
         }
       ]
     }

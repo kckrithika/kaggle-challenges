@@ -30,6 +30,61 @@ data:
           "controlestate": "prd-sam",
           "devicerole": "searchidx",
           "estate": "prd-dev-universalsearch_svc",
+          "hostname": "func0shared0-searchidx1-3-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "u10-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "prd-sam",
+          "devicerole": "searchidx",
+          "estate": "prd-dev-universalsearch_svc",
+          "hostname": "func0shared0-searchidx1-4-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "d32-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "prd-sam",
+          "devicerole": "searchidx",
+          "estate": "prd-dev-universalsearch_svc",
+          "hostname": "func0shared0-searchidx1-5-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "k07-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "prd-sam",
+          "devicerole": "searchidx",
+          "estate": "prd-dev-universalsearch_svc",
+          "hostname": "func0shared0-searchidx1-6-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "n07-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "prd-sam",
+          "devicerole": "searchidx",
+          "estate": "prd-dev-universalsearch_svc",
+          "hostname": "func0shared0-searchidx1-7-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "bb34-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "prd-sam",
+          "devicerole": "searchidx",
+          "estate": "prd-dev-universalsearch_svc",
           "hostname": "func0shared0-searchidx2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
@@ -45,6 +100,50 @@ data:
           "kingdom": "prd",
           "pod": "none",
           "rack": "aa38-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "prd-sam",
+          "devicerole": "searchidx",
+          "estate": "prd-dev-universalsearch_svc",
+          "hostname": "func0shared0-searchidx2-3-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "m34-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "prd-sam",
+          "devicerole": "searchidx",
+          "estate": "prd-dev-universalsearch_svc",
+          "hostname": "func0shared0-searchidx2-4-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "n12-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "prd-sam",
+          "devicerole": "searchidx",
+          "estate": "prd-dev-universalsearch_svc",
+          "hostname": "func0shared0-searchidx2-5-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "h21-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "prd-sam",
+          "devicerole": "searchidx",
+          "estate": "prd-dev-universalsearch_svc",
+          "hostname": "func0shared0-searchidx2-6-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "a21-45",
           "superpod": "none"
         },
         {
@@ -2912,10 +3011,43 @@ data:
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
           "estate": "prd-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt1-3-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "d32-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-universalsearch_svc",
           "hostname": "shared0-samminionuniversalsearchmt2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
           "rack": "s03-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt2-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "u04-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt2-3-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "u38-45",
           "superpod": "none"
         }
       ]
