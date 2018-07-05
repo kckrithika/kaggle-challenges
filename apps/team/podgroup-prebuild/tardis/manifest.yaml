@@ -34,7 +34,7 @@ system:
       - name: GUS_ENDPOINT
         value: 'gus.my.salesforce.com'
       - name: DEPLOY_DATE
-        value: 20180705
+        value: 201807051
       ports:
       - containerPort: 10443
       volumeMounts:
