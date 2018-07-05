@@ -49,5 +49,7 @@
         slbIpvsControlPort: 32149,
         baboonEndPointPort: 32556,
         mtlsDsrNodePort: 32150,
+        extCanaryServiceNodePort: 32151,
+        extCanaryServiceTlsNodePort: 32152,
     },
 }

@@ -145,6 +145,12 @@
             [k + "-sam"]: 2
             for k in $.prodKingdoms
         },
+
+        vipwdOptOutOptions: {
+            "prd-sdc": ["--optOutNamespace=kne"],
+            "prd-sam": ["--optOutServiceList=devrepo5-0-prd", "--optOutNamespace=kne,podgroup-prebuild"],
+            "xrd-sam": ["--optOutServiceList=slb-canary-service-ext"],
+        },
     },
 
 

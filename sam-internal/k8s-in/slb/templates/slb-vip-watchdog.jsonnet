@@ -111,7 +111,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                               command: [
                                            "/sdn/slb-vip-watchdog",
                                            "--log_dir=" + slbconfigs.logsDir,
-                                           "--optOutNamespace=kne",
                                            "--hostnameOverride=$(NODE_NAME)",
                                            configs.sfdchosts_arg,
                                            "--metricsEndpoint=" + configs.funnelVIP,
@@ -121,7 +120,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            "--client.serverInterface=lo",
                                            "--healthPathCheck=" + (if slbimages.hypersdn_build >= 942 then "true" else "false"),
                                            "--metricsBatchTimeout=30s",
-                              ] + (if slbimages.phaseNum == 2 then ["--optOutServiceList=devrepo5-0-prd"] else []),
+                              ] + (
+                                  if slbimages.phaseNum <= 2 && std.objectHas(slbconfigs.perCluster.vipwdOptOutOptions, configs.estate) then
+                                      slbconfigs.perCluster.vipwdOptOutOptions[configs.estate]
+                                  else ["--optOutNamespace=kne"]  # keeps backward compatibility for phase 3/4
+                              ),
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
