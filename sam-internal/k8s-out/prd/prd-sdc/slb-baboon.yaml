@@ -24,7 +24,7 @@ spec:
       - command:
         - /sdn/slb-baboon
         - --k8sapiserver=
-        - --namespace=sam-system
+        - --podNamespace=sam-system
         - --log_dir=/host/data/slb/logs/slb-baboon
         - --hostnameoverride=$(NODE_NAME)
         - --port=32556

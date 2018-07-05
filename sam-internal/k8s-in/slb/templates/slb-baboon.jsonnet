@@ -41,7 +41,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         command: [
                                 "/sdn/slb-baboon",
                                 "--k8sapiserver=",
-                                "--namespace=sam-system",
+                                "--podNamespace=sam-system",
                                 "--log_dir=" + slbconfigs.logsDir,
                                 "--hostnameoverride=$(NODE_NAME)",
                                 "--port=" + portconfigs.slb.baboonEndPointPort,
