@@ -34,7 +34,7 @@ system:
       - name: GUS_ENDPOINT
         value: 'gus.my.salesforce.com'
       - name: DEPLOY_DATE
-        value: 201807051
+        value: 201807052
       - name: STATIC_CONTENT_PATH
         value: '/tardis/static-content'
       ports:
