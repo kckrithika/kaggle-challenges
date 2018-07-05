@@ -19,7 +19,7 @@ system:
         secretName: tardis-secrets
     containers:
     - name: tardis
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20180621_f870e500
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20180705_f870e500
       env:
       - name: HTTPS_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
@@ -33,6 +33,8 @@ system:
         value: /certs/server/certificates/server.pem
       - name: GUS_ENDPOINT
         value: 'gus.my.salesforce.com'
+      - name: DEPLOY_DATE
+        value: 20180705
       ports:
       - containerPort: 10443
       volumeMounts:
