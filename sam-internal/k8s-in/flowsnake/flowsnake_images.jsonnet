@@ -79,15 +79,15 @@ local utils = import "util_functions.jsonnet";
 
             deployer_image_tag: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180627_145521.117759c3.dirty.jinxingwang-wsm",
             watchdog_canary_image_tag: "681",
-            testData_image_tag: "681",  #Currently under test verification in Test Fleet - Do not promote
+            testData_image_tag: "681",
             cert_secretizer_image_tag: "681",
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 autodeployer_with_detectOrphan: "foo",  # Untested;
-                add_local_canary: "verified",  #Verfied successfully in test fleet
-                add_11_canary: "verified",  #Verfied successfully in test fleet
+                add_local_canary: "verified",  #Verified successfully in test fleet
+                add_11_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Untested
             },
             version_mapping: {
@@ -113,9 +113,15 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
 
+            watchdog_canary_image_tag: "681",
+            testData_image_tag: "681",
+            cert_secretizer_image_tag: "681",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 add_local_canary: "unverified",  #Unverified in IoT fleet
+                add_11_canary: "verified",  #Verified successfully in test fleet
             },
             version_mapping: {
                 main: {
@@ -124,6 +130,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "spark-2.3-test": 672,
                   "0.10.0": 662,
+                  "0.11.0": 681,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -134,14 +141,21 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
         "3": self.default_image_tags {
 
+            watchdog_canary_image_tag: "681",
+            testData_image_tag: "681",
+            cert_secretizer_image_tag: "681",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                add_11_canary: "verified",  #Verified successfully in test fleet
             },
             version_mapping: {
                 main: {
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "spark-2.3-test": 672,
                   "0.10.0": 662,
+                  "0.11.0": 681,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {

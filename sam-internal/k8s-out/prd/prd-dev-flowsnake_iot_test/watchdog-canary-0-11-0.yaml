@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-canary
-  name: watchdog-canary
+  name: watchdog-canary-0-11-0
   namespace: flowsnake
 spec:
   template:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
-          "prd", "name": "watchdogcanarycerts", "role": "flowsnake_test", "san": ["flowsnake-prd.data.sfdc.net",
-          "api.flowsnake.localhost.mesh.force.com"]}]}'
+          "prd", "name": "watchdogcanarycerts", "role": "flowsnake_test", "san": ["dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net",
+          "api-dev.flowsnake.localhost.mesh.force.com"]}]}'
       labels:
-        app: watchdog-canary-0-10-0
+        app: watchdog-canary-0-11-0
         apptype: monitoring
     spec:
       containers:
@@ -24,12 +24,12 @@ spec:
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
-        - -cliCheckerCommandTarget=0.10.0
+        - -cliCheckerCommandTarget=0.11.0
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -watchdogFrequency=15m
         - -alertThreshold=45m
         - -cliCheckerTimeout=15m
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:670
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:681
         imagePullPolicy: IfNotPresent
         name: watchdog-canary
         resources:
@@ -75,7 +75,7 @@ spec:
         - --superpod
         - None
         - --estate
-        - prd-data-flowsnake
+        - prd-dev-flowsnake_iot_test
         - --refresher
         - --run-init-for-refresher-mode
         - --cert-folders
@@ -137,7 +137,7 @@ spec:
         - --superpod
         - None
         - --estate
-        - prd-data-flowsnake
+        - prd-dev-flowsnake_iot_test
         - --cert-folders
         - watchdogcanarycerts:/certs
         - --funnel-endpoint

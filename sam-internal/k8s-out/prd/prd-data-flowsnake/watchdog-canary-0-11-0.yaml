@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-canary
-  name: watchdog-canary
+  name: watchdog-canary-0-11-0
   namespace: flowsnake
 spec:
   template:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
-          "phx", "name": "watchdogcanarycerts", "role": "flowsnake_test", "san": ["flowsnake-phx.data.sfdc.net",
+          "prd", "name": "watchdogcanarycerts", "role": "flowsnake_test", "san": ["flowsnake-prd.data.sfdc.net",
           "api.flowsnake.localhost.mesh.force.com"]}]}'
       labels:
-        app: watchdog-canary-0-10-0
+        app: watchdog-canary-0-11-0
         apptype: monitoring
     spec:
       containers:
@@ -22,14 +22,14 @@ spec:
         - -role=CLI
         - -emailFrequency=10m
         - -timeout=2s
-        - -funnelEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
+        - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
-        - -cliCheckerCommandTarget=0.10.0
+        - -cliCheckerCommandTarget=0.11.0
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -watchdogFrequency=15m
         - -alertThreshold=45m
         - -cliCheckerTimeout=15m
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/watchdog-canary:670
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:681
         imagePullPolicy: IfNotPresent
         name: watchdog-canary
         resources:
@@ -53,6 +53,9 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
+        - mountPath: /data/certs
+          name: data-cert
+          readOnly: true
         - mountPath: /sfdchosts
           name: sfdchosts
       - args:
@@ -60,7 +63,7 @@ spec:
         - --madkub-endpoint
         - https://10.254.208.254:32007
         - --maddog-endpoint
-        - https://all.pkicontroller.pki.blank.phx.prod.non-estates.sfdcsd.net:8443
+        - https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca
         - /etc/pki_service/ca/security-ca.pem
         - --madkub-server-ca
@@ -68,17 +71,17 @@ spec:
         - --token-folder
         - /tokens
         - --kingdom
-        - phx
+        - prd
         - --superpod
         - None
         - --estate
-        - phx-flowsnake_prod
+        - prd-data-flowsnake
         - --refresher
         - --run-init-for-refresher-mode
         - --cert-folders
         - watchdogcanarycerts:/certs
         - --funnel-endpoint
-        - http://ajna0-funnel1-0-phx.data.sfdc.net:80
+        - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
         - name: MADKUB_NODENAME
           valueFrom:
@@ -95,7 +98,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
         name: sam-madkub-integration-refresher
         resources: {}
         volumeMounts:
@@ -112,6 +115,9 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
+        - mountPath: /data/certs
+          name: data-cert
+          readOnly: true
       hostNetwork: true
       initContainers:
       - args:
@@ -119,7 +125,7 @@ spec:
         - --madkub-endpoint
         - https://10.254.208.254:32007
         - --maddog-endpoint
-        - https://all.pkicontroller.pki.blank.phx.prod.non-estates.sfdcsd.net:8443
+        - https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca
         - /etc/pki_service/ca/security-ca.pem
         - --madkub-server-ca
@@ -127,15 +133,15 @@ spec:
         - --token-folder
         - /tokens
         - --kingdom
-        - phx
+        - prd
         - --superpod
         - None
         - --estate
-        - phx-flowsnake_prod
+        - prd-data-flowsnake
         - --cert-folders
         - watchdogcanarycerts:/certs
         - --funnel-endpoint
-        - http://ajna0-funnel1-0-phx.data.sfdc.net:80
+        - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
         - name: MADKUB_NODENAME
           valueFrom:
@@ -152,7 +158,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
         name: sam-madkub-integration-init
         resources: {}
         volumeMounts:
@@ -168,6 +174,9 @@ spec:
           readOnly: true
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
+          readOnly: true
+        - mountPath: /data/certs
+          name: data-cert
           readOnly: true
       restartPolicy: Always
       volumes:
@@ -189,6 +198,9 @@ spec:
       - hostPath:
           path: /etc/pki_service/platform/platform-client/keys
         name: client-key
+      - hostPath:
+          path: /data/certs
+        name: data-cert
       - configMap:
           name: sfdchosts
         name: sfdchosts
