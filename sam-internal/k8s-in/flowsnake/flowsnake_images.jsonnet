@@ -81,7 +81,7 @@ local utils = import "util_functions.jsonnet";
             watchdog_canary_image_tag: "681",
             testData_image_tag: "681",
             cert_secretizer_image_tag: "662",  # previously was 681, but that silently failed to deploy and be tested in test fleet
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-646-18-itest",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -103,6 +103,7 @@ local utils = import "util_functions.jsonnet";
                   "spark-2.3-test": 672,
                   "sla-metrics-test": "jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest",
                   branch_name_truncation: "jenkins-dva-transformation-flowsnake-platform-PR-680-5-itest",
+                  khtest: "jenkins-dva-transformation-flowsnake-platform-PR-646-18-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
