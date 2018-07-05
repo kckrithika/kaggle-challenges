@@ -22,14 +22,17 @@ spec:
         - --role=COMPAREK8SRESOURCES
         - --emailFrequency=1h
         - --enableEmailPerCheckerInstance=true
-        - --deployer-recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com,prabh.singh@salesforce.com
+        - --recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com,prabh.singh@salesforce.com
+        - --sender=sam@salesforce.com
         - --publishAlertsToKafka=false
         - --publishAllReportsToKafka=false
-        - --context=/Users/small/.kube/config
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180703_151042.1eb4bdf8.dirty.small-ltm
         name: watchdog-comparek8sresources
         volumeMounts:
