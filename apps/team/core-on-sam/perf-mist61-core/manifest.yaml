@@ -30,7 +30,7 @@ system:
 
         # If the count is changed above, the same value must be set for the NODES env variable below
         - name: NODES
-          value: 5
+          value: 1
 
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
