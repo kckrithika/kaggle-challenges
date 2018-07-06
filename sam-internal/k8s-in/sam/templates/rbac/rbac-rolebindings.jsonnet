@@ -6,7 +6,7 @@ local utils = import "util_functions.jsonnet";
 local ci = {
   "prd-sp2-sam_iot_test": ["iot-ci", "ci-iot"],
   "prd-sp2-sam_chatbot": ["chatbot-ci"],
-  "prd-sp2-sam_coreapp": ["ci-ice-pd"],
+  "prd-sp2-sam_coreapp": ["ci-ice-pd", "ci-core-on-sam"],
   "prd-sam_gater": ["ci-ccait"],
   "prd-sam_gatewayconfig": ["ci-gateway"],
   "prd-search_model_executor": ["ci-search-scale-safely"],
