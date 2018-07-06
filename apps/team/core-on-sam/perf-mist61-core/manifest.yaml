@@ -4,7 +4,7 @@ system:
   functions:
   - name: mist61-core
 
-    count: 5
+    count: 1
     
     volumes:
     - name: cert
@@ -27,10 +27,6 @@ system:
 #          value: mist61a216utf
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
-
-        # If the count is changed above, the same value must be set for the NODES env variable below
-        - name: NODES
-          value: 1
 
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
