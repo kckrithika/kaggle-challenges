@@ -7,7 +7,6 @@ metadata:
   labels:
     app: slb-portal-service
     slb.sfdc.net/name: slb-portal-service
-    slb.sfdc.net/type: http
   name: slb-portal-service
   namespace: sam-system
 spec:
