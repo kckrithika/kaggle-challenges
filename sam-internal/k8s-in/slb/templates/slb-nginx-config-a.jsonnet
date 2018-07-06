@@ -5,9 +5,10 @@ local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-a" };
+local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile };
 
 # Temporarily disable a-pipeline until it can be repaired
-if false && configs.estate == "prd-sam" then {
+if configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -49,73 +50,6 @@ if false && configs.estate == "prd-sam" then {
                                                                 }
                                                             ]
                                                          }",
-                    "pod.beta.kubernetes.io/init-containers": "[
-                                                            {
-                                                              \"image\": \"" + samimages.madkub + "\",
-                                                              \"args\": [
-                                                                \"/sam/madkub-client\",
-                                                                \"--madkub-endpoint\",
-                                                                \"https://$(MADKUBSERVER_SERVICE_HOST):32007\",
-                                                                \"--maddog-endpoint\",
-                                                                \"" + configs.maddogEndpoint + "\",
-                                                                \"--maddog-server-ca\",
-                                                                \"/maddog-certs/ca/security-ca.pem\",
-                                                                \"--madkub-server-ca\",
-                                                                \"/maddog-certs/ca/cacerts.pem\",
-                                                                \"--cert-folders\",
-                                                                \"cert1:/cert1/\",
-                                                                \"--cert-folders\",
-                                                                \"cert2:/cert2/\",
-                                                                \"--token-folder\",
-                                                                \"/tokens/\",
-                                                                \"--requested-cert-type\",
-                                                                \"client\"
-                                                              ],
-                                                              \"name\": \"madkub-init\",
-                                                              \"imagePullPolicy\": \"IfNotPresent\",
-                                                              \"volumeMounts\": [
-                                                                {
-                                                                    \"mountPath\": \"/cert1\",
-                                                                    \"name\": \"cert1\"
-                                                                },
-                                                                {
-                                                                    \"mountPath\": \"/cert2\",
-                                                                    \"name\": \"cert2\"
-                                                                },
-                                                                {
-                                                                    \"mountPath\": \"/maddog-certs/\",
-                                                                    \"name\": \"maddog-certs\"
-                                                                },
-                                                                {
-                                                                    \"mountPath\": \"/tokens\",
-                                                                    \"name\": \"tokens\"
-                                                                }
-                                                              ],
-                                                              \"env\": [
-                                                                {
-                                                                    \"name\": \"MADKUB_NODENAME\",
-                                                                    \"valueFrom\":
-                                                                    {
-                                                                        \"fieldRef\":{\"fieldPath\": \"spec.nodeName\", \"apiVersion\": \"v1\"}
-                                                                    }
-                                                                },
-                                                                {
-                                                                    \"name\": \"MADKUB_NAME\",
-                                                                    \"valueFrom\":
-                                                                    {
-                                                                        \"fieldRef\":{\"fieldPath\": \"metadata.name\", \"apiVersion\": \"v1\"}
-                                                                    }
-                                                                },
-                                                                {
-                                                                    \"name\": \"MADKUB_NAMESPACE\",
-                                                                    \"valueFrom\":
-                                                                    {
-                                                                        \"fieldRef\":{\"fieldPath\": \"metadata.namespace\", \"apiVersion\": \"v1\"}
-                                                                    }
-                                                                }
-                                                              ]
-                                                            }
-                                                         ]",
                 },
             },
             spec: {
@@ -153,6 +87,9 @@ if false && configs.estate == "prd-sam" then {
                     configs.sfdchosts_volume,
                     slbconfigs.sbin_volume,
                 ]),
+                initContainers: [
+                    madkub.madkubInitContainer(),
+                ],
                 containers: [
                     {
                         ports: [
@@ -172,6 +109,7 @@ if false && configs.estate == "prd-sam" then {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maxDeleteServiceCount=3",
                             configs.sfdchosts_arg,
+                            "--client.serverInterface=lo",
                         ],
                         volumeMounts: configs.filter_empty([
                             {
@@ -237,6 +175,8 @@ if false && configs.estate == "prd-sam" then {
                             "client",
                             "--refresher",
                             "--run-init-for-refresher-mode",
+                            "--ca-folder",
+                            "/maddog-certs/ca",
                         ],
                         env: [
                             {
