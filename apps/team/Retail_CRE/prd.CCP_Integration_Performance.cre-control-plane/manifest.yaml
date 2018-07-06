@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:0.0.1.19.60.ar_hbaseKeystore.fd59a29.19
+      image: sfci/cre/cre-control-plane:0.0.1.19.51.master.5b85006.90
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,admin@bt.salesforce.com"
