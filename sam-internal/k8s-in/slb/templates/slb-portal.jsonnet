@@ -86,7 +86,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort),
                           slbshared.slbLogCleanup,
                       ],
-                      nodeSelector: {
+                      nodeSelector: if slbimages.hypersdn_build >= 947 then {
+                          "slb-dns-register": "true",
+                      } else {
                           pool: configs.estate,
                       },
                   }
