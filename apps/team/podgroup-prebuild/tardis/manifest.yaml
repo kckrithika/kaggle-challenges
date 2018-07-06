@@ -34,7 +34,7 @@ system:
       - name: GUS_ENDPOINT
         value: 'gus.my.salesforce.com'
       - name: DEPLOY_DATE
-        value: 201807060
+        value: 201807061
       - name: STATIC_CONTENT_PATH
         value: '/tardis/static-content'
       - name: SERVER_ENABLE_HTTPS
