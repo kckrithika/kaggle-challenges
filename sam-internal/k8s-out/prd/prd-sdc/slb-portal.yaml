@@ -204,7 +204,7 @@ spec:
         - mountPath: /host/data/slb/logs/slb-portal/cleanup
           name: var-cleanup-logs-volume
       nodeSelector:
-        pool: prd-sdc
+        slb-dns-register: "true"
       volumes:
       - hostPath:
           path: /data/slb
