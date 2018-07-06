@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:3d9342117599271c53e97647281d886b476bb49c
+      image: sfci/servicelibs/switchboard:dafaeedac451ff0d4d4487c2eefc5edfee9dee10
       args:
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
       ports:
