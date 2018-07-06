@@ -37,6 +37,8 @@ system:
         value: 201807052
       - name: STATIC_CONTENT_PATH
         value: '/tardis/static-content'
+      - name: SERVER_ENABLE_HTTPS
+        value: 'FALSE'
       ports:
       - containerPort: 10443
       volumeMounts:
@@ -49,7 +51,7 @@ system:
         httpGet:
           path: /
           port: 10443
-          scheme: HTTPS
+          scheme: HTTP
   loadbalancers:
   - lbname: tardis
     function: default
