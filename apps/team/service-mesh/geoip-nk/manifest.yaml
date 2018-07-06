@@ -46,9 +46,11 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
-        name: sherpa-b-in
-      - containerPort: 7080
-        name: sherpa-b-adm
+        name: h2-in
+      - containerPort: 7443
+        name: h2-tls-in
+      - containerPort: 15373
+        name: adm
       livenessProbe:
         exec:
           command:
@@ -61,7 +63,18 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+      volumeMounts:
+      - mountPath: /client-certs
+        name: geoip-client-cert
+      - mountPath: /server-certs
+        name: geoip-server-cert
     volumes:
     - name: log-volume
       hostPath:
         path: /home/sfdc-geoip/logs
+    - name: geoip-client-cert
+      maddogCert:
+        type: client
+    - name: geoip-server-cert
+      maddogCert:
+        type: server
