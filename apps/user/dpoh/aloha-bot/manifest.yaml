@@ -1,0 +1,43 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: aloha-bot
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/aloha-bot:latest
+      command:
+        - /bin/aloha-bot
+      env:
+      - name: IRC_SERVER
+        value: "irc.ops.sfdc.net:6667"
+      - name: IRC_CHANNELS
+        value: "#aloha"
+      - name: IRC_USER
+        value: "go-bot"
+      - name: IRC_NICK
+        value: "go-bot"
+      - name: DEBUG
+        value: 1
+      - name: SSL_CACERT_PATH
+        value: "/certs/ca/cacerts.pem"
+      - name: SSL_KEY_PATH
+        value: "/certs/client/keys/client-key.pem"
+      - name: SSL_CERT_PATH
+        value: "/certs/client/certificates/client.pem"
+      - name: GUS_SECRET_SERVICE_VAULT_NAME
+        value: "GUS"
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
+      livenessProbe:
+        exec:
+          command:
+            - pgrep
+              - aloha-bot
+        initialDelaySeconds: 5
+        periodSeconds: 5
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
