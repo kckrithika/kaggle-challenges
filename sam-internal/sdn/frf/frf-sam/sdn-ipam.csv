@@ -133,6 +133,7 @@ shared0-samminionsme2-4-frf.ops.sfdc.net,10.248.191.149/29,10.214.33.0/27,a06-03
 shared0-samminionsme2-5-frf.ops.sfdc.net,10.248.191.150/29,10.214.33.32/27,a06-03,frf-search_model_executor
 shared0-samminionuniversalsearchmt1-1-frf.ops.sfdc.net,10.248.236.26/29,10.214.44.0/27,a06-03,frf-universalsearch_svc
 shared0-samminionuniversalsearchmt1-2-frf.ops.sfdc.net,10.248.236.27/29,10.214.44.32/27,a06-03,frf-universalsearch_svc
+shared0-samminionuniversalsearchmt2-1-frf.ops.sfdc.net,10.248.236.10/29,10.214.45.0/27,b06-03,frf-universalsearch_svc
 shared0-samminionwarden1-1-frf.ops.sfdc.net,10.248.171.74/29,10.214.6.32/27,a21-01,frf-sam_warden
 shared0-samminionwarden1-2-frf.ops.sfdc.net,10.248.171.66/29,10.214.6.0/27,a18-01,frf-sam_warden
 shared0-samminionwarden2-1-frf.ops.sfdc.net,10.248.171.82/29,10.214.6.64/27,d15-01,frf-sam_warden
@@ -141,6 +142,12 @@ shared0-searchidx1-2-frf.ops.sfdc.net,10.248.236.3/29,10.214.44.128/27,a07-03,fr
 shared0-searchidx1-3-frf.ops.sfdc.net,10.248.236.4/29,10.214.44.160/27,a07-03,frf-universalsearch_svc
 shared0-searchidx1-4-frf.ops.sfdc.net,10.248.236.5/29,10.214.44.192/27,a07-03,frf-universalsearch_svc
 shared0-searchidx1-5-frf.ops.sfdc.net,10.248.236.6/29,10.214.44.224/27,a07-03,frf-universalsearch_svc
+shared0-searchidx1-6-frf.ops.sfdc.net,10.248.236.11/29,10.214.45.32/27,b06-03,frf-universalsearch_svc
+shared0-searchidx2-1-frf.ops.sfdc.net,10.248.236.18/29,10.214.45.64/27,b07-03,frf-universalsearch_svc
+shared0-searchidx2-2-frf.ops.sfdc.net,10.248.236.19/29,10.214.45.96/27,b07-03,frf-universalsearch_svc
+shared0-searchidx2-3-frf.ops.sfdc.net,10.248.236.20/29,10.214.45.128/27,b07-03,frf-universalsearch_svc
+shared0-searchidx2-4-frf.ops.sfdc.net,10.248.236.21/29,10.214.45.160/27,b07-03,frf-universalsearch_svc
+shared0-searchidx2-5-frf.ops.sfdc.net,10.248.236.22/29,10.214.45.192/27,b07-03,frf-universalsearch_svc
 shared0-searchidx2-6-frf.ops.sfdc.net,10.248.236.28/29,10.214.44.64/27,a06-03,frf-universalsearch_svc
 shared0-slbminion1-1-frf.ops.sfdc.net,10.248.195.226/29,10.214.21.128/27,h13-02,frf-slb
 shared0-slbminion1-10-frf.ops.sfdc.net,10.248.195.227/29,10.214.21.160/27,h13-02,frf-slb
