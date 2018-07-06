@@ -19,7 +19,7 @@ system:
         secretName: tardis-secrets
     containers:
     - name: tardis
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20180705_f870e500
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20180706_f870e500
       env:
       - name: HTTPS_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
@@ -34,7 +34,7 @@ system:
       - name: GUS_ENDPOINT
         value: 'gus.my.salesforce.com'
       - name: DEPLOY_DATE
-        value: 201807052
+        value: 201807060
       - name: STATIC_CONTENT_PATH
         value: '/tardis/static-content'
       - name: SERVER_ENABLE_HTTPS
