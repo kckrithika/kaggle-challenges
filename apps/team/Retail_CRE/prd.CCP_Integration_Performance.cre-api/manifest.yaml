@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-api-ccp-perf
-    count: 1
+    count: 3
     containers:
     - name: cre-api-ccp-perf
       image: sfci/cre/cre-api:0.0.1.108.master.bdc75eb.168
@@ -27,8 +27,6 @@ system:
           value: kingdom-perf     
         - name: HBASE_DATA_CENTER
           value: prd
-        - name: HBASE_SUPER_TENANT_IDS_FLUSH
-          value: 00DD10000000MSi           
       ports:
       - containerPort: 8080
       - containerPort: 7022
