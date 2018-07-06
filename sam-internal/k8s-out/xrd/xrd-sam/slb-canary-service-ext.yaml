@@ -11,12 +11,10 @@ metadata:
 spec:
   ports:
   - name: slb-canary-port
-    nodePort: 32151
     port: 9111
     protocol: TCP
     targetPort: 9111
   - name: slb-canary-tls
-    nodePort: 32152
     port: 9443
     protocol: TCP
     targetPort: 9443

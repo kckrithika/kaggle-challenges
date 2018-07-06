@@ -22,14 +22,12 @@ if configs.estate == "xrd-sam" then {
                 port: portconfigs.slb.canaryServicePort,
                 protocol: "TCP",
                 targetPort: portconfigs.slb.canaryServicePort,
-                nodePort: portconfigs.slb.extCanaryServiceNodePort,
             },
             {
                 name: "slb-canary-tls",
                 port: portconfigs.slb.canaryServiceTlsPort,
                 protocol: "TCP",
                 targetPort: portconfigs.slb.canaryServiceTlsPort,
-                nodePort: portconfigs.slb.extCanaryServiceTlsNodePort,
             },
         ],
         selector: {

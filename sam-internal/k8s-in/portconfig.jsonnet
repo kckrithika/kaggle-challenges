@@ -55,8 +55,6 @@
         bravoServiceNodePort3: 32147,
         slbEchoServiceNodePort: 32148,
         slbIpvsControlPort: 32149,
-        extCanaryServiceNodePort: 32151,
-        extCanaryServiceTlsNodePort: 32152,
     },
     flowsnake: {
         nginx_ingress_http: 32080,
