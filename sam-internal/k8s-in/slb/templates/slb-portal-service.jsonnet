@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" || slbconfigs.slbInProdKingdom then {
     kind: "Service",
     apiVersion: "v1",
@@ -11,9 +12,17 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             app: "slb-portal-service",
             "slb.sfdc.net/name": "slb-portal-service",
         },
-        annotations: {
-            "slb.sfdc.net/name": "slb-portal-service",
-        },
+    } +
+    if slbimages.hypersdn_build >= 950 then {
+          annotations: {
+             "slb.sfdc.net/name": "slb-portal-service",
+             "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.slbPortalServicePort + ",\"targetport\":" + portconfigs.slb.slbPortalServicePort + ",\"lbtype\":\"http\"}]",
+
+          },
+          } else {
+               annotations: {
+                  "slb.sfdc.net/name": "slb-portal-service",
+          },
     },
     spec: {
         ports: [

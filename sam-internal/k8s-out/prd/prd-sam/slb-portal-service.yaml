@@ -3,6 +3,7 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: slb-portal-service
+    slb.sfdc.net/portconfigurations: '[{"port":9112,"targetport":9112,"lbtype":"http"}]'
   labels:
     app: slb-portal-service
     slb.sfdc.net/name: slb-portal-service
