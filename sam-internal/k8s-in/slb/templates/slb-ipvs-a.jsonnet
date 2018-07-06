@@ -6,7 +6,7 @@ local slbports = import "slbports.jsonnet";
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ipvs-a", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ipvs-a", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort };
 
-if false && configs.estate == "prd-sam" then {
+if configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -123,6 +123,9 @@ if false && configs.estate == "prd-sam" then {
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                             "--client.serverInterface=lo",
                             "--metricsEndpoint=" + configs.funnelVIP,
+                            "--proxyHealthChecks=true",
+                            "--httpTimeout=1s",
+                            "--enablePersistence=false",
                         ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
@@ -181,6 +184,7 @@ if false && configs.estate == "prd-sam" then {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                             "--client.serverInterface=lo",
+                            "--enableConntrack=false",
                         ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
