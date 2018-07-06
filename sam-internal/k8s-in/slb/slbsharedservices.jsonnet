@@ -123,7 +123,7 @@
         ] + (if $.dirSuffix == "slb-nginx-config-b" && slbimages.phaseNum <= 3 then [
             "--control.sentinelExpiration=1200s",
         ] else [])
-        + (if slbimages.phaseNum <= 1 then [
+        + (if slbimages.hypersdn_build >= 955 then [
             "--nginxPodMode=" + nginxPodMode,
         ] else []),
         volumeMounts: configs.filter_empty([
