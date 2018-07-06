@@ -1,17 +1,17 @@
 apiVersion: v1
- 
+
 system:
   notifications:
     email:
       - emailinfrastructure@salesforce.com
   functions:
   - name: eaas
-    count: 3 
+    count: 3
     strategy:
       type: RollingUpdate
     containers:
     - name: eaas
-      image:  docker-sfci-dev/sfci/eaas/emailservice:1.0.12-fb084e434e02ea4d48f0e6bbced6689045cebff5
+      image:  docker-sfci-dev/sfci/eaas/emailservice:1.0.14-6eac4b07791841d5785268ff9f5b49d4add5c508
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -107,4 +107,4 @@ system:
     ports:
       - port: 7020
         targetport: 7020
-        lbtype : tcp  
+        lbtype : tcp
