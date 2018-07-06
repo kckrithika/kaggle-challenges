@@ -5,7 +5,7 @@ data:
     0.11.0 = 681
     0.9.10 = 638
     branch_name_truncation = jenkins-dva-transformation-flowsnake-platform-PR-680-5-itest
-    khtest = jenkins-dva-transformation-flowsnake-platform-PR-646-18-itest
+    khtest = jenkins-dva-transformation-flowsnake-platform-PR-646-19-itest
     sla-metrics-test = jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest
     spark-2.3-test = 672
 kind: ConfigMap
