@@ -1,5 +1,9 @@
 apps:
+ argus-datasource:
+  - prd/prd-sam
  grafana:
   - prd/prd-sam
- argus-datasource:
+ switchboard:
+  - prd/prd-sam
+ perf-client:
   - prd/prd-sam
