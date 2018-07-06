@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: disco-ping-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bzimmerman/disco-ping:20180705-0bf4166
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bzimmerman/disco-ping:bzimmerman-20180706-b91dad2
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
