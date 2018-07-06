@@ -9,6 +9,9 @@ system:
     containers:
     - name: hellodiscovery-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jefflin/hellodiscovery:12
+      args:
+      - --logging.json.stdout.level
+      - ALL
       ports:
       - containerPort: 7022
         name: scone-http
@@ -23,8 +26,8 @@ system:
           port: 15372
           scheme: HTTP
       volumeMounts:
-      - mountPath: /home/scone/logs
-        name: logvolservice
+      #- mountPath: /home/scone/logs
+      #  name: logvolservice
       - name: myclientcert
         mountPath: /client-certs
       - name: myservercert
