@@ -57,7 +57,7 @@ spec:
         - --client.serverInterface=lo
         - --healthPathCheck=true
         - --metricsBatchTimeout=30s
-        - --optOutNamespace=kne
+        - --optOutServiceList=slb-canary-service-ext
         env:
         - name: NODE_NAME
           valueFrom:

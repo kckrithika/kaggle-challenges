@@ -121,7 +121,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            "--healthPathCheck=" + (if slbimages.hypersdn_build >= 942 then "true" else "false"),
                                            "--metricsBatchTimeout=30s",
                               ] + (
-                                  if slbimages.phaseNum <= 2 then
+                                  if slbimages.phaseNum <= 2 || configs.estate == "xrd-sam" then  # this block currently applies to phase 1, 2 and xrd-sam, pending rollout to more phases
                                       if std.objectHas(slbconfigs.perCluster.vipwdOptOutOptions, configs.estate) then
                                           slbconfigs.perCluster.vipwdOptOutOptions[configs.estate]
                                       else []
