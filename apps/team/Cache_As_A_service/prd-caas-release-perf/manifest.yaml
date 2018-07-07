@@ -41,7 +41,7 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12015
-      - containerPort: 12115
+      - containerPort: 12025
     - name: caas-redis-announcer-12015
       # container image/version to  run
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
@@ -94,7 +94,7 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12016
-      - containerPort: 12116
+      - containerPort: 12026
     - name: caas-redis-announcer-12016
       # container image/version to  run
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
@@ -147,7 +147,7 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12017
-      - containerPort: 12117
+      - containerPort: 12027
     - name: caas-redis-announcer-12017
       # container image/version to  run
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
@@ -200,7 +200,7 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12018
-      - containerPort: 12118
+      - containerPort: 12028
     - name: caas-redis-announcer-12018
       # container image/version to  run
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
@@ -253,7 +253,7 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12019
-      - containerPort: 12119
+      - containerPort: 12029
     - name: caas-redis-announcer-12019
       # container image/version to  run
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
@@ -306,7 +306,7 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12020
-      - containerPort: 12120
+      - containerPort: 12030
     - name: caas-redis-announcer-12020
       # container image/version to  run
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
@@ -359,7 +359,7 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12021
-      - containerPort: 12121
+      - containerPort: 12031
     - name: caas-redis-announcer-12021
       # container image/version to  run
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
@@ -412,7 +412,7 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12022
-      - containerPort: 12122
+      - containerPort: 12032
     - name: caas-redis-announcer-12022
       # container image/version to  run
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
