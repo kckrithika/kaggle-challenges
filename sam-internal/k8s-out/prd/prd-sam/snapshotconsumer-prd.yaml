@@ -4,7 +4,7 @@ metadata:
   labels:
     name: snapshotconsumer
     sam.data.sfdc.net/owner: sam
-  name: snapshotconsumer
+  name: snapshotconsumer-prd
 spec:
   replicas: 1
   selector:
@@ -20,7 +20,7 @@ spec:
       containers:
       - command:
         - /sam/snapshotconsumer
-        - --config=/config/snapshotconsumer.json
+        - --config=/config/snapshotconsumer-prd.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -v=3
         env:

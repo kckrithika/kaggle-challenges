@@ -8,7 +8,7 @@ if configs.estate == "prd-sam" then {
         labels: {
             name: "snapshotconsumer",
         } + configs.ownerLabel.sam,
-        name: "snapshotconsumer",
+        name: "snapshotconsumer-prd",
     },
     spec: {
         replicas: 1,
@@ -31,7 +31,7 @@ if configs.estate == "prd-sam" then {
                     image: samimages.hypersam,
                     command: [
                         "/sam/snapshotconsumer",
-                        "--config=/config/snapshotconsumer.json",
+                        "--config=/config/snapshotconsumer-prd.json",
                         "--hostsConfigFile=/sfdchosts/hosts.json",
                         "-v=3",
                     ],
