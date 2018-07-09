@@ -5,7 +5,7 @@ system:
   functions:
 
   - name: perf-client
-    count: 16 
+    count: 2
     containers:
 
     - name: client
@@ -14,8 +14,8 @@ system:
         exec:
           command:
             - "./is-alive.sh"
-          initialDelaySeconds: 10
-          periodSeconds: 5
+        initialDelaySeconds: 10
+        periodSeconds: 5
 
     - name: sherpa-sm
       image: sfci/servicelibs/sherpa:2.0.24
@@ -33,14 +33,14 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 120
-          periodSeconds: 5
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 100
-          periodSeconds: 5
+        initialDelaySeconds: 100
+        periodSeconds: 5
       volumeMounts:
         - name: logvol
           mountPath: /log
