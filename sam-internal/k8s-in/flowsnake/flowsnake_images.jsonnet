@@ -88,7 +88,7 @@ local utils = import "util_functions.jsonnet";
                 autodeployer_with_detectOrphan: "foo",  # Untested;
                 add_local_canary: "verified",  #Verified successfully in test fleet
                 add_11_canary: "verified",  #Verified successfully in test fleet
-                del_certsvc_certs: "foo",  #Untested
+                del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
                 main: {
@@ -123,6 +123,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 add_local_canary: "unverified",  #Unverified in IoT fleet
                 add_11_canary: "verified",  #Verified successfully in test fleet
+                del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
                 main: {
