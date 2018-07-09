@@ -54,3 +54,8 @@ apps:
     - prd/prd-sam_gater
   geoip-nk:
     - prd/prd-sam_gater
+
+  perf-client:
+    - prd/prd-sam_gater
+  perf-switchboard:
+    - prd/prd-sam_gater
