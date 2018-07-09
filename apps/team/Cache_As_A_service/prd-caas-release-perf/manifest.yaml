@@ -30,12 +30,13 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12025
-        - --proxyName=haproxy
+        - --proxyName=envoy
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12015
+           - --authRequired=no
         initialDelaySeconds: 15
         timeoutSeconds: 10
       # expose redis outside the container
@@ -83,12 +84,13 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12026
-        - --proxyName=haproxy
+        - --proxyName=envoy
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12016
+           - --authRequired=no
         initialDelaySeconds: 15
         timeoutSeconds: 10
       # expose redis outside the container
@@ -136,12 +138,13 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12027
-        - --proxyName=haproxy
+        - --proxyName=envoy
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12017
+           - --authRequired=no
         initialDelaySeconds: 15
         timeoutSeconds: 10
       # expose redis outside the container
@@ -189,12 +192,13 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12028
-        - --proxyName=haproxy
+        - --proxyName=envoy
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12018
+           - --authRequired=no
         initialDelaySeconds: 15
         timeoutSeconds: 10
       # expose redis outside the container
@@ -242,12 +246,13 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12029
-        - --proxyName=haproxy
+        - --proxyName=envoy
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12019
+           - --authRequired=no
         initialDelaySeconds: 15
         timeoutSeconds: 10
       # expose redis outside the container
@@ -295,12 +300,13 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12030
-        - --proxyName=haproxy
+        - --proxyName=envoy
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12020
+           - --authRequired=no
         initialDelaySeconds: 15
         timeoutSeconds: 10
       # expose redis outside the container
@@ -348,12 +354,13 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12031
-        - --proxyName=haproxy
+        - --proxyName=envoy
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12021
+           - --authRequired=no
         initialDelaySeconds: 15
         timeoutSeconds: 10
       # expose redis outside the container
@@ -401,12 +408,13 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12032
-        - --proxyName=haproxy
+        - --proxyName=envoy
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12022
+           - --authRequired=no
         initialDelaySeconds: 15
         timeoutSeconds: 10
       # expose redis outside the container
