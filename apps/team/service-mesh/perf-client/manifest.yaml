@@ -59,9 +59,9 @@ system:
       maddogCert:
         type: server
 
-  loadbalancers:
-  - lbname: perf-client-lb
-    function: perf-client
-    ports:
-      - port: 15373
-        targetport: 15373
+  # loadbalancers:
+  # - lbname: perf-client-lb
+  #   function: perf-client
+  #   ports:
+  #     - port: 15373
+  #       targetport: 15373
