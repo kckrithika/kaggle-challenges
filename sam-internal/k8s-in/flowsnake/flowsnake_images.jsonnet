@@ -95,6 +95,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "0.10.0": 662,
                   "0.11.0": 681,
+                  "0.11.0.sluice_fix": 691,
                 }
                 +
                 # These are for developer testing only
@@ -133,6 +134,7 @@ local utils = import "util_functions.jsonnet";
                   "spark-2.3-test": 672,
                   "0.10.0": 662,
                   "0.11.0": 681,
+                  "0.11.0.sluice_fix": 691,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -151,6 +153,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 add_11_canary: "verified",  #Verified successfully in test fleet
+                del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
                 main: {
@@ -158,6 +161,7 @@ local utils = import "util_functions.jsonnet";
                   "spark-2.3-test": 672,
                   "0.10.0": 662,
                   "0.11.0": 681,
+                  "0.11.0.sluice_fix": 691,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
