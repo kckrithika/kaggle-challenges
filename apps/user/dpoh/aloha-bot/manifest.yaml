@@ -27,6 +27,8 @@ system:
         value: "/certs/client/certificates/client.pem"
       - name: GUS_SECRET_SERVICE_VAULT_NAME
         value: "GUS"
+      - name: HTTPS_PROXY
+        value: "http://public0-proxy1-0-${KINGDOM}.data.sfdc.net:8080"
       volumeMounts:
       - name: cert
         mountPath: /certs
@@ -34,7 +36,7 @@ system:
         exec:
           command:
             - pgrep
-              - aloha-bot
+            - aloha-bot
         initialDelaySeconds: 5
         periodSeconds: 5
     volumes:
