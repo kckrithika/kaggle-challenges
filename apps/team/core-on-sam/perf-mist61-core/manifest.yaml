@@ -4,7 +4,7 @@ system:
   functions:
   - name: mist61-core
 
-    count: 1
+    count: 2
     
     volumes:
     - name: cert
@@ -43,7 +43,7 @@ system:
           value: mist61-cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
         # This maps to http_port
         - name: PORT
-          value: 12100
+          value: 8085
         # This maps to https_port
         - name: SPORT
           value: 12099
@@ -103,7 +103,7 @@ system:
         httpGet:
           path: /ping.jsp
 #          path: /samReady.jsp
-          port: 12100
+          port: 8085
         initialDelaySeconds: 120
         periodSeconds: 1
         failureThreshold: 10
@@ -111,7 +111,7 @@ system:
       ports:
         # Actually used by the container
         - containerPort: 8998
-        - containerPort: 12100
+        - containerPort: 8085
         - containerPort: 11211
         - containerPort: 12098
         - containerPort: 12099
@@ -220,7 +220,7 @@ system:
     - port: 18998
       targetport: 8998
     - port: 18085
-      targetport: 12100
+      targetport: 8085
     - port: 18086
       targetport: 12099
   - lbname: sequencer-lb
