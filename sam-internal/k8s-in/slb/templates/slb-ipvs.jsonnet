@@ -183,6 +183,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--log_dir=" + slbconfigs.logsDir,
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                             "--client.serverInterface=lo",
+                        ] + (if configs.estate == "prd-sdc" then [
+                                "--enableAcl=true",
+                            ] else [
+                            ]) +
+                        [
                             "--enableConntrack=false",
                         ],
                         volumeMounts: configs.filter_empty([
