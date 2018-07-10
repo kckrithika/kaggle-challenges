@@ -29,13 +29,11 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12025
-        - --proxyName=envoy
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12015
-           - --authRequired=no
         initialDelaySeconds: 15
         timeoutSeconds: 10
       # expose redis outside the container
