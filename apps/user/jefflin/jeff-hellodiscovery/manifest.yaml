@@ -26,8 +26,8 @@ system:
           port: 15372
           scheme: HTTP
       volumeMounts:
-      #- mountPath: /home/scone/logs
-      #  name: logvolservice
+      - mountPath: /home/scone/logs
+        name: logvolservice
       - name: myclientcert
         mountPath: /client-certs
       - name: myservercert
