@@ -148,7 +148,7 @@
 
         vipwdOptOutOptions: {
             "prd-sdc": ["--optOutNamespace=kne"],
-            "prd-sam": ["--optOutServiceList=devrepo5-0-prd", "--optOutNamespace=kne,podgroup-prebuild"],
+            "prd-sam": ["--optOutServiceList=devrepo5-0-prd,pra-sfc-prd,pra-dsm-prd", "--optOutNamespace=kne,podgroup-prebuild"],
             "xrd-sam": ["--optOutServiceList=slb-canary-service-ext"],
         },
     },
