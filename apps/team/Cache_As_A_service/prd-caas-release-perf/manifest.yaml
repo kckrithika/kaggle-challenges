@@ -12,7 +12,6 @@ system:
     hostnetwork: true
     containers:
     - name: caas-redis-12015 
-      # container image/version to  run
       image: tnrp/caas/caas-redis:tls-0000061-16183122
       resources:
         limits: { memory: "8292M" }
