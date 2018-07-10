@@ -60,7 +60,18 @@ data:
     ELSE payload -> ''$.status.endTime'' END  ) latency\nFROM \n\tPullRequests prs\nLEFT  JOIN  \n\t\t(\n\t\tSELECT
     * \n\t\tFROM \n\t\tcrd_history \n\t \tWHERE ApiKind = ''Bundle'') crds\n\tON crds.PRNum
     = prs.pr_num\nORDER BY prs.pr_num \n) prLatency\nWHERE latency > 45", "watchdogFrequency":
-    "10m"}]}'
+    "10m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
+    "alertThreshold": "10m", "instructions": "95th percentile of PRLatency is greater
+    than 45 minutes", "name": "Sql95thPRLatency", "sql": "SELECT *\n    FROM\n    (
+    SELECT * FROM\n     ( SELECT\n         prLatency.*,\n         @row_num :=@row_num
+    + 1 AS row_num\n    FROM\n        (\n        SELECT\n            prs.pr_num,\n            TIMESTAMPDIFF(MINUTE,prs.merged_time,
+    CASE WHEN payload -> ''$.status.endTime'' = ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP()
+    ELSE payload -> ''$.status.endTime'' END  ) latency\n    FROM\n        PullRequests
+    prs\n    LEFT  JOIN\n            (\n            SELECT *\n            FROM\n            crd_history\n            WHERE
+    ApiKind = ''Bundle'') crds\n        ON crds.PRNum = prs.pr_num\n    ORDER BY prs.pr_num\n    )
+    prLatency ,\n     (SELECT @row_num:=0) counter ORDER BY prLatency.latency\n     )\n    temp
+    WHERE temp.row_num = ROUND (.95* @row_num)\n    )\n    temp2 WHERE temp2.latency
+    > 45", "watchdogFrequency": "24h"}]}'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
