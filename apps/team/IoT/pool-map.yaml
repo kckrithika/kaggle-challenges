@@ -19,3 +19,7 @@ apps:
       - ord/ord-sam_iot
   provisioning-ord:
       - ord/ord-sam_iot
+  provisioning-frf:
+      - frf/frf-sam_iot
+  provisioning-par:
+      - par/par-sam_iot
