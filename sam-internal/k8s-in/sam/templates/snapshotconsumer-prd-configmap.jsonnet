@@ -9,6 +9,6 @@ if configs.estate == "prd-sam" then {
         labels: {} + configs.ownerLabel.sam,
     },
     data: {
-        "snapshotconsumer.json": std.toString(import "configs/snapshotconsumer-config.jsonnet"),
+        "snapshotconsumer-prd.json": std.toString(import "configs/snapshotconsumer-prd-config.jsonnet"),
     },
 } else "SKIP"
