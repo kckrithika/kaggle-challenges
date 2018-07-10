@@ -42,7 +42,7 @@ spec:
             configMapKeyRef:
               key: strata_registry
               name: fleet-config
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-fleet-service:662
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-fleet-service:jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
