@@ -50,7 +50,7 @@ system:
   - lbname: tardis
     function: default
     slbEnabled: true
-    lbtype: dsr
     ports:
       - port: 443
         targetport: 10443
+        lbtype: dsr
