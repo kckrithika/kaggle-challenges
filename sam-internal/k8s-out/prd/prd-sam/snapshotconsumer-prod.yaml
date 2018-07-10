@@ -2,19 +2,19 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: snapshotconsumer
+    name: snapshotconsumer-prod
     sam.data.sfdc.net/owner: sam
   name: snapshotconsumer-prod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: snapshotconsumer
+      name: snapshotconsumer-prod
   template:
     metadata:
       labels:
         apptype: control
-        name: snapshotconsumer
+        name: snapshotconsumer-prod
       namespace: sam-system
     spec:
       containers:
@@ -27,7 +27,7 @@ spec:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002059-8a57b252
-        name: snapshotconsumer
+        name: snapshotconsumer-prod
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -59,7 +59,7 @@ spec:
           path: /etc/kubernetes
         name: kubeconfig
       - configMap:
-          name: snapshotconsumer
+          name: snapshotconsumer-prod
         name: config
       - name: mysql
         secret:

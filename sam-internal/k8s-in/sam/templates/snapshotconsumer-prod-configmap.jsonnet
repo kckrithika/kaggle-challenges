@@ -4,7 +4,7 @@ if configs.estate == "prd-sam" then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
-        name: "snapshotconsumer",
+        name: "snapshotconsumer-prod",
         namespace: "sam-system",
         labels: {} + configs.ownerLabel.sam,
     },
