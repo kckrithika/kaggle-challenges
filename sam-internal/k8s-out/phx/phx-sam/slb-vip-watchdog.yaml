@@ -43,6 +43,7 @@ spec:
                 - slb-ipvs-b
                 - slb-nginx-config-b
                 - slb-nginx-config-a
+                - slb-vip-watchdog
             topologyKey: kubernetes.io/hostname
       containers:
       - command:

@@ -24,7 +24,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   labelSelector: {
                                       matchExpressions: [
                                       ] + (
-                                          if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then
+                                          if slbimages.phaseNum <= 3 then
                                               [
                                                   {
                                                       key: "name",
