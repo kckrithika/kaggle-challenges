@@ -23,36 +23,19 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                               requiredDuringSchedulingIgnoredDuringExecution: [{
                                   labelSelector: {
                                       matchExpressions: [
-                                      ] + (
-                                          if slbimages.phaseNum <= 3 then
-                                              [
-                                                  {
-                                                      key: "name",
-                                                      operator: "In",
-                                                      values: [
-                                                          "slb-ipvs",
-                                                          "slb-ipvs-a",
-                                                          "slb-ipvs-b",
-                                                          "slb-nginx-config-b",
-                                                          "slb-nginx-config-a",
-                                                          "slb-vip-watchdog",
-                                                      ],
-                                                  },
-                                              ] else [
-                                              {
-                                                  key: "name",
-                                                  operator: "In",
-                                                  values: [
-                                                      "slb-ipvs",
-                                                      "slb-ipvs-a",
-                                                      "slb-ipvs-b",
-                                                      "slb-nginx-config-b",
-                                                      "slb-nginx-config-a",
-                                                  ],
-                                              },
-                                          ]
-
-                                      ),
+                                          {
+                                              key: "name",
+                                              operator: "In",
+                                              values: [
+                                                  "slb-ipvs",
+                                                  "slb-ipvs-a",
+                                                  "slb-ipvs-b",
+                                                  "slb-nginx-config-b",
+                                                  "slb-nginx-config-a",
+                                                  "slb-vip-watchdog",
+                                              ],
+                                          },
+                                      ],
                                   },
                                   topologyKey: "kubernetes.io/hostname",
                               }],
@@ -109,17 +92,17 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                               name: "slb-vip-watchdog",
                               image: slbimages.hypersdn,
                               command: [
-                                           "/sdn/slb-vip-watchdog",
-                                           "--log_dir=" + slbconfigs.logsDir,
-                                           "--hostnameOverride=$(NODE_NAME)",
-                                           configs.sfdchosts_arg,
-                                           "--metricsEndpoint=" + configs.funnelVIP,
-                                           "--httpTimeout=5s",
-                                           "--vipLoop=1",
-                                           "--monitorFrequency=10s",
-                                           "--client.serverInterface=lo",
-                                           "--healthPathCheck=" + (if slbimages.hypersdn_build >= 942 then "true" else "false"),
-                                           "--metricsBatchTimeout=30s",
+                                  "/sdn/slb-vip-watchdog",
+                                  "--log_dir=" + slbconfigs.logsDir,
+                                  "--hostnameOverride=$(NODE_NAME)",
+                                  configs.sfdchosts_arg,
+                                  "--metricsEndpoint=" + configs.funnelVIP,
+                                  "--httpTimeout=5s",
+                                  "--vipLoop=1",
+                                  "--monitorFrequency=10s",
+                                  "--client.serverInterface=lo",
+                                  "--healthPathCheck=" + (if slbimages.hypersdn_build >= 942 then "true" else "false"),
+                                  "--metricsBatchTimeout=30s",
                               ] + (
                                   if slbimages.phaseNum <= 2 || configs.estate == "xrd-sam" then  # this block currently applies to phase 1, 2 and xrd-sam, pending rollout to more phases
                                       if std.objectHas(slbconfigs.perCluster.vipwdOptOutOptions, configs.estate) then
