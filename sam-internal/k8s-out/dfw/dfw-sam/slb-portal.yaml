@@ -26,12 +26,16 @@ spec:
         - --templatePath=/sdn/webfiles
         - --port=9112
         - --client.serverInterface=lo
+        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
+        - --log_dir=/host/data/slb/logs/slb-portal
+        - --cafile=/etc/pki_service/ca/cabundle.pem
         env:
         - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000946-4828dc76
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
         livenessProbe:
           httpGet:
             path: /
@@ -43,6 +47,10 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
       - command:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-portal
@@ -72,7 +80,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000946-4828dc76
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -108,7 +116,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-portal
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000946-4828dc76
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -125,7 +133,7 @@ spec:
         - --configDir=/host/data/slb/config/slb-portal
         - --log_dir=/host/data/slb/logs/slb-portal
         - --netInterface=lo
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000946-4828dc76
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -144,7 +152,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000946-4828dc76
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -160,7 +168,7 @@ spec:
         - mountPath: /host/data/slb/logs/slb-portal/cleanup
           name: var-cleanup-logs-volume
       nodeSelector:
-        pool: dfw-sam
+        slb-dns-register: "true"
       volumes:
       - hostPath:
           path: /data/slb
