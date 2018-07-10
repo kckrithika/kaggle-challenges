@@ -12,7 +12,7 @@ system:
     hostnetwork: true
     containers:
     - name: caas-redis-12015 
-      image: tnrp/caas/caas-redis:tls-0000061-16183122
+      image: tnrp/caas/caas-redis:tls-0000062-16184331
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -66,7 +66,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12016 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000061-16183122
+      image: tnrp/caas/caas-redis:tls-0000062-16184331
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -120,7 +120,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12017 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000061-16183122
+      image: tnrp/caas/caas-redis:tls-0000062-16184331
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -174,7 +174,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12018 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000061-16183122
+      image: tnrp/caas/caas-redis:tls-0000062-16184331
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -228,7 +228,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12019 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000061-16183122
+      image: tnrp/caas/caas-redis:tls-0000062-16184331
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -282,7 +282,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12020 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000061-16183122
+      image: tnrp/caas/caas-redis:tls-0000062-16184331
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -336,7 +336,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12021 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000061-16183122
+      image: tnrp/caas/caas-redis:tls-0000062-16184331
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -390,7 +390,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12022 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000061-16183122
+      image: tnrp/caas/caas-redis:tls-0000062-16184331
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
