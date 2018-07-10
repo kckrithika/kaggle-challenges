@@ -759,18 +759,6 @@
     },
     {
       "namespaces": [
-        "chatbot"
-      ],
-      "access": [
-        "team/chatbot"
-      ],
-      "controlEstate": "iad-sam",
-      "estate": "iad-sam_chatbot_kingdom",
-      "kingdom": "iad",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
         "cloudatlas"
       ],
       "access": [
