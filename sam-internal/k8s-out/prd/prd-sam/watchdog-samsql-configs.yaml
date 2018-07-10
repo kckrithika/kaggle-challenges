@@ -52,7 +52,15 @@ data:
     IS NULL) AND\n                     ControlEstate NOT LIKE ''%sdc%'' AND\n                     ControlEstate
     NOT LIKE ''%storage%'' AND\n                     ControlEstate NOT LIKE ''%sdn%''
     AND\n                     ControlEstate NOT LIKE ''%slb%'' AND\n                     desiredReplicas
-    != 0", "watchdogFrequency": "10m"}]}'
+    != 0", "watchdogFrequency": "10m"}, {"alertAction": "email", "alertFrequency":
+    "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "Following
+    PRs have failed to get deployed within 45 minutes of getting merged.", "name":
+    "SqlPRLatency", "sql": "SELECT \n \tpr_num\nFROM \n\t(\n\tSELECT \t\n   \t\tprs.pr_num,\n   \t\tTIMESTAMPDIFF(MINUTE,prs.merged_time,
+    CASE WHEN payload -> ''$.status.endTime'' = ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP()
+    ELSE payload -> ''$.status.endTime'' END  ) latency\nFROM \n\tPullRequests prs\nLEFT  JOIN  \n\t\t(\n\t\tSELECT
+    * \n\t\tFROM \n\t\tcrd_history \n\t \tWHERE ApiKind = ''Bundle'') crds\n\tON crds.PRNum
+    = prs.pr_num\nORDER BY prs.pr_num \n) prLatency\nWHERE latency > 45", "watchdogFrequency":
+    "10m"}]}'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
