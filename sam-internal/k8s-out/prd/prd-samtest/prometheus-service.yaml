@@ -4,6 +4,7 @@ metadata:
   annotations: {}
   labels:
     app: prometheus
+    sam.data.sfdc.net/owner: sam
   name: prometheus-svc
   namespace: sam-system
 spec:

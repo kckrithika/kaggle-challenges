@@ -15,6 +15,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-samsql
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

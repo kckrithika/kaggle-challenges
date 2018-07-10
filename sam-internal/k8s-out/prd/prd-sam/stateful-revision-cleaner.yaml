@@ -15,6 +15,7 @@ spec:
       labels:
         apptype: control
         name: stateful-revision-cleaner
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

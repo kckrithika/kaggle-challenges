@@ -10,6 +10,7 @@ spec:
       labels:
         daemonset: "true"
         name: etcdbackup
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

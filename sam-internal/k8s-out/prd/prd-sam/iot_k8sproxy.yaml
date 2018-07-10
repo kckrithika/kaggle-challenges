@@ -15,6 +15,7 @@ spec:
       labels:
         apptype: proxy
         name: iotk8sproxy
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - args:
