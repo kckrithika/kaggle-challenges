@@ -53,4 +53,4 @@ system:
     ports:
       - port: 443
         targetport: 10443
-        lbtype: dsr
+        lbtype: tcp
