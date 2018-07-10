@@ -11,7 +11,7 @@ system:
     containers:
     - name: mayankapp
       image: tnrp/sam/hypersam:sam-0000701-487f2675
-      command: ["/sam/sam-test-app"]
+      command: ["/sam/sam-test-ap"]
       args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
       env:
         - name: El337
