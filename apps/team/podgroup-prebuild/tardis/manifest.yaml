@@ -49,8 +49,8 @@ system:
   loadbalancers:
   - lbname: tardis
     function: default
-    slbenabled: true
+    slbEnabled: true
+    lbtype: dsr
     ports:
-      - port: 10443
+      - port: 443
         targetport: 10443
-        lbtype: dsr
