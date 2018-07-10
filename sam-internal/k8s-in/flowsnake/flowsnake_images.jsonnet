@@ -77,7 +77,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
 
-            deployer_image_tag: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180627_145521.117759c3.dirty.jinxingwang-wsm",
+            deployer_image_tag: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:sam-0002076-c7dd1d69",
             watchdog_canary_image_tag: "681",
             testData_image_tag: "681",
             cert_secretizer_image_tag: "662",  # previously was 681, but that silently failed to deploy and be tested in test fleet
