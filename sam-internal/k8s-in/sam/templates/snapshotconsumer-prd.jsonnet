@@ -6,7 +6,7 @@ if configs.estate == "prd-sam" then {
     kind: "Deployment",
     metadata: {
         labels: {
-            name: "snapshotconsumer",
+            name: "snapshotconsumer-prd",
         } + configs.ownerLabel.sam,
         name: "snapshotconsumer-prd",
     },
@@ -14,20 +14,20 @@ if configs.estate == "prd-sam" then {
         replicas: 1,
         selector: {
             matchLabels: {
-                name: "snapshotconsumer",
+                name: "snapshotconsumer-prd",
             },
         },
         template: {
             metadata: {
                 labels: {
                     apptype: "control",
-                    name: "snapshotconsumer",
+                    name: "snapshotconsumer-prd",
                 },
                 namespace: "sam-system",
             },
             spec: {
                 containers: [{
-                    name: "snapshotconsumer",
+                    name: "snapshotconsumer-prd",
                     image: samimages.hypersam,
                     command: [
                         "/sam/snapshotconsumer",
@@ -56,7 +56,7 @@ if configs.estate == "prd-sam" then {
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
-                    configs.config_volume("snapshotconsumer"),
+                    configs.config_volume("snapshotconsumer-prd"),
                     {
                         secret: {
                             secretName: "mysql-pwd",

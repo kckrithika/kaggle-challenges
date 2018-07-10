@@ -18,5 +18,5 @@ metadata:
   creationTimestamp: null
   labels:
     sam.data.sfdc.net/owner: sam
-  name: snapshotconsumer
+  name: snapshotconsumer-prd
   namespace: sam-system
