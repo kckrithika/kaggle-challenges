@@ -175,11 +175,18 @@ local utils = import "util_functions.jsonnet";
             ### Instead, update default_image_tags definition at top of this file and delete
             ### any overrides in other phases that are equal to the new defaults.
 
+            watchdog_canary_image_tag: "681",
+            testData_image_tag: "681",
+            cert_secretizer_image_tag: "662",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
+
             feature_flags: {
                 ### AFTER SETTING FEATURE FLAGS HERE:
                 ### issue PR to deploy your changes. Then create a follow-on PR
                 ### that deletes all the feature flags and conditional logic from
                 ### the templates. This PR should not result in any k8s-out diffs.
+                add_11_canary: "verified",  #Verified successfully in test fleet
+                del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
                 main: {
@@ -187,6 +194,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.8": 607,
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "0.10.0": 662,
+                  "0.11.0": 681,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {

@@ -59,8 +59,6 @@ spec:
           name: datacerts
         - mountPath: /tokens
           name: tokens
-        - mountPath: /data/certs
-          name: kubeconfig-certs
         - mountPath: /etc/pki_service/
           name: pki
       - args:
@@ -120,6 +118,3 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: pki
-      - hostPath:
-          path: /data/certs
-        name: kubeconfig-certs
