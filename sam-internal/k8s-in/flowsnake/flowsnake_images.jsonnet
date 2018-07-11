@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
                 cert_secretizer_image_tag: 662,
                 es_image_tag: "503",
                 fleetService_image_tag: "662",
-                testData_image_tag: "638",
+                testData_image_tag: "681",
                 glok_image_tag: "472",
                 ingressControllerNginx_image_tag: 662,
                 ingressDefaultBackend_image_tag: 662,
@@ -35,7 +35,7 @@ local utils = import "util_functions.jsonnet";
                 madkub_image_tag: "1.0.0-0000062-dca2d8d1",
                 nodeMonitor_image_tag: 662,
                 watchdog_image_tag: "sam-0002015-fdb18963",
-                watchdog_canary_image_tag: "670",
+                watchdog_canary_image_tag: "681",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
                 deployer_image_tag: "sam-0002076-c7dd1d69",
@@ -77,15 +77,12 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
 
-            watchdog_canary_image_tag: "681",
-            testData_image_tag: "681",
             cert_secretizer_image_tag: "662",  # previously was 681, but that silently failed to deploy and be tested in test fleet
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-646-25-itest",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 add_local_canary: "verified",  #Verified successfully in test fleet
-                add_11_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
@@ -113,15 +110,12 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
 
-            watchdog_canary_image_tag: "681",
-            testData_image_tag: "681",
             cert_secretizer_image_tag: "662",
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 add_local_canary: "unverified",  #Unverified in IoT fleet
-                add_11_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
@@ -143,14 +137,11 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
         "3": self.default_image_tags {
 
-            watchdog_canary_image_tag: "681",
-            testData_image_tag: "681",
             cert_secretizer_image_tag: "662",
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                add_11_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
@@ -173,8 +164,6 @@ local utils = import "util_functions.jsonnet";
             ### Instead, update default_image_tags definition at top of this file and delete
             ### any overrides in other phases that are equal to the new defaults.
 
-            watchdog_canary_image_tag: "681",
-            testData_image_tag: "681",
             cert_secretizer_image_tag: "662",
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
 
@@ -183,7 +172,6 @@ local utils = import "util_functions.jsonnet";
                 ### issue PR to deploy your changes. Then create a follow-on PR
                 ### that deletes all the feature flags and conditional logic from
                 ### the templates. This PR should not result in any k8s-out diffs.
-                add_11_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {

@@ -29,24 +29,15 @@ local build_test_command(test_name, version) = build_run_command(version) + set_
 local flag_local = std.objectHas(flowsnake_images.feature_flags, "add_local_canary");
 local flag_11 = std.objectHas(flowsnake_images.feature_flags, "add_11_canary");
 
-local build_command_sets = if flag_local && flag_11 then {
+local build_command_sets = if flag_local then {
     "0.11.0": {
         SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.11.0'),
         SparkLocal: build_test_command('SparkLocalDriverDemoJobIT', '0.11.0'),
    },
-} else if flag_local && !flag_11 then {
-    "0.10.0": {
-        SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.10.0'),
-        SparkLocal: build_test_command('SparkLocalDriverDemoJobIT', '0.10.0'),
-    },
-} else if !flag_local && flag_11 then {
+} else if !flag_local then {
     "0.11.0": {
         SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.11.0'),
    },
-} else if !flag_local && !flag_11 then {
-    "0.10.0": {
-        SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.10.0'),
-    },
 };
 
 {
