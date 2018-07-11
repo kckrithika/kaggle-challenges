@@ -12,7 +12,7 @@ system:
     hostnetwork: true
     containers:
     - name: caas-redis-12015 
-      image: tnrp/caas/caas-redis:tls-0000069-16192228
+      image: tnrp/caas/caas-redis:tls-0000070-16192974
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -30,7 +30,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12025
         - --proxyName=envoy
-        - --bindToLoopback
+        - --disableProtectedMode
       livenessProbe:
         exec:
           command:
@@ -67,7 +67,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12016 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000069-16192228
+      image: tnrp/caas/caas-redis:tls-0000070-16192974
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -85,7 +85,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12026
         - --proxyName=envoy
-        - --bindToLoopback
+        - --disableProtectedMode
       livenessProbe:
         exec:
           command:
@@ -122,7 +122,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12017 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000069-16192228
+      image: tnrp/caas/caas-redis:tls-0000070-16192974
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -140,7 +140,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12027
         - --proxyName=envoy
-        - --bindToLoopback
+        - --disableProtectedMode
       livenessProbe:
         exec:
           command:
@@ -177,7 +177,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12018 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000069-16192228
+      image: tnrp/caas/caas-redis:tls-0000070-16192974
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -195,7 +195,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12028
         - --proxyName=envoy
-        - --bindToLoopback
+        - --disableProtectedMode
       livenessProbe:
         exec:
           command:
@@ -232,7 +232,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12019 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000069-16192228
+      image: tnrp/caas/caas-redis:tls-0000070-16192974
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -250,7 +250,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12029
         - --proxyName=envoy
-        - --bindToLoopback
+        - --disableProtectedMode
       livenessProbe:
         exec:
           command:
@@ -287,7 +287,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12020 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000069-16192228
+      image: tnrp/caas/caas-redis:tls-0000070-16192974
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -305,7 +305,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12030
         - --proxyName=envoy
-        - --bindToLoopback
+        - --disableProtectedMode
       livenessProbe:
         exec:
           command:
@@ -342,7 +342,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12021 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000069-16192228
+      image: tnrp/caas/caas-redis:tls-0000070-16192974
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -360,7 +360,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12031
         - --proxyName=envoy
-        - --bindToLoopback
+        - --disableProtectedMode
       livenessProbe:
         exec:
           command:
@@ -397,7 +397,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12022 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000069-16192228
+      image: tnrp/caas/caas-redis:tls-0000070-16192974
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -415,7 +415,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12032
         - --proxyName=envoy
-        - --bindToLoopback
+        - --disableProtectedMode
       livenessProbe:
         exec:
           command:
