@@ -30,7 +30,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180626_173213.52cc933c.clean.small-ltm
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002059-8a57b252
         name: samapp-controller
         volumeMounts:
         - mountPath: /sfdchosts
