@@ -3,9 +3,6 @@ data:
   version-mapping.properties: |
     0.10.0 = 662
     0.11.0 = 681
-    0.9.10 = 638
-    0.9.7 = 571
-    0.9.8 = 607
 kind: ConfigMap
 metadata:
   creationTimestamp: null

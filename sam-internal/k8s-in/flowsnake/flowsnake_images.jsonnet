@@ -192,9 +192,6 @@ local utils = import "util_functions.jsonnet";
             },
             version_mapping: {
                 main: {
-                  "0.9.7": 571,
-                  "0.9.8": 607,
-                  "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "0.10.0": 662,
                   "0.11.0": 681,
                 },
@@ -213,7 +210,7 @@ local utils = import "util_functions.jsonnet";
             "1"
         else if (kingdom == "prd" && estate != "prd-data-flowsnake") then
             "2"
-        else if (estate == "prd-data-flowsnake" || kingdom == "phx") then
+        else if (estate == "prd-data-flowsnake") then
             "3"
         else
             "4"
