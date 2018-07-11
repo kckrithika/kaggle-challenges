@@ -28,7 +28,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-fra.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000956-13cb4cb8
         name: slb-ipvs-installer
         securityContext:
           capabilities:
@@ -65,7 +65,7 @@ spec:
         - --proxyHealthChecks=true
         - --httpTimeout=1s
         - --enablePersistence=false
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000956-13cb4cb8
         name: slb-ipvs-processor
         securityContext:
           privileged: true
@@ -85,7 +85,7 @@ spec:
         - --connPort=9107
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000956-13cb4cb8
         livenessProbe:
           httpGet:
             path: /
@@ -112,7 +112,7 @@ spec:
         - --client.serverPort=12081
         - --client.serverInterface=lo
         - --enableConntrack=false
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000956-13cb4cb8
         name: slb-ipvs-conntrack
         securityContext:
           privileged: true
@@ -156,7 +156,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000956-13cb4cb8
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -192,7 +192,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000956-13cb4cb8
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -209,7 +209,7 @@ spec:
         - --configDir=/host/data/slb/config/slb-ipvs
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --netInterface=lo
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000956-13cb4cb8
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -227,7 +227,7 @@ spec:
         - --readVipsFromIpvs=true
         - --client.serverPort=12081
         - --client.serverInterface=lo
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000956-13cb4cb8
         name: slb-iface-processor
         securityContext:
           privileged: true
@@ -254,7 +254,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000950-9f20b2db
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0000956-13cb4cb8
         name: slb-cleanup
         securityContext:
           privileged: true
