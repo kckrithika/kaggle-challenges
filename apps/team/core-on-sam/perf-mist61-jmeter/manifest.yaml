@@ -3,8 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: mist61-jmeter
-    count: 4
-    hostnetwork: true
+    count: 1
     
     containers:
     - name: mist61-jmeter
