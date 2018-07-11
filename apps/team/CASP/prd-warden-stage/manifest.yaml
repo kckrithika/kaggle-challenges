@@ -17,8 +17,13 @@ system:
       - name: prd-warden-stage
         image: tnrp/casp/warden:0.0.1-0000265-1513a7aa
         ports:
-        - name: warden-stage
+        - name: http
           containerPort: 8889
+          hostPort: 18889
+        - name: https
+          containerPort: 443
+        - name: grpc
+          containerPort: 7878
         env:
         - name: BRANCH
           value: "eng_production"
@@ -42,7 +47,11 @@ system:
     loadbalancers:
     - lbname: warden-stage-node
       function: warden-stage-func
-      nodeExposed: true
+      slbEnabled: true
       ports:
-        - port: 8882
+        - port: 80
           targetport: 8889
+        - port: 443
+          targetport: 443
+        - port: 7878
+          targetport: 7878
