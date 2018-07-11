@@ -6,7 +6,7 @@ system:
       - aiacob@salesforce.com
   functions:
   - name: andreis-report-collector
-    count: 3
+    count: 1
     volumes:
       - name: servercertvol
         maddogCert:
