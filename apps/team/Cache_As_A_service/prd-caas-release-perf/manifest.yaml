@@ -30,6 +30,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12025
         - --proxyName=envoy
+        - --bindToLoopback=true
       livenessProbe:
         exec:
           command:
@@ -84,6 +85,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12026
         - --proxyName=envoy
+        - --bindToLoopback=true
       livenessProbe:
         exec:
           command:
@@ -138,6 +140,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12027
         - --proxyName=envoy
+        - --bindToLoopback=true
       livenessProbe:
         exec:
           command:
@@ -192,6 +195,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12028
         - --proxyName=envoy
+        - --bindToLoopback=true
       livenessProbe:
         exec:
           command:
@@ -246,6 +250,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12029
         - --proxyName=envoy
+        - --bindToLoopback=true
       livenessProbe:
         exec:
           command:
@@ -300,6 +305,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12030
         - --proxyName=envoy
+        - --bindToLoopback=true
       livenessProbe:
         exec:
           command:
@@ -354,6 +360,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12031
         - --proxyName=envoy
+        - --bindToLoopback=true
       livenessProbe:
         exec:
           command:
@@ -408,6 +415,7 @@ system:
         - --logDir=/home/caas/logs
         - --sslPort=12032
         - --proxyName=envoy
+        - --bindToLoopback=true
       livenessProbe:
         exec:
           command:
