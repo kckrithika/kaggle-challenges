@@ -733,6 +733,34 @@
     },
     {
       "namespaces": [
+        "*"
+      ],
+      "access": [
+        "*"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-sam",
+      "kingdom": "ia2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater",
+        "ccait",
+        "service-mesh"
+      ],
+      "access": [
+        "team/Gater",
+        "team/CCAIT",
+        "team/service-mesh"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-sam_gater",
+      "kingdom": "ia2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -1433,6 +1461,34 @@
       "controlEstate": "par-sam",
       "estate": "par-universalsearch_svc",
       "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "*"
+      ],
+      "access": [
+        "*"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-sam",
+      "kingdom": "ph2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater",
+        "ccait",
+        "service-mesh"
+      ],
+      "access": [
+        "team/Gater",
+        "team/CCAIT",
+        "team/service-mesh"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-sam_gater",
+      "kingdom": "ph2",
       "superPod": "None"
     },
     {
