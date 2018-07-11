@@ -2,6 +2,19 @@ local flowsnakeimages = (import "flowsnake_images.jsonnet") + { templateFilename
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local util = import "util_functions.jsonnet";
 local kingdom = std.extVar("kingdom");
+
+# Builds an image promotion entry with the image tagged based on the version mapping
+local build_mapped_entry(imageName, version) = {
+  name: imageName,
+  image: flowsnakeconfig.strata_registry + "/" + imageName + ":" + flowsnakeimages.version_mapping.main[version],
+};
+
+# Builds an image promotion entry with the image tagged directly with the version
+local build_versioned_entry(imageName, version) = {
+   name: imageName,
+   image: flowsnakeconfig.strata_registry + "/" + imageName + ":" + version,
+};
+
 if util.is_production(kingdom) then
 {
   apiVersion: "extensions/v1beta1",
@@ -17,12 +30,14 @@ if util.is_production(kingdom) then
           else
                flowsnakeimages.flowsnakeImagesToPromote;
           [
-            {
-              name: imageName,
-              image: flowsnakeconfig.strata_registry + "/" + imageName + ":" + flowsnakeimages.version_mapping.main[version],
-            }
+            build_mapped_entry(imageName, version)
             for imageName in imageNames
-          ]
+          ] +
+          std.prune([  #other images will result in a NULL entry, so prune them
+            if std.startsWith(imageName, "flowsnake-job") then
+                build_versioned_entry(imageName, version)
+            for imageName in imageNames
+          ])
           for version in std.objectFields(flowsnakeimages.version_mapping.main)
         ]
 ),

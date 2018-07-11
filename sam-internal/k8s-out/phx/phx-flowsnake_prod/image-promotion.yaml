@@ -66,6 +66,14 @@ spec:
         name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-logstash:662
         name: flowsnake-logstash
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.10.0
+        name: flowsnake-job-flowsnake-demo-job
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.10.0
+        name: flowsnake-job-flowsnake-storm-demo-job
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:0.10.0
+        name: flowsnake-job-flowsnake-airflow-dags
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.10.0
+        name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:681
         name: flowsnake-spark-driver_2.1.0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master_2.1.0:681
@@ -136,6 +144,14 @@ spec:
         name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-logstash:681
         name: flowsnake-logstash
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.11.0
+        name: flowsnake-job-flowsnake-demo-job
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.11.0
+        name: flowsnake-job-flowsnake-storm-demo-job
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:0.11.0
+        name: flowsnake-job-flowsnake-airflow-dags
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.11.0
+        name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:691
         name: flowsnake-spark-driver_2.1.0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master_2.1.0:691
@@ -206,6 +222,14 @@ spec:
         name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-logstash:691
         name: flowsnake-logstash
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.11.0.sluice_fix
+        name: flowsnake-job-flowsnake-demo-job
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.11.0.sluice_fix
+        name: flowsnake-job-flowsnake-storm-demo-job
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:0.11.0.sluice_fix
+        name: flowsnake-job-flowsnake-airflow-dags
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.11.0.sluice_fix
+        name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver:638
         name: flowsnake-spark-driver
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master:638
@@ -268,6 +292,14 @@ spec:
         name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-logstash:638
         name: flowsnake-logstash
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.9.10
+        name: flowsnake-job-flowsnake-demo-job
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.9.10
+        name: flowsnake-job-flowsnake-storm-demo-job
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:0.9.10
+        name: flowsnake-job-flowsnake-airflow-dags
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.9.10
+        name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:672
         name: flowsnake-spark-driver_2.1.0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master_2.1.0:672
@@ -338,3 +370,11 @@ spec:
         name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-logstash:672
         name: flowsnake-logstash
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:spark-2.3-test
+        name: flowsnake-job-flowsnake-demo-job
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:spark-2.3-test
+        name: flowsnake-job-flowsnake-storm-demo-job
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:spark-2.3-test
+        name: flowsnake-job-flowsnake-airflow-dags
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:spark-2.3-test
+        name: flowsnake-job-flowsnake-spark-local-mode-demo-job
