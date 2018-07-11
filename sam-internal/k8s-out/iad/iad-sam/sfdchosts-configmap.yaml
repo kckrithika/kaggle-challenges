@@ -3220,6 +3220,39 @@ data:
           "controlestate": "iad-sam",
           "devicerole": "searchidx",
           "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-17-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "b05-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-18-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "c10-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx1-19-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "j18-9b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
           "hostname": "shared0-searchidx1-2-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
@@ -3389,6 +3422,28 @@ data:
           "kingdom": "iad",
           "pod": "none",
           "rack": "h05-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-17-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "j09-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "iad-sam",
+          "devicerole": "searchidx",
+          "estate": "iad-universalsearch_svc",
+          "hostname": "shared0-searchidx2-18-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "d10-9a",
           "superpod": "none"
         },
         {
