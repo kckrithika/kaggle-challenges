@@ -4,7 +4,7 @@ data:
     {
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
-      "delete-orphans": true,
+      "delete-orphans": false,
       "disable-rollback": true,
       "disable-security-check": true,
       "dry-run": false,
