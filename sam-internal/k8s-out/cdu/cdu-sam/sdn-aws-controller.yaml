@@ -15,12 +15,7 @@ spec:
   template:
     metadata:
       labels:
-<<<<<<< HEAD:sam-internal/k8s-out/cdu/cdu-sam/sdn-aws-controller.yaml
         name: sdn-aws-controller
-=======
-        name: sdn-control
-        sam.data.sfdc.net/owner: sdn
->>>>>>> adding owner label for sdn in all prds:sam-internal/k8s-out/prd/prd-samtest/sdn-control.yaml
     spec:
       containers:
       - command:

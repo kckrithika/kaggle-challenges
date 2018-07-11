@@ -16,14 +16,9 @@ spec:
   template:
     metadata:
       labels:
-<<<<<<< HEAD:sam-internal/k8s-out/prd/prd-sdc/sdn-sdnc-watchdog.yaml
         apptype: monitoring
         name: sdn-sdnc-watchdog
       namespace: sam-system
-=======
-        name: sdn-control
-        sam.data.sfdc.net/owner: sdn
->>>>>>> adding owner label for sdn in all prds:sam-internal/k8s-out/prd/prd-sam/sdn-control.yaml
     spec:
       containers:
       - command:
