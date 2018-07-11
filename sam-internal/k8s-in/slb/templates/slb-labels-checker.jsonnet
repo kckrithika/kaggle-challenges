@@ -68,7 +68,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                 labels: {
                     name: "slb-labels-checker",
                     apptype: "monitoring",
-                },
+                } + configs.ownerLabel.slb,
                 namespace: "sam-system",
             },
         },

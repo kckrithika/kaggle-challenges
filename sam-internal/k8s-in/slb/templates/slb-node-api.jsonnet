@@ -21,7 +21,7 @@ if slbconfigs.slbInKingdom && slbimages.phaseNum > 1 then {
                     name: "slb-node-api",
                     apptype: "control",
                     daemonset: "true",
-                },
+                } + configs.ownerLabel.slb,
                 namespace: "sam-system",
             },
             spec: {

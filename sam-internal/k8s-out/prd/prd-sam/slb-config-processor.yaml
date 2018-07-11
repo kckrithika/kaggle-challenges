@@ -3,7 +3,6 @@ kind: DaemonSet
 metadata:
   labels:
     name: slb-config-processor
-    sam.data.sfdc.net/owner: slb
   name: slb-config-processor
   namespace: sam-system
 spec:

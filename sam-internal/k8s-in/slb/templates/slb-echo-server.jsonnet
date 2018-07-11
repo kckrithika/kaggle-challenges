@@ -22,7 +22,7 @@ if configs.estate == "prd-sdc" then {
             metadata: {
                 labels: {
                     name: "slb-echo-server",
-                },
+                } + configs.ownerLabel.slb,
                 namespace: "sam-system",
             },
             spec: {

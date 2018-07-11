@@ -144,7 +144,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 labels: {
                     name: "slb-vip-watchdog",
                     apptype: "monitoring",
-                },
+                } + configs.ownerLabel.slb,
                 namespace: "sam-system",
             },
         },

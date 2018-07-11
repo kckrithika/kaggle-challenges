@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     name: slb-cleanup-unknownpods
-    sam.data.sfdc.net/owner: slb
   name: slb-cleanup-unknownpods
   namespace: sam-system
 spec:

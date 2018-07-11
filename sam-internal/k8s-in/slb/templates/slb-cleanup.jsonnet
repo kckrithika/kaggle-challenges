@@ -20,7 +20,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     name: "slb-cleanup",
                     apptype: "control",
                     daemonset: "true",
-                },
+                } + configs.ownerLabel.slb,
                 namespace: "sam-system",
             },
             spec: {

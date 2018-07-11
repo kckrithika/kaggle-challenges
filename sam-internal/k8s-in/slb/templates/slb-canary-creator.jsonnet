@@ -20,7 +20,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
             metadata: {
                 labels: {
                     name: "slb-canary-creator",
-                },
+                } + configs.ownerLabel.slb,
                 namespace: "sam-system",
             },
             spec: {

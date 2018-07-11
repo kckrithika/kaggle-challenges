@@ -4,8 +4,7 @@ metadata:
   annotations:
     slb.sfdc.net/name: slb-mtls-tcp
     slb.sfdc.net/portconfigurations: '[{"port":12345,"targetport":12345,"lbtype":"tcp"}]'
-  labels:
-    sam.data.sfdc.net/owner: slb
+  labels: {}
   name: slb-mtls-tcp-service
   namespace: sam-system
 spec:

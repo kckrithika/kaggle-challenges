@@ -13,6 +13,7 @@ spec:
       labels:
         apptype: monitoring
         name: slb-cleanup-unknownpods
+        sam.data.sfdc.net/owner: slb
       namespace: sam-system
     spec:
       containers:

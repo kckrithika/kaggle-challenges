@@ -20,7 +20,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             metadata: {
                 labels: {
                     name: "slb-dns-register",
-                },
+                } + configs.ownerLabel.slb,
                 namespace: "sam-system",
             },
             spec: {

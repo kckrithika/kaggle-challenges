@@ -43,6 +43,7 @@ spec:
                                    }
       labels:
         name: slb-nginx-config-b
+        sam.data.sfdc.net/owner: slb
       namespace: sam-system
     spec:
       affinity:

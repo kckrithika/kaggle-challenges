@@ -3,7 +3,6 @@ kind: DaemonSet
 metadata:
   labels:
     name: slb-cleanup
-    sam.data.sfdc.net/owner: slb
   name: slb-cleanup
   namespace: sam-system
 spec:

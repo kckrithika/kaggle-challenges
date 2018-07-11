@@ -19,7 +19,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
             metadata: {
                 labels: {
                     name: "slb-canary-passthrough-tls",
-                },
+                } + configs.ownerLabel.slb,
                 namespace: "sam-system",
             },
             spec: {

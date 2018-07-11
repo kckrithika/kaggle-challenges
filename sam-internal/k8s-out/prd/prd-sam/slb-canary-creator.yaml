@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     name: slb-canary-creator
-    sam.data.sfdc.net/owner: slb
   name: slb-canary-creator
   namespace: sam-system
 spec:

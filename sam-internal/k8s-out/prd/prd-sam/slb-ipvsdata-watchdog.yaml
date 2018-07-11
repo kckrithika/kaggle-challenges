@@ -21,7 +21,6 @@ metadata:
       }
   labels:
     name: slb-ipvsdata-watchdog
-    sam.data.sfdc.net/owner: slb
   name: slb-ipvsdata-watchdog
   namespace: sam-system
 spec:

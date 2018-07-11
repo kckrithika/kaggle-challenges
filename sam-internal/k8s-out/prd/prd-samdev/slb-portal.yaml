@@ -18,6 +18,7 @@ spec:
     metadata:
       labels:
         name: slb-portal
+        sam.data.sfdc.net/owner: slb
       namespace: sam-system
     spec:
       containers:

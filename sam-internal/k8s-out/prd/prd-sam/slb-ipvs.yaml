@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     name: slb-ipvs
-    sam.data.sfdc.net/owner: slb
   name: slb-ipvs
   namespace: sam-system
 spec:
