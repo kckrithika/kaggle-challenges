@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: sdn-ping-watchdog
+    sam.data.sfdc.net/owner: sdn
   name: sdn-ping-watchdog
   namespace: sam-system
 spec:

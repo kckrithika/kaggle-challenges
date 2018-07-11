@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: sdn-vault-agent
+    sam.data.sfdc.net/owner: sdn
   name: sdn-vault-agent
   namespace: sam-system
 spec:

@@ -120,7 +120,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
     metadata: {
         labels: {
             name: "sdn-ping-watchdog",
-        },
+        } + configs.ownerLabel.sdn,
         name: "sdn-ping-watchdog",
         namespace: "sam-system",
     },

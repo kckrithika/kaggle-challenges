@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: sdn-logstash
+    sam.data.sfdc.net/owner: sdn
   name: sdn-logstash
   namespace: sam-system
 spec:

@@ -110,7 +110,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "sdn-logstash",
-        },
+        } + configs.ownerLabel.sdn,
         name: "sdn-logstash",
         namespace: "sam-system",
     },

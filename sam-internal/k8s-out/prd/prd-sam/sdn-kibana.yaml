@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: sdn-kibana
+    sam.data.sfdc.net/owner: sdn
   name: sdn-kibana
   namespace: sam-system
 spec:

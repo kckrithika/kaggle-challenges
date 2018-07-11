@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: sdn-route-watchdog
+    sam.data.sfdc.net/owner: sdn
   name: sdn-route-watchdog
   namespace: sam-system
 spec:

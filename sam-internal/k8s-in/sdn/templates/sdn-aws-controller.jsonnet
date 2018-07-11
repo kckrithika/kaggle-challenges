@@ -9,7 +9,7 @@ if configs.estate == "cdu-sam" then {
     metadata: {
         labels: {
             name: "sdn-aws-controller",
-        },
+        } + configs.ownerLabel.sdn,
         name: "sdn-aws-controller",
         namespace: "sam-system",
     },

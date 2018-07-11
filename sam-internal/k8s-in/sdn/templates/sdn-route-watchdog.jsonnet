@@ -95,7 +95,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
     metadata: {
         labels: {
             name: "sdn-route-watchdog",
-        },
+        } + configs.ownerLabel.sdn,
         name: "sdn-route-watchdog",
         namespace: "sam-system",
     },
