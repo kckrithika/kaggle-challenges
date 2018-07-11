@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: illumio-proxy
+    sam.data.sfdc.net/owner: slb
   name: illumio-proxy
   namespace: sam-system
 spec:

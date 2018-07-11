@@ -9,7 +9,7 @@ if configs.estate == "prd-sam" then {
         labels: {
             app: "illumio-proxy-svc",
             "slb.sfdc.net/name": "illumio-proxy-svc",
-        },
+        } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "illumio-proxy-svc",
             "slb.sfdc.net/portconfigurations": "[{\"port\":8443,\"targetport\":8443,\"lbtype\":\"tcp\"}]",

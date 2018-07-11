@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: slb-vip-watchdog
+    sam.data.sfdc.net/owner: slb
   name: slb-vip-watchdog
   namespace: sam-system
 spec:

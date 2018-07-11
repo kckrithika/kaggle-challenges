@@ -9,7 +9,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
         labels: {
             app: "slb-baboon-service",
             "slb.sfdc.net/name": "slb-baboon-service",
-        },
+        } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-baboon-service",
         },

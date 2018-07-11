@@ -9,7 +9,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
     metadata: {
         labels: {
             name: "slb-canary-proxy-tcp",
-        },
+        } + configs.ownerLabel.slb,
         name: "slb-canary-proxy-tcp",
         namespace: "sam-system",
     },

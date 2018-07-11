@@ -9,7 +9,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
     metadata: {
         labels: {
             name: "slb-ipvsdata-watchdog",
-        },
+        } + configs.ownerLabel.slb,
         name: "slb-ipvsdata-watchdog",
         namespace: "sam-system",
         annotations: {

@@ -10,6 +10,7 @@ if configs.estate == "prd-sam" then {
             "slb.sfdc.net/name": "slb-mtls-tcp",
             "slb.sfdc.net/portconfigurations": "[{\"port\":12345,\"targetport\":12345,\"lbtype\":\"tcp\"}]",
         },
+        labels: {} + configs.ownerLabel.slb,
     },
     spec: {
         ports: [

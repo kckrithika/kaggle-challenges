@@ -9,7 +9,7 @@ if configs.estate == "prd-sdc" then {
     metadata: {
         labels: {
             name: "slb-nginxdata-watchdog",
-        },
+        } + configs.ownerLabel.slb,
         name: "slb-nginxdata-watchdog",
         namespace: "sam-system",
     },

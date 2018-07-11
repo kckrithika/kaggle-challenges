@@ -3,6 +3,7 @@ kind: DaemonSet
 metadata:
   labels:
     name: slb-node-api
+    sam.data.sfdc.net/owner: slb
   name: slb-node-api
   namespace: sam-system
 spec:

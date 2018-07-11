@@ -14,7 +14,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "slb-nginx-config-a",
-        },
+        } + configs.ownerLabel.slb,
         name: "slb-nginx-config-a",
         namespace: "sam-system",
     },

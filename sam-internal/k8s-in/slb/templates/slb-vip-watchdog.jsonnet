@@ -10,7 +10,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
     metadata: {
         labels: {
             name: "slb-vip-watchdog",
-        },
+        } + configs.ownerLabel.slb,
         name: "slb-vip-watchdog",
         namespace: "sam-system",
     },

@@ -9,7 +9,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
     metadata: {
         labels: {
             name: "slb-canary-passthrough-host-network",
-        },
+        } + configs.ownerLabel.slb,
         name: "slb-canary-passthrough-host-network",
         namespace: "sam-system",
     },

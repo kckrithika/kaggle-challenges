@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: slb-baboon
+    sam.data.sfdc.net/owner: slb
   name: slb-baboon
   namespace: sam-system
 spec:

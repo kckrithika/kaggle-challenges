@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: slb-bravo
+    sam.data.sfdc.net/owner: slb
   name: slb-bravo
   namespace: sam-system
 spec:

@@ -9,7 +9,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
     metadata: {
         labels: {
             name: "slb-canary",
-        },
+        } + configs.ownerLabel.slb,
         name: "slb-canary",
         namespace: "sam-system",
     },

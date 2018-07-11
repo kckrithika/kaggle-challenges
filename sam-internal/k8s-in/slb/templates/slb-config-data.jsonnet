@@ -9,7 +9,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
     metadata: {
         labels: {
             name: "slb-config-data",
-        },
+        } + configs.ownerLabel.slb,
         name: "slb-config-data",
         namespace: "sam-system",
     },

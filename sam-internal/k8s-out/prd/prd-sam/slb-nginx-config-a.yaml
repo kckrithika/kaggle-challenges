@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: slb-nginx-config-a
+    sam.data.sfdc.net/owner: slb
   name: slb-nginx-config-a
   namespace: sam-system
 spec:

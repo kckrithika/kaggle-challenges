@@ -10,7 +10,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
         labels: {
             app: "slb-canary-service",
             "slb.sfdc.net/name": "slb-canary-service",
-        },
+        } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-canary-service",
         },

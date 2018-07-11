@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: illumio-dsr-host
+    sam.data.sfdc.net/owner: slb
   name: illumio-dsr-host
   namespace: sam-system
 spec:

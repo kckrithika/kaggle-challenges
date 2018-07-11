@@ -12,7 +12,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
             app: "slb-canary-proxy-tcp-service",
             "slb.sfdc.net/name": "slb-canary-proxy-tcp",
             "slb.sfdc.net/type": "tcp",
-        },
+        } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-canary-proxy-tcp",
             "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"lbtype\":\"tcp\""

@@ -9,7 +9,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "illumio-dsr-host",
-        },
+        } + configs.ownerLabel.slb,
         name: "illumio-dsr-host",
         namespace: "sam-system",
     },
