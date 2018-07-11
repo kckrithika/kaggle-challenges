@@ -12,6 +12,7 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
         "email-delay": 0,
         "disable-rollback": true,
         "delete-orphans": false,
+        "orphan-namespaces": "flowsnake,default,kube-system",
         "disable-security-check": true,
         "override-control-estate": "/" + kingdom + "/" + kingdom + "-sam",
         funnelEndpoint: flowsnakeconfig.funnel_vip_and_port,
@@ -110,11 +111,5 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
             // WI to change deepsea setup to not require the endpoint: https://gus.my.salesforce.com/a07B0000004lMMSIA2
             "deepsea-kdc-endpoints.yaml",
         ] else []),
-    } +
-    if std.objectHas(flowsnakeimage.feature_flags, "autodeployer_with_detectOrphan") then
-    {
-      "orphan-namespaces": "flowsnake,default,kube-system",
-    } else {
-      "orphan-namespaces": "flowsnake",
     },
 }

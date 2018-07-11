@@ -38,7 +38,7 @@ local utils = import "util_functions.jsonnet";
                 watchdog_canary_image_tag: "670",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
-                deployer_image_tag: "sam-0001730-c7caec88",
+                deployer_image_tag: "sam-0002076-c7dd1d69",
                 snapshoter_image_tag: "sam-0002052-bc0d9ea5",
                 snapshot_consumer_image_tag: "sam-0002052-bc0d9ea5",
                 kubedns_image_tag: "1.10.0",
@@ -77,7 +77,6 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
 
-            deployer_image_tag: "sam-0002076-c7dd1d69",
             watchdog_canary_image_tag: "681",
             testData_image_tag: "681",
             cert_secretizer_image_tag: "662",  # previously was 681, but that silently failed to deploy and be tested in test fleet
@@ -85,7 +84,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                autodeployer_with_detectOrphan: "foo",  # tested;
                 add_local_canary: "verified",  #Verified successfully in test fleet
                 add_11_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
@@ -119,14 +117,12 @@ local utils = import "util_functions.jsonnet";
             testData_image_tag: "681",
             cert_secretizer_image_tag: "662",
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
-            deployer_image_tag: "sam-0002076-c7dd1d69",  # tested;
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 add_local_canary: "unverified",  #Unverified in IoT fleet
                 add_11_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
-                autodeployer_with_detectOrphan: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
                 main: {
@@ -151,13 +147,11 @@ local utils = import "util_functions.jsonnet";
             testData_image_tag: "681",
             cert_secretizer_image_tag: "662",
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
-            deployer_image_tag: "sam-0002076-c7dd1d69",  # Untested;
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 add_11_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
-                autodeployer_with_detectOrphan: "foo",  #Verified successfully in dev fleet
             },
             version_mapping: {
                 main: {
