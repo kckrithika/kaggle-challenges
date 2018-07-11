@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  host-repair-rebooter.json: |-
+    {
+      "apiUrl": "https://gingham1-0-crz.data.sfdc.net/api",
+      "crdNamespace": "sam-system",
+      "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
+      "ginghamCertFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "ginghamKeyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: host-repair-rebooter
+  namespace: sam-system
