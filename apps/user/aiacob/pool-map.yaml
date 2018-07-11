@@ -1,4 +1,6 @@
 apps:
+ report-cache-builder:
+   - prd/prd-sam
  report-collector:
    - prd/prd-sam
  repcollavailwd:

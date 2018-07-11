@@ -1,0 +1,98 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - aiacob@salesforce.com
+  functions:
+  - name: andreis-cache-builder
+    count: 1
+    volumes:
+      - name: redisauthvol
+        secret:
+          secretName: csc-redis-hack-auth
+      - name: logvol
+        hostPath:
+          path: /var/log/report-cache-builder
+    containers:
+    - name: report-cache-builder
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-cache-builder:20180711110150
+      ports:
+      - name: consumer
+        containerPort: 8081
+      - name: consumer-https
+        containerPort: 8444
+      volumeMounts:
+      - mountPath: /var/log/report-cache-builder
+        name: logvol
+      - mountPath: /var/secrets/redis
+        name: redisauthvol
+        readOnly: true
+      env:
+      - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
+        value: 7
+      - name: ReportCollector_datastore
+        value: redisIndex
+      - name: ReportCollector_redis_host
+        value: $(ANDREISREDISLB_SERVICE_HOST)
+      - name: ReportCollector_redis_port
+        value: $(ANDREISREDISLB_SERVICE_PORT)
+      - name: ReportCollector_redis_fullPathToAuthFile
+        value: /var/secrets/redis/auth
+      - name: ReportCollector_app_http_enabled
+        value: false
+      - name: ReportCollector_cacheBuilder_enabled
+        value: true
+      - name: ReportCollector_cacheBuilder_defaultCacheBuilderParams_minDelay
+        value: 300000
+      - name: ReportCollector_ajna_publishEnabled
+        value: true
+      - name: ReportCollector_ajna_retry_maxTries
+        value: 10
+      - name: ReportCollector_ajna_retry_delayMs
+        value: 1000
+      - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
+        value: 0
+      - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
+        value: 0
+      - name: ReportCollector_cacheBuilder_cacheBuilders
+        value: |
+             [{\"filter\": { \"type\": \"watchdog\", \"providerId\": \"network-nvt\"}},
+             { \"filter\": { \"type\": \"watchdog\", \"providerId\": \"grok.server_watchdog\" }},
+             { \"filter\": { \"type\": \"watchdog\", \"providerId\": \"sandman\" }},
+             { \"filter\": { \"type\": \"watchdog\", \"providerId\": \"netmgt.sandman\" }},
+             { \"filter\": { \"type\": \"observer\", \"trusted\": true, \"providerId\": \"netmgt.nhal_client\" }},
+             { \"filter\": { \"type\": \"observer\", \"trusted\": true, \"providerId\": \"netmgt.sandman\" }},
+             { \"filter\": { \"type\": \"observer\", \"trusted\": true, \"providerId\": \"sandman\" }},
+             { \"filter\": { \"providerId\": \"infrastructure-watchdog\" }},
+             { \"filter\": { \"providerId\": \"slwd\" }},
+             { \"filter\": { \"providerId\": \"vom-system\" }},
+             { \"filter\": { \"providerId\": \"vom-tnrp\" }},
+             { \"filter\": { \"providerId\": \"racktastic\" }},
+             { \"filter\": { \"providerId\": \"vom-observations\" }},
+             { \"filter\": { \"providerId\": \"service-config-agent\" }} ]
+
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8080
+        initialDelaySeconds: 5
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
+      export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
+      export ReportCollector_ajna_datacenter=${KINGDOM} ;
+      export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+
+      ${JAVA_HOME}/bin/java
+        -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
+        -Dvertx.disableFileCPResolving=true
+        -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
+        -Dvertx.metrics.options.enabled=true
+        -Dvertx.metrics.options.registryName=vertx-registry
+        -Dvertx.disableDnsResolver=true
+        -Dlog_dir=${LOG_DIR}
+        -Dinstance=${FUNCTION_INSTANCE_NAME}
+        -jar ${JAR_PATH}
+      "]
+
