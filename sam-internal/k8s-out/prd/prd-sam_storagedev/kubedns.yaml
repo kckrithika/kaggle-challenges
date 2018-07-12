@@ -153,6 +153,7 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       dnsPolicy: Default
+      hostNetwork: false
       nodeSelector:
         master: "true"
       restartPolicy: Always
