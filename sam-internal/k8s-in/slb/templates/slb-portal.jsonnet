@@ -105,7 +105,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                   "slb-ipvs",
                                                   "slb-ipvs-a",
                                                   "slb-ipvs-b",
-                                                  "slb-nginx-config-b",
+                                              ] + (if slbimages.phaseNum > 1 then [
+                                                       "slb-nginx-config-b",
+                                                   ] else []) + [
                                                   "slb-nginx-config-a",
                                               ],
                                           }],
@@ -121,18 +123,18 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                   {
                                                       key: "slb-service",
                                                       operator: "NotIn",
-                                                      values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
+                                                      values: ["slb-ipvs", "slb-nginx-a"] + (
+                                                          if slbimages.phaseNum > 1 then [
+                                                              "slb-nginx-b",
+                                                          ] else []
+                                                      ),
                                                   },
-                                              ] + (
-                                                  if slbimages.hypersdn_build >= 947 then
-                                                      [
-                                                          {
-                                                              key: "slb-dns-register",
-                                                              operator: "In",
-                                                              values: ["true"],
-                                                          },
-                                                      ] else []
-                                              ),
+                                                  {
+                                                      key: "slb-dns-register",
+                                                      operator: "In",
+                                                      values: ["true"],
+                                                  },
+                                              ],
                                           },
                                       ],
                                   },
