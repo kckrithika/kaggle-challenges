@@ -78,9 +78,10 @@ system:
              ]
 
       livenessProbe:
-        httpGet:
-          path: /healthz
-          port: 8080
+        exec:
+          command:
+          - echo
+          - always_healthy
         initialDelaySeconds: 5
       command: ["/bin/sh", "-c"]
       args: ["
