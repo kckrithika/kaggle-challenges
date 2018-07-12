@@ -30,7 +30,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180703_150102.89da490b.dirty.mayankkuma-ltm3
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002094-dbe14378
         name: k8s-resource-reporter
         volumeMounts:
         - mountPath: /sfdchosts
