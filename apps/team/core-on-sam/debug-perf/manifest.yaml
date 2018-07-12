@@ -12,7 +12,7 @@ system:
       emptyDir: {}
     containers:
     - name: debug-perf-core
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_patch__16015380-perf-mcd-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_patch__16015380-perf-4
 
       env:
         # DB info
