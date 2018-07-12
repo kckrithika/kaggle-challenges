@@ -1,5 +1,3 @@
 apps:
- alligator:
-  - prd/prd-sam
- mytest:
+ testservice:
   - prd/prd-sam
