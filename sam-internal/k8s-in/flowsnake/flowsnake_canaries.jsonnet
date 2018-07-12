@@ -27,7 +27,6 @@ local set_test_class(test_name) = " -c com.salesforce.dva.transform.flowsnake." 
 local build_test_command(test_name, version) = build_run_command(version) + set_test_class(test_name);
 
 local flag_local = std.objectHas(flowsnake_images.feature_flags, "add_local_canary");
-local flag_11 = std.objectHas(flowsnake_images.feature_flags, "add_11_canary");
 
 local build_command_sets = if flag_local then {
     "0.11.0": {
