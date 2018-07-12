@@ -15,7 +15,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         namespace: "sam-system",
     },
     spec: {
-        replicas: if configs.estate == "prd-sam" then 2 else if slbconfigs.slbInProdKingdom then 3 else 1,
+        replicas: if configs.estate == "prd-sam" || configs.estate == "prd-sdc" then 2 else if slbconfigs.slbInProdKingdom then 3 else 1,
         template: {
             spec: {
                       affinity: {
@@ -30,7 +30,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                   "slb-ipvs",
                                                   "slb-ipvs-a",
                                                   "slb-ipvs-b",
+                                              ] + (if slbimages.phaseNum > 1 then [
                                                   "slb-nginx-config-b",
+                                              ] else []) + [
                                                   "slb-nginx-config-a",
                                                   "slb-vip-watchdog",
                                               ],
@@ -56,7 +58,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                       {
                                                           key: "slb-service",
                                                           operator: "NotIn",
-                                                          values: ["slb-ipvs", "slb-ipvs-a", "slb-nginx-a", "slb-nginx-b"],
+                                                          values: ["slb-ipvs", "slb-ipvs-a", "slb-nginx-a"],
                                                       },
                                                   ] else if configs.estate == "prd-sam" then [
                                                   {

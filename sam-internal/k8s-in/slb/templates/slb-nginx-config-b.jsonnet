@@ -18,7 +18,7 @@ if slbconfigs.slbInKingdom then {
         namespace: "sam-system",
     },
     spec: {
-        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sdc" then 1 else if slbconfigs.slbInProdKingdom then 3 else 2,
+        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else if slbconfigs.slbInProdKingdom then 3 else 2,
         revisionHistoryLimit: 2,
         template: {
             metadata: {
@@ -295,8 +295,8 @@ if slbconfigs.slbInKingdom then {
                                 ] else []
                             ),
                 initContainers: [
-                        madkub.madkubInitContainer(),
-                    ],
+                    madkub.madkubInitContainer(),
+                ],
             },
         },
         strategy: {
