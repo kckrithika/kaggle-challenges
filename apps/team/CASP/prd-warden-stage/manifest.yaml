@@ -19,7 +19,7 @@ system:
         ports:
         - name: http
           containerPort: 8889
-          hostPort: 18889
+          hostPort: 28889
         - name: https
           containerPort: 443
         - name: grpc
