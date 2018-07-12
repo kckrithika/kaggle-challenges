@@ -21,7 +21,7 @@ system:
           containerPort: 8889
           hostPort: 18889
         - name: https
-          containerPort: 443
+          containerPort: 8443
         - name: grpc
           containerPort: 7878
         env:
@@ -32,6 +32,9 @@ system:
           name: log-vol
         - mountPath: /opt/warden/cantor
           name: cantor-vol
+        - mountPath: /wardenpki/
+          name: wardenpki
+          readOnly: true
         livenessProbe:
           httpGet:
             path: /manage/health
@@ -44,6 +47,9 @@ system:
       - name: cantor-vol
         hostPath:
           path: /home/sfdc-casp/cantor
+      - name: wardenpki
+        k4aSecret:
+          secretName: wardenpki
 
     loadbalancers:
     - lbname: warden
@@ -53,6 +59,6 @@ system:
         - port: 80
           targetport: 8889
         - port: 443
-          targetport: 443
+          targetport: 8443
         - port: 7878
           targetport: 7878
