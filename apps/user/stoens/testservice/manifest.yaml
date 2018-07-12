@@ -9,6 +9,7 @@ system:
     containers:
     - name: testservice-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/testservice:stoens-20180712-353bf5b
+      ports:
       - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
