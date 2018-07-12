@@ -8,13 +8,7 @@ system:
     count: 1
     containers:
     - name: testservice-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/testservice:1
-      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
-      ports:
-      - containerPort: 8080
-        name: scone-http
-      - containerPort: 7020
-        name: grpc-svc
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/testservice:stoens-20180712-353bf5b
       - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
