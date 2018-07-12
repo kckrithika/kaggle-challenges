@@ -20,11 +20,6 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [small] watchdog for comparing v1 and v2 flow changes
-        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180711_095643.91705bb0.dirty.small-ltm",
-
-        # [mayank] email failure reporting testing
-        "prd,prd-samdev,k8s-resource-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180703_150102.89da490b.dirty.mayankkuma-ltm3",
         },
 
     ### Per-phase image tags
@@ -52,7 +47,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-            hypersam: "sam-0002059-8a57b252",
+            hypersam: "sam-0002094-dbe14378",
             madkub: "1.0.0-0000071-5a6dcab2",
             madkubSidecar: "1.0.0-0000071-5a6dcab2",
             },
