@@ -31,6 +31,7 @@ system:
         - --sslPort=12025
         - --proxyName=envoy
         - --disableProtectedMode
+        - --useUnixSocket
       livenessProbe:
         exec:
           command:
@@ -86,6 +87,7 @@ system:
         - --sslPort=12026
         - --proxyName=envoy
         - --disableProtectedMode
+        - --useUnixSocket
       livenessProbe:
         exec:
           command:
@@ -141,6 +143,7 @@ system:
         - --sslPort=12027
         - --proxyName=envoy
         - --disableProtectedMode
+        - --useUnixSocket
       livenessProbe:
         exec:
           command:
@@ -196,6 +199,7 @@ system:
         - --sslPort=12028
         - --proxyName=envoy
         - --disableProtectedMode
+        - --useUnixSocket
       livenessProbe:
         exec:
           command:
@@ -251,6 +255,7 @@ system:
         - --sslPort=12029
         - --proxyName=envoy
         - --disableProtectedMode
+        - --useUnixSocket
       livenessProbe:
         exec:
           command:
@@ -306,6 +311,7 @@ system:
         - --sslPort=12030
         - --proxyName=envoy
         - --disableProtectedMode
+        - --useUnixSocket
       livenessProbe:
         exec:
           command:
@@ -361,6 +367,7 @@ system:
         - --sslPort=12031
         - --proxyName=envoy
         - --disableProtectedMode
+        - --useUnixSocket
       livenessProbe:
         exec:
           command:
@@ -416,6 +423,7 @@ system:
         - --sslPort=12032
         - --proxyName=envoy
         - --disableProtectedMode
+        - --useUnixSocket
       livenessProbe:
         exec:
           command:
