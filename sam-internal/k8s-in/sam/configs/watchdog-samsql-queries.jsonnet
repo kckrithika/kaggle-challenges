@@ -183,11 +183,11 @@ WHERE latency > 45",
           * 
         FROM (SELECT 
             pr_num,
-            TIMESTAMPDIFF(MINUTE, CASE WHEN first_approval_link_posted_time IS NULL THEN now() ELSE first_approval_link_posted_time END, created_at) latency,
+            TIMESTAMPDIFF(MINUTE, CASE WHEN first_approval_link_posted_time IS NULL THEN now() ELSE first_approval_link_posted_time END, created_time) latency,
             first_approval_link_posted_time,
-            created_at
+            created_time
         FROM PullRequests 
-        WHERE created_at IS NOT NULL AND state ='open') noApprovalLink
+        WHERE created_time IS NOT NULL AND state ='open') noApprovalLink
         WHERE noApprovalLink.latency > 6 AND pr_num > 1000
         ORDER BY latency desc",
     },
@@ -204,13 +204,13 @@ WHERE latency > 45",
         FROM
         (SELECT 
           pr_num,
-          created_at,
+          created_time,
           evaluate_pr_status,
           authorized_by,
           most_recent_authorized_time,
-          TIMESTAMPDIFF(MINUTE, most_recent_authorized_time, now()) latency
+          TIMESTAMPDIFF(MINUTE, now(), most_recent_authorized_time) latency
         FROM PullRequests
-        WHERE created_at IS NOT NULL AND authorized_by IS NOT NULL AND authorized_by !='' AND (`evaluate_pr_status` IS NULL OR evaluate_pr_status = 'unknown') AND most_recent_authorized_time IS NOT NULL
+        WHERE created_time IS NOT NULL AND authorized_by IS NOT NULL AND authorized_by !='' AND (`evaluate_pr_status` IS NULL OR evaluate_pr_status = 'unknown') AND most_recent_authorized_time IS NOT NULL
             AND state ='open'
         ) authedButUnkwn
         WHERE authedButUnkwn.latency > 30 AND pr_num > 1000",
