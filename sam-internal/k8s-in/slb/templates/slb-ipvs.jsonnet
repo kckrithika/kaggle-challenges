@@ -67,6 +67,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
+                        ] + (if configs.estate == "prd-sdc" then [
+                                "--IpvsPath=20180705",
+                            ] else [
+                            ]) +
+                        [
                             configs.sfdchosts_arg,
                         ],
                         volumeMounts: configs.filter_empty([
