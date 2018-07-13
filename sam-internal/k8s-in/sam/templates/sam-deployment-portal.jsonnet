@@ -88,7 +88,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "sam-deployment-portal",
-        },
+        } + configs.ownerLabel.sam,
         name: "sam-deployment-portal",
     },
 } else "SKIP"

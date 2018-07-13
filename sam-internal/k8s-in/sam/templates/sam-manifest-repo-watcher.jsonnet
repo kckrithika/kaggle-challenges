@@ -18,7 +18,7 @@ if configs.estate == "prd-sam" then {
                     labels: {
                         name: "sam-manifest-repo-watcher",
                         apptype: "control",
-                    },
+                    } + configs.ownerLabel.sam,
                 },
                 spec: {
                     hostNetwork: true,

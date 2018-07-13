@@ -24,7 +24,7 @@ if configs.estate == "prd-sam" then {
                 labels: {
                     name: "samsqlreporter",
                     apptype: "control",
-                },
+                } + configs.ownerLabel.sam,
             },
             spec: {
                 nodeSelector: {

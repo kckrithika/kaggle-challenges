@@ -27,6 +27,7 @@ spec:
       creationTimestamp: null
       labels:
         k8s-app: kube-dns
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - args:

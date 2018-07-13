@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-pullrequest
+    sam.data.sfdc.net/owner: sam
   name: watchdog-pullrequest
 spec:
   replicas: 1

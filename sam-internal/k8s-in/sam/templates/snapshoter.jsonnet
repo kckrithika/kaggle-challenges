@@ -8,7 +8,7 @@ if configs.estate != "prd-sam" then
     metadata: {
         labels: {
             name: "snapshoter",
-        },
+        } + configs.ownerLabel.sam,
         name: "snapshoter",
         namespace: "sam-system",
     },

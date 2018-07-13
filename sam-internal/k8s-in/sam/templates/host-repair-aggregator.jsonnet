@@ -7,7 +7,7 @@ if configs.estate == "prd-samtest" then {
     metadata: {
         labels: {
             name: "host-repair-aggregator",
-        },
+        } + configs.ownerLabel.sam,
         name: "host-repair-aggregator",
     },
     spec: {
@@ -22,7 +22,7 @@ if configs.estate == "prd-samtest" then {
                 labels: {
                     apptype: "control",
                     name: "host-repair-aggregator",
-                },
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
             spec: {

@@ -77,7 +77,7 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
     metadata: {
         labels: {
             name: "watchdog-hairpindeployer",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-hairpindeployer",
     },
 }

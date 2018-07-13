@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-manifestzip
+    sam.data.sfdc.net/owner: sam
   name: watchdog-manifestzip
 spec:
   replicas: 1

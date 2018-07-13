@@ -82,7 +82,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     metadata: {
         labels: {
             name: "watchdog-puppet",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-puppet",
     },
 }

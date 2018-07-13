@@ -69,7 +69,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
     metadata: {
         labels: {
             name: "bundlecontroller",
-        },
+        } + configs.ownerLabel.sam,
         name: "bundlecontroller",
         [if configs.kingdom == "vpod" then "namespace"]: "sam-system",
     },

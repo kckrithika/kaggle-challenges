@@ -15,6 +15,7 @@ spec:
       labels:
         apptype: control
         name: snapshotconsumer-prod
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

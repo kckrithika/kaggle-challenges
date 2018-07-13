@@ -69,7 +69,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     metadata: {
         labels: {
             name: "watchdog-common",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-common",
     },
 }

@@ -68,7 +68,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "watchdog-manifestzip",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-manifestzip",
     },
 } else "SKIP"

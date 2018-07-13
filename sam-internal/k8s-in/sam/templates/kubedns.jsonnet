@@ -38,7 +38,7 @@ if samfeatureflags.kubedns then {
                 creationTimestamp: null,
                 labels: {
                     "k8s-app": "kube-dns",
-                },
+                } + configs.ownerLabel.sam,
             },
             spec: {
                 hostNetwork: if configs.estate == "prd-samdev" then true else false,

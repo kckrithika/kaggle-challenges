@@ -3,6 +3,7 @@ kind: DaemonSet
 metadata:
   labels:
     name: watchdog-puppet
+    sam.data.sfdc.net/owner: sam
   name: watchdog-puppet
 spec:
   template:

@@ -147,7 +147,7 @@ if configs.estate == "prd-samdev" then {
     metadata: {
         labels: {
             name: "jenkins",
-        },
+        } + configs.ownerLabel.sam,
         name: "jenkins",
         namespace: "sam-system",
     },

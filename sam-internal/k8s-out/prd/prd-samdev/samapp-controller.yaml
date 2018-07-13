@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: samappcontroller
+    sam.data.sfdc.net/owner: sam
   name: samappcontroller
 spec:
   replicas: 1

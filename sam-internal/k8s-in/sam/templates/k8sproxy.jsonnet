@@ -80,7 +80,7 @@ if samfeatureflags.k8sproxy then {
     metadata: {
         labels: {
             name: "k8sproxy",
-        },
+        } + configs.ownerLabel.sam,
         name: "k8sproxy",
         namespace: "sam-system",
     },

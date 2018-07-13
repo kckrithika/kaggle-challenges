@@ -3,6 +3,7 @@ kind: DaemonSet
 metadata:
   labels:
     name: etcdbackup
+    sam.data.sfdc.net/owner: sam
   name: etcdbackup
 spec:
   template:

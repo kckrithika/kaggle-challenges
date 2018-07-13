@@ -13,6 +13,7 @@ spec:
       labels:
         apptype: control
         name: sam-manifest-repo-watcher
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

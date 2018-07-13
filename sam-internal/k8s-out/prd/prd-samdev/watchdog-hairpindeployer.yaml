@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-hairpindeployer
+    sam.data.sfdc.net/owner: sam
   name: watchdog-hairpindeployer
 spec:
   replicas: 1

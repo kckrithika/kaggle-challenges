@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: sam-deployment-portal
+    sam.data.sfdc.net/owner: sam
   name: sam-deployment-portal
 spec:
   replicas: 3

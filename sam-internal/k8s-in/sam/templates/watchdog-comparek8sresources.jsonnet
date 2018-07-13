@@ -49,7 +49,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                 labels: {
                     name: "watchdog-comparek8sresources",
                     apptype: "comparision",
-                },
+                } + configs.ownerLabel.sam,
             },
         },
         selector: {

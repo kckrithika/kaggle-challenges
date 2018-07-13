@@ -63,7 +63,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     metadata: {
         labels: {
             name: "k8s-resource-reporter",
-        },
+        } + configs.ownerLabel.sam,
         name: "k8s-resource-reporter",
         namespace: "sam-system",
     },

@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: bundlecontroller
+    sam.data.sfdc.net/owner: sam
   name: bundlecontroller
 spec:
   replicas: 1

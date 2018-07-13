@@ -68,7 +68,7 @@ if samfeatureflags.estatessvc then {
     metadata: {
         labels: {
             name: "node-controller",
-        },
+        } + configs.ownerLabel.sam,
         name: "node-controller",
         namespace: "sam-system",
     },

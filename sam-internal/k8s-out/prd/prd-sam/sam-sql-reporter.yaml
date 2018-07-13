@@ -16,6 +16,7 @@ spec:
       labels:
         apptype: control
         name: samsqlreporter
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - args:

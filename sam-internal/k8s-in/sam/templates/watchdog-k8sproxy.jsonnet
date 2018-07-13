@@ -62,7 +62,7 @@ if configs.kingdom == "prd" then {
     metadata: {
         labels: {
             name: "watchdog-proxy",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-proxy",
     },
 } else "SKIP"

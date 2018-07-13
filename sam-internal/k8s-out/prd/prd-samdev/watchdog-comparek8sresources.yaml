@@ -16,6 +16,7 @@ spec:
       labels:
         apptype: comparision
         name: watchdog-comparek8sresources
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

@@ -57,7 +57,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
     metadata: {
         labels: {
             name: "watchdog-sdp",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-sdp",
     },
 } else "SKIP"

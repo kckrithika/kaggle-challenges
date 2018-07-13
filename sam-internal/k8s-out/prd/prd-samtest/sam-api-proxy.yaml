@@ -12,6 +12,7 @@ spec:
       labels:
         apptype: control
         name: sam-api-proxy
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

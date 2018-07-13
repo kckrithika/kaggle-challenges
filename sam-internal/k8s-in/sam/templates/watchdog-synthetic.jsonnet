@@ -25,7 +25,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                 labels: {
                     apptype: "monitoring",
                     name: "watchdog-synthetic",
-                },
+                } + configs.ownerLabel.sam,
             },
             spec: {
                 containers: [

@@ -68,7 +68,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "watchdog-pullrequest",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-pullrequest",
     },
 } else "SKIP"

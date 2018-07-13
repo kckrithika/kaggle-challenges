@@ -88,7 +88,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "watchdog-samsql",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-samsql",
         namespace: "sam-system",
     },

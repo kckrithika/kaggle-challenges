@@ -70,7 +70,7 @@ if samfeatureflags.estatessvc then {
     metadata: {
         labels: {
             name: "watchdog-node-controller",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-node-controller",
         namespace: "sam-system",
     },

@@ -68,7 +68,7 @@ local utils = import "util_functions.jsonnet";
     metadata: {
         labels: {
             name: "watchdog-etcd",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-etcd",
     },
 }

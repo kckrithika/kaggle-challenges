@@ -80,7 +80,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     metadata: {
         labels: {
             name: "watchdog-filesystem",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-filesystem",
     },
 }

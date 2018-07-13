@@ -53,7 +53,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
     metadata: {
         labels: {
             name: "watchdog-maddogcert",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-maddogcert",
     },
 }
