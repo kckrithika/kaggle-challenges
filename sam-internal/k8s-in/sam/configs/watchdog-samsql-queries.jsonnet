@@ -7,7 +7,7 @@
       alertFrequency: "24h",
       watchdogFrequency: "10m",
       alertProfile: "sam",
-      alertAction: "pagerDuty",
+      alertAction: "email",
       sql: "SELECT * FROM
             (
               SELECT
@@ -43,7 +43,7 @@
         alertFrequency: "24h",
         watchdogFrequency: "10m",
         alertProfile: "sam",
-        alertAction: "pagerDuty",
+        alertAction: "email",
         sql: "SELECT
               	minionpool,
               	TotalCount,
