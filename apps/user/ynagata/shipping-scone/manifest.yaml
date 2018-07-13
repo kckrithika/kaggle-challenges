@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: default
-    count: 2
+    count: 1
     containers:
     - name: shipping-scone
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/scone-shipping:ynagata-20180712 
@@ -14,11 +14,3 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-  loadbalancers:
-  - lbname: shipping-scone
-    function: default
-    slbenabled: true
-    ports:
-      - port: 7020
-        targetport: 7020
-        lbtype: tcp
