@@ -71,7 +71,24 @@ data:
     ApiKind = ''Bundle'') crds\n        ON crds.PRNum = prs.pr_num\n    ORDER BY prs.pr_num\n    )
     prLatency ,\n     (SELECT @row_num:=0) counter ORDER BY prLatency.latency\n     )\n    temp
     WHERE temp.row_num = ROUND (.95* @row_num)\n    )\n    temp2 WHERE temp2.latency
-    > 45", "watchdogFrequency": "24h"}]}'
+    > 45", "watchdogFrequency": "24h"}, {"alertAction": "email", "alertFrequency":
+    "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "Following
+    PRs don''t have authorization link after 6 minutes of getting created.", "name":
+    "SqlPRAuthroizationLinkPostTimeLatency", "sql": "SELECT\n          * \n        FROM
+    (SELECT \n            pr_num,\n            TIMESTAMPDIFF(MINUTE, CASE WHEN first_approval_link_posted_time
+    IS NULL THEN now() ELSE first_approval_link_posted_time END, created_at) latency,\n            first_approval_link_posted_time,\n            created_at\n        FROM
+    PullRequests \n        WHERE created_at IS NOT NULL AND state =''open'') noApprovalLink\n        WHERE
+    noApprovalLink.latency > 6 AND pr_num > 1000\n        ORDER BY latency desc",
+    "watchdogFrequency": "10m"}, {"alertAction": "email", "alertFrequency": "24h",
+    "alertProfile": "sam", "alertThreshold": "10m", "instructions": "Following PRs
+    haven''t run evaluatePR more than 30 mins after getting authorized.", "name":
+    "SqlPRFailtedToRunEvalPR", "sql": "SELECT \n         *\n        FROM\n        (SELECT
+    \n          pr_num,\n          created_at,\n          evaluate_pr_status,\n          authorized_by,\n          most_recent_authorized_time,\n          TIMESTAMPDIFF(MINUTE,
+    most_recent_authorized_time, now()) latency\n        FROM PullRequests\n        WHERE
+    created_at IS NOT NULL AND authorized_by IS NOT NULL AND authorized_by !=''''
+    AND (`evaluate_pr_status` IS NULL OR evaluate_pr_status = ''unknown'') AND most_recent_authorized_time
+    IS NOT NULL\n            AND state =''open''\n        ) authedButUnkwn\n        WHERE
+    authedButUnkwn.latency > 30 AND pr_num > 1000", "watchdogFrequency": "10m"}]}'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
