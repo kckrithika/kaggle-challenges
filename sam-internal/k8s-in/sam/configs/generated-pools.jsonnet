@@ -2234,7 +2234,7 @@
       "access": [
         "team/Cache_As_A_service"
       ],
-      "controlEstate": "prd-sam",
+      "controlEstate": "prd-samtwo",
       "estate": "prd-sp2-sam_caas",
       "kingdom": "prd",
       "superPod": "sp2"
