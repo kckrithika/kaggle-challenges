@@ -9,8 +9,8 @@ system:
     count: 1
     containers:
     - name: perf-switchboard
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/34
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/switchboard:1.0
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/141
+      image: sfci/servicelibs/switchboard:d4a5d8750dd502effa37e6fe2f46db9662cceac0
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
