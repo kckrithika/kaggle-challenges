@@ -26,6 +26,13 @@ local utils = import "util_functions.jsonnet";
         # [mayank] deploy email reporter early before its available as part of regular phases
         "prd,prd-samdev,k8s-resource-reporter,hypersam": "sam-0002097-a984ea43",
         "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002097-a984ea43",
+
+        # [small] watchdog for comparing v1 and v2 flow changes
+        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180711_095643.91705bb0.dirty.small-ltm",
+
+        # [small] watchdog for comparing v1 and v2 flow changes
+        "prd,prd-samdev,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180711_095643.91705bb0.dirty.small-ltm",
+
         },
 
     ### Per-phase image tags

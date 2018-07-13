@@ -25,8 +25,6 @@ spec:
         - --enableEmailPerCheckerInstance=true
         - --recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com,prabh.singh@salesforce.com
         - --sender=sam@salesforce.com
-        - --publishAlertsToKafka=false
-        - --publishAllReportsToKafka=false
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
@@ -34,7 +32,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002094-dbe14378
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180711_095643.91705bb0.dirty.small-ltm
         name: watchdog-comparek8sresources
         volumeMounts:
         - mountPath: /sfdchosts
