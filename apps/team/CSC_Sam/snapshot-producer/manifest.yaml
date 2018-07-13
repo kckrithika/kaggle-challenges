@@ -9,24 +9,22 @@ system:
     count: 1
     containers:
     - name: snapshot-producer
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0002096-76bdbd5f
+      image:   ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20180713_121617.a12f5a89.clean.duncsmith-ltm
       command:
         - /sam/snapshoter
         - --alsologtostderr
         - --v=4
         - --ca-file=/certs/ca.pem
-        - --include-crds
         - --kafka-endpoint=ajna0-broker1-0-prd.data.sfdc.net:9093
         - --kafka-payload-kb=300
         - --kafka-push-interval=10s
-        - --kafka-topic=sfdc.prod.sam__prd.ajna_local__resourcestatus
         - --clientKeyFile=/certs/client/keys/client-key.pem
         - --clientCertFile=/certs/client/certificates/client.pem
         - --enableKafkaClientAuth
         - --kube-poll-interval=30m
         - --liveness-probe-port=9095
         - --send-events
-        - --sinks=logs
+        - --sinks=metrics
         - --sources=informer
       volumeMounts:
       - name: certs
