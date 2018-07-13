@@ -12,9 +12,11 @@ system:
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0002096-76bdbd5f
       command:
         - /sam/snapshoter
+        - --alsologtostderr
+        - --v=4
         - --ca-file=/certs/ca.pem
         - --include-crds
-        - --kafka-endpoint=ajna0-broker1-0-prd.data.sfdc.net9093
+        - --kafka-endpoint=ajna0-broker1-0-prd.data.sfdc.net:9093
         - --kafka-payload-kb=300
         - --kafka-push-interval=10s
         - --kafka-topic=sfdc.prod.sam__prd.ajna_local__resourcestatus
