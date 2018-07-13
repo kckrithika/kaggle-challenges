@@ -76,7 +76,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
     metadata: {
         labels: {
             name: "sdn-bird",
-        } + configs.ownerLabel.sdn,
+        },
         name: "sdn-bird",
         namespace: "sam-system",
     },

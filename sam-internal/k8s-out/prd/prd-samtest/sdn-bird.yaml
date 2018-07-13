@@ -3,7 +3,6 @@ kind: DaemonSet
 metadata:
   labels:
     name: sdn-bird
-    sam.data.sfdc.net/owner: sdn
   name: sdn-bird
   namespace: sam-system
 spec:
