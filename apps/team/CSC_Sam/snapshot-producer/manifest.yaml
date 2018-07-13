@@ -12,21 +12,21 @@ system:
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0002096-76bdbd5f
       command:
         - /sam/snapshoter
-        - --ca-file "/etc/pki_service/ca/cabundle.pem"
-        - --cert-file "/etc/pki_service/platform/platform-client/certificates/platform-client.pem
-        - --include-crds 
-        - --kafka-endpoint "ajna0-broker1-0-prd.data.sfdc.net9093"
-        - --kafka-payload-kb "300"
-        - --kafka-push-interval "10s"
-        - --kafka-topic "sfdc.prod.sam__prd.ajna_local__resourcestatus"
-        - --keyFile "/certs/client/keys/client-key.pem"
-        - --certFile "/certs/client/certificates/client.pem"
+        - --ca-file /etc/pki_service/ca/cabundle.pem
+        - --cert-file /etc/pki_service/platform/platform-client/certificates/platform-client.pem
+        - --include-crds
+        - --kafka-endpoint ajna0-broker1-0-prd.data.sfdc.net9093
+        - --kafka-payload-kb 300
+        - --kafka-push-interval 10s
+        - --kafka-topic sfdc.prod.sam__prd.ajna_local__resourcestatus
+        - --keyFile /certs/client/keys/client-key.pem
+        - --certFile /certs/client/certificates/client.pem
         - --enableKafkaClientAuth true
-        - --kube-poll-interval "30m"
-        - --liveness-probe-port "9095"
+        - --kube-poll-interval 30m
+        - --liveness-probe-port 9095
         - --send-events
-        - --sinks "kafka"
-        - --sources "informer"
+        - --sinks kafka
+        - --sources informer
       volumeMounts:
       - name: certs
         mountPath: /certs
