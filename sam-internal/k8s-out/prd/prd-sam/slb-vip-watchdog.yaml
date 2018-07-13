@@ -59,7 +59,7 @@ spec:
         - --client.serverInterface=lo
         - --healthPathCheck=true
         - --metricsBatchTimeout=30s
-        - --optOutServiceList=devrepo5-0-prd,pra-sfc-prd,pra-dsm-prd,pra-prd
+        - --optOutServiceList=pra-sfc-prd,pra-dsm-prd
         - --optOutNamespace=kne,podgroup-prebuild
         env:
         - name: NODE_NAME
