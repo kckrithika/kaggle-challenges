@@ -31,10 +31,10 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180712_145857.308c6803.clean.small-ltm",
 
         # [small] watchdog for comparing v1 and v2 flow changes
-        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180711_095643.91705bb0.dirty.small-ltm",
+        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180713_144010.b7e69bfb.clean.small-ltm",
 
         # [small] watchdog for comparing v1 and v2 flow changes
-        "prd,prd-samdev,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180711_095643.91705bb0.dirty.small-ltm",
+        "prd,prd-samdev,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180713_144010.b7e69bfb.clean.small-ltm",
 
         },
 
