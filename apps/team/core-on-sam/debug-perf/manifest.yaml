@@ -5,9 +5,9 @@ system:
   - name: debug-perf-core
     count: 1
     volumes:
-    - name: cert
-      maddogCert:
-        type: client
+#    - name: cert
+#      maddogCert:
+#        type: client
     - name: automationvol
       emptyDir: {}
     containers:
@@ -103,8 +103,8 @@ system:
         - containerPort: 12099
 
       volumeMounts:
-        - name: cert
-          mountPath: /certs
+#        - name: cert
+#          mountPath: /certs
         - name: automationvol
           mountPath: /home/sfdc/automation
 
