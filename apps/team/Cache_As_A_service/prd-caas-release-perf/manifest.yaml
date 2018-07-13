@@ -12,7 +12,7 @@ system:
     hostnetwork: true
     containers:
     - name: caas-redis-12015 
-      image: tnrp/caas/caas-redis:tls-0000071-16194500
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -32,6 +32,7 @@ system:
         - --proxyName=envoy
         - --disableProtectedMode
         - --useUnixSocket
+        - --useTCPProxy
       livenessProbe:
         exec:
           command:
@@ -68,7 +69,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12016 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000071-16194500
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -88,6 +89,7 @@ system:
         - --proxyName=envoy
         - --disableProtectedMode
         - --useUnixSocket
+        - --useTCPProxy
       livenessProbe:
         exec:
           command:
@@ -124,7 +126,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12017 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000071-16194500
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -144,6 +146,7 @@ system:
         - --proxyName=envoy
         - --disableProtectedMode
         - --useUnixSocket
+        - --useTCPProxy
       livenessProbe:
         exec:
           command:
@@ -180,7 +183,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12018 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000071-16194500
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -200,6 +203,7 @@ system:
         - --proxyName=envoy
         - --disableProtectedMode
         - --useUnixSocket
+        - --useTCPProxy
       livenessProbe:
         exec:
           command:
@@ -236,7 +240,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12019 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000071-16194500
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -256,6 +260,7 @@ system:
         - --proxyName=envoy
         - --disableProtectedMode
         - --useUnixSocket
+        - --useTCPProxy
       livenessProbe:
         exec:
           command:
@@ -292,7 +297,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12020 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000071-16194500
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -312,6 +317,7 @@ system:
         - --proxyName=envoy
         - --disableProtectedMode
         - --useUnixSocket
+        - --useTCPProxy
       livenessProbe:
         exec:
           command:
@@ -348,7 +354,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12021 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000071-16194500
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -368,6 +374,7 @@ system:
         - --proxyName=envoy
         - --disableProtectedMode
         - --useUnixSocket
+        - --useTCPProxy
       livenessProbe:
         exec:
           command:
@@ -404,7 +411,7 @@ system:
         requests: { memory: "200M" }
     - name: caas-redis-12022 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:tls-0000071-16194500
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -424,6 +431,7 @@ system:
         - --proxyName=envoy
         - --disableProtectedMode
         - --useUnixSocket
+        - --useTCPProxy
       livenessProbe:
         exec:
           command:
