@@ -54,10 +54,10 @@ system:
             maxUnavailable: 1
     containers:
     - name: zipkin-es-curator-test
-      image: docker-dva-rc/dva/zipkin-es-curator:1
+      image: docker-dva-rc/dva/zipkin-es-curator:2
       env:
       - name: ES_ENDPOINT
-        value: es-rest-test:9200
+        value: es-rest-test.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200
       livenessProbe:
           exec:
               # TODO: Check if process is running?
@@ -79,7 +79,7 @@ system:
       # See https://github.com/openzipkin/zipkin-dependencies for available ENV options
       env:
       - name: ES_HOSTS
-        value: 'es-rest-test:9200'
+        value: 'es-rest-test.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200'
       # TODO: This might be an upstream bug; either way we should enable auth here eventually
       - name: SPARK_USER
         value: ''

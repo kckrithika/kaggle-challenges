@@ -54,10 +54,7 @@ system:
             maxUnavailable: 1
     containers:
     - name: zipkin-es-curator
-      image: docker-dva-rc/dva/zipkin-es-curator:1
-      env:
-      - name: ES_ENDPOINT
-        value: es-rest:9200
+      image: docker-dva-rc/dva/zipkin-es-curator:2
       livenessProbe:
           exec:
               # TODO: Check if process is running?
