@@ -32,7 +32,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180711_095643.91705bb0.dirty.small-ltm
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180713_144010.b7e69bfb.clean.small-ltm
         name: watchdog-comparek8sresources
         volumeMounts:
         - mountPath: /sfdchosts
