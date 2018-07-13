@@ -19,7 +19,7 @@ system:
         secretName: tardis-secrets
     containers:
     - name: tardis
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_201807061426_f870e500
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_201807131213_59eefc00
       env:
       - name: HTTPS_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
