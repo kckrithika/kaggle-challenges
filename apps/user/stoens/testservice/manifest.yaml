@@ -28,7 +28,7 @@ system:
       - -endpoint
       - foo1234:DATACENTER:1234
       livenessProbe:
-        initialDelaySeconds: 5
+        initialDelaySeconds: 10
         exec:
           command:
             - "/home/scone/is-alive.sh"
