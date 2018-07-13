@@ -29,6 +29,7 @@ if configs.estate == "prd-sam" then {
                             "/sam/sam-manifest-repo-watcher",
                             "--config=/config/sammanifestrepowatcher.json",
                             "--v=99",
+                            "--alsologtostderr",
                         ],
                         volumeMounts: configs.filter_empty([
                             configs.config_volume_mount,
