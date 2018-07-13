@@ -14,7 +14,7 @@ system:
     containers:
     - name: spaas
       #Prod image cannot be used directly in sam sandbox?
-      image: sfci/service-protection/sps:0.0.3.9
+      image: sfci/service-protection/sps:0.0.3.20
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.22
       # set container environment variables
       env:
@@ -50,6 +50,25 @@ system:
           path: /manage/health
           port: 15400
         initialDelaySeconds: 60
+    - name: beacon-spaas
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: spaas
+      args:
+      - -endpoint
+      - spaas:DATACENTER_ALLENV:7022
+      - -logging.dir
+      - /log
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
     # Maps volumeMounts from containers to volumes (which map to host filesystem locations)
     # This is used for sending logs to Splunk until SAM/DVA logging pipeline is up
     volumes:
