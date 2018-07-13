@@ -173,4 +173,12 @@ WHERE latency > 45",
     },
 
   ],
+   argus_metrics: [
+  {
+      name: "SqlArgusDemo",
+      sql: "select 'sam.DFW.NONE.dfw-foo' as Scope, 'iptables.Count' as Metric, '' as Tags, 15 as Value",
+      watchdogFrequency: "10m",
+  },
+  ],
+
 }

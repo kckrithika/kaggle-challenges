@@ -20,6 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        #[pjoshi] testing sql to argus feature
+        "prd,prd-sam,watchdog-samsql": "sam-0002101-412b0079",
+
         # [xiao] test samapp controller update status on bundle change
         "prd,prd-samdev,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20180711_140053.c78bc08a.dirty.xiaozhou-ltm2",
 
