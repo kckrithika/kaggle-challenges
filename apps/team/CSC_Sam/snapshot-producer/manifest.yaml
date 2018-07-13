@@ -18,8 +18,8 @@ system:
         - --kafka-payload-kb=300
         - --kafka-push-interval=10s
         - --kafka-topic=sfdc.prod.sam__prd.ajna_local__resourcestatus
-        - --keyFile=/certs/client/keys/client-key.pem
-        - --certFile=/certs/client/certificates/client.pem
+        - --clientKeyFile=/certs/client/keys/client-key.pem
+        - --clientCertFile=/certs/client/certificates/client.pem
         - --enableKafkaClientAuth
         - --kube-poll-interval=30m
         - --liveness-probe-port=9095
