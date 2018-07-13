@@ -23,7 +23,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-ipvs-a
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000965-6c659d7d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000969-2703b49a
         name: slb-ipvs-installer
         securityContext:
           capabilities:
@@ -60,7 +60,7 @@ spec:
         - --proxyHealthChecks=true
         - --httpTimeout=1s
         - --enablePersistence=false
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000965-6c659d7d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000969-2703b49a
         name: slb-ipvs-processor
         securityContext:
           privileged: true
@@ -80,7 +80,7 @@ spec:
         - --connPort=9107
         - --log_dir=/host/data/slb/logs/slb-ipvs-a
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000965-6c659d7d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000969-2703b49a
         name: slb-ipvs-data
         ports:
         - containerPort: 32149
@@ -101,7 +101,7 @@ spec:
         - --client.serverPort=12081
         - --client.serverInterface=lo
         - --enableConntrack=false
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000965-6c659d7d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000969-2703b49a
         name: slb-ipvs-conntrack
         securityContext:
           privileged: true
@@ -122,7 +122,7 @@ spec:
         - --configDir=/host/data/slb/config/slb-ipvs-a
         - --log_dir=/host/data/slb/logs/slb-ipvs-a
         - --netInterface=lo
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000965-6c659d7d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000969-2703b49a
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -140,7 +140,7 @@ spec:
         - --readVipsFromIpvs=true
         - --client.serverPort=12081
         - --client.serverInterface=lo
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000965-6c659d7d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000969-2703b49a
         name: slb-iface-processor
         securityContext:
           privileged: true
@@ -167,7 +167,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000965-6c659d7d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000969-2703b49a
         name: slb-cleanup
         securityContext:
           privileged: true
