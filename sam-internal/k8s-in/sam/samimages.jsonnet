@@ -22,6 +22,10 @@ local utils = import "util_functions.jsonnet";
 
         # [xiao] test samapp controller update status on bundle change
         "prd,prd-samdev,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20180711_140053.c78bc08a.dirty.xiaozhou-ltm2",
+
+        # [mayank] deploy email reporter early before its available as part of regular phases
+        "prd,prd-samdev,k8s-resource-reporter,hypersam": "sam-0002097-a984ea43",
+        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002097-a984ea43",
         },
 
     ### Per-phase image tags
