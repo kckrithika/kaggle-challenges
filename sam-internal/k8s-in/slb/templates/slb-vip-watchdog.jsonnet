@@ -30,7 +30,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                   "slb-ipvs",
                                                   "slb-ipvs-a",
                                                   "slb-ipvs-b",
-                                              ] + (if slbimages.phaseNum > 1 then [
+                                              ] + (if slbimages.hypersdn_build < 969 then [
                                                   "slb-nginx-config-b",
                                               ] else []) + [
                                                   "slb-nginx-config-a",
@@ -64,13 +64,15 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                   {
                                                       key: "slb-service",
                                                       operator: "NotIn",
-                                                      values: ["slb-ipvs", "slb-ipvs-a", "slb-nginx-a", "slb-nginx-b"],
+                                                      values: ["slb-ipvs", "slb-ipvs-a", "slb-nginx-a"],
                                                   },
                                               ] else [
                                                   {
                                                       key: "slb-service",
                                                       operator: "NotIn",
-                                                      values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
+                                                      values: ["slb-ipvs", "slb-nginx-a"] + (if slbimages.hypersdn_build < 969 then [
+                                                         "slb-nginx-b",
+                                                      ] else []),
                                                   },
                                               ]
                                           ),
