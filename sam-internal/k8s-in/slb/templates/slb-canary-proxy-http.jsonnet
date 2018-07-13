@@ -9,7 +9,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
     metadata: {
         labels: {
             name: "slb-canary-proxy-http",
-        } + configs.ownerLabel.slb,
+        } + slbconfigs.ownerLabel,
         name: "slb-canary-proxy-http",
         namespace: "sam-system",
     },
@@ -19,7 +19,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
             metadata: {
                 labels: {
                     name: "slb-canary-proxy-http",
-                } + configs.ownerLabel.slb,
+                } + slbconfigs.ownerLabel,
                 namespace: "sam-system",
             },
             spec: {

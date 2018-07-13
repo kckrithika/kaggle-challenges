@@ -9,7 +9,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "illumio-proxy",
-        } + configs.ownerLabel.slb,
+        } + slbconfigs.ownerLabel,
         name: "illumio-proxy",
         namespace: "sam-system",
     },
@@ -19,7 +19,7 @@ if configs.estate == "prd-sam" then {
             metadata: {
                 labels: {
                     name: "illumio-proxy",
-                } + configs.ownerLabel.slb,
+                } + slbconfigs.ownerLabel,
                 namespace: "sam-system",
             },
             spec: {

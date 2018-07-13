@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "slbports.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
     kind: "Service",
     apiVersion: "v1",
@@ -9,7 +10,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
         labels: {
             app: "slb-baboon-service",
             "slb.sfdc.net/name": "slb-baboon-service",
-        } + configs.ownerLabel.slb,
+        } + slbconfigs.ownerLabel,
         annotations: {
             "slb.sfdc.net/name": "slb-baboon-service",
         },

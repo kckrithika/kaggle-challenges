@@ -8,7 +8,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "slb-dns-register-a",
-        } + configs.ownerLabel.slb,
+        } + slbconfigs.ownerLabel,
         name: "slb-dns-register-a",
         namespace: "sam-system",
     },
@@ -18,7 +18,7 @@ if configs.estate == "prd-sam" then {
             metadata: {
                 labels: {
                     name: "slb-dns-register-a",
-                } + configs.ownerLabel.slb,
+                } + slbconfigs.ownerLabel,
                 namespace: "sam-system",
             },
             spec: {

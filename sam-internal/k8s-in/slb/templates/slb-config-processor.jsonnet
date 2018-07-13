@@ -10,7 +10,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs
     metadata: {
         labels: {
             name: "slb-config-processor",
-        } + configs.ownerLabel.slb,
+        } + slbconfigs.ownerLabel,
         name: "slb-config-processor",
         namespace: "sam-system",
     },
@@ -21,7 +21,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs
                     name: "slb-config-processor",
                     apptype: "control",
                     daemonset: "true",
-                } + configs.ownerLabel.slb,
+                } + slbconfigs.ownerLabel,
                 namespace: "sam-system",
             },
             spec: {

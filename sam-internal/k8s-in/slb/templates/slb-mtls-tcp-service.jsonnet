@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "slbports.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
 if configs.estate == "prd-sam" then {
     kind: "Service",
     apiVersion: "v1",
@@ -10,7 +11,7 @@ if configs.estate == "prd-sam" then {
             "slb.sfdc.net/name": "slb-mtls-tcp",
             "slb.sfdc.net/portconfigurations": "[{\"port\":12345,\"targetport\":12345,\"lbtype\":\"tcp\"}]",
         },
-        labels: {} + configs.ownerLabel.slb,
+        labels: {} + slbconfigs.ownerLabel,
     },
     spec: {
         ports: [

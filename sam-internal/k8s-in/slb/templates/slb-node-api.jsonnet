@@ -10,7 +10,7 @@ if slbconfigs.slbInKingdom && slbimages.phaseNum > 1 then {
     metadata: {
         labels: {
             name: "slb-node-api",
-        } + configs.ownerLabel.slb,
+        } + slbconfigs.ownerLabel,
         name: "slb-node-api",
         namespace: "sam-system",
     },
@@ -21,7 +21,7 @@ if slbconfigs.slbInKingdom && slbimages.phaseNum > 1 then {
                     name: "slb-node-api",
                     apptype: "control",
                     daemonset: "true",
-                } + configs.ownerLabel.slb,
+                } + slbconfigs.ownerLabel,
                 namespace: "sam-system",
             },
             spec: {

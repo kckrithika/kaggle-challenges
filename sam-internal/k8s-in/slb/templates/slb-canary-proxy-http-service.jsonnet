@@ -11,7 +11,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                       app: "slb-canary-proxy-http-service",
                       "slb.sfdc.net/name": "slb-canary-proxy-http",
                       "slb.sfdc.net/type": "http",
-                  } + configs.ownerLabel.slb,
+                  } + slbconfigs.ownerLabel,
               } +
               if configs.estate == "prd-sdc" then {
                   annotations: {

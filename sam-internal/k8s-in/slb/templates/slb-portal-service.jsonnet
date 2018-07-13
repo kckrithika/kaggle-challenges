@@ -11,7 +11,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         labels: {
             app: "slb-portal-service",
             "slb.sfdc.net/name": "slb-portal-service",
-        } + configs.ownerLabel.slb,
+        } + slbconfigs.ownerLabel,
     } +
     if slbimages.hypersdn_build >= 950 then {
           annotations: {

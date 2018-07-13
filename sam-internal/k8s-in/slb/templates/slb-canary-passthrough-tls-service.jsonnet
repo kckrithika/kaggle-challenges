@@ -11,7 +11,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
             app: "slb-canary-passthrough-tls-service",
             "slb.sfdc.net/name": "slb-canary-pt-tls",
             "slb.sfdc.net/type": "none",
-        } + configs.ownerLabel.slb,
+        } + slbconfigs.ownerLabel,
         annotations: {
             "slb.sfdc.net/name": "slb-canary-pt-tls",
         },

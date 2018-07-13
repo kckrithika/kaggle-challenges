@@ -8,7 +8,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "slb-labels-checker",
-        } + configs.ownerLabel.slb,
+        } + slbconfigs.ownerLabel,
         name: "slb-labels-checker",
         namespace: "sam-system",
     },
@@ -68,7 +68,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                 labels: {
                     name: "slb-labels-checker",
                     apptype: "monitoring",
-                } + configs.ownerLabel.slb,
+                } + slbconfigs.ownerLabel,
                 namespace: "sam-system",
             },
         },

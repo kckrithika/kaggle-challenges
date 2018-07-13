@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
 if configs.estate == "prd-sdc" then {
     kind: "Service",
     apiVersion: "v1",
@@ -10,7 +11,7 @@ if configs.estate == "prd-sdc" then {
             app: "slb-echo-svc",
             "slb.sfdc.net/name": "slb-echo-svc",
             "slb.sfdc.net/type": "tcp",
-        } + configs.ownerLabel.slb,
+        } + slbconfigs.ownerLabel,
         annotations: {
             "slb.sfdc.net/name": "slb-echo-svc",
             "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.slbEchoServicePort + ",\"targetport\":" + portconfigs.slb.slbEchoServicePort + ",\"lbtype\":\"tcp\"}]",

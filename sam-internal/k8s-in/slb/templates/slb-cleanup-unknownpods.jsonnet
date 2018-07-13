@@ -9,7 +9,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
     metadata: {
          labels: {
                 name: "slb-cleanup-unknownpods",
-         } + configs.ownerLabel.slb,
+         } + slbconfigs.ownerLabel,
          name: "slb-cleanup-unknownpods",
          namespace: "sam-system",
      },
@@ -81,7 +81,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 labels: {
                     name: "slb-cleanup-unknownpods",
                     apptype: "monitoring",
-                } + configs.ownerLabel.slb,
+                } + slbconfigs.ownerLabel,
                 namespace: "sam-system",
             },
         },
