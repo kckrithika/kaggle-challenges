@@ -29,7 +29,7 @@ std.prune({
   recipient: samwdconfig.recipient,
 
   # Watchdog CRD
-  publishToWatchDogCrd: if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "cdu" then true,
+  publishToWatchDogCrd: true,
 
   # Hairpin deployer
   "deployer-sender": $.recipient,
