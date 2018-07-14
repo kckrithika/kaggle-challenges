@@ -24,6 +24,8 @@ system:
           containerPort: 8444
         - name: grpc
           containerPort: 7878
+        - name: debug
+          containerPort: 5005
         env:
         - name: BRANCH
           value: "eng_production_staging"
