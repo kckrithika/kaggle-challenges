@@ -28,7 +28,7 @@ system:
         secretName: mds-gdot-secrets-prd
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.3.12
+      image: sfci/metadata-cannon/metadata-service:0.3.21
       ports:
       - containerPort: 9091
       - containerPort: 15523
