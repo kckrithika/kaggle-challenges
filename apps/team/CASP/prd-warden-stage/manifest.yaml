@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden-stage
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casp-warden/svs:dev-warden-Jul14-0423PM
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casp-warden/svs:dev-warden-Jul14-0507PM
         ports:
         - name: http
           containerPort: 8889
@@ -53,11 +53,9 @@ system:
     loadbalancers:
     - lbname: warden-stage-node
       function: warden-stage-func
-      slbEnabled: true
+      nodeExposed: true
       ports:
-        - port: 80
+        - port: 8882
           targetport: 8889
-        - port: 443
-          targetport: 8444
-        - port: 7878
-          targetport: 7878
+        - port: 5005
+          targetport: 5005
