@@ -28,10 +28,10 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002097-a984ea43",
 
         # [small] watchdog for comparing v1 and v2 flow changes
-        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180713_144010.b7e69bfb.clean.small-ltm",
+        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180713_155606.b7e69bfb.dirty.small-ltm",
 
         # [small] watchdog for comparing v1 and v2 flow changes
-        "prd,prd-samdev,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180713_144010.b7e69bfb.clean.small-ltm",
+        "prd,prd-samdev,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180713_155606.b7e69bfb.dirty.small-ltm",
 
         },
 
