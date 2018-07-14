@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden-stage
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casp-warden/svs:dev-warden-Jul14-0507PM
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casp-warden/svs:dev-warden-Jul14-0630PM
         ports:
         - name: http
           containerPort: 8889
@@ -24,8 +24,6 @@ system:
           containerPort: 8444
         - name: grpc
           containerPort: 7878
-        - name: debug
-          containerPort: 5005
         env:
         - name: BRANCH
           value: "eng_production_staging"
@@ -63,5 +61,3 @@ system:
           targetport: 8444
         - port: 7878
           targetport: 7878
-        - port: 5005
-          targetport: 5005
