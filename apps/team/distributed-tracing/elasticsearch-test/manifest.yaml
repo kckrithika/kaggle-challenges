@@ -54,7 +54,7 @@ system:
             maxUnavailable: 1
     containers:
     - name: zipkin-es-curator-test
-      image: docker-dva-rc/dva/zipkin-es-curator:2
+      image: docker-dva-rc/dva/zipkin-es-curator:3
       env:
       - name: ES_ENDPOINT
         value: es-rest-test.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200
