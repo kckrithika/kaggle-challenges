@@ -7,7 +7,7 @@ system:
         - pteyer@salesforce.com
     functions:
     - name: warden-stage-func
-      count: 1
+      count: 3
       strategy:
         type: RollingUpdate
         rollingUpdate:
