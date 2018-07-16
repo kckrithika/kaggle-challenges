@@ -21,6 +21,7 @@ spec:
       - command:
         - /sam/bundlecontroller
         - --funnelEndpoint=ajna0-funnel1-0-vpod.data.sfdc.net:80
+        - --whiteListNamespaceRegexp=^ci-*
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
