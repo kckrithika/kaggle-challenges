@@ -18,7 +18,7 @@ if slbconfigs.slbInKingdom then {
         namespace: "sam-system",
     },
     spec: {
-        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else (if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then 3 else 2),
+        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else (if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" || configs.estate == "prd-sdc" then 3 else 2),
         revisionHistoryLimit: 2,
         template: {
             metadata: {
