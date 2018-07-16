@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     name: iotk8sproxy
-    sam.data.sfdc.net/owner: sam
   name: iotk8sproxy
   namespace: sam-system
 spec:
@@ -16,7 +15,6 @@ spec:
       labels:
         apptype: proxy
         name: iotk8sproxy
-        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - args:

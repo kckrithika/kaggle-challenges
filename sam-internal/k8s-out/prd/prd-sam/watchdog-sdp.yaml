@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-sdp
-    sam.data.sfdc.net/owner: sam
   name: watchdog-sdp
 spec:
   replicas: 1
@@ -15,7 +14,6 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-sdp
-        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

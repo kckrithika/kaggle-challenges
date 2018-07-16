@@ -3,7 +3,6 @@ kind: DaemonSet
 metadata:
   labels:
     name: watchdog-puppet
-    sam.data.sfdc.net/owner: sam
   name: watchdog-puppet
 spec:
   template:
@@ -12,7 +11,6 @@ spec:
         app: watchdog-puppet
         apptype: monitoring
         daemonset: "true"
-        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

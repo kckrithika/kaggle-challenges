@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-estatesvc
-    sam.data.sfdc.net/owner: sam
   name: watchdog-estatesvc
   namespace: sam-system
 spec:
@@ -16,7 +15,6 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-estatesvc
-        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

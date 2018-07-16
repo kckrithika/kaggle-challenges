@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-hairpindeployer
-    sam.data.sfdc.net/owner: sam
   name: watchdog-hairpindeployer
 spec:
   replicas: 1
@@ -20,7 +19,6 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-hairpindeployer
-        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

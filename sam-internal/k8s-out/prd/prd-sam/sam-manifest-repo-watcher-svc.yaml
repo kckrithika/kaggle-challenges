@@ -7,7 +7,6 @@ metadata:
       false, "sticky": 0, "targetport": 8099}]'
   labels:
     app: sam-manifest-repo-watcher
-    sam.data.sfdc.net/owner: sam
   name: sam-manifest-repo-watcher
   namespace: sam-system
 spec:

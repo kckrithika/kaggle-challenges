@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-node-controller
-    sam.data.sfdc.net/owner: sam
   name: watchdog-node-controller
   namespace: sam-system
 spec:
@@ -16,7 +15,6 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-node-controller
-        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:
