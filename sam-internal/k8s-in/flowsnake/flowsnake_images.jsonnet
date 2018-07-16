@@ -83,6 +83,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 add_local_canary: "verified",  #Verified successfully in test fleet
+                add_12_canary: "unverified",  #Pending verification in test fleet - DO NOT PROMOTE
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {

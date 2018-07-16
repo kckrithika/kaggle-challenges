@@ -27,6 +27,7 @@ local set_test_class(test_name) = " -c com.salesforce.dva.transform.flowsnake." 
 local build_test_command(test_name, version) = build_run_command(version) + set_test_class(test_name);
 
 local flag_local = std.objectHas(flowsnake_images.feature_flags, "add_local_canary");
+local flag_12 = std.objectHas(flowsnake_images.feature_flags, "add_12_canary");
 
 local build_command_sets = if flag_local then {
     "0.11.0": {
@@ -39,6 +40,19 @@ local build_command_sets = if flag_local then {
    },
 };
 
+local build_12_commands = if flag_12 && flag_local then {
+    "0.12.0": {
+        SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.12.0'),
+        SparkLocal: build_test_command('SparkLocalDriverDemoJobIT', '0.12.0'),
+   },
+} else if flag_12 && !flag_local then {
+    "0.12.0": {
+        SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.12.0'),
+   },
+} else if !flag_12 then {
+
+};
+
 {
-    command_sets:: build_command_sets,
+    command_sets:: build_command_sets + build_12_commands,
 }
