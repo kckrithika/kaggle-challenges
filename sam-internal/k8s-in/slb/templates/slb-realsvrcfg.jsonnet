@@ -11,7 +11,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
     metadata: {
         labels: {
             name: "slb-realsvrcfg",
-        },
+        } + slbconfigs.ownerLabel,
         name: "slb-realsvrcfg",
         namespace: "sam-system",
     },
@@ -22,7 +22,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     name: "slb-realsvrcfg",
                     apptype: "control",
                     daemonset: "true",
-                },
+                } + slbconfigs.ownerLabel,
                 namespace: "sam-system",
             },
             spec: {

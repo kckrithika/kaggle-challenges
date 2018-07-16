@@ -9,7 +9,7 @@ if configs.estate == "prd-sdc" then {
     metadata: {
         labels: {
             name: "slb-nginxdata-watchdog",
-        },
+        } + slbconfigs.ownerLabel,
         name: "slb-nginxdata-watchdog",
         namespace: "sam-system",
     },
@@ -78,7 +78,7 @@ if configs.estate == "prd-sdc" then {
                 labels: {
                     name: "slb-nginxdata-watchdog",
                     apptype: "monitoring",
-                },
+                } + slbconfigs.ownerLabel,
                 namespace: "sam-system",
             },
         },

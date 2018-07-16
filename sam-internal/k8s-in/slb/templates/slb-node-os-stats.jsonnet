@@ -8,7 +8,7 @@ if configs.estate == "prd-sdc" then {
     metadata: {
         labels: {
             name: "slb-node-os-stats",
-        },
+        } + slbconfigs.ownerLabel,
         name: "slb-node-os-stats",
         namespace: "sam-system",
     },
@@ -17,7 +17,7 @@ if configs.estate == "prd-sdc" then {
             metadata: {
                 labels: {
                     name: "slb-node-os-stats",
-                },
+                } + slbconfigs.ownerLabel,
                 namespace: "sam-system",
             },
             spec: {

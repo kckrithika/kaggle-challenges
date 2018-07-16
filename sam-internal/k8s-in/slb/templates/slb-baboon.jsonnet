@@ -10,7 +10,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
     metadata: {
         labels: {
             name: "slb-baboon",
-        },
+        } + slbconfigs.ownerLabel,
         name: "slb-baboon",
         namespace: "sam-system",
     },
@@ -100,7 +100,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 labels: {
                     name: "slb-baboon",
                     apptype: "monitoring",
-                },
+                } + slbconfigs.ownerLabel,
                 namespace: "sam-system",
             },
         },

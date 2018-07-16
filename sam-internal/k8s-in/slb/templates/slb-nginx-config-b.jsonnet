@@ -13,7 +13,7 @@ if slbconfigs.slbInKingdom then {
     metadata: {
         labels: {
             name: "slb-nginx-config-b",
-        },
+        } + slbconfigs.ownerLabel,
         name: "slb-nginx-config-b",
         namespace: "sam-system",
     },
@@ -24,7 +24,7 @@ if slbconfigs.slbInKingdom then {
             metadata: {
                 labels: {
                     name: "slb-nginx-config-b",
-                },
+                } + slbconfigs.ownerLabel,
                 namespace: "sam-system",
                 annotations: {
                     "madkub.sam.sfdc.net/allcerts": "{

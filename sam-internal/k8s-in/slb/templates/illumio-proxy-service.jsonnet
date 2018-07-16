@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
 if configs.estate == "prd-sam" then {
     kind: "Service",
     apiVersion: "v1",
@@ -9,7 +10,7 @@ if configs.estate == "prd-sam" then {
         labels: {
             app: "illumio-proxy-svc",
             "slb.sfdc.net/name": "illumio-proxy-svc",
-        },
+        } + slbconfigs.ownerLabel,
         annotations: {
             "slb.sfdc.net/name": "illumio-proxy-svc",
             "slb.sfdc.net/portconfigurations": "[{\"port\":8443,\"targetport\":8443,\"lbtype\":\"tcp\"}]",

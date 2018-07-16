@@ -11,7 +11,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
             app: "slb-canary-passthrough-host-network-service",
             "slb.sfdc.net/name": "slb-canary-pt-host-nw",
             "slb.sfdc.net/type": "none",
-        },
+        } + slbconfigs.ownerLabel,
         annotations: {
             "slb.sfdc.net/name": "slb-canary-pt-host-nw",
         },
