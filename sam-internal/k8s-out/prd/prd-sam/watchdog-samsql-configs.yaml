@@ -37,8 +37,8 @@ data:
     as ''NotReadyPerc''\n\n              FROM\n              (\n                  SELECT\n                        COUNT(*)
     as TotalCount,\n                        SUM(CASE WHEN READY = ''True'' THEN 0
     ELSE 1 END) as NotReadyCount,\n                        minionpool\n                  FROM\n                        nodeDetailView\n                  WHERE\n                        KINGDOM
-    != ''PRD'' AND AND KINGDOM != ''UNK''\n                        AND minionpool
-    NOT LIKE ''%ceph%''\n                  GROUP BY minionpool\n              ) ss\n              )
+    != ''PRD'' AND KINGDOM != ''UNK''\n                        AND minionpool NOT
+    LIKE ''%ceph%''\n                  GROUP BY minionpool\n              ) ss\n              )
     ss2\n              WHERE (TotalCount < 10 AND NotReadyCount >=2) OR (TotalCount
     >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency": "10m"}, {"alertAction": "email",
     "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions":

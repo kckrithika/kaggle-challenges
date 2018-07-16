@@ -67,7 +67,7 @@
                   FROM
                         nodeDetailView
                   WHERE
-                        KINGDOM != 'PRD' AND AND KINGDOM != 'UNK'
+                        KINGDOM != 'PRD' AND KINGDOM != 'UNK'
                         AND minionpool NOT LIKE '%ceph%'
                   GROUP BY minionpool
               ) ss
