@@ -1,0 +1,16 @@
+apiVersion: v1
+system:
+  functions:
+  - name: ordering 
+    count: 1
+    containers:
+    - name: ordering-scone
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/scone-ordering:ynagata-20180716 
+      ports:
+      - containerPort: 7020
+      - containerPort: 15372
+      - containerPort: 9010
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
