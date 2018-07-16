@@ -78,7 +78,7 @@ local utils = import "util_functions.jsonnet";
         "1": self.default_image_tags {
 
             cert_secretizer_image_tag: "662",  # previously was 681, but that silently failed to deploy and be tested in test fleet
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-646-25-itest",
+            fleetService_image_tag: "696",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -91,6 +91,7 @@ local utils = import "util_functions.jsonnet";
                   "0.10.0": 662,
                   "0.11.0": 681,
                   "0.11.0.sluice_fix": 691,
+                  "0.12.0": 696,
                 }
                 +
                 # These are for developer testing only
