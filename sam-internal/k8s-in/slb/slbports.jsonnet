@@ -31,6 +31,7 @@
         slbNodeApiIpvsOverridePort: 12081,
         slbNodeApiRealSvrOverridePort: 12084,
         slbNodeApiIfaceOverridePort: 12086,
+        slbNodeApiDnsOverridePort: 12087,
 
         canaryServiceTlsNodePort: 32135,
         canaryServiceNodePort: 32136,

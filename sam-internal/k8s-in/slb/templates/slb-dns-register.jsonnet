@@ -51,7 +51,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             configs.sfdchosts_arg,
                         ] + (if configs.estate == "prd-sam" then [
                                  "--maxDeleteEntries=500",
-                             ] else []),
+                             ] else [])
+                          + (if slbimages.hypersdn_build >= 975 then [
+                            "--subnet=" + slbconfigs.subnet,
+                          ] else []),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
@@ -63,7 +66,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort),
                     slbshared.slbCleanupConfig,
                     slbshared.slbLogCleanup,
-                ],
+                ] + (if slbimages.hypersdn_build >= 975 then [
+                    slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort),
+                ] else []),
                 nodeSelector: {
                     "slb-dns-register": "true",
                 },
