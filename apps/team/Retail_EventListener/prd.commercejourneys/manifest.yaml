@@ -23,7 +23,7 @@ system:
         path: /home/sfdc-cj/logs
     containers:
     - name: commercejourneys
-      image: sfci/mc-retail/commerce-journeys:1.3.6
+      image: sfci/mc-retail/commerce-journeys:1.3.7
       ports:
         - containerPort: 8080
         - containerPort: 15372
