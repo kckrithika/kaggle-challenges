@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     name: snapshoter
-    sam.data.sfdc.net/owner: sam
   name: snapshoter
   namespace: sam-system
 spec:
