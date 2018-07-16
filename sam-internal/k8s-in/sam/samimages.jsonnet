@@ -20,25 +20,6 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        #[pjoshi] testing sql to argus feature
-        "prd,prd-sam,watchdog-samsql,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180713_170224.98ff34c2.dirty.prahladjos-ltm",
-
-        # [xiao] test samapp controller update status on bundle change
-        "prd,prd-samdev,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20180711_140053.c78bc08a.dirty.xiaozhou-ltm2",
-
-        # [mayank] deploy email reporter early before its available as part of regular phases
-        "prd,prd-samdev,k8s-resource-reporter,hypersam": "sam-0002097-a984ea43",
-        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002097-a984ea43",
-
-        # [small] test custom label support for services
-        "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180712_145857.308c6803.clean.small-ltm",
-
-        # [small] watchdog for comparing v1 and v2 flow changes
-        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180713_155606.b7e69bfb.dirty.small-ltm",
-
-        # [small] watchdog for comparing v1 and v2 flow changes
-        "prd,prd-samdev,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180713_155606.b7e69bfb.dirty.small-ltm",
-
         },
 
     ### Per-phase image tags
@@ -66,7 +47,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-            hypersam: "sam-0002094-dbe14378",
+            hypersam: "sam-0002105-7f1adf93",
             madkub: "1.0.0-0000071-5a6dcab2",
             madkubSidecar: "1.0.0-0000071-5a6dcab2",
             },
