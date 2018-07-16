@@ -20,6 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [mayank] deploy email reporter early before its available as part of regular phases
+        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002097-a984ea43",
+
         },
 
     ### Per-phase image tags
