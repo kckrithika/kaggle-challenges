@@ -46,7 +46,7 @@ local utils = import "util_functions.jsonnet";
                 labels: {
                     name: "sdn-hairpin-setter",
                     daemonset: "true",
-                },
+                } + configs.ownerLabel.sdn,
                 namespace: "sam-system",
             },
         },

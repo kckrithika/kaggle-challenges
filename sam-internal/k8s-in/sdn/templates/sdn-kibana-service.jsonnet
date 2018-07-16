@@ -9,7 +9,7 @@ if configs.estate == "prd-sam" then {
         namespace: "sam-system",
         labels: {
             app: "sdn-kibana",
-        },
+        } + configs.ownerLabel.sdn,
         annotations: {
             "slb.sfdc.net/name": "sdn-kibana",
             "slb.sfdc.net/portconfigurations": std.toString(

@@ -103,7 +103,7 @@ if configs.estate == "prd-sdc" then {
                 labels: {
                     name: "sdn-logstash-push",
                     apptype: "monitoring",
-                },
+                } + configs.ownerLabel.sdn,
                 namespace: "sam-system",
             },
         },
@@ -112,7 +112,7 @@ if configs.estate == "prd-sdc" then {
     metadata: {
         labels: {
             name: "sdn-logstash-push",
-        },
+        } + configs.ownerLabel.sdn,
         name: "sdn-logstash-push",
         namespace: "sam-system",
     },

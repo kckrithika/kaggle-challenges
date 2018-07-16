@@ -43,7 +43,7 @@ if configs.estate == "prd-sam" then {
                 labels: {
                     name: "sdn-kibana",
                     apptype: "monitoring",
-                },
+                } + configs.ownerLabel.sdn,
                 namespace: "sam-system",
             },
         },
@@ -52,7 +52,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "sdn-kibana",
-        },
+        } + configs.ownerLabel.sdn,
         name: "sdn-kibana",
         namespace: "sam-system",
     },

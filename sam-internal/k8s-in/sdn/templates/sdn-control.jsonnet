@@ -9,7 +9,7 @@ if configs.estate == "" then {
     metadata: {
         labels: {
             name: "sdn-control",
-        },
+        } + configs.ownerLabel.sdn,
         name: "sdn-control",
         namespace: "sam-system",
     },
@@ -26,7 +26,7 @@ if configs.estate == "" then {
             metadata: {
                 labels: {
                     name: "sdn-control",
-                },
+                } + configs.ownerLabel.sdn,
             },
             spec: {
                 hostNetwork: true,

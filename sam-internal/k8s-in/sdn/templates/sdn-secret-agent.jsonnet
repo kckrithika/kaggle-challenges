@@ -64,7 +64,7 @@ if utils.is_flowsnake_cluster(configs.estate) then {
                 labels: {
                     name: "sdn-secret-agent",
                     apptype: "control",
-                },
+                } + configs.ownerLabel.sdn,
                namespace: "sam-system",
             },
         },
@@ -73,7 +73,7 @@ if utils.is_flowsnake_cluster(configs.estate) then {
     metadata: {
         labels: {
             name: "sdn-secret-agent",
-        },
+        } + configs.ownerLabel.sdn,
         name: "sdn-secret-agent",
         namespace: "sam-system",
     },

@@ -7,6 +7,7 @@ metadata:
       "reencrypt": false, "sticky": 0, "targetport": 9124}]'
   labels:
     app: sdn-kibana
+    sam.data.sfdc.net/owner: sdn
   name: sdn-kibana
   namespace: sam-system
 spec:

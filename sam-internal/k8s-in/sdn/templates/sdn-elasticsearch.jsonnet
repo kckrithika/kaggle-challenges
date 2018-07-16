@@ -76,7 +76,7 @@ if configs.estate == "prd-sam" then {
                 labels: {
                     name: "sdn-elasticsearch",
                     apptype: "monitoring",
-                },
+                } + configs.ownerLabel.sdn,
                 namespace: "sam-system",
             },
         },

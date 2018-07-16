@@ -109,6 +109,21 @@ local utils = import "util_functions.jsonnet",
                 "sam.data.sfdc.net/owner": "sam",
             } else {}
         ),
+        sdn: (
+            if estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sam" then {
+                "sam.data.sfdc.net/owner": "sdn",
+            } else {}
+        ),
+        slb: (
+            if estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sam" then {
+                "sam.data.sfdc.net/owner": "slb",
+            } else {}
+        ),
+        storage: (
+            if estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sam" then {
+                "sam.data.sfdc.net/owner": "storage",
+            } else {}
+        ),
     },
 
     # === KUBERNETES ===

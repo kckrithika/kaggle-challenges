@@ -6,6 +6,7 @@ if configs.estate == "" then {
         metadata: {
             name: "sdn-control-svc",
             namespace: "sam-system",
+            labels: {} + configs.ownerLabel.sdn,
         },
         spec: {
             clusterIP: "10.254.219.222",

@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: sdn-kibana-agent
+    sam.data.sfdc.net/owner: sdn
   name: sdn-kibana-agent
   namespace: sam-system
 spec:
@@ -12,6 +13,7 @@ spec:
       labels:
         apptype: monitoring
         name: sdn-kibana-agent
+        sam.data.sfdc.net/owner: sdn
       namespace: sam-system
     spec:
       containers:

@@ -6,6 +6,7 @@ if (!utils.is_public_cloud(configs.kingdom) && !utils.is_flowsnake_cluster(confi
   metadata: {
     name: "sdn",
     namespace: "sam-system",
+    labels: {} + configs.ownerLabel.sdn,
   },
   type: "Opaque",
 
