@@ -26,7 +26,7 @@ system:
         - --send-events
         - --sinks=kafka
         - --sources=informer
-        - --kafka-topic-template=sfdc.prod.sam__%.ajna_local__resourcestatus
+        - --kafka-topic-template=sfdc.prod.sam__%v.ajna_local__resourcestatus
       volumeMounts:
       - name: certs
         mountPath: /certs
