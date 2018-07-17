@@ -26,7 +26,7 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12025
-        - --proxyName=envoy
+
         - --disableProtectedMode
         - --useUnixSocket
         - --useTCPProxy
@@ -80,7 +80,7 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12026
-        - --proxyName=envoy
+
         - --disableProtectedMode
         - --useUnixSocket
         - --useTCPProxy
@@ -134,7 +134,7 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12027
-        - --proxyName=envoy
+
         - --disableProtectedMode
         - --useUnixSocket
         - --useTCPProxy
@@ -188,7 +188,7 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12028
-        - --proxyName=envoy
+
         - --disableProtectedMode
         - --useUnixSocket
         - --useTCPProxy
@@ -242,7 +242,7 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12029
-        - --proxyName=envoy
+
         - --disableProtectedMode
         - --useUnixSocket
         - --useTCPProxy
@@ -296,7 +296,7 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12030
-        - --proxyName=envoy
+
         - --disableProtectedMode
         - --useUnixSocket
         - --useTCPProxy
@@ -350,7 +350,7 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12031
-        - --proxyName=envoy
+
         - --disableProtectedMode
         - --useUnixSocket
         - --useTCPProxy
@@ -404,7 +404,7 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12032
-        - --proxyName=envoy
+
         - --disableProtectedMode
         - --useUnixSocket
         - --useTCPProxy
