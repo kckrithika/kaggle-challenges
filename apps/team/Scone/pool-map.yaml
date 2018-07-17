@@ -17,3 +17,5 @@ apps:
         - prd/prd-sam
     scone-gen:
         - prd/prd-sam_gater
+    testdeploy:
+        - prd/prd-sam
