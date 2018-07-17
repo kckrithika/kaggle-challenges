@@ -19,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: tnrp/csc-health/report-collector:1.17.0-0000271-bcf31fce
+      image: tnrp/csc-health/report-collector:1.18.0-0000276-669523b1
       ports:
       - name: admin
         containerPort: 8082
@@ -98,7 +98,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: tnrp/csc-health/report-collector:1.17.0-0000271-bcf31fce
+      image: tnrp/csc-health/report-collector:1.18.0-0000276-669523b1
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
