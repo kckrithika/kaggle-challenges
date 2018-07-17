@@ -19,6 +19,9 @@ system:
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
         - name: cert
           mountPath: /servercert
       args: 
@@ -73,6 +76,9 @@ system:
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
         - name: cert
           mountPath: /servercert
       args: 
@@ -127,6 +133,9 @@ system:
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
         - name: cert
           mountPath: /servercert
       args: 
@@ -181,6 +190,9 @@ system:
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
         - name: cert
           mountPath: /servercert
       args: 
@@ -235,6 +247,9 @@ system:
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
         - name: cert
           mountPath: /servercert
       args: 
@@ -289,6 +304,9 @@ system:
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
         - name: cert
           mountPath: /servercert
       args: 
@@ -343,6 +361,9 @@ system:
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
         - name: cert
           mountPath: /servercert
       args: 
@@ -397,6 +418,9 @@ system:
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
         - name: cert
           mountPath: /servercert
       args: 
@@ -446,6 +470,9 @@ system:
     - name: logvol
       hostPath:
         path: /home/caas/logs/caas
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-c1
     - name: cert
       maddogCert:
         type: server
