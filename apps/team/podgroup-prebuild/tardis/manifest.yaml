@@ -33,6 +33,8 @@ system:
         value: /certs/server/certificates/server.pem
       - name: GUS_ENDPOINT
         value: 'gus.my.salesforce.com'
+      - name: DEPLOY_NUM
+        value: '1'
       ports:
       - containerPort: 10443
       volumeMounts:
