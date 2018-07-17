@@ -15,7 +15,6 @@ spec:
       labels:
         apptype: control
         name: node-controller
-        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

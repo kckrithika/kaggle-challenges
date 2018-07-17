@@ -15,7 +15,6 @@ spec:
       labels:
         apptype: control
         name: service-discovery-module
-        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

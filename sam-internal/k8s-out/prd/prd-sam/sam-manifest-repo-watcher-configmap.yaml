@@ -28,7 +28,5 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  labels:
-    sam.data.sfdc.net/owner: sam
   name: sam-manifest-repo-watcher
   namespace: sam-system

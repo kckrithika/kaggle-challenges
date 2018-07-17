@@ -7,7 +7,6 @@ metadata:
       false, "sticky": 0, "targetport": 64212}]'
   labels:
     app: samsqlreporter
-    sam.data.sfdc.net/owner: sam
   name: samsqlreporter
   namespace: sam-system
 spec:

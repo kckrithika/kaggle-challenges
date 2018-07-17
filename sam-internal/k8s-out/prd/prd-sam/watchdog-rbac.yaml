@@ -13,7 +13,6 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-rbac
-        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

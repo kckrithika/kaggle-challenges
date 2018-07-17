@@ -55,7 +55,7 @@ if false then {
     metadata: {
         labels: {
             name: "ops-adhoc",
-        },
+        } + configs.ownerLabel.sam,
         name: "ops-adhoc",
         namespace: "sam-system",
     },

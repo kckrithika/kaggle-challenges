@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: k8s-resource-reporter
+    sam.data.sfdc.net/owner: sam
   name: k8s-resource-reporter
   namespace: sam-system
 spec:

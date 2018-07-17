@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     name: samsqlreporter
-    sam.data.sfdc.net/owner: sam
   name: samsqlreporter
   namespace: sam-system
 spec:

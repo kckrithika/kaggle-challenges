@@ -72,7 +72,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
     metadata: {
         labels: {
             name: "sam-secret-agent",
-        },
+        } + configs.ownerLabel.sam,
         name: "sam-secret-agent",
     },
 } else "SKIP"

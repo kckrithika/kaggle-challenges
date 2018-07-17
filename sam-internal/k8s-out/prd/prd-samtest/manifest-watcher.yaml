@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: manifest-watcher
+    sam.data.sfdc.net/owner: sam
   name: manifest-watcher
 spec:
   replicas: 1

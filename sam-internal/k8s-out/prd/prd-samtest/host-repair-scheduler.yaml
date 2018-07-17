@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: host-repair-scheduler
+    sam.data.sfdc.net/owner: sam
   name: host-repair-scheduler
 spec:
   replicas: 1
@@ -14,6 +15,7 @@ spec:
       labels:
         apptype: control
         name: host-repair-scheduler
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

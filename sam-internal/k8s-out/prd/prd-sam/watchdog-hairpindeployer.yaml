@@ -19,7 +19,6 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-hairpindeployer
-        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

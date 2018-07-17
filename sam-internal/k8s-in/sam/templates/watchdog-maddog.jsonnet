@@ -72,7 +72,7 @@ if samfeatureflags.maddogforsamapps then {
     metadata: {
         labels: {
             name: "watchdog-maddog",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-maddog",
     },
 } else "SKIP"

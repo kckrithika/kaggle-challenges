@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: k8sproxy
+    sam.data.sfdc.net/owner: sam
   name: k8sproxy
   namespace: sam-system
 spec:

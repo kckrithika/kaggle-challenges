@@ -72,7 +72,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
         metadata: {
             labels: {
                 name: "temp-crd-watcher",
-            },
+            } + configs.ownerLabel.sam,
             name: "temp-crd-watcher",
         },
     } else "SKIP"

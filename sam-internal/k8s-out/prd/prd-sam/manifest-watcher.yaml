@@ -14,7 +14,6 @@ spec:
       labels:
         apptype: control
         name: manifest-watcher
-        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

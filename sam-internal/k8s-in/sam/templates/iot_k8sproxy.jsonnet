@@ -81,7 +81,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "iotk8sproxy",
-        },
+        } + configs.ownerLabel.sam,
         name: "iotk8sproxy",
         namespace: "sam-system",
     },

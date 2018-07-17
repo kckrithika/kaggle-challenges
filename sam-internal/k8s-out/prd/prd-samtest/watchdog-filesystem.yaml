@@ -3,6 +3,7 @@ kind: DaemonSet
 metadata:
   labels:
     name: watchdog-filesystem
+    sam.data.sfdc.net/owner: sam
   name: watchdog-filesystem
 spec:
   template:

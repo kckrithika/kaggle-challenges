@@ -77,7 +77,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     metadata: {
         labels: {
             name: "samcontrol-deployer",
-        },
+        } + configs.ownerLabel.sam,
         name: "samcontrol-deployer",
         namespace: "sam-system",
     },

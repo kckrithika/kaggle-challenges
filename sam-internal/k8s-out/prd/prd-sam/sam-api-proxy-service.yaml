@@ -5,7 +5,6 @@ metadata:
     slb.sfdc.net/name: sam-api-proxy
   labels:
     app: sam-api-proxy
-    sam.data.sfdc.net/owner: sam
   name: sam-api-proxy
 spec:
   ports:

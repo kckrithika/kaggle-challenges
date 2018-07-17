@@ -3,6 +3,7 @@ kind: DaemonSet
 metadata:
   labels:
     name: watchdog-rbac
+    sam.data.sfdc.net/owner: sam
   name: watchdog-rbac
 spec:
   selector:

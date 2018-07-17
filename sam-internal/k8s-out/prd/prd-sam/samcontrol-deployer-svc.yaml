@@ -7,7 +7,6 @@ metadata:
       false, "sticky": 0, "targetport": 9099}]'
   labels:
     app: samcontrol-deployer
-    sam.data.sfdc.net/owner: sam
   name: samcontrol-deployer
   namespace: sam-system
 spec:

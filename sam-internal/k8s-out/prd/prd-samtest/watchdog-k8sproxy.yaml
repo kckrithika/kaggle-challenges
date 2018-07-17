@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-proxy
+    sam.data.sfdc.net/owner: sam
   name: watchdog-proxy
 spec:
   replicas: 1

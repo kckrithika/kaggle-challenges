@@ -92,7 +92,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     metadata: {
         labels: {
             name: "prometheus",
-        },
+        } + configs.ownerLabel.sam,
         name: "prometheus",
         namespace: "sam-system",
     },

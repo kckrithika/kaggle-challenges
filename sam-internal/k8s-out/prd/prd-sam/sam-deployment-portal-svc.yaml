@@ -8,7 +8,6 @@ metadata:
       64121, "reencrypt": false, "sticky": 0, "targetport": 64121}]'
   labels:
     app: sam-deployment-portal
-    sam.data.sfdc.net/owner: sam
   name: sdp
   namespace: sam-system
 spec:

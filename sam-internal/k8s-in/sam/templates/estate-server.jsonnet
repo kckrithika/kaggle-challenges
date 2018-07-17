@@ -82,7 +82,7 @@ if samfeatureflags.estatessvc then {
     metadata: {
         labels: {
             name: "estate-server",
-        },
+        } + configs.ownerLabel.sam,
         name: "estate-server",
         namespace: "sam-system",
     },

@@ -63,7 +63,7 @@ if samfeatureflags.estatessvc then {
     metadata: {
         labels: {
             name: "watchdog-estatesvc",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-estatesvc",
         namespace: "sam-system",
     },

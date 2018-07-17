@@ -6,7 +6,7 @@ if configs.estate == "prd-samtest" then {
     metadata: {
         name: "host-repair-scheduler",
         namespace: "sam-system",
-    },
+    } + configs.ownerLabel.sam,
     data: {
         "host-repair-scheduler.json": std.toString(import "configs/host-repair-scheduler-config.jsonnet"),
     },

@@ -6,7 +6,6 @@ metadata:
     k8s-app: kube-dns
     kubernetes.io/cluster-service: "true"
     kubernetes.io/name: KubeDNS
-    sam.data.sfdc.net/owner: sam
   name: kube-dns
   namespace: kube-system
 spec:

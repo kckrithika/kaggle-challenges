@@ -22,7 +22,7 @@ if configs.estate == "prd-sam" then {
                 labels: {
                     apptype: "control",
                     name: "snapshotconsumer-prd",
-                },
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
             spec: {

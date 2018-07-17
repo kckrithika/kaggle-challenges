@@ -60,7 +60,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
     metadata: {
         labels: {
             name: "stateful-revision-cleaner",
-        },
+        } + configs.ownerLabel.sam,
         name: "stateful-revision-cleaner",
         namespace: "sam-system",
     },

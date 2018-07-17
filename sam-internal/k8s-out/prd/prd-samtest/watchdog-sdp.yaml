@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-sdp
+    sam.data.sfdc.net/owner: sam
   name: watchdog-sdp
 spec:
   replicas: 1

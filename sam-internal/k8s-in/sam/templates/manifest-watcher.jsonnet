@@ -68,7 +68,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     metadata: {
         labels: {
             name: "manifest-watcher",
-        },
+        } + configs.ownerLabel.sam,
         name: "manifest-watcher",
     },
 }

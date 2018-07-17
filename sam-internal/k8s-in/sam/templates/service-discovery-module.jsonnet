@@ -61,7 +61,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
     metadata: {
         labels: {
             name: "service-discovery-module",
-        },
+        } + configs.ownerLabel.sam,
         name: "service-discovery-module",
         namespace: "sam-system",
     },

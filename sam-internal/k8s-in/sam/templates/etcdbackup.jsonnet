@@ -67,7 +67,7 @@ local wdconfig = import "samwdconfig.jsonnet";
     metadata: {
         labels: {
             name: "etcdbackup",
-        },
+        } + configs.ownerLabel.sam,
         name: "etcdbackup",
     },
 }

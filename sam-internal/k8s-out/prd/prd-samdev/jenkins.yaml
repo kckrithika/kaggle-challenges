@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: jenkins
+    sam.data.sfdc.net/owner: sam
   name: jenkins
   namespace: sam-system
 spec:

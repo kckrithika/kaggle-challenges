@@ -17,7 +17,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
             labels: {
               apptype: "control",
               name: "sam-api-proxy",
-            },
+            } + configs.ownerLabel.sam,
           },
           spec: {
             containers: [

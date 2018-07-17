@@ -67,7 +67,7 @@ if (!utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom)) t
         metadata: {
                 labels: {
                         name: "temp-secret-samcontrol-deployer",
-                },
+                } + configs.ownerLabel.sam,
                 name: "temp-secret-samcontrol-deployer",
                 namespace: "sam-system",
         },

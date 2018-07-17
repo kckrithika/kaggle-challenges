@@ -112,7 +112,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "k8s-event-processor",
-        },
+        } + configs.ownerLabel.sam,
         name: "k8s-event-processor",
         namespace: "sam-system",
     },

@@ -62,7 +62,7 @@ if samfeatureflags.rbacwd then {
     metadata: {
         labels: {
             name: "watchdog-rbac",
-        },
+        } + configs.ownerLabel.sam,
         name: "watchdog-rbac",
     },
 } else "SKIP"
