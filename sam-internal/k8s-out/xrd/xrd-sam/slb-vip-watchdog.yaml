@@ -188,7 +188,7 @@ spec:
         - mountPath: /host/data/slb/logs/slb-vip-watchdog/cleanup
           name: var-cleanup-logs-volume
       nodeSelector:
-        pool: xrd-sam
+        pool: xrd-slb
       volumes:
       - hostPath:
           path: /data/slb

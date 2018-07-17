@@ -72,7 +72,7 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       nodeSelector:
-        pool: xrd-sam
+        pool: xrd-slb
       volumes:
       - hostPath:
           path: /etc/pki_service
