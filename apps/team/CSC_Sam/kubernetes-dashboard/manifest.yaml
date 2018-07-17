@@ -10,8 +10,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/phx-sam
         - --insecure-port=9090
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/phx-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -28,8 +26,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/dfw-sam
         - --insecure-port=9091
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/dfw-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -46,8 +42,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/frf-sam
         - --insecure-port=9092
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/frf-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -64,8 +58,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/iad-sam
         - --insecure-port=9093
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/iad-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -82,8 +74,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ord-sam
         - --insecure-port=9094
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ord-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -100,8 +90,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/par-sam
         - --insecure-port=9095
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/par-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -119,8 +107,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/hnd-sam
         - --insecure-port=9096
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/hnd-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -137,8 +123,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ukb-sam
         - --insecure-port=9097
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ukb-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -155,8 +139,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam
         - --insecure-port=9099
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -173,8 +155,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/cdu-sam
         - --insecure-port=9101
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/cdu-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -191,8 +171,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/yhu-sam
         - --insecure-port=9102
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/yhu-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -209,8 +187,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/yul-sam
         - --insecure-port=9103
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/yul-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -227,8 +203,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/syd-sam
         - --insecure-port=9104
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/syd-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -245,8 +219,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/chx-sam
         - --insecure-port=9105
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/chx-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -263,8 +235,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/wax-sam
         - --insecure-port=9106
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/wax-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -281,8 +251,6 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/xrd-sam
         - --insecure-port=9107
-        - --system-banner=SAM is upgrading its production Kubernetes from 1.7.14 to 1.9.7 - see <a href="https://gus.lightning.force.com/lightning/r/0D5B000000g827wKAA/view"> the announcement on GUS </a> for more info.
-        - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/xrd-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -290,7 +258,23 @@ system:
       livenessProbe:
         httpGet:
           path: /
-          port: 9107
+          port: 9108
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-prd-samtwo
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-samtwo
+        - --insecure-port=9108
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-samtwo/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9108
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9108
       volumeMounts:
       - mountPath: /tmp
         name: temp
@@ -394,3 +378,9 @@ system:
     ports:
       - port: 80
         targetport: 9107
+  - lbname: dashboard-prd-samtwo
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9108
