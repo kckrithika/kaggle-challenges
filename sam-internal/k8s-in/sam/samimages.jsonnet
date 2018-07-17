@@ -20,12 +20,6 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [pjoshi] testing sql to argus feature
-        "prd,prd-sam,watchdog-samsql,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180713_170224.98ff34c2.dirty.prahladjos-ltm",
-
-        # [mayank] deploy email reporter early before its available as part of regular phases
-        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002097-a984ea43",
-
         },
 
     ### Per-phase image tags
@@ -60,7 +54,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": $.per_phase["3"] {
-            hypersam: "sam-0002094-dbe14378",
+            hypersam: "sam-0002105-7f1adf93",
             madkub: "1.0.0-0000071-5a6dcab2",
             madkubSidecar: "1.0.0-0000071-5a6dcab2",
             },
