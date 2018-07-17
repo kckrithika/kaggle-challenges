@@ -85,14 +85,14 @@ GROUP BY DayHour;",
 
     {
       name: "Failed-Watchdog-CRDs",
-      sql: "SELECT ControlEstate, Name, Payload, ProduceTime, ConsumeTime, IsTombstone FROM k8s_resource WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND JSON_EXTRACT(Payload, '$.status.report.Success') = false",
+      sql: "SELECT ControlEstate, Name, Payload, ProduceTime, ConsumeTime, IsTombstone FROM k8s_resource WHERE ApiKind='Watchdog' AND JSON_EXTRACT(Payload, '$.status.report.Success') = false",
     },
 
 #===================
 
     {
       name: "Successful-Watchdog-CRDs",
-      sql: "SELECT ControlEstate, Name, Payload, ProduceTime, ConsumeTime, IsTombstone FROM k8s_resource WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND JSON_EXTRACT(Payload, '$.status.report.Success') = true",
+      sql: "SELECT ControlEstate, Name, Payload, ProduceTime, ConsumeTime, IsTombstone FROM k8s_resource WHERE ApiKind='Watchdog' AND JSON_EXTRACT(Payload, '$.status.report.Success') = true",
     },
 
 #===================
@@ -106,7 +106,7 @@ GROUP BY DayHour;",
         JSON_EXTRACT(Payload, '$.status.report.Success') AS 'Success',
         COUNT(*) AS 'COUNT'
       FROM k8s_resource
-      WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND JSON_EXTRACT(Payload, '$.status.report.Success')=false
+      WHERE ApiKind='Watchdog' AND JSON_EXTRACT(Payload, '$.status.report.Success')=false
       GROUP BY ControlEstate, JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')), JSON_EXTRACT(Payload, '$.status.report.Success')
       ORDER BY COUNT(*) DESC
       ",
@@ -123,7 +123,7 @@ GROUP BY DayHour;",
         JSON_EXTRACT(Payload, '$.status.report.Success') AS 'Success',
         COUNT(*) AS 'COUNT'
       FROM k8s_resource
-      WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND JSON_EXTRACT(Payload, '$.status.report.Success')=false
+      WHERE ApiKind='Watchdog' AND JSON_EXTRACT(Payload, '$.status.report.Success')=false
 
       GROUP BY JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.Kingdom')), JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')), JSON_EXTRACT(Payload, '$.status.report.Success')
       ORDER BY COUNT(*) DESC
