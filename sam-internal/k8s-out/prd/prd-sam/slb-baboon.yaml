@@ -56,7 +56,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000969-2703b49a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000975-12677798
         name: slb-baboon
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -106,7 +106,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000969-2703b49a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000975-12677798
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -142,7 +142,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-baboon
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=500
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000969-2703b49a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000975-12677798
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -159,7 +159,7 @@ spec:
         - --configDir=/host/data/slb/config/slb-baboon
         - --log_dir=/host/data/slb/logs/slb-baboon
         - --netInterface=lo
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000969-2703b49a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000975-12677798
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -178,7 +178,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000969-2703b49a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000975-12677798
         name: slb-cleanup
         securityContext:
           privileged: true
