@@ -49,19 +49,19 @@ data:
         },
         {
           "name": "Failed-Watchdog-CRDs",
-          "sql": "SELECT ControlEstate, Name, Payload, ProduceTime, ConsumeTime, IsTombstone FROM k8s_resource WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND JSON_EXTRACT(Payload, '$.status.report.Success') = false"
+          "sql": "SELECT ControlEstate, Name, Payload, ProduceTime, ConsumeTime, IsTombstone FROM k8s_resource WHERE ApiKind='Watchdog' AND JSON_EXTRACT(Payload, '$.status.report.Success') = false"
         },
         {
           "name": "Successful-Watchdog-CRDs",
-          "sql": "SELECT ControlEstate, Name, Payload, ProduceTime, ConsumeTime, IsTombstone FROM k8s_resource WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND JSON_EXTRACT(Payload, '$.status.report.Success') = true"
+          "sql": "SELECT ControlEstate, Name, Payload, ProduceTime, ConsumeTime, IsTombstone FROM k8s_resource WHERE ApiKind='Watchdog' AND JSON_EXTRACT(Payload, '$.status.report.Success') = true"
         },
         {
           "name": "Number of Failed WatchDogs across Estates",
-          "sql": "\n      SELECT\n        ControlEstate,\n        JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')) AS 'CheckerName',\n        JSON_EXTRACT(Payload, '$.status.report.Success') AS 'Success',\n        COUNT(*) AS 'COUNT'\n      FROM k8s_resource\n      WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND JSON_EXTRACT(Payload, '$.status.report.Success')=false\n      GROUP BY ControlEstate, JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')), JSON_EXTRACT(Payload, '$.status.report.Success')\n      ORDER BY COUNT(*) DESC\n      "
+          "sql": "\n      SELECT\n        ControlEstate,\n        JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')) AS 'CheckerName',\n        JSON_EXTRACT(Payload, '$.status.report.Success') AS 'Success',\n        COUNT(*) AS 'COUNT'\n      FROM k8s_resource\n      WHERE ApiKind='Watchdog' AND JSON_EXTRACT(Payload, '$.status.report.Success')=false\n      GROUP BY ControlEstate, JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')), JSON_EXTRACT(Payload, '$.status.report.Success')\n      ORDER BY COUNT(*) DESC\n      "
         },
         {
           "name": "Number of Failed WatchDogs across Kingdoms",
-          "sql": "\n      SELECT\n        JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.Kingdom')) as 'Kingdom',\n        JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')) AS 'Checker',\n        JSON_EXTRACT(Payload, '$.status.report.Success') AS 'Success',\n        COUNT(*) AS 'COUNT'\n      FROM k8s_resource\n      WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND JSON_EXTRACT(Payload, '$.status.report.Success')=false\n\n      GROUP BY JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.Kingdom')), JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')), JSON_EXTRACT(Payload, '$.status.report.Success')\n      ORDER BY COUNT(*) DESC\n      "
+          "sql": "\n      SELECT\n        JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.Kingdom')) as 'Kingdom',\n        JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')) AS 'Checker',\n        JSON_EXTRACT(Payload, '$.status.report.Success') AS 'Success',\n        COUNT(*) AS 'COUNT'\n      FROM k8s_resource\n      WHERE ApiKind='Watchdog' AND JSON_EXTRACT(Payload, '$.status.report.Success')=false\n\n      GROUP BY JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.Kingdom')), JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')), JSON_EXTRACT(Payload, '$.status.report.Success')\n      ORDER BY COUNT(*) DESC\n      "
         },
         {
           "name": "Bad-Customer-Deployments-Production",
