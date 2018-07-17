@@ -24,6 +24,7 @@ system:
         - --kube-poll-interval=30m
         - --liveness-probe-port=9095
         - --send-events
+        - --include-crds
         - --sinks=kafka
         - --sources=informer
         - --kafka-topic-template=sfdc.prod.sam__%v.ajna_local__resourcestatus
