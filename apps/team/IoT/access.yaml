@@ -1,7 +1,5 @@
 #Use corp user name instead of git user ids e.g. prahlad.joshi instead of prahlad-joshi
 users:
-  - hal.hildebran
-  - karen.chang
   - ksivashanmugam
   - michael.deleon
   - pwansch
@@ -20,4 +18,4 @@ users:
   - ewulf
   - ukanani
   - yumrotkar
-  - vallamsetti
+  - svc-iot-jenkins
