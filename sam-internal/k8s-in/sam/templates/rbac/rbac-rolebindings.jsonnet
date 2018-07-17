@@ -168,6 +168,27 @@ local data = {
         apiGroup: "rbac.authorization.k8s.io",
     },
     },
+    {
+      #Gives permission to read-write "watchdogs crd" in sam-system namespaces.
+      kind: "RoleBinding",
+      apiVersion: rbac_utils.rbac_api_version,
+      metadata: {
+        name: "update-crd",
+        namespace: "sam-system",
+      },
+      subjects: [
+        {
+          kind: "Group",
+          # system:authenticated has list of all authenticated users
+          name: "system:authenticated",
+        },
+      ],
+      roleRef: {
+        kind: "Role",
+        name: "update-crd",
+        apiGroup: "rbac.authorization.k8s.io",
+    },
+    },
   ],
 };
 
