@@ -52,7 +52,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         ] + (if configs.estate == "prd-sam" then [
                                  "--maxDeleteEntries=500",
                              ] else [])
-                          + (if slbimages.hypersdn_build >= 975 then [
+                          + (if slbimages.phaseNum == 1 then [
                             "--subnet=" + slbconfigs.subnet,
                             "--client.serverPort=" + portconfigs.slb.slbNodeApiDnsOverridePort,
                             "--client.serverInterface=lo",
