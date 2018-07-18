@@ -303,8 +303,9 @@ if slbconfigs.slbInKingdom then {
             type: "RollingUpdate",
             rollingUpdate: {
                 maxUnavailable: 1,
+            } + (if slbimages.phaseNum == 1 then {} else {
                 maxSurge: 1,
-            },
+            }),
         },
         minReadySeconds: 60,
     },
