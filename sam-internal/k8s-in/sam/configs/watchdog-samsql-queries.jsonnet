@@ -172,6 +172,51 @@ WHERE latency > 45",
     temp2 WHERE temp2.latency > 45",
     },
 
+    {
+      name: "SqlPRAuthroizationLinkPostTimeLatency",
+      instructions: "Following PRs don't have authorization link after 6 minutes of getting created.",
+      alertThreshold: "10m",
+      alertFrequency: "24h",
+      watchdogFrequency: "10m",
+      alertProfile: "sam",
+      alertAction: "email",
+      sql: "SELECT
+          * 
+        FROM (SELECT 
+            pr_num,
+            TIMESTAMPDIFF(MINUTE, CASE WHEN first_approval_link_posted_time IS NULL THEN now() ELSE first_approval_link_posted_time END, created_time) latency,
+            first_approval_link_posted_time,
+            created_time
+        FROM PullRequests 
+        WHERE created_time IS NOT NULL AND state ='open') noApprovalLink
+        WHERE noApprovalLink.latency > 6 AND pr_num > 1000
+        ORDER BY latency desc",
+    },
+    {
+      name: "SqlPRFailtedToRunEvalPR",
+      instructions: "Following PRs haven't run evaluatePR more than 30 mins after getting authorized.",
+      alertThreshold: "10m",
+      alertFrequency: "24h",
+      watchdogFrequency: "10m",
+      alertProfile: "sam",
+      alertAction: "email",
+      sql: "SELECT 
+         *
+        FROM
+        (SELECT 
+          pr_num,
+          created_time,
+          evaluate_pr_status,
+          authorized_by,
+          most_recent_authorized_time,
+          TIMESTAMPDIFF(MINUTE, now(), most_recent_authorized_time) latency
+        FROM PullRequests
+        WHERE created_time IS NOT NULL AND authorized_by IS NOT NULL AND authorized_by !='' AND (`evaluate_pr_status` IS NULL OR evaluate_pr_status = 'unknown') AND most_recent_authorized_time IS NOT NULL
+            AND state ='open'
+        ) authedButUnkwn
+        WHERE authedButUnkwn.latency > 30 AND pr_num > 1000",
+    },
+
   ],
    argus_metrics: [
   {
