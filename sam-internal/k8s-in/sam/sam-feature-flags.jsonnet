@@ -50,4 +50,6 @@ local utils = import "util_functions.jsonnet";
         configs.estate == "prd-sam_storagedev" ||
         configs.estate == "prd-sdc" ||
         configs.estate == "xrd-sam",
+
+     syntheticwdPagerDutyEnabled: configs.kingdom == "frf",
 }
