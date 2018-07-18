@@ -16,7 +16,7 @@ system:
           path: /var/log/report-cache-builder
     containers:
     - name: expreport-cache-builder
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-cache-builder:20180711110150
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-cache-builder:20180718071939
       ports:
       - name: consumer
         containerPort: 8081
@@ -44,10 +44,6 @@ system:
         value: /var/secrets/redis/auth
       - name: ReportCollector_app_http_enabled
         value: false
-      - name: ReportCollector_cacheBuilder_enabled
-        value: true
-      - name: ReportCollector_cacheBuilder_defaultCacheBuilderParams_minDelay
-        value: 300000
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_ajna_retry_maxTries
@@ -58,6 +54,12 @@ system:
         value: 0
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
         value: 0
+      - name: ReportCollector_cacheBuilder_enabled
+        value: true
+      - name: ReportCollector_cacheBuilder_defaultCacheBuilderParams_minDelay
+        value: 300000
+      - name: ReportCollector_cacheBuilder_defaultCacheBuilderParams_cacheDir
+        value: /var/cache/report-collector/
       - name: ReportCollector_cacheBuilder_cacheBuilders
         value: |
              [
