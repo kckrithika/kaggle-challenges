@@ -65,6 +65,10 @@ system:
         value: false
       - name: ReportCollector_app_redisWriteCircuitBreaker_resetTimeout
         value: 10000
+      - name: ReportCollector_app_serviceProtection_enabled
+        value: true
+      - name: ReportCollector_app_serviceProtection_publishPeriodMs
+        value: 300000
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
