@@ -26,7 +26,7 @@ system:
         - name: FLOWSNAKE_ENDPOINT
           value: https://flowsnake-iad.data.sfdc.net
         - name: ENGINE_IMAGE_TAG
-          value: sfci/cre/cre-engine:0.0.1.253.master.79d31de.529
+          value: sfci/cre/cre-engine:1.2.1.0.master.b8605a8.561
         - name: ENGINE_APPLICATION_NAME
           value: cre-engine
         - name: ENGINE_HBASE_DATACENTER
