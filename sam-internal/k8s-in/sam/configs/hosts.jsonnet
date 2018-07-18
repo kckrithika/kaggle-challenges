@@ -31947,7 +31947,7 @@
     },
     {
       bomrolename: "sam_minion_tnrp_merger",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_tnrp_merger",
       hostname: "shared0-samminiontnrpmerger1-1-prd.eng.sfdc.net",
@@ -31958,7 +31958,7 @@
     },
     {
       bomrolename: "sam_minion_tnrp_merger",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_tnrp_merger",
       hostname: "shared0-samminiontnrpmerger1-2-prd.eng.sfdc.net",
@@ -31969,7 +31969,7 @@
     },
     {
       bomrolename: "sam_minion_tnrp_merger",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_tnrp_merger",
       hostname: "shared0-samminiontnrpmerger2-1-prd.eng.sfdc.net",
@@ -31980,7 +31980,7 @@
     },
     {
       bomrolename: "sam_minion_tnrp_promoter",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_tnrp_promoter",
       hostname: "shared0-samminiontnrppromoter1-1-prd.eng.sfdc.net",
@@ -31991,7 +31991,7 @@
     },
     {
       bomrolename: "sam_minion_tnrp_promoter",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_tnrp_promoter",
       hostname: "shared0-samminiontnrppromoter1-2-prd.eng.sfdc.net",
@@ -32002,7 +32002,7 @@
     },
     {
       bomrolename: "sam_minion_tnrp_promoter",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_tnrp_promoter",
       hostname: "shared0-samminiontnrppromoter2-1-prd.eng.sfdc.net",
@@ -32013,7 +32013,7 @@
     },
     {
       bomrolename: "sam_minion_tnrp_signer",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_tnrp_signer",
       hostname: "shared0-samminiontnrpsigner1-1-prd.eng.sfdc.net",
@@ -32024,7 +32024,7 @@
     },
     {
       bomrolename: "sam_minion_tnrp_signer",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_tnrp_signer",
       hostname: "shared0-samminiontnrpsigner1-2-prd.eng.sfdc.net",
@@ -32035,7 +32035,7 @@
     },
     {
       bomrolename: "sam_minion_tnrp_signer",
-      controlestate: "prd-sam",
+      controlestate: "prd-samtwo",
       devicerole: "samcompute",
       estate: "prd-sam_tnrp_signer",
       hostname: "shared0-samminiontnrpsigner2-1-prd.eng.sfdc.net",
@@ -32503,7 +32503,7 @@
       hostname: "shared0-sdcsamcompute1-11-prd.eng.sfdc.net",
       kingdom: "prd",
       pod: "none",
-      rack: "n41-45",
+      rack: "p31-45",
       superpod: "none",
     },
     {
@@ -32866,7 +32866,7 @@
       hostname: "shared0-slbtwominion2-2-prd.eng.sfdc.net",
       kingdom: "prd",
       pod: "none",
-      rack: "a01-45",
+      rack: "c41-45",
       superpod: "none",
     },
     {
