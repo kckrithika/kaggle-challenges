@@ -28,7 +28,6 @@ local build_test_command(test_name, version) = build_run_command(version) + set_
 
 local flag_local = std.objectHas(flowsnake_images.feature_flags, "add_local_canary");
 local flag_12 = std.objectHas(flowsnake_images.feature_flags, "add_12_canary");
-local flag_docker_test = std.objectHas(flowsnake_images.feature_flags, "docker_daemon_monitor");
 
 local build_command_sets = if flag_local then {
     "0.11.0": {
@@ -54,10 +53,6 @@ local build_12_commands = if flag_12 && flag_local then {
 
 };
 
-local build_docker_test_commands = if flag_docker_test then {
-    DockerDaemon: { DockerDaemon: "/test-docker.sh" },
-} else {};
-
 {
-    command_sets:: build_command_sets + build_12_commands + build_docker_test_commands,
+    command_sets:: build_command_sets + build_12_commands,
 }

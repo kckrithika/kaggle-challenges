@@ -2,7 +2,7 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local flowsnakecanaries = import "flowsnake_canaries.jsonnet";
+local flowsnake_clichecker_commands = import "flowsnake_clichecker_commands.jsonnet";
 local samconfig = import "config.jsonnet";
 {
     watchdog_enabled: !(flowsnakeconfig.is_minikube),
@@ -19,7 +19,7 @@ local samconfig = import "config.jsonnet";
         name: "sfdchosts",
     },
     watchdog_config: {
-        cliCheckerFullCommands: flowsnakecanaries.command_sets,
+        cliCheckerFullCommands: flowsnake_clichecker_commands.command_sets,
         "deployer-funnelEndpoint": flowsnakeconfig.funnel_vip_and_port,
         "deployer-imageName": flowsnakeimage.deployer,
         "deployer-rcImtEndpoint": samconfig.rcImtEndpoint,

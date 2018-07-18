@@ -36,6 +36,7 @@ local utils = import "util_functions.jsonnet";
                 nodeMonitor_image_tag: 662,
                 watchdog_image_tag: "sam-0002015-fdb18963",
                 watchdog_canary_image_tag: "681",
+                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-710-3-itest",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
                 deployer_image_tag: "sam-0002076-c7dd1d69",
@@ -85,6 +86,7 @@ local utils = import "util_functions.jsonnet";
                 add_local_canary: "verified",  #Verified successfully in test fleet
                 add_12_canary: "unverified",  #Pending verification in test fleet - DO NOT PROMOTE
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
+                docker_daemon_monitor: "",
             },
             version_mapping: {
                 main: {
@@ -216,6 +218,7 @@ local utils = import "util_functions.jsonnet";
     logstash: flowsnakeconfig.strata_registry + "/flowsnake-logstash:" + $.per_phase[$.phase].logstash_image_tag,
     node_monitor: flowsnakeconfig.strata_registry + "/flowsnake-node-monitor:" + $.per_phase[$.phase].nodeMonitor_image_tag,
     watchdog_canary: flowsnakeconfig.strata_registry + "/watchdog-canary:" + $.per_phase[$.phase].watchdog_canary_image_tag,
+    docker_daemon_watchdog: flowsnakeconfig.strata_registry + "/docker-daemon-watchdog:" + $.per_phase[$.phase].docker_daemon_watchdog_image_tag,
     zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
 
     feature_flags: $.per_phase[$.phase].feature_flags,
