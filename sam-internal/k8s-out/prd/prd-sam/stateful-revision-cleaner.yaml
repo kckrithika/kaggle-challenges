@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: stateful-revision-cleaner
+    sam.data.sfdc.net/owner: sam
   name: stateful-revision-cleaner
   namespace: sam-system
 spec:
@@ -15,6 +16,7 @@ spec:
       labels:
         apptype: control
         name: stateful-revision-cleaner
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

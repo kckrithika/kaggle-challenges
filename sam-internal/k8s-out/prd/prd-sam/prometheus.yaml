@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: prometheus
+    sam.data.sfdc.net/owner: sam
   name: prometheus
   namespace: sam-system
 spec:
@@ -14,6 +15,7 @@ spec:
     metadata:
       labels:
         name: prometheus
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - args:

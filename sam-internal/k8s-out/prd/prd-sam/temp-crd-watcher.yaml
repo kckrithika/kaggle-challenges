@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: temp-crd-watcher
+    sam.data.sfdc.net/owner: sam
   name: temp-crd-watcher
 spec:
   replicas: 1
@@ -14,6 +15,7 @@ spec:
       labels:
         apptype: control
         name: temp-crd-watcher
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

@@ -11,5 +11,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: sam
   name: samapp-controller
   namespace: sam-system

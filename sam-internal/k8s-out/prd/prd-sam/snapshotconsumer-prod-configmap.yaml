@@ -16,5 +16,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: sam
   name: snapshotconsumer-prod
   namespace: sam-system

@@ -1,7 +1,8 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  labels: {}
+  labels:
+    sam.data.sfdc.net/owner: sam
   name: sam-api-proxy
   namespace: sam-system
 spec:
@@ -11,6 +12,7 @@ spec:
       labels:
         apptype: control
         name: sam-api-proxy
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

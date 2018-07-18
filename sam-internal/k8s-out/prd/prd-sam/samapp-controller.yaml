@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: samappcontroller
+    sam.data.sfdc.net/owner: sam
   name: samappcontroller
 spec:
   replicas: 1
@@ -14,6 +15,7 @@ spec:
       labels:
         apptype: control
         name: samappcontroller
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:
