@@ -20,6 +20,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                             "--logtostderr=true",
                             "--ciNamespaceConfigFile=/ci/ci-namespaces.json",
                             "--config=/config/samapp-controller-config.json",
+                            (if configs.kingdom == "vpod" then "--resyncPeriod=2m" else {}),
                             configs.sfdchosts_arg,
                         ]) + (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then [
                                   # Kept here because of the use of the envvar. Keep in sync with the config.

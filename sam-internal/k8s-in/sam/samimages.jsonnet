@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,watchdog-samsql,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/a.mitra/hypersam:20180717_173806.9d7a6c02.dirty.amitra-ltm",
         "prd,prd-sam,watchdog-samsql,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/a.mitra/hypersam:20180717_173806.9d7a6c02.dirty.amitra-ltm",
 
-        # [Xiao] ping samapp-controller to an earlier version without dual run in prd-sam
+        # [Xiao] pin samapp-controller to an earlier version without dual run in prd-sam
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002059-8a57b252",
 
         },
