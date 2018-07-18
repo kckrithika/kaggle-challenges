@@ -22,7 +22,7 @@ system:
         - name: FLOWSNAKE_ENDPOINT
           value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
         - name: ENGINE_IMAGE_TAG
-          value: sfci/cre/cre-engine:0.0.1.281.master.0e69e05.559
+          value: sfci/cre/cre-engine:1.2.1.0.master.b8605a8.561
         - name: ENGINE_APPLICATION_NAME
           value: cre-engine
         - name: ENGINE_HBASE_DATACENTER
