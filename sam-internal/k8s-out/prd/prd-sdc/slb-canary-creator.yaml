@@ -27,6 +27,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-canary-creator
         - --maxParallelism=1
         - --podPreservationTime=5m
+        - --allHours=true
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --hostnameOverride=$(NODE_NAME)
         env:
