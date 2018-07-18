@@ -8,8 +8,8 @@ system:
          hostPath:
             path: /home/sfdc-ynagata/logs
     containers:
-    - name: shipping-scone
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/scone-shipping:ynagata-20180712 
+    - name: shipping-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/shipping-service:ynagata-20180718
       ports:
       - containerPort: 7020
       - containerPort: 15372
