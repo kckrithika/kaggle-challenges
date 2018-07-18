@@ -32,6 +32,9 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-dns-register
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --subnet=10.251.129.241-242
+        - --client.serverPort=12088
+        - --client.serverInterface=lo
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000975-12677798
         name: slb-dns-register-processor
         volumeMounts:
