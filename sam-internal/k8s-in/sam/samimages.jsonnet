@@ -20,6 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [a.mitra] sql watchdog fix
+        "prd,prd-samdev,watchdog-samsql,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/a.mitra/hypersam:20180717_173806.9d7a6c02.dirty.amitra-ltm",
+        "prd,prd-sam,watchdog-samsql,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/a.mitra/hypersam:20180717_173806.9d7a6c02.dirty.amitra-ltm",
         },
 
     ### Per-phase image tags
