@@ -210,7 +210,38 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
                 },
-            },
+            } + (
+               if slbimages.phaseNum == 1 then {
+                    affinity: {
+                        podAntiAffinity: {
+                            requiredDuringSchedulingIgnoredDuringExecution: [{
+                                labelSelector: {
+                                    matchExpressions: [{
+                                        key: "name",
+                                        operator: "In",
+                                        values: [
+                                            "slb-ipvs",
+                                        ],
+                                    }],
+                                },
+                                topologyKey: "kubernetes.io/hostname",
+                            }],
+                        },
+                        nodeAffinity: {
+                            requiredDuringSchedulingIgnoredDuringExecution: {
+                                nodeSelectorTerms: [{
+                                    matchExpressions: [{
+                                        key: "slb-service",
+                                        operator: "In",
+                                        values: ["slb-ipvs"],
+                                    }],
+                                }],
+                            },
+                        },
+                    },
+               }
+               else {}
+            ),
         },
         strategy: {
             type: "RollingUpdate",
