@@ -1,0 +1,478 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - caas-dev@salesforce.com
+  functions:
+  - name: caas-release-perf
+    count: 1 
+    strategy:
+      type: Recreate
+    hostnetwork: true
+    containers:
+    - name: caas-redis-12015 
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
+      resources:
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+        - name: cert
+          mountPath: /servercert
+      args: 
+        - --port=12015
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+        - --sslPort=12025
+
+        - --disableProtectedMode
+        - --useUnixSocket
+        - --useTCPProxy
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12015
+
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12015
+      - containerPort: 12025
+    - name: caas-redis-announcer-12015
+      # container image/version to  run
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - caas/cluster/sp-nightly:SUPERPOD:12015
+      - -logdir
+      - /home/sfdc-caas/logs/sp-nightly-12015
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mistperf2 
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
+    - name: caas-redis-12016 
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
+      resources:
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+        - name: cert
+          mountPath: /servercert
+      args: 
+        - --port=12016
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+        - --sslPort=12026
+
+        - --disableProtectedMode
+        - --useUnixSocket
+        - --useTCPProxy
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12016
+
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12016
+      - containerPort: 12026
+    - name: caas-redis-announcer-12016
+      # container image/version to  run
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - caas/cluster/sp-nightly:SUPERPOD:12016
+      - -logdir
+      - /home/sfdc-caas/logs/sp-nightly-12016
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mistperf2 
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
+    - name: caas-redis-12017 
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
+      resources:
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+        - name: cert
+          mountPath: /servercert
+      args: 
+        - --port=12017
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+        - --sslPort=12027
+
+        - --disableProtectedMode
+        - --useUnixSocket
+        - --useTCPProxy
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12017
+
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12017
+      - containerPort: 12027
+    - name: caas-redis-announcer-12017
+      # container image/version to  run
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - caas/cluster/sp-nightly:SUPERPOD:12017
+      - -logdir
+      - /home/sfdc-caas/logs/sp-nightly-12017
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mistperf2 
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
+    - name: caas-redis-12018 
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
+      resources:
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+        - name: cert
+          mountPath: /servercert
+      args: 
+        - --port=12018
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+        - --sslPort=12028
+
+        - --disableProtectedMode
+        - --useUnixSocket
+        - --useTCPProxy
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12018
+
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12018
+      - containerPort: 12028
+    - name: caas-redis-announcer-12018
+      # container image/version to  run
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - caas/cluster/sp-nightly:SUPERPOD:12018
+      - -logdir
+      - /home/sfdc-caas/logs/sp-nightly-12018
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mistperf2 
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
+    - name: caas-redis-12019 
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
+      resources:
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+        - name: cert
+          mountPath: /servercert
+      args: 
+        - --port=12019
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+        - --sslPort=12029
+
+        - --disableProtectedMode
+        - --useUnixSocket
+        - --useTCPProxy
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12019
+
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12019
+      - containerPort: 12029
+    - name: caas-redis-announcer-12019
+      # container image/version to  run
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - caas/cluster/sp-nightly:SUPERPOD:12019
+      - -logdir
+      - /home/sfdc-caas/logs/sp-nightly-12019
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mistperf2 
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
+    - name: caas-redis-12020 
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
+      resources:
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+        - name: cert
+          mountPath: /servercert
+      args: 
+        - --port=12020
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+        - --sslPort=12030
+
+        - --disableProtectedMode
+        - --useUnixSocket
+        - --useTCPProxy
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12020
+
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12020
+      - containerPort: 12030
+    - name: caas-redis-announcer-12020
+      # container image/version to  run
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - caas/cluster/sp-nightly:SUPERPOD:12020
+      - -logdir
+      - /home/sfdc-caas/logs/sp-nightly-12020
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mistperf2 
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
+    - name: caas-redis-12021 
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
+      resources:
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+        - name: cert
+          mountPath: /servercert
+      args: 
+        - --port=12021
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+        - --sslPort=12031
+
+        - --disableProtectedMode
+        - --useUnixSocket
+        - --useTCPProxy
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12021
+
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12021
+      - containerPort: 12031
+    - name: caas-redis-announcer-12021
+      # container image/version to  run
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - caas/cluster/sp-nightly:SUPERPOD:12021
+      - -logdir
+      - /home/sfdc-caas/logs/sp-nightly-12021
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mistperf2 
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
+    - name: caas-redis-12022 
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:tls-0000072-16210966
+      resources:
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+        - name: cert
+          mountPath: /servercert
+      args: 
+        - --port=12022
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+        - --sslPort=12032
+
+        - --disableProtectedMode
+        - --useUnixSocket
+        - --useTCPProxy
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12022
+
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12022
+      - containerPort: 12032
+    - name: caas-redis-announcer-12022
+      # container image/version to  run
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - caas/cluster/sp-nightly:SUPERPOD:12022
+      - -logdir
+      - /home/sfdc-caas/logs/sp-nightly-12022
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mistperf2 
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs/caas
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-c1
+    - name: cert
+      maddogCert:
+        type: server
