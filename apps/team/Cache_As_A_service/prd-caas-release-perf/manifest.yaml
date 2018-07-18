@@ -22,14 +22,10 @@ system:
         - mountPath: /var/secrets
           name: secretvol
           readOnly: true
-        - name: cert
-          mountPath: /servercert
       args: 
         - --port=12015
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
-        - --sslPort=12016
-        - --proxyName=haproxy
       livenessProbe:
         exec:
           command:
@@ -68,6 +64,3 @@ system:
     - name: secretvol
       secret:
         secretName: caas-secret-sp-c1
-    - name: cert
-      maddogCert:
-        type: server
