@@ -23,6 +23,7 @@ apps:
  SamTestAppMaddog:
   - prd/prd-sam
   - prd/prd-samtest
+  - prd/prd-samtwo
   - prd/prd-samdev
   - prd/prd-sdc
   - dfw/dfw-sam
@@ -36,6 +37,7 @@ apps:
  SamTestAppMaddogMultiCert:
   - prd/prd-samdev
   - prd/prd-samtest
+  - prd/prd-samtwo
   - prd/prd-sam
   - frf/frf-sam
  SamTestAppMaddogMultiCertHostNetwork:
