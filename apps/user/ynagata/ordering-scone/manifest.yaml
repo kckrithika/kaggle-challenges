@@ -6,7 +6,7 @@ system:
     volumes:
        - name: logvol
          hostPath:
-            path: /home/scone/logs
+            path: /home/sfdc-ynagata/logs
     containers:
     - name: ordering-scone
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/scone-ordering:ynagata-20180716 
