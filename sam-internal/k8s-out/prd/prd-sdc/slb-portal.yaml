@@ -28,7 +28,6 @@ spec:
                 operator: NotIn
                 values:
                 - slb-ipvs
-                - slb-nginx-a
               - key: slb-dns-register
                 operator: In
                 values:
@@ -43,7 +42,6 @@ spec:
                 - slb-ipvs
                 - slb-ipvs-a
                 - slb-ipvs-b
-                - slb-nginx-config-a
             topologyKey: kubernetes.io/hostname
       containers:
       - command:

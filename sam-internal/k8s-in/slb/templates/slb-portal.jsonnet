@@ -86,10 +86,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort),
                           slbshared.slbLogCleanup,
                       ],
-                      nodeSelector: if slbimages.hypersdn_build >= 947 then {
+                      nodeSelector: {
                           "slb-dns-register": "true",
-                      } else {
-                          pool: configs.estate,
                       },
                   }
                   + (
@@ -105,10 +103,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                   "slb-ipvs",
                                                   "slb-ipvs-a",
                                                   "slb-ipvs-b",
-                                              ] + (if slbimages.hypersdn_build < 969 then [
-                                                       "slb-nginx-config-b",
-                                                   ] else []) + [
-                                                  "slb-nginx-config-a",
                                               ],
                                           }],
                                       },
@@ -123,11 +117,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                   {
                                                       key: "slb-service",
                                                       operator: "NotIn",
-                                                      values: ["slb-ipvs", "slb-nginx-a"] + (
-                                                          if slbimages.hypersdn_build < 969 then [
-                                                              "slb-nginx-b",
-                                                          ] else []
-                                                      ),
+                                                      values: ["slb-ipvs"],
                                                   },
                                                   {
                                                       key: "slb-dns-register",
