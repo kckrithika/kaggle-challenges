@@ -112,7 +112,16 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                                                 operator: "NotIn",
                                                 values: ["slb-ipvs"],
                                             },
-                                        ],
+                                        ] + (
+                                            if configs.estate == "prd-sdc" then
+                                                [
+                                                    {
+                                                        key: "illumio",
+                                                        operator: "NotIn",
+                                                        values: ["a", "b"],
+                                                    },
+                                                ] else []
+                                        ),
                                     },
                                 ],
                             },

@@ -32,6 +32,11 @@ spec:
                 operator: NotIn
                 values:
                 - slb-ipvs
+              - key: illumio
+                operator: NotIn
+                values:
+                - a
+                - b
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:

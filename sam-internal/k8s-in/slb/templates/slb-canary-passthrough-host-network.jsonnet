@@ -88,7 +88,16 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
                                                 operator: "NotIn",
                                                 values: ["slb-ipvs"],
                                             },
-                                        ],
+                                        ] + (
+                                            if configs.estate == "prd-sdc" then
+                                                [
+                                                    {
+                                                        key: "illumio",
+                                                        operator: "NotIn",
+                                                        values: ["a", "b"],
+                                                    },
+                                                ] else []
+                                        ),
                                     },
                                 ],
                             },
