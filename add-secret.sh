@@ -62,6 +62,11 @@ if [[ -n $1 ]];  then
         exit 1
 fi
 
+if [ "${KINGDOM}" != "prd" ]; then
+  echo "The Keys for All (K4A) team does not provide a production-level SLA for K4A.  As a result, SAM does not support K4A in production.  If your SAM app requires K4A in production, contact Anubhav Dhoot (SAM PO) and Richard Clayton (SAM TPM)." 
+  exit 1
+fi
+
 # Use this to get hypersam env var
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
