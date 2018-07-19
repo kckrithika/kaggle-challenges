@@ -2,3 +2,7 @@ version: v2
 apps:
   prd-event-notification-service:
   - name: prd/prd-sam_mc_consumer
+  iad-event-notification-service:
+  - name: iad/iad-sam_mc_consumer
+  ord-event-notification-service:
+  - name: ord/ord-sam_mc_consumer
