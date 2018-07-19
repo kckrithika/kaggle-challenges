@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: samsqlreporter
+    sam.data.sfdc.net/owner: sam
   name: samsqlreporter
   namespace: sam-system
 spec:
@@ -15,6 +16,7 @@ spec:
       labels:
         apptype: control
         name: samsqlreporter
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - args:

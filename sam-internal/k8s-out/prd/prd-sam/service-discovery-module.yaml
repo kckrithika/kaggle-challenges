@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: service-discovery-module
+    sam.data.sfdc.net/owner: sam
   name: service-discovery-module
   namespace: sam-system
 spec:
@@ -15,6 +16,7 @@ spec:
       labels:
         apptype: control
         name: service-discovery-module
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

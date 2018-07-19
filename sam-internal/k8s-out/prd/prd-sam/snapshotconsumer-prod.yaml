@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: snapshotconsumer-prod
+    sam.data.sfdc.net/owner: sam
   name: snapshotconsumer-prod
 spec:
   replicas: 1
@@ -14,6 +15,7 @@ spec:
       labels:
         apptype: control
         name: snapshotconsumer-prod
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:
