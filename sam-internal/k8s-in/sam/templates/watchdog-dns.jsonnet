@@ -13,7 +13,7 @@ local utils = import "util_functions.jsonnet";
                         image: samimages.hypersam,
                         command: [
                                      "/sam/watchdog",
-                                     "-role=ETCD",
+                                     "-role=DNS",
                                      "-watchdogFrequency=5s",
                                      "-alertThreshold=3m",
                                      "-watchDogKind=" + $.kind,
@@ -45,18 +45,15 @@ local utils = import "util_functions.jsonnet";
                     configs.cert_volume,
                     configs.config_volume("watchdog"),
                 ]),
-                # We are still using flannel in minion pools in public cloud, so we need to keep an eye on etcd that holds its config
-                # Everywhere else, we just care about the KubeApi etcd nodes
+                # not sure if this is useful at all
                 nodeSelector: if utils.is_public_cloud(configs.kingdom) then {
-                    etcd_installed: "true",
                 } else {
-                    etcd_installed: "true",
                     master: "true",
                 },
             },
             metadata: {
                 labels: {
-                    app: "watchdog-etcd",
+                    app: "watchdog-dns",
                     apptype: "monitoring",
                     daemonset: "true",
                 } + configs.ownerLabel.sam,
@@ -67,8 +64,8 @@ local utils = import "util_functions.jsonnet";
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-etcd",
+            name: "watchdog-dns",
         },
-        name: "watchdog-etcd",
+        name: "watchdog-dns",
     },
 }
