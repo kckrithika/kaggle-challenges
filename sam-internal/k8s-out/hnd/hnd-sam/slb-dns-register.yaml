@@ -30,7 +30,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-dns-register
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000969-2703b49a
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000975-12677798
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -72,7 +72,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000969-2703b49a
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000975-12677798
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -108,7 +108,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-dns-register
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000969-2703b49a
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000975-12677798
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -131,7 +131,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000969-2703b49a
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000975-12677798
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -146,6 +146,19 @@ spec:
           name: sfdchosts
         - mountPath: /host/data/slb/logs/slb-dns-register/cleanup
           name: var-cleanup-logs-volume
+      - command:
+        - /sdn/slb-node-api
+        - --port=12088
+        - --configDir=/host/data/slb/config/slb-dns-register
+        - --log_dir=/host/data/slb/logs/slb-dns-register
+        - --netInterface=lo
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000975-12677798
+        name: slb-node-api
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-dns-register
+          name: var-logs-volume
       hostNetwork: true
       nodeSelector:
         slb-dns-register: "true"
