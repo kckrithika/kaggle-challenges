@@ -71,7 +71,6 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
                                             "slb-ipvs",
                                             "slb-ipvs-a",
                                             "slb-ipvs-b",
-                                            "slb-nginx-config-a",
                                             "slb-vip-watchdog",
                                         ],
                                     }],
