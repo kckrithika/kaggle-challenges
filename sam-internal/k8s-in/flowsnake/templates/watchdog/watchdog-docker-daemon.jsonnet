@@ -24,7 +24,7 @@ else
             },
             spec: {
                 restartPolicy: "Always",
-                hostNetwork: true,
+                hostNetwork: true, # NOTE: this pod *does* count against the IP limit, because it starts a Docker container on the default network
                 containers: [
                     {
                         image: flowsnake_images.docker_daemon_watchdog,
