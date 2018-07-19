@@ -114,6 +114,8 @@ system:
         value: '500000000000009'
       - name: ENV_ORGS_CONFIG
         value: '{"500000000000009": {"OUTPUTS_POST_URL": "https://iottest.stmfa.stm.force.com/publicSite/services/apexrest/HighVolumeOutputEvent"}}'
+      - name: ENV_ORGS_TO_REMOVE
+        value: 50000000GAMEDAY
       - name: ENV_PREFIX
         value: iot-prd-staging-
       - name: ENV_UPGRADE
