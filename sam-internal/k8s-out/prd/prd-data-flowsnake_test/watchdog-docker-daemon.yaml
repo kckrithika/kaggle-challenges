@@ -39,6 +39,8 @@ spec:
           readOnly: true
         - mountPath: /config
           name: config
+        - mountPath: /sfdchosts
+          name: sfdchosts
       hostNetwork: true
       restartPolicy: Always
       volumes:
@@ -48,3 +50,6 @@ spec:
       - configMap:
           name: watchdog
         name: config
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
