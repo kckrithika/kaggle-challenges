@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-canary
-  name: watchdog-canary-0-11-0
+  name: watchdog-canary-0-12-0
   namespace: flowsnake
 spec:
   template:
@@ -13,7 +13,7 @@ spec:
           "prd", "name": "watchdogcanarycerts", "role": "flowsnake_test", "san": ["dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net",
           "api-dev.flowsnake.localhost.mesh.force.com"]}]}'
       labels:
-        app: watchdog-canary-0-11-0
+        app: watchdog-canary-0-12-0
         apptype: monitoring
     spec:
       containers:
@@ -24,7 +24,7 @@ spec:
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
-        - -cliCheckerCommandTarget=0.11.0
+        - -cliCheckerCommandTarget=0.12.0
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -watchdogFrequency=15m
         - -alertThreshold=45m
