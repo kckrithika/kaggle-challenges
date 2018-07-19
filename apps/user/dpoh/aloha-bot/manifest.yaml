@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: aloha-bot
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/aloha-bot:2018-07-12a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dpoh/aloha-bot:2018-07-19a
       command:
         - /bin/aloha-bot
       env:
