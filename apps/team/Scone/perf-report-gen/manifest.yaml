@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: perf-report-gen
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/perf-report-gen:20180719
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/perf-report-gen:20180719-2
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
