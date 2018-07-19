@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: replication-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jason.woods/replication-service:jason-2018-06-12-103511
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jason.woods/replication-service:jason-2018-07-19-163045
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
