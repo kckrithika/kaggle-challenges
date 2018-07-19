@@ -1,0 +1,43 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - d.smith@salesforce.com 
+  functions:
+  - name: snapshot-producer-test
+    count: 1
+    containers:
+    - name: snapshot-producer
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20180718_164553.edb0ddd7.dirty.duncsmith-ltm
+      command:
+        - /sam/snapshoter
+        - --alsologtostderr
+        - --v=8
+        - --ca-file=/certs/ca.pem
+        - --kafka-endpoint=ajna0-broker1-0-prd.data.sfdc.net:9093
+        - --kafka-payload-kb=300
+        - --kafka-push-interval=10s
+        - --clientKeyFile=/certs/client/keys/client-key.pem
+        - --clientCertFile=/certs/client/certificates/client.pem
+        - --enableKafkaClientAuth
+        - --kube-poll-interval=30m
+        - --liveness-probe-port=9095
+        - --sources=test
+        - --send-events
+        - --include-crds
+        - --sinks=kafka
+        - --kafka-topic-template=sfdc.prod.sam__%v.ajna_local__resourcestatus
+      volumeMounts:
+      - name: certs
+        mountPath: /certs
+      livenessProbe:
+        exec:
+          command:
+              - ls
+        initialDelaySeconds: 5
+        periodSeconds: 5
+    volumes:
+    - name: certs
+      maddogCert:
+        type: client
