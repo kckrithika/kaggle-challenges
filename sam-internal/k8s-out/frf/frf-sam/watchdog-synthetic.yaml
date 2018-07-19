@@ -31,6 +31,7 @@ spec:
         - -funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -recipient=sam-alerts@salesforce.com,csc-sam-business-hours-only@salesforce.pagerduty.com
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

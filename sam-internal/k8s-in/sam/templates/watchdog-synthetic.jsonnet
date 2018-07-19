@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 {
     apiVersion: "extensions/v1beta1",
@@ -40,7 +41,8 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "-imageName=" + samimages.hypersam,
                                      "-watchDogKind=" + $.kind,
                                  ]
-                                 + samwdconfig.shared_args,
+                                 + samwdconfig.shared_args
+                                 + (if samfeatureflags.syntheticwdPagerDutyEnabled then samwdconfig.low_urgency_pagerduty_args else []),
                         ports: [
                             {
                                 name: "synthetic",
