@@ -1,10 +1,8 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local configs = import "config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 if !watchdog.watchdog_enabled || !std.objectHas(flowsnake_images.feature_flags, "docker_daemon_monitor") then
 "SKIP"
@@ -62,6 +60,7 @@ else
                                 readOnly: true
                             },
                             configs.config_volume_mount,
+                            watchdog.sfdchosts_volume_mount
                         ],
                     },
                 ],
@@ -78,6 +77,7 @@ else
                       },
                       name: "config",
                     },
+                    watchdog.sfdchosts_volume,
                 ],
             },
         },
