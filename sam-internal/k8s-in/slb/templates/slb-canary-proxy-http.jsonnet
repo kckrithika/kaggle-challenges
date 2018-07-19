@@ -79,7 +79,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                                             "slb-ipvs",
                                             "slb-ipvs-a",
                                             "slb-ipvs-b",
-                                            "slb-nginx-config-b",
                                             "slb-nginx-config-a",
                                             "slb-vip-watchdog",
                                         ],
@@ -96,18 +95,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                                             {
                                                 key: "slb-service",
                                                 operator: "NotIn",
-                                                values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
+                                                values: ["slb-ipvs"],
                                             },
-                                        ] + (
-                                            if configs.estate == "prd-sdc" then
-                                                [
-                                                    {
-                                                        key: "illumio",
-                                                        operator: "NotIn",
-                                                        values: ["a", "b"],
-                                                    },
-                                                ] else []
-                                        ),
+                                        ],
                                     },
                                 ],
                             },

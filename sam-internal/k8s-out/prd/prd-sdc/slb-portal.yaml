@@ -28,7 +28,6 @@ spec:
                 operator: NotIn
                 values:
                 - slb-ipvs
-                - slb-nginx-a
               - key: slb-dns-register
                 operator: In
                 values:

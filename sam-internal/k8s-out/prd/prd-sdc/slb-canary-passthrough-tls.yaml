@@ -20,15 +20,6 @@ spec:
       namespace: sam-system
     spec:
       affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: illumio
-                operator: NotIn
-                values:
-                - a
-                - b
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -39,7 +30,6 @@ spec:
                 - slb-ipvs
                 - slb-ipvs-a
                 - slb-ipvs-b
-                - slb-nginx-config-b
                 - slb-nginx-config-a
                 - slb-vip-watchdog
             topologyKey: kubernetes.io/hostname
