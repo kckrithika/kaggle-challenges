@@ -36,7 +36,7 @@ local utils = import "util_functions.jsonnet";
                 nodeMonitor_image_tag: 662,
                 watchdog_image_tag: "sam-0002015-fdb18963",
                 watchdog_canary_image_tag: "681",
-                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-710-3-itest",
+                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-710-4-itest",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
                 deployer_image_tag: "sam-0002076-c7dd1d69",
