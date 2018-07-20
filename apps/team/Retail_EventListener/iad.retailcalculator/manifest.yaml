@@ -22,7 +22,7 @@ system:
         path: /home/sfdc-cj/logs
     containers:
     - name: retailcalculator
-      image: sfci/mc-retail/retail-calculator:1.2.4
+      image: sfci/mc-retail/retail-calculator:1.2.5
       ports:
         - containerPort: 8080
         - containerPort: 15372
