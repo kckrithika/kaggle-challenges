@@ -27,7 +27,7 @@ system:
       volumeMounts:
         - mountPath: /home/sfdc-ynagata/logs
           name: logvol
-    - name: sherpa
+    - name: sherpa-ynagata-shipping-service
       # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
       # Use the full git SHA as the docker image tag.
       image: sfci/servicelibs/sherpa:2.0.26
@@ -57,7 +57,7 @@ system:
       - name: server-cert
         mountPath: /server-certs
     # ... your app's other containers
-    - name: beacon
+    - name: beacon-ynagata-shipping-service
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
