@@ -7,12 +7,6 @@ system:
        - name: logvol
          hostPath:
             path: /home/sfdc-ynagata/logs
-       - name: client-cert
-         maddogCert:
-          type: client
-       - name: server-cert
-         maddogCert:
-          type: server
     containers:
     - name: shipping-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/shipping-service:ynagata-20180720-f5a8671
