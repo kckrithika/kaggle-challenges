@@ -17,7 +17,7 @@ if std.setMember(configs.estate, enabledEstates) then {
             name: "sfstoreoperator",
             team: "sfstore",
             cloud: "storage",
-        },
+        } + configs.ownerLabel.storage,
         name: "sfstoreoperator-deployment",
         namespace: "sam-system",
     },

@@ -13,7 +13,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
             name: "dummy-storageservice-deployment",
             team: "storage-foundation",
             cloud: "storage",
-        },
+        } + configs.ownerLabel.storage,
         name: "dummy-storageservice",
         namespace: "storage",
     },

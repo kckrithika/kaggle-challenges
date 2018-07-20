@@ -1,6 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  labels: {}
   name: sfn-state-metrics
   namespace: sam-system
 spec:

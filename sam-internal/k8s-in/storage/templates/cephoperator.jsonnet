@@ -72,7 +72,7 @@ if std.setMember(configs.estate, enabledEstates) then {
             name: "cephoperator",
             team: "legostore",
             cloud: "storage",
-        },
+        } + configs.ownerLabel.storage,
         name: "cephoperator-deployment",
         namespace: "sam-system",
     },

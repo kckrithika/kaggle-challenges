@@ -102,7 +102,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                 name: name,
                 team: "storage-foundation",
                 cloud: "storage",
-            },
+            } + configs.ownerLabel.storage,
             name: name,
             namespace: "storage-foundation",
         },

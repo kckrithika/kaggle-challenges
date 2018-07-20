@@ -28,7 +28,7 @@ if std.setMember(configs.estate, enabledEstates) then
             labels: {
                 team: "legostore",
                 cloud: "storage",
-            },
+            } + configs.ownerLabel.storage,
         },
         spec: {
             replicas: 1,

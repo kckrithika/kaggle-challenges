@@ -56,8 +56,8 @@ if std.setMember(configs.estate, enabledEstates) then {
         namespace: "storage-foundation",
         labels: {
             team: "storage-foundation",
-        cloud: "storage",
-        },
+            cloud: "storage",
+        } + configs.ownerLabel.storage,
     },
     spec: {
         template: {
