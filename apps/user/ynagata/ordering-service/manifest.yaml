@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: ordering 
-    count: 1
+    count: 0
     volumes:
        - name: logvol
          hostPath:
