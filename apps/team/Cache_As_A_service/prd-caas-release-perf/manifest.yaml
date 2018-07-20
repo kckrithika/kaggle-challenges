@@ -29,6 +29,9 @@ system:
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
         - --sslPort=12025
+        - --proxyName=envoy
+        - --useTCPProxy
+        - --useUnixSocket
       livenessProbe:
         exec:
           command:
