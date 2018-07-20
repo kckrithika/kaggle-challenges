@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: ynagata-shipping-service
-    count: 0
+    count: 1
     volumes:
        - name: logvol
          hostPath:
@@ -27,45 +27,3 @@ system:
       volumeMounts:
         - mountPath: /home/sfdc-ynagata/logs
           name: logvol
-    - name: sherpa-ynagata-shipping-service
-      # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
-      # Use the full git SHA as the docker image tag.
-      image: sfci/servicelibs/sherpa:2.0.26
-      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-      ports:
-      - containerPort: 7012
-        name: http2-in
-      - containerPort: 15373
-        name: sherpa-adm
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 60
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 50
-        periodSeconds: 5
-      # The cert names should match whatever you choose below in your volumes section.
-      # The mount paths match the defaults assumed by sherpa. Changing the paths requires a corresponding manual override in sherpa.
-      volumeMounts:
-      - name: client-cert
-        mountPath: /client-certs
-      - name: server-cert
-        mountPath: /server-certs
-    # ... your app's other containers
-    - name: beacon-ynagata-shipping-service
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      args:
-      - -endpoint
-      # Namespaced announcement for TLS http2/grpc at the DATACENTER_ALLENV level.
-      # For detailed info on other announcement types, see https://confluence.internal.salesforce.com/display/SERVMESH/Service+Mesh+Announcements.
-      - user-ynagata/ynagata-shipping-service:DATACENTER_ALLENV:HTTP2
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-          - /home/scone/is-alive.sh
