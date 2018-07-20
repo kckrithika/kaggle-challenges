@@ -32,10 +32,10 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-dns-register
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --maxDeleteEntries=500
         - --subnet=10.251.196.0-255,10.251.197.0-255,10.251.198.0-255,10.251.199.0-239
         - --client.serverPort=12088
         - --client.serverInterface=lo
+        - --maxDeleteEntries=500
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000980-6a830502
         name: slb-dns-register-processor
         volumeMounts:
