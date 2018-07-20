@@ -211,7 +211,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     "slb-service": "slb-ipvs",
                 },
             } + (
-               if slbimages.phaseNum == 1 then {
+               if slbimages.hypersdn_build >= 980 then {
                     affinity: {
                         podAntiAffinity: {
                             requiredDuringSchedulingIgnoredDuringExecution: [{
