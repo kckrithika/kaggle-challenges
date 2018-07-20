@@ -44,17 +44,33 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
                             topologyKey: "kubernetes.io/hostname",
                         }],
                     },
-                },
+                } + (if configs.estate == "prd-sdc" then {
+                         nodeAffinity: {
+                             requiredDuringSchedulingIgnoredDuringExecution: {
+                                 nodeSelectorTerms: [
+                                     {
+                                         matchExpressions: [
+                                             {
+                                                 key: "illumio",
+                                                 operator: "NotIn",
+                                                 values: ["a", "b"],
+                                             },
+                                         ],
+                                     },
+                                 ],
+                             },
+                         },
+                     } else {}),
                 containers: [
                     {
                         name: "slb-canary-passthrough-tls",
                         image: slbimages.hypersdn,
                         command: [
-                                     "/sdn/slb-canary-service",
-                                     "--serviceName=slb-canary-passthrough-tls",
-                                     "--log_dir=" + slbconfigs.logsDir,
-                                     "--ports=" + portconfigs.slb.canaryServicePassthroughTlsPort,
-                                 ],
+                            "/sdn/slb-canary-service",
+                            "--serviceName=slb-canary-passthrough-tls",
+                            "--log_dir=" + slbconfigs.logsDir,
+                            "--ports=" + portconfigs.slb.canaryServicePassthroughTlsPort,
+                        ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
                         ]),

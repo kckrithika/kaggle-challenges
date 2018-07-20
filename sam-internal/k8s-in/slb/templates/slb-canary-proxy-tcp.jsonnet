@@ -44,7 +44,23 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
                             topologyKey: "kubernetes.io/hostname",
                         }],
                     },
-                },
+                } + (if configs.estate == "prd-sdc" then {
+                         nodeAffinity: {
+                             requiredDuringSchedulingIgnoredDuringExecution: {
+                                 nodeSelectorTerms: [
+                                     {
+                                         matchExpressions: [
+                                             {
+                                                 key: "illumio",
+                                                 operator: "NotIn",
+                                                 values: ["a", "b"],
+                                             },
+                                         ],
+                                     },
+                                 ],
+                             },
+                         },
+                     } else {}),
                 containers: [
                     {
                         name: "slb-canary-proxy-tcp",
