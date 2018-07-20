@@ -83,13 +83,13 @@ system:
         mountPath: /server-certs
     volumes:
     - name: logvol
-      hostpath:
+      hostPath:
         path: /home/sfdc-search-model-executor/logs
     - name: sherpa-log-volume
-      hostpath:
+      hostPath:
         path: /home/sfdc-sherpa/logs
     - name: beacon-log-volume
-      hostpath:
+      hostPath:
         path: /home/sfdc-beacon/logs
     - name: tls-server-cert
       maddogCert:
