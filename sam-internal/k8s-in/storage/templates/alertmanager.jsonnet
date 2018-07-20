@@ -16,6 +16,7 @@ if std.setMember(configs.estate, enabledEstates) then {
     metadata: {
         name: "alertmanager",
         namespace: "sam-system",
+        labels: {} + configs.ownerLabel.storage,
     },
     spec: {
         replicas: 1,

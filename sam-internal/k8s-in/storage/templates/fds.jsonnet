@@ -50,7 +50,7 @@ if std.setMember(configs.estate, enabledEstates) then {
             name: "fds-controller",
             team: "storage-foundation",
             cloud: "storage",
-        },
+        } + configs.ownerLabel.storage,
         name: "fds-controller-deployment",
         namespace: "sam-system",
     },

@@ -48,6 +48,7 @@ if std.setMember(configs.estate, enabledEstates) then {
     metadata: {
         name: "sfn-state-metrics",
         namespace: "sam-system",
+        labels: {} + configs.ownerLabel.storage,
     },
     spec: {
         replicas: 1,

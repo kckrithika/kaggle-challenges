@@ -20,7 +20,7 @@ if std.setMember(configs.estate, enabledEstates) then {
     labels: {
       team: "storage-foundation",
       cloud: "storage",
-    },
+    } + configs.ownerLabel.storage,
   },
   spec: {
     template: {

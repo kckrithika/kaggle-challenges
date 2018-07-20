@@ -16,7 +16,7 @@ if std.setMember(configs.estate, enabledEstates) then {
             name: "zookeeperoperator",
             team: "storage-foundation",
             cloud: "storage",
-        },
+        } + configs.ownerLabel.storage,
         name: "zookeeperoperator-deployment",
         namespace: "sam-system",
     },

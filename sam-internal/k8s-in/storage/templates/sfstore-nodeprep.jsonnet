@@ -16,7 +16,7 @@ if configs.estate == "prd-sam_storage" then {
       labels: {
         team: "storage-foundation",
         cloud: "storage",
-      },
+      } + configs.ownerLabel.storage,
     },
     spec: {
       template: {
