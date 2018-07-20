@@ -20,6 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [alok.bansal] SAM Manifest Repo Watcher
+        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002121-e04179e9",
+
         # [a.mitra] sql watchdog fix
         "prd,prd-sam,watchdog-samsql,hypersam": "sam-0002118-87189ccb",
 
