@@ -2028,7 +2028,7 @@
       "access": [
         "team/Test_Release"
       ],
-      "controlEstate": "prd-sam",
+      "controlEstate": "prd-samtwo",
       "estate": "prd-sam_tnrp_merger",
       "kingdom": "prd",
       "superPod": "None"
@@ -2040,7 +2040,7 @@
       "access": [
         "team/Test_Release"
       ],
-      "controlEstate": "prd-sam",
+      "controlEstate": "prd-samtwo",
       "estate": "prd-sam_tnrp_promoter",
       "kingdom": "prd",
       "superPod": "None"
@@ -2052,7 +2052,7 @@
       "access": [
         "team/Test_Release"
       ],
-      "controlEstate": "prd-sam",
+      "controlEstate": "prd-samtwo",
       "estate": "prd-sam_tnrp_signer",
       "kingdom": "prd",
       "superPod": "None"
