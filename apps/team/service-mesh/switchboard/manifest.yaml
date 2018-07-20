@@ -10,6 +10,8 @@ system:
     - name: switchboard
       image: sfci/servicelibs/switchboard:d18b165df06b1675e1129d158788acaa06502458
       args:
+      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
+      - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
       ports:
       - containerPort: 15372
