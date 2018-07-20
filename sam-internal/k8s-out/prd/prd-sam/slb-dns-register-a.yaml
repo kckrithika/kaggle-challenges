@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: slb-dns-register-a
+    sam.data.sfdc.net/owner: slb
   name: slb-dns-register-a
   namespace: sam-system
 spec:
@@ -11,6 +12,7 @@ spec:
     metadata:
       labels:
         name: slb-dns-register-a
+        sam.data.sfdc.net/owner: slb
       namespace: sam-system
     spec:
       containers:

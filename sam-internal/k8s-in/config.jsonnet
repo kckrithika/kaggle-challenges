@@ -115,7 +115,7 @@ local utils = import "util_functions.jsonnet",
             } else {}
         ),
         slb: (
-            if estate == "prd-samdev" || estate == "prd-samtest" then {
+            if estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sam" then {
                 "sam.data.sfdc.net/owner": "slb",
             } else {}
         ),

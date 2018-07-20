@@ -5,6 +5,7 @@ metadata:
     slb.sfdc.net/name: slb-baboon-service
   labels:
     app: slb-baboon-service
+    sam.data.sfdc.net/owner: slb
     slb.sfdc.net/name: slb-baboon-service
   name: slb-baboon-service
   namespace: sam-system
