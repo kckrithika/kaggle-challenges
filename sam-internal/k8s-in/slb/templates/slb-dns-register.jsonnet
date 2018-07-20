@@ -40,23 +40,21 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         name: "slb-dns-register-processor",
                         image: slbimages.hypersdn,
                         command: [
-                                     "/sdn/slb-dns-register",
-                                     "--path=" + slbconfigs.configDir,
-                                     "--ddi=" + slbconfigs.ddiService,
-                                     "--keyfile=" + configs.keyFile,
-                                     "--certfile=" + configs.certFile,
-                                     "--cafile=" + configs.caFile,
-                                     "--metricsEndpoint=" + configs.funnelVIP,
-                                     "--log_dir=" + slbconfigs.logsDir,
-                                     configs.sfdchosts_arg,
-                                 ] + (if configs.estate == "prd-sam" then [
-                                          "--maxDeleteEntries=500",
-                                      ] else [])
-                                 + [
-                                     "--subnet=" + slbconfigs.subnet,
-                                     "--client.serverPort=" + portconfigs.slb.slbNodeApiDnsOverridePort,
-                                     "--client.serverInterface=lo",
-                                 ],
+                            "/sdn/slb-dns-register",
+                            "--path=" + slbconfigs.configDir,
+                            "--ddi=" + slbconfigs.ddiService,
+                            "--keyfile=" + configs.keyFile,
+                            "--certfile=" + configs.certFile,
+                            "--cafile=" + configs.caFile,
+                            "--metricsEndpoint=" + configs.funnelVIP,
+                            "--log_dir=" + slbconfigs.logsDir,
+                            configs.sfdchosts_arg,
+                            "--subnet=" + slbconfigs.subnet,
+                            "--client.serverPort=" + portconfigs.slb.slbNodeApiDnsOverridePort,
+                            "--client.serverInterface=lo",
+                        ] + (if configs.estate == "prd-sam" then [
+                                 "--maxDeleteEntries=500",
+                             ] else []),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
