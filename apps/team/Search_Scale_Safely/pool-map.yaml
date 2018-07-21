@@ -1,6 +1,4 @@
 apps:
- prd-sms:
-  - prd/prd-sam
  prd-search_model_executor_xlt:
   - prd/prd-sam
  prd-search-model-executor:
