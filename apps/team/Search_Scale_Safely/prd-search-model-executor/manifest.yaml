@@ -4,11 +4,6 @@ system:
   functions:
   - name: search-model-executor
     count: 8
-    strategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxSurge: 0
-        maxUnavailable: 25%
     containers:
     - name: search-model-executor
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/m-krishnan/smt-search-model-executor:5869d2f
@@ -94,3 +89,4 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+
