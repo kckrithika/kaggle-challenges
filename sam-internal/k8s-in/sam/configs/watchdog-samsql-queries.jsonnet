@@ -216,6 +216,27 @@ WHERE latency > 45",
         ) authedButUnkwn
         WHERE authedButUnkwn.latency > 30 AND pr_num > 1000",
     },
+    {
+      name: "SqlPRFailedToProduceManifestZip",
+      instructions: "Following PRs have failed to produce corresponding manifest.zip file after 30 minutes of getting  merged.",
+      alertThreshold: "10m",
+      alertFrequency: "24h",
+      watchdogFrequency: "10m",
+      alertProfile: "sam",
+      alertAction: "email",
+      sql: "SELECT 
+             *   
+            FROM
+            (SELECT 
+              pr_num,
+              manifest_zip_time,
+              merged_time,
+              TIMESTAMPDIFF(MINUTE, CASE WHEN manifest_zip_time IS NULL THEN now() ELSE manifest_zip_time END, `merged_time`) latency
+            FROM PullRequests
+            WHERE state ='merged' AND (manifest_zip_version IS  NULL OR manifest_zip_version = '')  AND `merged_time` > NOW() - INTERVAL 10 DAY
+            ) manifestZip
+            WHERE manifestZip.latency > 30 AND pr_num > 11927",
+    },
 
   ],
    argus_metrics: [

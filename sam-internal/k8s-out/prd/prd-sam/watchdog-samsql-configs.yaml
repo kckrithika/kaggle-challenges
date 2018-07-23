@@ -93,7 +93,16 @@ data:
     created_time IS NOT NULL AND authorized_by IS NOT NULL AND authorized_by !=''''
     AND (`evaluate_pr_status` IS NULL OR evaluate_pr_status = ''unknown'') AND most_recent_authorized_time
     IS NOT NULL\n            AND state =''open''\n        ) authedButUnkwn\n        WHERE
-    authedButUnkwn.latency > 30 AND pr_num > 1000", "watchdogFrequency": "10m"}]}'
+    authedButUnkwn.latency > 30 AND pr_num > 1000", "watchdogFrequency": "10m"}, {"alertAction":
+    "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m",
+    "instructions": "Following PRs have failed to produce corresponding manifest.zip
+    file after 30 minutes of getting  merged.", "name": "SqlPRFailedToProduceManifestZip",
+    "sql": "SELECT \n             *   \n            FROM\n            (SELECT \n              pr_num,\n              manifest_zip_time,\n              merged_time,\n              TIMESTAMPDIFF(MINUTE,
+    CASE WHEN manifest_zip_time IS NULL THEN now() ELSE manifest_zip_time END, `merged_time`)
+    latency\n            FROM PullRequests\n            WHERE state =''merged'' AND
+    (manifest_zip_version IS  NULL OR manifest_zip_version = '''')  AND `merged_time`
+    > NOW() - INTERVAL 10 DAY\n            ) manifestZip\n            WHERE manifestZip.latency
+    > 30 AND pr_num > 11927", "watchdogFrequency": "10m"}]}'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
