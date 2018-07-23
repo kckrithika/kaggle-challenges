@@ -45,7 +45,7 @@ if samfeatureflags.kubedns then {
                 containers: [
                     {
                         args: [
-                            "--domain=cluster.local.",
+                            "--domain=" + configs.dnsdomain + ".",
                             "--dns-port=10053",
                             "--kubecfg-file=/etc/kubernetes/kubeconfig",
                             "--v=2",
@@ -140,7 +140,7 @@ if samfeatureflags.kubedns then {
                             "-k",
                             "--cache-size=1000",
                             "--log-facility=-",
-                            "--server=/cluster.local/127.0.0.1#10053",
+                            "--server=/" + configs.dnsdomain + "/127.0.0.1#10053",
                             "--server=/in-addr.arpa/127.0.0.1#10053",
                             "--server=/ip6.arpa/127.0.0.1#10053",
                         ],
@@ -184,8 +184,8 @@ if samfeatureflags.kubedns then {
                         args: [
                             "--v=2",
                             "--logtostderr",
-                            "--probe=kubedns,127.0.0.1:10053,kubernetes.default.svc.cluster.local,5,A",
-                            "--probe=dnsmasq,127.0.0.1:53,kubernetes.default.svc.cluster.local,5,A",
+                            "--probe=kubedns,127.0.0.1:10053,kubernetes.default.svc." + configs.dnsdomain + ",5,A",
+                            "--probe=dnsmasq,127.0.0.1:53,kubernetes.default.svc." + configs.dnsdomain + ",5,A",
                         ],
                         image: samimages.kubednssidecar,
                         imagePullPolicy: "IfNotPresent",
