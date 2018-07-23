@@ -127,7 +127,18 @@ data:
     latency\n            FROM PullRequests\n            WHERE state =''merged'' AND
     (manifest_zip_version IS  NULL OR manifest_zip_version = '''')  AND `merged_time`
     > NOW() - INTERVAL 10 DAY\n            ) manifestZip\n            WHERE manifestZip.latency
-    > 30 AND pr_num > 11927", "watchdogFrequency": "10m"}]}'
+    > 30 AND pr_num > 11927", "watchdogFrequency": "10m"}, {"alertAction": "email",
+    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions":
+    "Following PRs have at least one image that''s not available after 20 minutes
+    of getting it merged", "name": "SqlPRImageUnavailable", "sql": "SELECT \n                *\n            FROM
+    \n                (\n                SELECT \t\n                    prs.pr_num,\n                    crds.PoolName,\n                    crds.ControlEstate,\n                    TIMESTAMPDIFF(MINUTE,
+    CASE WHEN payload -> ''$.status.maxImageEndTime'' = ''0001-01-01T00:00:00Z'' THEN
+    CURRENT_TIMESTAMP() ELSE payload -> ''$.status.maxImageEndTime'' END, prs.merged_time)
+    latency\n            FROM \n                PullRequests prs\n            LEFT  JOIN  \n                    (\n                    SELECT
+    * \n                    FROM \n                    crd_history \n                    WHERE
+    ApiKind = ''Bundle'') crds\n                ON crds.PRNum = prs.pr_num \n            ORDER
+    BY prs.pr_num \n            ) imageLatency\n            WHERE  latency > 20",
+    "watchdogFrequency": "10m"}]}'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
