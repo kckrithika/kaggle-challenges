@@ -46,7 +46,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                                      "--metricsEndpoint=" + configs.funnelVIP,
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--maxParallelism=" + slbconfigs.canaryMaxParallelism,
-                                 ] + (if configs.estate == "prd-sdc" then ["--podPreservationTime=5m"] else []) +  # Avoid canary preservation in SDC due to VIP exhaustion
+                                 ] + (if configs.estate == "prd-sdc" then ["--podPreservationTime=5m", "--allHours=true"] else []) +  # Avoid canary preservation in SDC due to VIP exhaustion
                                  [
                                      configs.sfdchosts_arg,
                                      "--hostnameOverride=$(NODE_NAME)",
