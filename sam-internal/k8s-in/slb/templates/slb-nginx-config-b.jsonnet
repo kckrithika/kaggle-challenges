@@ -303,7 +303,7 @@ if slbconfigs.slbInKingdom then {
             type: "RollingUpdate",
             rollingUpdate: {
                 maxUnavailable: 1,
-                maxSurge: 1,
+                maxSurge: if slbimages.phaseNum <= 2 then 0 else 1,
             },
         },
         minReadySeconds: 60,
