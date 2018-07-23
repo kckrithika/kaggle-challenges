@@ -64,9 +64,10 @@ system:
       livenessProbe:
         exec:
           command:
-          - /bin/true
+          - /opt/pdm/pdm.customer/bin/is-alive.sh
         initialDelaySeconds: 60
         periodSeconds: 30
+        failureThreshold: 8
       readinessProbe:
         exec:
           command:
