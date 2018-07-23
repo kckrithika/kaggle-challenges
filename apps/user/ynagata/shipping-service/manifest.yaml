@@ -49,7 +49,7 @@ system:
       - -endpoint
       # Namespaced announcement for TLS http2/grpc at the DATACENTER_ALLENV level.
       # For detailed info on other announcement types, see https://confluence.internal.salesforce.com/display/SERVMESH/Service+Mesh+Announcements.
-      - user-ynagata/ynagata-shipping-service:DATACENTER_ALLENV:HTTP2
+      - user-ynagata/ynagata-shipping-service:DATACENTER_ALLENV:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
