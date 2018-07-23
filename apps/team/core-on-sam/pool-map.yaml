@@ -18,8 +18,6 @@ apps:
   - name: prd/prd-sp2-sam_coreapp
  perf-mist61-cyan:
   - name: prd/prd-sp2-sam_coreapp
-    hostSubList:
-    - shared2-samminioncoreapp3-2-prd.eng.sfdc.net
  perf-mist61-core:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
