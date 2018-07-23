@@ -39,6 +39,18 @@ system:
         value: 9091
       - name: MANAGEMENT_PORT
         value: 15523
+      - name: JVM_ARGS
+        value: "-verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                -Xloggc:/home/scone/logs/mds/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/dfs
+                -Dcom.sun.management.jmxremote.port=8898
+                -Dcom.sun.management.jmxremote.rmi.port=8898
+                -Dcom.sun.management.jmxremote.ssl=false
+                -Dcom.sun.management.jmxremote.authenticate=false
+                -Xmx1G -Xms1G -XX:ParallelGCThreads=8"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 30
