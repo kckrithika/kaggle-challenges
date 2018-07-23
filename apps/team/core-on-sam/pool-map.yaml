@@ -23,6 +23,7 @@ apps:
  perf-mist61-core:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
+    - shared2-samminioncoreapp3-2-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-1-prd.eng.sfdc.net
  perf-mist61-jmeter:
   - name: prd/prd-sp2-sam_coreapp
