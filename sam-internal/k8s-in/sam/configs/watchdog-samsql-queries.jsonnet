@@ -225,7 +225,7 @@ WHERE latency > 45",
       alertProfile: "sam",
       alertAction: "email",
       sql: "SELECT 
-             *
+             *   
             FROM
             (SELECT 
               pr_num,
@@ -233,9 +233,9 @@ WHERE latency > 45",
               merged_time,
               TIMESTAMPDIFF(MINUTE, CASE WHEN manifest_zip_time IS NULL THEN now() ELSE manifest_zip_time END, `merged_time`) latency
             FROM PullRequests
-            WHERE state ='merged' AND (manifest_zip_version IS  NULL OR manifest_zip_version = '')  
+            WHERE state ='merged' AND (manifest_zip_version IS  NULL OR manifest_zip_version = '')  AND `merged_time` > NOW() - INTERVAL 10 DAY
             ) manifestZip
-            WHERE manifestZip.latency > 30 AND pr_num > 11130",
+            WHERE manifestZip.latency > 30 AND pr_num > 11927",
     },
 
   ],

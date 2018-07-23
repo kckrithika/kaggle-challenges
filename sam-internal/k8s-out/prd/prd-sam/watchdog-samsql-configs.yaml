@@ -97,12 +97,12 @@ data:
     "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m",
     "instructions": "Following PRs have failed to produce corresponding manifest.zip
     file after 30 minutes of getting  merged.", "name": "SqlPRFailedToProduceManifestZip",
-    "sql": "SELECT \n             *\n            FROM\n            (SELECT \n              pr_num,\n              manifest_zip_time,\n              merged_time,\n              TIMESTAMPDIFF(MINUTE,
+    "sql": "SELECT \n             *   \n            FROM\n            (SELECT \n              pr_num,\n              manifest_zip_time,\n              merged_time,\n              TIMESTAMPDIFF(MINUTE,
     CASE WHEN manifest_zip_time IS NULL THEN now() ELSE manifest_zip_time END, `merged_time`)
     latency\n            FROM PullRequests\n            WHERE state =''merged'' AND
-    (manifest_zip_version IS  NULL OR manifest_zip_version = '''')  \n            )
-    manifestZip\n            WHERE manifestZip.latency > 30 AND pr_num > 11130", "watchdogFrequency":
-    "10m"}]}'
+    (manifest_zip_version IS  NULL OR manifest_zip_version = '''')  AND `merged_time`
+    > NOW() - INTERVAL 10 DAY\n            ) manifestZip\n            WHERE manifestZip.latency
+    > 30 AND pr_num > 11927", "watchdogFrequency": "10m"}]}'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
