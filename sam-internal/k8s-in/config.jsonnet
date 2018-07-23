@@ -241,6 +241,12 @@ local utils = import "util_functions.jsonnet",
             name: "ci-namespaces",
         },
     },
+    dnsdomain: (
+        if estate == "prd-samtest" then
+            estate + "." + kingdom + ".sam.sfdc.net"
+        else
+            "cluster.local"
+    ),
 
     # === OTHER ===
 
