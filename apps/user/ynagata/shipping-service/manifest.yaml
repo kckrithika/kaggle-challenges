@@ -4,9 +4,15 @@ system:
   - name: ynagata-shipping-service
     count: 1
     volumes:
-       - name: logvol
-         hostPath:
-            path: /home/sfdc-ynagata/logs
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-ynagata/logs
+    - name: server-cert
+      maddogCert:
+        type: server
+    - name: client-cert
+      maddogCert:
+        type: client
     containers:
     - name: shipping-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/shipping-service:ynagata-20180720-f5a8671
@@ -43,6 +49,11 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 50
         periodSeconds: 5
+      volumeMounts:
+        - name: client-cert
+          mountPath: /client-certs
+        - name: server-cert
+          mountPath: /server-certs
     - name: beacon-ynagata-shipping-service
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
