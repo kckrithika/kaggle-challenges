@@ -1,0 +1,46 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - tvlaming@salesforce.com
+      - gogden@salesforce.com
+      - afranken@salesforce.com
+      - gmercer@salesforce.com
+      - xjayaseelan@salesforce.com
+      - mklosak@salesforce.com
+      - mhowald@salesforce.com
+  functions:
+  - name: wh-con
+    count: 3
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
+    containers:
+    - name: event-notification-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-215.0.0
+      ports:
+        - containerPort: 15372
+      env:
+        - name: MANAGEMENT_PORT
+          value: 15372
+        - name: AJNA_NAMESPACE
+          value: mc.prod.mceventbusprod
+      livenessProbe:
+        initialDelaySeconds: 60
+        periodSeconds: 120
+        timeoutSeconds: 130
+        httpGet:
+          path: /manage/health
+          port: 15372
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
+  loadbalancers:
+  - lbname: event-notification-service-lb
+    function: wh-con
+    nodeExposed: true
+    ports:
+    - port: 15373
+      targetport: 15372
