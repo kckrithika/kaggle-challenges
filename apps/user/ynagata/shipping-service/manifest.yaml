@@ -43,3 +43,15 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 50
         periodSeconds: 5
+    - name: beacon-ynagata-shipping-service
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      # Namespaced announcement for TLS http2/grpc at the DATACENTER_ALLENV level.
+      # For detailed info on other announcement types, see https://confluence.internal.salesforce.com/display/SERVMESH/Service+Mesh+Announcements.
+      - user-ynagata/ynagata-shipping-service:DATACENTER_ALLENV:HTTP2
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - /home/scone/is-alive.sh
