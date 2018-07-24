@@ -22,7 +22,7 @@ system:
         secretName: test-secret
     containers:
     - name: event-notification-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-215.0.0
+      image: sfci/mc-eventing/event-notification:215.0.0
       ports:
         - containerPort: 15372
       env:
@@ -46,7 +46,7 @@ system:
         name: secretvol
         readOnly: true
 #    - name: dev-event-notification-service
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-215.0.0
+#      image: sfci/mc-eventing/event-notification:215.0.0
 #      ports:
 #        - containerPort: 15380
 #      env:
