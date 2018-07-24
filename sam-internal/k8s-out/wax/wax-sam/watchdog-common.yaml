@@ -3,6 +3,7 @@ kind: DaemonSet
 metadata:
   labels:
     name: watchdog-common
+    sam.data.sfdc.net/owner: sam
   name: watchdog-common
 spec:
   template:
@@ -11,6 +12,7 @@ spec:
         app: watchdog-common
         apptype: monitoring
         daemonset: "true"
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

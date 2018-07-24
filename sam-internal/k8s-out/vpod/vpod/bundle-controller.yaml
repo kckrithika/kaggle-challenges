@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: bundlecontroller
+    sam.data.sfdc.net/owner: sam
   name: bundlecontroller
   namespace: sam-system
 spec:
@@ -15,6 +16,7 @@ spec:
       labels:
         apptype: control
         name: bundlecontroller
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

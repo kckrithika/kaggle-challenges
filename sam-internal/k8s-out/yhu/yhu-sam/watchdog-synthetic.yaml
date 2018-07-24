@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-synthetic
+    sam.data.sfdc.net/owner: sam
   name: watchdog-synthetic
   namespace: sam-system
 spec:
@@ -16,6 +17,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-synthetic
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: node-controller
+    sam.data.sfdc.net/owner: sam
   name: node-controller
   namespace: sam-system
 spec:
@@ -15,6 +16,7 @@ spec:
       labels:
         apptype: control
         name: node-controller
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

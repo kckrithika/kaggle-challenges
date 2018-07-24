@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: estate-server
+    sam.data.sfdc.net/owner: sam
   name: estate-server
   namespace: sam-system
 spec:
@@ -15,6 +16,7 @@ spec:
       labels:
         apptype: server
         name: estate-server
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

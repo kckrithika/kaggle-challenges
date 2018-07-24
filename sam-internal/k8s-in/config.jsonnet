@@ -104,11 +104,9 @@ local utils = import "util_functions.jsonnet",
 
     # setting label name to identify which team owns the app
     ownerLabel: {
-        sam: (
-            if estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sam" || estate == "frf-sam" || estate == "cdu-sam" then {
-                "sam.data.sfdc.net/owner": "sam",
-            } else {}
-        ),
+        sam: {
+            "sam.data.sfdc.net/owner": "sam",
+        },
         sdn: (
             if estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sam" || estate == "frf-sam" || estate == "cdu-sam" then {
                 "sam.data.sfdc.net/owner": "sdn",

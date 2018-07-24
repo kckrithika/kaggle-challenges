@@ -3,6 +3,7 @@ kind: DaemonSet
 metadata:
   labels:
     name: watchdog-rbac
+    sam.data.sfdc.net/owner: sam
   name: watchdog-rbac
 spec:
   selector:
@@ -13,6 +14,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-rbac
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:
