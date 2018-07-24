@@ -33,6 +33,8 @@ system:
       image: sfci/servicelibs/sherpa:2.0.26
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       ports:
+      - containerPort: 7443
+        name: http2-tls-in
       - containerPort: 7012
         name: http2-in
       - containerPort: 15373
@@ -73,3 +75,7 @@ system:
     ports:
     - port: 7020
       targetport: 7020
+    - port: 7012
+      targetport: 7012
+    - port: 7443
+      targetport: 7443
