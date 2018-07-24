@@ -3,20 +3,88 @@ system:
   functions:
   - name: broker
     count: 2
+    type: stateful-set
     containers:
     - name: pact-broker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/snew/dius/pact-broker:test-publish
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/snew/dius/pact-broker:20180724
       env:
       - name: PACT_BROKER_BASIC_AUTH_USERNAME
         value: admin
       - name: PACT_BROKER_BASIC_AUTH_PASSWORD
         value: changeme
+      - name: PACT_BROKER_DATABASE_USERNAME
+        value: postgres
+      - name: PACT_BROKER_DATABASE_PASSWORD
+        value: password
+      - name: PACT_BROKER_DATABASE_HOST
+        value: postgres
+      - name: PACT_BROKER_DATABASE_NAME
+        value: postgres
+
       ports:
       - containerPort: 80
+
       livenessProbe:
         httpGet:
           path: /
           port: 80
+
+    - name: postgres
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/postgres:9.3-sfdc
+      env:
+      # Set PGDATA to a subdir, since postgres doesn't like being at a mountpoint.
+      # See https://github.com/docker-library/docs/pull/277/files
+      - name: PGDATA
+        value: /var/lib/postgresql/data/pgdata
+      - name: POSTGRES_USER
+        value: postgres
+      - name: POSTGRES_PASSWORD
+        value: password
+      - name: POSTGRES_DB
+        value: postgres
+
+      volumeMounts:
+      - name: datavol
+        mountPath: /var/lib/postgresql/data
+
+      ports:
+      - containerPort: 5432
+
+      livenessProbe:
+        tcpSocket:
+          port: 5432
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60
+
+    - name: nginx
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:7
+      volumeMounts:
+      - name: datavol
+        mountPath: /archive
+
+      ports:
+        - containerPort: 8443
+        - containerPort: 443
+
+      livenessProbe:
+        tcpSocket:
+          port: 8443
+        failureThreshold: 3
+        initialDelaySeconds: 60
+        periodSeconds: 60
+
+    lbname: broker-headless-lb
+
+    # Give containers a bit of time to shut down, as they might be syncing
+    # state into the PV on shutdown
+    terminationGracePeriodSeconds: 30
+
+    volumeClaimTemplates:
+    - name: datavol
+      storageClassName: moe-hdd-pool
+      storageSizeRequest: 100Gi
+
   loadbalancers:
   - lbname: brokerlb
     function: broker
