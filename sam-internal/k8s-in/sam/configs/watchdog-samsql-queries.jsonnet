@@ -242,16 +242,16 @@ WHERE latency > 45",
 
 
    argus_metrics: [
-  {
-      name: "MachineCountByKernelVersion",
-      sql: "select 'sam.watchdog.global' as Scope, 'sql.machineCountByKernelVersion' as Metric, CONCAT('kernelVersion=',kernelVersion) as Tags, COUNT(*) as Value from nodeDetailView group by kernelVersion",
-      watchdogFrequency: "60m",
-  },
-  {
-      name: "MachineCountByKingdomAndKernelVersion",
-      sql: "select CONCAT('sam.watchdog.', UPPER(kingdom), '.NONE.', ControlEstate) as Scope, 'sql.machineCountByKingdomAndKernelVersion' as Metric, CONCAT('kernelVersion=',kernelVersion) as Tags, COUNT(*) as Value from nodeDetailView group by ControlEstate, kingdom, kernelVersion",
-      watchdogFrequency: "60m",
-  },
+   {
+     watchdogFrequency: "60m",
+     name: "MachineCountByKernelVersion",
+     sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate, 'sql.machineCountByKernelVersion' as Metric, COUNT(*) as Value, CONCAT('KernelVersion=',KernelVersion) as Tags from nodeDetailView group by kernelVersion",
+   },
+   {
+     watchdogFrequency: "60m",
+     name: "MachineCountByKingdomAndKernelVersion",
+     sql: "select UPPER(kingdom) as Kingdom, 'NONE' as SuperPod, ControlEstate as Estate, 'sql.machineCountByKingdomAndKernelVersion' as Metric, COUNT(*) as Value, CONCAT('KernelVersion=',KernelVersion) as Tags from nodeDetailView group by ControlEstate, kingdom, kernelVersion",
+   },
   ],
 
 }
