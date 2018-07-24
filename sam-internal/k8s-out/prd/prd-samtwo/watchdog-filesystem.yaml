@@ -20,7 +20,7 @@ spec:
         - -alertThreshold=900s
         - -maxUptimeSampleSize=5
         - -watchDogKind=DaemonSet
-        - -recipient=sam-test-alerts@salesforce.com,make@salesforce.com
+        - -recipient=sam-alerts@salesforce.com,make@salesforce.com
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
