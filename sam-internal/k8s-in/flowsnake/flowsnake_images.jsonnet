@@ -121,7 +121,7 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                add_local_canary: "unverified",  #Unverified in IoT fleet
+                add_local_canary: "unverified",  #Verified in IoT fleet
                 add_12_canary: "unverified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
@@ -146,10 +146,13 @@ local utils = import "util_functions.jsonnet";
         "3": self.default_image_tags {
 
             cert_secretizer_image_tag: "662",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
+            fleetService_image_tag: "696",
+            watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                add_local_canary: "unverified",  #Unverified in IoT fleet
+                add_12_canary: "unverified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
@@ -159,6 +162,7 @@ local utils = import "util_functions.jsonnet";
                   "0.10.0": 662,
                   "0.11.0": 681,
                   "0.11.0.sluice_fix": 691,
+                  "0.12.0": 696,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
