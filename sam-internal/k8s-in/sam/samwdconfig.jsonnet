@@ -15,6 +15,7 @@ recipient: (
         else if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam_storagedev" then "storagefoundation@salesforce.com"
         else if configs.estate == "prd-samdev" then ""
         else if configs.estate == "prd-samtest" then ""
+        else if configs.estate == "prd-samtwo" then "sam-alerts@salesforce.com"
         else if configs.kingdom == "prd" then "sam-test-alerts@salesforce.com"
         else "sam-alerts@salesforce.com"
 ),
