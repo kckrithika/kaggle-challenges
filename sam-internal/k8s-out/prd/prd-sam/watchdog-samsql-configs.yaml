@@ -2,12 +2,17 @@ apiVersion: v1
 data:
   watchdog-samsql-profiles.jsonnet: '{"alertProfiles": [{"email": "sam-test-alerts@salesforce.com",
     "name": "sam", "pagerDuty": "sam-pagerduty@salesforce.com"}]}'
-  watchdog-samsql-queries.jsonnet: '{"argus_metrics": [{"name": "SqlArgusDemo", "sql":
-    "select ''sam.DFW.NONE.dfw-foo'' as Scope, ''iptables.Count'' as Metric, ''''
-    as Tags, 15 as Value", "watchdogFrequency": "10m"}], "sql_alerts": [{"alertAction":
-    "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m",
-    "instructions": "The following deployments are reported as bad customer deployments
-    in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
+  watchdog-samsql-queries.jsonnet: '{"argus_metrics": [{"name": "MachineCountByKernelVersion",
+    "sql": "select ''sam.watchdog.global'' as Scope, ''sql.machineCountByKernelVersion''
+    as Metric, CONCAT(''kernelVersion='',kernelVersion) as Tags, COUNT(*) as Value
+    from nodeDetailView group by kernelVersion", "watchdogFrequency": "60m"}, {"name":
+    "MachineCountByKingdomAndKernelVersion", "sql": "select CONCAT(''sam.watchdog.'',
+    UPPER(kingdom), ''.NONE.'', ControlEstate) as Scope, ''sql.machineCountByKingdomAndKernelVersion''
+    as Metric, CONCAT(''kernelVersion='',kernelVersion) as Tags, COUNT(*) as Value
+    from nodeDetailView group by ControlEstate, kingdom, kernelVersion", "watchdogFrequency":
+    "60m"}], "sql_alerts": [{"alertAction": "email", "alertFrequency": "24h", "alertProfile":
+    "sam", "alertThreshold": "10m", "instructions": "The following deployments are
+    reported as bad customer deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
     "name": "SqlSlaDepl", "sql": "SELECT * FROM\n                        (\n                          SELECT\n                            ControlEstate,\n                            Namespace,\n                            Name,\n                            JSON_EXTRACT(Payload,
     ''$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"'') AS email,\n                            CASE
     WHEN JSON_EXTRACT(Payload, ''$.metadata.labels.sam_app'') is NULL then False\n                                 ELSE
