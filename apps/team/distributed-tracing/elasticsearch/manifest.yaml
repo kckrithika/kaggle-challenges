@@ -9,9 +9,9 @@ system:
     containers:
     - name: elasticsearch
       image: docker-dva-rc/dva/elasticsearch-server:8
-      #env:
-      #- name: ES_PASSWORD_FILE
-      #  value: /secrets/rootpassword
+      env:
+      - name: ES_JAVA_OPTS
+        value: '-Xms30g -Xmx30g'
       volumeMounts:
       - mountPath: /var/lib/elasticsearch
         name: elasticsearch-persistent-storage-2tb
