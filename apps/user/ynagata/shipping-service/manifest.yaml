@@ -56,6 +56,9 @@ system:
           mountPath: /client-certs
         - name: server-cert
           mountPath: /server-certs
+      args:
+      - --server-ca
+      - /server-certs/ca_test/cacerts.pem
     - name: beacon-ynagata-shipping-service
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
