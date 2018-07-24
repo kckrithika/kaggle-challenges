@@ -20,6 +20,11 @@ apps:
   ord.Prod.cre-stream-processing:
   - name: ord/ord-sam_customerresolutionengine          
   # ======= API ======== #
+  prd.CCP_Shared_Dev.cre-api: # api shared dev env instance
+  - name: prd/prd-sam_customerresolutionengine
+    hostSubList:
+    - shared0-samminioncustomerresolutionengine2-1-prd.eng.sfdc.net
+    - shared0-samminioncustomerresolutionengine2-2-prd.eng.sfdc.net
   prd.CCP_Integration_Functional.cre-api: # api functional test env instance
   - name: prd/prd-sam_customerresolutionengine
     hostSubList:
