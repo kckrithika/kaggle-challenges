@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: broker
+  - name: sam-test
     count: 2
     containers:
     - name: samhello

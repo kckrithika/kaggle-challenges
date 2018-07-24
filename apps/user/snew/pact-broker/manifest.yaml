@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: default
+  - name: broker
     count: 2
     containers:
     - name: pact-broker
@@ -16,7 +16,7 @@ system:
       livenessProbe:
         httpGet:
           path: /
-          port: 90
+          port: 80
   loadbalancers:
   - lbname: samhellolb
     function: default
