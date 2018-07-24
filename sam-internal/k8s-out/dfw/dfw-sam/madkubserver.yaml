@@ -10,6 +10,7 @@ spec:
   template:
     metadata:
       labels:
+        sam.data.sfdc.net/owner: sam
         service: madkubserver
     spec:
       containers:

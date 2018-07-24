@@ -5,6 +5,7 @@ metadata:
     slb.sfdc.net/name: k8sproxy
   labels:
     app: k8sproxy
+    sam.data.sfdc.net/owner: sam
   name: k8sproxy
   namespace: sam-system
 spec:

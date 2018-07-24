@@ -14,5 +14,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: sam
   name: ops-adhoc
   namespace: sam-system

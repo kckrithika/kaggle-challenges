@@ -3,6 +3,7 @@ kind: DaemonSet
 metadata:
   labels:
     name: watchdog-etcd
+    sam.data.sfdc.net/owner: sam
   name: watchdog-etcd
 spec:
   template:
@@ -11,6 +12,7 @@ spec:
         app: watchdog-etcd
         apptype: monitoring
         daemonset: "true"
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:
