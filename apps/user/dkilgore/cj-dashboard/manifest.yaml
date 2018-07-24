@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: cj-dashboard
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkilgore/cj-dashboard:dkilgore-20180604-3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkilgore/cj-dashboard:dkilgore-20180724-3
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -17,7 +17,7 @@ system:
           port: 15372
           scheme: HTTP
   loadbalancers:
-  - lbname: dkilgorecjdashbaordlb
+  - lbname: dkilgorecjdashboardlb
     function: cj-dashboard
     slbenabled: true
     ports:
