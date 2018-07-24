@@ -121,8 +121,8 @@ system:
           command: ["true"]
       readinessProbe:
         exec:
-          command: ["true"]
-#          - "/home/sfdc-usmt/run.sh"
+          command:
+          - "/home/sfdc-usmt/run.sh"
         initialDelaySeconds: 120
         timeoutSeconds: 30
         periodSeconds: 900
