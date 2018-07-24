@@ -9,9 +9,13 @@ system:
       ports:
       - containerPort: 8080
       livenessProbe:
+        initialDelaySeconds: 60
+        periodSeconds: 60
+        timeoutSeconds: 90
         httpGet:
-          path: /services/dashboard
-          port: 8080
+          path: /manage/health
+          port: 15372
+          scheme: HTTP
   loadbalancers:
   - lbname: dkilgorecjdashbaordlb
     function: cj-dashboard
