@@ -131,14 +131,7 @@ if slbconfigs.slbInKingdom then {
                                                  "--netInterfaceName=eth0",
                                                  "--metricsEndpoint=" + configs.funnelVIP,
                                                  "--log_dir=" + slbconfigs.logsDir,
-                                             ] + (if configs.estate == "prd-sam" then [
-                                                      # All the KNE VIPs are being deleted
-                                                      "--maxDeleteServiceCount=1000",
-                                                  ] else [
-                                                      "--maxDeleteServiceCount=20",
-                                                  ]) +
-
-                                             [
+                                                 "--maxDeleteServiceCount=20",
                                                  configs.sfdchosts_arg,
                                                  "--client.serverInterface=lo",
                                              ],
