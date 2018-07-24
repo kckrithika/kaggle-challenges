@@ -27,6 +27,8 @@ system:
           value: kingdom-test
         - name: HBASE_DATA_CENTER
           value: prd
+        - name: SCONE_SERVER_SECURITY_MUTUALAUTH
+          value: false
       ports:
       - containerPort: 8080
       - containerPort: 7022
@@ -113,4 +115,4 @@ system:
     slbenabled: true
     ports:
       - port: 8086
-        targetport: 8080
+        targetport: 7022
