@@ -1,15 +1,21 @@
 apiVersion: v1
 system:
   functions:
-  - name: ordering 
+  - name: ynagata-ordering-service
     count: 1
     volumes:
-       - name: logvol
-         hostPath:
-            path: /home/sfdc-ynagata/logs
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-ynagata/logs
+    - name: server-cert
+      maddogCert:
+        type: server
+    - name: client-cert
+      maddogCert:
+        type: client
     containers:
     - name: ordering-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20180723-0faaf27
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20180724-a2f0540
       ports:
       - containerPort: 7020
       - containerPort: 15372
@@ -22,16 +28,15 @@ system:
         - mountPath: /home/sfdc-ynagata/logs
           name: logvol
     - name: sherpa-ynagata-ordering-service
-      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2025---2018-03-27
-      # image: sfci/servicelibs/sherpa:2.0.25
-
-      # Usage of this image is just temporary while we test a change. If you're using this config as an example
-      # for your own app, please use the stable version that's referenced above.
       image: sfci/servicelibs/sherpa:2.0.26
       args:
       - --zipkin-rate
       - 1.0
       ports:
+      - containerPort: 7012
+        name: http2-in
+      - containerPort: 7443
+        name: http2-tls-in
       - containerPort: 15373
         name: sherpa-adm
       livenessProbe:
@@ -46,3 +51,29 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+      volumeMounts:
+        - name: client-cert
+          mountPath: /client-certs
+        - name: server-cert
+          mountPath: /server-certs
+    - name: beacon-ynagata-ordering-service
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - user-ynagata/ynagata-ordering-service:DATACENTER_ALLENV:7012
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+  loadbalancers:
+  - lbname: ynagata-ordering-service-lb
+    function: ynagata-ordering-service
+    slbenabled: true
+    ports:
+    - port: 7020
+      targetport: 7020
+    - port: 7012
+      targetport: 7012
+    - port: 7443
+      targetport: 7443
