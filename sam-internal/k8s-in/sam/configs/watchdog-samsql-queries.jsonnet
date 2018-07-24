@@ -239,11 +239,18 @@ WHERE latency > 45",
     },
 
   ],
+
+
    argus_metrics: [
   {
-      name: "SqlArgusDemo",
-      sql: "select 'sam.DFW.NONE.dfw-foo' as Scope, 'iptables.Count' as Metric, '' as Tags, 15 as Value",
-      watchdogFrequency: "10m",
+      name: "MachineCountByKernelVersion",
+      sql: "select 'sam.watchdog.global' as Scope, 'sql.machineCountByKernelVersion' as Metric, CONCAT('kernelVersion=',kernelVersion) as Tags, COUNT(*) as Value from nodeDetailView group by kernelVersion",
+      watchdogFrequency: "60m",
+  },
+  {
+      name: "MachineCountByKingdomAndKernelVersion",
+      sql: "select CONCAT('sam.watchdog.', UPPER(kingdom), '.NONE.', ControlEstate) as Scope, 'sql.machineCountByKingdomAndKernelVersion' as Metric, CONCAT('kernelVersion=',kernelVersion) as Tags, COUNT(*) as Value from nodeDetailView group by ControlEstate, kingdom, kernelVersion",
+      watchdogFrequency: "60m",
   },
   ],
 
