@@ -27,8 +27,6 @@ data:
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002105-7f1adf93",
       "k8sproxyEndpoint": "http://localhost:40000",
-      "kafkaProducerEndpoint": "ajna0-broker1-0-prd.data.sfdc.net:9093",
-      "kafkaTopic": "sfdc.prod.sam__prd.ajna_local__opevents",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
       "kubeResourceNamespacePrefixWhitelist": "sam-system,csc-sam",
@@ -59,8 +57,6 @@ data:
         "hyperkube.*scheduler": "age.kubescheduler",
         "name=etcd": "age.etcd"
       },
-      "publishAlertsToKafka": true,
-      "publishAllReportsToKafka": true,
       "publishToWatchDogCrd": true,
       "rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "recipient": "sdn@salesforce.com",

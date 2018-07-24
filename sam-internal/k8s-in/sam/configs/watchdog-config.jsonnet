@@ -64,11 +64,6 @@ std.prune({
     "docker-containerd.*docker-bootstrap": "age.dockercontainerdbootstrap",
     "name=etcd": "age.etcd",
   },
-  publishAlertsToKafka: (if configs.kingdom == "prd" then true else false),
-  kafkaProducerEndpoint: "ajna0-broker1-0-" + configs.kingdom + ".data.sfdc.net:9093",
-  kafkaTopic: "sfdc.prod.sam__" + configs.kingdom + ".ajna_local__opevents",
-
-  publishAllReportsToKafka: (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then true),
 
   m_tnrpEndpoint: (if configs.kingdom == "prd" then configs.tnrpEndpoint),
 
