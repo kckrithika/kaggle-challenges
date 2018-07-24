@@ -7,30 +7,30 @@ system:
     - name: gate-analyzer
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-analyzer:r-20180724a
       ports:
-      - containerPort: 9090
+      - containerPort: 9191
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 9191
       volumeMounts:
        - mountPath: /secrets/gus/
          name: gus
          readOnly: true
        - mountPath: /secrets/ssh/
-         name: ssh-key
+         name: git-ssh-key
          readOnly: true
     volumes:
     - name: gus
       k4aSecret:
         secretName: gus
-    - name: ssh-key
+    - name: git-ssh-key
       k4aSecret:
-        secretName: ssh-key
+        secretName: git-ssh-key
   loadbalancers:
   - lbname: gate-analyzer-lb
     function: default
     slbenabled: true
     ports:
-      - port: 9090
-        targetport: 9090
+      - port: 9191
+        targetport: 9191
         lbtype: tcp
