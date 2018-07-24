@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: sdn-aws-controller
+    sam.data.sfdc.net/owner: sdn
   name: sdn-aws-controller
   namespace: sam-system
 spec:
@@ -16,6 +17,7 @@ spec:
     metadata:
       labels:
         name: sdn-aws-controller
+        sam.data.sfdc.net/owner: sdn
     spec:
       containers:
       - command:

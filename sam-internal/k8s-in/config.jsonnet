@@ -110,7 +110,7 @@ local utils = import "util_functions.jsonnet",
             } else {}
         ),
         sdn: (
-            if estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sam" then {
+            if estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sam" || estate == "frf-sam" || estate == "cdu-sam" then {
                 "sam.data.sfdc.net/owner": "sdn",
             } else {}
         ),
