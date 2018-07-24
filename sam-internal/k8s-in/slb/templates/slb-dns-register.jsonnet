@@ -52,9 +52,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--subnet=" + slbconfigs.subnet,
                             "--client.serverPort=" + portconfigs.slb.slbNodeApiDnsOverridePort,
                             "--client.serverInterface=lo",
-                        ] + (if configs.estate == "prd-sam" then [
-                                 "--maxDeleteEntries=500",
-                             ] else []),
+                        ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
