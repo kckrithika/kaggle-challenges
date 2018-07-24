@@ -14,7 +14,7 @@ system:
           port: 8080
   loadbalancers:
   - lbname: dkilgorecjdashbaordlb
-    function: default
+    function: cj-dashboard
     slbenabled: true
     ports:
       - port: 8080
