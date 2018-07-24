@@ -5,8 +5,8 @@ system:
     count: 2
     containers:
     - name: samhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/snew/samhello:bob-20160630 # golang app
-      ports:
+    ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hsuanyu-chen/samhello:bob-20160630 # golang app  
+    ports:
       - containerPort: 9090
       livenessProbe:
         httpGet:
