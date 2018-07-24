@@ -23,3 +23,5 @@ apps:
   - prd/prd-sam_gater
  gate-manager-test-tnrp:
   - prd/prd-sam_gater
+ gate-analyzer:
+  - prd/prd-sam
