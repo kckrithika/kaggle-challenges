@@ -11,7 +11,7 @@ if configs.estate == "prd-sdc" then {
             app: "slb-echo-svc",
             "slb.sfdc.net/name": "slb-echo-svc",
             "slb.sfdc.net/type": "tcp",
-        } + slbconfigs.ownerLabel,
+        } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-echo-svc",
             "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.slbEchoServicePort + ",\"targetport\":" + portconfigs.slb.slbEchoServicePort + ",\"lbtype\":\"tcp\"}]",

@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: slb-canary-passthrough-host-network
+    sam.data.sfdc.net/owner: slb
   name: slb-canary-passthrough-host-network
   namespace: sam-system
 spec:
@@ -17,6 +18,7 @@ spec:
     metadata:
       labels:
         name: slb-canary-passthrough-host-network
+        sam.data.sfdc.net/owner: slb
       namespace: sam-system
     spec:
       containers:

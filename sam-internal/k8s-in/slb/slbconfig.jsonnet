@@ -15,7 +15,6 @@
     prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd', 'cdg', 'fra'],
     testEstateList: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage', 'prd-sam_storagedev'],
     samrole: "samapp.slb",
-    ownerLabel: (if slbimages.phaseNum <= 2 then configs.ownerLabel.slb else {}),
     perCluster: {
         ddiService: {
             [k]: "https://ddi-api-" + k + ".data.sfdc.net"

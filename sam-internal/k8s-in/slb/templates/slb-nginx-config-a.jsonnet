@@ -14,7 +14,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "slb-nginx-config-a",
-        } + slbconfigs.ownerLabel,
+        } + configs.ownerLabel.slb,
         name: "slb-nginx-config-a",
         namespace: "sam-system",
     },
@@ -25,7 +25,7 @@ if configs.estate == "prd-sam" then {
             metadata: {
                 labels: {
                     name: "slb-nginx-config-a",
-                } + slbconfigs.ownerLabel,
+                } + configs.ownerLabel.slb,
                 namespace: "sam-system",
                 annotations: {
                     "madkub.sam.sfdc.net/allcerts": "{

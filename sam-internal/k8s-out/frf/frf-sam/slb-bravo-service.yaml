@@ -6,6 +6,7 @@ metadata:
     slb.sfdc.net/portconfigurations: '[{"port":9090,"targetport":9090,"lbtype":"tcp"},{"port":9091,"targetport":9091,"lbtype":"http"},{"port":9092,"targetport":9092,"lbtype":"dsr"}]'
   labels:
     app: slb-bravo-svc
+    sam.data.sfdc.net/owner: slb
     slb.sfdc.net/name: slb-bravo-svc
   name: slb-bravo-svc
   namespace: sam-system

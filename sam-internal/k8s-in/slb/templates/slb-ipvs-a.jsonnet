@@ -12,7 +12,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "slb-ipvs-a",
-        } + slbconfigs.ownerLabel,
+        } + configs.ownerLabel.slb,
         name: "slb-ipvs-a",
         namespace: "sam-system",
     },
@@ -22,7 +22,7 @@ if configs.estate == "prd-sam" then {
             metadata: {
                 labels: {
                     name: "slb-ipvs-a",
-                } + slbconfigs.ownerLabel,
+                } + configs.ownerLabel.slb,
                 namespace: "sam-system",
             },
             spec: {
