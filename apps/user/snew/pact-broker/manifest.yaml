@@ -18,8 +18,8 @@ system:
           path: /
           port: 80
   loadbalancers:
-  - lbname: samhellolb
-    function: default
+  - lbname: brokerlb
+    function: broker
     slbenabled: true
     ports:
       - port: 80

@@ -13,8 +13,8 @@ system:
           path: /
           port: 9090
   loadbalancers:
-  - lbname: brokerlb
-    function: broker
+  - lbname: samhellolb
+    function: sam-test
     slbenabled: true
     ports:
       - port: 9090
