@@ -5,6 +5,7 @@ metadata:
     slb.sfdc.net/name: slb-canary-pt-host-nw
   labels:
     app: slb-canary-passthrough-host-network-service
+    sam.data.sfdc.net/owner: slb
     slb.sfdc.net/name: slb-canary-pt-host-nw
     slb.sfdc.net/type: none
   name: slb-canary-passthrough-host-network-service

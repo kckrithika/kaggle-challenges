@@ -10,7 +10,7 @@ if configs.estate == "xrd-sam" then {
         labels: {
             app: "slb-canary-service",
             "slb.sfdc.net/name": "slb-canary-service-ext",
-        } + slbconfigs.ownerLabel,
+        } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-canary-service-ext",
         },

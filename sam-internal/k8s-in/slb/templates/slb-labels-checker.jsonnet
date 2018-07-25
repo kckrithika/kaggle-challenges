@@ -8,7 +8,7 @@ if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "
     metadata: {
         labels: {
             name: "slb-labels-checker",
-        } + slbconfigs.ownerLabel,
+        } + configs.ownerLabel.slb,
         name: "slb-labels-checker",
         namespace: "sam-system",
     },
@@ -67,7 +67,7 @@ if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "
                 labels: {
                     name: "slb-labels-checker",
                     apptype: "monitoring",
-                } + slbconfigs.ownerLabel,
+                } + configs.ownerLabel.slb,
                 namespace: "sam-system",
             },
         },

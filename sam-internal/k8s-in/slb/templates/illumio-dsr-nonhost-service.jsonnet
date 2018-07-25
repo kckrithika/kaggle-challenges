@@ -10,7 +10,7 @@ if configs.estate == "prd-sam" then {
         labels: {
             app: "illumio-dsr-nonhost-svc",
             "slb.sfdc.net/name": "illumio-dsr-nonhost-svc",
-        } + slbconfigs.ownerLabel,
+        } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "illumio-dsr-nonhost-svc",
             "slb.sfdc.net/portconfigurations": "[{\"port\":8443,\"targetport\":8443,\"lbtype\":\"dsr\"}]",

@@ -7,7 +7,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
     metadata: {
         name: "slb-cleanup-unknownpods",
         namespace: "sam-system",
-        labels: {} + slbconfigs.ownerLabel,
+        labels: {} + configs.ownerLabel.slb,
     },
     data: {
         "slb-cleanup-unknownpods.sh": std.toString(importstr "scripts/slb-cleanup-unknownpods.sh"),
