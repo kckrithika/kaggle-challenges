@@ -6,10 +6,15 @@ apps:
   switchboard:
     - prd/prd-sam_gater
   switchboard-prod:
+    - cdg/cdg-sam_gater
     - dfw/dfw-sam_gater
+    - fra/fra-sam_gater
+    - frf/frf-sam_gater
+    - hnd/hnd-sam_gater
     - iad/iad-sam_gater
     - ord/ord-sam_gater
     - phx/phx-sam_gater
+    - ukb/ukb-sam_gater
   switchboard-prod-canary:
     - par/par-sam_gater
 
@@ -19,10 +24,15 @@ apps:
   envoy-canary:
     - prd/prd-sam_gater
   envoy-canary-prod:
+    - cdg/cdg-sam_gater
     - dfw/dfw-sam_gater
+    - fra/fra-sam_gater
+    - frf/frf-sam_gater
+    - hnd/hnd-sam_gater
     - iad/iad-sam_gater
     - ord/ord-sam_gater
     - phx/phx-sam_gater
+    - ukb/ukb-sam_gater
   envoy-canary-prod-canary:
     - par/par-sam_gater
 
