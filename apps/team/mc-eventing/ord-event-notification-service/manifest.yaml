@@ -27,6 +27,8 @@ system:
           value: 15372
         - name: AJNA_NAMESPACE
           value: mc.prod.mceventbusprod
+        - name: METRICS_FUNNELENDPOINTURL
+          value: http://ajna0-funnel1-0-ord.data.sfdc.net
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
