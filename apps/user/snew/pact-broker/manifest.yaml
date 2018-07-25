@@ -77,4 +77,4 @@ system:
     ports:
       - port: 80
         targetport: 80
-        lbtype: tcp
+        lbtype: http
