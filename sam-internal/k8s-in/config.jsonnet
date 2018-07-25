@@ -236,7 +236,7 @@ local utils = import "util_functions.jsonnet",
         },
     },
     dnsdomain: (
-        if estate == "prd-samtest" then
+        if estate == "prd-samtest" || estate == "prd-samdev" then
             estate + "." + kingdom + ".sam.sfdc.net"
         else
             "cluster.local"
