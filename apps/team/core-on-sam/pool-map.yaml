@@ -12,8 +12,6 @@ apps:
   - name: prd/prd-sp2-sam_coreapp
  matt-startup-test:
   - name: prd/prd-sp2-sam_coreapp
- cyan-sherpa-envoy:
-  - name: prd/prd-sp2-sam_coreapp
  redis-c1:
   - name: prd/prd-sp2-sam_coreapp
  perf-mist61-cyan:
