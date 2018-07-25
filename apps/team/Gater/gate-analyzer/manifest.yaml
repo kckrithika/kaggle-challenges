@@ -6,12 +6,18 @@ system:
     containers:
     - name: gate-analyzer
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-analyzer:r-20180724b
+      args:
+        - --server.port=9191
+        - --management.port=15373
       ports:
       - containerPort: 9191
+      - containerPort: 15373
       livenessProbe:
         httpGet:
-          path: /
-          port: 9191
+          path: /manage/info
+          port: 15373
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
       volumeMounts:
        - mountPath: /secrets/gus/
          name: gus
@@ -33,4 +39,7 @@ system:
     ports:
       - port: 9191
         targetport: 9191
+        lbtype: tcp
+      - port: 15373
+        targetport: 15373
         lbtype: tcp
