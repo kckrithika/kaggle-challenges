@@ -5,6 +5,7 @@ items:
   metadata:
     labels:
       cloud: storage
+      sam.data.sfdc.net/owner: storage
       team: legostore
     name: ceph-metrics
     namespace: legostore

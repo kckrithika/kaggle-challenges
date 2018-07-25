@@ -4,6 +4,7 @@ metadata:
   labels:
     cloud: storage
     name: sfstoreoperator
+    sam.data.sfdc.net/owner: storage
     team: sfstore
   name: sfstoreoperator-deployment
   namespace: sam-system

@@ -115,11 +115,9 @@ local utils = import "util_functions.jsonnet",
                 "sam.data.sfdc.net/owner": "slb",
             } else {}
         ),
-        storage: (
-            if estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sam" || estate == "frf-sam" || estate == "cdu-sam" then {
-                "sam.data.sfdc.net/owner": "storage",
-            } else {}
-        ),
+        storage: {
+            "sam.data.sfdc.net/owner": "storage",
+        },
     },
 
     # === KUBERNETES ===
