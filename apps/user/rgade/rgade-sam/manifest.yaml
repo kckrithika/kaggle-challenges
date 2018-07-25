@@ -3,9 +3,14 @@ system:
   functions:
   - name: default
     count: 1
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxUnavailable: 0
+        maxSurge: 2
     containers:
     - name: samhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rgade/samhello:rgade-20180722
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rgade/samhello:rgade-20180724
       ports:
       - containerPort: 9090
       livenessProbe:
