@@ -10,7 +10,7 @@ system:
     count: 1
     containers:
     - name: datapool-service
-      image: sfci/insights/datapoolservice:8e0b4fa
+      image: sfci/insights/datapoolservice:a0e260f
       ports:
       - containerPort: 7020
         name: grpc
@@ -43,7 +43,7 @@ system:
         value: /home/datapool/client-certs/client
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE
-        value: dva-registry.internal.salesforce.com/dva/flowsnake-job-datapool-engine:169
+        value: dva-registry.internal.salesforce.com/dva/flowsnake-job-datapool-engine:173
 
       volumeMounts:
       - mountPath: /home/datapool/logs
