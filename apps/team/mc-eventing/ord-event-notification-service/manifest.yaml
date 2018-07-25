@@ -19,7 +19,7 @@ system:
         type: client
     containers:
     - name: event-notification-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-215.0.0
+      image: sfci/mc-eventing/event-notification:215.0.4
       ports:
         - containerPort: 15372
       env:
