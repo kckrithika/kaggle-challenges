@@ -11,6 +11,7 @@ spec:
       labels:
         daemonset: "true"
         name: sdn-hairpin-setter
+        sam.data.sfdc.net/owner: sdn
       namespace: sam-system
     spec:
       containers:

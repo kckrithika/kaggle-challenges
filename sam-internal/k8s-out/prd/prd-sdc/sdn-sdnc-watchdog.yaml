@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: sdn-sdnc-watchdog
+    sam.data.sfdc.net/owner: sdn
   name: sdn-sdnc-watchdog
   namespace: sam-system
 spec:
@@ -18,6 +19,7 @@ spec:
       labels:
         apptype: monitoring
         name: sdn-sdnc-watchdog
+        sam.data.sfdc.net/owner: sdn
       namespace: sam-system
     spec:
       containers:
