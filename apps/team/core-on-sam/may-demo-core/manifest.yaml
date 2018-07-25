@@ -187,9 +187,9 @@ system:
     ports:
     - port: 8998
       targetport: 8998
-    - port: 13100
+    - port: 14100
       targetport: 13100
     - port: 12099
       targetport: 12099
-    - port: 13065
+    - port: 14065
       targetport: 13065

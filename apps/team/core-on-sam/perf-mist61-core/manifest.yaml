@@ -7,9 +7,14 @@ system:
     count: 2
     
     volumes:
-    - name: cert
+    - name: envoy-config-volume
+      emptyDir: {}
+    - name: tls-client-cert
       maddogCert:
         type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
 
     containers:
     - name: mist61-core
@@ -66,8 +71,9 @@ system:
           value: blue
 
         # Override port being announced in SD
+        # Publish the listen port of the side car Envoy that will handle the incoming traffic
         - name: SD_PORT_OVERRIDE
-          value: 12099
+          value: 13065
 
         # Settings.path
         - name: CASAM_SETTINGS_PATH
@@ -117,9 +123,65 @@ system:
         - containerPort: 12099
 
       volumeMounts:
-        - name: cert
+        - name: tls-client-cert
           mountPath: /certs
-    
+
+    - name: envoy-tls-terminator-config
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180620-154748
+      env:
+      - name: CONFIG_DIR
+        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
+      volumeMounts:
+      - name: envoy-config-volume
+        mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/live
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 10
+        periodSeconds: 5
+
+    - name: envoy-tls-terminator
+      image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: front-proxy
+      - name: ENVOY_DEBUG_OPTIONS
+        value: -l debug
+      args:
+      - --template
+      - /cyan-config/tls-terminator-config.yaml.template
+      ports:
+      - containerPort: 13065
+      - containerPort: 15373
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - name: envoy-config-volume
+        mountPath: /cyan-config
+      - name: tls-client-cert
+        mountPath: /certs/cert-client
+      - name: tls-server-cert
+        mountPath: /certs/cert-server
+
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
 
@@ -219,13 +281,20 @@ system:
     ports:
     - port: 18998
       targetport: 8998
-    - port: 18085
+    - port: 13100
       targetport: 8085
     - port: 18086
       targetport: 12099
+# side car Envoy listen port
+    - port: 13065
+      targetport: 13065
+# side car Envoy admin port
+    - port: 16373
+      targetport: 15373
   - lbname: sequencer-lb
     function: sequencer
     nodeExposed: true
     ports:
     - port: 22062
       targetport: 12062
+
