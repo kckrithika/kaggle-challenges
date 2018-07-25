@@ -12,7 +12,7 @@ system:
       - mhowald@salesforce.com
   functions:
   - name: wh-con
-    count: 3
+    count: 0
     volumes:
     - name: cert
       maddogCert:
