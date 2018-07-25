@@ -32,7 +32,7 @@ system:
       ports:
       - containerPort: 12015
     - name: caas-redis-announcer-12015
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
       - caas/cluster/sp-c9:SUPERPOD:12015

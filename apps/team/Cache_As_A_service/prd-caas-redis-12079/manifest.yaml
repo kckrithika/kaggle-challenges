@@ -27,8 +27,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12079
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       # expose redis outside the container
       env:
        - name: SFDC_SUBENVIRONMENT
@@ -37,7 +37,7 @@ system:
       - containerPort: 12079
         name: caas-cluster
     - name: caas-redis-announcer
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
       - caas/cluster/sp-mist30-c1:SUPERPOD:12079

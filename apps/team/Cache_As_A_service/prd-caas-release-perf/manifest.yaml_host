@@ -41,7 +41,7 @@ system:
       - containerPort: 12025
     - name: caas-redis-announcer-12015
       # container image/version to  run
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
       - caas/cluster/sp-nightly:SUPERPOD:12015
@@ -92,7 +92,7 @@ system:
       - containerPort: 12026
     - name: caas-redis-announcer-12016
       # container image/version to  run
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
       - caas/cluster/sp-nightly:SUPERPOD:12016
@@ -143,7 +143,7 @@ system:
       - containerPort: 12027
     - name: caas-redis-announcer-12017
       # container image/version to  run
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
       - caas/cluster/sp-nightly:SUPERPOD:12017
@@ -194,7 +194,7 @@ system:
       - containerPort: 12028
     - name: caas-redis-announcer-12018
       # container image/version to  run
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
       - caas/cluster/sp-nightly:SUPERPOD:12018
@@ -245,7 +245,7 @@ system:
       - containerPort: 12029
     - name: caas-redis-announcer-12019
       # container image/version to  run
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
       - caas/cluster/sp-nightly:SUPERPOD:12019
@@ -296,7 +296,7 @@ system:
       - containerPort: 12030
     - name: caas-redis-announcer-12020
       # container image/version to  run
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
       - caas/cluster/sp-nightly:SUPERPOD:12020
@@ -347,7 +347,7 @@ system:
       - containerPort: 12031
     - name: caas-redis-announcer-12021
       # container image/version to  run
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
       - caas/cluster/sp-nightly:SUPERPOD:12021
@@ -398,7 +398,7 @@ system:
       - containerPort: 12032
     - name: caas-redis-announcer-12022
       # container image/version to  run
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
       - caas/cluster/sp-nightly:SUPERPOD:12022
