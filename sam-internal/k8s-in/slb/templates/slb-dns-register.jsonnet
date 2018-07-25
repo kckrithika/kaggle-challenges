@@ -76,7 +76,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             type: "RollingUpdate",
             rollingUpdate: {
                 maxUnavailable: 1,
-            } + (if slbimages.phaseNum <= 2 then {
+            } + (if slbimages.phaseNum <= 3 then {
                      maxSurge: 0,
                  } else {
                      maxSurge: 1,
