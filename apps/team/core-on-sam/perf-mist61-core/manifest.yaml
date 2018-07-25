@@ -127,7 +127,7 @@ system:
           mountPath: /certs
 
     - name: envoy-tls-terminator-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180620-154748
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180725-142450
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
