@@ -3,6 +3,7 @@ kind: DaemonSet
 metadata:
   labels:
     name: sdn-logstash-push
+    sam.data.sfdc.net/owner: sdn
   name: sdn-logstash-push
   namespace: sam-system
 spec:
@@ -11,6 +12,7 @@ spec:
       labels:
         apptype: monitoring
         name: sdn-logstash-push
+        sam.data.sfdc.net/owner: sdn
       namespace: sam-system
     spec:
       containers:

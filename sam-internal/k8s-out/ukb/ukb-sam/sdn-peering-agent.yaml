@@ -12,6 +12,7 @@ spec:
         apptype: control
         daemonset: "true"
         name: sdn-peering-agent
+        sam.data.sfdc.net/owner: sdn
       namespace: sam-system
     spec:
       containers:
