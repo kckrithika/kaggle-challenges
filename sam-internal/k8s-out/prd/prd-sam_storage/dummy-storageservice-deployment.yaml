@@ -4,6 +4,7 @@ metadata:
   labels:
     cloud: storage
     name: dummy-storageservice-deployment
+    sam.data.sfdc.net/owner: storage
     team: storage-foundation
   name: dummy-storageservice
   namespace: storage

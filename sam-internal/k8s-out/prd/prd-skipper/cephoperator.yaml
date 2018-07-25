@@ -4,6 +4,7 @@ metadata:
   labels:
     cloud: storage
     name: cephoperator
+    sam.data.sfdc.net/owner: storage
     team: legostore
   name: cephoperator-deployment
   namespace: sam-system

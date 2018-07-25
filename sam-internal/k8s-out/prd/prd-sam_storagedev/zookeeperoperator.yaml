@@ -4,6 +4,7 @@ metadata:
   labels:
     cloud: storage
     name: zookeeperoperator
+    sam.data.sfdc.net/owner: storage
     team: storage-foundation
   name: zookeeperoperator-deployment
   namespace: sam-system

@@ -6,6 +6,7 @@ items:
     labels:
       cloud: storage
       name: sfstore-image-puller
+      sam.data.sfdc.net/owner: storage
       team: storage-foundation
     name: sfstore-image-puller
     namespace: storage-foundation
@@ -47,6 +48,7 @@ items:
     labels:
       cloud: storage
       name: ceph-prd-sam-cephdev-image-puller
+      sam.data.sfdc.net/owner: storage
       team: storage-foundation
     name: ceph-prd-sam-cephdev-image-puller
     namespace: storage-foundation
@@ -88,6 +90,7 @@ items:
     labels:
       cloud: storage
       name: ceph-prd-sam-storage-image-puller
+      sam.data.sfdc.net/owner: storage
       team: storage-foundation
     name: ceph-prd-sam-storage-image-puller
     namespace: storage-foundation

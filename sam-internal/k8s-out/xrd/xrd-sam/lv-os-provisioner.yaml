@@ -3,6 +3,7 @@ kind: DaemonSet
 metadata:
   labels:
     cloud: storage
+    sam.data.sfdc.net/owner: storage
     team: storage-foundation
   name: lv-os-provisioner
   namespace: storage-foundation
