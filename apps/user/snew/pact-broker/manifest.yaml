@@ -27,6 +27,9 @@ system:
         httpGet:
           path: /
           port: 80
+        failureThreshold: 3
+        initialDelaySeconds: 60
+        periodSeconds: 60
 
     - name: postgres
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/postgres:9.3-sfdc
@@ -49,7 +52,7 @@ system:
         tcpSocket:
           port: 5432
         failureThreshold: 3
-        initialDelaySeconds: 5
+        initialDelaySeconds: 60
         periodSeconds: 60
 
     - name: nginx
@@ -77,4 +80,4 @@ system:
     ports:
       - port: 80
         targetport: 80
-        lbtype: http
+        lbtype: tcp
