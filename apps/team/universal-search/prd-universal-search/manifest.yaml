@@ -64,7 +64,7 @@ system:
       - containerPort: 7012
         name: sherpa-in
       - containerPort: 7443
-        name: sherpa-tls  
+        name: sherpa-tls
       - containerPort: 15373
         name: sherpa-adm
       env:
@@ -169,6 +169,9 @@ system:
     ports:
     - port: 7020
       targetport: 7012
+    - lbtype: http
+      port: 15372
+      targetport: 15372
     - lbtype: http
       port: 15373
       targetport: 15373
