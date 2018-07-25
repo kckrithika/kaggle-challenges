@@ -85,7 +85,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 add_local_canary: "verified",  #Verified successfully in test fleet
-                add_12_canary: "unverified",  #Verified successfully in test fleet
+                add_12_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
             },
@@ -121,8 +121,8 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                add_local_canary: "unverified",  #Verified in IoT fleet
-                add_12_canary: "unverified",  #Verified successfully in test fleet
+                add_local_canary: "verified",  #Verified in IoT fleet
+                add_12_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
@@ -151,8 +151,8 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                add_local_canary: "unverified",  #Unverified in IoT fleet
-                add_12_canary: "unverified",  #Verified successfully in test fleet
+                add_local_canary: "verified",  #Verified in IoT fleet
+                add_12_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
@@ -177,19 +177,23 @@ local utils = import "util_functions.jsonnet";
             ### any overrides in other phases that are equal to the new defaults.
 
             cert_secretizer_image_tag: "662",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
+            fleetService_image_tag: "696",
+            watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
 
             feature_flags: {
                 ### AFTER SETTING FEATURE FLAGS HERE:
                 ### issue PR to deploy your changes. Then create a follow-on PR
                 ### that deletes all the feature flags and conditional logic from
                 ### the templates. This PR should not result in any k8s-out diffs.
+                add_local_canary: "verified",  #Verified in IoT fleet
+                add_12_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
                 main: {
                   "0.10.0": 662,
                   "0.11.0": 681,
+                  "0.12.0": 696,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {

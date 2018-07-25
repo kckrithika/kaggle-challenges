@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-canary
-  name: watchdog-canary-0-11-0
+  name: watchdog-canary-0-12-0
   namespace: flowsnake
 spec:
   template:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
-          "phx", "name": "watchdogcanarycerts", "role": "flowsnake_test", "san": ["flowsnake-phx.data.sfdc.net",
+          "ord", "name": "watchdogcanarycerts", "role": "flowsnake_test", "san": ["flowsnake-ord.data.sfdc.net",
           "api.flowsnake.localhost.mesh.force.com"]}]}'
       labels:
-        app: watchdog-canary-0-11-0
+        app: watchdog-canary-0-12-0
         apptype: monitoring
     spec:
       containers:
@@ -22,14 +22,14 @@ spec:
         - -role=CLI
         - -emailFrequency=10m
         - -timeout=2s
-        - -funnelEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
+        - -funnelEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
         - --config=/config/watchdog.json
-        - -cliCheckerCommandTarget=0.11.0
+        - -cliCheckerCommandTarget=0.12.0
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -watchdogFrequency=15m
         - -alertThreshold=45m
         - -cliCheckerTimeout=15m
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-698-itest
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-698-itest
         imagePullPolicy: IfNotPresent
         name: watchdog-canary
         resources:
@@ -60,7 +60,7 @@ spec:
         - --madkub-endpoint
         - https://10.254.208.254:32007
         - --maddog-endpoint
-        - https://all.pkicontroller.pki.blank.phx.prod.non-estates.sfdcsd.net:8443
+        - https://all.pkicontroller.pki.blank.ord.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca
         - /etc/pki_service/ca/security-ca.pem
         - --madkub-server-ca
@@ -68,17 +68,17 @@ spec:
         - --token-folder
         - /tokens
         - --kingdom
-        - phx
+        - ord
         - --superpod
         - None
         - --estate
-        - phx-flowsnake_prod
+        - ord-flowsnake_prod
         - --refresher
         - --run-init-for-refresher-mode
         - --cert-folders
         - watchdogcanarycerts:/certs
         - --funnel-endpoint
-        - http://ajna0-funnel1-0-phx.data.sfdc.net:80
+        - http://ajna0-funnel1-0-ord.data.sfdc.net:80
         env:
         - name: MADKUB_NODENAME
           valueFrom:
@@ -95,7 +95,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
         name: sam-madkub-integration-refresher
         resources: {}
         volumeMounts:
@@ -119,7 +119,7 @@ spec:
         - --madkub-endpoint
         - https://10.254.208.254:32007
         - --maddog-endpoint
-        - https://all.pkicontroller.pki.blank.phx.prod.non-estates.sfdcsd.net:8443
+        - https://all.pkicontroller.pki.blank.ord.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca
         - /etc/pki_service/ca/security-ca.pem
         - --madkub-server-ca
@@ -127,15 +127,15 @@ spec:
         - --token-folder
         - /tokens
         - --kingdom
-        - phx
+        - ord
         - --superpod
         - None
         - --estate
-        - phx-flowsnake_prod
+        - ord-flowsnake_prod
         - --cert-folders
         - watchdogcanarycerts:/certs
         - --funnel-endpoint
-        - http://ajna0-funnel1-0-phx.data.sfdc.net:80
+        - http://ajna0-funnel1-0-ord.data.sfdc.net:80
         env:
         - name: MADKUB_NODENAME
           valueFrom:
@@ -152,7 +152,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
         name: sam-madkub-integration-init
         resources: {}
         volumeMounts:
