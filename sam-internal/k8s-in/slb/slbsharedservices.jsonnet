@@ -112,20 +112,20 @@
         name: "slb-realsvrcfg",
         image: slbimages.hypersdn,
         command: [
-            "/sdn/slb-realsvrcfg",
-            "--configDir=" + slbconfigs.configDir,
-            "--period=5s",
-            "--netInterfaceName=eth0",
-            "--log_dir=" + slbconfigs.logsDir,
-            configs.sfdchosts_arg,
-            "--client.serverPort=" + nodeApiPort,
-            "--client.serverInterface=lo",
-        ] + (if $.dirSuffix == "slb-nginx-config-b" && slbimages.phaseNum <= 3 then [
-            "--control.sentinelExpiration=1200s",
-        ] else [])
-        + (if slbimages.hypersdn_build >= 955 then [
-            "--nginxPodMode=" + nginxPodMode,
-        ] else []),
+                     "/sdn/slb-realsvrcfg",
+                     "--configDir=" + slbconfigs.configDir,
+                     "--period=5s",
+                     "--netInterfaceName=eth0",
+                     "--log_dir=" + slbconfigs.logsDir,
+                     configs.sfdchosts_arg,
+                     "--client.serverPort=" + nodeApiPort,
+                     "--client.serverInterface=lo",
+                 ] + (if $.dirSuffix == "slb-nginx-config-b" && slbimages.phaseNum <= 3 then [
+                          "--control.sentinelExpiration=1200s",
+                      ] else [])
+                 + [
+                     "--nginxPodMode=" + nginxPodMode,
+                 ],
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.sbin_volume_mount,
