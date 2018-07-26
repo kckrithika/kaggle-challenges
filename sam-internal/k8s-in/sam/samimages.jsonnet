@@ -64,6 +64,8 @@ local utils = import "util_functions.jsonnet";
         "yul,yul-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
         "vpod,vpod,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
         "vpod,vpod,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
+        "prd,prd-samtwo,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
+        "prd,prd-samtwo,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
 
         # [Xiao] pin samapp-controller to an earlier version without dual run in prd-sam
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002059-8a57b252",
