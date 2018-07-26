@@ -5,7 +5,6 @@ metadata:
     slb.sfdc.net/name: slb-canary-pt-tls
   labels:
     app: slb-canary-passthrough-tls-service
-    sam.data.sfdc.net/owner: slb
     slb.sfdc.net/name: slb-canary-pt-tls
     slb.sfdc.net/type: none
   name: slb-canary-passthrough-tls-service
