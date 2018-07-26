@@ -12,7 +12,7 @@ if configs.estate == "prd-samdev" then {
                 containers: [
                     {
                         name: "jenkins",
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/myjenkins:20180220",
+                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tkuznets/jenkins:20180726",
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "docker",
