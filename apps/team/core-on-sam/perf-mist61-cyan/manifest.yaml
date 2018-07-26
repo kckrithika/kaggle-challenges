@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cyan-envoy-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:kviphong-20180628-105218
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
@@ -86,9 +86,9 @@ system:
     nodeExposed: true
     slbEnabled: true
     ports:
-    - port: 8085
-      targetport: 12060
+# HTTPS listen port of Envoy.
     - port: 8086
       targetport: 12065
+# Cyan Admin port - TODO - Don't expose this. Exposed for now for debugging.
     - port: 8087
       targetport: 15373

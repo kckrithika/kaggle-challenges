@@ -127,7 +127,7 @@ system:
           mountPath: /certs
 
     - name: envoy-tls-terminator-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180725-142450
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
@@ -153,7 +153,7 @@ system:
       image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
       env:
       - name: SFDC_ENVIRONMENT
-        value: front-proxy
+        value: tls-terminator-sidecar
       - name: ENVOY_DEBUG_OPTIONS
         value: -l debug
       args:
@@ -279,16 +279,19 @@ system:
     function: mist61-core
     nodeExposed: true
     ports:
+# TODO - What port is this? Do we need to expose this one?
     - port: 18998
       targetport: 8998
+# HTTP listen port of coreapp - TODO - Remove this as all traffic will come through the side car
     - port: 13100
       targetport: 8085
+# HTTPS listen port of coreapp - TODO - Remove this as all traffic will come through the side car
     - port: 18086
       targetport: 12099
-# side car Envoy listen port
+# side car Envoy's HTTPS listen port
     - port: 13065
       targetport: 13065
-# side car Envoy admin port
+# side car Envoy's admin port - TODO - No need to expose this, security risk. For now, its exposed for debugging purpose.
     - port: 16373
       targetport: 15373
   - lbname: sequencer-lb
