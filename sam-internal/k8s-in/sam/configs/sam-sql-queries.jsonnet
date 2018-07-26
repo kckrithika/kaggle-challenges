@@ -98,35 +98,25 @@ GROUP BY DayHour;",
 #===================
 
     {
-      name: "Number of Failed WatchDogs across Estates",
-      sql: "
-      SELECT
-        ControlEstate,
-        JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')) AS 'CheckerName',
-        JSON_EXTRACT(Payload, '$.status.report.Success') AS 'Success',
-        COUNT(*) AS 'COUNT'
-      FROM k8s_resource
-      WHERE ApiKind='Watchdog' AND JSON_EXTRACT(Payload, '$.status.report.Success')=false
-      GROUP BY ControlEstate, JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')), JSON_EXTRACT(Payload, '$.status.report.Success')
-      ORDER BY COUNT(*) DESC
-      ",
-    },
-
-#===================
-
-    {
-      name: "Number of Failed WatchDogs across Kingdoms",
-      sql: "
-      SELECT
-        JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.Kingdom')) as 'Kingdom',
-        JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')) AS 'Checker',
-        JSON_EXTRACT(Payload, '$.status.report.Success') AS 'Success',
-        COUNT(*) AS 'COUNT'
-      FROM k8s_resource
-      WHERE ApiKind='Watchdog' AND JSON_EXTRACT(Payload, '$.status.report.Success')=false
-
-      GROUP BY JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.Kingdom')), JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')), JSON_EXTRACT(Payload, '$.status.report.Success')
-      ORDER BY COUNT(*) DESC
+      name: "Watchdog Aggregate Status by Checker",
+      sql: "select
+  CheckerName,
+  SUM(SuccessCount) as SuccessCount,
+  SUM(FailureCount) as FailureCount,
+  SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) as SuccessPct
+from
+(
+select
+  Payload->>'$.status.report.CheckerName' as CheckerName,
+  case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
+    case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount
+from k8s_resource
+where ApiKind = 'WatchDog'
+) as ss
+where CheckerName not like 'Sql%' and 
+CheckerName not like 'MachineCount%'
+group by CheckerName
+order by SuccessPct desc
       ",
     },
 
@@ -155,45 +145,6 @@ WHERE
   (availableReplicas != desiredReplicas OR availableReplicas IS NULL) AND
   NOT ControlEstate LIKE 'prd-%' AND
   desiredReplicas != 0",
-    },
-
-#===================
-
-    {
-      name: "Bad-Pods-By-Host-Production",
-      sql: "select * from (
-select
-        NodeName,
-        NodeUrl,
-        SUM(PendingCount) AS PendingCount,
-        SUM(FailedCount) AS FailedCount,
-        SUM(SucceededCount) AS SucceededCount,
-        SUM(OtherCount) AS OtherCount,
-        SUM(RunningCount) AS RunningCount,
-        GROUP_CONCAT(CustomerPodWithIssue SEPARATOR '; ') AS CustomerPodWithIssue,
-        GROUP_CONCAT(SystemPodWithIssue SEPARATOR '; ') AS SystemPodWithIssue
-from (
-        select
-                NodeName,
-                CASE WHEN Phase = 'Pending' THEN 1 ELSE 0 END AS PendingCount,
-                CASE WHEN Phase = 'Failed' THEN 1 ELSE 0 END AS FailedCount,
-                CASE WHEN Phase = 'Succeeded' THEN 1 ELSE 0 END AS SucceededCount,
-                CASE WHEN Phase != 'Running' AND Phase != 'Pending' AND Phase != 'Failed' AND Phase != 'Succeeded' THEN 1 ELSE 0 END AS OtherCount,
-                CASE WHEN Phase = 'Running' THEN 1 ELSE 0 END AS RunningCount,
-                CASE WHEN Phase != 'Running' AND (Namespace = 'sam-system' OR Namespace = 'sam-watchdog' OR Namespace = 'csc-sam') THEN Name ELSE NULL END AS SystemPodWithIssue,
-                CASE WHEN Phase != 'Running' AND (Namespace != 'sam-system' AND Namespace != 'sam-watchdog' AND Namespace != 'csc-sam') THEN Name ELSE NULL END AS CustomerPodWithIssue,
-                NodeUrl
-        from
-                podDetailView
-        where
-                Kingdom != 'prd'
-                AND NodeName is not NULL
-                AND NOT (NodeName like '%samminionceph%')
-) as ss
-group by NodeName, NodeUrl
-) as ss2
-where (PendingCount+FailedCount+SucceededCount+OtherCount)>0
-order by PendingCount+FailedCount+SucceededCount+OtherCount desc",
     },
 
 #===================
