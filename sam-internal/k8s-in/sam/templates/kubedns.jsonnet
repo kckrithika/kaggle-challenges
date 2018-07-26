@@ -41,7 +41,7 @@ if samfeatureflags.kubedns then {
                 } + configs.ownerLabel.sam,
             },
             spec: {
-                hostNetwork: if configs.estate == "prd-samdev" then true else false,
+                hostNetwork: true,
                 containers: [
                     {
                         args: [
