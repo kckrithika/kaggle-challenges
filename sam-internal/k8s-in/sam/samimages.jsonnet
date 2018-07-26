@@ -21,7 +21,7 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         # [alok.bansal] SAM Manifest Repo Watcher
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002125-a890e175",
+        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002147-c4af4fe0",
 
         # [small] DNS Policy testing
         "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180724_224507.924ff22b.clean.small-ltm",
