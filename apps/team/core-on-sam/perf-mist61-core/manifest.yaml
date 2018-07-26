@@ -154,8 +154,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: tls-terminator-sidecar
-      - name: ENVOY_DEBUG_OPTIONS
-        value: -l debug
       args:
       - --template
       - /cyan-config/tls-terminator-config.yaml.template
