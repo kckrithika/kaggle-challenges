@@ -48,14 +48,6 @@ data:
           "sql": "SELECT ControlEstate, ApiKind, Count(*) FROM ( SELECT ControlEstate, ApiKind, IsTombstone FROM k8s_resource where IsTombstone \u003c\u003e 1) AS ss GROUP BY ControlEstate, ApiKind ORDER BY ControlEstate"
         },
         {
-          "name": "Failed-Watchdog-CRDs",
-          "sql": "SELECT ControlEstate, Name, Payload, ProduceTime, ConsumeTime, IsTombstone FROM k8s_resource WHERE ApiKind='Watchdog' AND JSON_EXTRACT(Payload, '$.status.report.Success') = false"
-        },
-        {
-          "name": "Successful-Watchdog-CRDs",
-          "sql": "SELECT ControlEstate, Name, Payload, ProduceTime, ConsumeTime, IsTombstone FROM k8s_resource WHERE ApiKind='Watchdog' AND JSON_EXTRACT(Payload, '$.status.report.Success') = true"
-        },
-        {
           "name": "Watchdog Aggregate Status by Checker",
           "sql": "select\n  CheckerName,\n  SUM(SuccessCount) as SuccessCount,\n  SUM(FailureCount) as FailureCount,\n  SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) as SuccessPct\nfrom\n(\nselect\n  Payload-\u003e\u003e'$.status.report.CheckerName' as CheckerName,\n  case when Payload-\u003e\u003e'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,\n    case when Payload-\u003e\u003e'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount\nfrom k8s_resource\nwhere ApiKind = 'WatchDog'\n) as ss\nwhere CheckerName not like 'Sql%' and \nCheckerName not like 'MachineCount%'\ngroup by CheckerName\norder by SuccessPct desc\n      "
         },
