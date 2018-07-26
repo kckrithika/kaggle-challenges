@@ -3,7 +3,6 @@ kind: DaemonSet
 metadata:
   labels:
     name: slb-config-data
-    sam.data.sfdc.net/owner: slb
   name: slb-config-data
   namespace: sam-system
 spec:
@@ -14,7 +13,6 @@ spec:
         apptype: control
         daemonset: "true"
         name: slb-config-data
-        sam.data.sfdc.net/owner: slb
       namespace: sam-system
     spec:
       containers:

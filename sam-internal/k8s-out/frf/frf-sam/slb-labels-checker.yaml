@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     name: slb-labels-checker
-    sam.data.sfdc.net/owner: slb
   name: slb-labels-checker
   namespace: sam-system
 spec:
@@ -19,7 +18,6 @@ spec:
       labels:
         apptype: monitoring
         name: slb-labels-checker
-        sam.data.sfdc.net/owner: slb
       namespace: sam-system
     spec:
       containers:
