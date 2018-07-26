@@ -15,7 +15,7 @@ local kingdom = std.extVar("kingdom");
 
         # [agajjala] Rolling out latest image of hypersdn to CDU with sdn-aws-controller
         "cdu,cdu-sam,sdn-aws-controller,hypersdn": "v-0000649-00946749",
-
+        "frf,frf-sam,sdn-vault-agent,hypersdn": "v-0000979-ead575b6",
     },
 
     ### Per-phase image tags
