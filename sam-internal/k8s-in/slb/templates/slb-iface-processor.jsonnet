@@ -10,7 +10,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
     metadata: {
         labels: {
             name: "slb-iface-processor",
-        } + configs.ownerLabel.slb,
+        },
         name: "slb-iface-processor",
         namespace: "sam-system",
     },
