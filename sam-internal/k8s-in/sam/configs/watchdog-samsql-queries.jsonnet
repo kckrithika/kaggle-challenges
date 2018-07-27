@@ -37,6 +37,9 @@
                            ControlEstate != 'unknown' AND
                            desiredReplicas > 1",
     },
+
+# =====
+
     {
         name: "SqlSlaNode",
         instructions: "The following minion pools have multiple nodes down in Production requiring immediate attention according to our SLA. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
@@ -74,6 +77,9 @@
               ) ss2
               WHERE (TotalCount < 10 AND NotReadyCount >=2) OR (TotalCount >= 10 AND NotReadyPerc >=0.2)",
         },
+
+# =====
+
     {
             name: "SqlSamControl",
             instructions: "The following SAM control stack components dont have even 1 healhty pod",
@@ -106,6 +112,9 @@
                      ControlEstate NOT LIKE '%slb%' AND
                      desiredReplicas != 0",
     },
+
+# =====
+
     {
     name: "SqlPRLatency",
       instructions: "Following PRs have failed to get deployed within 45 minutes of getting merged.",
@@ -134,6 +143,8 @@ ORDER BY prs.pr_num
 ) prLatency
 WHERE latency > 45",
     },
+
+# =====
 
     {
      name: "Sql95thPRLatency",
@@ -172,6 +183,9 @@ WHERE latency > 45",
     temp2 WHERE temp2.latency > 45",
     },
 
+
+# =====
+
     {
       name: "SqlPRAuthroizationLinkPostTimeLatency",
       instructions: "Following PRs don't have authorization link after 6 minutes of getting created.",
@@ -192,6 +206,9 @@ WHERE latency > 45",
         WHERE noApprovalLink.latency > 6 AND pr_num > 1000
         ORDER BY latency desc",
     },
+
+# =====
+
     {
       name: "SqlPRFailtedToRunEvalPR",
       instructions: "Following PRs haven't run evaluatePR more than 30 mins after getting authorized.",
@@ -216,6 +233,9 @@ WHERE latency > 45",
         ) authedButUnkwn
         WHERE authedButUnkwn.latency > 30 AND pr_num > 1000",
     },
+
+# =====
+
     {
       name: "SqlPRFailedToProduceManifestZip",
       instructions: "Following PRs have failed to produce corresponding manifest.zip file after 30 minutes of getting  merged.",
@@ -241,17 +261,76 @@ WHERE latency > 45",
   ],
 
 
+#### ARGUS METRICS ####
+
    argus_metrics: [
    {
      watchdogFrequency: "60m",
      name: "MachineCountByKernelVersion",
      sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate, 'sql.machineCountByKernelVersion' as Metric, COUNT(*) as Value, CONCAT('KernelVersion=',KernelVersion) as Tags from nodeDetailView group by kernelVersion",
    },
+
+# =====
+
    {
      watchdogFrequency: "60m",
      name: "MachineCountByKingdomAndKernelVersion",
      sql: "select UPPER(kingdom) as Kingdom, 'NONE' as SuperPod, ControlEstate as Estate, 'sql.machineCountByKingdomAndKernelVersion' as Metric, COUNT(*) as Value, CONCAT('KernelVersion=',KernelVersion) as Tags from nodeDetailView group by ControlEstate, kingdom, kernelVersion",
    },
+
+# =====
+
+   {
+     watchdogFrequency: "60m",
+     name: "WatchdogSuccessPct",
+     sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate, 
+'sql.checkerPassPct' as Metric, SuccessPct as Value, CONCAT('CheckerName=',CheckerName) as Tags
+from (
+  select
+    CheckerName,
+    SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) as SuccessPct
+  from
+  (
+    select
+      Payload->>'$.status.report.CheckerName' as CheckerName,
+      case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
+      case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount
+    from k8s_resource
+    where ApiKind = 'WatchDog'
+  ) as ss
+  where CheckerName not like 'Sql%' and CheckerName not like 'MachineCount%'
+  group by CheckerName
+) as ss2",
+  },
+  {
+     watchdogFrequency: "60m",
+     name: "WatchdogSuccessPctByKingdom",
+     sql: "select UPPER(kingdom) as Kingdom, 'NONE' as SuperPod, ControlEstate as Estate,
+'sql.checkerPassPctPerKingdom' as Metric, SuccessPct as Value, CONCAT('CheckerName=',CheckerName) as Tags
+from (
+  select
+    ControlEstate,
+    Kingdom,
+    CheckerName,
+    SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) as SuccessPct
+  from
+  (
+    select
+      substr(ControlEstate,1,3) AS Kingdom,
+      ControlEstate,
+      Payload->>'$.status.report.CheckerName' as CheckerName,
+      case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
+      case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount
+    from k8s_resource
+    where ApiKind = 'WatchDog'
+  ) as ss
+  where CheckerName not like 'Sql%' and CheckerName not like 'MachineCount%'
+  group by CheckerName, ControlEstate, Kingdom
+) as ss2",
+  },
+
+# =====
+
   ],
 
 }
