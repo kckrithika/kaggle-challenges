@@ -18,6 +18,8 @@ system:
         value: 15370
       - name: LOGGING_DIR
         value: "/log"
+      - name: JVM_HEAP_MAX
+        value: -6G
       args:
       - --clusters.external-clusters[0]=geoip:HTTP2
       - --clusters.external-clusters[1]=geoip-tls:HTTP2_TLS
