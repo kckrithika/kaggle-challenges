@@ -13,7 +13,6 @@ spec:
         apptype: control
         daemonset: "true"
         name: slb-iface-processor
-        sam.data.sfdc.net/owner: slb
       namespace: sam-system
     spec:
       affinity:

@@ -21,7 +21,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs
                     name: "slb-config-processor",
                     apptype: "control",
                     daemonset: "true",
-                } + configs.ownerLabel.slb,
+                },
                 namespace: "sam-system",
             },
             spec: {
