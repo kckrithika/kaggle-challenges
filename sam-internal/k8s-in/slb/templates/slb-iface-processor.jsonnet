@@ -21,7 +21,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     name: "slb-iface-processor",
                     apptype: "control",
                     daemonset: "true",
-                } + configs.ownerLabel.slb,
+                },
                 namespace: "sam-system",
             },
             spec: {
