@@ -33,6 +33,9 @@ system:
         name: rsui-in-admin
       - containerPort: 7020
         name: rsui-in-http2
+      resources:
+        limits: { cpu: "2", memory: "10Gi" }
+        requests: { cpu: "2", memory: "10Gi" }
       env:
       - name: MDS_HOST
         value: metadata-service.retail-mds.localhost.mesh.force.com
