@@ -9,8 +9,8 @@ system:
     count: 1
     containers:
     - name: perf-switchboard
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/141
-      image: sfci/servicelibs/switchboard:d4a5d8750dd502effa37e6fe2f46db9662cceac0
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/157
+      image: sfci/servicelibs/switchboard:2f9f8adcc3056e7696491d651d053c58890bb6ba
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
@@ -19,7 +19,7 @@ system:
       - name: LOGGING_DIR
         value: "/log"
       - name: JVM_HEAP_MAX
-        value: -6G
+        value: 6G
       args:
       - --clusters.external-clusters[0]=geoip:HTTP2
       - --clusters.external-clusters[1]=geoip-tls:HTTP2_TLS
