@@ -36,7 +36,7 @@ local utils = import "util_functions.jsonnet";
                 nodeMonitor_image_tag: 662,
                 watchdog_image_tag: "sam-0002015-fdb18963",
                 watchdog_canary_image_tag: "681",
-                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-710-4-itest",
+                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-706-itest",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
                 deployer_image_tag: "sam-0002076-c7dd1d69",
@@ -124,6 +124,7 @@ local utils = import "util_functions.jsonnet";
                 add_local_canary: "verified",  #Verified in IoT fleet
                 add_12_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
+                docker_daemon_monitor: "",
             },
             version_mapping: {
                 main: {
@@ -154,6 +155,7 @@ local utils = import "util_functions.jsonnet";
                 add_local_canary: "verified",  #Verified in IoT fleet
                 add_12_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
+                docker_daemon_monitor: "",
             },
             version_mapping: {
                 main: {
@@ -188,6 +190,7 @@ local utils = import "util_functions.jsonnet";
                 add_local_canary: "verified",  #Verified in IoT fleet
                 add_12_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
+                docker_daemon_monitor: "",
             },
             version_mapping: {
                 main: {

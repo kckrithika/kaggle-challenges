@@ -15,15 +15,15 @@ spec:
         - /sam/watchdog
         - -role=CLI
         - -cliCheckerCommandTarget=DockerDaemon
-        - -emailFrequency=72h
+        - -emailFrequency=10m
         - -timeout=2s
-        - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - -funnelEndpoint=ajna0-funnel1-0-par.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -watchdogFrequency=1m
         - -alertThreshold=45m
         - -cliCheckerTimeout=5m
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/docker-daemon-watchdog:jenkins-dva-transformation-flowsnake-platform-master-706-itest
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/docker-daemon-watchdog:jenkins-dva-transformation-flowsnake-platform-master-706-itest
         imagePullPolicy: IfNotPresent
         name: watchdog-docker-daemon
         resources:

@@ -15,7 +15,7 @@ spec:
         - /sam/watchdog
         - -role=CLI
         - -cliCheckerCommandTarget=DockerDaemon
-        - -emailFrequency=72h
+        - -emailFrequency=10m
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
