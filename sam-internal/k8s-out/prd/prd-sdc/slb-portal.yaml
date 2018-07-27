@@ -60,7 +60,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000991-5099c703
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000995-257057ce
         livenessProbe:
           httpGet:
             path: /
@@ -105,7 +105,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000991-5099c703
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000995-257057ce
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -141,7 +141,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-portal
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000991-5099c703
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000995-257057ce
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -158,7 +158,7 @@ spec:
         - --configDir=/host/data/slb/config/slb-portal
         - --log_dir=/host/data/slb/logs/slb-portal
         - --netInterface=lo
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000991-5099c703
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000995-257057ce
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -177,7 +177,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000991-5099c703
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000995-257057ce
         livenessProbe:
           exec:
             command:
