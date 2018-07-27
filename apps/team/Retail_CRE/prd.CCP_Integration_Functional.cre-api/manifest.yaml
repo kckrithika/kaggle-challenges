@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-ccp-func
-      image: sfci/cre/cre-api:0.0.1.110.master.8959930.170
+      image: sfci/cre/cre-api:1.3.0.7.develop-1.3.d466c41.9
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
@@ -24,7 +24,7 @@ system:
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
         - name: HBASE_ENVIRONMENT
-          value: kingdom-test     
+          value: kingdom-test
         - name: HBASE_DATA_CENTER
           value: prd
       ports:
