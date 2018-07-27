@@ -52,7 +52,7 @@ spec:
         - mountPath: /etc/pki_service
           name: maddog-certs
       nodeSelector:
-        pool: prd-sam
+        pool: prd-slb
       volumes:
       - hostPath:
           path: /data/slb

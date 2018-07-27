@@ -59,10 +59,10 @@ if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "
                         ],
                     },
                 ],
-                nodeSelector: {
-                    pool: configs.estate,
-                },
-            },
+            }
+            + (
+                    if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
+              ),
             metadata: {
                 labels: {
                     name: "slb-labels-checker",

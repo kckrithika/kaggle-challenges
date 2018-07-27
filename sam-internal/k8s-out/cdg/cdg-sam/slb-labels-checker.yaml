@@ -50,7 +50,7 @@ spec:
         - mountPath: /etc/pki_service
           name: maddog-certs
       nodeSelector:
-        pool: cdg-sam
+        pool: cdg-slb
       volumes:
       - hostPath:
           path: /data/slb
