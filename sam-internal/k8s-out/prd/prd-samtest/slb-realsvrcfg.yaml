@@ -3,7 +3,6 @@ kind: DaemonSet
 metadata:
   labels:
     name: slb-realsvrcfg
-    sam.data.sfdc.net/owner: slb
   name: slb-realsvrcfg
   namespace: sam-system
 spec:
