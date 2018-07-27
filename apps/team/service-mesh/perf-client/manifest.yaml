@@ -10,6 +10,9 @@ system:
 
     - name: client
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/service-mesh/perfclient:1.0
+      env:
+      - name: JVM_HEAP_MAX
+        value: -6G
       livenessProbe:
         exec:
           command:
