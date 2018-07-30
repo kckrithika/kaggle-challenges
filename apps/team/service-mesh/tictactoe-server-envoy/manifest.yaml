@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: tictactoe-server-service-envoy-ns
+  - name: tictactoe-server-service-envoy
     count: 1
     volumes:
     - name: logvol
@@ -19,7 +19,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       args:
-      - --scone.service.name=tictactoe-server-service-envoy-ns
+      - --scone.service.name=tictactoe-server-service-envoy
       - --metrics.funnelEndPointURL=${SFDC_METRICS_SERVICE_HOST}
       - --server.port=15371
       volumeMounts:
@@ -41,13 +41,14 @@ system:
           path: /manage/health
           port: 15372
     - name: beacon-tictactoe-server
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/233
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
       args:
       - -endpoint
-      - mesh-games/tictactoe-server-service-envoy-ns:DATACENTER:7012
+      - tictactoe-server-service-envoy:DATACENTER:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
