@@ -8,6 +8,9 @@ system:
   - name: stans-report-collector
     count: 1
     volumes:
+      - name: servercertvol
+        k4aSecret:
+          secretName: csc-rc-certificates
       - name: server-cert
         maddogCert:
           type: server
@@ -31,6 +34,9 @@ system:
       - mountPath: /var/log/report-collector
         name: logvol
       - mountPath: /var/lib/report-collector/certificates/server/
+        name: servercertvol
+        readOnly: true
+      - mountPath: /var/lib/report-collector/certificates/server/test
         name: server-cert
         readOnly: true
       - mountPath: /var/secrets/redis
@@ -53,10 +59,12 @@ system:
         value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
-      - name: ReportCollector_app_https_dynamicCertificateOptions_caCert
-        value: /var/lib/report-collector/certificates/sfdc-internal-ca.crt
-      - name: ReportCollector_app_https_dynamicCertificateOptions_certificateDir
-        value: /var/lib/report-collector/certificates/server
+      - name: ReportCollector_app_https_staticCertificateOptions_caCertificates
+        value: "[\"/var/lib/report-collector/certificates/sfdc-internal-ca.crt\"]"
+      - name: ReportCollector_app_https_staticCertificateOptions_certificate
+        value: /var/lib/report-collector/certificates/server/rc_server.crt
+      - name: ReportCollector_app_https_staticCertificateOptions_privateKey
+        value: /var/lib/report-collector/certificates/server/rc_server.key
       - name: ReportCollector_app_https_supportDecompression
         value: true
       - name: ReportCollector_app_https_supportCompression
