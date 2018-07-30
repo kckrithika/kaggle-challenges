@@ -39,7 +39,10 @@
         ] + (if configs.estate == "prd-sam" then [
                  "--servicesToLbOverride=" + servicesToLbOverride,
                  "--servicesNotToLbOverride=" + servicesNotToLbOverride,
-             ] else []),
+             ] else [])
+           + (if slbimages.hypersdn_build >= 997 then [
+                 "--alwaysPopulateRealServers=true",
+           ] else []),
         volumeMounts: configs.filter_empty([
             configs.maddog_cert_volume_mount,
             slbconfigs.slb_volume_mount,
