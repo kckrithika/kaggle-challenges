@@ -29,44 +29,6 @@ local utils = import "util_functions.jsonnet";
         # [thargrove] SQL watchdog fix for metrics generation
         "prd,prd-sam,watchdog-samsql,hypersam": "sam-0002142-53c0d131",
 
-        # [a.mitra] sql watchdog fix
-        "cdg,cdg-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "cdg,cdg-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "chx,chx-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "chx,chx-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "dfw,dfw-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "dfw,dfw-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "fra,fra-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "fra,fra-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "hnd,hnd-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "hnd,hnd-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "ia2,ia2-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "ia2,ia2-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "iad,iad-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "iad,iad-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "ord,ord-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "ord,ord-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "par,par-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "par,par-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "ph2,ph2-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "ph2,ph2-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "phx,phx-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "phx,phx-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "syd,syd-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "syd,syd-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "ukb,ukb-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "ukb,ukb-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "wax,wax-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "wax,wax-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "yhu,yhu-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "yhu,yhu-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "yul,yul-sam,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "yul,yul-sam,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "vpod,vpod,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "vpod,vpod,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-        "prd,prd-samtwo,watchdog-apiserverlb,hypersam": "sam-0002135-e7f3c512",
-        "prd,prd-samtwo,watchdog-etcd-quorum,hypersam": "sam-0002135-e7f3c512",
-
         # [Xiao] pin samapp-controller to an earlier version without dual run in prd-sam
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002059-8a57b252",
 
@@ -118,7 +80,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
-            hypersam: "sam-0002105-7f1adf93",
+            hypersam: "sam-0002135-e7f3c512",
             madkub: "1.0.0-0000071-5a6dcab2",
             madkubSidecar: "1.0.0-0000071-5a6dcab2",
             },
