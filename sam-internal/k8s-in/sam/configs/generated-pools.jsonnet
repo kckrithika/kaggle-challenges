@@ -2619,6 +2619,18 @@
     },
     {
       "namespaces": [
+        "*"
+      ],
+      "access": [
+        "*"
+      ],
+      "controlEstate": "xrd-sam",
+      "estate": "xrd-sampool",
+      "kingdom": "xrd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
