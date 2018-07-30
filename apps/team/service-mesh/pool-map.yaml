@@ -69,3 +69,21 @@ apps:
     - prd/prd-sam_gater
   perf-switchboard:
     - prd/prd-sam_gater
+
+  tictactoe-server:
+    - prd/prd-sam_gater
+  tictactoe-client:
+    - prd/prd-sam_gater
+  tictactoe-server-envoy:
+    - prd/prd-sam_gater
+  tictactoe-client-envoy:
+    - prd/prd-sam_gater
+  tictactoe-server-l5d-ns:
+    - prd/prd-sam_gater
+  tictactoe-client-l5d-ns:
+    - prd/prd-sam_gater
+  tictactoe-client-envoy-ns:
+    - prd/prd-sam_gater
+  tictactoe-server-envoy-ns:
+    - prd/prd-sam_gater
+
