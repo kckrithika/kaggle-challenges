@@ -39,6 +39,8 @@ spec:
           name: config
         - mountPath: /data/certs
           name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
         - mountPath: /etc/pki_service
           name: maddog-certs
       hostNetwork: true
@@ -48,12 +50,15 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
-      - configMap:
-          name: watchdog
-        name: config
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs
       - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: watchdog
+        name: config

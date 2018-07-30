@@ -59,6 +59,8 @@ if samfeatureflags.kubedns then {
                                 name: "TEST",
                                 value: "2",
                             },
+                        ] + [
+                            configs.kube_config_env,
                         ],
                         image: samimages.kubedns,
                         imagePullPolicy: "IfNotPresent",
@@ -128,6 +130,8 @@ if samfeatureflags.kubedns then {
                                 mountPath: "/data/certs",
                                 name: "certs",
                             },
+                        ] + [
+                            configs.kube_config_volume_mount,
                         ],
                     },
                     {
@@ -256,6 +260,8 @@ if samfeatureflags.kubedns then {
                         },
                         name: "certs",
                     },
+                ] + [
+                    configs.kube_config_volume,
                 ],
             },
         },

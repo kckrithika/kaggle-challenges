@@ -24,8 +24,12 @@ local utils = import "util_functions.jsonnet";
                             configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
                             configs.config_volume_mount,
                         ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                         name: "watchdog",
                         resources: {
                             requests: {
@@ -43,6 +47,7 @@ local utils = import "util_functions.jsonnet";
                     configs.sfdchosts_volume,
                     configs.maddog_cert_volume,
                     configs.cert_volume,
+                    configs.kube_config_volume,
                     configs.config_volume("watchdog"),
                 ]),
                 # We are still using flannel in minion pools in public cloud, so we need to keep an eye on etcd that holds its config
