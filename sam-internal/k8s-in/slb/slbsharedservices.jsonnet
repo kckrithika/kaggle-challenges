@@ -5,6 +5,8 @@
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile },
 
+    local configProcSentinel = slbconfigs.configDir + "/slb-config-proc.sentinel",
+
     slbConfigProcessor(configProcessorLivenessPort, proxyLabelSelector="slb-nginx-config-b", servicesToLbOverride="", servicesNotToLbOverride="illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc"): {
         name: "slb-config-processor",
         image: slbimages.hypersdn,
@@ -42,6 +44,9 @@
              ] else [])
            + (if slbimages.hypersdn_build >= 997 then [
                  "--alwaysPopulateRealServers=true",
+           ] else [])
+           + (if slbimages.hypersdn_build >= 999 then [
+                 "--control.configProcSentinel=" + configProcSentinel,
            ] else []),
         volumeMounts: configs.filter_empty([
             configs.maddog_cert_volume_mount,
@@ -78,7 +83,12 @@
             "--configDir=" + slbconfigs.configDir,
             "--log_dir=" + slbconfigs.logsDir,
             "--netInterface=lo",
-        ],
+        ] + (if slbimages.hypersdn_build >= 999 then
+            [
+                 "--checkSentinel=true",
+                 "--control.configProcSentinel=" + configProcSentinel,
+                 "--control.sentinelExpires=1800s",  # config processor's interval
+            ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.logs_volume_mount,
