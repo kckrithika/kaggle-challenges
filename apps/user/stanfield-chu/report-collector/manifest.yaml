@@ -8,9 +8,9 @@ system:
   - name: stans-report-collector
     count: 1
     volumes:
-      - name: servercertvol
-        k4aSecret:
-          secretName: csc-rc-certificates
+      - name: server-cert
+        maddogCert:
+          type: server
       - name: redisauthvol
         secret:
           secretName: csc-redis-auth-0
@@ -19,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.18.0-20180627-SPMetrics
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.19.1-20180730-rcDyanmicCerts
       ports:
       - name: admin
         containerPort: 8082
@@ -31,7 +31,7 @@ system:
       - mountPath: /var/log/report-collector
         name: logvol
       - mountPath: /var/lib/report-collector/certificates/server/
-        name: servercertvol
+        name: server-cert
         readOnly: true
       - mountPath: /var/secrets/redis
         name: redisauthvol
@@ -53,12 +53,10 @@ system:
         value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
-      - name: ReportCollector_app_https_caCertificates
-        value: "[\"/var/lib/report-collector/certificates/sfdc-internal-ca.crt\"]"
-      - name: ReportCollector_app_https_certificate
-        value: /var/lib/report-collector/certificates/server/rc_server.crt
-      - name: ReportCollector_app_https_privateKey
-        value: /var/lib/report-collector/certificates/server/rc_server.key
+      - name: ReportCollector_app_https_dynamicCertificateOptions_caCert
+        value: /var/lib/report-collector/certificates/sfdc-internal-ca.crt
+      - name: ReportCollector_app_https_dynamicCertificateOptions_certificateDir
+        value: /var/lib/report-collector/certificates/server
       - name: ReportCollector_app_https_supportDecompression
         value: true
       - name: ReportCollector_app_https_supportCompression
