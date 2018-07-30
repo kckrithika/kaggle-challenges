@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: pact-broker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/snew/pact-broker-port:1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/snew/pact-broker-port:2
       env:
       - name: PACT_BROKER_BASIC_AUTH_USERNAME
         value: admin
