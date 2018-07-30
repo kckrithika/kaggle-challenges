@@ -6,3 +6,9 @@ apps:
     - par/par-sam_gater
   geoip-sandbox:
     - prd/prd-sam_gater
+
+
+  geoip-demo-sandbox:
+    - prd/prd-sam_gater
+  geoip-xlt-sandbox:
+    - prd/prd-sam_gater

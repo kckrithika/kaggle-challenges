@@ -7,7 +7,7 @@ system:
   - name: geoip
     count: 3
     containers:
-    - name: ccait-geoip-database
+    - name: geoip-database
       image: tnrp/ccait/geoip2-database:20170918
       args:
       - -d
@@ -21,20 +21,13 @@ system:
           - /database/GeoIP2-City.mmdb
         initialDelaySeconds: 10
         periodSeconds: 5
-    - name: ccait-geoip-backend
+    - name: geoip
       image: sfci/ccait/geoip:3fdd49f18f09041a5d4fbc3c28f849fa89a33f95
-      ports:
-      - name: grpc
-        containerPort: 7020
       env:
       - name: JAVA_OPTS
         value: -Xms512m -Xmx512m
-      - name: SFDC_ENVIRONMENT
-        value: sam
       - name: COM_MAXMIND_DATABASE_FILE
         value: /dw/data/GeoIP2-City.mmdb
-      - name: LOGGING_DIR
-        value: /log
       resources:
         limits:
           cpu: 1
@@ -45,8 +38,6 @@ system:
       volumeMounts:
       - mountPath: /dw/data
         name: maxmind-volume
-      - mountPath: /log
-        name: geoip-log-volume
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -57,23 +48,20 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
-    - name: sherpa-b
-      image: sfci/servicelibs/sherpa-envoy:2465d3eae46f71b2221a5a30c2e10ec95ceca917
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:ca853b963d6d80a9bfd5a2b2ee3696c788d4ad79
       ports:
-      - name: sherpa-b-in
+      - name: http2-in
         containerPort: 7012
-      - name: sherpa-b-in-tls
+      - name: http2-tls-in
         containerPort: 7443
-      - name: sherpa-b-adm
+      - name: sherpa-adm
         containerPort: 15373
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: sam
       volumeMounts:
       - mountPath: /client-certs
-        name: geoip-client-cert
+        name: tls-client-cert
       - mountPath: /server-certs
-        name: geoip-server-cert
+        name: tls-server-cert
       livenessProbe:
         exec:
           command:
@@ -87,16 +75,13 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
-    - name: beacon-geoip
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+    - name: beacon
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - $(FUNCTION):DATACENTER_ALLENV:7012
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: sam
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
         exec:
           command:
@@ -105,136 +90,9 @@ system:
     volumes:
     - name: maxmind-volume
       emptyDir: {}
-    - name: geoip-log-volume
-      hostPath:
-        path: /home/sfdc-geoip/logs
-    - name: sherpa-log-volume
-      hostPath:
-        path: /home/sfdc-sherpa/logs
-    - name: geoip-client-cert
+    - name: tls-client-cert
       maddogCert:
         type: client
-    - name: geoip-server-cert
+    - name: tls-server-cert
       maddogCert:
         type: server
-  - name: geoip-demo
-    count: 1
-    containers:
-    - name: ccait-geoip-frontend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-demo:1.0.6-snapshot
-      ports:
-      - containerPort: 8080
-      env:
-      - name: JAVA_OPTS
-        value: -Xms512m -Xmx512m
-      - name: SFDC_ENVIRONMENT
-        value: sam
-      - name: GRPC_ROUTING_GEOIP_HOST
-        value: geoip.ccait.localhost.mesh.force.com
-      - name: GRPC_ROUTING_GEOIP_PORT
-        value: 5443
-      resources:
-        limits:
-          cpu: 1
-          memory: 1Gi
-        requests:
-          cpu: 1
-          memory: 1Gi
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 130
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 115
-    - name: sherpa-f
-      image: sfci/servicelibs/sherpa:2.0.26
-      args:
-      - --zipkin-rate
-      - 0.0
-      ports:
-      - name: sherpa-f-adm
-        containerPort: 15373
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: sam
-      resources:
-        limits:
-          cpu: 1
-          memory: 1Gi
-        requests:
-          cpu: 1
-          memory: 1Gi
-      volumeMounts:
-      - mountPath: /log
-        name: sherpa-log-volume
-      - mountPath: /client-certs
-        name: geoip-demo-client-cert
-      - mountPath: /server-certs
-        name: geoip-demo-server-cert
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 110
-        periodSeconds: 5
-    volumes:
-    - name: sherpa-log-volume
-      hostPath:
-        path: /home/sfdc-sherpa/logs
-    - name: geoip-demo-client-cert
-      maddogCert:
-        type: client
-    - name: geoip-demo-server-cert
-      maddogCert:
-        type: server
-  - name: geoip-xlt
-    count: 1
-    containers:
-    - name: ccait-xlt
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jan-krueger/ccait-xlt-agent:4.8.3
-      ports:
-      - containerPort: 8500
-    - name: sherpa-xlt
-      image: sfci/servicelibs/sherpa:2.0.26
-      ports:
-      - name: sherpa-xlt-adm
-        containerPort: 15373
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: sam
-      volumeMounts:
-      - mountPath: /log
-        name: sherpa-log-volume
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 5
-        periodSeconds: 5
-    volumes:
-    - name: sherpa-log-volume
-      hostPath:
-        path: /home/sfdc-sherpa/logs
-  loadbalancers:
-  - lbname: ccait-geoip-frontend-lb
-    nodeExposed: true
-    function: geoip-demo
-    ports:
-    - port: 45080
-      targetport: 8080
