@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-func
-      image: sfci/cre/cre-control-plane:0.0.1.19.67.master.2e0765a.108
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:0.0.1.19.69.ar_checkFlowsnakeEnvs.1e5ed98.2
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
@@ -37,6 +37,8 @@ system:
           value: kingdom-test
         - name: HBASE_DATACENTER
           value: prd
+        - name: MAX_FLOWSNAKE_ENVIRONMENTS
+          value: 1
       ports:
       - containerPort: 8080
       - containerPort: 7020
