@@ -36,7 +36,7 @@ system:
       - mountPath: /var/lib/report-collector/certificates/server/
         name: servercertvol
         readOnly: true
-      - mountPath: /var/lib/report-collector/certificates/server/test
+      - mountPath: /var/lib/report-collector/certificates/testpki/
         name: server-cert
         readOnly: true
       - mountPath: /var/secrets/redis
