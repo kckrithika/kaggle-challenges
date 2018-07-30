@@ -24,12 +24,11 @@ system:
           cpu: "2"
           memory: "1Gi"
       livenessProbe:
-        initialDelaySeconds: 15
-        periodSeconds: 60
-        timeoutSeconds: 30
-        httpGet:
-          path: /status/health
-          port: 8000
+        exec:
+          command:
+          - "./perf-report-gen/bin/is-alive"
+        initialDelaySeconds: 10
+        periodSeconds: 5
     - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
       image: sfci/servicelibs/sherpa:2.0.25
@@ -53,14 +52,14 @@ system:
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive" 
+          - "./bin/is-alive"
         initialDelaySeconds: 10
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready" 
-        initialDelaySeconds: 5 
+          - "./bin/is-ready"
+        initialDelaySeconds: 5
         periodSeconds: 5
       volumeMounts:
         - name: tls-client-cert
