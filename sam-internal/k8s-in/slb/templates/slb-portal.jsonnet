@@ -56,10 +56,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                               volumeMounts: configs.filter_empty(
                                   [
                                       slbconfigs.slb_volume_mount,
-                                  ] + (if slbimages.hypersdn_build >= 947 then [
-                                           configs.maddog_cert_volume_mount,
-                                           configs.cert_volume_mount,
-                                       ] else []),
+                                      configs.maddog_cert_volume_mount,
+                                      configs.cert_volume_mount,
+                                  ]
                               ),
                               livenessProbe: {
                                   httpGet: {
