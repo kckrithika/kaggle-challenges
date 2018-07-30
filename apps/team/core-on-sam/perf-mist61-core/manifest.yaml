@@ -4,7 +4,7 @@ system:
   functions:
   - name: mist61-core
 
-    count: 5
+    count: 2
     
     volumes:
     - name: envoy-config-volume
