@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-ccp-perf
-      image: sfci/cre/cre-api:1.3.0.7.develop-1.3.d466c41.9
+      image: sfci/cre/cre-api:1.3.0.8.develop-1.3.3636dae.10
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
