@@ -114,6 +114,18 @@ data:
         {
           "name": "FsChecker-Errors",
           "sql": "select\n  hostName, kernelVersion, errorMessage, controlEstate  \nfrom\n(\n  select\n    controlEstate,\n    Payload-\u003e\u003e'$.spec.hostname' as hostName,\n    Payload-\u003e\u003e'$.status.report.ErrorMessage' as errorMessage\n  from\n    k8s_resource\n  where ApiKind = 'WatchDog' and\n  Payload-\u003e\u003e'$.spec.checkername' like 'filesystemchecker%' and\n  Payload-\u003e\u003e'$.status.report.ErrorMessage' != 'null'\n) as fsChecker\nleft join\n(\n  select \n    Name,\n    kernelVersion\n  from nodeDetailView\n) as pod\non ( binary fsChecker.hostName = pod.Name )"
+        },
+        {
+          "name": "Phase 1 Pre Release Validation - Watchdogs in prd-samtest",
+          "sql": "select\n  CheckerName,\n  SUM(SuccessCount) as SuccessCount,\n  SUM(FailureCount) as FailureCount,\n  SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) as SuccessPct,\n  CONCAT('https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-14d:sam.watchdog.',Kingdom,'.NONE.',ControlEstate,':',CheckerName,'.status%7Bdevice%3D*%7D:avg') as Argus,\n  GROUP_CONCAT(Error, '') as Errors\nfrom\n(\nselect\n  CAST(ControlEstate as CHAR CHARACTER SET utf8) AS ControlEstate,\n  CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,\n  Payload-\u003e\u003e'$.status.report.CheckerName' as CheckerName,\n  case when Payload-\u003e\u003e'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,\n  case when Payload-\u003e\u003e'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount,\n  case when Payload-\u003e\u003e'$.status.report.ErrorMessage' = 'null' then '' else Payload-\u003e\u003e'$.status.report.ErrorMessage' end as Error\nfrom k8s_resource\nwhere ApiKind = 'WatchDog'\nand controlestate = 'prd-samtest'\n) as ss\nwhere CheckerName not like 'Sql%' and \nCheckerName not like 'MachineCount%'\ngroup by CheckerName\norder by SuccessPct"
+        },
+        {
+          "name": "Phase 1 Pre Release Validation - Sam-system issues in prd-samtest",
+          "sql": "select controlEstate, Name, Payload-\u003e'$.spec.nodeName' as NodeName, Phase\nfrom podDetailView\nwhere namespace = 'sam-system' and ControlEstate = 'prd-samtest' and Phase \u003c\u003e 'Running'\norder by Phase, NodeName"
+        },
+        {
+          "name": "Phase 1 Pre Release Validation - Pod Age in prd-samtest",
+          "sql": "select\n  ControlEstate,\n  PodAgeDays,\n  PodsWithThisAge\nfrom\n(\n  select\n    ControlEstate,\n    PodAgeDays,\n    COUNT(*) as PodsWithThisAge\n  from\n  (\n    select\n      ControlEstate,\n      LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays\n    from podDetailView\n    where IsSamApp = True and ProduceAgeInMinutes\u003c15\n  ) as ss\n  where PodAgeDays IS NOT NULL\n  and ControlEstate = 'prd-samtest'\n  group by ControlEstate, PodAgeDays\n) as ss2\ngroup by ControlEstate, PodAgeDays\n"
         }
       ]
     }
