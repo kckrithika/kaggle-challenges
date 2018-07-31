@@ -258,7 +258,7 @@ system:
       livenessProbe:
         httpGet:
           path: /
-          port: 9108
+          port: 9107
       volumeMounts:
       - mountPath: /tmp
         name: temp
@@ -275,6 +275,22 @@ system:
         httpGet:
           path: /
           port: 9108
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-prd-samdev
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-samdev
+        - --insecure-port=9109
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-samdev/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9109
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9109
       volumeMounts:
       - mountPath: /tmp
         name: temp
@@ -384,3 +400,9 @@ system:
     ports:
       - port: 80
         targetport: 9108
+  - lbname: dashboard-prd-samdev
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9109
