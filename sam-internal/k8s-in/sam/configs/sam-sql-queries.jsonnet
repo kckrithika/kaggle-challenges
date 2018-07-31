@@ -588,6 +588,82 @@ on ( binary fsChecker.hostName = pod.Name )",
     },
 
 #===================
+
+    {
+      name: "Phase 1 Pre Release Validation - Watchdogs in prd-samtest",
+      sql: "select
+  CheckerName,
+  SUM(SuccessCount) as SuccessCount,
+  SUM(FailureCount) as FailureCount,
+  SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) as SuccessPct,
+  CONCAT('https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-14d:sam.watchdog.',Kingdom,'.NONE.',ControlEstate,':',CheckerName,'.status%7Bdevice%3D*%7D:avg') as Argus,
+  GROUP_CONCAT(Error, '') as Errors
+from
+(
+select
+  CAST(ControlEstate as CHAR CHARACTER SET utf8) AS ControlEstate,
+  CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,
+  Payload->>'$.status.report.CheckerName' as CheckerName,
+  case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
+  case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount,
+  case when Payload->>'$.status.report.ErrorMessage' = 'null' then '' else Payload->>'$.status.report.ErrorMessage' end as Error
+from k8s_resource
+where ApiKind = 'WatchDog'
+and controlestate = 'prd-samtest'
+) as ss
+where CheckerName not like 'Sql%' and 
+CheckerName not like 'MachineCount%'
+group by CheckerName
+order by SuccessPct",
+    },
+
+#===================
+
+    {
+      name: "Phase 1 Pre Release Validation - Sam-system issues in prd-samtest",
+      sql: "select controlEstate, Name, Payload->'$.spec.nodeName' as NodeName, Phase
+from podDetailView
+where namespace = 'sam-system' and ControlEstate = 'prd-samtest' and Phase <> 'Running'
+order by Phase, NodeName",
+    },
+
+#===================
+
+    {
+      name: "Phase 1 Pre Release Validation - Pod Age in prd-samtest",
+      sql: "select
+  ControlEstate,
+  PodAgeDays,
+  PodsWithThisAge
+from
+(
+  select
+    ControlEstate,
+    PodAgeDays,
+    COUNT(*) as PodsWithThisAge
+  from
+  (
+    select
+      ControlEstate,
+      LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays
+    from podDetailView
+    where IsSamApp = True and ProduceAgeInMinutes<15
+  ) as ss
+  where PodAgeDays IS NOT NULL
+  and ControlEstate = 'prd-samtest'
+  group by ControlEstate, PodAgeDays
+) as ss2
+group by ControlEstate, PodAgeDays
+",
+    },
+
+#===================
+#
+#    {
+#      name: "",
+#      sql: "",
+#    },
+#===================
 #
 #    {
 #      name: "",
