@@ -4,7 +4,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: disco-pong
+  - name: disco-pong-crd
     count: 1
     containers:
     - name: disco-pong-service
@@ -32,7 +32,7 @@ system:
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       args:
       - -endpoint
-      - disco-pong:DATACENTER:7012
+      - disco-pong-crd:DATACENTER:7012
       - -logging.dir
       - /log
       - -zk
