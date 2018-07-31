@@ -29,10 +29,19 @@ data:
     = ''false'' then 1 else 0 end as FailureCount\n    from k8s_resource\n    where
     ApiKind = ''WatchDog''\n  ) as ss\n  where CheckerName not like ''Sql%'' and CheckerName
     not like ''MachineCount%''\n  group by CheckerName, ControlEstate, Kingdom\n)
-    as ss2", "watchdogFrequency": "60m"}], "sql_alerts": [{"alertAction": "email",
-    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions":
-    "The following deployments are reported as bad customer deployments in Production.
-    Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
+    as ss2", "watchdogFrequency": "60m"}, {"name": "Sql95thPctPRLatency", "sql": "SELECT
+    latency as PRLatency95Pct FROM\n     ( SELECT\n         prLatency.*,\n         @row_num
+    :=@row_num + 1 AS row_num\n    FROM\n        (\n        SELECT\n            prs.pr_num,\n            MAX(TIMESTAMPDIFF(MINUTE,prs.merged_time,
+    CASE WHEN payload -> ''$.status.endTime'' = ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP()
+    ELSE payload -> ''$.status.endTime'' END  )) latency\n    FROM\n        PullRequests
+    prs\n    LEFT  JOIN\n            (\n            SELECT *\n            FROM\n            crd_history\n            WHERE
+    ApiKind = ''Bundle'') crds\n        ON crds.PRNum = prs.pr_num\n    WHERE state
+    =''merged'' AND `merged_time` > NOW() - INTERVAL 24 HOUR\n    GROUP BY prs.pr_num\n    )
+    prLatency ,\n     (SELECT @row_num:=0) counter ORDER BY prLatency.latency\n     )\n    temp
+    WHERE temp.row_num = ROUND (.95* @row_num)", "watchdogFrequency": "15m"}], "sql_alerts":
+    [{"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
+    "10m", "instructions": "The following deployments are reported as bad customer
+    deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
     "name": "SqlSlaDepl", "sql": "SELECT * FROM\n                        (\n                          SELECT\n                            ControlEstate,\n                            Namespace,\n                            Name,\n                            JSON_EXTRACT(Payload,
     ''$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"'') AS email,\n                            CASE
     WHEN JSON_EXTRACT(Payload, ''$.metadata.labels.sam_app'') is NULL then False\n                                 ELSE
@@ -91,22 +100,11 @@ data:
     * \n\t\tFROM \n\t\tcrd_history \n\t \tWHERE ApiKind = ''Bundle'') crds\n\tON crds.PRNum
     = prs.pr_num\nORDER BY prs.pr_num \n) prLatency\nWHERE latency > 45", "watchdogFrequency":
     "10m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
-    "alertThreshold": "10m", "instructions": "95th percentile of PRLatency is greater
-    than 45 minutes", "name": "Sql95thPRLatency", "sql": "SELECT *\n    FROM\n    (
-    SELECT * FROM\n     ( SELECT\n         prLatency.*,\n         @row_num :=@row_num
-    + 1 AS row_num\n    FROM\n        (\n        SELECT\n            prs.pr_num,\n            TIMESTAMPDIFF(MINUTE,prs.merged_time,
-    CASE WHEN payload -> ''$.status.endTime'' = ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP()
-    ELSE payload -> ''$.status.endTime'' END  ) latency\n    FROM\n        PullRequests
-    prs\n    LEFT  JOIN\n            (\n            SELECT *\n            FROM\n            crd_history\n            WHERE
-    ApiKind = ''Bundle'') crds\n        ON crds.PRNum = prs.pr_num\n    ORDER BY prs.pr_num\n    )
-    prLatency ,\n     (SELECT @row_num:=0) counter ORDER BY prLatency.latency\n     )\n    temp
-    WHERE temp.row_num = ROUND (.95* @row_num)\n    )\n    temp2 WHERE temp2.latency
-    > 45", "watchdogFrequency": "24h"}, {"alertAction": "email", "alertFrequency":
-    "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "Following
-    PRs don''t have authorization link after 6 minutes of getting created.", "name":
-    "SqlPRAuthroizationLinkPostTimeLatency", "sql": "SELECT\n          * \n        FROM
-    (SELECT \n            pr_num,\n            TIMESTAMPDIFF(MINUTE, CASE WHEN first_approval_link_posted_time
-    IS NULL THEN now() ELSE first_approval_link_posted_time END, created_time) latency,\n            first_approval_link_posted_time,\n            created_time\n        FROM
+    "alertThreshold": "10m", "instructions": "Following PRs don''t have authorization
+    link after 6 minutes of getting created.", "name": "SqlPRAuthroizationLinkPostTimeLatency",
+    "sql": "SELECT\n          * \n        FROM (SELECT \n            pr_num,\n            TIMESTAMPDIFF(MINUTE,
+    CASE WHEN first_approval_link_posted_time IS NULL THEN now() ELSE first_approval_link_posted_time
+    END, created_time) latency,\n            first_approval_link_posted_time,\n            created_time\n        FROM
     PullRequests \n        WHERE created_time IS NOT NULL AND state =''open'') noApprovalLink\n        WHERE
     noApprovalLink.latency > 6 AND pr_num > 1000\n        ORDER BY latency desc",
     "watchdogFrequency": "10m"}, {"alertAction": "email", "alertFrequency": "24h",

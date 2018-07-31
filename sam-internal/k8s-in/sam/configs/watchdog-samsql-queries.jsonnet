@@ -146,43 +146,6 @@ WHERE latency > 45",
 
 # =====
 
-    {
-     name: "Sql95thPRLatency",
-      instructions: "95th percentile of PRLatency is greater than 45 minutes",
-      alertThreshold: "10m",
-      alertFrequency: "24h",
-      watchdogFrequency: "24h",
-      alertProfile: "sam",
-      alertAction: "email",
-    sql: "SELECT *
-    FROM
-    ( SELECT * FROM
-     ( SELECT
-         prLatency.*,
-         @row_num :=@row_num + 1 AS row_num
-    FROM
-        (
-        SELECT
-            prs.pr_num,
-            TIMESTAMPDIFF(MINUTE,prs.merged_time, CASE WHEN payload -> '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() ELSE payload -> '$.status.endTime' END  ) latency
-    FROM
-        PullRequests prs
-    LEFT  JOIN
-            (
-            SELECT *
-            FROM
-            crd_history
-            WHERE ApiKind = 'Bundle') crds
-        ON crds.PRNum = prs.pr_num
-    ORDER BY prs.pr_num
-    ) prLatency ,
-     (SELECT @row_num:=0) counter ORDER BY prLatency.latency
-     )
-    temp WHERE temp.row_num = ROUND (.95* @row_num)
-    )
-    temp2 WHERE temp2.latency > 45",
-    },
-
 
 # =====
 
@@ -328,6 +291,39 @@ from (
   group by CheckerName, ControlEstate, Kingdom
 ) as ss2",
   },
+
+# =====
+
+   {
+      watchdogFrequency: "15m",
+      name: "Sql95thPctPRLatency",
+      sql: "SELECT latency as PRLatency95Pct FROM
+     ( SELECT
+         prLatency.*,
+         @row_num :=@row_num + 1 AS row_num
+    FROM
+        (
+        SELECT
+            prs.pr_num,
+            MAX(TIMESTAMPDIFF(MINUTE,prs.merged_time, CASE WHEN payload -> '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() ELSE payload -> '$.status.endTime' END  )) latency
+    FROM
+        PullRequests prs
+    LEFT  JOIN
+            (
+            SELECT *
+            FROM
+            crd_history
+            WHERE ApiKind = 'Bundle') crds
+        ON crds.PRNum = prs.pr_num
+    WHERE state ='merged' AND `merged_time` > NOW() - INTERVAL 24 HOUR
+    GROUP BY prs.pr_num
+    ) prLatency ,
+     (SELECT @row_num:=0) counter ORDER BY prLatency.latency
+     )
+    temp WHERE temp.row_num = ROUND (.95* @row_num)",
+
+    },
+
 
 # =====
 
