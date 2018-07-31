@@ -37,6 +37,8 @@ local utils = import "util_functions.jsonnet";
     kubedns:
         configs.estate == "prd-samdev" ||
         configs.estate == "prd-sam" ||
+        configs.estate == "prd-samtwo" ||
+        configs.estate == "xrd-sam" ||
         configs.estate == "prd-sdc" ||
         configs.estate == "prd-samtest" ||
         configs.estate == "prd-sam_storage" ||
