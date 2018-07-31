@@ -38,7 +38,7 @@ system:
         - name: HBASE_DATACENTER
           value: prd
         - name: MAX_FLOWSNAKE_ENVIRONMENTS
-          value: 1
+          value: 15
       ports:
       - containerPort: 8080
       - containerPort: 7020
