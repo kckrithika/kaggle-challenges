@@ -42,10 +42,10 @@ spec:
           name: config
         - mountPath: /data/certs
           name: certs
-        - mountPath: /kubeconfig
-          name: kubeconfig
         - mountPath: /etc/pki_service
           name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
       hostNetwork: true
       nodeSelector:
         pool: prd-sdc
@@ -59,9 +59,9 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
       - configMap:
           name: watchdog
         name: config
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
