@@ -27,7 +27,8 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.config_volume_mount,
-                        ]),
+                        ] + (if configs.kingdom == "prd" then [configs.kube_config_volume_mount] else [])),
+                        [if configs.kingdom == "prd" then "env"]: [configs.kube_config_env],
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -35,7 +36,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.config_volume("watchdog"),
-                ]),
+                ] + (if configs.kingdom == "prd" then [configs.kube_config_volume] else [])),
                 nodeSelector: {
                               } +
                               if configs.kingdom == "prd" then {

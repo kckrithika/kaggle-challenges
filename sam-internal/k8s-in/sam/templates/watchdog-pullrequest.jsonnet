@@ -31,7 +31,8 @@ if configs.estate == "prd-sam" then {
                             configs.config_volume_mount,
                             configs.cert_volume_mount,
                             configs.maddog_cert_volume_mount,
-                        ]),
+                        ] + (if configs.kingdom == "prd" then [configs.kube_config_volume_mount] else [])),
+                        [if configs.kingdom == "prd" then "env"]: [configs.kube_config_env],
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -45,7 +46,7 @@ if configs.estate == "prd-sam" then {
                     configs.config_volume("watchdog"),
                     configs.cert_volume,
                     configs.maddog_cert_volume,
-                ]),
+                ] + (if configs.kingdom == "prd" then [configs.kube_config_volume] else [])),
                 nodeSelector: {
                     pool: configs.estate,
                 },

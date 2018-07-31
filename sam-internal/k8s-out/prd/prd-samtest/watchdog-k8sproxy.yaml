@@ -31,6 +31,9 @@ spec:
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:auto
         name: watchdog-proxy
         volumeMounts:
@@ -42,6 +45,8 @@ spec:
           name: certs
         - mountPath: /etc/pki_service
           name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -58,3 +63,6 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
