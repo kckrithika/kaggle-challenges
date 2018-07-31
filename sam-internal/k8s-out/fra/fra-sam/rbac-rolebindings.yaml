@@ -115,5 +115,31 @@ items:
     name: shared0-samminiongater2-1-fra.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-fra.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: cache-as-a-service:fra-sam_kingdom_caas:rolebinding
+    namespace: cache-as-a-service
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion1-1-fra.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion1-2-fra.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion1-3-fra.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion2-1-fra.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion2-2-fra.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion2-3-fra.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion3-1-fra.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion3-2-fra.ops.sfdc.net
 kind: List
 metadata: {}
