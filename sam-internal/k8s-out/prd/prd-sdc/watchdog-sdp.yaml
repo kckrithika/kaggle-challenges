@@ -53,15 +53,15 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
-          path: /data/certs
-        name: certs
       - configMap:
           name: watchdog
         name: config
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig

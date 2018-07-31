@@ -32,9 +32,9 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
-                    configs.maddog_cert_volume,
-                    configs.cert_volume,
                     configs.config_volume("watchdog"),
+                    configs.cert_volume,
+                    configs.maddog_cert_volume,
                 ] + (if configs.kingdom == "prd" then [configs.kube_config_volume] else [])),
                 nodeSelector: {
                     pool: configs.estate,
