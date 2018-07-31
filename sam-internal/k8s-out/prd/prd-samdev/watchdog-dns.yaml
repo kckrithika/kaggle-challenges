@@ -1,0 +1,63 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: watchdog-dns
+  name: watchdog-dns
+spec:
+  template:
+    metadata:
+      labels:
+        app: watchdog-dns
+        apptype: monitoring
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - -role=DNS
+        - -watchdogFrequency=5s
+        - -alertThreshold=3m
+        - -watchDogKind=Deployment
+        - -timeout=2s
+        - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - -emailFrequency=48h
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tkuznets/hypersam:20180730_144425.60256972.clean.tkuznets-ltm1
+        name: watchdog
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: watchdog
+        name: config
