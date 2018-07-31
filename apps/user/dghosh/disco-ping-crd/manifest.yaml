@@ -4,7 +4,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: disco-ping
+  - name: disco-ping-crd
     count: 1
     containers:
     - name: disco-ping-service
@@ -32,7 +32,7 @@ system:
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       args:
       - -endpoint
-      - disco-ping:DATACENTER:7012
+      - disco-ping-crd:DATACENTER:7012
       - -logging.dir
       - /log
       - -zk
