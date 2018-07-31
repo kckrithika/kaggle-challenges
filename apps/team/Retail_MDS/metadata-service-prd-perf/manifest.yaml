@@ -28,7 +28,7 @@ system:
         secretName: mds-gdot-secrets-prd
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.3.43
+      image: sfci/metadata-cannon/metadata-service:0.3.45
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -104,7 +104,7 @@ system:
         periodSeconds: 120
 
     - name: beacon-mds
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
