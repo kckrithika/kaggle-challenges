@@ -260,7 +260,6 @@ WHERE latency > 45",
     {
       name: "SqlPRImageUnavailable",
       instructions: "Following PRs have at least one image that's not available after 20 minutes of getting it merged",
-      alertThreshold: "10m",
       alertFrequency: "24h",
       watchdogFrequency: "10m",
       alertProfile: "sam",
@@ -273,7 +272,7 @@ WHERE latency > 45",
                     prs.pr_num,
                     crds.PoolName,
                     crds.ControlEstate,
-                    TIMESTAMPDIFF(MINUTE, CASE WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() ELSE payload -> '$.status.maxImageEndTime' END, prs.merged_time) latency
+                    TIMESTAMPDIFF(MINUTE, CASE WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() ELSE payload -> '$.status.maxImageEndTime' END, prs.merged_time) latencyMin
             FROM 
                 PullRequests prs
             LEFT  JOIN  
@@ -285,7 +284,7 @@ WHERE latency > 45",
                 ON crds.PRNum = prs.pr_num 
             ORDER BY prs.pr_num 
             ) imageLatency
-            WHERE  latency > 20",
+            WHERE  latencyMin > 20",
     },
 
 
