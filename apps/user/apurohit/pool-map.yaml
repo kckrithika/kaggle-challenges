@@ -1,0 +1,8 @@
+version: v2
+apps:
+ my-sam-test: 	
+  - name: xrd/xrd-sampool
+    hostSubList:
+    - shared0-sampool2-1-xrd.eng.sfdc.net
+    - shared0-sampool2-2-xrd.eng.sfdc.net
+    - shared0-sampool2-3-xrd.eng.sfdc.net
