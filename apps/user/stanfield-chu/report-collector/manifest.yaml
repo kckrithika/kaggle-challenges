@@ -14,6 +14,8 @@ system:
       - name: server-cert
         maddogCert:
           type: server
+          lbnames:
+            - stansreportcollectorlb
       - name: client-cert
         maddogCert:
           type: client
