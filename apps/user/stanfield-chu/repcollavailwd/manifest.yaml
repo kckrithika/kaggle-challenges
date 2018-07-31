@@ -9,16 +9,15 @@ system:
     count: 1
     containers:
     - name: stans-repcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:2.8.0-0000094-1c59fd7d
+      image: tnrp/csc-health/report-collector-availability-watchdog:2.8.0-0000111-84d23f37
       ports:
       - name: liveness
         containerPort: 8089
       resources:
         requests: { cpu: "0.5", memory: "200M" }
       volumeMounts:
-      - mountPath: /var/lib/report-collector-availability-watchdog/certificates/client/
+      - mountPath: /var/lib/report-collector-availability-watchdog/pki
         name: clientcertvol
-        readOnly: true
       env:
       - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
         value: 1
@@ -37,23 +36,32 @@ system:
       - name: RC_WD_VERIFYREPORTISTRUSTED
         value: true
       - name: RC_WD_SSL_VERIFYSERVERIDENTITY
-        value: false
+        value: true
       - name: RC_WD_SSL_STRICTSSL
         value: true
       - name: RC_WD_SSL_AUTH_CERT
-        value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_client.crt
+        value: /var/lib/report-collector-availability-watchdog/pki/client/certificates/client.pem
       - name: RC_WD_SSL_AUTH_KEY
-        value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_client.key
+        value: /var/lib/report-collector-availability-watchdog/pki/client/keys/client-key.pem
       - name: RC_WD_SSL_AUTH_CA
-        value: /var/lib/report-collector-availability-watchdog/certificates/client/ca.crt
+        value: /var/lib/report-collector-availability-watchdog/pki/ca.pem
       - name: RC_WD_LOGGER_LEVEL
         value: debug
+      - name: RC_WD_AJNA_SHOULDPUBLISHPRODUCTIONMETRICS
+        value: false
+      - name: RC_WD_AJNA_STRICTSSL
+        value: true
+      - name: RC_WD_AJNA_AUTH_CERT
+        value: /var/lib/report-collector-availability-watchdog/pki/client/certificates/client.pem
+      - name: RC_WD_AJNA_AUTH_KEY
+        value: /var/lib/report-collector-availability-watchdog/pki/client/keys/client-key.pem
+      - name: RC_WD_AJNA_AUTH_CA
+        value: /var/lib/report-collector-availability-watchdog/pki/ca.pem
       command: ["/bin/sh", "-c"]
       args: ["
       export RC_WD_AJNA_FUNNELVIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
       export RC_WD_AJNA_DEVICE=stans-RCWD ;
       export RC_WD_AJNA_DATACENTER=TEST ;
-      export RC_WD_AJNA_SHOULDPUBLISHPRODUCTIONMETRICS=false ;
       node --harmony ${APP_DIR}/lib/watchdog.js
       "]
       livenessProbe:
@@ -64,5 +72,5 @@ system:
         periodSeconds: 5
     volumes:
     - name: clientcertvol
-      k4aSecret:
-        secretName: csc-rc-avail-wd-certificates
+      maddogCert:
+        type: client
