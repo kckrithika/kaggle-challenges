@@ -2553,10 +2553,12 @@
     },
     {
       "namespaces": [
-        "*"
+        "csc-sam",
+        "publicdns"
       ],
       "access": [
-        "*"
+        "team/CSC_Sam",
+        "team/PublicDNS"
       ],
       "controlEstate": "xrd-sam",
       "estate": "xrd-sam",
