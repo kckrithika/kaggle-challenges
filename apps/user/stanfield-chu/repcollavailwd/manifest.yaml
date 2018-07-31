@@ -36,7 +36,7 @@ system:
       - name: RC_WD_VERIFYREPORTISTRUSTED
         value: true
       - name: RC_WD_SSL_VERIFYSERVERIDENTITY
-        value: true
+        value: false
       - name: RC_WD_SSL_STRICTSSL
         value: true
       - name: RC_WD_SSL_AUTH_CERT
