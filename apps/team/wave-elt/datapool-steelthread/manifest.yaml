@@ -54,16 +54,13 @@ system:
 
     - name: beacon
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: kingdom-test
       livenessProbe:
         exec:
           command: ["/home/scone/is-alive.sh"]
         initialDelaySeconds: 15
       args:
       - -endpoint
-      - wave-elt/datapool-steelthread:DATACENTER:7443
+      - wave-elt/datapool-steelthread:DATACENTER_ALLENV:7443
 
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.24
