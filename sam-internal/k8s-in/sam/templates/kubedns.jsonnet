@@ -59,7 +59,7 @@ if samfeatureflags.kubedns then {
                                 name: "TEST",
                                 value: "2",
                             },
-                        ] + configs.filter_empty(if configs.kingdom == "prd" then [configs.kube_config_env] else []),
+                        ] + if configs.kingdom == "prd" then [configs.kube_config_env] else [],
                         image: samimages.kubedns,
                         imagePullPolicy: "IfNotPresent",
                         livenessProbe: {
@@ -128,7 +128,7 @@ if samfeatureflags.kubedns then {
                                 mountPath: "/data/certs",
                                 name: "certs",
                             },
-                        ] + configs.filter_empty(if configs.kingdom == "prd" then [configs.kube_config_volume_mount] else []),
+                        ] + if configs.kingdom == "prd" then [configs.kube_config_volume_mount] else [],
                     },
                     {
                         args: [
@@ -256,7 +256,7 @@ if samfeatureflags.kubedns then {
                         },
                         name: "certs",
                     },
-                ] + configs.filter_empty(if configs.kingdom == "prd" then [configs.kube_config_volume] else []),
+                ] + if configs.kingdom == "prd" then [configs.kube_config_volume] else [],
             },
         },
     },

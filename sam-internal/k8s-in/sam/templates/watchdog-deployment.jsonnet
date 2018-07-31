@@ -25,9 +25,12 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                             configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
                             configs.config_volume_mount,
-                        ] + (if configs.kingdom == "prd" then [configs.kube_config_volume_mount] else [])),
-                        [if configs.kingdom == "prd" then "env"]: [configs.kube_config_env],
+                        ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 volumes: configs.filter_empty([

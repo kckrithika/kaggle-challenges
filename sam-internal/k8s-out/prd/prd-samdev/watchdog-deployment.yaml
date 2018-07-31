@@ -42,10 +42,10 @@ spec:
           name: maddog-certs
         - mountPath: /data/certs
           name: certs
-        - mountPath: /config
-          name: config
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /config
+          name: config
       hostNetwork: true
       nodeSelector:
         master: "true"
