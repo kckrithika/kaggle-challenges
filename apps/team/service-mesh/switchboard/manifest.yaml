@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:b10bf884a2b8ee39a9da1c6f7523dab39fd01e6e
+      image: sfci/servicelibs/switchboard:2f9f8adcc3056e7696491d651d053c58890bb6ba
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -43,7 +43,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:2465d3eae46f71b2221a5a30c2e10ec95ceca917
+      image: sfci/servicelibs/sherpa-envoy:ca853b963d6d80a9bfd5a2b2ee3696c788d4ad79
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
