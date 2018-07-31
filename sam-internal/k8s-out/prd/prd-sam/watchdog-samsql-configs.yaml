@@ -29,8 +29,8 @@ data:
     = ''false'' then 1 else 0 end as FailureCount\n    from k8s_resource\n    where
     ApiKind = ''WatchDog''\n  ) as ss\n  where CheckerName not like ''Sql%'' and CheckerName
     not like ''MachineCount%''\n  group by CheckerName, ControlEstate, Kingdom\n)
-    as ss2", "watchdogFrequency": "60m"}, {"name": "Sql95thPctPRLatency", "sql": "SELECT
-    latency as PRLatency95Pct FROM\n     ( SELECT\n         prLatency.*,\n         @row_num
+    as ss2", "watchdogFrequency": "60m"}, {"name": "Sql95thPctPRLatencyOverLast24Hr",
+    "sql": "SELECT latency as PRLatency95PctOverLast24Hr FROM\n     ( SELECT\n         prLatency.*,\n         @row_num
     :=@row_num + 1 AS row_num\n    FROM\n        (\n        SELECT\n            prs.pr_num,\n            MAX(TIMESTAMPDIFF(MINUTE,prs.merged_time,
     CASE WHEN payload -> ''$.status.endTime'' = ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP()
     ELSE payload -> ''$.status.endTime'' END  )) latency\n    FROM\n        PullRequests

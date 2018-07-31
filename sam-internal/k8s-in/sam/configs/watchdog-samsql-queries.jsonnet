@@ -296,8 +296,8 @@ from (
 
    {
       watchdogFrequency: "15m",
-      name: "Sql95thPctPRLatency",
-      sql: "SELECT latency as PRLatency95Pct FROM
+      name: "Sql95thPctPRLatencyOverLast24Hr",
+      sql: "SELECT latency as PRLatency95PctOverLast24Hr FROM
      ( SELECT
          prLatency.*,
          @row_num :=@row_num + 1 AS row_num
