@@ -34,8 +34,23 @@ local utils = import "util_functions.jsonnet";
 
         "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
-
-
+        "cdg,cdg-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "cdu,cdu-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "dfw,dfw-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "frf,frf-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "fra,fra-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "hnd,hnd-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "iad,iad-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "ord,ord-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "par,par-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "phx,phx-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "syd,syd-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "ukb,ukb-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "wax,wax-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "xrd,xrd-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "yhu,yhu-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "yul,yul-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
         },
 
     ### Per-phase image tags
