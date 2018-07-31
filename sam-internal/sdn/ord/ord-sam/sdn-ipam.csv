@@ -200,6 +200,9 @@ shared0-samminioncustomerresolutionengine2-3-ord.ops.sfdc.net,10.223.248.42/29,1
 shared0-samminioncustomerresolutionengine2-4-ord.ops.sfdc.net,10.223.248.58/29,10.208.140.64/27,e11-02,ord-sam_customerresolutionengine,65009
 shared0-samminioncustomerresolutionengine3-1-ord.ops.sfdc.net,10.223.248.18/29,10.208.140.224/27,p16-01,ord-sam_customerresolutionengine,65009
 shared0-samminioncustomerresolutionengine3-3-ord.ops.sfdc.net,10.223.248.50/29,10.208.140.160/27,m16-03,ord-sam_customerresolutionengine,65009
+shared0-samminiondatapool1-1-ord.ops.sfdc.net,10.223.128.154/29,10.208.139.0/27,a06-02,ord-sam_datapool,65009
+shared0-samminiondatapool1-2-ord.ops.sfdc.net,10.223.128.146/29,10.208.139.32/27,e06-02,ord-sam_datapool,65009
+shared0-samminiondatapool2-1-ord.ops.sfdc.net,10.223.128.147/29,10.208.139.64/27,e06-02,ord-sam_datapool,65009
 shared0-samminiongater1-1-ord.ops.sfdc.net,10.223.221.130/29,10.213.200.128/27,j05-02,ord-sam_gater,65009
 shared0-samminiongater1-2-ord.ops.sfdc.net,10.223.221.162/29,10.213.200.32/27,f12-02,ord-sam_gater,65009
 shared0-samminiongater1-3-ord.ops.sfdc.net,10.223.221.146/29,10.213.200.64/27,g06-02,ord-sam_gater,65009
