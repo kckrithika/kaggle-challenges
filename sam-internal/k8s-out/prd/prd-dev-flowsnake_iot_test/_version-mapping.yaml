@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  version-mapping.properties: |
+    0.10.0 = 662
+    0.11.0 = 681
+    0.11.0.sluice_fix = 691
+    0.12.0 = 696
+    0.9.10 = 638
+    0.9.7 = 571
+    0.9.8 = 607
+    spark-2.3-test = 672
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: version-mapping
+  namespace: flowsnake

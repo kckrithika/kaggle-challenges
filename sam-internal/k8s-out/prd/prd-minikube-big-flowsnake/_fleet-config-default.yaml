@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  kubeconfig: /etc/kubernetes/kubeconfig
+  name: minikube
+  registry: minikube
+  strata_registry: minikube
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: fleet-config
+  namespace: default

@@ -1,0 +1,11 @@
+apiVersion: csp.storage.salesforce.com/v1
+kind: CustomerStoragePool
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  name: mobile-monitoring-postgres-storage-hdd-pool
+  namespace: mobile-monitoring
+spec:
+  clusterNamespace: legostore
+  size: 10Gi
+  storageTier: hdd

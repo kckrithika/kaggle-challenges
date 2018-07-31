@@ -1,0 +1,51 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  labels:
+    name: zookeeper
+  name: zookeeper
+  namespace: flowsnake
+spec:
+  replicas: 1
+  serviceName: zookeeper-set
+  template:
+    metadata:
+      labels:
+        app: glok-zk
+        name: zookeeper
+    spec:
+      containers:
+      - env:
+        - name: REPLICAS
+          value: "1"
+        - name: ZOOKEEPER_HEADLESS_SERVICE
+          value: zookeeper-set
+        - name: ZOOKEEPER_AUTOPURGE_HOURS
+          value: "24"
+        image: minikube/flowsnake-zookeeper:minikube
+        imagePullPolicy: Never
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - '[ $(exec 5<>/dev/tcp/localhost/2181 && echo ruok >&5 && cat <&5) ==
+              imok ]'
+          initialDelaySeconds: 180
+        name: glok-zk
+        ports:
+        - containerPort: 2181
+          name: zk2181
+        - containerPort: 2888
+          name: zk2888
+        - containerPort: 3888
+          name: zk3888
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - '[ $(exec 5<>/dev/tcp/localhost/2181 && echo ruok >&5 && cat <&5) ==
+              imok ]'
+  updateStrategy:
+    type: RollingUpdate

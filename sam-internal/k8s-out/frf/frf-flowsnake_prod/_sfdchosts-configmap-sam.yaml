@@ -1,0 +1,507 @@
+apiVersion: v1
+data:
+  hosts.json: |-
+    {
+      "hosts": [
+        {
+          "bomrolename": "flowsnake_master_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samkubeapi",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakemasterprod1-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "k17-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_master_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samkubeapi",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakemasterprod1-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "j08-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_master_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samkubeapi",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakemasterprod1-3-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b06-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_master_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samkubeapi",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakemasterprod1-4-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_master_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samkubeapi",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakemasterprod1-5-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a06-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b03-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-10-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b01-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-11-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "k18-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-12-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "j11-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-13-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-14-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "f01-m306",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-15-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a02-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-16-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "d07-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-17-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a05-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-18-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "c05-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-19-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b05-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "c18-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-20-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "c09-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-21-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "j16-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-22-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "l15-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-23-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "h10-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-24-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "h17-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-25-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "d04-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-26-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a15-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-27-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "k14-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-28-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a06-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-29-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "c06-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-3-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a04-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-30-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b15-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-31-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "h13-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-32-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "k04-m306",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-33-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "k17-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-34-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "j08-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-35-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "d05-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-36-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b06-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-37-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b03-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-38-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "c10-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-39-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b03-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-4-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "j11-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-40-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "b07-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-5-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "l15-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-6-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "h10-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-7-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "h17-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-8-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a06-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "frf-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "frf-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-9-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "h13-m305",
+          "superpod": "none"
+        }
+      ]
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: sfdchosts
+  namespace: sam-system

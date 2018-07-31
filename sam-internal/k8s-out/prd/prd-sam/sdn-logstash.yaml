@@ -1,0 +1,95 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sdn-logstash
+    sam.data.sfdc.net/owner: sdn
+  name: sdn-logstash
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: sdn-logstash
+        sam.data.sfdc.net/owner: sdn
+      namespace: sam-system
+    spec:
+      containers:
+      - env:
+        - name: RUN
+          value: logstash
+        - name: config_reload_automatic
+          value: "true"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000102-91c9122c
+        name: sdn-logstash
+        volumeMounts:
+        - mountPath: /etc/logstash/conf.d
+          name: logstashconf
+        - mountPath: /etc/pki/java
+          name: logstashcerts
+        - mountPath: /etc/logstash/certs
+          name: logstashkeystore
+      - command:
+        - /sdn/sdn-argus-auth-agent
+        - --svcUsername=svc_sdn
+        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
+        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --cafile=/etc/pki_service/ca/cabundle.pem
+        - --topicsPattern=sfdc.prod.rsyslog__*.ajna_local__logs.sdn
+        - --confFile=/etc/logstash/conf.d/logstash.conf
+        - --truststoreFile=/etc/pki/java/cacerts_sfdc_internal.jks
+        - --keystoreFile=/etc/logstash/certs/keystore.jks
+        - --elasticsearchUrl=10.254.219.223:9123
+        - --userName=platform
+        - --ajnaEndpoint=ajna0-brokeragg1-0-prd.data.sfdc.net:9093
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000818-072ffbb4
+        name: sdn-argus-auth-agent
+        volumeMounts:
+        - mountPath: /etc/logstash/conf.d
+          name: logstashconf
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+      - env:
+        - name: RUN
+          value: keytool_agent
+        - name: OUTPUT_FILE
+          value: /etc/logstash/certs/keystore.jks
+        - name: REPO_DIR
+          value: /etc/pki_service/root/sdn_agent
+        - name: CERT_PASSWORD
+          value: password
+        - name: CONVERT_INTERVAL
+          value: "43200"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000102-91c9122c
+        name: sdn-keytool-agent
+        volumeMounts:
+        - mountPath: /etc/logstash/certs
+          name: logstashkeystore
+        - mountPath: /etc/pki_service/root/sdn_agent
+          name: sdnagent
+      hostNetwork: true
+      nodeSelector:
+        pool: prd-sam
+      volumes:
+      - hostPath:
+          path: /etc/logstash/conf.d
+        name: logstashconf
+      - hostPath:
+          path: /etc/pki/java
+        name: logstashcerts
+      - hostPath:
+          path: /etc/logstash/certs
+        name: logstashkeystore
+      - hostPath:
+          path: /etc/pki_service/root/sdn_agent
+        name: sdnagent
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs

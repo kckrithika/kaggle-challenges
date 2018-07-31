@@ -27,7 +27,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                             configs.cert_volume_mount,
                             configs.maddog_cert_volume_mount,
                         ] + (if configs.kingdom == "prd" then [configs.kube_config_volume_mount] else [])),
-                        env: configs.filter_empty([] + (if configs.kingdom == "prd" then [configs.kube_config_env] else [])),
+                        [if configs.kingdom == "prd" then "env"]: [configs.kube_config_env],
                     },
                 ],
                 volumes: configs.filter_empty([

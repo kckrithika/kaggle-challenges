@@ -26,7 +26,7 @@ local utils = import "util_functions.jsonnet";
                             configs.cert_volume_mount,
                             configs.config_volume_mount,
                         ] + (if configs.kingdom == "prd" then [configs.kube_config_volume_mount] else [])),
-                        env: configs.filter_empty([] + (if configs.kingdom == "prd" then [configs.kube_config_env] else [])),
+                        [if configs.kingdom == "prd" then "env"]: [configs.kube_config_env],
                         name: "watchdog",
                         resources: {
                             requests: {

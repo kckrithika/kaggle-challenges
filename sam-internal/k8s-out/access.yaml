@@ -1,0 +1,11 @@
+# This file is dropped into k8s-out/ by build.sh after clearing the directory
+# Since we run swagger on the k8s-out folder, we need some magic stuff to skip validation.  This is here to skip the check (aclrepo will ignore it)
+apiVersion: v1
+kind: FakeResource
+metadata:
+  annotations:
+    "manifestctl.sam.data.sfdc.net/swagger": "disable"
+# It is ok for this to be wide-open access, because evaluate_pr checks for template consistentcy
+# so its really the template directories that enforce access.
+users:
+  - "*"

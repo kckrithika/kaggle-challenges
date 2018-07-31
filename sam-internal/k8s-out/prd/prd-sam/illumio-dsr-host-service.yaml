@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: illumio-dsr-host-svc
+    slb.sfdc.net/portconfigurations: '[{"port":8443,"targetport":8443,"lbtype":"dsr"}]'
+  labels:
+    app: illumio-dsr-host-svc
+    sam.data.sfdc.net/owner: slb
+    slb.sfdc.net/name: illumio-dsr-host-svc
+  name: illumio-dsr-host-svc
+  namespace: sam-system
+spec:
+  ports:
+  - name: slb-illumio-dsr-port
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
+  selector:
+    name: illumio-dsr-host
+  type: NodePort
