@@ -2,8 +2,9 @@ local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
-{
-    kind: "DaemonSet",
+
+if configs.estate == "prd-samdev" then {
+    kind: "Deployment",
     spec: {
         template: {
             spec: {
@@ -39,6 +40,7 @@ local utils = import "util_functions.jsonnet";
                         },
                     },
                 ],
+                dnsPolicy: "ClusterFirstWithHostNet",
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
                     configs.maddog_cert_volume,
@@ -68,4 +70,4 @@ local utils = import "util_functions.jsonnet";
         },
         name: "watchdog-dns",
     },
-}
+} else "SKIP"

@@ -26,6 +26,9 @@ local utils = import "util_functions.jsonnet";
         # [small] DNS Policy testing
         "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180724_224507.924ff22b.clean.small-ltm",
 
+        # [tkuznets] DNS Watchdog testing
+        "prd,prd-samdev,watchdog-dns,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tkuznets/hypersam:20180730_144425.60256972.clean.tkuznets-ltm1",
+
         # [thargrove] SQL watchdog fix for metrics generation
         "prd,prd-sam,watchdog-samsql,hypersam": "sam-0002142-53c0d131",
 
