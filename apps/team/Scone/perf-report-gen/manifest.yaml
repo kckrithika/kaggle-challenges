@@ -26,7 +26,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - "/home/scone/perf-report-gen/bin/is-alive"
+          - "/home/scone/perf-report-gen/bin/is-alive.sh"
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: sherpa
