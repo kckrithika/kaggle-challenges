@@ -28,7 +28,7 @@ spec:
         - --tlsPorts=443
         - --privateKey=/var/slb/canarycerts/server.key
         - --publicKey=/var/slb/canarycerts/sam.crt
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000991-5099c703
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000997-520fd7f9
         name: slb-canary-proxy-http
         volumeMounts:
         - mountPath: /host/data/slb/logs/
