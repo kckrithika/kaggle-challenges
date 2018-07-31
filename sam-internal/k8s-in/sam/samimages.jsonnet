@@ -32,6 +32,10 @@ local utils = import "util_functions.jsonnet";
         # [Xiao] pin samapp-controller to an earlier version without dual run in prd-sam
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002059-8a57b252",
 
+        "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+        "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
+
+
         },
 
     ### Per-phase image tags
