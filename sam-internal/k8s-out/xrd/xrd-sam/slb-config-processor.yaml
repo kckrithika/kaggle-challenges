@@ -53,7 +53,6 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
-        - --alwaysPopulateRealServers=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

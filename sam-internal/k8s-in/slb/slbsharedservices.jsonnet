@@ -42,9 +42,6 @@
                  "--servicesToLbOverride=" + servicesToLbOverride,
                  "--servicesNotToLbOverride=" + servicesNotToLbOverride,
              ] else [])
-           + (if slbimages.hypersdn_build >= 997 then [
-                 "--alwaysPopulateRealServers=true",
-           ] else [])
            + (if slbimages.hypersdn_build >= 999 then [
                  "--control.configProcSentinel=" + configProcSentinel,
            ] else []),

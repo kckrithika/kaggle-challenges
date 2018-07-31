@@ -75,7 +75,6 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
-        - --alwaysPopulateRealServers=true
         - --control.configProcSentinel=/host/data/slb/config/slb-realsvrcfg/slb-config-proc.sentinel
         env:
         - name: KUBECONFIG
