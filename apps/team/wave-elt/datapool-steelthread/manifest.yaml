@@ -56,7 +56,7 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       env:
       - name: SFDC_ENVIRONMENT
-        value: kingdom-test
+        value: DATACENTER_ALLENV
       livenessProbe:
         exec:
           command: ["/home/scone/is-alive.sh"]
@@ -126,19 +126,18 @@ system:
       maddogCert:
         type: client
 
-#  This shoul dnot be needed with service discovery. Remove commented section when validated connectivity from core.
-#
-#  loadbalancers:
-#  - lbname: datapool-lb
-#    function: datapool-steelthread
-#    nodeExposed: true
-#    slbenabled: true
-#    ports:
-#      - port: 7025  # Plain text port until we get SSL working
-#        targetport: 7012
-#      - port: 7443
-#        targetport: 7443
-#      - port: 15373
-#        targetport: 15373
+
+  loadbalancers:
+  - lbname: datapool-lb
+    function: datapool-steelthread
+    nodeExposed: true
+    slbenabled: true
+    ports:
+      - port: 7025  # Plain text port until we get SSL working
+        targetport: 7012
+      - port: 7443
+        targetport: 7443
+      - port: 15373
+        targetport: 15373
 
 
