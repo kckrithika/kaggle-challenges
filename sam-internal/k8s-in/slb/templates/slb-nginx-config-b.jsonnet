@@ -26,7 +26,7 @@ if slbconfigs.slbInKingdom then {
                     name: "slb-nginx-config-b",
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
-                annotations: {
+                annotations: if slbimages.phaseNum > 1 then {
                     "madkub.sam.sfdc.net/allcerts": "{
                             \"certreqs\":[
                                 {
@@ -49,6 +49,30 @@ if slbconfigs.slbInKingdom then {
                                 }
                             ]
                          }",
+                } else {
+                    "madkub.sam.sfdc.net/allcerts": "{
+                                                   \"certreqs\":[
+                                                       {
+                                                           \"name\": \"cert1\",
+                                                           \"cert-type\":\"server\",
+                                                           \"kingdom\":\"prd\",
+                                                           \"role\": \"" + slbconfigs.samrole + "\",
+                                                           \"san\":[
+                                                               \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
+                                                               \"*.slb.sfdc.net\",
+                                                               \"*.soma.salesforce.com\",
+                                                               \"*.kms.slb.sfdc.net\",
+                                                               \"*.data.sfdc.net\"
+                                                           ]
+                                                       },
+                                                       {
+                                                           \"name\": \"cert2\",
+                                                           \"cert-type\":\"client\",
+                                                           \"kingdom\":\"prd\",
+                                                           \"role\": \"" + slbconfigs.samrole + "\"
+                                                       }
+                                                   ]
+                                                }",
                 },
             },
             spec: {
@@ -125,16 +149,16 @@ if slbconfigs.slbInKingdom then {
                                     name: "slb-nginx-config-b",
                                     image: slbimages.hypersdn,
                                     command: [
-                                                 "/sdn/slb-nginx-config",
-                                                 "--configDir=" + slbconfigs.configDir,
-                                                 "--target=" + slbconfigs.slbDir + "/nginx/config",
-                                                 "--netInterfaceName=eth0",
-                                                 "--metricsEndpoint=" + configs.funnelVIP,
-                                                 "--log_dir=" + slbconfigs.logsDir,
-                                                 "--maxDeleteServiceCount=20",
-                                                 configs.sfdchosts_arg,
-                                                 "--client.serverInterface=lo",
-                                             ],
+                                        "/sdn/slb-nginx-config",
+                                        "--configDir=" + slbconfigs.configDir,
+                                        "--target=" + slbconfigs.slbDir + "/nginx/config",
+                                        "--netInterfaceName=eth0",
+                                        "--metricsEndpoint=" + configs.funnelVIP,
+                                        "--log_dir=" + slbconfigs.logsDir,
+                                        "--maxDeleteServiceCount=20",
+                                        configs.sfdchosts_arg,
+                                        "--client.serverInterface=lo",
+                                    ],
                                     volumeMounts: configs.filter_empty([
                                         {
                                             name: "var-target-config-volume",
