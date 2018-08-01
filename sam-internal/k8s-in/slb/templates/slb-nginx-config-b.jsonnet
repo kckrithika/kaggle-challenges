@@ -26,7 +26,7 @@ if slbconfigs.slbInKingdom then {
                     name: "slb-nginx-config-b",
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
-                annotations: if slbimages.phaseNum > 1 then {
+                annotations: if slbimages.phaseNum > 2 then {
                     "madkub.sam.sfdc.net/allcerts": "{
                             \"certreqs\":[
                                 {
