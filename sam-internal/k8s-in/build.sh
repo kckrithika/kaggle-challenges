@@ -50,7 +50,7 @@ fi
 
 
 # Format input jsonnet files.  TODO: Auto-compute these directories
-for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates slb slb/templates storage/templates flowsnake flowsnake/templates; do
+for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates slb slb/templates storage/templates flowsnake flowsnake/templates tnrp tnrp/templates; do
   jsonnet/jsonnet fmt -i $jdir/*.jsonnet
 done
 
@@ -60,7 +60,7 @@ else
   /opt/sam/manifestctl generate-pool-list --in ../pools/ --out  ../k8s-in/sam/configs/generated-pools.jsonnet
 fi
 
-./parallel_build.py --src=sam/templates/,sdn/templates/,slb/templates/,storage/templates/ --out=../k8s-out/ --pools=../pools/ --estatefilter=$1
+./parallel_build.py --src=sam/templates/,sdn/templates/,slb/templates/,storage/templates/,tnrp/templates --out=../k8s-out/ --pools=../pools/ --estatefilter=$1
 ./parallel_build.py --src=flowsnake/templates,sdn/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeEstates.json --estatefilter=$1
 # Skip SDN templates for Minikube
 ./parallel_build.py --src=flowsnake/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeMinikubeEstates.json --estatefilter=$1
