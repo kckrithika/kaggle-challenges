@@ -84,7 +84,7 @@
             [
                  "--checkSentinel=true",
                  "--control.configProcSentinel=" + configProcSentinel,
-                 "--control.sentinelExpires=1800s",  # config processor's interval
+                 "--control.sentinelExpiration=1800s",  # config processor's interval
             ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,

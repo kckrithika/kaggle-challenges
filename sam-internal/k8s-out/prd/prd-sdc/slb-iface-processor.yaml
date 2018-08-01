@@ -141,7 +141,7 @@ spec:
         - --netInterface=lo
         - --checkSentinel=true
         - --control.configProcSentinel=/host/data/slb/config/slb-iface-processor/slb-config-proc.sentinel
-        - --control.sentinelExpires=1800s
+        - --control.sentinelExpiration=1800s
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001006-af170776
         name: slb-node-api
         volumeMounts:
