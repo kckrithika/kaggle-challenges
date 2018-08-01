@@ -8,6 +8,4 @@ for kingdom in phx iad ord frf par; do
 done
 
 # expand proxy template
-for kingdom in dfw phx iad ord frf par; do
-        m4 -D__MANIFEST_FUNCTION_NAME__=cloudatlas-${kingdom}-fe < manifest-proxy.yaml > ../shared0-samminionatlasfe-${kingdom}/manifest.yaml
-done
+m4 -D__MANIFEST_FUNCTION_NAME__=cloudatlas-phx-fe < manifest-proxy.yaml > ../shared0-samminionatlasfe-phx/manifest.yaml
