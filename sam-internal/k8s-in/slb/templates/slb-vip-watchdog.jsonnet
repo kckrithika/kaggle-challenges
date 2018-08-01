@@ -101,7 +101,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   "--hostnameOverride=$(NODE_NAME)",
                                   configs.sfdchosts_arg,
                                   "--metricsEndpoint=" + configs.funnelVIP,
-                                  "--httpTimeout=5s",
+                                  "--httpTimeout=" + (if slbimages.phaseNum == 1 then "10s" else "5s"),
                                   "--vipLoop=1",
                                   "--monitorFrequency=10s",
                                   "--client.serverInterface=lo",
