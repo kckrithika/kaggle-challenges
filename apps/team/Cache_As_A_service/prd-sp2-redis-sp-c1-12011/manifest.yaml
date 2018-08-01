@@ -9,7 +9,7 @@ system:
     count: 5
     containers:
     - name: caas-redis
-      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
+      image: tnrp/caas/caas-redis:4.0.10-0000023-16334443
       resources:
         limits: { memory: "10Gi" }
         requests: { memory: "6Gi" }
