@@ -1911,10 +1911,10 @@ apps:
  prd-caas-sdn-metrics-publisher:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion1-2-prd.eng.sfdc.net
-    - samcaas2-caasminion1-4-prd.eng.sfdc.net
     - samcaas2-caasminion2-2-prd.eng.sfdc.net
-    - samcaas2-caasminion2-4-prd.eng.sfdc.net
+ prd-sp2-sfproxy-mist30-proxy:
+  - name: prd/prd-sp2-sam_caas
+    hostSubList:
     - samcaas2-caasminion3-3-prd.eng.sfdc.net
  phx-sp3-metrics-publisher-sp-gs0-pc1:
   - name: phx/phx-sp3-sam_caas
