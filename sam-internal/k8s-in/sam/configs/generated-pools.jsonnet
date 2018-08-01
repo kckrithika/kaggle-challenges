@@ -3,10 +3,10 @@
   "generatedPools": [
     {
       "namespaces": [
-        "*"
+        "csc-sam"
       ],
       "access": [
-        "*"
+        "team/CSC_Sam"
       ],
       "controlEstate": "cdg-sam",
       "estate": "cdg-sam",
@@ -733,10 +733,10 @@
     },
     {
       "namespaces": [
-        "*"
+        "csc-sam"
       ],
       "access": [
-        "*"
+        "team/CSC_Sam"
       ],
       "controlEstate": "ia2-sam",
       "estate": "ia2-sam",
@@ -1465,10 +1465,10 @@
     },
     {
       "namespaces": [
-        "*"
+        "csc-sam"
       ],
       "access": [
-        "*"
+        "team/CSC_Sam"
       ],
       "controlEstate": "ph2-sam",
       "estate": "ph2-sam",
@@ -2553,12 +2553,10 @@
     },
     {
       "namespaces": [
-        "csc-sam",
-        "publicdns"
+        "csc-sam"
       ],
       "access": [
-        "team/CSC_Sam",
-        "team/PublicDNS"
+        "team/CSC_Sam"
       ],
       "controlEstate": "xrd-sam",
       "estate": "xrd-sam",
