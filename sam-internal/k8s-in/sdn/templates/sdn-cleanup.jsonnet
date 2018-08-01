@@ -39,7 +39,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     name: "sdn-cleanup",
                     apptype: "control",
                     daemonset: "true",
-                } + configs.ownerLabel.sdn,
+                } + (if configs.estate != "prd-sdc" then configs.ownerLabel.sdn else {}),
                 namespace: "sam-system",
             },
         },
