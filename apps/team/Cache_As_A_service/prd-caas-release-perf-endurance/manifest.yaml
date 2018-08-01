@@ -7,7 +7,7 @@ system:
     containers:
     - name: caas-redis-12015 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:4.0.10-0000023-16334443
+      image: tnrp/caas/caas-redis:4.0.10-0000024-16334693
       resources:
         limits: { memory: "10Gi" }
         requests: { memory: "6Gi" }
