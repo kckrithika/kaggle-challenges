@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: broker
+    count: 2
+    containers:
+    - name: basic-broker
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/snew/basic-broker:1
+      ports:
+      - containerPort: 9292
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9292
+  loadbalancers:
+  - lbname: brokerlb
+    function: broker
+    slbenabled: true
+    ports:
+      - port: 9292
+        targetport: 9292
+        lbtype: tcp
