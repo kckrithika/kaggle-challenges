@@ -1,0 +1,76 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - mayank@salesforce.com
+  functions:
+  - name: death-eaters
+    count: 2
+    progressDeadlineSeconds: 120
+    containers:
+    - name: mayankapp
+      image: tnrp/sam/hypersam:sam-0000701-487f2675
+      command: ["/sam/sam-test-app"]
+      args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
+      env:
+        - name: El337
+          value: "301001110345"
+      ports:
+      - containerPort: 8000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /tmp
+        name: amagicvolumethatvanishes
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs/apps
+    - name: amagicvolumethatvanishes
+      emptyDir: {}
+  - name: dementors
+    count: 2
+    progressDeadlineSeconds: 120
+    containers:
+    - name: mayankapp
+      image: tnrp/sam/hypersam:sam-0000701-487f2675
+      command: ["/sam/sam-test-app"]
+      args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
+      env:
+        - name: El337
+          value: "301001110345"
+      ports:
+      - containerPort: 8000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /tmp
+        name: amagicvolumethatvanishes
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs/apps
+    - name: amagicvolumethatvanishes
+      emptyDir: {}
+  loadbalancers:
+  - lbname: death-eater-service
+    nodeExposed: true
+    function: death-eaters
+    ports:
+      - port: 6666
+        targetport: 8000
+  - lbname: dementors-service
+    nodeExposed: true
+    function: dementors
+    ports:
+      - port: 6667
+        targetport: 8000

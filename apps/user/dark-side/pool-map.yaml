@@ -1,0 +1,4 @@
+version: v2
+apps:
+ voldemort:
+  - name: prd/prd-samdev
