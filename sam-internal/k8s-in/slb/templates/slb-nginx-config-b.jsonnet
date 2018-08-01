@@ -61,7 +61,7 @@ if slbconfigs.slbInKingdom then {
                                                                \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
                                                                \"*.slb.sfdc.net\",
                                                                \"*.soma.salesforce.com\",
-                                                               \"*.kms.salesforce.com\",
+                                                               \"*.kms.slb.sfdc.net\",
                                                                \"*.data.sfdc.net\"
                                                            ]
                                                        },
