@@ -5,7 +5,7 @@ system:
   functions:
 
   - name: perf-client
-    count: 20
+    count: 1
     containers:
 
     - name: client
