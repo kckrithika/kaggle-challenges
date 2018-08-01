@@ -55,4 +55,7 @@ local utils = import "util_functions.jsonnet";
         configs.estate == "xrd-sam",
 
      syntheticwdPagerDutyEnabled: configs.kingdom == "frf",
+
+     maddogCopyTestCA: (if configs.kingdom == "prd" then true),
+
 }
