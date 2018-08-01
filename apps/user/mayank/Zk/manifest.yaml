@@ -68,5 +68,5 @@ system:
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
     - name: datadir
-      storageClassName: mayank-hdd-pool
-      storageSizeRequest: 10Gi
+      storageClassName: standard
+      storageSizeRequest: 5Gi

@@ -2,6 +2,7 @@ version: v2
 apps:
  Zk:
   - name: prd/prd-sam
+    name: prd/prd-samdev
  StatefulApp:
   - name: prd/prd-sam
  TestApp:
