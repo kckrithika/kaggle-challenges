@@ -20,22 +20,15 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [alok.bansal] SAM Manifest Repo Watcher
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002147-c4af4fe0",
-
         # [small] DNS Policy testing
         "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180724_224507.924ff22b.clean.small-ltm",
 
         # [tkuznets] DNS Watchdog testing
         "prd,prd-samdev,watchdog-dns,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tkuznets/hypersam:20180730_144425.60256972.clean.tkuznets-ltm1",
 
-        # [thargrove] SQL watchdog fix for metrics generation
-        "prd,prd-sam,watchdog-samsql,hypersam": "sam-0002142-53c0d131",
-
         # [Xiao] pin samapp-controller to an earlier version without dual run in prd-sam
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002059-8a57b252",
 
-        "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
         "cdg,cdg-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
         "cdu,cdu-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
         "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
@@ -87,7 +80,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": $.per_phase["3"] {
-            hypersam: "sam-0002135-e7f3c512",
+            hypersam: "sam-0002160-cdd63ff0",
             madkub: "1.0.0-0000071-5a6dcab2",
             madkubSidecar: "1.0.0-0000071-5a6dcab2",
             },
