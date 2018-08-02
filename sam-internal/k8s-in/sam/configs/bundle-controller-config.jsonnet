@@ -1,4 +1,4 @@
 {
-  whiteListNamespaceRegexp: "^ci-*",
-  resyncinterval: "30m",
+  whiteListNamespaceRegexp: ["^ci-*"],
+  resyncinterval: "5m",
 }

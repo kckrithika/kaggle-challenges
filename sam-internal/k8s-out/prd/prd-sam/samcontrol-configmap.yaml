@@ -3,7 +3,8 @@ data:
   samcontrol.json: |-
     {
       "blackListNamespaceRegexp": [
-        "e2e-.*-csc-sam$"
+        "e2e-.*-csc-sam$",
+        "^ci-*"
       ],
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
