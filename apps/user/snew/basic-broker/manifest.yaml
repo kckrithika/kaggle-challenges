@@ -5,13 +5,48 @@ system:
     count: 2
     containers:
     - name: basic-broker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/snew/basic-broker:1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/snew/post-broke:1
       ports:
       - containerPort: 9292
       livenessProbe:
         httpGet:
           path: /
           port: 9292
+      env:
+        - name: PACT_BROKER_DATABASE_USERNAME
+          value: postgres
+        - name: PACT_BROKER_DATABASE_PASSWORD
+          value: password
+        - name: PACT_BROKER_DATABASE_HOST
+          value: postgres
+        - name: PACT_BROKER_DATABASE_NAME
+          value: postgres
+
+    - name: postgres
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/postgres:9.3-sfdc
+      ports:
+      - containerPort: 5432
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 5432
+      env:
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: password
+        - name: POSTGRES_DB
+          value: postgres
+
+    - name: nginx
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:stable-alpine
+      ports:
+      - containerPort: 8443
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8443
+
   loadbalancers:
   - lbname: brokerlb
     function: broker
