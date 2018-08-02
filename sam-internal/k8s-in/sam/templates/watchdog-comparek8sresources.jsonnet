@@ -41,9 +41,8 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                     configs.maddog_cert_volume,
                     configs.kube_config_volume,
                 ]),
-                nodeSelector: {
-                    pool: configs.estate,
-                },
+                nodeSelector: {} + if configs.kingdom == "prd" then { master: "true" } else { pool: configs.estate },
+
             },
             metadata: {
                 labels: {
