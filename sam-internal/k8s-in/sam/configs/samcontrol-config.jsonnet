@@ -51,7 +51,5 @@ std.prune({
 
 # Controller V1 ignore namespace list
 + (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
-      blackListNamespaceRegexp: [
-                 "e2e-.*-csc-sam$",
-             ],
+      blackListNamespaceRegexp: (import "./bundle-controller-config.jsonnet").whiteListNamespaceRegexp,
   } else {})
