@@ -61,3 +61,7 @@ spec:
       - configMap:
           name: watchdog
         name: config
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate

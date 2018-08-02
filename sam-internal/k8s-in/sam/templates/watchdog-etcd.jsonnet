@@ -64,7 +64,7 @@ local utils = import "util_functions.jsonnet";
                 namespace: "sam-system",
             },
         },
-        updateStrategy: {
+        [if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then "updateStrategy"]: {
             type: "RollingUpdate",
             rollingUpdate: {
                 maxUnavailable: "25%",

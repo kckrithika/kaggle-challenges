@@ -62,7 +62,7 @@ local wdconfig = import "samwdconfig.jsonnet";
                 } + configs.ownerLabel.sam,
             },
         },
-        updateStrategy: {
+        [if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then "updateStrategy"]: {
             type: "RollingUpdate",
             rollingUpdate: {
                 maxUnavailable: "25%",
