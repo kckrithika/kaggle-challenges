@@ -158,7 +158,9 @@ if slbconfigs.slbInKingdom then {
                                         "--maxDeleteServiceCount=20",
                                         configs.sfdchosts_arg,
                                         "--client.serverInterface=lo",
-                                    ],
+                                        ] + (if slbimages.hypersdn_build >= 998 then [
+                                                "--blueGreenFeature=true",
+                                         ] else []),
                                     volumeMounts: configs.filter_empty([
                                         {
                                             name: "var-target-config-volume",
