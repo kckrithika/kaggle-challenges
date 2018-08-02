@@ -30,10 +30,8 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002059-8a57b252",
 
         "cdg,cdg-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
-        "cdu,cdu-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
         "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
         "dfw,dfw-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
-        "frf,frf-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
         "fra,fra-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
         "hnd,hnd-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
         "iad,iad-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
@@ -87,7 +85,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": $.per_phase["4"] {
-            hypersam: "sam-0002135-e7f3c512",
+            hypersam: "sam-0002160-cdd63ff0",
             madkub: "1.0.0-0000071-5a6dcab2",
             madkubSidecar: "1.0.0-0000071-5a6dcab2",
             },
