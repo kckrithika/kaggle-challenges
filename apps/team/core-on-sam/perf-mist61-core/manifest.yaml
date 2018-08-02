@@ -200,7 +200,7 @@ system:
     
     containers:
     - name: sequencer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_jenkins:b9c578
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_jenkins:3e9003
 
       env:
         - name: USE_SWITCHBOARD
