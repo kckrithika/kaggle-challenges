@@ -30,7 +30,7 @@ std.prune({
   enableMaddog: samfeatureflags.maddogforsamapps,
   maddogMaddogEndpoint: configs.maddogEndpoint,
   maddogMadkubImage: samimages.madkubSidecar,
-  enableMaddogCopyTestCA: (if configs.kingdom == "prd" then true),
+  enableMaddogCopyTestCA: samfeatureflags.maddogCopyTestCA,
 
   # SLB
   slbConfigInLabels: (if configs.kingdom != "prd" then false),
