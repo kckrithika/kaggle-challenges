@@ -5,18 +5,18 @@ system:
     email:
     - irahim@salesforce.com
   functions:
-  - name: universal-search
+  - name: universal-search-irahim
     count: 3
-    # volumes:
+    volumes:
     # - name: client-cert-vol
     #   maddogCert:
     #     type: client
     # - name: server-cert-vol
     #   maddogCert:
     #     type: server
-    # - name: usmt-log-vol
-    #   hostpath:
-    #     path: /home/sfdc-usmt/logs
+    - name: usmt-log-vol
+      hostpath:
+        path: /home/sfdc-usmt/logs
     # - name: sherpa-log-vol
     #   hostpath:
     #     path: /home/sfdc-sherpa/logs
@@ -24,7 +24,7 @@ system:
     #   k4aSecret:
     #     secretName: solrcloudcli-keytab-prd
     containers:
-    - name: universal-search
+    - name: universal-search-irahim
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.7.5
       ports:
       - name: service-port
@@ -93,16 +93,16 @@ system:
     #     exec:
     #       command:
     #       - "/home/scone/is-alive.sh"
-  loadbalancers:
-  - function: universal-search-irahim
-    lbname: universal-search-irahim-slb
-    ports:
-    - port: 7020
-      targetport: 7012
-    - lbtype: http
-      port: 15372
-      targetport: 15372
-    - lbtype: http
-      port: 15373
-      targetport: 15373
-    slbEnabled: true
+  # loadbalancers:
+  # - function: universal-search-irahim
+  #   lbname: universal-search-irahim-slb
+  #   ports:
+  #   - port: 7020
+  #     targetport: 7012
+  #   - lbtype: http
+  #     port: 15372
+  #     targetport: 15372
+  #   - lbtype: http
+  #     port: 15373
+  #     targetport: 15373
+  #   slbEnabled: true
