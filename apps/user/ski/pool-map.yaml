@@ -3,7 +3,3 @@ apps:
   - prd/prd-sam
  grafana:
   - prd/prd-sam
- switchboard:
-  - prd/prd-sam
- perf-client:
-  - prd/prd-sam
