@@ -24,6 +24,7 @@ local kingdom = std.extVar("kingdom");
     # This is for filtering in, or out, testing clusters.
     is_test_cluster(estate):: (
         estate == "prd-samdev" ||
+        estate == "prd-samdevpool" ||
         estate == "prd-samtest" ||
         estate == "prd-sdc" ||
         estate == "prd-sam" ||

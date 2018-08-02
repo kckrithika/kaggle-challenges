@@ -74,5 +74,20 @@ items:
     name: shared0-samdevcompute1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samdevcompute2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: prd-samdevpool:samcompute:clusterrolebinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samdevpool1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samdevpool2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samdevpool3-1-prd.eng.sfdc.net
 kind: List
 metadata: {}
