@@ -20,6 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [thargrove] Enable multi-query pages in sam-sql-reporter
+        "prd,prd-sam,sam-sql-reporter,hypersam": "sam-0002173-1b71b997",
+
         # [small] DNS Policy testing
         "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180724_224507.924ff22b.clean.small-ltm",
 
