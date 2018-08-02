@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:2f9f8adcc3056e7696491d651d053c58890bb6ba
+      image: sfci/servicelibs/switchboard:76bbb7a9f8096aafe0563b90420bde0841c8dc7a
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -19,13 +19,13 @@ system:
       - name: SFDC_ENVIRONMENT
         value: stm
       - name: GRPC_SERVER_PORT
-        value: 7020
+        value: "7020"
       resources:
         limits:
-          cpu: 8
+          cpu: "8"
           memory: 6Gi
         requests:
-          cpu: 8
+          cpu: "8"
           memory: 6Gi
       volumeMounts:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
@@ -55,10 +55,10 @@ system:
         value: mesh
       resources:
         limits:
-          cpu: 1
+          cpu: "1"
           memory: 1Gi
         requests:
-          cpu: 1
+          cpu: "1"
           memory: 1Gi
       volumeMounts:
       - mountPath: /switchboard-config
