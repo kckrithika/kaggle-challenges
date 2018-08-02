@@ -15,15 +15,11 @@ system:
           command:
           - cat
           - ./bin/agentcontroller.sh
-          initialDelaySeconds: 10
-          periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - cat
           - ./bin/agentcontroller.sh
-          initialDelaySeconds: 5
-          periodSeconds: 5
     - name: sherpa-xlt
       image: tnrp/sherpa:0.2.0-0000097-594964a3
       env:
@@ -39,11 +35,7 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 120
-          periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 110
-          periodSeconds: 5
