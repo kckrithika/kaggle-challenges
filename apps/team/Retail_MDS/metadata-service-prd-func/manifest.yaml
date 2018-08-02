@@ -25,7 +25,7 @@ system:
         secretName: mds-gdot-secrets-prd
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.3.47
+      image: sfci/metadata-cannon/metadata-service:0.3.53
       ports:
       # 9091 is for REST which is disabled in prod
       - containerPort: 9091
@@ -108,5 +108,10 @@ system:
     function: metadata-service
     slbenabled: true
     ports:
+    # HTTP port, served by the app. Exposes testing REST endpoints.
     - port: 9091
       targetport: 9091
+
+    # gRPC TLS port, served by sherpa. Used for testing against gRPC endpoints.
+    - port: 7443
+      targetport: 7443
