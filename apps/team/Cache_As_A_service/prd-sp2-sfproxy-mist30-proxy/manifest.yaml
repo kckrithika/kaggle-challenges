@@ -14,7 +14,7 @@ system:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
       - name: CASAM_SETTINGS_PATH
-        value: mist.mist30.prd.na1.sfproxy
+        value: mist.mist61.prd.na1.cyan
       volumeMounts:
       - name: envoy-config-volume
         mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
