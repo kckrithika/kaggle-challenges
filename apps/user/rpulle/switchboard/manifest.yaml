@@ -5,10 +5,14 @@ system:
     email:
       - rpulle@salesforce.com
   functions:
-  - name: switchboard-perf
+#  Don't name this 'switchboard-*' because we want to be able to more easily disambiguate this instance from the regular switchboard
+#  when querying argus
+  - name: switchboardperf
     count: 1
     containers:
-    - name: switchboard-perf
+#  Don't name this 'switchboard-*' because we want to be able to more easily disambiguate this instance from the regular switchboard
+#  when querying argus
+    - name: switchboardperf
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/34
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/switchboard:1.0
       env:
