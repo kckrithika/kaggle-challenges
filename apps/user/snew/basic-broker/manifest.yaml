@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: broker
-    count: 2
+    count: 1
     containers:
     - name: basic-broker
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/snew/post-broke:1
@@ -22,6 +22,9 @@ system:
         - name: PACT_BROKER_DATABASE_NAME
           value: postgres
 
+  - name: postgres
+    count: 1
+    containers:
     - name: postgres
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/postgres:9.3-sfdc
       ports:
@@ -45,4 +48,11 @@ system:
     ports:
       - port: 9292
         targetport: 9292
+        lbtype: tcp
+  - lbname: postgreslb
+    function: postgres
+    slbenabled: true
+    ports:
+      - port: 5432
+        targetport: 5432
         lbtype: tcp
