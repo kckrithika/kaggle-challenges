@@ -38,15 +38,6 @@ system:
         - name: POSTGRES_DB
           value: postgres
 
-    - name: nginx
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:stable-alpine
-      ports:
-      - containerPort: 8443
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 8443
-
   loadbalancers:
   - lbname: brokerlb
     function: broker
