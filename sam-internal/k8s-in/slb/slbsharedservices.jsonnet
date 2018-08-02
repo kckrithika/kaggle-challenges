@@ -44,6 +44,9 @@
              ] else [])
            + (if slbimages.hypersdn_build >= 999 then [
                  "--control.configProcSentinel=" + configProcSentinel,
+           ] else [])
+           + (if slbimages.hypersdn_build >= 1011 then [
+                 "--alwaysPopulateRealServers=true",
            ] else []),
         volumeMounts: configs.filter_empty([
             configs.maddog_cert_volume_mount,
