@@ -12,6 +12,9 @@ system:
         httpGet:
           path: /
           port: 9292
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60
       env:
         - name: PACT_BROKER_DATABASE_USERNAME
           value: postgres
@@ -33,6 +36,9 @@ system:
         httpGet:
           path: /
           port: 5432
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60
       env:
         - name: POSTGRES_USER
           value: postgres
