@@ -1,16 +1,10 @@
 version: v2
 apps:
- test-bash:
-  - name: prd/prd-sp2-sam_coreapp
  prd-sp2-casam-func-7500:
   - name: prd/prd-sp2-sam_coreapp
  kaiju:
   - name: prd/prd-sp2-sam_coreapp
- may-demo-switchboard:
-  - name: prd/prd-sp2-sam_coreapp
- may-demo-core:
-  - name: prd/prd-sp2-sam_coreapp
- matt-startup-test:
+ switchboard:
   - name: prd/prd-sp2-sam_coreapp
  redis-c1:
   - name: prd/prd-sp2-sam_coreapp
