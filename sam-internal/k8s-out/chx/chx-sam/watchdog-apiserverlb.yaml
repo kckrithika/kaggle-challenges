@@ -30,7 +30,7 @@ spec:
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -emailFrequency=12h
-        image: ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0002135-e7f3c512
+        image: ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0002160-cdd63ff0
         name: watchdog-apiserverlb
         volumeMounts:
         - mountPath: /sfdchosts
