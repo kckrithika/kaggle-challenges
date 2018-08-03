@@ -41,7 +41,7 @@ std.prune({
   # [mayank] This flag enables dns resolution for pods deployed by samcontroller
   # Technically enabling this without kubedns running only causes some misc events in the pod describe, but
   # we will enable kubedns soon and then we can enable it for prod as well.
-  enableDNS: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then true),
+  enableDNS: if samfeatureflags.kubedns then true,
   dnsEnabledPoolNamesRegex: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then ".*"),
 
   # SDP

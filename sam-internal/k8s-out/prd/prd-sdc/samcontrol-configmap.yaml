@@ -11,6 +11,7 @@ data:
       "deletionEnabled": true,
       "deletionPercentageThreshold": 20,
       "dockerregistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
+      "enableDNS": true,
       "enableMaddog": true,
       "enableMaddogCopyTestCA": true,
       "httpsDisableCertsCheck": true,
