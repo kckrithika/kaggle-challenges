@@ -200,7 +200,7 @@ system:
     
     containers:
     - name: sequencer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_jenkins:d901d8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_jenkins:a11bf4
 
       env:
         - name: USE_SWITCHBOARD
@@ -244,6 +244,8 @@ system:
           value: rotate
         - name: MADDOG_CLIENT
           value: /certs
+        - name: CASAM_SETTINGS_PATH
+          value: mist.mist61.prd.na1.cli
 
       livenessProbe:
         httpGet:
