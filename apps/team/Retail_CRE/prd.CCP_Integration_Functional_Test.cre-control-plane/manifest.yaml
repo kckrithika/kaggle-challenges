@@ -40,7 +40,7 @@ system:
         - name: HBASE_DATACENTER
           value: prd
         - name: SECRET_KEY_FILE
-          value: /keys/control-plane-aes.key      
+          value: /keys/control-plane-aes.key
       ports:
       - containerPort: 8080
       - containerPort: 7020
