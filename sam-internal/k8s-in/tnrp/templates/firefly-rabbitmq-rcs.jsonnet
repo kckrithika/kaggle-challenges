@@ -97,7 +97,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               },
               {
                 name: 'RABBITMQ_NODENAME',
-                value: 'rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE).svc.' + configs.estate + '.' + configs.kingdom + '.sam.sfdc.net.',
+                value: 'rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE)',
               },
               {
                 name: 'K8S_SERVICE_NAME',

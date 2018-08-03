@@ -195,9 +195,9 @@ data:
     log.console.level = debug
     ## Clustering
     cluster_formation.peer_discovery_backend = rabbit_peer_discovery_classic_config
-    cluster_formation.classic_config.nodes.1 = rabbit@rabbitmq-0.rabbitmq-set.firefly.svc.prd-samtest.prd.sam.sfdc.net.
-    cluster_formation.classic_config.nodes.2 = rabbit@rabbitmq-1.rabbitmq-set.firefly.svc.prd-samtest.prd.sam.sfdc.net.
-    cluster_formation.classic_config.nodes.3 = rabbit@rabbitmq-2.rabbitmq-set.firefly.svc.prd-samtest.prd.sam.sfdc.net.
+    cluster_formation.classic_config.nodes.1 = rabbit@rabbitmq-0.rabbitmq-set.firefly
+    cluster_formation.classic_config.nodes.2 = rabbit@rabbitmq-1.rabbitmq-set.firefly
+    cluster_formation.classic_config.nodes.3 = rabbit@rabbitmq-2.rabbitmq-set.firefly
     cluster_formation.randomized_startup_delay_range.min = 10
     cluster_formation.randomized_startup_delay_range.max = 30
     # Set to false if automatic removal of unknown/absent nodes

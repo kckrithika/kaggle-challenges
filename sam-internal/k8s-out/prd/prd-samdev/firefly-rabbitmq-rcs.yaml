@@ -46,7 +46,7 @@ spec:
         - name: RABBITMQ_USE_LONGNAME
           value: "true"
         - name: RABBITMQ_NODENAME
-          value: rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE).svc.prd-samdev.prd.sam.sfdc.net.
+          value: rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE)
         - name: K8S_SERVICE_NAME
           value: rabbitmq-set
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:9
