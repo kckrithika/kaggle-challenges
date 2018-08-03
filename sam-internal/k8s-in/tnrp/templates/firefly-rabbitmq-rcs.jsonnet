@@ -216,7 +216,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
         terminationGracePeriodSeconds: 10,
         nodeSelector:
           if configs.estate == "prd-samtwo" then {
-            pool: 'prd-sam_tnrp_merger',
+            pool: 'prd-sam_tnrp_signer',
           } else {
             pool: configs.estate,
         },
