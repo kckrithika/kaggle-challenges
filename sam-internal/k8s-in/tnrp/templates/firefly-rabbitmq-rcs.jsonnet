@@ -39,7 +39,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                   command: [
                     '/bin/sh',
                     '-c',
-                    'rabbitmqctl wait /var/lib/rabbitmq/mnesia/rabbit\\@$MY_POD_NAME.rabbitmq-set.firefly.pid; until rabbitmqctl node_health_check; do sleep 1; done; rabbitmqctl add_user $RABBITMQ_DEFAULT_USER $RABBITMQ_DEFAULT_PASS; rabbitmqctl set_user_tags $RABBITMQ_DEFAULT_USER administrator; rabbitmqctl set_permissions -p / $RABBITMQ_DEFAULT_USER ".*" ".*" ".*";',
+                    'rabbitmqctl wait /var/lib/rabbitmq/mnesia/rabbit\\@$(hostname -f).pid; until rabbitmqctl node_health_check; do sleep 1; done; rabbitmqctl add_user $RABBITMQ_DEFAULT_USER $RABBITMQ_DEFAULT_PASS; rabbitmqctl set_user_tags $RABBITMQ_DEFAULT_USER administrator; rabbitmqctl set_permissions -p / $RABBITMQ_DEFAULT_USER ".*" ".*" ".*";',
                   ],
                 },
               },
@@ -97,7 +97,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               },
               {
                 name: 'RABBITMQ_NODENAME',
-                value: 'rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE)',
+                value: 'rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE).svc.' + configs.estate + '.' + configs.kingdom + '.sam.sfdc.net.',
               },
               {
                 name: 'K8S_SERVICE_NAME',
