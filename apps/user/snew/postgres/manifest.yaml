@@ -26,6 +26,13 @@ system:
       ports:
       - containerPort: 5432
 
+      resources:
+        requests:
+          memory: "1Gi"
+          cpu: "1"
+        limits:
+          memory: "4Gi"
+          cpu: "2"
       env:
         - name: POSTGRES_USER
           value: postgres
@@ -50,7 +57,7 @@ system:
     volumeClaimTemplates:
     - name: datavol
       storageClassName: standard
-      storageSizeRequest: 1Gi
+      storageSizeRequest: 100Gi
 
   loadbalancers:
   - lbname: postgres-one-lb
