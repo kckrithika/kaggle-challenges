@@ -1,64 +1,61 @@
 apiVersion: v1
-system:
-  functions:
-  - name: broker
-    count: 1
-    containers:
-    - name: basic-broker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/snew/post-broke:1
-      ports:
-      - containerPort: 9292
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 9292
-        failureThreshold: 3
-        initialDelaySeconds: 5
-        periodSeconds: 60
-      env:
-        - name: PACT_BROKER_DATABASE_USERNAME
-          value: postgres
-        - name: PACT_BROKER_DATABASE_PASSWORD
-          value: password
-        - name: PACT_BROKER_DATABASE_HOST
-          value: postgres
-        - name: PACT_BROKER_DATABASE_NAME
-          value: postgres
 
+system:
+  notifications:
+    email:
+    - snew@salesforce.com
+
+  functions:
   - name: postgres
     count: 1
+    type: stateful-set
     containers:
     - name: postgres
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/postgres:9.3-sfdc
+
+      env:
+      # Set PGDATA to a subdir, since postgres doesn't like being at a mountpoint.
+      # See https://github.com/docker-library/docs/pull/277/files
+      - name: PGDATA
+        value: /var/lib/postgresql/data/pgdata
+
+      volumeMounts:
+      - name: datavol
+        mountPath: /var/lib/postgresql/data
+
       ports:
       - containerPort: 5432
+
+      resources:
+        requests:
+          memory: "1Gi"
+          cpu: "1"
+        limits:
+          memory: "4Gi"
+          cpu: "2"
+
       livenessProbe:
-        httpGet:
-          path: /
+        tcpSocket:
           port: 5432
         failureThreshold: 3
         initialDelaySeconds: 5
         periodSeconds: 60
-      env:
-        - name: POSTGRES_USER
-          value: postgres
-        - name: POSTGRES_PASSWORD
-          value: password
-        - name: POSTGRES_DB
-          value: postgres
+
+    lbname: postgres-headless-lb
+
+    # Give containers a bit of time to shut down, as they might be syncing
+    # state into the PV on shutdown
+    terminationGracePeriodSeconds: 30
+
+    volumeClaimTemplates:
+    - name: datavol
+      storageClassName: moe-hdd-pool
+      storageSizeRequest: 100Gi
 
   loadbalancers:
-  - lbname: brokerlb
-    function: broker
-    slbenabled: true
-    ports:
-      - port: 9292
-        targetport: 9292
-        lbtype: tcp
-  - lbname: postgreslb
+  - lbname: postgres
     function: postgres
-    slbenabled: true
+    slbEnabled: true
     ports:
       - port: 5432
         targetport: 5432
-        lbtype: tcp
