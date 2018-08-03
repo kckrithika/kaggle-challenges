@@ -1,0 +1,253 @@
+apiVersion: v1
+data:
+  definitions.json: |-
+    {
+      "bindings": [
+        {
+          "arguments": {},
+          "destination": "test_sam_manifests.pr",
+          "destination_type": "queue",
+          "routing_key": "test_sam_manifests.pr",
+          "source": "firefly.delivery",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "destination": "test_sam_manifests.package",
+          "destination_type": "queue",
+          "routing_key": "test_sam_manifests.package",
+          "source": "firefly.delivery",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "destination": "test_sam_manifests.promotion",
+          "destination_type": "queue",
+          "routing_key": "test_sam_manifests.promotion",
+          "source": "firefly.delivery",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "destination": "test_manifest_driven_promotions.pr",
+          "destination_type": "queue",
+          "routing_key": "test_manifest_driven_promotions.pr",
+          "source": "firefly.delivery",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "destination": "test_manifest_driven_promotions.package",
+          "destination_type": "queue",
+          "routing_key": "test_manifest_driven_promotions.package",
+          "source": "firefly.delivery",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "destination": "test_manifest_driven_promotions.promotion",
+          "destination_type": "queue",
+          "routing_key": "test_manifest_driven_promotions.promotion",
+          "source": "firefly.delivery",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "destination": "test-firefly-manifests.pr",
+          "destination_type": "queue",
+          "routing_key": "test-firefly-manifests.pr",
+          "source": "firefly.delivery",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "destination": "test-firefly-manifests.package",
+          "destination_type": "queue",
+          "routing_key": "test-firefly-manifests.package",
+          "source": "firefly.delivery",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "destination": "test-firefly-manifests.promotion",
+          "destination_type": "queue",
+          "routing_key": "test-firefly-manifests.promotion",
+          "source": "firefly.delivery",
+          "vhost": "/"
+        }
+      ],
+      "exchanges": [
+        {
+          "arguments": {},
+          "auto_delete": false,
+          "durable": true,
+          "internal": false,
+          "name": "firefly.delivery",
+          "type": "topic",
+          "vhost": "/"
+        }
+      ],
+      "policies": [
+        {
+          "definition": {
+            "ha-mode": "exactly",
+            "ha-params": 3,
+            "ha-sync-mode": "automatic"
+          },
+          "name": "ha",
+          "pattern": "",
+          "vhost": "/"
+        }
+      ],
+      "queues": [
+        {
+          "arguments": {},
+          "auto_delete": false,
+          "durable": true,
+          "name": "test_sam_manifests.pr",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "auto_delete": false,
+          "durable": true,
+          "name": "test_sam_manifests.package",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "auto_delete": false,
+          "durable": true,
+          "name": "test_sam_manifests.promotion",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "auto_delete": false,
+          "durable": true,
+          "name": "test-firefly-manifests.pr",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "auto_delete": false,
+          "durable": true,
+          "name": "test-firefly-manifests.package",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "auto_delete": false,
+          "durable": true,
+          "name": "test-firefly-manifests.promotion",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "auto_delete": false,
+          "durable": true,
+          "name": "test_manifest_driven_promotions.pr",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "auto_delete": false,
+          "durable": true,
+          "name": "test_manifest_driven_promotions.package",
+          "vhost": "/"
+        },
+        {
+          "arguments": {},
+          "auto_delete": false,
+          "durable": true,
+          "name": "test_manifest_driven_promotions.promotion",
+          "vhost": "/"
+        }
+      ],
+      "vhosts": [
+        {
+          "name": "/"
+        }
+      ]
+    }
+  enabled_plugins: |
+    [rabbitmq_management,rabbitmq_auth_mechanism_ssl].
+  rabbitmq-env.conf: |-
+    ERL_SSL_PATH="/usr/lib64/erlang/lib/ssl-8.1.3.1/ebin"
+    SERVER_ADDITIONAL_ERL_ARGS="-pa $ERL_SSL_PATH \
+      -proto_dist inet_tls \
+      -ssl_dist_opt server_certfile /etc/rabbitmq/rabbitmq.pem \
+      -ssl_dist_opt server_secure_renegotiate true client_secure_renegotiate true"
+    CTL_ERL_ARGS="-pa $ERL_SSL_PATH \
+      -proto_dist inet_tls \
+      -ssl_dist_opt server_certfile /etc/rabbitmq/rabbitmq.pem \
+      -ssl_dist_opt server_secure_renegotiate true client_secure_renegotiate true"
+  rabbitmq.conf: |
+    ## Logging settings.
+    ##
+    ## See http://rabbitmq.com/logging.html and https://github.com/erlang-lager/lager for details.
+    ##
+    ## Log direcrory, taken from the RABBITMQ_LOG_BASE env variable by default.
+    ##
+    # log.dir = /var/log/rabbitmq
+    log.file.level = debug
+    log.console = true
+    log.console.level = debug
+    ## Clustering
+    cluster_formation.peer_discovery_backend = rabbit_peer_discovery_classic_config
+    cluster_formation.classic_config.nodes.1 = rabbit@rabbitmq-0.rabbitmq-set.firefly.svc.prd-samtwo.prd.sam.sfdc.net.
+    cluster_formation.classic_config.nodes.2 = rabbit@rabbitmq-1.rabbitmq-set.firefly.svc.prd-samtwo.prd.sam.sfdc.net.
+    cluster_formation.classic_config.nodes.3 = rabbit@rabbitmq-2.rabbitmq-set.firefly.svc.prd-samtwo.prd.sam.sfdc.net.
+    cluster_formation.randomized_startup_delay_range.min = 10
+    cluster_formation.randomized_startup_delay_range.max = 30
+    # Set to false if automatic removal of unknown/absent nodes
+    # is desired. This can be dangerous, see
+    #  * http://www.rabbitmq.com/cluster-formation.html#node-health-checks-and-cleanup
+    #  * https://groups.google.com/forum/#!msg/rabbitmq-users/wuOfzEywHXo/k8z_HWIkBgAJ
+    #cluster_formation.node_cleanup.only_log_warning = true
+    cluster_partition_handling = autoheal
+    ## queue master locator
+    queue_master_locator=min-masters
+    ## See http://www.rabbitmq.com/access-control.html#loopback-users
+    loopback_users.guest = false
+    # TLS Support
+    listeners.ssl.default = 5671
+    ssl_options.cacertfile = /etc/rabbitmq/ca/cacert.pem
+    ssl_options.certfile = /etc/rabbitmq/server/cert.pem
+    ssl_options.keyfile = /etc/rabbitmq/server/key.pem
+    ssl_options.verify = verify_peer
+    ssl_options.fail_if_no_peer_cert = true
+    auth_mechanisms.1 = EXTERNAL
+    auth_mechanisms.2 = PLAIN
+    #auth_mechanisms.2 = AMQP
+    # "internal" is an alias for rabbit_auth_backend_internal
+    auth_backends.1 = internal
+    ## To use the TLS cert's CN instead of its DN as the username
+    #ssl_cert_login_from = common_name
+    # =======================================
+    # Management section
+    # =======================================
+    ## Preload schema definitions from the following JSON file.
+    ## Related doc guide: http://rabbitmq.com/management.html#load-definitions.
+    ##
+    management.load_definitions = /etc/rabbitmq/definitions.json
+    ## Log all requests to the management HTTP API to a file.
+    ##
+    # This generates a crash report due to https://github.com/rabbitmq/rabbitmq-web-dispatch/pull/33
+    #management.http_log_dir = /var/log/rabbitmq/access.log
+    ## Change the port on which the HTTP listener listens,
+    ## specifying an interface for the web server to bind to.
+    ## Also set the listener to use TLS and provide TLS options.
+    ##
+    management.listener.port = 15671
+    management.listener.ssl  = true
+    management.listener.ssl_opts.cacertfile = /etc/rabbitmq/ca/cacert.pem
+    management.listener.ssl_opts.certfile   = /etc/rabbitmq/server/cert.pem
+    management.listener.ssl_opts.keyfile    = /etc/rabbitmq/server/key.pem
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: tnrp
+  name: rabbitmq-configmap
+  namespace: firefly
