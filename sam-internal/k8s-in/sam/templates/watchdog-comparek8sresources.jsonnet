@@ -16,7 +16,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                         command: [
                                     "/sam/watchdog",
                                     "--role=COMPAREK8SRESOURCES",
-                                    "--emailFrequency=1h",
+                                    "--emailFrequency=24h",
                                     "--enableEmailPerCheckerInstance=true",
                                     "--recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com,prabh.singh@salesforce.com",
                                     "--sender=sam@salesforce.com",
