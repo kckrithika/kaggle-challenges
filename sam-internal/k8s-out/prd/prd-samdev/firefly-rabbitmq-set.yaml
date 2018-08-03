@@ -15,12 +15,12 @@ spec:
     protocol: TCP
     targetPort: 15671
   - name: amqp
-    port: 5671
-    protocol: TCP
-    targetPort: 5671
-  - name: amqp-tls
     port: 5672
     protocol: TCP
     targetPort: 5672
+  - name: amqp-tls
+    port: 5671
+    protocol: TCP
+    targetPort: 5671
   selector:
     app: rabbitmq

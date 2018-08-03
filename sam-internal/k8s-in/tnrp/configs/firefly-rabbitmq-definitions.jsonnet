@@ -51,6 +51,27 @@
       "arguments":{}
     },
     {
+      "name":"test-firefly-manifests.pr",
+      "vhost":"/",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{}
+    },
+    {
+      "name":"test-firefly-manifests.package",
+      "vhost":"/",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{}
+    },
+    {
+      "name":"test-firefly-manifests.promotion",
+      "vhost":"/",
+      "durable":true,
+      "auto_delete":false,
+      "arguments":{}
+    },
+    {
       "name":"test_manifest_driven_promotions.pr",
       "vhost":"/",
       "durable":true,
@@ -119,6 +140,30 @@
       "destination":"test_manifest_driven_promotions.promotion",
       "destination_type":"queue",
       "routing_key":"test_manifest_driven_promotions.promotion",
+      "arguments":{}
+    },
+    {
+      "source":"firefly.delivery",
+      "vhost":"/",
+      "destination":"test-firefly-manifests.pr",
+      "destination_type":"queue",
+      "routing_key":"test-firefly-manifests.pr",
+      "arguments":{}
+    },
+    {
+      "source":"firefly.delivery",
+      "vhost":"/",
+      "destination":"test-firefly-manifests.package",
+      "destination_type":"queue",
+      "routing_key":"test-firefly-manifests.package",
+      "arguments":{}
+    },
+    {
+      "source":"firefly.delivery",
+      "vhost":"/",
+      "destination":"test-firefly-manifests.promotion",
+      "destination_type":"queue",
+      "routing_key":"test-firefly-manifests.promotion",
       "arguments":{}
     },
   ]
