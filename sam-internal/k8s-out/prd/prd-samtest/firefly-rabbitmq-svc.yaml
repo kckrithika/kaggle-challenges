@@ -21,14 +21,14 @@ spec:
     targetPort: 15671
   - name: amqp
     nodePort: 33672
-    port: 5671
-    protocol: TCP
-    targetPort: 5671
-  - name: amqp-tls
-    nodePort: 33671
     port: 5672
     protocol: TCP
     targetPort: 5672
+  - name: amqp-tls
+    nodePort: 33671
+    port: 5671
+    protocol: TCP
+    targetPort: 5671
   selector:
     app: rabbitmq
   type: LoadBalancer

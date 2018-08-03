@@ -3,8 +3,8 @@
     {
       rabbitmq_https: 15671,
       rabbitmq_http: 15672,
-      rabbitmq_amqps: 5672,
-      rabbitmq_amqp: 5671,
+      rabbitmq_amqps: 5671,
+      rabbitmq_amqp: 5672,
       rabbitmq_https_nodeport: 32671,
       rabbitmq_http_nodeport: 32672,
       rabbitmq_amqps_nodeport: 33671,
