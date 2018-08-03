@@ -41,6 +41,8 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /config
+          name: config
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -54,3 +56,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - configMap:
+          name: bundle-controller
+        name: config
