@@ -62,7 +62,7 @@ apps:
     - prd/prd-sam_gater
   shipping-envoy-tls:
     - prd/prd-sam_gater
-  geoip-nk:
+  geoipnk:
     - prd/prd-sam_gater
 
   tictactoe-server:
