@@ -19,10 +19,6 @@ system:
       - name: PGDATA
         value: /var/lib/postgresql/data/pgdata
 
-      volumeMounts:
-      - name: datavol
-        mountPath: /var/lib/postgresql/data
-
       ports:
       - containerPort: 5432
 
@@ -47,10 +43,6 @@ system:
     # state into the PV on shutdown
     terminationGracePeriodSeconds: 30
 
-    volumeClaimTemplates:
-    - name: datavol
-      storageClassName: moe-hdd-pool
-      storageSizeRequest: 100Gi
 
   loadbalancers:
   - lbname: postgres
