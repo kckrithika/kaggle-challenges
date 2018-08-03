@@ -33,12 +33,12 @@ system:
           value: password
         - name: POSTGRES_DB
           value: postgres
-          
+
       livenessProbe:
         tcpSocket:
           port: 5432
         failureThreshold: 3
-        initialDelaySeconds: 5
+        initialDelaySeconds: 10
         periodSeconds: 60
 
     lbname: postgres-headless-lb
@@ -50,7 +50,29 @@ system:
     volumeClaimTemplates:
     - name: datavol
       storageClassName: standard
-      storageSizeRequest: 1Gi
+      storageSizeRequest: 10Gi
+
+  - name: broker-app
+    count: 1
+    type: stateful-set
+    containers:
+    - name: broker
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/snew/post-broke:1
+      ports:
+      - containerPort: 9292
+      livenessProbe:
+        tcpSocket:
+          port: 9292
+        failureThreshold: 3
+        initialDelaySeconds: 60
+        periodSeconds: 60
+
+    lbname: broker-headless-lb
+
+    # Give containers a bit of time to shut down, as they might be syncing
+    # state into the PV on shutdown
+    terminationGracePeriodSeconds: 30
+
 
   loadbalancers:
   - lbname: postgres
@@ -59,3 +81,10 @@ system:
     ports:
       - port: 5432
         targetport: 5432
+  - lbname: broker
+    function: broker-app
+    slbEnabled: true
+    ports:
+      - port: 9292
+        targetport: 9292
+        lbtype: tcp
