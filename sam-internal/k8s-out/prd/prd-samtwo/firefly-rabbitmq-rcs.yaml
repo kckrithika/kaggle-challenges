@@ -94,7 +94,7 @@ spec:
         - mountPath: /etc/rabbitmq
           name: config-volume
       nodeSelector:
-        pool: prd_sam_tnrp_merger
+        pool: prd-sam_tnrp_merger
       terminationGracePeriodSeconds: 10
       volumes:
       - name: config-volume
