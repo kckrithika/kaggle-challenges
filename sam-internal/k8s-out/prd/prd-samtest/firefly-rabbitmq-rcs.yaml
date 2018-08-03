@@ -1,0 +1,126 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  labels:
+    name: rabbitmq
+    sam.data.sfdc.net/owner: tnrp
+  name: rabbitmq
+  namespace: firefly
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rabbitmq
+  serviceName: rabbitmq-set
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+        name: rabbitmq
+    spec:
+      containers:
+      - env:
+        - name: RABBITMQ_DEFAULT_USER
+          value: sfdc-rabbitmq
+        - name: RABBITMQ_DEFAULT_PASS
+          valueFrom:
+            secretKeyRef:
+              key: rabbitmqDefaultPass
+              name: rabbitmq-secret
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MY_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: RABBITMQ_USE_LONGNAME
+          value: "true"
+        - name: RABBITMQ_NODENAME
+          value: rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE).svc.prd-samtest.prd.sam.sfdc.net.
+        - name: K8S_SERVICE_NAME
+          value: rabbitmq-set
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:9
+        imagePullPolicy: Always
+        lifecycle:
+          postStart:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - rabbitmqctl wait /var/lib/rabbitmq/mnesia/rabbit\@$(hostname -f).pid;
+                until rabbitmqctl node_health_check; do sleep 1; done; rabbitmqctl
+                add_user $RABBITMQ_DEFAULT_USER $RABBITMQ_DEFAULT_PASS; rabbitmqctl
+                set_user_tags $RABBITMQ_DEFAULT_USER administrator; rabbitmqctl set_permissions
+                -p / $RABBITMQ_DEFAULT_USER ".*" ".*" ".*";
+        livenessProbe:
+          exec:
+            command:
+            - rabbitmqctl
+            - node_health_check
+          initialDelaySeconds: 30
+          timeoutSeconds: 10
+        name: rabbitmq
+        ports:
+        - containerPort: 15672
+          name: http
+          protocol: TCP
+        - containerPort: 15671
+          name: https
+          protocol: TCP
+        - containerPort: 5672
+          name: amqp
+          protocol: TCP
+        - containerPort: 5671
+          name: amqp-tls
+          protocol: TCP
+        readinessProbe:
+          exec:
+            command:
+            - rabbitmqctl
+            - node_health_check
+          initialDelaySeconds: 10
+          timeoutSeconds: 10
+        volumeMounts:
+        - mountPath: /etc/rabbitmq
+          name: config-volume
+      nodeSelector:
+        pool: prd-samtest
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - name: config-volume
+        projected:
+          sources:
+          - secret:
+              items:
+              - key: .erlang.cookie
+                path: .erlang.cookie
+              - key: rabbitmq.pem
+                path: rabbitmq.pem
+              - key: cacert.pem
+                path: ca/cacert.pem
+              - key: cert.pem
+                path: server/cert.pem
+              - key: key.pem
+                path: server/key.pem
+              name: rabbitmq-secret
+          - configMap:
+              items:
+              - key: rabbitmq.conf
+                path: rabbitmq.conf
+              - key: rabbitmq-env.conf
+                path: rabbitmq-env.conf
+              - key: enabled_plugins
+                path: enabled_plugins
+              - key: definitions.json
+                path: definitions.json
+              name: rabbitmq-configmap

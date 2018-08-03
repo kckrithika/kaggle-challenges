@@ -118,6 +118,9 @@ local utils = import "util_functions.jsonnet",
         storage: {
             "sam.data.sfdc.net/owner": "storage",
         },
+        tnrp: {
+            "sam.data.sfdc.net/owner": "tnrp",
+        },
     },
 
     # === KUBERNETES ===
