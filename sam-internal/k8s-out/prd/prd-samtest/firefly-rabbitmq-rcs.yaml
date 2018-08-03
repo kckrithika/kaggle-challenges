@@ -46,7 +46,7 @@ spec:
         - name: RABBITMQ_USE_LONGNAME
           value: "true"
         - name: RABBITMQ_NODENAME
-          value: rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE)
+          value: rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE).svc.prd-samtest.prd.sam.sfdc.net.
         - name: K8S_SERVICE_NAME
           value: rabbitmq-set
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:9
@@ -57,7 +57,7 @@ spec:
               command:
               - /bin/sh
               - -c
-              - rabbitmqctl wait /var/lib/rabbitmq/mnesia/rabbit\@$MY_POD_NAME.rabbitmq-set.firefly.pid;
+              - rabbitmqctl wait /var/lib/rabbitmq/mnesia/rabbit\@$(hostname -f).pid;
                 until rabbitmqctl node_health_check; do sleep 1; done; rabbitmqctl
                 add_user $RABBITMQ_DEFAULT_USER $RABBITMQ_DEFAULT_PASS; rabbitmqctl
                 set_user_tags $RABBITMQ_DEFAULT_USER administrator; rabbitmqctl set_permissions
