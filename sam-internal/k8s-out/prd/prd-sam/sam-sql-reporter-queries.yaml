@@ -126,6 +126,24 @@ data:
         {
           "name": "Phase 1 Pre Release Validation - Pod Age in prd-samtest",
           "sql": "select\n  ControlEstate,\n  PodAgeDays,\n  PodsWithThisAge\nfrom\n(\n  select\n    ControlEstate,\n    PodAgeDays,\n    COUNT(*) as PodsWithThisAge\n  from\n  (\n    select\n      ControlEstate,\n      LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays\n    from podDetailView\n    where IsSamApp = True and ProduceAgeInMinutes\u003c15\n  ) as ss\n  where PodAgeDays IS NOT NULL\n  and ControlEstate = 'prd-samtest'\n  group by ControlEstate, PodAgeDays\n) as ss2\ngroup by ControlEstate, PodAgeDays\n"
+        },
+        {
+          "multisql": [
+            {
+              "name": "Hypersam in prd-samtest (Phase 0)",
+              "sql": "select\n  ControlEstate, Image, Tag, count(*) as Count, group_concat(Name) as Resources\nfrom\n(\n  select\n    Name,\n    ControlEstate,\n    substring_index(substring_index(Image, ':', 1), '/', -1) as Image,\n    substring_index(Image, ':', -1) as Tag\n  from\n  (\n    select\n      Name,\n      ControlEstate,\n      json_unquote(json_extract(Images, concat('$[',n,']'))) as Image\n    from\n    (\n      select * from\n      (\n        select '0' n union select '1' n union select '2' n union select '3' n union select '4' n union select '5' n union select '6' n\n      ) num\n      join\n      (\n      select Name, ControlEstate, Payload-\u003e\u003e'$.spec.template.spec.containers[*].image' as Images\n      from k8s_resource\n      where \n        (ApiKind = 'Deployment' or ApiKind = 'DaemonSet') and \n        namespace = 'sam-system' and\n        Payload-\u003e\u003e'$.metadata.labels.\"\\sam\\.data\\.sfdc\\.net\\/owner\"' = 'sam'\n      ) ss\n    ) ss2\n  having not Image is NULL\n  ) ss3\n) ss4\nWhere controlEstate = 'prd-samtest' and Image = 'hypersam'\ngroup by ControlEstate, Image, Tag\norder by ControlEstate, Image"
+            },
+            {
+              "name": "Hypersam in prd-samdev (Phase 1)",
+              "sql": "select\n  ControlEstate, Image, Tag, count(*) as Count, group_concat(Name) as Resources\nfrom\n(\n  select\n    Name,\n    ControlEstate,\n    substring_index(substring_index(Image, ':', 1), '/', -1) as Image,\n    substring_index(Image, ':', -1) as Tag\n  from\n  (\n    select\n      Name,\n      ControlEstate,\n      json_unquote(json_extract(Images, concat('$[',n,']'))) as Image\n    from\n    (\n      select * from\n      (\n        select '0' n union select '1' n union select '2' n union select '3' n union select '4' n union select '5' n union select '6' n\n      ) num\n      join\n      (\n      select Name, ControlEstate, Payload-\u003e\u003e'$.spec.template.spec.containers[*].image' as Images\n      from k8s_resource\n      where \n        (ApiKind = 'Deployment' or ApiKind = 'DaemonSet') and \n        namespace = 'sam-system' and\n        Payload-\u003e\u003e'$.metadata.labels.\"\\sam\\.data\\.sfdc\\.net\\/owner\"' = 'sam'\n      ) ss\n    ) ss2\n  having not Image is NULL\n  ) ss3\n) ss4\nWhere controlEstate = 'prd-samdev' and Image = 'hypersam'\ngroup by ControlEstate, Image, Tag\norder by ControlEstate, Image"
+            },
+            {
+              "name": "Hypersam in prd-sam (Phase 2)",
+              "sql": "select\n  ControlEstate, Image, Tag, count(*) as Count, group_concat(Name) as Resources\nfrom\n(\n  select\n    Name,\n    ControlEstate,\n    substring_index(substring_index(Image, ':', 1), '/', -1) as Image,\n    substring_index(Image, ':', -1) as Tag\n  from\n  (\n    select\n      Name,\n      ControlEstate,\n      json_unquote(json_extract(Images, concat('$[',n,']'))) as Image\n    from\n    (\n      select * from\n      (\n        select '0' n union select '1' n union select '2' n union select '3' n union select '4' n union select '5' n union select '6' n\n      ) num\n      join\n      (\n      select Name, ControlEstate, Payload-\u003e\u003e'$.spec.template.spec.containers[*].image' as Images\n      from k8s_resource\n      where \n        (ApiKind = 'Deployment' or ApiKind = 'DaemonSet') and \n        namespace = 'sam-system' and\n        Payload-\u003e\u003e'$.metadata.labels.\"\\sam\\.data\\.sfdc\\.net\\/owner\"' = 'sam'\n      ) ss\n    ) ss2\n  having not Image is NULL\n  ) ss3\n) ss4\nWhere controlEstate = 'prd-sam' and Image = 'hypersam'\ngroup by ControlEstate, Image, Tag\norder by ControlEstate, Image"
+            }
+          ],
+          "name": "HyperSam Docker Tags in PRD",
+          "note": "Currently running hypersam tag for sam-system deployments and daemon sets owned by sam"
         }
       ]
     }
