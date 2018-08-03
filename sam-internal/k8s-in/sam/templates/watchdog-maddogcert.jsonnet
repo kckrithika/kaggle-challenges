@@ -49,6 +49,12 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                 namespace: "sam-system",
             },
         },
+        [if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then "updateStrategy"]: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxUnavailable: "25%",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
