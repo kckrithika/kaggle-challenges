@@ -25,5 +25,17 @@ docker run \
   -skip-sam-internals \
   -FullSchemaValidation \
 
+docker run \
+  --rm \
+  -it \
+  -u 0 \
+  -v ${PWD}:/repo \
+  --entrypoint /sdn/slb-manifest-builder \
+  ${HYPERSDN} \
+  -root='/repo/' \
+  -output='/repo/' \
+  -validate \
+  -v=1 \
+
 
 

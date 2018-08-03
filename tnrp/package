@@ -32,6 +32,9 @@ done
  # Disable estates check for now until we work out the access token stuff
 /opt/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -tnrppipelinelabel ${TNRP_PIPELINE_LABEL} -root . -validationExceptionsFile=./sam-internal/validation-whitelist.yaml --swaggerspecdir=/opt/sam/swagger-spec -imagefileoutdir . -internalpassthrough k8s-out,sdn,authorizer -gitHistoryInfoFile ${OUTPUT_DIR}/git-info.yaml -skip-sam-internals -alsologtostderr
 
+# Copy over vips.yaml files for SLB
+/opt/slb/slb-manifest-builder -root . -output ${OUTPUT_DIR} -v=2
+
 cp ./image-promotion.yaml ${OUTPUT_DIR}
 
 # Temporary for now
