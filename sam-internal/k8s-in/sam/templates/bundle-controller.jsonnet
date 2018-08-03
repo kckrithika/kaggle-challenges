@@ -15,8 +15,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                         image: samimages.hypersam,
                         command: configs.filter_empty([
                             "/sam/bundlecontroller",
+                            "--config=/config/bundle-controller-config.json",
                             "--funnelEndpoint=" + configs.funnelVIP,
-                            "--whiteListNamespaceRegexp=^ci-*",
                         ]),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,

@@ -32,6 +32,10 @@ local utils = import "util_functions.jsonnet";
         # [Xiao] pin samapp-controller to an earlier version without dual run in prd-sam
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002059-8a57b252",
 
+        "prd,prd-samtest,bundle-controller,hypersam": "sam-0002178-0a09f6f6",
+        "prd,prd-samdev,bundle-controller,hypersam": "sam-0002178-0a09f6f6",
+        "prd,prd-sam,bundle-controller,hypersam": "sam-0002178-0a09f6f6",
+
         "cdg,cdg-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
         "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",
         "dfw,dfw-sam,watchdog-synthetic,hypersam": "sam-0002160-cdd63ff0",

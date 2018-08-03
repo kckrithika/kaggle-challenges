@@ -51,7 +51,7 @@ std.prune({
 
 # Controller V1 ignore namespace list
 + (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
-      blackListNamespaceRegexp: [
-                 "e2e-.*-csc-sam$",
-             ],
+      // Keep V1 blackListNamespaceRegexp and V2WhiteListNamespaceRegex in sync to avoid dual processing
+      // e2e-.*-csc-sam$ to skip processing/deleting e2e namespace in V1
+      blackListNamespaceRegexp: ["e2e-.*-csc-sam$"] + (import "./bundle-controller-config.jsonnet").whiteListNamespaceRegexp,
   } else {})
