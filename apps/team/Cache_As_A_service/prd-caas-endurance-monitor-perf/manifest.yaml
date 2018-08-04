@@ -31,6 +31,8 @@ system:
       env:
        - name: SFDC_ENVIRONMENT
          value: mistperf2
+       - name: TESTVAR
+         value: yes
     volumes:
     - name: logvol
       hostPath:
