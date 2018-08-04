@@ -9,24 +9,24 @@ system:
     count: 3
     containers:
     - name: cre-sp-ccp-func
-      image: sfci/cre/cre-stream-processing:0.0.1.57.master.ad919e0.125
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.3.0.0.develop-1.3.549f139.5
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: METRICS_KAFKA_GROUP_ID
-          value: cre-sp-ccp-func            
+          value: cre-sp-ccp-func
         - name: SFDC_ENVIRONMENT
           value: ccp-func
         - name: METRICS_KAFKA_ENABLED
-          value: true      
+          value: true
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
         - name: METRICS_FUNNEL_URI
-          value: http://ajna0-funnel1-0-prd.data.sfdc.net                    
+          value: http://ajna0-funnel1-0-prd.data.sfdc.net
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -43,7 +43,7 @@ system:
       - mountPath: /myclientcert
         name: myclientcert
       - mountPath: /myservercert
-        name: myservercert        
+        name: myservercert
       - mountPath: /opt/cre/cre-sp-ccp-func
         name: logvol
     - name: sherpa-cre-stream-processing
@@ -89,7 +89,7 @@ system:
       maddogCert:
         type: server
         lbnames:
-          - cre-sp-ccp-func-lb        
+          - cre-sp-ccp-func-lb
   loadbalancers:
   - lbname: cre-sp-ccp-func-lb
     function: cre-sp-ccp-func
