@@ -50,7 +50,7 @@ system:
        - name: SFDC_ENVIRONMENT
          value: mistperf2
        - name: UseForRestart
-         value: OK
+         value: yes
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
