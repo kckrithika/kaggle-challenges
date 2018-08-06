@@ -1,7 +1,9 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
+local samfeatureflags = import "sam-feature-flags.jsonnet";
+
+if samfeatureflags.sdpv1 then {
     kind: "Deployment",
     spec: {
         replicas: 1,

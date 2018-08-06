@@ -58,4 +58,6 @@ local utils = import "util_functions.jsonnet";
 
      maddogCopyTestCA: (if configs.kingdom == "prd" then true),
 
+     sdpv1: configs.estate == "prd-sam",
+
 }

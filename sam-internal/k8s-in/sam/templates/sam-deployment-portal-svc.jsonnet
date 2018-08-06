@@ -1,5 +1,7 @@
 local configs = import "config.jsonnet";
-if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" && configs.estate != "prd-samtest" then {
+local samfeatureflags = import "sam-feature-flags.jsonnet";
+
+if samfeatureflags.sdpv1 then {
     kind: "Service",
     apiVersion: "v1",
     metadata: {
