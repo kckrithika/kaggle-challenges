@@ -16,7 +16,7 @@ std.prune({
   livenessProbePort: "22545",
 
   # Delete
-  deletionPercentageThreshold: 50,
+  deletionPercentageThreshold: 20,
   deletionEnabled: true,
 
   # Stateful

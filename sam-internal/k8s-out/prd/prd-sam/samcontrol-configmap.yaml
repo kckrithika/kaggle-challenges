@@ -13,7 +13,7 @@ data:
       "createTPR": false,
       "debug": true,
       "deletionEnabled": true,
-      "deletionPercentageThreshold": 50,
+      "deletionPercentageThreshold": 20,
       "dockerregistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
       "enableDNS": true,
       "enableMaddog": true,
