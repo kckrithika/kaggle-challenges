@@ -5,6 +5,7 @@ system:
   - name: tictactoe-client-service-envoy-ns
     count: 2
     containers:
+
     - name: tictactoe-client-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-client-service:latest
       env:
@@ -29,9 +30,10 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-    - name: sherpa-tictactoe-client
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/69
-      image: sfci/servicelibs/sherpa-envoy:ca853b963d6d80a9bfd5a2b2ee3696c788d4ad79
+
+    - name: sherpa
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/72
+      image: sfci/servicelibs/sherpa-envoy:c2e6e2c0110aeeeb2070ed8810b4c621271e223a
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -48,6 +50,7 @@ system:
       volumeMounts:
         - name: tls-client-cert
           mountPath: /client-certs
+
     volumes:
     - name: tls-client-cert
       maddogCert:

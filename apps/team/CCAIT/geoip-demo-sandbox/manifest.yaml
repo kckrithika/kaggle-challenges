@@ -4,6 +4,7 @@ system:
     email:
     - servicemesh@salesforce.com
   functions:
+
   - name: geoip-demo
     count: 1
     containers:
@@ -37,8 +38,9 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
+
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:ca853b963d6d80a9bfd5a2b2ee3696c788d4ad79
+      image: sfci/servicelibs/sherpa-envoy:c2e6e2c0110aeeeb2070ed8810b4c621271e223a
       ports:
       - containerPort: 15373
       env:
@@ -68,6 +70,7 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
+
     volumes:
     - name: tls-client-cert
       maddogCert:
