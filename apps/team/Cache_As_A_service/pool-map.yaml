@@ -468,65 +468,33 @@ apps:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-cs85-pc1-12025:
   - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-eu4-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-eu4-c1-12026:
-  - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-eu4-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-eu4-pc1-12027:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-eu6-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-eu6-c1-12028:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-eu6-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-eu6-pc1-12029:
   - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-eu7-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-eu7-c1-12030:
-  - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-eu7-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-eu7-pc1-12031:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-eu9-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-eu9-c1-12032:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-eu9-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-eu9-pc1-12033:
   - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-cs88-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-cs88-c1-12034:
-  - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-cs88-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-cs88-pc1-12035:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-cs89-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-cs89-c1-12036:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-cs89-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-cs89-pc1-12037:
   - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-eu11-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-eu11-c1-12038:
-  - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-eu11-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-eu11-pc1-12039:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-eu2-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-eu2-c1-12040:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-eu2-pc1:
   - name: frf/frf-sp1-sam_caas
@@ -536,25 +504,13 @@ apps:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-dc-c1-12041:
   - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-cs83-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-cs83-c1-12020:
-  - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-cs83-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-cs83-pc1-12021:
   - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-cs84-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-cs84-c1-12022:
-  - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-cs84-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-cs84-pc1-12023:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-cs85-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-cs85-c1-12024:
   - name: frf/frf-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-na78-c1:
   - name: iad/iad-sp1-sam_caas
