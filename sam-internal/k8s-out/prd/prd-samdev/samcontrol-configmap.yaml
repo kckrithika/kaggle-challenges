@@ -13,7 +13,7 @@ data:
       "createTPR": false,
       "debug": true,
       "deletionEnabled": true,
-      "deletionPercentageThreshold": 20,
+      "deletionPercentageThreshold": 50,
       "dnsEnabledPoolNamesRegex": ".*",
       "dockerregistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
       "enableDNS": true,
