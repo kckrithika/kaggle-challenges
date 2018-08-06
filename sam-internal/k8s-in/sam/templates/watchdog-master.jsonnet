@@ -57,7 +57,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                 namespace: "sam-system",
             },
         },
-        [if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then "updateStrategy"]: {
+        updateStrategy: {
             type: "RollingUpdate",
             rollingUpdate: {
                 maxUnavailable: "25%",

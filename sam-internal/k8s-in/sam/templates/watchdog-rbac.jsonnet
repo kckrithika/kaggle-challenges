@@ -52,7 +52,7 @@ if samfeatureflags.rbacwd then {
                 namespace: "sam-system",
             },
         },
-        [if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then "updateStrategy"]: {
+        updateStrategy: {
             type: "RollingUpdate",
             rollingUpdate: {
                 maxUnavailable: "25%",

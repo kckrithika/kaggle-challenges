@@ -40,3 +40,7 @@ spec:
       - hostPath:
           path: /cowdata
         name: cowdata
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate
