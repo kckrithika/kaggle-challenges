@@ -6,14 +6,14 @@ system:
       - caas-dev@salesforce.com
   functions:
   - name: prd-sp2-redis-sp-ist18-c1-perf
-    count: 10
+    count: 30
     containers:
     - name: caas-redis-12072 
       # container image/version to  run
       image: tnrp/caas/caas-redis:4.0.10-0000024-16334693
       resources:
-        limits: { memory: "10240M" }
-        requests: { memory: "6144M" }
+        limits: { memory: "7Gi" }
+        requests: { memory: "4Gi" }
       volumeMounts:
         - mountPath: /home/sfdc-caas/logs
           name: logvol
@@ -22,7 +22,7 @@ system:
           readOnly: true
       args: 
         - --port=12072
-        - --maxMemoryMB=6144
+        - --maxMemoryMB=4096
         - --logDir=/home/sfdc-caas/logs
       livenessProbe:
         exec:
