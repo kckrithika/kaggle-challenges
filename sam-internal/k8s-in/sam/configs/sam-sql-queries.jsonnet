@@ -590,85 +590,16 @@ on ( binary fsChecker.hostName = pod.Name )",
 #===================
 
     {
-      name: "Phase 1 Pre Release Validation - Watchdogs in prd-samtest",
-      sql: "select
-  CheckerName,
-  SUM(SuccessCount) as SuccessCount,
-  SUM(FailureCount) as FailureCount,
-  SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) as SuccessPct,
-  CONCAT('https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-14d:sam.watchdog.',Kingdom,'.NONE.',ControlEstate,':',CheckerName,'.status%7Bdevice%3D*%7D:avg') as Argus,
-  GROUP_CONCAT(Error, '') as Errors
-from
-(
-select
-  CAST(ControlEstate as CHAR CHARACTER SET utf8) AS ControlEstate,
-  CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,
-  Payload->>'$.status.report.CheckerName' as CheckerName,
-  case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
-  case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount,
-  case when Payload->>'$.status.report.ErrorMessage' = 'null' then '' else Payload->>'$.status.report.ErrorMessage' end as Error
-from k8s_resource
-where ApiKind = 'WatchDog'
-and controlestate = 'prd-samtest'
-) as ss
-where CheckerName not like 'Sql%' and 
-CheckerName not like 'MachineCount%'
-group by CheckerName
-order by SuccessPct",
-    },
-
-#===================
-
-    {
-      name: "Phase 1 Pre Release Validation - Sam-system issues in prd-samtest",
-      sql: "select controlEstate, Name, Payload->'$.spec.nodeName' as NodeName, Phase
-from podDetailView
-where namespace = 'sam-system' and ControlEstate = 'prd-samtest' and Phase <> 'Running'
-order by Phase, NodeName",
-    },
-
-#===================
-
-    {
-      name: "Phase 1 Pre Release Validation - Pod Age in prd-samtest",
-      sql: "select
-  ControlEstate,
-  PodAgeDays,
-  PodsWithThisAge
-from
-(
-  select
-    ControlEstate,
-    PodAgeDays,
-    COUNT(*) as PodsWithThisAge
-  from
-  (
-    select
-      ControlEstate,
-      LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays
-    from podDetailView
-    where IsSamApp = True and ProduceAgeInMinutes<15
-  ) as ss
-  where PodAgeDays IS NOT NULL
-  and ControlEstate = 'prd-samtest'
-  group by ControlEstate, PodAgeDays
-) as ss2
-group by ControlEstate, PodAgeDays
-",
-    },
-
-#===================
-
-    {
       name: "Phase 0 Health (for Phase 1 validation) - prd-samtest",
-      note: "This view gives an overview of everything running on our phase 0 estate prd-samtest.  Issues in this bed need to be investigated at the start of each phased release so we dont carry issues forward.  When creating the Phase 1 PR, please copy the contents of this report in Markdown format (see link above).  The overall release process is documented <a href='https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM'>here</a>",
+      note: "This view gives an overview of everything running on our phase 0 estate prd-samtest.  Issues in this bed need to be investigated at the start of each phased release so we dont carry issues forward.  GUS items should be created for less important issues so we can keep this view clean.  When creating the Phase 1 PR, please copy the contents of this report in Markdown format (see link above).  The overall release process is documented <a href='https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM'>here</a>",
       multisql: [
 
         # ===
 
         {
-          name: "Currently running tags for hypersam in sam-system.  Auto-deployer picks the newest tag each midnight.  Phase 1 should use the same tag.  Also, pelase check that it is recent using http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images",
-          sql: "select
+          name: "Currently running tags for hypersam in sam-system.  Auto-deployer picks the newest tag each midnight which should be the top entry below.  Pelase check that this tag is less than a day or two old here <a href='http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images'>tag browser</a>.  This is the tag that Phase 1 should use.",
+          sql: "select * from (
+select
   ControlEstate, Image, Tag, count(*) as Count, group_concat(Name) as Resources
 from
 (
@@ -704,16 +635,19 @@ from
 ) ss4
 Where controlEstate = 'prd-samtest' and Image = 'hypersam'
 group by ControlEstate, Image, Tag
-order by ControlEstate, Image",
+order by ControlEstate, Image
+) ss5
+order by Count desc",
         },
 
         # ===
 
         {
-          name: "Unhealthy pods in sam-system namespace.  Problems with our control stack should be investigated.",
+          name: "Unhealthy pods in sam-system namespace.  Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking.",
           sql: "select
   ControlEstate, 
-  Name, 
+  Namespace,
+  Name,
   NodeName, 
   Phase, 
   Message,
@@ -730,7 +664,7 @@ where
         # ===
 
         {
-          name: "Pod Age for SAM customer apps.  Apps with low age need to be investigated to make sure we did not change PodSpecTemplate by accident.  See ADD",
+          name: "Pod Age for SAM customer apps.  Apps with low age need to be investigated to make sure we did not change PodSpecTemplate by accident.  Steps to investigate pod restarts can be found <a href='https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM'>here</a>",
           sql: "select
   ControlEstate,
   PodAgeDays,
@@ -956,6 +890,38 @@ group by ControlEstate, Image, Tag
 order by ControlEstate, Image",
         },
       ],
+    },
+    {
+      name: "MySQL Pods by Produce Age",
+      note: "This shows the count of pods by produce age bucket.  Ideally most of our pods should have a produce age less than 15 minutes.  Large number of pods above this indicates an issue.  <a href='https://git.soma.salesforce.com/sam/sam/wiki/Debugging-Visibility-Pipeline'>Debug Instructions</a>",
+      sql: "select
+  SUM(lt5m),
+  SUM(lt10m),
+  SUM(lt15m),
+  SUM(lt20m),
+  SUM(lt25m),
+  SUM(lt30m),
+  SUM(lt40m),
+  SUM(lt50m),
+  SUM(lt60m),
+  SUM(lt120m),
+  SUM(ltMax)
+from (
+select
+  CASE WHEN ProduceAgeInMinutes<5 THEN 1 ELSE 0 END as lt5m,
+  CASE WHEN ProduceAgeInMinutes<10 THEN 1 ELSE 0 END as lt10m,
+  CASE WHEN ProduceAgeInMinutes<15 THEN 1 ELSE 0 END as lt15m,
+  CASE WHEN ProduceAgeInMinutes<20 THEN 1 ELSE 0 END as lt20m,
+  CASE WHEN ProduceAgeInMinutes<25 THEN 1 ELSE 0 END as lt25m,
+  CASE WHEN ProduceAgeInMinutes<30 THEN 1 ELSE 0 END as lt30m,
+  CASE WHEN ProduceAgeInMinutes<40 THEN 1 ELSE 0 END as lt40m,
+  CASE WHEN ProduceAgeInMinutes<50 THEN 1 ELSE 0 END as lt50m,
+  CASE WHEN ProduceAgeInMinutes<60 THEN 1 ELSE 0 END as lt60m,
+  CASE WHEN ProduceAgeInMinutes<120 THEN 1 ELSE 0 END as lt120m,
+  1 as ltMax
+from
+  podDetailView
+) as ss",
     },
 
 #===================
