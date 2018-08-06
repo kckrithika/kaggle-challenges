@@ -23,17 +23,9 @@ local utils = import "util_functions.jsonnet";
         # [thargrove] Enable multi-query pages in sam-sql-reporter
         "prd,prd-sam,sam-sql-reporter,hypersam": "sam-0002181-59dde2cc",
 
-        # [small] DNS Policy testing
-        "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180724_224507.924ff22b.clean.small-ltm",
-
-        # [tkuznets] DNS Watchdog testing
-        "prd,prd-samdev,watchdog-dns,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tkuznets/hypersam:20180730_144425.60256972.clean.tkuznets-ltm1",
 
         # [Xiao] pin samapp-controller to an earlier version without dual run in prd-sam
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002059-8a57b252",
-
-        "prd,prd-samtest,bundle-controller,hypersam": "sam-0002178-0a09f6f6",
-        "prd,prd-samdev,bundle-controller,hypersam": "sam-0002178-0a09f6f6",
         "prd,prd-sam,bundle-controller,hypersam": "sam-0002178-0a09f6f6",
 
         },
@@ -63,9 +55,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-            hypersam: "sam-0002177-6b48ecdd",
-            madkub: "1.0.0-0000071-5a6dcab2",
-            madkubSidecar: "1.0.0-0000071-5a6dcab2",
+            hypersam: "sam-0002181-59dde2cc",
+            madkub: "1.0.0-0000074-4c95976a",
+            madkubSidecar: "1.0.0-0000074-4c95976a",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
