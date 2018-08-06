@@ -39,7 +39,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0002135-e7f3c512
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0002160-cdd63ff0
         name: watchdog-hairpindeployer
         volumeMounts:
         - mountPath: /sfdchosts
