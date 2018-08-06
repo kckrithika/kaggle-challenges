@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: gate-analyzer
-    count: 2
+    count: 1
     containers:
     - name: gate-analyzer
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-analyzer:r-20180802a
