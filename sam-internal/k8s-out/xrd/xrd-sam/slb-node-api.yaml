@@ -32,7 +32,10 @@ spec:
         - --configDir=/host/data/slb/config/
         - --log_dir=/host/data/slb/logs/
         - --netInterface=lo
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000997-520fd7f9
+        - --checkSentinel=true
+        - --control.configProcSentinel=/host/data/slb/config//slb-config-proc.sentinel
+        - --control.sentinelExpiration=1800s
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001016-6718cc15
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb

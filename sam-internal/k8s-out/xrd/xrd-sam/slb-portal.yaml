@@ -35,7 +35,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000997-520fd7f9
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001016-6718cc15
         livenessProbe:
           httpGet:
             path: /
@@ -73,6 +73,8 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
+        - --control.configProcSentinel=/host/data/slb/config/slb-portal/slb-config-proc.sentinel
+        - --alwaysPopulateRealServers=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -80,7 +82,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000997-520fd7f9
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001016-6718cc15
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -116,7 +118,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-portal
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000997-520fd7f9
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001016-6718cc15
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -133,7 +135,10 @@ spec:
         - --configDir=/host/data/slb/config/slb-portal
         - --log_dir=/host/data/slb/logs/slb-portal
         - --netInterface=lo
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000997-520fd7f9
+        - --checkSentinel=true
+        - --control.configProcSentinel=/host/data/slb/config/slb-portal/slb-config-proc.sentinel
+        - --control.sentinelExpiration=1800s
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001016-6718cc15
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -152,7 +157,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000997-520fd7f9
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001016-6718cc15
         name: slb-cleanup
         securityContext:
           privileged: true
