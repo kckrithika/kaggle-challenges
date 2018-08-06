@@ -76,10 +76,6 @@ apps:
   - name: phx/phx-sp1-sam_caas
  phx-sp1-redis-sp-na45-pc1-12023:
   - name: phx/phx-sp1-sam_caas
- phx-sp2-metrics-publisher-sp-na37-c1:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-redis-sp-na37-c1-12012:
-  - name: phx/phx-sp2-sam_caas
  phx-sp2-metrics-publisher-sp-na48-pc1:
   - name: phx/phx-sp2-sam_caas
  phx-sp2-redis-sp-na48-pc1-12019:
@@ -92,29 +88,9 @@ apps:
   - name: phx/phx-sp2-sam_caas
  phx-sp2-redis-sp-cs60-pc1-12005:
   - name: phx/phx-sp2-sam_caas
- phx-sp2-metrics-publisher-sp-cs63-c1:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-redis-sp-cs63-c1-12008:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-metrics-publisher-sp-cs62-c1:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-redis-sp-cs62-c1-12006:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-metrics-publisher-sp-na48-c1:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-redis-sp-na48-c1-12018:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-metrics-publisher-sp-na43-c1:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-redis-sp-na43-c1-12016:
-  - name: phx/phx-sp2-sam_caas
  phx-sp2-metrics-publisher-sp-na35-pc1:
   - name: phx/phx-sp2-sam_caas
  phx-sp2-redis-sp-na35-pc1-12011:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-metrics-publisher-sp-na38-c1:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-redis-sp-na38-c1-12000:
   - name: phx/phx-sp2-sam_caas
  phx-sp2-metrics-publisher-sp-cs62-pc1:
   - name: phx/phx-sp2-sam_caas
@@ -132,25 +108,9 @@ apps:
   - name: phx/phx-sp2-sam_caas
  phx-sp2-redis-sp-na42-pc1-12015:
   - name: phx/phx-sp2-sam_caas
- phx-sp2-metrics-publisher-sp-cs61-c1:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-redis-sp-cs61-c1-12002:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-metrics-publisher-sp-na35-c1:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-redis-sp-na35-c1-12010:
-  - name: phx/phx-sp2-sam_caas
  phx-sp2-metrics-publisher-sp-cs61-pc1:
   - name: phx/phx-sp2-sam_caas
  phx-sp2-redis-sp-cs61-pc1-12003:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-metrics-publisher-sp-na42-c1:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-redis-sp-na42-c1-12014:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-metrics-publisher-sp-cs60-c1:
-  - name: phx/phx-sp2-sam_caas
- phx-sp2-redis-sp-cs60-c1-12004:
   - name: phx/phx-sp2-sam_caas
  phx-sp2-metrics-publisher-sp-cs63-pc1:
   - name: phx/phx-sp2-sam_caas
@@ -160,10 +120,6 @@ apps:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-cs54-pc1-12005:
   - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-na54-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-na54-c1-12006:
-  - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-na54-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-na54-pc1-12007:
@@ -172,53 +128,25 @@ apps:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-na40-pc1-12031:
   - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-na55-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-na55-c1-12008:
-  - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-na55-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-na55-pc1-12009:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-na63-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-na63-c1-12010:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-na63-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-na63-pc1-12011:
   - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-na47-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-na47-c1-12012:
-  - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-na47-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-na47-pc1-12013:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-na51-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-na51-c1-12032:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-ap5-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-ap5-c1-12014:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-ap5-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-ap5-pc1-12015:
   - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-cs57-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-cs57-c1-12016:
-  - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-cs57-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-cs57-pc1-12017:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-cs58-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-cs58-c1-12018:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-cs58-pc1:
   - name: phx/phx-sp3-sam_caas
@@ -228,57 +156,25 @@ apps:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-na51-pc1-12033:
   - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-cs10-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-cs10-c1-12020:
-  - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-cs10-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-cs10-pc1-12021:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-cs11-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-cs11-c1-12022:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-cs11-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-cs11-pc1-12023:
   - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-cs70-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-cs70-c1-12024:
-  - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-cs70-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-cs70-pc1-12025:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-na52-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-na52-c1-12034:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-cs71-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-cs71-c1-12026:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-cs71-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-cs71-pc1-12027:
   - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-cs9-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-cs9-c1-12028:
-  - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-cs9-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-cs9-pc1-12029:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-na40-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-na40-c1-12030:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-cs7-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-cs7-c1-12000:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-na52-pc1:
   - name: phx/phx-sp3-sam_caas
@@ -288,121 +184,61 @@ apps:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-cs7-pc1-12001:
   - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-cs53-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-cs53-c1-12002:
-  - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-cs53-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-cs53-pc1-12003:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-cs54-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-cs54-c1-12004:
   - name: phx/phx-sp3-sam_caas
  phx-sp4-metrics-publisher-sp-na59-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-na59-pc1-12025:
   - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-na60-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-na60-c1-12026:
-  - name: phx/phx-sp4-sam_caas
  phx-sp4-metrics-publisher-sp-na60-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-na60-pc1-12027:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-na64-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-na64-c1-12028:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-metrics-publisher-sp-na64-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-na64-pc1-12029:
   - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-na79-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-na79-c1-12030:
-  - name: phx/phx-sp4-sam_caas
  phx-sp4-metrics-publisher-sp-na79-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-na79-pc1-12031:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-cs69-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-cs69-c1-12032:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-metrics-publisher-sp-cs69-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-cs69-pc1-12033:
   - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-cs90-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-cs90-c1-12034:
-  - name: phx/phx-sp4-sam_caas
  phx-sp4-metrics-publisher-sp-cs90-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-cs90-pc1-12035:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-na53-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-na53-c1-12036:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-metrics-publisher-sp-na53-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-na53-pc1-12037:
   - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-na61-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-na61-c1-12038:
-  - name: phx/phx-sp4-sam_caas
  phx-sp4-metrics-publisher-sp-na61-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-na61-pc1-12039:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-na62-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-na62-c1-12040:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-metrics-publisher-sp-na62-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-na62-pc1-12041:
   - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-na67-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-na67-c1-12042:
-  - name: phx/phx-sp4-sam_caas
  phx-sp4-metrics-publisher-sp-na67-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-na67-pc1-12043:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-na68-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-na68-c1-12044:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-metrics-publisher-sp-na68-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-na68-pc1-12045:
   - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-cs91-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-cs91-c1-12020:
-  - name: phx/phx-sp4-sam_caas
  phx-sp4-metrics-publisher-sp-cs91-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-cs91-pc1-12021:
   - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-cs68-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-cs68-c1-12022:
-  - name: phx/phx-sp4-sam_caas
  phx-sp4-metrics-publisher-sp-cs68-pc1:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-cs68-pc1-12023:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-metrics-publisher-sp-na59-c1:
-  - name: phx/phx-sp4-sam_caas
- phx-sp4-redis-sp-na59-c1-12024:
   - name: phx/phx-sp4-sam_caas
  dfw-sp1-metrics-publisher-sp-cs50-pc1:
   - name: dfw/dfw-sp1-sam_caas
@@ -472,10 +308,6 @@ apps:
   - name: dfw/dfw-sp1-sam_caas
  dfw-sp1-redis-sp-cs30-pc1-12003:
   - name: dfw/dfw-sp1-sam_caas
- dfw-sp2-metrics-publisher-sp-na48-c1:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-redis-sp-na48-c1-12012:
-  - name: dfw/dfw-sp2-sam_caas
  dfw-sp2-metrics-publisher-sp-cs60-pc1:
   - name: dfw/dfw-sp2-sam_caas
  dfw-sp2-redis-sp-cs60-pc1-12015:
@@ -484,25 +316,9 @@ apps:
   - name: dfw/dfw-sp2-sam_caas
  dfw-sp2-redis-sp-na35-pc1-12005:
   - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-metrics-publisher-sp-na42-c1:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-redis-sp-na42-c1-12008:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-metrics-publisher-sp-na37-c1:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-redis-sp-na37-c1-12006:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-metrics-publisher-sp-cs60-c1:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-redis-sp-cs60-c1-12014:
-  - name: dfw/dfw-sp2-sam_caas
  dfw-sp2-metrics-publisher-dc-c1:
   - name: dfw/dfw-sp2-sam_caas
  dfw-sp2-redis-dc-c1-12020:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-metrics-publisher-sp-cs62-c1:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-redis-sp-cs62-c1-12000:
   - name: dfw/dfw-sp2-sam_caas
  dfw-sp2-metrics-publisher-sp-na38-pc1:
   - name: dfw/dfw-sp2-sam_caas
@@ -520,33 +336,13 @@ apps:
   - name: dfw/dfw-sp2-sam_caas
  dfw-sp2-redis-sp-na48-pc1-12013:
   - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-metrics-publisher-sp-cs63-c1:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-redis-sp-cs63-c1-12002:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-metrics-publisher-sp-na38-c1:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-redis-sp-na38-c1-12018:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-metrics-publisher-sp-na43-c1:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-redis-sp-na43-c1-12010:
-  - name: dfw/dfw-sp2-sam_caas
  dfw-sp2-metrics-publisher-sp-cs63-pc1:
   - name: dfw/dfw-sp2-sam_caas
  dfw-sp2-redis-sp-cs63-pc1-12003:
   - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-metrics-publisher-sp-cs61-c1:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-redis-sp-cs61-c1-12016:
-  - name: dfw/dfw-sp2-sam_caas
  dfw-sp2-metrics-publisher-sp-na43-pc1:
   - name: dfw/dfw-sp2-sam_caas
  dfw-sp2-redis-sp-na43-pc1-12011:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-metrics-publisher-sp-na35-c1:
-  - name: dfw/dfw-sp2-sam_caas
- dfw-sp2-redis-sp-na35-c1-12004:
   - name: dfw/dfw-sp2-sam_caas
  dfw-sp2-metrics-publisher-sp-cs61-pc1:
   - name: dfw/dfw-sp2-sam_caas
@@ -560,289 +356,145 @@ apps:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-cs11-pc1-12025:
   - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-cs70-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-cs70-c1-12026:
-  - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-cs70-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-cs70-pc1-12027:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-cs71-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-cs71-c1-12028:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-cs71-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-cs71-pc1-12029:
   - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-na40-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-na40-c1-12030:
-  - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-na40-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-na40-pc1-12031:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-na51-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-na51-c1-12032:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-na51-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-na51-pc1-12033:
   - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-na52-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-na52-c1-12034:
-  - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-na52-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-na52-pc1-12035:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-cs53-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-cs53-c1-12036:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-cs53-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-cs53-pc1-12037:
   - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-cs54-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-cs54-c1-12038:
-  - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-cs54-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-cs54-pc1-12039:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-cs7-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-cs7-c1-12040:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-cs7-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-cs7-pc1-12041:
   - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-na47-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-na47-c1-12042:
-  - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-na47-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-na47-pc1-12043:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-na54-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-na54-c1-12044:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-na54-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-na54-pc1-12045:
   - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-na55-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-na55-c1-12046:
-  - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-na55-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-na55-pc1-12047:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-na63-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-na63-c1-12048:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-na63-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-na63-pc1-12049:
   - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-cs9-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-cs9-c1-12020:
-  - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-cs9-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-cs9-pc1-12021:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-cs10-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-cs10-c1-12022:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-cs10-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-cs10-pc1-12023:
   - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-cs11-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-cs11-c1-12024:
-  - name: dfw/dfw-sp3-sam_caas
  dfw-sp4-metrics-publisher-sp-na53-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-na53-pc1-12025:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-na61-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-na61-c1-12026:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-metrics-publisher-sp-na61-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-na61-pc1-12027:
   - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-na62-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-na62-c1-12028:
-  - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-metrics-publisher-sp-na62-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-na62-pc1-12029:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-na67-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-na67-c1-12030:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-metrics-publisher-sp-na67-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-na67-pc1-12031:
   - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-na68-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-na68-c1-12032:
-  - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-metrics-publisher-sp-na68-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-na68-pc1-12033:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-cs68-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-cs68-c1-12034:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-metrics-publisher-sp-cs68-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-cs68-pc1-12035:
   - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-cs91-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-cs91-c1-12036:
-  - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-metrics-publisher-sp-cs91-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-cs91-pc1-12037:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-na59-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-na59-c1-12038:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-metrics-publisher-sp-na59-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-na59-pc1-12039:
   - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-na60-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-na60-c1-12040:
-  - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-metrics-publisher-sp-na60-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-na60-pc1-12041:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-na64-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-na64-c1-12042:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-metrics-publisher-sp-na64-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-na64-pc1-12043:
   - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-na79-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-na79-c1-12044:
-  - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-metrics-publisher-sp-na79-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-na79-pc1-12045:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-cs69-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-cs69-c1-12020:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-metrics-publisher-sp-cs69-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-cs69-pc1-12021:
   - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-cs90-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-cs90-c1-12022:
-  - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-metrics-publisher-sp-cs90-pc1:
   - name: dfw/dfw-sp4-sam_caas
  dfw-sp4-redis-sp-cs90-pc1-12023:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-metrics-publisher-sp-na53-c1:
-  - name: dfw/dfw-sp4-sam_caas
- dfw-sp4-redis-sp-na53-c1-12024:
   - name: dfw/dfw-sp4-sam_caas
  frf-sp1-metrics-publisher-sp-cs85-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-cs85-pc1-12025:
   - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-eu4-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-eu4-c1-12026:
-  - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-eu4-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-eu4-pc1-12027:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-eu6-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-eu6-c1-12028:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-eu6-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-eu6-pc1-12029:
   - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-eu7-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-eu7-c1-12030:
-  - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-eu7-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-eu7-pc1-12031:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-eu9-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-eu9-c1-12032:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-eu9-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-eu9-pc1-12033:
   - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-cs88-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-cs88-c1-12034:
-  - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-cs88-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-cs88-pc1-12035:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-cs89-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-cs89-c1-12036:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-cs89-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-cs89-pc1-12037:
   - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-eu11-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-eu11-c1-12038:
-  - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-eu11-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-eu11-pc1-12039:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-eu2-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-eu2-c1-12040:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-eu2-pc1:
   - name: frf/frf-sp1-sam_caas
@@ -852,37 +504,17 @@ apps:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-dc-c1-12041:
   - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-cs83-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-cs83-c1-12020:
-  - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-cs83-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-cs83-pc1-12021:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-cs84-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-cs84-c1-12022:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-metrics-publisher-sp-cs84-pc1:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-sp-cs84-pc1-12023:
   - name: frf/frf-sp1-sam_caas
- frf-sp1-metrics-publisher-sp-cs85-c1:
-  - name: frf/frf-sp1-sam_caas
- frf-sp1-redis-sp-cs85-c1-12024:
-  - name: frf/frf-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-na78-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-na78-c1-12036:
-  - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-cs17-pc1:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-cs17-pc1-12005:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-cs18-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-cs18-c1-12006:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-cs18-pc1:
   - name: iad/iad-sp1-sam_caas
@@ -892,17 +524,9 @@ apps:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-na57-pc1-12031:
   - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-cs64-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-cs64-c1-12008:
-  - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-cs64-pc1:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-cs64-pc1-12009:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-cs14-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-cs14-c1-12010:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-cs14-pc1:
   - name: iad/iad-sp1-sam_caas
@@ -912,37 +536,17 @@ apps:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-na78-pc1-12037:
   - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-na46-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-na46-c1-12012:
-  - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-na46-pc1:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-na46-pc1-12013:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-na58-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-na58-c1-12032:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-na49-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-na49-c1-12014:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-na49-pc1:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-na49-pc1-12015:
   - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-na50-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-na50-c1-12016:
-  - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-na50-pc1:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-na50-pc1-12017:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-na56-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-na56-c1-12018:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-na56-pc1:
   - name: iad/iad-sp1-sam_caas
@@ -952,57 +556,25 @@ apps:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-na58-pc1-12033:
   - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-na88-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-na88-c1-12020:
-  - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-na88-pc1:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-na88-pc1-12021:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-cs15-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-cs15-c1-12022:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-cs15-pc1:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-cs15-pc1-12023:
   - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-cs16-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-cs16-c1-12024:
-  - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-cs16-pc1:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-cs16-pc1-12025:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-na74-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-na74-c1-12034:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-cs66-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-cs66-c1-12026:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-cs66-pc1:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-cs66-pc1-12027:
   - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-cs67-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-cs67-c1-12028:
-  - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-cs67-pc1:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-cs67-pc1-12029:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-na57-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-na57-c1-12030:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-cs65-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-cs65-c1-12000:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-na74-pc1:
   - name: iad/iad-sp1-sam_caas
@@ -1012,205 +584,101 @@ apps:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-cs65-pc1-12001:
   - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-cs8-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-cs8-c1-12002:
-  - name: iad/iad-sp1-sam_caas
  iad-sp1-metrics-publisher-sp-cs8-pc1:
   - name: iad/iad-sp1-sam_caas
  iad-sp1-redis-sp-cs8-pc1-12003:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-metrics-publisher-sp-cs17-c1:
-  - name: iad/iad-sp1-sam_caas
- iad-sp1-redis-sp-cs17-c1-12004:
   - name: iad/iad-sp1-sam_caas
  iad-sp2-metrics-publisher-sp-cs95-pc1:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-redis-sp-cs95-pc1-12005:
   - name: iad/iad-sp2-sam_caas
- iad-sp2-metrics-publisher-sp-cs96-c1:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-redis-sp-cs96-c1-12006:
-  - name: iad/iad-sp2-sam_caas
  iad-sp2-metrics-publisher-sp-cs96-pc1:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-redis-sp-cs96-pc1-12007:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-metrics-publisher-sp-cs97-c1:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-redis-sp-cs97-c1-12008:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-metrics-publisher-sp-cs97-pc1:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-redis-sp-cs97-pc1-12009:
   - name: iad/iad-sp2-sam_caas
- iad-sp2-metrics-publisher-sp-na73-c1:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-redis-sp-na73-c1-12010:
-  - name: iad/iad-sp2-sam_caas
  iad-sp2-metrics-publisher-sp-na73-pc1:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-redis-sp-na73-pc1-12011:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-metrics-publisher-sp-cs47-c1:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-redis-sp-cs47-c1-12012:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-metrics-publisher-sp-cs47-pc1:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-redis-sp-cs47-pc1-12013:
   - name: iad/iad-sp2-sam_caas
- iad-sp2-metrics-publisher-sp-cs78-c1:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-redis-sp-cs78-c1-12014:
-  - name: iad/iad-sp2-sam_caas
  iad-sp2-metrics-publisher-sp-cs78-pc1:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-redis-sp-cs78-pc1-12015:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-metrics-publisher-sp-cs79-c1:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-redis-sp-cs79-c1-12016:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-metrics-publisher-sp-cs79-pc1:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-redis-sp-cs79-pc1-12017:
   - name: iad/iad-sp2-sam_caas
- iad-sp2-metrics-publisher-sp-cs92-c1:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-redis-sp-cs92-c1-12018:
-  - name: iad/iad-sp2-sam_caas
  iad-sp2-metrics-publisher-sp-cs92-pc1:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-redis-sp-cs92-pc1-12019:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-metrics-publisher-sp-cs93-c1:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-redis-sp-cs93-c1-12020:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-metrics-publisher-sp-cs93-pc1:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-redis-sp-cs93-pc1-12021:
   - name: iad/iad-sp2-sam_caas
- iad-sp2-metrics-publisher-sp-cs77-c1:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-redis-sp-cs77-c1-12000:
-  - name: iad/iad-sp2-sam_caas
  iad-sp2-metrics-publisher-sp-cs77-pc1:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-redis-sp-cs77-pc1-12001:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-metrics-publisher-sp-cs94-c1:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-redis-sp-cs94-c1-12002:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-metrics-publisher-sp-cs94-pc1:
   - name: iad/iad-sp2-sam_caas
  iad-sp2-redis-sp-cs94-pc1-12003:
   - name: iad/iad-sp2-sam_caas
- iad-sp2-metrics-publisher-sp-cs95-c1:
-  - name: iad/iad-sp2-sam_caas
- iad-sp2-redis-sp-cs95-c1-12004:
-  - name: iad/iad-sp2-sam_caas
  ord-sp2-metrics-publisher-sp-cs79-pc1:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-cs79-pc1-12005:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-metrics-publisher-sp-cs92-c1:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-redis-sp-cs92-c1-12006:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-metrics-publisher-sp-cs92-pc1:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-cs92-pc1-12007:
   - name: ord/ord-sp2-sam_caas
- ord-sp2-metrics-publisher-sp-cs93-c1:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-redis-sp-cs93-c1-12008:
-  - name: ord/ord-sp2-sam_caas
  ord-sp2-metrics-publisher-sp-cs93-pc1:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-cs93-pc1-12009:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-metrics-publisher-sp-cs77-c1:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-redis-sp-cs77-c1-12010:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-metrics-publisher-sp-cs77-pc1:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-cs77-pc1-12011:
   - name: ord/ord-sp2-sam_caas
- ord-sp2-metrics-publisher-sp-cs94-c1:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-redis-sp-cs94-c1-12012:
-  - name: ord/ord-sp2-sam_caas
  ord-sp2-metrics-publisher-sp-cs94-pc1:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-cs94-pc1-12013:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-metrics-publisher-sp-cs95-c1:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-redis-sp-cs95-c1-12014:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-metrics-publisher-sp-cs95-pc1:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-cs95-pc1-12015:
   - name: ord/ord-sp2-sam_caas
- ord-sp2-metrics-publisher-sp-cs96-c1:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-redis-sp-cs96-c1-12016:
-  - name: ord/ord-sp2-sam_caas
  ord-sp2-metrics-publisher-sp-cs96-pc1:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-cs96-pc1-12017:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-metrics-publisher-sp-cs97-c1:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-redis-sp-cs97-c1-12018:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-metrics-publisher-sp-cs97-pc1:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-cs97-pc1-12019:
   - name: ord/ord-sp2-sam_caas
- ord-sp2-metrics-publisher-sp-na73-c1:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-redis-sp-na73-c1-12020:
-  - name: ord/ord-sp2-sam_caas
  ord-sp2-metrics-publisher-sp-na73-pc1:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-na73-pc1-12021:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-metrics-publisher-sp-cs47-c1:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-redis-sp-cs47-c1-12000:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-metrics-publisher-sp-cs47-pc1:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-cs47-pc1-12001:
   - name: ord/ord-sp2-sam_caas
- ord-sp2-metrics-publisher-sp-cs78-c1:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-redis-sp-cs78-c1-12002:
-  - name: ord/ord-sp2-sam_caas
  ord-sp2-metrics-publisher-sp-cs78-pc1:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-cs78-pc1-12003:
   - name: ord/ord-sp2-sam_caas
- ord-sp2-metrics-publisher-sp-cs79-c1:
-  - name: ord/ord-sp2-sam_caas
- ord-sp2-redis-sp-cs79-c1-12004:
-  - name: ord/ord-sp2-sam_caas
- ord-sp1-metrics-publisher-sp-na88-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-na88-c1-12036:
-  - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-cs66-pc1:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-cs66-pc1-12005:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-cs67-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-cs67-c1-12006:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-cs67-pc1:
   - name: ord/ord-sp1-sam_caas
@@ -1220,17 +688,9 @@ apps:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-na49-pc1-12031:
   - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-na57-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-na57-c1-12008:
-  - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-na57-pc1:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-na57-pc1-12009:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-na58-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-na58-c1-12010:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-na58-pc1:
   - name: ord/ord-sp1-sam_caas
@@ -1240,37 +700,17 @@ apps:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-na88-pc1-12037:
   - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-na74-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-na74-c1-12012:
-  - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-na74-pc1:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-na74-pc1-12013:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-na50-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-na50-c1-12032:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-na78-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-na78-c1-12014:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-na78-pc1:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-na78-pc1-12015:
   - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-cs14-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-cs14-c1-12016:
-  - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-cs14-pc1:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-cs14-pc1-12017:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-cs17-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-cs17-c1-12018:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-cs17-pc1:
   - name: ord/ord-sp1-sam_caas
@@ -1280,57 +720,25 @@ apps:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-na50-pc1-12033:
   - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-cs18-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-cs18-c1-12020:
-  - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-cs18-pc1:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-cs18-pc1-12021:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-cs64-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-cs64-c1-12022:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-cs64-pc1:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-cs64-pc1-12023:
   - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-cs65-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-cs65-c1-12024:
-  - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-cs65-pc1:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-cs65-pc1-12025:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-na56-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-na56-c1-12034:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-cs8-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-cs8-c1-12026:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-cs8-pc1:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-cs8-pc1-12027:
   - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-na46-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-na46-c1-12028:
-  - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-na46-pc1:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-na46-pc1-12029:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-na49-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-na49-c1-12030:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-cs15-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-cs15-c1-12000:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-na56-pc1:
   - name: ord/ord-sp1-sam_caas
@@ -1340,125 +748,61 @@ apps:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-cs15-pc1-12001:
   - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-cs16-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-cs16-c1-12002:
-  - name: ord/ord-sp1-sam_caas
  ord-sp1-metrics-publisher-sp-cs16-pc1:
   - name: ord/ord-sp1-sam_caas
  ord-sp1-redis-sp-cs16-pc1-12003:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-metrics-publisher-sp-cs66-c1:
-  - name: ord/ord-sp1-sam_caas
- ord-sp1-redis-sp-cs66-c1-12004:
   - name: ord/ord-sp1-sam_caas
  ukb-sp1-metrics-publisher-sp-cs31-pc1:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-cs31-pc1-12005:
   - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-metrics-publisher-sp-cs57-c1:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-redis-sp-cs57-c1-12006:
-  - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-metrics-publisher-sp-cs57-pc1:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-cs57-pc1-12007:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-metrics-publisher-sp-cs58-c1:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-redis-sp-cs58-c1-12008:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-metrics-publisher-sp-cs58-pc1:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-cs58-pc1-12009:
   - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-metrics-publisher-sp-ap0-c1:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-redis-sp-ap0-c1-12010:
-  - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-metrics-publisher-sp-ap0-pc1:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-ap0-pc1-12011:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-metrics-publisher-sp-ap1-c1:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-redis-sp-ap1-c1-12012:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-metrics-publisher-sp-ap1-pc1:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-ap1-pc1-12013:
   - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-metrics-publisher-sp-ap2-c1:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-redis-sp-ap2-c1-12014:
-  - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-metrics-publisher-sp-ap2-pc1:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-ap2-pc1-12015:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-metrics-publisher-sp-ap3-c1:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-redis-sp-ap3-c1-12016:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-metrics-publisher-sp-ap3-pc1:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-ap3-pc1-12017:
   - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-metrics-publisher-sp-ap4-c1:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-redis-sp-ap4-c1-12018:
-  - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-metrics-publisher-sp-ap4-pc1:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-ap4-pc1-12019:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-metrics-publisher-sp-ap5-c1:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-redis-sp-ap5-c1-12020:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-metrics-publisher-sp-ap5-pc1:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-ap5-pc1-12021:
   - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-metrics-publisher-sp-cs5-c1:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-redis-sp-cs5-c1-12000:
-  - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-metrics-publisher-sp-cs5-pc1:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-cs5-pc1-12001:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-metrics-publisher-sp-cs6-c1:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-redis-sp-cs6-c1-12002:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-metrics-publisher-sp-cs6-pc1:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-cs6-pc1-12003:
   - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-metrics-publisher-sp-cs31-c1:
-  - name: ukb/ukb-sp1-sam_caas
- ukb-sp1-redis-sp-cs31-c1-12004:
-  - name: ukb/ukb-sp1-sam_caas
  par-sp1-metrics-publisher-sp-eu9-pc1:
   - name: par/par-sp1-sam_caas
  par-sp1-redis-sp-eu9-pc1-12035:
   - name: par/par-sp1-sam_caas
- par-sp1-metrics-publisher-sp-cs84-c1:
-  - name: par/par-sp1-sam_caas
- par-sp1-redis-sp-cs84-c1-12028:
-  - name: par/par-sp1-sam_caas
  par-sp1-metrics-publisher-sp-cs88-pc1:
   - name: par/par-sp1-sam_caas
  par-sp1-redis-sp-cs88-pc1-12021:
-  - name: par/par-sp1-sam_caas
- par-sp1-metrics-publisher-sp-eu7-c1:
-  - name: par/par-sp1-sam_caas
- par-sp1-redis-sp-eu7-c1-12032:
-  - name: par/par-sp1-sam_caas
- par-sp1-metrics-publisher-sp-cs89-c1:
-  - name: par/par-sp1-sam_caas
- par-sp1-redis-sp-cs89-c1-12022:
   - name: par/par-sp1-sam_caas
  par-sp1-metrics-publisher-sp-cs85-pc1:
   - name: par/par-sp1-sam_caas
@@ -1472,33 +816,13 @@ apps:
   - name: par/par-sp1-sam_caas
  par-sp1-redis-sp-eu11-pc1-12027:
   - name: par/par-sp1-sam_caas
- par-sp1-metrics-publisher-sp-eu5-c1:
-  - name: par/par-sp1-sam_caas
- par-sp1-redis-sp-eu5-c1-12024:
-  - name: par/par-sp1-sam_caas
- par-sp1-metrics-publisher-sp-eu9-c1:
-  - name: par/par-sp1-sam_caas
- par-sp1-redis-sp-eu9-c1-12034:
-  - name: par/par-sp1-sam_caas
  par-sp1-metrics-publisher-sp-eu5-pc1:
   - name: par/par-sp1-sam_caas
  par-sp1-redis-sp-eu5-pc1-12025:
   - name: par/par-sp1-sam_caas
- par-sp1-metrics-publisher-sp-cs85-c1:
-  - name: par/par-sp1-sam_caas
- par-sp1-redis-sp-cs85-c1-12030:
-  - name: par/par-sp1-sam_caas
- par-sp1-metrics-publisher-sp-eu11-c1:
-  - name: par/par-sp1-sam_caas
- par-sp1-redis-sp-eu11-c1-12026:
-  - name: par/par-sp1-sam_caas
  par-sp1-metrics-publisher-sp-eu7-pc1:
   - name: par/par-sp1-sam_caas
  par-sp1-redis-sp-eu7-pc1-12033:
-  - name: par/par-sp1-sam_caas
- par-sp1-metrics-publisher-sp-cs88-c1:
-  - name: par/par-sp1-sam_caas
- par-sp1-redis-sp-cs88-c1-12020:
   - name: par/par-sp1-sam_caas
  par-sp1-metrics-publisher-sp-cs84-pc1:
   - name: par/par-sp1-sam_caas
@@ -1776,18 +1100,10 @@ apps:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-gs0-pc1-12038:
   - name: phx/phx-sp3-sam_caas
- dfw-sp3-metrics-publisher-sp-gs0-c1:
-  - name: dfw/dfw-sp3-sam_caas
- dfw-sp3-redis-sp-gs0-c1-12051:
-  - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-metrics-publisher-sp-gs0-pc1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-gs0-pc1-12052:
   - name: dfw/dfw-sp3-sam_caas
- phx-sp3-metrics-publisher-sp-gs0-c1:
-  - name: phx/phx-sp3-sam_caas
- phx-sp3-redis-sp-gs0-c1-12037:
-  - name: phx/phx-sp3-sam_caas
  phx-sp3-metrics-publisher-sp-gus-c1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-gus-c1-12039:
@@ -1856,14 +1172,6 @@ apps:
   - name: hnd/hnd-sp1-sam_caas
  hnd-sp1-redis-sp-ap7-pc1-12004:
   - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-metrics-publisher-sp-cs72-c1:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-redis-sp-cs72-c1-12013:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-metrics-publisher-sp-ap6-c1:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-redis-sp-ap6-c1-12005:
-  - name: hnd/hnd-sp1-sam_caas
  hnd-sp1-metrics-publisher-sp-cs31-pc1:
   - name: hnd/hnd-sp1-sam_caas
  hnd-sp1-redis-sp-cs31-pc1-12008:
@@ -1876,25 +1184,9 @@ apps:
   - name: hnd/hnd-sp1-sam_caas
  hnd-sp1-redis-sp-cs6-pc1-12012:
   - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-metrics-publisher-sp-cs31-c1:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-redis-sp-cs31-c1-12007:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-metrics-publisher-sp-cs6-c1:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-redis-sp-cs6-c1-12011:
-  - name: hnd/hnd-sp1-sam_caas
  hnd-sp1-metrics-publisher-sp-ap0-pc1:
   - name: hnd/hnd-sp1-sam_caas
  hnd-sp1-redis-sp-ap0-pc1-12016:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-metrics-publisher-sp-ap0-c1:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-redis-sp-ap0-c1-12015:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-metrics-publisher-sp-ap1-c1:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-redis-sp-ap1-c1-12001:
   - name: hnd/hnd-sp1-sam_caas
  hnd-sp1-metrics-publisher-sp-cs5-pc1:
   - name: hnd/hnd-sp1-sam_caas
@@ -1907,12 +1199,4 @@ apps:
  hnd-sp1-metrics-publisher-sp-cs72-pc1:
   - name: hnd/hnd-sp1-sam_caas
  hnd-sp1-redis-sp-cs72-pc1-12014:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-metrics-publisher-sp-ap7-c1:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-redis-sp-ap7-c1-12003:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-metrics-publisher-sp-cs5-c1:
-  - name: hnd/hnd-sp1-sam_caas
- hnd-sp1-redis-sp-cs5-c1-12009:
   - name: hnd/hnd-sp1-sam_caas
