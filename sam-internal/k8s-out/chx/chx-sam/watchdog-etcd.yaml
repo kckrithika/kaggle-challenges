@@ -27,6 +27,9 @@ spec:
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -emailFrequency=12h
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
         image: ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0002160-cdd63ff0
         name: watchdog
         resources:
@@ -45,6 +48,8 @@ spec:
           name: certs
         - mountPath: /config
           name: config
+        - mountPath: /kubeconfig
+          name: kubeconfig
       hostNetwork: true
       nodeSelector:
         etcd_installed: "true"
@@ -62,3 +67,6 @@ spec:
       - configMap:
           name: watchdog
         name: config
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
