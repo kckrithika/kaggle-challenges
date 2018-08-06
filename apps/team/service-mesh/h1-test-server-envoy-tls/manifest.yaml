@@ -5,6 +5,7 @@ system:
   - name: h1-test-server-envoy-tls
     count: 1
     containers:
+
     - name: h1-test-server
       # Code lives here: https://git.soma.salesforce.com/npshenichnyy/sherpa-http1-test
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/h1-test-server:latest
@@ -34,8 +35,8 @@ system:
             - "/home/scone/is-alive.sh"
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/69
-      image: sfci/servicelibs/sherpa-envoy:ca853b963d6d80a9bfd5a2b2ee3696c788d4ad79
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/72
+      image: sfci/servicelibs/sherpa-envoy:c2e6e2c0110aeeeb2070ed8810b4c621271e223a
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh

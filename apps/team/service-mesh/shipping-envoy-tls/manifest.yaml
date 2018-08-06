@@ -5,6 +5,7 @@ system:
   - name: shipping-envoy-tls
     count: 1
     containers:
+
     - name: shipping
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/236/
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:15c5e5298ef1612b151944ba18efe4d66a739e49
@@ -47,8 +48,8 @@ system:
         name: logvol
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/69
-      image: sfci/servicelibs/sherpa-envoy:ca853b963d6d80a9bfd5a2b2ee3696c788d4ad79
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/72
+      image: sfci/servicelibs/sherpa-envoy:c2e6e2c0110aeeeb2070ed8810b4c621271e223a
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -76,6 +77,7 @@ system:
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
+
     volumes:
     - name: logvol
       hostPath:

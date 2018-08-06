@@ -7,6 +7,7 @@ system:
   - name: geoip
     count: 3
     containers:
+
     - name: geoip-database
       image: tnrp/ccait/geoip2-database:20170918
       args:
@@ -21,6 +22,7 @@ system:
           - /database/GeoIP2-City.mmdb
         initialDelaySeconds: 10
         periodSeconds: 5
+
     - name: geoip
       image: sfci/ccait/geoip:3fdd49f18f09041a5d4fbc3c28f849fa89a33f95
       env:
@@ -48,8 +50,9 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
+
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:ca853b963d6d80a9bfd5a2b2ee3696c788d4ad79
+      image: sfci/servicelibs/sherpa-envoy:c2e6e2c0110aeeeb2070ed8810b4c621271e223a
       ports:
       - name: http2-in
         containerPort: 7012
@@ -75,6 +78,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
+
     - name: beacon
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
@@ -87,6 +91,7 @@ system:
           command:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
+
     volumes:
     - name: maxmind-volume
       emptyDir: {}

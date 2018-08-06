@@ -5,6 +5,7 @@ system:
   - name: demo-geoip
     count: 1
     containers:
+
     - name: demo-geoip
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rama.rao/demo-geoip:dev
       env:
@@ -15,9 +16,9 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 20
 
-    - name: demo-geoip-sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/69
-      image: sfci/servicelibs/sherpa-envoy:ca853b963d6d80a9bfd5a2b2ee3696c788d4ad79
+    - name: sherpa
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/72
+      image: sfci/servicelibs/sherpa-envoy:c2e6e2c0110aeeeb2070ed8810b4c621271e223a
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
