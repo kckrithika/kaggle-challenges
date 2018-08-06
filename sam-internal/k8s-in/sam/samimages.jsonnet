@@ -26,9 +26,12 @@ local utils = import "util_functions.jsonnet";
         # [Alok.Bansal] SAM Manifest Repo Watcher latest changes
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002185-c9b3dec7",
 
+<<<<<<< HEAD
         # [thargrove] Enable multi-query pages in sam-sql-reporter
         "prd,prd-sam,sam-sql-reporter,hypersam": "sam-0002186-b20c3b4d",
 
+=======
+>>>>>>> phase 1
 
         # [Xiao] pin samapp-controller to an earlier version without dual run in prd-sam
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002059-8a57b252",
