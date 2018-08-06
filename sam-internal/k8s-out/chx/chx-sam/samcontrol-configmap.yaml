@@ -8,7 +8,7 @@ data:
       "createTPR": false,
       "debug": true,
       "deletionEnabled": true,
-      "deletionPercentageThreshold": 50,
+      "deletionPercentageThreshold": 20,
       "dockerregistry": "ops-artifactrepo1-0-chx.data.sfdc.net",
       "enableMaddog": false,
       "httpsDisableCertsCheck": true,
