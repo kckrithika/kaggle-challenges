@@ -39,11 +39,8 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     name: "sdn-cleanup",
                     apptype: "control",
                     daemonset: "true",
-                } + (if configs.estate != "prd-sdc" &&
-                        configs.estate != "prd-samtest" &&
-                        configs.estate != "prd-samdev" &&
-                        configs.estate != "prd-samtest" &&
-                        configs.estate != "prd-data-flowsnake_test" then
+                } + (if configs.kingdom != "prd" &&
+                        configs.kingdom != "xrd" then
                         configs.ownerLabel.sdn else {}),
                 namespace: "sam-system",
             },
