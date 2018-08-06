@@ -660,6 +660,178 @@ group by ControlEstate, PodAgeDays
 #===================
 
     {
+      name: "Phase 0 Health (for Phase 1 validation) - prd-samtest",
+      note: "This view gives an overview of everything running on our phase 0 estate prd-samtest.  Issues in this bed need to be investigated at the start of each phased release so we dont carry issues forward.  When creating the Phase 1 PR, please copy the contents of this report in Markdown format (see link above).  The overall release process is documented <a href='https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM'>here</a>",
+      multisql: [
+
+        # ===
+
+        {
+          name: "Currently running tags for hypersam in sam-system.  Auto-deployer picks the newest tag each midnight.  Phase 1 should use the same tag.  Also, pelase check that it is recent using http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images",
+          sql: "select
+  ControlEstate, Image, Tag, count(*) as Count, group_concat(Name) as Resources
+from
+(
+  select
+    Name,
+    ControlEstate,
+    substring_index(substring_index(Image, ':', 1), '/', -1) as Image,
+    substring_index(Image, ':', -1) as Tag
+  from
+  (
+    select
+      Name,
+      ControlEstate,
+      json_unquote(json_extract(Images, concat('$[',n,']'))) as Image
+    from
+    (
+      select * from
+      (
+        select '0' n union select '1' n union select '2' n union select '3' n union select '4' n union select '5' n union select '6' n
+      ) num
+      join
+      (
+      select Name, ControlEstate, Payload->>'$.spec.template.spec.containers[*].image' as Images
+      from k8s_resource
+      where
+        (ApiKind = 'Deployment' or ApiKind = 'DaemonSet') and
+        namespace = 'sam-system' and
+        Payload->>'$.metadata.labels.\"\\sam\\.data\\.sfdc\\.net\\/owner\"' = 'sam'
+      ) ss
+    ) ss2
+  having not Image is NULL
+  ) ss3
+) ss4
+Where controlEstate = 'prd-samtest' and Image = 'hypersam'
+group by ControlEstate, Image, Tag
+order by ControlEstate, Image",
+        },
+
+        # ===
+
+        {
+          name: "Unhealthy pods in sam-system namespace.  Problems with our control stack should be investigated.",
+          sql: "select
+  ControlEstate, 
+  Name, 
+  NodeName, 
+  Phase, 
+  Message,
+ Payload->>'$.status.conditions' as Conditions
+from podDetailView
+where
+  namespace = 'sam-system'
+  and ControlEstate = 'prd-samtest'
+  and Phase <> 'Running'
+  and Name not like '%slb%'
+  and Name not like '%sdn%'",
+        },
+
+        # ===
+
+        {
+          name: "Pod Age for SAM customer apps.  Apps with low age need to be investigated to make sure we did not change PodSpecTemplate by accident.  See ADD",
+          sql: "select
+  ControlEstate,
+  PodAgeDays,
+  PodsWithThisAge
+from
+(
+  select
+    ControlEstate,
+    PodAgeDays,
+    SUM(Count) as PodsWithThisAge
+  from
+  (
+    select
+      ControlEstate,
+      LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,
+      1 as Count
+    from podDetailView
+    where IsSamApp = True and ProduceAgeInMinutes<60
+    and ControlEstate = 'prd-samtest'
+    union all
+    select 'prd-samtest' as ControlEstate, 0 as PodAgeDays, 0 as Count
+    union all
+    select 'prd-samtest' as ControlEstate, 1 as PodAgeDays, 0 as Count
+    union all
+    select 'prd-samtest' as ControlEstate, 2 as PodAgeDays, 0 as Count
+    union all
+    select 'prd-samtest' as ControlEstate, 3 as PodAgeDays, 0 as Count
+    union all
+    select 'prd-samtest' as ControlEstate, 4 as PodAgeDays, 0 as Count
+    union all
+    select 'prd-samtest' as ControlEstate, 5 as PodAgeDays, 0 as Count
+    union all
+    select 'prd-samtest' as ControlEstate, 6 as PodAgeDays, 0 as Count
+    union all
+    select 'prd-samtest' as ControlEstate, 7 as PodAgeDays, 0 as Count
+    union all
+    select 'prd-samtest' as ControlEstate, 8 as PodAgeDays, 0 as Count
+    union all
+    select 'prd-samtest' as ControlEstate, 9 as PodAgeDays, 0 as Count
+    union all
+    select 'prd-samtest' as ControlEstate, 10 as PodAgeDays, 0 as Count
+  ) as ss
+  where PodAgeDays IS NOT NULL
+  group by ControlEstate, PodAgeDays
+) as ss2
+group by ControlEstate, PodAgeDays",
+        },
+
+        # ===
+
+        {
+          name: "List of customer pods ordered by PodAge",
+          sql: "select
+      Name,
+      Namespace,
+      ControlEstate,
+      LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,
+      Phase,
+      Message,
+      case when Phase != 'Running' then Payload->>'$.status.conditions' end as Conditions
+    from podDetailView
+    where IsSamApp = True and ProduceAgeInMinutes<60
+    and ControlEstate = 'prd-samtest'
+    order by PodAgeDays",
+        },
+
+        # ===
+
+        {
+          name: "Watchdog failures.  We can ignore puppetChecker and kubeResourceChecker, but the other failures should be investigated",
+          sql: "select
+  CheckerName,
+  SUM(SuccessCount) as SuccessCount,
+  SUM(FailureCount) as FailureCount,
+  SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) as SuccessPct,
+  GROUP_CONCAT(Error, '') as Errors,
+  CONCAT('https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-14d:sam.watchdog.',Kingdom,'.NONE.',ControlEstate,':',CheckerName,'.status%7Bdevice%3D*%7D:avg') as Argus
+from
+(
+select
+  CAST(ControlEstate as CHAR CHARACTER SET utf8) AS ControlEstate,
+  CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,
+  Payload->>'$.status.report.CheckerName' as CheckerName,
+  case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
+  case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount,
+  case when Payload->>'$.status.report.ErrorMessage' = 'null' then '' else Payload->>'$.status.report.ErrorMessage' end as Error
+from k8s_resource
+where ApiKind = 'WatchDog'
+and controlestate = 'prd-samtest'
+) as ss
+where CheckerName not like 'Sql%' and 
+CheckerName not like 'MachineCount%'
+group by CheckerName
+order by SuccessPct",
+        },
+      ],
+    },
+
+#===================
+
+    {
       name: "HyperSam Docker Tags in PRD",
       note: "Currently running hypersam tag for sam-system deployments and daemon sets owned by sam",
       multisql: [
