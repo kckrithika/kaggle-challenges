@@ -39,7 +39,7 @@ system:
       - -endpoint
       - caas/cluster/sp-sdn-c1:SUPERPOD:12015
       - -logdir
-      - /home/sfdc-caas/logs/sp-sdn-c1-$FUNCTION_INSTANCE_IP
+      - /home/sfdc-caas/logs/sp-sdn-c1-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         initialDelaySeconds: 5
         exec:
