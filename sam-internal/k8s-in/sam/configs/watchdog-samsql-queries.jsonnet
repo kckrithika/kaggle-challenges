@@ -165,8 +165,8 @@ WHERE latency > 45",
             first_approval_link_posted_time,
             created_time
         FROM PullRequests 
-        WHERE created_time IS NOT NULL AND state ='open') noApprovalLink
-        WHERE noApprovalLink.latency > 6 AND pr_num > 1000
+        WHERE created_time IS NOT NULL AND created_time > NOW() - Interval 10 day AND state ='open') noApprovalLinkInMin
+        WHERE noApprovalLinkInMin.latency > 6
         ORDER BY latency desc",
     },
 
@@ -207,18 +207,20 @@ WHERE latency > 45",
       watchdogFrequency: "10m",
       alertProfile: "sam",
       alertAction: "email",
-      sql: "SELECT 
-             *   
+      sql: "SELECT
+             *
             FROM
-            (SELECT 
-              pr_num,
-              manifest_zip_time,
-              merged_time,
-              TIMESTAMPDIFF(MINUTE, CASE WHEN manifest_zip_time IS NULL THEN now() ELSE manifest_zip_time END, `merged_time`) latency
-            FROM PullRequests
-            WHERE state ='merged' AND (manifest_zip_version IS  NULL OR manifest_zip_version = '')  AND `merged_time` > NOW() - INTERVAL 10 DAY
+            (SELECT
+              p.pr_num,
+              t.manifest_zip_time,
+              p.merged_time,
+              TIMESTAMPDIFF(MINUTE, CASE WHEN t.manifest_zip_time IS NULL THEN now() ELSE t.manifest_zip_time END, `merged_time`) latency
+            FROM PullRequests p
+            LEFT OUTER JOIN TNRPManifestData t
+            ON p.git_hash = t.git_hash
+            WHERE p.state ='merged' AND (t.manifest_zip_version IS  NULL OR t.manifest_zip_version = '')  AND p.`merged_time` > NOW() - INTERVAL 10 DAY
             ) manifestZip
-            WHERE manifestZip.latency > 30 AND pr_num > 11927",
+            WHERE manifestZip.latency > 30",
     },
     {
       name: "SqlPRImageUnavailable",
