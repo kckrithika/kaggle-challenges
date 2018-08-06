@@ -50,7 +50,7 @@ system:
           command:
           - /bin/true
     - name: zipkin-alpha
-      image: docker-dva-rc/dva/zipkin-server:25
+      image: docker-dva-rc/dva/zipkin-server:26
       ports:
       - name: zipkin
         containerPort: 9411
