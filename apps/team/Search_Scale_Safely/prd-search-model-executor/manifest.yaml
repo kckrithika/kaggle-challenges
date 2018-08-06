@@ -77,6 +77,8 @@ system:
         name: sherpa-log-volume
       - mountPath: /server-certs
         name: tls-server-cert
+      - mountPath: /client-certs
+        name: tls-client-cert
       livenessProbe:
         exec:
           command:
@@ -99,6 +101,9 @@ system:
     - name: beacon-log-volume
       hostPath:
         path: /home/sfdc-beacon/logs
+    - name: tls-client-cert
+      maddogCert:
+        type: client
     - name: tls-server-cert
       maddogCert:
         type: server
