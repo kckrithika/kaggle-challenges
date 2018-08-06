@@ -23,7 +23,7 @@ system:
       args: 
         - --port=12072
         - --maxMemoryMB=4096
-        - --logDir=/home/sfdc-caas/logs
+        - --logDir=/home/sfdc-caas/logs/redis-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         exec:
           command:
@@ -40,7 +40,7 @@ system:
       - -endpoint
       - caas/cluster/sp-ist18-c1:SUPERPOD:12072
       - -logservdir
-      - /home/sfdc-caas/logs/beacon-sp-ist18-c1-12072
+      - /home/sfdc-caas/logs/beacon-sp-ist18-c1-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         initialDelaySeconds: 5
         exec:
