@@ -1,6 +1,8 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-if configs.estate == "prd-sam" then {
+local samfeatureflags = import "sam-feature-flags.jsonnet";
+
+if samfeatureflags.sdpv1 then {
     kind: "Deployment",
     spec: {
         replicas: 3,
