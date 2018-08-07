@@ -17,8 +17,9 @@ system:
       args:
         - --server.port=7576
         - --management.port=7577
-        - --cluster.name=sp-gus-c1
+        - --cluster.name=sp-c1
         - --logDir=/home/caas/logs/caas
+        - --metrics.container=caas.sp-gus-c1
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
@@ -37,7 +38,7 @@ system:
       - containerPort: 7577
       env:
        - name: SFDC_ENVIRONMENT
-         value: prod
+         value: prod-gus
        - name: CAAS_ENVIRONMENT
          value: none
     volumes:
@@ -46,4 +47,4 @@ system:
         path: /home/caas/logs/caas
     - name: secretvol
       secret:
-        secretName: caas-secret-sp-gus-c1
+        secretName: caas-secret-sp-c1
