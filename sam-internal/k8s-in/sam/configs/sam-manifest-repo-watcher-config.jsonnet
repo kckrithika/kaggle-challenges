@@ -18,6 +18,8 @@ std.prune({
         "full-scan-on": false,
         "freq-scan-on": true,
         "tnrp-scan-on": true,
+        "pool-map-scan-on": true,
+        "pool-map-scan-frequency": "900s",
         "webhook-on": true,
         "pr-scan-frequency": "1800s",
         "num-worker-threads": 5,
