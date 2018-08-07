@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api
-      image: sfci/cre/cre-api:0.0.1.107.master.225f670.167
+      image: sfci/cre/cre-api:1.2.0.1.master.e882473.181
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__iad.ajna_local__cre_metrics
@@ -27,6 +27,8 @@ system:
           value: prod
         - name: HBASE_DATA_CENTER
           value: iad
+        - name: HBASE_FLUSH_BACKOFF
+          value: 00Dg0000006NfYxEAK
       resources:
         limits: { cpu: "2", memory: "20Gi" }
         requests: { cpu: "2", memory: "20Gi" }
