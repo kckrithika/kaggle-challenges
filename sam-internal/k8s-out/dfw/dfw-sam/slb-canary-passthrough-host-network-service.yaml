@@ -3,6 +3,8 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: slb-canary-pt-host-nw
+    slb.sfdc.net/portconfigurations: '[{"port":portconfigs.slb.canaryServicePassthroughHostNetworkPort,"targetport":
+      portconfigs.slb.canaryServicePassthroughHostNetworkPort,"lbtype":"dsr"}]'
   labels:
     app: slb-canary-passthrough-host-network-service
     slb.sfdc.net/name: slb-canary-pt-host-nw

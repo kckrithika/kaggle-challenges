@@ -40,13 +40,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                 targetPort: 9092,
                 nodePort: portconfigs.slb.bravoServiceNodePort2,
             },
-            {
-                name: "slb-canary-tls",
-                port: portconfigs.slb.canaryServiceTlsPort,
-                protocol: "TCP",
-                targetPort: portconfigs.slb.canaryServiceTlsPort,
-                nodePort: portconfigs.slb.bravoServiceNodePort3,
-            },
         ],
         selector: {
             name: "slb-bravo",
