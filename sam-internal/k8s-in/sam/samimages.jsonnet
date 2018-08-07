@@ -20,6 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [Alok.Bansal] SAM Manifest Repo Watcher latest changes
+        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002185-c9b3dec7",
+
         # [thargrove] Enable multi-query pages in sam-sql-reporter
         "prd,prd-sam,sam-sql-reporter,hypersam": "sam-0002186-b20c3b4d",
 
