@@ -27,7 +27,7 @@ system:
           value: prod
         - name: HBASE_DATA_CENTER
           value: iad
-        - name: HBASE_FLUSH_BACKOFF
+        - name: HBASE_SUPER_TENANT_IDS_FLUSH
           value: 00Dg0000006NfYxEAK
       resources:
         limits: { cpu: "2", memory: "20Gi" }
