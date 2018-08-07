@@ -6,7 +6,7 @@ system:
       - caas-dev@salesforce.com
   functions:
   - name: prd-sp2-redis-sp-ist20-pc1-perf
-    count: 20
+    count: 1
     containers:
     - name: caas-redis-12071
       # container image/version to  run

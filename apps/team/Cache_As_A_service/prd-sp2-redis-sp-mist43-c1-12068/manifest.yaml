@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: redis-sp-mist43-c1-12068
-    count: 7
+    count: 1
     containers:
     - name: caas-redis
       image: tnrp/caas/caas-redis:4.0.10-0000024-16334693
