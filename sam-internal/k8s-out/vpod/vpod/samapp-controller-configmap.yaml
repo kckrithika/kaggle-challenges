@@ -7,6 +7,9 @@ data:
       "enableMaddog": true,
       "maddogMaddogEndpoint": "https://maddog-onebox:8443",
       "madkubImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000071-5a6dcab2",
+      "namespaceHostSubList": [
+        "cloudatlas"
+      ],
       "volPermissionInitContainerImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657"
     }
 kind: ConfigMap
