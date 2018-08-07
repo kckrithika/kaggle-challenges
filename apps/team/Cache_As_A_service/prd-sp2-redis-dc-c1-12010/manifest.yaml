@@ -6,7 +6,7 @@ system:
       - rpragada@salesforce.com
   functions:
   - name: redis-dc-c1-12010
-    count: 4
+    count: 1
     containers:
     - name: caas-redis
       image: tnrp/caas/caas-redis:4.0.10-0000024-16334693
