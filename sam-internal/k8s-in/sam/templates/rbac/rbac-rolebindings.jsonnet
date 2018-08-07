@@ -11,6 +11,9 @@ local ci = {
   "prd-sam_gatewayconfig": ["ci-gateway"],
   "prd-search_model_executor": ["ci-search-scale-safely"],
   "prd-sam_mit": ["ci-atf", "ci-atf-dev", "ci-atf-mirror"],
+  "prd-sam_customerresolutionengine": ["ci-retail-cre"],
+  "prd-sam_crosscloudplatform": ["ci-retail-dfs", "ci-retail-mds"],
+  "prd-sam_crosscloudsetup": ["ci-retail-rsui"],
 };
 
 # Functions

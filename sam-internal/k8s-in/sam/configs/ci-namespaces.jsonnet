@@ -20,7 +20,22 @@ local ci = {
 };
 
 
-local orgs = ["iot", "ice-pd", "ccait", "atf", "user-sample", "user-vpod", "user-mmittelstadt", "gateway", "search-scale-safely", "core-on-sam"];
+local orgs = [
+    "iot",
+    "ice-pd",
+    "ccait",
+    "atf",
+    "user-sample",
+    "user-vpod",
+    "user-mmittelstadt",
+    "gateway",
+    "search-scale-safely",
+    "core-on-sam",
+    "retail-dfs",
+    "retail-cre",
+    "retail-rsui",
+    "retail-mds",
+];
 
 {
   namespacesToTeam: {
