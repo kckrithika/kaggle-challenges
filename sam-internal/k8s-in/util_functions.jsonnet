@@ -26,6 +26,7 @@ local kingdom = std.extVar("kingdom");
         estate == "prd-samdev" ||
         estate == "prd-samdevpool" ||
         estate == "prd-samtest" ||
+        estate == "prd-samtestpool" ||
         estate == "prd-sdc" ||
         estate == "prd-sam" ||
         estate == "xrd-sam" ||
