@@ -202,7 +202,7 @@ from
       ControlEstate,
       LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays
     from podDetailView
-    where IsSamApp = True and ProduceAgeInMinutes<15
+    where IsSamApp = True and ProduceAgeInMinutes<60
   ) as ss
   where PodAgeDays IS NOT NULL
   group by ControlEstate, PodAgeDays
@@ -231,7 +231,7 @@ from
       ControlEstate,
       LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays
     from podDetailView
-    where IsSamApp = True and ProduceAgeInMinutes<15
+    where IsSamApp = True and ProduceAgeInMinutes<60
   ) as ss
   where PodAgeDays IS NOT NULL
   group by ControlEstate, PodAgeDays
@@ -597,7 +597,8 @@ on ( binary fsChecker.hostName = pod.Name )",
         # ===
 
         {
-          name: "Currently running tags for hypersam in sam-system.  Auto-deployer picks the newest tag each midnight which should be the top entry below.  Pelase check that this tag is less than a day or two old here <a href='http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images'>tag browser</a>.  This is the tag that Phase 1 should use.",
+          name: "HyperSam Tags",
+          note: "Currently running tags for hypersam in sam-system.  Auto-deployer picks the newest tag each midnight which should be the top entry below.  Pelase check that this tag is less than a day or two old here <a href='http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images'>tag browser</a>.  This is the tag that Phase 1 should use.",
           sql: "select * from (
 select
   ControlEstate, Image, Tag, count(*) as Count, group_concat(Name) as Resources
@@ -643,8 +644,10 @@ order by Count desc",
         # ===
 
         {
-          name: "Unhealthy pods in sam-system namespace.  Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking.",
+          name: "Unhealthy Pods in Sam-System",
+          note: "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking.",
           sql: "select
+  case when (Phase='Pending' and Name like '%watchdog%') then 'YELLOW' else 'RED' end as Status,
   ControlEstate, 
   Namespace,
   Name,
@@ -664,7 +667,8 @@ where
         # ===
 
         {
-          name: "Pod Age for SAM customer apps.  Apps with low age need to be investigated to make sure we did not change PodSpecTemplate by accident.  Steps to investigate pod restarts can be found <a href='https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM'>here</a>",
+          name: "SAM Customer App Pod Age",
+          note: "Apps with low age need to be investigated to make sure we did not change PodSpecTemplate by accident.  Steps to investigate pod restarts can be found <a href='https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM'>here</a>",
           sql: "select
   ControlEstate,
   PodAgeDays,
@@ -718,6 +722,7 @@ group by ControlEstate, PodAgeDays",
         {
           name: "List of customer pods ordered by PodAge",
           sql: "select
+      case when (phase != 'Running') then 'RED' when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)<2) then 'YELLOW' else '' end as Status,
       Name,
       Namespace,
       ControlEstate,
@@ -734,8 +739,10 @@ group by ControlEstate, PodAgeDays",
         # ===
 
         {
-          name: "Watchdog failures.  We can ignore puppetChecker and kubeResourceChecker, but the other failures should be investigated",
+          name: "Watchdog failures",
+          note: "We can ignore puppetChecker and kubeResourceChecker, but the other failures should be investigated",
           sql: "select
+  case when GROUP_CONCAT(Error, '') is null then '' when CheckerName in ('puppetChecker', 'kubeResourcesChecker', 'nodeChecker') then 'YELLOW' else 'RED' end as Status,
   CheckerName,
   SUM(SuccessCount) as SuccessCount,
   SUM(FailureCount) as FailureCount,
@@ -750,7 +757,7 @@ select
   Payload->>'$.status.report.CheckerName' as CheckerName,
   case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
   case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount,
-  case when Payload->>'$.status.report.ErrorMessage' = 'null' then '' else Payload->>'$.status.report.ErrorMessage' end as Error
+  case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else Payload->>'$.status.report.ErrorMessage' end as Error
 from k8s_resource
 where ApiKind = 'WatchDog'
 and controlestate = 'prd-samtest'
