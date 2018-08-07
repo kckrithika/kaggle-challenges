@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: metrics-publisher
-      image: docker-dva-rc/dva/caas/caas-metrics-publisher-prod-2.6.4:4
+      image: docker-dva-rc/dva/caas/caas-metrics-publisher-prod-2.6.4:5
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
@@ -21,7 +21,6 @@ system:
         - --metrics-publisher-mode=true
         - --metrics.container=caas.mist43.pc1
         - --settings.path=mist43.-.prd.-.caas
-        - --metrics.container=caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
