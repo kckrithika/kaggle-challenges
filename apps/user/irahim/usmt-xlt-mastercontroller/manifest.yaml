@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: usmt-xlt-mastercontroller
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/usmt-xlt-mastercontroller:20180802
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/usmt-xlt-mastercontroller:20180807
       livenessProbe:
         exec:
           command:
