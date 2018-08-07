@@ -9,6 +9,8 @@ apps:
   - hnd/hnd-sam_gater
   - cdg/cdg-sam_gater
   - fra/fra-sam_gater
+  - ia2/ia2-sam_gater
+  - ph2/ph2-sam_gater
  gate-manager-par:
   - par/par-sam_gater
  gate-manager-public-cloud:
