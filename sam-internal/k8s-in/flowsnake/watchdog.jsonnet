@@ -45,7 +45,6 @@ local samconfig = import "config.jsonnet";
           "name=etcd": "age.etcd",
         },
         publishAlertsToKafka: false,
-        publishAllReportsToKafka: false,
         rcImtEndpoint: samconfig.rcImtEndpoint,
         recipient: "flowsnake@salesforce.com",
         sdpEndpoint: "http://localhost:39999",
