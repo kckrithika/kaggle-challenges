@@ -46,11 +46,8 @@ local utils = import "util_functions.jsonnet";
                 labels: {
                     name: "sdn-hairpin-setter",
                     daemonset: "true",
-                } + (if configs.estate != "prd-sdc" &&
-                        configs.estate != "prd-samtest" &&
-                        configs.estate != "prd-samdev" &&
-                        configs.estate != "prd-samtest" &&
-                        configs.estate != "prd-data-flowsnake_test" then
+                } + (if configs.kingdom != "prd" &&
+                        configs.kingdom != "xrd" then
                         configs.ownerLabel.sdn else {}),
                 namespace: "sam-system",
             },

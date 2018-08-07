@@ -103,11 +103,8 @@ if configs.estate == "prd-sdc" then {
                 labels: {
                     name: "sdn-logstash-push",
                     apptype: "monitoring",
-                } + (if configs.estate != "prd-sdc" &&
-                        configs.estate != "prd-samtest" &&
-                        configs.estate != "prd-samdev" &&
-                        configs.estate != "prd-samtest" &&
-                        configs.estate != "prd-data-flowsnake_test" then
+                } + (if configs.kingdom != "prd" &&
+                        configs.kingdom != "xrd" then
                         configs.ownerLabel.sdn else {}),
                 namespace: "sam-system",
             },
