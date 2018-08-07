@@ -20,6 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [cbatra] Deploying node controller changes for PRD IP issue
+        "prd,prd-samdev,node-controller,hypersam": "sam-0002187-93a734b7",
+
         # [Alok.Bansal] SAM Manifest Repo Watcher latest changes
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002185-c9b3dec7",
 
