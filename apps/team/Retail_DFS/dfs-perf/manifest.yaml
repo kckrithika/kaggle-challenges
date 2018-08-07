@@ -52,6 +52,9 @@ system:
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+      resources:
+        limits: { cpu: "16", memory: "4Gi" }
+        requests: { cpu: "16", memory: "3Gi" }
       ports:
       - containerPort: 7022
       - containerPort: 15372
@@ -73,6 +76,9 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
+      args:
+      - --zipkin-rate
+      - 1
       ports:
         - containerPort: 7442
         - containerPort: 7014
