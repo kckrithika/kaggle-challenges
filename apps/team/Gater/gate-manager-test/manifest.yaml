@@ -18,6 +18,8 @@ system:
       - --spring.datasource.hikari.leakDetectionThreshold=2000
       - --gater-service.thread.pool.max-size=0
       ports:
+      - containerPort: 7012
+      - containerPort: 7443
       - containerPort: 9522
       - containerPort: 9523
       - containerPort: 9090
