@@ -34,7 +34,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000997-520fd7f9
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001017-08d1d617
         name: slb-labels-checker
         volumeMounts:
         - mountPath: /host/data/slb
