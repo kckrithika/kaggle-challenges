@@ -21,7 +21,7 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         # [thargrove] Enable multi-query pages in sam-sql-reporter
-        "prd,prd-sam,sam-sql-reporter,hypersam": "sam-0002181-59dde2cc",
+        "prd,prd-sam,sam-sql-reporter,hypersam": "sam-0002186-b20c3b4d",
 
 
         # [Xiao] pin samapp-controller to an earlier version without dual run in prd-sam
