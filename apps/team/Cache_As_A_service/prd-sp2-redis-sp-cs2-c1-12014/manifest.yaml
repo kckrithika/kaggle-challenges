@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: caas-redis
-      image: tnrp/caas/caas-redis:4.0.10-0000024-16334693
+      image: docker-dva-rc/dva/caas/caas-redis-release-4.0.10:4
       resources:
         limits: { memory: "7Gi" }
         requests: { memory: "5Gi" }
@@ -33,7 +33,7 @@ system:
       ports:
       - containerPort: 12014
     - name: caas-redis-announcer
-      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
+      image: sfci/servicelibs/beacon:0078716f45375dc0b114849e13d9b1dbf83177a9
       args:
       - -endpoint
       - caas/cluster/sp-cs2-c1:SUPERPOD:12014
