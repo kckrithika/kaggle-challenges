@@ -13,7 +13,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
         } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-canary-service",
-            "slb.sfdc.net/portconfigurations": "[{\"port\":9111,\"" + portconfigs.slb.canaryServicePort + " \":" + portconfigs.slb.canaryServicePort + ",\"lbtype\":\"dsr\"},{\"port\":" + portconfigs.slb.canaryServiceTlsPort + ",\"targetport\":" + portconfigs.slb.canaryServiceTlsPort + ",\"lbtype\":\"dsr\"}]",
+            "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServicePort + ",\"targetport\":" + portconfigs.slb.canaryServicePort + ",\"lbtype\":\"dsr\"},{\"port\":" + portconfigs.slb.canaryServiceTlsPort + ",\"targetport\":" + portconfigs.slb.canaryServiceTlsPort + ",\"lbtype\":\"dsr\"}]",
         },
     },
     spec: {
