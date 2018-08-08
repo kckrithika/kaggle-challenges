@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local samfeatureflags = import "sam-feature-flags.jsonnet";
+local util = import "util_functions.jsonnet";
 
 std.prune({
   # MadDog
@@ -14,4 +15,9 @@ std.prune({
   # others
     volPermissionInitContainerImage: samimages.permissionInitContainer,
     dockerRegistry: configs.registry,
+
+  namespaceHostSubList: (
+     if util.is_production(configs.kingdom) then ["cloudatlas"]
+     else [".*"]
+   ),
 })
