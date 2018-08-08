@@ -32,7 +32,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20180807_205213.93a734b7.dirty.cbatra-ltm1
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20180807_214822.93a734b7.dirty.cbatra-ltm1
         livenessProbe:
           httpGet:
             path: /healthz
