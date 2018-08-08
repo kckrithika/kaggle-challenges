@@ -6,7 +6,7 @@ system:
       - servicemesh@salesforce.com
   functions:
   - name: envoy-canary
-    count: 100
+    count: 1
     containers:
 
     - name: beacon
