@@ -21,7 +21,7 @@ system:
           readOnly: true
       args:
         - --port=12000
-        - --maxMemoryMB=6144
+        - --maxMemoryMB=4096
         - --logDir=/home/sfdc-caas/logs/redis-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         exec:
