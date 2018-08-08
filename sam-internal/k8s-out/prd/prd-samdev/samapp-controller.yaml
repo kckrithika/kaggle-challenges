@@ -25,7 +25,6 @@ spec:
         - --logtostderr=true
         - --ciNamespaceConfigFile=/ci/ci-namespaces.json
         - --config=/config/samapp-controller-config.json
-        - --ipAddressCapacityRequest=true
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --madkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
         env:
