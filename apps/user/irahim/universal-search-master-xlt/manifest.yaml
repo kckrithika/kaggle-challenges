@@ -4,10 +4,10 @@ apiVersion: v1
 
 system:
   functions:
-  - name: master-xlt
+  - name: master-xlt-2
     count: 1
     containers:
-    - name: master-xlt-service
+    - name: master-xlt-service-2
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/master-xlt:irahim-20180808-e6e9b60
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
