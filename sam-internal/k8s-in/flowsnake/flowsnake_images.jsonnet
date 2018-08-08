@@ -78,7 +78,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
 
-            cert_secretizer_image_tag: "716",  # previously was 681, but that silently failed to deploy and be tested in test fleet
+            cert_secretizer_image_tag: "716",  # tested
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
 
@@ -115,7 +115,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
 
-            cert_secretizer_image_tag: "662",
+            cert_secretizer_image_tag: "716",
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
 
