@@ -13,7 +13,7 @@ system:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
-      - --listeners.external-auth-enabled-clusters[1]=shipping-envoy-tls.service-mesh
+      - --listeners.external-auth-enabled-clusters[1]=shipping-envoy-tls
       ports:
       - containerPort: 15372
       env:
