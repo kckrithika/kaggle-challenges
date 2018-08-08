@@ -20,10 +20,6 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [cbatra] Deploying node controller changes for PRD IP issue
-        "prd,prd-samdev,node-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20180808_004112.93a734b7.dirty.cbatra-ltm1",
-        "prd,prd-samdev,samcontrol,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20180807_230743.93a734b7.dirty.cbatra-ltm1",
-
         # [Alok.Bansal] SAM Manifest Repo Watcher latest changes
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002185-c9b3dec7",
 
@@ -61,7 +57,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-            hypersam: "sam-0002181-59dde2cc",
+            hypersam: "sam-0002190-d048106f",
             madkub: "1.0.0-0000074-4c95976a",
             madkubSidecar: "1.0.0-0000074-4c95976a",
             },
