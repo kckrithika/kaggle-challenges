@@ -23,12 +23,12 @@ local utils = import "util_functions.jsonnet";
         # [cbatra] Deploying node controller changes for PRD IP issue
         "prd,prd-samdev,node-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20180808_004112.93a734b7.dirty.cbatra-ltm1",
         "prd,prd-samdev,samcontrol,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20180807_230743.93a734b7.dirty.cbatra-ltm1",
+
         # [Alok.Bansal] SAM Manifest Repo Watcher latest changes
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002185-c9b3dec7",
 
         # [thargrove] Enable multi-query pages in sam-sql-reporter
-        "prd,prd-sam,sam-sql-reporter,hypersam": "sam-0002186-b20c3b4d",
-
+        "prd,prd-sam,sam-sql-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20180807_165826.3d22ff09.dirty.thargrove-ltm1",
 
         # [Xiao] pin samapp-controller to an earlier version without dual run in prd-sam
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002059-8a57b252",
