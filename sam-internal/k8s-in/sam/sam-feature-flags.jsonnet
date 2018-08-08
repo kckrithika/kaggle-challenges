@@ -34,15 +34,7 @@ local utils = import "util_functions.jsonnet";
     estatessvc: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom),
 
     # kubedns is enabled in a few select test clusters.
-    kubedns:
-        configs.estate == "prd-samdev" ||
-        configs.estate == "prd-sam" ||
-        configs.estate == "prd-samtwo" ||
-        configs.estate == "xrd-sam" ||
-        configs.estate == "prd-sdc" ||
-        configs.estate == "prd-samtest" ||
-        configs.estate == "prd-sam_storage" ||
-        configs.estate == "prd-sam_storagedev",
+    kubedns: (configs.kingdom == "prd" || configs.kingdom == "xrd") && !utils.is_flowsnake_cluster(configs.estate),
 
     # k8sproxy is enabled in test clusters.
     k8sproxy:
