@@ -6,17 +6,17 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-sp-ccp-perf
-    count: 3
+    count: 1
     containers:
     - name: cre-sp-ccp-perf
-      image: sfci/cre/cre-stream-processing:0.0.1.57.master.ad919e0.125
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.3.0.0.develop-1.3.0c65145.9
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: METRICS_KAFKA_GROUP_ID
-          value: cre-sp-ccp-perf        
+          value: cre-sp-ccp-perf
         - name: SFDC_ENVIRONMENT
           value: ccp-perf
         - name: METRICS_KAFKA_ENABLED
@@ -26,7 +26,7 @@ system:
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
         - name: METRICS_FUNNEL_URI
-          value: http://ajna0-funnel1-0-prd.data.sfdc.net                    
+          value: http://ajna0-funnel1-0-prd.data.sfdc.net
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -40,19 +40,19 @@ system:
           port: 15372
           scheme: HTTP
       volumeMounts:
-      - mountPath: /myclientcert
-        name: myclientcert
-      - mountPath: /myservercert
-        name: myservercert        
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
       - mountPath: /opt/cre/cre-sp-ccp-perf
         name: logvol
     - name: sherpa-cre-stream-processing
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.27
       volumeMounts:
-      - mountPath: /myclientcert
-        name: myclientcert
-      - mountPath: /myservercert
-        name: myservercert 
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
@@ -60,10 +60,8 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7012
-        name: sherpa-ot-http2
-      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-        name: sherpa-in-http1
+      - containerPort: 7443
+        name: sh-in-http2-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
@@ -78,18 +76,34 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+    - name: beacon
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      args:
+      - -endpoint
+      - retail-cre/cre-sp-ccp-perf:DATACENTER_ALLENV:7443
+      # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
+      # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
+      # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
     volumes:
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-sp-ccp-perf
-    - name: myclientcert
+    - name: client-certs
       maddogCert:
         type: client
-    - name: myservercert
+    - name: server-certs
       maddogCert:
         type: server
         lbnames:
-          - cre-sp-ccp-perf-lb        
+          - cre-sp-ccp-perf-lb
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
   loadbalancers:
   - lbname: cre-sp-ccp-perf-lb
     function: cre-sp-ccp-perf
