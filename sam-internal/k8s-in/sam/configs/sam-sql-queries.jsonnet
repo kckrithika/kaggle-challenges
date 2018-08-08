@@ -1,6 +1,224 @@
 # To run this locally before merge, follow instructions here: https://git.soma.salesforce.com/sam/sam/tree/master/pkg/sam-sql-reporter
+
+local bedhealth(type, bed) = {
+    name: "Bed Health - " + type + " - " + bed,
+    note: "This view gives an overview of everything running on " + bed + ".  When using this for release validation, follow the steps in <a href='https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM'>this wiki page</a>",
+    multisql: [
+
+      # ===
+
+      {
+        name: "HyperSam Tags",
+        note: "Currently running tags for hypersam in sam-system",
+        sql: "select * from (
+      select
+        ControlEstate, Image, Tag, count(*) as Count, group_concat(Name) as Resources
+      from
+      (
+        select
+          Name,
+          ControlEstate,
+          substring_index(substring_index(Image, ':', 1), '/', -1) as Image,
+          substring_index(Image, ':', -1) as Tag
+        from
+        (
+          select
+            Name,
+            ControlEstate,
+            json_unquote(json_extract(Images, concat('$[',n,']'))) as Image
+          from
+          (
+            select * from
+            (
+              select '0' n union select '1' n union select '2' n union select '3' n union select '4' n union select '5' n union select '6' n
+            ) num
+            join
+            (
+            select Name, ControlEstate, Payload->>'$.spec.template.spec.containers[*].image' as Images
+            from k8s_resource
+            where
+              (ApiKind = 'Deployment' or ApiKind = 'DaemonSet') and
+              namespace = 'sam-system' and
+              Payload->>'$.metadata.labels.\"\\sam\\.data\\.sfdc\\.net\\/owner\"' = 'sam'
+            ) ss
+          ) ss2
+        having not Image is NULL
+        ) ss3
+      ) ss4
+      Where controlEstate = '" + bed + "' and Image = 'hypersam'
+      group by ControlEstate, Image, Tag
+      order by ControlEstate, Image
+      ) ss5
+      order by Count desc",
+              },
+
+              # ===
+
+              {
+                name: "Unhealthy Pods in Sam-System",
+                note: "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
+                sql: "select
+        case when (Phase='Pending' and Name like '%watchdog%') then 'YELLOW' else 'RED' end as Status,
+        ControlEstate,
+        Namespace,
+        Name,
+        NodeName,
+        Phase,
+        Message,
+       Payload->>'$.status.conditions' as Conditions
+      from podDetailView
+      where
+        namespace = 'sam-system'
+        and ControlEstate = '" + bed + "'
+        and Phase <> 'Running'
+        and Name not like '%slb%'
+        and Name not like '%sdn%'",
+              },
+
+              # ===
+
+              {
+                name: "Watchdog failures",
+                note: "For phased releases, items in red should be fixed.",
+                sql: "select * from (
+        select
+        case when GROUP_CONCAT(Error, '') is null then '' when CheckerName in ('puppetChecker', 'kubeResourcesChecker', 'nodeChecker') then 'YELLOW' else 'RED' end as Status,
+        CheckerName,
+        SUM(SuccessCount) as SuccessCount,
+        SUM(FailureCount) as FailureCount,
+        SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) as SuccessPct,
+        GROUP_CONCAT(Error, '') as Errors,
+        CONCAT('https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-14d:sam.watchdog.',Kingdom,'.NONE.',ControlEstate,':',CheckerName,'.status%7Bdevice%3D*%7D:avg') as Argus
+      from
+      (
+      select
+        CAST(ControlEstate as CHAR CHARACTER SET utf8) AS ControlEstate,
+        CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,
+        Payload->>'$.status.report.CheckerName' as CheckerName,
+        case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
+        case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount,
+        case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else Payload->>'$.status.report.ErrorMessage' end as Error
+      from k8s_resource
+      where ApiKind = 'WatchDog'
+      and controlestate = '" + bed + "'
+      ) as ss
+      where CheckerName not like 'Sql%' and
+      CheckerName not like 'MachineCount%'
+      group by CheckerName
+      ) as ss2
+      order by SuccessPct",
+      },
+
+              # ===
+
+              {
+                name: "SAM Customer App Pod Age",
+                note: "When doign a phased release, apps with low age need to be investigated to make sure we did not change PodSpecTemplate by accident.  Steps to investigate pod restarts can be found <a href='https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM'>here</a>",
+                sql: "select
+        ControlEstate,
+        PodAgeDays,
+        PodsWithThisAge
+      from
+      (
+        select
+          ControlEstate,
+          PodAgeDays,
+          SUM(Count) as PodsWithThisAge
+        from
+        (
+          select
+            ControlEstate,
+            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,
+            1 as Count
+          from podDetailView
+          where IsSamApp = True and ProduceAgeInMinutes<60
+          and ControlEstate = '" + bed + "'
+          union all
+          select '" + bed + "' as ControlEstate, 0 as PodAgeDays, 0 as Count
+          union all
+          select '" + bed + "' as ControlEstate, 1 as PodAgeDays, 0 as Count
+          union all
+          select '" + bed + "' as ControlEstate, 2 as PodAgeDays, 0 as Count
+          union all
+          select '" + bed + "' as ControlEstate, 3 as PodAgeDays, 0 as Count
+          union all
+          select '" + bed + "' as ControlEstate, 4 as PodAgeDays, 0 as Count
+          union all
+          select '" + bed + "' as ControlEstate, 5 as PodAgeDays, 0 as Count
+          union all
+          select '" + bed + "' as ControlEstate, 6 as PodAgeDays, 0 as Count
+          union all
+          select '" + bed + "' as ControlEstate, 7 as PodAgeDays, 0 as Count
+          union all
+          select '" + bed + "' as ControlEstate, 8 as PodAgeDays, 0 as Count
+          union all
+          select '" + bed + "' as ControlEstate, 9 as PodAgeDays, 0 as Count
+          union all
+          select '" + bed + "' as ControlEstate, 10 as PodAgeDays, 0 as Count
+        ) as ss
+        where PodAgeDays IS NOT NULL
+        group by ControlEstate, PodAgeDays
+      ) as ss2
+      group by ControlEstate, PodAgeDays",
+              },
+
+              # ===
+
+              {
+                name: "List of customer pods ordered by PodAge (top 30)",
+                sql: "select
+            case when (phase != 'Running') then 'RED' when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)<2) then 'YELLOW' else '' end as Status,
+            Name,
+            Namespace,
+            ControlEstate,
+            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,
+            Phase,
+            Message,
+            case when Phase != 'Running' then Payload->>'$.status.conditions' end as Conditions
+          from podDetailView
+          where IsSamApp = True and ProduceAgeInMinutes<60
+          and ControlEstate = '" + bed + "'
+          order by PodAgeDays
+          limit 30",
+              },
+
+    ],
+  };
+
+
 {
   queries: [
+
+
+#===================
+
+    bedhealth("R&D", "prd-samdev"),
+    bedhealth("R&D", "prd-samtest"),
+    bedhealth("R&D", "prd-sam"),
+    bedhealth("R&D", "prd-samtwo"),
+    bedhealth("R&D", "xrd-sam"),
+
+    bedhealth("PROD", "cdg-sam"),
+    bedhealth("PROD", "cdu-sam"),
+    bedhealth("PROD", "chx-sam"),
+    bedhealth("PROD", "dfw-sam"),
+    bedhealth("PROD", "fra-sam"),
+    bedhealth("PROD", "hnd-sam"),
+    bedhealth("PROD", "ia2-sam"),
+    bedhealth("PROD", "iad-sam"),
+    bedhealth("PROD", "ord-sam"),
+    bedhealth("PROD", "par-sam"),
+    bedhealth("PROD", "ph2-sam"),
+    bedhealth("PROD", "phx-sam"),
+    bedhealth("PROD", "syd-sam"),
+    bedhealth("PROD", "ukb-sam"),
+    bedhealth("PROD", "wax-sam"),
+    bedhealth("PROD", "yhu-sam"),
+    bedhealth("PROD", "yul-sam"),
+
+
+#===================
+
     {
       name: "Kube-Resource-Kafka-Pipeline-Latencies-ByControlEstate",
       sql: "SELECT min(diff_seconds), avg(diff_seconds), max(diff_seconds), ControlEstate 
@@ -585,189 +803,6 @@ left join
   from nodeDetailView
 ) as pod
 on ( binary fsChecker.hostName = pod.Name )",
-    },
-
-#===================
-
-    {
-      name: "Phase 0 Health (for Phase 1 validation) - prd-samtest",
-      note: "This view gives an overview of everything running on our phase 0 estate prd-samtest.  Issues in this bed need to be investigated at the start of each phased release so we dont carry issues forward.  GUS items should be created for less important issues so we can keep this view clean.  When creating the Phase 1 PR, please copy the contents of this report in Markdown format (see link above).  The overall release process is documented <a href='https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM'>here</a>",
-      multisql: [
-
-        # ===
-
-        {
-          name: "HyperSam Tags",
-          note: "Currently running tags for hypersam in sam-system.  Auto-deployer picks the newest tag each midnight which should be the top entry below.  Pelase check that this tag is less than a day or two old here <a href='http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images'>tag browser</a>.  This is the tag that Phase 1 should use.",
-          sql: "select * from (
-select
-  ControlEstate, Image, Tag, count(*) as Count, group_concat(Name) as Resources
-from
-(
-  select
-    Name,
-    ControlEstate,
-    substring_index(substring_index(Image, ':', 1), '/', -1) as Image,
-    substring_index(Image, ':', -1) as Tag
-  from
-  (
-    select
-      Name,
-      ControlEstate,
-      json_unquote(json_extract(Images, concat('$[',n,']'))) as Image
-    from
-    (
-      select * from
-      (
-        select '0' n union select '1' n union select '2' n union select '3' n union select '4' n union select '5' n union select '6' n
-      ) num
-      join
-      (
-      select Name, ControlEstate, Payload->>'$.spec.template.spec.containers[*].image' as Images
-      from k8s_resource
-      where
-        (ApiKind = 'Deployment' or ApiKind = 'DaemonSet') and
-        namespace = 'sam-system' and
-        Payload->>'$.metadata.labels.\"\\sam\\.data\\.sfdc\\.net\\/owner\"' = 'sam'
-      ) ss
-    ) ss2
-  having not Image is NULL
-  ) ss3
-) ss4
-Where controlEstate = 'prd-samtest' and Image = 'hypersam'
-group by ControlEstate, Image, Tag
-order by ControlEstate, Image
-) ss5
-order by Count desc",
-        },
-
-        # ===
-
-        {
-          name: "Unhealthy Pods in Sam-System",
-          note: "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking.",
-          sql: "select
-  case when (Phase='Pending' and Name like '%watchdog%') then 'YELLOW' else 'RED' end as Status,
-  ControlEstate, 
-  Namespace,
-  Name,
-  NodeName, 
-  Phase, 
-  Message,
- Payload->>'$.status.conditions' as Conditions
-from podDetailView
-where
-  namespace = 'sam-system'
-  and ControlEstate = 'prd-samtest'
-  and Phase <> 'Running'
-  and Name not like '%slb%'
-  and Name not like '%sdn%'",
-        },
-
-        # ===
-
-        {
-          name: "SAM Customer App Pod Age",
-          note: "Apps with low age need to be investigated to make sure we did not change PodSpecTemplate by accident.  Steps to investigate pod restarts can be found <a href='https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM'>here</a>",
-          sql: "select
-  ControlEstate,
-  PodAgeDays,
-  PodsWithThisAge
-from
-(
-  select
-    ControlEstate,
-    PodAgeDays,
-    SUM(Count) as PodsWithThisAge
-  from
-  (
-    select
-      ControlEstate,
-      LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,
-      1 as Count
-    from podDetailView
-    where IsSamApp = True and ProduceAgeInMinutes<60
-    and ControlEstate = 'prd-samtest'
-    union all
-    select 'prd-samtest' as ControlEstate, 0 as PodAgeDays, 0 as Count
-    union all
-    select 'prd-samtest' as ControlEstate, 1 as PodAgeDays, 0 as Count
-    union all
-    select 'prd-samtest' as ControlEstate, 2 as PodAgeDays, 0 as Count
-    union all
-    select 'prd-samtest' as ControlEstate, 3 as PodAgeDays, 0 as Count
-    union all
-    select 'prd-samtest' as ControlEstate, 4 as PodAgeDays, 0 as Count
-    union all
-    select 'prd-samtest' as ControlEstate, 5 as PodAgeDays, 0 as Count
-    union all
-    select 'prd-samtest' as ControlEstate, 6 as PodAgeDays, 0 as Count
-    union all
-    select 'prd-samtest' as ControlEstate, 7 as PodAgeDays, 0 as Count
-    union all
-    select 'prd-samtest' as ControlEstate, 8 as PodAgeDays, 0 as Count
-    union all
-    select 'prd-samtest' as ControlEstate, 9 as PodAgeDays, 0 as Count
-    union all
-    select 'prd-samtest' as ControlEstate, 10 as PodAgeDays, 0 as Count
-  ) as ss
-  where PodAgeDays IS NOT NULL
-  group by ControlEstate, PodAgeDays
-) as ss2
-group by ControlEstate, PodAgeDays",
-        },
-
-        # ===
-
-        {
-          name: "List of customer pods ordered by PodAge",
-          sql: "select
-      case when (phase != 'Running') then 'RED' when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)<2) then 'YELLOW' else '' end as Status,
-      Name,
-      Namespace,
-      ControlEstate,
-      LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,
-      Phase,
-      Message,
-      case when Phase != 'Running' then Payload->>'$.status.conditions' end as Conditions
-    from podDetailView
-    where IsSamApp = True and ProduceAgeInMinutes<60
-    and ControlEstate = 'prd-samtest'
-    order by PodAgeDays",
-        },
-
-        # ===
-
-        {
-          name: "Watchdog failures",
-          note: "We can ignore puppetChecker and kubeResourceChecker, but the other failures should be investigated",
-          sql: "select
-  case when GROUP_CONCAT(Error, '') is null then '' when CheckerName in ('puppetChecker', 'kubeResourcesChecker', 'nodeChecker') then 'YELLOW' else 'RED' end as Status,
-  CheckerName,
-  SUM(SuccessCount) as SuccessCount,
-  SUM(FailureCount) as FailureCount,
-  SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) as SuccessPct,
-  GROUP_CONCAT(Error, '') as Errors,
-  CONCAT('https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-14d:sam.watchdog.',Kingdom,'.NONE.',ControlEstate,':',CheckerName,'.status%7Bdevice%3D*%7D:avg') as Argus
-from
-(
-select
-  CAST(ControlEstate as CHAR CHARACTER SET utf8) AS ControlEstate,
-  CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,
-  Payload->>'$.status.report.CheckerName' as CheckerName,
-  case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
-  case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount,
-  case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else Payload->>'$.status.report.ErrorMessage' end as Error
-from k8s_resource
-where ApiKind = 'WatchDog'
-and controlestate = 'prd-samtest'
-) as ss
-where CheckerName not like 'Sql%' and 
-CheckerName not like 'MachineCount%'
-group by CheckerName
-order by SuccessPct",
-        },
-      ],
     },
 
 #===================
