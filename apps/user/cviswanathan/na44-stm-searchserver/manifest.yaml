@@ -20,9 +20,9 @@ system:
         - containerPort: 7022 # add additional container ports for the protocols your service uses
           name: solr-port
         livenessProbe:
-          exec:
-            command:
-            - "true"
+          httpGet:
+            path: /ping.jsp
+            port: 7022
           initialDelaySeconds: 120 
           periodSeconds: 5
         volumeMounts:
