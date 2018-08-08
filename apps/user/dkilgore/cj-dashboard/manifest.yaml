@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: cj-dashboard
-      image: sfci/mc-retail/commerce-journeys-dashboard:1.3.12
+      image: sfci/mc-retail/commerce-journeys-dashboard:1.3.13
       ports:
       - containerPort: 8080
       livenessProbe:
