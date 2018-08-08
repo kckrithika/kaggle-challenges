@@ -151,7 +151,7 @@ WHERE latency > 45",
 
     {
       name: "SqlPRAuthroizationLinkPostTimeLatency",
-      instructions: "Following PRs don't have authorization link after 6 minutes of getting created.",
+      instructions: "Following PRs don't have authorization link after 5 minutes of getting created.",
       alertThreshold: "10m",
       alertFrequency: "24h",
       watchdogFrequency: "10m",
@@ -161,19 +161,19 @@ WHERE latency > 45",
           * 
         FROM (SELECT 
             pr_num,
-            TIMESTAMPDIFF(MINUTE, CASE WHEN first_approval_link_posted_time IS NULL THEN now() ELSE first_approval_link_posted_time END, created_time) latency,
+            TIMESTAMPDIFF(MINUTE, created_time, CASE WHEN first_approval_link_posted_time IS NULL THEN now() ELSE first_approval_link_posted_time END) latency,
             first_approval_link_posted_time,
             created_time
         FROM PullRequests 
         WHERE created_time IS NOT NULL AND created_time > NOW() - Interval 10 day AND state ='open') noApprovalLinkInMin
-        WHERE noApprovalLinkInMin.latency > 6
+        WHERE noApprovalLinkInMin.latency > 5
         ORDER BY latency desc",
     },
 
 # =====
 
     {
-      name: "SqlPRFailtedToRunEvalPR",
+      name: "SqlPRFailedToRunEvalPR",
       instructions: "Following PRs haven't run evaluatePR more than 30 mins after getting authorized.",
       alertThreshold: "10m",
       alertFrequency: "24h",
@@ -189,7 +189,7 @@ WHERE latency > 45",
           evaluate_pr_status,
           authorized_by,
           most_recent_authorized_time,
-          TIMESTAMPDIFF(MINUTE, now(), most_recent_authorized_time) latency
+          TIMESTAMPDIFF(MINUTE,  most_recent_authorized_time, now()) latency
         FROM PullRequests
         WHERE created_time IS NOT NULL AND authorized_by IS NOT NULL AND authorized_by !='' AND (`evaluate_pr_status` IS NULL OR evaluate_pr_status = 'unknown') AND most_recent_authorized_time IS NOT NULL
             AND state ='open'
@@ -214,11 +214,11 @@ WHERE latency > 45",
               p.pr_num,
               t.manifest_zip_time,
               p.merged_time,
-              TIMESTAMPDIFF(MINUTE, CASE WHEN t.manifest_zip_time IS NULL THEN now() ELSE t.manifest_zip_time END, `merged_time`) latency
+              TIMESTAMPDIFF(MINUTE, merged_time, CASE WHEN t.manifest_zip_time IS NULL THEN now() ELSE t.manifest_zip_time END) latency
             FROM PullRequests p
             LEFT OUTER JOIN TNRPManifestData t
             ON p.git_hash = t.git_hash
-            WHERE p.state ='merged' AND (t.manifest_zip_version IS  NULL OR t.manifest_zip_version = '')  AND p.`merged_time` > NOW() - INTERVAL 10 DAY
+            WHERE p.state ='merged'   AND p.`merged_time` > NOW() - INTERVAL 10 DAY
             ) manifestZip
             WHERE manifestZip.latency > 30",
     },
@@ -237,7 +237,7 @@ WHERE latency > 45",
                     prs.pr_num,
                     crds.PoolName,
                     crds.ControlEstate,
-                    TIMESTAMPDIFF(MINUTE, CASE WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() ELSE payload -> '$.status.maxImageEndTime' END, prs.merged_time) latencyMin
+                    TIMESTAMPDIFF(MINUTE, prs.merged_time, CASE WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() ELSE payload -> '$.status.maxImageEndTime' END) latencyMin
             FROM 
                 PullRequests prs
             LEFT  JOIN  
