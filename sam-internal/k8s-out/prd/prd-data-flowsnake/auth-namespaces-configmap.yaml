@@ -7,12 +7,13 @@ data:
     "namespace": "sec-einstein-deepsea"}, {"authorizedClientCerts": [ ], "authorizedLdapGroups":
     ["collection_flowsnake"], "namespace": "collection_device_data_mon"}, {"authorizedClientCerts":
     [ ], "authorizedLdapGroups": ["search_dlc"], "namespace": "search_dlc"}, {"authorizedClientCerts":
-    [ ], "authorizedLdapGroups": ["Sayonara-Flowsnake"], "namespace": "sayonara-applogs"},
-    {"authorizedClientCerts": [ ], "authorizedLdapGroups": ["edge_intelligence"],
-    "namespace": "edge_intelligence"}, {"authorizedClientCerts": [ ], "authorizedLdapGroups":
-    ["dbvisibility"], "namespace": "database-heimdall"}, {"authorizedClientCerts":
-    ["flowsnake_test"], "authorizedLdapGroups": ["Flowsnake_Platform"], "namespace":
-    "flowsnake_test"}]'
+    ["universal-search.universal-search"], "authorizedLdapGroups": ["universal-search"],
+    "namespace": "universal-search"}, {"authorizedClientCerts": [ ], "authorizedLdapGroups":
+    ["Sayonara-Flowsnake"], "namespace": "sayonara-applogs"}, {"authorizedClientCerts":
+    [ ], "authorizedLdapGroups": ["edge_intelligence"], "namespace": "edge_intelligence"},
+    {"authorizedClientCerts": [ ], "authorizedLdapGroups": ["dbvisibility"], "namespace":
+    "database-heimdall"}, {"authorizedClientCerts": ["flowsnake_test"], "authorizedLdapGroups":
+    ["Flowsnake_Platform"], "namespace": "flowsnake_test"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
