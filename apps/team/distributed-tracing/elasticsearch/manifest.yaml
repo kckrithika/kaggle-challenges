@@ -12,6 +12,12 @@ system:
       env:
       - name: ES_JAVA_OPTS
         value: '-Xms30g -Xmx30g'
+      # Try bumping the max requests to 2x to see if we reduce "over capacity" errors
+      - name: ES_MAX_REQUESTS
+        value: '128'
+      # We only have one elasticsearch backed by ceph, thus no replication is desired
+      - name: ES_INDEX_REPLICAS
+        value: '0'
       volumeMounts:
       - mountPath: /var/lib/elasticsearch
         name: elasticsearch-persistent-storage-2tb
