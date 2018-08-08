@@ -14,7 +14,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
         } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-canary-pt-host-nw",
-            "slb.sfdc.net/portconfigurations": "[{\"port\":portconfigs.slb.canaryServicePassthroughHostNetworkPort,\"targetport\": portconfigs.slb.canaryServicePassthroughHostNetworkPort,\"lbtype\":\"dsr\"}]",
+            "slb.sfdc.net/portconfigurations": "[{\"port\":9113,\"targetport\": 9113,\"lbtype\":\"dsr\"}]",
         },
     },
     spec: {

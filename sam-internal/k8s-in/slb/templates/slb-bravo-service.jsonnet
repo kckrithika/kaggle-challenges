@@ -14,7 +14,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
         } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-bravo-svc",
-            "slb.sfdc.net/portconfigurations": "[{\"port\":9090,\"targetport\":9090,\"lbtype\":\"tcp\"},{\"port\":9091,\"targetport\":9091,\"lbtype\":\"http\"},{\"port\":9092,\"targetport\":9092,\"lbtype\":\"dsr\"}]",
+            "slb.sfdc.net/portconfigurations": "[{\"port\":9090,\"targetport\":9090,\"lbtype\":\"tcp\"},{\"port\":9091,\"targetport\":9091,\"lbtype\":\"http\"},{\"port\":9092,\"targetport\":9092,\"lbtype\":\"dsr\"},{\"port\":9443,\"targetport\":9443,\"lbtype\":\"dsr\"}]",
         },
     },
     spec: {
@@ -39,6 +39,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                 protocol: "TCP",
                 targetPort: 9092,
                 nodePort: portconfigs.slb.bravoServiceNodePort2,
+            },
+            {
+                name: "slb-bravo-port-3",
+                port: portconfigs.slb.canaryServiceTlsPort,
+                protocol: "TCP",
+                targetPort: portconfigs.slb.canaryServiceTlsPort,
+                nodePort: portconfigs.slb.bravoServiceNodePort3,
             },
         ],
         selector: {
