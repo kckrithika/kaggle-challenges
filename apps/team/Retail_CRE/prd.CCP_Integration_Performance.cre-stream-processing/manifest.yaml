@@ -49,6 +49,8 @@ system:
     - name: sherpa-cre-stream-processing
       image: sfci/servicelibs/sherpa:2.0.26
       volumeMounts:
+      - mountPath: /log
+        name: sherpa-log-volume
       - mountPath: /client-certs
         name: client-certs
       - mountPath: /server-certs
@@ -67,13 +69,13 @@ system:
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
+          - "/home/sfdc-sherpa/bin/is-alive"
         initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
+          - "/home/sfdc-sherpa/bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
     - name: beacon
