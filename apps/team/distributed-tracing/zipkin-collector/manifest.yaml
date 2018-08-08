@@ -18,10 +18,12 @@ system:
         type: client
     containers:
     - name: zipkin-collector
-      image: docker-dva-rc/dva/zipkin-collector:25
+      image: docker-dva-rc/dva/zipkin-collector:26
       env:
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
+      - name: KAFKA_ACCEPT_BATCH_SIZE
+        value: 100
       - name: KAFKA_BOOTSTRAP_SERVERS
         value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
       - name: KAFKA_TOPIC
