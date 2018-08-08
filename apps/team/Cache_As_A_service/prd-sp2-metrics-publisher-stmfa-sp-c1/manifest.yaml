@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: metrics-publisher
-      image: docker-dva-rc/dva/caas/caas-metrics-publisher-prod-2.6.4:4
+      image: docker-dva-rc/dva/caas/caas-metrics-publisher-prod-2.6.4:5
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
@@ -18,7 +18,6 @@ system:
         - --management.port=7511
         - --cluster.name=sp-c1
         - --logDir=/home/caas/logs/caas
-        - --metrics.container=caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
