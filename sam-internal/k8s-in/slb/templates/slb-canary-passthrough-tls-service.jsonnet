@@ -14,6 +14,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
         } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-canary-pt-tls",
+            "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServicePassthroughTlsPort + ",\"targetport\":" + portconfigs.slb.canaryServicePassthroughTlsPort + ",\"lbtype\":\"dsr\"}]",
         },
     },
     spec: {

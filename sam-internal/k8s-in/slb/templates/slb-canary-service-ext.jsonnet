@@ -13,6 +13,7 @@ if configs.estate == "xrd-sam" then {
         } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-canary-service-ext",
+             "slb.sfdc.net/portconfigurations": "[{\"port\": " + portconfigs.slb.canaryServicePort + ",\"targetport\": " + portconfigs.slb.canaryServicePort + ",\"lbtype\":\"dsr\"},{\"port\": " + portconfigs.slb.canaryServiceTlsPort + ",\"targetport\": " + portconfigs.slb.canaryServiceTlsPort + ",\"lbtype\":\"dsr\"}]",
         },
     },
     spec: {
