@@ -167,20 +167,36 @@ local bedhealth(type, bed) = {
               {
                 name: "List of customer pods ordered by PodAge (top 30)",
                 sql: "select
-            case when (phase != 'Running') then 'RED' when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)<2) then 'YELLOW' else '' end as Status,
+            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)<2) then 'YELLOW' else '' end as Status,
             Name,
             Namespace,
             ControlEstate,
             LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,
-            Phase,
-            Message,
-            case when Phase != 'Running' then Payload->>'$.status.conditions' end as Conditions
+            Phase
           from podDetailView
-          where IsSamApp = True and ProduceAgeInMinutes<60
+          where IsSamApp = True and ProduceAgeInMinutes<60 and Phase = 'Running'
           and ControlEstate = '" + bed + "'
           order by PodAgeDays
           limit 30",
               },
+
+             # ===
+
+             {
+               name: "Unhealthy customer pods",
+               sql: "select 
+  Name,
+  Namespace,
+  ControlEstate,
+  Phase,
+  Message,
+  case when Phase != 'Running' then Payload->>'$.status.conditions[*].message' end as Conditions,
+  case when Phase != 'Running' then Payload->>'$.status.containerStatuses[*].state' end as containerStatuses
+from podDetailView
+where IsSamApp = True and ProduceAgeInMinutes<60
+and ControlEstate = '" + bed + "' and Phase != 'Running'
+",
+            },
 
     ],
   };
@@ -202,7 +218,7 @@ local bedhealth(type, bed) = {
     bedhealth("PROD", "cdu-sam"),
     bedhealth("PROD", "chx-sam"),
     bedhealth("PROD", "dfw-sam"),
-    bedhealth("PROD", "fra-sam"),
+    bedhealth("PROD", "frf-sam"),
     bedhealth("PROD", "hnd-sam"),
     bedhealth("PROD", "ia2-sam"),
     bedhealth("PROD", "iad-sam"),
@@ -964,6 +980,61 @@ select
 from
   podDetailView
 ) as ss",
+    },
+    {
+      name: "SAM Node Status Aggregate",
+      sql: "select * from (
+select * from (
+select ControlEstate,
+SUM(ReadyCount) as Ready,
+SUM(NotReadyCount) as NotReady,
+SUM(NotReadyCount)+SUM(ReadyCount) as Total,
+SUM(ReadyCount)/(SUM(NotReadyCount)+SUM(ReadyCount)) as ReadyPct,
+GROUP_CONCAT(NotReadyName) as NotReadyHosts
+from
+(
+select 'TOTAL' as ControlEstate,
+NULL as NotReadyName,
+case when Ready = 'True' then 1 else 0 end as ReadyCount,
+case when Ready = 'True' then 0 else 1 end as NotReadyCount
+from nodeDetailView
+where 
+	(Name not like '%slb%')
+	and (Name not like '%ceph%')
+	and (Name not like '%sdc%')
+	and (Name not like '%flowsnake%')
+
+) as ss
+group by ControlEstate
+) as ss2
+
+union
+
+select * from (
+select ControlEstate,
+SUM(ReadyCount) as Ready,
+SUM(NotReadyCount) as NotReady,
+SUM(NotReadyCount)+SUM(ReadyCount) as Total,
+SUM(ReadyCount)/(SUM(NotReadyCount)+SUM(ReadyCount)) as ReadyPct,
+GROUP_CONCAT(NotReadyName) as NotReadyHosts
+from
+(
+select ControlEstate,
+case when Ready = 'True' then NULL else Name end as NotReadyName,
+case when Ready = 'True' then 1 else 0 end as ReadyCount,
+case when Ready = 'True' then 0 else 1 end as NotReadyCount
+from nodeDetailView
+where 
+	(Name not like '%slb%')
+	and (Name not like '%ceph%')
+	and (Name not like '%sdc%')
+	and (Name not like '%flowsnake%')
+
+) as ss3
+group by ControlEstate
+) as ss4
+) as ss5
+order by ReadyPct",
     },
 
 #===================
