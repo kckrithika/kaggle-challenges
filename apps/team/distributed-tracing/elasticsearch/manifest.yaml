@@ -60,7 +60,7 @@ system:
       image: docker-dva-rc/dva/zipkin-es-curator:3
       env: 
       - name: DELETE_AFTER_DAYS
-      - value: '7'
+        value: 7
       livenessProbe:
           exec:
               # TODO: Check if process is running?
