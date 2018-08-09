@@ -8,14 +8,9 @@ system:
   - name: stans-report-collector
     count: 1
     volumes:
-      - name: servercertvol
-        k4aSecret:
-          secretName: csc-rc-certificates
       - name: server-cert
         maddogCert:
           type: server
-          lbnames:
-            - stansreportcollectorlb
       - name: client-cert
         maddogCert:
           type: client
@@ -27,7 +22,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.19.1-20180730-rcDyanmicCerts
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.20.0-20180809-funnelDynamicCerts
       ports:
       - name: admin
         containerPort: 8082
@@ -38,15 +33,10 @@ system:
       volumeMounts:
       - mountPath: /var/log/report-collector
         name: logvol
-      - mountPath: /var/lib/report-collector/certificates/server/
-        name: servercertvol
-        readOnly: true
-      - mountPath: /var/lib/report-collector/certificates/testpki/
+      - mountPath: /var/lib/report-collector/certificates/
         name: server-cert
-        readOnly: true
-      - mountPath: /var/lib/report-collector/certificates/testpki2/
+      - mountPath: /var/lib/report-collector/certificates/
         name: client-cert
-        readOnly: true
       - mountPath: /var/secrets/redis
         name: redisauthvol
         readOnly: true
@@ -67,16 +57,10 @@ system:
         value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
-      - name: ReportCollector_app_https_staticCertificateOptions_caCertificates
-        value: "[\"/var/lib/report-collector/certificates/sfdc-internal-ca.crt\"]"
-      - name: ReportCollector_app_https_staticCertificateOptions_certificate
-        value: /var/lib/report-collector/certificates/server/rc_server.crt
-      - name: ReportCollector_app_https_staticCertificateOptions_privateKey
-        value: /var/lib/report-collector/certificates/server/rc_server.key
       - name: ReportCollector_app_https_dynamicCertificateOptions_caCert
-        value: /var/lib/report-collector/certificates/testpki/ca.pem
+        value: /var/lib/report-collector/certificates/ca.pem
       - name: ReportCollector_app_https_dynamicCertificateOptions_certificateDir
-        value: /var/lib/report-collector/certificates/testpki/server/
+        value: /var/lib/report-collector/certificates/server/
       - name: ReportCollector_app_https_supportDecompression
         value: true
       - name: ReportCollector_app_https_supportCompression
@@ -91,6 +75,12 @@ system:
         value: 600000
       - name: ReportCollector_ajna_publishEnabled
         value: true
+      - name: ReportCollector_ajna_https_enabled
+        value: true
+      - name: ReportCollector_ajna_https_caCert
+        value: /var/lib/report-collector/certificates/ca.pem
+      - name: ReportCollector_ajna_https_certificateDir
+        value: /var/lib/report-collector/certificates/client/
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
         value: 10
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
@@ -121,7 +111,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.18.0-20180627-SPMetrics
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.20.0-20180809-funnelDynamicCerts
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
