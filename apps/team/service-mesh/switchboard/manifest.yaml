@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:8b697f3f674cd913e177c91846988fd6c272d62c
+      image: sfci/servicelibs/switchboard:0d25c93d49495d9c1341f81098a3d379ec27b0fa
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -44,7 +44,6 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/75
       image: sfci/servicelibs/sherpa-envoy:7e40ce8be635a6ef46fbc64657af42ab9c39ea65
       args:
       - --template
