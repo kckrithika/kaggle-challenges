@@ -30,6 +30,8 @@ system:
       - name: https
         containerPort: 8443
       env:
+      - name: ES_HOSTS
+        value: search-01-cpt.eng.sfdc.net:9200
       - name: ZIPKIN_HOST
         value: zipkin-alpha
       - name: ZIPKIN_SERVER
