@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: sam-deployment-portal
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/benjamin.caldwell/sam-deployment-portal-v2:20180717_214306.5b919c52.dirty.bencald-ltm0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/benjamin.caldwell/sam-deployment-portal-v2:20180809_130626.bc4dba93.clean.bencald-ltm0
       command:
       - "/sam/sam-deployment-portal-v2"
       - --port=64123
