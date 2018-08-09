@@ -6,8 +6,7 @@ system:
       - caas-dev@salesforce.com
   functions:
   - name: prd-sp2-redis-sp-ist18-c1-perf-12015
-    count: 10
-    hostnetwork: true
+    count: 30
     containers:
     - name: caas-redis-12051 
       # container image/version to  run
@@ -24,7 +23,7 @@ system:
       args: 
         - --port=12051
         - --maxMemoryMB=4096
-        - --logDir=/home/sfdc-caas/logs/redis-12051
+        - --logDir=/home/sfdc-caas/logs/redis-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         exec:
           command:
@@ -41,7 +40,7 @@ system:
       - -endpoint
       - caas/cluster/sp-ist18-c1:SUPERPOD:12051
       - -logservdir
-      - /home/sfdc-caas/logs/beacon-sp-ist18-c1-12051
+      - /home/sfdc-caas/logs/beacon-sp-ist18-c1-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -56,101 +55,6 @@ system:
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
-    - name: caas-redis-12052 
-      # container image/version to  run
-      image: tnrp/caas/caas-redis:4.0.10-0000024-16334693
-      resources:
-        limits: { memory: "7Gi" }
-        requests: { memory: "4Gi" }
-      volumeMounts:
-        - mountPath: /home/sfdc-caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-      args: 
-        - --port=12052
-        - --maxMemoryMB=4096
-        - --logDir=/home/sfdc-caas/logs/redis-12052
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12052
-        initialDelaySeconds: 15
-        timeoutSeconds: 10
-      # expose redis outside the container
-      ports:
-      - containerPort: 12052
-    - name: caas-redis-announcer-12052
-      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
-      args:
-      - -endpoint
-      - caas/cluster/sp-ist18-c1:SUPERPOD:12052
-      - -logservdir
-      - /home/sfdc-caas/logs/beacon-sp-ist18-c1-12052
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-      volumeMounts:
-      - mountPath: /home/sfdc-caas/logs
-        name: logvol
-      env:
-       - name: SFDC_ENVIRONMENT
-         value: ist18
-      resources:
-        limits: { memory: "500M" }
-        requests: { memory: "200M" }
-    - name: caas-redis-12053 
-      # container image/version to  run
-      image: tnrp/caas/caas-redis:4.0.10-0000024-16334693
-      resources:
-        limits: { memory: "7Gi" }
-        requests: { memory: "4Gi" }
-      volumeMounts:
-        - mountPath: /home/sfdc-caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-      args: 
-        - --port=12053
-        - --maxMemoryMB=4096
-        - --logDir=/home/sfdc-caas/logs/redis-12053
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12053
-        initialDelaySeconds: 15
-        timeoutSeconds: 10
-      # expose redis outside the container
-      ports:
-      - containerPort: 12053
-    - name: caas-redis-announcer-12053
-      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
-      args:
-      - -endpoint
-      - caas/cluster/sp-ist18-c1:SUPERPOD:12053
-      - -logservdir
-      - /home/sfdc-caas/logs/beacon-sp-ist18-c1-12053
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-      volumeMounts:
-      - mountPath: /home/sfdc-caas/logs
-        name: logvol
-      env:
-       - name: SFDC_ENVIRONMENT
-         value: ist18
-      resources:
-        limits: { memory: "500M" }
-        requests: { memory: "200M" }
-
     volumes:
     - name: logvol
       hostPath:
