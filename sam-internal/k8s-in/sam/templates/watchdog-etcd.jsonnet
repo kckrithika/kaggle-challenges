@@ -25,8 +25,11 @@ local utils = import "util_functions.jsonnet";
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.config_volume_mount,
-                        ] + (if configs.kingdom == "prd" then [configs.kube_config_volume_mount] else [])),
-                        [if configs.kingdom == "prd" then "env"]: [configs.kube_config_env],
+                            configs.kube_config_volume_mount,
+                        ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                         name: "watchdog",
                         resources: {
                             requests: {
@@ -45,7 +48,8 @@ local utils = import "util_functions.jsonnet";
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.config_volume("watchdog"),
-                ] + (if configs.kingdom == "prd" then [configs.kube_config_volume] else [])),
+                    configs.kube_config_volume,
+                ]),
                 # We are still using flannel in minion pools in public cloud, so we need to keep an eye on etcd that holds its config
                 # Everywhere else, we just care about the KubeApi etcd nodes
                 nodeSelector: if utils.is_public_cloud(configs.kingdom) then {
