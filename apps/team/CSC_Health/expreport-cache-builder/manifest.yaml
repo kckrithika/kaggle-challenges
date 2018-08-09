@@ -8,6 +8,9 @@ system:
   - name: expreport-cache-builder
     count: 1
     volumes:
+      - name: servercertvol
+        secret:
+          secretName: csc-rc-certificates
       - name: redisauthvol
         secret:
           secretName: csc-redis-auth-0
@@ -16,7 +19,7 @@ system:
           path: /var/log/report-cache-builder
     containers:
     - name: expreport-cache-builder
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-cache-builder:20180718071939
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-cache-builder:20180809121939
       ports:
       - name: consumer
         containerPort: 8081
@@ -28,6 +31,9 @@ system:
       volumeMounts:
       - mountPath: /var/log/report-cache-builder
         name: logvol
+      - mountPath: /var/lib/report-collector/certificates/server/
+        name: servercertvol
+        readOnly: true
       - mountPath: /var/secrets/redis
         name: redisauthvol
         readOnly: true
@@ -43,7 +49,21 @@ system:
       - name: ReportCollector_redis_fullPathToAuthFile
         value: /var/secrets/redis/auth
       - name: ReportCollector_app_http_enabled
-        value: false
+        value: true
+      - name: ReportCollector_app_https_enabled
+        value: true
+      - name: ReportCollector_app_https_consumerPort
+        value: 8444
+      - name: ReportCollector_app_https_clientAuth
+        value: REQUEST
+      - name: ReportCollector_app_https_caCertificates
+        value: "[\"/var/lib/report-collector/certificates/sfdc-internal-ca.crt\"]"
+      - name: ReportCollector_app_https_certificate
+        value: /var/lib/report-collector/certificates/server/rc_server.crt
+      - name: ReportCollector_app_https_privateKey
+        value: /var/lib/report-collector/certificates/server/rc_server.key
+      - name: ReportCollector_app_https_supportCompression
+        value: true
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_ajna_retry_maxTries
@@ -53,7 +73,7 @@ system:
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
         value: 0
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
-        value: 0
+        value: 10
       - name: ReportCollector_cacheBuilder_enabled
         value: true
       - name: ReportCollector_cacheBuilder_defaultCacheBuilderParams_minDelay
@@ -106,3 +126,12 @@ system:
         -jar ${JAR_PATH}
       "]
 
+  loadbalancers:
+  - lbname: expreportcachebuilderlb
+    function: expreport-cache-builder
+    nodeExposed: true
+    ports:
+    - port: 28449
+      targetport: 8081
+    - port: 28450
+      targetport: 8444
