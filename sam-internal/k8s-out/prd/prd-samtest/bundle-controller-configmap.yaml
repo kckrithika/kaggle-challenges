@@ -4,7 +4,8 @@ data:
     {
       "resyncinterval": "5m",
       "whiteListNamespaceRegexp": [
-        "^ci-*"
+        "^ci-*",
+        "^user-*"
       ]
     }
 kind: ConfigMap
