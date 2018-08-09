@@ -72,7 +72,7 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
       volumeMounts:
-        - name: logvol
+        - name: logvolbeacon
           mountPath: /log
         - name: tls-client-cert
           mountPath: /client-certs
