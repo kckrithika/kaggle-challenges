@@ -25,8 +25,8 @@ if samfeatureflags.kubedns then {
         },
         strategy: {
             rollingUpdate: {
-                maxSurge: "10%",
-                maxUnavailable: 0,
+                maxSurge: 0,
+                maxUnavailable: 1,
             },
             type: "RollingUpdate",
         },
