@@ -9,7 +9,7 @@ system:
     count: 10
     containers:
     - name: caas-redis
-      image: docker-dva-rc/dva/caas/caas-redis-release-4.0.10:4
+      image: dva/caas/caas-redis-release-4.0.10:4
       resources:
         limits: { memory: "7Gi" }
         requests: { memory: "4Gi" }
