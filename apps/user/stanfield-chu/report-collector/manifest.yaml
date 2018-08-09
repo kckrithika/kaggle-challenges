@@ -35,8 +35,10 @@ system:
         name: logvol
       - mountPath: /var/lib/report-collector/certificates/
         name: server-cert
-      - mountPath: /var/lib/report-collector/certificates/
+        readOnly: true
+      - mountPath: /var/lib/report-collector/certificates/client/
         name: client-cert
+        readOnly: true
       - mountPath: /var/secrets/redis
         name: redisauthvol
         readOnly: true
