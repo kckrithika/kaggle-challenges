@@ -12,9 +12,6 @@ system:
       env:
       - name: ES_JAVA_OPTS
         value: '-Xms30g -Xmx30g'
-      # Try bumping the max requests to 2x to see if we reduce "over capacity" errors
-      - name: ES_MAX_REQUESTS
-        value: '128'
       volumeMounts:
       - mountPath: /var/lib/elasticsearch
         name: elasticsearch-persistent-storage-2tb
