@@ -7,11 +7,11 @@ system:
       - xiao.zhou@salesforce.com
   functions:
   - name: dr-fn
-    count: 2
+    count: 1
     progressDeadlineSeconds: 120
     containers:
     - name: samhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/samtestapp:withuser
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/samtestapp:withuser-1
       ports:
       - containerPort: 9090
       livenessProbe:
