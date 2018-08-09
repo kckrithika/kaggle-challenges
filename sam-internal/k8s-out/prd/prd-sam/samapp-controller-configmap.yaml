@@ -7,7 +7,7 @@ data:
       "enableMaddog": true,
       "enableMaddogCopyTestCA": true,
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
-      "madkubImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000071-5a6dcab2",
+      "madkubImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000074-4c95976a",
       "namespaceHostSubList": [
         ".*"
       ],
