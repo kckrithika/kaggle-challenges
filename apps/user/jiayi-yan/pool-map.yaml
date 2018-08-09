@@ -5,7 +5,7 @@ apps:
     hostSubList:
     - shared0-samcompute1-7-prd.eng.sfdc.net
     - shared0-samcompute1-9-prd.eng.sfdc.net
-  - name: prd/prd-samdev
-    hostSubList:
-    - shared0-samdevcompute2-1-prd.eng.sfdc.net
+#  - name: prd/prd-samdev
+#    hostSubList:
+#    - shared0-samdevcompute2-1-prd.eng.sfdc.net
   - name: prd/prd-samtest
