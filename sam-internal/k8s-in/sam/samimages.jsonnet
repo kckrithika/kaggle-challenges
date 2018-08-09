@@ -24,15 +24,8 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,node-controller,hypersam": "sam-0002192-400bcafb",
         "prd,prd-samdev,samcontrol,hypersam": "sam-0002192-400bcafb",
 
-        # [Alok.Bansal] SAM Manifest Repo Watcher latest changes
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002185-c9b3dec7",
-
         # [thargrove] Enable multi-query pages in sam-sql-reporter
         "prd,prd-sam,sam-sql-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20180807_165826.3d22ff09.dirty.thargrove-ltm1",
-
-        # [Xiao] pin samapp-controller to an earlier version without dual run in prd-sam
-        "prd,prd-sam,samapp-controller,hypersam": "sam-0002059-8a57b252",
-        "prd,prd-sam,bundle-controller,hypersam": "sam-0002178-0a09f6f6",
 
         },
 
@@ -68,9 +61,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": $.per_phase["3"] {
-            hypersam: "sam-0002160-cdd63ff0",
-            madkub: "1.0.0-0000071-5a6dcab2",
-            madkubSidecar: "1.0.0-0000071-5a6dcab2",
+            hypersam: "sam-0002190-d048106f",
+            madkub: "1.0.0-0000074-4c95976a",
+            madkubSidecar: "1.0.0-0000074-4c95976a",
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
