@@ -33,7 +33,7 @@ system:
       volumeMounts:
       - mountPath: /var/log/report-collector
         name: logvol
-      - mountPath: /var/lib/report-collector/certificates/
+      - mountPath: /var/lib/report-collector/certificates/server/
         name: server-cert
         readOnly: true
       - mountPath: /var/lib/report-collector/certificates/client/
@@ -60,9 +60,9 @@ system:
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
       - name: ReportCollector_app_https_dynamicCertificateOptions_caCert
-        value: /var/lib/report-collector/certificates/ca.pem
+        value: /var/lib/report-collector/certificates/server/ca.pem
       - name: ReportCollector_app_https_dynamicCertificateOptions_certificateDir
-        value: /var/lib/report-collector/certificates/server/
+        value: /var/lib/report-collector/certificates/server/server/
       - name: ReportCollector_app_https_supportDecompression
         value: true
       - name: ReportCollector_app_https_supportCompression
@@ -80,9 +80,9 @@ system:
       - name: ReportCollector_ajna_https_enabled
         value: true
       - name: ReportCollector_ajna_https_caCert
-        value: /var/lib/report-collector/certificates/ca.pem
+        value: /var/lib/report-collector/certificates/client/ca.pem
       - name: ReportCollector_ajna_https_certificateDir
-        value: /var/lib/report-collector/certificates/client/
+        value: /var/lib/report-collector/certificates/client/client/
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
         value: 10
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
