@@ -189,6 +189,8 @@ system:
       # HTTP port for exposing to SLB for IoT
       - containerPort: 7012
         name: sherpa-xlt-in
+      - containerPort: 7011
+        name: sherpa-xlt-out
       - containerPort: 7443
         name: sherpa-xlt-tls
       - containerPort: 15373
