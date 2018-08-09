@@ -49,8 +49,8 @@ system:
         name: logvolbeacon
 
     - name: sherpa
-      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2026---2018-04-12
-      image: sfci/servicelibs/sherpa:2.0.27
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/75
+      image: sfci/servicelibs/sherpa-envoy:7e40ce8be635a6ef46fbc64657af42ab9c39ea65
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -64,20 +64,21 @@ system:
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
-        initialDelaySeconds: 120
-        periodSeconds: 5
+          - ./bin/is-alive
+        initialDelaySeconds: 20
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
-        initialDelaySeconds: 110
-        periodSeconds: 5
+          - ./bin/is-ready
+        initialDelaySeconds: 15
       volumeMounts:
+        - name: logvol
+          mountPath: /log
         - name: tls-client-cert
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
+
     # The volumes to mount for shipping logs to splunk and certs
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
