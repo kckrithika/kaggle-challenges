@@ -159,6 +159,7 @@ if slbconfigs.slbInKingdom then {
                                         configs.sfdchosts_arg,
                                         "--client.serverInterface=lo",
                                         ] + (if slbimages.phaseNum == 1 then [
+                                                "--hostnameOverride=$(NODE_NAME)",
                                                 "--blueGreenFeature=true",
                                          ] else []),
                                     volumeMounts: configs.filter_empty([
@@ -173,7 +174,19 @@ if slbconfigs.slbInKingdom then {
                                     securityContext: {
                                         privileged: true,
                                     },
-                                },
+                                } + (if slbimages.phaseNum == 1 then {
+                                    env: [
+                                        {
+                                            name: "NODE_NAME",
+                                            valueFrom: {
+                                                fieldRef: {
+                                                    fieldPath: "spec.nodeName",
+                                                },
+                                            },
+                                        },
+                                        configs.kube_config_env,
+                                    ],
+                                } else {}),
                                 {
                                     name: "slb-nginx-proxy-b",
                                     image: slbimages.slbnginx,
