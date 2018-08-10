@@ -12,7 +12,7 @@ system:
       rollingUpdate:
         maxSurge: 0
         maxUnavailable: 1
-	identity:
+    identity:
       serviceName: zipkin-collector
     volumes:
     - name: client-certs
