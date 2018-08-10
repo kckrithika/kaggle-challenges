@@ -2,6 +2,7 @@ apiVersion: v1
 data:
   bundle-controller-config.json: |-
     {
+      "checkImageExistsFlag": true,
       "resyncinterval": "5m",
       "whiteListNamespaceRegexp": [
         "^ci-*",
