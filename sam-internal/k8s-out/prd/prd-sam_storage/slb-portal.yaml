@@ -43,7 +43,7 @@ spec:
             port: 9112
           initialDelaySeconds: 30
           periodSeconds: 3
-          timeoutSeconds: 10
+          timeoutSeconds: 30
         name: slb-portal
         volumeMounts:
         - mountPath: /host/data/slb
