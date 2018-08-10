@@ -34,6 +34,11 @@ local kingdom = std.extVar("kingdom");
             authorizedClientCerts: [],
         },
         {
+            namespace: "universal-search",
+            authorizedLdapGroups: ["universal-search"],
+            authorizedClientCerts: ["universal-search.universal-search"],
+        },
+        {
             namespace: "sayonara-applogs",
             authorizedLdapGroups: ["Sayonara-Flowsnake"],
             authorizedClientCerts: [],
@@ -81,6 +86,11 @@ local kingdom = std.extVar("kingdom");
             namespace: "retail-cre",
             authorizedLdapGroups: ["CRE_AD"],
             authorizedClientCerts: ["retail-cre.cre-control-plane-ccp-func", "retail-cre.cre-control-plane-ccp-perf", "retail-cre.cre-control-plane-ccp-dev"],
+        },
+        {
+            namespace: "universal-search",
+            authorizedLdapGroups: ["universal-search"],
+            authorizedClientCerts: ["universal-search.universal-search"],
         },
         {
             namespace: "iot",
