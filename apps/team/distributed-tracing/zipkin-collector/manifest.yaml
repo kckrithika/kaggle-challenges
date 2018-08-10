@@ -20,8 +20,6 @@ system:
     - name: zipkin-collector
       image: docker-dva-rc/dva/zipkin-collector:27
       env:
-      - name: ES_HOSTS
-        value: search-01-cpt.eng.sfdc.net:9200
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
       - name: KAFKA_ACCEPT_BATCH_SIZE
