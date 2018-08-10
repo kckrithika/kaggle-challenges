@@ -1,0 +1,299 @@
+apiVersion: extensions/v1beta1
+kind: ReplicaSet
+metadata:
+  annotations:
+    author: svc-tnrp-git-rw git
+    commitSHA1: ea95e87cb92308b54ee3266f7ca64ea64ad9bc3d
+    date: Thu, 28 Sep 2017 21:38:21 -0700
+    deployment.kubernetes.io/desired-replicas: "2"
+    deployment.kubernetes.io/max-replicas: "3"
+    deployment.kubernetes.io/revision: "6"
+    sdr.sam.data.sfdc.net/finishSent: ea95e87cb92308b54ee3266f7ca64ea64ad9bc3d
+    sdr.sam.data.sfdc.net/startSent: ea95e87cb92308b54ee3266f7ca64ea64ad9bc3d
+    smb.sam.data.sfdc.net/author: svc-tnrp-git-rw git
+    smb.sam.data.sfdc.net/commitSHA1: ea95e87cb92308b54ee3266f7ca64ea64ad9bc3d
+    smb.sam.data.sfdc.net/date: Thu, 28 Sep 2017 21:38:21 -0700
+    smb.sam.data.sfdc.net/emailTo: sam@salesforce.com
+    smb.sam.data.sfdc.net/titleLine: 'Merge pull request #3377 from cdebains/samapp_take2'
+    titleLine: 'Merge pull request #3377 from cdebains/samapp_take2'
+  creationTimestamp: 2018-08-06T21:06:41Z
+  generation: 4
+  labels:
+    pod-template-hash: "4014967373"
+    sam_app: SamTestAppMaddog
+    sam_function: samtestfnwithmaddog
+  name: samtestfnwithmaddog-8458fbc7c7
+  namespace: csc-sam
+  ownerReferences:
+  - apiVersion: extensions/v1beta1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Deployment
+    name: samtestfnwithmaddog
+    uid: 63277c9f-6853-11e8-8930-141877586250
+  resourceVersion: "846543363"
+  selfLink: /apis/extensions/v1beta1/namespaces/csc-sam/replicasets/samtestfnwithmaddog-8458fbc7c7
+  uid: 9e13abe1-99bc-11e8-a9c4-1418776a40b1
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      pod-template-hash: "4014967373"
+      sam_app: SamTestAppMaddog
+      sam_function: samtestfnwithmaddog
+  template:
+    metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: '{"certreqs":[{"name":"certs","san":null,"role":"csc-sam.samtestfnwithmaddog","cert-type":"server","kingdom":"prd"}]}'
+      creationTimestamp: null
+      labels:
+        pod-template-hash: "4014967373"
+        sam_app: SamTestAppMaddog
+        sam_function: samtestfnwithmaddog
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: pool
+                operator: In
+                values:
+                - prd-samdev
+      containers:
+      - args:
+        - -estate
+        - $(ESTATE)
+        - -kingdom
+        - $(KINGDOM)
+        command:
+        - /sam/sam-test-app
+        env:
+        - name: HOST_TYPE
+          value: SAM
+        - name: SFDC_METRICS_SERVICE_HOST
+          value: ajna0-funnel1-0-prd.data.sfdc.net
+        - name: SFDC_METRICS_SERVICE_PORT
+          value: "80"
+        - name: FUNCTION_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: FUNCTION_INSTANCE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: FUNCTION_INSTANCE_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: FUNCTION
+          value: samtestfnwithmaddog
+        - name: KINGDOM
+          value: prd
+        - name: ESTATE
+          value: prd-samdev
+        - name: SUPERPOD
+          value: None
+        - name: SFDC_SETTINGS_PATH
+          value: -.-.prd.-.samtestfnwithmaddog
+        - name: SFDC_SETTINGS_SUPERPOD
+          value: '-'
+        - name: SETTINGS_PATH
+          value: -.-.prd.-.samtestfnwithmaddog
+        - name: SETTINGS_SUPERPOD
+          value: '-'
+        - name: El337
+          value: "20100111011"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0000701-487f2675
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8000
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: samtestapp
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+        resources: {}
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 7447
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /log
+          name: logvol
+        - mountPath: /tmp
+          name: amagicvolumethatvanishes
+        - mountPath: /certs
+          name: certs
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint
+        - https://10.254.208.254:32007
+        - --maddog-endpoint
+        - https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca
+        - /maddog-hostdata/ca/security-ca.pem
+        - --madkub-server-ca
+        - /maddog-hostdata/ca/cacerts.pem
+        - --ca-folder
+        - /maddog-hostdata/ca
+        - --token-folder
+        - /tokens
+        - --funnel-endpoint
+        - http://ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --kingdom
+        - prd
+        - --superpod
+        - None
+        - --estate
+        - prd-samdev
+        - --refresher
+        - --run-init-for-refresher-mode
+        - --testca-folder
+        - /maddog-hostdata/ca_test
+        - --cert-folders
+        - certs:/certs-certs
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000074-4c95976a
+        imagePullPolicy: Always
+        name: sam-madkub-integration-refresher
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /maddog-hostdata
+          name: sam-maddog-cahost
+        - mountPath: /tokens
+          name: sam-maddog-token
+        - mountPath: /certs-certs
+          name: certs
+      dnsPolicy: ClusterFirstWithHostNet
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint
+        - https://10.254.208.254:32007
+        - --maddog-endpoint
+        - https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca
+        - /maddog-hostdata/ca/security-ca.pem
+        - --madkub-server-ca
+        - /maddog-hostdata/ca/cacerts.pem
+        - --ca-folder
+        - /maddog-hostdata/ca
+        - --token-folder
+        - /tokens
+        - --funnel-endpoint
+        - http://ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --kingdom
+        - prd
+        - --superpod
+        - None
+        - --estate
+        - prd-samdev
+        - --testca-folder
+        - /maddog-hostdata/ca_test
+        - --cert-folders
+        - certs:/certs-certs
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000074-4c95976a
+        imagePullPolicy: Always
+        name: sam-madkub-integration-init
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /maddog-hostdata
+          name: sam-maddog-cahost
+        - mountPath: /tokens
+          name: sam-maddog-token
+        - mountPath: /certs-certs
+          name: certs
+      - args:
+        - chmod -R 775 /vols/sam-maddog-cahost && chown -R 7447:7447 /vols/sam-maddog-cahost
+          && chmod -R 775 /vols/logvol && chown -R 7447:7447 /vols/logvol
+        command:
+        - /bin/sh
+        - -c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673
+        imagePullPolicy: Always
+        name: permissionsetterinitcontainer
+        resources: {}
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /vols/sam-maddog-cahost
+          name: sam-maddog-cahost
+        - mountPath: /vols/logvol
+          name: logvol
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 7447
+        runAsNonRoot: true
+        runAsUser: 7447
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir:
+          medium: Memory
+        name: sam-maddog-token
+      - hostPath:
+          path: /etc/pki_service
+          type: ""
+        name: sam-maddog-cahost
+      - emptyDir:
+          medium: Memory
+        name: certs
+      - hostPath:
+          path: /home/caas/logs/apps
+          type: ""
+        name: logvol
+      - emptyDir: {}
+        name: amagicvolumethatvanishes
+status:
+  observedGeneration: 4
+  replicas: 0
