@@ -39,7 +39,7 @@ system:
         value: /var/secrets/redis/auth
       command: ["/bin/sh", "-c"]
       args: ["
-      export RINSP_AJNA_FUNNEL_HOST=${SFDC_METRICS_SERVICE_HOST} ;
+      export RINSP_AJNA_FUNNEL_HOST=http://${SFDC_METRICS_SERVICE_HOST} ;
       export RINSP_AJNA_FUNNEL_PORT=${SFDC_METRICS_SERVICE_PORT} ;
       export RINSP_AJNA_DATACENTER=${KINGDOM} ;
       export RINSP_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
