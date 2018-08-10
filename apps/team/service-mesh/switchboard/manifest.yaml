@@ -32,7 +32,7 @@ system:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
       livenessProbe:
-        ### TEMPORARY!!!!!!!!
+        ###  TEMPORARY!!!!!!!!
         exec:
           command: ["/bin/true"]
         #        httpGet:
@@ -41,7 +41,7 @@ system:
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
-        ### TEMPORARY!!!!!!!!
+        ###  TEMPORARY!!!!!!!!
         exec:
           command: ["/bin/true"]
         #        httpGet:
