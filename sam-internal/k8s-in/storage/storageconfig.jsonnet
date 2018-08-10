@@ -6,7 +6,6 @@
     cephEstates: {
         "prd-skipper": ["prd-skipper"],
         "prd-sam": ["prd-sam_ceph"],
-        "xrd-sam": ["xrd-sam_ceph"],
         "prd-sam_storage": ["prd-sam_cephdev", "prd-sam_storage"],
     },
 
@@ -14,7 +13,6 @@
     sfstoreEstates: {
         "prd-skipper": ["prd-skipper"],
         "prd-sam": ["prd-sam_sfstore"],
-        "xrd-sam": [],
         "prd-sam_storage": ["prd-sam_sfstoredev"],
     },
 
@@ -22,7 +20,6 @@
     zookeeperEstates: {
         "prd-skipper": [],
         "prd-sam": [],
-        "xrd-sam": [],
         "prd-sam_storage": [],
         "prd-sam_storagedev": ["prd-sam_storagedev"],
     },
@@ -83,9 +80,6 @@
                 "prd-sam": {
                     "prd-sam_ceph": "10.231.171.0/24",
                 },
-                "xrd-sam": {
-                    "xrd-sam_ceph": "10.210.206.0/24,10.210.207.0/24,10.210.212.0/24",
-                },
             },
             aggregateStorage: {
                 "prd-skipper": {
@@ -97,9 +91,6 @@
                 },
                 "prd-sam": {
                     "prd-sam_ceph": "152Ti",
-                },
-                "xrd-sam": {
-                    "xrd-sam_ceph": "965Ti",
                 },
             },
         },
@@ -146,7 +137,6 @@
             "prd-skipper": "true",
             "prd-sam_storage": "true",
             "prd-sam": "true",
-            "xrd-sam": "true",
         },
     },
 

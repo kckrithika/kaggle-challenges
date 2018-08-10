@@ -105,7 +105,7 @@ local storageutils = import "storageutils.jsonnet";
             madkub_tag: "1.0.0-0000061-74e4a7b6",
         },
 
-        ### Release Phase 2 - prd-sam (control plane), prd-sam_ceph, prd-sam_sfstore and xrd-sam (control plane)
+        ### Release Phase 2 - prd-sam (control plane), prd-sam_ceph, and prd-sam_sfstore
         "2": {
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
             default_tag: "base-0000425-c640b395",
@@ -140,7 +140,7 @@ local storageutils = import "storageutils.jsonnet";
             "0"
         else if (estate == "prd-sam_storage" || estate == "prd-skipper") then
             "1"
-        else if (kingdom == "prd" || kingdom == "xrd") then
+        else if (kingdom == "prd") then
             "2"
         else if (kingdom == "phx") then
             "3"
