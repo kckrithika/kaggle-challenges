@@ -4,6 +4,7 @@ local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-portal" };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-portal" };
 local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
+local slbflights = import "slbflights.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -52,7 +53,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                        "--cafile=/etc/pki_service/ca/cabundle.pem",
                                    ] + (if slbconfigs.isTestEstate then [
                                             "--slbEstate=" + configs.estate,
-                                        ] else []) else []),
+                                        ] else []) else [])
+                                     + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
                               volumeMounts: configs.filter_empty(
                                   [
                                       slbconfigs.slb_volume_mount,

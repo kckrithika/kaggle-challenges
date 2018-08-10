@@ -3,6 +3,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-baboon" };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-baboon" };
 local portconfigs = import "slbports.jsonnet";
+local slbflights = import "slbflights.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
     apiVersion: "extensions/v1beta1",
@@ -61,7 +62,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                 "--deleteIpvsIntfFlag=true",
                                 "--deleteBackendPodFlag=true",
                                 "--client.serverInterface=lo",
-                        ],
+                        ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
