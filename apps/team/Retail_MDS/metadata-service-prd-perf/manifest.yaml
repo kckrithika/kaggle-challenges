@@ -32,6 +32,9 @@ system:
       ports:
       - containerPort: 9091
       - containerPort: 15523
+      resources:
+        limits: { cpu: "2", memory: "1Gi" }
+        requests: { cpu: "2", memory: "1Gi" }
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
@@ -72,6 +75,9 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       # leave plaintext in for perf team for now
         - containerPort: 7012
