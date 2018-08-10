@@ -8,7 +8,7 @@ metadata:
   namespace: sam-system
 spec:
   minReadySeconds: 120
-  replicas: 2
+  replicas: 3
   strategy:
     rollingUpdate:
       maxSurge: 0
