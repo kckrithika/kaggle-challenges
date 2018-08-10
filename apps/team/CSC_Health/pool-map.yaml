@@ -1,6 +1,8 @@
 apps:
   reportcollector:
   reportcollector-perf:
+  redis-inspector:
+    - prd/prd-sam_report_collector
   locust:
     - prd/prd-sam_report_collector
   reportcollectorha:
