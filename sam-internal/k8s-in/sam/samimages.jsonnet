@@ -27,6 +27,9 @@ local utils = import "util_functions.jsonnet";
         # [thargrove] Enable multi-query pages in sam-sql-reporter
         "prd,prd-sam,sam-sql-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20180807_165826.3d22ff09.dirty.thargrove-ltm1",
 
+        # [small] slice 2: update watchdog img
+        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180810_102303.fc5ddde7.dirty.small-ltm",
+
         },
 
     ### Per-phase image tags
