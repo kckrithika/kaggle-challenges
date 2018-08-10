@@ -1,0 +1,73 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - distributedtracing@salesforce.com
+  functions:
+  - name: zipkin-beta
+    count: 6
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 3
+    volumes:
+    - name: server-certs
+      maddogCert:
+        type: server
+        lbnames:
+        - zipkin-beta
+    - name: oauth2-proxy-secrets
+      k4aSecret:
+        secretName: oauth2-proxy
+    containers:
+    - name: zipkin-nginx
+      image: docker-dva-rc/dva/zipkin-nginx:21
+      ports: 
+      - name: http
+        containerPort: 8080
+      - name: https
+        containerPort: 8443
+      env:
+      - name: ZIPKIN_HOST
+        value: zipkin-beta
+      - name: ZIPKIN_SERVER
+        value: localhost
+      - name: ES_HOSTS
+        value: es-rest1.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200
+      - name: AUTH_ENABLED
+        value: false
+      volumeMounts:
+      - mountPath: /etc/pki_service/zipkin-beta
+        name: server-certs
+      - mountPath: /secrets/
+        name: oauth2-proxy-secrets
+        readOnly: true
+      livenessProbe:
+        exec:
+          # TODO: Check if process is running?
+          command:
+          - /bin/true
+    - name: zipkin-beta
+      image: docker-dva-rc/dva/zipkin-server:27
+      ports:
+      - name: zipkin
+        containerPort: 9411
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 9411
+        initialDelaySeconds: 120
+
+  loadbalancers:
+  - lbname: zipkin-beta
+    function: zipkin-beta
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9411
+        lbtype: http
+      - port: 443
+        targetport: 8443
+        lbtype: tcp
