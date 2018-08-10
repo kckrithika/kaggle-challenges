@@ -51,6 +51,9 @@ system:
           - /bin/true
     - name: zipkin-beta
       image: docker-dva-rc/dva/zipkin-server:27
+      env:
+      - name: ES_HOSTS
+        value: es-rest1.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200
       ports:
       - name: zipkin
         containerPort: 9411
