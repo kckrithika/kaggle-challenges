@@ -7,7 +7,6 @@ data:
       "crdDeletionEnabled": true,
       "crdEnabled": true,
       "disableCertsCheck": true,
-      "endpointRepoName": "test-manifests",
       "etcdAppFolder": "temp-crd-watcher",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "livenessProbePort": "21553",
