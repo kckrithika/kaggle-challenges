@@ -36,7 +36,7 @@ system:
       - name: RINSP_AJNA_FLUSHINTERVAL
         value: 60s
       - name: RINSP_REDIS_AUTHPATH
-        value: /var/secrets/redis
+        value: /var/secrets/redis/auth
       command: ["/bin/sh", "-c"]
       args: ["
       export RINSP_AJNA_FUNNEL_HOST=${SFDC_METRICS_SERVICE_HOST} ;
