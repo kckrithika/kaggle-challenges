@@ -67,7 +67,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   },
                                   initialDelaySeconds: 30,
                                   periodSeconds: 3,
-                                  timeoutSeconds: 10,
+                                  timeoutSeconds: 30,
                               },
                               env: [
                                   {
