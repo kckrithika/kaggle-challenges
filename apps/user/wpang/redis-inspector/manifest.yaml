@@ -10,7 +10,7 @@ system:
         secretName: csc-redis-auth-0
     containers:
     - name: redis-inspector
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wpang/redis-inspector:080818
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wpang/redis-inspector:081018
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
