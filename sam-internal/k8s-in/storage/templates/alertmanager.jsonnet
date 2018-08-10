@@ -7,7 +7,6 @@ local storageconfigs = import "storageconfig.jsonnet";
 local enabledEstates = std.set([
     "prd-sam_storage",
     "prd-sam",
-    "xrd-sam",
 ]);
 
 if std.setMember(configs.estate, enabledEstates) then {

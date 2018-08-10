@@ -8,7 +8,6 @@ local enabledMinionEstates = ["not-in-any-pool-at-this-time"];
 // Defines the list of estates where this service is enabled.
 local enabledEstates = std.set([
     "prd-sam_storage",
-    "xrd-sam",
 ]);
 
 if std.setMember(configs.estate, enabledEstates) then {

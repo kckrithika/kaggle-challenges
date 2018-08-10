@@ -13,7 +13,7 @@ phase_idx = args.phase - 1
 command_prefix = "kubectl -s "
 configs = [
     [("prd-sam_storage", "http://shared0-storagesamkubeapi2-1-prd.eng.sfdc.net:40000/")],
-    [("prd-sam", "http://shared0-samkubeapi1-1-prd.eng.sfdc.net:40000"), ("xrd-sam", "http://shared0-samkubeapi2-1-xrd.eng.sfdc.net:40000/")],
+    [("prd-sam", "http://shared0-samkubeapi1-1-prd.eng.sfdc.net:40000")],
     ]
 lego_namespaces = [
     "ceph-prd-sam-cephdev",
