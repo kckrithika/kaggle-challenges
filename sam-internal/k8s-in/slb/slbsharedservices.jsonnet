@@ -4,6 +4,7 @@
     local configs = import "config.jsonnet",
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile },
+    local slbflights = import "slbflights.jsonnet",
 
     local configProcSentinel = slbconfigs.configDir + "/slb-config-proc.sentinel",
 
@@ -11,43 +12,43 @@
         name: "slb-config-processor",
         image: slbimages.hypersdn,
         command: [
-            "/sdn/slb-config-processor",
-            "--configDir=" + slbconfigs.configDir,
-        ] + (
-            if configs.estate == "prd-sdc" then [
-                "--period=1200s",
-            ] else [
-                "--period=1800s",
-            ]
-        ) + [
-            "--podPhaseCheck=true",
-            "--namespace=" + slbconfigs.namespace,
-            "--podstatus=running",
-            "--subnet=" + slbconfigs.subnet,
-            "--k8sapiserver=",
-            "--serviceList=" + slbconfigs.serviceList,
-            "--useVipLabelToSelectSvcs=" + slbconfigs.useVipLabelToSelectSvcs,
-            "--metricsEndpoint=" + configs.funnelVIP,
-            "--log_dir=" + slbconfigs.logsDir,
-            "--sleepTime=100ms",
-            "--processKnEConfigs=" + slbconfigs.processKnEConfigs,
-            "--kneConfigDir=" + slbconfigs.kneConfigDir,
-            "--kneDomainName=" + slbconfigs.kneDomainName,
-            "--livenessProbePort=" + configProcessorLivenessPort,
-            "--shouldRemoveConfig=true",
-            configs.sfdchosts_arg,
-            "--proxySelectorLabelValue=" + proxyLabelSelector,
-            "--hostnameOverride=$(NODE_NAME)",
-        ] + (if configs.estate == "prd-sam" then [
-                 "--servicesToLbOverride=" + servicesToLbOverride,
-                 "--servicesNotToLbOverride=" + servicesNotToLbOverride,
-             ] else [])
-           + (if slbimages.hypersdn_build >= 999 then [
-                 "--control.configProcSentinel=" + configProcSentinel,
-           ] else [])
-           + (if slbimages.hypersdn_build >= 1011 then [
-                 "--alwaysPopulateRealServers=true",
-           ] else []),
+                     "/sdn/slb-config-processor",
+                     "--configDir=" + slbconfigs.configDir,
+                 ] + (
+                     if configs.estate == "prd-sdc" then [
+                         "--period=1200s",
+                     ] else [
+                         "--period=1800s",
+                     ]
+                 ) + [
+                     "--podPhaseCheck=true",
+                     "--namespace=" + slbconfigs.namespace,
+                     "--podstatus=running",
+                     "--subnet=" + slbconfigs.subnet,
+                     "--k8sapiserver=",
+                     "--serviceList=" + slbconfigs.serviceList,
+                     "--useVipLabelToSelectSvcs=" + slbconfigs.useVipLabelToSelectSvcs,
+                     "--metricsEndpoint=" + configs.funnelVIP,
+                     "--log_dir=" + slbconfigs.logsDir,
+                     "--sleepTime=100ms",
+                     "--processKnEConfigs=" + slbconfigs.processKnEConfigs,
+                     "--kneConfigDir=" + slbconfigs.kneConfigDir,
+                     "--kneDomainName=" + slbconfigs.kneDomainName,
+                     "--livenessProbePort=" + configProcessorLivenessPort,
+                     "--shouldRemoveConfig=true",
+                     configs.sfdchosts_arg,
+                     "--proxySelectorLabelValue=" + proxyLabelSelector,
+                     "--hostnameOverride=$(NODE_NAME)",
+                 ] + (if configs.estate == "prd-sam" then [
+                          "--servicesToLbOverride=" + servicesToLbOverride,
+                          "--servicesNotToLbOverride=" + servicesNotToLbOverride,
+                      ] else [])
+                 + (if slbimages.hypersdn_build >= 999 then [
+                        "--control.configProcSentinel=" + configProcSentinel,
+                    ] else [])
+                 + (if slbimages.hypersdn_build >= 1011 then [
+                        "--alwaysPopulateRealServers=true",
+                    ] else []),
         volumeMounts: configs.filter_empty([
             configs.maddog_cert_volume_mount,
             slbconfigs.slb_volume_mount,
@@ -83,12 +84,10 @@
             "--configDir=" + slbconfigs.configDir,
             "--log_dir=" + slbconfigs.logsDir,
             "--netInterface=lo",
-        ] + (if slbimages.hypersdn_build >= 999 then
-            [
-                 "--checkSentinel=true",
-                 "--control.configProcSentinel=" + configProcSentinel,
-                 "--control.sentinelExpiration=1800s",  # config processor's interval
-            ] else []),
+            "--checkSentinel=true",
+            "--control.configProcSentinel=" + configProcSentinel,
+            "--control.sentinelExpiration=1800s",  # config processor's interval
+        ] + slbflights.getNodeApiServerSocketSettings(),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.logs_volume_mount,
@@ -138,7 +137,8 @@
                       ] else [])
                  + [
                      "--nginxPodMode=" + nginxPodMode,
-                 ],
+                 ]
+                 + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.sbin_volume_mount,
@@ -190,7 +190,7 @@
             "--readVipsFromIpvs=true",
             "--client.serverPort=" + nodeApiPort,
             "--client.serverInterface=lo",
-        ],
+        ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,

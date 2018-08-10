@@ -40,6 +40,8 @@ spec:
         - --client.serverPort=12084
         - --client.serverInterface=lo
         - --nginxPodMode=false
+        - --client.socketDir=/host/data/slb/config/slb-realsvrcfg
+        - --client.dialSocket=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001022-587b2ae1
         name: slb-realsvrcfg
         securityContext:
@@ -140,6 +142,7 @@ spec:
         - --checkSentinel=true
         - --control.configProcSentinel=/host/data/slb/config/slb-realsvrcfg/slb-config-proc.sentinel
         - --control.sentinelExpiration=1800s
+        - --listenOnSocket=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001022-587b2ae1
         name: slb-node-api
         volumeMounts:

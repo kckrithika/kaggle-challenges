@@ -6,6 +6,7 @@ local slbports = import "slbports.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile };
+local slbflights = import "slbflights.jsonnet";
 
 if slbconfigs.slbInKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -161,7 +162,7 @@ if slbconfigs.slbInKingdom then {
                                         "--hostnameOverride=$(NODE_NAME)",
                                         ] + (if slbimages.phaseNum == 1 then [
                                                 "--blueGreenFeature=true",
-                                        ] else []),
+                                         ] else []) + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
                                     volumeMounts: configs.filter_empty([
                                         {
                                             name: "var-target-config-volume",
