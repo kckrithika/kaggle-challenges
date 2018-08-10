@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:15b27cf069d3924faf70c3b2c2c7567d40ba45bc
+      image: sfci/servicelibs/switchboard:146d297aaf0d9fab683fc3f18601712b75401d6e
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -32,21 +32,15 @@ system:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
       livenessProbe:
-        ###  TEMPORARY!!!!!!!!
         exec:
-          command: ["/bin/true"]
-        #        httpGet:
-        #          path: /manage/health
-        #          port: 15372
+          command:
+          - /bin/true
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
-        ###  TEMPORARY!!!!!!!!
         exec:
-          command: ["/bin/true"]
-        #        httpGet:
-        #          path: /manage/health
-        #          port: 15372
+          command:
+          - /bin/true
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sherpa
