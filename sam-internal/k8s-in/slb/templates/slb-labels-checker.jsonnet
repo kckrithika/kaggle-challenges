@@ -32,6 +32,7 @@ if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "
                             "/sdn/slb-labels-checker",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--hostnameOverride=$(NODE_NAME)",
+                            configs.sfdchosts_arg,
                             "--metricsEndpoint=" + configs.funnelVIP,
                         ] + if configs.estate == "prd-sdc" then [
                             "--labelValues=slb-ipvs:2,slb-nginx-b:2",

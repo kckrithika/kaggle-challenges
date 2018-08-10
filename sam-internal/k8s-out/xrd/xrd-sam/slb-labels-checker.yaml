@@ -25,6 +25,7 @@ spec:
         - /sdn/slb-labels-checker
         - --log_dir=/host/data/slb/logs/
         - --hostnameOverride=$(NODE_NAME)
+        - --hostsConfigFile=/sfdchosts/hosts.json
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --labelValues=slb-ipvs:3,slb-nginx-b:3
         env:
