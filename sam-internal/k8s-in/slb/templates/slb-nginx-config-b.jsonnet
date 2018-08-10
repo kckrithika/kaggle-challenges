@@ -158,10 +158,10 @@ if slbconfigs.slbInKingdom then {
                                         "--maxDeleteServiceCount=20",
                                         configs.sfdchosts_arg,
                                         "--client.serverInterface=lo",
+                                        "--hostnameOverride=$(NODE_NAME)",
                                         ] + (if slbimages.phaseNum == 1 then [
-                                                "--hostnameOverride=$(NODE_NAME)",
                                                 "--blueGreenFeature=true",
-                                         ] else []),
+                                        ] else []),
                                     volumeMounts: configs.filter_empty([
                                         {
                                             name: "var-target-config-volume",
@@ -174,7 +174,6 @@ if slbconfigs.slbInKingdom then {
                                     securityContext: {
                                         privileged: true,
                                     },
-                                } + (if slbimages.phaseNum == 1 then {
                                     env: [
                                         {
                                             name: "NODE_NAME",
@@ -186,7 +185,7 @@ if slbconfigs.slbInKingdom then {
                                         },
                                         configs.kube_config_env,
                                     ],
-                                } else {}),
+                                },
                                 {
                                     name: "slb-nginx-proxy-b",
                                     image: slbimages.slbnginx,
