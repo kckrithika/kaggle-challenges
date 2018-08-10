@@ -10,5 +10,6 @@
 
     getNodeApiServerSocketSettings():: (if nodeApiUnixSocketEnabled then [
                                             "--listenOnSocket=true",
+                                            "--readOnly=false",
                                         ] else []),
 }

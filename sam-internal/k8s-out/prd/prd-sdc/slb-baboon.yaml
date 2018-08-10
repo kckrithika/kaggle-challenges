@@ -165,6 +165,7 @@ spec:
         - --control.configProcSentinel=/host/data/slb/config/slb-baboon/slb-config-proc.sentinel
         - --control.sentinelExpiration=1800s
         - --listenOnSocket=true
+        - --readOnly=false
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001022-587b2ae1
         name: slb-node-api
         volumeMounts:
