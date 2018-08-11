@@ -10,7 +10,7 @@ system:
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run
-      image: tnrp/caas/caas-monitor-prod:2.6.4-0000039-15515104
+      image: docker-all/dva/caas/caas-metrics-publisher-prod-2.6.4:6
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
@@ -19,9 +19,7 @@ system:
         - --server.port=7521 
         - --management.port=7522
         - --cluster.name=sp-na1-c1
-        - --logDir=/home/caas/logs/caas
-        - --settings.path=mist30.-.prd.-.caas
-        - --metrics.maxNumberOfCollectedMetrics=5000
+        - --logDir=/home/caas/logs/caas-$(FUNCTION_INSTANCE_IP)
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol

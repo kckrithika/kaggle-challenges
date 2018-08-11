@@ -3,14 +3,14 @@ apiVersion: v1
 system:
   functions:
   - name: redis-12098
-    count: 3 
+    count: 10 
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:4.0.10-0000024-16334693
+      image: docker-all/dva/caas/caas-redis-release-4.0.10:4
       resources:
-        limits: { memory: "10Gi" }
-        requests: { memory: "6Gi" }
+        limits: { memory: "7Gi" }
+        requests: { memory: "4Gi" }
       volumeMounts:
         - mountPath: /home/sfdc-caas/logs
           name: logvol
@@ -19,8 +19,8 @@ system:
           readOnly: true
       args: 
         - --port=12098
-        - --maxMemoryMB=6144
-        - --logDir=/home/sfdc-caas/logs/redis
+        - --maxMemoryMB=4096
+        - --logDir=/home/sfdc-caas/logs/redis-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         exec:
           command:
@@ -36,12 +36,12 @@ system:
       - containerPort: 12098
         name: caas-cluster
     - name: caas-redis-announcer
-      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
+      image: sfci/servicelibs/beacon:0078716f45375dc0b114849e13d9b1dbf83177a9
       args:
       - -endpoint
       - caas/cluster/sp-na1-c1:SUPERPOD:12098
       - -logservdir
-      - /home/sfdc-caas/logs/beacon-sp-na1-c1-12098
+      - /home/sfdc-caas/logs/beacon-sp-na1-c1-12098-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         initialDelaySeconds: 5
         exec:

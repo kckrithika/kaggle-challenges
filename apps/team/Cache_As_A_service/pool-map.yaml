@@ -894,7 +894,11 @@ apps:
  prd-caas-redis-12098:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
+    - samcaas2-caasminion2-9-prd.eng.sfdc.net
+    - samcaas2-caasminion3-2-prd.eng.sfdc.net
+    - samcaas2-caasminion3-9-prd.eng.sfdc.net
+    - samcaas2-caasminion3-8-prd.eng.sfdc.net
+    - samcaas2-caasminion3-7-prd.eng.sfdc.net 
  prd-caas-redis-12090:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
