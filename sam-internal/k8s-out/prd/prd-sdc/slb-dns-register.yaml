@@ -33,8 +33,6 @@ spec:
         - --subnet=10.251.129.224-233,10.251.129.235-240
         - --client.serverPort=12088
         - --client.serverInterface=lo
-        - --client.socketDir=/host/data/slb/config/slb-dns-register
-        - --client.dialSocket=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001022-587b2ae1
         name: slb-dns-register-processor
         volumeMounts:
@@ -169,8 +167,6 @@ spec:
         - --checkSentinel=true
         - --control.configProcSentinel=/host/data/slb/config/slb-dns-register/slb-config-proc.sentinel
         - --control.sentinelExpiration=1800s
-        - --listenOnSocket=true
-        - --readOnly=false
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001022-587b2ae1
         name: slb-node-api
         volumeMounts:
