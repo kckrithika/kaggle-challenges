@@ -14,6 +14,7 @@ system:
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
       - --listeners.external-auth-enabled-clusters[1]=shipping-envoy-tls
+      - --cluster.scraper.delayMs=900000
       ports:
       - containerPort: 15372
       env:
