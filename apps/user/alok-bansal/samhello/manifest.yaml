@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: samhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok.bansal/samhello:alokbansal-04232018
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok.bansal/samhello:latest
       ports:
       - containerPort: 9090
       livenessProbe:
