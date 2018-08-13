@@ -35,7 +35,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001017-08d1d617
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
         livenessProbe:
           httpGet:
             path: /
@@ -82,7 +82,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001017-08d1d617
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -118,7 +118,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-portal
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001017-08d1d617
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -138,7 +138,7 @@ spec:
         - --checkSentinel=true
         - --control.configProcSentinel=/host/data/slb/config/slb-portal/slb-config-proc.sentinel
         - --control.sentinelExpiration=1800s
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001017-08d1d617
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -157,7 +157,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001017-08d1d617
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
         name: slb-cleanup
         securityContext:
           privileged: true

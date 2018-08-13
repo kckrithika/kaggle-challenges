@@ -35,7 +35,7 @@ spec:
         - --checkSentinel=true
         - --control.configProcSentinel=/host/data/slb/config//slb-config-proc.sentinel
         - --control.sentinelExpiration=1800s
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001017-08d1d617
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
