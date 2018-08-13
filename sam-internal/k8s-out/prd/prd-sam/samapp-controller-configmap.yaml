@@ -4,6 +4,7 @@ data:
     {
       "dockerRegistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
       "dualRun": "false",
+      "enableDNS": true,
       "enableMaddog": true,
       "enableMaddogCopyTestCA": true,
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
