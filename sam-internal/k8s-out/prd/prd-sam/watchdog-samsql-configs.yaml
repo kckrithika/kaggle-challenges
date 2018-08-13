@@ -151,9 +151,9 @@ data:
     t\n            ON p.git_hash = t.git_hash\n            WHERE p.state =''merged''   AND
     p.`merged_time` > NOW() - INTERVAL 10 DAY\n            ) manifestZip\n            WHERE
     manifestZip.latency > 30", "watchdogFrequency": "10m"}, {"alertAction": "email",
-    "alertFrequency": "24h", "alertProfile": "sam", "instructions": "Following PRs
-    have at least one image that''s not available after 20 minutes of getting it merged",
-    "name": "SqlPRImageUnavailable", "sql": "SELECT \n                *\n            FROM
+    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "0m", "instructions":
+    "Following PRs have at least one image that''s not available after 20 minutes
+    of getting it merged", "name": "SqlPRImageUnavailable", "sql": "SELECT \n                *\n            FROM
     \n                (\n                SELECT \t\n                    prs.pr_num,\n                    crds.PoolName,\n                    crds.ControlEstate,\n                    TIMESTAMPDIFF(MINUTE,
     prs.merged_time, CASE WHEN payload -> ''$.status.maxImageEndTime'' = ''0001-01-01T00:00:00Z''
     THEN CURRENT_TIMESTAMP() ELSE payload -> ''$.status.maxImageEndTime'' END) latencyMin\n            FROM
