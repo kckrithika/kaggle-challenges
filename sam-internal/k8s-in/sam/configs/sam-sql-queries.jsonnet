@@ -1046,14 +1046,14 @@ order by ReadyPct",
 #===================
 
     {
-      name: "SAM Failing Watchdogs - Production",
+      name: "Watchdog Failure Detail - Prod Kingdoms",
       note: "Excludes SQL queries, puppetChecker, kubeResourcesChecker, and nodeChecker",
       sql: "select *
 from (
       select
+        Payload->>'$.status.report.CheckerName' as CheckerName,
         CAST(ControlEstate as CHAR CHARACTER SET utf8) AS ControlEstate,
         CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,
-        Payload->>'$.status.report.CheckerName' as CheckerName,
         Payload->>'$.status.report.Success' as Success,
         Payload->>'$.status.report.ReportCreatedAt' as ReportCreatedAt,
         FLOOR(TIME_TO_SEC(TIMEDIFF(UTC_TIMESTAMP(), STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.')))/60.0) as ReportAgeInMinutes,
@@ -1068,20 +1068,20 @@ where
   not Error is null
   and (Kingdom != 'PRD' and Kingdom != 'XRD')
   and CheckerName != 'puppetChecker' and CheckerName != 'kubeResourcesChecker' and CheckerName != 'nodeChecker' and CheckerName not like 'Sql%'
-order by CheckerName, Kingdom",
+order by CheckerName, Kingdom, ReportAgeInMinutes",
     },
 
 #===================
 
     {
-      name: "SAM Failing Watchdogs - RnD Kingdoms",
+      name: "Watchdog Failure Detail - RnD Kingdoms",
       note: "Excludes SQL queries, puppetChecker, kubeResourcesChecker, and nodeChecker",
       sql: "select *
 from (
       select
+        Payload->>'$.status.report.CheckerName' as CheckerName,
         CAST(ControlEstate as CHAR CHARACTER SET utf8) AS ControlEstate,
         CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,
-        Payload->>'$.status.report.CheckerName' as CheckerName,
         Payload->>'$.status.report.Success' as Success,
         Payload->>'$.status.report.ReportCreatedAt' as ReportCreatedAt,
         FLOOR(TIME_TO_SEC(TIMEDIFF(UTC_TIMESTAMP(), STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.')))/60.0) as ReportAgeInMinutes,
@@ -1094,9 +1094,9 @@ from (
 ) as ss
 where
   not Error is null
-  and (Kingdom == 'PRD' or Kingdom == 'XRD')
+  and (Kingdom = 'PRD' or Kingdom = 'XRD')
   and CheckerName != 'puppetChecker' and CheckerName != 'kubeResourcesChecker' and CheckerName != 'nodeChecker' and CheckerName not like 'Sql%'
-order by CheckerName, Kingdom",
+order by CheckerName, Kingdom, ReportAgeInMinutes",
     },
 
 #===================
