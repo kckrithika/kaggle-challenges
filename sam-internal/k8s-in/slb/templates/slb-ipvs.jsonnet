@@ -17,7 +17,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         namespace: "sam-system",
     },
     spec: {
-        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then 3 else 2,
+        replicas: if configs.estate == "prd-samtest" then 1 else if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then 3 else 2,
         template: {
             metadata: {
                 labels: {
@@ -68,7 +68,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
-                        ] + (if configs.estate == "prd-sdc" || configs.estate == "fra-sam" || configs.estate == "cdg-sam" then [
+                        ] + (if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "fra-sam" || configs.estate == "cdg-sam" then [
                                 "--IpvsPath=20180724",
                             ] else [
                             ]) +
@@ -238,7 +238,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             },
                         },
                     },
-                },
+               },
         },
         strategy: {
             type: "RollingUpdate",
