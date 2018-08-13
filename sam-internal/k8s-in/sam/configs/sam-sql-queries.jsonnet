@@ -949,6 +949,9 @@ order by ControlEstate, Image",
         },
       ],
     },
+
+#===================
+
     {
       name: "MySQL Pods by Produce Age",
       note: "This shows the count of pods by produce age bucket.  Ideally most of our pods should have a produce age less than 15 minutes.  Large number of pods above this indicates an issue.  <a href='https://git.soma.salesforce.com/sam/sam/wiki/Debugging-Visibility-Pipeline'>Debug Instructions</a>",
@@ -981,6 +984,9 @@ from
   podDetailView
 ) as ss",
     },
+
+#===================
+
     {
       name: "SAM Node Status Aggregate",
       sql: "select * from (
@@ -1038,11 +1044,84 @@ order by ReadyPct",
     },
 
 #===================
+
+    {
+      name: "Watchdog Failure Detail - Prod Kingdoms",
+      note: "Excludes SQL queries, puppetChecker, kubeResourcesChecker, and nodeChecker",
+      sql: "select *
+from (
+      select
+        Payload->>'$.status.report.CheckerName' as CheckerName,
+        CAST(ControlEstate as CHAR CHARACTER SET utf8) AS ControlEstate,
+        CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,
+        Payload->>'$.status.report.Success' as Success,
+        Payload->>'$.status.report.ReportCreatedAt' as ReportCreatedAt,
+        FLOOR(TIME_TO_SEC(TIMEDIFF(UTC_TIMESTAMP(), STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.')))/60.0) as ReportAgeInMinutes,
+        Payload->>'$.status.report.Instance' as Instance,
+        case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else Payload->>'$.status.report.ErrorMessage' end as Error,
+        Payload->>'$.status.report.Hostname' as HostName,
+        Payload->>'$.status.updateWindowInMin' as updateWindowInMin
+      from k8s_resource
+      where ApiKind = 'WatchDog'
+) as ss
+where
+  not Error is null
+  and (Kingdom != 'PRD' and Kingdom != 'XRD')
+  and CheckerName != 'puppetChecker' and CheckerName != 'kubeResourcesChecker' and CheckerName != 'nodeChecker' and CheckerName not like 'Sql%'
+order by CheckerName, Kingdom, ReportAgeInMinutes",
+    },
+
+#===================
+
+    {
+      name: "Watchdog Failure Detail - RnD Kingdoms",
+      note: "Excludes SQL queries, puppetChecker, kubeResourcesChecker, and nodeChecker",
+      sql: "select *
+from (
+      select
+        Payload->>'$.status.report.CheckerName' as CheckerName,
+        CAST(ControlEstate as CHAR CHARACTER SET utf8) AS ControlEstate,
+        CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,
+        Payload->>'$.status.report.Success' as Success,
+        Payload->>'$.status.report.ReportCreatedAt' as ReportCreatedAt,
+        FLOOR(TIME_TO_SEC(TIMEDIFF(UTC_TIMESTAMP(), STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.')))/60.0) as ReportAgeInMinutes,
+        Payload->>'$.status.report.Instance' as Instance,
+        case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else Payload->>'$.status.report.ErrorMessage' end as Error,
+        Payload->>'$.status.report.Hostname' as HostName,
+        Payload->>'$.status.updateWindowInMin' as updateWindowInMin
+      from k8s_resource
+      where ApiKind = 'WatchDog'
+) as ss
+where
+  not Error is null
+  and (Kingdom = 'PRD' or Kingdom = 'XRD')
+  and CheckerName != 'puppetChecker' and CheckerName != 'kubeResourcesChecker' and CheckerName != 'nodeChecker' and CheckerName not like 'Sql%'
+order by CheckerName, Kingdom, ReportAgeInMinutes",
+    },
+
+#===================
+# # Single SQL query
 #
 #    {
 #      name: "",
+#      note: "".
 #      sql: "",
 #    },
+
+#===================
+# # Multi-sql query
+#
+#    {
+#      name: "",
+#      note: "",
+#      multisql: [
+#        {
+#          name: "",
+#          note: "",
+#          sql: "",
+#        }
+#      ],
+#    }
 
   ],
 }
