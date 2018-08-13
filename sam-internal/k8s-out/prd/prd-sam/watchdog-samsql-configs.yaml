@@ -11,7 +11,7 @@ data:
     as Metric, COUNT(*) as Value, CONCAT(''KernelVersion='',KernelVersion) as Tags
     from nodeDetailView group by ControlEstate, kingdom, kernelVersion", "watchdogFrequency":
     "60m"}, {"name": "MySqlSystemMetrics", "sql": "SELECT ''PRD'' as Kingdom, ''NONE''
-    as SuperPod, ''prd-sam'' as Estate, Metric, Value, \" as Tags FROM (SELECT CONCAT(\"mysql_metrics_\",
+    as SuperPod, ''prd-sam'' as Estate, Metric, Value, '''' as Tags FROM (SELECT CONCAT(\"mysql_metrics_\",
     Variable_name) as Metric, Variable_value as Value from metrics where Variable_name
     in (''aborted_connects'', ''bytes_received'', ''bytes_sent'', ''connections'',
     ''connection_errors_select'', ''created_tmp_files'', ''innodb_buffer_pool_pages_dirty'',
