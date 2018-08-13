@@ -55,7 +55,8 @@ data:
     ApiKind = ''WatchDog''\n  ) as ss\n  where CheckerName not like ''Sql%'' and CheckerName
     not like ''MachineCount%''\n  group by CheckerName, ControlEstate, Kingdom\n)
     as ss2", "watchdogFrequency": "60m"}, {"name": "Sql95thPctPRLatencyOverLast24Hr",
-    "sql": "SELECT latency as PRLatency95PctOverLast24Hr FROM\n     ( SELECT\n         prLatency.*,\n         @row_num
+    "sql": "select ''GLOBAL'' as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRLatencyOverLast24Hr''
+    as Metric, latency as Value FROM\n     ( SELECT\n         prLatency.*,\n         @row_num
     :=@row_num + 1 AS row_num\n    FROM\n        (\n        SELECT\n            prs.pr_num,\n            MAX(TIMESTAMPDIFF(MINUTE,prs.merged_time,
     CASE WHEN payload -> ''$.status.endTime'' = ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP()
     ELSE payload -> ''$.status.endTime'' END  )) latency\n    FROM\n        PullRequests
@@ -63,10 +64,70 @@ data:
     ApiKind = ''Bundle'') crds\n        ON crds.PRNum = prs.pr_num\n    WHERE state
     =''merged'' AND `merged_time` > NOW() - INTERVAL 24 HOUR\n    GROUP BY prs.pr_num\n    )
     prLatency ,\n     (SELECT @row_num:=0) counter ORDER BY prLatency.latency\n     )\n    temp
-    WHERE temp.row_num = ROUND (.95* @row_num)", "watchdogFrequency": "15m"}], "sql_alerts":
-    [{"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
-    "10m", "instructions": "The following deployments are reported as bad customer
-    deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
+    WHERE temp.row_num = ROUND (.95* @row_num)", "watchdogFrequency": "15m"}, {"name":
+    "Sql95thPctPRImageLatencyOverLast24Hr", "sql": "select ''GLOBAL'' as Kingdom,
+    ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRImageLatencyOverLast24Hr''
+    as Metric, latencyMin as Value FROM\n     ( SELECT\n         imageLatency.*,\n         @row_num
+    :=@row_num + 1 AS row_num\n    FROM\n        (\n                SELECT \t\n                    prs.pr_num,\n                    MAX(TIMESTAMPDIFF(MINUTE,
+    CASE WHEN payload -> ''$.status.maxImageEndTime'' = ''0001-01-01T00:00:00Z'' THEN
+    CURRENT_TIMESTAMP() ELSE payload -> ''$.status.maxImageEndTime'' END, prs.merged_time))
+    latencyMin\n            FROM \n                PullRequests prs\n            LEFT  JOIN  \n                    (\n                    SELECT
+    * \n                    FROM \n                    crd_history \n                    WHERE
+    ApiKind = ''Bundle'') crds\n                ON crds.PRNum = prs.pr_num \n           \tWHERE
+    prs.state =''merged'' AND prs.merged_time > NOW() - INTERVAL 24 HOUR\n    \t\tGROUP
+    BY prs.pr_num \n            ) imageLatency,\n     (SELECT @row_num:=0) counter
+    ORDER BY imageLatency.latencyMin\n     )\n    temp \n    WHERE temp.row_num =
+    ROUND (.95* @row_num)", "watchdogFrequency": "15m"}, {"name": "Sql95thPctPRTNRPLatencyOverLast24Hr",
+    "sql": "select ''GLOBAL'' as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRTNRPLatencyOverLast24Hr''
+    as Metric, latency as Value FROM\n(\nSELECT\n         prLatency.*,\n         @row_num
+    :=@row_num + 1 AS row_num\nFROM\n(\nSELECT\n              p.pr_num,\n              t.manifest_zip_time,\n              p.merged_time,\n              TIMESTAMPDIFF(MINUTE,  `merged_time`,CASE
+    WHEN t.manifest_zip_time IS NULL THEN now() ELSE t.manifest_zip_time END) latency\n            FROM
+    PullRequests p\n            LEFT OUTER JOIN TNRPManifestData t\n            ON
+    p.git_hash = t.git_hash\n            WHERE p.state =''merged''   AND p.`merged_time`
+    > NOW() - INTERVAL 24 HOUR            \n)prLatency,\n (SELECT @row_num:=0) counter
+    ORDER BY prLatency.latency\n     )\n    temp WHERE temp.row_num = ROUND (.95*
+    @row_num)", "watchdogFrequency": "15m"}, {"name": "Sql95thPctPRSamLatencyOverLast24Hr",
+    "sql": "select ''GLOBAL'' as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRSamLatencyOverLast24Hr''
+    as Metric, samlatencymin as Value FROM   ( \n              SELECT sam.*, \n                     @row_num
+    := @row_num + 1 AS row_num \n              FROM   ( \n                              SELECT   pr_num,
+    \n                                       totallatencymin - (imagelatencymin +
+    tnrplatency) samlatencymin\n                              FROM     ( \n                                                       SELECT          pr_num,
+    \n                                                                       imagelatencymin,
+    \n                                                                       totallatencymin,
+    \n                                                                       Timestampdiff(minute,
+    merged_time,\n                                                                       CASE
+    \n                                                                                       WHEN
+    t.manifest_zip_time IS NULL THEN Now()\n                                                                                       ELSE
+    t.manifest_zip_time\n                                                                       end)
+    AS tnrplatency \n                                                       FROM            (
+    \n                                                                                 SELECT    prs.pr_num,\n                                                                                           prs.git_hash,\n                                                                                           prs.merged_time,\n                                                                                           Max(Timestampdiff(minute,\n                                                                                           CASE
+    \n                                                                                                     WHEN
+    payload -> ''$.status.maxImageEndTime'' = ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP()
+    \n                                                                                                     ELSE
+    payload -> ''$.status.maxImageEndTime'' \n                                                                                           end,
+    prs.merged_time)) imagelatencymin,\n                                                                                           Max(Timestampdiff(minute,
+    prs.merged_time,\n                                                                                           CASE
+    \n                                                                                                     WHEN
+    payload -> ''$.status.endTime'' = ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP()
+    \n                                                                                                     ELSE
+    payload -> ''$.status.endTime'' \n                                                                                           end))
+    totallatencymin\n                                                                                 FROM      PullRequests
+    prs\n                                                                                 LEFT
+    JOIN \n                                                                                           (
+    \n                                                                                                  SELECT
+    *\n                                                                                                  FROM   crd_history\n                                                                                                  WHERE  apikind
+    = ''Bundle'') crds\n                                                                                 ON        crds.prnum
+    = prs.pr_num\n                                                                                 WHERE     prs.state
+    = ''merged''\n                                                                                 AND       prs.merged_time
+    > Now() - INTERVAL 24 hour\n                                                                                 GROUP
+    BY  prs.pr_num) sam\n                                                       LEFT
+    OUTER JOIN TNRPManifestData t \n                                                       ON              sam.git_hash
+    = t.git_hash )sam2)sam,\n                                       ( SELECT @row_num
+    := 0) counter ORDER BY samlatencymin ) temp\n              WHERE  temp.row_num
+    = Round (.95 * @row_num)", "watchdogFrequency": "15m"}], "sql_alerts": [{"alertAction":
+    "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m",
+    "instructions": "The following deployments are reported as bad customer deployments
+    in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
     "name": "SqlSlaDepl", "sql": "SELECT * FROM\n                        (\n                          SELECT\n                            ControlEstate,\n                            Namespace,\n                            Name,\n                            JSON_EXTRACT(Payload,
     ''$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"'') AS email,\n                            CASE
     WHEN JSON_EXTRACT(Payload, ''$.metadata.labels.sam_app'') is NULL then False\n                                 ELSE
