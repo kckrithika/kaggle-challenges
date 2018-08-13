@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:146d297aaf0d9fab683fc3f18601712b75401d6e
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/switchboard:scraper-fix-test
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
