@@ -16,8 +16,6 @@ spec:
         name: flowsnake-rewriting-proxy
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-kafka:662
         name: flowsnake-local-kafka
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-global-kafka:662
-        name: flowsnake-global-kafka
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-zookeeper:662
         name: flowsnake-local-zookeeper
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:662
@@ -94,8 +92,6 @@ spec:
         name: flowsnake-rewriting-proxy
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-kafka:681
         name: flowsnake-local-kafka
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-global-kafka:681
-        name: flowsnake-global-kafka
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-zookeeper:681
         name: flowsnake-local-zookeeper
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:681
@@ -172,8 +168,6 @@ spec:
         name: flowsnake-rewriting-proxy
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-kafka:696
         name: flowsnake-local-kafka
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-global-kafka:696
-        name: flowsnake-global-kafka
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-zookeeper:696
         name: flowsnake-local-zookeeper
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:696

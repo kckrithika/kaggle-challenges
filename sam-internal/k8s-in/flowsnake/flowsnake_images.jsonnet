@@ -25,7 +25,7 @@ local utils = import "util_functions.jsonnet";
                 es_image_tag: "503",
                 fleetService_image_tag: "662",
                 testData_image_tag: "681",
-                glok_image_tag: "472",
+                glok_image_tag: "472",  # NOTE: THIS MUST NOT CHANGE. As of Aug 2018, this image is no longer built by the flowsnake-platform project.
                 ingressControllerNginx_image_tag: 662,
                 ingressDefaultBackend_image_tag: 662,
                 beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
@@ -51,7 +51,7 @@ local utils = import "util_functions.jsonnet";
             es_image_tag: "minikube",
             fleetService_image_tag: "minikube",
             testData_image_tag: "minikube",
-            glok_image_tag: "minikube",
+            glok_image_tag: "472",  # NOTE: THIS MUST NOT CHANGE. As of Aug 2018, this image is no longer built by the flowsnake-platform project.
             ingressControllerNginx_image_tag: "minikube",
             ingressDefaultBackend_image_tag: "minikube",
             kibana_image_tag: "minikube",
@@ -279,7 +279,6 @@ local utils = import "util_functions.jsonnet";
        "flowsnake-spark-history-server_2.3.0",
        "flowsnake-rewriting-proxy",
        "flowsnake-local-kafka",
-       "flowsnake-global-kafka",
        "flowsnake-local-zookeeper",
        "flowsnake-kafka-rest-proxy",
        "flowsnake-spark-token-renewer",
@@ -322,7 +321,6 @@ local utils = import "util_functions.jsonnet";
             "flowsnake-spark-history-server",
             "flowsnake-rewriting-proxy",
             "flowsnake-local-kafka",
-            "flowsnake-global-kafka",
             "flowsnake-local-zookeeper",
             "flowsnake-kafka-rest-proxy",
             "flowsnake-spark-token-renewer",

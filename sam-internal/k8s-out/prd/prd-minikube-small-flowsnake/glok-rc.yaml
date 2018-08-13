@@ -31,7 +31,7 @@ spec:
             configMapKeyRef:
               key: name
               name: fleet-config
-        image: minikube/flowsnake-kafka:minikube
+        image: minikube/flowsnake-kafka:472
         imagePullPolicy: Never
         livenessProbe:
           initialDelaySeconds: 180
