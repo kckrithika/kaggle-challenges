@@ -211,8 +211,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
                 },
-            } + (
-               if slbimages.hypersdn_build >= 980 then {
                     affinity: {
                         podAntiAffinity: {
                             requiredDuringSchedulingIgnoredDuringExecution: [{
@@ -240,9 +238,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             },
                         },
                     },
-               }
-               else {}
-            ),
+                },
         },
         strategy: {
             type: "RollingUpdate",

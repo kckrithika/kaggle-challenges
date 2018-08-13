@@ -15,9 +15,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
         } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-canary-proxy-tcp",
-            "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"lbtype\":\"tcp\""
-                                                 + (if slbimages.slbnginx_build >= 31 then ",\"healthPath\":\"/\"" else "")
-                                                 + "}]",
+            "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"lbtype\":\"tcp\",\"healthPath\":\"/\"}]",
         },
     },
     spec: {

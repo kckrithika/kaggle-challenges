@@ -12,17 +12,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             app: "slb-portal-service",
             "slb.sfdc.net/name": "slb-portal-service",
         } + configs.ownerLabel.slb,
-    } +
-    if slbimages.hypersdn_build >= 950 then {
-          annotations: {
-             "slb.sfdc.net/name": "slb-portal-service",
-             "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.slbPortalServicePort + ",\"targetport\":" + portconfigs.slb.slbPortalServicePort + ",\"lbtype\":\"http\"}]",
-
-          },
-          } else {
-               annotations: {
-                  "slb.sfdc.net/name": "slb-portal-service",
-          },
+        annotations: {
+           "slb.sfdc.net/name": "slb-portal-service",
+           "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.slbPortalServicePort + ",\"targetport\":" + portconfigs.slb.slbPortalServicePort + ",\"lbtype\":\"http\"}]",
+        },
     },
     spec: {
         ports: [

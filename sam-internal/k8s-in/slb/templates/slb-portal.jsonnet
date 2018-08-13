@@ -46,14 +46,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   "--templatePath=" + slbconfigs.slbPortalTemplatePath,
                                   "--port=" + portconfigs.slb.slbPortalServicePort,
                                   "--client.serverInterface=lo",
-                              ] + (if slbimages.hypersdn_build >= 947 then [
                                        "--keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
                                        "--certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
                                        "--log_dir=/host/data/slb/logs/slb-portal",
                                        "--cafile=/etc/pki_service/ca/cabundle.pem",
-                                   ] + (if slbconfigs.isTestEstate then [
+                               ] + (if slbconfigs.isTestEstate then [
                                             "--slbEstate=" + configs.estate,
-                                        ] else []) else [])
+                               ] else [])
                                      + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
                               volumeMounts: configs.filter_empty(
                                   [

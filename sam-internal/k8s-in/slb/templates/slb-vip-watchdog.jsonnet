@@ -31,9 +31,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                   "slb-ipvs",
                                                   "slb-ipvs-a",
                                                   "slb-ipvs-b",
-                                              ] + (if slbimages.hypersdn_build < 969 then [
-                                                  "slb-nginx-config-b",
-                                              ] else []) + [
                                                   "slb-nginx-config-a",
                                                   "slb-vip-watchdog",
                                               ],
@@ -71,9 +68,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                   {
                                                       key: "slb-service",
                                                       operator: "NotIn",
-                                                      values: ["slb-ipvs", "slb-nginx-a"] + (if slbimages.hypersdn_build < 969 then [
-                                                         "slb-nginx-b",
-                                                      ] else []),
+                                                      values: ["slb-ipvs", "slb-nginx-a"],
                                                   },
                                               ]
                                           ),
@@ -106,7 +101,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   "--vipLoop=1",
                                   "--monitorFrequency=10s",
                                   "--client.serverInterface=lo",
-                                  "--healthPathCheck=" + (if slbimages.hypersdn_build >= 942 then "true" else "false"),
+                                  "--healthPathCheck=true",
                                   "--metricsBatchTimeout=30s",
                               ] + (
                                   if slbimages.phaseNum <= 2 || configs.estate == "xrd-sam" then  # this block currently applies to phase 1, 2 and xrd-sam, pending rollout to more phases
