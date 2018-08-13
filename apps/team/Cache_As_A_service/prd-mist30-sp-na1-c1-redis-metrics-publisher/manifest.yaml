@@ -47,4 +47,4 @@ system:
         path: /home/caas/logs/caas
     - name: secretvol
       secret:
-         secretName: caas-secret-sp-mist30-c1
+         secretName: caas-secret-sp-c1
