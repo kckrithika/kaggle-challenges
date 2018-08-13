@@ -78,7 +78,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
 
-            cert_secretizer_image_tag: "716",  # tested
+            cert_secretizer_image_tag: "716",  #Verified successfully in test fleet
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
             eventExporter_image_tag: "719",
@@ -117,7 +117,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
 
-            cert_secretizer_image_tag: "716",
+            cert_secretizer_image_tag: "716",  #Verified successfully in iot fleet
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
 
@@ -148,7 +148,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
         "3": self.default_image_tags {
 
-            cert_secretizer_image_tag: "662",
+            cert_secretizer_image_tag: "716",
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
 
