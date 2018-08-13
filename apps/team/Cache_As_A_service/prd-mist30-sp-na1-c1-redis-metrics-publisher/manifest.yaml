@@ -15,7 +15,6 @@ system:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
       args: 
-        - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --server.port=7521 
         - --management.port=7522
         - --cluster.name=sp-na1-c1
