@@ -20,6 +20,7 @@ system:
         - --management.port=7522
         - --cluster.name=sp-na1-c1
         - --logDir=/home/caas/logs/caas
+        - --scone.service.name=caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
