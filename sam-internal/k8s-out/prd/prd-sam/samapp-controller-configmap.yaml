@@ -3,7 +3,6 @@ data:
   samapp-controller-config.json: |-
     {
       "dockerRegistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
-      "dualRun": true,
       "enableDNS": true,
       "enableMaddog": true,
       "enableMaddogCopyTestCA": true,
