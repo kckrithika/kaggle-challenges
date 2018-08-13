@@ -12,7 +12,7 @@ system:
     - name: redis-inspector
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wpang/redis-inspector:081018
       volumeMounts:
-      - mountPath: /var/secrets/redis
+      - mountPath: /var/secrets/redis/auth
         name: redisauthvol
         readOnly: true
       livenessProbe:
