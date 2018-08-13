@@ -79,9 +79,9 @@ system:
         value: true
       - name: ReportCollector_ajna_https_enabled
         value: true
-      - name: ReportCollector_ajna_https_caCert
+      - name: ReportCollector_ajna_https_dynamicCertificateOptions_caCert
         value: /var/lib/report-collector/certificates/client/ca.pem
-      - name: ReportCollector_ajna_https_certificateDir
+      - name: ReportCollector_ajna_https_dynamicCertificateOptions_certificateDir
         value: /var/lib/report-collector/certificates/client/client/
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
         value: 10
