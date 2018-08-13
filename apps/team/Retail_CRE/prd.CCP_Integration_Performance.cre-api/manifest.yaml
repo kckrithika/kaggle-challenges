@@ -6,10 +6,10 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-api-ccp-perf
-    count: 3
+    count: 1
     containers:
     - name: cre-api-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.3.0.9.at-bc.1ae5992.2
+      image: sfci/cre/cre-api:1.2.1.0.master.d5a436c.182
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
@@ -27,6 +27,8 @@ system:
           value: kingdom-perf
         - name: HBASE_DATA_CENTER
           value: prd
+        - name: HBASE_SUPER_TENANT_IDS_FLUSH
+          value: INGESTpf233ma02  
       ports:
       - containerPort: 8080
       - containerPort: 7022
