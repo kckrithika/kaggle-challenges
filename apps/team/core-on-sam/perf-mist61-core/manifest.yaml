@@ -18,7 +18,7 @@ system:
 
     containers:
     - name: mist61-core
-      image: docker-dev/tnrp/casam/coreapp:214.15-112
+      image: tnrp/casam/coreapp:214.15-112
       env:
         # DB info
         - name: DB_USER
