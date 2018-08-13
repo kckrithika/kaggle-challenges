@@ -10,17 +10,15 @@ system:
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run
-      image: docker-all/dva/caas/caas-metrics-publisher-prod-2.6.4:6
+      image: docker-all/dva/caas/caas-metrics-publisher-prod-2.6.4:7
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
       args: 
-        - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --server.port=7521 
         - --management.port=7522
         - --cluster.name=sp-na1-c1
         - --logDir=/home/caas/logs/caas
-        - --scone.service.name=caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
