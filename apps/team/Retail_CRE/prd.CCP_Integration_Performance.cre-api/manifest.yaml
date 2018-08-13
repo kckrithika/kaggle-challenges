@@ -28,7 +28,7 @@ system:
         - name: HBASE_DATA_CENTER
           value: prd
         - name: HBASE_SUPER_TENANT_IDS_FLUSH
-          value: INGESTpf233ma02  
+          value: 00Dx00000005SuREAU  
       ports:
       - containerPort: 8080
       - containerPort: 7022
