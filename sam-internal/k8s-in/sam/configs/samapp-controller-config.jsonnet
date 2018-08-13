@@ -18,7 +18,7 @@ std.prune({
   [if configs.estate == "vpod" then "enableK4a"]: "false",
 
   #override for CI API
-  [if configs.estate == "prd-sam" then "dualRun"]: false,
+  [if configs.estate == "prd-sam" then "dualRun"]: true,
   # others
     volPermissionInitContainerImage: samimages.permissionInitContainer,
     dockerRegistry: configs.registry,
