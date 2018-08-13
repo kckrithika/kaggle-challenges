@@ -225,6 +225,7 @@ WHERE latency > 45",
     {
       name: "SqlPRImageUnavailable",
       instructions: "Following PRs have at least one image that's not available after 20 minutes of getting it merged",
+      alertThreshold: "0m",
       alertFrequency: "24h",
       watchdogFrequency: "10m",
       alertProfile: "sam",
