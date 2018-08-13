@@ -10,6 +10,10 @@ std.prune({
     madkubImage: samimages.madkubSidecar,
     enableMaddogCopyTestCA: samfeatureflags.maddogCopyTestCA,
 
+  # DNS
+    enableDNS: if samfeatureflags.kubedns then true,
+    dnsEnabledPoolNamesRegex: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then ".*"),
+
   #k4a
   [if configs.estate == "vpod" then "enableK4a"]: "false",
 
