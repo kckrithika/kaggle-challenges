@@ -1057,9 +1057,9 @@ from (
         Payload->>'$.status.report.Success' as Success,
         Payload->>'$.status.report.ReportCreatedAt' as ReportCreatedAt,
         FLOOR(TIME_TO_SEC(TIMEDIFF(UTC_TIMESTAMP(), STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.')))/60.0) as ReportAgeInMinutes,
+        Payload->>'$.status.report.Instance' as Instance,
         case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else Payload->>'$.status.report.ErrorMessage' end as Error,
         Payload->>'$.status.report.Hostname' as HostName,
-        Payload->>'$.status.report.Instance' as Instance,
         Payload->>'$.status.updateWindowInMin' as updateWindowInMin
       from k8s_resource
       where ApiKind = 'WatchDog'
@@ -1085,9 +1085,9 @@ from (
         Payload->>'$.status.report.Success' as Success,
         Payload->>'$.status.report.ReportCreatedAt' as ReportCreatedAt,
         FLOOR(TIME_TO_SEC(TIMEDIFF(UTC_TIMESTAMP(), STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.')))/60.0) as ReportAgeInMinutes,
+        Payload->>'$.status.report.Instance' as Instance,
         case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else Payload->>'$.status.report.ErrorMessage' end as Error,
         Payload->>'$.status.report.Hostname' as HostName,
-        Payload->>'$.status.report.Instance' as Instance,
         Payload->>'$.status.updateWindowInMin' as updateWindowInMin
       from k8s_resource
       where ApiKind = 'WatchDog'
