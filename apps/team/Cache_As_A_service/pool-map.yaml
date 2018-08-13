@@ -1134,3 +1134,35 @@ apps:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-gs0-c1:
   - name: phx/phx-sp3-sam_caas
+ dfw-sp1-metrics-publisher-sp-cs12-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-redis-sp-cs12-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-metrics-publisher-sp-cs13-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-redis-sp-cs13-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-metrics-publisher-sp-cs3-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-redis-sp-cs3-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-metrics-publisher-sp-cs30-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-redis-sp-cs30-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ phx-sp1-metrics-publisher-sp-cs12-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-redis-sp-cs12-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-metrics-publisher-sp-cs13-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-redis-sp-cs13-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-metrics-publisher-sp-cs3-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-redis-sp-cs3-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-metrics-publisher-sp-cs30-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-redis-sp-cs30-c1:
+  - name: phx/phx-sp1-sam_caas

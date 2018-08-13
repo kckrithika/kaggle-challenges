@@ -3,23 +3,21 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - rpragada@salesforce.com
+      - caas-dev@salesforce.com
   functions:
-  - name: metrics-publisher-sp-gus-c1
+  - name: metrics-publisher-sp-cs12-c1
     count: 1
-    hostnetwork: true
     containers:
     - name: metrics-publisher
-      image: tnrp/caas/caas-monitor-prod:2.6.4-0000039-15515104
+      image: docker-all/dva/caas/caas-metrics-publisher-prod-2.6.4:6
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
       args:
-        - --server.port=7588
-        - --management.port=7589
-        - --cluster.name=sp-c1
+        - --server.port=7502
+        - --management.port=7501
+        - --cluster.name=sp-cs12-c1
         - --logDir=/home/caas/logs/caas
-        - --metrics.container=caas.sp-gus-c1
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
@@ -29,16 +27,16 @@ system:
       livenessProbe:
         httpGet:
           path: /manage/config
-          port: 7589
+          port: 7501
         initialDelaySeconds: 60
         timeoutSeconds: 10
       # expose redis outside the container
       ports:
-      - containerPort: 7588
-      - containerPort: 7589
+      - containerPort: 7502
+      - containerPort: 7501
       env:
        - name: SFDC_ENVIRONMENT
-         value: prod-gus
+         value: prod
        - name: CAAS_ENVIRONMENT
          value: none
     volumes:
@@ -47,4 +45,4 @@ system:
         path: /home/caas/logs/caas
     - name: secretvol
       secret:
-        secretName: caas-secret-sp-c1
+        secretName: caas-secret-sp-cs12-c1

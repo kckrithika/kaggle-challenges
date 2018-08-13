@@ -3,13 +3,13 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - rpragada@salesforce.com
+      - caas-dev@salesforce.com
   functions:
   - name: metrics-publisher-sp-gs0-c1
     count: 1
     containers:
     - name: metrics-publisher
-      image: docker-all/dva/caas/caas-metrics-publisher-prod-2.6.4:5
+      image: docker-all/dva/caas/caas-metrics-publisher-prod-2.6.4:6
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
