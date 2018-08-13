@@ -34,7 +34,7 @@ data:
     from x$schema_table_statistics UNION (SELECT CONCAT(\"mysql_metrics_schema_table_statistics_update_avg_latency_\",
     table_schema, \"_\", table_name) as Variable_name, update_latency / rows_updated
     as Variable_value from x$schema_table_statistics)) a where a.Value IS NOT NULL;",
-    "watchdogFrequency": "5s"}, {"name": "WatchdogSuccessPct", "sql": "select ''GLOBAL''
+    "watchdogFrequency": "1m"}, {"name": "WatchdogSuccessPct", "sql": "select ''GLOBAL''
     as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate, \n''sql.checkerPassPct''
     as Metric, SuccessPct as Value, CONCAT(''CheckerName='',CheckerName) as Tags\nfrom
     (\n  select\n    CheckerName,\n    SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount))
