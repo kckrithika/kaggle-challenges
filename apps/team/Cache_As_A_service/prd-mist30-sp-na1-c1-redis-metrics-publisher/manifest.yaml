@@ -40,6 +40,8 @@ system:
          value: mist30
        - name: CAAS_ENV
          value: 12
+       - name: SFDC_POD
+         value: sp-na1-c1
       # expose redis outside the container
     volumes:
     - name: logvol
