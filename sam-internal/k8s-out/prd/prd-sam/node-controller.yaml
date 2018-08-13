@@ -23,6 +23,8 @@ spec:
         - /sam/node-controller
         - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --sdn-subnet-file-path=/kubeconfig/sfdc-sdn-subnet.env
+        - --default-max-podip=29
         env:
         - name: NODE_NAME
           valueFrom:
@@ -30,7 +32,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002190-d048106f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002192-400bcafb
         name: node-controller
         volumeMounts:
         - mountPath: /sfdchosts

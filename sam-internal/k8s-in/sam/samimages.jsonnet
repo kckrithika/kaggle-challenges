@@ -24,6 +24,10 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,node-controller,hypersam": "sam-0002192-400bcafb",
         "prd,prd-samdev,samcontrol,hypersam": "sam-0002192-400bcafb",
 
+         # [cbatra] Deploying node controller changes for PRD IP issue
+        "prd,prd-sam,node-controller,hypersam": "sam-0002192-400bcafb",
+        "prd,prd-sam,samcontrol,hypersam": "sam-0002192-400bcafb",
+
         # [thargrove] Enable multi-query pages in sam-sql-reporter
         "prd,prd-sam,sam-sql-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20180807_165826.3d22ff09.dirty.thargrove-ltm1",
 
