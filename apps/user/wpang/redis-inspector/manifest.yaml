@@ -49,7 +49,7 @@ system:
     count: 1
     volumes:
       - name: redisauthvol
-        secret:
+        k4aSecret:
           secretName: csc-redis-auth-0
     containers:
     - name: redis
