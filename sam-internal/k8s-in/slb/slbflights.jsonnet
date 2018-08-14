@@ -1,7 +1,7 @@
 {
     local slbimages = import "slbimages.jsonnet",
 
-    local nodeApiUnixSocketEnabled = (if slbimages.phaseNum <= 0 then true else false),
+    local nodeApiUnixSocketEnabled = (if slbimages.phaseNum <= 1 then true else false),
 
     getNodeApiClientSocketSettings(configDir):: (if nodeApiUnixSocketEnabled then [
                                                      "--client.socketDir=" + configDir,
