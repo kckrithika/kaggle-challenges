@@ -1,7 +1,8 @@
 apiVersion: v1
 data:
   watchdog-samsql-profiles.jsonnet: '{"alertProfiles": [{"email": "sam-test-alerts@salesforce.com",
-    "name": "sam", "pagerDuty": "sam-pagerduty@salesforce.com"}]}'
+    "name": "sam", "pagerDuty": "sam-pagerduty@salesforce.com"}, {"name": "tnrp",
+    "pagerDuty": "tnrp_pd_svc@salesforce.pagerduty.com"}]}'
   watchdog-samsql-queries.jsonnet: '{"argus_metrics": [{"name": "MachineCountByKernelVersion",
     "sql": "select ''GLOBAL'' as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate,
     ''sql.machineCountByKernelVersion'' as Metric, COUNT(*) as Value, CONCAT(''KernelVersion='',KernelVersion)
@@ -186,8 +187,8 @@ data:
     ELSE payload -> ''$.status.endTime'' END  ) latency\nFROM \n\tPullRequests prs\nLEFT  JOIN  \n\t\t(\n\t\tSELECT
     * \n\t\tFROM \n\t\tcrd_history \n\t \tWHERE ApiKind = ''Bundle'') crds\n\tON crds.PRNum
     = prs.pr_num\nORDER BY prs.pr_num \n) prLatency\nWHERE latency > 45", "watchdogFrequency":
-    "10m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
-    "alertThreshold": "10m", "instructions": "Following PRs don''t have authorization
+    "10m"}, {"alertAction": "pagerDuty", "alertFrequency": "24h", "alertProfile":
+    "tnrp", "alertThreshold": "10m", "instructions": "Following PRs don''t have authorization
     link after 5 minutes of getting created.", "name": "SqlPRAuthroizationLinkPostTimeLatency",
     "sql": "SELECT\n          * \n        FROM (SELECT \n            pr_num,\n            TIMESTAMPDIFF(MINUTE,
     created_time, CASE WHEN first_approval_link_posted_time IS NULL THEN now() ELSE
@@ -195,19 +196,19 @@ data:
     PullRequests \n        WHERE created_time IS NOT NULL AND created_time > NOW()
     - Interval 10 day AND state =''open'') noApprovalLinkInMin\n        WHERE noApprovalLinkInMin.latency
     > 5\n        ORDER BY latency desc", "watchdogFrequency": "10m"}, {"alertAction":
-    "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m",
-    "instructions": "Following PRs haven''t run evaluatePR more than 30 mins after
-    getting authorized.", "name": "SqlPRFailedToRunEvalPR", "sql": "SELECT \n         *\n        FROM\n        (SELECT
+    "pagerDuty", "alertFrequency": "24h", "alertProfile": "tnrp", "alertThreshold":
+    "10m", "instructions": "Following PRs haven''t run evaluatePR more than 30 mins
+    after getting authorized.", "name": "SqlPRFailedToRunEvalPR", "sql": "SELECT \n         *   \n        FROM\n        (SELECT
     \n          pr_num,\n          created_time,\n          evaluate_pr_status,\n          authorized_by,\n          most_recent_authorized_time,\n          TIMESTAMPDIFF(MINUTE,  most_recent_authorized_time,
     now()) latency\n        FROM PullRequests\n        WHERE created_time IS NOT NULL
-    AND authorized_by IS NOT NULL AND authorized_by !='''' AND (`evaluate_pr_status`
-    IS NULL OR evaluate_pr_status = ''unknown'') AND most_recent_authorized_time IS
-    NOT NULL\n            AND state =''open''\n        ) authedButUnkwn\n        WHERE
-    authedButUnkwn.latency > 30 AND pr_num > 1000", "watchdogFrequency": "10m"}, {"alertAction":
-    "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m",
-    "instructions": "Following PRs have failed to produce corresponding manifest.zip
-    file after 30 minutes of getting  merged.", "name": "SqlPRFailedToProduceManifestZip",
-    "sql": "SELECT\n             *\n            FROM\n            (SELECT\n              p.pr_num,\n              t.manifest_zip_time,\n              p.merged_time,\n              TIMESTAMPDIFF(MINUTE,
+    AND created_time  > NOW() - Interval 10 day AND authorized_by IS NOT NULL AND
+    authorized_by !='''' AND (`evaluate_pr_status` IS NULL OR evaluate_pr_status =
+    ''unknown'') AND most_recent_authorized_time IS NOT NULL\n            AND state
+    =''open''\n        ) authedButUnkwn\n        WHERE authedButUnkwn.latency > 30",
+    "watchdogFrequency": "10m"}, {"alertAction": "pagerDuty", "alertFrequency": "24h",
+    "alertProfile": "tnrp", "alertThreshold": "10m", "instructions": "Following PRs
+    have failed to produce corresponding manifest.zip file after 30 minutes of getting  merged.",
+    "name": "SqlPRFailedToProduceManifestZip", "sql": "SELECT\n             *\n            FROM\n            (SELECT\n              p.pr_num,\n              t.manifest_zip_time,\n              p.merged_time,\n              TIMESTAMPDIFF(MINUTE,
     merged_time, CASE WHEN t.manifest_zip_time IS NULL THEN now() ELSE t.manifest_zip_time
     END) latency\n            FROM PullRequests p\n            LEFT OUTER JOIN TNRPManifestData
     t\n            ON p.git_hash = t.git_hash\n            WHERE p.state =''merged''   AND
