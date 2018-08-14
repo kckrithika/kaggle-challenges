@@ -26,6 +26,7 @@ spec:
         - --log_dir=/host/data/slb/logs/
         - --hostnameOverride=$(NODE_NAME)
         - --metricsEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
+        - --hostsConfigFile=/sfdchosts/hosts.json
         - --labelValues=slb-ipvs:3,slb-nginx-b:3
         env:
         - name: KUBECONFIG
