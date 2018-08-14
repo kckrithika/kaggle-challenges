@@ -23,7 +23,7 @@ system:
       - name: GRPC_SERVER_PORT
         value: "7020"
       - name: JVM_HEAP_MAX
-        value: 6G
+        value: 4G
       resources:
         limits:
           cpu: "8"
