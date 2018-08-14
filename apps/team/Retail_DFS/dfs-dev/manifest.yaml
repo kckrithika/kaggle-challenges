@@ -28,7 +28,7 @@ system:
         mountPath: /client-certs
       env:
       - name: SFDC_ENVIRONMENT
-        value: stmfa
+        value: dfsDev
       - name: LOAD_CC_CERT
         value: true
       - name: MDS_CANONICALMETADATA_SOURCETENANTKEY
