@@ -104,13 +104,17 @@
             "--shouldSkipServiceRecords=true",
             "--shouldNotDeleteAllFiles=true",
             "--log_dir=" + slbconfigs.logsDir,
+        ] + (if slbimages.hypersdn_build >= 1028 then [
+            "--shouldSkipSlbBlock=true",
+            "--skipFilesWithSuffix=.sock",
+        ] else [
             "--skipFilesWithSuffix=slb.block",
-        ] + if configs.estate == "prd-sam" then [
-            # Increase maxDeleteCount so slb-cleanup will remove the -nginx-proxy config files
+        ])  # Reduce the maxDeleteFileCount as 1028 rolls out
+        + (if configs.estate == "prd-sam" && slbimages.hypersdn_build < 1027 then [
             "--maxDeleteFileCount=500",
         ] else [
             "--maxDeleteFileCount=20",
-        ],
+        ]),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
