@@ -56,18 +56,20 @@ data:
     ApiKind = ''WatchDog''\n  ) as ss\n  where CheckerName not like ''Sql%'' and CheckerName
     not like ''MachineCount%''\n  group by CheckerName, ControlEstate, Kingdom\n)
     as ss2", "watchdogFrequency": "60m"}, {"name": "Sql95thPctPRLatencyOverLast24Hr",
-    "sql": "select ''GLOBAL'' as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRLatencyOverLast24Hr''
+    "sql": "SELECT ''GLOBAL'' as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRLatencyOverLast24Hr''
     as Metric, latency as Value,'''' as Tags FROM\n     ( SELECT\n         prLatency.*,\n         @row_num
-    :=@row_num + 1 AS row_num\n    FROM\n        (\n        SELECT\n            prs.pr_num,\n            MAX(TIMESTAMPDIFF(MINUTE,prs.merged_time,
-    CASE WHEN payload -> ''$.status.endTime'' = ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP()
-    ELSE payload -> ''$.status.endTime'' END  )) latency\n    FROM\n        PullRequests
-    prs\n    LEFT  JOIN\n            (\n            SELECT *\n            FROM\n            crd_history\n            WHERE
-    ApiKind = ''Bundle'') crds\n        ON crds.PRNum = prs.pr_num\n    WHERE state
-    =''merged'' AND `merged_time` > NOW() - INTERVAL 24 HOUR\n    GROUP BY prs.pr_num\n    )
-    prLatency ,\n     (SELECT @row_num:=0) counter ORDER BY prLatency.latency\n     )\n    temp
-    WHERE temp.row_num = ROUND (.95* @row_num)", "watchdogFrequency": "15m"}, {"name":
-    "Sql95thPctPRImageLatencyOverLast24Hr", "sql": "select ''GLOBAL'' as Kingdom,
-    ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRImageLatencyOverLast24Hr''
+    :=@row_num + 1 AS row_num\n    FROM\n        (\n       SELECT    \n          prs.pr_num,
+    \n          max(TIMESTAMPDIFF(minute,prs.merged_time, STR_TO_DATE( \n          CASE
+    \n                    WHEN payload -> ''$.status.endTime'' = ''0001-01-01T00:00:00Z''
+    THEN CURRENT_TIMESTAMP() \n                    ELSE JSON_UNQUOTE(payload -> ''$.status.endTime'')
+    \n          END,''%Y-%m-%dT%H:%i:%s'' ))) latency \n        FROM PullRequests
+    prs \n        LEFT JOIN \n          ( \n                 SELECT * \n                 FROM   crd_history
+    \n                 WHERE  apikind = ''Bundle'') crds \n                 ON  crds.prnum
+    = prs.pr_num WHERE state =''merged'' \n                 AND `merged_time` > now()
+    - INTERVAL 24 hour\n                 GROUP BY prs.pr_num \n      ) prLatency ,\n     (SELECT
+    @row_num:=0) counter ORDER BY prLatency.latency\n     )\n    temp WHERE temp.row_num
+    = ROUND (.95* @row_num)", "watchdogFrequency": "15m"}, {"name": "Sql95thPctPRImageLatencyOverLast24Hr",
+    "sql": "select ''GLOBAL'' as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRImageLatencyOverLast24Hr''
     as Metric, latencyMin as Value, '''' as Tags FROM\n     ( SELECT\n         imageLatency.*,\n         @row_num
     :=@row_num + 1 AS row_num\n    FROM\n        (\n                SELECT \t\n                    prs.pr_num,\n                    MAX(TIMESTAMPDIFF(MINUTE,
     CASE WHEN payload -> ''$.status.maxImageEndTime'' = ''0001-01-01T00:00:00Z'' THEN
