@@ -1,10 +1,10 @@
 apps:
  my-sam-test:    # this must match the name of your application (it is case sensitive)
-  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
+#  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
   - prd/prd-samtestspare
- upgrade-test-app:
-  - prd/prd-sam
- k4a-test-app:
-  - prd/prd-sam
- madkub-test-app:
-  - prd/prd-sam
+# upgrade-test-app:
+#  - prd/prd-sam
+# k4a-test-app:
+#  - prd/prd-sam
+# madkub-test-app:
+#  - prd/prd-sam
