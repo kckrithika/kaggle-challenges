@@ -3,6 +3,7 @@ data:
   bundle-controller-config.json: |-
     {
       "checkImageExistsFlag": true,
+      "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "resyncinterval": "5m",
       "whiteListNamespaceRegexp": [
         "^ci-*",
