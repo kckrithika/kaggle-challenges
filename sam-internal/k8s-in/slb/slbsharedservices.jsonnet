@@ -110,7 +110,7 @@
         ] else [
             "--skipFilesWithSuffix=slb.block",
         ])  # Reduce the maxDeleteFileCount as 1028 rolls out
-        + (if configs.estate == "prd-sam" && slbimages.hypersdn_build < 1028 then [
+        + (if configs.estate == "prd-sam" && slbimages.hypersdn_build < 1027 then [
             "--maxDeleteFileCount=500",
         ] else [
             "--maxDeleteFileCount=20",
