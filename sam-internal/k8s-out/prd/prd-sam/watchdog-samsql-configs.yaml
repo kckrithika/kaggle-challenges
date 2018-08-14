@@ -57,7 +57,7 @@ data:
     not like ''MachineCount%''\n  group by CheckerName, ControlEstate, Kingdom\n)
     as ss2", "watchdogFrequency": "60m"}, {"name": "Sql95thPctPRLatencyOverLast24Hr",
     "sql": "select ''GLOBAL'' as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRLatencyOverLast24Hr''
-    as Metric, latency as Value FROM\n     ( SELECT\n         prLatency.*,\n         @row_num
+    as Metric, latency as Value,'''' as Tags FROM\n     ( SELECT\n         prLatency.*,\n         @row_num
     :=@row_num + 1 AS row_num\n    FROM\n        (\n        SELECT\n            prs.pr_num,\n            MAX(TIMESTAMPDIFF(MINUTE,prs.merged_time,
     CASE WHEN payload -> ''$.status.endTime'' = ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP()
     ELSE payload -> ''$.status.endTime'' END  )) latency\n    FROM\n        PullRequests
@@ -68,7 +68,7 @@ data:
     WHERE temp.row_num = ROUND (.95* @row_num)", "watchdogFrequency": "15m"}, {"name":
     "Sql95thPctPRImageLatencyOverLast24Hr", "sql": "select ''GLOBAL'' as Kingdom,
     ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRImageLatencyOverLast24Hr''
-    as Metric, latencyMin as Value FROM\n     ( SELECT\n         imageLatency.*,\n         @row_num
+    as Metric, latencyMin as Value, '''' as Tags FROM\n     ( SELECT\n         imageLatency.*,\n         @row_num
     :=@row_num + 1 AS row_num\n    FROM\n        (\n                SELECT \t\n                    prs.pr_num,\n                    MAX(TIMESTAMPDIFF(MINUTE,
     CASE WHEN payload -> ''$.status.maxImageEndTime'' = ''0001-01-01T00:00:00Z'' THEN
     CURRENT_TIMESTAMP() ELSE payload -> ''$.status.maxImageEndTime'' END, prs.merged_time))
@@ -80,7 +80,7 @@ data:
     ORDER BY imageLatency.latencyMin\n     )\n    temp \n    WHERE temp.row_num =
     ROUND (.95* @row_num)", "watchdogFrequency": "15m"}, {"name": "Sql95thPctPRTNRPLatencyOverLast24Hr",
     "sql": "select ''GLOBAL'' as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRTNRPLatencyOverLast24Hr''
-    as Metric, latency as Value FROM\n(\nSELECT\n         prLatency.*,\n         @row_num
+    as Metric, latency as Value, '''' as Tags FROM\n(\nSELECT\n         prLatency.*,\n         @row_num
     :=@row_num + 1 AS row_num\nFROM\n(\nSELECT\n              p.pr_num,\n              t.manifest_zip_time,\n              p.merged_time,\n              TIMESTAMPDIFF(MINUTE,  `merged_time`,CASE
     WHEN t.manifest_zip_time IS NULL THEN now() ELSE t.manifest_zip_time END) latency\n            FROM
     PullRequests p\n            LEFT OUTER JOIN TNRPManifestData t\n            ON
@@ -89,10 +89,11 @@ data:
     ORDER BY prLatency.latency\n     )\n    temp WHERE temp.row_num = ROUND (.95*
     @row_num)", "watchdogFrequency": "15m"}, {"name": "Sql95thPctPRSamLatencyOverLast24Hr",
     "sql": "select ''GLOBAL'' as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRSamLatencyOverLast24Hr''
-    as Metric, samlatencymin as Value FROM   ( \n              SELECT sam.*, \n                     @row_num
-    := @row_num + 1 AS row_num \n              FROM   ( \n                              SELECT   pr_num,
-    \n                                       totallatencymin - (imagelatencymin +
-    tnrplatency) samlatencymin\n                              FROM     ( \n                                                       SELECT          pr_num,
+    as Metric, samlatencymin as Value, '''' as Tags FROM   ( \n              SELECT
+    sam.*, \n                     @row_num := @row_num + 1 AS row_num \n              FROM   (
+    \n                              SELECT   pr_num, \n                                       totallatencymin
+    - (imagelatencymin + tnrplatency) samlatencymin\n                              FROM     (
+    \n                                                       SELECT          pr_num,
     \n                                                                       imagelatencymin,
     \n                                                                       totallatencymin,
     \n                                                                       Timestampdiff(minute,
