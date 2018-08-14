@@ -339,7 +339,7 @@ from (
       watchdogFrequency: "15m",
       name: "Sql95thPctPRLatencyOverLast24Hr",
       sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate,
-'sql.95thPctPRLatencyOverLast24Hr' as Metric, latency as Value FROM
+'sql.95thPctPRLatencyOverLast24Hr' as Metric, latency as Value,'' as Tags FROM
      ( SELECT
          prLatency.*,
          @row_num :=@row_num + 1 AS row_num
@@ -376,7 +376,7 @@ from (
       watchdogFrequency: "15m",
       name: "Sql95thPctPRImageLatencyOverLast24Hr",
       sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate,
-'sql.95thPctPRImageLatencyOverLast24Hr' as Metric, latencyMin as Value FROM
+'sql.95thPctPRImageLatencyOverLast24Hr' as Metric, latencyMin as Value, '' as Tags FROM
      ( SELECT
          imageLatency.*,
          @row_num :=@row_num + 1 AS row_num
@@ -412,7 +412,7 @@ from (
       watchdogFrequency: "15m",
       name: "Sql95thPctPRTNRPLatencyOverLast24Hr",
       sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate,
-'sql.95thPctPRTNRPLatencyOverLast24Hr' as Metric, latency as Value FROM
+'sql.95thPctPRTNRPLatencyOverLast24Hr' as Metric, latency as Value, '' as Tags FROM
 (
 SELECT
          prLatency.*,
@@ -443,7 +443,7 @@ SELECT
       watchdogFrequency: "15m",
       name: "Sql95thPctPRSamLatencyOverLast24Hr",
       sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate,
-'sql.95thPctPRSamLatencyOverLast24Hr' as Metric, samlatencymin as Value FROM   ( 
+'sql.95thPctPRSamLatencyOverLast24Hr' as Metric, samlatencymin as Value, '' as Tags FROM   ( 
               SELECT sam.*, 
                      @row_num := @row_num + 1 AS row_num 
               FROM   ( 
