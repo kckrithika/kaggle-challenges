@@ -36,7 +36,7 @@ system:
       - containerPort: 7522
       env:
        - name: SFDC_ENVIRONMENT
-         value: mist30
+         value: mist42
        - name: CAAS_ENV
          value: 12
        - name: SFDC_POD
