@@ -18,7 +18,7 @@ if samfeatureflags.estatessvc then {
                             "--funnelEndpoint=" + configs.funnelVIP,
                             configs.sfdchosts_arg,
                           ]
-                        + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then ["--sdn-subnet-file-path=/kubeconfig/sfdc-sdn-subnet.env", "--default-max-podip=29"] else []),),
+                        + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then ["--sdn-subnet-file-path=/kubeconfig/sfdc-sdn-subnet.env", "--default-max-podip=25"] else []),),
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,
