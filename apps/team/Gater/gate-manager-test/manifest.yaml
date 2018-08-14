@@ -48,4 +48,4 @@ system:
     strategy:
       type: RollingUpdate
       rollingUpdate:
-        maxUnavailable: "1"
+        maxUnavailable: 1
