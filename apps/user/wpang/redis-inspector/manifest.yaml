@@ -8,13 +8,18 @@ system:
     - name: redisauthvol
       k4aSecret:
         secretName: csc-redis-auth-0
+    - name: client-cert
+      maddogCert:
+        type: client
     containers:
     - name: redis-inspector
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wpang/redis-inspector:081018
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wpang/redis-inspector:081418
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
         readOnly: true
+      - mountPath: /certs
+        name: client-cert
       livenessProbe:
         exec:
           command:
@@ -35,6 +40,14 @@ system:
         value: 30s
       - name: RINSP_AJNA_FLUSHINTERVAL
         value: 60s
+      - name: RINSP_AJNA_MTLSENABLED
+        value: true
+      - name: RINSP_AJNA_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: RINSP_AJNA_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: RINSP_AJNA_CACERTPATH
+        value: /certs/ca.pem
       - name: RINSP_REDIS_AUTHPATH
         value: /var/secrets/redis/auth
       command: ["/bin/sh", "-c"]
