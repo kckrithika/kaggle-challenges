@@ -9,6 +9,7 @@ std.prune({
     maddogMaddogEndpoint: if configs.estate == "vpod" then "https://maddog-onebox:8443" else configs.maddogEndpoint,
     madkubImage: samimages.madkubSidecar,
     enableMaddogCopyTestCA: samfeatureflags.maddogCopyTestCA,
+    funnelEndpoint: configs.funnelVIP,
 
   # DNS
     enableDNS: if samfeatureflags.kubedns then true,
