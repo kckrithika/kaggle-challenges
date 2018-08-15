@@ -63,12 +63,25 @@ if samfeatureflags.kubedns then {
                         ],
                         image: samimages.kubedns,
                         imagePullPolicy: "IfNotPresent",
-                        livenessProbe: {
+                        livenessProbe: if configs.estate == "prd-samdev" then {
                             failureThreshold: 5,
-                            httpGet: {
-                                path: "/healthcheck/kubedns",
-                                port: 10054,
-                                scheme: "HTTP",
+                            exec: {
+                                command: [
+                                    "sh",
+                                    "-c",
+                                    "/scripts/cert-age.sh && nslookup kubernetes.default.svc.cluster.local 127.0.0.1:10053 > /dev/null",
+                                ],
+                            },
+                            initialDelaySeconds: 60,
+                            periodSeconds: 10,
+                            successThreshold: 1,
+                            timeoutSeconds: 5,
+                        } else {
+                           failureThreshold: 5,
+                           httpGet: {
+                               path: "/healthcheck/kubedns",
+                               port: 10054,
+                               scheme: "HTTP",
                             },
                             initialDelaySeconds: 60,
                             periodSeconds: 10,
@@ -130,8 +143,11 @@ if samfeatureflags.kubedns then {
                                 name: "certs",
                             },
                             configs.kube_config_volume_mount,
-                        ],
-                    },
+                        ] + if configs.estate == "prd-samdev" then [{
+                                mountPath: "/scripts",
+                                name: "cert-age",
+                            }] else [],
+                        },
                     {
                         args: [
                             "-v=2",
@@ -259,7 +275,15 @@ if samfeatureflags.kubedns then {
                         name: "certs",
                     },
                     configs.kube_config_volume,
-                ],
+                ] + (
+if configs.estate == "prd-samdev" then [{
+                        configMap: {
+                            defaultMode: 511,
+                            name: "cert-age",
+                        },
+                        name: "cert-age",
+                    }] else []
+                ),
             },
         },
     },
