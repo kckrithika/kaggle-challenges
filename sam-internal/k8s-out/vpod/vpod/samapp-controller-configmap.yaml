@@ -7,7 +7,7 @@ data:
       "enableMaddog": true,
       "funnelEndpoint": "ajna0-funnel1-0-vpod.data.sfdc.net:80",
       "maddogMaddogEndpoint": "https://maddog-onebox:8443",
-      "madkubImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000071-5a6dcab2",
+      "madkubImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000074-4c95976a",
       "namespaceHostSubList": [
         "cloudatlas"
       ],
