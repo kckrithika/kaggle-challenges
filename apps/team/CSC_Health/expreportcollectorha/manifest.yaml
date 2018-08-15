@@ -8,6 +8,9 @@ system:
   - name: expreport-collectorha
     count: 3
     volumes:
+      - name: pki-server-cert
+        maddogCert:
+          type: server
       - name: servercertvol
         secret:
           secretName: csc-rc-certificates
@@ -16,7 +19,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: expreport-collectorha
-      image: tnrp/csc-health/report-collector:1.17.0-0000271-bcf31fce
+      image: tnrp/csc-health/report-collector:1.20.0-0000303-b11ea32b
       ports:
       - name: admin
         containerPort: 8082
@@ -30,6 +33,9 @@ system:
         readOnly: true
       - mountPath: /var/secrets/redis
         name: redisauthvol
+        readOnly: true
+      - mountPath: /serverCert
+        name: pki-server-cert
         readOnly: true
       env:
       - name: ReportCollector_redis_host
@@ -46,22 +52,28 @@ system:
         value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
-      - name: ReportCollector_app_https_caCertificates
-        value: "[\"/var/lib/report-collector/certificates/sfdc-internal-ca.crt\"]"
-      - name: ReportCollector_app_https_certificate
-        value: /var/lib/report-collector/certificates/server/rc_server.crt
-      - name: ReportCollector_app_https_privateKey
-        value: /var/lib/report-collector/certificates/server/rc_server.key
+      - name: ReportCollector_app_https_dynamicCertificateOptions_caCert
+        value: /serverCert/ca.pem
+      - name: ReportCollector_app_https_dynamicCertificateOptions_certificateDir
+        value: /serverCert/server/
       - name: ReportCollector_app_https_supportDecompression
         value: true
       - name: ReportCollector_app_https_supportCompression
         value: true
       - name: ReportCollector_app_http_enabled
         value: false
-      - name: ReportCollector_app_redisWriteCircuitBreaker_maxFailures
-        value: 2
+      - name: ReportCollector_app_redisWriteCircuitBreaker_resetTimeout
+        value: 10000
+      - name: ReportCollector_app_serviceProtection_enabled
+        value: true
+      - name: ReportCollector_app_serviceProtection_publishPeriodMs
+        value: 300000
       - name: ReportCollector_ajna_publishEnabled
         value: true
+      - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
+        value: 10
+      - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
+        value: 10
       - name: ReportCollector_datastore
         value: redisIndex
       livenessProbe:
