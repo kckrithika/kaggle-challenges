@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: payloadbot
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/payloadbot:v-0000931-b3743d43
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/payloadbot:v-0001035-225a190b
       command: ["/payloadbot/payloadbot"]
       args:
       - "-gheTokenPath"
