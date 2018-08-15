@@ -14,7 +14,6 @@ system:
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
       - --listeners.external-auth-enabled-clusters[1]=shipping-envoy-tls
-      - --cluster.scraper.delayMs=900000
       ports:
       - containerPort: 15372
       env:
@@ -35,15 +34,15 @@ system:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
       livenessProbe:
-        exec:
-          command:
-          - /bin/true
+        httpGet:
+          path: /manage/health
+          port: 15372
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
-        exec:
-          command:
-          - /bin/true
+        httpGet:
+          path: /manage/health
+          port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sherpa
