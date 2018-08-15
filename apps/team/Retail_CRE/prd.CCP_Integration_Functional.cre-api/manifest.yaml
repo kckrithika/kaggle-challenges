@@ -27,6 +27,8 @@ system:
           value: kingdom-test
         - name: HBASE_DATA_CENTER
           value: prd
+        - name: CONTROL_PLANE_URL
+          value: http://cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5443
       ports:
       - containerPort: 8080
       - containerPort: 7022
