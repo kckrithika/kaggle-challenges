@@ -318,6 +318,9 @@ if slbconfigs.slbInKingdom then {
                                             slbconfigs.logs_volume_mount,
                                             configs.sfdchosts_volume_mount,
                                         ]),
+                                        env: [
+                                            slbconfigs.node_name_env,
+                                        ],
                                     },
                                     slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                                     slbshared.slbCleanupConfig,
