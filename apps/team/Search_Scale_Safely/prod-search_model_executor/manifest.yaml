@@ -14,7 +14,7 @@ system:
         maxUnavailable: 25%
     containers:
     - name: search-model-executor
-      image: sfci/searchdev/smt-search-model-executor:2.6
+      image: sfci/searchdev/smt-search-model-executor:3.0
       ports:
       - name: service-port
         containerPort: 7020
@@ -38,7 +38,7 @@ system:
       - mountPath: /home/sfdc-search-model-executor/logs
         name: logvol
     - name: beacon
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       # mTLS port
       - -endpoint
