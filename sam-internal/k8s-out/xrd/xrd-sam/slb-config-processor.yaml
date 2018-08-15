@@ -62,7 +62,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -96,9 +96,10 @@ spec:
         - --shouldSkipServiceRecords=true
         - --shouldNotDeleteAllFiles=true
         - --log_dir=/host/data/slb/logs/
-        - --skipFilesWithSuffix=slb.block
+        - --shouldSkipSlbBlock=true
+        - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true

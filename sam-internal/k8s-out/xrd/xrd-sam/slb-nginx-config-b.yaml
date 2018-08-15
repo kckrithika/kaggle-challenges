@@ -75,6 +75,8 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverInterface=lo
         - --hostnameOverride=$(NODE_NAME)
+        - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
+        - --client.dialSocket=true
         env:
         - name: NODE_NAME
           valueFrom:
@@ -82,7 +84,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-nginx-config-b
         ports:
         - containerPort: 32146
@@ -133,7 +135,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
@@ -194,7 +196,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-nginx-config-b
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-cert-checker
         volumeMounts:
         - mountPath: /host/data/slb/nginx/config
@@ -240,7 +242,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -274,9 +276,10 @@ spec:
         - --shouldSkipServiceRecords=true
         - --shouldNotDeleteAllFiles=true
         - --log_dir=/host/data/slb/logs/slb-nginx-config-b
-        - --skipFilesWithSuffix=slb.block
+        - --shouldSkipSlbBlock=true
+        - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -296,7 +299,9 @@ spec:
         - --checkSentinel=true
         - --control.configProcSentinel=/host/data/slb/config/slb-nginx-config-b/slb-config-proc.sentinel
         - --control.sentinelExpiration=1800s
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        - --listenOnSocket=true
+        - --readOnly=false
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -314,7 +319,9 @@ spec:
         - --client.serverInterface=lo
         - --control.sentinelExpiration=1200s
         - --nginxPodMode=true
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
+        - --client.dialSocket=true
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-realsvrcfg
         securityContext:
           privileged: true
@@ -339,7 +346,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-cleanup
         securityContext:
           privileged: true
