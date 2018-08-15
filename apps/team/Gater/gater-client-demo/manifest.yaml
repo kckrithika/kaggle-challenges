@@ -12,7 +12,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/gater-client-demo:dmachak-20180815-c703e47
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
-      - containerPort: 8080
+      - containerPort: 8181
         name: scone-http
       - containerPort: 7020
         name: grpc-svc
