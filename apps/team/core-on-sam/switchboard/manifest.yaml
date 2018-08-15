@@ -5,7 +5,7 @@ system:
     email:
       - coreonsam@salesforce.com
   functions:
-  - name: switchboard
+  - name: switchboard-casam
     count: 1 
     containers:
     - name: switchboard 
@@ -47,7 +47,7 @@ system:
 
   loadbalancers:
   - lbname: switchboard-lb
-    function: switchboard
+    function: switchboard-casam
     nodeExposed: true
     ports:
     - port: 15001
