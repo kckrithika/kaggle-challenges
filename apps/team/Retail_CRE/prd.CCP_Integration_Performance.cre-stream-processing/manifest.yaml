@@ -35,7 +35,7 @@ system:
           value: http://ajna0-funnel1-0-prd.data.sfdc.net
       ports:
       - containerPort: 8080
-      - containerPort: 7020
+      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         initialDelaySeconds: 120
@@ -53,7 +53,7 @@ system:
       - mountPath: /opt/cre/cre-sp-ccp-perf
         name: logvol
     - name: sherpa-cre-stream-processing
-      image: sfci/servicelibs/sherpa:2.0.26
+      image: sfci/servicelibs/sherpa:2.0.27
       volumeMounts:
       - mountPath: /log
         name: sherpa-log-volume
@@ -68,8 +68,8 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7443
-        name: sh-in-http2-tls
+      - containerPort: 7442
+        name: sh-in-http1-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
@@ -85,13 +85,10 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
     - name: beacon
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - retail-cre/cre-sp-ccp-perf:DATACENTER_ALLENV:7443
-      # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
-      # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
-      # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
+      - retail-cre/cre-sp-ccp-perf:DATACENTER_ALLENV:7442
       livenessProbe:
         initialDelaySeconds: 5
         exec:
