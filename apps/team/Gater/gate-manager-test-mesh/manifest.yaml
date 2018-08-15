@@ -4,7 +4,7 @@ system:
     email:
     - gater@salesforce.com
   functions:
-  - name: gater-mesh-test
+  - name: gater-mesh
     count: 2
     hostnetwork: true
     containers:
@@ -12,6 +12,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.12.0_20180814_102_15eaa8b
       args:
       - --server.port=9090
+      - --scone.srpc.announcing-enabled=false
       - --logging.level.com.zaxxer.hikari=debug
       - --spring.datasource.hikari.maximumPoolSize=6
       - --spring.datasource.hikari.minimumIdle=5
