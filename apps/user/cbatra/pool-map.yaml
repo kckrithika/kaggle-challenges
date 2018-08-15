@@ -1,6 +1,5 @@
+version: v2
 apps:
-# cbatra-test:
-#  - prd/prd-samdev
-#  - prd/prd-samtest
-#  - prd/prd-sam
-
+ cbatra-test:
+  - name: prd/prd-samtest
+  - name: prd/prd-sam
