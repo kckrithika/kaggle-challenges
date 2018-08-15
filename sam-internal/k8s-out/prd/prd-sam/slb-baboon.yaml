@@ -51,6 +51,8 @@ spec:
         - --deleteIpvsIntfFlag=true
         - --deleteBackendPodFlag=true
         - --client.serverInterface=lo
+        - --client.socketDir=/host/data/slb/config/slb-baboon
+        - --client.dialSocket=true
         env:
         - name: NODE_NAME
           valueFrom:
@@ -58,7 +60,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-baboon
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -110,7 +112,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -144,9 +146,10 @@ spec:
         - --shouldSkipServiceRecords=true
         - --shouldNotDeleteAllFiles=true
         - --log_dir=/host/data/slb/logs/slb-baboon
-        - --skipFilesWithSuffix=slb.block
-        - --maxDeleteFileCount=500
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        - --shouldSkipSlbBlock=true
+        - --skipFilesWithSuffix=.sock
+        - --maxDeleteFileCount=20
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -166,7 +169,9 @@ spec:
         - --checkSentinel=true
         - --control.configProcSentinel=/host/data/slb/config/slb-baboon/slb-config-proc.sentinel
         - --control.sentinelExpiration=1800s
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        - --listenOnSocket=true
+        - --readOnly=false
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -185,7 +190,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-cleanup
         securityContext:
           privileged: true
