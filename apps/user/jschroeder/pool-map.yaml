@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam
  appcatalog-lite:
   - prd/prd-sam
+ harverify:
+  - prd/prd-sam
