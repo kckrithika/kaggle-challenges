@@ -5,8 +5,6 @@ system:
   functions:
   - name: dfs-dev
     count: 1
-    identity:
-      serviceName: dfs
     volumes:
     - name: logvol
       hostPath:
