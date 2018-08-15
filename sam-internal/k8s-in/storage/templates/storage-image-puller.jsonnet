@@ -19,7 +19,6 @@ local affinitizeToStoragePool = configs.estate != "prd-skipper";
 // Defines the set of control estates where this service is enabled.
 local enabledEstates = std.set([
     "prd-sam_storage",
-    "prd-sam",
     "prd-skipper",
 ]);
 
