@@ -56,7 +56,7 @@ apps:
   - ukb/ukb-sam
   - hnd/hnd-sam
  SamSelectorLabelTest:
-  - prd/prd-sam
+  - prd/prd-samtest
  mysql:
   - prd/prd-sam
   - prd/prd-samdev
