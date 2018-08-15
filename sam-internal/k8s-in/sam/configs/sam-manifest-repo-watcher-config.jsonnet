@@ -24,4 +24,8 @@ std.prune({
         "pr-scan-frequency": "1800s",
         "num-worker-threads": 5,
         "maximum-github-calls-per-second": 5,
+        "enable-pr-commenter": true,
+        "sdp-root-url": "http://sdp2.csc-sam.prd-sam.prd.slb.sfdc.net",
+        "commenter-test-mode": true,
+        "commenter-test-mode-authors": ["benjamin-caldwell"],
 }) else "SKIP"

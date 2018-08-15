@@ -2,10 +2,15 @@ apiVersion: v1
 data:
   sammanifestrepowatcher.json: |-
     {
+      "commenter-test-mode": true,
+      "commenter-test-mode-authors": [
+        "benjamin-caldwell"
+      ],
       "db-hostname": "mysql.csc-sam.prd-sam.prd.slb.sfdc.net",
       "db-name": "sam_kube_resource",
       "db-password-file": "/var/mysqlPwd/pass.txt",
       "db-username": "root",
+      "enable-pr-commenter": true,
       "freq-scan-on": true,
       "full-scan-on": false,
       "funnel-endpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
@@ -17,6 +22,7 @@ data:
       "pool-map-scan-frequency": "900s",
       "pool-map-scan-on": true,
       "pr-scan-frequency": "1800s",
+      "sdp-root-url": "http://sdp2.csc-sam.prd-sam.prd.slb.sfdc.net",
       "tnrp-bot-account-names": [
         "svc-tnrp-git-rw",
         "svc-tnrp-git"
