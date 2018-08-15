@@ -129,9 +129,9 @@ data:
     = t.git_hash )sam2)sam,\n                                       ( SELECT @row_num
     := 0) counter ORDER BY samlatencymin ) temp\n              WHERE  temp.row_num
     = Round (.95 * @row_num)", "watchdogFrequency": "15m"}], "sql_alerts": [{"alertAction":
-    "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m",
-    "instructions": "The following deployments are reported as bad customer deployments
-    in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
+    "pagerduty", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
+    "10m", "instructions": "The following deployments are reported as bad customer
+    deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
     "name": "SqlSlaDepl", "sql": "SELECT * FROM\n                        (\n                          SELECT\n                            ControlEstate,\n                            Namespace,\n                            Name,\n                            JSON_EXTRACT(Payload,
     ''$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"'') AS email,\n                            CASE
     WHEN JSON_EXTRACT(Payload, ''$.metadata.labels.sam_app'') is NULL then False\n                                 ELSE
@@ -152,7 +152,7 @@ data:
     IS NULL OR availability < 0.6) AND\n                           (kpodsDown IS NULL
     OR kpodsDown >1) AND\n                           NOT ControlEstate LIKE ''prd-%''
     AND\n                           ControlEstate != ''unknown'' AND\n                           desiredReplicas
-    > 1", "watchdogFrequency": "10m"}, {"alertAction": "email", "alertFrequency":
+    > 1", "watchdogFrequency": "10m"}, {"alertAction": "pagerduty", "alertFrequency":
     "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "The following
     minion pools have multiple nodes down in Production requiring immediate attention
     according to our SLA. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
