@@ -18,8 +18,6 @@ system:
       args:
       - --logging.json.enabled=false
       - --zookeeper.seedHosts=shared0-discovery1-0-prd.data.sfdc.net
-      - --metrics.maxNumberOfCollectedMetrics=50000
-      - --metrics.funnelTimeOut=50000
       volumeMounts:
         - mountPath: /log
           name: switchboard-log-volume
