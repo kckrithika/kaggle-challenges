@@ -297,6 +297,7 @@ if slbconfigs.slbInKingdom then {
                                         command: [
                                             "/sdn/slb-cert-checker",
                                             "--metricsEndpoint=" + configs.funnelVIP,
+                                            "--hostnameOverride=$(NODE_NAME)",
                                             "--log_dir=" + slbconfigs.logsDir,
                                             configs.sfdchosts_arg,
                                         ],

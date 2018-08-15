@@ -191,6 +191,7 @@ spec:
       - command:
         - /sdn/slb-cert-checker
         - --metricsEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
+        - --hostnameOverride=$(NODE_NAME)
         - --log_dir=/host/data/slb/logs/slb-nginx-config-b
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
