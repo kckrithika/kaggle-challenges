@@ -34,9 +34,9 @@ local utils = import "util_functions.jsonnet";
         # [small] slice 2: update watchdog img
         "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180810_102303.fc5ddde7.dirty.small-ltm",
 
-        # [benjamincaldwell]
-        "prd,prd-sam,sam-deployment-portal,hypersam": "sam-0002221-ebe5969a",
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002221-ebe5969a",
+        # [benjamincaldwell] enable sdpv2 portal links
+        "prd,prd-sam,sam-deployment-portal,hypersam": "sam-0002224-994cef1b",
+        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002224-994cef1b",
 
         #[rbhat]
         "prd,prd-samdev,samapp-controller,hypersam": "sam-0002222-9f90563d",
