@@ -4,7 +4,7 @@
     local configs = import "config.jsonnet",
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile },
-    local slbflights = import "slbflights.jsonnet",
+    local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: $.dirSuffix },
 
     local configProcSentinel = slbconfigs.configDir + "/slb-config-proc.sentinel",
 
@@ -202,6 +202,29 @@
             configs.sfdchosts_volume_mount,
             slbconfigs.sbin_volume_mount,
         ]),
+        securityContext: {
+            privileged: true,
+        },
+    },
+    slbManifestWatcher(): {
+        name: "slb-manifest-watcher",
+        image: slbimages.hypersdn,
+        command: [
+            "/sdn/slb-manifest-watcher",
+            "--manifestOutputDir=" + slbconfigs.manifestDir,
+            "--tnrpEndpoint=ops0-piperepo1-1-prd.eng.sfdc.net",
+            "--hostnameOverride=$(NODE_NAME)",
+            "--log_dir=" + slbconfigs.logsDir,
+            configs.sfdchosts_arg,
+        ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+        volumeMounts: configs.filter_empty([
+            slbconfigs.slb_volume_mount,
+            configs.sfdchosts_volume_mount,
+        ]),
+        env: [
+            configs.kube_config_env,
+            slbconfigs.node_name_env,
+        ],
         securityContext: {
             privileged: true,
         },

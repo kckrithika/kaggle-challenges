@@ -9,6 +9,7 @@
     slbDockerDir: "/data/slb",
     configDir: self.slbDir + "/config/" + $.dirSuffix,
     logsDir: self.slbDir + "/logs/" + $.dirSuffix,
+    manifestDir: self.slbDir + "/manifests/" + $.dirSuffix,
     cleanupLogsDir: self.logsDir + (if std.length($.dirSuffix) == 0 then "cleanup" else "/cleanup"),
     ipvsMarkerFile: self.slbDir + "/ipvs.marker",
     slbPortalTemplatePath: "/sdn/webfiles",
