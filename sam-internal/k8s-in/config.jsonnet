@@ -6,6 +6,7 @@
 local estate = std.extVar("estate"),
 local kingdom = std.extVar("kingdom"),
 local engOrOps = (if self.kingdom == "prd" || self.kingdom == "xrd" then "eng" else "ops"),
+
 local utils = import "util_functions.jsonnet",
 
     # === DISCOVERY ===
@@ -121,6 +122,26 @@ local utils = import "util_functions.jsonnet",
         tnrp: {
             "sam.data.sfdc.net/owner": "tnrp",
         },
+    },
+    # Use this for every pod that is not on host network.
+    # Add it in one of the containers of the template.
+    # Example usage:
+    # containers: [
+    #      {
+    #      name: "foo",
+    #        resources:
+    #          {
+    #            limits+: { cpu: 10 }
+    #          } + ipAddressResource,
+    #      },
+    #    ],
+     ipAddressResource: {
+      limits+: {
+        "sam.sfdc.net/ip-address": "1",
+      },
+      requests+: {
+        "sam.sfdc.net/ip-address": "1",
+      },
     },
 
     # === KUBERNETES ===

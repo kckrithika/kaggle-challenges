@@ -72,6 +72,7 @@ if std.setMember(configs.estate, enabledEstates) then
                         name: "sfms",
                         image: storageimages.sfms,
                         imagePullPolicy: "IfNotPresent",
+                        resources: {} + if configs.estate == "prd-sam" then configs.ipAddressResource else {},
                         command: [
                             "/opt/sfms/bin/sfms",
                         ],
