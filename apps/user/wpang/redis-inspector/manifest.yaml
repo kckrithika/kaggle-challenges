@@ -91,11 +91,6 @@ system:
           - echo
           - always_healthy
   loadbalancers:
-  - lbname: redisinspectorlb
-    function: redis-inspector
-    ports:
-    - port: 80
-      targetport: 8080
   - lbname: redislb
     function: redis
     nodeExposed: true
