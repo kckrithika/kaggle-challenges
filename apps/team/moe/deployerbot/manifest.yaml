@@ -1,0 +1,28 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: deployerbot
+    count: 1
+    containers:
+    - name: deployerbot
+      image: tnrp/sdn/deployerbot:v-0001046-e41c3fa1
+      command: ["/deployerbot/deployerbot"]
+      args:
+      - "-gheTokenPath"
+      - "/secrets/ghe_pat"
+      - "--promote"
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+      volumeMounts:
+      - mountPath: /secrets
+        name: deployerbot-ghe-pat
+        readOnly: true
+    volumes:
+    - name: deployerbot-ghe-pat
+      k4aSecret:
+        secretName: speedometer-ghe-pat
