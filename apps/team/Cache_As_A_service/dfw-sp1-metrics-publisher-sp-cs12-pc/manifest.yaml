@@ -5,7 +5,7 @@ system:
     email:
       - caas-dev@salesforce.com
   functions:
-  - name: metrics-publisher-sp-cs12-c1
+  - name: metrics-publisher-sp-cs12-pc
     count: 1
     containers:
     - name: metrics-publisher
@@ -16,7 +16,7 @@ system:
       args:
         - --server.port=7502
         - --management.port=7501
-        - --cluster.name=sp-cs12-c1
+        - --cluster.name=sp-cs12-pc
         - --logDir=/home/caas/logs/caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
@@ -38,7 +38,7 @@ system:
        - name: SFDC_ENVIRONMENT
          value: prod
        - name: SFDC_POD
-         value: sp-cs12-c1
+         value: sp-cs12-pc
        - name: CAAS_ENVIRONMENT
          value: none
     volumes:
@@ -47,4 +47,4 @@ system:
         path: /home/caas/logs/caas
     - name: secretvol
       secret:
-        secretName: caas-secret-sp-cs12-c1
+        secretName: caas-secret-sp-cs12-pc1

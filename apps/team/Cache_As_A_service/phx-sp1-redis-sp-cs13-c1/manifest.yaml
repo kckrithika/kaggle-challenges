@@ -11,8 +11,8 @@ system:
     - name: caas-redis
       image: docker-all/dva/caas/caas-redis-release-4.0.10:4
       resources:
-        limits: { memory: "7Gi" }
-        requests: { memory: "4Gi" }
+        limits: { memory: "7G" }
+        requests: { memory: "7G" }
       volumeMounts:
         - mountPath: /home/sfdc-caas/logs
           name: logvol
@@ -52,7 +52,7 @@ system:
          value: prod
       resources:
         limits: { memory: "500M" }
-        requests: { memory: "200M" }
+        requests: { memory: "500M" }
     volumes:
     - name: logvol
       hostPath:
