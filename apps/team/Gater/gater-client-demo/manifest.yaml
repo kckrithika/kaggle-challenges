@@ -29,28 +29,28 @@ system:
       - mountPath: /home/scone/logs
         name: logvolservice
 
-#    - name: beacon
+    - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
-#      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       # This announces your gRPC endpoint for HTTP2 traffic with mTLS
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       # The following are system defined variables injected by SAM:
       # FUNCTION: This is the value listed in the manifest for the function key.
       # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
-#      args:
-#      - -endpoint
-#      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER:7443
-#      - -logging.dir
-#      - /log
-#      livenessProbe:
-#        initialDelaySeconds: 5
-#        exec:
-#          command:
-#            - "/home/scone/is-alive.sh"
+      args:
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER:7443
+      - -logging.dir
+      - /log
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
       # Need to mount to a volume so that logs can be shipped to splunk
-#      volumeMounts:
-#      - mountPath: /log
-#        name: logvolbeacon
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
 
     - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md
@@ -83,9 +83,9 @@ system:
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
-#    - name: logvolbeacon
-#      hostPath:
-#        path: /home/sfdc-scone-gater-client-demo-beacon/logs
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-scone-gater-client-demo-beacon/logs
     - name: sherpaclientcert
       maddogCert:
         type: client
