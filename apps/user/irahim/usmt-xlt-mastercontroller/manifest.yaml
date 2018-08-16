@@ -19,3 +19,6 @@ system:
           - /database/GeoIP2-City.mmdb
         initialDelaySeconds: 10
         periodSeconds: 5
+    volumes:
+    - name: test-data-volume
+      emptyDir: {}
