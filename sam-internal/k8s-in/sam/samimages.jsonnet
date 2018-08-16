@@ -26,7 +26,11 @@ local utils = import "util_functions.jsonnet";
 
         #[rbhat]
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002222-9f90563d",
+
+        #[small]
+        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180816_155056.7aa464a5.dirty.small-ltm",
         },
+
 
     ### Per-phase image tags
     per_phase: {
