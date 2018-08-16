@@ -33,7 +33,9 @@ spec:
         - --subnet=10.229.136.0/22
         - --client.serverPort=12088
         - --client.serverInterface=lo
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        - --client.socketDir=/host/data/slb/config/slb-dns-register
+        - --client.dialSocket=true
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -77,7 +79,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -111,9 +113,10 @@ spec:
         - --shouldSkipServiceRecords=true
         - --shouldNotDeleteAllFiles=true
         - --log_dir=/host/data/slb/logs/slb-dns-register
-        - --skipFilesWithSuffix=slb.block
+        - --shouldSkipSlbBlock=true
+        - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -136,7 +139,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -160,7 +163,9 @@ spec:
         - --checkSentinel=true
         - --control.configProcSentinel=/host/data/slb/config/slb-dns-register/slb-config-proc.sentinel
         - --control.sentinelExpiration=1800s
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001022-587b2ae1
+        - --listenOnSocket=true
+        - --readOnly=false
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001028-bee0e21e
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
