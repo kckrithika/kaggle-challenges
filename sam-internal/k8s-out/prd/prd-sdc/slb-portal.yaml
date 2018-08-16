@@ -213,6 +213,7 @@ spec:
         - /sdn/slb-manifest-watcher
         - --manifestOutputDir=/host/data/slb/manifests/slb-portal
         - --tnrpEndpoint=ops0-piperepo1-1-prd.eng.sfdc.net
+        - --manifestUrl=tnrp/content_repo/0/archive/test-manifests
         - --hostnameOverride=$(NODE_NAME)
         - --log_dir=/host/data/slb/logs/slb-portal
         - --hostsConfigFile=/sfdchosts/hosts.json
@@ -234,6 +235,10 @@ spec:
           name: var-slb-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /etc/pki_service
+          name: maddog-certs
       nodeSelector:
         slb-dns-register: "true"
       volumes:

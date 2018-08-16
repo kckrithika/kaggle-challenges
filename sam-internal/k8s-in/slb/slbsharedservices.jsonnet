@@ -213,6 +213,7 @@
             "/sdn/slb-manifest-watcher",
             "--manifestOutputDir=" + slbconfigs.manifestDir,
             "--tnrpEndpoint=ops0-piperepo1-1-prd.eng.sfdc.net",
+            "--manifestUrl=tnrp/content_repo/0/archive/test-manifests",
             "--hostnameOverride=$(NODE_NAME)",
             "--log_dir=" + slbconfigs.logsDir,
             configs.sfdchosts_arg,
@@ -220,6 +221,8 @@
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             configs.sfdchosts_volume_mount,
+            configs.kube_config_volume_mount,
+            configs.maddog_cert_volume_mount,
         ]),
         env: [
             configs.kube_config_env,
