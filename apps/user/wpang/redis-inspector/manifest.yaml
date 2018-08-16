@@ -14,6 +14,8 @@ system:
     containers:
     - name: redis-inspector
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wpang/redis-inspector:081418
+      ports:
+      - containerPort: 8080
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
@@ -50,6 +52,13 @@ system:
         value: /certs/ca.pem
       - name: RINSP_REDIS_AUTHPATH
         value: /var/secrets/redis/auth
+      - name: RINSP_HEALTH_PORT
+        value: 8080
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8080
+        initialDelaySeconds: 31
       command: ["/bin/sh", "-c"]
       args: ["
       export RINSP_AJNA_FUNNEL_HOST=ajna0-funnel1-1-prd.eng.sfdc.net ;
@@ -82,6 +91,11 @@ system:
           - echo
           - always_healthy
   loadbalancers:
+  - lbname: redisinspectorlb
+    function: redis-inspector
+    ports:
+    - port: 80
+      targetport: 8080
   - lbname: redislb
     function: redis
     nodeExposed: true
