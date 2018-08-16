@@ -1633,3 +1633,79 @@ apps:
   - name: phx/phx-sp4-sam_caas
  phx-sp4-redis-sp-na79-pc:
   - name: phx/phx-sp4-sam_caas
+ frf-sp1-metrics-publisher-sp-cs83-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-redis-sp-cs83-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-metrics-publisher-sp-cs84-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-redis-sp-cs84-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-metrics-publisher-sp-cs85-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-redis-sp-cs85-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-metrics-publisher-sp-cs88-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-redis-sp-cs88-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-metrics-publisher-sp-cs89-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-redis-sp-cs89-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-metrics-publisher-sp-eu11-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-redis-sp-eu11-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-metrics-publisher-sp-eu2-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-redis-sp-eu2-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-metrics-publisher-sp-eu4-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-redis-sp-eu4-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-metrics-publisher-sp-eu6-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-redis-sp-eu6-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-metrics-publisher-sp-eu7-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-redis-sp-eu7-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-metrics-publisher-sp-eu9-pc:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-redis-sp-eu9-pc:
+  - name: frf/frf-sp1-sam_caas
+ par-sp1-metrics-publisher-sp-cs84-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-redis-sp-cs84-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-metrics-publisher-sp-cs85-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-redis-sp-cs85-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-metrics-publisher-sp-cs88-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-redis-sp-cs88-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-metrics-publisher-sp-cs89-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-redis-sp-cs89-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-metrics-publisher-sp-eu11-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-redis-sp-eu11-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-metrics-publisher-sp-eu5-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-redis-sp-eu5-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-metrics-publisher-sp-eu7-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-redis-sp-eu7-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-metrics-publisher-sp-eu9-pc:
+  - name: par/par-sp1-sam_caas
+ par-sp1-redis-sp-eu9-pc:
+  - name: par/par-sp1-sam_caas

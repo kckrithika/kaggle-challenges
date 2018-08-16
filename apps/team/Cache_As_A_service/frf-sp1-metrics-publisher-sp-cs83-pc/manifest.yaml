@@ -1,0 +1,50 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - rpragada@salesforce.com
+  functions:
+  - name: metrics-publisher-sp-cs83-pc
+    count: 1
+    containers:
+    - name: metrics-publisher
+      image: docker-all/dva/caas/caas-metrics-publisher-prod-2.6.4:7
+      resources:
+        limits: { memory: "2048M" }
+        requests: { memory: "2048M" }
+      args:
+        - --server.port=7502
+        - --management.port=7501
+        - --cluster.name=sp-cs83-pc
+        - --logDir=/home/caas/logs/caas
+      volumeMounts:
+        - mountPath: /home/caas/logs/caas
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      livenessProbe:
+        httpGet:
+          path: /manage/config
+          port: 7501
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 7502
+      - containerPort: 7501
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: prod
+       - name: SFDC_POD
+         value: sp-cs83-pc
+       - name: CAAS_ENVIRONMENT
+         value: none
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs/caas
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-cs83-pc1
