@@ -18,6 +18,8 @@ system:
       env:
         - name: El337
           value: "30100111012"
+        - name: test
+          value: "value"
       ports:
       - containerPort: 8000
       livenessProbe:
