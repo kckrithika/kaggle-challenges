@@ -20,6 +20,10 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+         # [cbatra] Deploying node controller changes for PRD IP issue
+        "prd,prd-sam,node-controller,hypersam": "sam-0002192-400bcafb",
+        "prd,prd-sam,samcontrol,hypersam": "sam-0002192-400bcafb",
+
         # [benjamincaldwell] enable sdpv2 portal links
         "prd,prd-sam,sam-deployment-portal,hypersam": "sam-0002224-994cef1b",
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002226-8d4a37a9",
