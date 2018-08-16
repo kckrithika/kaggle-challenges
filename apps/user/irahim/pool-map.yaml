@@ -5,7 +5,7 @@ apps:
 #  - prd/prd-sam
  universal-search-xlt:
   - prd/prd-sam
-# usmt-xlt-mastercontroller:
-#  - prd/prd-sam
+ usmt-xlt-mastercontroller:
+  - prd/prd-sam
  universal-search-master-xlt:
   - prd/prd-sam
