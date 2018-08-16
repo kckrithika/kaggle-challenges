@@ -5,7 +5,7 @@ system:
     email:
       - rpragada@salesforce.com
   functions:
-  - name: metrics-publisher-sp-na88-pc
+  - name: metrics-publisher-sp-na44-pc
     count: 1
     containers:
     - name: metrics-publisher
@@ -16,7 +16,7 @@ system:
       args:
         - --server.port=7502
         - --management.port=7501
-        - --cluster.name=sp-na88-pc
+        - --cluster.name=sp-na44-pc
         - --logDir=/home/caas/logs/caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
@@ -38,7 +38,7 @@ system:
        - name: SFDC_ENVIRONMENT
          value: prod
        - name: SFDC_POD
-         value: sp-na88-pc
+         value: sp-na44-pc
        - name: CAAS_ENVIRONMENT
          value: none
     volumes:
@@ -47,4 +47,4 @@ system:
         path: /home/caas/logs/caas
     - name: secretvol
       secret:
-        secretName: caas-secret-sp-na88-pc1
+        secretName: caas-secret-sp-na44-pc1

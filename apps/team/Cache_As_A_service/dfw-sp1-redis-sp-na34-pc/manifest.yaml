@@ -5,7 +5,7 @@ system:
     email:
       - rpragada@salesforce.com
   functions:
-  - name: redis-sp-na88-pc
+  - name: redis-sp-na34-pc
     count: 8
     containers:
     - name: caas-redis
@@ -37,9 +37,9 @@ system:
       image: sfci/servicelibs/beacon:0078716f45375dc0b114849e13d9b1dbf83177a9
       args:
       - -endpoint
-      - caas/cluster/sp-na88-pc:SUPERPOD:12000
+      - caas/cluster/sp-na34-pc:SUPERPOD:12000
       - -logservdir
-      - /home/sfdc-caas/logs/beacon-sp-na88-pc-$(FUNCTION_INSTANCE_IP)
+      - /home/sfdc-caas/logs/beacon-sp-na34-pc-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -60,4 +60,4 @@ system:
         path: /home/sfdc-caas/logs
     - name: secretvol
       secret:
-         secretName: caas-secret-sp-na88-pc1
+         secretName: caas-secret-sp-na34-pc1
