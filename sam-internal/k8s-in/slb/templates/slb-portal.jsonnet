@@ -85,7 +85,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           slbshared.slbCleanupConfig,
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort),
                           slbshared.slbLogCleanup,
-                      ] + slbflights.getManifestWatcherIfEnabled(),
+                      ] + slbflights.getPortalManifestWatcherIfEnabled(),
                       nodeSelector: {
                           "slb-dns-register": "true",
                       },

@@ -4,7 +4,8 @@
     local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: $.dirSuffix },
 
     local nodeApiUnixSocketEnabled = (if slbimages.hypersdn_build >= 1028 then true else false),
-    local manifestWatcherEnabled = (if slbimages.phaseNum <= 1 then true else false),
+    local portalManifestWatcherEnabled = (if slbimages.phaseNum <= 0 then true else false),
+    local manifestWatcherEnabled = (if slbimages.phaseNum <= 0 then true else false),
 
     getNodeApiClientSocketSettings(configDir):: (if nodeApiUnixSocketEnabled then [
                                                      "--client.socketDir=" + configDir,
@@ -16,6 +17,9 @@
                                             "--readOnly=false",
                                         ] else []),
 
+    getPortalManifestWatcherIfEnabled():: (if portalManifestWatcherEnabled then [
+                                            slbshared.slbManifestWatcher(),
+                                        ] else []),
     getManifestWatcherIfEnabled():: (if manifestWatcherEnabled then [
                                             slbshared.slbManifestWatcher(),
                                      ] else []),

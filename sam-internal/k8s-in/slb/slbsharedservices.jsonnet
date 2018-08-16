@@ -213,7 +213,6 @@
             "/sdn/slb-manifest-watcher",
             "--manifestOutputDir=" + slbconfigs.manifestDir,
             "--tnrpEndpoint=ops0-piperepo1-1-prd.eng.sfdc.net",
-            "--manifestUrl=tnrp/content_repo/0/archive/test-manifests",
             "--hostnameOverride=$(NODE_NAME)",
             "--log_dir=" + slbconfigs.logsDir,
             configs.sfdchosts_arg,
