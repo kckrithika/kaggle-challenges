@@ -3,7 +3,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local portconfigs = import "slbports.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-dns-register" };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-dns-register" };
-local slbflights = import "slbflights.jsonnet";
+local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-dns-register" };
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -66,7 +66,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbshared.slbCleanupConfig,
                     slbshared.slbLogCleanup,
                     slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort),
-                ],
+                ] + slbflights.getManifestWatcherIfEnabled(),
                 nodeSelector: {
                     "slb-dns-register": "true",
                 },

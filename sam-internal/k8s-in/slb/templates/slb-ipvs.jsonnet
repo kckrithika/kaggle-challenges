@@ -4,7 +4,7 @@ local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-ipvs" };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ipvs" };
-local slbflights = import "slbflights.jsonnet";
+local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-ipvs" };
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -207,7 +207,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbshared.slbNodeApi(slbports.slb.slbNodeApiIpvsOverridePort),
                     slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIpvsOverridePort),
                     slbshared.slbLogCleanup,
-                ],
+                ] + slbflights.getManifestWatcherIfEnabled(),
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
                 },

@@ -6,7 +6,7 @@ local slbports = import "slbports.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile };
-local slbflights = import "slbflights.jsonnet";
+local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 
 if slbconfigs.slbInKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -328,7 +328,7 @@ if slbconfigs.slbInKingdom then {
                                     slbshared.slbNodeApi(slbports.slb.slbNodeApiPort),
                                     slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
                                     slbshared.slbLogCleanup,
-                                ] else []
+                                ] + slbflights.getManifestWatcherIfEnabled() else []
                             ),
                 initContainers: [
                     madkub.madkubInitContainer(),

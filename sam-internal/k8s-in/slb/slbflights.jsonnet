@@ -1,7 +1,12 @@
 {
+    dirSuffix:: "",
     local slbimages = import "slbimages.jsonnet",
+    local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: $.dirSuffix },
 
     local nodeApiUnixSocketEnabled = (if slbimages.hypersdn_build >= 1028 then true else false),
+    # Special feature flag for portal so we can initially release manifest watcher in portal's pod only
+    local portalManifestWatcherEnabled = (if slbimages.phaseNum <= 0 then true else false),
+    local manifestWatcherEnabled = (if slbimages.phaseNum <= 0 then true else false),
 
     getNodeApiClientSocketSettings(configDir):: (if nodeApiUnixSocketEnabled then [
                                                      "--client.socketDir=" + configDir,
@@ -12,4 +17,11 @@
                                             "--listenOnSocket=true",
                                             "--readOnly=false",
                                         ] else []),
+
+    getPortalManifestWatcherIfEnabled():: (if portalManifestWatcherEnabled then [
+                                            slbshared.slbManifestWatcher(),
+                                        ] else []),
+    getManifestWatcherIfEnabled():: (if manifestWatcherEnabled then [
+                                            slbshared.slbManifestWatcher(),
+                                     ] else []),
 }
