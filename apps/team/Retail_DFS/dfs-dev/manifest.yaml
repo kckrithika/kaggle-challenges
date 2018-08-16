@@ -71,7 +71,7 @@ system:
           mountPath: /client-certs
       env:
         - name: SFDC_ENVIRONMENT
-          value: dfsDev
+          value: stmfa
       ports:
         - containerPort: 7442
         - containerPort: 7014
