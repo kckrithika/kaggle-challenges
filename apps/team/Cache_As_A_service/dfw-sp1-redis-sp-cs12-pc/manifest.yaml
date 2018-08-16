@@ -53,7 +53,7 @@ system:
          value: prod
       resources:
         limits: { memory: "500M" }
-        requests: { memory: "200M" }
+        requests: { memory: "500M" }
     volumes:
     - name: logvol
       hostPath:
