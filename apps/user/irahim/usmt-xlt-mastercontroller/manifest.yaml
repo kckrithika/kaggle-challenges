@@ -2,18 +2,20 @@ apiVersion: v1
 
 system:
   functions:
-  - name: usmt-xlt-mastercontroller
-    count: 1
+  - name: test-data
+    count: 3
     containers:
-    - name: usmt-xlt-mastercontroller
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/usmt-xlt-mastercontroller:20180807_1
+    - name: test-data
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/test-data:20180816113256
+      args:
+      - -d
+      volumeMounts:
+      - mountPath: /database
+        name: test-data-volume
       livenessProbe:
         exec:
           command:
-          - cat
-          - ./home/runtest.sh
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - ./home/runtest.sh
+          - ls
+          - /database/GeoIP2-City.mmdb
+        initialDelaySeconds: 10
+        periodSeconds: 5
