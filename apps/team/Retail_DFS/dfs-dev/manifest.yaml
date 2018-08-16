@@ -18,7 +18,7 @@ system:
 
     containers:
     - name: dfs-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.10.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.11.1
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
@@ -26,7 +26,7 @@ system:
         mountPath: /client-certs
       env:
       - name: SFDC_ENVIRONMENT
-        value: dfsDev
+        value: stmfa
       - name: LOAD_CC_CERT
         value: true
       - name: MDS_CANONICALMETADATA_SOURCETENANTKEY
@@ -71,7 +71,7 @@ system:
           mountPath: /client-certs
       env:
         - name: SFDC_ENVIRONMENT
-          value: dfsDev
+          value: stmfa
       ports:
         - containerPort: 7442
         - containerPort: 7014
