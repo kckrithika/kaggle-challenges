@@ -50,6 +50,8 @@ system:
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
+      - --metrics.maxNumberOfCollectedMetrics=50000
+      - --metrics.funnelTimeOut=50000
       ports:
       - containerPort: 15001
       - containerPort: 15373
