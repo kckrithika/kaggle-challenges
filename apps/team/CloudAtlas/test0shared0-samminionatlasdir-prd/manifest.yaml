@@ -51,6 +51,8 @@ system:
         name: logvol
       - mountPath: /certs
         name: server-cert
+      - mountPath: /clientcerts
+        name: client-cert
       - mountPath: /secrets
         name: secretsvol
         readOnly: true
@@ -88,6 +90,9 @@ system:
     - name: server-cert
       maddogCert:
         type: server
+    - name: client-cert
+      maddogCert:
+        type: client
     - name: secretsvol
       secret:
         secretName: passwd
