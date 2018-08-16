@@ -1949,3 +1949,79 @@ apps:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-na73-pc:
   - name: ord/ord-sp2-sam_caas
+ hnd-sp1-metrics-publisher-sp-ap0-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-ap0-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-ap1-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-ap1-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-ap6-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-ap6-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-ap7-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-ap7-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-cs31-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-cs31-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-cs5-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-cs5-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-cs6-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-cs6-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-cs72-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-cs72-pc:
+  - name: hnd/hnd-sp1-sam_caas
+ ukb-sp1-metrics-publisher-sp-ap0-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-redis-sp-ap0-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-metrics-publisher-sp-ap1-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-redis-sp-ap1-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-metrics-publisher-sp-ap2-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-redis-sp-ap2-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-metrics-publisher-sp-ap3-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-redis-sp-ap3-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-metrics-publisher-sp-ap4-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-redis-sp-ap4-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-metrics-publisher-sp-ap5-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-redis-sp-ap5-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-metrics-publisher-sp-cs31-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-redis-sp-cs31-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-metrics-publisher-sp-cs5-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-redis-sp-cs5-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-metrics-publisher-sp-cs57-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-redis-sp-cs57-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-metrics-publisher-sp-cs58-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-redis-sp-cs58-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-metrics-publisher-sp-cs6-pc:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-redis-sp-cs6-pc:
+  - name: ukb/ukb-sp1-sam_caas
