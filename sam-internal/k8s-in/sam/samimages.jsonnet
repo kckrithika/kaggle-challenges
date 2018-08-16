@@ -20,13 +20,6 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [cbatra] Deploying node controller changes for PRD IP issue
-        "prd,prd-samdev,node-controller,hypersam": "sam-0002192-400bcafb",
-        "prd,prd-samdev,samcontrol,hypersam": "sam-0002192-400bcafb",
-
-         # [cbatra] Deploying node controller changes for PRD IP issue
-        "prd,prd-sam,node-controller,hypersam": "sam-0002192-400bcafb",
-        "prd,prd-sam,samcontrol,hypersam": "sam-0002192-400bcafb",
 
         # [thargrove] Enable multi-query pages in sam-sql-reporter
         "prd,prd-sam,sam-sql-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20180807_165826.3d22ff09.dirty.thargrove-ltm1",
@@ -39,7 +32,6 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002226-8d4a37a9",
 
         #[rbhat]
-        "prd,prd-samdev,samapp-controller,hypersam": "sam-0002222-9f90563d",
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002222-9f90563d",
         },
 
@@ -68,7 +60,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-            hypersam: "sam-0002190-d048106f",
+            hypersam: "sam-0002225-507ca37b",
             madkub: "1.0.0-0000074-4c95976a",
             madkubSidecar: "1.0.0-0000074-4c95976a",
             },
