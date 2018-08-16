@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: <not sure where to get this from>
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sdn/deployerbot:v-0001046-e41c3fa1
       command: ["/deployerbot/deployerbot"]
       args:
       - "-gheTokenPath"
@@ -26,15 +26,3 @@ system:
     - name: deployerbot-ghe-pat
       k4aSecret:
         secretName: speedometer-ghe-pat
-  loadbalancers:
-  - lbname: deployerbot
-    function: deployerbot
-    slbenabled: true
-    ports:
-      - port: 80
-        targetport: 8080
-        lbtype: http
-      - port: 443
-        targetport: 8080
-        lbtype: http
-        tls: true
