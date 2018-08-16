@@ -31,7 +31,7 @@ system:
 
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       # This announces your gRPC endpoint for HTTP2 traffic with mTLS
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       # The following are system defined variables injected by SAM:
@@ -39,7 +39,9 @@ system:
       # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER:7443
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       - -logging.dir
       - /log
       livenessProbe:
@@ -53,32 +55,33 @@ system:
         name: logvolbeacon
 
     - name: sherpa
-      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md
-      image: sfci/servicelibs/sherpa:2.0.25
-      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/75
+      image: sfci/servicelibs/sherpa-envoy:7e40ce8be635a6ef46fbc64657af42ab9c39ea65
       ports:
-      - containerPort: 15373
-        name: sherpa-adm
-      - containerPort: 7443
-        name: grpc-tls-in
+      - name: http2-in
+        containerPort: 7012
+      - name: http2-tls-in
+        containerPort: 7443
+      - name: sherpa-adm
+        containerPort: 15373
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
-        initialDelaySeconds: 120
+          - ./bin/is-alive
+        initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
-        initialDelaySeconds: 110
+          - ./bin/is-ready
+        initialDelaySeconds: 15
         periodSeconds: 5
-      # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
-      volumeMounts:
-      - name: sherpaclientcert
-        mountPath: /client-certs
-      - name: sherpaservercert
-        mountPath: /server-certs
+      terminationMessagePolicy: FallbackToLogsOnError
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
@@ -86,10 +89,10 @@ system:
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-scone-gater-client-demo-beacon/logs
-    - name: sherpaclientcert
+    - name: tls-client-cert
       maddogCert:
         type: client
-    - name: sherpaservercert
+    - name: tls-server-cert
       maddogCert:
         type: server
     - name: logvolservice
