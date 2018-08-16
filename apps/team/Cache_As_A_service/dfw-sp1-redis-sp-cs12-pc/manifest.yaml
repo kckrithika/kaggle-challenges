@@ -11,8 +11,8 @@ system:
     - name: caas-redis
       image: docker-all/dva/caas/caas-redis-release-4.0.10:4
       resources:
-        limits: { memory: "500Mi" }
-        requests: { memory: "256Mi" }
+        limits: { memory: "500M" }
+        requests: { memory: "500M" }
       volumeMounts:
         - mountPath: /home/sfdc-caas/logs
           name: logvol
@@ -33,7 +33,7 @@ system:
         timeoutSeconds: 10
       ports:
       - containerPort: 12000
-    - name: caas-redis-announcer-sp-cs12-pc
+    - name: caas-redis-announcer
       image: sfci/servicelibs/beacon:0078716f45375dc0b114849e13d9b1dbf83177a9
       args:
       - -endpoint
