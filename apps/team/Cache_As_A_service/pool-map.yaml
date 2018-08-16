@@ -1209,10 +1209,6 @@ apps:
   - name: dfw/dfw-sp1-sam_caas
  dfw-sp1-redis-sp-na33-pc:
   - name: dfw/dfw-sp1-sam_caas
- dfw-sp1-metrics-publisher-sp-na38-pc:
-  - name: dfw/dfw-sp1-sam_caas
- dfw-sp1-redis-sp-na38-pc:
-  - name: dfw/dfw-sp1-sam_caas
  dfw-sp1-metrics-publisher-sp-na39-pc:
   - name: dfw/dfw-sp1-sam_caas
  dfw-sp1-redis-sp-na39-pc:
@@ -1225,21 +1221,9 @@ apps:
   - name: dfw/dfw-sp1-sam_caas
  dfw-sp1-redis-sp-na8-pc:
   - name: dfw/dfw-sp1-sam_caas
- dfw-sp1-metrics-publisher-sp-na85-pc:
-  - name: dfw/dfw-sp1-sam_caas
- dfw-sp1-redis-sp-na85-pc:
-  - name: dfw/dfw-sp1-sam_caas
- dfw-sp1-metrics-publisher-sp-na88-pc:
-  - name: dfw/dfw-sp1-sam_caas
- dfw-sp1-redis-sp-na88-pc:
-  - name: dfw/dfw-sp1-sam_caas
  phx-sp1-metrics-publisher-sp-ap3-pc:
   - name: phx/phx-sp1-sam_caas
  phx-sp1-redis-sp-ap3-pc:
-  - name: phx/phx-sp1-sam_caas
- phx-sp1-metrics-publisher-sp-ap8-pc:
-  - name: phx/phx-sp1-sam_caas
- phx-sp1-redis-sp-ap8-pc:
   - name: phx/phx-sp1-sam_caas
  phx-sp1-metrics-publisher-sp-cs12-pc:
   - name: phx/phx-sp1-sam_caas
@@ -1285,10 +1269,6 @@ apps:
   - name: phx/phx-sp1-sam_caas
  phx-sp1-redis-sp-na33-pc:
   - name: phx/phx-sp1-sam_caas
- phx-sp1-metrics-publisher-sp-na38-pc:
-  - name: phx/phx-sp1-sam_caas
- phx-sp1-redis-sp-na38-pc:
-  - name: phx/phx-sp1-sam_caas
  phx-sp1-metrics-publisher-sp-na39-pc:
   - name: phx/phx-sp1-sam_caas
  phx-sp1-redis-sp-na39-pc:
@@ -1301,11 +1281,31 @@ apps:
   - name: phx/phx-sp1-sam_caas
  phx-sp1-redis-sp-na8-pc:
   - name: phx/phx-sp1-sam_caas
- phx-sp1-metrics-publisher-sp-na85-pc:
+ dfw-sp1-metrics-publisher-sp-na34-pc:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-redis-sp-na34-pc:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-metrics-publisher-sp-na44-pc:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-redis-sp-na44-pc:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-metrics-publisher-sp-na45-pc:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-redis-sp-na45-pc:
+  - name: dfw/dfw-sp1-sam_caas
+ phx-sp1-metrics-publisher-sp-ap4-pc:
   - name: phx/phx-sp1-sam_caas
- phx-sp1-redis-sp-na85-pc:
+ phx-sp1-redis-sp-ap4-pc:
   - name: phx/phx-sp1-sam_caas
- phx-sp1-metrics-publisher-sp-na88-pc:
+ phx-sp1-metrics-publisher-sp-na34-pc:
   - name: phx/phx-sp1-sam_caas
- phx-sp1-redis-sp-na88-pc:
+ phx-sp1-redis-sp-na34-pc:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-metrics-publisher-sp-na44-pc:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-redis-sp-na44-pc:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-metrics-publisher-sp-na45-pc:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-redis-sp-na45-pc:
   - name: phx/phx-sp1-sam_caas
