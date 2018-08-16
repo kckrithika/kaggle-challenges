@@ -18,7 +18,7 @@ system:
 
     containers:
     - name: mist61-core
-      image: tnrp/casam/coreapp:214_patch__16407912-0000114-bd784e23
+      image: tnrp/casam/coreapp:214_patch__16407912-0000115-ea3f2d06
       env:
         # DB info
         - name: DB_USER
