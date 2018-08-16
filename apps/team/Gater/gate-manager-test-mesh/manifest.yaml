@@ -14,10 +14,6 @@ system:
       - --server.port=9090
       - --scone.srpc.announcing-enabled=false
       - --logging.evaluator.level=ALWAYS_LOG
-      - --logging.level.com.zaxxer.hikari=debug
-      - --spring.datasource.hikari.maximumPoolSize=6
-      - --spring.datasource.hikari.minimumIdle=5
-      - --spring.datasource.hikari.leakDetectionThreshold=2000
       - --gater-service.thread.pool.max-size=0
       ports:
       - containerPort: 7020
