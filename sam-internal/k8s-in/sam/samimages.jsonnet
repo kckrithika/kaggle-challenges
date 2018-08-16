@@ -36,7 +36,7 @@ local utils = import "util_functions.jsonnet";
 
         # [benjamincaldwell] enable sdpv2 portal links
         "prd,prd-sam,sam-deployment-portal,hypersam": "sam-0002224-994cef1b",
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002224-994cef1b",
+        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002226-8d4a37a9",
 
         #[rbhat]
         "prd,prd-samdev,samapp-controller,hypersam": "sam-0002222-9f90563d",
