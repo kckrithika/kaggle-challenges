@@ -1,0 +1,63 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - rpragada@salesforce.com
+  functions:
+  - name: redis-sp-na61-pc
+    count: 8
+    containers:
+    - name: caas-redis
+      image: docker-all/dva/caas/caas-redis-release-4.0.10:4
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "500M" }
+      volumeMounts:
+        - mountPath: /home/sfdc-caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args:
+        - --port=12000
+        - --maxMemoryMB=256
+        - --maxMemoryPolicy=noeviction
+        - --logDir=/home/sfdc-caas/logs/redis-$(FUNCTION_INSTANCE_IP)
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12000
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      ports:
+      - containerPort: 12000
+    - name: caas-redis-announcer
+      image: sfci/servicelibs/beacon:0078716f45375dc0b114849e13d9b1dbf83177a9
+      args:
+      - -endpoint
+      - caas/cluster/sp-na61-pc:SUPERPOD:12000
+      - -logservdir
+      - /home/sfdc-caas/logs/beacon-sp-na61-pc-$(FUNCTION_INSTANCE_IP)
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: prod
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "500M" }
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-caas/logs
+    - name: secretvol
+      secret:
+         secretName: caas-secret-sp-na61-pc1
