@@ -7,6 +7,9 @@ system:
     containers:
     - name: deployerbot
       image: tnrp/sdn/deployerbot:v-0001048-49557a9b
+      env:
+      - name: GO_PIPELINE_LABEL
+        value: 1
       command: ["/deployerbot/deployerbot"]
       args:
       - "-gheTokenPath"
