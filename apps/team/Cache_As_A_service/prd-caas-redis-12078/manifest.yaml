@@ -3,15 +3,15 @@ apiVersion: v1
 system:
   functions:
   - name: redis-12078
-    count: 4 
+    count: 1 
     hostnetwork: true
     containers:
     - name: caas-redis 
       # container image/version to  run
       image: tnrp/caas/caas-redis:4.0.10-0000024-16334693
       resources:
-        limits: { memory: "10Gi" }
-        requests: { memory: "6Gi" }
+        limits: { memory: "2Gi" }
+        requests: { memory: "2Gi" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -20,7 +20,7 @@ system:
           readOnly: true
       args: 
         - --port=12078
-        - --maxMemoryMB=6144
+        - --maxMemoryMB=1024
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
