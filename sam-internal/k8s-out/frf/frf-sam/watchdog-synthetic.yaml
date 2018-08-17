@@ -43,16 +43,16 @@ spec:
         - containerPort: 8083
           name: synthetic
         volumeMounts:
-        - mountPath: /sfdchosts
-          name: sfdchosts
         - mountPath: /etc/pki_service
           name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /test
           name: test
         - mountPath: /_output
           name: output
-        - mountPath: /kubeconfig
-          name: kubeconfig
         - mountPath: /data/certs
           name: certs
         - mountPath: /config
@@ -65,9 +65,6 @@ spec:
           name: sfdchosts
         name: sfdchosts
       - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
           path: /data/certs
         name: certs
       - hostPath:
@@ -77,9 +74,6 @@ spec:
         name: test
       - emptyDir: {}
         name: output
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
       - configMap:
           name: watchdog
         name: config

@@ -123,6 +123,34 @@ local utils = import "util_functions.jsonnet",
             "sam.data.sfdc.net/owner": "tnrp",
         },
     },
+
+    # === KUBERNETES BASE/PARTIAL STRUCTS ===
+
+    # Add this to your container.  Inside your container, remember to add the '+' before ':' for volumeMounts and volumes.
+    containerWithMadDog: {
+        volumeMounts+: [$.maddog_cert_volume_mount],
+    },
+    specWithMadDog: {
+        volumes+: [$.maddog_cert_volume],
+    },
+
+    # TODO: We should probably phase these out.
+    containerWithCertServices: {
+        volumeMounts+: [$.cert_volume_mount],
+    },
+    specWithCertServices: {
+        volumes+: [$.cert_volume],
+    },
+
+    # Apps that use kubernetesApi need the config and env var
+    containerWithKubeConfigAndMadDog: $.containerWithMadDog {
+        volumeMounts+: [$.kube_config_volume_mount],
+        env+: [$.kube_config_env],
+    },
+    specWithKubeConfigAndMadDog: $.specWithMadDog {
+        volumes+: [$.kube_config_volume],
+    },
+
     # Use this for every pod that is not on host network.
     # Add it in one of the containers of the template.
     # Example usage:

@@ -6,10 +6,10 @@ if configs.estate == "prd-sam" then {
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "watchdog-pullrequest",
                         image: samimages.hypersam,
                         command: [
@@ -21,7 +21,7 @@ if configs.estate == "prd-sam" then {
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             {
                                 mountPath: "/var/token",
@@ -30,15 +30,10 @@ if configs.estate == "prd-sam" then {
                             },
                             configs.config_volume_mount,
                             configs.cert_volume_mount,
-                            configs.maddog_cert_volume_mount,
-                            configs.kube_config_volume_mount,
-                        ]),
-                        env: [
-                            configs.kube_config_env,
                         ],
                     },
                 ],
-                volumes: configs.filter_empty([
+                volumes+: [
                     configs.sfdchosts_volume,
                     {
                         secret: {
@@ -48,9 +43,7 @@ if configs.estate == "prd-sam" then {
                     },
                     configs.config_volume("watchdog"),
                     configs.cert_volume,
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
-                ]),
+                ],
                 nodeSelector: {
                     pool: configs.estate,
                 },

@@ -28,9 +28,9 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                     name: "watchdog-synthetic",
                 } + configs.ownerLabel.sam,
             },
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         command: [
                                      "/sam/watchdog",
                                      "-role=SYNTHETIC",
@@ -49,14 +49,10 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                                 containerPort: samwdconfig.syntheticPort,
                             },
                         ],
-                        env: [
-                            configs.kube_config_env,
-                        ],
                         image: samimages.hypersam,
                         name: "watchdog-synthetic",
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
-                            configs.maddog_cert_volume_mount,
                             {
                                 mountPath: "/test",
                                 name: "test",
@@ -65,10 +61,9 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                                 mountPath: "/_output",
                                 name: "output",
                             },
-                            configs.kube_config_volume_mount,
                             configs.cert_volume_mount,
                             configs.config_volume_mount,
-                        ]),
+                        ],
                     },
                 ],
                 hostNetwork: true,
@@ -79,9 +74,8 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                               } else {
                                   pool: configs.estate,
                               },
-                volumes: configs.filter_empty([
+                volumes: [
                     configs.sfdchosts_volume,
-                    configs.maddog_cert_volume,
                     configs.cert_volume,
                     {
                         hostPath: {
@@ -97,9 +91,8 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                         emptyDir: {},
                         name: "output",
                     },
-                    configs.kube_config_volume,
                     configs.config_volume("watchdog"),
-                ]),
+                ],
             },
         },
     },

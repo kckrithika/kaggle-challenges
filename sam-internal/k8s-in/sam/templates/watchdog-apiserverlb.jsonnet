@@ -6,10 +6,10 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "watchdog-apiserverlb",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
@@ -22,25 +22,18 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                  + samwdconfig.pagerduty_args
                                  + samwdconfig.shared_args
                                  + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=12h"]),
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
-                            configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.config_volume_mount,
-                            configs.kube_config_volume_mount,
-                        ]),
-                        env: [
-                            configs.kube_config_env,
                         ],
                     },
                 ],
-                volumes: configs.filter_empty([
+                volumes+: [
                     configs.sfdchosts_volume,
-                    configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.config_volume("watchdog"),
-                    configs.kube_config_volume,
-                ]),
+                ],
                 nodeSelector: {
                               } +
                               if configs.kingdom == "prd" then {

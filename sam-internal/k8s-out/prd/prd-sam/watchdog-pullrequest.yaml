@@ -36,6 +36,10 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002190-d048106f
         name: watchdog-pullrequest
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
         - mountPath: /var/token
@@ -45,14 +49,16 @@ spec:
           name: config
         - mountPath: /data/certs
           name: certs
-        - mountPath: /etc/pki_service
-          name: maddog-certs
-        - mountPath: /kubeconfig
-          name: kubeconfig
       hostNetwork: true
       nodeSelector:
         pool: prd-sam
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
       - configMap:
           name: sfdchosts
         name: sfdchosts
@@ -65,9 +71,3 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
