@@ -310,7 +310,7 @@ spec:
       - command:
         - /sdn/slb-manifest-watcher
         - --manifestOutputDir=/host/data/slb/manifests/slb-ipvs
-        - --tnrpEndpoint=ops0-piperepo1-1-prd.eng.sfdc.net
+        - --tnrpEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/
         - --hostnameOverride=$(NODE_NAME)
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --hostsConfigFile=/sfdchosts/hosts.json

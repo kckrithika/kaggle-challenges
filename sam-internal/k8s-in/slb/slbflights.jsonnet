@@ -5,7 +5,7 @@
 
     local nodeApiUnixSocketEnabled = (if slbimages.hypersdn_build >= 1028 then true else false),
     # Special feature flag for portal so we can initially release manifest watcher in portal's pod only
-    local portalManifestWatcherEnabled = (if slbimages.phaseNum <= 1 then true else false),
+    local portalManifestWatcherEnabled = (if slbimages.hypersdn_build >= 1043 then true else false),
     local manifestWatcherEnabled = (if slbimages.phaseNum <= 1 then true else false),
 
     getNodeApiClientSocketSettings(configDir):: (if nodeApiUnixSocketEnabled then [
