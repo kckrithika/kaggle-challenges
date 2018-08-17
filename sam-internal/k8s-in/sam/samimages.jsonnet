@@ -54,33 +54,22 @@ local utils = import "util_functions.jsonnet";
              },
 
         ### Release Phase 1 - prd-samdev
-        # See https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM on how to pick the correct tag
-        # As much as possible, we want to use a tag that is running well in phase 0 above.
-        # When rolling this phase, remove all overrides from test beds above
-        # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
-
-        ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
+            # IMPORTANT! Follow all steps from https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM
             hypersam: "sam-0002225-507ca37b",
-            madkub: "1.0.0-0000074-4c95976a",
-            madkubSidecar: "1.0.0-0000074-4c95976a",
             },
 
-        ### Release Phase 2 - PRD Sandbox and prd-sdc
+        ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
         "2": $.per_phase["3"] {
             hypersam: "sam-0002190-d048106f",
-            madkub: "1.0.0-0000074-4c95976a",
-            madkubSidecar: "1.0.0-0000074-4c95976a",
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": $.per_phase["4"] {
             hypersam: "sam-0002190-d048106f",
-            madkub: "1.0.0-0000074-4c95976a",
-            madkubSidecar: "1.0.0-0000074-4c95976a",
             },
 
-        ### Release Phase 4 - Rest of Prod + Pub + Gia
+        ### Release Phase 4 - Rest of Prod + Pub + Gia + prd-samtwo
         "4": {
             hypersam: "sam-0002190-d048106f",
             madkub: "1.0.0-0000074-4c95976a",
@@ -95,7 +84,7 @@ local utils = import "util_functions.jsonnet";
             "0"
         else if (estate == "prd-samdev") then
             "1"
-        else if (estate != "prd-samtwo") && (kingdom == "prd") then
+        else if (estate != "prd-samtwo") && (kingdom == "prd" || kingdom == "xrd") then
             "2"
         else if (kingdom == "frf") || (kingdom == "cdu") then
             "3"
