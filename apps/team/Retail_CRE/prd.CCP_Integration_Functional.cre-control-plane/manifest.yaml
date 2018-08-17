@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.3.0.0.develop-1.3.d58e0f7.23
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.3.0.0.develop-1.3.1345896.25
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
@@ -44,7 +44,6 @@ system:
       ports:
       - containerPort: 8080
       - containerPort: 7020
-      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         exec:
@@ -82,8 +81,6 @@ system:
       ports:
       - containerPort: 7443
         name: sh-in-http2-tls
-      - containerPort: 7442
-        name: sh-in-http1-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
@@ -103,8 +100,6 @@ system:
       args:
       - -endpoint
       - retail-cre/cre-control-plane-ccp-func:DATACENTER_ALLENV:7443
-      - -endpoint
-      - retail-cre/cre-control-plane-ccp-func:DATACENTER_ALLENV:7442
       livenessProbe:
         initialDelaySeconds: 5
         exec:
