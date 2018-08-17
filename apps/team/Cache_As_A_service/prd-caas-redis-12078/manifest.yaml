@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: redis-12078
+  - name: redis-$(SFDC_POD)
     count: 1 
     containers:
     - name: caas-redis 
