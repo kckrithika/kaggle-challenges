@@ -50,12 +50,6 @@ apps:
         - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
         - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
 
-  prd.CCP_Integration_Functional_Test.cre-control-plane: # control-plane functional test env instance
-  - name: prd/prd-sam_customerresolutionengine
-    hostSubList:
-        - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
-        - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
-
   prd.CCP_Integration_Performance.cre-control-plane: # control-plane perf test env instance
   - name: prd/prd-sam_customerresolutionengine
     hostSubList:
