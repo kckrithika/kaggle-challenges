@@ -58,7 +58,6 @@ items:
           - containerPort: 8001
             name: ceph-metrics
             protocol: TCP
-          resources: {}
           volumeMounts:
           - mountPath: /etc/ceph
             name: ceph-conf
@@ -152,7 +151,6 @@ items:
           - containerPort: 8001
             name: ceph-metrics
             protocol: TCP
-          resources: {}
           volumeMounts:
           - mountPath: /etc/ceph
             name: ceph-conf
