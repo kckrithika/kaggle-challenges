@@ -10,14 +10,13 @@ system:
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run
-      image: docker-all/dva/caas/caas-metrics-publisher-prod-2.6.4:7
+      image: docker-all/dva/caas/release/caas-metrics-publisher-2.6.4:1
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
       args: 
         - --server.port=7521 
         - --management.port=7522
-        - --cluster.name=sp-na1-c1
         - --logDir=/home/caas/logs/caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
