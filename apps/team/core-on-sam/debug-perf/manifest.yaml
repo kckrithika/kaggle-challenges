@@ -115,5 +115,5 @@ system:
     function: debug-perf-core
     nodeExposed: true
     ports:
-    - port: 18086
+    - port: 18087
       targetport: 12100
