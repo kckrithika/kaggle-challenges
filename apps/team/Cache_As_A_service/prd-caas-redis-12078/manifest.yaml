@@ -7,7 +7,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:4.0.10-0000024-16334693
+      image: docker-all/dva/caas/release/caas-redis-4.0.10:7
       resources:
         limits: { memory: "2Gi" }
         requests: { memory: "2Gi" }
@@ -39,9 +39,9 @@ system:
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
-      - caas/cluster/sp-na1-pc:SUPERPOD:12078
+      - caas/cluster/$(SFDC_POD):SUPERPOD:12078
       - -logdir
-      - /home/sfdc-caas/logs/sp-na1-pc-12078
+      - /home/sfdc-caas/logs/sp-na1-pc-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -53,6 +53,8 @@ system:
       env:
        - name: SFDC_ENVIRONMENT
          value: mist30
+       - name: SFDC_POD
+         value: sp-na1-pc
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
