@@ -40,9 +40,9 @@ system:
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
-      - caas/cluster/sp-mist30-pc:SUPERPOD:12078
+      - caas/cluster/sp-na1-pc:SUPERPOD:12078
       - -logdir
-      - /home/sfdc-caas/logs/sp-mist30-pc-12078
+      - /home/sfdc-caas/logs/sp-na1-pc-12078
       livenessProbe:
         initialDelaySeconds: 5
         exec:
