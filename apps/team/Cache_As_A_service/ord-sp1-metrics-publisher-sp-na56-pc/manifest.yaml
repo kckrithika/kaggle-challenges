@@ -9,14 +9,13 @@ system:
     count: 1
     containers:
     - name: metrics-publisher
-      image: docker-all/dva/caas/caas-metrics-publisher-prod-2.6.4:7
+      image: docker-all/dva/caas/release/caas-metrics-publisher-2.6.4:1
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "2048M" }
       args:
         - --server.port=7502
         - --management.port=7501
-        - --cluster.name=sp-na56-pc
         - --logDir=/home/caas/logs/caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
@@ -37,6 +36,7 @@ system:
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
+       # SFDC_POD is used for cluster name
        - name: SFDC_POD
          value: sp-na56-pc
        - name: CAAS_ENVIRONMENT
