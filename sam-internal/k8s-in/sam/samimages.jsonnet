@@ -84,7 +84,7 @@ local utils = import "util_functions.jsonnet";
             "0"
         else if (estate == "prd-samdev") then
             "1"
-        else if (estate != "prd-samtwo") && (kingdom == "prd") || (kingdom == "xrd") then
+        else if (estate != "prd-samtwo") && (kingdom == "prd" || kingdom == "xrd") then
             "2"
         else if (kingdom == "frf") || (kingdom == "cdu") then
             "3"
