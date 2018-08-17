@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/sdn/deployerbot:v-0001046-e41c3fa1
+      image: tnrp/sdn/deployerbot:v-0001048-49557a9b
       command: ["/deployerbot/deployerbot"]
       args:
       - "-gheTokenPath"
