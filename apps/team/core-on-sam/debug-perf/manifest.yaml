@@ -5,14 +5,12 @@ system:
   - name: debug-perf-core
     count: 1
     volumes:
-#    - name: cert
-#      maddogCert:
-#        type: client
-    - name: automationvol
-      emptyDir: {}
+    - name: log-volume
+      hostPath:
+        path: /data/logs
     containers:
     - name: debug-perf-core
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_patch__16015380-perf-4
+      image: tnrp/casam/coreapp:214_patch__16407912-0000115-ea3f2d06
 
       env:
         # DB info
@@ -35,7 +33,7 @@ system:
         # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
         # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
-          value: debug-perf-core-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+          value: shared2-samminioncoreapp1-2-prd.eng.sfdc.net
         # This maps to http_port
         - name: PORT
           value: 12100
@@ -65,7 +63,7 @@ system:
 
         # Settings.path
         - name: CASAM_SETTINGS_PATH
-          value: mist.mist61.prd.na1.app
+          value: mist.mist61.prd.na44.app
 
         # Cluster name
         - name: CLUSTER_NAME
@@ -103,32 +101,9 @@ system:
         - containerPort: 12099
 
       volumeMounts:
-#        - name: cert
-#          mountPath: /certs
-        - name: automationvol
-          mountPath: /home/sfdc/automation
+        - name: log-volume
+          mountPath: /home/sfdc/logs
 
-    - name: perfsidecar
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/perfsidecar:20180629-153037
-
-      livenessProbe:
-        exec:
-          command:
-           - echo
-           - HEALTHY
-        initialDelaySeconds: 30
-        periodSeconds: 120
-      readinessProbe:
-        exec:
-          command:
-           - echo
-           - HEALTHY
-        initialDelaySeconds: 30
-        periodSeconds: 120
-      volumeMounts:
-        - name: automationvol
-          mountPath: /home/sfdc/automation
-    
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
 
@@ -138,7 +113,7 @@ system:
   loadbalancers:
   - lbname: debug-perf-core-lb
     function: debug-perf-core
-    slbEnabled: true 
+    nodeExposed: true
     ports:
     - port: 18086
-      targetport: 12099
+      targetport: 12100
