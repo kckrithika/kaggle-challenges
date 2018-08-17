@@ -1240,17 +1240,6 @@ data:
           "controlestate": "iad-flowsnake_prod",
           "devicerole": "samcompute",
           "estate": "iad-flowsnake_prod",
-          "hostname": "shared0-flowsnakeworkerprod1-196-iad.ops.sfdc.net",
-          "kingdom": "iad",
-          "pod": "none",
-          "rack": "c03-9a",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "flowsnake_worker_prod",
-          "controlestate": "iad-flowsnake_prod",
-          "devicerole": "samcompute",
-          "estate": "iad-flowsnake_prod",
           "hostname": "shared0-flowsnakeworkerprod1-197-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
@@ -1581,17 +1570,6 @@ data:
           "controlestate": "iad-flowsnake_prod",
           "devicerole": "samcompute",
           "estate": "iad-flowsnake_prod",
-          "hostname": "shared0-flowsnakeworkerprod1-223-iad.ops.sfdc.net",
-          "kingdom": "iad",
-          "pod": "none",
-          "rack": "b06-9b",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "flowsnake_worker_prod",
-          "controlestate": "iad-flowsnake_prod",
-          "devicerole": "samcompute",
-          "estate": "iad-flowsnake_prod",
           "hostname": "shared0-flowsnakeworkerprod1-224-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
@@ -1904,17 +1882,6 @@ data:
           "kingdom": "iad",
           "pod": "none",
           "rack": "f12-9b",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "flowsnake_worker_prod",
-          "controlestate": "iad-flowsnake_prod",
-          "devicerole": "samcompute",
-          "estate": "iad-flowsnake_prod",
-          "hostname": "shared0-flowsnakeworkerprod1-250-iad.ops.sfdc.net",
-          "kingdom": "iad",
-          "pod": "none",
-          "rack": "g03-9a",
           "superpod": "none"
         },
         {

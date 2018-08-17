@@ -38,6 +38,14 @@ shared0-samminionpubdnsa1-2-ph2.ops.sfdc.net,10.226.149.138/29,10.163.131.96/27,
 shared0-samminionpubdnsa2-1-ph2.ops.sfdc.net,10.226.149.146/29,10.163.131.32/27,c24-01,ph2-sam_pubdnsa,4203051207
 shared0-samminionpubdnsa2-2-ph2.ops.sfdc.net,10.226.149.154/29,10.163.131.0/27,c23-01,ph2-sam_pubdnsa,4203051205
 shared0-samminionpubdnsa3-1-ph2.ops.sfdc.net,10.226.149.162/29,10.163.131.128/27,f43-01,ph2-sam_pubdnsa,4203031206
+shared0-samminionuniversalsearchmt2-1-ph2.ops.sfdc.net,10.226.151.218/29,10.163.133.224/27,d46-01,ph2-universalsearch_svc,4203061212
+shared0-searchidx1-4-ph2.ops.sfdc.net,10.226.151.212/29,10.163.133.96/27,d24-01,ph2-universalsearch_svc,4203051208
+shared0-searchidx1-6-ph2.ops.sfdc.net,10.226.151.211/29,10.163.133.128/27,d24-01,ph2-universalsearch_svc,4203051208
+shared0-searchidx1-7-ph2.ops.sfdc.net,10.226.151.213/29,10.163.133.160/27,d24-01,ph2-universalsearch_svc,4203051208
+shared0-searchidx2-10-ph2.ops.sfdc.net,10.226.151.234/29,10.163.133.0/27,d06-01,ph2-universalsearch_svc,4203091212
+shared0-searchidx2-2-ph2.ops.sfdc.net,10.226.151.236/29,10.163.133.32/27,d06-01,ph2-universalsearch_svc,4203091212
+shared0-searchidx2-3-ph2.ops.sfdc.net,10.226.151.210/29,10.163.133.192/27,d24-01,ph2-universalsearch_svc,4203051208
+shared0-searchidx2-8-ph2.ops.sfdc.net,10.226.151.235/29,10.163.133.64/27,d06-01,ph2-universalsearch_svc,4203091212
 shared0-slbminion1-1-ph2.ops.sfdc.net,10.226.172.50/28,10.163.136.96/27,d26-01,ph2-slb,4203051212
 shared0-slbminion1-10-ph2.ops.sfdc.net,10.226.172.6/28,10.163.138.32/27,f42-01,ph2-slb,4203031204
 shared0-slbminion1-2-ph2.ops.sfdc.net,10.226.172.51/28,10.163.136.128/27,d26-01,ph2-slb,4203051212
