@@ -10,10 +10,10 @@ if samfeatureflags.maddogforsamapps then {
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "watchdog-maddog",
                         image: samimages.hypersam,
                         command: [
@@ -27,25 +27,18 @@ if samfeatureflags.maddogforsamapps then {
                                  ]
                                  + samwdconfig.shared_args
                                  + ["-emailFrequency=24h"],
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
-                            configs.maddog_cert_volume_mount,
-                            configs.kube_config_volume_mount,
                             configs.config_volume_mount,
-                        ]),
-                        env: [
-                            configs.kube_config_env,
                         ],
                     },
                 ],
-                volumes: configs.filter_empty([
+                volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
                     configs.config_volume("watchdog"),
-                ]),
+                ],
                 nodeSelector: {
                               } +
                               if configs.kingdom == "prd" then {

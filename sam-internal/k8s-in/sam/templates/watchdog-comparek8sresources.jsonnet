@@ -7,10 +7,10 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "watchdog-comparek8sresources",
                         image: samimages.hypersam,
                         command: [
@@ -22,25 +22,18 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                                     "--sender=sam@salesforce.com",
                                  ]
                                  + samwdconfig.shared_args,
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
                             configs.cert_volume_mount,
-                            configs.maddog_cert_volume_mount,
-                            configs.kube_config_volume_mount,
-                        ]),
-                        env: [
-                            configs.kube_config_env,
                         ],
                     },
                 ],
-                volumes: configs.filter_empty([
+                volumes+: [
                     configs.sfdchosts_volume,
                     configs.config_volume("watchdog"),
                     configs.cert_volume,
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
-                ]),
+                ],
                 nodeSelector: {} + if configs.kingdom == "prd" then { master: "true" } else { pool: configs.estate },
 
             },

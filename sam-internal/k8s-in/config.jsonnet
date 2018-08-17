@@ -123,6 +123,48 @@ local utils = import "util_functions.jsonnet",
             "sam.data.sfdc.net/owner": "tnrp",
         },
     },
+
+    # === KUBERNETES PARTIAL STRUCTS ===
+
+    # Apps that use kubernetesApi need the config and env var.  This adds MadDog automatically
+    # Use this like this example below.  Ensure that volumeMounts, volume and env have the '+' before ':'!
+    #
+    # spec: {
+    #   template: {
+    #     spec: configs.specWithKubeConfigAndMadDog {
+    #       containers: [
+    #         configs.containerWithKubeConfigAndMadDog {
+    #           volumeMounts+: [ ... ],
+    #           env+: [ ... ],
+    #         }
+    #       ],
+    #       volumes+: [ ... ]
+    #    }
+    #  }
+    containerWithKubeConfigAndMadDog: $.containerWithMadDog {
+        volumeMounts+: [$.kube_config_volume_mount],
+        env+: [$.kube_config_env],
+    },
+    specWithKubeConfigAndMadDog: $.specWithMadDog {
+        volumes+: [$.kube_config_volume],
+    },
+
+    # Adds MadDog.  Use the same way you would use KubeConfig above
+    containerWithMadDog: {
+        volumeMounts+: [$.maddog_cert_volume_mount],
+    },
+    specWithMadDog: {
+        volumes+: [$.maddog_cert_volume],
+    },
+
+    # TODO: We should probably phase these out.
+    containerWithCertServices: {
+        volumeMounts+: [$.cert_volume_mount],
+    },
+    specWithCertServices: {
+        volumes+: [$.cert_volume],
+    },
+
     # Use this for every pod that is not on host network.
     # Add it in one of the containers of the template.
     # Example usage:

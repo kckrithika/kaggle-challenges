@@ -40,36 +40,36 @@ spec:
             cpu: "0.5"
             memory: 300Mi
         volumeMounts:
-        - mountPath: /sfdchosts
-          name: sfdchosts
         - mountPath: /etc/pki_service
           name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /data/certs
           name: certs
         - mountPath: /config
           name: config
-        - mountPath: /kubeconfig
-          name: kubeconfig
       hostNetwork: true
       nodeSelector:
         etcd_installed: "true"
         master: "true"
       volumes:
-      - configMap:
-          name: sfdchosts
-        name: sfdchosts
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /data/certs
         name: certs
       - configMap:
           name: watchdog
         name: config
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 25%

@@ -40,6 +40,10 @@ spec:
             cpu: "0.5"
             memory: 300Mi
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
         - mountPath: /var/lib/puppet/state
@@ -50,12 +54,14 @@ spec:
           name: config
         - mountPath: /data/certs
           name: certs
-        - mountPath: /etc/pki_service
-          name: maddog-certs
-        - mountPath: /kubeconfig
-          name: kubeconfig
       hostNetwork: true
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
       - configMap:
           name: sfdchosts
         name: sfdchosts
@@ -71,12 +77,6 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 25%

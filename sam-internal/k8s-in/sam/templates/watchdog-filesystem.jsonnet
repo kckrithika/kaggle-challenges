@@ -6,14 +6,14 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     kind: "DaemonSet",
     spec: {
         template: {
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 securityContext: {
                     runAsUser: 0,
                     fsGroup: 0,
                 },
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "watchdog-filesystem",
                         image: samimages.hypersam,
                         command: [
@@ -27,11 +27,9 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                  + samwdconfig.filesystem_watchdog_args
                                  + samwdconfig.shared_args
                                  + ["-emailFrequency=24h"],
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
-                            configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
-                            configs.kube_config_volume_mount,
                             configs.config_volume_mount,
                             {
                                 mountPath: "/data",
@@ -41,17 +39,12 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                 mountPath: "/home",
                                 name: "home-volume",
                             },
-                        ]),
-                        env: [
-                            configs.kube_config_env,
                         ],
                     },
                 ],
-                volumes: configs.filter_empty([
+                volumes+: [
                     configs.sfdchosts_volume,
-                    configs.maddog_cert_volume,
                     configs.cert_volume,
-                    configs.kube_config_volume,
                     configs.config_volume("watchdog"),
                     {
                         hostPath: {
@@ -65,7 +58,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                         },
                         name: "home-volume",
                     },
-                ]),
+                ],
             },
             metadata: {
                 labels: {
