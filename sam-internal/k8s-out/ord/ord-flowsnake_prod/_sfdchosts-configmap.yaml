@@ -1383,17 +1383,6 @@ data:
           "controlestate": "ord-flowsnake_prod",
           "devicerole": "samcompute",
           "estate": "ord-flowsnake_prod",
-          "hostname": "shared0-flowsnakeworkerprod1-207-ord.ops.sfdc.net",
-          "kingdom": "ord",
-          "pod": "none",
-          "rack": "l09-cr10",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "flowsnake_worker_prod",
-          "controlestate": "ord-flowsnake_prod",
-          "devicerole": "samcompute",
-          "estate": "ord-flowsnake_prod",
           "hostname": "shared0-flowsnakeworkerprod1-208-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
@@ -1508,17 +1497,6 @@ data:
           "kingdom": "ord",
           "pod": "none",
           "rack": "j02-cr09",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "flowsnake_worker_prod",
-          "controlestate": "ord-flowsnake_prod",
-          "devicerole": "samcompute",
-          "estate": "ord-flowsnake_prod",
-          "hostname": "shared0-flowsnakeworkerprod1-218-ord.ops.sfdc.net",
-          "kingdom": "ord",
-          "pod": "none",
-          "rack": "l05-cr10",
           "superpod": "none"
         },
         {
@@ -1761,17 +1739,6 @@ data:
           "kingdom": "ord",
           "pod": "none",
           "rack": "k16-cr10",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "flowsnake_worker_prod",
-          "controlestate": "ord-flowsnake_prod",
-          "devicerole": "samcompute",
-          "estate": "ord-flowsnake_prod",
-          "hostname": "shared0-flowsnakeworkerprod1-239-ord.ops.sfdc.net",
-          "kingdom": "ord",
-          "pod": "none",
-          "rack": "l06-cr10",
           "superpod": "none"
         },
         {
