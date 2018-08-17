@@ -40,7 +40,7 @@ system:
         - name: MAX_FLOWSNAKE_ENVIRONMENTS
           value: 15
         - name: STREAM_PROCESSING_ENDPOINT
-          value: https://cre-sp-ccp-func.retail-cre.localhost.mesh.force.com:7442
+          value: http://cre-sp-ccp-func.retail-cre.localhost.mesh.force.com:5442
       ports:
       - containerPort: 8080
       - containerPort: 7020
