@@ -828,7 +828,10 @@ apps:
   - name: par/par-sp1-sam_caas
  par-sp1-redis-sp-cs84-pc1-12029:
   - name: par/par-sp1-sam_caas
-
+ prd-caas-redis-12078:
+  - name: prd/prd-sp2-sam_caas
+    hostSubList:
+    - samcaas2-caasminion2-2-prd.eng.sfdc.net
  prd-sp2-metrics-publisher-sp-c1:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
