@@ -103,6 +103,10 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                 name: 'K8S_SERVICE_NAME',
                 value: 'rabbitmq-set',
               },
+              {
+                name: 'RABBITMQ_CONFIG_VERSION',
+                value: '1.0',
+              },
             ],
             ports: [
               {
@@ -127,6 +131,10 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               },
             ],
             volumeMounts: [
+              {
+                name: 'data-volume',
+                mountPath: '/var/lib/rabbitmq',
+              },
               {
                 name: 'config-volume',
                 mountPath: '/etc/rabbitmq',
@@ -155,6 +163,12 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
           },
         ],
         volumes: [
+          {
+            name: 'data-volume',
+            persistentVolumeClaim: {
+              claimName: 'firefly-rabbitmq-pv-claim',
+            },
+          },
           {
             name: 'config-volume',
             projected: {

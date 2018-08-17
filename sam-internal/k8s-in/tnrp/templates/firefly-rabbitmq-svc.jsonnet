@@ -12,37 +12,37 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
       app: 'firefly-rabbitmq',
       type: 'LoadBalancer',
     } + configs.ownerLabel.tnrp,
+    annotations: {
+        "slb.sfdc.net/name": "firefly-rabbitmq",
+        "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.firefly.rabbitmq_http + ",\"targetport\":" + portconfigs.firefly.rabbitmq_http + ",\"lbtype\":\"http\"},{\"port\":portconfigs.firefly.rabbitmq_https,\"targetport\":portconfigs.firefly.rabbitmq_https,\"lbtype\":\"tls\"},{\"port\":" + portconfigs.firefly.rabbitmq_amqp + ",\"targetport\":" + portconfigs.firefly.rabbitmq_amqp + ",\"lbtype\":\"tcp\"},{\"port\":portconfigs.firefly.rabbitmq_amqps,\"targetport\":portconfigs.firefly.rabbitmq_amqps,\"lbtype\":\"tls\"}]",
+    },
   },
   spec: {
-    type: 'LoadBalancer',
+    type: 'NodePort',
     ports: [
       {
         name: 'http',
         protocol: 'TCP',
         port: portconfigs.firefly.rabbitmq_http,
         targetPort: portconfigs.firefly.rabbitmq_http,
-        nodePort: portconfigs.firefly.rabbitmq_http_nodeport,
       },
       {
         name: 'https',
         protocol: 'TCP',
         port: portconfigs.firefly.rabbitmq_https,
         targetPort: portconfigs.firefly.rabbitmq_https,
-        nodePort: portconfigs.firefly.rabbitmq_https_nodeport,
       },
       {
         name: 'amqp',
         protocol: 'TCP',
         port: portconfigs.firefly.rabbitmq_amqp,
         targetPort: portconfigs.firefly.rabbitmq_amqp,
-        nodePort: portconfigs.firefly.rabbitmq_amqp_nodeport,
       },
       {
         name: 'amqp-tls',
         protocol: 'TCP',
         port: portconfigs.firefly.rabbitmq_amqps,
         targetPort: portconfigs.firefly.rabbitmq_amqps,
-        nodePort: portconfigs.firefly.rabbitmq_amqps_nodeport,
       },
     ],
     selector: {

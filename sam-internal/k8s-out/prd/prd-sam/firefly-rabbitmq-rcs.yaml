@@ -49,6 +49,8 @@ spec:
           value: rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE).svc.prd-sam.prd.sam.sfdc.net.
         - name: K8S_SERVICE_NAME
           value: rabbitmq-set
+        - name: RABBITMQ_CONFIG_VERSION
+          value: "1.0"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:9
         imagePullPolicy: Always
         lifecycle:
@@ -91,12 +93,17 @@ spec:
           initialDelaySeconds: 10
           timeoutSeconds: 10
         volumeMounts:
+        - mountPath: /var/lib/rabbitmq
+          name: data-volume
         - mountPath: /etc/rabbitmq
           name: config-volume
       nodeSelector:
         pool: prd-sam
       terminationGracePeriodSeconds: 10
       volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: firefly-rabbitmq-pv-claim
       - name: config-volume
         projected:
           sources:
