@@ -55,27 +55,21 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-            # NOTE! Follow all steps from https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM
+            # IMPORTANT! Follow all steps from https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM
             hypersam: "sam-0002225-507ca37b",
-            madkub: "1.0.0-0000074-4c95976a",
-            madkubSidecar: "1.0.0-0000074-4c95976a",
             },
 
-        ### Release Phase 2 - PRD Sandbox and prd-sdc
+        ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
         "2": $.per_phase["3"] {
             hypersam: "sam-0002190-d048106f",
-            madkub: "1.0.0-0000074-4c95976a",
-            madkubSidecar: "1.0.0-0000074-4c95976a",
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": $.per_phase["4"] {
             hypersam: "sam-0002190-d048106f",
-            madkub: "1.0.0-0000074-4c95976a",
-            madkubSidecar: "1.0.0-0000074-4c95976a",
             },
 
-        ### Release Phase 4 - Rest of Prod + Pub + Gia
+        ### Release Phase 4 - Rest of Prod + Pub + Gia + prd-samtwo
         "4": {
             hypersam: "sam-0002190-d048106f",
             madkub: "1.0.0-0000074-4c95976a",
