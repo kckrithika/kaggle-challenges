@@ -34,7 +34,7 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 0 - prd-samtest
         "0": $.per_phase["1"] {
-             rabbitmq: "10",
+             rabbitmq: "11",
              },
 
         ### Release Phase 1 - prd-samdev
