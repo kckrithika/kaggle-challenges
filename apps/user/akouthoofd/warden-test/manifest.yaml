@@ -5,41 +5,60 @@ system:
       email:
         - akouthoofd@salesforce.com
     functions:
-    - name: akwardentest
+    - name: warden-test-func
       count: 3
       containers:
-      - name: casp-warden
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/caspwarden:test-0003
+      - name: ak-warden-test
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/caspwarden:test-0004
         ports:
-        - containerPort: 8889
-        - containerPort: 9200
-        - containerPort: 9300
+        - name: http
+          containerPort: 8889
+          hostPort: 18889
+        - name: https
+          containerPort: 8443
+        - name: grpc
+          containerPort: 7878
         env:
         - name: BRANCH
-          value: "cors_to_wsl4"
+          value: "eng_production"
         volumeMounts:
-        - mountPath: /home/sfdc-casp/lib/warden/mysql
-          name: casp-home-vol
-        - mountPath: /home/sfdc-casp/elasticsearch/data
-          name: casp-es-vol
+        - mountPath: /home/sfdc-casp/logs
+          name: log-vol
+        - mountPath: /opt/warden/cantor
+          name: cantor-vol
+        - mountPath: /wardenpki/
+          name: wardenpki
+          readOnly: true
+        - mountPath: /wardensplunk/
+          name: wardensplunk
+          readOnly: true
         livenessProbe:
           httpGet:
             path: /manage/health
             port: 15372
-          initialDelaySeconds: 60
+          initialDelaySeconds: 120
       volumes:
-      - name: casp-home-vol
+      - name: log-vol
         hostPath:
-          path: /home/sfdc-casp/lib/warden/mysql
-      - name: casp-es-vol
+          path: /home/sfdc-casp/logs
+      - name: cantor-vol
         hostPath:
-          path: /home/sfdc-casp/elasticsearch/data
+          path: /home/sfdc-casp/cantor
+      - name: wardenpki
+        k4aSecret:
+          secretName: wardenpki
+      - name: wardensplunk
+        k4aSecret:
+          secretName: wardensplunk
 
     loadbalancers:
     - lbname: wardenlb
-      function: akwardentest
-      nodeExposed: true
+      function: warden-test-func
+      slbEnabled: true
       ports:
-        - port: 8889
+        - port: 80
           targetport: 8889
-
+        - port: 443
+          targetport: 8443
+        - port: 7878
+          targetport: 7878
