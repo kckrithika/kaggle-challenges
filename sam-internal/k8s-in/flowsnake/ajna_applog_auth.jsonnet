@@ -32,6 +32,11 @@ local kingdom = std.extVar("kingdom");
                 "ailtn",
                 "u",
             ],
+            flowsnake: [
+                "augen",
+                "ailtn",
+                "u",
+            ],
         },
         "prd/prd-data-flowsnake_test": {
         },
