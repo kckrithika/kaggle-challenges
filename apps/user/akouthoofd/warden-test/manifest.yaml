@@ -5,7 +5,7 @@ system:
       email:
         - akouthoofd@salesforce.com
     functions:
-    - name: warden-test-func
+    - name: akwarden-test-func
       count: 3
       containers:
       - name: ak-warden-test
@@ -20,15 +20,12 @@ system:
           containerPort: 7878
         env:
         - name: BRANCH
-          value: "eng_production"
+          value: "dev"
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
         - mountPath: /opt/warden/cantor
           name: cantor-vol
-        - mountPath: /wardenpki/
-          name: wardenpki
-          readOnly: true
         - mountPath: /wardensplunk/
           name: wardensplunk
           readOnly: true
@@ -44,16 +41,13 @@ system:
       - name: cantor-vol
         hostPath:
           path: /home/sfdc-casp/cantor
-      - name: wardenpki
-        k4aSecret:
-          secretName: wardenpki
       - name: wardensplunk
         k4aSecret:
           secretName: wardensplunk
 
     loadbalancers:
     - lbname: wardenlb
-      function: warden-test-func
+      function: akwarden-test-func
       slbEnabled: true
       ports:
         - port: 80
