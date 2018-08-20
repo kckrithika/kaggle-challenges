@@ -5,4 +5,8 @@ local configs = import "config.jsonnet";
       configs.estate == "prd-sam" ||
       configs.estate == "prd-samdev" ||
       configs.estate == "prd-samtest",
+
+   is_slb_enabled:
+      configs.estate == "prd-sam",
+
 }

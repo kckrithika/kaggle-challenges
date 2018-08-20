@@ -1,9 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    slb.sfdc.net/name: firefly-rabbitmq
-    slb.sfdc.net/portconfigurations: '[{"port":15672,"targetport":15672,"lbtype":"http"},{"port":portconfigs.firefly.rabbitmq_https,"targetport":portconfigs.firefly.rabbitmq_https,"lbtype":"tls"},{"port":5672,"targetport":5672,"lbtype":"tcp"},{"port":portconfigs.firefly.rabbitmq_amqps,"targetport":portconfigs.firefly.rabbitmq_amqps,"lbtype":"tls"}]'
+  annotations: null
   labels:
     app: firefly-rabbitmq
     sam.data.sfdc.net/owner: tnrp
@@ -13,21 +11,25 @@ metadata:
 spec:
   ports:
   - name: http
+    nodePort: 32672
     port: 15672
     protocol: TCP
     targetPort: 15672
   - name: https
+    nodePort: 32671
     port: 15671
     protocol: TCP
     targetPort: 15671
   - name: amqp
+    nodePort: 33672
     port: 5672
     protocol: TCP
     targetPort: 5672
   - name: amqp-tls
+    nodePort: 33671
     port: 5671
     protocol: TCP
     targetPort: 5671
   selector:
     app: rabbitmq
-  type: NodePort
+  type: LoadBalancer
