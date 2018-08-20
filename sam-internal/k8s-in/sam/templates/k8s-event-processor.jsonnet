@@ -6,14 +6,14 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                   securityContext: {
                     runAsUser: 0,
                     fsGroup: 0,
                 },
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                   securityContext: {
                     privileged: true,
                 },
@@ -26,9 +26,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                             "--namespacesToSkip=sam-watchdog,legostore,sam-system,sf-store",
                             configs.sfdchosts_arg,
                         ]),
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
-                            configs.kube_config_volume_mount,
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
                             {
@@ -46,9 +44,8 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                                 name: "usrlib64",
                                 readOnly: true,
                             },
-                        ]),
-                        env: [
-                            configs.kube_config_env,
+                        ],
+                        env+: [
                             {
                                 name: "SYSTEMD_IGNORE_CHROOT",
                                 value: "yes",
@@ -56,9 +53,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                         ],
                     },
                 ],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
+                volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     {
@@ -85,7 +80,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                         },
                         name: "etcsystemd",
                     },
-                ]),
+                ],
                 nodeSelector: {
                                   master: "true",
                               },

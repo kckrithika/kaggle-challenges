@@ -7,10 +7,10 @@ if samfeatureflags.sdpv1 then {
     spec: {
         replicas: 3,
         template: {
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "sam-deployment-portal",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
@@ -27,9 +27,7 @@ if samfeatureflags.sdpv1 then {
                                 containerPort: 64121,
                             },
                         ],
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
-                            configs.kube_config_volume_mount,
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
                             {
@@ -37,9 +35,6 @@ if samfeatureflags.sdpv1 then {
                                 name: "token",
                                 readOnly: true,
                             },
-                        ]),
-                        env: [
-                            configs.kube_config_env,
                         ],
                         livenessProbe: {
                             initialDelaySeconds: 15,
@@ -52,9 +47,7 @@ if samfeatureflags.sdpv1 then {
                         workingDir: "/sam",
                     },
                 ],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
+                volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     {
@@ -63,7 +56,7 @@ if samfeatureflags.sdpv1 then {
                         },
                         name: "token",
                     },
-                ]),
+                ],
                 nodeSelector: {
                               } +
                               if configs.kingdom == "prd" then {

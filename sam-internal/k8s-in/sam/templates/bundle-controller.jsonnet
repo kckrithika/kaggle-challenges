@@ -7,10 +7,10 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "bundle-controller",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
@@ -18,14 +18,9 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                             "--config=/config/bundle-controller-config.json",
                             "--funnelEndpoint=" + configs.funnelVIP,
                         ]),
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
-                            configs.kube_config_volume_mount,
+                        volumeMounts+: [
                             configs.cert_volume_mount,
                             configs.config_volume_mount,
-                        ]),
-                        env: [
-                            configs.kube_config_env,
                         ],
                     }
                     + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
@@ -39,12 +34,10 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                          },
                      } else {}),
                 ],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
+                volumes+: [
                     configs.cert_volume,
                     configs.config_volume("bundle-controller"),
-                ]),
+                ],
                 nodeSelector: {
                               } +
                               if configs.kingdom == "prd" then {

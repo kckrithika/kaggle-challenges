@@ -8,9 +8,9 @@ if samfeatureflags.estatessvc then {
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "node-controller",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
@@ -19,13 +19,11 @@ if samfeatureflags.estatessvc then {
                             configs.sfdchosts_arg,
                           ]
                         + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then ["--sdn-subnet-file-path=/kubeconfig/sfdc-sdn-subnet.env", "--default-max-podip=24"] else []),),
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
-                            configs.kube_config_volume_mount,
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
-                        ]),
-                        env: [
+                        ],
+                        env+: [
                             {
                                 name: "NODE_NAME",
                                 valueFrom: {
@@ -34,16 +32,13 @@ if samfeatureflags.estatessvc then {
                                     },
                                 },
                             },
-                            configs.kube_config_env,
                         ],
                     },
                 ],
-                volumes: configs.filter_empty([
+                volumes+: [
                     configs.sfdchosts_volume,
-                    configs.maddog_cert_volume,
                     configs.cert_volume,
-                    configs.kube_config_volume,
-                ]),
+                ],
                 nodeSelector: {
                               } +
                               if configs.kingdom == "prd" then {

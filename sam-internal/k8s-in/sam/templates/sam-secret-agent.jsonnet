@@ -6,10 +6,10 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "sam-secret-agent",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
@@ -25,14 +25,9 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             "--cafile=" + configs.caFile,
                             configs.sfdchosts_arg,
                         ]),
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
-                            configs.kube_config_volume_mount,
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
-                        ]),
-                        env: [
-                            configs.kube_config_env,
                         ],
                         livenessProbe: {
                             httpGet: {
@@ -45,12 +40,10 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         },
                     },
                 ],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
+                volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
-                ]),
+                ],
                 nodeSelector: {
                               } +
                               if configs.kingdom == "prd" then {

@@ -40,10 +40,10 @@ if samfeatureflags.kubedns then {
                     "k8s-app": "kube-dns",
                 } + configs.ownerLabel.sam,
             },
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         args: [
                             "--domain=" + configs.dnsdomain + ".",
                             "--dns-port=10053",
@@ -129,15 +129,10 @@ if samfeatureflags.kubedns then {
                         },
                         terminationMessagePath: "/dev/termination-log",
                         terminationMessagePolicy: "File",
-                        volumeMounts: [
-                            configs.kube_config_volume_mount,
+                        volumeMounts+: [
                             {
                                 mountPath: "/etc/kubernetes",
                                 name: "kubernetes",
-                            },
-                            {
-                                mountPath: "/etc/pki_service",
-                                name: "maddog-certs",
                             },
                             {
                                 mountPath: "/data/certs",
@@ -255,19 +250,12 @@ if samfeatureflags.kubedns then {
                         operator: "Exists",
                     },
                 ],
-                volumes: [
-                    configs.kube_config_volume,
+                volumes+: [
                     {
                         hostPath: {
                             path: "/etc/kubernetes",
                         },
                         name: "kubernetes",
-                    },
-                    {
-                        hostPath: {
-                            path: "/etc/pki_service",
-                        },
-                        name: "maddog-certs",
                     },
                     {
                         hostPath: {

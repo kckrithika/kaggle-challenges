@@ -25,8 +25,8 @@ if configs.estate == "prd-sam" then {
                 } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
-            spec: {
-                containers: [{
+            spec: configs.specWithKubeConfigAndMadDog {
+                containers: [configs.containerWithKubeConfigAndMadDog {
                     name: "snapshotconsumer-prod",
                     image: samimages.hypersam,
                     command: [
@@ -35,9 +35,7 @@ if configs.estate == "prd-sam" then {
                         "--hostsConfigFile=/sfdchosts/hosts.json",
                         "-v=3",
                     ],
-                    volumeMounts: configs.filter_empty([
-                        configs.maddog_cert_volume_mount,
-                        configs.kube_config_volume_mount,
+                    volumeMounts+: [
                         configs.sfdchosts_volume_mount,
                         configs.config_volume_mount,
                         configs.cert_volume_mount,
@@ -46,14 +44,9 @@ if configs.estate == "prd-sam" then {
                             name: "mysql",
                             readOnly: true,
                         },
-                    ]),
-                    env: [
-                        configs.kube_config_env,
                     ],
                 }],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
+                volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     configs.config_volume("snapshotconsumer-prod"),
@@ -63,7 +56,7 @@ if configs.estate == "prd-sam" then {
                         },
                         name: "mysql",
                     },
-                ]),
+                ],
                 hostNetwork: true,
                 nodeSelector: {
                     master: "true",

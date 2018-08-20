@@ -6,9 +6,9 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "service-discovery-module",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
@@ -18,23 +18,16 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
                             "-funnelEndpoint=" + configs.funnelVIP,
                             configs.sfdchosts_arg,
                         ]),
-                        env: [
-                            configs.kube_config_env,
-                        ],
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
-                            configs.kube_config_volume_mount,
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
-                        ]),
+                        ],
                     },
                 ],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
+                volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
-                ]),
+                ],
                 nodeSelector: {
                               } +
                               if configs.kingdom == "prd" then {
