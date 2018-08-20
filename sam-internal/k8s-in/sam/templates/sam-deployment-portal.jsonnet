@@ -28,10 +28,10 @@ if samfeatureflags.sdpv1 then {
                             },
                         ],
                         volumeMounts: configs.filter_empty([
-                            configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,
-                            configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
+                            configs.sfdchosts_volume_mount,
+                            configs.cert_volume_mount,
                             {
                                 mountPath: "/var/token",
                                 name: "token",
@@ -53,10 +53,10 @@ if samfeatureflags.sdpv1 then {
                     },
                 ],
                 volumes: configs.filter_empty([
-                    configs.sfdchosts_volume,
                     configs.maddog_cert_volume,
-                    configs.cert_volume,
                     configs.kube_config_volume,
+                    configs.sfdchosts_volume,
+                    configs.cert_volume,
                     {
                         secret: {
                             secretName: "git-token",

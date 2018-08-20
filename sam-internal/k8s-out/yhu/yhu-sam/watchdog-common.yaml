@@ -37,6 +37,8 @@ spec:
             cpu: "0.5"
             memory: 300Mi
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /sfdchosts
           name: sfdchosts
         - mountPath: /hostproc
@@ -45,10 +47,11 @@ spec:
           name: config
         - mountPath: /data/certs
           name: certs
-        - mountPath: /etc/pki_service
-          name: maddog-certs
       hostNetwork: true
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - configMap:
           name: sfdchosts
         name: sfdchosts
@@ -61,9 +64,6 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 25%

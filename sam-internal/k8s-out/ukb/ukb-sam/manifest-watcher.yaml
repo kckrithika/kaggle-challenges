@@ -34,10 +34,10 @@ spec:
           name: maddog-certs
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /data/certs
-          name: certs
         - mountPath: /config
           name: config
+        - mountPath: /data/certs
+          name: certs
       hostNetwork: true
       nodeSelector:
         pool: ukb-sam

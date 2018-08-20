@@ -20,12 +20,12 @@ if configs.estate == "prd-sam" then {
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             {
-                                name: "sfdc-volume",
-                                mountPath: "/etc/certs",
-                            },
-                            {
                                 name: "k8sproxyconfig",
                                 mountPath: "/k8sproxyconfig",
+                            },
+                            {
+                                name: "sfdc-volume",
+                                mountPath: "/etc/certs",
                             },
                         ]),
                         ports: [

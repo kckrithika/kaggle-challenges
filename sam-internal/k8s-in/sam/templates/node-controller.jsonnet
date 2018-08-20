@@ -20,10 +20,10 @@ if samfeatureflags.estatessvc then {
                           ]
                         + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then ["--sdn-subnet-file-path=/kubeconfig/sfdc-sdn-subnet.env", "--default-max-podip=24"] else []),),
                         volumeMounts: configs.filter_empty([
-                            configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,
-                            configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
+                            configs.sfdchosts_volume_mount,
+                            configs.cert_volume_mount,
                         ]),
                         env: [
                             {

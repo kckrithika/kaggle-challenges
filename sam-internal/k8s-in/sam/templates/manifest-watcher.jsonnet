@@ -25,8 +25,8 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             configs.sfdchosts_volume_mount,
-                            configs.cert_volume_mount,
                             configs.config_volume_mount,
+                            configs.cert_volume_mount,
                         ]),
                     },
                 ],
