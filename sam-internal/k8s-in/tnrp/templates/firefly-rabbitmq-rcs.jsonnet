@@ -105,7 +105,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               },
               {
                 name: 'RABBITMQ_CONFIG_VERSION',
-                value: '1.0',
+                value: '1.1',
               },
             ],
             ports: [
