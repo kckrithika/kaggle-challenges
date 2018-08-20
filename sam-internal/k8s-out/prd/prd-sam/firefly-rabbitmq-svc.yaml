@@ -3,7 +3,7 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: firefly-rabbitmq
-    slb.sfdc.net/portconfigurations: '[{"port":15672,"targetport":15672,"lbtype":"http"},{"port":15671,"targetport":15671,"lbtype":"tls"},{"port":5672,"targetport":5672,"lbtype":"tcp"},{"port":5671,"targetport":5671,"lbtype":"tls"}]'
+    slb.sfdc.net/portconfigurations: '[{"port":15672,"targetport":15672,"lbtype":"http"},{"port":15671,"targetport":15671,"lbtype":"tcp"},{"port":5672,"targetport":5672,"lbtype":"tcp"},{"port":5671,"targetport":5671,"lbtype":"tcp"}]'
   labels:
     app: firefly-rabbitmq
     sam.data.sfdc.net/owner: tnrp

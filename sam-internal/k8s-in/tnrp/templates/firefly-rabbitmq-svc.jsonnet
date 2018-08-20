@@ -14,7 +14,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
     } + configs.ownerLabel.tnrp,
     annotations: if firefly_feature_flags.is_slb_enabled then {
         "slb.sfdc.net/name": "firefly-rabbitmq",
-        "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.firefly.rabbitmq_http + ",\"targetport\":" + portconfigs.firefly.rabbitmq_http + ",\"lbtype\":\"http\"},{\"port\":" + portconfigs.firefly.rabbitmq_https + ",\"targetport\":" + portconfigs.firefly.rabbitmq_https + ",\"lbtype\":\"tls\"},{\"port\":" + portconfigs.firefly.rabbitmq_amqp + ",\"targetport\":" + portconfigs.firefly.rabbitmq_amqp + ",\"lbtype\":\"tcp\"},{\"port\":" + portconfigs.firefly.rabbitmq_amqps + ",\"targetport\":" + portconfigs.firefly.rabbitmq_amqps + ",\"lbtype\":\"tls\"}]",
+        "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.firefly.rabbitmq_http + ",\"targetport\":" + portconfigs.firefly.rabbitmq_http + ",\"lbtype\":\"http\"},{\"port\":" + portconfigs.firefly.rabbitmq_https + ",\"targetport\":" + portconfigs.firefly.rabbitmq_https + ",\"lbtype\":\"tcp\"},{\"port\":" + portconfigs.firefly.rabbitmq_amqp + ",\"targetport\":" + portconfigs.firefly.rabbitmq_amqp + ",\"lbtype\":\"tcp\"},{\"port\":" + portconfigs.firefly.rabbitmq_amqps + ",\"targetport\":" + portconfigs.firefly.rabbitmq_amqps + ",\"lbtype\":\"tcp\"}]",
     },
   },
   spec: {
