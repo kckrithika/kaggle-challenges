@@ -209,6 +209,76 @@ system:
         exec:
           command:
           - "./bin/is-ready"
+  - name: usmt-xlt-master
+    count: 1
+    volumes:
+    - name: test
+      hostpath:
+        path: /data/test
+    - name: test-results
+      hostpath:
+        path: /data/test-results
+    containers:
+    - name: master-xlt-controller
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/master-xlt-controller:irahim-20180820-2da15ca
+      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      ports:
+      - containerPort: 7020
+        name: mxlt-grpc-svc
+      - containerPort: 15372
+        name: mxlt-scone-mgmt
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+      volumeMounts:
+      - name: test-results
+        mountPath: /data/test-results
+      - name: test
+        mountPath: /data/test
+    - name: universal-search-perf-report-server
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/universal-search-perf-report-server:irahim-20180820-73716f1
+      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      ports:
+      - containerPort: 8080
+        name: report-http
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /
+          port: 8080
+      volumeMounts:
+      - name: test-results
+        mountPath: /data/test-results
+        readOnly: true
+    - name: perf-universal-search-xlt
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180820-37c4e24
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      livenessProbe:
+        initialDelaySeconds: 30
+        exec:
+          command: ["true"]
+      volumeMounts:
+      - name: test
+        mountPath: /data/test
   loadbalancers:
   - function: universal-search
     lbname: universal-search-slb
