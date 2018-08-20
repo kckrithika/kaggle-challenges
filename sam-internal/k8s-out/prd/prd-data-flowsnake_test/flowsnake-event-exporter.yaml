@@ -38,7 +38,7 @@ spec:
             configMapKeyRef:
               key: strata_registry
               name: fleet-config
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-event-exporter:719
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-event-exporter:726
         imagePullPolicy: IfNotPresent
         name: flowsnake-event-exporter
         volumeMounts:
