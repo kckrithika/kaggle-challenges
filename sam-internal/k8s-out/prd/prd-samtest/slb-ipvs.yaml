@@ -48,7 +48,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001043-56677ba8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001057-2dd9b784
         name: slb-ipvs-installer
         securityContext:
           capabilities:
@@ -87,7 +87,7 @@ spec:
         - --enablePersistence=false
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001043-56677ba8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001057-2dd9b784
         name: slb-ipvs-processor
         securityContext:
           privileged: true
@@ -107,7 +107,7 @@ spec:
         - --connPort=9107
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001043-56677ba8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001057-2dd9b784
         livenessProbe:
           httpGet:
             path: /
@@ -136,7 +136,7 @@ spec:
         - --enableConntrack=false
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001043-56677ba8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001057-2dd9b784
         name: slb-ipvs-conntrack
         securityContext:
           privileged: true
@@ -182,7 +182,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001043-56677ba8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001057-2dd9b784
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -219,7 +219,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001043-56677ba8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001057-2dd9b784
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -241,7 +241,7 @@ spec:
         - --control.sentinelExpiration=1800s
         - --listenOnSocket=true
         - --readOnly=false
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001043-56677ba8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001057-2dd9b784
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -261,7 +261,7 @@ spec:
         - --client.serverInterface=lo
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001043-56677ba8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001057-2dd9b784
         name: slb-iface-processor
         securityContext:
           privileged: true
@@ -288,7 +288,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001043-56677ba8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001057-2dd9b784
         name: slb-cleanup
         securityContext:
           privileged: true
