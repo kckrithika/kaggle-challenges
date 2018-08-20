@@ -26,7 +26,6 @@ spec:
         - --v=3
         - --logtostderr=true
         - --config=/config/samcontrol.json
-        - --ipAddressCapacityRequest=true
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -maddogMadkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
         env:

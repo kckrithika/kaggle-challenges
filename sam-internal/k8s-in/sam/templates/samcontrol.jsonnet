@@ -22,7 +22,6 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                             "--v=3",
                             "--logtostderr=true",
                             "--config=/config/samcontrol.json",
-                                (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "--ipAddressCapacityRequest=true" else {}),
                             configs.sfdchosts_arg,
                         ]) + (if samfeatureflags.maddogforsamapps then [
                                   # Kept here because of the use of the envvar. Keep in sync with the config.
