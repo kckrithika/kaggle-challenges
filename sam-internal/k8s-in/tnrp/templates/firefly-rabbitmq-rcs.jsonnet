@@ -2,6 +2,8 @@ local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local images = import "fireflyimages.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
+local madkub = (import "firefly_madkub.jsonnet") + { templateFileName:: std.thisFile };
+local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 
 if firefly_feature_flags.is_rabbitmq_enabled then {
   apiVersion: 'apps/v1beta1',
@@ -27,8 +29,14 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
           app: 'rabbitmq',
           name: 'rabbitmq',
         },
+        annotations: {
+          "madkub.sam.sfdc.net/allcerts": "{\"certreqs\":[{\"name\": \"certs\",\"san\":[\"firefly\"],\"cert-type\":\"client\", \"kingdom\":\"prd\", \"role\": \"firefly\"}]}",
+        },
       },
       spec: {
+        initContainers: [
+            madkub.madkubInitContainer(),
+        ],
         containers: [
           {
             name: 'rabbitmq',
@@ -139,6 +147,10 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                 name: 'config-volume',
                 mountPath: '/etc/rabbitmq',
               },
+              {
+                  mountPath: "/certs",
+                  name: "certs",
+              },
             ],
             livenessProbe: {
               exec: {
@@ -160,6 +172,72 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               initialDelaySeconds: 10,
               timeoutSeconds: 10,
             },
+          },
+          {
+              args: [
+                  "/sam/madkub-client",
+                  "--madkub-endpoint",
+                  "https://10.254.208.254:32007",
+                  "--maddog-endpoint",
+                  configs.maddogEndpoint,
+                  "--maddog-server-ca",
+                  "/maddog-certs/ca/security-ca.pem",
+                  "--madkub-server-ca",
+                  "/maddog-certs/ca/cacerts.pem",
+                  "--cert-folders",
+                  "certs:/certs/",
+                  "--token-folder",
+                  "/tokens/",
+                  "--requested-cert-type",
+                  "client",
+                  "--refresher",
+                  "--run-init-for-refresher-mode",
+                  "--ca-folder",
+                  "/maddog-certs/ca",
+              ],
+              env: [
+                  {
+                      name: "MADKUB_NODENAME",
+                      valueFrom: {
+                          fieldRef: {
+                              fieldPath: "spec.nodeName",
+                          },
+                      },
+                  },
+                  {
+                      name: "MADKUB_NAME",
+                      valueFrom: {
+                          fieldRef: {
+                              fieldPath: "metadata.name",
+                          },
+                      },
+                  },
+                  {
+                      name: "MADKUB_NAMESPACE",
+                      valueFrom: {
+                          fieldRef: {
+                              fieldPath: "metadata.namespace",
+                          },
+                      },
+                  },
+              ],
+              image: samimages.madkub,
+              name: "madkub-refresher",
+              resources: {},
+              volumeMounts: [
+                  {
+                      mountPath: "/certs",
+                      name: "certs",
+                  },
+                  {
+                      mountPath: "/tokens",
+                      name: "tokens",
+                  },
+                  {
+                      mountPath: "/maddog-certs/",
+                      name: "maddog-certs",
+                  },
+              ],
           },
         ],
         volumes: [
@@ -226,6 +304,19 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               ],
             },
           },
+          {
+              emptyDir: {
+                  medium: "Memory",
+              },
+              name: "certs",
+          },
+          {
+              emptyDir: {
+                  medium: "Memory",
+              },
+              name: "tokens",
+          },
+          configs.maddog_cert_volume,
         ],
         terminationGracePeriodSeconds: 10,
         nodeSelector:
