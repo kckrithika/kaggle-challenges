@@ -21,7 +21,7 @@ local utils = import "util_functions.jsonnet";
         # When you *do* need to change one of these images, just override in the phase(s) you want to change.
         # Once the override is deployed to all phases, update the default and delete the overrides.
         default_image_tags: {
-                cert_secretizer_image_tag: 662,
+                cert_secretizer_image_tag: "716",
                 es_image_tag: "503",
                 fleetService_image_tag: "662",
                 testData_image_tag: "681",
@@ -78,7 +78,6 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
 
-            cert_secretizer_image_tag: "716",  #Verified successfully in test fleet
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
             eventExporter_image_tag: "726",  #Verified successfully in test fleet
@@ -117,7 +116,6 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
 
-            cert_secretizer_image_tag: "716",  #Verified successfully in iot fleet
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
             eventExporter_image_tag: "726",
@@ -150,7 +148,6 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
         "3": self.default_image_tags {
 
-            cert_secretizer_image_tag: "716",
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
 
@@ -182,7 +179,6 @@ local utils = import "util_functions.jsonnet";
             ### Instead, update default_image_tags definition at top of this file and delete
             ### any overrides in other phases that are equal to the new defaults.
 
-            cert_secretizer_image_tag: "662",
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
 
