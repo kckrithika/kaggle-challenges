@@ -8,7 +8,6 @@ system:
       - afranken@salesforce.com
       - gmercer@salesforce.com
       - xjayaseelan@salesforce.com
-      - mklosak@salesforce.com
       - mhowald@salesforce.com
   functions:
   - name: wh-con
@@ -22,7 +21,7 @@ system:
         secretName: test-secret
     containers:
     - name: event-notification-service
-      image: sfci/mc-eventing/event-notification:215.0.4
+      image: sfci/mc-eventing/event-notification:215.0.8
       ports:
         - containerPort: 15372
       env:
@@ -50,7 +49,5 @@ system:
     function: wh-con
     nodeExposed: true
     ports:
-#    - port: 8083
-#      targetport: 8080
     - port: 15373
       targetport: 15372
