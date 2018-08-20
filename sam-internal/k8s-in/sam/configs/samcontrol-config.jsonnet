@@ -14,6 +14,7 @@ std.prune({
   httpsDisableCertsCheck: true,
   volPermissionInitContainerImage: samimages.permissionInitContainer,
   livenessProbePort: "22545",
+  ipAddressCapacityRequest: (if samfeatureflags.ipAddressCapacityRequest then true),
 
   # Delete
   deletionPercentageThreshold: 20,

@@ -29,4 +29,6 @@ std.prune({
      if util.is_production(configs.kingdom) then ["cloudatlas"]
      else [".*"]
    ),
+   ipAddressCapacityRequest: (if samfeatureflags.ipAddressCapacityRequest then true),
+
 })
