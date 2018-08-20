@@ -20,6 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [thargrove] Enable color support
+        "prd,prd-sam,sam-sql-reporter,hypersam": "sam-0002194-07565bd4",
+
          # [cbatra] Deploying node controller changes for PRD IP issue
         "prd,prd-sam,node-controller,hypersam": "sam-0002192-400bcafb",
         "prd,prd-sam,samcontrol,hypersam": "sam-0002192-400bcafb",
