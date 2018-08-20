@@ -31,10 +31,10 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
-        - mountPath: /data/certs
-          name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /data/certs
+          name: certs
         - mountPath: /config
           name: config
       hostNetwork: true
@@ -45,11 +45,11 @@ spec:
           path: /etc/pki_service
         name: maddog-certs
       - hostPath:
-          path: /data/certs
-        name: certs
-      - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
       - configMap:
           name: bundle-controller
         name: config

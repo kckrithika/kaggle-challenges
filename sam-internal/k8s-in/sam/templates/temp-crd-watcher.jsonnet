@@ -23,10 +23,10 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                             ]),
                             volumeMounts: configs.filter_empty([
                                 configs.maddog_cert_volume_mount,
-                                configs.sfdchosts_volume_mount,
-                                configs.cert_volume_mount,
-                                configs.config_volume_mount,
                                 configs.kube_config_volume_mount,
+                                configs.sfdchosts_volume_mount,
+                                configs.config_volume_mount,
+                                configs.cert_volume_mount,
                             ]),
                             env: [
                                 configs.kube_config_env,
@@ -35,6 +35,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                     ],
                     volumes: configs.filter_empty([
                         configs.maddog_cert_volume,
+                        configs.kube_config_volume,
                         configs.cert_volume,
                         configs.sfdchosts_volume,
                         {
@@ -44,7 +45,6 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                             name: "sfdc-volume",
                         },
                         configs.config_volume("temp-crd-watcher"),
-                        configs.kube_config_volume,
                     ]),
                     nodeSelector: {
                                   } +

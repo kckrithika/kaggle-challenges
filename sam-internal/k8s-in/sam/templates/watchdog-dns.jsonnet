@@ -22,10 +22,10 @@ if configs.estate == "prd-samdev" then {
                                  + samwdconfig.shared_args
                                  + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
                         volumeMounts: configs.filter_empty([
-                            configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,
-                            configs.cert_volume_mount,
+                            configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
+                            configs.cert_volume_mount,
                         ]),
                         name: "watchdog",
                         resources: {
@@ -42,8 +42,8 @@ if configs.estate == "prd-samdev" then {
                 ],
                 dnsPolicy: "ClusterFirstWithHostNet",
                 volumes: configs.filter_empty([
-                    configs.sfdchosts_volume,
                     configs.maddog_cert_volume,
+                    configs.sfdchosts_volume,
                     configs.cert_volume,
                     configs.config_volume("watchdog"),
                 ]),

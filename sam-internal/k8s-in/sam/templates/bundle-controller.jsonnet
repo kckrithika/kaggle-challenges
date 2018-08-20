@@ -20,8 +20,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                         ]),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
-                            configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
+                            configs.cert_volume_mount,
                             configs.config_volume_mount,
                         ]),
                         env: [
@@ -41,8 +41,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                 ],
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
-                    configs.cert_volume,
                     configs.kube_config_volume,
+                    configs.cert_volume,
                     configs.config_volume("bundle-controller"),
                 ]),
                 nodeSelector: {

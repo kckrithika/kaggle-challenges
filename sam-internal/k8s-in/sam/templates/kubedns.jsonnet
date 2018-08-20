@@ -130,6 +130,7 @@ if samfeatureflags.kubedns then {
                         terminationMessagePath: "/dev/termination-log",
                         terminationMessagePolicy: "File",
                         volumeMounts: [
+                            configs.kube_config_volume_mount,
                             {
                                 mountPath: "/etc/kubernetes",
                                 name: "kubernetes",
@@ -142,7 +143,6 @@ if samfeatureflags.kubedns then {
                                 mountPath: "/data/certs",
                                 name: "certs",
                             },
-                            configs.kube_config_volume_mount,
                         ] + if configs.estate == "prd-samdev" then [{
                                 mountPath: "/scripts",
                                 name: "cert-age",
@@ -256,6 +256,7 @@ if samfeatureflags.kubedns then {
                     },
                 ],
                 volumes: [
+                    configs.kube_config_volume,
                     {
                         hostPath: {
                             path: "/etc/kubernetes",
@@ -274,7 +275,6 @@ if samfeatureflags.kubedns then {
                         },
                         name: "certs",
                     },
-                    configs.kube_config_volume,
                 ] + (
 if configs.estate == "prd-samdev" then [{
                         configMap: {

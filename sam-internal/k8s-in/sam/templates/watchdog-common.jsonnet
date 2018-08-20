@@ -31,6 +31,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                             },
                         },
                         volumeMounts: configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
                             configs.sfdchosts_volume_mount,
                             {
                                 mountPath: "/hostproc",
@@ -38,11 +39,11 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                             },
                             configs.config_volume_mount,
                             configs.cert_volume_mount,
-                            configs.maddog_cert_volume_mount,
                         ]),
                     },
                 ],
                 volumes: configs.filter_empty([
+                    configs.maddog_cert_volume,
                     configs.sfdchosts_volume,
                     {
                         hostPath: {
@@ -52,7 +53,6 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     },
                     configs.config_volume("watchdog"),
                     configs.cert_volume,
-                    configs.maddog_cert_volume,
                 ]),
             },
             metadata: {

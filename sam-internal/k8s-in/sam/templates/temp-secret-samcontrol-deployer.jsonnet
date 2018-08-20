@@ -20,11 +20,11 @@ if (!utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom)) t
                                                         configs.sfdchosts_arg,
                                                 ]),
                                                 volumeMounts: configs.filter_empty([
-                                                        configs.sfdchosts_volume_mount,
                                                         configs.maddog_cert_volume_mount,
-                                                        configs.cert_volume_mount,
                                                         configs.kube_config_volume_mount,
+                                                        configs.sfdchosts_volume_mount,
                                                         configs.config_volume_mount,
+                                                        configs.cert_volume_mount,
                                                 ]),
                                                 env: [
                                                         configs.kube_config_env,

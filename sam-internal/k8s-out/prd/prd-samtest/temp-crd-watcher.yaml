@@ -34,14 +34,14 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
-        - mountPath: /sfdchosts
-          name: sfdchosts
-        - mountPath: /data/certs
-          name: certs
-        - mountPath: /config
-          name: config
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /config
+          name: config
+        - mountPath: /data/certs
+          name: certs
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -49,6 +49,9 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
       - hostPath:
           path: /data/certs
         name: certs
@@ -61,6 +64,3 @@ spec:
       - configMap:
           name: temp-crd-watcher
         name: config
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
