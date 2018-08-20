@@ -32,7 +32,9 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002226-8d4a37a9",
 
         #[rbhat]
-        "prd,prd-sam,samapp-controller,hypersam": "sam-0002222-9f90563d",
+        "prd,prd-sam,samapp-controller,hypersam": "sam-0002229-6749f11e",
+        "prd,prd-samdev,samapp-controller,hypersam": "sam-0002229-6749f11e",
+        "prd,prd-samdev,watchdog-comparek8sresources,hypersam": "sam-0002229-6749f11e",
 
         #[small]
         "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180816_155056.7aa464a5.dirty.small-ltm",
