@@ -43,6 +43,7 @@ local utils = import "util_functions.jsonnet";
                 snapshoter_image_tag: "sam-0002052-bc0d9ea5",
                 snapshot_consumer_image_tag: "sam-0002052-bc0d9ea5",
                 kubedns_image_tag: "1.10.0",
+                eventExporter_image_tag: "726",
         },
 
         ### Release Phase minikube
@@ -81,7 +82,6 @@ local utils = import "util_functions.jsonnet";
             cert_secretizer_image_tag: "716",  #Verified successfully in test fleet
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
-            eventExporter_image_tag: "726",  #Verified successfully in test fleet
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -89,7 +89,6 @@ local utils = import "util_functions.jsonnet";
                 add_12_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
-                event_exporter: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
                 main: {
@@ -120,7 +119,6 @@ local utils = import "util_functions.jsonnet";
             cert_secretizer_image_tag: "716",  #Verified successfully in iot fleet
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
-            eventExporter_image_tag: "726",  #Verified successfully in test fleet
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -128,7 +126,6 @@ local utils = import "util_functions.jsonnet";
                 add_12_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
-                event_exporter: "foo",  #Verified successfully in test fleet
             },
             version_mapping: {
                 main: {
@@ -153,7 +150,6 @@ local utils = import "util_functions.jsonnet";
             cert_secretizer_image_tag: "716",
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
-            eventExporter_image_tag: "726",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -161,7 +157,6 @@ local utils = import "util_functions.jsonnet";
                 add_12_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
-                event_exporter: "foo",
             },
             version_mapping: {
                 main: {
