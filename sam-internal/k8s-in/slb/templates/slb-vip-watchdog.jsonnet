@@ -111,11 +111,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            else ["--optOutNamespace=kne"]  # keeps backward compatibility for phase 3/4
                                        )
                                        + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
-                                       + (
-                                           if slbimages.phaseNum == 1 || slbimages.phaseNum == 2 then
-                                               ["--followRedirect=false"]
-                                           else []
-                                       ),
+                                       + ["--followRedirect=false"],
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
