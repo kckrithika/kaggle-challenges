@@ -68,7 +68,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
-                        ] + (if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "fra-sam" || configs.estate == "cdg-sam" then [
+                        ] + (if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "fra-sam" || configs.estate == "cdg-sam" then [
                                 "--IpvsPath=20180724",
                             ] else [
                             ]) +
