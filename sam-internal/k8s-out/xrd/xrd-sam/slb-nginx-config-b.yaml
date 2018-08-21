@@ -84,7 +84,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001057-2dd9b784
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001061-8f516a5e
         name: slb-nginx-config-b
         ports:
         - containerPort: 32146
@@ -135,7 +135,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001057-2dd9b784
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001061-8f516a5e
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
@@ -202,7 +202,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001057-2dd9b784
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001061-8f516a5e
         name: slb-cert-checker
         volumeMounts:
         - mountPath: /host/data/slb/nginx/config
@@ -248,7 +248,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001057-2dd9b784
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001061-8f516a5e
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -285,7 +285,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001057-2dd9b784
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001061-8f516a5e
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -307,7 +307,7 @@ spec:
         - --control.sentinelExpiration=1800s
         - --listenOnSocket=true
         - --readOnly=false
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001057-2dd9b784
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001061-8f516a5e
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -327,7 +327,7 @@ spec:
         - --nginxPodMode=true
         - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
         - --client.dialSocket=true
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001057-2dd9b784
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001061-8f516a5e
         name: slb-realsvrcfg
         securityContext:
           privileged: true
@@ -352,7 +352,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001057-2dd9b784
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001061-8f516a5e
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -367,6 +367,35 @@ spec:
           name: sfdchosts
         - mountPath: /host/data/slb/logs/slb-nginx-config-b/cleanup
           name: var-cleanup-logs-volume
+      - command:
+        - /sdn/slb-manifest-watcher
+        - --manifestOutputDir=/host/data/slb/manifests/slb-nginx-config-b
+        - --tnrpEndpoint=https://ops0-piperepo1-0-xrd.data.sfdc.net/
+        - --hostnameOverride=$(NODE_NAME)
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
+        - --client.dialSocket=true
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001061-8f516a5e
+        name: slb-manifest-watcher
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /etc/pki_service
+          name: maddog-certs
       initContainers:
       - args:
         - /sam/madkub-client
