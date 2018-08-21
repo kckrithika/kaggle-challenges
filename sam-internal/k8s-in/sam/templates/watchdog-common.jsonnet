@@ -5,10 +5,10 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     kind: "DaemonSet",
     spec: {
         template: {
-            spec: {
+            spec: configs.specWithMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithMadDog {
                         image: samimages.hypersam,
                         command: [
                                      "/sam/watchdog",
@@ -30,8 +30,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                 memory: "300Mi",
                             },
                         },
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             {
                                 mountPath: "/hostproc",
@@ -39,11 +38,10 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                             },
                             configs.config_volume_mount,
                             configs.cert_volume_mount,
-                        ]),
+                        ],
                     },
                 ],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
+                volumes+: [
                     configs.sfdchosts_volume,
                     {
                         hostPath: {
@@ -53,7 +51,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     },
                     configs.config_volume("watchdog"),
                     configs.cert_volume,
-                ]),
+                ],
             },
             metadata: {
                 labels: {

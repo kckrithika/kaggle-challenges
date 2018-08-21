@@ -7,10 +7,10 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithMadDog {
                         name: "manifest-watcher",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
@@ -22,16 +22,14 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                             "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
                             configs.sfdchosts_arg,
                         ]),
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
                             configs.cert_volume_mount,
-                        ]),
+                        ],
                     },
                 ],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
+                volumes+: [
                     configs.cert_volume,
                     configs.sfdchosts_volume,
                     {
@@ -41,7 +39,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                         name: "sfdc-volume",
                     },
                     configs.config_volume("manifest-watcher"),
-                ]),
+                ],
                 nodeSelector: {
                               } +
                               if configs.kingdom == "prd" then {

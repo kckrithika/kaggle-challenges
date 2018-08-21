@@ -8,10 +8,10 @@ if configs.estate == "prd-sam" then {
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithMadDog {
                         name: "watchdog-samsql",
                         image: samimages.hypersam,
                         command: [
@@ -31,8 +31,7 @@ if configs.estate == "prd-sam" then {
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
+                        volumeMounts+: [
                             {
                                 mountPath: "/var/secrets/",
                                 name: "mysql",
@@ -46,11 +45,10 @@ if configs.estate == "prd-sam" then {
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
                             configs.cert_volume_mount,
-                        ]),
+                        ],
                     },
                 ],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
+                volumes+: [
                     {
                         name: "mysql",
                         secret: {
@@ -66,7 +64,7 @@ if configs.estate == "prd-sam" then {
                     configs.sfdchosts_volume,
                     configs.config_volume("watchdog"),
                     configs.cert_volume,
-                ]),
+                ],
                 nodeSelector: {
                     pool: configs.estate,
                 },
