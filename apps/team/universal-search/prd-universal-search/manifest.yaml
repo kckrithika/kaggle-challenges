@@ -235,9 +235,8 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         initialDelaySeconds: 30
-        httpGet:
-          path: /manage/health
-          port: 15372
+        exec:
+          command: ["true"]
       volumeMounts:
       - name: test-results
         mountPath: /data/test-results
