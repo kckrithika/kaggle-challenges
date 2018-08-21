@@ -25,11 +25,6 @@ spec:
       - env:
         - name: RABBITMQ_DEFAULT_USER
           value: sfdc-rabbitmq
-        - name: RABBITMQ_DEFAULT_PASS
-          valueFrom:
-            secretKeyRef:
-              key: rabbitmqDefaultPass
-              name: rabbitmq-secret
         - name: MY_POD_IP
           valueFrom:
             fieldRef:
@@ -46,6 +41,16 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: KINGDOM
+          value: PRD
+        - name: ESTATE
+          value: prd-samtest
+        - name: SFDC_METRICS_SERVICE_HOST
+          value: ajna0-funnel1-0-prd.data.sfdc.net
+        - name: SFDC_METRICS_SERVICE_PORT
+          value: "80"
+        - name: SUPERPOD
+          value: NONE
         - name: RABBITMQ_USE_LONGNAME
           value: "true"
         - name: RABBITMQ_NODENAME
@@ -53,8 +58,8 @@ spec:
         - name: K8S_SERVICE_NAME
           value: rabbitmq-set
         - name: RABBITMQ_CONFIG_VERSION
-          value: "1.1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:11
+          value: "1.2"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:13
         imagePullPolicy: Always
         lifecycle:
           postStart:
@@ -64,9 +69,11 @@ spec:
               - -c
               - rabbitmqctl wait /var/lib/rabbitmq/mnesia/rabbit\@$(hostname -f).pid;
                 until rabbitmqctl node_health_check; do sleep 1; done; rabbitmqctl
-                add_user $RABBITMQ_DEFAULT_USER $RABBITMQ_DEFAULT_PASS; rabbitmqctl
-                set_user_tags $RABBITMQ_DEFAULT_USER administrator; rabbitmqctl set_permissions
-                -p / $RABBITMQ_DEFAULT_USER ".*" ".*" ".*";
+                add_user $RABBITMQ_DEFAULT_USER $(pyczar get_secret_by_subscriber
+                --vault-name=${ESTATE} --secret-name=rabbitMqDefaultPass --server-url=https://secretservice.dmz.salesforce.com:8271
+                --cert-file=/certs/client/certificates/client.pem --key-file=/certs/client/keys/client-key.pem);
+                rabbitmqctl set_user_tags $RABBITMQ_DEFAULT_USER administrator; rabbitmqctl
+                set_permissions -p / $RABBITMQ_DEFAULT_USER ".*" ".*" ".*";
         livenessProbe:
           exec:
             command:
@@ -190,8 +197,26 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      - args:
+        - chmod -R 775 /vols/maddog-certs && chown -R 7447:7447 /vols/maddog-certs
+        command:
+        - /bin/sh
+        - -c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673
+        imagePullPolicy: Always
+        name: permissionsetterinitcontainer
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /vols/maddog-certs
+          name: maddog-certs
       nodeSelector:
         pool: prd-samtest
+      securityContext:
+        fsGroup: 7447
+        runAsNonRoot: true
+        runAsUser: 7447
       terminationGracePeriodSeconds: 10
       volumes:
       - name: data-volume
@@ -200,19 +225,6 @@ spec:
       - name: config-volume
         projected:
           sources:
-          - secret:
-              items:
-              - key: .erlang.cookie
-                path: .erlang.cookie
-              - key: rabbitmq.pem
-                path: rabbitmq.pem
-              - key: cacert.pem
-                path: ca/cacert.pem
-              - key: cert.pem
-                path: server/cert.pem
-              - key: key.pem
-                path: server/key.pem
-              name: rabbitmq-secret
           - configMap:
               items:
               - key: rabbitmq.conf
