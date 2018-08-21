@@ -4,6 +4,7 @@ local images = import "fireflyimages.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
 local madkub = (import "firefly_madkub.jsonnet") + { templateFileName:: std.thisFile };
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
+local permsetter = (import "firefly_permsetter.jsonnet") + { templateFileName:: std.thisFile };
 
 if firefly_feature_flags.is_rabbitmq_enabled then {
   apiVersion: 'apps/v1beta1',
@@ -36,6 +37,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
       spec: {
         initContainers: [
             madkub.madkubInitContainer(),
+            permsetter.permsetterInitContainer(),
         ],
         containers: [
           {
@@ -319,6 +321,11 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
           configs.maddog_cert_volume,
         ],
         terminationGracePeriodSeconds: 10,
+        securityContext: {
+          fsGroup: 7447,
+          runAsNonRoot: true,
+          runAsUser: 7447,
+        },
         nodeSelector:
           if configs.estate == "prd-samtwo" then {
             pool: 'prd-sam_tnrp_signer',
