@@ -60,6 +60,7 @@ spec:
         - --metricsBatchTimeout=30s
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
+        - --followRedirect=false
         env:
         - name: NODE_NAME
           valueFrom:
