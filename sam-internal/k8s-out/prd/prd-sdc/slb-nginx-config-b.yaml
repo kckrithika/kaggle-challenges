@@ -122,6 +122,31 @@ spec:
         - mountPath: /cert2
           name: cert2
       - command:
+        - /sdn/slb/slb-nginx-data
+        - --connPort=9125
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000956-13cb4cb8
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9125
+          initialDelaySeconds: 5
+          periodSeconds: 3
+        name: slb-nginx-data
+        ports:
+        - containerPort: 32146
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+          name: var-logs-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
         - /sdn/slb-file-watcher
         - --filePath=/host/data/slb/logs/slb-nginx-config-b/slb-nginx-proxy.emerg.log
         - --metricName=nginx-emergency
