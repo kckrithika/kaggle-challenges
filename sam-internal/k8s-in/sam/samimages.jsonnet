@@ -61,7 +61,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
             # IMPORTANT! Follow all steps from https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM
-            hypersam: "sam-0002225-507ca37b",
+            hypersam: "sam-0002227-b17e4d9d",
             },
 
         ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
