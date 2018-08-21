@@ -40,6 +40,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                                      "-laddr=" + samwdconfig.laddr,
                                      "-imageName=" + samimages.hypersam,
                                      "-watchDogKind=" + $.kind,
+                                     "-enableStatefulChecks=false",
                                  ]
                                  + samwdconfig.shared_args
                                  + (if samfeatureflags.syntheticwdPagerDutyEnabled then samwdconfig.low_urgency_pagerduty_args else []),

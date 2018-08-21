@@ -29,6 +29,7 @@ spec:
         - -laddr=0.0.0.0:8083
         - -imageName=ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0002190-d048106f
         - -watchDogKind=Deployment
+        - -enableStatefulChecks=false
         - -timeout=2s
         - -funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --config=/config/watchdog.json
