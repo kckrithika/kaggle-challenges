@@ -1,7 +1,7 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
-if !std.objectHas(flowsnake_images.feature_flags, "event_exporter") then
+if flowsnakeconfig.is_minikube then
 "SKIP"
 else
 {
