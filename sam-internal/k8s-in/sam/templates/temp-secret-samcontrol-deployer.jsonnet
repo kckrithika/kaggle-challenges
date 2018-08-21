@@ -8,10 +8,10 @@ if (!utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom)) t
         spec: {
                 replicas: 1,
                 template: {
-                        spec: {
+                        spec: configs.specWithKubeConfigAndMadDog {
                                 hostNetwork: true,
                                 containers: [
-                                        {
+                                        configs.containerWithKubeConfigAndMadDog {
                                                 name: "temp-secret-samcontrol-deployer",
                                                 image: samimages.hypersam,
                                                 command: configs.filter_empty([
@@ -19,15 +19,10 @@ if (!utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom)) t
                                                         "--config=/config/tempsecretsamcontroldeployer.json",
                                                         configs.sfdchosts_arg,
                                                 ]),
-                                                volumeMounts: configs.filter_empty([
-                                                        configs.maddog_cert_volume_mount,
-                                                        configs.kube_config_volume_mount,
+                                                volumeMounts+: [
                                                         configs.sfdchosts_volume_mount,
                                                         configs.config_volume_mount,
                                                         configs.cert_volume_mount,
-                                                ]),
-                                                env: [
-                                                        configs.kube_config_env,
                                                 ],
                                                 livenessProbe: {
                                                         httpGet: {
@@ -40,13 +35,11 @@ if (!utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom)) t
                                                 },
                                         },
                                 ],
-                                volumes: configs.filter_empty([
+                                volumes+: [
                                         configs.sfdchosts_volume,
-                                        configs.maddog_cert_volume,
                                         configs.cert_volume,
-                                        configs.kube_config_volume,
                                         configs.config_volume("temp-secret-samcontrol-deployer"),
-                                ]),
+                                ],
                                 nodeSelector: {
                                                           } +
                                                           if configs.kingdom == "prd" then {

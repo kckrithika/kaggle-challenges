@@ -7,10 +7,10 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
         spec: {
             replicas: 1,
             template: {
-                spec: {
+                spec: configs.specWithKubeConfigAndMadDog {
                     hostNetwork: true,
                     containers: [
-                        {
+                        configs.containerWithKubeConfigAndMadDog {
                             name: "temp-crd-watcher",
                             image: samimages.hypersam,
                             command: configs.filter_empty([
@@ -21,21 +21,14 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                                 "--config=/config/tempmanifestwatcher.json",
                                 configs.sfdchosts_arg,
                             ]),
-                            volumeMounts: configs.filter_empty([
-                                configs.maddog_cert_volume_mount,
-                                configs.kube_config_volume_mount,
+                            volumeMounts+: [
                                 configs.sfdchosts_volume_mount,
                                 configs.config_volume_mount,
                                 configs.cert_volume_mount,
-                            ]),
-                            env: [
-                                configs.kube_config_env,
                             ],
                         },
                     ],
-                    volumes: configs.filter_empty([
-                        configs.maddog_cert_volume,
-                        configs.kube_config_volume,
+                    volumes+: [
                         configs.cert_volume,
                         configs.sfdchosts_volume,
                         {
@@ -45,7 +38,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                             name: "sfdc-volume",
                         },
                         configs.config_volume("temp-crd-watcher"),
-                    ]),
+                    ],
                     nodeSelector: {
                                   } +
                                   if configs.kingdom == "prd" then {

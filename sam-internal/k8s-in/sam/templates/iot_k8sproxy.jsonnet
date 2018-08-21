@@ -7,18 +7,17 @@ if configs.estate == "prd-sam" then {
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithMadDog {
                         name: "iotk8sproxy",
                         image: samimages.k8sproxy,
                         args: [
                                  "-f",
                                  "/k8sproxyconfig/haproxy.cfg",
                              ],
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
+                        volumeMounts+: [
                             {
                                 name: "k8sproxyconfig",
                                 mountPath: "/k8sproxyconfig",
@@ -27,7 +26,7 @@ if configs.estate == "prd-sam" then {
                                 name: "sfdc-volume",
                                 mountPath: "/etc/certs",
                             },
-                        ]),
+                        ],
                         ports: [
                             {
                                 containerPort: 5000,
@@ -44,8 +43,7 @@ if configs.estate == "prd-sam" then {
                         },
                     },
                 ],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
+                volumes+: [
                     {
                         hostPath: {
                             path: "/data/certs",
@@ -58,7 +56,7 @@ if configs.estate == "prd-sam" then {
                         },
                         name: "k8sproxyconfig",
                     },
-                ]),
+                ],
                 nodeSelector: {
                     "kubernetes.io/hostname": "shared0-samcompute1-1-prd.eng.sfdc.net",
                 },

@@ -7,18 +7,17 @@ if samfeatureflags.k8sproxy then {
     spec: {
         replicas: 3,
         template: {
-            spec: {
+            spec: configs.specWithMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithMadDog {
                         name: "k8sproxy",
                         image: samimages.k8sproxy,
                         args: [
                                  "-f",
                                  "/k8sproxyconfig/haproxy.cfg",
                              ],
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
+                        volumeMounts+: [
                             {
                                 name: "k8sproxyconfig",
                                 mountPath: "/k8sproxyconfig",
@@ -27,7 +26,7 @@ if samfeatureflags.k8sproxy then {
                                 name: "sfdc-volume",
                                 mountPath: "/etc/certs",
                             },
-                        ]),
+                        ],
                         ports: [
                             {
                                 containerPort: 5000,
@@ -44,8 +43,7 @@ if samfeatureflags.k8sproxy then {
                         },
                     },
                 ],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
+                volumes+: [
                     {
                         hostPath: {
                             path: "/data/certs",
@@ -58,7 +56,7 @@ if samfeatureflags.k8sproxy then {
                         },
                         name: "k8sproxyconfig",
                     },
-                ]),
+                ],
                 nodeSelector: {
                     master: "true",
                 },

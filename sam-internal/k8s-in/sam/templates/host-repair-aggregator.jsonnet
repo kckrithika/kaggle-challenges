@@ -25,8 +25,8 @@ if configs.estate == "prd-samtest" then {
                 } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
-            spec: {
-                containers: [{
+            spec: configs.specWithKubeConfigAndMadDog {
+                containers: [configs.containerWithKubeConfigAndMadDog {
                     name: "host-repair-aggregator",
                     image: samimages.hypersam,
                     command: [
@@ -35,24 +35,17 @@ if configs.estate == "prd-samtest" then {
                         "--hostsConfigFile=/sfdchosts/hosts.json",
                         "-v=0",
                     ],
-                    volumeMounts: configs.filter_empty([
-                        configs.maddog_cert_volume_mount,
-                        configs.kube_config_volume_mount,
+                    volumeMounts+: [
                         configs.sfdchosts_volume_mount,
                         configs.config_volume_mount,
                         configs.cert_volume_mount,
-                    ]),
-                    env: [
-                        configs.kube_config_env,
                     ],
                 }],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
+                volumes+: [
                     configs.sfdchosts_volume,
                     configs.config_volume("host-repair-aggregator"),
                     configs.cert_volume,
-                ]),
+                ],
                 hostNetwork: true,
                 nodeSelector: {
                     master: "true",

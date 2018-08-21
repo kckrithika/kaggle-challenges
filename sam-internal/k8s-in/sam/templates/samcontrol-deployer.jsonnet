@@ -5,10 +5,10 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     spec: {
         replicas: 1,
         template: {
-            spec: {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "samcontrol-deployer",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
@@ -16,22 +16,17 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                             "--config=/config/samcontroldeployer.json",
                             configs.sfdchosts_arg,
                         ]),
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
-                            configs.kube_config_volume_mount,
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
                             configs.cert_volume_mount,
-                        ]) + (if configs.kingdom == "prd" then [
+                        ] + (if configs.kingdom == "prd" then [
                                   {
                                       mountPath: "/var/token",
                                       name: "token",
                                       readOnly: true,
                                   },
                               ] else []),
-                        env: [
-                            configs.kube_config_env,
-                        ],
                         livenessProbe: {
                             httpGet: {
                                 path: "/",
@@ -43,13 +38,11 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                         },
                     },
                 ],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
+                volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     configs.config_volume("samcontrol-deployer"),
-                ]) + (if configs.kingdom == "prd" then [
+                ] + (if configs.kingdom == "prd" then [
                           {
                               secret: {
                                   secretName: "git-token",

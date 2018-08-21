@@ -86,12 +86,12 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /kubeconfig
           name: kubeconfig
         - mountPath: /etc/kubernetes
           name: kubernetes
-        - mountPath: /etc/pki_service
-          name: maddog-certs
         - mountPath: /data/certs
           name: certs
         - mountPath: /scripts
@@ -177,14 +177,14 @@ spec:
         operator: Exists
       volumes:
       - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
       - hostPath:
           path: /etc/kubernetes
         name: kubernetes
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs

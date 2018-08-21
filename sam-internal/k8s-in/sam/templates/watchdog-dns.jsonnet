@@ -7,10 +7,10 @@ if configs.estate == "prd-samdev" then {
     kind: "Deployment",
     spec: {
         template: {
-            spec: {
+            spec: configs.specWithMadDog {
                 hostNetwork: true,
                 containers: [
-                    {
+                    configs.containerWithMadDog {
                         image: samimages.hypersam,
                         command: [
                                      "/sam/watchdog",
@@ -21,12 +21,11 @@ if configs.estate == "prd-samdev" then {
                                  ]
                                  + samwdconfig.shared_args
                                  + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
+                        volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
                             configs.cert_volume_mount,
-                        ]),
+                        ],
                         name: "watchdog",
                         resources: {
                             requests: {
@@ -41,12 +40,11 @@ if configs.estate == "prd-samdev" then {
                     },
                 ],
                 dnsPolicy: "ClusterFirstWithHostNet",
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
+                volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     configs.config_volume("watchdog"),
-                ]),
+                ],
                 # not sure if this is useful at all
                 nodeSelector: if utils.is_public_cloud(configs.kingdom) then {
                 } else {

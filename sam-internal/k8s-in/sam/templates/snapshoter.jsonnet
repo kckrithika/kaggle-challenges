@@ -27,8 +27,8 @@ if configs.estate != "prd-sam" then
                 } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
-            spec: {
-                containers: [{
+            spec: configs.specWithKubeConfigAndMadDog {
+                containers: [configs.containerWithKubeConfigAndMadDog {
                     command: [
                         "/sam/snapshoter",
                         "--config=/config/snapshoter.json",
@@ -36,15 +36,10 @@ if configs.estate != "prd-sam" then
                         "--v=4",
                         "--alsologtostderr",
                     ],
-                    volumeMounts: configs.filter_empty([
-                        configs.maddog_cert_volume_mount,
-                        configs.kube_config_volume_mount,
+                    volumeMounts+: [
                         configs.sfdchosts_volume_mount,
                         configs.config_volume_mount,
                         configs.cert_volume_mount,
-                    ]),
-                    env: [
-                        configs.kube_config_env,
                     ],
                     livenessProbe: {
                         httpGet: {
@@ -58,13 +53,11 @@ if configs.estate != "prd-sam" then
                     image: samimages.hypersam,
                     name: "snapshoter",
                 }],
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
+                volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     configs.config_volume("snapshoter"),
-                ]),
+                ],
                 hostNetwork: true,
                 nodeSelector: {
                               } +
