@@ -112,7 +112,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                        )
                                        + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
                                        + (
-                                           if slbimages.phaseNum == 1 then
+                                           if slbimages.phaseNum == 1 || slbimages.phaseNum == 2 then
                                                ["--followRedirect=false"]
                                            else []
                                        ),
