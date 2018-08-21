@@ -211,12 +211,12 @@ data:
     ## See http://www.rabbitmq.com/access-control.html#loopback-users
     loopback_users.guest = false
     # TLS Support
-    listeners.ssl.default = 5671
-    ssl_options.cacertfile = /etc/rabbitmq/ca/cacert.pem
-    ssl_options.certfile = /etc/rabbitmq/server/cert.pem
-    ssl_options.keyfile = /etc/rabbitmq/server/key.pem
-    ssl_options.verify = verify_peer
-    ssl_options.fail_if_no_peer_cert = true
+    #listeners.ssl.default = 5671
+    #ssl_options.cacertfile = /etc/rabbitmq/ca/cacert.pem
+    #ssl_options.certfile = /etc/rabbitmq/server/cert.pem
+    #ssl_options.keyfile = /etc/rabbitmq/server/key.pem
+    #ssl_options.verify = verify_peer
+    #ssl_options.fail_if_no_peer_cert = true
     auth_mechanisms.1 = EXTERNAL
     auth_mechanisms.2 = PLAIN
     #auth_mechanisms.2 = AMQP
@@ -234,16 +234,16 @@ data:
     ## Log all requests to the management HTTP API to a file.
     ##
     # This generates a crash report due to https://github.com/rabbitmq/rabbitmq-web-dispatch/pull/33
-    #management.http_log_dir = /var/log/rabbitmq/access.log
+    management.http_log_dir = /var/log/rabbitmq/access.log
     ## Change the port on which the HTTP listener listens,
     ## specifying an interface for the web server to bind to.
     ## Also set the listener to use TLS and provide TLS options.
     ##
-    management.listener.port = 15671
-    management.listener.ssl  = true
-    management.listener.ssl_opts.cacertfile = /etc/rabbitmq/ca/cacert.pem
-    management.listener.ssl_opts.certfile   = /etc/rabbitmq/server/cert.pem
-    management.listener.ssl_opts.keyfile    = /etc/rabbitmq/server/key.pem
+    #management.listener.port = 15671
+    #management.listener.ssl  = true
+    #management.listener.ssl_opts.cacertfile = /etc/rabbitmq/ca/cacert.pem
+    #management.listener.ssl_opts.certfile   = /etc/rabbitmq/server/cert.pem
+    #management.listener.ssl_opts.keyfile    = /etc/rabbitmq/server/key.pem
 kind: ConfigMap
 metadata:
   creationTimestamp: null

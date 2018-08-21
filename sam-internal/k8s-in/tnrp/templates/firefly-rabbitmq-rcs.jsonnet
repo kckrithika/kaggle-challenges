@@ -49,7 +49,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                   command: [
                     '/bin/sh',
                     '-c',
-                    'rabbitmqctl wait /var/lib/rabbitmq/mnesia/rabbit\\@$(hostname -f).pid; until rabbitmqctl node_health_check; do sleep 1; done; rabbitmqctl add_user $RABBITMQ_DEFAULT_USER $RABBITMQ_DEFAULT_PASS; rabbitmqctl set_user_tags $RABBITMQ_DEFAULT_USER administrator; rabbitmqctl set_permissions -p / $RABBITMQ_DEFAULT_USER ".*" ".*" ".*";',
+                    'rabbitmqctl wait /var/lib/rabbitmq/mnesia/rabbit\\@$(hostname -f).pid; until rabbitmqctl node_health_check; do sleep 1; done; rabbitmqctl add_user $RABBITMQ_DEFAULT_USER $(pyczar get_secret_by_subscriber --vault-name=sam-k8s-dev --secret-name=rabbitMqDefaultPass --server-url=https://secretservice.dmz.salesforce.com:8271 --cert-file=/certs/client/certificates/client.pem --key-file=/certs/client/keys/client-key.pem); rabbitmqctl set_user_tags $RABBITMQ_DEFAULT_USER administrator; rabbitmqctl set_permissions -p / $RABBITMQ_DEFAULT_USER ".*" ".*" ".*";',
                   ],
                 },
               },
@@ -59,15 +59,6 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               {
                 name: 'RABBITMQ_DEFAULT_USER',
                 value: 'sfdc-rabbitmq',
-              },
-              {
-                name: 'RABBITMQ_DEFAULT_PASS',
-                valueFrom: {
-                  secretKeyRef: {
-                    name: 'rabbitmq-secret',
-                    key: 'rabbitmqDefaultPass',
-                  },
-                },
               },
               {
                 name: 'MY_POD_IP',
@@ -102,6 +93,26 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                 },
               },
               {
+                name: 'KINGDOM',
+                value: 'PRD',
+              },
+              {
+                name: 'ESTATE',
+                value: configs.estate,
+              },
+              {
+                name: 'SFDC_METRICS_SERVICE_HOST',
+                value: 'ajna0-funnel1-0-prd.data.sfdc.net',
+              },
+              {
+                name: 'SFDC_METRICS_SERVICE_PORT',
+                value: '80',
+              },
+              {
+                name: 'SUPERPOD',
+                value: 'NONE',
+              },
+              {
                 name: 'RABBITMQ_USE_LONGNAME',
                 value: 'true',
               },
@@ -115,7 +126,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               },
               {
                 name: 'RABBITMQ_CONFIG_VERSION',
-                value: '1.1',
+                value: '1.2',
               },
             ],
             ports: [
@@ -254,33 +265,6 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
             projected: {
               sources: [
                 {
-                  secret: {
-                    name: 'rabbitmq-secret',
-                    items: [
-                      {
-                        key: '.erlang.cookie',
-                        path: '.erlang.cookie',
-                      },
-                      {
-                        key: 'rabbitmq.pem',
-                        path: 'rabbitmq.pem',
-                      },
-                      {
-                        key: 'cacert.pem',
-                        path: 'ca/cacert.pem',
-                      },
-                      {
-                        key: 'cert.pem',
-                        path: 'server/cert.pem',
-                      },
-                      {
-                        key: 'key.pem',
-                        path: 'server/key.pem',
-                      },
-                    ],
-                  },
-                },
-                {
                   configMap: {
                     name: 'rabbitmq-configmap',
                     items: [
@@ -326,11 +310,8 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
           runAsNonRoot: true,
           runAsUser: 7447,
         },
-        nodeSelector:
-          if configs.estate == "prd-samtwo" then {
-            pool: 'prd-sam_tnrp_signer',
-          } else {
-            pool: configs.estate,
+        nodeSelector: {
+          pool: if configs.estate == "prd-samtwo" then 'prd-sam_tnrp_signer' else configs.estate,
         },
       },
     },
