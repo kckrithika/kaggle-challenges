@@ -92,25 +92,30 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                               name: "slb-vip-watchdog",
                               image: slbimages.hypersdn,
                               command: [
-                                  "/sdn/slb-vip-watchdog",
-                                  "--log_dir=" + slbconfigs.logsDir,
-                                  "--hostnameOverride=$(NODE_NAME)",
-                                  configs.sfdchosts_arg,
-                                  "--metricsEndpoint=" + configs.funnelVIP,
-                                  "--httpTimeout=" + (if slbimages.phaseNum == 1 then "10s" else "5s"),
-                                  "--vipLoop=1",
-                                  "--monitorFrequency=10s",
-                                  "--client.serverInterface=lo",
-                                  "--healthPathCheck=true",
-                                  "--metricsBatchTimeout=30s",
-                              ] + (
-                                  if slbimages.phaseNum <= 2 || configs.estate == "xrd-sam" then  # this block currently applies to phase 1, 2 and xrd-sam, pending rollout to more phases
-                                      if std.objectHas(slbconfigs.perCluster.vipwdOptOutOptions, configs.estate) then
-                                          slbconfigs.perCluster.vipwdOptOutOptions[configs.estate]
-                                      else []
-                                  else ["--optOutNamespace=kne"]  # keeps backward compatibility for phase 3/4
-                              )
-                              + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                                           "/sdn/slb-vip-watchdog",
+                                           "--log_dir=" + slbconfigs.logsDir,
+                                           "--hostnameOverride=$(NODE_NAME)",
+                                           configs.sfdchosts_arg,
+                                           "--metricsEndpoint=" + configs.funnelVIP,
+                                           "--httpTimeout=" + (if slbimages.phaseNum == 1 then "10s" else "5s"),
+                                           "--vipLoop=1",
+                                           "--monitorFrequency=10s",
+                                           "--client.serverInterface=lo",
+                                           "--healthPathCheck=true",
+                                           "--metricsBatchTimeout=30s",
+                                       ] + (
+                                           if slbimages.phaseNum <= 2 || configs.estate == "xrd-sam" then  # this block currently applies to phase 1, 2 and xrd-sam, pending rollout to more phases
+                                               if std.objectHas(slbconfigs.perCluster.vipwdOptOutOptions, configs.estate) then
+                                                   slbconfigs.perCluster.vipwdOptOutOptions[configs.estate]
+                                               else []
+                                           else ["--optOutNamespace=kne"]  # keeps backward compatibility for phase 3/4
+                                       )
+                                       + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+                                       + (
+                                           if slbimages.phaseNum == 1 then
+                                               ["--followRedirect=false"]
+                                           else []
+                                       ),
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
