@@ -26,7 +26,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
            },
            {
              port: portconfigs.firefly.rabbitmq_https,
-             targetport: $.spec.ports[0].targetPort,
+             targetport: $.spec.ports[1].targetPort,
              lbtype: "http",
              tls: true,
              reencrypt: false,
@@ -62,7 +62,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
         name: 'https',
         protocol: 'TCP',
         port: portconfigs.firefly.rabbitmq_https,
-        targetPort: portconfigs.firefly.rabbitmq_https,
+        targetPort: portconfigs.firefly.rabbitmq_http,
         nodePort: if !firefly_feature_flags.is_slb_enabled then portconfigs.firefly.rabbitmq_https_nodeport,
       },
       {

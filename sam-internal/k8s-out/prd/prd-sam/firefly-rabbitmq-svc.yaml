@@ -25,7 +25,7 @@ spec:
     nodePort: null
     port: 15671
     protocol: TCP
-    targetPort: 15671
+    targetPort: 15672
   - name: amqp
     nodePort: null
     port: 5672
