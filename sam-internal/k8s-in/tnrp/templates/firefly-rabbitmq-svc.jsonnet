@@ -14,7 +14,38 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
     } + configs.ownerLabel.tnrp,
     annotations: if firefly_feature_flags.is_slb_enabled then {
         "slb.sfdc.net/name": "firefly-rabbitmq",
-        "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.firefly.rabbitmq_http + ",\"targetport\":" + portconfigs.firefly.rabbitmq_http + ",\"lbtype\":\"http\"},{\"port\":" + portconfigs.firefly.rabbitmq_https + ",\"targetport\":" + portconfigs.firefly.rabbitmq_https + ",\"lbtype\":\"https\"},{\"port\":" + portconfigs.firefly.rabbitmq_amqp + ",\"targetport\":" + portconfigs.firefly.rabbitmq_amqp + ",\"lbtype\":\"tcp\"},{\"port\":" + portconfigs.firefly.rabbitmq_amqps + ",\"targetport\":" + portconfigs.firefly.rabbitmq_amqps + ",\"lbtype\":\"tcp\"}]",
+        "slb.sfdc.net/portconfigurations": std.toString(
+         [
+           {
+             port: portconfigs.firefly.rabbitmq_http,
+             targetport: $.spec.ports[0].targetPort,
+             lbtype: "http",
+             tls: false,
+             reencrypt: false,
+             sticky: 0,
+           },
+           {
+             port: portconfigs.firefly.rabbitmq_https,
+             targetport: $.spec.ports[0].targetPort,
+             lbtype: "http",
+             tls: true,
+             reencrypt: false,
+             sticky: 0,
+           },
+           {
+             port: portconfigs.firefly.rabbitmq_amqp,
+             targetport: $.spec.ports[2].targetPort,
+             lbtype: "tcp",
+             sticky: 0,
+           },
+           {
+             port: portconfigs.firefly.rabbitmq_amqps,
+             targetport: $.spec.ports[3].targetPort,
+             lbtype: "tcp",
+             sticky: 0,
+           },
+         ]
+       ),
     },
   },
   spec: {

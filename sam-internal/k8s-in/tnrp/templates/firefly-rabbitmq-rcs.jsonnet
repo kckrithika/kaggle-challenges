@@ -49,7 +49,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                   command: [
                     '/bin/sh',
                     '-c',
-                    'rabbitmqctl wait /var/lib/rabbitmq/mnesia/rabbit\\@$(hostname -f).pid; until rabbitmqctl node_health_check; do sleep 1; done; rabbitmqctl add_user $RABBITMQ_DEFAULT_USER $(pyczar get_secret_by_subscriber --vault-name=sam-k8s-dev --secret-name=rabbitMqDefaultPass --server-url=https://secretservice.dmz.salesforce.com:8271 --cert-file=/certs/client/certificates/client.pem --key-file=/certs/client/keys/client-key.pem); rabbitmqctl set_user_tags $RABBITMQ_DEFAULT_USER administrator; rabbitmqctl set_permissions -p / $RABBITMQ_DEFAULT_USER ".*" ".*" ".*";',
+                    'rabbitmqctl wait /var/lib/rabbitmq/mnesia/rabbit\\@$(hostname -f).pid; until rabbitmqctl node_health_check; do sleep 1; done; rabbitmqctl add_user $RABBITMQ_DEFAULT_USER $(pyczar get_secret_by_subscriber --vault-name=${ESTATE} --secret-name=rabbitMqDefaultPass --server-url=https://secretservice.dmz.salesforce.com:8271 --cert-file=/certs/client/certificates/client.pem --key-file=/certs/client/keys/client-key.pem); rabbitmqctl set_user_tags $RABBITMQ_DEFAULT_USER administrator; rabbitmqctl set_permissions -p / $RABBITMQ_DEFAULT_USER ".*" ".*" ".*";',
                   ],
                 },
               },
