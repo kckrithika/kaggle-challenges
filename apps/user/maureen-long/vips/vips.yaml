@@ -1,0 +1,8 @@
+- lbname: maureen_selfservice
+  servers:
+   - 10.231.187.82
+   - 10.231.187.19
+  ports:
+   - port: 80
+     targetport: 12087
+     lbtype: http
