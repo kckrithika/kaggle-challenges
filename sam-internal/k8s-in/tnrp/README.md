@@ -12,7 +12,10 @@ $ git push
 
 * Make your changes. If you're upgrading to a new Docker RabbitMQ image, you need to modify fireflyimages.jsonnet. If you're enabling a feature flag, you need to modify firefly_feature_flags.jsonnet.
 * Run build.sh
-* Check that generated k8s-out files look good
+```
+./build.sh "prd/prd-sam,prd/prd-samtwo,prd/prd-samdev,prd/prd-samtest"
+```
+* Check that generated k8s-out files look good. You can copy the generated yaml files in prd-samtest and manually test it in that environment.
 * Ask for 2FA approval
 * Wait for a TNRP build
 
