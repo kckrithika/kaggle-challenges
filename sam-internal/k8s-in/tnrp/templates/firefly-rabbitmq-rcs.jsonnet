@@ -43,7 +43,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
           {
             name: 'rabbitmq',
             image: images.rabbitmq,
-            [if configs.estate != "prd-samtwo" then "resources"]: configs.ipAddressResource,
+            [if configs.estate == "prd-samdev" then "resources"]: configs.ipAddressResource,
             lifecycle: {
               postStart: {
                 exec: {
