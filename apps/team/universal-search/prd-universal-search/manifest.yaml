@@ -239,7 +239,7 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: master-xlt-controller
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/master-xlt-controller:irahim-20180820-2da15ca
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/master-xlt-controller:irahim-20180821-3a05bd7
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 7020
