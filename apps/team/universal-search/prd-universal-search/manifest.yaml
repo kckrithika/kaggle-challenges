@@ -322,6 +322,7 @@ system:
     - lbtype: http
       port: 15373
       targetport: 15373
+    slbEnabled: true
   - function: usmt-xlt-master
     lbname: universal-search-perf-slb
     ports:
