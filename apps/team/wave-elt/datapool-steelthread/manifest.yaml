@@ -43,7 +43,7 @@ system:
         value: /home/datapool/client-certs/client
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE
-        value: dva-registry.internal.salesforce.com/dva/flowsnake-job-datapool-engine:305
+        value: dva-registry.internal.salesforce.com/dva/flowsnake-job-datapool-engine:306
 
       volumeMounts:
       - mountPath: /home/datapool/logs
