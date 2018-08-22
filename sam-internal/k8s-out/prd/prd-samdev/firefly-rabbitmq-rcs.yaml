@@ -59,7 +59,7 @@ spec:
           value: rabbitmq-set
         - name: RABBITMQ_CONFIG_VERSION
           value: "1.5"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:13
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:15
         imagePullPolicy: Always
         lifecycle:
           postStart:

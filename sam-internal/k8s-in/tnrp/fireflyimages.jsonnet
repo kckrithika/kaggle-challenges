@@ -45,7 +45,7 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-            rabbitmq: "13",
+            rabbitmq: "15",
             },
 
         ### Release Phase 2 - prd-sam (Canary)
