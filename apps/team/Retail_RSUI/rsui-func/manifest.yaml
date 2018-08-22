@@ -25,7 +25,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:1a161a9
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:049a1c0
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -72,6 +72,8 @@ system:
         value: core/stmfana48ice1/00DC20000000MOqMAM
       - name: CRE_SERVER_TARGET
         value: http://cre-api-ccp-func.retail-cre.localhost.mesh.force.com:5442
+      - name: C2C_PATH
+        value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: TRANSFORMATIONLIB_MDS_MODE
         value: live
       - name: JVM_ARGS
