@@ -15,6 +15,7 @@ system:
       - --scone.srpc.announcing-enabled=false
       - --logging.evaluator.level=ALWAYS_LOG
       - --gater-service.thread.pool.max-size=0
+      - --foo=bar
       ports:
       - containerPort: 7020
       - containerPort: 9522
