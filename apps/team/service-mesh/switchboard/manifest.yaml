@@ -16,6 +16,7 @@ system:
       - --listeners.external-auth-enabled-clusters[1]=shipping-envoy-tls
       - --metrics.maxNumberOfCollectedMetrics=50000
       - --metrics.funnelTimeOut=50000
+      - --clusters.cluster-defaults.outlier-detection.base_ejection_time=5
       ports:
       - containerPort: 15372
       env:
