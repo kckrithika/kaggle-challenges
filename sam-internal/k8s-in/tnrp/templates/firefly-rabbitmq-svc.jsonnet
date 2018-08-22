@@ -12,7 +12,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
       app: 'firefly-rabbitmq',
       type: 'LoadBalancer',
     } + configs.ownerLabel.tnrp,
-    annotations: if firefly_feature_flags.is_slb_enabled then {
+    [if firefly_feature_flags.is_slb_enabled then "annotations"]: {
         "slb.sfdc.net/name": "firefly-rabbitmq",
         "slb.sfdc.net/portconfigurations": std.toString(
          [
@@ -56,28 +56,28 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
         protocol: 'TCP',
         port: portconfigs.firefly.rabbitmq_http,
         targetPort: portconfigs.firefly.rabbitmq_http,
-        nodePort: if !firefly_feature_flags.is_slb_enabled then portconfigs.firefly.rabbitmq_http_nodeport,
+        [if !firefly_feature_flags.is_slb_enabled then "nodePort"]: portconfigs.firefly.rabbitmq_http_nodeport,
       },
       {
         name: 'https',
         protocol: 'TCP',
         port: portconfigs.firefly.rabbitmq_https,
         targetPort: portconfigs.firefly.rabbitmq_http,
-        nodePort: if !firefly_feature_flags.is_slb_enabled then portconfigs.firefly.rabbitmq_https_nodeport,
+        [if !firefly_feature_flags.is_slb_enabled then "nodePort"]: portconfigs.firefly.rabbitmq_https_nodeport,
       },
       {
         name: 'amqp',
         protocol: 'TCP',
         port: portconfigs.firefly.rabbitmq_amqp,
         targetPort: portconfigs.firefly.rabbitmq_amqp,
-        nodePort: if !firefly_feature_flags.is_slb_enabled then portconfigs.firefly.rabbitmq_amqp_nodeport,
+        [if !firefly_feature_flags.is_slb_enabled then "nodePort"]: portconfigs.firefly.rabbitmq_amqp_nodeport,
       },
       {
         name: 'amqp-tls',
         protocol: 'TCP',
         port: portconfigs.firefly.rabbitmq_amqps,
         targetPort: portconfigs.firefly.rabbitmq_amqps,
-        nodePort: if !firefly_feature_flags.is_slb_enabled then portconfigs.firefly.rabbitmq_amqps_nodeport,
+        [if !firefly_feature_flags.is_slb_enabled then "nodePort"]: portconfigs.firefly.rabbitmq_amqps_nodeport,
       },
     ],
     selector: {
