@@ -1,4 +1,4 @@
-- lbname: cpt-validation
+- lbname: cpt-http-validation
   servers:
    - 10.210.204.130
    - 10.210.204.147
@@ -6,3 +6,19 @@
    - port: 80
      targetport: 12087
      lbtype: http
+- lbname: cpt-tcp-validation
+  servers:
+   - 10.210.204.131
+   - 10.210.204.179
+  ports:
+   - port: 80
+     targetport: 12087
+     lbtype: tcp
+- lbname: cpt-dsr-validation
+  servers:
+   - 10.210.204.186
+   - 10.210.204.187
+  ports:
+   - port: 80
+     targetport: 12087
+     lbtype: dsr
