@@ -50,12 +50,12 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-            rabbitmq: "13",
+            rabbitmq: "15",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-            rabbitmq: "13",
+            rabbitmq: "15",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
