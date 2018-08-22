@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: payloadbot
-      image: tnrp/sdn/payloadbot:v-0001096-97e5885c
+      image: tnrp/sdn/payloadbot:v-0001071-fbd313b2
       command: ["/payloadbot/payloadbot"]
       args:
       - "-gheTokenPath"
@@ -19,6 +19,8 @@ system:
       - "20"
       - "-manifestOrg"
       - "sam"
+      - "-feedbackURL"
+      - "https://docs.google.com/forms/d/e/1FAIpQLSdDQQ15L6_zGIwboX3QQIMYQBuyJDjGqRMsBhZatF3CebUHOg/viewform"
       ports:
       - containerPort: 8080
       livenessProbe:
