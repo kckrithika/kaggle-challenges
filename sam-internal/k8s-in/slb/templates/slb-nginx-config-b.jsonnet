@@ -8,34 +8,27 @@ local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ngin
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 
-local madkubCertsAnnotationNew = {
-    certreqs: [
-        {
-            name: "cert1",
-            "cert-type": "server",
-            kingdom: "prd",
-            role: slbconfigs.samrole,
-            san: [
-                "*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
-                "*.slb.sfdc.net",
-                "*.soma.salesforce.com",
-                "*.data.sfdc.net",
-                "*.kms.slb.sfdc.net",
-                "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
-            ],
-        },
-        {
-            name: "cert2",
-            "cert-type": "client",
-            kingdom: "prd",
-            role: slbconfigs.samrole,
-        },
-    ],
-};
-
-local madkubCertsAnnotationOld =
-    if slbimages.phaseNum > 2 then
-                        "{
+if slbconfigs.slbInKingdom then {
+    apiVersion: "extensions/v1beta1",
+    kind: "Deployment",
+    metadata: {
+        labels: {
+            name: "slb-nginx-config-b",
+        } + configs.ownerLabel.slb,
+        name: "slb-nginx-config-b",
+        namespace: "sam-system",
+    },
+    spec: {
+        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else (if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" || configs.estate == "prd-sdc" then 3 else 2),
+        revisionHistoryLimit: 2,
+        template: {
+            metadata: {
+                labels: {
+                    name: "slb-nginx-config-b",
+                } + configs.ownerLabel.slb,
+                namespace: "sam-system",
+                annotations: if slbimages.phaseNum > 2 then {
+                    "madkub.sam.sfdc.net/allcerts": "{
                             \"certreqs\":[
                                 {
                                     \"name\": \"cert1\",
@@ -56,9 +49,9 @@ local madkubCertsAnnotationOld =
                                     \"role\": \"" + slbconfigs.samrole + "\"
                                 }
                             ]
-                         }"
-    else
-                                               "{
+                         }",
+                } else {
+                    "madkub.sam.sfdc.net/allcerts": "{
                                                    \"certreqs\":[
                                                        {
                                                            \"name\": \"cert1\",
@@ -69,8 +62,9 @@ local madkubCertsAnnotationOld =
                                                                \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
                                                                \"*.slb.sfdc.net\",
                                                                \"*.soma.salesforce.com\",
-                                                               \"*.kms.slb.sfdc.net\",
                                                                \"*.data.sfdc.net\"
+                                                               \"*.kms.slb.sfdc.net\",
+                                                               \"*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
                                                            ]
                                                        },
                                                        {
@@ -80,34 +74,7 @@ local madkubCertsAnnotationOld =
                                                            \"role\": \"" + slbconfigs.samrole + "\"
                                                        }
                                                    ]
-                                                }"
-    ;
-
-local madkubCertsAnnotationString =
-    if slbimages.phaseNum < 2 then std.manifestJsonEx(madkubCertsAnnotationNew, "  ")
-    else madkubCertsAnnotationOld;
-
-if slbconfigs.slbInKingdom then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
-    metadata: {
-        labels: {
-            name: "slb-nginx-config-b",
-        } + configs.ownerLabel.slb,
-        name: "slb-nginx-config-b",
-        namespace: "sam-system",
-    },
-    spec: {
-        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else (if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" || configs.estate == "prd-sdc" then 3 else 2),
-        revisionHistoryLimit: 2,
-        template: {
-            metadata: {
-                labels: {
-                    name: "slb-nginx-config-b",
-                } + configs.ownerLabel.slb,
-                namespace: "sam-system",
-                annotations: {
-                    "madkub.sam.sfdc.net/allcerts": madkubCertsAnnotationString,
+                                                }",
                 },
             },
             spec: {
