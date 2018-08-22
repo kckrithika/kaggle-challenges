@@ -8,19 +8,18 @@ local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ngin
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 
-local madkubCertsAnnotation = {
+local madkubCertsAnnotationNew = {
     certreqs: [
         {
             name: "cert1",
             "cert-type": "server",
             kingdom: "prd",
             role: slbconfigs.samrole,
-            san:[
+            san: [
                 "*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
                 "*.slb.sfdc.net",
                 "*.soma.salesforce.com",
                 "*.data.sfdc.net",
-            ] + if slbimages.phaseNum <= 2 then [
                 "*.kms.slb.sfdc.net",
                 "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
             ],
@@ -29,10 +28,64 @@ local madkubCertsAnnotation = {
             name: "cert2",
             "cert-type": "client",
             kingdom: "prd",
-            "role": slbconfigs.samrole
-        }
-    ]
+            role: slbconfigs.samrole,
+        },
+    ],
 };
+
+local madkubCertsAnnotationOld =
+    if slbimages.phaseNum > 2 then
+                        "{
+                            \"certreqs\":[
+                                {
+                                    \"name\": \"cert1\",
+                                    \"cert-type\":\"server\",
+                                    \"kingdom\":\"prd\",
+                                    \"role\": \"" + slbconfigs.samrole + "\",
+                                    \"san\":[
+                                        \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
+                                        \"*.slb.sfdc.net\",
+                                        \"*.soma.salesforce.com\",
+                                        \"*.data.sfdc.net\"
+                                    ]
+                                },
+                                {
+                                    \"name\": \"cert2\",
+                                    \"cert-type\":\"client\",
+                                    \"kingdom\":\"prd\",
+                                    \"role\": \"" + slbconfigs.samrole + "\"
+                                }
+                            ]
+                         }"
+    else
+                                               "{
+                                                   \"certreqs\":[
+                                                       {
+                                                           \"name\": \"cert1\",
+                                                           \"cert-type\":\"server\",
+                                                           \"kingdom\":\"prd\",
+                                                           \"role\": \"" + slbconfigs.samrole + "\",
+                                                           \"san\":[
+                                                               \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
+                                                               \"*.slb.sfdc.net\",
+                                                               \"*.soma.salesforce.com\",
+                                                               \"*.kms.slb.sfdc.net\",
+                                                               \"*.data.sfdc.net\"
+                                                           ]
+                                                       },
+                                                       {
+                                                           \"name\": \"cert2\",
+                                                           \"cert-type\":\"client\",
+                                                           \"kingdom\":\"prd\",
+                                                           \"role\": \"" + slbconfigs.samrole + "\"
+                                                       }
+                                                   ]
+                                                }"
+    ;
+
+local madkubCertsAnnotationString =
+    if slbimages.phaseNum < 2 then std.manifestJsonEx(madkubCertsAnnotationNew, "  ")
+    else madkubCertsAnnotationOld;
 
 if slbconfigs.slbInKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -54,7 +107,7 @@ if slbconfigs.slbInKingdom then {
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
                 annotations: {
-                    "madkub.sam.sfdc.net/allcerts": std.toString(madkubCertsAnnotation),
+                    "madkub.sam.sfdc.net/allcerts": madkubCertsAnnotationString,
                 },
             },
             spec: {
