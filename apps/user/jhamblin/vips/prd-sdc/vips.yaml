@@ -1,0 +1,8 @@
+- lbname: slbminion-ssh
+  servers:
+  - shared0-sdcsamcompute1-5-prd.eng.sfdc.net
+  - shared0-sdcsamcompute1-6-prd.eng.sfdc.net
+  ports:
+  - port: 22
+    targetport: 22
+    lbtype: tcp
