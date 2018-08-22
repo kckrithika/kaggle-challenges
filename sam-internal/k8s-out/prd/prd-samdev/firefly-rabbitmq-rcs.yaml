@@ -59,6 +59,12 @@ spec:
           value: rabbitmq-set
         - name: RABBITMQ_CONFIG_VERSION
           value: "1.6"
+        - name: RABBITMQ_MNESIA_BASE
+          value: /var/lib/rabbitmq/$(MY_POD_NAME)/mnesia
+        - name: RABBITMQ_SCHEMA_DIR
+          value: /var/lib/rabbitmq/$(MY_POD_NAME)/schema
+        - name: RABBITMQ_GENERATED_CONFIG_DIR
+          value: /var/lib/rabbitmq/$(MY_POD_NAME)/config
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:15
         imagePullPolicy: Always
         lifecycle:
