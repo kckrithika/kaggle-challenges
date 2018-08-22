@@ -129,7 +129,19 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                 name: 'RABBITMQ_CONFIG_VERSION',
                 value: '1.6',
               },
-            ],
+              {
+                name: 'RABBITMQ_MNESIA_BASE',
+                value: '/var/lib/rabbitmq/$(MY_POD_NAME)/mnesia',
+              },
+              {
+                name: 'RABBITMQ_SCHEMA_DIR',
+                value: '/var/lib/rabbitmq/$(MY_POD_NAME)/schema',
+              },
+              {
+                name: 'RABBITMQ_GENERATED_CONFIG_DIR',
+                value: '/var/lib/rabbitmq/$(MY_POD_NAME)/config',
+              },
+           ],
             ports: [
               {
                 name: 'http',
