@@ -6,3 +6,11 @@
    - port: 80
      targetport: 12087
      lbtype: http
+- lbname: maureen-dos
+  servers:
+   - 10.231.187.66
+   - 10.231.187.34
+  ports:
+   - port: 80
+     targetport: 12087
+     lbtype: tcp
