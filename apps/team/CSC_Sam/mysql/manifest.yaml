@@ -26,7 +26,8 @@ system:
         name: mysql-persistent-storage-rev-three
       - mountPath: /certs
         name: certs
-      
+      - mountPath: /backup
+        name: mysql-backup
       ports:
       - containerPort: 3306
         name: mysql
@@ -42,6 +43,10 @@ system:
     - name: certs
       maddogCert:
         type: server
+    - name: mysql-backup
+      hostPath:
+        path: /data/mysql-backup
+        type: DirectoryOrCreate
 
     lbname: mysql-stateful-lb
 
@@ -58,7 +63,6 @@ system:
   - lbname: mysql
     function: mysql
     slbEnabled: true
-    lbtype: dsr
     ports:
       - port: 3306
         targetport: 3306
