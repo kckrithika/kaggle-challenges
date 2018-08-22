@@ -26,8 +26,8 @@ system:
           name: log-vol
         - mountPath: /opt/warden/cantor
           name: cantor-vol
-        - mountPath: /wardensplunk/
-          name: wardensplunk
+        - mountPath: /warden-secrets/
+          name: splunk-credentials
           readOnly: true
         livenessProbe:
           httpGet:
@@ -41,9 +41,9 @@ system:
       - name: cantor-vol
         hostPath:
           path: /home/sfdc-casp/cantor
-      - name: wardensplunk
+      - name: splunk-credentials
         k4aSecret:
-          secretName: wardensplunk
+          secretName: warden-secrets
 
     loadbalancers:
     - lbname: wardenlb
