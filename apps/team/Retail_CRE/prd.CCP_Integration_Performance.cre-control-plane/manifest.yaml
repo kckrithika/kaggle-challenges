@@ -40,7 +40,6 @@ system:
       ports:
       - containerPort: 8080
       - containerPort: 7020
-      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         exec:
@@ -78,8 +77,6 @@ system:
       ports:
       - containerPort: 7443
         name: sh-in-http2-tls
-      - containerPort: 7442
-        name: sh-in-http1-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
@@ -99,8 +96,6 @@ system:
       args:
       - -endpoint
       - retail-cre/cre-control-plane-ccp-perf:DATACENTER_ALLENV:7443
-      - -endpoint
-      - retail-cre/cre-control-plane-ccp-perf:DATACENTER_ALLENV:7442
       livenessProbe:
         initialDelaySeconds: 5
         exec:
