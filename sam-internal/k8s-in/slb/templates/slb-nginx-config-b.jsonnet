@@ -27,7 +27,7 @@ if slbconfigs.slbInKingdom then {
                     name: "slb-nginx-config-b",
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
-                annotations: if slbimages.phaseNum > 2 then {
+                annotations: if slbimages.hypersdn_build < 1069 then {
                     "madkub.sam.sfdc.net/allcerts": "{
                             \"certreqs\":[
                                 {
@@ -64,7 +64,7 @@ if slbconfigs.slbInKingdom then {
                                                                \"*.soma.salesforce.com\",
                                                                \"*.data.sfdc.net\"
                                                                \"*.kms.slb.sfdc.net\",
-                                                               \"*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
+                                                               \"*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\"
                                                            ]
                                                        },
                                                        {
