@@ -37,14 +37,6 @@ apps:
     - par/par-sam_gater
 
   
-  h1-test-client-l5d:
-    - prd/prd-sam_gater
-  h1-test-server-l5d:
-    - prd/prd-sam_gater
-  h1-test-client-l5d-tls:
-    - prd/prd-sam_gater
-  h1-test-server-l5d-tls:
-    - prd/prd-sam_gater
   h1-test-client-envoy:
     - prd/prd-sam_gater
   h1-test-server-envoy:
@@ -54,10 +46,6 @@ apps:
   h1-test-server-envoy-tls:
     - prd/prd-sam_gater
 
-  ordering-l5d-tls:
-    - prd/prd-sam_gater
-  shipping-l5d-tls:
-    - prd/prd-sam_gater
   ordering-envoy-tls:
     - prd/prd-sam_gater
   shipping-envoy-tls:
