@@ -38,6 +38,38 @@ local utils = import "util_functions.jsonnet";
 
         #[small]
         "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180816_155056.7aa464a5.dirty.small-ltm",
+        }
+        + {
+          #[thargrove] Pin the auto-deplopyer to the build before we stiched to v1 deployments.  Remove when all of sam-internals is fi`xed
+          [std.substr(ce, 0, 3) + "," + ce + ",samcontrol-deployer,hypersam"]: "sam-0002190-d048106f"
+for ce in [
+            "cdg-sam",
+            "cdu-sam",
+            "chx-sam",
+            "dfw-sam",
+            "fra-sam",
+            "frf-sam",
+            "hnd-sam",
+            "ia2-sam",
+            "iad-sam",
+            "ord-sam",
+            "par-sam",
+            "ph2-sam",
+            "phx-sam",
+            "prd-sam",
+            "prd-sam_storage",
+            "prd-sam_storagedev",
+            "prd-samdev",
+            "prd-samtest",
+            "prd-samtwo",
+            "prd-sdc",
+            "syd-sam",
+            "ukb-sam",
+            "wax-sam",
+            "xrd-sam",
+            "yhu-sam",
+            "yul-sam",
+]
         },
 
 
