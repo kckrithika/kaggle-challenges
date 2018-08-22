@@ -58,7 +58,7 @@ spec:
         - name: K8S_SERVICE_NAME
           value: rabbitmq-set
         - name: RABBITMQ_CONFIG_VERSION
-          value: "1.5"
+          value: "1.6"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:15
         imagePullPolicy: Always
         lifecycle:
