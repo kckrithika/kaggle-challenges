@@ -1911,10 +1911,32 @@ data:
           "controlestate": "iad-sam",
           "devicerole": "samcompute",
           "estate": "iad-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer1-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "b06-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_mc_consumer",
           "hostname": "shared0-samminionmcconsumer2-1-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
           "rack": "b05-10b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer2-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "b06-10b",
           "superpod": "none"
         },
         {

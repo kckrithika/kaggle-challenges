@@ -21,6 +21,9 @@ shared0-samminiongater1-2-fra.ops.sfdc.net,10.212.230.3/29,10.160.0.96/27,f23-01
 shared0-samminiongater1-3-fra.ops.sfdc.net,10.212.230.4/29,10.160.0.128/27,f23-01,fra-sam_gater,4203061205
 shared0-samminiongater2-1-fra.ops.sfdc.net,10.212.230.10/29,10.160.0.0/27,f21-01,fra-sam_gater,4203061201
 shared0-samminiongater2-2-fra.ops.sfdc.net,10.212.230.11/29,10.160.0.32/27,f21-01,fra-sam_gater,4203061201
+shared0-samminionreportcollector1-1-fra.ops.sfdc.net,10.212.148.228/29,10.160.1.128/27,f03-01,fra-sam_report_collector,4203051205
+shared0-samminionreportcollector2-1-fra.ops.sfdc.net,10.212.148.227/29,10.160.1.160/27,f03-01,fra-sam_report_collector,4203051205
+shared0-samminionreportcollector3-1-fra.ops.sfdc.net,10.212.148.226/29,10.160.1.192/27,f03-01,fra-sam_report_collector,4203051205
 shared0-slbminion1-1-fra.ops.sfdc.net,10.212.162.194/29,10.160.4.128/27,d25-01,fra-slb,4203031209
 shared0-slbminion1-10-fra.ops.sfdc.net,10.212.162.195/29,10.160.4.160/27,d25-01,fra-slb,4203031209
 shared0-slbminion1-2-fra.ops.sfdc.net,10.212.162.202/29,10.160.5.192/27,f06-01,fra-slb,4203051211
