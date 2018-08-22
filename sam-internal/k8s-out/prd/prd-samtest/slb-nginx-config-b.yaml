@@ -30,8 +30,9 @@ spec:
                                                                          "*.sam-system.prd-samtest.prd.slb.sfdc.net",
                                                                          "*.slb.sfdc.net",
                                                                          "*.soma.salesforce.com",
-                                                                         "*.kms.slb.sfdc.net",
                                                                          "*.data.sfdc.net"
+                                                                         "*.kms.slb.sfdc.net",
+                                                                         "*.moe.prd-samtest.prd.slb.sfdc.net",
                                                                      ]
                                                                  },
                                                                  {

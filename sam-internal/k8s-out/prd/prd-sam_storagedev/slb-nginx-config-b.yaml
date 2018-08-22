@@ -29,8 +29,9 @@ spec:
                                                                          "*.sam-system.prd-sam_storagedev.prd.slb.sfdc.net",
                                                                          "*.slb.sfdc.net",
                                                                          "*.soma.salesforce.com",
-                                                                         "*.kms.slb.sfdc.net",
                                                                          "*.data.sfdc.net"
+                                                                         "*.kms.slb.sfdc.net",
+                                                                         "*.moe.prd-sam_storagedev.prd.slb.sfdc.net",
                                                                      ]
                                                                  },
                                                                  {
