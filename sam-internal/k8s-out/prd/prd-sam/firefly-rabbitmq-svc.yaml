@@ -17,22 +17,18 @@ metadata:
 spec:
   ports:
   - name: http
-    nodePort: null
     port: 15672
     protocol: TCP
     targetPort: 15672
   - name: https
-    nodePort: null
     port: 15671
     protocol: TCP
     targetPort: 15672
   - name: amqp
-    nodePort: null
     port: 5672
     protocol: TCP
     targetPort: 5672
   - name: amqp-tls
-    nodePort: null
     port: 5671
     protocol: TCP
     targetPort: 5671

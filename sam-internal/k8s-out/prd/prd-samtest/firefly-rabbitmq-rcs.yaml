@@ -59,7 +59,7 @@ spec:
           value: rabbitmq-set
         - name: RABBITMQ_CONFIG_VERSION
           value: "1.4"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:13
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:15
         imagePullPolicy: Always
         lifecycle:
           postStart:
@@ -102,6 +102,11 @@ spec:
             - node_health_check
           initialDelaySeconds: 10
           timeoutSeconds: 10
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
         volumeMounts:
         - mountPath: /var/lib/rabbitmq
           name: data-volume
