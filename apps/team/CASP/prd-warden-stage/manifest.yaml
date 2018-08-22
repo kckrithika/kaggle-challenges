@@ -39,7 +39,7 @@ system:
           httpGet:
             path: /manage/health
             port: 15372
-          initialDelaySeconds: 120
+          initialDelaySeconds: 90
       volumes:
       - name: staging-log-vol
         hostPath:
