@@ -32,12 +32,10 @@ def run_cmd(cmd):
     try:
         d = dict(os.environ)
         p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True, env = d)
-        p.wait()
-        stdout = p.stdout.read().decode()
-        stderr = p.stdout.read().decode()
-        if len(stdout)>0:
+        stdout, stderr = p.communicate()
+        if stdout and len(stdout)>0:
             combined += "\n" + stdout
-        if len(stderr)>0:
+        if stderr and len(stderr)>0:
             combined += "\n" + stderr
         if p.returncode == 0:
             return True, combined
