@@ -8,6 +8,32 @@ local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ngin
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 
+local madkubCertsAnnotation = {
+    certreqs: [
+        {
+            name: "cert1",
+            "cert-type": "server",
+            kingdom: "prd",
+            role: slbconfigs.samrole,
+            san:[
+                "*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+                "*.slb.sfdc.net",
+                "*.soma.salesforce.com",
+                "*.data.sfdc.net",
+            ] + if slbimages.phaseNum <= 2 then [
+                "*.kms.slb.sfdc.net",
+                "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+            ],
+        },
+        {
+            name: "cert2",
+            "cert-type": "client",
+            kingdom: "prd",
+            "role": slbconfigs.samrole
+        }
+    ]
+};
+
 if slbconfigs.slbInKingdom then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -27,53 +53,8 @@ if slbconfigs.slbInKingdom then {
                     name: "slb-nginx-config-b",
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
-                annotations: if slbimages.phaseNum > 2 then {
-                    "madkub.sam.sfdc.net/allcerts": "{
-                            \"certreqs\":[
-                                {
-                                    \"name\": \"cert1\",
-                                    \"cert-type\":\"server\",
-                                    \"kingdom\":\"prd\",
-                                    \"role\": \"" + slbconfigs.samrole + "\",
-                                    \"san\":[
-                                        \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
-                                        \"*.slb.sfdc.net\",
-                                        \"*.soma.salesforce.com\",
-                                        \"*.data.sfdc.net\"
-                                    ]
-                                },
-                                {
-                                    \"name\": \"cert2\",
-                                    \"cert-type\":\"client\",
-                                    \"kingdom\":\"prd\",
-                                    \"role\": \"" + slbconfigs.samrole + "\"
-                                }
-                            ]
-                         }",
-                } else {
-                    "madkub.sam.sfdc.net/allcerts": "{
-                                                   \"certreqs\":[
-                                                       {
-                                                           \"name\": \"cert1\",
-                                                           \"cert-type\":\"server\",
-                                                           \"kingdom\":\"prd\",
-                                                           \"role\": \"" + slbconfigs.samrole + "\",
-                                                           \"san\":[
-                                                               \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
-                                                               \"*.slb.sfdc.net\",
-                                                               \"*.soma.salesforce.com\",
-                                                               \"*.kms.slb.sfdc.net\",
-                                                               \"*.data.sfdc.net\"
-                                                           ]
-                                                       },
-                                                       {
-                                                           \"name\": \"cert2\",
-                                                           \"cert-type\":\"client\",
-                                                           \"kingdom\":\"prd\",
-                                                           \"role\": \"" + slbconfigs.samrole + "\"
-                                                       }
-                                                   ]
-                                                }",
+                annotations: {
+                    "madkub.sam.sfdc.net/allcerts": std.toString(madkubCertsAnnotation),
                 },
             },
             spec: {
