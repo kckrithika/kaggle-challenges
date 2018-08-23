@@ -127,7 +127,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               },
               {
                 name: 'RABBITMQ_CONFIG_VERSION',
-                value: '1.6',
+                value: '1.7',
               },
               {
                 name: 'RABBITMQ_MNESIA_BASE',
