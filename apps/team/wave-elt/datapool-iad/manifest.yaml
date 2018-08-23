@@ -4,7 +4,7 @@ system:
     email:
       - analyticseltspark@salesforce.com
   functions:
-  - name: datapool-steelthread
+  - name: datapool
     identity:
       serviceName: datapool
     count: 1
