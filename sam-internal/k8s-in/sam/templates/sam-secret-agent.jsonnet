@@ -1,9 +1,8 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
-if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
-    kind: "Deployment",
-    spec: {
+if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then configs.deploymentBase {
+    spec+: {
         replicas: 1,
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
@@ -61,8 +60,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
-    metadata: {
+    metadata+: {
         labels: {
             name: "sam-secret-agent",
         } + configs.ownerLabel.sam,

@@ -3,14 +3,12 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local utils = import "util_functions.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if samfeatureflags.maddogforsamapps then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
-    metadata: {
+if samfeatureflags.maddogforsamapps then configs.deploymentBase {
+    metadata+: {
         name: "madkubserver",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         replicas: 3,
         minReadySeconds: 45,
         revisionHistoryLimit: 2,

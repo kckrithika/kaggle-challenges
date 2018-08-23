@@ -1,8 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-{
-    kind: "Deployment",
-    spec: {
+configs.deploymentBase {
+    spec+: {
         replicas: 1,
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
@@ -66,8 +65,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
-    metadata: {
+    metadata+: {
         labels: {
             name: "samcontrol-deployer",
         } + configs.ownerLabel.sam,

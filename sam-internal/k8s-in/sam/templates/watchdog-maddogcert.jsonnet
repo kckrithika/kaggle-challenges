@@ -5,9 +5,8 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 # This is a watchdog for SAM's hosts that request maddog certs
 
-{
-    kind: "DaemonSet",
-    spec: {
+configs.daemonSetBase {
+    spec+: {
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
@@ -53,8 +52,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
-    metadata: {
+    metadata+: {
         labels: {
             name: "watchdog-maddogcert",
         } + configs.ownerLabel.sam,

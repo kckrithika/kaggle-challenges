@@ -2,9 +2,8 @@ local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
-{
-    kind: "DaemonSet",
-    spec: {
+configs.daemonSetBase {
+    spec+: {
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
@@ -68,8 +67,7 @@ local utils = import "util_functions.jsonnet";
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
-    metadata: {
+    metadata+: {
         labels: {
             name: "watchdog-etcd",
         } + configs.ownerLabel.sam,

@@ -2,9 +2,8 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
 # Turned off by default.  Enable only when needed for a prod issue
-if false then {
-    kind: "DaemonSet",
-    spec: {
+if false then configs.daemonSetBase {
+    spec+: {
         template: {
             spec: {
                 # We need this so we can mutate kubeconfig
@@ -57,8 +56,7 @@ if false then {
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
-    metadata: {
+    metadata+: {
         labels: {
             name: "ops-adhoc",
         } + configs.ownerLabel.sam,

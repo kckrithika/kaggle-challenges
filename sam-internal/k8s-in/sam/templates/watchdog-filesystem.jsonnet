@@ -2,9 +2,8 @@ local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-{
-    kind: "DaemonSet",
-    spec: {
+configs.daemonSetBase {
+    spec+: {
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
                 securityContext: {
@@ -76,7 +75,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
         },
     },
     apiVersion: "extensions/v1beta1",
-    metadata: {
+    metadata+: {
         labels: {
             name: "watchdog-filesystem",
         } + configs.ownerLabel.sam,

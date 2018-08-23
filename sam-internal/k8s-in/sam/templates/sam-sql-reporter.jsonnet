@@ -2,17 +2,15 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-sam" then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
-    metadata: {
+if configs.estate == "prd-sam" then configs.deploymentBase {
+    metadata+: {
         labels: {
             name: "samsqlreporter",
         } + configs.ownerLabel.sam,
         name: "samsqlreporter",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         replicas: 2,
         selector: {
             matchLabels: {
