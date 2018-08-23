@@ -83,6 +83,7 @@ system:
         name: client-certs
       - mountPath: /home/controlplane/iotprovisioner
         name: iotprovisioner
+        readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
         value: staging
@@ -140,7 +141,6 @@ system:
       name: client-certs
     - name: iotprovisioner
       secret:
-        readOnly: true
         secretName: iotprovisioner
   loadbalancers:
   - function: controlplane-staging
