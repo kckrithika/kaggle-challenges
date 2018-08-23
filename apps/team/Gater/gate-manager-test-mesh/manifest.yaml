@@ -16,7 +16,6 @@ system:
       - --logging.evaluator.level=ALWAYS_LOG
       - --gater-service.thread.pool.max-size=0
       - --scone.detectsidecars=false
-      - --foo=bar
       ports:
       - containerPort: 7020
       - containerPort: 9522
