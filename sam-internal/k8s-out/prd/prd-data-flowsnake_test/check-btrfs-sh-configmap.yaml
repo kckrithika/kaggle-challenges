@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  check-btrfs.sh: "#!/bin/bash\n\nfor procdir in /host-proc/*; do\n    if [[ -e ${procdir}/status
+    ]] && grep -qP 'Name:[ \\t]*kworker' ${procdir}/status && grep -qP 'State:[ \\t]*D'
+    ${procdir}/status && grep -q '__lock_page' ${procdir}/stack && grep -qP 'lock.*btrfs'
+    ${procdir}/stack; then\n        # TODO: in the future, just exit non-zero so the
+    SAM auto-rebooter can handle\n        (\n            echo Forcing reboot because
+    btrfs is hung.;\n            cat ${procdir}/stack; \n        ) | mail -s \"Rebooting
+    $HOSTNAME (TEST EMAIL, DON'T WORRY)\" flowsnake@salesforce.com \n        echo
+    \"Rebooting in 5 seconds\";\n        sleep 5;\n        # TODO: uncomment after
+    testing\n        #echo \"b\" > /host-proc/sysrq-trigger;\n    fi;\ndone\n"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: check-btrfs-sh
+  namespace: flowsnake
