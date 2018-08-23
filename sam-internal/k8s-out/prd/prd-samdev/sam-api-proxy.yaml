@@ -7,6 +7,11 @@ metadata:
   namespace: sam-system
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      apptype: control
+      name: sam-api-proxy
+      sam.data.sfdc.net/owner: sam
   template:
     metadata:
       labels:

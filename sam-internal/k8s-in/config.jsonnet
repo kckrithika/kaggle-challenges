@@ -186,6 +186,61 @@ local utils = import "util_functions.jsonnet",
       },
     },
 
+    # This base contains common deployment fields to cut down on copy paste.
+    # Use it like this (dont forget the '+' after spec):
+    #
+    # configs.deploymentBase {
+    #   spec+: {
+    #     template: { ... }
+    #   }
+    # }
+    #
+    # TODO: Once we switch to v1 from v1beta, we can add labels+ownerLabel.  Maybe over time we can also compute name.
+    deploymentBase: {
+      # Here we make a copy of the pointer to this outer object for use in children
+      # We do this so child elements can reference it.  This is ugly, but all the alternatives dont work for one reason or another:
+      #  1) 'self' points to the child
+      #  2) '$' points to the root of this included file, but $.deploymentBase is not the same as the instance we are creating
+      #  3) 'super' would work for the code derived from this, but this has no base
+      #  4) There is no 'parent' keyword, which would be super handy
+      local depl = self,
+      kind: "Deployment",
+      apiVersion: "extensions/v1beta1",
+     [if kingdom == "prd" then "spec"]+: {
+        selector: {
+          matchLabels: depl.spec.template.metadata.labels,
+        },
+      },
+    },
+
+    # This base contains common DaemonSet fields to cut down on copy paste.
+    # Use it like this (dont forget the '+' after spec):
+    #
+    # configs.daemonSetBase {
+    #   spec+: {
+    #     template: { ... }
+    #   }
+    # }
+    #
+    # TODO: Once we switch to v1 from v1beta, we can add labels+ownerLabel.  Maybe over time we can also compute name.
+    daemonSetBase: {
+      # Here we make a copy of the pointer to this outer object for use in children
+      # We do this so child elements can reference it.  This is ugly, but all the alternatives dont work for one reason or another:
+      #  1) 'self' points to the child
+      #  2) '$' points to the root of this included file, but $.daemonSetBase is not the same as the instance we are creating
+      #  3) 'super' would work for the code derived from this, but this has no base
+      #  4) There is no 'parent' keyword, which would be super handy
+      local ds = self,
+      kind: "DaemonSet",
+      apiVersion: "extensions/v1beta1",
+     [if kingdom == "prd" then "spec"]+: {
+        selector: {
+          matchLabels: ds.spec.template.metadata.labels,
+        },
+      },
+    },
+
+
     # === KUBERNETES ===
 
     # For things like volumes, volume_mounts and args, we want to be able to define a new entry centrally (config.jsonnet)

@@ -8,6 +8,11 @@ metadata:
   namespace: sam-system
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      apptype: control
+      name: sam-manifest-repo-watcher
+      sam.data.sfdc.net/owner: sam
   template:
     metadata:
       labels:

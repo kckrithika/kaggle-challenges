@@ -3,9 +3,8 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 # Yeah, I know this is not a watchdog.  Will fix with a refactor
 local wdconfig = import "samwdconfig.jsonnet";
 
-{
-    kind: "DaemonSet",
-    spec: {
+configs.daemonSetBase {
+    spec+: {
         template: {
             spec: {
                 securityContext: {
@@ -69,8 +68,7 @@ local wdconfig = import "samwdconfig.jsonnet";
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
-    metadata: {
+    metadata+: {
         labels: {
             name: "etcdbackup",
         } + configs.ownerLabel.sam,
