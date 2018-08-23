@@ -51,9 +51,9 @@ system:
           scheme: HTTPS
       volumeMounts:
       - name: cccjclientcert
-        mountPath: /client-certs
+        mountPath: /clientcert
       - name: cccjservercert
-        mountPath: /server-certs
+        mountPath: /servercert
       - name: secretvol
         mountPath: /secrets/
         readOnly: true
