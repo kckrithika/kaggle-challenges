@@ -11550,10 +11550,28 @@ hosts:
   controlestate: iad-sam
   devicerole: samcompute
   estate: iad-sam_mc_consumer
+  hostname: shared0-samminionmcconsumer1-2-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  rack: b06-10b
+  superpod: none
+- bomrolename: sam_minion_mc_consumer
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_mc_consumer
   hostname: shared0-samminionmcconsumer2-1-iad.ops.sfdc.net
   kingdom: iad
   pod: none
   rack: b05-10b
+  superpod: none
+- bomrolename: sam_minion_mc_consumer
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_mc_consumer
+  hostname: shared0-samminionmcconsumer2-2-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  rack: b06-10b
   superpod: none
 - bomrolename: sam_minion_mc_consumer
   controlestate: iad-sam
@@ -16734,10 +16752,28 @@ hosts:
   controlestate: ord-sam
   devicerole: samcompute
   estate: ord-sam_mc_consumer
+  hostname: shared0-samminionmcconsumer1-2-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  rack: c02-cr09
+  superpod: none
+- bomrolename: sam_minion_mc_consumer
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_mc_consumer
   hostname: shared0-samminionmcconsumer2-1-ord.ops.sfdc.net
   kingdom: ord
   pod: none
   rack: c02-cr09
+  superpod: none
+- bomrolename: sam_minion_mc_consumer
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_mc_consumer
+  hostname: shared0-samminionmcconsumer2-2-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  rack: a05-cr09
   superpod: none
 - bomrolename: sam_minion_mc_consumer
   controlestate: ord-sam
@@ -25728,7 +25764,7 @@ hosts:
   hostname: func0shared0-searchidx1-7-prd.eng.sfdc.net
   kingdom: prd
   pod: none
-  rack: bb34-45
+  rack: g43-45
   superpod: none
 - bomrolename: searchidx
   controlestate: prd-sam
@@ -25755,7 +25791,7 @@ hosts:
   hostname: func0shared0-searchidx2-3-prd.eng.sfdc.net
   kingdom: prd
   pod: none
-  rack: m34-45
+  rack: f43-45
   superpod: none
 - bomrolename: searchidx
   controlestate: prd-sam
@@ -25764,7 +25800,7 @@ hosts:
   hostname: func0shared0-searchidx2-4-prd.eng.sfdc.net
   kingdom: prd
   pod: none
-  rack: n12-45
+  rack: f43-45
   superpod: none
 - bomrolename: searchidx
   controlestate: prd-sam

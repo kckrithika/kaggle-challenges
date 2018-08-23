@@ -808,7 +808,11 @@ items:
   - kind: User
     name: shared0-samminionmcconsumer1-1-iad.ops.sfdc.net
   - kind: User
+    name: shared0-samminionmcconsumer1-2-iad.ops.sfdc.net
+  - kind: User
     name: shared0-samminionmcconsumer2-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionmcconsumer2-2-iad.ops.sfdc.net
   - kind: User
     name: shared0-samminionmcconsumer3-1-iad.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1

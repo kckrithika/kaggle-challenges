@@ -51,6 +51,9 @@ shared0-samminiongater1-2-cdg.ops.sfdc.net,10.211.230.3/29,10.229.128.32/27,z13-
 shared0-samminiongater1-3-cdg.ops.sfdc.net,10.211.230.4/29,10.229.128.64/27,z13-01,cdg-sam_gater,4203061206
 shared0-samminiongater2-1-cdg.ops.sfdc.net,10.211.230.10/29,10.229.128.96/27,z15-01,cdg-sam_gater,4203061202
 shared0-samminiongater2-2-cdg.ops.sfdc.net,10.211.230.11/29,10.229.128.128/27,z15-01,cdg-sam_gater,4203061202
+shared0-samminionreportcollector1-1-cdg.ops.sfdc.net,10.211.129.226/29,10.229.129.128/27,b53-01,cdg-sam_report_collector,4203051205
+shared0-samminionreportcollector2-1-cdg.ops.sfdc.net,10.211.129.227/29,10.229.129.160/27,b53-01,cdg-sam_report_collector,4203051205
+shared0-samminionreportcollector3-1-cdg.ops.sfdc.net,10.211.129.228/29,10.229.129.192/27,b53-01,cdg-sam_report_collector,4203051205
 shared0-slbminion1-1-cdg.ops.sfdc.net,10.211.162.2/29,10.229.133.64/27,b13-01,cdg-slb,4203031205
 shared0-slbminion1-10-cdg.ops.sfdc.net,10.211.162.3/29,10.229.133.96/27,b13-01,cdg-slb,4203031205
 shared0-slbminion1-2-cdg.ops.sfdc.net,10.211.162.10/29,10.229.134.32/27,y14-01,cdg-slb,4203061203
