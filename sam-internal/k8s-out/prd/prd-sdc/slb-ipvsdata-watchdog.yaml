@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - command:
-        - /sdn/slb-ipvsdata-watchdog
+        - /sdn/slb-ipvs-data-watchdog
         - --log_dir=/host/data/slb/logs/
         - --namespace=sam-system
         - --hostsConfigFile=/sfdchosts/hosts.json
