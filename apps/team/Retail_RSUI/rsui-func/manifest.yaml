@@ -25,7 +25,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:d3ea0c9
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:26d3c47
       ports:
       - containerPort: 7022
         name: rsui-in-http1
