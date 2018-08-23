@@ -857,6 +857,18 @@
     },
     {
       "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_datapool",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh"
       ],
@@ -1122,6 +1134,18 @@
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_customerresolutionengine",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_datapool",
       "kingdom": "ord",
       "superPod": "None"
     },
