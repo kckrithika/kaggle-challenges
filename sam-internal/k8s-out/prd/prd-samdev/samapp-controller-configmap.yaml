@@ -3,7 +3,7 @@ data:
   samapp-controller-config.json: |-
     {
       "dnsEnabledPoolNamesRegex": ".*",
-      "dockerRegistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
+      "dockerRegistry": "ops0-artifactrepo1-0-prd.data.sfdc.net",
       "enableDNS": true,
       "enableMaddog": true,
       "enableMaddogCopyTestCA": true,

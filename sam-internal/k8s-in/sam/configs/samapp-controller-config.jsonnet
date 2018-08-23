@@ -23,7 +23,7 @@ std.prune({
 
   # others
     volPermissionInitContainerImage: samimages.permissionInitContainer,
-    dockerRegistry: configs.registry,
+    dockerRegistry: (if configs.estate == "prd-samdev" then "ops0-artifactrepo1-0-prd.data.sfdc.net" else configs.registry),
 
   namespaceHostSubList: (
      if util.is_production(configs.kingdom) then ["cloudatlas"]
