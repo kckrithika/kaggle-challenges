@@ -43,7 +43,8 @@ system:
       - name: MANAGEMENT_PORT
         value: 15523
       - name: JVM_ARGS
-        value: "-Djwt-validation.enabled=false 
+        value: "-Djwt-validation.enabled=false
+                -Dgdot.server-url=https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
                 -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                 -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
