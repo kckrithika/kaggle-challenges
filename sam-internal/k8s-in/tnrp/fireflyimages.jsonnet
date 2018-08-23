@@ -34,7 +34,7 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 0 - prd-samtest
         "0": $.per_phase["1"] {
-             rabbitmq: "15",
+             rabbitmq: "16",
              },
 
         ### Release Phase 1 - prd-samdev
@@ -45,22 +45,22 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-            rabbitmq: "15",
+            rabbitmq: "16",
             },
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-            rabbitmq: "15",
+            rabbitmq: "16",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-            rabbitmq: "15",
+            rabbitmq: "16",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
-            rabbitmq: "13",
+            rabbitmq: "16",
             },
 
         },
