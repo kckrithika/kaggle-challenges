@@ -136,7 +136,7 @@
                      configs.sfdchosts_arg,
                      "--client.serverPort=" + nodeApiPort,
                      "--client.serverInterface=lo",
-                 ] + (if $.dirSuffix == "slb-nginx-config-b" && slbimages.phaseNum <= 3 then [
+                 ] + (if $.dirSuffix == "slb-nginx-config-b" && slbimages.hypersdn_build >= 1061 then [
                           "--control.sentinelExpiration=1200s",
                       ] else [])
                  + [
