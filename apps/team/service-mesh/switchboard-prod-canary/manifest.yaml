@@ -8,10 +8,12 @@ system:
     count: 3
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:d18b165df06b1675e1129d158788acaa06502458
+      image: sfci/servicelibs/switchboard:c85878d52594aad4ae51899965efa1fa6c2ec080
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
+      - --metrics.maxNumberOfCollectedMetrics=50000
+      - --metrics.funnelTimeOut=50000
       ports:
       - containerPort: 15372
       env:
@@ -19,6 +21,8 @@ system:
         value: prod
       - name: GRPC_SERVER_PORT
         value: 7020
+      - name: JVM_HEAP_MAX
+        value: 4G
       resources:
         limits:
           cpu: 8
@@ -42,7 +46,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:2465d3eae46f71b2221a5a30c2e10ec95ceca917
+      image: sfci/servicelibs/sherpa-envoy:7e40ce8be635a6ef46fbc64657af42ab9c39ea65
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
