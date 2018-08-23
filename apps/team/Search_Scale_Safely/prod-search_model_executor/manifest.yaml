@@ -11,7 +11,7 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 0
-        maxUnavailable: 25%
+        maxUnavailable: 26%
     containers:
     - name: search-model-executor
       image: sfci/searchdev/smt-search-model-executor:3.0
