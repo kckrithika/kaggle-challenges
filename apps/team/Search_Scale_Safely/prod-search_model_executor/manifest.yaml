@@ -15,6 +15,9 @@ system:
     containers:
     - name: search-model-executor
       image: sfci/searchdev/smt-search-model-executor:3.0
+      env:
+      - name: DUMMY_PROPERTY
+        value: noop
       ports:
       - name: service-port
         containerPort: 7020
