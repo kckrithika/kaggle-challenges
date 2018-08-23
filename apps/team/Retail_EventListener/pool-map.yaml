@@ -24,3 +24,6 @@ apps:
 
   prd.dashboard:
   - name: prd/prd-sam_crosscloudplatform
+
+  prd.controlplane:
+  - name: prd/prd-sam_crosscloudplatform
