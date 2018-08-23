@@ -9,7 +9,7 @@ system:
       serviceName: datapool
     count: 1
     containers:
-    - name: datapool-service-prod
+    - name: datapool-service
       image: sfci/insights/datapoolservice:caadedb
       ports:
       - containerPort: 7020
