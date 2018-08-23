@@ -32,16 +32,19 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                     {
                         name: "slb-ipvsdata-watchdog",
                         image: slbimages.hypersdn,
-                        command: [
-                            "/sdn/slb-ipvsdata-watchdog",
-                              "--log_dir=" + slbconfigs.logsDir,
-                              "--namespace=sam-system",
-                              configs.sfdchosts_arg,
-                              "--k8sapiserver=",
-                              "--connPort=" + portconfigs.slb.ipvsDataConnPort,
-                              "--monitorFrequency=180s",
-                              "--metricsEndpoint=" + configs.funnelVIP,
-                              "--hostnameOverride=$(NODE_NAME)",
+                        command: (if slbimages.hypersdn_build >= 1075 then [
+                                      "/sdn/slb-ipvs-data-watchdog",
+                                  ] else [
+                                      "/sdn/slb-ipvsdata-watchdog",
+                                  ]) + [
+                            "--log_dir=" + slbconfigs.logsDir,
+                            "--namespace=sam-system",
+                            configs.sfdchosts_arg,
+                            "--k8sapiserver=",
+                            "--connPort=" + portconfigs.slb.ipvsDataConnPort,
+                            "--monitorFrequency=180s",
+                            "--metricsEndpoint=" + configs.funnelVIP,
+                            "--hostnameOverride=$(NODE_NAME)",
                         ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
