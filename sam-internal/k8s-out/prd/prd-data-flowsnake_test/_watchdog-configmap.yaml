@@ -14,7 +14,7 @@ data:
           "SparkStandalone": "java -jar  -Dintegration.test.target=canary -Dflowsnake.api.host=flowsnake-test1-0-prd.data.sfdc.net -Dflowsnake.project.version=0.12.0 junit.jar -cp integration-test.jar -n '.*' -c com.salesforce.dva.transform.flowsnake.SparkStandaloneDemoJobIT"
         },
         "BtrfsHung": {
-          "BtrfsHung": "bash /var/run/btrfs-check/btrfs-check.sh"
+          "BtrfsHung": "/var/run/check-btrfs/check-btrfs.sh"
         },
         "DockerDaemon": {
           "DockerDaemon": "/test-docker.sh"
