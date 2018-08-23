@@ -25,10 +25,16 @@ system:
       - mountPath: /secrets
         name: deployerbot-ghe-pat
         readOnly: true
+      - mountPath: /home/deployerbot
+        name: deployerbot-gitconfig
+        readOnly: true
     volumes:
     - name: deployerbot-ghe-pat
       k4aSecret:
         secretName: speedometer-ghe-pat
+    - name: deployerbot-gitconfig
+      k4aSecret:
+        secretName: gitconfig
   loadbalancers:
   - lbname: deployerbot
     function: deployerbot
