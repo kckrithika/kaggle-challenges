@@ -14,7 +14,9 @@ system:
       args:
       - "-gheTokenPath"
       - "/secrets/ghe_pat"
-      - "--promote"
+      - "-promote"
+      - "-emailRecipients"
+      - "slb@salesforce.com"
       ports:
       - containerPort: 8080
       livenessProbe:
