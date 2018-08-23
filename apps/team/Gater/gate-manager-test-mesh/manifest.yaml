@@ -16,7 +16,6 @@ system:
       - --logging.evaluator.level=ALWAYS_LOG
       - --gater-service.thread.pool.max-size=0
       - --scone.detectsidecars=false
-      - --scone.service.name=gater-mesh
       ports:
       - containerPort: 7020
       - containerPort: 9522
