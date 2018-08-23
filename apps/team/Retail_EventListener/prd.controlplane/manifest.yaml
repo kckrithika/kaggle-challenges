@@ -27,7 +27,7 @@ system:
 
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/commerce-journeys-control-plane:0.0.6
+      image: sfci/mc-retail/commerce-journeys-control-plane:0.0.7
       ports:
         - containerPort: 7022
         - containerPort: 15372
