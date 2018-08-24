@@ -36,6 +36,10 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,samapp-controller,hypersam": "sam-0002229-6749f11e",
         "prd,prd-samdev,watchdog-comparek8sresources,hypersam": "sam-0002229-6749f11e",
 
+        #[pjoshi]
+        "prd,prd-sam,snapshotconsumer-prd,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
+        "prd,prd-sam,snapshotconsumer-prod,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
+
         #[small]
         "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180816_155056.7aa464a5.dirty.small-ltm",
         }
