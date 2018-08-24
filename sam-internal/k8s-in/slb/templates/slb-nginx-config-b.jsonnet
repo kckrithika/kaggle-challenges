@@ -216,39 +216,30 @@ if slbconfigs.slbInKingdom then {
                                         },
                                     ]),
                                 },
-] +
-                                (if configs.estate == "prd-sdc" then [{
-                                    name: "slb-nginx-data",
-                                    image: slbimages.hypersdn,
-                                    command: [
-                                        "/sdn/slb/slb-nginx-data",
-                                        "--connPort=" + portconfigs.slb.nginxDataConnPort,
-                                        configs.sfdchosts_arg,
-                                    ],
-                                    volumeMounts: configs.filter_empty([
-                                      slbconfigs.slb_volume_mount,
-                                      slbconfigs.logs_volume_mount,
-                                      slbconfigs.usr_sbin_volume_mount,
-                                      configs.sfdchosts_volume_mount,
-                                    ]),
-                                    securityContext: {
-                                      privileged: true,
-                                    },
-                                    ports: [
-                                        {
-                                            containerPort: portconfigs.slb.slbNginxControlPort,
-                                        },
-                                    ],
-                                    livenessProbe: {
-                                        httpGet: {
-                                            path: "/",
-                                            port: portconfigs.slb.nginxDataConnPort,
-                                        },
-                                        initialDelaySeconds: 5,
-                                        periodSeconds: 3,
-                                    },
-                                }] else []) +
-                                [
+                            ] +
+                            (if slbimages.phaseNum == 1 then [{
+                                 name: "slb-nginx-data",
+                                 image: slbimages.hypersdn,
+                                 command: [
+                                     "/sdn/slb/slb-nginx-data",
+                                     "--connPort=" + slbports.slb.nginxDataConnPort,
+                                     configs.sfdchosts_arg,
+                                 ],
+                                 volumeMounts: configs.filter_empty([
+                                     slbconfigs.slb_volume_mount,
+                                     slbconfigs.logs_volume_mount,
+                                     configs.sfdchosts_volume_mount,
+                                 ]),
+                                 livenessProbe: {
+                                     httpGet: {
+                                         path: "/",
+                                         port: slbports.slb.nginxDataConnPort,
+                                     },
+                                     initialDelaySeconds: 5,
+                                     periodSeconds: 3,
+                                 },
+                             }] else []) +
+                            [
                                 slbshared.slbFileWatcher,
                                 {
                                     args: [
