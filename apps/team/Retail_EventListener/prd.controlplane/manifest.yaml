@@ -27,7 +27,7 @@ system:
 
     containers:
     - name: controlplane
-      image: sfci/mc-retail/commerce-journeys-control-plane:0.0.10
+      image: sfci/mc-retail/commerce-journeys-control-plane:0.0.11
       ports:
         - containerPort: 7022
         - containerPort: 15372
@@ -48,7 +48,6 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-          scheme: HTTPS
       volumeMounts:
       - name: cccjclientcert
         mountPath: /clientcert
