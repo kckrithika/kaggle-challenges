@@ -145,6 +145,9 @@
         } + {
             [k + "-sam"]: 2
             for k in $.prodKingdoms
+        } + {
+            "fra-sam": 8,
+            "cdg-sam": 8,
         },
 
         vipwdOptOutOptions: {

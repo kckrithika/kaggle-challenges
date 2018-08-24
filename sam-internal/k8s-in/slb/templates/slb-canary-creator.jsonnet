@@ -50,7 +50,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                                  [
                                      configs.sfdchosts_arg,
                                      "--hostnameOverride=$(NODE_NAME)",
-                                 ],
+                                 ] + (if configs.estate == "fra-sam" || configs.estate == "cdg-sam" then [
+                                     "--minSleepTime=2h",
+                                     "--maxSleepTime=2h",
+                                 ] else []),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.logs_volume_mount,
