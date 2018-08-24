@@ -6,11 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-<<<<<<< HEAD
-      image: tnrp/sdn/deployerbot:v-0001087-609e687c
-=======
       image: tnrp/sdn/deployerbot:v-0001088-8a0cbb52
->>>>>>> Deploy latest payloadbot and deployerbot
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
