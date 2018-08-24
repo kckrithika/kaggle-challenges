@@ -14,7 +14,9 @@ system:
       - "-tnrpImagePrefixMapPath"
       - "image_prefixes.yaml"
       - "-includedTeamsListPath"
-      - "included_teams.yaml"
+      - "/config/included_teams.yaml"
+      - "-maxCommentedOnSourcePRs"
+      - "20"
       - "-manifestOrg"
       - "sam"
       ports:
@@ -27,10 +29,16 @@ system:
       - mountPath: /secrets
         name: payloadbot-ghe-pat
         readOnly: true
+      - mountPath: /config
+        name: payloadbot-config
+        readOnly: true
     volumes:
     - name: payloadbot-ghe-pat
       k4aSecret:
         secretName: speedometer-ghe-pat
+    - name: payloadbot-config
+      k4aSecret:
+        secretName: payloadbot-config
   loadbalancers:
   - lbname: payloadbot
     function: payloadbot
