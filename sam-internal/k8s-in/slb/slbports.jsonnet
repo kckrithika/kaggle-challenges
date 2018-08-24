@@ -19,6 +19,7 @@
         slbConfigDataPort: 9117,
         slbEchoServicePort: 9118,
         mtlsDsrPort: 9119,
+        nginxDataConnPort: 9125,
 
         slbNginxProxyLivenessProbePort: 12080,
         slbConfigProcessorLivenessProbePort: 9876,

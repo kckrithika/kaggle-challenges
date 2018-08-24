@@ -216,6 +216,30 @@ if slbconfigs.slbInKingdom then {
                                         },
                                     ]),
                                 },
+                            ] +
+                            (if slbimages.phaseNum == 1 then [{
+                                 name: "slb-nginx-data",
+                                 image: slbimages.hypersdn,
+                                 command: [
+                                     "/sdn/slb-nginx-data",
+                                     "--target=" + slbconfigs.slbDir + "/nginx/config",
+                                     "--connPort=" + slbports.slb.nginxDataConnPort,
+                                 ],
+                                 volumeMounts: configs.filter_empty([
+                                     slbconfigs.slb_volume_mount,
+                                     slbconfigs.logs_volume_mount,
+                                     configs.sfdchosts_volume_mount,
+                                 ]),
+                                 livenessProbe: {
+                                     httpGet: {
+                                         path: "/",
+                                         port: slbports.slb.nginxDataConnPort,
+                                     },
+                                     initialDelaySeconds: 5,
+                                     periodSeconds: 3,
+                                 },
+                             }] else []) +
+                            [
                                 slbshared.slbFileWatcher,
                                 {
                                     args: [
