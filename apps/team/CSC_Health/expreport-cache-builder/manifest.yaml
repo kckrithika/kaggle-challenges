@@ -80,7 +80,7 @@ system:
         value: true
       - name: ReportCollector_cacheBuilder_defaultCacheBuilderParams_minDelay
         value: 300000
-      - name: ReportCollector_cacheBuilder_defaultCacheBuilderParams_cacheDir
+      - name: ReportCollector_cacheBuilder_cacheDir
         value: /var/cache/report-collector/consumer-cache/
       - name: ReportCollector_cacheBuilder_cacheBuilders
         value: |
