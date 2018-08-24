@@ -96,7 +96,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 nodeSelector: {
                     master: "true",
                 },
-            },
+            } + slbflights.getDnsPolicy(),
             metadata: {
                 labels: {
                     name: "slb-baboon",
