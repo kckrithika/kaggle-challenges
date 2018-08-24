@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/sdn/deployerbot:v-0001087-609e687c
+      image: tnrp/sdn/deployerbot:v-0001088-8a0cbb52
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
