@@ -23,7 +23,7 @@ system:
       - containerPort: 15372
       env:
       - name: SFDC_ENVIRONMENT
-        value: blitz
+        value: stm
       volumeMounts:
       - mountPath: /log
         name: logvol
