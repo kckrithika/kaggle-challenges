@@ -1,24 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    scheduler.alpha.kubernetes.io/affinity: |
-      {   "nodeAffinity": {
-          "requiredDuringSchedulingIgnoredDuringExecution": {
-            "nodeSelectorTerms": [
-              {
-                "matchExpressions": [
-                  {
-                    "key": "slb-service",
-                    "operator": "NotIn",
-                    "values": ["slb-ipvs", "slb-nginx"]
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      }
   labels:
     name: slb-nginx-data-watchdog
   name: slb-nginx-data-watchdog
@@ -40,7 +22,7 @@ spec:
     spec:
       containers:
       - command:
-        - sdn/slb/slb-nginx-data-watchdog
+        - sdn/slb-nginx-data-watchdog
         - --namespace=sam-system
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --k8sapiserver=

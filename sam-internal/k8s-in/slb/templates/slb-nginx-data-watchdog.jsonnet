@@ -1,9 +1,9 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local portconfigs = import "portconfig.jsonnet";
+local slbports = import "slbports.jsonnet";
 
-if configs.estate == "prd-sdc" then {
+if slbimages.phaseNum == 1 then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -12,9 +12,6 @@ if configs.estate == "prd-sdc" then {
         } + configs.ownerLabel.slb,
         name: "slb-nginx-data-watchdog",
         namespace: "sam-system",
-        annotations: {
-            "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
-        },
     },
     spec: {
         replicas: 1,
@@ -33,11 +30,11 @@ if configs.estate == "prd-sdc" then {
                         name: "slb-nginx-data-watchdog",
                         image: slbimages.hypersdn,
                         command: [
-                            "sdn/slb/slb-nginx-data-watchdog",
+                            "sdn/slb-nginx-data-watchdog",
                             "--namespace=sam-system",
                             configs.sfdchosts_arg,
                             "--k8sapiserver=",
-                            "--connPort=" + portconfigs.slb.nginxDataConnPort,
+                            "--connPort=" + slbports.slb.nginxDataConnPort,
                             "--monitorFrequency=180s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--hostnameOverride=$(NODE_NAME)",
@@ -60,11 +57,11 @@ if configs.estate == "prd-sdc" then {
                 if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
             ),
             metadata: {
-                 labels: {
-                     name: "slb-nginx-data-watchdog",
-                     apptype: "monitoring",
-                 } + configs.ownerLabel.slb,
-                 namespace: "sam-system",
+                labels: {
+                    name: "slb-nginx-data-watchdog",
+                    apptype: "monitoring",
+                } + configs.ownerLabel.slb,
+                namespace: "sam-system",
             },
         },
         strategy: {
