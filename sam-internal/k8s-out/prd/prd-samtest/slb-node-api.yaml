@@ -8,6 +8,12 @@ metadata:
   namespace: sam-system
 spec:
   minReadySeconds: 30
+  selector:
+    matchLabels:
+      apptype: control
+      daemonset: "true"
+      name: slb-node-api
+      sam.data.sfdc.net/owner: slb
   template:
     metadata:
       labels:

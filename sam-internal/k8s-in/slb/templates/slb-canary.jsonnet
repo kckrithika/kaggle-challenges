@@ -3,9 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbInProdKingdom then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-canary",
@@ -13,7 +11,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
         name: "slb-canary",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         replicas: 2,
         template: {
             metadata: {

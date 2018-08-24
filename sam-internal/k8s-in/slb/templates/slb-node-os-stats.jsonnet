@@ -2,9 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-sdc" then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-node-os-stats",
@@ -12,7 +10,7 @@ if configs.estate == "prd-sdc" then {
         name: "slb-node-os-stats",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         template: {
             metadata: {
                 labels: {

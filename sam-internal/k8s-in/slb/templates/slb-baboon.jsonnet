@@ -5,9 +5,7 @@ local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-babo
 local portconfigs = import "slbports.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-baboon",
@@ -15,7 +13,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         name: "slb-baboon",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         replicas: 1,
         template: {
             spec: {

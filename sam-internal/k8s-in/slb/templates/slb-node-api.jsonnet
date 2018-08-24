@@ -4,9 +4,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = import "slbsharedservices.jsonnet";
 
-if slbconfigs.slbInKingdom && slbimages.phaseNum > 1 then {
-    apiVersion: "extensions/v1beta1",
-    kind: "DaemonSet",
+if slbconfigs.slbInKingdom && slbimages.phaseNum > 1 then configs.daemonSetBase("slb") {
     metadata: {
         labels: {
             name: "slb-node-api",
@@ -14,7 +12,7 @@ if slbconfigs.slbInKingdom && slbimages.phaseNum > 1 then {
         name: "slb-node-api",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         template: {
             metadata: {
                 labels: {

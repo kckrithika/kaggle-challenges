@@ -2,9 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-sdc" then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-echo-client",
@@ -20,7 +18,7 @@ if configs.estate == "prd-sdc" then {
            \"slb-nginx\", \"slb-echo-server\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
         },
     },
-    spec: {
+    spec+: {
         replicas: 1,
         template: {
             metadata: {

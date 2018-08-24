@@ -7,6 +7,9 @@ metadata:
   namespace: sam-system
 spec:
   minReadySeconds: 30
+  selector:
+    matchLabels:
+      name: slb-node-os-stats
   strategy:
     rollingUpdate:
       maxSurge: 1

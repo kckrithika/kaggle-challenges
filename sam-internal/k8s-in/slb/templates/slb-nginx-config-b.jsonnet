@@ -8,9 +8,7 @@ local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ngin
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 
-if slbconfigs.slbInKingdom then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if slbconfigs.slbInKingdom then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-nginx-config-b",
@@ -18,7 +16,7 @@ if slbconfigs.slbInKingdom then {
         name: "slb-nginx-config-b",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else (if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" || configs.estate == "prd-sdc" then 3 else 2),
         revisionHistoryLimit: 2,
         template: {
