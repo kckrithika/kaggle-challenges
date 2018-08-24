@@ -63,20 +63,7 @@ if samfeatureflags.kubedns then {
                         ],
                         image: samimages.kubedns,
                         imagePullPolicy: "IfNotPresent",
-                        livenessProbe: if configs.estate == "prd-samdev" then {
-                            failureThreshold: 5,
-                            exec: {
-                                command: [
-                                    "sh",
-                                    "-c",
-                                    "/scripts/cert-age.sh && nslookup kubernetes.default.svc.cluster.local 127.0.0.1:10053 > /dev/null",
-                                ],
-                            },
-                            initialDelaySeconds: 60,
-                            periodSeconds: 10,
-                            successThreshold: 1,
-                            timeoutSeconds: 5,
-                        } else {
+                        livenessProbe: {
                            failureThreshold: 5,
                            httpGet: {
                                path: "/healthcheck/kubedns",
