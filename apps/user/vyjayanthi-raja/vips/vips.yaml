@@ -1,7 +1,7 @@
 - lbname: helloselfservice
   servers:
-   - 10.253.152.156
-   - 10.253.152.134
+   - 10.231.187.2
+   - 10.231.187.50
   ports:
    - port: 80
      targetport: 12087
