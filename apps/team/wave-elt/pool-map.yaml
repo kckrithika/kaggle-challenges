@@ -1,7 +1,7 @@
 apps:
-  datapool-steelthread:
+  datapool-staging:
     - prd/prd-sam_datapool
-  datapool-iad:
+  datapool:
     - iad/iad-sam_datapool
 
 

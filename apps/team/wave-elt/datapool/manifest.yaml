@@ -2,15 +2,15 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - analyticseltspark@salesforce.com
+      - moanaserviceseng@salesforce.com
   functions:
-  - name: datapool-steelthread
+  - name: datapool
     identity:
       serviceName: datapool
     count: 1
     containers:
     - name: datapool-service
-      image: sfci/insights/datapoolservice:e829671
+      image: sfci/insights/datapoolservice:00a87ea
       ports:
       - containerPort: 7020
         name: grpc
@@ -24,17 +24,8 @@ system:
           path: /manage/health
           port: 15372
       env:
-      - name: SFDC_ENVIRONMENT
-        value: kingdom-test
-
       - name: LOGGING_STDERR_LEVEL
         value: ALL
-
-      - name: PHOENIX_KEYTABPATH
-        value: /home/datapool/datapool-keytab/datapool.keytab
-
-      - name: PHOENIX_LAZYINIT
-        value: false
 
       - name: PKI_TRUSTSTORE_DIR
         value: /home/datapool/client-certs
@@ -44,6 +35,9 @@ system:
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE
         value: dva/flowsnake-job-datapool-engine:313
+
+      - name: FLOWSNAKE_DATAPOOL_IMAGE_KIND
+        value: dockerDefaultRegistryImage
 
       volumeMounts:
       - mountPath: /home/datapool/logs
@@ -60,13 +54,13 @@ system:
         initialDelaySeconds: 15
       args:
       - -endpoint
-      - wave-elt/datapool-steelthread:DATACENTER_ALLENV:7443
+      - wave-elt/datapool:DATACENTER_ALLENV:7443
 
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.24
       env:
       - name: SFDC_ENVIRONMENT
-        value: kingdom-test
+        value: prod
 
       livenessProbe:
         exec:
@@ -122,19 +116,5 @@ system:
     - name: tls-client-certs
       maddogCert:
         type: client
-
-
-  loadbalancers:
-  - lbname: datapool-lb
-    function: datapool-steelthread
-    nodeExposed: true
-    slbenabled: true
-    ports:
-      - port: 7025  # Plain text port until we get SSL working
-        targetport: 7012
-      - port: 7443
-        targetport: 7443
-      - port: 15373
-        targetport: 15373
 
 
