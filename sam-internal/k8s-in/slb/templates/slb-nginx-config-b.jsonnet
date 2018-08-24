@@ -221,9 +221,9 @@ if slbconfigs.slbInKingdom then {
                                  name: "slb-nginx-data",
                                  image: slbimages.hypersdn,
                                  command: [
-                                     "/sdn/slb/slb-nginx-data",
+                                     "/sdn/slb-nginx-data",
+                                     "--target=" + slbconfigs.slbDir + "/nginx/config",
                                      "--connPort=" + slbports.slb.nginxDataConnPort,
-                                     configs.sfdchosts_arg,
                                  ],
                                  volumeMounts: configs.filter_empty([
                                      slbconfigs.slb_volume_mount,
