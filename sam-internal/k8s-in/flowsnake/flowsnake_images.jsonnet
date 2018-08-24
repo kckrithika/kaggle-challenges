@@ -125,6 +125,7 @@ local utils = import "util_functions.jsonnet";
                 add_12_canary: "verified",  #Verified successfully in test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
+                btrfs_watchdog_hard_reset: "",
             },
             version_mapping: {
                 main: {
