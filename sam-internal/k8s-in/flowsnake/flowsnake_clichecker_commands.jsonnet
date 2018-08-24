@@ -60,7 +60,7 @@ local build_docker_test_commands = if flag_docker_test then {
 } else {};
 
 local build_btrfs_test_commands = if flag_btrfs_test then {
-    BtrfsHung: { BtrfsHung: "/var/run/check-btrfs/check-btrfs.sh" },
+    BtrfsHung: { BtrfsHung: "bash /var/run/check-btrfs/check-btrfs.sh" },
 } else {};
 
 {
