@@ -161,8 +161,8 @@ if slbconfigs.slbInKingdom then {
                                         configs.sfdchosts_arg,
                                         "--client.serverInterface=lo",
                                         "--hostnameOverride=$(NODE_NAME)",
-                                        ] + (if slbimages.phaseNum == 1 then [
-                                                "--blueGreenFeature=true",
+                                    ] + (if slbimages.phaseNum == 1 then [
+                                             "--blueGreenFeature=true",
                                          ] else []) + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
                                     volumeMounts: configs.filter_empty([
                                         {
@@ -334,7 +334,7 @@ if slbconfigs.slbInKingdom then {
                 initContainers: [
                     madkub.madkubInitContainer(),
                 ],
-            },
+            } + slbflights.getDnsPolicy(),
         },
         strategy: {
             type: "RollingUpdate",

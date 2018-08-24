@@ -405,6 +405,7 @@ spec:
           name: kubeconfig
         - mountPath: /etc/pki_service
           name: maddog-certs
+      dnsPolicy: Default
       initContainers:
       - args:
         - /sam/madkub-client
