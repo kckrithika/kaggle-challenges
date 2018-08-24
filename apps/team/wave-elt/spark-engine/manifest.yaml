@@ -6,7 +6,7 @@ system:
     count: 0
     containers:
     - name: flowsnake-job-datapool-engine
-      image: dva/flowsnake-job-datapool-engine:313
+      image: dva/dva/flowsnake-job-datapool-engine:313
       livenessProbe:
         exec:
             command:
