@@ -11,5 +11,6 @@ for procdir in /host-proc/*; do
         sleep 5;
         # TODO: uncomment after testing
         #echo "b" > /host-proc/sysrq-trigger;
+        exit 1;
     fi;
 done
