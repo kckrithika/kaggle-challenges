@@ -19,8 +19,10 @@ system:
           path: /var/log/report-cache-builder
     containers:
     - name: expreport-cache-builder
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-cache-builder:20180820113501
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-cache-builder:20180824071309
       ports:
+      - name: provider-https
+        containerPort: 8443
       - name: consumer
         containerPort: 8081
       - name: consumer-https
@@ -56,11 +58,11 @@ system:
         value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
-      - name: ReportCollector_app_https_caCertificates
+      - name: ReportCollector_app_https_staticCertificateOptions_caCertificates
         value: "[\"/var/lib/report-collector/certificates/sfdc-internal-ca.crt\"]"
-      - name: ReportCollector_app_https_certificate
+      - name: ReportCollector_app_https_staticCertificateOptions_certificate
         value: /var/lib/report-collector/certificates/server/rc_server.crt
-      - name: ReportCollector_app_https_privateKey
+      - name: ReportCollector_app_https_staticCertificateOptions_privateKey
         value: /var/lib/report-collector/certificates/server/rc_server.key
       - name: ReportCollector_app_https_supportCompression
         value: true
@@ -71,7 +73,7 @@ system:
       - name: ReportCollector_ajna_retry_delayMs
         value: 1000
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
-        value: 0
+        value: 1
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
         value: 10
       - name: ReportCollector_cacheBuilder_enabled
@@ -79,7 +81,7 @@ system:
       - name: ReportCollector_cacheBuilder_defaultCacheBuilderParams_minDelay
         value: 300000
       - name: ReportCollector_cacheBuilder_defaultCacheBuilderParams_cacheDir
-        value: /var/cache/report-collector/
+        value: /var/cache/report-collector/consumer-cache/
       - name: ReportCollector_cacheBuilder_cacheBuilders
         value: |
              [
@@ -100,10 +102,10 @@ system:
              ]
 
       livenessProbe:
-        exec:
-          command:
-          - echo
-          - always_healthy
+        httpGet:
+          scheme: HTTPS
+          path: /healthz
+          port: 8443
         initialDelaySeconds: 5
       command: ["/bin/sh", "-c"]
       args: ["
