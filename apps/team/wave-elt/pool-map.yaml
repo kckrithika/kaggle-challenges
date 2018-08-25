@@ -7,5 +7,7 @@ apps:
 # ======= Flowsnake Container ======== #
   spark-engine:
     - iad/iad-sam_datapool
+  spark-engine-staging:
+    - prd/prd-sam_datapool
 
 
