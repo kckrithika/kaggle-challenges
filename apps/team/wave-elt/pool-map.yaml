@@ -4,4 +4,8 @@ apps:
   datapool:
     - iad/iad-sam_datapool
 
+# ======= Flowsnake Container ======== #
+  spark-engine:
+    - iad/iad-sam_datapool
+
 
