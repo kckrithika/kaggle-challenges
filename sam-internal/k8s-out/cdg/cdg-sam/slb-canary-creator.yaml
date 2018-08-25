@@ -25,7 +25,7 @@ spec:
         - --canaryImage=ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001061-8f516a5e
         - --metricsEndpoint=ajna0-funnel1-0-cdg.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-canary-creator
-        - --maxParallelism=8
+        - --maxParallelism=4
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --hostnameOverride=$(NODE_NAME)
         - --minSleepTime=2h
