@@ -6,9 +6,9 @@ system:
     count: 0
     containers:
     - name: flowsnake-job-datapool-engine
-      image: dva/dva/flowsnake-job-datapool-engine:313
+      image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-datapool-engine:313
       livenessProbe:
         exec:
             command:
             - ls
-        initialDelaySeconds: 60
+        initialDelaySeconds: 5
