@@ -107,7 +107,7 @@ system:
         mountPath: /home/retail-setup/logs
 
     - name: sherpa-rsui-func
-      image: sfci/servicelibs/sherpa:2.0.26 # Use the latest version, see https://git.soma.salesforce.com/servicelibs/sherpa/releases
+      image: sfci/servicelibs/sherpa:2.0.27 # Use the latest version, see https://git.soma.salesforce.com/servicelibs/sherpa/releases
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
