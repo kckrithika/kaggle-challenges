@@ -22,14 +22,14 @@ spec:
     spec:
       containers:
       - command:
-        - sdn/slb-nginx-data-watchdog
+        - /sdn/slb-nginx-data-watchdog
         - --namespace=sam-system
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --k8sapiserver=
         - --connPort=9125
         - --monitorFrequency=180s
-        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --hostnameOverride=$(NODE_NAME)
+        - --nginxWDmetricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --nginxWDhostnameOverride=$(NODE_NAME)
         env:
         - name: NODE_NAME
           valueFrom:
@@ -37,7 +37,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001075-736fa80b
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001097-c6731fc7
         name: slb-nginx-data-watchdog
         volumeMounts:
         - mountPath: /etc/pki_service

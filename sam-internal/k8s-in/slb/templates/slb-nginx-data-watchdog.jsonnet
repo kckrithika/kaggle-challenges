@@ -30,14 +30,14 @@ if slbimages.phaseNum == 1 then {
                         name: "slb-nginx-data-watchdog",
                         image: slbimages.hypersdn,
                         command: [
-                            "sdn/slb-nginx-data-watchdog",
+                            "/sdn/slb-nginx-data-watchdog",
                             "--namespace=sam-system",
                             configs.sfdchosts_arg,
                             "--k8sapiserver=",
                             "--connPort=" + slbports.slb.nginxDataConnPort,
                             "--monitorFrequency=180s",
-                            "--metricsEndpoint=" + configs.funnelVIP,
-                            "--hostnameOverride=$(NODE_NAME)",
+                            "--nginxWDmetricsEndpoint=" + configs.funnelVIP,
+                            "--nginxWDhostnameOverride=$(NODE_NAME)",
                         ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
