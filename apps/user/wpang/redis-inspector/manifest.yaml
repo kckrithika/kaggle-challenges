@@ -13,7 +13,7 @@ system:
         type: client
     containers:
     - name: redis-inspector
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/redis-inspector:34
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/redis-inspector:1
       ports:
       - containerPort: 8080
       volumeMounts:
