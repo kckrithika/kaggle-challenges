@@ -62,7 +62,6 @@ spec:
         - --client.serverInterface=lo
         - --healthPathCheck=true
         - --metricsBatchTimeout=30s
-        - --optOutNamespace=kne
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         - --followRedirect=false
