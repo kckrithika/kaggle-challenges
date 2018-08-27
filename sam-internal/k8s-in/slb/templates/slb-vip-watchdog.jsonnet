@@ -104,11 +104,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            "--healthPathCheck=true",
                                            "--metricsBatchTimeout=30s",
                                        ] + (
-                                           if slbimages.phaseNum <= 2 || configs.estate == "xrd-sam" then  # this block currently applies to phase 1, 2 and xrd-sam, pending rollout to more phases
                                                if std.objectHas(slbconfigs.perCluster.vipwdOptOutOptions, configs.estate) then
                                                    slbconfigs.perCluster.vipwdOptOutOptions[configs.estate]
-                                               else []
-                                           else ["--optOutNamespace=kne"]  # keeps backward compatibility for phase 3/4
+                                           else if slbimages.hypersdn_build < 1098 then ["--optOutNamespace=kne"]  # keeps backward compatibility for phase 3/4
+                                           else []
                                        )
                                        + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
                                        + ["--followRedirect=false"],
