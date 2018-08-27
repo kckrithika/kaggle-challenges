@@ -1,0 +1,267 @@
+local madkub = (import "firefly_madkub.jsonnet") + { templateFileName:: std.thisFile };
+local images = import "fireflyimages.jsonnet";
+local configs = import "config.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
+local envConfiguration = import "firefly_service_conf.jsonnet";
+{
+    // Required arguments for this template
+    serviceName:: error "serviceName must be specified",
+    portAnnotations:: error "portAnnotations must be specified",
+    portConfigs:: error "portConfigs must be specified",
+    replicas:: error "Replicas must be specified",
+    role:: error "Role must be specified for certificate generation",
+    dockerImage:: error "dockerImage must be specified ",
+    command:: error "command must be specified ",
+    env:: error "env must be specified ",
+    volumeMounts:: error "volumeMounts must be specified ",
+
+    local configs = import "config.jsonnet",
+    local firefly_feature_flags = import "firefly_feature_flags.jsonnet",
+    local strReplace(str, from, to) = (
+        // Cache for performance.
+        local str_len = std.length(str);
+        local from_len = std.length(from);
+
+        // True if from is at str[i].
+        local found_at(i) = str[i:i + from_len] == from;
+
+        // Return the remainder of 'str' starting with 'start_index' where
+        // all occurrences of 'from' after 'curr_index' are replaced with 'to'.
+        local replace_after(start_index, curr_index, acc) =
+            if curr_index > str_len then
+                acc + str[start_index:curr_index]
+            else if found_at(curr_index) then
+                local new_index = curr_index + std.length(from);
+                replace_after(new_index, new_index, acc + str[start_index:curr_index] + to)
+            else
+                replace_after(start_index, curr_index + 1, acc);
+
+        replace_after(0, 0, "")
+    ),
+    serviceConf:: {},
+    commonVolMounts:: [
+        {
+          name: "certs",
+          mountPath: "/certs",
+        },
+    ],
+    // arguments for template
+    commonEnv:: [
+        {
+           name: "exchangeName",
+           value: "firefly.delivery",
+        },
+        {
+            name: "DOCKER_HOST",
+            value: "http://localhost:2375",
+        },
+        {
+            name: "rootDir",
+            value: "/tmp",
+        },
+        {
+            name: "dockerCertPath",
+            value: "/etc/docker/certs.d",
+        },
+        {
+            name: "rabbitMqEndpoint",
+            value: envConfiguration.environmentMapping[configs.estate].rabbitMqEndpoint,
+        },
+        {
+            name: "rabbitMqPort",
+            value: envConfiguration.environmentMapping[configs.estate].rabbitMqPort,
+        },
+        {
+            name: "rabbitMqUserName",
+            value: envConfiguration.environmentMapping[configs.estate].rabbitMqUserName,
+        },
+        {
+            name: "artifactoryDevHost",
+            value: envConfiguration.environmentMapping[configs.estate].artifactoryDevHost,
+        },
+        {
+            name: "artifactoryP2PHost",
+            value: envConfiguration.environmentMapping[configs.estate].artifactoryP2PHost,
+        },
+        {
+            name: "artifactoryUserName",
+            value: "svc_tnrp_artifactory",
+        },
+        {
+            name: "artifactoryContentRepoUserName",
+            value: envConfiguration.environmentMapping[configs.estate].artifactoryContentRepoUserName,
+        },
+        {
+            name: "artifactoryContentRepoUserNameProd",
+            value: envConfiguration.environmentMapping[configs.estate].artifactoryContentRepoUserNameProd,
+        },
+        {
+            name: "KINGDOM",
+            value: "prd",
+        },
+        {
+            name: "SUPERPOD",
+            value: "none",
+        },
+        {
+            name: "FUNCTION_INSTANCE_NAME",
+            value: $.serviceName,
+        },
+        {
+            name: "MY_NODE_NAME",
+            valueFrom:
+            {
+                fieldRef: { fieldPath: "spec.nodeName", apiVersion: "v1" },
+            },
+        },
+        {
+            name: "MY_POD_NAME",
+            valueFrom:
+            {
+                fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
+            },
+        },
+        {
+            name: "MY_POD_IP",
+            valueFrom:
+            {
+                fieldRef: { fieldPath: "status.podIP", apiVersion: "v1" },
+            },
+        },
+    ],
+    local service = {
+        kind: 'Service',
+        apiVersion: 'v1',
+        metadata: {
+            name: $.serviceName,
+            namespace: 'firefly',
+            labels: {
+                app: $.serviceName,
+            } + configs.ownerLabel.tnrp,
+            [if firefly_feature_flags.is_slb_enabled then "annotations"]: {
+                "slb.sfdc.net/name": $.serviceName,
+                "slb.sfdc.net/portconfigurations": std.toString(
+                    [
+                        $.portAnnotations,
+                    ]
+                ),
+            },
+        },
+        spec: {
+            type: if firefly_feature_flags.is_slb_enabled then 'NodePort' else 'LoadBalancer',
+            ports: [
+                $.portConfigs,
+            ],
+            selector: {
+                 app: $.serviceName,
+            },
+        },
+    },
+
+    local deployment = {
+        kind: "Deployment",
+        apiVersion: "extensions/v1beta1",
+        metadata: {
+            name: $.serviceName,
+            namespace: "firefly",
+            labels: {
+                name: $.serviceName,
+            } + configs.ownerLabel.tnrp,
+        },
+        spec: {
+            replicas: $.replicas,
+            template: {
+               metadata: {
+                    namespace: "firefly",
+                    name: $.serviceName,
+                    labels: {
+                        name: $.serviceName,
+                    } + configs.ownerLabel.tnrp,
+                    annotations: {
+                        'madkub.sam.sfdc.net/allcerts': strReplace('{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client", "kingdom":"prd", "role": "#role"}]}', '#role', $.role),
+                    },
+               },
+               spec: {
+                  initContainers: [
+                      madkub.madkubInitContainer(),
+                  ],
+                  containers: [
+                    madkub.madkubRefreshContainer(),
+                    {
+                        name: $.serviceName,
+                        image: $.dockerImage,
+                        [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
+                        command: $.command,
+                        imagePullPolicy: 'Always',
+                        env: $.env,
+                        ports: [
+                                 {
+                                     name: "admin-port",
+                                     protocol: "TCP",
+                                     containerPort: $.serviceConf.healthPort,
+                                 },
+                        ],
+                        volumeMounts: $.volumeMounts,
+                    },
+                   ] + if $.serviceConf.dindEnabled == false then [] else [
+                    {
+                       name: "dind-daemon",
+                       image: images.fireflydind,
+                       securityContext: {
+                           privileged: true,
+                       },
+                       volumeMounts: [
+                          {
+                             name: "docker-graph-storage",
+                             mountPath: "/var/lib/docker",
+                          },
+                          {
+                             name: "docker-build-dir",
+                             mountPath: "/tmp",
+                          },
+                       ],
+                    },
+                  ],
+                  volumes: [
+                     {
+                         name: "docker-graph-storage",
+                         emptyDir: {},
+                     },
+                     {
+                         name: "docker-build-dir",
+                         emptyDir: {},
+                     },
+                     {
+                         name: "tokens",
+                         emptyDir: {
+                             medium: "Memory",
+                         },
+                     },
+                     {
+                         name: "certs",
+                         emptyDir: {
+                             medium: "Memory",
+                         },
+                     },
+                     configs.maddog_cert_volume,
+                  ],
+                  terminationGracePeriodSeconds: 10,
+                  nodeSelector: {
+                      pool: if configs.estate == "prd-samtwo" then 'prd-sam_tnrp_merger' else configs.estate,
+                  },
+               },
+            },
+            strategy: {
+                type: "RollingUpdate",
+                rollingUpdate: {
+                    maxUnavailable: 1,
+                    maxSurge: 0,
+                },
+            },
+        },
+    },
+
+    apiVersion: 'v1',
+    kind: 'List',
+    items: [service, deployment],
+}
