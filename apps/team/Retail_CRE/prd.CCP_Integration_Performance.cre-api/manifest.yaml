@@ -51,7 +51,9 @@ system:
       - mountPath: /opt/cre/cre-api-ccp-perf
         name: logvol
     - name: sherpa-cre-api
-      image: sfci/servicelibs/sherpa:2.0.26
+      # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
+      # Use the full git SHA as the docker image tag.
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       volumeMounts:
       - mountPath: /client-certs
         name: client-certs
