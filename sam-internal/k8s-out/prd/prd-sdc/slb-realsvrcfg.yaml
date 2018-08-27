@@ -36,7 +36,6 @@ spec:
         - --period=5s
         - --netInterfaceName=eth0
         - --log_dir=/host/data/slb/logs/slb-realsvrcfg
-        - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverPort=12084
         - --client.serverInterface=lo
         - --nginxPodMode=false

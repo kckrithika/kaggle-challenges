@@ -97,24 +97,24 @@
         name: "slb-cleanup-config-processor",
         image: slbimages.hypersdn,
         command: [
-            "/sdn/slb-cleanup",
-            "--period=1800s",
-            "--logsMaxAge=1h",
-            "--filesDirToCleanup=" + slbconfigs.configDir,
-            "--shouldSkipServiceRecords=true",
-            "--shouldNotDeleteAllFiles=true",
-            "--log_dir=" + slbconfigs.logsDir,
-        ] + (if slbimages.hypersdn_build >= 1028 then [
-            "--shouldSkipSlbBlock=true",
-            "--skipFilesWithSuffix=.sock",
-        ] else [
-            "--skipFilesWithSuffix=slb.block",
-        ])  # Reduce the maxDeleteFileCount as 1028 rolls out
-        + (if configs.estate == "prd-sam" && slbimages.hypersdn_build < 1027 then [
-            "--maxDeleteFileCount=500",
-        ] else [
-            "--maxDeleteFileCount=20",
-        ]),
+                     "/sdn/slb-cleanup",
+                     "--period=1800s",
+                     "--logsMaxAge=1h",
+                     "--filesDirToCleanup=" + slbconfigs.configDir,
+                     "--shouldSkipServiceRecords=true",
+                     "--shouldNotDeleteAllFiles=true",
+                     "--log_dir=" + slbconfigs.logsDir,
+                 ] + (if slbimages.hypersdn_build >= 1028 then [
+                          "--shouldSkipSlbBlock=true",
+                          "--skipFilesWithSuffix=.sock",
+                      ] else [
+                          "--skipFilesWithSuffix=slb.block",
+                      ])  # Reduce the maxDeleteFileCount as 1028 rolls out
+                 + (if configs.estate == "prd-sam" && slbimages.hypersdn_build < 1027 then [
+                        "--maxDeleteFileCount=500",
+                    ] else [
+                        "--maxDeleteFileCount=20",
+                    ]),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
@@ -133,7 +133,10 @@
                      "--period=5s",
                      "--netInterfaceName=eth0",
                      "--log_dir=" + slbconfigs.logsDir,
-                     configs.sfdchosts_arg,
+                 ] + (if slbimages.hypersdn_build < 1098 then [
+                          configs.sfdchosts_arg,
+                      ] else []) +
+                 [
                      "--client.serverPort=" + nodeApiPort,
                      "--client.serverInterface=lo",
                  ] + (if $.dirSuffix == "slb-nginx-config-b" && slbimages.hypersdn_build >= 1061 then [
@@ -243,8 +246,8 @@
             "--shouldSkipServiceRecords=false",
             "--shouldNotDeleteAllFiles=false",
         ] + (if slbimages.hypersdn_build < 1098 then [
-            configs.sfdchosts_arg,
-        ] else []),
+                 configs.sfdchosts_arg,
+             ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
