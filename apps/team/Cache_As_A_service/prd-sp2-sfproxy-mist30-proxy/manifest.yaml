@@ -13,8 +13,11 @@ system:
       env:
       - name: ENVOY_DEBUG_OPTIONS
         value: --concurrency 200
+      - name: SETTINGS_PATH
+        value: mist.mist30.prd.na1.sfproxy
       args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-config.yaml.template
+      - --log-level=trace
       ports:
       - containerPort: 12060
       - containerPort: 12065
