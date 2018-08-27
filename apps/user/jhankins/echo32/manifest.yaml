@@ -17,8 +17,8 @@ system:
   loadbalancers:
   - lbname: echo32-lb
     function: echo32
-    slbenabled: true
+    slbenabled: false
+    nodeExposed: true
     ports:
       - port: 9900
         targetport: 9900
-        lbtype: tcp
