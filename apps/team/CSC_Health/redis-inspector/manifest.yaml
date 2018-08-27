@@ -10,16 +10,16 @@ system:
         secretName: csc-redis-auth-0
     containers:
     - name: redis-inspector
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wpang/redis-inspector:080818
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/redis-inspector:1
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
         readOnly: true
       livenessProbe:
-        exec:
-          command:
-          - echo
-          - always_healthy
+        httpGet:
+          path: /healthz
+          port: 8080
+        initialDelaySeconds: 31
       env:
       - name: RINSP_REDIS_HOST
         value: $(EXPREDISNOHALB_SERVICE_HOST)
