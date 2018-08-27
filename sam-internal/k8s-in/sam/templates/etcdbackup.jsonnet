@@ -3,7 +3,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 # Yeah, I know this is not a watchdog.  Will fix with a refactor
 local wdconfig = import "samwdconfig.jsonnet";
 
-configs.daemonSetBase {
+configs.daemonSetBase("sam") {
     spec+: {
         template: {
             spec: {
