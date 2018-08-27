@@ -196,7 +196,7 @@ local utils = import "util_functions.jsonnet",
     # }
     #
     # TODO: Once we switch to v1 from v1beta, we can add labels+ownerLabel.  Maybe over time we can also compute name.
-    deploymentBase: {
+    deploymentBase(owner):: {
       # Here we make a copy of the pointer to this outer object for use in children
       # We do this so child elements can reference it.  This is ugly, but all the alternatives dont work for one reason or another:
       #  1) 'self' points to the child
@@ -206,9 +206,16 @@ local utils = import "util_functions.jsonnet",
       local depl = self,
       kind: "Deployment",
       apiVersion: "extensions/v1beta1",
-     [if kingdom == "prd" then "spec"]+: {
+      [if kingdom == "prd" && owner == "sam" then "spec"]+: {
         selector: {
           matchLabels: depl.spec.template.metadata.labels,
+        },
+        template+: {
+          metadata+: {
+            labels+: {
+              "sam.data.sfdc.net/owner": owner,
+            },
+          },
         },
       },
     },

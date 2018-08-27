@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then configs.deploymentBase {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then configs.deploymentBase("sam") {
     metadata+: {
         name: "sam-api-proxy",
         namespace: "sam-system",

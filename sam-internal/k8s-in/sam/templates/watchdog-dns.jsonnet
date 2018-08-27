@@ -3,7 +3,7 @@ local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then configs.deploymentBase {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then configs.deploymentBase("sam") {
     spec+: {
         template: {
             spec: configs.specWithMadDog {
