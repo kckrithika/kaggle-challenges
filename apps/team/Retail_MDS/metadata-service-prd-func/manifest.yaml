@@ -108,7 +108,7 @@ system:
   loadbalancers:
   - lbname: metadata-service-prd-func-lb
     function: metadata-service
-    slbenabled: true
+    slbEnabled: true
     ports:
     # HTTP port, served by the app. Exposes testing REST endpoints.
     - port: 9091
