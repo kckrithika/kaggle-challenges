@@ -22,11 +22,6 @@ system:
         readOnly: true
       - mountPath: /certs
         name: client-cert
-      livenessProbe:
-        exec:
-          command:
-          - echo
-          - always_healthy
       env:
       - name: RINSP_REDIS_HOST
         value: $(REDISLB_SERVICE_HOST)
