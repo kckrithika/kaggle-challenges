@@ -4,7 +4,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 # This is a hack.  All watchdogs use the shared configMap, but hairpin had a duplicate set of flags
 # and is not wired up to the configMap.  We should either pass through flags or have it use the configMap
 local samwdconfigmap = import "configs/watchdog-config.jsonnet";
-{
+if false then {
     kind: "Deployment",
     spec: {
         strategy: {
@@ -73,4 +73,4 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
         } + configs.ownerLabel.sam,
         name: "watchdog-hairpindeployer",
     },
-}
+} else "SKIP"
