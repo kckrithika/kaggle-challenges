@@ -198,6 +198,26 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: service-protection:hnd-sam_gater:rolebinding
+    namespace: service-protection
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-hnd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-hnd.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: communities:hnd-sam_moderation_einstein:rolebinding
     namespace: communities
   roleRef:
