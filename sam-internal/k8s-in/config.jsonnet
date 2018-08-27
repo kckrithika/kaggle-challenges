@@ -189,7 +189,7 @@ local utils = import "util_functions.jsonnet",
     # This base contains common deployment fields to cut down on copy paste.
     # Use it like this (dont forget the '+' after spec):
     #
-    # configs.deploymentBase {
+    # configs.deploymentBase("sam") {
     #   spec+: {
     #     template: { ... }
     #   }
@@ -210,7 +210,7 @@ local utils = import "util_functions.jsonnet",
         selector: {
           matchLabels: depl.spec.template.metadata.labels,
         },
-        template+: {
+        [if owner == "sam" then "template"]+: {
           metadata+: {
             labels+: {
               "sam.data.sfdc.net/owner": owner,
@@ -223,14 +223,14 @@ local utils = import "util_functions.jsonnet",
     # This base contains common DaemonSet fields to cut down on copy paste.
     # Use it like this (dont forget the '+' after spec):
     #
-    # configs.daemonSetBase {
+    # configs.daemonSetBase("sam") {
     #   spec+: {
     #     template: { ... }
     #   }
     # }
     #
     # TODO: Once we switch to v1 from v1beta, we can add labels+ownerLabel.  Maybe over time we can also compute name.
-    daemonSetBase: {
+    daemonSetBase(owner): {
       # Here we make a copy of the pointer to this outer object for use in children
       # We do this so child elements can reference it.  This is ugly, but all the alternatives dont work for one reason or another:
       #  1) 'self' points to the child
@@ -244,7 +244,15 @@ local utils = import "util_functions.jsonnet",
         selector: {
           matchLabels: ds.spec.template.metadata.labels,
         },
+        [if owner == "sam" then "template"]+: {
+          metadata+: {
+            labels+: {
+                "sam.data.sfdc.net/owner": owner,
+            },
+          },
+        },
       },
+
     },
 
 
