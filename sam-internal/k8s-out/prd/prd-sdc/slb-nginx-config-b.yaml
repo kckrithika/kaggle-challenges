@@ -341,7 +341,6 @@ spec:
         - --period=5s
         - --netInterfaceName=eth0
         - --log_dir=/host/data/slb/logs/slb-nginx-config-b
-        - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverPort=9130
         - --client.serverInterface=lo
         - --control.sentinelExpiration=1200s
