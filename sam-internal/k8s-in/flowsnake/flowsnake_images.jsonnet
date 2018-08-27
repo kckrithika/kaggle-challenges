@@ -81,7 +81,7 @@ local utils = import "util_functions.jsonnet";
 
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
-            deployer_image_tag: "sam-0002249-39b5a8fc",
+            deployer_image_tag: "sam-0002249-39b5a8fc",  # tested
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -118,6 +118,7 @@ local utils = import "util_functions.jsonnet";
 
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
+            deployer_image_tag: "sam-0002249-39b5a8fc",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
