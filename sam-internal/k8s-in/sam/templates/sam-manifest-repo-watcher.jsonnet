@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-sam" then configs.deploymentBase {
+if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
         metadata+: {
             name: "sam-manifest-repo-watcher",
             labels: {

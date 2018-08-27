@@ -3,7 +3,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local utils = import "util_functions.jsonnet";
 
 if (!utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom)) then
-configs.deploymentBase {
+configs.deploymentBase("sam") {
         spec+: {
                 replicas: 1,
                 template: {
