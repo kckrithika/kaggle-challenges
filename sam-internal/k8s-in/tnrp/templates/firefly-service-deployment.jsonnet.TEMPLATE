@@ -141,17 +141,13 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
             [if firefly_feature_flags.is_slb_enabled then "annotations"]: {
                 "slb.sfdc.net/name": $.serviceName,
                 "slb.sfdc.net/portconfigurations": std.toString(
-                    [
                         $.portAnnotations,
-                    ]
                 ),
             },
         },
         spec: {
             type: if firefly_feature_flags.is_slb_enabled then 'NodePort' else 'LoadBalancer',
-            ports: [
-                $.portConfigs,
-            ],
+            ports: $.portConfigs,
             selector: {
                  app: $.serviceName,
             },

@@ -13,15 +13,18 @@ serviceDeployment + {
     serviceName:: "firefly-pullrequest",
     role:: "firefly",
     dockerImage:: images.fireflypullrequest,
-    portAnnotations:: {
-           port: portConfig.firefly.pullrequest_mgmt,
-           targetPort: portConfig.firefly.pullrequest_mgmt,
-           lbtype: "http",
-           tls: false,
-           reencrypt: false,
-           sticky: 0,
-    },
-    portConfigs:: portConfig.service_health_port('pullrequest_mgmt_nodeport'),
+    portAnnotations:: 
+    [
+      {
+             port: portConfig.firefly.pullrequest_mgmt,
+             targetPort: portConfig.firefly.pullrequest_mgmt,
+             lbtype: "http",
+             tls: false,
+             reencrypt: false,
+             sticky: 0,
+      },
+    ],
+    portConfigs:: [ portConfig.service_health_port('pullrequest_mgmt_nodeport'), ],
     replicas:: 1,
     command:: ["java", "-jar", "/pullrequest-svc.jar", "--spring.profiles.active=" + configs.estate],
     env:: super.commonEnv ,
