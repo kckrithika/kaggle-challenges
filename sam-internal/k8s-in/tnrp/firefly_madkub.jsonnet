@@ -64,6 +64,75 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
         ],
     },
 
+    madkubRefreshContainer():: {
+        args: [
+                "/sam/madkub-client",
+                "--madkub-endpoint",
+                "https://10.254.208.254:32007",
+                "--maddog-endpoint",
+                configs.maddogEndpoint,
+                "--maddog-server-ca",
+                "/maddog-certs/ca/security-ca.pem",
+                "--madkub-server-ca",
+                "/maddog-certs/ca/cacerts.pem",
+                "--cert-folders",
+                "certs:/certs/",
+                "--token-folder",
+                "/tokens/",
+                "--requested-cert-type",
+                "client",
+                "--refresher",
+                "--run-init-for-refresher-mode",
+                "--ca-folder",
+                "/maddog-certs/ca",
+            ],
+            env: [
+                {
+                    name: "MADKUB_NODENAME",
+                    valueFrom: {
+                        fieldRef: {
+                            fieldPath: "spec.nodeName",
+                        },
+                    },
+                },
+                {
+                    name: "MADKUB_NAME",
+                    valueFrom: {
+                        fieldRef: {
+                            fieldPath: "metadata.name",
+                        },
+                    },
+                },
+                {
+                    name: "MADKUB_NAMESPACE",
+                    valueFrom: {
+                        fieldRef: {
+                            fieldPath: "metadata.namespace",
+                        },
+                    },
+                },
+            ],
+            image: samimages.madkub,
+            name: "madkub-refresher",
+            resources: {},
+            volumeMounts: [
+                {
+                    mountPath: "/certs",
+                    name: "certs",
+                },
+                {
+                    mountPath: "/tokens",
+                    name: "tokens",
+                },
+                {
+                    mountPath: "/maddog-certs/",
+                    name: "maddog-certs",
+                },
+            ],
+
+    },
+
+
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:
     #

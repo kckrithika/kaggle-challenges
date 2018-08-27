@@ -34,6 +34,10 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 0 - prd-samtest
         "0": $.per_phase["1"] {
+             fireflyintake: "69",
+             fireflypackage: "69",
+             fireflypullrequest: "69",
+             fireflydind: "3",
              rabbitmq: "17",
              },
 
@@ -45,24 +49,39 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
+            fireflyintake: "69",
+            fireflypackage: "69",
+            fireflypullrequest: "69",
+            fireflydind: "3",
             rabbitmq: "17",
             },
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
+            fireflyintake: "69",
+            fireflypackage: "69",
+            fireflypullrequest: "69",
+            fireflydind: "3",
             rabbitmq: "17",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
+            fireflyintake: "69",
+            fireflypackage: "69",
+            fireflypullrequest: "69",
+            fireflydind: "3",
             rabbitmq: "17",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
+            fireflyintake: "69",
+            fireflypackage: "69",
+            fireflypullrequest: "69",
+            fireflydind: "3",
             rabbitmq: "17",
             },
-
         },
 
     ### Phase kingdom/estate mapping
@@ -92,5 +111,9 @@ local configs = import "config.jsonnet";
 
     # These are the images used by the templates
     rabbitmq: configs.registry + "/dva/firefly-rabbitmq:" + $.per_phase[$.phase].rabbitmq,
+    fireflyintake: configs.registry + "/dva/firefly-intake:" + $.per_phase[$.phase].fireflyintake,
+    fireflypackage: configs.registry + "/dva/firefly-package:" + $.per_phase[$.phase].fireflypackage,
+    fireflypullrequest: configs.registry + "/dva/firefly-pullrequest:" + $.per_phase[$.phase].fireflypullrequest,
+    fireflydind: configs.registry + "/dva/firefly-dind:" + $.per_phase[$.phase].fireflydind,
 
 }
