@@ -203,7 +203,7 @@ system:
         - name: USE_SWITCHBOARD
           value: 1
         - name: CYAN
-          value: https://cyan.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:12065
+          value: https://mist61-cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
         - name: CURL_GLOBAL_OPTS
           value: -k
         - name: K4A
