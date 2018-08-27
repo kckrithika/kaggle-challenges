@@ -489,7 +489,7 @@ items:
       nodePort: 32443
       port: 8443
       protocol: TCP
-      targetPort: 8443
+      targetPort: 8080
     - name: admin-port
       nodePort: 32081
       port: 8081

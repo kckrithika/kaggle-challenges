@@ -33,7 +33,7 @@ serviceDeployment + {
         },
         {
                port: portConfig.firefly.intake_https,
-               targetPort: portConfig.firefly.intake_https,
+               targetPort: portConfig.firefly.intake_http,
                lbtype: "http",
                tls: true,
                reencrypt: false,
@@ -52,7 +52,7 @@ serviceDeployment + {
             name: 'intake-https',
             protocol: 'TCP',
             port: portConfig.firefly.intake_https,
-            targetPort: portConfig.firefly.intake_https,
+            targetPort: portConfig.firefly.intake_http,
             [if !firefly_feature_flags.is_slb_enabled then "nodePort"]: portConfig.firefly.intake_https_nodeport,
         },
         {
