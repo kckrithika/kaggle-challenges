@@ -155,8 +155,8 @@ WHERE latency > 45",
       alertThreshold: "10m",
       alertFrequency: "24h",
       watchdogFrequency: "10m",
-      alertProfile: "sam",
-      alertAction: "email",
+      alertProfile: "tnrp",
+      alertAction: "pagerDuty",
       sql: "SELECT
           * 
         FROM (SELECT 
@@ -178,10 +178,10 @@ WHERE latency > 45",
       alertThreshold: "10m",
       alertFrequency: "24h",
       watchdogFrequency: "10m",
-      alertProfile: "sam",
-      alertAction: "email",
+      alertProfile: "tnrp",
+      alertAction: "pagerDuty",
       sql: "SELECT 
-         *
+         *   
         FROM
         (SELECT 
           pr_num,
@@ -191,10 +191,10 @@ WHERE latency > 45",
           most_recent_authorized_time,
           TIMESTAMPDIFF(MINUTE,  most_recent_authorized_time, now()) latency
         FROM PullRequests
-        WHERE created_time IS NOT NULL AND authorized_by IS NOT NULL AND authorized_by !='' AND (`evaluate_pr_status` IS NULL OR evaluate_pr_status = 'unknown') AND most_recent_authorized_time IS NOT NULL
+        WHERE created_time IS NOT NULL AND created_time  > NOW() - Interval 10 day AND authorized_by IS NOT NULL AND authorized_by !='' AND (`evaluate_pr_status` IS NULL OR evaluate_pr_status = 'unknown') AND most_recent_authorized_time IS NOT NULL
             AND state ='open'
         ) authedButUnkwn
-        WHERE authedButUnkwn.latency > 30 AND pr_num > 1000",
+        WHERE authedButUnkwn.latency > 30",
     },
 
 # =====
@@ -205,8 +205,8 @@ WHERE latency > 45",
       alertThreshold: "10m",
       alertFrequency: "24h",
       watchdogFrequency: "10m",
-      alertProfile: "sam",
-      alertAction: "email",
+      alertProfile: "tnrp",
+      alertAction: "pagerDuty",
       sql: "SELECT
              *
             FROM
