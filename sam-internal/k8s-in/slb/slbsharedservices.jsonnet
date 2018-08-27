@@ -242,8 +242,9 @@
             "--filesDirToCleanup=" + slbconfigs.logsDir,
             "--shouldSkipServiceRecords=false",
             "--shouldNotDeleteAllFiles=false",
+        ] + (if slbimages.hypersdn_build < 1098 then [
             configs.sfdchosts_arg,
-        ],
+        ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,

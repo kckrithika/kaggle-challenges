@@ -183,7 +183,6 @@ spec:
         - --filesDirToCleanup=/host/data/slb/logs/slb-portal
         - --shouldSkipServiceRecords=false
         - --shouldNotDeleteAllFiles=false
-        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
