@@ -1,10 +1,11 @@
 local packagesvc = import "firefly-package-svc.jsonnet.TEMPLATE";
 local configs = import "config.jsonnet";
 local pullrequestsvc = import "firefly-pullrequest-svc.jsonnet.TEMPLATE";
+local intakesvc = import "firefly-intake-svc.jsonnet.TEMPLATE";
 
 if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then
 {
-  local p = packagesvc {
+  local package = packagesvc {
       env:: super.env + [
           {
               name: "instanceType",
@@ -24,7 +25,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then
           },
      ],
   },
-  local r = pullrequestsvc {
+  local pullrequest = pullrequestsvc {
       env:: super.env + [
           {
               name: "instanceType",
@@ -41,9 +42,13 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then
      ],
 
   },
+  local intake = intakesvc {
+      env:: super.env,
+  },
+
   apiVersion: "v1",
   kind: "List",
-  items: std.flattenArrays([p.items, r.items]),
+  items: std.flattenArrays([package.items, pullrequest.items, intake.items]),
 
 }
 else "SKIP"
