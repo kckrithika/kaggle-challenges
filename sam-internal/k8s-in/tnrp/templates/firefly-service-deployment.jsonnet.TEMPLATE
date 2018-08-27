@@ -247,7 +247,7 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
                   ],
                   terminationGracePeriodSeconds: 10,
                   nodeSelector: {
-                      pool: if configs.estate == "prd-samtwo" then 'prd-sam_tnrp_merger' else configs.estate,
+                      pool: $.serviceConf.pool,
                   },
                },
             },

@@ -29,7 +29,7 @@ local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
       intake_mgmt_nodeport: 32081,
 
       pullrequest_mgmt: 8081,
-      pullrequest_mgmt_nodeport: 32083,
+      pullrequest_mgmt_nodeport: 32084,
 
       package_mgmt: 8081,
       package_mgmt_nodeport: 32085,
@@ -38,6 +38,6 @@ local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
       crawler_mgmt_nodeport: 32082,
 
       promotion_mgmt: 8081,
-      promotion_mgmt_nodeport: 32084,
+      promotion_mgmt_nodeport: 32085,
     },
 }
