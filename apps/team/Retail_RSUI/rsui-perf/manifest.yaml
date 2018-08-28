@@ -110,7 +110,9 @@ system:
         mountPath: /home/retail-setup/logs
 
     - name: sherpa-rsui-perf
-      image: sfci/servicelibs/sherpa:2.0.26 # Use the latest version, see https://git.soma.salesforce.com/servicelibs/sherpa/releases
+       # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
+      # Use the full git SHA as the docker image tag.
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b 
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
@@ -147,7 +149,7 @@ system:
         periodSeconds: 5
 
     - name: beacon-rsui-perf
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
