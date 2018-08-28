@@ -6,7 +6,7 @@ items:
     labels:
       app: firefly-package
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package_service
+    name: firefly-package-service
     namespace: firefly
   spec:
     ports:
@@ -24,7 +24,7 @@ items:
     labels:
       name: firefly-package
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package_deployment
+    name: firefly-package-deployment
     namespace: firefly
   spec:
     replicas: 3
@@ -41,7 +41,7 @@ items:
         labels:
           name: firefly-package
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-package_deployment
+        name: firefly-package-deployment
         namespace: firefly
       spec:
         containers:
@@ -243,7 +243,7 @@ items:
     labels:
       app: firefly-pullrequest
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-pullrequest_service
+    name: firefly-pullrequest-service
     namespace: firefly
   spec:
     ports:
@@ -261,7 +261,7 @@ items:
     labels:
       name: firefly-pullrequest
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-pullrequest_deployment
+    name: firefly-pullrequest-deployment
     namespace: firefly
   spec:
     replicas: 1
@@ -278,7 +278,7 @@ items:
         labels:
           name: firefly-pullrequest
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-pullrequest_deployment
+        name: firefly-pullrequest-deployment
         namespace: firefly
       spec:
         containers:
@@ -476,7 +476,7 @@ items:
     labels:
       app: firefly-intake
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake_service
+    name: firefly-intake-service
     namespace: firefly
   spec:
     ports:
@@ -504,7 +504,7 @@ items:
     labels:
       name: firefly-intake
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake_deployment
+    name: firefly-intake-deployment
     namespace: firefly
   spec:
     replicas: 1
@@ -521,7 +521,7 @@ items:
         labels:
           name: firefly-intake
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-intake_deployment
+        name: firefly-intake-deployment
         namespace: firefly
       spec:
         containers:
