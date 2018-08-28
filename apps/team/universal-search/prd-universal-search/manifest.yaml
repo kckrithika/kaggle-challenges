@@ -76,6 +76,8 @@ system:
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
+      - name: client-cert-vol
+        mountPath: /client-certs
       - name: sherpa-log-vol
         mountPath: /log
       livenessProbe:
