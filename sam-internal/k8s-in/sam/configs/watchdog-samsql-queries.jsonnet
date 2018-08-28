@@ -155,7 +155,7 @@ WHERE latency > 45",
       alertThreshold: "10m",
       alertFrequency: "24h",
       watchdogFrequency: "10m",
-      alertProfile: "tnrp",
+      alertProfile: "sam",
       alertAction: "pagerDuty",
       sql: "SELECT
           * 
@@ -178,7 +178,7 @@ WHERE latency > 45",
       alertThreshold: "10m",
       alertFrequency: "24h",
       watchdogFrequency: "10m",
-      alertProfile: "tnrp",
+      alertProfile: "sam",
       alertAction: "pagerDuty",
       sql: "SELECT 
          *   
@@ -205,7 +205,7 @@ WHERE latency > 45",
       alertThreshold: "10m",
       alertFrequency: "24h",
       watchdogFrequency: "10m",
-      alertProfile: "tnrp",
+      alertProfile: "sam",
       alertAction: "pagerDuty",
       sql: "SELECT
              *

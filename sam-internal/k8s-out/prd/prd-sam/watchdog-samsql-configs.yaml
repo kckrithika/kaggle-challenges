@@ -191,7 +191,7 @@ data:
     * \n\t\tFROM \n\t\tcrd_history \n\t \tWHERE ApiKind = ''Bundle'') crds\n\tON crds.PRNum
     = prs.pr_num\nORDER BY prs.pr_num \n) prLatency\nWHERE latency > 45", "watchdogFrequency":
     "10m"}, {"alertAction": "pagerDuty", "alertFrequency": "24h", "alertProfile":
-    "tnrp", "alertThreshold": "10m", "instructions": "Following PRs don''t have authorization
+    "sam", "alertThreshold": "10m", "instructions": "Following PRs don''t have authorization
     link after 5 minutes of getting created.", "name": "SqlPRAuthroizationLinkPostTimeLatency",
     "sql": "SELECT\n          * \n        FROM (SELECT \n            pr_num,\n            TIMESTAMPDIFF(MINUTE,
     created_time, CASE WHEN first_approval_link_posted_time IS NULL THEN now() ELSE
@@ -199,7 +199,7 @@ data:
     PullRequests \n        WHERE created_time IS NOT NULL AND created_time > NOW()
     - Interval 10 day AND state =''open'') noApprovalLinkInMin\n        WHERE noApprovalLinkInMin.latency
     > 5\n        ORDER BY latency desc", "watchdogFrequency": "10m"}, {"alertAction":
-    "pagerDuty", "alertFrequency": "24h", "alertProfile": "tnrp", "alertThreshold":
+    "pagerDuty", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
     "10m", "instructions": "Following PRs haven''t run evaluatePR more than 30 mins
     after getting authorized.", "name": "SqlPRFailedToRunEvalPR", "sql": "SELECT \n         *   \n        FROM\n        (SELECT
     \n          pr_num,\n          created_time,\n          evaluate_pr_status,\n          authorized_by,\n          most_recent_authorized_time,\n          TIMESTAMPDIFF(MINUTE,  most_recent_authorized_time,
@@ -209,7 +209,7 @@ data:
     ''unknown'') AND most_recent_authorized_time IS NOT NULL\n            AND state
     =''open''\n        ) authedButUnkwn\n        WHERE authedButUnkwn.latency > 30",
     "watchdogFrequency": "10m"}, {"alertAction": "pagerDuty", "alertFrequency": "24h",
-    "alertProfile": "tnrp", "alertThreshold": "10m", "instructions": "Following PRs
+    "alertProfile": "sam", "alertThreshold": "10m", "instructions": "Following PRs
     have failed to produce corresponding manifest.zip file after 30 minutes of getting  merged.",
     "name": "SqlPRFailedToProduceManifestZip", "sql": "SELECT\n             *\n            FROM\n            (SELECT\n              p.pr_num,\n              t.manifest_zip_time,\n              p.merged_time,\n              TIMESTAMPDIFF(MINUTE,
     merged_time, CASE WHEN t.manifest_zip_time IS NULL THEN now() ELSE t.manifest_zip_time
