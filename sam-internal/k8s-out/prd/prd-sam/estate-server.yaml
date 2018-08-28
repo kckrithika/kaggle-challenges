@@ -43,6 +43,11 @@ spec:
         ports:
         - containerPort: 9090
           name: estate-server
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
       nodeSelector:
         master: "true"
       securityContext:
