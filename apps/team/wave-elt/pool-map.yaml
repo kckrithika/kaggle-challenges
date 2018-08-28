@@ -3,7 +3,12 @@ apps:
     - prd/prd-sam_datapool
   datapool:
     - iad/iad-sam_datapool
+    - ord/ord-sam_datapool
 
 # ======= Flowsnake Container ======== #
+  spark-engine-iad:
+    - iad/iad-sam_datapool
+  spark-engine-ord:
+    - ord/ord-sam_datapool
 
 
