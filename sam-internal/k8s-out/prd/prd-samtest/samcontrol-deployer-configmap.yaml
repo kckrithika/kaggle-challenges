@@ -3,6 +3,10 @@ data:
   samcontroldeployer.json: |-
     {
       "app-key-ttl-duration": "12h",
+      "blacklistk4aNamespaces": [
+        "^ci-*",
+        "^user-*"
+      ],
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "daily-deployment-frequency": "24h",
