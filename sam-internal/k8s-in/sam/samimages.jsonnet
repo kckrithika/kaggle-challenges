@@ -97,7 +97,7 @@ for ce in [
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
             # IMPORTANT! Follow all steps from https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM
-            hypersam: "sam-0002227-b17e4d9d",
+            hypersam: "sam-0002252-a9ad81d9",
             },
 
         ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
