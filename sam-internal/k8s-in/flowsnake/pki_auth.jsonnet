@@ -58,6 +58,11 @@ local kingdom = std.extVar("kingdom");
             authorizedLdapGroups: ["Flowsnake_Platform"],
             authorizedClientCerts: ["flowsnake_test"],
         },
+        {
+            namespace: "einstein_analytics_discovery_monitoring",
+            authorizedLdapGroups: ["Analytics Service Ownership"],
+            authorizedClientCerts: [],
+        },
       ],
       "prd/prd-data-flowsnake_test": [
         {
