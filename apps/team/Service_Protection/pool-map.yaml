@@ -5,3 +5,12 @@ apps:
   - iad/iad-sam_serviceprotection
  spaasmesh:    
   - prd/prd-sam  
+  - cdg/cdg-sam_gater
+  - dfw/dfw-sam_gater
+  - fra/fra-sam_gater
+  - frf/frf-sam_gater
+  - hnd/hnd-sam_gater
+  - iad/iad-sam_gater
+  - ord/ord-sam_gater
+  - phx/phx-sam_gater
+  - ukb/ukb-sam_gater
