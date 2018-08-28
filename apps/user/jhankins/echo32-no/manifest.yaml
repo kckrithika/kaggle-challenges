@@ -3,7 +3,7 @@ system:
   functions:
   - name: echo32-no
     labels:
-      chaos_enable: false
+      chaos.sfdc.net/enable: false
     count: 2
     containers:
     - name: echo32-no
