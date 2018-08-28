@@ -77,8 +77,6 @@ std.prune({
 
   # This is special as in only  RDI Ceph Is supported
   # This will goaway slowly
-  enableStatefulChecks: (if configs.estate == "prd-samdev" then true),
-  enableStatefulPVChecks: (if configs.estate == "prd-samdev" then true),
   storageClassName: (if configs.estate == "prd-samdev" then "standard"),
   enableK4aChecks: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "frf" then true),
   enableMaddogCertChecks: (if samfeatureflags.maddogforsamapps && !utils.is_public_cloud(configs.kingdom) then true else false),
@@ -113,8 +111,8 @@ std.prune({
 })
   + (if utils.is_cephstorage_supported(configs.estate) then {
     storageClassName: "synthetic-hdd-pool",
-    enableStatefulChecks: true,
-    enableStatefulPVChecks: true,
+    enableStatefulChecks: false,
+    enableStatefulPVChecks: false,
     maxPVCAge: (if configs.estate == "prd-sam" then "15m" else 420000000000),
     syntheticPVRetrytimeout: (if configs.estate == "prd-sam" then "15m" else 420000000000),
     syntheticretrytimeout: (if configs.estate == "prd-sam" then "15m" else 420000000000),

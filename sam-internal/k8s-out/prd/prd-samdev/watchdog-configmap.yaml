@@ -17,8 +17,6 @@ data:
       "email-subject-prefix": "SAMWD",
       "enableK4aChecks": true,
       "enableMaddogCertChecks": true,
-      "enableStatefulChecks": true,
-      "enableStatefulPVChecks": true,
       "filesystemCheckDirs": [
         "/data/",
         "/data/logs/sdn/",
