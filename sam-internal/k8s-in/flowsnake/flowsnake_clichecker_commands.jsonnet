@@ -28,6 +28,7 @@ local build_test_command(test_name, version) = build_run_command(version) + set_
 
 local flag_local = std.objectHas(flowsnake_images.feature_flags, "add_local_canary");
 local flag_12 = std.objectHas(flowsnake_images.feature_flags, "add_12_canary");
+local flag_12_1 = std.objectHas(flowsnake_images.feature_flags, "add_12_1_canary");
 local flag_docker_test = std.objectHas(flowsnake_images.feature_flags, "docker_daemon_monitor");
 local flag_btrfs_test = std.objectHas(flowsnake_images.feature_flags, "btrfs_watchdog_hard_reset");
 
@@ -55,6 +56,19 @@ local build_12_commands = if flag_12 && flag_local then {
 
 };
 
+local build_12_1_commands = if flag_12_1 && flag_local then {
+    "0.12.1": {
+        SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.12.1'),
+        SparkLocal: build_test_command('SparkLocalDriverDemoJobIT', '0.12.1'),
+   },
+} else if flag_12_1 && !flag_local then {
+    "0.12.1": {
+        SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.12.1'),
+   },
+} else if !flag_12_1 then {
+
+};
+
 local build_docker_test_commands = if flag_docker_test then {
     DockerDaemon: { DockerDaemon: "/test-docker.sh" },
 } else {};
@@ -64,5 +78,5 @@ local build_btrfs_test_commands = if flag_btrfs_test then {
 } else {};
 
 {
-    command_sets:: build_command_sets + build_12_commands + build_docker_test_commands + build_btrfs_test_commands,
+    command_sets:: build_command_sets + build_12_commands + build_12_1_commands + build_docker_test_commands + build_btrfs_test_commands,
 }
