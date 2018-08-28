@@ -133,7 +133,7 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
         kind: 'Service',
         apiVersion: 'v1',
         metadata: {
-            name: std.join("_", [$.serviceName, 'service']),
+            name: std.join("-", [$.serviceName, 'service']),
             namespace: 'firefly',
             labels: {
                 app: $.serviceName,
@@ -158,7 +158,7 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
         kind: "Deployment",
         apiVersion: "extensions/v1beta1",
         metadata: {
-            name: std.join("_", [$.serviceName, 'deployment']),
+            name: std.join("-", [$.serviceName, 'deployment']),
             namespace: "firefly",
             labels: {
                 name: $.serviceName,
@@ -169,7 +169,7 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
             template: {
                metadata: {
                     namespace: "firefly",
-                    name: std.join("_", [$.serviceName, 'deployment']),
+                    name: std.join("-", [$.serviceName, 'deployment']),
                     labels: {
                         name: $.serviceName,
                     } + configs.ownerLabel.tnrp,
