@@ -24,9 +24,9 @@ system:
           - always_healthy
       env:
       - name: RINSP_REDIS_HOST
-        value: $(EXPREDISNOHALB_SERVICE_HOST)
+        value: $(REDISNOHALB_SERVICE_HOST)
       - name: RINSP_REDIS_PORT
-        value: $(EXPREDISNOHALB_SERVICE_PORT)
+        value: $(REDISNOHALB_SERVICE_PORT)
       - name: RINSP_COMMANDS_INFO_INTERVAL
         value: 30s
       - name: RINSP_COMMANDS_COMMANDSTATS_INTERVAL
