@@ -2,9 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-labels-checker",
@@ -12,7 +10,7 @@ if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "
         name: "slb-labels-checker",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         replicas: 1,
         template: {
             spec: {

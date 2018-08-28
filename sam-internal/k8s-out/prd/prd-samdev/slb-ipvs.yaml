@@ -9,6 +9,10 @@ metadata:
 spec:
   minReadySeconds: 120
   replicas: 2
+  selector:
+    matchLabels:
+      name: slb-ipvs
+      sam.data.sfdc.net/owner: slb
   strategy:
     rollingUpdate:
       maxSurge: 0

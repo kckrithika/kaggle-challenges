@@ -30,6 +30,9 @@ metadata:
   namespace: sam-system
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      name: slb-echo-client
   template:
     metadata:
       labels:

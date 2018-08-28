@@ -4,9 +4,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local portconfigs = import "slbports.jsonnet";
 local slbshared = import "slbsharedservices.jsonnet";
 
-if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
-    apiVersion: "extensions/v1beta1",
-    kind: "DaemonSet",
+if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then configs.daemonSetBase("slb") {
     metadata: {
         labels: {
             name: "slb-config-processor",
@@ -14,7 +12,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs
         name: "slb-config-processor",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         template: {
             metadata: {
                 labels: {

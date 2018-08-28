@@ -3,9 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-canary-passthrough-tls",
@@ -13,7 +11,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
         name: "slb-canary-passthrough-tls",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         replicas: 2,
         template: {
             metadata: {

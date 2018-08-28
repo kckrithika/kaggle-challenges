@@ -5,9 +5,7 @@ local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-vip-
 local slbports = import "slbports.jsonnet";
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-vip-watchdog" };
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-vip-watchdog",
@@ -15,7 +13,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         name: "slb-vip-watchdog",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         replicas: if configs.estate == "prd-sam" || configs.estate == "prd-sdc" then 2 else if slbconfigs.slbInProdKingdom then 3 else 1,
         template: {
             spec: {
