@@ -63,7 +63,7 @@ system:
           scheme: HTTP
 
     - name: sherpa-dfs
-      image: sfci/servicelibs/sherpa:2.0.26
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       volumeMounts:
         - name: dfs-server-cert
           mountPath: /server-certs
