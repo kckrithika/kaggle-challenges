@@ -21,7 +21,7 @@ system:
         secretName: test-secret
     containers:
     - name: event-notification-service
-      image: sfci/mc-eventing/event-notification:215.0.8
+      image: sfci/mc-eventing/event-notification:215.0.9
       ports:
         - containerPort: 15372
       env:
@@ -30,7 +30,9 @@ system:
         - name: MANAGEMENT_PORT
           value: 15372
         - name: AJNA_NAMESPACE
-          value: mc.test.mceventbusqa1s1
+          value: mc.test.mceventbusqa3s1
+        - name: EVENTCONSUMER_GROUP_ID
+          value: eventing-notification-qa3s1
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
