@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python2.7
 
 import os
 import fnmatch
@@ -217,6 +217,10 @@ def filter_estates(estates, filters):
                 yield e
 
 def main():
+    if sys.version_info[0] != 2:
+      print("This script requires python 2")
+      sys.exit(1)
+
     # Process arguments
     parser = argparse.ArgumentParser(description='Run jsonnet in parallel to build control estates templates')
     parser.add_argument('--src', help='One or more directories or filenames comma seperated', required=True)
