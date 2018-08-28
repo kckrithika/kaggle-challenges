@@ -89,6 +89,8 @@ system:
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+      - name: LOGGING_JSON_STDOUT_LEVEL
+        value: ALL
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
