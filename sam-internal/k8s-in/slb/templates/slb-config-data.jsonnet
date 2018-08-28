@@ -33,7 +33,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         {
                             name: "slb-config-data",
                             image: slbimages.hypersdn,
-                            [if configs.estate == "prd-samdev" then "resources"]: configs.ipAddressResource,
+                            [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                             command: [
                                 "/sdn/slb-config-data",
                                 "--port=" + portconfigs.slb.slbConfigDataPort,
