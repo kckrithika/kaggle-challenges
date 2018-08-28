@@ -10,6 +10,13 @@ serviceDeployment + {
         dindEnabled: false,
         healthPort: portConfig.firefly.intake_mgmt,
         pool: if configs.estate == "prd-samtwo" then 'prd-sam_tnrp_signer' else configs.estate,
+        port: [
+            {
+                name: "intake-http",
+                protocol: "TCP",
+                containerPort: portConfig.firefly.intake_http,
+            },
+        ],
     },
     serviceName:: "firefly-intake",
     role:: "firefly",

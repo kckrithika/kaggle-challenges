@@ -196,7 +196,7 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
                                      protocol: "TCP",
                                      containerPort: $.serviceConf.healthPort,
                                  },
-                        ],
+                        ] + if std.length($.serviceConf.port) <0 then [] else $.serviceConf.port,
                         volumeMounts: $.volumeMounts,
                     },
                    ] + if $.serviceConf.dindEnabled == false then [] else [
