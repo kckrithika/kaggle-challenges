@@ -63,6 +63,8 @@ for ce in [
             "prd-sam",
             "prd-sam_storage",
             "prd-sam_storagedev",
+            "prd-samdev",
+            "prd-samtest",
             "prd-samtwo",
             "prd-sdc",
             "syd-sam",
