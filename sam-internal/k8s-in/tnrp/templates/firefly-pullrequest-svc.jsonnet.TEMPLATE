@@ -9,6 +9,7 @@ serviceDeployment + {
         dindEnabled: true,
         healthPort: portConfig.firefly.pullrequest_mgmt,
         pool: if configs.estate == "prd-samtwo" then 'prd-sam_tnrp_merger' else configs.estate,
+        port: [],
     },
     serviceName:: "firefly-pullrequest",
     role:: "firefly",

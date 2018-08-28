@@ -626,6 +626,9 @@ items:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
+          - containerPort: 8080
+            name: intake-http
+            protocol: TCP
           resources:
             limits:
               sam.sfdc.net/ip-address: "1"
