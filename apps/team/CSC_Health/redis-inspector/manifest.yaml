@@ -11,15 +11,12 @@ system:
     containers:
     - name: redis-inspector
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/redis-inspector:1
+      ports:
+      - containerPort: 8080
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
         readOnly: true
-      livenessProbe:
-        httpGet:
-          path: /healthz
-          port: 8080
-        initialDelaySeconds: 31
       env:
       - name: RINSP_REDIS_HOST
         value: $(EXPREDISNOHALB_SERVICE_HOST)
@@ -37,6 +34,13 @@ system:
         value: 60s
       - name: RINSP_REDIS_AUTHPATH
         value: /var/secrets/redis/auth
+      - name: RINSP_HEALTH_PORT
+        value: 8080
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8080
+        initialDelaySeconds: 31
       command: ["/bin/sh", "-c"]
       args: ["
       export RINSP_AJNA_FUNNEL_HOST=http://${SFDC_METRICS_SERVICE_HOST} ;
