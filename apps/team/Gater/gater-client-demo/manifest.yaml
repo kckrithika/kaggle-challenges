@@ -11,9 +11,10 @@ system:
     - name: gater-client-demo-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/gater-client-demo:dmachak-20180817-1ed814f
       args:
-      - --grpc.gater.queryrate=100
+      - --grpc.gater.queryrate=1000
       - --grpc.gater.request.deadline=200
       - --client.test.gates=com.salesforce.gater.alwaysEnabled
+      - --grpc.gater.endpoint=gater.gater.localhost.mesh.force.com
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8181
