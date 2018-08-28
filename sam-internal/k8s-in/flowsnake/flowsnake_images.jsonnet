@@ -87,6 +87,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 add_local_canary: "verified",  #Verified successfully in test fleet
                 add_12_canary: "verified",  #Verified successfully in test fleet
+                add_12_1_canary: "unverified",  #UNVERIFIED -- DO NOT DISTRIBUTE
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
@@ -98,6 +99,7 @@ local utils = import "util_functions.jsonnet";
                   "0.11.0": 681,
                   "0.11.0.sluice_fix": 691,
                   "0.12.0": 696,
+                  "0.12.1": 10001,
                 }
                 +
                 # These are for developer testing only
