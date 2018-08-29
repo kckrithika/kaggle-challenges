@@ -16,7 +16,7 @@ std.prune({
     dnsEnabledPoolNamesRegex: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then ".*"),
 
   #k4a
-  [if configs.estate == "vpod" then "enableK4a"]: "false",
+  [if configs.estate == "vpod" then "enableK4a"]: false,
 
   #override for CI API since customers were complaining it to be slow
   [if configs.estate == "prd-sam" then "dualRun"]: false,
