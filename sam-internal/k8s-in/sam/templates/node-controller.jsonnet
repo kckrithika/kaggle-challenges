@@ -13,6 +13,7 @@ if samfeatureflags.estatessvc then {
                     configs.containerWithKubeConfigAndMadDog {
                         name: "node-controller",
                         image: samimages.hypersam,
+                          [if configs.estate == "prd-samdev" then "resources"]: configs.ipAddressResource,
                         command: configs.filter_empty([
                             "/sam/node-controller",
                             "--funnelEndpoint=" + configs.funnelVIP,
