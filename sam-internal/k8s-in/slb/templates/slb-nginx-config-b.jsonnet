@@ -148,7 +148,7 @@ if slbconfigs.slbInKingdom then configs.deploymentBase("slb") {
                                     ],
                                     name: "slb-nginx-config-b",
                                     image: slbimages.hypersdn,
-                                     [if configs.estate == "prd-samdev" then "resources"]: configs.ipAddressResource,
+                                     [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                                     command: [
                                         "/sdn/slb-nginx-config",
                                         "--configDir=" + slbconfigs.configDir,

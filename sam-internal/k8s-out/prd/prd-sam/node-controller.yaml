@@ -34,6 +34,11 @@ spec:
               fieldPath: spec.nodeName
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002192-400bcafb
         name: node-controller
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
