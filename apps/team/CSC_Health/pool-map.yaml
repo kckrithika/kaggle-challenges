@@ -2,7 +2,6 @@ apps:
   reportcollector:
   reportcollector-perf:
   redis-inspector:
-    - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
     - phx/phx-sam_report_collector
     - frf/frf-sam_report_collector
