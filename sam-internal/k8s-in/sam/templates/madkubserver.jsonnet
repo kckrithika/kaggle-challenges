@@ -60,6 +60,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                             ] else [],
                         image: samimages.madkub,
                         name: "madkubserver",
+                         [if configs.estate == "prd-samdev" then "resources"]: configs.ipAddressResource,
                         ports: [
                             {
                                 containerPort: 3000,
