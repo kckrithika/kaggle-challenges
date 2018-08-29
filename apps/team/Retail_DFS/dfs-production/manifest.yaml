@@ -21,7 +21,8 @@ system:
 
     containers:
     - name: dfs
-      image: sfci/enterprise-api/sfdc-platform-dfs:0.8.6
+      image: sfci/enterprise-api/sfdc-platform-dfs:3f8acdf
+      # 3f8acdf is the docker tag for DFS v0.11.2 and SFC v1.3
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -65,8 +66,9 @@ system:
           path: /manage/health
           port: 15372
           scheme: HTTP
+
     - name: sherpa-dfs
-      image: sfci/servicelibs/sherpa:2.0.26
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       volumeMounts:
       - name: dfs-server-cert
         mountPath: /server-certs
@@ -77,7 +79,6 @@ system:
           value: prod
       ports:
         - containerPort: 7442
-        - containerPort: 7014
         - containerPort: 15373
       livenessProbe:
         exec:
