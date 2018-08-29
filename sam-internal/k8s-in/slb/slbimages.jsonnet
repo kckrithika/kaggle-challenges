@@ -24,9 +24,9 @@ local slbreleases = import "slbreleases.json";
     phase: (
         if (estate == "prd-sdc") then
             "1"
-        else if kingdom in { [k]: 1 for k in ['prd', 'xrd'] } then
+        else if kingdom in { [k]: 1 for k in ['prd'] } then
             "2"
-        else if kingdom in { [k]: 1 for k in ['phx', 'iad'] } then
+        else if kingdom in { [k]: 1 for k in ['phx', 'iad', 'xrd'] } then
             "3"
         else
             "4"
