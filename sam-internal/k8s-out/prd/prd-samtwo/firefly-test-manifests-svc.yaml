@@ -16,7 +16,7 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      app: firefly-package
+      name: firefly-package
     type: LoadBalancer
 - apiVersion: extensions/v1beta1
   kind: Deployment
@@ -248,7 +248,7 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      app: firefly-pullrequest
+      name: firefly-pullrequest
     type: LoadBalancer
 - apiVersion: extensions/v1beta1
   kind: Deployment
