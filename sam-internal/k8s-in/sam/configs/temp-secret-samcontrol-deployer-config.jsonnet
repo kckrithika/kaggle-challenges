@@ -23,3 +23,8 @@ std.prune({
   "delete-orphans": false,
   "deployer-port": 9123,
 })
+# Controller V1 ignore namespace list
++ (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
+      // Keep V1 blacklistk4aNamespaces and V2WhiteListNamespaceRegex in sync to avoid dual processing
+      blacklistk4aNamespaces: (import "./bundle-controller-config.jsonnet").whiteListNamespaceRegexp,
+  } else {})
