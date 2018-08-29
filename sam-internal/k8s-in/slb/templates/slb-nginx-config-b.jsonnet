@@ -25,7 +25,7 @@ if slbconfigs.slbInKingdom then configs.deploymentBase("slb") {
                     name: "slb-nginx-config-b",
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
-                annotations: if slbimages.hypersdn_build >= 1098 then {
+                annotations: if slbimages.hypersdn_build >= 1102 then {
                     "madkub.sam.sfdc.net/allcerts": std.toString(madkub.madkubCertsAnnotation()),
                 } else {
                     "madkub.sam.sfdc.net/allcerts": "{
