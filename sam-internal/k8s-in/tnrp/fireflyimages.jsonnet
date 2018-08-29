@@ -34,9 +34,9 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 0 - prd-samtest
         "0": $.per_phase["1"] {
-             fireflyintake: "74",
-             fireflypackage: "73",
-             fireflypullrequest: "73",
+             fireflyintake: "80",
+             fireflypackage: "80",
+             fireflypullrequest: "80",
              fireflydind: "3",
              rabbitmq: "17",
              },
@@ -49,36 +49,36 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-            fireflyintake: "74",
-            fireflypackage: "73",
-            fireflypullrequest: "73",
+            fireflyintake: "80",
+            fireflypackage: "80",
+            fireflypullrequest: "80",
             fireflydind: "3",
             rabbitmq: "17",
             },
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-            fireflyintake: "74",
-            fireflypackage: "73",
-            fireflypullrequest: "73",
+            fireflyintake: "80",
+            fireflypackage: "80",
+            fireflypullrequest: "80",
             fireflydind: "3",
             rabbitmq: "17",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-            fireflyintake: "74",
-            fireflypackage: "73",
-            fireflypullrequest: "73",
+            fireflyintake: "80",
+            fireflypackage: "80",
+            fireflypullrequest: "80",
             fireflydind: "3",
             rabbitmq: "17",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
-            fireflyintake: "74",
-            fireflypackage: "73",
-            fireflypullrequest: "73",
+            fireflyintake: "80",
+            fireflypackage: "80",
+            fireflypullrequest: "80",
             fireflydind: "3",
             rabbitmq: "17",
             },
