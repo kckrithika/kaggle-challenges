@@ -149,7 +149,7 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
             type: if firefly_feature_flags.is_slb_enabled then 'NodePort' else 'LoadBalancer',
             ports: $.portConfigs,
             selector: {
-                 app: $.serviceName,
+                 name: $.serviceName,
             },
         },
     },
