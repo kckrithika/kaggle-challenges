@@ -13,7 +13,8 @@ data:
     [ ], "authorizedLdapGroups": ["edge_intelligence"], "namespace": "edge_intelligence"},
     {"authorizedClientCerts": [ ], "authorizedLdapGroups": ["dbvisibility"], "namespace":
     "database-heimdall"}, {"authorizedClientCerts": ["flowsnake_test"], "authorizedLdapGroups":
-    ["Flowsnake_Platform"], "namespace": "flowsnake_test"}]'
+    ["Flowsnake_Platform"], "namespace": "flowsnake_test"}, {"authorizedClientCerts":
+    [ ], "authorizedLdapGroups": ["Analytics Service Ownership"], "namespace": "einstein_analytics_discovery_monitoring"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
