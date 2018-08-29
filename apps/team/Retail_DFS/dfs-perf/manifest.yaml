@@ -83,9 +83,6 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
-      args:
-      - --zipkin-rate
-      - 1
       ports:
         - containerPort: 7442
         - containerPort: 7014
