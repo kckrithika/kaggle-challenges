@@ -117,7 +117,7 @@ items:
           - name: dockerCertPath
             value: /etc/docker/certs.d
           - name: rabbitMqEndpoint
-            value: firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net
+            value: firefly-rabbitmq-disabled.firefly.prd-sam.prd.slb.sfdc.net
           - name: rabbitMqPort
             value: "5672"
           - name: rabbitMqUserName
