@@ -22,6 +22,7 @@ local utils = import "util_functions.jsonnet";
 
         # [a.mitra] enable k4a blacklist
         "prd,prd-samdev,samcontrol-deployer,hypersam": "sam-0002258-f961c511",
+        "prd,prd-samtest,samcontrol-deployer,hypersam": "sam-0002258-f961c511",
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0002258-f961c511",
 
         # [thargrove] Enable color support
