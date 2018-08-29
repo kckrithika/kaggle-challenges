@@ -89,6 +89,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           {
                               name: "slb-vip-watchdog",
                               image: slbimages.hypersdn,
+                               [if configs.estate == "prd-samdev" then "resources"]: configs.ipAddressResource,
                               command: [
                                            "/sdn/slb-vip-watchdog",
                                            "--log_dir=" + slbconfigs.logsDir,

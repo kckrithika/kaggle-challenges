@@ -26,6 +26,7 @@ if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "
                     {
                         name: "slb-labels-checker",
                         image: slbimages.hypersdn,
+                         [if configs.estate == "prd-samdev" then "resources"]: configs.ipAddressResource,
                         command: [
                             "/sdn/slb-labels-checker",
                             "--log_dir=" + slbconfigs.logsDir,

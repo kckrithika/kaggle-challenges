@@ -16,6 +16,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                     {
                         name: "prometheus",
                         image: samimages.prometheus,
+                        [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         args: [
                             "--config.file",
                             "/prometheusconfig/prometheus.json",
