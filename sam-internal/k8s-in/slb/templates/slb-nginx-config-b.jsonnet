@@ -5,7 +5,7 @@ local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
-local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile };
+local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b" };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 
 if slbconfigs.slbInKingdom then configs.deploymentBase("slb") {
@@ -25,29 +25,8 @@ if slbconfigs.slbInKingdom then configs.deploymentBase("slb") {
                     name: "slb-nginx-config-b",
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
-                annotations: if slbimages.hypersdn_build < 1069 then {
-                    "madkub.sam.sfdc.net/allcerts": "{
-                            \"certreqs\":[
-                                {
-                                    \"name\": \"cert1\",
-                                    \"cert-type\":\"server\",
-                                    \"kingdom\":\"prd\",
-                                    \"role\": \"" + slbconfigs.samrole + "\",
-                                    \"san\":[
-                                        \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
-                                        \"*.slb.sfdc.net\",
-                                        \"*.soma.salesforce.com\",
-                                        \"*.data.sfdc.net\"
-                                    ]
-                                },
-                                {
-                                    \"name\": \"cert2\",
-                                    \"cert-type\":\"client\",
-                                    \"kingdom\":\"prd\",
-                                    \"role\": \"" + slbconfigs.samrole + "\"
-                                }
-                            ]
-                         }",
+                annotations: if slbimages.phaseNum == 1 then {
+                    "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubCertsAnnotation(), " "),
                 } else {
                     "madkub.sam.sfdc.net/allcerts": "{
                                                    \"certreqs\":[
