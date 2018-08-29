@@ -26,7 +26,7 @@ if slbconfigs.slbInKingdom then configs.deploymentBase("slb") {
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
                 annotations: if slbimages.phaseNum == 1 then {
-                    "madkub.sam.sfdc.net/allcerts": std.toString(madkub.madkubCertsAnnotation()),
+                    "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubCertsAnnotation(), " "),
                 } else {
                     "madkub.sam.sfdc.net/allcerts": "{
                                                    \"certreqs\":[

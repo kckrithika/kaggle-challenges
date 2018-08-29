@@ -20,11 +20,31 @@ spec:
   template:
     metadata:
       annotations:
-        madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
-          "prd", "name": "cert1", "role": "samapp.slb", "san": ["*.sam-system.prd-sdc.prd.slb.sfdc.net",
-          "*.slb.sfdc.net", "*.soma.salesforce.com", "*.data.sfdc.net", "*.kms.slb.sfdc.net",
-          "*.moe.prd-sdc.prd.slb.sfdc.net"]}, {"cert-type": "client", "kingdom": "prd",
-          "name": "cert2", "role": "samapp.slb"}]}'
+        madkub.sam.sfdc.net/allcerts: |-
+          {
+           "certreqs": [
+            {
+             "cert-type": "server",
+             "kingdom": "prd",
+             "name": "cert1",
+             "role": "samapp.slb",
+             "san": [
+              "*.sam-system.prd-sdc.prd.slb.sfdc.net",
+              "*.slb.sfdc.net",
+              "*.soma.salesforce.com",
+              "*.data.sfdc.net",
+              "*.kms.slb.sfdc.net",
+              "*.moe.prd-sdc.prd.slb.sfdc.net"
+             ]
+            },
+            {
+             "cert-type": "client",
+             "kingdom": "prd",
+             "name": "cert2",
+             "role": "samapp.slb"
+            }
+           ]
+          }
       labels:
         name: slb-nginx-config-b
       namespace: sam-system
