@@ -20,6 +20,11 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [a.mitra] enable k4a blacklist
+        "prd,prd-samdev,temp-secret-samcontrol-deployer,hypersam": "sam-0002258-f961c511",
+        "prd,prd-samtest,temp-secret-samcontrol-deployer,hypersam": "sam-0002258-f961c511",
+        "prd,prd-sam,temp-secret-samcontrol-deployer,hypersam": "sam-0002258-f961c511",
+
         # [thargrove] Enable color support
         "prd,prd-sam,sam-sql-reporter,hypersam": "sam-0002194-07565bd4",
 
