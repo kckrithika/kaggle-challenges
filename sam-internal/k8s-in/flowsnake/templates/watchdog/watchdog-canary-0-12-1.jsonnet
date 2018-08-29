@@ -21,6 +21,11 @@ local cert_name = "watchdogcanarycerts";
     },
     kind: "Deployment",
     spec: {
+        selector: {
+            matchLabels: {
+                name: "watchdog-canary",
+            },
+        },
         template: {
             metadata: {
                 annotations: {
