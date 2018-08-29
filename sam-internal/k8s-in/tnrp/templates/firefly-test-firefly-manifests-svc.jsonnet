@@ -2,7 +2,7 @@ local packagesvc = import "firefly-package-svc.jsonnet.TEMPLATE";
 local configs = import "config.jsonnet";
 local pullrequestsvc = import "firefly-pullrequest-svc.jsonnet.TEMPLATE";
 
-if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then
+if configs.estate == "prd-samdev" then
 {
   local package = packagesvc {
       env:: super.env + [
