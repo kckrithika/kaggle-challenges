@@ -20,26 +20,10 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [a.mitra] enable k4a blacklist
+        #[a.mitra] enable k4a blacklist
         "prd,prd-samdev,temp-secret-samcontrol-deployer,hypersam": "sam-0002258-f961c511",
         "prd,prd-samtest,temp-secret-samcontrol-deployer,hypersam": "sam-0002258-f961c511",
         "prd,prd-sam,temp-secret-samcontrol-deployer,hypersam": "sam-0002258-f961c511",
-
-        # [thargrove] Enable color support
-        "prd,prd-sam,sam-sql-reporter,hypersam": "sam-0002194-07565bd4",
-
-         # [cbatra] Deploying node controller changes for PRD IP issue
-        "prd,prd-sam,node-controller,hypersam": "sam-0002192-400bcafb",
-        "prd,prd-sam,samcontrol,hypersam": "sam-0002192-400bcafb",
-
-        # [benjamincaldwell] enable sdpv2 portal links
-        "prd,prd-sam,sam-deployment-portal,hypersam": "sam-0002224-994cef1b",
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002248-2a64cff2",
-
-        #[rbhat]
-        "prd,prd-sam,samapp-controller,hypersam": "sam-0002229-6749f11e",
-        "prd,prd-samdev,samapp-controller,hypersam": "sam-0002229-6749f11e",
-        "prd,prd-samdev,watchdog-comparek8sresources,hypersam": "sam-0002229-6749f11e",
 
         #[pjoshi]
         "prd,prd-sam,snapshotconsumer-prd,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
@@ -107,7 +91,7 @@ for ce in [
 
         ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
         "2": $.per_phase["3"] {
-            hypersam: "sam-0002190-d048106f",
+            hypersam: "sam-0002252-a9ad81d9",
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
