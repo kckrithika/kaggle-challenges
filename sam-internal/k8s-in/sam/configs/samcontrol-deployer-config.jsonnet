@@ -31,5 +31,9 @@ std.prune({
   tokenfile: (if self.enableDailyDeployment then "/var/token/token"),
   "daily-deployment-offset": (if self.enableDailyDeployment then "0"),
   "daily-deployment-frequency": (if configs.estate == "prd-samtest" then "24h" else (if configs.estate == "prd-samdev" then "3h")),
-  blacklistk4aNamespaces: (import "./bundle-controller-config.jsonnet").whiteListNamespaceRegexp,
 })
+# Controller V1 ignore namespace list
++ (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
+      // Keep V1 blacklistk4aNamespaces and V2WhiteListNamespaceRegex in sync to avoid dual processing
+      blacklistk4aNamespaces: (import "./bundle-controller-config.jsonnet").whiteListNamespaceRegexp,
+  } else {})
