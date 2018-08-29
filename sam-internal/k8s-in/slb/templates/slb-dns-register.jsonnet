@@ -49,6 +49,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--log_dir=" + slbconfigs.logsDir,
                             configs.sfdchosts_arg,
                             "--subnet=" + slbconfigs.subnet,
+                            "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
                             "--client.serverPort=" + portconfigs.slb.slbNodeApiDnsOverridePort,
                             "--client.serverInterface=lo",
                         ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),

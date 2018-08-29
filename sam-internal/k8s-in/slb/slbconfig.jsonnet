@@ -41,6 +41,46 @@
             # prd-sam-a : 10.251.199.248-255
         },
 
+        publicSubnet: {
+                "prd-sdc": "",
+                "prd-samtest": "",
+                "prd-samdev": "",
+                "prd-sam_storage": "",
+                "prd-sam_storagedev": "",
+                "prd-sam": "",
+                "frf-sam": "185.79.140.0/23",
+                "phx-sam": "13.110.30.0/23",
+                "iad-sam": "13.110.24.0/23",
+                "ord-sam": "13.110.26.0/23",
+                "dfw-sam": "13.110.28.0/23",
+                "hnd-sam": "161.71.144.0/23",
+                "xrd-sam": "",
+                "cdg-sam": "85.222.142.0/23",
+                "fra-sam": "85.222.140.0/23",
+                "par-sam": "185.79.142.0/23"
+                "ukb-sam": "161.71.146.0/23"
+        },
+
+        reservedIps: {
+                "prd-sdc": "",
+                "prd-samtest": "",
+                "prd-samdev": "",
+                "prd-sam_storage": "",
+                "prd-sam_storagedev": "",
+                "prd-sam": "10.251.196.91/32,10.251.196.42/32,10.251.196.111/32,10.251.196.44/32",
+                "frf-sam": "",
+                "phx-sam": "",
+                "iad-sam": "10.208.108.0/32",
+                "ord-sam": "10.208.148.10/32",
+                "dfw-sam": "",
+                "hnd-sam": "",
+                "xrd-sam": "",
+                "cdg-sam": "",
+                "fra-sam": "",
+                "par-sam": ""
+                "ukb-sam": ""
+        },
+
         serviceList: {
             "prd-sdc": "",
             "prd-samtest": "",
