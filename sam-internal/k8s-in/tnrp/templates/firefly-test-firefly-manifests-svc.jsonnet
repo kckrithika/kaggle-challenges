@@ -28,7 +28,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "instanceType",
-              value: "manifests",
+              value: "test-firefly-manifests",
           },
           {
               name: "rabbitmqQueueName",
