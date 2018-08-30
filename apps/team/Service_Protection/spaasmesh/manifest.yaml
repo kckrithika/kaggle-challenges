@@ -22,8 +22,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: { cpu: "1", memory: "2Gi" }
+        #requests: { cpu: "1", memory: "1Gi" }
       # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
       ports:
       - name: management-port
@@ -41,7 +41,6 @@ system:
       - name: spaasservercert
         mountPath: /servercerts
       # SAM will bounce the container if this returns an HTTP response code other than 200-399
-      #replace with standard scone health monitoring
       livenessProbe:
         # SAM will wait this long after starting the container before first checking
         initialDelaySeconds: 120
