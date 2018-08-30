@@ -7,16 +7,18 @@ system:
     - coreserviceprotection@salesforce.com
   functions:
   # service name
-  - name: spaasmesh
+  - name: spaasmesh-sandbox
     
     # number of instances ("kpods") to deploy and run
     # recommended min: 3 for availability
-    count: 1
+    count: 3
     
     # Docker image(s) that make up one instance of the service
     containers:
     - name: spaas
+      #Prod image cannot be used directly in sam sandbox?
       image: sfci/service-protection/sps:0.0.3.44
+      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.22
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
@@ -44,7 +46,7 @@ system:
       #replace with standard scone health monitoring
       livenessProbe:
         # SAM will wait this long after starting the container before first checking
-        initialDelaySeconds: 60
+        initialDelaySeconds: 30
         httpGet:
           path: /manage/health
           port: 15400
@@ -52,7 +54,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15400
-        initialDelaySeconds: 90
+        initialDelaySeconds: 60
     - name: beacon-spaasmesh
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
