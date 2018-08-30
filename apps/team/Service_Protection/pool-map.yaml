@@ -4,7 +4,8 @@ apps:
   - ord/ord-sam_serviceprotection
   - iad/iad-sam_serviceprotection
  spaasmesh:    
-  - prd/prd-sam  
+  - prd/prd-sam
+ spaasmesh-prod:   
   - cdg/cdg-sam_gater
   - dfw/dfw-sam_gater
   - fra/fra-sam_gater
