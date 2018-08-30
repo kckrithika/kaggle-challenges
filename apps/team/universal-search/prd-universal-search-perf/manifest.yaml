@@ -60,7 +60,7 @@ system:
         periodSeconds: 120
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.27
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       ports:
       # HTTP port for exposing to SLB for IoT
       - containerPort: 7012
@@ -78,25 +78,27 @@ system:
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
+      - name: client-cert-vol  # Client certs required here for zipkin
+        mountPath: /client-certs
       - name: sherpa-log-vol
         mountPath: /log
       livenessProbe:
         exec:
           command:
           - "./bin/is-alive"
-        initialDelaySeconds: 120
+        initialDelaySeconds: 60
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 110
+        initialDelaySeconds: 50
         periodSeconds: 5
     - name: beacon
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - universal-search-perf`/universal-search:DATACENTER_ALLENV:7443
+      - universal-search-perf/universal-search:DATACENTER_ALLENV:7443
       - -endpoint
       - universal-search-perf-notls/universal-search:DATACENTER_ALLENV:7012
       livenessProbe:
