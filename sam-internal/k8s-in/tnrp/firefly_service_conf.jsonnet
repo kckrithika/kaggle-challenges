@@ -14,7 +14,7 @@
         rabbitMqUserName:: 'sfdc-rabbitmq',
     },
     prdsam:: $.dev {
-        rabbitMqEndpoint:: 'firefly-rabbitmq-disabled.firefly.prd-sam.prd.slb.sfdc.net',
+        rabbitMqEndpoint:: 'firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net',
         rabbitMqPort:: '5672',
     },
     prdsamdev:: $.dev {

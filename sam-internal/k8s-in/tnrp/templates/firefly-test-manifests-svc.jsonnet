@@ -29,7 +29,7 @@ if configs.estate == "prd-samtwo" then
         env:: super.env + [
             {
                 name: "instanceType",
-                value: "manifests",
+                value: "test-manifests",
             },
             {
                 name: "rabbitmqQueueName",

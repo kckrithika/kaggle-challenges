@@ -372,12 +372,12 @@ items:
                 apiVersion: v1
                 fieldPath: status.podIP
           - name: instanceType
-            value: manifests
+            value: test-manifests
           - name: rabbitmqQueueName
             value: test-manifests.pr
           - name: rabbitMqExchangeName
             value: firefly.delivery
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:80
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jvergara/firefly-pullrequestsvc:0.0.1-SNAPSHOT
           imagePullPolicy: Always
           name: firefly-pullrequest
           ports:

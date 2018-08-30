@@ -106,7 +106,7 @@ items:
           - name: dockerCertPath
             value: /etc/docker/certs.d
           - name: rabbitMqEndpoint
-            value: firefly-rabbitmq-disabled.firefly.prd-sam.prd.slb.sfdc.net
+            value: firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net
           - name: rabbitMqPort
             value: "5672"
           - name: rabbitMqUserName
@@ -346,7 +346,7 @@ items:
           - name: dockerCertPath
             value: /etc/docker/certs.d
           - name: rabbitMqEndpoint
-            value: firefly-rabbitmq-disabled.firefly.prd-sam.prd.slb.sfdc.net
+            value: firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net
           - name: rabbitMqPort
             value: "5672"
           - name: rabbitMqUserName
@@ -383,12 +383,12 @@ items:
                 apiVersion: v1
                 fieldPath: status.podIP
           - name: instanceType
-            value: manifests
+            value: test-firefly-manifests
           - name: rabbitmqQueueName
             value: test-firefly-manifests.pr
           - name: rabbitMqExchangeName
             value: firefly.delivery
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:80
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jvergara/firefly-pullrequestsvc:0.0.1-SNAPSHOT
           imagePullPolicy: Always
           name: firefly-pullrequest
           ports:

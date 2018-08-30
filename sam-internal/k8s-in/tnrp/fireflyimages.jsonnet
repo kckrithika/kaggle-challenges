@@ -113,7 +113,7 @@ local configs = import "config.jsonnet";
     rabbitmq: configs.registry + "/dva/firefly-rabbitmq:" + $.per_phase[$.phase].rabbitmq,
     fireflyintake: configs.registry + "/dva/firefly-intake:" + $.per_phase[$.phase].fireflyintake,
     fireflypackage: configs.registry + "/dva/firefly-package:" + $.per_phase[$.phase].fireflypackage,
-    fireflypullrequest: configs.registry + "/dva/firefly-pullrequest:" + $.per_phase[$.phase].fireflypullrequest,
+    fireflypullrequest: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jvergara/firefly-pullrequestsvc:0.0.1-SNAPSHOT",
     fireflydind: configs.registry + "/dva/firefly-dind:" + $.per_phase[$.phase].fireflydind,
 
 }
