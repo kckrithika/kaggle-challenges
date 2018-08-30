@@ -1,7 +1,5 @@
 version: v2
 apps:
-  prd-event-notification-service:
-  - name: prd/prd-sam_mc_consumer
   prd-dev-event-notification-service:
   - name: prd/prd-sam_mc_consumer
   prd-qa1s1-event-notification-service:
