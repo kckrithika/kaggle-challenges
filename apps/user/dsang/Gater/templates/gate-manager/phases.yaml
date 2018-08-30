@@ -1,0 +1,14 @@
+phase_map:
+  phase1: sfci/gater/gate-manager:1.11.5
+  phase2: sfci/gater/gate-manager:1.11.5
+  phase3: sfci/gater/gate-manager:1.11.1
+
+app_phases:
+  phase1:
+    - gate-manager
+    - gate-manager-public-cloud
+  phase2:
+    - gate-manager-par
+  phase3:
+    - gate-manager-gia
+  

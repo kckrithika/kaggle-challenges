@@ -1,0 +1,24 @@
+apps:
+  gate-manager: null
+  gate-manager-gia: null
+  gate-manager-par: null
+  gate-manager-public-cloud:
+    count: 3
+
+phase_map:
+  phase1:
+    image: sfci/gater/gate-manager:1.11.5
+    count: 1
+  phase2:
+    image: sfci/gater/gate-manager:1.11.5
+  phase3: 
+    image: sfci/gater/gate-manager:1.11.1
+
+app_phases:
+  phase1:
+    - gate-manager-par
+  phase2:
+    - gate-manager
+    - gate-manager-public-cloud
+  phase3:
+    - gate-manager-gia
