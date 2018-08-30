@@ -10,7 +10,7 @@ system:
         secretName: csc-redis-auth-0
     containers:
     - name: redis-inspector
-      image: docker-dva-rc/dva/redis-inspector:1
+      image: dva/redis-inspector:1
       ports:
       - containerPort: 8080
       volumeMounts:
