@@ -6,9 +6,6 @@ metadata:
   name: watchdog-canary-0-12-1
   namespace: flowsnake
 spec:
-  selector:
-    matchLabels:
-      name: watchdog-canary
   template:
     metadata:
       annotations:
