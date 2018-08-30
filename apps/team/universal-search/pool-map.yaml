@@ -5,7 +5,7 @@ apps:
     - ord/ord-universalsearch_svc
   prd-universal-search:
     - prd/prd-universalsearch_svc
-  prd-universal-search-xlt:
+  prd-universal-search-perf-xlt:
     - prd/prd-universalsearch_svc
   prd-universal-search-perf:
     - prd/prd-universalsearch_svc
