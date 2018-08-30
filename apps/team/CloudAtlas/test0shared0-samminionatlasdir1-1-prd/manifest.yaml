@@ -18,6 +18,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
       - mountPath: /certs
         name: server-cert
@@ -37,14 +40,14 @@ system:
       livenessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-        initialDelaySeconds: 10
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-ready"
-        initialDelaySeconds: 10
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
         periodSeconds: 5
 
     - name: beacon-cloudatlas
