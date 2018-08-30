@@ -39,6 +39,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
         - mountPath: /config
@@ -52,6 +54,9 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
       - configMap:
           name: sfdchosts
         name: sfdchosts
