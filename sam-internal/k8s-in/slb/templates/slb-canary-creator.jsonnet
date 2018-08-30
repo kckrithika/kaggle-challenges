@@ -38,6 +38,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                     {
                         name: "slb-canary-creator",
                         image: slbimages.hypersdn,
+                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                                      "/sdn/slb-canary-creator",
                                      "--canaryImage=" + slbimages.hypersdn,

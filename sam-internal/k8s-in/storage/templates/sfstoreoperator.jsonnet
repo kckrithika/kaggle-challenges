@@ -44,6 +44,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                     {
                         name: "sfstoreoperator",
                         image: storageimages.sfstoreoperator,
+                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "sfstore-config",

@@ -38,6 +38,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           {
                               name: "slb-portal",
                               image: slbimages.hypersdn,
+                              [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                               command: [
                                            "/sdn/slb-portal",
                                            "--hostname=$(NODE_NAME)",

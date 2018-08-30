@@ -39,7 +39,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     {
                         name: "slb-cleanup-unknownpods",
                         image: slbimages.hypersdn,
-                         [if configs.estate == "prd-samdev" then "resources"]: configs.ipAddressResource,
+                         [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                             "/bin/bash",
                             "-xe",

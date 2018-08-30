@@ -30,6 +30,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                     {
                         name: "slb-ipvsdata-watchdog",
                         image: slbimages.hypersdn,
+                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: (if slbimages.hypersdn_build >= 1075 then [
                                       "/sdn/slb-ipvs-data-watchdog",
                                   ] else [

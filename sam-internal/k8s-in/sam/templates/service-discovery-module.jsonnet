@@ -11,7 +11,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
                     configs.containerWithKubeConfigAndMadDog {
                         name: "service-discovery-module",
                         image: samimages.hypersam,
-                          [if configs.estate == "prd-samdev" then "resources"]: configs.ipAddressResource,
+                          [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: configs.filter_empty([
                             "/sam/service-discovery-module",
                             "-namespaceFilter=user-kdhabalia,cache-as-a-service-sp2,gater,user-prabhs",
