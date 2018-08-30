@@ -81,6 +81,10 @@ system:
         value: https://na44.stmfa.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
+      - name: OAUTH_CONSUMER_KEY
+        value: 3MVG9qKMKuRGRcbuw4QeSjOU47oRMqNPxFQJiDaPWlIydU0tCX4TVAemnnqNhGZ50K6LPcKe_pq1n1t.C7t_O
+      - name: OAUTH_CONSUMER_SECRET
+        value: 486971517558541925
       - name: GATER_EMBEDDED_MODE
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
