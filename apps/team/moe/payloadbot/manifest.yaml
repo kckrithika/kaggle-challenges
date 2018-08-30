@@ -16,7 +16,8 @@ system:
       - "-includedTeamsListPath"
       - "/config/included_teams.yaml"
       - "-maxCommentedOnSourcePRs"
-      - "20"
+      # (mgrass) 0 for now while we figure out a way to stop Jenkins from exploding.
+      - "0"
       - "-manifestOrg"
       - "sam"
       - "-feedbackURL"
