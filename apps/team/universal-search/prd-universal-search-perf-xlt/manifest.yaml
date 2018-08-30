@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - universalsearch@salesforce.com
+    - irahim@salesforce.com
   functions:
   - name: xlt-agent
     count: 5
