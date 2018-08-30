@@ -8,6 +8,11 @@ metadata:
   namespace: sam-system
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      apptype: monitoring
+      name: slb-cleanup-unknownpods
+      sam.data.sfdc.net/owner: slb
   template:
     metadata:
       labels:

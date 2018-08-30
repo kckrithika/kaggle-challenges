@@ -4,17 +4,16 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
+
 if !watchdog.watchdog_enabled || !std.objectHas(flowsnake_images.feature_flags, "btrfs_watchdog_hard_reset") then
 "SKIP"
 else
-{
-    apiVersion: "extensions/v1beta1",
+configs.daemonSetBase("flowsnake") {
     metadata: {
         name: "watchdog-btrfs",
         namespace: "flowsnake",
     },
-    kind: "DaemonSet",
-    spec: {
+    spec+: {
         template: {
             metadata: {
                 labels: {

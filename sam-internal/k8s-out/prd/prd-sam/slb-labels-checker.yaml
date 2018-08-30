@@ -9,6 +9,11 @@ metadata:
 spec:
   minReadySeconds: 30
   replicas: 1
+  selector:
+    matchLabels:
+      apptype: monitoring
+      name: slb-labels-checker
+      sam.data.sfdc.net/owner: slb
   strategy:
     rollingUpdate:
       maxSurge: 1

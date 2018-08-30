@@ -2,6 +2,8 @@ local flowsnakeimages = (import "flowsnake_images.jsonnet") + { templateFilename
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local util = import "util_functions.jsonnet";
 local kingdom = std.extVar("kingdom");
+local configs = import "config.jsonnet";
+
 
 # Builds an image promotion entry with the image tagged based on the version mapping
 local build_mapped_entry(imageName, version) = {
@@ -16,10 +18,8 @@ local build_versioned_entry(imageName, version) = {
 };
 
 if util.is_production(kingdom) then
-{
-  apiVersion: "extensions/v1beta1",
-  kind: "Deployment",
-  spec: {
+configs.deploymentBase("flowsnake") {
+  spec+: {
     template: {
       spec: {
         containers: std.flattenArrays(

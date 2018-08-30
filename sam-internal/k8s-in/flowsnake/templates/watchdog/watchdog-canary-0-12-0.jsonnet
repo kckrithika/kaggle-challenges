@@ -10,8 +10,7 @@ if !watchdog.watchdog_enabled || !std.objectHas(flowsnake_images.feature_flags, 
 "SKIP"
 else
 local cert_name = "watchdogcanarycerts";
-{
-    apiVersion: "extensions/v1beta1",
+configs.deploymentBase("flowsnake") {
     metadata: {
         labels: {
             name: "watchdog-canary",
@@ -19,8 +18,7 @@ local cert_name = "watchdogcanarycerts";
         name: "watchdog-canary-0-12-0",
         namespace: "flowsnake",
     },
-    kind: "Deployment",
-    spec: {
+    spec+: {
         template: {
             metadata: {
                 annotations: {

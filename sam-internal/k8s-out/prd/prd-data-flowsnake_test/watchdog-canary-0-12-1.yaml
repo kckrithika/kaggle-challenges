@@ -6,6 +6,12 @@ metadata:
   name: watchdog-canary-0-12-1
   namespace: flowsnake
 spec:
+  selector:
+    matchLabels:
+      app: watchdog-canary-0-12-1
+      apptype: monitoring
+      flowsnakeOwner: dva-transform
+      flowsnakeRole: WatchdogCanary-0-12-1
   template:
     metadata:
       annotations:

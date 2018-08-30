@@ -9,6 +9,10 @@ metadata:
 spec:
   minReadySeconds: 30
   replicas: 1
+  selector:
+    matchLabels:
+      name: slb-dns-register
+      sam.data.sfdc.net/owner: slb
   strategy:
     rollingUpdate:
       maxSurge: 0

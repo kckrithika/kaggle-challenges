@@ -5,14 +5,14 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local madkub_common = import "madkub_common.jsonnet";
 local cert_name = "ingresscerts";
-{
-  apiVersion: "extensions/v1beta1",
-  kind: "Deployment",
+local configs = import "config.jsonnet";
+
+configs.deploymentBase("flowsnake") {
   metadata: {
     name: "cert-secretizer",
     namespace: "flowsnake",
   },
-  spec: {
+  spec+: {
     replicas: 1,
     minReadySeconds: 45,
     template: {
