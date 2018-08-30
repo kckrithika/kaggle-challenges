@@ -4,9 +4,8 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if !utils.is_public_cloud(configs.kingdom) then {
-    kind: "Deployment",
-    spec: {
+if !utils.is_public_cloud(configs.kingdom) then configs.deploymentBase("sdn") {
+    spec+: {
         replicas: 1,
         template: {
             spec: {
@@ -73,7 +72,6 @@ if !utils.is_public_cloud(configs.kingdom) then {
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "sdn-vault-agent",

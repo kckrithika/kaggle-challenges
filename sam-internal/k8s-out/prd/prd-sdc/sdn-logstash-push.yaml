@@ -7,6 +7,10 @@ metadata:
   name: sdn-logstash-push
   namespace: sam-system
 spec:
+  selector:
+    matchLabels:
+      apptype: monitoring
+      name: sdn-logstash-push
   template:
     metadata:
       labels:

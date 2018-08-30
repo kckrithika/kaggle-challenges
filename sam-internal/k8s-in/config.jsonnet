@@ -206,7 +206,7 @@ local utils = import "util_functions.jsonnet",
       local depl = self,
       kind: "Deployment",
       apiVersion: "extensions/v1beta1",
-      [if (kingdom == "prd" && owner == "sam") || (estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sdc" && owner == "slb") then "spec"]+: {
+      [if (kingdom == "prd" && owner == "sam") || (estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sdc" && (owner == "slb" || owner == "sdn")) then "spec"]+: {
         selector: {
           matchLabels: depl.spec.template.metadata.labels,
         },
@@ -240,7 +240,7 @@ local utils = import "util_functions.jsonnet",
       local ds = self,
       kind: "DaemonSet",
       apiVersion: "extensions/v1beta1",
-      [if (kingdom == "prd" && owner == "sam") || (estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sdc" && owner == "slb") then "spec"]+: {
+      [if (kingdom == "prd" && owner == "sam") || (estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sdc" && (owner == "slb" || owner == "sdn")) then "spec"]+: {
         selector: {
           matchLabels: ds.spec.template.metadata.labels,
         },

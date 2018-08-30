@@ -4,9 +4,8 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-sdc" then {
-    kind: "Deployment",
-    spec: {
+if configs.estate == "prd-sdc" then configs.deploymentBase("sdn") {
+    spec+: {
         replicas: 1,
         strategy: {
             type: "RollingUpdate",
@@ -79,7 +78,6 @@ if configs.estate == "prd-sdc" then {
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "sdn-sdnc-watchdog",

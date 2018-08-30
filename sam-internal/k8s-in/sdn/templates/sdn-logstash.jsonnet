@@ -3,9 +3,8 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-sam" then {
-    kind: "Deployment",
-    spec: {
+if configs.estate == "prd-sam" then configs.deploymentBase("sdn") {
+    spec+: {
         replicas: 1,
         template: {
             spec: {

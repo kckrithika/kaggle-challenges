@@ -3,9 +3,8 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
-if utils.is_flowsnake_cluster(configs.estate) then {
-    kind: "Deployment",
-    spec: {
+if utils.is_flowsnake_cluster(configs.estate) then configs.deploymentBase("sdn") {
+    spec+: {
         replicas: 1,
         template: {
             spec: {
@@ -69,7 +68,6 @@ if utils.is_flowsnake_cluster(configs.estate) then {
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "sdn-secret-agent",

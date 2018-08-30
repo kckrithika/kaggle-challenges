@@ -4,9 +4,8 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-{
-    kind: "DaemonSet",
-    spec: {
+configs.daemonSetBase("sdn") {
+    spec+: {
         template: {
             spec: {
                 hostNetwork: true,
@@ -53,7 +52,6 @@ local utils = import "util_functions.jsonnet";
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "sdn-hairpin-setter",
