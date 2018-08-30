@@ -215,7 +215,7 @@
         command: [
             "/sdn/slb-manifest-watcher",
             "--manifestOutputDir=" + slbconfigs.manifestDir,
-            "--tnrpEndpoint=" + configs.tnrpEndpoint,
+            "--tnrpEndpoint=" + (if configs.estate == "hnd-sam" then "https://ops0-piperepo2-1-hnd.ops.sfdc.net/" else configs.tnrpEndpoint),
             "--hostnameOverride=$(NODE_NAME)",
             "--log_dir=" + slbconfigs.logsDir,
             configs.sfdchosts_arg,
