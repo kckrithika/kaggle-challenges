@@ -41,6 +41,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                     {
                         name: "alertmanager",
                         image: storageimages.alertmanager,
+                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         ports: [
                             {
                                 name: storageconfigs.serviceDefn.alert_mgr_svc.alert_hook["port-name"],

@@ -81,6 +81,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                     {
                         image: storageimages.sfnstatemetrics,
                         name: "sfn-state-metrics",
+                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                             "/sfn-state-metrics/sfn-state-metrics",
                         ],

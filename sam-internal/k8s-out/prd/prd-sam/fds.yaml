@@ -43,6 +43,11 @@ spec:
           httpGet:
             path: /healthz
             port: 8080
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
         volumeMounts:
         - mountPath: /var/log
           name: container-log-vol
