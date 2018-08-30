@@ -87,6 +87,7 @@ local bedhealth(type, bed) = {
         SUM(SuccessCount) as SuccessCount,
         SUM(FailureCount) as FailureCount,
         SUM(SuccessCount)/(SUM(SuccessCount)+SUM(FailureCount)) as SuccessPct,
+        MIN(ReportAgeInMinutes) as ReportAgeInMinutes,
         GROUP_CONCAT(Error, '') as Errors,
         CONCAT('https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=-14d:sam.watchdog.',Kingdom,'.NONE.',ControlEstate,':',CheckerName,'.status%7Bdevice%3D*%7D:avg') as Argus
       from
@@ -97,7 +98,8 @@ local bedhealth(type, bed) = {
         Payload->>'$.status.report.CheckerName' as CheckerName,
         case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
         case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount,
-        case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else Payload->>'$.status.report.ErrorMessage' end as Error
+        case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else Payload->>'$.status.report.ErrorMessage' end as Error,
+        TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.'), UTC_TIMESTAMP()) as ReportAgeInMinutes
       from k8s_resource
       where ApiKind = 'WatchDog'
       and controlestate = '" + bed + "'
@@ -165,7 +167,7 @@ local bedhealth(type, bed) = {
               # ===
 
               {
-                name: "List of customer pods ordered by PodAge (top 30)",
+                name: "List of customer pods ordered by PodAge (top 20)",
                 sql: "select
             case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)<2) then 'YELLOW' else '' end as Status,
             Name,
@@ -177,13 +179,13 @@ local bedhealth(type, bed) = {
           where IsSamApp = True and ProduceAgeInMinutes<60 and Phase = 'Running'
           and ControlEstate = '" + bed + "'
           order by PodAgeDays
-          limit 30",
+          limit 20",
               },
 
              # ===
 
              {
-               name: "Unhealthy customer pods",
+               name: "Unhealthy customer pods (top 20)",
                sql: "select 
   Name,
   Namespace,
@@ -195,7 +197,7 @@ local bedhealth(type, bed) = {
 from podDetailView
 where IsSamApp = True and ProduceAgeInMinutes<60
 and ControlEstate = '" + bed + "' and Phase != 'Running'
-",
+limit 20",
             },
 
     ],
@@ -1056,7 +1058,7 @@ from (
         CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,
         Payload->>'$.status.report.Success' as Success,
         Payload->>'$.status.report.ReportCreatedAt' as ReportCreatedAt,
-        FLOOR(TIME_TO_SEC(TIMEDIFF(UTC_TIMESTAMP(), STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.')))/60.0) as ReportAgeInMinutes,
+        TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.'), UTC_TIMESTAMP()) as ReportAgeInMinutes,
         Payload->>'$.status.report.Instance' as Instance,
         case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else Payload->>'$.status.report.ErrorMessage' end as Error,
         Payload->>'$.status.report.Hostname' as HostName,
@@ -1066,6 +1068,7 @@ from (
 ) as ss
 where
   not Error is null
+  and Success != 'true'
   and (Kingdom != 'PRD' and Kingdom != 'XRD')
   and CheckerName != 'puppetChecker' and CheckerName != 'kubeResourcesChecker' and CheckerName != 'nodeChecker' and CheckerName not like 'Sql%'
 order by CheckerName, Kingdom, ReportAgeInMinutes",
@@ -1084,7 +1087,7 @@ from (
         CAST(upper(substr(ControlEstate,1,3)) as CHAR CHARACTER SET utf8) AS Kingdom,
         Payload->>'$.status.report.Success' as Success,
         Payload->>'$.status.report.ReportCreatedAt' as ReportCreatedAt,
-        FLOOR(TIME_TO_SEC(TIMEDIFF(UTC_TIMESTAMP(), STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.')))/60.0) as ReportAgeInMinutes,
+        TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.'), UTC_TIMESTAMP()) as ReportAgeInMinutes,
         Payload->>'$.status.report.Instance' as Instance,
         case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else Payload->>'$.status.report.ErrorMessage' end as Error,
         Payload->>'$.status.report.Hostname' as HostName,
@@ -1094,6 +1097,7 @@ from (
 ) as ss
 where
   not Error is null
+  and Success != 'true'
   and (Kingdom = 'PRD' or Kingdom = 'XRD')
   and CheckerName != 'puppetChecker' and CheckerName != 'kubeResourcesChecker' and CheckerName != 'nodeChecker' and CheckerName not like 'Sql%'
 order by CheckerName, Kingdom, ReportAgeInMinutes",
@@ -1165,7 +1169,7 @@ select
   Payload->>'$.source.host' as host,
   Payload->>'$.involvedObject.name' as name,
   Payload->>'$.lastTimestamp' as lastTimestamp,
-  FLOOR(TIME_TO_SEC(TIMEDIFF(UTC_TIMESTAMP(), STR_TO_DATE(Payload->>'$.lastTimestamp', '%Y-%m-%dT%H:%i:%sZ')))/60.0) as lastTimestampAgeInMin
+  TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>'$.lastTimestamp', '%Y-%m-%dT%H:%i:%sZ'), UTC_TIMESTAMP()) as lastTimestampAgeInMin
 from k8s_resource where ApiKind = 'Event' and Payload->>'$.reason' = 'FailedCreatePodSandBox'
 order by lastTimestamp desc
 ) as ss
@@ -1184,7 +1188,7 @@ select
   Payload->>'$.source.host' as host,
   Payload->>'$.involvedObject.name' as name,
   Payload->>'$.lastTimestamp' as lastTimestamp,
-  FLOOR(TIME_TO_SEC(TIMEDIFF(UTC_TIMESTAMP(), STR_TO_DATE(Payload->>'$.lastTimestamp', '%Y-%m-%dT%H:%i:%sZ')))/60.0) as lastTimestampAgeInMin
+  TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>'$.lastTimestamp', '%Y-%m-%dT%H:%i:%sZ'), UTC_TIMESTAMP()) as lastTimestampAgeInMin
 from k8s_resource where ApiKind = 'Event' and Payload->>'$.reason' = 'FailedCreatePodSandBox'
 order by lastTimestamp desc
 ) as ss
