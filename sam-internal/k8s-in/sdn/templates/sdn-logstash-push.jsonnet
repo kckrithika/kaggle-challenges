@@ -4,9 +4,8 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-sdc" then {
-    kind: "DaemonSet",
-    spec: {
+if configs.estate == "prd-sdc" then configs.daemonSetBase("sdn") {
+    spec+: {
         template: {
             spec: {
                 hostNetwork: true,
@@ -110,7 +109,6 @@ if configs.estate == "prd-sdc" then {
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "sdn-logstash-push",

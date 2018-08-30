@@ -3,9 +3,7 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "" then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if configs.estate == "" then configs.deploymentBase("sdn") {
     metadata: {
         labels: {
             name: "sdn-control",
@@ -13,7 +11,7 @@ if configs.estate == "" then {
         name: "sdn-control",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         replicas: 1,
         strategy: {
             type: "RollingUpdate",

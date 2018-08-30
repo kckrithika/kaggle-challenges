@@ -9,6 +9,11 @@ metadata:
 spec:
   minReadySeconds: 180
   replicas: 1
+  selector:
+    matchLabels:
+      apptype: monitoring
+      name: sdn-sdnc-watchdog
+      sam.data.sfdc.net/owner: sdn
   strategy:
     rollingUpdate:
       maxSurge: 1

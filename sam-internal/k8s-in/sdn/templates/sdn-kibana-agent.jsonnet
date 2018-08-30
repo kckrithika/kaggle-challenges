@@ -3,9 +3,8 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-sam" then {
-    kind: "Deployment",
-    spec: {
+if configs.estate == "prd-sam" then configs.deploymentBase("sdn") {
+    spec+: {
         replicas: 1,
         template: {
             spec: {
@@ -34,7 +33,6 @@ if configs.estate == "prd-sam" then {
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "sdn-kibana-agent",

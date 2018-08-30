@@ -4,9 +4,8 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
-    kind: "DaemonSet",
-    spec: {
+if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then configs.daemonSetBase("sdn") {
+    spec+: {
         template: {
             spec: {
                 hostNetwork: true,
@@ -72,7 +71,6 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "sdn-bird",
