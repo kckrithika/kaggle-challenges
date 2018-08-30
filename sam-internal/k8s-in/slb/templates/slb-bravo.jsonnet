@@ -28,6 +28,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                     {
                         name: "slb-bravo",
                         image: slbimages.hypersdn,
+                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                                      "/sdn/slb-canary-service",
                                      "--serviceName=slb-bravo-svc",
