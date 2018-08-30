@@ -11,7 +11,7 @@ system:
       - mhowald@salesforce.com
   functions:
   - name: wh-con
-    count: 3
+    count: 0
     volumes:
     - name: cert
       maddogCert:
@@ -51,5 +51,5 @@ system:
     function: wh-con
     nodeExposed: true
     ports:
-    - port: 15373
+    - port: 15380
       targetport: 15372
