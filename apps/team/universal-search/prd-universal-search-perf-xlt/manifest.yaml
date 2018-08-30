@@ -5,7 +5,7 @@ system:
     email:
     - universalsearch@salesforce.com
   functions:
-  - name: usmt-xlt-agent
+  - name: xlt-agent
     count: 5
     volumes:
     - name: client-cert-vol
@@ -69,7 +69,7 @@ system:
         exec:
           command:
           - "./bin/is-ready"
-  - name: usmt-xlt-master
+  - name: xlt-master
     count: 1
     volumes:
     - name: test
@@ -151,8 +151,8 @@ system:
       - name: test
         mountPath: /data/test
   loadbalancers:
-  - function: usmt-xlt-master
-    lbname: universal-search-xlt-slb
+  - function: xlt-master
+    lbname: xlt
     ports:
     - lbtype: http
       port: 8080
