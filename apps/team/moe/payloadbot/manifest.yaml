@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: payloadbot
-      image: tnrp/sdn/payloadbot:v-0001105-5a19d4ae
+      image: tnrp/sdn/payloadbot:v-0001106-22148ce5
       command: ["/payloadbot/payloadbot"]
       args:
       - "-gheTokenPath"
@@ -16,8 +16,7 @@ system:
       - "-includedTeamsListPath"
       - "/config/included_teams.yaml"
       - "-maxCommentedOnSourcePRs"
-      # (mgrass) 0 for now while we figure out a way to stop Jenkins from exploding.
-      - "0"
+      - "20"
       - "-manifestOrg"
       - "sam"
       - "-feedbackURL"
