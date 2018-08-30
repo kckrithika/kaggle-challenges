@@ -81,6 +81,8 @@ system:
         value: https://na44.stmfa.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
+      - name: GATER_EMBEDDED_MODE
+        value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
         value: live
       - name: JVM_ARGS
