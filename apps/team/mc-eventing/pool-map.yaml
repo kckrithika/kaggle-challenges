@@ -4,6 +4,10 @@ apps:
   - name: prd/prd-sam_mc_consumer
   prd-dev-event-notification-service:
   - name: prd/prd-sam_mc_consumer
+  prd-qa1s1-event-notification-service:
+  - name: prd/prd-sam_mc_consumer
+  prd-qa3s1-event-notification-service:
+  - name: prd/prd-sam_mc_consumer
   iad-event-notification-service:
   - name: iad/iad-sam_mc_consumer
   ord-event-notification-service:
