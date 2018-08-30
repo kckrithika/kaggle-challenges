@@ -10,6 +10,10 @@ spec:
   minReadySeconds: 60
   replicas: 3
   revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      name: slb-nginx-config-b
+      sam.data.sfdc.net/owner: slb
   strategy:
     rollingUpdate:
       maxSurge: 0

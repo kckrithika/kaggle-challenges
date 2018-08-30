@@ -1,11 +1,11 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local auto_deployer = import "auto_deployer.jsonnet";
+local configs = import "config.jsonnet";
+
 if !auto_deployer.auto_deployer_enabled then
 "SKIP"
 else
-{
-  apiVersion: "extensions/v1beta1",
-  kind: "Deployment",
+configs.deploymentBase("flowsnake") {
   metadata: {
     labels: {
       name: "samcontrol-deployer",

@@ -9,6 +9,10 @@ metadata:
 spec:
   minReadySeconds: 30
   replicas: 2
+  selector:
+    matchLabels:
+      name: slb-canary-proxy-http
+      sam.data.sfdc.net/owner: slb
   strategy:
     rollingUpdate:
       maxSurge: 1

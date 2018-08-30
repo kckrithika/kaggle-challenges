@@ -2,9 +2,9 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-{
-  apiVersion: "extensions/v1beta1",
-  kind: "Deployment",
+local configs = import "config.jsonnet";
+
+configs.deploymentBase("flowsnake") {
   metadata: {
     labels: {
         service: "madkubserver",
@@ -12,7 +12,7 @@ local kingdom = std.extVar("kingdom");
     name: "madkubserver",
     namespace: "flowsnake",
   },
-  spec: {
+  spec+: {
     replicas: if flowsnakeconfig.is_minikube then 1 else 3,
     minReadySeconds: 45,
     template: {

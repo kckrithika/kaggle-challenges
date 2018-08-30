@@ -2,12 +2,13 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
+local configs = import "config.jsonnet";
+
 if !watchdog.watchdog_enabled then
 "SKIP"
 else
-{
-    kind: "DaemonSet",
-    spec: {
+configs.daemonSetBase("flowsnake") {
+    spec+: {
         template: {
             spec: {
                 hostNetwork: true,
@@ -77,7 +78,6 @@ else
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "watchdog-master",

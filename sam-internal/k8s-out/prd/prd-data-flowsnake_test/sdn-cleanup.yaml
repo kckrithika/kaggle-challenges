@@ -6,6 +6,11 @@ metadata:
   name: sdn-cleanup
   namespace: sam-system
 spec:
+  selector:
+    matchLabels:
+      apptype: control
+      daemonset: "true"
+      name: sdn-cleanup
   template:
     metadata:
       labels:

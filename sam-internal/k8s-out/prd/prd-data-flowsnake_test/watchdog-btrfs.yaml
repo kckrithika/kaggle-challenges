@@ -4,6 +4,10 @@ metadata:
   name: watchdog-btrfs
   namespace: flowsnake
 spec:
+  selector:
+    matchLabels:
+      app: watchdog-btrfs
+      apptype: monitoring
   template:
     metadata:
       labels:

@@ -6,6 +6,11 @@ metadata:
   name: watchdog-etcd
   namespace: flowsnake
 spec:
+  selector:
+    matchLabels:
+      app: watchdog-etcd
+      apptype: monitoring
+      daemonset: "true"
   template:
     metadata:
       labels:
