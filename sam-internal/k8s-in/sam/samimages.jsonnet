@@ -100,7 +100,7 @@ for ce in [
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": $.per_phase["4"] {
-            hypersam: "sam-0002190-d048106f",
+            hypersam: "sam-0002252-a9ad81d9",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia + prd-samtwo
