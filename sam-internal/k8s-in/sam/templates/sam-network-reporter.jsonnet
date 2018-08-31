@@ -6,7 +6,7 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" then configs.daemonSetBa
         template: {
             spec: configs.specWithMadDog {
                 containers: [
-                    configs.containerWithKubeConfigAndMadDog {
+                    configs.containerWithMadDog {
                         name: "sam-network-reporter",
                         image: samimages.hypersam,
                         command: [
@@ -20,6 +20,7 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" then configs.daemonSetBa
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_platform_volume_mount,
+                            configs.config_volume_mount,
                         ],
                         env+: [
                             {
