@@ -25,7 +25,7 @@ system:
         secretName: mds-gdot-secrets-prod3
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.2.22
+      image: sfci/metadata-cannon/metadata-service:0.3.65
       ports:
       - containerPort: 15523
       env:
@@ -35,6 +35,8 @@ system:
         value: 9091
       - name: MANAGEMENT_PORT
         value: 15523
+      - name: JVM_ARGS
+        value: "-Djwt-validation.enabled=false"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
@@ -43,30 +45,30 @@ system:
           path: /manage/health
           port: 15523
       volumeMounts:
-        - name: mds-client-cert
-          mountPath: /client-certs
-        - name: logvol
-          mountPath: /home/sfdc-mds/logs
-        - name: gdot-secrets-volume
-          mountPath: /home/sfdc-mds/secrets
-          readOnly: true
+      - name: mds-client-cert
+        mountPath: /client-certs
+      - name: logvol
+        mountPath: /home/sfdc-mds/logs
+      - name: gdot-secrets-volume
+        mountPath: /home/sfdc-mds/secrets
+        readOnly: true
 
     - name: sherpa-mds
-      image: sfci/servicelibs/sherpa:2.0.26
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       env:
-        - name: SFDC_ENVIRONMENT
-          value: prod
+      - name: SFDC_ENVIRONMENT
+        value: prod
       ports:
-        - containerPort: 7443
-          name: sherpa-h2-tls
-        - containerPort: 15373
+      - containerPort: 7443
+        name: sherpa-h2-tls
+      - containerPort: 15373
       volumeMounts:
-        - name: sherpa-log-volume
-          mountPath: /log
-        - name: mds-client-cert
-          mountPath: /client-certs
-        - name:  mds-server-cert
-          mountPath: /server-certs
+      - name: sherpa-log-volume
+        mountPath: /log
+      - name: mds-client-cert
+        mountPath: /client-certs
+      - name:  mds-server-cert
+        mountPath: /server-certs
       livenessProbe:
         exec:
           command:
@@ -95,4 +97,4 @@ system:
         initialDelaySeconds: 5
         exec:
           command:
-            - "/home/scone/is-alive.sh"
+          - "/home/scone/is-alive.sh"
