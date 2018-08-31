@@ -29,7 +29,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --hostnameOverride=$(NODE_NAME)
         - --minSleepTime=2h
-        - --maxSleepTime=2h
+        - --maxSleepTime=3h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
