@@ -6,7 +6,7 @@ local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
-if !watchdog.watchdog_enabled || !std.objectHas(flowsnake_images.feature_flags, "add_12_canary") then
+if !watchdog.watchdog_enabled then
 "SKIP"
 else
 local cert_name = "watchdogcanarycerts";
