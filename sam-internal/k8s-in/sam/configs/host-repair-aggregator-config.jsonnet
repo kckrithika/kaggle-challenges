@@ -1,14 +1,14 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-samtest" then
+if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
 std.prune({
   crdNamespace: "sam-system",
   crdPollFrequency: "5m",
   crdPushFrequency: "10m",
-  nodeOfflineAfterTime: "30m",
+  nodeOfflineAfterTime: "60m",
   signals: [
     "filesystemChecker",
-    "kubeletChecker",
+    "maddogCertChecker",
   ],
   funnelEndpoint: configs.funnelVIP,
 }) else "SKIP"
