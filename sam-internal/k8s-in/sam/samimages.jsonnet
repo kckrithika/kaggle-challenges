@@ -100,6 +100,8 @@ for ce in [
         ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
         "2": $.per_phase["3"] {
             hypersam: "sam-0002252-a9ad81d9",
+            madkub: "1.0.0-0000077-b1d3a629",
+            madkubSidecar: "1.0.0-0000077-b1d3a629",
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
