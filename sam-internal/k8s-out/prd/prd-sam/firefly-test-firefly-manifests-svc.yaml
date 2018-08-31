@@ -145,7 +145,7 @@ items:
           - name: serviceMode
             value: multi
           - name: instanceType
-            value: manifests
+            value: test-firefly-manifests
           - name: packageQ
             value: test-firefly-manifests.package
           - name: promotionQ
