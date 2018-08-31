@@ -149,7 +149,7 @@ items:
             value: test-manifests.promotion
           - name: latestfileQ
             value: test-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:80
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jvergara/firefly-packagesvc:0.0.1-SNAPSHOT
           imagePullPolicy: Always
           name: firefly-package
           ports:
