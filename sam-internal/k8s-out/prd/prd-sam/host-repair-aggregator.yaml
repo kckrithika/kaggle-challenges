@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: host-repair-aggregator
+    sam.data.sfdc.net/owner: sam
+  name: host-repair-aggregator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: host-repair-aggregator
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: host-repair-aggregator
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/host-repair-aggregator
+        - --config=/config/host-repair-aggregator.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - -v=0
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002265-c85a3b04
+        name: host-repair-aggregator
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /config
+          name: config
+        - mountPath: /data/certs
+          name: certs
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - configMap:
+          name: host-repair-aggregator
+        name: config
+      - hostPath:
+          path: /data/certs
+        name: certs

@@ -29,6 +29,10 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,snapshotconsumer-prd,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
         "prd,prd-sam,snapshotconsumer-prod,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
 
+        #[jiayi] update host repair in prd-sam
+        "prd,prd-sam,host-repair-aggregator,hypersam": "sam-0002265-c85a3b04",
+        "prd,prd-sam,host-repair-scheduler,hypersam": "sam-0002265-c85a3b04",
+
         #[small]
         "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180830_155128.a66cdb1a.clean.small-ltm",
         }
