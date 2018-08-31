@@ -39,19 +39,27 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         name: "slb-dns-register-processor",
                         image: slbimages.hypersdn,
                         command: [
-                            "/sdn/slb-dns-register",
-                            "--path=" + slbconfigs.configDir,
-                            "--ddi=" + slbconfigs.ddiService,
-                            "--keyfile=" + configs.keyFile,
-                            "--certfile=" + configs.certFile,
-                            "--cafile=" + configs.caFile,
-                            "--metricsEndpoint=" + configs.funnelVIP,
-                            "--log_dir=" + slbconfigs.logsDir,
-                            configs.sfdchosts_arg,
-                            "--subnet=" + slbconfigs.subnet,
-                            "--client.serverPort=" + portconfigs.slb.slbNodeApiDnsOverridePort,
-                            "--client.serverInterface=lo",
-                        ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                                     "/sdn/slb-dns-register",
+                                     "--path=" + slbconfigs.configDir,
+                                     "--ddi=" + slbconfigs.ddiService,
+                                     "--keyfile=" + configs.keyFile,
+                                     "--certfile=" + configs.certFile,
+                                     "--cafile=" + configs.caFile,
+                                     "--metricsEndpoint=" + configs.funnelVIP,
+                                     "--log_dir=" + slbconfigs.logsDir,
+                                     configs.sfdchosts_arg,
+                                     "--subnet=" + slbconfigs.subnet,
+                                     "--client.serverPort=" + portconfigs.slb.slbNodeApiDnsOverridePort,
+                                     "--client.serverInterface=lo",
+                                 ]
+                                 + (
+                                     if slbimages.phaseNum == 1 then [
+                                         "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
+                                     ] else [
+
+                                     ]
+                                 )
+                                 + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
