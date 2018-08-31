@@ -30,7 +30,7 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,snapshotconsumer-prod,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
 
         #[small]
-        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180816_155056.7aa464a5.dirty.small-ltm",
+        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180830_155128.a66cdb1a.clean.small-ltm",
         }
         + {
           #[thargrove] Pin the auto-deplopyer to the build before we stiched to v1 deployments.  Remove when all of sam-internals is fixed
