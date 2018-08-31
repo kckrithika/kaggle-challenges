@@ -164,9 +164,11 @@ items:
           volumeMounts:
           - mountPath: /certs
             name: certs
+          - mountPath: /root/.ssh/
+            name: git-ssh-keys
           - mountPath: /tmp
             name: docker-build-dir
-        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:3
+        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:9
           name: dind-daemon
           securityContext:
             privileged: true
@@ -175,6 +177,8 @@ items:
             name: docker-graph-storage
           - mountPath: /tmp
             name: docker-build-dir
+          - mountPath: /root/.ssh/
+            name: git-ssh-keys
         initContainers:
         - args:
           - /sam/madkub-client
@@ -234,6 +238,9 @@ items:
         - emptyDir:
             medium: Memory
           name: certs
+        - emptyDir:
+            medium: Memory
+          name: git-ssh-keys
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
@@ -397,9 +404,11 @@ items:
           volumeMounts:
           - mountPath: /certs
             name: certs
+          - mountPath: /root/.ssh/
+            name: git-ssh-keys
           - mountPath: /tmp
             name: docker-build-dir
-        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:3
+        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:9
           name: dind-daemon
           securityContext:
             privileged: true
@@ -408,6 +417,8 @@ items:
             name: docker-graph-storage
           - mountPath: /tmp
             name: docker-build-dir
+          - mountPath: /root/.ssh/
+            name: git-ssh-keys
         initContainers:
         - args:
           - /sam/madkub-client
@@ -467,6 +478,9 @@ items:
         - emptyDir:
             medium: Memory
           name: certs
+        - emptyDir:
+            medium: Memory
+          name: git-ssh-keys
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs

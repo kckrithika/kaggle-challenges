@@ -37,7 +37,7 @@ local configs = import "config.jsonnet";
              fireflyintake: "80",
              fireflypackage: "80",
              fireflypullrequest: "80",
-             fireflydind: "3",
+             fireflydind: "9",
              rabbitmq: "17",
              },
 
@@ -52,7 +52,7 @@ local configs = import "config.jsonnet";
             fireflyintake: "80",
             fireflypackage: "80",
             fireflypullrequest: "80",
-            fireflydind: "3",
+            fireflydind: "9",
             rabbitmq: "17",
             },
 
@@ -61,7 +61,7 @@ local configs = import "config.jsonnet";
             fireflyintake: "80",
             fireflypackage: "80",
             fireflypullrequest: "80",
-            fireflydind: "3",
+            fireflydind: "9",
             rabbitmq: "17",
             },
 
@@ -70,7 +70,7 @@ local configs = import "config.jsonnet";
             fireflyintake: "80",
             fireflypackage: "80",
             fireflypullrequest: "80",
-            fireflydind: "3",
+            fireflydind: "9",
             rabbitmq: "17",
             },
 
@@ -79,7 +79,7 @@ local configs = import "config.jsonnet";
             fireflyintake: "80",
             fireflypackage: "80",
             fireflypullrequest: "80",
-            fireflydind: "3",
+            fireflydind: "9",
             rabbitmq: "17",
             },
         },

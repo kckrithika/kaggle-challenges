@@ -228,6 +228,9 @@ items:
         - emptyDir:
             medium: Memory
           name: certs
+        - emptyDir:
+            medium: Memory
+          name: git-ssh-keys
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
