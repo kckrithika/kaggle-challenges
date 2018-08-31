@@ -65,7 +65,7 @@ spec:
         - --healthPathCheck=true
         - --metricsBatchTimeout=30s
         - --optOutServiceList=pra-sfc-prd,pra-dsm-prd
-        - --optOutNamespace=kne,podgroup-prebuild
+        - --optOutNamespace=podgroup-prebuild
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         - --followRedirect=false
