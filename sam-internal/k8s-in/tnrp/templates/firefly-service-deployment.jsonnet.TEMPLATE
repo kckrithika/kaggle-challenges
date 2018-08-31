@@ -44,7 +44,13 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
           name: "certs",
           mountPath: "/certs",
         },
+    ] + if $.serviceConf.dindEnabled == false then [] else [
+        {
+          name: "git-ssh-keys",
+          mountPath: "/root/.ssh/",
+        },
     ],
+
     // arguments for template
     commonEnv:: [
         {
@@ -215,6 +221,10 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
                              name: "docker-build-dir",
                              mountPath: "/tmp",
                           },
+                          {
+                             name: "git-ssh-keys",
+                             mountPath: "/root/.ssh/",
+                          },
                        ],
                     },
                   ],
@@ -235,6 +245,12 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
                      },
                      {
                          name: "certs",
+                         emptyDir: {
+                             medium: "Memory",
+                         },
+                     },
+                     {
+                         name: "git-ssh-keys",
                          emptyDir: {
                              medium: "Memory",
                          },
