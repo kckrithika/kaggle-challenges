@@ -1,7 +1,7 @@
 - lbname: helloselfservice
   servers:
-   - 10.231.187.2
-   - 10.231.187.50
+   - shared0-sdcsamcompute1-3-prd.eng.sfdc.net
+   - shared0-sdcsamcompute1-7-prd.eng.sfdc.net 
   ports:
    - port: 80
      targetport: 12087
