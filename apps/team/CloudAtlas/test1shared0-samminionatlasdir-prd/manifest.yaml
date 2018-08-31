@@ -87,6 +87,8 @@ system:
         name: logvol
       - mountPath: /certs
         name: server-cert
+      - mountPath: /clientcerts
+        name: client-cert
       - mountPath: /secrets
         name: secretsvol
         readOnly: true
