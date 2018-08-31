@@ -1,0 +1,26 @@
+apps:
+ # gate-manager:
+ #  - phx/phx-sam_gater
+ #  - dfw/dfw-sam_gater
+ #  - frf/frf-sam_gater
+ #  - ukb/ukb-sam_gater
+ #  - iad/iad-sam_gater
+ #  - ord/ord-sam_gater
+ #  - hnd/hnd-sam_gater
+ #  - cdg/cdg-sam_gater
+ #  - fra/fra-sam_gater
+ #  - ia2/ia2-sam_gater
+ #  - ph2/ph2-sam_gater
+ # gate-manager-par:
+ #  - par/par-sam_gater
+ # gate-manager-public-cloud:
+ #  - cdu/cdu-sam_gater
+ #  - syd/syd-sam_gater
+ #  - yhu/yhu-sam_gater
+ #  - yul/yul-sam_gater
+ # gate-manager-gia:
+ #  - chx/chx-sam_gater
+ # gate-manager-test:
+ #  - prd/prd-sam_gater
+ # gate-manager-test-tnrp:
+ #  - prd/prd-sam_gater

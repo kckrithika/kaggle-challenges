@@ -1,0 +1,48 @@
+apiVersion: v1
+{{ $app_config := (index .Values.apps .Values.appname) }}
+system:
+  notifications:
+    email:
+    - gater@salesforce.com
+  functions:
+  - name: {{ $app_config.function_name | default "gater" }}
+    count: {{ $app_config.count | default 5 }}
+    hostnetwork: true
+    containers:
+    - name: gater1
+      image: {{ required "A valid image is required!" $app_config.image }}
+      args:
+{{- include "containers.args" .Values.appname }}
+      ports:
+      - containerPort: 9522
+      - containerPort: 9523
+      - containerPort: 9090
+      - containerPort: 15372
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: blitz
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /fastdata/gater
+        name: dbvol
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-gater/logs
+    - name: dbvol
+      hostPath:
+        path: /home/sfdc-gater/db
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+{{- if eq .Values.appname "gate-manager-test-tnrp"}}
+        maxSurge: 0
+{{- end}}
+        maxUnavailable: 1
