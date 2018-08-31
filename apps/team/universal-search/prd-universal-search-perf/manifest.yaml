@@ -6,7 +6,7 @@ system:
     - universalsearch@salesforce.com
   functions:
   - name: universal-search-perf
-    count: 3
+    count: 5
     volumes:
     - name: client-cert-vol
       maddogCert:
@@ -43,6 +43,8 @@ system:
         value: /home/sfdc-usmt/krb-config/jaas-prd.conf
       - name: ZK_CHROOT
         value: /search/universal/solr-cloud/cre
+      - name: SERVICE_THREADCOUNT
+        value: 2000
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
