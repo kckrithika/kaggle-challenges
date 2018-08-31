@@ -5,6 +5,8 @@ system:
   functions:
   - name: dfs
     count: 3
+    identity:
+      serviceName: dfs-func
     volumes:
     - name: logvol
       hostPath:
