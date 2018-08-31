@@ -35,7 +35,7 @@ system:
       ports:
       - containerPort: 12005
     - name: caas-redis-announcer
-      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
+      image: sfci/servicelibs/beacon:0078716f45375dc0b114849e13d9b1dbf83177a9
       args:
       - -endpoint
       - caas/cluster/sp-cs50-pc1:SUPERPOD:12005
