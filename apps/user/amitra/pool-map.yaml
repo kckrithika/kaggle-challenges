@@ -1,5 +1,5 @@
 apps:
  # Clearing my app
- test:    # this must match the name of your application. It must be lower case.
+ TestApp:    # this must match the name of your application. It must be lower case.
   - prd/prd-samdev  # the SAM Sandbox uses the prd/prd-sam host cluster
                  # you can also specify other pools
