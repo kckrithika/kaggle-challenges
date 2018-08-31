@@ -1,0 +1,21 @@
+- lbname: sledge-stm
+  servers:
+   - 10.252.247.82
+   - 10.252.247.83
+  ports:
+   - port: 80
+     targetport: 80
+     lbtype: dsr
+     healthport: 80
+     healthpath: "/ping.jsp"
+   - port: 443
+     targetport: 443
+     lbtype: dsr
+     healthport: 443
+     healthpath: "/ping.jsp"
+     healthprotocol: "https"
+   - port: 8443
+     targetport: 8443
+     lbtype: dsr
+     healthport: 80
+     healthpath: "/ping.jsp"
