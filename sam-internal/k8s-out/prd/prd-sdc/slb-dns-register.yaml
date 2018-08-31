@@ -36,7 +36,7 @@ spec:
         - --subnet=10.254.247.0/24
         - --client.serverPort=12088
         - --client.serverInterface=lo
-        - --restrictedSubnets=
+        - --restrictedSubnets=,
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001111-e4c469d4
