@@ -11,8 +11,9 @@
    - port: 443
      targetport: 443
      lbtype: dsr
-     healthport: 80
+     healthport: 443
      healthpath: "/ping.jsp"
+     healthprotocol: "https"
    - port: 8443
      targetport: 8443
      lbtype: dsr
