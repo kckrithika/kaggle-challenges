@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: harverify1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/harverify:c03313f
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/harverify:8c830cf
       livenessProbe:
         httpGet:
             path: /
