@@ -37,6 +37,8 @@ system:
           value: kingdom-perf
         - name: HBASE_DATACENTER
           value: prd
+        - name: GDOT_FORCE_PROVISIONING
+          value: false
       ports:
       - containerPort: 8080
       - containerPort: 7020
