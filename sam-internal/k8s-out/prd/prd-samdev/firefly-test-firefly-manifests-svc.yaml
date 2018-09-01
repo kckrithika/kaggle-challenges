@@ -168,7 +168,7 @@ items:
             name: git-ssh-keys
           - mountPath: /tmp
             name: docker-build-dir
-        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:9
+        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:86
           name: dind-daemon
           securityContext:
             privileged: true
@@ -408,7 +408,7 @@ items:
             name: git-ssh-keys
           - mountPath: /tmp
             name: docker-build-dir
-        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:9
+        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:86
           name: dind-daemon
           securityContext:
             privileged: true

@@ -67,7 +67,7 @@ spec:
           value: /var/lib/rabbitmq/$(MY_POD_NAME)/schema
         - name: RABBITMQ_GENERATED_CONFIG_DIR
           value: /var/lib/rabbitmq/$(MY_POD_NAME)/config
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:17
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:86
         imagePullPolicy: Always
         lifecycle:
           postStart:
