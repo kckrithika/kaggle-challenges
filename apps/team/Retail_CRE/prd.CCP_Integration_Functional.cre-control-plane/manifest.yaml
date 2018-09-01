@@ -41,6 +41,8 @@ system:
           value: 15
         - name: STREAM_PROCESSING_ENDPOINT
           value: http://cre-sp-ccp-func.retail-cre.localhost.mesh.force.com:5442
+        - name: GDOT_FORCE_PROVISIONING
+          value: false
       ports:
       - containerPort: 8080
       - containerPort: 7020
