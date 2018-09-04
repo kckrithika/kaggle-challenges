@@ -1,12 +1,16 @@
+local configs = import "config.jsonnet";
 {
-    dev:: {
+    common:: {
+        intakeEndpoint:: "firefly-rabbitmq.firefly." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net:8080",
+    },
+    dev:: $.common {
         artifactoryDevHost:: 'testrepo1-0-prd.data.sfdc.net',
         artifactoryP2PHost:: 'testrepo2-0-prd.data.sfdc.net',
         artifactoryContentRepoUserName:: 'svc_tnrp_ci_test',
         artifactoryContentRepoUserNameProd:: 'svc_tnrp_cd_test',
         rabbitMqUserName:: 'sfdc-rabbitmq',
     },
-    prod:: {
+    prod:: $.common {
         artifactoryDevHost:: 'ops0-artifactrepo1-0-prd.data.sfdc.net',
         artifactoryP2PHost:: 'ops0-artifactrepo2-0-prd.data.sfdc.net',
         artifactoryContentRepoUserName:: 'svc_tnrp_ci',

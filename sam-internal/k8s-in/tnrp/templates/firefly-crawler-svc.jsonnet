@@ -3,6 +3,7 @@ local images = import "fireflyimages.jsonnet";
 local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
+local envConfiguration = import "firefly_service_conf.jsonnet";
 
 if firefly_feature_flags.is_firefly_svc_enabled then
 {
@@ -29,7 +30,12 @@ if firefly_feature_flags.is_firefly_svc_enabled then
       portConfigs:: [portConfig.service_health_port('package_mgmt_nodeport')],
       replicas:: 1,
       command:: ["java", "-jar", "/crawler-svc.jar", "--spring.profiles.active=" + configs.estate],
-      env:: super.commonEnv,
+      env:: super.commonEnv + [
+          {
+              name: "INTAKE_ENDPOINT",
+              value: envConfiguration.environmentMapping[configs.estate].intakeEndpoint,
+          },
+      ],
       volumeMounts:: super.commonVolMounts,
   },
 
