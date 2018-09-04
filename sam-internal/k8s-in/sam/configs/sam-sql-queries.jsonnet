@@ -1273,7 +1273,7 @@ where lastTimestampAgeInMin < 60
                             (
                             SELECT
                                 prs.pr_num,
-                                prs.`merged_time`,
+                                prs.most_recent_authorized_time,
                                 payload -> '$.status.endTime' endTime,
                                 crds.PoolName,
                                 crds.ControlEstate,
