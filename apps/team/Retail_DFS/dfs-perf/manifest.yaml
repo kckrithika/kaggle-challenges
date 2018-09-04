@@ -4,7 +4,7 @@ system:
   - name: dfs-perf
     count: 3
     identity:
-      serviceName: dfs-perf
+      serviceName: dfs
     # maps the dfslogvol volumnMount to a directory on the host machine
     volumes:
     - name: logvol
