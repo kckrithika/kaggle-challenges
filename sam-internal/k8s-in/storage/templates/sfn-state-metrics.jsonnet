@@ -41,15 +41,13 @@ local sfmsLogPathEnvVar = if storageimages.phase == "1" then [
     },
 ] else [];
 
-if std.setMember(configs.estate, enabledEstates) then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if std.setMember(configs.estate, enabledEstates) then configs.deploymentBase("storage") {
     metadata: {
         name: "sfn-state-metrics",
         namespace: "sam-system",
         labels: {} + configs.ownerLabel.storage,
     },
-    spec: {
+    spec+: {
         replicas: 1,
         template: {
             metadata: {

@@ -6,10 +6,8 @@ local storageconfigs = import "storageconfig.jsonnet";
 // Currently disabled -- no minion estates need prep at this time.
 local enabledMinionEstates = ["not-in-any-pool-at-this-time"];
 
-if configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sam_storage" then configs.daemonSetBase("storage") {
 
-    apiVersion: "extensions/v1beta1",
-    kind: "DaemonSet",
     metadata: {
       name: "sfstore-nodeprep",
       namespace: "storage-foundation",
@@ -18,7 +16,7 @@ if configs.estate == "prd-sam_storage" then {
         cloud: "storage",
       } + configs.ownerLabel.storage,
     },
-    spec: {
+    spec+: {
       template: {
         metadata: {
           labels: {

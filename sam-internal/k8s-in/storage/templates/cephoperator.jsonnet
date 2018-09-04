@@ -63,9 +63,7 @@ local madkubOpEnvVars = if isEstateNotSkipper && storageimages.phase == "1" then
         ] else [];
 
 
-if std.setMember(configs.estate, enabledEstates) then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if std.setMember(configs.estate, enabledEstates) then configs.deploymentBase("storage") {
     metadata: {
         labels: {
             name: "cephoperator",
@@ -75,7 +73,7 @@ if std.setMember(configs.estate, enabledEstates) then {
         name: "cephoperator-deployment",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         replicas: 1,
         strategy: {
             type: "RollingUpdate",

@@ -10,9 +10,7 @@ local enabledEstates = std.set([
     "prd-sam_storage",
 ]);
 
-if std.setMember(configs.estate, enabledEstates) then {
-  apiVersion: "extensions/v1beta1",
-  kind: "DaemonSet",
+if std.setMember(configs.estate, enabledEstates) then configs.daemonSetBase("storage") {
   metadata: {
     name: "legostore-nodeprep",
     namespace: "storage-foundation",
@@ -21,7 +19,7 @@ if std.setMember(configs.estate, enabledEstates) then {
       cloud: "storage",
     } + configs.ownerLabel.storage,
   },
-  spec: {
+  spec+: {
     template: {
       metadata: {
         labels: {

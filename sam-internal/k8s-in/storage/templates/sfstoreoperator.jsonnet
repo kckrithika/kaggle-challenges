@@ -9,9 +9,7 @@ local enabledEstates = std.set([
     "prd-sam",
 ]);
 
-if std.setMember(configs.estate, enabledEstates) then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if std.setMember(configs.estate, enabledEstates) then configs.deploymentBase("storage") {
     metadata: {
         labels: {
             name: "sfstoreoperator",
@@ -21,7 +19,7 @@ if std.setMember(configs.estate, enabledEstates) then {
         name: "sfstoreoperator-deployment",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         replicas: 1,
         strategy: {
             type: "RollingUpdate",

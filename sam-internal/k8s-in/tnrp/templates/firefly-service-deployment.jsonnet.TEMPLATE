@@ -158,9 +158,7 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
         },
     },
 
-    local deployment = {
-        kind: "Deployment",
-        apiVersion: "extensions/v1beta1",
+    local deployment = configs.deploymentBase("tnrp"){
         metadata: {
             name: std.join("-", [$.serviceName, 'deployment']),
             namespace: "firefly",
@@ -168,7 +166,7 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
                 name: $.serviceName,
             } + configs.ownerLabel.tnrp,
         },
-        spec: {
+        spec+: {
             replicas: $.replicas,
             template: {
                metadata: {

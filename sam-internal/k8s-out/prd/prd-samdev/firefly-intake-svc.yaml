@@ -38,6 +38,10 @@ items:
     namespace: firefly
   spec:
     replicas: 1
+    selector:
+      matchLabels:
+        name: firefly-intake
+        sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
         maxSurge: 0

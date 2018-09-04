@@ -21,6 +21,11 @@ items:
     name: node-initializer
     namespace: storage-foundation
   spec:
+    selector:
+      matchLabels:
+        app: node-initializer
+        cloud: storage
+        team: storage-foundation
     template:
       metadata:
         labels:

@@ -9,6 +9,11 @@ metadata:
   namespace: storage-foundation
 spec:
   minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: lv-os-provisioner
+      cloud: storage
+      team: storage-foundation
   template:
     metadata:
       labels:
