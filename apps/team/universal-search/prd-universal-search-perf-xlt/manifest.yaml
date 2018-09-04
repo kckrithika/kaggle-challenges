@@ -25,7 +25,7 @@ system:
         path: /data/test
     containers:
     - name: usmt-xlt-agent
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/xlt-agent:irahim-20180822-9b5b027
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/xlt-agent:irahim-20180904-a824c0c
       ports:
       - containerPort: 8500
         name: usmt-xlt-port
