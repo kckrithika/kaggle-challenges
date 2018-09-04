@@ -6,7 +6,7 @@ local configs = import "config.jsonnet";
 
 serviceDeployment + {
     serviceConf:: {
-        dindEnabled: true,
+        dindEnabled: false,
         healthPort: portConfig.firefly.promotion_mgmt,
         pool: if configs.estate == "prd-samtwo" then 'prd-sam_tnrp_merger' else configs.estate,
         port: [],

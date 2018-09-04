@@ -646,17 +646,6 @@ items:
             name: certs
           - mountPath: /root/.ssh/
             name: git-ssh-keys
-        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:9
-          name: dind-daemon
-          securityContext:
-            privileged: true
-          volumeMounts:
-          - mountPath: /var/lib/docker
-            name: docker-graph-storage
-          - mountPath: /tmp
-            name: docker-build-dir
-          - mountPath: /root/.ssh/
-            name: git-ssh-keys
         initContainers:
         - args:
           - /sam/madkub-client
