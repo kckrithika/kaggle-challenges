@@ -54,9 +54,9 @@ configs.daemonSetBase("flowsnake") {
                         },
                         volumeMounts: [
                             {
-                                name: "host-proc",
-                                mountPath: "/host-proc",
-                                readOnly: false
+                                name: "kernlog",
+                                mountPath: "/hostkern.log",
+                                readOnly: true
                             },
                             {
                                 name: "check-btrfs-sh",
@@ -70,9 +70,9 @@ configs.daemonSetBase("flowsnake") {
                 ],
                 volumes: [
                     {
-                        name: "host-proc",
+                        name: "kernlog",
                         hostPath: {
-                            path: "/proc",
+                            path: "/var/log/kern"
                         }
                     },
                     {
