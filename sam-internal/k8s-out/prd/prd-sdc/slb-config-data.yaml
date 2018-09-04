@@ -24,7 +24,7 @@ spec:
       - command:
         - /sdn/slb-config-data
         - --port=9117
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001112-7c3cc6da
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001119-9ce14ff8
         livenessProbe:
           httpGet:
             path: /
