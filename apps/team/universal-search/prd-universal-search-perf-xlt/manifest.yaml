@@ -20,6 +20,9 @@ system:
     - name: secret-vol
       k4aSecret:
         secretName: solrcloudcli-keytab-prd
+    - name: test
+      hostpath:
+        path: /data/test
     containers:
     - name: usmt-xlt-agent
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/xlt-agent:irahim-20180822-9b5b027
@@ -49,6 +52,8 @@ system:
       - name: secret-vol
         mountPath: /secrets/
         readOnly: true
+      - name: test
+        mountPath: /data/test
     - name: sherpa-xlt
       image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       ports:
@@ -86,6 +91,22 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 50
         periodSeconds: 5
+    - name: perf-universal-search-xlt-certs
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180903-b4ea4b1
+      args: ["-d"]
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      livenessProbe:
+        initialDelaySeconds: 30
+        exec:
+          command: ["true"]
+      volumeMounts:
+      - name: test
+        mountPath: /data/test
   - name: xlt-master
     count: 1
     volumes:
