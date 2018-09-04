@@ -27,7 +27,7 @@ items:
     name: firefly-package-deployment
     namespace: firefly
   spec:
-    replicas: 3
+    replicas: 1
     strategy:
       rollingUpdate:
         maxSurge: 0
