@@ -13,7 +13,7 @@ system:
   - name: dev-event-notification-service
     identity:
       serviceName: wh-con
-    count: 1
+    count: 2
     volumes:
     - name: cert
       maddogCert:
