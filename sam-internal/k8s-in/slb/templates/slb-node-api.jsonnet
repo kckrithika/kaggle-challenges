@@ -4,7 +4,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = import "slbsharedservices.jsonnet";
 
-if slbconfigs.slbInKingdom && slbimages.phaseNum > 2 then configs.daemonSetBase("slb") {
+if slbconfigs.slbInKingdom && slbimages.phaseNum > 3 then configs.daemonSetBase("slb") {
     metadata: {
         labels: {
             name: "slb-node-api",
