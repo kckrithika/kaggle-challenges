@@ -22,7 +22,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/xlt-agent:irahim-20180822-9b5b027
       ports:
       - containerPort: 8500
-        name: usmt-xlt-port
+        name: us-xlt-port
       livenessProbe:
         exec:
           command:
