@@ -1,7 +1,0 @@
-- lbname: pabbles-vip-time
-  servers:
-   - 10.231.187.50
-  ports:
-   - port: 22
-     targetport: 22
-     lbtype: http
