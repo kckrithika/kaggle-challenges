@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-labels-checker
-  name: slb-labels-checker
+    name: slb-nginx-data-watchdog
+  name: slb-nginx-data-watchdog
   namespace: sam-system
 spec:
   minReadySeconds: 30
@@ -17,57 +17,59 @@ spec:
     metadata:
       labels:
         apptype: monitoring
-        name: slb-labels-checker
+        name: slb-nginx-data-watchdog
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sdn/slb-labels-checker
-        - --log_dir=/host/data/slb/logs/
-        - --hostnameOverride=$(NODE_NAME)
-        - --metricsEndpoint=ajna0-funnel1-0-fra.data.sfdc.net:80
+        - /sdn/slb-nginx-data-watchdog
+        - --namespace=sam-system
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --labelValues=slb-ipvs:3,slb-nginx-b:3
+        - --k8sapiserver=
+        - --connPort=9125
+        - --monitorFrequency=180s
+        - --nginxWDmetricsEndpoint=ajna0-funnel1-0-fra.data.sfdc.net:80
+        - --nginxWDhostnameOverride=$(NODE_NAME)
         env:
-        - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig-platform
         - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001120-808fcaa9
-        name: slb-labels-checker
+        name: slb-nginx-data-watchdog
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
-        - mountPath: /sfdchosts
-          name: sfdchosts
-        - mountPath: /kubeconfig
-          name: kubeconfig
         - mountPath: /data/certs
           name: certs
-        - mountPath: /etc/pki_service
-          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
       nodeSelector:
         pool: fra-slb
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
           path: /data/slb/logs/
         name: var-logs-volume
-      - configMap:
-          name: sfdchosts
-        name: sfdchosts
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
       - hostPath:
           path: /data/certs
         name: certs
       - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
