@@ -3,7 +3,7 @@ data:
   samapp-controller-config.json: |-
     {
       "dockerRegistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
-      "enableK4a": "false",
+      "enableK4a": false,
       "enableMaddog": true,
       "funnelEndpoint": "ajna0-funnel1-0-vpod.data.sfdc.net:80",
       "maddogMaddogEndpoint": "https://maddog-onebox:8443",
