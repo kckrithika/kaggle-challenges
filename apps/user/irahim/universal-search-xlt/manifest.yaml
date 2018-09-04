@@ -48,6 +48,12 @@ system:
         readOnly: true
     - name: sherpa-xlt
       image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       # HTTP port for exposing to SLB for IoT
       - containerPort: 7012
@@ -60,12 +66,6 @@ system:
         name: sherpa-xlt-adm
       - containerPort: 7080
         name: sherpa-xlt-real
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
