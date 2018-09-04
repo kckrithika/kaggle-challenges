@@ -45,6 +45,8 @@ system:
         value: /search/universal/solr-cloud/cre
       - name: SERVICE_THREADCOUNT
         value: 2000
+      - name: CLIENT_MAXCONNPERROUTE
+        value: 2000
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
