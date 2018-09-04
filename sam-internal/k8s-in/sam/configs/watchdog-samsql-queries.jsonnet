@@ -117,28 +117,26 @@
 
     {
     name: "SqlPRLatency",
-      instructions: "Following PRs have failed to get deployed within 45 minutes of getting merged.",
+      instructions: "Following PRs have failed to get deployed within 45 minutes of getting authorized.",
       alertThreshold: "10m",
       alertFrequency: "24h",
       watchdogFrequency: "10m",
       alertProfile: "sam",
       alertAction: "email",
       sql: "SELECT
-   *
+   *   
 FROM
-    (
+    (   
     SELECT
         prs.pr_num,
         crds.PoolName,
         crds.ControlEstate,
-        TIMESTAMPDIFF(MINUTE,prs.merged_time, STR_TO_DATE( CASE 
-        	WHEN payload -> '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
-        	ELSE JSON_UNQUOTE(payload -> '$.status.endTime')
-        	END ,'%Y-%m-%dT%H:%i:%s' )) latency
+        TIMESTAMPDIFF(MINUTE,prs.most_recent_authorized_time, STR_TO_DATE( 
+            JSON_UNQUOTE(payload -> '$.status.endTime'),'%Y-%m-%dT%H:%i:%s' )) latency
 FROM
-    PullRequests prs
+    PullRequests prs 
 LEFT  JOIN
-        (
+        (   
         SELECT *
         FROM
         crd_history
@@ -230,31 +228,40 @@ WHERE latency > 45",
     },
     {
       name: "SqlPRImageUnavailable",
-      instructions: "Following PRs have at least one image that's not available after 20 minutes of getting it merged",
+      instructions: "Following PRs have at least one image that's not available after 20 minutes of starting deployment",
       alertThreshold: "0m",
       alertFrequency: "24h",
       watchdogFrequency: "10m",
       alertProfile: "sam",
       alertAction: "email",
-      sql: "SELECT 
+      sql: "SELECT
                 *
-            FROM 
+            FROM
                 (
-                SELECT 	
+                SELECT
                     prs.pr_num,
                     crds.PoolName,
                     crds.ControlEstate,
-                    TIMESTAMPDIFF(MINUTE, prs.merged_time, CASE WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() ELSE payload -> '$.status.maxImageEndTime' END) latencyMin
-            FROM 
+                    payload -> '$.status.startTime',
+                    payload -> '$.status.maxImageEndTime',
+                    TIMESTAMPDIFF(MINUTE, 
+                    		STR_TO_DATE(JSON_UNQUOTE(payload -> '$.status.startTime'),'%Y-%m-%dT%H:%i:%s'), 
+                    		STR_TO_DATE( CASE 
+                    						WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
+                    						ELSE JSON_UNQUOTE(payload -> '$.status.maxImageEndTime') 
+                    						END,
+                    					'%Y-%m-%dT%H:%i:%s')) latencyMin
+            FROM
                 PullRequests prs
-            LEFT  JOIN  
+            LEFT  JOIN
                     (
-                    SELECT * 
-                    FROM 
-                    crd_history 
+                    SELECT *
+                    FROM
+                    crd_history
                     WHERE ApiKind = 'Bundle') crds
-                ON crds.PRNum = prs.pr_num 
-            ORDER BY prs.pr_num 
+                ON crds.PRNum = prs.pr_num
+                WHERE  prs.merged_time > now() - INTERVAL 10 DAY
+            ORDER BY prs.merged_time desc
             ) imageLatency
             WHERE  latencyMin > 20",
     },
@@ -353,7 +360,7 @@ from (
         (
        SELECT    
           prs.pr_num, 
-          max(TIMESTAMPDIFF(minute,prs.merged_time, STR_TO_DATE( 
+          max(TIMESTAMPDIFF(minute,prs.most_recent_authorized_time, STR_TO_DATE( 
           CASE 
                     WHEN payload -> '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
                     ELSE JSON_UNQUOTE(payload -> '$.status.endTime') 
@@ -392,7 +399,7 @@ from (
         (       
                 SELECT  
                     prs.pr_num,
-                    MAX(TIMESTAMPDIFF(MINUTE, prs.merged_time, STR_TO_DATE( CASE WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() ELSE  JSON_UNQUOTE(payload -> '$.status.maxImageEndTime') END, '%Y-%m-%dT%H:%i:%s'))) latencyMin
+                    MAX(TIMESTAMPDIFF(MINUTE, STR_TO_DATE(JSON_UNQUOTE(payload -> '$.status.startTime'),'%Y-%m-%dT%H:%i:%s'), STR_TO_DATE( CASE WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() ELSE  JSON_UNQUOTE(payload -> '$.status.maxImageEndTime') END, '%Y-%m-%dT%H:%i:%s'))) latencyMin
             FROM 
                 PullRequests prs
             LEFT  JOIN
@@ -451,46 +458,47 @@ SELECT
       watchdogFrequency: "15m",
       name: "Sql95thPctPRSamLatencyOverLast24Hr",
       sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate,
-'sql.95thPctPRSamLatencyOverLast24Hr' as Metric, samlatencymin as Value, '' as Tags FROM   (   
-              SELECT sam.*, 
-                     @row_num := @row_num + 1 AS row_num 
-              FROM   (   
-                              SELECT   pr_num, 
+'sql.95thPctPRSamLatencyOverLast24Hr' as Metric, samlatencymin as Value, '' as Tags FROM   (  
+              SELECT sam.*,
+                     @row_num := @row_num + 1 AS row_num
+              FROM   (  
+                              SELECT   pr_num,
                                        totallatencymin - (imagelatencymin + tnrplatency) samlatencymin
-                              FROM     (   
-                                                       SELECT          pr_num, 
-                                                                       imagelatencymin, 
-                                                                       totallatencymin, 
+                              FROM     (  
+                                                       SELECT          pr_num,
+                                                                       imagelatencymin,
+                                                                       totallatencymin,
                                                                        Timestampdiff(minute, merged_time,
-                                                                       CASE 
+                                                                       CASE
                                                                                        WHEN t.manifest_zip_time IS NULL THEN Now()
                                                                                        ELSE t.manifest_zip_time
-                                                                       end) AS tnrplatency 
-                                                       FROM            (   
+                                                                       end) AS tnrplatency
+                                                       FROM            (  
                                                                                  SELECT    prs.pr_num,
                                                                                            prs.git_hash,
                                                                                            prs.merged_time,
-                                                                                           Max(Timestampdiff(minute, prs.merged_time, STR_TO_DATE(
-                                                                                           CASE 
-                                                                                                     WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
-                                                                                                     ELSE JSON_UNQUOTE(payload -> '$.status.maxImageEndTime') 
+                                                                                           Max(Timestampdiff(minute, STR_TO_DATE(JSON_UNQUOTE(payload -> '$.status.startTime'),'%Y-%m-%dT%H:%i:%s'), 
+                                                                                           		STR_TO_DATE(
+                                                                                           CASE
+                                                                                                     WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP()
+                                                                                                     ELSE JSON_UNQUOTE(payload -> '$.status.maxImageEndTime')
                                                                                            END,'%Y-%m-%dT%H:%i:%s'))) imagelatencymin,
-                                                                                           Max(Timestampdiff(minute, prs.merged_time,
-                                                                                           STR_TO_DATE( CASE 
-                                                                                                     WHEN payload -> '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
+                                                                                           Max(Timestampdiff(minute, prs.most_recent_authorized_time,
+                                                                                           STR_TO_DATE( CASE
+                                                                                                     WHEN payload -> '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP()
                                                                                                      ELSE JSON_UNQUOTE(payload -> '$.status.endTime')
                                                                                            END, '%Y-%m-%dT%H:%i:%s'))) totallatencymin
-                                                                                 FROM      PullRequests prs 
-                                                                                 LEFT JOIN 
-                                                                                           (   
+                                                                                 FROM      PullRequests prs
+                                                                                 LEFT JOIN
+                                                                                           (  
                                                                                                   SELECT *
                                                                                                   FROM   crd_history
                                                                                                   WHERE  apikind = 'Bundle') crds
                                                                                  ON        crds.prnum = prs.pr_num
                                                                                  WHERE     prs.state = 'merged'
                                                                                  AND       prs.merged_time > Now() - INTERVAL 24 hour
-                                                                                 GROUP BY  prs.pr_num) sam 
-                                                       LEFT OUTER JOIN TNRPManifestData t 
+                                                                                 GROUP BY  prs.pr_num) sam
+                                                       LEFT OUTER JOIN TNRPManifestData t
                                                        ON              sam.git_hash = t.git_hash )sam2)sam,
                                        ( SELECT @row_num := 0) counter ORDER BY samlatencymin ) temp
               WHERE  temp.row_num = Round (.95 * @row_num)",
