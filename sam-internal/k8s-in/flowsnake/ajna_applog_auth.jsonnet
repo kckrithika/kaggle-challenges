@@ -15,6 +15,27 @@ local kingdom = std.extVar("kingdom");
     // even if they are restricted. (Access to unrestricted Log Record Types does not require enumeration here.)
     ajna_applog_logrecordtype_grants_data: {
         "prd/prd-data-flowsnake": {
+            edge_intelligence: [
+                "augen",
+                "ailtn",
+                "u",
+            ],
+            einstein_analytics_discovery_monitoring: [
+                "aprst",
+                "G",
+                "gglog",
+                "gslog",
+                "iedfc",
+                "iedfs",
+                "iedrn",
+                "ieece",
+                "ieecq",
+            ],
+            flowsnake: [
+                "augen",
+                "ailtn",
+                "u",
+            ],
             search_dlc: [
                 "5",
                 "Q",
@@ -26,16 +47,6 @@ local kingdom = std.extVar("kingdom");
                 "serfv",
                 "sespc",
                 "seuir",
-            ],
-            edge_intelligence: [
-                "augen",
-                "ailtn",
-                "u",
-            ],
-            flowsnake: [
-                "augen",
-                "ailtn",
-                "u",
             ],
         },
         "prd/prd-data-flowsnake_test": {
