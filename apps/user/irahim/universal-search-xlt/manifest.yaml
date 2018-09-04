@@ -62,7 +62,7 @@ system:
         name: sherpa-xlt-real
       env:
       - name: SFDC_ENVIRONMENT
-        value: "stmfa"
+        value: "sam"
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
