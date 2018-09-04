@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-nginx-reporter" };
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
 if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {

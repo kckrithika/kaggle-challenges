@@ -57,7 +57,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/maureen.long/hypersdn:maureen.long-201808311945
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001112-7c3cc6da
         name: slb-nginx-reporter
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -82,7 +82,7 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-nginx-reporter
         name: var-logs-volume
       - hostPath:
           path: /data/certs
