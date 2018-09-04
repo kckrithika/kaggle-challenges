@@ -71,12 +71,12 @@ system:
         initialDelaySeconds: 120
         periodSeconds: 5
       volumeMounts:
-      - mountPath: /log
-        name: sherpa-log-volume
-      - mountPath: /server-certs
-        name: tls-server-cert
-      - mountPath: /client-certs
-        name: tls-client-cert
+      - name: sherpa-log-volume
+        mountPath: /log
+      - name: tls-server-cert
+        mountPath: /server-certs
+      - name: tls-client-cert
+        mountPath: /client-certs
     volumes:
     - name: logvol
       hostpath:
