@@ -25,7 +25,7 @@ serviceDeployment + {
         },
     ],
     portConfigs:: [ portConfig.service_health_port('package_mgmt_nodeport'), ],
-    replicas:: 3,
+    replicas:: 1,
     command:: ["java", "-jar", "/package-svc.jar", "--spring.profiles.active=" + configs.estate],
     env:: super.commonEnv + [
         {
