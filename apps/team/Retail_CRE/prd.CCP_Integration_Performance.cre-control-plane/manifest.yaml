@@ -37,6 +37,8 @@ system:
           value: kingdom-perf
         - name: HBASE_DATACENTER
           value: prd
+        - name: STREAM_PROCESSING_ENDPOINT
+          value: http://cre-sp-ccp-perf.retail-cre.localhost.mesh.force.com:5442
         - name: GDOT_FORCE_PROVISIONING
           value: false
       ports:
