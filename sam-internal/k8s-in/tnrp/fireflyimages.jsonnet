@@ -39,8 +39,8 @@ local configs = import "config.jsonnet";
              fireflypackage: "80",
              fireflypromotion: "80",
              fireflypullrequest: "80",
-             fireflydind: "9",
-             rabbitmq: "17",
+             fireflydind: "86",
+             rabbitmq: "86",
              },
 
         ### Release Phase 1 - prd-samdev
@@ -56,8 +56,8 @@ local configs = import "config.jsonnet";
             fireflypackage: "80",
             fireflypromotion: "80",
             fireflypullrequest: "80",
-            fireflydind: "9",
-            rabbitmq: "17",
+            fireflydind: "86",
+            rabbitmq: "86",
             },
 
         ### Release Phase 2 - prd-sam (Canary)
@@ -67,8 +67,8 @@ local configs = import "config.jsonnet";
             fireflypackage: "80",
             fireflypromotion: "80",
             fireflypullrequest: "80",
-            fireflydind: "9",
-            rabbitmq: "17",
+            fireflydind: "86",
+            rabbitmq: "86",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
@@ -77,8 +77,8 @@ local configs = import "config.jsonnet";
             fireflycrawler: "89",
             fireflypackage: "80",
             fireflypullrequest: "80",
-            fireflydind: "9",
-            rabbitmq: "17",
+            fireflydind: "86",
+            rabbitmq: "86",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
@@ -88,8 +88,8 @@ local configs = import "config.jsonnet";
             fireflypackage: "80",
             fireflypromotion: "80",
             fireflypullrequest: "80",
-            fireflydind: "9",
-            rabbitmq: "17",
+            fireflydind: "86",
+            rabbitmq: "86",
             },
         },
 
