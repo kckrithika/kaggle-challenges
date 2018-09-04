@@ -35,6 +35,7 @@ local configs = import "config.jsonnet";
         ### Release Phase 0 - prd-samtest
         "0": $.per_phase["1"] {
              fireflyintake: "80",
+             fireflycrawler: "89",
              fireflypackage: "80",
              fireflypullrequest: "80",
              fireflydind: "9",
@@ -50,6 +51,7 @@ local configs = import "config.jsonnet";
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
             fireflyintake: "80",
+            fireflycrawler: "89",
             fireflypackage: "80",
             fireflypullrequest: "80",
             fireflydind: "9",
@@ -59,6 +61,7 @@ local configs = import "config.jsonnet";
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
             fireflyintake: "80",
+            fireflycrawler: "89",
             fireflypackage: "80",
             fireflypullrequest: "80",
             fireflydind: "9",
@@ -68,6 +71,7 @@ local configs = import "config.jsonnet";
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
             fireflyintake: "80",
+            fireflycrawler: "89",
             fireflypackage: "80",
             fireflypullrequest: "80",
             fireflydind: "9",
@@ -77,6 +81,7 @@ local configs = import "config.jsonnet";
         ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
             fireflyintake: "80",
+            fireflycrawler: "89",
             fireflypackage: "80",
             fireflypullrequest: "80",
             fireflydind: "9",
@@ -112,6 +117,7 @@ local configs = import "config.jsonnet";
     # These are the images used by the templates
     rabbitmq: configs.registry + "/dva/firefly-rabbitmq:" + $.per_phase[$.phase].rabbitmq,
     fireflyintake: configs.registry + "/dva/firefly-intake:" + $.per_phase[$.phase].fireflyintake,
+    fireflycrawler: configs.registry + "/dva/firefly-crawler:" + $.per_phase[$.phase].fireflycrawler,
     fireflypackage: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jvergara/firefly-packagesvc:0.0.1-SNAPSHOT",
     fireflypullrequest: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jvergara/firefly-pullrequestsvc:0.0.1-SNAPSHOT",
     fireflydind: configs.registry + "/dva/firefly-dind:" + $.per_phase[$.phase].fireflydind,
