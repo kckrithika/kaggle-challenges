@@ -51,7 +51,7 @@ system:
       - name: beacon-log-volume
         mountPath: /home/scone/logs
     - name: sherpa-b
-      image: sfci/servicelibs/sherpa:2.0.27
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -85,6 +85,9 @@ system:
     - name: beacon-log-volume
       hostpath:
         path: /home/sfdc-beacon/logs
+    - name: tls-client-cert
+      maddogCert:
+        type: client
     - name: tls-server-cert
       maddogCert:
         type: server
