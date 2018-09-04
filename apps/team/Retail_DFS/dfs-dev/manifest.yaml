@@ -6,7 +6,7 @@ system:
   - name: dfs-dev
     count: 1
     identity:
-      serviceName: dfs-dev
+      serviceName: dfs
     volumes:
     - name: logvol
       hostPath:
