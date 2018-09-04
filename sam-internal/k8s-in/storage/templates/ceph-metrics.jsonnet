@@ -14,13 +14,11 @@ if std.setMember(configs.estate, enabledEstates) then
     kind: "List",
     metadata: {},
     items: [
-        {
+        configs.deploymentBase("storage") {
         local escapedMinionEstate = storageutils.string_replace(minionEstate, "_", "-"),
         local cephClusterName = "ceph-" + escapedMinionEstate,
         local cephClusterNamespace = (if configs.estate == "prd-sam_storage" then cephClusterName else "legostore"),
 
-        apiVersion: "extensions/v1beta1",
-        kind: "Deployment",
         metadata: {
             name: "ceph-metrics",
             namespace: cephClusterNamespace,
@@ -29,7 +27,7 @@ if std.setMember(configs.estate, enabledEstates) then
                 cloud: "storage",
             } + configs.ownerLabel.storage,
         },
-        spec: {
+        spec+: {
             replicas: 1,
             template: {
                 metadata: {

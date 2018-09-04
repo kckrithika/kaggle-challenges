@@ -41,9 +41,7 @@ local podVolumes =
     storageutils.log_init_volumes() +
     storageutils.cert_volume();
 
-if std.setMember(configs.estate, enabledEstates) then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if std.setMember(configs.estate, enabledEstates) then configs.deploymentBase("storage") {
     metadata: {
         labels: {
             name: "fds-controller",
@@ -53,7 +51,7 @@ if std.setMember(configs.estate, enabledEstates) then {
         name: "fds-controller-deployment",
         namespace: "sam-system",
     },
-    spec: {
+    spec+: {
         replicas: 1,
         strategy: {
             type: "RollingUpdate",

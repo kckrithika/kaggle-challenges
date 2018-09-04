@@ -14,9 +14,7 @@ local internal = {
     ),
 };
 
-local node_initializer_ds = {
-    apiVersion: "extensions/v1beta1",
-    kind: "DaemonSet",
+local node_initializer_ds = configs.daemonSetBase("storage") {
     metadata: {
         labels:
         {
@@ -26,7 +24,7 @@ local node_initializer_ds = {
         name: "node-initializer",
         namespace: "storage-foundation",
     },
-    spec: {
+    spec+: {
         template: {
             metadata: {
                 labels: {

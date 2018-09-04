@@ -31,6 +31,10 @@ items:
     namespace: firefly
   spec:
     replicas: 1
+    selector:
+      matchLabels:
+        name: firefly-crawler
+        sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
         maxSurge: 0

@@ -5,9 +5,7 @@ local configs = import "config.jsonnet";
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then configs.deploymentBase("storage") {
     metadata: {
         labels: {
             name: "dummy-storageservice-deployment",
@@ -17,7 +15,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
         name: "dummy-storageservice",
         namespace: "storage",
     },
-    spec: {
+    spec+: {
         // This is intentionally set to 0. Do not change.
         replicas: 0,
         template: {

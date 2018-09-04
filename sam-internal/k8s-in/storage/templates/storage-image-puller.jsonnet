@@ -84,7 +84,7 @@ if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "v1",
     kind: "List",
     items: [
-    {
+    configs.daemonSetBase("storage") {
         // For control estates that have multiple minion estates, include the escaped minion
         // estate name in the daemonset name.
         local estateSpecificNamePortion = if std.length(storageImageType.minionEstates) > 1
@@ -93,8 +93,6 @@ if std.setMember(configs.estate, enabledEstates) then {
         local name = storageImageType.type + estateSpecificNamePortion + "-image-puller",
         local pauseimage = "gcr.io/google_containers/pause-amd64:3.0",
 
-        apiVersion: "extensions/v1beta1",
-        kind: "DaemonSet",
         metadata: {
             labels: {
                 name: name,
@@ -104,7 +102,7 @@ if std.setMember(configs.estate, enabledEstates) then {
             name: name,
             namespace: "storage-foundation",
         },
-        spec: {
+        spec+: {
             template: {
                 metadata: {
                     labels: {

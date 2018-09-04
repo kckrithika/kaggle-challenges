@@ -28,6 +28,10 @@ items:
     namespace: firefly
   spec:
     replicas: 1
+    selector:
+      matchLabels:
+        name: firefly-package
+        sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
         maxSurge: 0
@@ -267,6 +271,10 @@ items:
     namespace: firefly
   spec:
     replicas: 1
+    selector:
+      matchLabels:
+        name: firefly-pullrequest
+        sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
         maxSurge: 0

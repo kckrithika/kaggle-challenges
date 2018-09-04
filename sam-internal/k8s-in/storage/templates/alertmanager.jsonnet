@@ -9,15 +9,13 @@ local enabledEstates = std.set([
     "prd-sam",
 ]);
 
-if std.setMember(configs.estate, enabledEstates) then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
+if std.setMember(configs.estate, enabledEstates) then configs.deploymentBase("storage") {
     metadata: {
         name: "alertmanager",
         namespace: "sam-system",
         labels: {} + configs.ownerLabel.storage,
     },
-    spec: {
+    spec+: {
         replicas: 1,
         template: {
             metadata: {

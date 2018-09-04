@@ -13,6 +13,11 @@ spec:
   progressDeadlineSeconds: 600
   replicas: 1
   revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      cloud: storage
+      name: fds-controller
+      team: storage-foundation
   strategy:
     rollingUpdate:
       maxSurge: 0

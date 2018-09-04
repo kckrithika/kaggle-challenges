@@ -8,6 +8,11 @@ metadata:
   name: sfstore-nodeprep-undo
   namespace: storage-foundation
 spec:
+  selector:
+    matchLabels:
+      app: sfstore-nodeprep-undo
+      cloud: storage
+      team: storage-foundation
   template:
     metadata:
       labels:

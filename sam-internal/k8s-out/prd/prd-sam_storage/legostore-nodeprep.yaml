@@ -9,6 +9,11 @@ metadata:
   namespace: storage-foundation
 spec:
   minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: legostore-nodeprep
+      cloud: storage
+      team: storage-foundation
   template:
     metadata:
       labels:

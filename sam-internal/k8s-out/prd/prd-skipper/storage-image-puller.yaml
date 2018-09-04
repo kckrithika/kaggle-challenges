@@ -12,6 +12,11 @@ items:
     namespace: storage-foundation
   spec:
     minReadySeconds: 30
+    selector:
+      matchLabels:
+        cloud: storage
+        name: sfstore-image-puller
+        team: storage-foundation
     template:
       metadata:
         labels:
@@ -46,6 +51,11 @@ items:
     namespace: storage-foundation
   spec:
     minReadySeconds: 30
+    selector:
+      matchLabels:
+        cloud: storage
+        name: ceph-image-puller
+        team: storage-foundation
     template:
       metadata:
         labels:
