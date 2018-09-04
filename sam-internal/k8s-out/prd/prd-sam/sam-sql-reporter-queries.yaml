@@ -917,6 +917,27 @@ data:
           ],
           "name": "FailedCreatePodSandBox",
           "note": "This shows all system-wide k8s events with reason equal to FailedCreatePodSandBox in last 1 hour"
+        },
+        {
+          "multisql": [
+            {
+              "name": "First Approval link post latency",
+              "sql": "SELECT\n          *\n        FROM (SELECT \n            pr_num,\n            TIMESTAMPDIFF(SECOND, created_time, CASE WHEN first_approval_link_posted_time IS NULL THEN now() ELSE first_approval_link_posted_time END) latencyInSeconds,\n            first_approval_link_posted_time,\n            created_time\n        FROM PullRequests \n        WHERE created_time IS NOT NULL AND created_time \u003e NOW() - Interval 10 day AND state ='open') approvalLinkInSec\n        ORDER BY pr_num desc\n        LIMIT 5"
+            },
+            {
+              "name": "Manifest zip latency",
+              "sql": "SELECT\n             *\n            FROM\n            (SELECT\n              p.pr_num,\n              t.manifest_zip_time,\n              p.merged_time,\n              TIMESTAMPDIFF(MINUTE, merged_time, CASE WHEN t.manifest_zip_time IS NULL THEN now() ELSE t.manifest_zip_time END) latencyMin\n            FROM PullRequests p\n            LEFT OUTER JOIN TNRPManifestData t\n            ON p.git_hash = t.git_hash\n            WHERE p.state ='merged'   AND p.`merged_time` \u003e NOW() - INTERVAL 10 DAY\n            ) manifestZip\n            ORDER BY `merged_time` desc\n            LIMIT 10"
+            },
+            {
+              "name": "Artifactory latency",
+              "sql": "SELECT \n                *    \n            FROM \n                (    \n                SELECT  \n                    prs.pr_num,\n                    crds.PoolName,\n                    crds.ControlEstate,\n                    crds.payload -\u003e '$.status.maxImageEndTime' maxImageEndTime,\n                    crds.payload -\u003e '$.status.startTime' startTime,\n                    GREATEST(0,\tTIMESTAMPDIFF(\n                    \t\tMINUTE, \n                    \t\tSTR_TO_DATE( \n        \t\t\t\t\tJSON_UNQUOTE(payload -\u003e '$.status.startTime'),\n        \t\t\t\t\t'%Y-%m-%dT%H:%i:%s' ), \n                    \t\tSTR_TO_DATE( \n          \t\t\t\t\tCASE \n                   \t\t\t\tWHEN payload -\u003e '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() \n                    \t\tELSE JSON_UNQUOTE(payload -\u003e '$.status.maxImageEndTime') \n          \t\t\t\t\tEND,\n          \t\t\t\t\t'%Y-%m-%dT%H:%i:%s' ))) latencyMin\n            FROM \n                PullRequests prs\n            LEFT  JOIN  \n                    (    \n                    SELECT * \n                    FROM \n                    crd_history \n                    WHERE ApiKind = 'Bundle') crds \n                ON crds.PRNum = prs.pr_num \n                         WHERE prs.`state`='merged' AND  prs.merged_time \u003e now() - INTERVAL 10 DAY\n             ORDER BY prs.merged_time DESC\n            ) imageLatency\n            LIMIT 10"
+            },
+            {
+              "name": "End to end latency",
+              "sql": "SELECT\n                           *\n                        FROM\n                            (\n                            SELECT\n                                prs.pr_num,\n                                prs.most_recent_authorized_time,\n                                payload -\u003e '$.status.endTime' endTime,\n                                crds.PoolName,\n                                crds.ControlEstate,\n                                TIMESTAMPDIFF(MINUTE,prs.most_recent_authorized_time, STR_TO_DATE( CASE \n                                    WHEN payload -\u003e '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() \n                                    ELSE JSON_UNQUOTE(payload -\u003e '$.status.endTime')\n                                    END ,'%Y-%m-%dT%H:%i:%s' )) latencyMin\n                        FROM\n                            PullRequests prs\n                        LEFT  JOIN\n                                (\n                                SELECT *\n                                FROM\n                                crd_history\n                                WHERE ApiKind = 'Bundle') crds\n                            ON crds.PRNum = prs.pr_num\n                        WHERE  prs.merged_time \u003e now() - INTERVAL 10 DAY\n                        ORDER BY prs.`merged_time` DESC\n                        ) prLatency\n                        LIMIT 10"
+            }
+          ],
+          "name": "PR metrics"
         }
       ]
     }
