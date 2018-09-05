@@ -1,0 +1,73 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-redundancy-checker
+  name: slb-redundancy-checker
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: slb-redundancy-checker
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-redundancy-checker
+        - --log_dir=/host/data/slb/logs/
+        - --hostnameOverride=$(NODE_NAME)
+        - --metricsEndpoint=ajna0-funnel1-0-cdg.data.sfdc.net:80
+        - --deploymentsToMonitor=slb-ipvs,slb-nginx-config-b,slb-vip-watchdog,slb-echo-server,slb-dns-register
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
+        name: slb-redundancy-checker
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+      volumes:
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /data/slb/logs/
+        name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
