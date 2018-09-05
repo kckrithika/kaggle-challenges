@@ -195,7 +195,7 @@ if slbconfigs.slbInKingdom then configs.deploymentBase("slb") {
                                     ]),
                                 },
                             ] +
-                            (if slbimages.phaseNum == 1 then [{
+                            (if slbimages.hypersdn_build > 1120 then [{
                                  name: "slb-nginx-data",
                                  image: slbimages.hypersdn,
                                  command: [
