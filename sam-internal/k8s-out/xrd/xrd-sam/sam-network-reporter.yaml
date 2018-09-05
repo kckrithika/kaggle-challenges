@@ -22,6 +22,8 @@ spec:
         - --config=/config/sam-network-reporter.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
         - name: SFDCLOC_NODE_NAME
           valueFrom:
             fieldRef:
@@ -29,8 +31,8 @@ spec:
         image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/hypersam:sam-0002252-a9ad81d9
         name: sam-network-reporter
         ports:
-        - containerPort: 37373
-          hostPort: 37373
+        - containerPort: 3333
+          hostPort: 3333
         resources:
           limits:
             sam.sfdc.net/ip-address: "1"
@@ -39,19 +41,19 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /data/certs
-          name: certs
-        - mountPath: /etc/kubernetes/kubeconfig-platform
-          name: kubeconfig
-          readOnly: true
         - mountPath: /config
           name: config
       volumes:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
       - configMap:
           name: sfdchosts
         name: sfdchosts
@@ -59,11 +61,11 @@ spec:
           path: /data/certs
         name: certs
       - hostPath:
-          path: /etc/kubernetes/kubeconfig-platform
-        name: kubeconfig
-      - hostPath:
           path: /manifests
         name: sfdc-volume
+      - configMap:
+          name: sam-network-reporter
+        name: config
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 25%

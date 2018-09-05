@@ -4,9 +4,9 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 if configs.kingdom == "prd" || configs.kingdom == "xrd" then configs.daemonSetBase("sam") {
     spec+: {
         template: {
-            spec: configs.specWithMadDog {
+            spec: configs.specWithKubeConfigAndMadDog {
                 containers: [
-                    configs.containerWithMadDog {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "sam-network-reporter",
                         image: samimages.hypersam,
                         command: [
@@ -18,10 +18,14 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" then configs.daemonSetBa
                         ],
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
-                            configs.cert_volume_mount,
-                            configs.kube_config_platform_volume_mount,
                             configs.config_volume_mount,
-                        ],
+                        ]
+                        #+ [{
+                        #    mountPath: "/etc/kubernetes/kubeconfig-platform",
+                        #        name: "kubeconfig",
+                        #        readOnly: true,
+                        #}]
+                        ,
                         env+: [
                             {
                                 name: "SFDCLOC_NODE_NAME",
@@ -34,8 +38,8 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" then configs.daemonSetBa
                         ],
                         ports: [
                             {
-                                containerPort: 37373,
-                                hostPort: 37373,
+                                containerPort: 3333,
+                                hostPort: 3333,
                             },
                         ],
                         resources+: configs.ipAddressResource,
@@ -44,14 +48,27 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" then configs.daemonSetBa
                 volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
-                    configs.kube_config_platform_volume,
                 ]
-                + [{
-                    hostPath: {
-                        path: "/manifests",
+                + [
+                    {
+                        hostPath: {
+                            path: "/manifests",
+                        },
+                        name: "sfdc-volume",
                     },
-                    name: "sfdc-volume",
-                }],
+                    #{
+                    #    hostPath: {
+                    #        path: "/etc/kubernetes/kubeconfig-platform",
+                    #    },
+                    #    name: "kubeconfig",
+                    #},
+                    {
+                        configMap: {
+                            name: "sam-network-reporter",
+                        },
+                        name: "config",
+                    },
+                ],
             },
             metadata: {
                 labels: {

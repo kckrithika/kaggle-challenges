@@ -282,17 +282,6 @@ local utils = import "util_functions.jsonnet",
         },
         name: "kubeconfig",
     },
-    kube_config_platform_volume: {
-        hostPath: {
-            path: "/etc/kubernetes/kubeconfig-platform",
-        },
-        name: "kubeconfig",
-    },
-    kube_config_platform_volume_mount: {
-        mountPath: "/etc/kubernetes/kubeconfig-platform",
-        name: "kubeconfig",
-        readOnly: true,
-    },
 
     # For Cleaning up SLB logs or other Random mounts to be used for ops-adhoc DaemonSet
     opsadhoc_volume_mount: {
