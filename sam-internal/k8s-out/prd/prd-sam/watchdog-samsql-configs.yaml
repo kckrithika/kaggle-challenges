@@ -147,9 +147,10 @@ data:
     ApiKind = ''Deployment''\n                        ) AS ss\n                        WHERE\n                           isSamApp
     AND\n                           ( Namespace != ''sam-watchdog'' AND Namespace
     != ''sam-system'' AND Namespace != ''csc-sam'' AND Namespace NOT LIKE ''%slb%''
-    AND Namespace NOT LIKE ''%user%'') AND\n                           (availableReplicas
-    != desiredReplicas OR availableReplicas IS NULL) AND\n                           (availability
-    IS NULL OR availability < 0.6) AND\n                           (kpodsDown IS NULL
+    AND Namespace NOT LIKE ''%user%'' \n                           AND Namespace NOT
+    LIKE ''%cloudatlas%'') AND\n                           (availableReplicas != desiredReplicas
+    OR availableReplicas IS NULL) AND\n                           (availability IS
+    NULL OR availability < 0.6) AND\n                           (kpodsDown IS NULL
     OR kpodsDown >1) AND\n                           NOT ControlEstate LIKE ''prd-%''
     AND\n                           ControlEstate != ''unknown'' AND\n                           desiredReplicas
     > 1", "watchdogFrequency": "10m"}, {"alertAction": "pagerduty", "alertFrequency":
@@ -162,12 +163,13 @@ data:
     as TotalCount,\n                        SUM(CASE WHEN READY = ''True'' THEN 0
     ELSE 1 END) as NotReadyCount,\n                        minionpool\n                  FROM\n                        nodeDetailView\n                  WHERE\n                        KINGDOM
     != ''PRD'' AND KINGDOM != ''UNK''\n                        AND minionpool NOT
-    LIKE ''%ceph%''\n                  GROUP BY minionpool\n              ) ss\n              )
-    ss2\n              WHERE (TotalCount < 10 AND NotReadyCount >=2) OR (TotalCount
-    >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency": "10m"}, {"alertAction": "email",
-    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions":
-    "The following SAM control stack components dont have even 1 healhty pod", "name":
-    "SqlSamControl", "sql": "SELECT * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
+    LIKE ''%ceph%''\n                        AND minionpool NOT LIKE ''%slb%''\n                        AND
+    minionpool NOT LIKE ''%storage%''\n                  GROUP BY minionpool\n              )
+    ss\n              ) ss2\n              WHERE (TotalCount < 10 AND NotReadyCount
+    >=2) OR (TotalCount >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency": "10m"},
+    {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
+    "10m", "instructions": "The following SAM control stack components dont have even
+    1 healhty pod", "name": "SqlSamControl", "sql": "SELECT * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
     ''$.spec.replicas'') AS desiredReplicas,\n                      JSON_EXTRACT(Payload,
     ''$.status.availableReplicas'') AS availableReplicas,\n                      JSON_EXTRACT(Payload,
     ''$.status.updatedReplicas'') AS updatedReplicas,\n                      (JSON_EXTRACT(Payload,
