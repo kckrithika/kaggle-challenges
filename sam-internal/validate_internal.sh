@@ -19,12 +19,11 @@ docker run \
   -u 0 \
   -v ${PWD}:/repo \
   ${HYPERSAM} \
-  sam-manifest-builder \
-  --root='/repo/' \
-  -validateonly \
-  -validationExceptionsFile=/repo/sam-internal/validation-whitelist.yaml \
-  -skip-sam-internals \
-  -FullSchemaValidation \
+  manifestctl validate-manifests \
+  --inputDir='/repo/' \
+  --validationExceptionsFile=/repo/sam-internal/validation-whitelist.yaml \
+  -skipSamIntSwagger \
+  -fullSchemaValidationEnabled \
 
 docker run \
   --rm \
