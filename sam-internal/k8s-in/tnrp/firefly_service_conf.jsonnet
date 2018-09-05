@@ -3,7 +3,7 @@ local portConfig = import "portconfig.jsonnet";
 
 {
     common:: {
-        intakeEndpoint:: "firefly-intake.firefly." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net:" + portConfig.firefly.intake_http,
+        intakeEndpoint:: "http://firefly-intake.firefly." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net:" + portConfig.firefly.intake_http,
     },
     dev:: $.common {
         artifactoryDevHost:: 'testrepo1-0-prd.data.sfdc.net',
