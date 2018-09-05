@@ -81,8 +81,11 @@ spec:
             command:
             - rabbitmqctl
             - node_health_check
-          initialDelaySeconds: 30
-          timeoutSeconds: 10
+          failureThreshold: 10
+          initialDelaySeconds: 180
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 60
         name: rabbitmq
         ports:
         - containerPort: 15672
@@ -101,9 +104,13 @@ spec:
           exec:
             command:
             - rabbitmqctl
-            - node_health_check
-          initialDelaySeconds: 10
-          timeoutSeconds: 10
+            - await_online_nodes
+            - "2"
+          failureThreshold: 10
+          initialDelaySeconds: 180
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 60
         resources:
           limits:
             sam.sfdc.net/ip-address: "1"
@@ -252,3 +259,5 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+  updateStrategy:
+    type: RollingUpdate

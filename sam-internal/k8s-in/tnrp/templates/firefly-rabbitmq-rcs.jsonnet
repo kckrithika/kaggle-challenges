@@ -24,6 +24,9 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
     },
     serviceName: 'rabbitmq-set',
     replicas: 3,
+    updateStrategy: {
+        type: "RollingUpdate",
+    },
     template: {
       metadata: {
         labels: {
@@ -189,18 +192,25 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                   'node_health_check',
                 ],
               },
-              initialDelaySeconds: 30,
-              timeoutSeconds: 10,
+              initialDelaySeconds: 180,
+              timeoutSeconds: 60,
+              periodSeconds: 30,
+              successThreshold: 1,
+              failureThreshold: 10,
             },
             readinessProbe: {
               exec: {
                 command: [
                   'rabbitmqctl',
-                  'node_health_check',
+                  'await_online_nodes',
+                  '2',
                 ],
               },
-              initialDelaySeconds: 10,
-              timeoutSeconds: 10,
+              initialDelaySeconds: 180,
+              timeoutSeconds: 60,
+              periodSeconds: 30,
+              successThreshold: 1,
+              failureThreshold: 10,
             },
           },
           {
