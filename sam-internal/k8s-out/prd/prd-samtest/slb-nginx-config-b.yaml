@@ -91,7 +91,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001120-808fcaa9
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
         name: slb-nginx-config-b
         ports:
         - containerPort: 32146
@@ -127,6 +127,25 @@ spec:
         - mountPath: /cert2
           name: cert2
       - command:
+        - /sdn/slb-nginx-data
+        - --target=/host/data/slb/nginx/config
+        - --connPort=9125
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9125
+          initialDelaySeconds: 5
+          periodSeconds: 3
+        name: slb-nginx-data
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
         - /sdn/slb-file-watcher
         - --filePath=/host/data/slb/logs/slb-nginx-config-b/slb-nginx-proxy.emerg.log
         - --metricName=nginx-emergency
@@ -142,7 +161,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001120-808fcaa9
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
@@ -209,7 +228,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001120-808fcaa9
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
         name: slb-cert-checker
         volumeMounts:
         - mountPath: /host/data/slb/nginx/config
@@ -255,7 +274,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001120-808fcaa9
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -292,7 +311,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001120-808fcaa9
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -314,7 +333,7 @@ spec:
         - --control.sentinelExpiration=1800s
         - --listenOnSocket=true
         - --readOnly=false
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001120-808fcaa9
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -333,7 +352,7 @@ spec:
         - --nginxPodMode=true
         - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
         - --client.dialSocket=true
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001120-808fcaa9
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
         name: slb-realsvrcfg
         securityContext:
           privileged: true
@@ -357,7 +376,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001120-808fcaa9
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -388,7 +407,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001120-808fcaa9
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
         name: slb-manifest-watcher
         securityContext:
           privileged: true
