@@ -2,9 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-labels-checker
-    sam.data.sfdc.net/owner: slb
-  name: slb-labels-checker
+    name: slb-redundancy-checker
+  name: slb-redundancy-checker
   namespace: sam-system
 spec:
   minReadySeconds: 30
@@ -12,8 +11,7 @@ spec:
   selector:
     matchLabels:
       apptype: monitoring
-      name: slb-labels-checker
-      sam.data.sfdc.net/owner: slb
+      name: slb-redundancy-checker
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -23,18 +21,17 @@ spec:
     metadata:
       labels:
         apptype: monitoring
-        name: slb-labels-checker
-        sam.data.sfdc.net/owner: slb
+        name: slb-redundancy-checker
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sdn/slb-labels-checker
+        - /sdn/slb-redundancy-checker
         - --log_dir=/host/data/slb/logs/
         - --hostnameOverride=$(NODE_NAME)
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --deploymentsToMonitor=slb-ipvs,slb-nginx-config-b,slb-vip-watchdog,slb-echo-server,slb-dns-register
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --labelValues=slb-ipvs:3,slb-nginx-b:3
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -43,12 +40,9 @@ spec:
             fieldRef:
               fieldPath: spec.nodeName
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
-        name: slb-labels-checker
-        resources:
-          limits:
-            sam.sfdc.net/ip-address: "1"
-          requests:
-            sam.sfdc.net/ip-address: "1"
+        name: slb-redundancy-checker
+        securityContext:
+          privileged: true
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
@@ -62,8 +56,6 @@ spec:
           name: certs
         - mountPath: /etc/pki_service
           name: maddog-certs
-      nodeSelector:
-        pool: prd-samdev
       volumes:
       - hostPath:
           path: /data/slb
