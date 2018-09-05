@@ -49,10 +49,7 @@ else
                             "--dns-port=10053",
                             "--kubecfg-file=/etc/kubernetes/kubeconfig",
                             "--v=2",
-                        ] + if flowsnake_config.kubedns_log_queries then [
-                            "--log-queries",
-                            "--log-async",
-                        ] else [],
+                        ],
                         env: [
                             {
                                 name: "PROMETHEUS_PORT",
@@ -153,7 +150,10 @@ else
                             "--server=/cluster.local/127.0.0.1#10053",
                             "--server=/in-addr.arpa/127.0.0.1#10053",
                             "--server=/ip6.arpa/127.0.0.1#10053",
-                        ],
+                        ] + if flowsnake_config.kubedns_log_queries then [
+                            "--log-queries",
+                            "--log-async",
+                        ] else [],
                         image: flowsnake_images.kubednsmasq,
                         imagePullPolicy: flowsnake_config.default_image_pull_policy,
                         livenessProbe: {
