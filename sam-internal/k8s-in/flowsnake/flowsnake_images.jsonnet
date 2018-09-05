@@ -124,7 +124,7 @@ local utils = import "util_functions.jsonnet";
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
-                add_12_1_canary: "unverified",  #UNVERIFIED -- DO NOT DISTRIBUTE
+                add_12_1_canary: "verified",  #verified in test fleet
             },
             version_mapping: {
                 main: {
@@ -154,6 +154,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
+                add_12_1_canary: "unverified",  #UNVERIFIED -- DO NOT DISTRIBUTE
             },
             version_mapping: {
                 main: {
@@ -163,6 +164,7 @@ local utils = import "util_functions.jsonnet";
                   "0.11.0": 681,
                   "0.11.0.sluice_fix": 691,
                   "0.12.0": 696,
+                  "0.12.1": 10001,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
