@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbports = import "slbports.jsonnet";
 
-if slbimages.phaseNum == 1 then {
+if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slbInKingdom) then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
