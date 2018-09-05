@@ -29,7 +29,9 @@
                         ) AS ss
                         WHERE
                            isSamApp AND
-                           ( Namespace != 'sam-watchdog' AND Namespace != 'sam-system' AND Namespace != 'csc-sam' AND Namespace NOT LIKE '%slb%' AND Namespace NOT LIKE '%user%') AND
+                           ( Namespace != 'sam-watchdog' AND Namespace != 'sam-system' AND Namespace != 'csc-sam' AND Namespace NOT LIKE '%slb%' AND Namespace NOT LIKE '%user%' 
+                           " + "AND Namespace NOT LIKE '%cloudatlas%'" +  # Follow up work item W-5415695
+                           ") AND
                            (availableReplicas != desiredReplicas OR availableReplicas IS NULL) AND
                            (availability IS NULL OR availability < 0.6) AND
                            (kpodsDown IS NULL OR kpodsDown >1) AND
@@ -72,6 +74,8 @@
                   WHERE
                         KINGDOM != 'PRD' AND KINGDOM != 'UNK'
                         AND minionpool NOT LIKE '%ceph%'
+                        AND minionpool NOT LIKE '%slb%'
+                        AND minionpool NOT LIKE '%storage%'
                   GROUP BY minionpool
               ) ss
               ) ss2
