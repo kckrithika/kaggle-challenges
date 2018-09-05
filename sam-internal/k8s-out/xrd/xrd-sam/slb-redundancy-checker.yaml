@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-labels-checker
-  name: slb-labels-checker
+    name: slb-redundancy-checker
+  name: slb-redundancy-checker
   namespace: sam-system
 spec:
   minReadySeconds: 30
@@ -17,17 +17,17 @@ spec:
     metadata:
       labels:
         apptype: monitoring
-        name: slb-labels-checker
+        name: slb-redundancy-checker
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sdn/slb-labels-checker
+        - /sdn/slb-redundancy-checker
         - --log_dir=/host/data/slb/logs/
         - --hostnameOverride=$(NODE_NAME)
-        - --metricsEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
+        - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
+        - --deploymentsToMonitor=slb-ipvs,slb-nginx-config-b,slb-vip-watchdog,slb-echo-server,slb-dns-register
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --labelValues=slb-ipvs:3,slb-nginx-b:3
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -35,8 +35,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
-        name: slb-labels-checker
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001122-a47f2ed1
+        name: slb-redundancy-checker
+        securityContext:
+          privileged: true
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
@@ -50,8 +52,6 @@ spec:
           name: certs
         - mountPath: /etc/pki_service
           name: maddog-certs
-      nodeSelector:
-        pool: iad-slb
       volumes:
       - hostPath:
           path: /data/slb
