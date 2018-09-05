@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/sdn/deployerbot:v-0001120-808fcaa9
+      image: tnrp/moe/deployerbot:v-0001126-c0ffd1c3
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -27,16 +27,10 @@ system:
       - mountPath: /secrets
         name: deployerbot-ghe-pat
         readOnly: true
-      - mountPath: /home/deployerbot
-        name: deployerbot-gitconfig
-        readOnly: true
     volumes:
     - name: deployerbot-ghe-pat
       k4aSecret:
         secretName: speedometer-ghe-pat
-    - name: deployerbot-gitconfig
-      k4aSecret:
-        secretName: gitconfig
   loadbalancers:
   - lbname: deployerbot
     function: deployerbot

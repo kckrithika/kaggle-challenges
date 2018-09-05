@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: payloadbot
-      image: tnrp/sdn/payloadbot:v-0001120-808fcaa9
+      image: tnrp/moe/payloadbot:v-0001126-c0ffd1c3
       command: ["/payloadbot/payloadbot"]
       args:
       - "-gheTokenPath"
@@ -31,16 +31,10 @@ system:
       - mountPath: /secrets
         name: payloadbot-ghe-pat
         readOnly: true
-      - mountPath: /config
-        name: payloadbot-config
-        readOnly: true
     volumes:
     - name: payloadbot-ghe-pat
       k4aSecret:
         secretName: speedometer-ghe-pat
-    - name: payloadbot-config
-      k4aSecret:
-        secretName: payloadbot-config
   loadbalancers:
   - lbname: payloadbot
     function: payloadbot
