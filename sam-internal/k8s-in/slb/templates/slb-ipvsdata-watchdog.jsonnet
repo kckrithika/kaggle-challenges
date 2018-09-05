@@ -31,11 +31,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                         name: "slb-ipvsdata-watchdog",
                         image: slbimages.hypersdn,
                         [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
-                        command: (if slbimages.hypersdn_build >= 1075 then [
-                                      "/sdn/slb-ipvs-data-watchdog",
-                                  ] else [
-                                      "/sdn/slb-ipvsdata-watchdog",
-                                  ]) + [
+                        command: [
+                            "/sdn/slb-ipvs-data-watchdog",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--namespace=sam-system",
                             configs.sfdchosts_arg,
