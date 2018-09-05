@@ -1,6 +1,6 @@
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-if !flowsnakeconfig.kubedns_manifests_enabled then
+if !flowsnake_config.kubedns_manifests_enabled then
 "SKIP"
 else
 {
@@ -49,7 +49,10 @@ else
                             "--dns-port=10053",
                             "--kubecfg-file=/etc/kubernetes/kubeconfig",
                             "--v=2",
-                        ],
+                        ] + if flowsnake_config.kubedns_log_queries then [
+                            "--log-queries",
+                            "--log-async",
+                        ] else [],
                         env: [
                             {
                                 name: "PROMETHEUS_PORT",
@@ -57,7 +60,7 @@ else
                             },
                         ],
                         image: flowsnake_images.kubedns,
-                        imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
+                        imagePullPolicy: flowsnake_config.default_image_pull_policy,
                         livenessProbe: {
                             failureThreshold: 5,
                             exec: {
@@ -152,7 +155,7 @@ else
                             "--server=/ip6.arpa/127.0.0.1#10053",
                         ],
                         image: flowsnake_images.kubednsmasq,
-                        imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
+                        imagePullPolicy: flowsnake_config.default_image_pull_policy,
                         livenessProbe: {
                             failureThreshold: 5,
                             httpGet: {
@@ -195,7 +198,7 @@ else
                             "--probe=dnsmasq,127.0.0.1:53,kubernetes.default.svc.cluster.local,5,A",
                         ],
                         image: flowsnake_images.kubednssidecar,
-                        imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
+                        imagePullPolicy: flowsnake_config.default_image_pull_policy,
                         livenessProbe: {
                             failureThreshold: 5,
                             httpGet: {

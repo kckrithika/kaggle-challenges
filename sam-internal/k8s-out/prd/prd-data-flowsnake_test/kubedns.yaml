@@ -33,6 +33,8 @@ spec:
         - --dns-port=10053
         - --kubecfg-file=/etc/kubernetes/kubeconfig
         - --v=2
+        - --log-queries
+        - --log-async
         env:
         - name: PROMETHEUS_PORT
           value: "10055"
