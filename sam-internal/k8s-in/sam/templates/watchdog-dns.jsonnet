@@ -6,10 +6,10 @@ local utils = import "util_functions.jsonnet";
 if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then configs.deploymentBase("sam") {
     spec+: {
         template: {
-            spec: configs.specWithMadDog {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 containers: [
-                    configs.containerWithMadDog {
+                    configs.containerWithKubeConfigAndMadDog {
                         image: samimages.hypersam,
                         command: [
                                      "/sam/watchdog",

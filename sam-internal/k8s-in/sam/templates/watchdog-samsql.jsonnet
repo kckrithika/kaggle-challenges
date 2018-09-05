@@ -8,10 +8,10 @@ if configs.estate == "prd-sam" then {
     spec: {
         replicas: 1,
         template: {
-            spec: configs.specWithMadDog {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 containers: [
-                    configs.containerWithMadDog {
+                    configs.containerWithKubeConfigAndMadDog {
                         name: "watchdog-samsql",
                         image: samimages.hypersam,
                         command: [

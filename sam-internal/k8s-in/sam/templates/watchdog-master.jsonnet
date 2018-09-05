@@ -4,10 +4,10 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 configs.daemonSetBase("sam") {
     spec+: {
         template: {
-            spec: configs.specWithMadDog {
+            spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 containers: [
-                    configs.containerWithMadDog {
+                    configs.containerWithKubeConfigAndMadDog {
                         image: samimages.hypersam,
                         command: [
                                      "/sam/watchdog",
