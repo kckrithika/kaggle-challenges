@@ -14,7 +14,7 @@ system:
       - "-tnrpImagePrefixMapPath"
       - "image_prefixes.yaml"
       - "-includedTeamsListPath"
-      - "/config/included_teams.yaml"
+      - "/payloadbot/included_teams.yaml"
       - "-maxCommentedOnSourcePRs"
       - "20"
       - "-manifestOrg"
