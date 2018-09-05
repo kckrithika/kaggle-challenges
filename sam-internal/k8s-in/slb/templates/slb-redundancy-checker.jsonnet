@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if slbimages.hypersdn_build > 1120 then configs.deploymentBase("slb") {
+if slbimages.hypersdn_build > 1120 && slbconfigs.slbInKingdom then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-redundancy-checker",
