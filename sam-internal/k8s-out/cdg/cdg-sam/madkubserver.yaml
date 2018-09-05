@@ -41,7 +41,7 @@ spec:
         - cdg
         - --estate
         - cdg-sam
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000074-4c95976a
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000077-b1d3a629
         livenessProbe:
           httpGet:
             path: /healthz
@@ -99,7 +99,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000074-4c95976a
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000077-b1d3a629
         name: madkub-refresher
         resources: {}
         volumeMounts:
