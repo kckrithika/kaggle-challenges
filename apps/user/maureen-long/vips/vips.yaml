@@ -6,6 +6,8 @@
    - port: 80
      targetport: 12087
      lbtype: http
+     healthport: 12087
+     healthpath: "/liveness-probe"
 - lbname: maureen-dos
   servers:
    - 10.231.187.66
@@ -14,3 +16,5 @@
    - port: 80
      targetport: 12087
      lbtype: tcp
+     healthport: 12087
+     healthpath: "/liveness-probe"
