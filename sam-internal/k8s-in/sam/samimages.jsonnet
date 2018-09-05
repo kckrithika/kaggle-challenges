@@ -55,6 +55,8 @@ for ce in [
             "ph2-sam",
             "phx-sam",
             "prd-sam",
+            "prd-samdev",
+            "prd-samtest",
             "prd-sam_storage",
             "prd-sam_storagedev",
             "prd-samtwo",
