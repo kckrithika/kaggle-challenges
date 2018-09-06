@@ -1,3 +1,5 @@
 apps:
  samhello:
   - prd/prd-sam
+ render-ethgen-test:
+  - prd/prd-sam
