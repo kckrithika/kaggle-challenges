@@ -50,7 +50,7 @@ spec:
         - --hostnameOverride=$(NODE_NAME)
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --metricsEndpoint=ajna0-funnel1-0-cdg.data.sfdc.net:80
-        - --httpTimeout=10s
+        - --httpTimeout=5s
         - --vipLoop=1
         - --monitorFrequency=10s
         - --client.serverInterface=lo
