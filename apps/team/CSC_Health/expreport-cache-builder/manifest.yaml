@@ -19,7 +19,7 @@ system:
           path: /var/log/report-cache-builder
     containers:
     - name: expreport-cache-builder
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-cache-builder:20180824071309
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-cache-builder:20180906105011
       ports:
       - name: provider-https
         containerPort: 8443
