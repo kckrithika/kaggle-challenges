@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: ethgen
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgardner/ethgen:mgardner-20180906
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgardner/ethgen:mgardner-20180906-2
       ports:
       - containerPort: 50051
       livenessProbe:
