@@ -11,7 +11,7 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" then configs.daemonSetBa
                         image: samimages.hypersam,
                         command: [
                             "/sam/sam-network-reporter",
-                            "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                            "--funnelEndpoint=" + configs.funnelVIP,
                             "--logtostderr=true",
                             "--config=/config/sam-network-reporter.json",
                             "--hostsConfigFile=/sfdchosts/hosts.json",
@@ -19,13 +19,7 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" then configs.daemonSetBa
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
-                        ]
-                        #+ [{
-                        #    mountPath: "/etc/kubernetes/kubeconfig-platform",
-                        #        name: "kubeconfig",
-                        #        readOnly: true,
-                        #}]
-                        ,
+                        ],
                         env+: [
                             {
                                 name: "SFDCLOC_NODE_NAME",
@@ -56,12 +50,6 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" then configs.daemonSetBa
                         },
                         name: "sfdc-volume",
                     },
-                    #{
-                    #    hostPath: {
-                    #        path: "/etc/kubernetes/kubeconfig-platform",
-                    #    },
-                    #    name: "kubeconfig",
-                    #},
                     {
                         configMap: {
                             name: "sam-network-reporter",

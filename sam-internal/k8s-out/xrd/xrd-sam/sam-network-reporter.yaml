@@ -17,7 +17,7 @@ spec:
       containers:
       - command:
         - /sam/sam-network-reporter
-        - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --funnelEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --logtostderr=true
         - --config=/config/sam-network-reporter.json
         - --hostsConfigFile=/sfdchosts/hosts.json
