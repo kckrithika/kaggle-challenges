@@ -38,7 +38,7 @@ Service jsonnets are defined in a hierarchical manner. At the root of the hierar
 
 The service specific templates derive from base template and override or add additional configuration data. These are also named .TEMPLATE so they don't get processed. 
 
-The repo specific file can be thought of as an instance or composition of services. It overrides repo specific parameters and merges service and deployment kube object of each service into a single kube yaml file.
+The repo specific file can be thought of as an instance or composition of services. It overrides repo specific parameters and merges service and deployment kube object of each service into a single kube yaml file. The repo specific file is what gets ultimately deployed by Kubernetes.
 
 ![Kube design](https://docs.google.com/document/d/1xBbcyZQt9sQAU-eAXTCP001BrcKqdFGQLPrb77w1YJI/edit#heading=h.eqvf609sqhzk)
 
