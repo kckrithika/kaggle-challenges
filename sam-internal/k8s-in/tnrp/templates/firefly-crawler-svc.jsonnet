@@ -35,6 +35,10 @@ if firefly_feature_flags.is_firefly_svc_enabled then
               name: "INTAKE_ENDPOINT",
               value: envConfiguration.environmentMapping[configs.estate].intakeEndpoint,
           },
+          {
+              name: "REPOSITORIES",
+              value: envConfiguration.environmentMapping[configs.estate].repositories,
+          },
       ],
       volumeMounts:: super.commonVolMounts,
   },
