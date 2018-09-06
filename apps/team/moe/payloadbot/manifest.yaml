@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: payloadbot
-      image: tnrp/moe/payloadbot:v-0001129-788fbe86
+      image: tnrp/moe/payloadbot:v-0001130-376d40a2
       command: ["/payloadbot/payloadbot"]
       args:
       - "-gheTokenPath"
