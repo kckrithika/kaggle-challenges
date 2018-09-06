@@ -34,7 +34,7 @@ chown 7447:7447 /data/firefly
 * Reference the [Best Practices](https://git.soma.salesforce.com/sam/sam/wiki/Sam-Internals-Best-Practices) link if you have any questions. Please feel free to contribute there if you encounter a new issue/question.
 
 ## Firefly Services
-Service jsonnets are defined in a hierarchical manner. At the root of the hierarchy is the base service template file firefly-service-deployment.jsonnet.TEMPLATE. This file defines a service and deployment kube object of List type. Files that end with TEMPLATE suffix are not processed by the build script. 
+Service jsonnets are defined in a hierarchical manner. At the root of the hierarchy is the base service template file **firefly-service-deployment.jsonnet.TEMPLATE**. This file defines a service and deployment kube object of List type. Files that end with .TEMPLATE suffix are not processed by the build script. 
 
 The service specific templates derive from base template and override or add additional configuration data. These are also named TEMPLATE so they don't get processed. 
 
