@@ -16,7 +16,7 @@ system:
         - name: PUBLISHING_GROUP_ID
           value: cre_outbound_group_id_ccp_perf
         - name: PUBLISHING_KAFKA_SERVER
-          value: ajna0-broker1-0-prd.data.sfdc.net:9093          
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: BUFFER_IN_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_inbound_CCP_Integration_Performance
         - name: METRICS_KAFKA_TOPIC
@@ -36,7 +36,7 @@ system:
         - name: METRICS_FUNNEL_URI
           value: http://ajna0-funnel1-0-prd.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
-          value: http://cre-control-plane-ccp-perf-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8094/streamprocessing          
+          value: http://cre-control-plane-ccp-perf-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8096/streamprocessing          
       ports:
       - containerPort: 8080
       - containerPort: 7022
