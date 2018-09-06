@@ -45,11 +45,11 @@ spec:
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.10-2-g71f9bf5-dirty
         imagePullPolicy: IfNotPresent
         livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - /scripts/cert_age.sh
           failureThreshold: 5
-          httpGet:
-            path: /healthcheck/kubedns
-            port: 10054
-            scheme: HTTP
           initialDelaySeconds: 60
           periodSeconds: 10
           successThreshold: 1
@@ -92,6 +92,8 @@ spec:
           name: kubernetes
         - mountPath: /data/certs
           name: certs
+        - mountPath: /scripts
+          name: cert-age
       - args:
         - -v=2
         - -logtostderr
@@ -184,3 +186,7 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
+      - configMap:
+          defaultMode: 511
+          name: cert-age
+        name: cert-age
