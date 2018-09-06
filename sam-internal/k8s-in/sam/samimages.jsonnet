@@ -25,6 +25,10 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samtest,temp-secret-samcontrol-deployer,hypersam": "sam-0002258-f961c511",
         "prd,prd-sam,temp-secret-samcontrol-deployer,hypersam": "sam-0002258-f961c511",
 
+        # [cbatra] Deploying changes for PRD IP issue with the overrding of resource issue
+        "prd,prd-samdev,samcontrol,hypersam": "sam-0002275-056747b7",
+        "prd,prd-sam,samcontrol,hypersam": "sam-0002275-056747b7",
+
         #[pjoshi]
         "prd,prd-sam,snapshotconsumer-prd,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
         "prd,prd-sam,snapshotconsumer-prod,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
