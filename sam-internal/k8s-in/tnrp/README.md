@@ -34,24 +34,32 @@ chown 7447:7447 /data/firefly
 * Reference the [Best Practices](https://git.soma.salesforce.com/sam/sam/wiki/Sam-Internals-Best-Practices) link if you have any questions. Please feel free to contribute there if you encounter a new issue/question.
 
 ## Firefly Services
+Service jsonnets are defined in a hierarchical manner. At the root of the hierarchy is the base service template file **firefly-service-deployment.jsonnet.TEMPLATE**. This file defines a service and deployment kube object of List type. Files that end with .TEMPLATE suffix are not processed by the build script. 
+
+The service specific templates derive from base template and override or add additional configuration data. These are also named .TEMPLATE so they don't get processed. 
+
+The repo specific file can be thought of as an instance or composition of services. It overrides repo specific parameters and merges service and deployment kube object of each service into a single kube yaml file. The repo specific file is what gets ultimately deployed by Kubernetes.
+
+![Kube design](https://docs.google.com/document/d/1xBbcyZQt9sQAU-eAXTCP001BrcKqdFGQLPrb77w1YJI/edit#heading=h.eqvf609sqhzk)
 
 ### Adding a new test repository
-* Copy templates/firefly-test-firefly-manifests-svc.jsonnet to templates/firefly-<repository name>-svc.jsonnet.
+* Copy templates/firefly-test-firefly-manifests-svc.jsonnet to templates/firefly-repository name-svc.jsonnet.
 * Modify the if condition to add or remove kingdoms. 
 * Change the queue name to reflect the repository name you are adding. 
 * Make a PR and get it approved. 
 
 ### Modifying service template
-* If you want to add/remove parameters from all services, you need to modify templates/firefly-test-firefly-manifests-svc.jsonnet file.
+* If you want to add/remove parameters from all services, you need to modify templates/firefly-service-deployment.jsonnet.TEMPLATE file.
 * If you need to change a specific service, you need to modify the base template for that specific service.
 ```
   * Package service template: firefly-package-svc.jsonnet.TEMPLATE
   * Pull Request service template: firefly-pullrequest-svc.jsonnet.TEMPLATE
+  * Promotion Request service template: firefly-promotion-svc.jsonnet.TEMPLATE
   * Intake Request service template: firefly-intake-svc.jsonnet.TEMPLATE
   * Crawler Request service template: firefly-crawler-svc.jsonnet.TEMPLATE
 ```
 
-Note: Crawler and Intake a multitenant services. Meaning, a single service instance handlesrequests for multiple GHE repositories. 
+Note: Crawler and Intake are multitenant services. Meaning, a single service instance can handle requests for multiple git repos. 
 
 ### Adding/Modifying environment variables.
 Currently, the environment specific parameters are defined in tnrp/firefly_service_conf.jsonnet file. If you want to customize a parameter for a specific environment, change the structure for that environment to override or add. The environmentMapping is used by the service template based on the estate being configured. 
