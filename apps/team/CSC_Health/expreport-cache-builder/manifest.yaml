@@ -8,9 +8,9 @@ system:
   - name: expreport-cache-builder
     count: 1
     volumes:
-      - name: servercertvol
-        secret:
-          secretName: csc-rc-certificates
+      - name: pki-server-cert
+        maddogCert:
+          type: server
       - name: redisauthvol
         secret:
           secretName: csc-redis-auth-0
@@ -33,8 +33,8 @@ system:
       volumeMounts:
       - mountPath: /var/log/report-cache-builder
         name: logvol
-      - mountPath: /var/lib/report-collector/certificates/server/
-        name: servercertvol
+      - mountPath: /serverCert
+        name: pki-server-cert
         readOnly: true
       - mountPath: /var/secrets/redis
         name: redisauthvol
@@ -58,12 +58,10 @@ system:
         value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
-      - name: ReportCollector_app_https_staticCertificateOptions_caCertificates
-        value: "[\"/var/lib/report-collector/certificates/sfdc-internal-ca.crt\"]"
-      - name: ReportCollector_app_https_staticCertificateOptions_certificate
-        value: /var/lib/report-collector/certificates/server/rc_server.crt
-      - name: ReportCollector_app_https_staticCertificateOptions_privateKey
-        value: /var/lib/report-collector/certificates/server/rc_server.key
+      - name: ReportCollector_app_https_dynamicCertificateOptions_caCert
+        value: /serverCert/ca.pem
+      - name: ReportCollector_app_https_dynamicCertificateOptions_certificateDir
+        value: /serverCert/server/
       - name: ReportCollector_app_https_supportCompression
         value: true
       - name: ReportCollector_ajna_publishEnabled
@@ -82,24 +80,6 @@ system:
         value: 300000
       - name: ReportCollector_cacheBuilder_cacheDir
         value: /var/cache/report-collector/consumer-cache/
-      - name: ReportCollector_cacheBuilder_cacheBuilders
-        value: |
-             [
-              { "filter": { "type": "watchdog", "providerId": "network-nvt" }},
-              { "filter": { "type": "watchdog", "providerId": "grok.server_watchdog" }},
-              { "filter": { "type": "watchdog", "providerId": "sandman" }},
-              { "filter": { "type": "watchdog", "providerId": "netmgt.sandman" }},
-              { "filter": { "type": "observer", "providerId": "netmgt.nhal_client" }},
-              { "filter": { "type": "observer", "providerId": "netmgt.sandman" }},
-              { "filter": { "type": "observer", "providerId": "sandman" }},
-              { "filter": { "providerId": "infrastructure-watchdog" }},
-              { "filter": { "providerId": "slwd" }},
-              { "filter": { "providerId": "vom-system" }},
-              { "filter": { "providerId": "vom-tnrp" }},
-              { "filter": { "providerId": "racktastic" }},
-              { "filter": { "providerId": "vom-observations" }},
-              { "filter": { "providerId": "service-config-agent" }}
-             ]
 
       livenessProbe:
         httpGet:
@@ -113,6 +93,25 @@ system:
       export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+      export ReportCollector_cacheBuilder_cacheBuilders=\
+             [\
+              { \"filter\": { \"type\": \"watchdog\", \"providerId\": \"network-nvt\" }},\
+              { \"filter\": { \"type\": \"watchdog\", \"providerId\": \"grok.server_watchdog\" }},\
+              { \"filter\": { \"type\": \"watchdog\", \"providerId\": \"sandman\" }},\
+              { \"filter\": { \"type\": \"watchdog\", \"providerId\": \"netmgt.sandman\" }},\
+              { \"filter\": { \"type\": \"observer\", \"providerId\": \"netmgt.nhal_client\" }},\
+              { \"filter\": { \"type\": \"observer\", \"providerId\": \"netmgt.sandman\" }},\
+              { \"filter\": { \"type\": \"observer\", \"providerId\": \"sandman\" }},\
+              { \"filter\": { \"providerId\": \"infrastructure-watchdog\" }},\
+              { \"filter\": { \"providerId\": \"slwd\" }},\
+              { \"filter\": { \"providerId\": \"vom-system\" }},\
+              { \"filter\": { \"providerId\": \"vom-tnrp\" }},\
+              { \"filter\": { \"providerId\": \"racktastic\" }},\
+              { \"filter\": { \"providerId\": \"vom-observations\" }},\
+              { \"filter\": { \"providerId\": \"service-config-agent\" }},\
+              { \"filter\": { \"providerId\": \"csc-health.exprepcollavailwd\" }},\
+              { \"filter\": { \"providerId\": \"csc-health.cname-repcollavailwd\" }},\
+             ] ;
 
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
