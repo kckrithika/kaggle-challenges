@@ -27,7 +27,7 @@ system:
 
     containers:
     - name: controlplane
-      image: sfci/mc-retail/commerce-journeys-control-plane:0.0.11
+      image: sfci/mc-retail/commerce-journeys-control-plane:1.4.0
       ports:
         - containerPort: 7022
         - containerPort: 15372
