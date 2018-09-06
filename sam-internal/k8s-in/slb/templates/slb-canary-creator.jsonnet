@@ -4,7 +4,7 @@ local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-canary-crea
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-canary-creator" };
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-canary-creator",

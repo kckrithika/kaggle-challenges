@@ -8,7 +8,7 @@ local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ngin
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b" };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 
-if slbconfigs.slbInKingdom then configs.deploymentBase("slb") {
+if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-nginx-config-b",
