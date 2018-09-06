@@ -43,11 +43,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                                      ] else [
                                          "--publicKey=/var/slb/canarycerts/sam.crt",
                                      ]
-                                 )
-                                 + (
-                                     if configs.estate == "iad-sam" && slbimages.hypersdn_build > 1122 then [
-                                         "--verbose=false",
-                                     ] else []
                                  ),
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
