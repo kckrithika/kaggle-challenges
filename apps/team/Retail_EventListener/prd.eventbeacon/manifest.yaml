@@ -11,7 +11,7 @@ system:
 
   functions:
   - name: eventbeacon
-    count: 1
+    count: 3
     volumes:
     - name: cccjservercert
       maddogCert:
@@ -22,10 +22,15 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-cj/logs
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
 
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:1.4.0
+      image: sfci/mc-retail/retail-mc-event-beacon:1.4.1
       ports:
         - containerPort: 7022
         - containerPort: 15372
