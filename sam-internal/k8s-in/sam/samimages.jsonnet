@@ -33,6 +33,10 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,host-repair-aggregator,hypersam": "sam-0002265-c85a3b04",
         "prd,prd-sam,host-repair-scheduler,hypersam": "sam-0002265-c85a3b04",
 
+        #[xiao] optimize samapp controller
+        "prd,prd-samtest,samapp-controller,hypersam": "sam-0002267-a66cdb1a",
+        "prd,prd-samdev,samapp-controller,hypersam": "sam-0002267-a66cdb1a",
+
         #[small]
         "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180830_155128.a66cdb1a.clean.small-ltm",
         "prd,prd-sam,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180830_155128.a66cdb1a.clean.small-ltm",
