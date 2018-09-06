@@ -27,7 +27,7 @@ system:
 
     containers:
     - name: controlplane
-      image: sfci/mc-retail/commerce-journeys-control-plane:0.0.11
+      image: sfci/mc-retail/commerce-journeys-control-plane:1.4.0
       ports:
         - containerPort: 7022
         - containerPort: 15372
@@ -40,14 +40,14 @@ system:
         - name: SERVER_PORT
           value: 7022
         - name: MANAGEMENT_PORT
-          value: 15372
+          value: 15400
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
         timeoutSeconds: 90
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15400
       volumeMounts:
       - name: cccjclientcert
         mountPath: /clientcert
@@ -68,5 +68,5 @@ system:
         targetport: 7022
       - port: 7442
         targetport: 7022
-      - port: 15372
-        targetport: 15372
+      - port: 15400
+        targetport: 15400
