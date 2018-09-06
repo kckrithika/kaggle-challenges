@@ -1,8 +1,8 @@
 apiVersion: v1
 system:
   functions:
-  - name: ren-eth
-    count: 2
+  - name: ethgen
+    count: 1
     containers:
     - name: ethgen
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgardner/ethgen:mgardner-20180906-2
@@ -16,6 +16,9 @@ system:
         #httpGet:
         #  path: /
         #  port: 50051
+  - name: render
+    count: 1
+    containers:
     - name: render
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgardner/render:mgardner-20180906
       ports:
@@ -83,7 +86,7 @@ system:
         #  port: 8080
   loadbalancers:
   - lbname: renderethgenlb
-    function: ren-eth
+    function: render
     slbenabled: true
     ports:
       - port: 8080
