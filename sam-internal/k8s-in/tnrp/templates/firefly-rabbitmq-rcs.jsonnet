@@ -213,71 +213,134 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               failureThreshold: 10,
             },
           },
+          madkub.madkubRefreshContainer(),
           {
-              args: [
-                  "/sam/madkub-client",
-                  "--madkub-endpoint",
-                  "https://10.254.208.254:32007",
-                  "--maddog-endpoint",
-                  configs.maddogEndpoint,
-                  "--maddog-server-ca",
-                  "/maddog-certs/ca/security-ca.pem",
-                  "--madkub-server-ca",
-                  "/maddog-certs/ca/cacerts.pem",
-                  "--cert-folders",
-                  "certs:/certs/",
-                  "--token-folder",
-                  "/tokens/",
-                  "--requested-cert-type",
-                  "client",
-                  "--refresher",
-                  "--run-init-for-refresher-mode",
-                  "--ca-folder",
-                  "/maddog-certs/ca",
-              ],
-              env: [
-                  {
-                      name: "MADKUB_NODENAME",
-                      valueFrom: {
-                          fieldRef: {
-                              fieldPath: "spec.nodeName",
-                          },
-                      },
+            name: 'rabbitmq-sidecar',
+            image: images.rabbitmq_sidecar,
+            securityContext: {
+              runAsNonRoot: false,
+              runAsUser: 0,
+            },
+            command: ["java", "-jar", "/home/rabbitmq/rabbitmq-monitor-svc.jar", "--spring.profiles.active=" + configs.estate],
+            [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
+            imagePullPolicy: 'Always',
+            env: [
+              {
+                name: 'MY_POD_IP',
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: 'status.podIP',
                   },
-                  {
-                      name: "MADKUB_NAME",
-                      valueFrom: {
-                          fieldRef: {
-                              fieldPath: "metadata.name",
-                          },
-                      },
+                },
+              },
+              {
+                name: 'MY_NODE_NAME',
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: 'spec.nodeName',
                   },
-                  {
-                      name: "MADKUB_NAMESPACE",
-                      valueFrom: {
-                          fieldRef: {
-                              fieldPath: "metadata.namespace",
-                          },
-                      },
+                },
+              },
+              {
+                name: 'MY_POD_NAME',
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: 'metadata.name',
                   },
-              ],
-              image: samimages.madkub,
-              name: "madkub-refresher",
-              resources: {},
-              volumeMounts: [
-                  {
-                      mountPath: "/certs",
-                      name: "certs",
+                },
+              },
+              {
+                name: 'MY_POD_NAMESPACE',
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: 'metadata.namespace',
                   },
-                  {
-                      mountPath: "/tokens",
-                      name: "tokens",
-                  },
-                  {
-                      mountPath: "/maddog-certs/",
-                      name: "maddog-certs",
-                  },
-              ],
+                },
+              },
+              {
+                name: 'KINGDOM',
+                value: 'PRD',
+              },
+              {
+                name: 'ESTATE',
+                value: configs.estate,
+              },
+              {
+                name: 'SFDC_METRICS_SERVICE_HOST',
+                value: 'ajna0-funnel1-0-prd.data.sfdc.net',
+              },
+              {
+                name: 'SFDC_METRICS_SERVICE_PORT',
+                value: '80',
+              },
+              {
+                name: 'SUPERPOD',
+                value: 'NONE',
+              },
+              {
+                name: 'rabbitMqEndpoint',
+                value: 'localhost',
+              },
+              {
+                name: 'rabbitMqApiHttpPort',
+                value: '15672',
+              },
+              {
+                name: 'rabbitMqUserName',
+                value: 'sfdc-rabbitmq',
+              },
+              {
+                name: 'REDEPLOY_COUNT',
+                value: '1',
+              },
+            ],
+            ports: [
+              {
+                name: 'admin-port',
+                protocol: 'TCP',
+                containerPort: 8081,
+              },
+            ],
+            volumeMounts: [
+              {
+                  mountPath: "/root/.ssh/",
+                  name: "git-ssh-keys",
+              },
+              {
+                  mountPath: "/certs",
+                  name: "certs",
+              },
+              {
+                  mountPath: "/tokens",
+                  name: "tokens",
+              },
+              {
+                  mountPath: "/maddog-certs/",
+                  name: "maddog-certs",
+              },
+            ],
+            livenessProbe: {
+              httpGet: {
+                path: '/actuator/health',
+                port: 'admin-port',
+              },
+              initialDelaySeconds: 180,
+              timeoutSeconds: 60,
+              periodSeconds: 30,
+              successThreshold: 1,
+              failureThreshold: 10,
+            },
+            readinessProbe: {
+              httpGet: {
+                path: '/actuator/health',
+                port: 'admin-port',
+              },
+              initialDelaySeconds: 180,
+              timeoutSeconds: 60,
+              periodSeconds: 30,
+              successThreshold: 1,
+              failureThreshold: 10,
+            },
           },
         ],
         volumes: [
@@ -328,6 +391,12 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                   medium: "Memory",
               },
               name: "tokens",
+          },
+          {
+              emptyDir: {
+                  medium: "Memory",
+              },
+              name: "git-ssh-keys",
           },
           configs.maddog_cert_volume,
         ],

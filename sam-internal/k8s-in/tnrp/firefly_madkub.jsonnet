@@ -86,49 +86,49 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
                 "--ca-folder",
                 "/maddog-certs/ca",
             ],
-            env: [
-                {
-                    name: "MADKUB_NODENAME",
-                    valueFrom: {
-                        fieldRef: {
-                            fieldPath: "spec.nodeName",
-                        },
-                    },
-                },
-                {
-                    name: "MADKUB_NAME",
-                    valueFrom: {
-                        fieldRef: {
-                            fieldPath: "metadata.name",
-                        },
-                    },
-                },
-                {
-                    name: "MADKUB_NAMESPACE",
-                    valueFrom: {
-                        fieldRef: {
-                            fieldPath: "metadata.namespace",
-                        },
-                    },
-                },
-            ],
-            image: samimages.madkub,
-            name: "madkub-refresher",
-            resources: {},
-            volumeMounts: [
-                {
-                    mountPath: "/certs",
-                    name: "certs",
-                },
-                {
-                    mountPath: "/tokens",
-                    name: "tokens",
-                },
-                {
-                    mountPath: "/maddog-certs/",
-                    name: "maddog-certs",
-                },
-            ],
+          env: [
+              {
+                  name: "MADKUB_NODENAME",
+                  valueFrom: {
+                      fieldRef: {
+                          fieldPath: "spec.nodeName",
+                      },
+                  },
+              },
+              {
+                  name: "MADKUB_NAME",
+                  valueFrom: {
+                      fieldRef: {
+                          fieldPath: "metadata.name",
+                      },
+                  },
+              },
+              {
+                  name: "MADKUB_NAMESPACE",
+                  valueFrom: {
+                      fieldRef: {
+                          fieldPath: "metadata.namespace",
+                      },
+                  },
+              },
+          ],
+          image: samimages.madkub,
+          name: "madkub-refresher",
+          resources: {},
+          volumeMounts: [
+              {
+                  mountPath: "/certs",
+                  name: "certs",
+              },
+              {
+                  mountPath: "/tokens",
+                  name: "tokens",
+              },
+              {
+                  mountPath: "/maddog-certs/",
+                  name: "maddog-certs",
+              },
+          ],
 
     },
 

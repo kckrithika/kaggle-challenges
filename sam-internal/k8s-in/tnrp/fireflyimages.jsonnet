@@ -34,13 +34,14 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 0 - prd-samtest
         "0": $.per_phase["1"] {
-             fireflyintake: "80",
-             fireflycrawler: "89",
+             fireflyintake: "92",
+             fireflycrawler: "92",
              fireflypackage: "80",
              fireflypromotion: "80",
              fireflypullrequest: "80",
              fireflydind: "86",
              rabbitmq: "86",
+             rabbitmqsidecar: "92",
              },
 
         ### Release Phase 1 - prd-samdev
@@ -51,45 +52,50 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-            fireflyintake: "80",
-            fireflycrawler: "89",
-            fireflypackage: "80",
-            fireflypromotion: "80",
-            fireflypullrequest: "80",
-            fireflydind: "86",
-            rabbitmq: "86",
+             fireflyintake: "92",
+             fireflycrawler: "92",
+             fireflypackage: "80",
+             fireflypromotion: "80",
+             fireflypullrequest: "80",
+             fireflydind: "86",
+             rabbitmq: "86",
+             rabbitmqsidecar: "92",
             },
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-            fireflyintake: "80",
-            fireflycrawler: "89",
-            fireflypackage: "80",
-            fireflypromotion: "80",
-            fireflypullrequest: "80",
-            fireflydind: "86",
-            rabbitmq: "86",
+             fireflyintake: "92",
+             fireflycrawler: "92",
+             fireflypackage: "80",
+             fireflypromotion: "80",
+             fireflypullrequest: "80",
+             fireflydind: "86",
+             rabbitmq: "86",
+             rabbitmqsidecar: "92",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-            fireflyintake: "80",
-            fireflycrawler: "89",
-            fireflypackage: "80",
-            fireflypullrequest: "80",
-            fireflydind: "86",
-            rabbitmq: "86",
+             fireflyintake: "92",
+             fireflycrawler: "92",
+             fireflypackage: "80",
+             fireflypromotion: "80",
+             fireflypullrequest: "80",
+             fireflydind: "86",
+             rabbitmq: "86",
+             rabbitmqsidecar: "92",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
-            fireflyintake: "80",
-            fireflycrawler: "89",
-            fireflypackage: "80",
-            fireflypromotion: "80",
-            fireflypullrequest: "80",
-            fireflydind: "86",
-            rabbitmq: "86",
+             fireflyintake: "92",
+             fireflycrawler: "92",
+             fireflypackage: "80",
+             fireflypromotion: "80",
+             fireflypullrequest: "80",
+             fireflydind: "86",
+             rabbitmq: "86",
+             rabbitmqsidecar: "92",
             },
         },
 
@@ -120,6 +126,7 @@ local configs = import "config.jsonnet";
 
     # These are the images used by the templates
     rabbitmq: configs.registry + "/dva/firefly-rabbitmq:" + $.per_phase[$.phase].rabbitmq,
+    rabbitmq_sidecar: configs.registry + "/dva/firefly-rabbitmq-sidecar:" + $.per_phase[$.phase].rabbitmqsidecar,
     fireflyintake: configs.registry + "/dva/firefly-intake:" + $.per_phase[$.phase].fireflyintake,
     fireflycrawler: configs.registry + "/dva/firefly-crawler:" + $.per_phase[$.phase].fireflycrawler,
     fireflypackage: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jvergara/firefly-packagesvc:0.0.1-SNAPSHOT",

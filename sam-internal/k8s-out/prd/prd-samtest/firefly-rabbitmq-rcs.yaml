@@ -161,6 +161,83 @@ spec:
           name: tokens
         - mountPath: /maddog-certs/
           name: maddog-certs
+      - command:
+        - java
+        - -jar
+        - /home/rabbitmq/rabbitmq-monitor-svc.jar
+        - --spring.profiles.active=prd-samtest
+        env:
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MY_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: KINGDOM
+          value: PRD
+        - name: ESTATE
+          value: prd-samtest
+        - name: SFDC_METRICS_SERVICE_HOST
+          value: ajna0-funnel1-0-prd.data.sfdc.net
+        - name: SFDC_METRICS_SERVICE_PORT
+          value: "80"
+        - name: SUPERPOD
+          value: NONE
+        - name: rabbitMqEndpoint
+          value: localhost
+        - name: rabbitMqApiHttpPort
+          value: "15672"
+        - name: rabbitMqUserName
+          value: sfdc-rabbitmq
+        - name: REDEPLOY_COUNT
+          value: "1"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq-sidecar:92
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 10
+          httpGet:
+            path: /actuator/health
+            port: admin-port
+          initialDelaySeconds: 180
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 60
+        name: rabbitmq-sidecar
+        ports:
+        - containerPort: 8081
+          name: admin-port
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 10
+          httpGet:
+            path: /actuator/health
+            port: admin-port
+          initialDelaySeconds: 180
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 60
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /root/.ssh/
+          name: git-ssh-keys
+        - mountPath: /certs
+          name: certs
+        - mountPath: /tokens
+          name: tokens
+        - mountPath: /maddog-certs/
+          name: maddog-certs
       initContainers:
       - args:
         - /sam/madkub-client
@@ -251,6 +328,9 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
+      - emptyDir:
+          medium: Memory
+        name: git-ssh-keys
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
