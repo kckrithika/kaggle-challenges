@@ -36,7 +36,7 @@ chown 7447:7447 /data/firefly
 ## Firefly Services
 Service jsonnets are defined in a hierarchical manner. At the root of the hierarchy is the base service template file **firefly-service-deployment.jsonnet.TEMPLATE**. This file defines a service and deployment kube object of List type. Files that end with .TEMPLATE suffix are not processed by the build script. 
 
-The service specific templates derive from base template and override or add additional configuration data. These are also named TEMPLATE so they don't get processed. 
+The service specific templates derive from base template and override or add additional configuration data. These are also named .TEMPLATE so they don't get processed. 
 
 The repo specific file can be thought of as an instance or composition of services. It overrides repo specific parameters and merges service and deployment kube object of each service into a single kube yaml file.
 
