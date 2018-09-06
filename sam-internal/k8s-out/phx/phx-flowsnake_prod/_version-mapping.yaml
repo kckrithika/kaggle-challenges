@@ -4,6 +4,7 @@ data:
     0.10.0 = 662
     0.11.0 = 681
     0.12.0 = 696
+    0.12.1 = 10001
 kind: ConfigMap
 metadata:
   creationTimestamp: null
