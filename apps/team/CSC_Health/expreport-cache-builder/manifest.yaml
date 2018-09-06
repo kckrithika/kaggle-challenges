@@ -119,11 +119,11 @@ system:
                 "minDelay": 3600000,
                 "maxDelay": 14400000 },
               { "filter": { "providerId": "csc-health.cname-repcollavailwd", "trusted": true },
-                "minDelay": 3600000,
-                "maxDelay": 14400000 },
+                "minDelay": 20000,
+                "maxDelay": 20000 },
               { "filter": { "providerId": "csc-health.exprepcollavailwd", "trusted": true },
-                "minDelay": 3600000,
-                "maxDelay": 14400000 },
+                "minDelay": 20000,
+                "maxDelay": 20000 },
              ]
 
       livenessProbe:
