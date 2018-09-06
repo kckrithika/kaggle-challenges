@@ -154,7 +154,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
-                add_12_1_canary: "unverified",  #UNVERIFIED -- DO NOT DISTRIBUTE
+                add_12_1_canary: "verified",  #verified in test fleet
             },
             version_mapping: {
                 main: {
@@ -188,12 +188,14 @@ local utils = import "util_functions.jsonnet";
                 ### the templates. This PR should not result in any k8s-out diffs.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
+                add_12_1_canary: "unverified",  #UNVERIFIED -- DO NOT DISTRIBUTE
             },
             version_mapping: {
                 main: {
                   "0.10.0": 662,
                   "0.11.0": 681,
                   "0.12.0": 696,
+                  "0.12.1": 10001,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -262,7 +264,10 @@ local utils = import "util_functions.jsonnet";
     local imageFunc = (import "image_functions.libsonnet") + { templateFilename:: $.templateFilename },
 
     # List of images that the Flowsnake control plane deploys dynamically
-    # Images are promoted if they are explicitly referenced in a manifest. To effect promotion of images we only refer to in dynamically created in Kubernetes resources, we list them here for inclusion in a bogus manifest. Note: only images from the three magic prefixes /dva, /sfci, and /tnrp are eligible for promotion.
+    # Images are promoted if they are explicitly referenced in a manifest. To effect promotion of images
+    # we only refer to in dynamically created in Kubernetes resources, we list them here for inclusion
+    # in a bogus manifest. Note: only images from the three magic prefixes /dva, /sfci, and /tnrp are
+    # eligible for promotion.
     flowsnakeImagesToPromote: [
        "flowsnake-spark-driver_2.1.0",
        "flowsnake-spark-master_2.1.0",
