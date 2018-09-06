@@ -22,7 +22,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: stm
       - name: GRPC_SERVER_PORT
-        value: "7020"
+        value: 7020
       - name: JVM_HEAP_MAX
         value: 4G
       resources:
