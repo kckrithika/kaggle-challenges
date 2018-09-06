@@ -14,7 +14,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         namespace: "sam-system",
     },
     spec+: {
-        replicas: if configs.estate == "prd-sam" || configs.estate == "prd-sdc" then 2 else if slbconfigs.slbInProdKingdom then 3 else 1,
+        replicas: if configs.estate == "prd-sdc" then 2 else if slbconfigs.slbProdCluster then 3 else 1,
         template: {
             spec: {
                       affinity: {
