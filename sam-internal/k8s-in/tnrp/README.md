@@ -40,7 +40,7 @@ The service specific templates derive from base template and override or add add
 
 The repo specific file can be thought of as an instance or composition of services. It overrides repo specific parameters and merges service and deployment kube object of each service into a single kube yaml file.
 
-![alt text](https://docs.google.com/document/d/1xBbcyZQt9sQAU-eAXTCP001BrcKqdFGQLPrb77w1YJI/edit#heading=h.eqvf609sqhzk)
+![Kube design](https://docs.google.com/document/d/1xBbcyZQt9sQAU-eAXTCP001BrcKqdFGQLPrb77w1YJI/edit#heading=h.eqvf609sqhzk)
 
 ### Adding a new test repository
 * Copy templates/firefly-test-firefly-manifests-svc.jsonnet to templates/firefly-repository name-svc.jsonnet.
