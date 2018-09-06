@@ -17,6 +17,8 @@ system:
       - "-promote"
       - "-emailRecipients"
       - "slb@salesforce.com"
+      - "-minBakeTime"
+      - "1h"
       ports:
       - containerPort: 8080
       livenessProbe:
