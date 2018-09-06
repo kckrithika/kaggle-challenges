@@ -1,27 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    scheduler.alpha.kubernetes.io/affinity: |
-      {   "nodeAffinity": {
-          "requiredDuringSchedulingIgnoredDuringExecution": {
-            "nodeSelectorTerms": [
-              {
-                "matchExpressions": [
-                  {
-                    "key": "slb-service",
-                    "operator": "NotIn",
-                    "values": ["slb-ipvs", "slb-nginx"]
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      }
   labels:
-    name: slb-ipvsdata-watchdog
-  name: slb-ipvsdata-watchdog
+    name: slb-nginx-data-watchdog
+  name: slb-nginx-data-watchdog
   namespace: sam-system
 spec:
   minReadySeconds: 30
@@ -35,20 +17,19 @@ spec:
     metadata:
       labels:
         apptype: monitoring
-        name: slb-ipvsdata-watchdog
+        name: slb-nginx-data-watchdog
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sdn/slb-ipvs-data-watchdog
-        - --log_dir=/host/data/slb/logs/
+        - /sdn/slb-nginx-data-watchdog
         - --namespace=sam-system
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --k8sapiserver=
-        - --connPort=9107
+        - --connPort=9125
         - --monitorFrequency=180s
-        - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-        - --hostnameOverride=$(NODE_NAME)
+        - --nginxWDmetricsEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
+        - --nginxWDhostnameOverride=$(NODE_NAME)
         env:
         - name: NODE_NAME
           valueFrom:
@@ -56,8 +37,8 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001128-aa77fafb
-        name: slb-ipvsdata-watchdog
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001128-aa77fafb
+        name: slb-nginx-data-watchdog
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
@@ -72,7 +53,7 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       nodeSelector:
-        pool: xrd-slb
+        pool: phx-slb
       volumes:
       - hostPath:
           path: /etc/pki_service
