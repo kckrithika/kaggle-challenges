@@ -18,9 +18,6 @@ std.prune({
   #k4a
   [if configs.estate == "vpod" then "enableK4a"]: false,
 
-  #override for CI API since customers were complaining it to be slow
-  [if configs.estate == "prd-sam" then "dualRun"]: false,
-
   # others
     volPermissionInitContainerImage: samimages.permissionInitContainer,
     dockerRegistry: (if configs.estate == "prd-samdev" then "ops0-artifactrepo1-0-prd.data.sfdc.net" else configs.registry),
