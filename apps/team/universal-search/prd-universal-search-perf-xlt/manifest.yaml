@@ -92,7 +92,7 @@ system:
         initialDelaySeconds: 50
         periodSeconds: 5
     - name: perf-universal-search-xlt-certs
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180905-0881a66
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180906-94fc16b
       args: ["-d"]
       env:
       - name: SFDC_ENVIRONMENT
@@ -124,7 +124,7 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: master-xlt-controller
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/master-xlt-controller:irahim-20180906-686ae02
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/master-xlt-controller:irahim-20180906-3cb6c6a
       args: ["-d"]
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       env:
@@ -169,7 +169,7 @@ system:
         mountPath: /data/test-results
         readOnly: true
     - name: perf-universal-search-xlt
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180905-0881a66
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180906-94fc16b
       args: ["-d"]
       env:
       - name: SFDC_ENVIRONMENT
