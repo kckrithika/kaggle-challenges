@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-bravo
+  name: slb-bravo
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  selector:
+    matchLabels:
+      name: slb-bravo
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: slb-bravo
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-canary-service
+        - --serviceName=slb-bravo-svc
+        - --log_dir=/host/data/slb/logs/
+        - --ports=9090,9091,9092
+        - --tlsPorts=9443
+        - --privateKey=/var/slb/canarycerts/server.key
+        - --publicKey=/var/slb/canarycerts/sam.crt
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001128-aa77fafb
+        name: slb-bravo
+        volumeMounts:
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+      nodeSelector:
+        pool: prd-samtwo
+      volumes:
+      - hostPath:
+          path: /data/slb/logs/
+        name: var-logs-volume

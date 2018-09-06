@@ -100,6 +100,7 @@
         servicesToLbOverride: {
             "prd-sdc": "",
             "prd-sam": "",
+            "prd-samtwo": "",
         },
 
         servicesNotToLbOverride: {
@@ -147,6 +148,7 @@
             "prd-samdev": true,
             "prd-sam_storage": true,
             "prd-sam_storagedev": true,
+            "prd-samtwo": true,
         } + {
             [k + "-sam"]: true
             for k in $.prodKingdoms + ["prd"]

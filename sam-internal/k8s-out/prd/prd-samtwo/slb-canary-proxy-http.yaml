@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-canary-proxy-http
+  name: slb-canary-proxy-http
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 2
+  selector:
+    matchLabels:
+      name: slb-canary-proxy-http
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: slb-canary-proxy-http
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-canary-service
+        - --serviceName=slb-canary-proxy-http
+        - --log_dir=/host/data/slb/logs/
+        - --ports=9116
+        - --tlsPorts=443
+        - --privateKey=/var/slb/canarycerts/server.key
+        - --publicKey=/var/slb/canarycerts/sam.crt
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001128-aa77fafb
+        name: slb-canary-proxy-http
+        volumeMounts:
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+      nodeSelector:
+        pool: prd-samtwo
+      volumes:
+      - hostPath:
+          path: /data/slb/logs/
+        name: var-logs-volume
