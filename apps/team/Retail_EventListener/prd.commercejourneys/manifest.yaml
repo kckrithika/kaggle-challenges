@@ -23,7 +23,7 @@ system:
         path: /home/sfdc-cj/logs
     containers:
     - name: commercejourneys
-      image: sfci/mc-retail/commerce-journeys:1.3.26
+      image: sfci/mc-retail/commerce-journeys:1.4.0
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -52,12 +52,3 @@ system:
         readOnly: true
       - name: logvol
         mountPath: /home/sfdc-cj/logs
-
-  loadbalancers:
-  - lbname: commercejourneys-lb
-    function: commercejourneys
-    ports:
-    - port: 8080
-      targetport: 8080
-    - port: 15372
-      targetport: 15372
