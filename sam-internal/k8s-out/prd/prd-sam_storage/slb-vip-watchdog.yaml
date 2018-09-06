@@ -68,7 +68,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001128-aa77fafb
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001131-d6252aec
         name: slb-vip-watchdog
         volumeMounts:
         - mountPath: /host/data/slb
@@ -108,7 +108,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001128-aa77fafb
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001131-d6252aec
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -145,7 +145,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001128-aa77fafb
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001131-d6252aec
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -167,7 +167,7 @@ spec:
         - --control.sentinelExpiration=1800s
         - --listenOnSocket=true
         - --readOnly=false
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001128-aa77fafb
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001131-d6252aec
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -185,7 +185,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001128-aa77fafb
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001131-d6252aec
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -216,7 +216,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001128-aa77fafb
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001131-d6252aec
         name: slb-manifest-watcher
         securityContext:
           privileged: true
