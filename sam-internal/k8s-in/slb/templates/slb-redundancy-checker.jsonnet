@@ -65,7 +65,9 @@ if slbimages.hypersdn_build > 1120 && slbconfigs.slbInKingdom then configs.deplo
                         ],
                     },
                 ],
-            },
+            } + (
+            if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
+            ),
         },
         strategy: {
             type: "RollingUpdate",

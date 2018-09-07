@@ -59,6 +59,8 @@ spec:
           name: certs
         - mountPath: /etc/pki_service
           name: maddog-certs
+      nodeSelector:
+        pool: prd-samtest
       volumes:
       - hostPath:
           path: /data/slb
