@@ -8,6 +8,7 @@
     local portalManifestWatcherEnabled = (if slbimages.hypersdn_build >= 1057 then true else false),
     local manifestWatcherEnabled = (if slbimages.hypersdn_build >= 1061 then true else false),
     local kubeDnsEnabled = (if slbimages.hypersdn_build >= 1098 then false else true),
+    slaRequiresHealthProbes: if slbimages.phaseNum == 1 then true else false,
 
     getNodeApiClientSocketSettings(configDir):: (if nodeApiUnixSocketEnabled then [
                                                      "--client.socketDir=" + configDir,
