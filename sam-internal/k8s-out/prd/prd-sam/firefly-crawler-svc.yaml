@@ -150,7 +150,7 @@ items:
             value: http://firefly-intake.firefly.prd-sam.prd.slb.sfdc.net:8080
           - name: REPOSITORIES
             value: tnrpfirefly/test_sam_manifests,sam/test-firefly-manifests
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:92
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:94
           imagePullPolicy: Always
           name: firefly-crawler
           ports:
