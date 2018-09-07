@@ -66,7 +66,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
-                            "--IpvsPath=20180724",
+                        ] + (if slbflights.stockIpvsModules then [
+                                "--IpvsPath=stock",
+                                "--IpvsSchedModule=ip_vs_sh",
+                            ] else [
+                                "--IpvsPath=20180724",
+                            ]) +
+                        [
                             configs.sfdchosts_arg,
                         ],
                         volumeMounts: configs.filter_empty([
@@ -125,7 +131,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--proxyHealthChecks=true",
                             "--httpTimeout=1s",
                             "--enablePersistence=false",
-                        ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                        ] + (if slbflights.stockIpvsModules then [
+                            "--sforceScheduler=false",
+                            ] else []) + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
