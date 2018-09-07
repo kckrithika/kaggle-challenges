@@ -10,7 +10,7 @@ items:
     labels:
       app: firefly-package
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-service
+    name: firefly-package-tsm-service
     namespace: firefly
   spec:
     ports:
@@ -27,7 +27,7 @@ items:
     labels:
       name: firefly-package
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-deployment
+    name: firefly-package-tsm-deployment
     namespace: firefly
   spec:
     replicas: 1
@@ -48,7 +48,7 @@ items:
         labels:
           name: firefly-package
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-package-deployment
+        name: firefly-package-tsm-deployment
         namespace: firefly
       spec:
         containers:
@@ -261,7 +261,7 @@ items:
     labels:
       app: firefly-pullrequest
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-pullrequest-service
+    name: firefly-pullrequest-tsm-service
     namespace: firefly
   spec:
     ports:
@@ -278,7 +278,7 @@ items:
     labels:
       name: firefly-pullrequest
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-pullrequest-deployment
+    name: firefly-pullrequest-tsm-deployment
     namespace: firefly
   spec:
     replicas: 1
@@ -299,7 +299,7 @@ items:
         labels:
           name: firefly-pullrequest
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-pullrequest-deployment
+        name: firefly-pullrequest-tsm-deployment
         namespace: firefly
       spec:
         containers:
@@ -508,7 +508,7 @@ items:
     labels:
       app: firefly-promotion
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-promotion-service
+    name: firefly-promotion-tsm-service
     namespace: firefly
   spec:
     ports:
@@ -525,7 +525,7 @@ items:
     labels:
       name: firefly-promotion
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-promotion-deployment
+    name: firefly-promotion-tsm-deployment
     namespace: firefly
   spec:
     replicas: 1
@@ -546,7 +546,7 @@ items:
         labels:
           name: firefly-promotion
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-promotion-deployment
+        name: firefly-promotion-tsm-deployment
         namespace: firefly
       spec:
         containers:
