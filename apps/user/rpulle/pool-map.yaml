@@ -13,20 +13,11 @@ apps:
 
  xlt-search:
   - prd/prd-sam
- xlt-search-linkerd:
-  - prd/prd-sam
 
  search-model:
   - prd/prd-sam
- search-model-linkerd:
-  - prd/prd-sam
-
- perf-client:
-  - prd/prd-sam
 
  load-grpc:
-  - prd/prd-sam
- load-grpc-linkerd:
   - prd/prd-sam
 
 # switchboard:

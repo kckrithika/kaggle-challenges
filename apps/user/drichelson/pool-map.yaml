@@ -1,6 +1,4 @@
 apps:
-    geoip-tls-sandbox:
-        - prd/prd-sam
     geoip-envoy-tls-sandbox:
         - prd/prd-sam
     dlr-metrics-emitter:
