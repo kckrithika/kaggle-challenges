@@ -193,6 +193,8 @@ spec:
           value: "80"
         - name: SUPERPOD
           value: NONE
+        - name: FUNCTION_INSTANCE_NAME
+          value: rabbitmq
         - name: rabbitMqEndpoint
           value: localhost
         - name: rabbitMqApiHttpPort

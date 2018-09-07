@@ -278,6 +278,10 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                 value: 'NONE',
               },
               {
+                  name: "FUNCTION_INSTANCE_NAME",
+                  value: 'rabbitmq',
+              },
+              {
                 name: 'rabbitMqEndpoint',
                 value: 'localhost',
               },
