@@ -1,9 +1,0 @@
-apps:
-  geoip:
-    - prd/prd-sam
-  geoip-xlt:
-    - prd/prd-sam
-  time:
-    - prd/prd-sam
-  time-tls:
-    - prd/prd-sam
