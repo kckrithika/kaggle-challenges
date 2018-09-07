@@ -10,7 +10,7 @@ system:
     count: 1
     containers:
     - name: datapool-service
-      image: sfci/insights/datapoolservice:2e07c6a
+      image: sfci/insights/datapoolservice:ad79537
       ports:
       - containerPort: 7020
         name: grpc
@@ -37,10 +37,19 @@ system:
         value: /home/datapool/client-certs/client
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE
-        value: dva/flowsnake-job-datapool-engine:324
+        value: dva/flowsnake-job-datapool-engine:326
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_KIND
         value: dockerDefaultRegistryImage
+
+      - name: FLOWSNAKE_TOTAL_NODE_COUNT
+        value: 4
+
+      - name: FLOWSNAKE_TOTAL_CORE_COUNT
+        value: 64
+
+      - name: FLOWSNAKE_TOTAL_MEMORY_IN_GB
+        value: 64
 
       volumeMounts:
       - mountPath: /home/datapool/logs
