@@ -20,6 +20,7 @@ local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
       rabbitmq_http_nodeport: 32672,
       rabbitmq_amqps_nodeport: 33671,
       rabbitmq_amqp_nodeport: 33672,
+      rabbitmq_health: 8081,
 
       intake_http: 8080,
       intake_https: 8443,

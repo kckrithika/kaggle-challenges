@@ -29,6 +29,11 @@ spec:
     port: 5671
     protocol: TCP
     targetPort: 5671
+  - name: admin-port
+    nodePort: 8081
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
   selector:
     app: rabbitmq
   type: LoadBalancer
