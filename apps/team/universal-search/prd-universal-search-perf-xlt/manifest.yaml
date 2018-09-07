@@ -92,7 +92,7 @@ system:
         initialDelaySeconds: 50
         periodSeconds: 5
     - name: perf-universal-search-xlt-certs
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180906-a6422a0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180906-608512d
       args: ["-d"]
       env:
       - name: SFDC_ENVIRONMENT
@@ -169,7 +169,7 @@ system:
         mountPath: /data/test-results
         readOnly: true
     - name: perf-universal-search-xlt
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180906-a6422a0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180906-608512d
       args: ["-d"]
       env:
       - name: SFDC_ENVIRONMENT
