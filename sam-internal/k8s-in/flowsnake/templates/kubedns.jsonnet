@@ -17,7 +17,7 @@ else
     },
     spec: {
         progressDeadlineSeconds: 600,
-        replicas: 1,
+        replicas: if std.objectHas(flowsnake_images.feature_flags, "kubedns_scale_up") then 3 else 1,
         revisionHistoryLimit: 2,
         selector: {
             matchLabels: {
