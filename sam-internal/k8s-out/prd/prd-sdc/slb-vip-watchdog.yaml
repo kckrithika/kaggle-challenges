@@ -180,6 +180,8 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-vip-watchdog
           name: var-logs-volume
+        - mountPath: /host/data/slb/config/slb-vip-watchdog
+          name: var-config-volume
       - command:
         - /sdn/slb-cleanup
         - --period=1800s

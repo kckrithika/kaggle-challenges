@@ -248,6 +248,8 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-ipvs
           name: var-logs-volume
+        - mountPath: /host/data/slb/config/slb-ipvs
+          name: var-config-volume
       - command:
         - /sdn/slb-iface-processor
         - --configDir=/host/data/slb/config/slb-ipvs

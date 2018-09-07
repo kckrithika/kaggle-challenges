@@ -178,6 +178,8 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-baboon
           name: var-logs-volume
+        - mountPath: /host/data/slb/config/slb-baboon
+          name: var-config-volume
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
