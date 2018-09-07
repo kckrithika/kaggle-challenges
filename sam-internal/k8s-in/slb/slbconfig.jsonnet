@@ -14,7 +14,7 @@
     ipvsMarkerFile: self.slbDir + "/ipvs.marker",
     slbPortalTemplatePath: "/sdn/webfiles",
     prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd', 'cdg', 'fra'],
-    testEstateList: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage', 'prd-sam_storagedev'],
+    testEstateList: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage', 'prd-sam_storagedev', 'prd-samtwo'],
     samrole: "samapp.slb",
     perCluster: {
         ddiService: {
@@ -38,6 +38,7 @@
             "xrd-sam": "10.229.32.0/22",
             "cdg-sam": "10.229.136.0/22",
             "fra-sam": "10.160.8.0/22",
+            "prd-samtwo": "10.254.252.0/22",
             # prd-sam-a : 10.251.199.248-255
         },
 
@@ -59,6 +60,7 @@
             "fra-sam": "85.222.140.0/23",
             "par-sam": "185.79.142.0/23",
             "ukb-sam": "161.71.146.0/23",
+            "prd-samtwo": "",
         },
 
         reservedIps: {
@@ -79,6 +81,7 @@
             "fra-sam": "",
             "par-sam": "",
             "ukb-sam": "",
+            "prd-samtwo": "",
         },
 
         serviceList: {
@@ -88,6 +91,7 @@
             "prd-sam_storage": "",
             "prd-sam_storagedev": "",
             "prd-sam": "csrlb,controlplane-ptest",
+            "prd-samtwo": "",
         } + {
             [k + "-sam"]: ""
             for k in $.prodKingdoms
@@ -96,6 +100,7 @@
         servicesToLbOverride: {
             "prd-sdc": "",
             "prd-sam": "",
+            "prd-samtwo": "",
         },
 
         servicesNotToLbOverride: {
@@ -109,6 +114,7 @@
             "prd-samdev": "",
             "prd-sam_storage": "",
             "prd-sam_storagedev": "",
+            "prd-samtwo": "",
         } + {
             [k + "-sam"]: ""
             for k in $.prodKingdoms + ["prd"]
@@ -121,6 +127,7 @@
             "prd-sam_storage": "",
             "prd-sam_storagedev": "",
             "prd-sam": "slb-bravo-svc,csrlb,controlplane-ptest,cyanlb,controlplane-ptest-lb",
+            "prd-samtwo": "",
         } + {
             [k + "-sam"]: ""
             for k in $.prodKingdoms
@@ -133,6 +140,7 @@
             "prd-samdev": "name=slb-vip-watchdog",
             "prd-sam_storage": "name=slb-vip-watchdog",
             "prd-sam_storagedev": "name=slb-vip-watchdog",
+            "prd-samtwo": "",
         },
         useVipLabelToSelectSvcs: {
             "prd-sdc": true,
@@ -140,6 +148,7 @@
             "prd-samdev": true,
             "prd-sam_storage": true,
             "prd-sam_storagedev": true,
+            "prd-samtwo": true,
         } + {
             [k + "-sam"]: true
             for k in $.prodKingdoms + ["prd"]
@@ -150,6 +159,7 @@
             "prd-samdev": "",
             "prd-sam_storage": "",
             "prd-sam_storagedev": "",
+            "prd-samtwo": "",
         } + {
             [k + "-sam"]: "slb.sfdc.net"
             for k in $.prodKingdoms + ["prd"]
@@ -161,6 +171,7 @@
             "prd-sam_storage": false,
             "prd-sam_storagedev": false,
             "prd-sam": true,
+            "prd-samtwo": true,
         } + {
             [k + "-sam"]: true
             for k in $.prodKingdoms
@@ -171,6 +182,7 @@
             "prd-samdev": "/var/slb/kneconfigs/testkneconfigs",
             "prd-sam_storage": "/var/slb/kneconfigs/testkneconfigs",
             "prd-sam_storagedev": "/var/slb/kneconfigs/testkneconfigs",
+            "prd-samtwo": "/var/slb/kneconfigs/testkneconfigs",
         } + {
             [k + "-sam"]: "/var/slb/kneconfigs/" + k
             for k in $.prodKingdoms + ["prd"]
@@ -182,6 +194,7 @@
             "prd-sam_storage": 1,
             "prd-sam_storagedev": 1,
             "prd-sam": 2,
+            "prd-samtwo": 2,
         } + {
             [k + "-sam"]: 2
             for k in $.prodKingdoms

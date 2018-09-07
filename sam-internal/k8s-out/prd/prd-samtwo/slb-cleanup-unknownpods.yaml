@@ -2,34 +2,27 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-nginx-data-watchdog
-  name: slb-nginx-data-watchdog
+    name: slb-cleanup-unknownpods
+  name: slb-cleanup-unknownpods
   namespace: sam-system
 spec:
-  minReadySeconds: 30
   replicas: 1
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-    type: RollingUpdate
+  selector:
+    matchLabels:
+      apptype: monitoring
+      name: slb-cleanup-unknownpods
   template:
     metadata:
       labels:
         apptype: monitoring
-        name: slb-nginx-data-watchdog
+        name: slb-cleanup-unknownpods
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sdn/slb-nginx-data-watchdog
-        - --namespace=sam-system
-        - --hostsConfigFile=/sfdchosts/hosts.json
-        - --k8sapiserver=
-        - --connPort=9125
-        - --monitorFrequency=180s
-        - --nginxWDmetricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --nginxWDhostnameOverride=$(NODE_NAME)
+        - /bin/bash
+        - -xe
+        - /config/slb-cleanup-unknownpods.sh
         env:
         - name: NODE_NAME
           valueFrom:
@@ -38,22 +31,31 @@ spec:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001131-d6252aec
-        name: slb-nginx-data-watchdog
+        name: slb-cleanup-unknownpods
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
+        - mountPath: /host/data/slb/config/
+          name: var-config-volume
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /data/certs
           name: certs
+        - mountPath: /slb
+          name: slblogs
+        - mountPath: /config
+          name: config
         - mountPath: /kubeconfig
           name: kubeconfig
-        - mountPath: /sfdchosts
-          name: sfdchosts
+        - mountPath: /usr/bin/kubectl
+          name: kubectl
       nodeSelector:
-        pool: prd-samtwo
+        master: "true"
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
       volumes:
       - hostPath:
           path: /etc/pki_service
@@ -62,14 +64,23 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
+          path: /data/slb/config/
+        name: var-config-volume
+      - hostPath:
           path: /data/slb/logs/
         name: var-logs-volume
       - hostPath:
           path: /data/certs
         name: certs
       - hostPath:
+          path: /var/slb/logs
+        name: slblogs
+      - configMap:
+          name: slb-cleanup-unknownpods
+        name: config
+      - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
-      - configMap:
-          name: sfdchosts
-        name: sfdchosts
+      - hostPath:
+          path: /usr/bin/kubectl
+        name: kubectl

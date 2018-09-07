@@ -5,7 +5,7 @@ local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-dns-registe
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-dns-register" };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-dns-register" };
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-dns-register",
