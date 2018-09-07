@@ -6,7 +6,7 @@ items:
     labels:
       app: firefly-package
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-service
+    name: firefly-package-test-manifests-service
     namespace: firefly
   spec:
     ports:
@@ -24,7 +24,7 @@ items:
     labels:
       name: firefly-package
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-deployment
+    name: firefly-package-test-manifests-deployment
     namespace: firefly
   spec:
     replicas: 1
@@ -45,7 +45,7 @@ items:
         labels:
           name: firefly-package
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-package-deployment
+        name: firefly-package-test-manifests-deployment
         namespace: firefly
       spec:
         containers:
@@ -249,7 +249,7 @@ items:
     labels:
       app: firefly-pullrequest
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-pullrequest-service
+    name: firefly-pullrequest-test-manifests-service
     namespace: firefly
   spec:
     ports:
@@ -267,7 +267,7 @@ items:
     labels:
       name: firefly-pullrequest
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-pullrequest-deployment
+    name: firefly-pullrequest-test-manifests-deployment
     namespace: firefly
   spec:
     replicas: 1
@@ -288,7 +288,7 @@ items:
         labels:
           name: firefly-pullrequest
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-pullrequest-deployment
+        name: firefly-pullrequest-test-manifests-deployment
         namespace: firefly
       spec:
         containers:

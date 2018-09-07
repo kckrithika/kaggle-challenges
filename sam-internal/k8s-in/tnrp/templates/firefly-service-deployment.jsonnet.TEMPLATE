@@ -137,7 +137,7 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
         kind: 'Service',
         apiVersion: 'v1',
         metadata: {
-            name: std.join("-", [$.serviceName, 'service']),
+            name: std.join("-", [$.serviceName] + [ if "repoName" in $.serviceConf then $.serviceConf.repoName]+ ['service']),
             namespace: 'firefly',
             labels: {
                 app: $.serviceName,
@@ -160,7 +160,7 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
 
     local deployment = configs.deploymentBase("tnrp"){
         metadata: {
-            name: std.join("-", [$.serviceName, 'deployment']),
+            name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
             namespace: "firefly",
             labels: {
                 name: $.serviceName,
@@ -171,7 +171,7 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
             template: {
                metadata: {
                     namespace: "firefly",
-                    name: std.join("-", [$.serviceName, 'deployment']),
+                    name: std.join("-", [$.serviceName]+ [ if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
                     labels: {
                         name: $.serviceName,
                     } + configs.ownerLabel.tnrp,

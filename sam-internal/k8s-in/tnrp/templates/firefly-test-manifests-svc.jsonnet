@@ -5,6 +5,9 @@ local configs = import "config.jsonnet";
 if configs.estate == "prd-samtwo" then
 {
     local p = packagesvc {
+        serviceConf:: super.serviceConf {
+            repoName: "test-manifests",
+        },
         env:: super.env + [
             {
                 name: "instanceType",
@@ -26,6 +29,9 @@ if configs.estate == "prd-samtwo" then
 
     },
     local r = pullrequestsvc {
+        serviceConf:: super.serviceConf {
+            repoName: "test-manifests",
+        },
         env:: super.env + [
             {
                 name: "instanceType",
