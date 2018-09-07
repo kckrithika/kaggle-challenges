@@ -338,6 +338,8 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-nginx-config-b
           name: var-logs-volume
+        - mountPath: /host/data/slb/config/slb-nginx-config-b
+          name: var-config-volume
       - command:
         - /sdn/slb-realsvrcfg
         - --configDir=/host/data/slb/config/slb-nginx-config-b

@@ -91,7 +91,8 @@
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.logs_volume_mount,
-        ]),
+        ]
+        + if slbimages.phaseNum <= 1 || configs.estate == "prd-samtwo" then [slbconfigs.slb_config_volume_mount] else []),
     },
     slbCleanupConfig: {
         name: "slb-cleanup-config-processor",
