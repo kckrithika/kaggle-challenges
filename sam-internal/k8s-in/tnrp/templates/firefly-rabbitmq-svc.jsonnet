@@ -23,6 +23,8 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
              tls: false,
              reencrypt: false,
              sticky: 0,
+             healthport: portconfigs.firefly.rabbitmq_http,
+             healthpath: '/actuator/health',
            },
            {
              port: portconfigs.firefly.rabbitmq_https,
@@ -31,18 +33,24 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
              tls: true,
              reencrypt: false,
              sticky: 0,
+             healthport: portconfigs.firefly.rabbitmq_http,
+             healthpath: '/actuator/health',
            },
            {
              port: portconfigs.firefly.rabbitmq_amqp,
              targetport: $.spec.ports[2].targetPort,
              lbtype: "tcp",
              sticky: 0,
+             healthport: portconfigs.firefly.rabbitmq_http,
+             healthpath: '/actuator/health',
            },
            {
              port: portconfigs.firefly.rabbitmq_amqps,
              targetport: $.spec.ports[3].targetPort,
              lbtype: "tcp",
              sticky: 0,
+             healthport: portconfigs.firefly.rabbitmq_http,
+             healthpath: '/actuator/health',
            },
          ]
        ),
@@ -79,6 +87,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
         targetPort: portconfigs.firefly.rabbitmq_amqps,
         [if !firefly_feature_flags.is_slb_enabled then "nodePort"]: portconfigs.firefly.rabbitmq_amqps_nodeport,
       },
+      portconfigs.service_health_port('rabbitmq_health'),
     ],
     selector: {
       app: 'rabbitmq',

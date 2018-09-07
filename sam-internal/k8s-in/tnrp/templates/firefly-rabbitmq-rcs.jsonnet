@@ -153,22 +153,22 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               {
                 name: 'http',
                 protocol: 'TCP',
-                containerPort: 15672,
+                containerPort: portconfigs.firefly.rabbitmq_http,
               },
               {
                 name: 'https',
                 protocol: 'TCP',
-                containerPort: 15671,
+                containerPort: portconfigs.firefly.rabbitmq_https,
               },
               {
                 name: 'amqp',
                 protocol: 'TCP',
-                containerPort: 5672,
+                containerPort: portconfigs.firefly.rabbitmq_amqp,
               },
               {
                 name: 'amqp-tls',
                 protocol: 'TCP',
-                containerPort: 5671,
+                containerPort: portconfigs.firefly.rabbitmq_amqps,
               },
             ],
             volumeMounts: [
@@ -302,7 +302,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               {
                 name: 'admin-port',
                 protocol: 'TCP',
-                containerPort: 8081,
+                containerPort: portconfigs.firefly.rabbitmq_health,
               },
             ],
             volumeMounts: [
