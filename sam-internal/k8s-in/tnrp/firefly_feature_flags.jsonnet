@@ -7,10 +7,10 @@ local configs = import "config.jsonnet";
       configs.estate == "prd-samtest",
 
    is_firefly_svc_enabled:
-      configs.estate == "prd-samtwo" ||
-      configs.estate == "prd-sam" ||
-      configs.estate == "prd-samdev" ||
-      configs.estate == "prd-samtest",
+#      configs.estate == "prd-samtwo" ||
+#      configs.estate == "prd-samdev" ||
+#      configs.estate == "prd-samtest" ||
+      configs.estate == "prd-sam",
 
    is_slb_enabled:
       configs.estate == "prd-sam",

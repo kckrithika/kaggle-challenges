@@ -148,7 +148,7 @@ items:
                 fieldPath: status.podIP
           - name: INTAKE_ENDPOINT
             value: http://firefly-intake.firefly.prd-sam.prd.slb.sfdc.net:8080
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:89
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:92
           imagePullPolicy: Always
           name: firefly-crawler
           ports:
