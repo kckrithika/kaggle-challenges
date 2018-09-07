@@ -291,7 +291,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               },
               {
                 name: 'REDEPLOY_COUNT',
-                value: '1',
+                value: '2',
               },
             ],
             ports: [

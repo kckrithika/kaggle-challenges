@@ -205,7 +205,7 @@ spec:
         - name: rabbitMqUserName
           value: sfdc-rabbitmq
         - name: REDEPLOY_COUNT
-          value: "1"
+          value: "2"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq-sidecar:92
         imagePullPolicy: Always
         livenessProbe:
