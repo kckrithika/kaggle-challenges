@@ -650,7 +650,7 @@ items:
             value: test_sam_manifests.promotion
           - name: rabbitMqExchangeName
             value: firefly.delivery
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:95
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:97
           imagePullPolicy: Always
           name: firefly-promotion
           ports:
