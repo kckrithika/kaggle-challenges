@@ -3,7 +3,7 @@ local configs = import "config.jsonnet";
 local pullrequestsvc = import "firefly-pullrequest-svc.jsonnet.TEMPLATE";
 local promotionsvc = import "firefly-promotion-svc.jsonnet.TEMPLATE";
 
-if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then
+if configs.estate == "prd-sam" then
 {
   local package = packagesvc {
       serviceConf:: super.serviceConf {
