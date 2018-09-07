@@ -60,6 +60,7 @@ spec:
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         - --followRedirect=false
+        - --slaRequiresHealthProbes=true
         env:
         - name: NODE_NAME
           valueFrom:
