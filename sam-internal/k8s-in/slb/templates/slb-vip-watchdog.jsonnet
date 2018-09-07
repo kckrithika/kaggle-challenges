@@ -109,7 +109,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            else []
                                        )
                                        + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
-                                       + ["--followRedirect=false"],
+                                       + ["--followRedirect=false"]
+                                       + (if slbflights.slaRequiresHealthProbes then [
+                                         "--slaRequiresHealthProbes=true",
+                                       ] else []),
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
