@@ -25,7 +25,7 @@ system:
 
     containers:
     - name: rsui-production
-      image: sfci/retail/retail-setup:0.1.3.46.13.1 # docker image for 1.2d release
+      image: sfci/retail/retail-setup:0.1.3.112.32 # docker image for 1.3 release
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -33,19 +33,34 @@ system:
         name: rsui-in-admin
       - containerPort: 7020
         name: rsui-in-http2
+      resources:
+        limits: { cpu: "2", memory: "10Gi" }
+        requests: { cpu: "2", memory: "10Gi" }
       env:
       - name: MDS_HOST
         value: metadata-service.retail-mds.localhost.mesh.force.com
       - name: MDS_PORT
         value: 5443
+      - name: MDS_REST
+        value: http://metadata-service.retail-mds.localhost.mesh.force.com:9091/metadata-service/mds
       - name: SERVER_PORT
         value: 7022
       - name: GRPC_SERVICE_PORT
         value: 7020
+      - name: SECURITY_CLIENT_DYNAMICKEYSTORE_MONITOREDDIRECTORY
+        value: /clientcerts/client
+      - name: SECURITY_CLIENT_DYNAMICKEYSTORE_CADIR
+        value: /clientcerts/ca
       - name: PKI_CA_DIR
         value: /servercerts
       - name: PKI_MONITORDIR
         value: /servercerts/server
+      - name: SECURITY_SERVER_DYNAMICKEYSTORE_MONITOREDDIRECTORY
+        value: /servercerts/server
+      - name: SECURITY_SERVER_DYNAMICKEYSTORE_CADIR
+        value: /servercerts/ca
+      - name: SECURITY_SERVER_DYNAMICKEYSTORE_CAFILE
+        value: /servercerts/ca/cacerts.pem
       - name: SFDC_ENVIRONMENT
         value: prod
       - name: TENANT_SOURCE_KEYS
@@ -60,6 +75,23 @@ system:
         value: http://cre-api.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
         value: https://cloudatlas.salesforce.com/empire/cloudatlas/scim
+      - name: TRANSFORMATIONLIB_MDS_MODE
+        value: live
+      - name: JVM_ARGS
+        value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
+                -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                -Xloggc:/home/scone/logs/retail-setup/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/retail-setup
+                -Dcom.sun.management.jmxremote.port=8898
+                -Dcom.sun.management.jmxremote.rmi.port=8898
+                -Dcom.sun.management.jmxremote.ssl=false
+                -Dcom.sun.management.jmxremote.authenticate=false
+                -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+      - name: LOGGING_JSON_STDOUT_LEVEL
+        value: ALL
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
@@ -71,12 +103,16 @@ system:
       volumeMounts:
       - name: retailservercert
         mountPath: /servercerts
+      - name: retailclientcert
+        mountPath: /clientcerts
       #mount splunk logs mount
       - name: logvol
         mountPath: /home/retail-setup/logs
 
     - name: sherpa-rsui-production
-      image: sfci/servicelibs/sherpa:2.0.26 # Use the latest version, see https://git.soma.salesforce.com/servicelibs/sherpa/releases
+      # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
+      # Use the full git SHA as the docker image tag.
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -109,7 +145,7 @@ system:
         periodSeconds: 5
 
     - name: beacon-rsui
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
