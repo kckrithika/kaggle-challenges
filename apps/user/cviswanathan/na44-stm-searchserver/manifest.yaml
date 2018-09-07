@@ -76,7 +76,7 @@ system:
       volumes:
         - name: solr-log-volume
           hostPath: 
-            path: /home/sfdc-searchserver/logs/solr
+            path: /home/sfdc-searchserver/logs/solr/jvm
         - name: sherpa-log-volume
           hostPath:
             path: /home/sfdc-sherpa/logs
