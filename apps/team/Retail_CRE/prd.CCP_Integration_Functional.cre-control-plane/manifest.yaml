@@ -26,7 +26,7 @@ system:
         - name: ENGINE_IMAGE_TAG
           value: docker-sam/cre/cre-engine:1.3.0.0.develop-1.3.0.491a3a0.56
         - name: ENGINE_APPLICATION_NAME
-          value: cre-engine
+          value: cre-engine-ccp-func
         - name: ENGINE_HBASE_DATACENTER
           value: prd
         - name: ENGINE_HBASE_ENVIRONMENT
