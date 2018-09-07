@@ -34,14 +34,14 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 0 - prd-samtest
         "0": $.per_phase["1"] {
-             fireflyintake: "95",
-             fireflycrawler: "95",
-             fireflypackage: "95",
+             fireflyintake: "97",
+             fireflycrawler: "97",
+             fireflypackage: "97",
              fireflypromotion: "97",
-             fireflypullrequest: "95",
+             fireflypullrequest: "97",
              fireflydind: "86",
              rabbitmq: "86",
-             rabbitmqsidecar: "92",
+             rabbitmqsidecar: "97",
              },
 
         ### Release Phase 1 - prd-samdev
@@ -52,50 +52,50 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-             fireflyintake: "95",
-             fireflycrawler: "95",
-             fireflypackage: "95",
+             fireflyintake: "97",
+             fireflycrawler: "97",
+             fireflypackage: "97",
              fireflypromotion: "97",
-             fireflypullrequest: "95",
+             fireflypullrequest: "97",
              fireflydind: "86",
              rabbitmq: "86",
-             rabbitmqsidecar: "92",
+             rabbitmqsidecar: "97",
             },
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             fireflyintake: "95",
-             fireflycrawler: "95",
-             fireflypackage: "95",
+             fireflyintake: "97",
+             fireflycrawler: "97",
+             fireflypackage: "97",
              fireflypromotion: "97",
-             fireflypullrequest: "95",
+             fireflypullrequest: "97",
              fireflydind: "86",
              rabbitmq: "86",
-             rabbitmqsidecar: "92",
+             rabbitmqsidecar: "97",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             fireflyintake: "95",
-             fireflycrawler: "95",
-             fireflypackage: "95",
+             fireflyintake: "97",
+             fireflycrawler: "97",
+             fireflypackage: "97",
              fireflypromotion: "97",
-             fireflypullrequest: "95",
+             fireflypullrequest: "97",
              fireflydind: "86",
              rabbitmq: "86",
-             rabbitmqsidecar: "92",
+             rabbitmqsidecar: "97",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
-             fireflyintake: "95",
-             fireflycrawler: "95",
-             fireflypackage: "95",
+             fireflyintake: "97",
+             fireflycrawler: "97",
+             fireflypackage: "97",
              fireflypromotion: "97",
-             fireflypullrequest: "95",
+             fireflypullrequest: "97",
              fireflydind: "86",
              rabbitmq: "86",
-             rabbitmqsidecar: "92",
+             rabbitmqsidecar: "97",
             },
         },
 
