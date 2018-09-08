@@ -45,7 +45,8 @@ spec:
         - --period=5s
         - --metricsEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-ipvs
-        - --IpvsPath=20180724
+        - --IpvsPath=stock
+        - --IpvsSchedModule=ip_vs_sh
         - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001135-23a08a2b
         name: slb-ipvs-installer
@@ -84,6 +85,7 @@ spec:
         - --proxyHealthChecks=true
         - --httpTimeout=1s
         - --enablePersistence=false
+        - --sforceScheduler=false
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001135-23a08a2b
