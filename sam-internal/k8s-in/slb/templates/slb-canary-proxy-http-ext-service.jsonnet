@@ -26,12 +26,6 @@ if configs.estate == "iad-sam" then {
                 protocol: "TCP",
                 targetPort: portconfigs.slb.canaryServiceProxyHttpPort,
             },
-            {
-                name: "slb-canary-proxy-https-port",
-                port: 443,
-                protocol: "TCP",
-                targetPort: 443,
-            },
         ],
         selector: {
             name: "slb-canary-proxy-http",
