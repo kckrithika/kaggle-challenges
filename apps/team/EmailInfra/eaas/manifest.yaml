@@ -11,10 +11,10 @@ system:
       type: RollingUpdate
     containers:
     - name: eaas
-      image:  docker-sfci-dev/sfci/eaas/emailservice:1.0.15-5b8a96019c5be120f894c341eb6f284176083f30
+      image:  docker-sfci-dev/sfci/eaas/emailservice:1.0.17-a4ec26a20f9a2fc24fb9435e935ab24e61663d81
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
+        value: "prd"
       - name: SCONE_SERVICE_NAME
         value: eaas
       ports:
