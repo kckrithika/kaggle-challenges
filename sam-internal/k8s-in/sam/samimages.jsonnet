@@ -37,6 +37,9 @@ local utils = import "util_functions.jsonnet";
         #[xiao] optimize samapp controller
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002267-a66cdb1a",
 
+
+        "prd,prd-samtest,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
+
         #[small]
         "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180830_155128.a66cdb1a.clean.small-ltm",
         "prd,prd-sam,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180830_155128.a66cdb1a.clean.small-ltm",
@@ -60,7 +63,6 @@ for ce in [
             "phx-sam",
             "prd-sam",
             "prd-samdev",
-            "prd-samtest",
             "prd-sam_storage",
             "prd-sam_storagedev",
             "prd-samtwo",
