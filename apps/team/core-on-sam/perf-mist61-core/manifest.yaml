@@ -22,8 +22,8 @@ system:
       env:
         # DB info
         - name: DB_USER
-          value: sneezy
-#          value: sleepy
+#          value: sneezy
+          value: sleepy
         - name: DB_SID
           value: mist61c214utf
 #          value: mist61a216utf
@@ -64,8 +64,8 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-#          value: green
-          value: blue
+          value: green
+#          value: blue
 
         # Override port being announced in SD
         # Publish the listen port of the side car Envoy that will handle the incoming traffic
@@ -215,14 +215,14 @@ system:
         - name: JMX_PORT
           value: 8998
         - name: OLD_DWARF
-          value: sleezy
+          value: sneezy
 #          value: happy
         - name: CURRENT_RELEASE_VERSION
-#          value: blue
-          value: green
-        - name: NEW_RELEASE_VERSION
-#          value: green
           value: blue
+#          value: green
+        - name: NEW_RELEASE_VERSION
+          value: green
+#          value: blue
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 2
