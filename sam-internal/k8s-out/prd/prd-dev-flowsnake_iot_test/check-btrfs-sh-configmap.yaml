@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-  check-btrfs.sh: "#!/bin/bash\nif grep \"blocked for more than\" /hostkern.log; then\n
+  check-btrfs.sh: "#!/bin/bash\nif dmesg | grep \"blocked for more than\"; then\n
     \   # TODO: in the future, just exit non-zero so the SAM auto-rebooter can handle\n
     \   (\n        echo Forcing reboot because btrfs is hung.;\n    ) | mail -s \"Rebooting
     $HOSTNAME (TEST EMAIL, DON'T WORRY)\" flowsnake@salesforce.com \n    echo \"Rebooting

@@ -54,11 +54,6 @@ configs.daemonSetBase("flowsnake") {
                         },
                         volumeMounts: [
                             {
-                                name: "kernlog",
-                                mountPath: "/hostkern.log",
-                                readOnly: true
-                            },
-                            {
                                 name: "check-btrfs-sh",
                                 mountPath: "/var/run/check-btrfs",
                                 readOnly: true,
@@ -69,12 +64,6 @@ configs.daemonSetBase("flowsnake") {
                     },
                 ],
                 volumes: [
-                    {
-                        name: "kernlog",
-                        hostPath: {
-                            path: "/var/log/kern"
-                        }
-                    },
                     {
                       configMap: {
                         name: "check-btrfs-sh",
