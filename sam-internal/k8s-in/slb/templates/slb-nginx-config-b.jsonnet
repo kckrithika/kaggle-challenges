@@ -293,7 +293,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                 },
                             ]
                             + (
-                                if configs.estate != "prd-samtwo" then [
+                                [
                                     {
                                         name: "slb-cert-checker",
                                         image: slbimages.hypersdn,
@@ -331,7 +331,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                     slbshared.slbNodeApi(slbports.slb.slbNodeApiPort),
                                     slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
                                     slbshared.slbLogCleanup,
-                                ] + slbflights.getManifestWatcherIfEnabled() else []
+                                ] + slbflights.getManifestWatcherIfEnabled()
                             ),
                 initContainers: [
                     madkub.madkubInitContainer(),
