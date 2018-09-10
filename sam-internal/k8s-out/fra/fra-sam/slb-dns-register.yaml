@@ -33,9 +33,10 @@ spec:
         - --subnet=10.160.8.0/22
         - --client.serverPort=12088
         - --client.serverInterface=lo
+        - --restrictedSubnets=85.222.140.0/23,
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001140-b117698c
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001143-d29bb7d1
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -79,7 +80,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001140-b117698c
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001143-d29bb7d1
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -116,7 +117,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001140-b117698c
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001143-d29bb7d1
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -138,7 +139,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001140-b117698c
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001143-d29bb7d1
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -164,13 +165,15 @@ spec:
         - --control.sentinelExpiration=1800s
         - --listenOnSocket=true
         - --readOnly=false
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001140-b117698c
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001143-d29bb7d1
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-dns-register
           name: var-logs-volume
+        - mountPath: /host/data/slb/config/slb-dns-register
+          name: var-config-volume
       - command:
         - /sdn/slb-manifest-watcher
         - --manifestOutputDir=/host/data/slb/manifests/slb-dns-register
@@ -187,7 +190,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001140-b117698c
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001143-d29bb7d1
         name: slb-manifest-watcher
         securityContext:
           privileged: true
