@@ -89,7 +89,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           {
                               name: "slb-vip-watchdog",
                               image: slbimages.hypersdn,
-                               [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
+                              [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                               command: [
                                            "/sdn/slb-vip-watchdog",
                                            "--log_dir=" + slbconfigs.logsDir,
@@ -103,16 +103,16 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            "--healthPathCheck=true",
                                            "--metricsBatchTimeout=30s",
                                        ] + (
-                                               if std.objectHas(slbconfigs.perCluster.vipwdOptOutOptions, configs.estate) then
-                                                   slbconfigs.perCluster.vipwdOptOutOptions[configs.estate]
+                                           if std.objectHas(slbconfigs.perCluster.vipwdOptOutOptions, configs.estate) then
+                                               slbconfigs.perCluster.vipwdOptOutOptions[configs.estate]
                                            else if slbimages.hypersdn_build < 1098 then ["--optOutNamespace=kne"]  # keeps backward compatibility for phase 3/4
                                            else []
                                        )
                                        + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
-                                       + ["--followRedirect=false"]
-                                       + (if slbflights.slaRequiresHealthProbes then [
-                                         "--slaRequiresHealthProbes=true",
-                                       ] else []),
+                                       + ([
+                                              "--followRedirect=false",
+                                              "--slaRequiresHealthProbes=true",
+                                          ]),
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
