@@ -26,7 +26,7 @@ spec:
         - --log_dir=/host/data/slb/logs/
         - --hostnameOverride=$(NODE_NAME)
         - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
-        - --deploymentsToMonitor=slb-ipvs,slb-nginx-config-b
+        - --deploymentsToMonitor=slb-ipvs,slb-nginx-config-b,slb-vip-watchdog,slb-dns-register
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
