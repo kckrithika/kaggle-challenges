@@ -16,9 +16,8 @@ system:
       resources:
         requests: { cpu: "0.5", memory: "200M" }
       volumeMounts:
-      - mountPath: /var/lib/report-collector-availability-watchdog/certificates/client/
+      - mountPath: /var/lib/report-collector-availability-watchdog/pki
         name: clientcertvol
-        readOnly: true
       env:
       - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
         value: 1
@@ -41,11 +40,11 @@ system:
       - name: RC_WD_SSL_STRICTSSL
         value: true
       - name: RC_WD_SSL_AUTH_CERT
-        value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_client.crt
+        value: /var/lib/report-collector-availability-watchdog/pki/client/certificates/client.pem
       - name: RC_WD_SSL_AUTH_KEY
-        value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_client.key
+        value: /var/lib/report-collector-availability-watchdog/pki/client/keys/client-key.pem
       - name: RC_WD_SSL_AUTH_CA
-        value: /var/lib/report-collector-availability-watchdog/certificates/client/ca.crt
+        value: /var/lib/report-collector-availability-watchdog/pki/ca.pem
       - name: RC_WD_LOGGER_LEVEL
         value: debug
       command: ["/bin/sh", "-c"]
@@ -64,5 +63,5 @@ system:
         periodSeconds: 5
     volumes:
     - name: clientcertvol
-      secret:
-        secretName: csc-rc-hack-certificates
+      maddogCert:
+        type: client
