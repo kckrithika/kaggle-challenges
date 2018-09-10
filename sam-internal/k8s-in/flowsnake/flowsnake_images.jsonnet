@@ -88,7 +88,7 @@ local utils = import "util_functions.jsonnet";
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
-                kubedns_scale_up: "",
+                kubedns_scale_up: "",  #verified in test fleet
             },
             version_mapping: {
                 main: {
@@ -126,6 +126,7 @@ local utils = import "util_functions.jsonnet";
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
                 add_12_1_canary: "verified",  #verified in test fleet
+                kubedns_scale_up: "",
             },
             version_mapping: {
                 main: {
