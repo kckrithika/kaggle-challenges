@@ -38,7 +38,7 @@ if slbimages.hypersdn_build > 1120 && slbconfigs.slbInKingdom then configs.deplo
                             "--log_dir=" + slbconfigs.logsDir,
                             "--hostnameOverride=$(NODE_NAME)",
                             "--metricsEndpoint=" + configs.funnelVIP,
-                            "--deploymentsToMonitor=slb-ipvs,slb-nginx-config-b,slb-vip-watchdog,slb-echo-server,slb-dns-register",
+                            "--deploymentsToMonitor=slb-ipvs,slb-nginx-config-b",
                             configs.sfdchosts_arg,
                         ],
                         volumeMounts: configs.filter_empty([
