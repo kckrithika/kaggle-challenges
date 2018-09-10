@@ -117,7 +117,7 @@ system:
               { "filter": { "providerId": "csc-health.exprepcollavailwd", "trusted": true },
                 "minDelay": 20000,
                 "maxDelay": 20000 },
-              { "filter": { "providerId": "sam_reporter", "trusted": true },
+              { "filter": { "providerId": "samapp.user-aiacob.andreis-repcollavailwd", "trusted": true },
                 "minDelay": 20000,
                 "maxDelay": 20000 }
              ]
