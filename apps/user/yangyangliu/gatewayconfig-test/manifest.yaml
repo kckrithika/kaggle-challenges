@@ -4,36 +4,37 @@ system:
     email:
       - yangyangliu@salesforce.com
   functions:
-  - name: default
+  - name: lyy-gateway-service
     count: 1
     volumes: 
-    - name: gwcertclient
+    - name: client-cert
       maddogCert:
         type: client
-    - name: gwcertserver
+    - name: server-cert
       maddogCert:
         type: server
         lbnames:
         - gatewayconfiglb
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yangyangliu/gatewayconfig:2018-05-17d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yangyangliu/gatewayconfig:2018-09-10a
       env:
       - name: PKI_CA_DIR
-        value: /gwcertserver
+        value: /server-certs
       - name: PKI_MONITORDIR
-        value: /gwcertserver/server
+        value: /server-certs/server
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: all
       - name: LOGGING_STDERR_LEVEL
         value: all
       volumeMounts:
-      - name: gwcertclient
-        mountPath: /gwcertclient
-      - name: gwcertserver
-        mountPath: /gwcertserver
+      - name: client-cert
+        mountPath: /client-cert
+      - name: server-cert
+        mountPath: /server-cert
       args:
         - start
+        - "--debug"
       ports:
       - containerPort: 7122
       - containerPort: 15372
@@ -47,10 +48,44 @@ system:
         #  path: /manage/health
         #  port: 15372
         #  scheme: HTTPS
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      ports:
+      - containerPort: 7442
+        name: http1-nontls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      volumeMounts:
+      - name: client-cert
+        mountPath: "/client-certs"
+      - name: server-cert
+        mountPath: "/server-certs"
+      livenessProbe:
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        exec:
+          command:
+          - "./bin/is-alive"
+      readinessProbe:
+        initialDelaySeconds: 100
+        periodSeconds: 5
+        exec:
+          command:
+          - "./bin/is-ready"
+    - name: beacon
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - "-endpoint"
+      - lyy-gateway-service:DATACENTER_ALLENV:7442
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
   loadbalancers:
   - lbname: gatewayconfiglb
     #nodeexposed: true
-    function: default
+    function: lyy-gateway-service
     ports:
       - port: 7122
         targetport: 7122
