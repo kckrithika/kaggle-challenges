@@ -5,6 +5,8 @@ data:
       "BackoffJitterMax": 3600000000000,
       "BackoffMin": 5000000000,
       "Delay": 60000000000,
+      "EnableHttp": false,
+      "EnableTcp": true,
       "Enabled": true,
       "MetricsBatchTimeout": 60000000000,
       "MetricsHTTPTimeout": 5000000000,
@@ -21,6 +23,7 @@ data:
       "RequestsToSkip": 5,
       "SelectorLabelName": "sam-network-reporter",
       "ShouldBatchMetrics": true,
+      "TcpPort": "3333",
       "TestMode": false,
       "Timeout": 30000000000
     }

@@ -19,6 +19,10 @@ local timeHour = 60 * timeMinute;
 
     ShouldBatchMetrics: true,
 
+        EnableHttp: false,
+        EnableTcp: true,
+        TcpPort: "3333",
+
     RequestDelay: 10 * timeMillisecond,
     Delay: 60 * timeSecond,
     RefreshNodesMaxDelay: 5 * timeMinute,
