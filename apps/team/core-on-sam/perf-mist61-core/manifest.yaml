@@ -225,7 +225,7 @@ system:
 #          value: blue
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
-          value: 2
+          value: 1
         - name: DB_SID
 #          value: mist61a216utf
           value: mist61c214utf
