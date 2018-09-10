@@ -1,0 +1,52 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - dtupper@salesforce.com
+    functions:
+    - name: dtwarden-test-func
+      count: 1
+      containers:
+      - name: dt-warden-test
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/casp-warden:test-0002
+        ports:
+        - name: http
+          containerPort: 8889
+          hostPort: 18889
+        - name: https
+          containerPort: 8443
+        - name: grpc
+          containerPort: 7878
+        env:
+        - name: BRANCH
+          value: "dev"
+        volumeMounts:
+        - mountPath: /home/sfdc-casp/logs
+          name: log-vol
+        - mountPath: /opt/warden/cantor
+          name: cantor-vol
+        livenessProbe:
+          httpGet:
+            path: /manage/health
+            port: 15372
+          initialDelaySeconds: 120
+      volumes:
+      - name: log-vol
+        hostPath:
+          path: /home/sfdc-casp/logs
+      - name: cantor-vol
+        hostPath:
+          path: /home/sfdc-casp/cantor
+
+    loadbalancers:
+    - lbname: wardenlb
+      function: dtwarden-test-func
+      slbEnabled: true
+      ports:
+        - port: 80
+          targetport: 8889
+        - port: 443
+          targetport: 8443
+        - port: 7878
+          targetport: 7878
