@@ -7,6 +7,7 @@
     local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: $.dirSuffix },
 
     local configProcSentinel = slbconfigs.configDir + "/slb-config-proc.sentinel",
+    local mwSentinel = slbconfigs.configDir + "/slb-manifest-watcher.sentinel",
 
     slbConfigProcessor(configProcessorLivenessPort, proxyLabelSelector="slb-nginx-config-b", servicesToLbOverride="", servicesNotToLbOverride="illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc"): {
         name: "slb-config-processor",
@@ -75,7 +76,7 @@
             periodSeconds: 30,
         },
     },
-    slbNodeApi(nodeApiPort):: {
+    slbNodeApi(nodeApiPort, mwSentinelNeedsCheck):: {
         name: "slb-node-api",
         image: slbimages.hypersdn,
         command: [
@@ -87,7 +88,11 @@
             "--checkSentinel=true",
             "--control.configProcSentinel=" + configProcSentinel,
             "--control.sentinelExpiration=1800s",  # config processor's interval
-        ] + slbflights.getNodeApiServerSocketSettings(),
+        ] + slbflights.getNodeApiServerSocketSettings()
+        + (if slbflights.mwSentinelEnabled then [
+                    "--checkMwSentinel=" + mwSentinelNeedsCheck,
+                    "--control.manifestWatcherSentinel=" + mwSentinel,
+                ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.logs_volume_mount,
@@ -220,7 +225,11 @@
             "--hostnameOverride=$(NODE_NAME)",
             "--log_dir=" + slbconfigs.logsDir,
             configs.sfdchosts_arg,
-        ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+        ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+        + (if slbflights.mwSentinelEnabled then [
+                    "--client.allowStale=true",
+                    "--control.manifestWatcherSentinel=" + mwSentinel,
+                ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             configs.sfdchosts_volume_mount,

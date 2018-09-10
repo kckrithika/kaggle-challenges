@@ -40,7 +40,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiRealSvrOverridePort, false),
                     slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorRealSvrLivenessProbeOverridePort, "slb-nginx-config-b", "", ""),
                     slbshared.slbCleanupConfig,
-                    slbshared.slbNodeApi(slbports.slb.slbNodeApiRealSvrOverridePort),
+                    # Realsvrcfg currently only configures the tunnel interface for SAM apps so it does not have manifest watcher running in its pod
+                    # So, it does not need to check the manifest watcher sentinel
+                    slbshared.slbNodeApi(slbports.slb.slbNodeApiRealSvrOverridePort, false),
                     slbshared.slbLogCleanup,
                 ],
                 affinity: {

@@ -89,7 +89,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     },
                     slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorLivenessProbePort),
                     slbshared.slbCleanupConfig,
-                    slbshared.slbNodeApi(portconfigs.slb.slbNodeApiPort),
+                    slbshared.slbNodeApi(portconfigs.slb.slbNodeApiPort, false),
                     slbshared.slbLogCleanup,
                 ],
                 nodeSelector: {
