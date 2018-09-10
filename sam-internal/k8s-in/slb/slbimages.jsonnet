@@ -22,7 +22,7 @@ local slbreleases = import "slbreleases.json";
 
     ### Phase kingdom/estate mapping
     phase: (
-        if (estate == "prd-sdc") then
+        if (estate == "prd-sdc" || estate == "fra-sam") then
             "1"
         else if kingdom in { [k]: 1 for k in ['prd'] } then
             "2"

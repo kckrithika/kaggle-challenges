@@ -70,7 +70,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                 "--IpvsPath=stock",
                                 "--IpvsSchedModule=ip_vs_sh",
                             ] else [
-                                "--IpvsPath=20180724",
+                                "--IpvsPath=20180910",
                             ]) +
                         [
                             configs.sfdchosts_arg,
