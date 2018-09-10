@@ -241,6 +241,8 @@ spec:
         - --control.sentinelExpiration=1800s
         - --listenOnSocket=true
         - --readOnly=false
+        - --checkMwSentinel=true
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-ipvs/slb-manifest-watcher.sentinel
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001143-d29bb7d1
         name: slb-node-api
         volumeMounts:
@@ -320,6 +322,8 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
+        - --client.allowStale=true
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-ipvs/slb-manifest-watcher.sentinel
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

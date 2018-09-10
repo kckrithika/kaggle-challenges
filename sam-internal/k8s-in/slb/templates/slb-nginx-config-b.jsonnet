@@ -328,7 +328,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                     },
                                     slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                                     slbshared.slbCleanupConfig,
-                                    slbshared.slbNodeApi(slbports.slb.slbNodeApiPort),
+                                    slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                                     slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
                                     slbshared.slbLogCleanup,
                                 ] + slbflights.getManifestWatcherIfEnabled()

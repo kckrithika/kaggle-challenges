@@ -71,7 +71,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort),
                     slbshared.slbCleanupConfig,
                     slbshared.slbLogCleanup,
-                    slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort),
+                    slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort, true),
                 ] + slbflights.getManifestWatcherIfEnabled(),
                 nodeSelector: {
                     "slb-dns-register": "true",

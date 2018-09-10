@@ -206,7 +206,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     },
                     slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort),
                     slbshared.slbCleanupConfig,
-                    slbshared.slbNodeApi(slbports.slb.slbNodeApiIpvsOverridePort),
+                    slbshared.slbNodeApi(slbports.slb.slbNodeApiIpvsOverridePort, true),
                     slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIpvsOverridePort),
                     slbshared.slbLogCleanup,
                 ] + slbflights.getManifestWatcherIfEnabled(),
