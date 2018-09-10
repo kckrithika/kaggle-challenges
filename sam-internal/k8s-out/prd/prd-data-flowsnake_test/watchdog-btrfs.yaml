@@ -38,9 +38,6 @@ spec:
             cpu: "0.1"
             memory: 100Mi
         volumeMounts:
-        - mountPath: /hostkern.log
-          name: kernlog
-          readOnly: true
         - mountPath: /var/run/check-btrfs
           name: check-btrfs-sh
           readOnly: true
@@ -51,9 +48,6 @@ spec:
       hostNetwork: true
       restartPolicy: Always
       volumes:
-      - hostPath:
-          path: /var/log/kern
-        name: kernlog
       - configMap:
           name: check-btrfs-sh
         name: check-btrfs-sh
