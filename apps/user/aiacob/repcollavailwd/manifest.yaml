@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: repcollavailwd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-wd:20180910115258
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-wd:20180910122655
       ports:
       - name: liveness
         containerPort: 8089
