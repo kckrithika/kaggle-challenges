@@ -76,7 +76,7 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - "-endpoint"
-      - gateway/gateway-service:DATACENTER_ALLENV:7442
+      - lyy-gateway-service:DATACENTER_ALLENV:7442
       livenessProbe:
         initialDelaySeconds: 5
         exec:
