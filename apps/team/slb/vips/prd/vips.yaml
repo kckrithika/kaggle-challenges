@@ -1,8 +1,8 @@
 - lbname: helloselfservice3
   customlbname: slb-canary-migration
   servers:
-   - shared0-sdcsamcompute1-3-prd.eng.sfdc.net
-   - shared0-sdcsamcompute1-5-prd.eng.sfdc.net
+   - shared0-sdcsamcompute2-2-prd.eng.sfdc.net
+   - shared0-sdcsamcompute2-3-prd.eng.sfdc.net
   ports:
    - port: 80
      targetport: 12087
