@@ -21,12 +21,9 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         #[a.mitra] enable k4a blacklist
-        "prd,prd-samdev,temp-secret-samcontrol-deployer,hypersam": "sam-0002258-f961c511",
-        "prd,prd-samtest,temp-secret-samcontrol-deployer,hypersam": "sam-0002258-f961c511",
         "prd,prd-sam,temp-secret-samcontrol-deployer,hypersam": "sam-0002258-f961c511",
 
         # [cbatra] Deploying changes for PRD IP issue with the overrding of resource issue
-        "prd,prd-samdev,samcontrol,hypersam": "sam-0002275-056747b7",
         "prd,prd-sam,samcontrol,hypersam": "sam-0002275-056747b7",
 
         #[pjoshi]
@@ -38,8 +35,6 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,host-repair-scheduler,hypersam": "sam-0002265-c85a3b04",
 
         #[xiao] optimize samapp controller
-        "prd,prd-samtest,samapp-controller,hypersam": "sam-0002267-a66cdb1a",
-        "prd,prd-samdev,samapp-controller,hypersam": "sam-0002267-a66cdb1a",
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002267-a66cdb1a",
 
         #[small]
@@ -102,7 +97,7 @@ for ce in [
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
             # IMPORTANT! Follow all steps from https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM
-            hypersam: "sam-0002252-a9ad81d9",
+            hypersam: "sam-0002279-7db63f34",
             madkub: "1.0.0-0000077-b1d3a629",
             madkubSidecar: "1.0.0-0000077-b1d3a629",
             },
