@@ -32,7 +32,7 @@ system:
         - name: LOG_JWT
           value: true
         - name: HBASE_SUPER_TENANT_IDS_FLUSH
-          value: 00Dx00000005SuREAU,00Dx00000005SuR
+          value: 00Dkc1300v25M10
       ports:
       - containerPort: 8080
       - containerPort: 7022
@@ -46,6 +46,8 @@ system:
           port: 15372
           scheme: HTTP
       volumeMounts:
+      - mountPath: /log
+        name: sherpa-log-volume        
       - mountPath: /client-certs
         name: client-certs
       - mountPath: /server-certs
