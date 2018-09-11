@@ -39,7 +39,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIfaceOverridePort),
                     slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorIfaceLivenessProbeOverridePort),
                     slbshared.slbCleanupConfig,
-                    slbshared.slbNodeApi(slbports.slb.slbNodeApiIfaceOverridePort, true),
+                    slbshared.slbNodeApi(slbports.slb.slbNodeApiIfaceOverridePort, false),
                     slbshared.slbLogCleanup,
                 ],
                 affinity: {
