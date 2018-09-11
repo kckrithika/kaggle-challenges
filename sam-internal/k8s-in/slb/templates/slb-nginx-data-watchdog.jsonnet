@@ -65,7 +65,6 @@ if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slb
                                         configs.kube_config_env,
                                     ],
                                 },
-
                             ]
                             + (
                                 if slbimages.phaseNum == 1 then [
