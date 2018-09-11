@@ -8,7 +8,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgardner/tftptest:mgardner-20180910
       ports:
       - containerPort: 69
-        protocol: udp
+        protocol: UDP
       livenessProbe:
         exec:
           command:
