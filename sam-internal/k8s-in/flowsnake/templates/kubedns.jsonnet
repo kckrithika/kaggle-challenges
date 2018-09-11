@@ -1,5 +1,6 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 if !flowsnake_config.kubedns_manifests_enabled then
 "SKIP"
 else
@@ -39,7 +40,10 @@ else
                 creationTimestamp: null,
                 labels: {
                     "k8s-app": "kube-dns",
-                },
+                } + if flag_fs_metric_labels then {
+                    flowsnakeOwner: "dva-transform",
+                    flowsnakeRole: "KubeDns",
+                } else {},
             },
             spec: {
                 containers: [

@@ -6,6 +6,7 @@ local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
+local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 if !watchdog.watchdog_enabled || !std.objectHas(flowsnake_images.feature_flags, "add_12_1_canary") then
 "SKIP"
 else
@@ -42,7 +43,7 @@ configs.deploymentBase("flowsnake") {
                     apptype: "monitoring",
                     flowsnakeOwner: "dva-transform",
                     flowsnakeRole: "WatchdogCanary-0-12-1",
-                },
+                }
             },
             spec: {
                 restartPolicy: "Always",

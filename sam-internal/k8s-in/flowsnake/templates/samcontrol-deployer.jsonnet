@@ -1,6 +1,7 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local auto_deployer = import "auto_deployer.jsonnet";
 local configs = import "config.jsonnet";
+local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 
 if !auto_deployer.auto_deployer_enabled then
 "SKIP"
@@ -20,7 +21,10 @@ configs.deploymentBase("flowsnake") {
         labels: {
           apptype: "control",
           name: "samcontrol-deployer",
-        },
+        } + if flag_fs_metric_labels then {
+          flowsnakeOwner: "dva-transform",
+          flowsnakeRole: "SamControlDeployer",
+        } else {},
       },
       spec: {
         containers: [

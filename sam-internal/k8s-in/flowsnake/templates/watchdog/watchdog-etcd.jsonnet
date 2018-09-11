@@ -4,6 +4,7 @@ local estate = std.extVar("estate");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 local configs = import "config.jsonnet";
+local flag_fs_metric_labels = std.objectHas(flowsnakeimage.feature_flags, "fs_metric_labels");
 
 if !watchdog.watchdog_enabled then
 "SKIP"
@@ -75,7 +76,10 @@ configs.daemonSetBase("flowsnake") {
                     app: "watchdog-etcd",
                     apptype: "monitoring",
                     daemonset: "true",
-                },
+                } + if flag_fs_metric_labels then {
+                    flowsnakeOwner: "dva-transform",
+                    flowsnakeRole: "WatchdogEtcd",
+                } else {},
             },
         },
     },
