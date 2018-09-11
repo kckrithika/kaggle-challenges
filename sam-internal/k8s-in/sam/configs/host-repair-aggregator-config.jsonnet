@@ -9,6 +9,7 @@ std.prune({
   signals: [
     "filesystemChecker",
     "maddogCertChecker",
+    "kubeletChecker",
   ],
   funnelEndpoint: configs.funnelVIP,
 }) else "SKIP"

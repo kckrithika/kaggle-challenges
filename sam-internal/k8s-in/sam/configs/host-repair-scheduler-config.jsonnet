@@ -10,5 +10,5 @@ std.prune({
   hostRegexWhitelist: [
     ".*prd.*",
   ],
-  actionConditions: { reboot: ["filesystemChecker"] },
+  actionConditions: { reboot: ["filesystemChecker", "kubeletChecker"] },
 }) else "SKIP"
