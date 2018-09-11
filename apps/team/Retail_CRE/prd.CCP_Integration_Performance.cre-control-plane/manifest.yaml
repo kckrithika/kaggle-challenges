@@ -22,7 +22,7 @@ system:
         - name: FLOWSNAKE_ENDPOINT
           value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
         - name: ENGINE_PKI_NAME_OVERRIDE
-          value: cre-engine-ccp-perf  
+          value: cre-engine-ccp-perf
         - name: ENGINE_IMAGE_TAG
           value: docker-sam/cre/cre-engine:1.3.0.0.develop-1.3.0.491a3a0.56
         - name: ENGINE_APPLICATION_NAME
@@ -38,7 +38,7 @@ system:
         - name: ENGINE_INCOMING_QUEUE
           value: sfdc.prod.cre__prd.ajna_local__cre_inbound_CCP_Integration_Performance
         - name: ENGINE_OUTGOING_QUEUE
-          value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Integration_Performance  
+          value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Integration_Performance
         - name: ENGINE_SUPER_TENANT_ID_OVERRIDE
           value: <placeholder_super_tenant_id>
         - name: HBASE_ENVIRONMENT
@@ -49,6 +49,8 @@ system:
           value: http://cre-sp-ccp-perf.retail-cre.localhost.mesh.force.com:5442
         - name: GDOT_FORCE_PROVISIONING
           value: false
+        - name: SECRET_KEY_FILE
+          value: /keys/kube/cre-aes.key
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -64,6 +66,9 @@ system:
         readOnly: true
       - mountPath: /keys/
         name: aeskey
+        readOnly: true
+      - mountPath: /keys/kube
+        name: aeskey-kube
         readOnly: true
       - mountPath: /client-certs
         name: client-certs
@@ -122,6 +127,9 @@ system:
     - name: aeskey
       k4aSecret:
         secretName: cre-aes-key
+    - name: aeskey-kube
+      secret:
+        secretName: cre-aes-key-kube
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-control-plane-ccp-perf
