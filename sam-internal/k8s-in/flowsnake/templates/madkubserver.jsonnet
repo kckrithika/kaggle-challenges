@@ -3,6 +3,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local configs = import "config.jsonnet";
+local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 
 configs.deploymentBase("flowsnake") {
   metadata: {
@@ -19,7 +20,10 @@ configs.deploymentBase("flowsnake") {
       metadata: {
         labels: {
           service: "madkubserver",
-        },
+        } + if flag_fs_metric_labels then {
+          flowsnakeOwner: "dva-transform",
+          flowsnakeRole: "MadkubServer",
+        } else {},
       },
       spec: {
         containers: [

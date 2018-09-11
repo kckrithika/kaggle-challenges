@@ -11,12 +11,16 @@ spec:
       app: watchdog-common
       apptype: monitoring
       daemonset: "true"
+      flowsnakeOwner: dva-transform
+      flowsnakeRole: WatchdogCommon
   template:
     metadata:
       labels:
         app: watchdog-common
         apptype: monitoring
         daemonset: "true"
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: WatchdogCommon
     spec:
       containers:
       - command:

@@ -6,6 +6,8 @@ local kingdom = std.extVar("kingdom");
 local madkub_common = import "madkub_common.jsonnet";
 local cert_name = "ingresscerts";
 local configs = import "config.jsonnet";
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 
 configs.deploymentBase("flowsnake") {
   metadata: {
@@ -35,7 +37,10 @@ configs.deploymentBase("flowsnake") {
         },
         labels: {
           name: "cert-secretizer",
-        },
+        } + if flag_fs_metric_labels then {
+          flowsnakeOwner: "dva-transform",
+          flowsnakeRole: "FlowsnakeCertSecretizer",
+        } else {},
       },
       spec: {
         containers: [

@@ -2,6 +2,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local configs = import "config.jsonnet";
+local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 if flowsnakeconfig.node_controller_enabled then
 {
     kind: "Deployment",
@@ -57,7 +58,10 @@ if flowsnakeconfig.node_controller_enabled then
                 labels: {
                     name: "node-controller",
                     apptype: "control",
-                },
+                } + if flag_fs_metric_labels then {
+                    flowsnakeOwner: "dva-transform",
+                    flowsnakeRole: "NodeController",
+                } else {},
             },
         },
         selector: {

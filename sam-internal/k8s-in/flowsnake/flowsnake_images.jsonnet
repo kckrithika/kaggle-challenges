@@ -89,6 +89,7 @@ local utils = import "util_functions.jsonnet";
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
                 kubedns_scale_up: "",  #verified in test fleet
+                fs_metric_labels: "unverified",  # UNVERIFIED -- DO NOT DEPLOY
             },
             version_mapping: {
                 main: {

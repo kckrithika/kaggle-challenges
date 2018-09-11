@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local estate = std.extVar("estate");
+local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 
 if flowsnake_config.snapshots_enabled then ({
     apiVersion: "extensions/v1beta1",
@@ -25,7 +26,10 @@ if flowsnake_config.snapshots_enabled then ({
                 labels: {
                     apptype: "control",
                     name: "snapshoter",
-                },
+                } + if flag_fs_metric_labels then {
+                    flowsnakeOwner: "dva-transform",
+                    flowsnakeRole: "Snapshoter",
+                } else {},
                 namespace: "flowsnake",
             },
             spec: {

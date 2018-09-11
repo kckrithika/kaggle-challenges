@@ -3,6 +3,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -26,7 +27,10 @@ local kingdom = std.extVar("kingdom");
                 labels: {
                     name: "nginx-ingress-lb",
                     "k8s-app": "nginx-ingress-lb",
-                },
+                } + if flag_fs_metric_labels then {
+                    flowsnakeOwner: "dva-transform",
+                    flowsnakeRole: "NginxIngressController",
+                } else {},
             },
             spec: {
                 terminationGracePeriodSeconds: 60,

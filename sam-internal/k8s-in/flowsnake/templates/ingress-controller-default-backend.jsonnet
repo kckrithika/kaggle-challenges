@@ -1,5 +1,6 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flag_fs_metric_labels = std.objectHas(flowsnakeimage.feature_flags, "fs_metric_labels");
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -22,7 +23,10 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
                 labels: {
                     name: "default-http-backend",
                     app: "default-http-backend",
-                },
+                } + if flag_fs_metric_labels then {
+                    flowsnakeOwner: "dva-transform",
+                    flowsnakeRole: "DefaultHttpBackend",
+                } else {},
             },
             spec: {
                 terminationGracePeriodSeconds: 60,
