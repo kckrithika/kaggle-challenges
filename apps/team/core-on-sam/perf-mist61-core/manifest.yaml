@@ -242,7 +242,7 @@ system:
         - name: MADDOG_CLIENT
           value: /certs
         - name: CASAM_SETTINGS_PATH
-          value: mist.mist61.prd.na1.cli
+          value: mist.mist61.prd.na1.cyan
 
       livenessProbe:
         httpGet:
