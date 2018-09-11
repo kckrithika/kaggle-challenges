@@ -1,5 +1,8 @@
 apps:
   reportcollector:
+    - prd/prd-sam_report_collector
+  temp-store:
+    - prd/prd-sam_report_collector
   reportcollector-perf:
   redis-inspector:
     - prd/prd-sam_report_collector
@@ -15,7 +18,6 @@ apps:
   locust:
     - prd/prd-sam_report_collector
   reportcollectorha:
-    - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
     - prd/prd-sdc
     - phx/phx-sam_report_collector
