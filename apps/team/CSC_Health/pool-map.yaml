@@ -107,5 +107,5 @@ apps:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
   service-event-recorder:
-  expreport-cache-builder:
+  exptemp-store:
     - prd/prd-sam_report_collector
