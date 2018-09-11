@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:7f075370f64be266d0429b4b05672d8faf0ece71
+      image: sfci/servicelibs/switchboard:62383621613abcf01c819040814cdc2fe3ce4358
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -22,7 +22,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: stm
       - name: GRPC_SERVER_PORT
-        value: 7020
+        value: "7020"
       - name: JVM_HEAP_MAX
         value: 4G
       resources:
