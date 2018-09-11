@@ -22,7 +22,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       resources:
-        limits: { cpu: "3", memory: "6Gi" }
+        limits: { cpu: "2", memory: "4Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
       ports:
