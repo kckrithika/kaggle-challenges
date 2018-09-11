@@ -11,9 +11,6 @@ system:
       - name: pki-server-cert
         maddogCert:
           type: server
-      - name: servercertvol
-        secret:
-          secretName: csc-rc-certificates
       - name: redisauthvol
         secret:
           secretName: csc-redis-auth-0
@@ -33,9 +30,6 @@ system:
       volumeMounts:
       - mountPath: /var/log/report-collector
         name: logvol
-      - mountPath: /var/lib/report-collector/certificates/server/
-        name: servercertvol
-        readOnly: true
       - mountPath: /var/secrets/redis
         name: redisauthvol
         readOnly: true
