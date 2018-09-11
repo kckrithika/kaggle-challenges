@@ -143,7 +143,7 @@ spec:
         - --control.sentinelExpiration=1800s
         - --listenOnSocket=true
         - --readOnly=false
-        - --checkMwSentinel=true
+        - --checkMwSentinel=false
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-iface-processor/slb-manifest-watcher.sentinel
         image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001143-d29bb7d1
         name: slb-node-api
