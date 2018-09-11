@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: tftptest
-    count: 1
+    count: 0
     containers:
     - name: tftp
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgardner/tftptest:mgardner-20180910
@@ -17,7 +17,7 @@ system:
   loadbalancers:
   - lbname: tftptestlb
     function: tftptest
-    slbenabled: true
+    slbenabled: false
     ports:
       - port: 69
         targetport: 69
