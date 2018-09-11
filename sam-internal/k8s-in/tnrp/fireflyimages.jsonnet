@@ -34,14 +34,14 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 0 - prd-samtest
         "0": $.per_phase["1"] {
-             fireflyintake: "97",
-             fireflycrawler: "97",
-             fireflypackage: "97",
-             fireflypromotion: "97",
-             fireflypullrequest: "97",
+             fireflyintake: "98",
+             fireflycrawler: "98",
+             fireflypackage: "98",
+             fireflypromotion: "98",
+             fireflypullrequest: "98",
              fireflydind: "86",
              rabbitmq: "86",
-             rabbitmqsidecar: "97",
+             rabbitmqsidecar: "98",
              },
 
         ### Release Phase 1 - prd-samdev
@@ -64,38 +64,38 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             fireflyintake: "97",
-             fireflycrawler: "97",
-             fireflypackage: "97",
-             fireflypromotion: "97",
-             fireflypullrequest: "97",
+             fireflyintake: "98",
+             fireflycrawler: "98",
+             fireflypackage: "98",
+             fireflypromotion: "98",
+             fireflypullrequest: "98",
              fireflydind: "86",
              rabbitmq: "86",
-             rabbitmqsidecar: "97",
+             rabbitmqsidecar: "98",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             fireflyintake: "97",
-             fireflycrawler: "97",
-             fireflypackage: "97",
-             fireflypromotion: "97",
-             fireflypullrequest: "97",
+             fireflyintake: "98",
+             fireflycrawler: "98",
+             fireflypackage: "98",
+             fireflypromotion: "98",
+             fireflypullrequest: "98",
              fireflydind: "86",
              rabbitmq: "86",
-             rabbitmqsidecar: "97",
+             rabbitmqsidecar: "98",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
-             fireflyintake: "97",
-             fireflycrawler: "97",
-             fireflypackage: "97",
-             fireflypromotion: "97",
-             fireflypullrequest: "97",
+             fireflyintake: "98",
+             fireflycrawler: "98,
+             fireflypackage: "98",
+             fireflypromotion: "98",
+             fireflypullrequest: "98",
              fireflydind: "86",
              rabbitmq: "86",
-             rabbitmqsidecar: "97",
+             rabbitmqsidecar: "98",
             },
         },
 
