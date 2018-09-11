@@ -22,13 +22,13 @@
    - port: 22
      targetport: 22
      lbtype: tcp
-# Note the healthport and healthpath. Each backend has an http endpoint listening on healthport
-# and returns 200 OK on the specified healthpath if the backend is elibible to receive traffic.
+     # Note the healthport and healthpath. Each backend has an http endpoint listening on healthport
+     # and returns 200 OK on the specified healthpath if the backend is elibible to receive traffic.
      healthport: 12087
      healthpath: "/liveness-probe"
 
 ## ##
-## This VIP definition creates a VIP named check-slb-examples-prd.slb.sfdc.net
+## This VIP definition creates a HTTP VIP named check-slb-examples-prd.slb.sfdc.net
 ## This VIP listens on port 80 and forwards packets port 12087 on one of the specified backends. 
 ## Traffic is only sent to backend servers if they satisfy the specified health probe.
 ## This contrived produces a health-checked HTTP VIP that demonstrates different listening and forwarding
@@ -49,10 +49,26 @@
   # lbtype specifies the style of load balancing. For L7 functionality (default
   # for an http VIP), specify a value of http. For L4 passthrough, specify tcp.
   ports:
-   - port: 80
+   - port: 443
      targetport: 12087
      lbtype: http
-# Note the healthport and healthpath. Each backend has an http endpoint listening on healthport
-# and returns 200 OK on the specified healthpath if the backend is elibible to receive traffic.
+     # Note the healthport and healthpath. Each backend has an http endpoint listening on healthport
+     # and returns 200 OK on the specified healthpath if the backend is elibible to receive traffic.
+     # healthprotocol can be either http or https.
      healthport: 12087
      healthpath: "/liveness-probe"
+     healthprotocol: "http"
+     # sticky specifies that session stickiness will be enforced via a cookie. The integer value 
+     # indicates the duration in seconds of the cookie.
+     sticky: 300
+     # tls indicates if the connection between the client and the VIP should be encrypted.   
+     tls: true
+     # reencrypt indicates if the connection between the load balancer and the backend should be 
+     # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
+     reencrypt: false
+     # vipmaxrps indicates the total requests per second that the VIP will serve. 
+     vipmaxrps: 100
+     # clientmaxrps specifies the total requests per second that a given client IP may issue.
+     clientmaxrps: 2
+     # responserate, in MB per second, limits the rate of response transmission to a client.
+     responserate: 100
