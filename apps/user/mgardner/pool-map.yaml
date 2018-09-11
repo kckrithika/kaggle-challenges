@@ -3,5 +3,3 @@ apps:
   - prd/prd-sam
  render-ethgen-test:
   - prd/prd-sam
- tftp-test:
-  - prd/prd-sam
