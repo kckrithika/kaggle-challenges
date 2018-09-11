@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         apptype: control
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: NodeController
         name: node-controller
     spec:
       containers:

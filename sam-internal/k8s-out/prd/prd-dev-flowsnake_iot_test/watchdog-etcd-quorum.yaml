@@ -10,11 +10,15 @@ spec:
   selector:
     matchLabels:
       apptype: monitoring
+      flowsnakeOwner: dva-transform
+      flowsnakeRole: WatchdogEtcdQuorum
       name: watchdog-etcd-quorum
   template:
     metadata:
       labels:
         apptype: monitoring
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: WatchdogEtcdQuorum
         name: watchdog-etcd-quorum
       namespace: flowsnake
     spec:
