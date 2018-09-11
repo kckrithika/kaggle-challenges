@@ -56,6 +56,7 @@ apps:
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
+    - fra/fra-sam_report_collector
   observation-service-watchdog:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
@@ -66,6 +67,7 @@ apps:
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
+    - fra/fra-sam_report_collector
   expcandidate-service:
   candidate-service:
     - prd/prd-sam_report_collector
@@ -77,6 +79,7 @@ apps:
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
+    - fra/fra-sam_report_collector
   expcandidate-service-watchdog:
   candidate-service-watchdog:
     - prd/prd-sam_report_collector
@@ -88,6 +91,7 @@ apps:
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
+    - fra/fra-sam_report_collector
   expreportcollectorha:
     - prd/prd-sam_report_collector
   exprepcollavailwd:
