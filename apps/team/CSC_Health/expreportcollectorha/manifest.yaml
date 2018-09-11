@@ -11,15 +11,12 @@ system:
       - name: pki-server-cert
         maddogCert:
           type: server
-      - name: servercertvol
-        secret:
-          secretName: csc-rc-certificates
       - name: redisauthvol
         secret:
           secretName: csc-redis-auth-0
     containers:
     - name: expreport-collectorha
-      image: tnrp/csc-health/report-collector:1.21.0-0000311-a5c87603
+      image: tnrp/csc-health/report-collector:1.21.0-0000313-c320d751
       ports:
       - name: admin
         containerPort: 8082
@@ -28,9 +25,6 @@ system:
       - name: consumer-https
         containerPort: 8444
       volumeMounts:
-      - mountPath: /var/lib/report-collector/certificates/server/
-        name: servercertvol
-        readOnly: true
       - mountPath: /var/secrets/redis
         name: redisauthvol
         readOnly: true
@@ -46,6 +40,8 @@ system:
         value: /var/secrets/redis/auth
       - name: ReportCollector_app_https_enabled
         value: true
+      - name: ReportCollector_app_http_enabled
+        value: false
       - name: ReportCollector_app_https_providerPort
         value: 8443
       - name: ReportCollector_app_https_consumerPort
@@ -60,8 +56,6 @@ system:
         value: true
       - name: ReportCollector_app_https_supportCompression
         value: true
-      - name: ReportCollector_app_http_enabled
-        value: false
       - name: ReportCollector_app_redisWriteCircuitBreaker_resetTimeout
         value: 10000
       - name: ReportCollector_app_serviceProtection_enabled
@@ -88,13 +82,7 @@ system:
       export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
-      case ${KINGDOM} in
-        prd)
-          export ReportCollector_app_https_supportDecompression=true ;
-          export ReportCollector_app_https_supportCompression=true ;
-          ;;
-        *)
-      esac;
+
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
         -Dvertx.cacheDirBase=${CACHE_DIR}
@@ -132,12 +120,8 @@ system:
     function: expreport-collectorha
     nodeExposed: true
     ports:
-    - port: 28447
-      targetport: 8082
     - port: 28445
       targetport: 8443
-    - port: 28446
-      targetport: 8444
   - lbname: expredisnohalb
     function: expredisnoha
     nodeExposed: true
