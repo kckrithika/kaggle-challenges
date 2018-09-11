@@ -35,31 +35,31 @@ if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slb
                                     name: "slb-nginx-data-watchdog",
                                     image: slbimages.hypersdn,
                                     command: [
-                                                 "/sdn/slb-nginx-data-watchdog",
-                                                 "--namespace=sam-system",
-                                                 configs.sfdchosts_arg,
-                                                 "--k8sapiserver=",
-                                                 "--connPort=" + slbports.slb.nginxDataConnPort,
-                                                 "--monitorFrequency=180s",
-                                                 "--nginxWDmetricsEndpoint=" + configs.funnelVIP,
-                                                 "--nginxWDhostnameOverride=$(NODE_NAME)",
-                                             ],
+                                        "/sdn/slb-nginx-data-watchdog",
+                                        "--namespace=sam-system",
+                                        configs.sfdchosts_arg,
+                                        "--k8sapiserver=",
+                                        "--connPort=" + slbports.slb.nginxDataConnPort,
+                                        "--monitorFrequency=180s",
+                                        "--nginxWDmetricsEndpoint=" + configs.funnelVIP,
+                                        "--nginxWDhostnameOverride=$(NODE_NAME)",
+                                    ],
 
                                     volumeMounts: configs.filter_empty(
-[
-                                                                           configs.maddog_cert_volume_mount,
-                                                                           slbconfigs.slb_volume_mount,
-                                                                           slbconfigs.logs_volume_mount,
-                                                                           configs.cert_volume_mount,
-                                                                           configs.kube_config_volume_mount,
-                                                                           configs.sfdchosts_volume_mount,
-                                                                       ]
-                                                                       + (
-                                                                           if slbimages.phaseNum == 1 then [
-                                                                               slbconfigs.slb_config_volume_mount,
-                                                                           ] else []
-                                                                       )
-),
+                                        [
+                                            configs.maddog_cert_volume_mount,
+                                            slbconfigs.slb_volume_mount,
+                                            slbconfigs.logs_volume_mount,
+                                            configs.cert_volume_mount,
+                                            configs.kube_config_volume_mount,
+                                            configs.sfdchosts_volume_mount,
+                                        ]
+                                        + (
+                                            if slbimages.phaseNum == 1 then [
+                                                slbconfigs.slb_config_volume_mount,
+                                            ] else []
+                                        )
+                                    ),
                                     env: [
                                         slbconfigs.node_name_env,
                                         configs.kube_config_env,

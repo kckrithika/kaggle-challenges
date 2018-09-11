@@ -44,7 +44,7 @@ spec:
           name: maddog-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog
           name: var-logs-volume
         - mountPath: /data/certs
           name: certs
@@ -52,6 +52,56 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /host/data/slb/config/slb-nginx-data-watchdog
+          name: var-config-volume
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=1h
+        - --filesDirToCleanup=/host/data/slb/config/slb-nginx-data-watchdog
+        - --shouldSkipServiceRecords=true
+        - --shouldNotDeleteAllFiles=true
+        - --log_dir=/host/data/slb/logs/slb-nginx-data-watchdog
+        - --shouldSkipSlbBlock=true
+        - --skipFilesWithSuffix=.sock
+        - --maxDeleteFileCount=20
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001143-d29bb7d1
+        name: slb-cleanup-config-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-nginx-data-watchdog
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog
+          name: var-logs-volume
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-nginx-data-watchdog/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-nginx-data-watchdog
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001143-d29bb7d1
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-nginx-data-watchdog
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog/cleanup
+          name: var-cleanup-logs-volume
       nodeSelector:
         pool: fra-slb
       volumes:
@@ -62,7 +112,7 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-nginx-data-watchdog
         name: var-logs-volume
       - hostPath:
           path: /data/certs
@@ -73,3 +123,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-nginx-data-watchdog
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-nginx-data-watchdog/cleanup
+        name: var-cleanup-logs-volume
