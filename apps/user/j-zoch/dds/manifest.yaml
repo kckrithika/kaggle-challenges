@@ -1,0 +1,79 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+
+    - name: dds
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/dds:latest # golang app
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+        - name: secretvol
+          mountPath: /secrets/
+          readOnly: true
+
+    # mTLS container 
+    - name: sherpa
+      image: sfci/servicelibs/sherpa:2.0.23
+      ports:
+      - containerPort: 7443
+        name: http2
+      - containerPort: 15373
+        name: admin
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 110
+        periodSeconds: 5
+
+      # Mount volumes with certificates
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+    
+
+    # Add MadDog certificate volumes
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    - name: secretvol
+      k4aSecret:
+        secretName: datadomain
+  # Announces service
+  # - name: beacon
+  #     image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+  #     args:
+  #     - -endpoint
+  #     - samapp/user-j-zoch/dds:DATACENTER:7443
+
+  loadbalancers:
+  - lbname: ddslb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 9090
+        targetport: 9090
+        lbtype: tcp
