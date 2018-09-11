@@ -9,7 +9,8 @@ data:
       "nodeOfflineAfterTime": "60m",
       "signals": [
         "filesystemChecker",
-        "maddogCertChecker"
+        "maddogCertChecker",
+        "kubeletChecker"
       ]
     }
 kind: ConfigMap
