@@ -9,7 +9,7 @@
     local manifestWatcherEnabled = (if slbimages.hypersdn_build >= 1061 then true else false),
     local kubeDnsEnabled = (if slbimages.hypersdn_build >= 1098 then false else true),
     mwSentinelEnabled: (if slbimages.phaseNum == 1 then true else false),
-    stockIpvsModules: (if slbimages.hypersdn_build >= 1135 && slbimages.phaseNum <= 4 && slbimages.phaseNum != 1 then true else false),
+    stockIpvsModules: (if slbimages.hypersdn_build >= 1135 && slbimages.phaseNum <= 4 && slbimages.phaseNum > 2 then true else false),
 
     getNodeApiClientSocketSettings(configDir):: (if nodeApiUnixSocketEnabled then [
                                                      "--client.socketDir=" + configDir,
