@@ -1,11 +1,11 @@
 ## ##
 ## This VIP definition creates a VIP named ssh-to-somewhere-slb-examples-prd.slb.sfdc.net
-## This VIP listens on port 22 and forwards packets port 22 on one of the specified backends. 
+## This VIP listens on port 22 and forwards packets to port 22 on one of the specified backends. 
 ## Traffic is only sent to backend servers if they satisfy the specified health probe.
-## This contrived allows for a user to ssh to a randomly selected member of backend pool.
+## This contrived example allows for a user to ssh to a randomly selected member of a backend pool.
 
 # lbname specifies the unqualified name of the VIP. In PRD-SAM, for example,
-# the name would be lbname-user-prd.slb.sfdc.net, where 'user' represents
+# the name would be [lbname]-[user]-prd.slb.sfdc.net, where 'user' represents
 # your user namespace under sam/manifests/app/user/
 - lbname: ssh-to-somewhere
 # servers specifies the pool members for the VIP
@@ -13,29 +13,29 @@
    - shared0-sdcsamcompute1-5-prd.eng.sfdc.net
    - shared0-sdcsamcompute1-6-prd.eng.sfdc.net
    - shared0-sdcsamcompute1-7-prd.eng.sfdc.net
-  # port specifies the port upon which the VIP listens. targetport specifies
-  # the port on the backend pool member that actually receives the traffic.
+  # port specifies the port upon which the VIP listens.
+  # targetport specifies the port on the backend pool member that actually receives the traffic.
   # Packets sent to lbname:port will be sent to server:targetport
   # lbtype specifies the style of load balancing. For L7 functionality (default
-  # for an http VIP), specify a value of http. For L4 passthrough, specify tcp.
+  # for an HTTP VIP), specify a value of 'http'. For L4 passthrough, specify tcp.
   ports:
    - port: 22
      targetport: 22
      lbtype: tcp
-     # Note the healthport and healthpath. Each backend has an http endpoint listening on healthport
-     # and returns 200 OK on the specified healthpath if the backend is elibible to receive traffic.
+     # Note the healthport and healthpath. Each of these backends has an HTTP endpoint listening on healthport
+     # and returns 200 OK on the specified healthpath if the backend is eligible to receive traffic.
      healthport: 12087
-     healthpath: "/liveness-probe"
+     healthpath: /liveness-probe
 
 ## ##
-## This VIP definition creates a HTTP VIP named check-slb-examples-prd.slb.sfdc.net
-## This VIP listens on port 80 and forwards packets port 12087 on one of the specified backends. 
+## This VIP definition creates an HTTP VIP named check-slb-examples-prd.slb.sfdc.net
+## This VIP listens on port 80 and forwards packets to port 12087 on one of the specified backends. 
 ## Traffic is only sent to backend servers if they satisfy the specified health probe.
-## This contrived produces a health-checked HTTP VIP that demonstrates different listening and forwarding
+## This contrived example produces a health-checked HTTP VIP that demonstrates different listening and forwarding
 ## ports.
 
 # lbname specifies the unqualified name of the VIP. In PRD-SAM, for example,
-# the name would be lbname-user-prd.slb.sfdc.net, where 'user' represents
+# the name would be [lbname]-[user]-prd.slb.sfdc.net, where 'user' represents
 # your user namespace under sam/manifests/app/user/
 - lbname: check
 # servers specifies the pool members for the VIP
@@ -43,30 +43,30 @@
    - shared0-sdcsamcompute1-5-prd.eng.sfdc.net
    - shared0-sdcsamcompute1-6-prd.eng.sfdc.net
    - shared0-sdcsamcompute1-7-prd.eng.sfdc.net
-  # port specifies the port upon which the VIP listens. targetport specifies
-  # the port on the backend pool member that actually receives the traffic.
+  # port specifies the port upon which the VIP listens.
+  # targetport specifies the port on the backend pool member that actually receives the traffic.
   # Packets sent to lbname:port will be sent to server:targetport
   # lbtype specifies the style of load balancing. For L7 functionality (default
-  # for an http VIP), specify a value of http. For L4 passthrough, specify tcp.
+  # for an HTTP VIP), specify a value of 'http'. For L4 passthrough, specify 'tcp'.
   ports:
    - port: 443
      targetport: 12087
      lbtype: http
-     # Note the healthport and healthpath. Each backend has an http endpoint listening on healthport
-     # and returns 200 OK on the specified healthpath if the backend is elibible to receive traffic.
+     # Note the healthport and healthpath. Each of these backends has an HTTP endpoint listening on healthport
+     # and returns 200 OK on the specified healthpath if the backend is eligible to receive traffic.
      # healthprotocol can be either http or https.
      healthport: 12087
-     healthpath: "/liveness-probe"
-     healthprotocol: "http"
-     # sticky specifies that session stickiness will be enforced via a cookie. The integer value 
+     healthpath: /liveness-probe
+     healthprotocol: http
+     # sticky specifies that session stickiness will be enforced via a cookie. The integer value
      # indicates the duration in seconds of the cookie.
      sticky: 300
-     # tls indicates if the connection between the client and the VIP should be encrypted.   
+     # tls indicates if the connection between the client and the VIP should be encrypted.
      tls: true
      # reencrypt indicates if the connection between the load balancer and the backend should be 
      # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
      reencrypt: false
-     # vipmaxrps indicates the total requests per second that the VIP will serve. 
+     # vipmaxrps indicates the total requests per second that the VIP will serve.
      vipmaxrps: 100
      # clientmaxrps specifies the total requests per second that a given client IP may issue.
      clientmaxrps: 2
