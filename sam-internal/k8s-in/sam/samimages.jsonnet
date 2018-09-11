@@ -20,23 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        #[a.mitra] enable k4a blacklist
-        "prd,prd-sam,temp-secret-samcontrol-deployer,hypersam": "sam-0002258-f961c511",
-
-        # [cbatra] Deploying changes for PRD IP issue with the overrding of resource issue
-        "prd,prd-sam,samcontrol,hypersam": "sam-0002275-056747b7",
-
         #[pjoshi]
         "prd,prd-sam,snapshotconsumer-prd,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
         "prd,prd-sam,snapshotconsumer-prod,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
-
-        #[jiayi] update host repair in prd-sam
-        "prd,prd-sam,host-repair-aggregator,hypersam": "sam-0002265-c85a3b04",
-        "prd,prd-sam,host-repair-scheduler,hypersam": "sam-0002265-c85a3b04",
-
-        #[xiao] optimize samapp controller
-        "prd,prd-sam,samapp-controller,hypersam": "sam-0002267-a66cdb1a",
-
 
         "prd,prd-samtest,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
         "prd,prd-samdev,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
@@ -106,7 +92,7 @@ for ce in [
 
         ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
         "2": $.per_phase["3"] {
-            hypersam: "sam-0002252-a9ad81d9",
+            hypersam: "sam-0002279-7db63f34",
             madkub: "1.0.0-0000077-b1d3a629",
             madkubSidecar: "1.0.0-0000077-b1d3a629",
             },
