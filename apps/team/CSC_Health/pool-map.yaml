@@ -41,6 +41,7 @@ apps:
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
+    - fra/fra-sam_report_collector
   repcollavailwd-pc:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
