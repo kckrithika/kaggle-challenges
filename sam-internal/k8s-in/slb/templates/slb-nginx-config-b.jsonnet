@@ -194,8 +194,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                         },
                                     ]),
                                 },
-                            ] +
-                            (if slbimages.hypersdn_build > 1120 then [{
+                                {
                                  name: "slb-nginx-data",
                                  image: slbimages.hypersdn,
                                  command: [
@@ -216,8 +215,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                      initialDelaySeconds: 5,
                                      periodSeconds: 3,
                                  },
-                             }] else []) +
-                            [
+                                },
                                 slbshared.slbFileWatcher,
                                 {
                                     args: [
@@ -291,48 +289,44 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                         },
                                     ],
                                 },
-                            ]
-                            + (
-                                [
-                                    {
-                                        name: "slb-cert-checker",
-                                        image: slbimages.hypersdn,
-                                        command: [
-                                            "/sdn/slb-cert-checker",
-                                            "--metricsEndpoint=" + configs.funnelVIP,
-                                            "--hostnameOverride=$(NODE_NAME)",
-                                            "--log_dir=" + slbconfigs.logsDir,
-                                            configs.sfdchosts_arg,
-                                        ],
-                                        volumeMounts: configs.filter_empty([
-                                            {
-                                                name: "var-target-config-volume",
-                                                mountPath: slbconfigs.slbDir + "/nginx/config",
+                                {
+                                    name: "slb-cert-checker",
+                                    image: slbimages.hypersdn,
+                                    command: [
+                                        "/sdn/slb-cert-checker",
+                                        "--metricsEndpoint=" + configs.funnelVIP,
+                                        "--hostnameOverride=$(NODE_NAME)",
+                                        "--log_dir=" + slbconfigs.logsDir,
+                                        configs.sfdchosts_arg,
+                                    ],
+                                    volumeMounts: configs.filter_empty([
+                                        {
+                                            name: "var-target-config-volume",
+                                            mountPath: slbconfigs.slbDir + "/nginx/config",
 
-                                            },
-                                            {
-                                                mountPath: "/cert1",
-                                                name: "cert1",
-                                            },
-                                            {
-                                                mountPath: "/cert2",
-                                                name: "cert2",
-                                            },
-                                            slbconfigs.slb_volume_mount,
-                                            slbconfigs.logs_volume_mount,
-                                            configs.sfdchosts_volume_mount,
-                                        ]),
-                                        env: [
-                                            slbconfigs.node_name_env,
-                                        ],
-                                    },
-                                    slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
-                                    slbshared.slbCleanupConfig,
-                                    slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
-                                    slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
-                                    slbshared.slbLogCleanup,
-                                ] + slbflights.getManifestWatcherIfEnabled()
-                            ),
+                                        },
+                                        {
+                                            mountPath: "/cert1",
+                                            name: "cert1",
+                                        },
+                                        {
+                                            mountPath: "/cert2",
+                                            name: "cert2",
+                                        },
+                                        slbconfigs.slb_volume_mount,
+                                        slbconfigs.logs_volume_mount,
+                                        configs.sfdchosts_volume_mount,
+                                    ]),
+                                    env: [
+                                        slbconfigs.node_name_env,
+                                    ],
+                                },
+                                slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
+                                slbshared.slbCleanupConfig,
+                                slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
+                                slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
+                                slbshared.slbLogCleanup,
+                            ] + slbflights.getManifestWatcherIfEnabled(),
                 initContainers: [
                     madkub.madkubInitContainer(),
                 ],
