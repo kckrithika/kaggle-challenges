@@ -56,6 +56,8 @@ system:
       volumeMounts:
       - name: eaas-client-cert
         mountPath: /client-certs
+      - name: eaas-server-cert
+        mountPath: /server-certs
       - name: sherpa-log-volume
         mountPath: /log
     
