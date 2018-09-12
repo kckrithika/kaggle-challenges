@@ -13,7 +13,7 @@ local build_mapped_entry(imageName, version) = {
 
 # Builds an image promotion entry with the image tagged directly with the version
 local build_versioned_entry(imageName, version) = {
-   name: imageName,
+   name: std.join("-", std.split(imageName, "_")),
    image: flowsnakeconfig.strata_registry + "/" + imageName + ":" + version,
 };
 
