@@ -10,6 +10,7 @@
     local kubeDnsEnabled = (if slbimages.hypersdn_build >= 1098 then false else true),
     mwSentinelEnabled: (if slbimages.hypersdn_build >= 1150 then true else false),
     stockIpvsModules: (if slbimages.hypersdn_build >= 1135 && slbimages.phaseNum > 4 then true else false),
+    certDeployerEnabled: (if slbimages.phaseNum == 1 then true else false),
 
     getNodeApiClientSocketSettings(configDir):: (if nodeApiUnixSocketEnabled then [
                                                      "--client.socketDir=" + configDir,

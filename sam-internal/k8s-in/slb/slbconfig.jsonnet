@@ -326,4 +326,6 @@
 
     sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
     sdn_watchdog_emailrec: "slb@salesforce.com",
+
+    customerCertsPath: "/customerCerts",
 }

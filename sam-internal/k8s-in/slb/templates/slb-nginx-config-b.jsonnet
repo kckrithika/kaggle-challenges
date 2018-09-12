@@ -98,6 +98,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                         },
                         name: "cert1",
                     },
+
                     {
                         emptyDir: {
                             medium: "Memory",
@@ -116,7 +117,15 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                     configs.cert_volume,
                     slbconfigs.slb_config_volume,
                     slbconfigs.cleanup_logs_volume,
-                ]),
+                ] + (if slbflights.certDeployerEnabled then [
+                        {
+                            emptyDir: {
+                                medium: "Memory",
+                            },
+                            name: "customer-certs",
+                        },
+                    ]
+                else [])),
                 containers: [
                                 {
                                     ports: [
@@ -192,10 +201,14 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                             mountPath: "/cert2",
                                             name: "cert2",
                                         },
-                                    ]),
+                                    ] + (if slbflights.certDeployerEnabled then [
+                                        {
+                                            mountPath: slbconfigs.customerCertsPath,
+                                            name: "customer-certs",
+                                        },
+                                    ] else [])),
                                 },
-                            ] +
-                            (if slbimages.hypersdn_build > 1120 then [{
+                                {
                                  name: "slb-nginx-data",
                                  image: slbimages.hypersdn,
                                  command: [
@@ -216,8 +229,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                      initialDelaySeconds: 5,
                                      periodSeconds: 3,
                                  },
-                             }] else []) +
-                            [
+                                },
                                 slbshared.slbFileWatcher,
                                 {
                                     args: [
@@ -291,48 +303,88 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                         },
                                     ],
                                 },
-                            ]
-                            + (
-                                [
-                                    {
-                                        name: "slb-cert-checker",
-                                        image: slbimages.hypersdn,
-                                        command: [
-                                            "/sdn/slb-cert-checker",
-                                            "--metricsEndpoint=" + configs.funnelVIP,
-                                            "--hostnameOverride=$(NODE_NAME)",
-                                            "--log_dir=" + slbconfigs.logsDir,
-                                            configs.sfdchosts_arg,
-                                        ],
-                                        volumeMounts: configs.filter_empty([
-                                            {
-                                                name: "var-target-config-volume",
-                                                mountPath: slbconfigs.slbDir + "/nginx/config",
+                                {
+                                    name: "slb-cert-checker",
+                                    image: slbimages.hypersdn,
+                                    command: [
+                                        "/sdn/slb-cert-checker",
+                                        "--metricsEndpoint=" + configs.funnelVIP,
+                                        "--hostnameOverride=$(NODE_NAME)",
+                                        "--log_dir=" + slbconfigs.logsDir,
+                                        configs.sfdchosts_arg,
+                                    ],
+                                    volumeMounts: configs.filter_empty([
+                                        {
+                                            name: "var-target-config-volume",
+                                            mountPath: slbconfigs.slbDir + "/nginx/config",
 
-                                            },
-                                            {
-                                                mountPath: "/cert1",
-                                                name: "cert1",
-                                            },
-                                            {
-                                                mountPath: "/cert2",
-                                                name: "cert2",
-                                            },
-                                            slbconfigs.slb_volume_mount,
-                                            slbconfigs.logs_volume_mount,
-                                            configs.sfdchosts_volume_mount,
-                                        ]),
-                                        env: [
-                                            slbconfigs.node_name_env,
-                                        ],
-                                    },
-                                    slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
-                                    slbshared.slbCleanupConfig,
-                                    slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
-                                    slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
-                                    slbshared.slbLogCleanup,
-                                ] + slbflights.getManifestWatcherIfEnabled()
-                            ),
+                                        },
+                                        {
+                                            mountPath: "/cert1",
+                                            name: "cert1",
+                                        },
+                                        {
+                                            mountPath: "/cert2",
+                                            name: "cert2",
+                                        },
+                                        slbconfigs.slb_volume_mount,
+                                        slbconfigs.logs_volume_mount,
+                                        configs.sfdchosts_volume_mount,
+                                    ] + (if slbflights.certDeployerEnabled then [
+                                        {
+                                            mountPath: slbconfigs.customerCertsPath,
+                                            name: "customer-certs",
+                                        },
+                                    ] else [])),
+                                    env: [
+                                        slbconfigs.node_name_env,
+                                    ],
+                                },
+                                slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
+                                slbshared.slbCleanupConfig,
+                                slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
+                                slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
+                                slbshared.slbLogCleanup,
+                            ] + slbflights.getManifestWatcherIfEnabled() +
+                            (if slbflights.certDeployerEnabled then [
+                                {
+                                    name: "slb-cert-deployer",
+                                    image: slbimages.hypersdn,
+                                    command: [
+                                        "/sdn/slb-cert-deployer",
+                                        "--metricsEndpoint=" + configs.funnelVIP,
+                                        "--hostnameOverride=$(NODE_NAME)",
+                                        "--log_dir=" + slbconfigs.logsDir,
+                                        "--custCertsDir=" + slbconfigs.customerCertsPath,
+                                        configs.sfdchosts_arg,
+                                    ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                                    volumeMounts: configs.filter_empty([
+                                        {
+                                            name: "var-target-config-volume",
+                                            mountPath: slbconfigs.slbDir + "/nginx/config",
+
+                                        },
+                                        {
+                                            mountPath: "/cert1",
+                                            name: "cert1",
+                                        },
+                                        {
+                                            mountPath: "/cert2",
+                                            name: "cert2",
+                                        },
+                                        {
+                                            mountPath: slbconfigs.customerCertsPath,
+                                            name: "customer-certs",
+                                        },
+                                        slbconfigs.slb_volume_mount,
+                                        slbconfigs.logs_volume_mount,
+                                        configs.sfdchosts_volume_mount,
+                                    ]),
+                                    env: [
+                                        slbconfigs.node_name_env,
+                                    ],
+                                },
+                            ] else []),
                 initContainers: [
                     madkub.madkubInitContainer(),
                 ],
