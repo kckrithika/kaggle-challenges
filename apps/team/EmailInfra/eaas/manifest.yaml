@@ -11,7 +11,7 @@ system:
       type: RollingUpdate
     containers:
     - name: eaas
-      image:  docker-sfci-dev/sfci/eaas/emailservice:1.0.17-a4ec26a20f9a2fc24fb9435e935ab24e61663d81
+      image:  docker-sfci-dev/sfci/eaas/emailservice:1.0.18-325f2cbb4da4f2a2e3a40dd3a6e32b46d4445913
       env:
       - name: SFDC_ENVIRONMENT
         value: "prd"
@@ -57,8 +57,7 @@ system:
             - "/home/scone/is-alive.sh"
 
     - name: sherpa-eaas
-      image: sfci/servicelibs/sherpa:2.0.25
-      args: ["--zipkin-rate", "0.01"]
+      image: sfci/servicelibs/sherpa-envoy:1.0.0
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -85,6 +84,8 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
       volumeMounts:
+      - name: eaas-client-cert
+        mountPath: /client-certs
       - name: eaas-server-cert
         mountPath: /server-certs
       - name: sherpa-log-volume
@@ -94,6 +95,9 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-eaas/logs
+    - name: eaas-client-cert
+      maddogCert:
+        type: client
     - name: eaas-server-cert
       maddogCert:
         type: server
