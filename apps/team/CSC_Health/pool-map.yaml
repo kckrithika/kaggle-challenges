@@ -11,6 +11,7 @@ apps:
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
+    - fra/fra-sam_report_collector
   locust:
     - prd/prd-sam_report_collector
   reportcollectorha:
