@@ -6,11 +6,11 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/moe/deployerbot:v-0001138-386d1d4f
+      image: tnrp/moe/deployerbot:v-0001152-84c91097
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
-      command: ["/deployerbot/deployerbot"]
+      command: ["/moe/deployerbot"]
       args:
       - "-gheTokenPath"
       - "/secrets/ghe_pat"

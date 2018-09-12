@@ -6,15 +6,15 @@ system:
     count: 1
     containers:
     - name: payloadbot
-      image: tnrp/moe/payloadbot:v-0001138-386d1d4f
-      command: ["/payloadbot/payloadbot"]
+      image: tnrp/moe/payloadbot:v-0001152-84c91097
+      command: ["/moe/payloadbot"]
       args:
       - "-gheTokenPath"
       - "/secrets/ghe_pat"
       - "-tnrpImagePrefixMapPath"
       - "image_prefixes.yaml"
       - "-includedTeamsListPath"
-      - "/payloadbot/included_teams.yaml"
+      - "/moe/included_teams.yaml"
       - "-maxCommentedOnSourcePRs"
       - "20"
       - "-manifestOrg"
