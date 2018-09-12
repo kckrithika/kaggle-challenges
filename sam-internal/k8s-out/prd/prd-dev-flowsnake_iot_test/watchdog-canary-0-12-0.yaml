@@ -10,8 +10,6 @@ spec:
     matchLabels:
       app: watchdog-canary-0-12-0
       apptype: monitoring
-      flowsnakeOwner: dva-transform
-      flowsnakeRole: WatchdogCanary-0-12-0
   template:
     metadata:
       annotations:
@@ -21,8 +19,6 @@ spec:
       labels:
         app: watchdog-canary-0-12-0
         apptype: monitoring
-        flowsnakeOwner: dva-transform
-        flowsnakeRole: WatchdogCanary-0-12-0
     spec:
       containers:
       - command:

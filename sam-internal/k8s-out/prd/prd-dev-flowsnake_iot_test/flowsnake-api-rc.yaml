@@ -14,8 +14,6 @@ spec:
     metadata:
       labels:
         app: flowsnake-fleet-service
-        flowsnakeOwner: dva-transform
-        flowsnakeRole: FlowsnakeFleetService
         name: flowsnake-fleet-service
     spec:
       containers:

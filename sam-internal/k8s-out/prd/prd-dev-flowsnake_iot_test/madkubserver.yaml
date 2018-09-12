@@ -10,14 +10,10 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      flowsnakeOwner: dva-transform
-      flowsnakeRole: MadkubServer
       service: madkubserver
   template:
     metadata:
       labels:
-        flowsnakeOwner: dva-transform
-        flowsnakeRole: MadkubServer
         service: madkubserver
     spec:
       containers:

@@ -89,7 +89,7 @@ local utils = import "util_functions.jsonnet";
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
                 kubedns_scale_up: "",  #verified in test fleet
-                fs_metric_labels: "verified",  # verified in test fleet
+                # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
             },
             version_mapping: {
                 main: {
@@ -128,7 +128,7 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 add_12_1_canary: "verified",  #verified in test fleet
                 kubedns_scale_up: "",
-                fs_metric_labels: "unverified",  # UNVERIFIED -- DO NOT DEPLOY
+                # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
             },
             version_mapping: {
                 main: {
