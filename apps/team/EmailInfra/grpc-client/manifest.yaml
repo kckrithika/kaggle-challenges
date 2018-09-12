@@ -11,7 +11,7 @@ system:
       type: RollingUpdate
     containers:
     - name: eaas-grpc-client
-      image: docker-sfci-dev/sfci/eaas/grpc-client:e8e4c3128a3603279f459bdfd1c70ed8d9325cdc
+      image: docker-sfci-dev/sfci/eaas/grpc-client:1.0.8-9b005515bb2b9f9136f730210ce0c7e427191ac4
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -27,8 +27,7 @@ system:
         name: eaas-client-cert
 
     - name: sherpa-eaas-grpc-client
-      image: sfci/servicelibs/sherpa:2.0.25
-      args: ["--zipkin-rate", "0.01"]
+      image: sfci/servicelibs/sherpa-envoy:1.0.0
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -57,6 +56,8 @@ system:
       volumeMounts:
       - name: eaas-client-cert
         mountPath: /client-certs
+      - name: eaas-server-cert
+        mountPath: /server-certs
       - name: sherpa-log-volume
         mountPath: /log
     
