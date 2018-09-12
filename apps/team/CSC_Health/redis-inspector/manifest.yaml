@@ -23,6 +23,10 @@ system:
           - echo
           - always_healthy
       env:
+      - name: RINSP_REDIS_HOST
+        value: $(REDISNOHALB_SERVICE_HOST)
+      - name: RINSP_REDIS_PORT
+        value: $(REDISNOHALB_SERVICE_PORT)
       - name: RINSP_COMMANDS_INFO_INTERVAL
         value: 30s
       - name: RINSP_COMMANDS_COMMANDSTATS_INTERVAL
@@ -48,16 +52,5 @@ system:
       export RINSP_AJNA_FUNNEL_PORT=${SFDC_METRICS_SERVICE_PORT} ;
       export RINSP_AJNA_DATACENTER=${KINGDOM} ;
       export RINSP_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
-      export RINSP_REDIS_HOST=$(REDISNOHALB_SERVICE_HOST) ;
-      export RINSP_REDIS_PORT=$(REDISNOHALB_SERVICE_PORT) ;
-
-      case ${KINGDOM} in
-        prd)
-          export RINSP_REDIS_HOST=$(REDISLB_SERVICE_HOST) ;
-          export RINSP_REDIS_PORT=$(REDISLB_SERVICE_PORT) ;
-          ;;
-        *)
-      esac;
-
       ./redis-inspector
       "]
