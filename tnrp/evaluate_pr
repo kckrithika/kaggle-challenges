@@ -31,7 +31,7 @@ exitIfMergeCommitFound() {
 
 exitIfMergeCommitFound
 
-/opt/sam/aclrepo  --repo="$TNRP_PRODUCT" --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER --moratoriumEnabled=true --moratoriumBegin="2018-09-17T04:01:00Z" --moratoriumEnd="2018-09-29T19:15:59Z"
+/opt/sam/aclrepo  --repo="$TNRP_PRODUCT" --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER
 
 cd /tmp
 rm -rf manifests || true
