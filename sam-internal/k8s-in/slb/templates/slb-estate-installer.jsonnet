@@ -46,7 +46,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                                         {
                                             key: "pool",
                                             operator: "In",
-                                            values: configs.estate,
+                                            values: [configs.estate],
                                         },
                                         {
                                             key: "master",
