@@ -76,7 +76,6 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverInterface=lo
         - --hostnameOverride=$(NODE_NAME)
-        - --blueGreenFeature=true
         - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
         - --client.dialSocket=true
         env:
@@ -337,8 +336,6 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-nginx-config-b
           name: var-logs-volume
-        - mountPath: /host/data/slb/config/slb-nginx-config-b
-          name: var-config-volume
       - command:
         - /sdn/slb-realsvrcfg
         - --configDir=/host/data/slb/config/slb-nginx-config-b

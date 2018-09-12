@@ -152,8 +152,6 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-iface-processor
           name: var-logs-volume
-        - mountPath: /host/data/slb/config/slb-iface-processor
-          name: var-config-volume
       - command:
         - /sdn/slb-cleanup
         - --period=1800s

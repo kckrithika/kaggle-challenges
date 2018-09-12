@@ -50,7 +50,7 @@ spec:
         - --hostnameOverride=$(NODE_NAME)
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --metricsEndpoint=ajna0-funnel1-0-fra.data.sfdc.net:80
-        - --httpTimeout=10s
+        - --httpTimeout=5s
         - --vipLoop=1
         - --monitorFrequency=10s
         - --client.serverInterface=lo
@@ -173,8 +173,6 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-vip-watchdog
           name: var-logs-volume
-        - mountPath: /host/data/slb/config/slb-vip-watchdog
-          name: var-config-volume
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
