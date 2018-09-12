@@ -1,8 +1,9 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbports = import "slbports.jsonnet";
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phaseNum == 1 then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phaseNum == 1 then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
+local logCleanupEnabled = configs.estate == "prd-sdc";
+local slbconfigs = (import "slbconfig.jsonnet") + (if logCleanupEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if logCleanupEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
 
 if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slbInKingdom) then configs.deploymentBase("slb") {
     metadata+: {
@@ -25,7 +26,7 @@ if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slb
                                                   configs.sfdchosts_volume,
                                               ]
                                               + (
-                                                  if slbimages.phaseNum == 1 then [
+                                                  if logCleanupEnabled then [
                                                       slbconfigs.slb_config_volume,
                                                       slbconfigs.cleanup_logs_volume,
                                                   ] else []
@@ -55,7 +56,7 @@ if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slb
                                             configs.sfdchosts_volume_mount,
                                         ]
                                         + (
-                                            if slbimages.phaseNum == 1 then [
+                                            if logCleanupEnabled then [
                                                 slbconfigs.slb_config_volume_mount,
                                             ] else []
                                         )
@@ -67,8 +68,7 @@ if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slb
                                 },
                             ]
                             + (
-                                if slbimages.phaseNum == 1 then [
-                                    slbshared.slbCleanupConfig,
+                                if logCleanupEnabled then [
                                     slbshared.slbLogCleanup,
                                 ] else []
                             ),
