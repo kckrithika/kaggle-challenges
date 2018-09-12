@@ -8,6 +8,9 @@ metadata:
 spec:
   minReadySeconds: 45
   replicas: 3
+  selector:
+    matchLabels:
+      service: madkubserver
   template:
     metadata:
       labels:

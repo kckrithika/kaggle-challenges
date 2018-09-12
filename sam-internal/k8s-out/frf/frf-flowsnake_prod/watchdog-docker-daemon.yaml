@@ -4,6 +4,10 @@ metadata:
   name: watchdog-docker-daemon
   namespace: flowsnake
 spec:
+  selector:
+    matchLabels:
+      app: watchdog-docker-daemon
+      apptype: monitoring
   template:
     metadata:
       labels:

@@ -6,6 +6,11 @@ metadata:
   name: watchdog-master
   namespace: flowsnake
 spec:
+  selector:
+    matchLabels:
+      app: watchdog-master
+      apptype: monitoring
+      daemonset: "true"
   template:
     metadata:
       labels:

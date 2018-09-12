@@ -8,6 +8,9 @@ metadata:
 spec:
   minReadySeconds: 30
   replicas: 2
+  selector:
+    matchLabels:
+      name: slb-canary
   strategy:
     rollingUpdate:
       maxSurge: 1
