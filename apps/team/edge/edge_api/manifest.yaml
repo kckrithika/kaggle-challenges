@@ -30,3 +30,8 @@ system:
       livenessProbe:
         httpGet:
             path: /health
+    - name: edge-accd
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_accd:1.0-0000064-515641b6
+      livenessProbe:
+        httpGet:
+            path: /health
