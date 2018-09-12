@@ -7,13 +7,13 @@ local configs = import "config.jsonnet";
 
 # Builds an image promotion entry with the image tagged based on the version mapping
 local build_mapped_entry(imageName, version) = {
-  name: imageName,
+  name: std.join("-", std.split(std.join("-", std.split(imageName, "_")), ".")),
   image: flowsnakeconfig.strata_registry + "/" + imageName + ":" + flowsnakeimages.version_mapping.main[version],
 };
 
 # Builds an image promotion entry with the image tagged directly with the version
 local build_versioned_entry(imageName, version) = {
-   name: imageName,
+   name: std.join("-", std.split(std.join("-", std.split(imageName, "_")), ".")),
    image: flowsnakeconfig.strata_registry + "/" + imageName + ":" + version,
 };
 
