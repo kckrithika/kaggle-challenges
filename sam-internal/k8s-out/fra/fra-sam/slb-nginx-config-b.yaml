@@ -120,6 +120,8 @@ spec:
           name: cert1
         - mountPath: /cert2
           name: cert2
+        - mountPath: /customerCerts
+          name: customer-certs
       - command:
         - /sdn/slb-nginx-data
         - --target=/host/data/slb/nginx/config
@@ -237,6 +239,8 @@ spec:
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /customerCerts
+          name: customer-certs
       - command:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-nginx-config-b
@@ -418,6 +422,37 @@ spec:
           name: kubeconfig
         - mountPath: /etc/pki_service
           name: maddog-certs
+      - command:
+        - /sdn/slb-cert-deployer
+        - --metricsEndpoint=ajna0-funnel1-0-fra.data.sfdc.net:80
+        - --hostnameOverride=$(NODE_NAME)
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --custCertsDir=/customerCerts
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
+        - --client.dialSocket=true
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
+        name: slb-cert-deployer
+        volumeMounts:
+        - mountPath: /host/data/slb/nginx/config
+          name: var-target-config-volume
+        - mountPath: /cert1
+          name: cert1
+        - mountPath: /cert2
+          name: cert2
+        - mountPath: /customerCerts
+          name: customer-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
       dnsPolicy: Default
       initContainers:
       - args:
@@ -508,3 +543,6 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-nginx-config-b/cleanup
         name: var-cleanup-logs-volume
+      - emptyDir:
+          medium: Memory
+        name: customer-certs
