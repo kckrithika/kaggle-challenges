@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-estate-installer" };
 
 if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
     metadata: {
@@ -11,16 +12,15 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
         namespace: "sam-system",
     },
     spec+: {
-        replicas: 4,
         template: {
             metadata: {
                 labels: {
                     name: "slb-estate-installer",
+                    daemonset: "true",
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
             },
             spec: {
-                hostNetwork: true,
                 volumes: configs.filter_empty([
                     {
                         name: "yum-estates-repo-config-volume",
@@ -36,18 +36,27 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                     },
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
-                    configs.kube_config_volume,
                 ]),
                 affinity: {
                     nodeAffinity: {
                         requiredDuringSchedulingIgnoredDuringExecution: {
-                            nodeSelectorTerms: [{
-                                matchExpressions: [{
-                                    key: "slb-service",
-                                    operator: "In",
-                                    values: ["slb-ipvs", "slb-nginx-b"],
-                                }],
-                            }],
+                            nodeSelectorTerms: [
+                                {
+                                    matchExpressions: [
+                                        {
+                                            key: "pool",
+                                            operator: "In",
+                                            values: configs.estate,
+                                        },
+                                        {
+                                            key: "master",
+                                            operator: "In",
+                                            values: ["true"],
+                                        },
+
+                                    ],
+                                },
+                            ],
                         },
                     },
                 },
@@ -70,21 +79,13 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                             },
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
-                            configs.kube_config_volume_mount,
                         ]),
                         securityContext: {
                             privileged: true,
                         },
                         env: [
                             configs.kube_config_env,
-                            {
-                                name: "NODE_NAME",
-                                valueFrom: {
-                                    fieldRef: {
-                                        fieldPath: "spec.nodeName",
-                                    },
-                                },
-                            },
+                            slbconfigs.node_name_env,
                         ],
                     },
                 ],

@@ -7,9 +7,9 @@ metadata:
   namespace: sam-system
 spec:
   minReadySeconds: 30
-  replicas: 4
   selector:
     matchLabels:
+      daemonset: "true"
       name: slb-estate-installer
   strategy:
     rollingUpdate:
@@ -19,6 +19,7 @@ spec:
   template:
     metadata:
       labels:
+        daemonset: "true"
         name: slb-estate-installer
       namespace: sam-system
     spec:
@@ -27,15 +28,17 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: slb-service
+              - key: pool
+                operator: In
+                values: prd-sdc
+              - key: master
                 operator: In
                 values:
-                - slb-ipvs
-                - slb-nginx-b
+                - "true"
       containers:
       - command:
         - /sdn/slb-estate-installer
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-estate-installer
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -54,11 +57,8 @@ spec:
           name: yum-estates-repo-volume
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-estate-installer
           name: var-logs-volume
-        - mountPath: /kubeconfig
-          name: kubeconfig
-      hostNetwork: true
       volumes:
       - hostPath:
           path: /etc/yum.repos.d
@@ -70,8 +70,5 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-estate-installer
         name: var-logs-volume
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
