@@ -1,0 +1,154 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cschealthcp@salesforce.com
+  functions:
+  - name: temp-store
+    count: 1
+    volumes:
+      - name: pki-server-cert
+        maddogCert:
+          type: server
+      - name: redisauthvol
+        secret:
+          secretName: csc-redis-auth-0
+    containers:
+    - name: temp-store
+      image: tnrp/csc-health/report-collector:1.21.0-0000313-c320d751
+      ports:
+      - name: provider-https
+        containerPort: 8443
+      - name: consumer-https
+        containerPort: 8444
+      volumeMounts:
+      - mountPath: /serverCert
+        name: pki-server-cert
+        readOnly: true
+      - mountPath: /var/secrets/redis
+        name: redisauthvol
+        readOnly: true
+      env:
+      - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
+        value: 0
+      - name: ReportCollector_datastore
+        value: redisIndex
+      - name: ReportCollector_redis_host
+        value: $(REDISNOHALB_SERVICE_HOST)
+      - name: ReportCollector_redis_port
+        value: $(REDISNOHALB_SERVICE_PORT)
+      - name: ReportCollector_redis_fullPathToAuthFile
+        value: /var/secrets/redis/auth
+      - name: ReportCollector_app_http_enabled
+        value: false
+      - name: ReportCollector_app_https_enabled
+        value: true
+      - name: ReportCollector_app_https_consumerPort
+        value: 8444
+      - name: ReportCollector_app_https_clientAuth
+        value: REQUEST
+      - name: ReportCollector_app_https_dynamicCertificateOptions_caCert
+        value: /serverCert/ca.pem
+      - name: ReportCollector_app_https_dynamicCertificateOptions_certificateDir
+        value: /serverCert/server/
+      - name: ReportCollector_app_https_supportCompression
+        value: true
+      - name: ReportCollector_app_redisWriteCircuitBreaker_resetTimeout
+        value: 10000
+      - name: ReportCollector_app_serviceProtection_enabled
+        value: true
+      - name: ReportCollector_app_serviceProtection_publishPeriodMs
+        value: 300000
+      - name: ReportCollector_ajna_publishEnabled
+        value: true
+      - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
+        value: 1
+      - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
+        value: 10
+      - name: ReportCollector_cacheBuilder_enabled
+        value: true
+      - name: ReportCollector_cacheBuilder_defaultCacheBuilderParams_minDelay
+        value: 300000
+      - name: ReportCollector_cacheBuilder_cacheDir
+        value: /var/cache/report-collector/consumer-cache/
+      - name: ReportCollector_cacheBuilder_cacheBuilders
+        value: |
+             [
+              { "filter": { "type": "watchdog", "providerId": "network-nvt" },
+                "maxDelay": 20000 },
+              { "filter": { "type": "watchdog", "providerId": "grok.server_watchdog" },
+                "maxDelay": 20000 },
+              { "filter": { "type": "watchdog", "providerId": "sandman" },
+                "maxDelay": 20000 },
+              { "filter": { "type": "watchdog", "providerId": "netmgt.sandman" },
+                "maxDelay": 20000 },
+              { "filter": { "type": "observer", "providerId": "netmgt.nhal_client", "trusted": true },
+                "maxDelay": 20000 },
+              { "filter": { "type": "observer", "providerId": "netmgt.sandman", "trusted": true },
+                "maxDelay": 20000 },
+              { "filter": { "type": "observer", "providerId": "sandman", "trusted": true },
+                "maxDelay": 20000 },
+              { "filter": { "providerId": "infrastructure-watchdog" },
+                "minDelay": 200000,
+                "maxDelay": 300000 },
+              { "filter": { "providerId": "slwd" },
+                "minDelay": 420000,
+                "maxDelay": 840000 },
+              { "filter": { "providerId": "vom-system" },
+                "minDelay": 3600000,
+                "maxDelay": 14400000 },
+              { "filter": { "providerId": "vom-tnrp" },
+                "minDelay": 3600000,
+                "maxDelay": 14400000 },
+              { "filter": { "providerId": "racktastic" },
+                "minDelay": 3600000,
+                "maxDelay": 14400000 },
+              { "filter": { "providerId": "vom-observations" },
+                "minDelay": 3600000,
+                "maxDelay": 14400000 },
+              { "filter": { "providerId": "service-config-agent" },
+                "minDelay": 3600000,
+                "maxDelay": 14400000 },
+              { "filter": { "providerId": "csc-health.cname-repcollavailwd", "trusted": true },
+                "minDelay": 5000,
+                "maxDelay": 5000 },
+              { "filter": { "providerId": "csc-health.repcollavailwd", "trusted": true },
+                "minDelay": 5000,
+                "maxDelay": 5000 }
+             ]
+
+      livenessProbe:
+        httpGet:
+          scheme: HTTPS
+          path: /healthz
+          port: 8443
+        initialDelaySeconds: 5
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
+      export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
+      export ReportCollector_ajna_datacenter=${KINGDOM} ;
+      export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+
+      ${JAVA_HOME}/bin/java
+        -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
+        -Dvertx.disableFileCPResolving=true
+        -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
+        -Dvertx.metrics.options.enabled=true
+        -Dvertx.metrics.options.registryName=vertx-registry
+        -Dvertx.disableDnsResolver=true
+        -Dlog_dir=${LOG_DIR}
+        -Dinstance=${FUNCTION_INSTANCE_NAME}
+        -d64
+        -Xmx40g
+        -jar ${JAR_PATH}
+      "]
+
+  loadbalancers:
+  - lbname: tempstorelb
+    function: temp-store
+    nodeExposed: true
+    ports:
+    - port: 8444
+      targetport: 8444
