@@ -1,0 +1,24 @@
+- lbname: sledge-xrd
+  # The customlbname ensures that the VIP retains its existing DNS name of sledge-xrd.slb.sfdc.net
+  customlbname: sledge-xrd
+  servers:
+   - 10.210.197.226
+   - 10.210.197.242
+   - 10.210.197.234
+   - 10.210.197.250
+  ports:
+   - port: 80
+     targetport: 80
+     lbtype: dsr
+     healthport: 80
+     healthpath: "/ping.jsp"
+   - port: 443
+     targetport: 443
+     lbtype: dsr
+     healthport: 80
+     healthpath: "/ping.jsp"
+   - port: 8443
+     targetport: 8443
+     lbtype: dsr
+     healthport: 80
+     healthpath: "/ping.jsp"
