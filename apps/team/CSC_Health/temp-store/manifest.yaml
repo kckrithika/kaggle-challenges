@@ -145,10 +145,3 @@ system:
         -jar ${JAR_PATH}
       "]
 
-  loadbalancers:
-  - lbname: tempstorelb
-    function: temp-store
-    nodeExposed: true
-    ports:
-    - port: 8444
-      targetport: 8444
