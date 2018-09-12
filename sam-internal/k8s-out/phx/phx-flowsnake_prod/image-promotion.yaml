@@ -73,21 +73,21 @@ spec:
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.10.0
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:681
-        name: flowsnake-spark-driver_2.1.0
+        name: flowsnake-spark-driver-2-1-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master_2.1.0:681
-        name: flowsnake-spark-master_2.1.0
+        name: flowsnake-spark-master-2-1-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-worker_2.1.0:681
-        name: flowsnake-spark-worker_2.1.0
+        name: flowsnake-spark-worker-2-1-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-history-server_2.1.0:681
-        name: flowsnake-spark-history-server_2.1.0
+        name: flowsnake-spark-history-server-2-1-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver_2.3.0:681
-        name: flowsnake-spark-driver_2.3.0
+        name: flowsnake-spark-driver-2-3-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:681
-        name: flowsnake-spark-master_2.3.0
+        name: flowsnake-spark-master-2-3-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-worker_2.3.0:681
-        name: flowsnake-spark-worker_2.3.0
+        name: flowsnake-spark-worker-2-3-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-history-server_2.3.0:681
-        name: flowsnake-spark-history-server_2.3.0
+        name: flowsnake-spark-history-server-2-3-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-rewriting-proxy:681
         name: flowsnake-rewriting-proxy
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-local-kafka:681
@@ -149,21 +149,21 @@ spec:
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.11.0
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:696
-        name: flowsnake-spark-driver_2.1.0
+        name: flowsnake-spark-driver-2-1-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master_2.1.0:696
-        name: flowsnake-spark-master_2.1.0
+        name: flowsnake-spark-master-2-1-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-worker_2.1.0:696
-        name: flowsnake-spark-worker_2.1.0
+        name: flowsnake-spark-worker-2-1-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-history-server_2.1.0:696
-        name: flowsnake-spark-history-server_2.1.0
+        name: flowsnake-spark-history-server-2-1-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver_2.3.0:696
-        name: flowsnake-spark-driver_2.3.0
+        name: flowsnake-spark-driver-2-3-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:696
-        name: flowsnake-spark-master_2.3.0
+        name: flowsnake-spark-master-2-3-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-worker_2.3.0:696
-        name: flowsnake-spark-worker_2.3.0
+        name: flowsnake-spark-worker-2-3-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-history-server_2.3.0:696
-        name: flowsnake-spark-history-server_2.3.0
+        name: flowsnake-spark-history-server-2-3-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-rewriting-proxy:696
         name: flowsnake-rewriting-proxy
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-local-kafka:696
@@ -225,21 +225,21 @@ spec:
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.0
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:10001
-        name: flowsnake-spark-driver_2.1.0
+        name: flowsnake-spark-driver-2-1-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master_2.1.0:10001
-        name: flowsnake-spark-master_2.1.0
+        name: flowsnake-spark-master-2-1-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-worker_2.1.0:10001
-        name: flowsnake-spark-worker_2.1.0
+        name: flowsnake-spark-worker-2-1-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-history-server_2.1.0:10001
-        name: flowsnake-spark-history-server_2.1.0
+        name: flowsnake-spark-history-server-2-1-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver_2.3.0:10001
-        name: flowsnake-spark-driver_2.3.0
+        name: flowsnake-spark-driver-2-3-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:10001
-        name: flowsnake-spark-master_2.3.0
+        name: flowsnake-spark-master-2-3-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-worker_2.3.0:10001
-        name: flowsnake-spark-worker_2.3.0
+        name: flowsnake-spark-worker-2-3-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-history-server_2.3.0:10001
-        name: flowsnake-spark-history-server_2.3.0
+        name: flowsnake-spark-history-server-2-3-0
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-rewriting-proxy:10001
         name: flowsnake-rewriting-proxy
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-local-kafka:10001
