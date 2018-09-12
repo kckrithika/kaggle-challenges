@@ -1,5 +1,5 @@
 apiVersion: extensions/v1beta1
-kind: Deployment
+kind: DaemonSet
 metadata:
   labels:
     name: slb-estate-installer
@@ -9,16 +9,13 @@ spec:
   minReadySeconds: 30
   selector:
     matchLabels:
+      apptype: control
       daemonset: "true"
       name: slb-estate-installer
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-    type: RollingUpdate
   template:
     metadata:
       labels:
+        apptype: control
         daemonset: "true"
         name: slb-estate-installer
       namespace: sam-system
@@ -32,10 +29,6 @@ spec:
                 operator: In
                 values:
                 - prd-sdc
-              - key: master
-                operator: In
-                values:
-                - "true"
       containers:
       - command:
         - /sdn/slb-estate-installer
@@ -73,3 +66,7 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-estate-installer
         name: var-logs-volume
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate

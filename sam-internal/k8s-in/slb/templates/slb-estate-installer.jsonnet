@@ -3,11 +3,11 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-estate-installer" };
 
-if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
+if configs.estate == "prd-sdc" then configs.daemonSetBase("slb") {
     metadata: {
         labels: {
             name: "slb-estate-installer",
-        } + configs.ownerLabel.slb,
+        },
         name: "slb-estate-installer",
         namespace: "sam-system",
     },
@@ -16,8 +16,9 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
             metadata: {
                 labels: {
                     name: "slb-estate-installer",
+                    apptype: "control",
                     daemonset: "true",
-                } + configs.ownerLabel.slb,
+                },
                 namespace: "sam-system",
             },
             spec: {
@@ -48,12 +49,6 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                                             operator: "In",
                                             values: [configs.estate],
                                         },
-                                        {
-                                            key: "master",
-                                            operator: "In",
-                                            values: ["true"],
-                                        },
-
                                     ],
                                 },
                             ],
@@ -91,11 +86,10 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                 ],
             },
         },
-        strategy: {
+        updateStrategy: {
             type: "RollingUpdate",
             rollingUpdate: {
                 maxUnavailable: 1,
-                maxSurge: 1,
             },
         },
         minReadySeconds: 30,
