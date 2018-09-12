@@ -32,7 +32,7 @@ system:
         - name: LOG_JWT
           value: true
         - name: HBASE_SUPER_TENANT_IDS_FLUSH
-          value: 00Dkc1300v25M10,00Dx00000005SuREAU
+          value: 00Dx00000005SuREAU
       ports:
       - containerPort: 8080
       - containerPort: 7022
