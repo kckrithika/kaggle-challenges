@@ -85,7 +85,9 @@ system:
         periodSeconds: 5
       volumeMounts:
       - name: eaas-server-cert
-        mountPath: /server-certs        
+        mountPath: /server-certs
+      - name: eaas-client-cert
+        mountPath: /client-certs
       - name: sherpa-log-volume
         mountPath: /log
 
@@ -93,6 +95,9 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-eaas/logs
+    - name: eaas-client-cert
+      maddogCert:
+        type: client
     - name: eaas-server-cert
       maddogCert:
         type: server        
