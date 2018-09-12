@@ -35,7 +35,7 @@ spec:
         - --client.serverInterface=lo
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001147-0a00bf1f
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -79,7 +79,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001147-0a00bf1f
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -116,7 +116,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001147-0a00bf1f
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -138,7 +138,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001147-0a00bf1f
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -164,7 +164,9 @@ spec:
         - --control.sentinelExpiration=1800s
         - --listenOnSocket=true
         - --readOnly=false
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001147-0a00bf1f
+        - --checkMwSentinel=true
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-dns-register/slb-manifest-watcher.sentinel
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -180,6 +182,8 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
+        - --client.allowStale=true
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-dns-register/slb-manifest-watcher.sentinel
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -187,7 +191,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001147-0a00bf1f
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
         name: slb-manifest-watcher
         securityContext:
           privileged: true
