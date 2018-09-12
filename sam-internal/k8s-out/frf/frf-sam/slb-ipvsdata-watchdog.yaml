@@ -26,6 +26,10 @@ metadata:
 spec:
   minReadySeconds: 30
   replicas: 1
+  selector:
+    matchLabels:
+      apptype: monitoring
+      name: slb-ipvsdata-watchdog
   strategy:
     rollingUpdate:
       maxSurge: 1

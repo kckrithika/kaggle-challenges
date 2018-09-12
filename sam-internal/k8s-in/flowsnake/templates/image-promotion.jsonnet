@@ -18,8 +18,10 @@ local build_versioned_entry(imageName, version) = {
 };
 
 if util.is_production(kingdom) then
-configs.deploymentBase("flowsnake") {
-  spec+: {
+{
+  apiVersion: "extensions/v1beta1",
+  kind: "Deployment",
+  spec: {
     template: {
       spec: {
         containers: std.flattenArrays(
