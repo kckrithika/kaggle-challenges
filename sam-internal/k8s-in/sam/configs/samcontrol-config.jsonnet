@@ -45,6 +45,10 @@ std.prune({
   enableDNS: if samfeatureflags.kubedns then true,
   dnsEnabledPoolNamesRegex: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then ".*"),
 
+
+  #enableIdentityEnvVar
+  enableIdentityEnvVar: (if samfeatureflags.enableIdentityEnvVar then true else false),
+
   # SDP
   createCRD: (if configs.kingdom == "prd" then true),
   createTPR: false,
