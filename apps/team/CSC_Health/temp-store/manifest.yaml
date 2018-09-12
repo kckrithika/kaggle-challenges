@@ -47,6 +47,8 @@ system:
         value: false
       - name: ReportCollector_app_https_enabled
         value: true
+      - name: ReportCollector_app_https_consumerPort
+        value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
       - name: ReportCollector_app_https_dynamicCertificateOptions_caCert

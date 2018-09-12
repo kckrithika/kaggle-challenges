@@ -25,8 +25,6 @@ system:
         containerPort: 8082
       - name: provider-https
         containerPort: 8443
-      - name: consumer-https
-        containerPort: 8444
       volumeMounts:
       - mountPath: /var/log/report-collector
         name: logvol
@@ -47,8 +45,6 @@ system:
         value: true
       - name: ReportCollector_app_https_providerPort
         value: 8443
-      - name: ReportCollector_app_https_consumerPort
-        value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
       - name: ReportCollector_app_https_dynamicCertificateOptions_caCert
