@@ -20,6 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+         # [cbatra] Deploying node controller changes for PRD IP issue
+        "prd,prd-samdev,node-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20180912_143818.c9698018.dirty.cbatra-ltm1",
+
         #[pjoshi]
         "prd,prd-sam,snapshotconsumer-prd,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
         "prd,prd-sam,snapshotconsumer-prod,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
