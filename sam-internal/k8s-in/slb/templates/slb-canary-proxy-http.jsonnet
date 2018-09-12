@@ -36,6 +36,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                      "--ports=" + portconfigs.slb.canaryServiceProxyHttpPort,
                                      "--tlsPorts=443",
                                      "--privateKey=/var/slb/canarycerts/server.key",
+                                         "--verbose=false",
                                  ]
                                  + (
                                      if configs.estate == "prd-sdc" then [
@@ -43,12 +44,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                      ] else [
                                          "--publicKey=/var/slb/canarycerts/sam.crt",
                                      ]
-                                   )
-                                 + (
-                                     if configs.estate == "iad-sam" then [
-                                         "--verbose=false",
-                                     ] else []
-                                 ),
+                                   ),
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
                         ]),
