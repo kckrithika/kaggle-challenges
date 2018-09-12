@@ -40,7 +40,7 @@ system:
       image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
       env:
       - name: ENVOY_DEBUG_OPTIONS
-        value: --concurrency 200
+        value: --concurrency 200 --log-level debug
       args:
       - --template=/cyan-config/front-proxy-config.yaml.template
       ports:
