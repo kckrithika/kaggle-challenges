@@ -12,3 +12,58 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+- lbname: devrepo2-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of devrepo2-0-prd.slb.sfdc.net
+  customlbname: devrepo2-0-prd
+  servers:
+   - snd2ops0-artifactrepo1-2-prd.eng.sfdc.net
+   - snd2ops0-artifactrepo2-2-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 18443
+     lbtype: http
+     tls: true
+     reencrypt: true
+     healthport: 8080
+     healthpath: "/artifactory/api/system/ping"
+- lbname: devrepo3-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of devrepo3-0-prd.slb.sfdc.net
+  customlbname: devrepo3-0-prd
+  servers:
+   - snd2ops0-artifactrepo1-3-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 18443
+     lbtype: http
+     tls: true
+     reencrypt: true
+     healthport: 8080
+     healthpath: "/artifactory/api/system/ping"
+- lbname: devrepo4-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of devrepo4-0-prd.slb.sfdc.net
+  customlbname: devrepo4-0-prd
+  servers:
+   - snd2ops0-artifactrepo1-4-prd.eng.sfdc.net
+   - snd2ops0-artifactrepo2-4-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 18443
+     lbtype: http
+     tls: true
+     reencrypt: true
+     healthport: 8080
+     healthpath: "/artifactory/api/system/ping"
+- lbname: devrepo5-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of devrepo5-0-prd.slb.sfdc.net
+  customlbname: devrepo5-0-prd
+  servers:
+   - snd2ops0-artifactrepo1-5-prd.eng.sfdc.net
+   - snd2ops0-artifactrepo2-5-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 443
+     lbtype: http
+     tls: true
+     reencrypt: true
+     healthport: 8080
+     healthpath: "/artifactory/api/system/ping"
