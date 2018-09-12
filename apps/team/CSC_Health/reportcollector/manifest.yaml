@@ -72,7 +72,7 @@ system:
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
         value: 10
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
-        value: 1
+        value: 0
       - name: ReportCollector_datastore
         value: redisIndex
       livenessProbe:
