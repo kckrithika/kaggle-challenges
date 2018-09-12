@@ -10,6 +10,7 @@ data:
       "deletionEnabled": true,
       "deletionPercentageThreshold": 20,
       "dockerregistry": "ops0-artifactrepo1-0-phx.data.sfdc.net",
+      "enableIdentityEnvVar": false,
       "enableMaddog": true,
       "httpsDisableCertsCheck": true,
       "imageCheckV2": true,

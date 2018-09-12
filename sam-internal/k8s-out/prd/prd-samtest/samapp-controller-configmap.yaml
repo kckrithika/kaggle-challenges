@@ -5,6 +5,7 @@ data:
       "dnsEnabledPoolNamesRegex": ".*",
       "dockerRegistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
       "enableDNS": true,
+      "enableIdentityEnvVar": true,
       "enableMaddog": true,
       "enableMaddogCopyTestCA": true,
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",

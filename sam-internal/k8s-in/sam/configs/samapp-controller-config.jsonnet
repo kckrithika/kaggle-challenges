@@ -28,4 +28,7 @@ std.prune({
    ),
    ipAddressCapacityRequest: (if samfeatureflags.ipAddressCapacityRequest then true),
 
+
+  #enableIdentityEnvVar
+  enableIdentityEnvVar: (if samfeatureflags.enableIdentityEnvVar then true else false),
 })
