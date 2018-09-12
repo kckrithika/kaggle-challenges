@@ -33,6 +33,7 @@ spec:
         - --ports=9116
         - --tlsPorts=443
         - --privateKey=/var/slb/canarycerts/server.key
+        - --verbose=false
         - --publicKey=/var/slb/canarycerts/sam.crt
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001150-4f9a472e
         name: slb-canary-proxy-http
