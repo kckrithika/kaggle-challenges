@@ -31,8 +31,6 @@ system:
           value: cre-control-plane-ccp-func.retail-cre.localhost.mesh.force.com:5443
         - name: LOG_JWT
           value: true
-        - name: HBASE_SUPER_TENANT_IDS_FLUSH
-          value: 00DD10000000MPZMA2
       ports:
       - containerPort: 8080
       - containerPort: 7022
