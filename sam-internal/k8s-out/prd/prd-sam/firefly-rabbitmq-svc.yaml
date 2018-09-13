@@ -3,15 +3,12 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: firefly-rabbitmq
-    slb.sfdc.net/portconfigurations: '[{"healthpath": "/actuator/health", "healthport":
-      8081, "lbtype": "http", "port": 15672, "reencrypt": false, "sticky": 0, "targetport":
-      15672, "tls": false}, {"healthpath": "/actuator/health", "healthport": 8081,
-      "lbtype": "http", "port": 15671, "reencrypt": false, "sticky": 0, "targetport":
-      15672, "tls": true}, {"healthpath": "/actuator/health", "healthport": 8081,
-      "lbtype": "tcp", "port": 5672, "sticky": 0, "targetport": 5672}, {"healthpath":
-      "/actuator/health", "healthport": 8081, "lbtype": "tcp", "port": 5671, "sticky":
-      0, "targetport": 5671}, {"healthpath": "/actuator/health", "healthport": 8081,
-      "lbtype": "http", "port": 8081, "reencrypt": false, "sticky": 0, "targetport":
+    slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 15672, "reencrypt":
+      false, "sticky": 0, "targetport": 15672, "tls": false}, {"lbtype": "http", "port":
+      15671, "reencrypt": false, "sticky": 0, "targetport": 15672, "tls": true}, {"healthpath":
+      "/actuator/health", "healthport": 8081, "lbtype": "tcp", "port": 5672, "sticky":
+      0, "targetport": 5672}, {"lbtype": "tcp", "port": 5671, "sticky": 0, "targetport":
+      5671}, {"lbtype": "http", "port": 8081, "reencrypt": false, "sticky": 0, "targetport":
       8081, "tls": false}]'
   labels:
     app: firefly-rabbitmq

@@ -100,13 +100,14 @@ spec:
         - containerPort: 5671
           name: amqp-tls
           protocol: TCP
+        - containerPort: 8081
+          name: admin-port
+          protocol: TCP
         readinessProbe:
-          exec:
-            command:
-            - rabbitmqctl
-            - await_online_nodes
-            - "2"
           failureThreshold: 10
+          httpGet:
+            path: /actuator/health
+            port: admin-port
           initialDelaySeconds: 180
           periodSeconds: 30
           successThreshold: 1
@@ -287,6 +288,7 @@ spec:
           name: tokens
       - args:
         - chmod -R 775 /vols/maddog-certs && chown -R 7447:7447 /vols/maddog-certs
+          && chmod -R 775 /vols/data-volume && chown -R 7447:7447 /vols/data-volume
         command:
         - /bin/sh
         - -c
@@ -299,6 +301,8 @@ spec:
         volumeMounts:
         - mountPath: /vols/maddog-certs
           name: maddog-certs
+        - mountPath: /vols/data-volume
+          name: data-volume
       nodeSelector:
         pool: prd-samtest
       securityContext:

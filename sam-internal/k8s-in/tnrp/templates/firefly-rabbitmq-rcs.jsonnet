@@ -170,6 +170,11 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                 protocol: 'TCP',
                 containerPort: portconfigs.firefly.rabbitmq_amqps,
               },
+              {
+                name: 'admin-port',
+                protocol: 'TCP',
+                containerPort: portconfigs.firefly.rabbitmq_health,
+              },
             ],
             volumeMounts: [
               {
@@ -199,12 +204,9 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               failureThreshold: 10,
             },
             readinessProbe: {
-              exec: {
-                command: [
-                  'rabbitmqctl',
-                  'await_online_nodes',
-                  '2',
-                ],
+              httpGet: {
+                path: '/actuator/health',
+                port: 'admin-port',
               },
               initialDelaySeconds: 180,
               timeoutSeconds: 60,

@@ -23,8 +23,6 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
              tls: false,
              reencrypt: false,
              sticky: 0,
-             healthport: portconfigs.firefly.rabbitmq_health,
-             healthpath: '/actuator/health',
            },
            {
              port: portconfigs.firefly.rabbitmq_https,
@@ -33,8 +31,6 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
              tls: true,
              reencrypt: false,
              sticky: 0,
-             healthport: portconfigs.firefly.rabbitmq_health,
-             healthpath: '/actuator/health',
            },
            {
              port: portconfigs.firefly.rabbitmq_amqp,
@@ -49,8 +45,6 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
              targetport: $.spec.ports[3].targetPort,
              lbtype: "tcp",
              sticky: 0,
-             healthport: portconfigs.firefly.rabbitmq_health,
-             healthpath: '/actuator/health',
            },
            {
              port: portconfigs.firefly.rabbitmq_health,
@@ -59,8 +53,6 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
              tls: false,
              reencrypt: false,
              sticky: 0,
-             healthport: portconfigs.firefly.rabbitmq_health,
-             healthpath: '/actuator/health',
            },
          ]
        ),
