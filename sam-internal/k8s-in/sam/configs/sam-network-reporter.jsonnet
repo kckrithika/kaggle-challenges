@@ -8,8 +8,8 @@ local timeHour = 60 * timeMinute;
     RequestsToMake: 205,
     RequestsToSkip: 5,
     Port: "3333",
-    RequestDataSizes: "32B,100B,500B,2KB,10KB,100KB,1MB",
-    RequestDataSizeMax: "1MB",
+    RequestDataSizes: "1B",
+    RequestDataSizeMax: "1B",
 
     ReportsEndpointEnabled: true,
     ReportsPercentiles: "50,75,90,95,99",
@@ -24,7 +24,7 @@ local timeHour = 60 * timeMinute;
     TcpPort: "3333",
 
     RequestDelay: 10 * timeMillisecond,
-    Delay: 60 * timeSecond,
+    Delay: 5 * timeMinute,
     RefreshNodesMaxDelay: 5 * timeMinute,
     RefreshNodesMinDelay: 5 * timeSecond,
     Timeout: 30 * timeSecond,
