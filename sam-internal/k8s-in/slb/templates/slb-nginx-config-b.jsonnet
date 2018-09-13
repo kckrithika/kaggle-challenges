@@ -149,8 +149,11 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                         "--client.serverInterface=lo",
                                         "--hostnameOverride=$(NODE_NAME)",
                                     ] + (if slbimages.phaseNum == 1 then [
-                                             "--blueGreenFeature=true",
-                                         ] else []) + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                                            "--blueGreenFeature=true",
+                                        ] else []) + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir) +
+                                        (if slbflights.certDeployerEnabled then [
+                                            "--custCertsDir=" + slbconfigs.customerCertsPath,
+                                        ] else []),
                                     volumeMounts: configs.filter_empty([
                                         {
                                             name: "var-target-config-volume",
