@@ -71,6 +71,16 @@ local hosts = import "hosts.jsonnet";
             ],
             scheme: "http",
         },
+        # We dont use kube discovery for API servers because the UI shows the instance by IP not hostname.  Use jsonnet since we have it.a
+        {
+            job_name: "kubernetes-dns",
+            static_configs: [
+                {
+                    targets: [h.hostname + ":10055" for h in hosts.hosts if h.estate == std.extVar("estate") && h.kingdom == std.extVar("kingdom") && h.devicerole == "samkubeapi"],
+                },
+            ],
+            scheme: "http",
+        },
         // - Debugging an issue where the server drops all metrics, seeing if having fewer targets helps
 /*
         # Started with this example, but changed heavily: https://github.com/prometheus/prometheus/blob/release-2.1/documentation/examples/prometheus-kubernetes.yml
