@@ -56,7 +56,7 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /host/data/slb/config/
+        - mountPath: /host/data/slb/config/slb-nginx-data-watchdog
           name: var-config-volume
       - command:
         - /sdn/slb-cleanup
@@ -83,7 +83,7 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/
+        - mountPath: /host/data/slb/config/slb-nginx-data-watchdog
           name: var-config-volume
         - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog
           name: var-logs-volume
