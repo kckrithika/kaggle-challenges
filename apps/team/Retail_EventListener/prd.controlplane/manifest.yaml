@@ -105,3 +105,11 @@ system:
         exec:
           command:
           - "./is-alive.sh"
+
+  loadbalancers:
+  - lbname: commerce-journeys-control-plane-lb
+    function: controlplane
+    slbEnabled: true
+    ports:
+    - port: 80
+      targetport: 7014
