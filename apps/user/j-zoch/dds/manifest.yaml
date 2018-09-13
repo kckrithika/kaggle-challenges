@@ -51,14 +51,23 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
-
-      # Mount volumes with certificates
       volumeMounts:
         - name: tls-client-cert
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
     
+     # Announces service
+    - name: beacon
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      args:
+      - -endpoint
+      - samapp/user-j-zoch/dds:DATACENTER_ALLENV:7443
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
 
     # Add MadDog certificate volumes
     volumes:
@@ -71,18 +80,11 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: datadomain
-  # Announces service
-  - name: beacon
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      args:
-      - -endpoint
-      - samapp/user-j-zoch/dds:DATACENTER_ALLENV:7443
-
-  loadbalancers:
-  - lbname: ddslb
-    function: dds
-    slbenabled: true
-    ports:
-      - port: 9090
-        targetport: 7020
-        lbtype: tcp
+  # loadbalancers:
+  # - lbname: ddslb
+  #   function: dds
+  #   slbenabled: true
+  #   ports:
+  #     - port: 9090
+  #       targetport: 7020
+  #       lbtype: tcp
