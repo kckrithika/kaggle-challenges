@@ -36,7 +36,7 @@ system:
         requests: { cpu: "2", memory: "5Gi" }
       env:
         - name: SFDC_ENVIRONMENT
-          value: prod
+          value: prd
         - name: SERVER_PORT
           value: 7022
         - name: MANAGEMENT_PORT
@@ -59,32 +59,48 @@ system:
       - name: logvol
         mountPath: /home/sfdc-cj/logs
 
+    - name: sherpa-commerce-journeys-control-plane
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prd
+      ports:
+      - containerPort: 7014
+        name: sherpa-h1
+      - containerPort: 15373
+      volumeMounts:
+      - name: sherpa-log-volume
+        mountPath: /log
+      - name: cccjclientcert
+        mountPath: /clientcert
+      - name: cccjservercert
+        mountPath: /servercert
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+        initialDelaySeconds: 60
+        periodSeconds: 120
+
     - name: beacon-commerce-journeys-control-plane
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       env:
       - name: SFDC_ENVIRONMENT
-        value: prod
+        value: prd
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - retail-eventlistener/commerce-journeys-control-plane:DATACENTER:7443
+      - retail-eventlistener/commerce-journeys-control-plane:DATACENTER_ALLENV:7014
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
           - "/home/scone/is-alive.sh"
-
-
-  loadbalancers:
-  - lbname: commerce-journeys-control-plane-lb
-    function: controlplane
-    slbEnabled: true
-    ports:
-      - port: 443
-        targetport: 7022
-      - port: 7442
-        targetport: 7022
-      - port: 15372
-        targetport: 15372
