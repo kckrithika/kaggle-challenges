@@ -79,7 +79,12 @@
                   GROUP BY minionpool
               ) ss
               ) ss2
-              WHERE (TotalCount < 10 AND NotReadyCount >=2) OR (TotalCount >= 10 AND NotReadyPerc >=0.2)",
+              WHERE "
+              # cdebains is responsible for changing this back
+              + "(TotalCount < 10 AND NotReadyCount >=2 AND minionpool like 'par-sam' AND NotReadyPerc >=0.5) 
+              OR (TotalCount < 10 AND NotReadyCount >=2 AND minionpool not like 'par-sam')
+
+              OR (TotalCount >= 10 AND NotReadyPerc >=0.2)",
         },
 
 # =====
