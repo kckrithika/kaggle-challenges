@@ -8,6 +8,9 @@ metadata:
 spec:
   minReadySeconds: 30
   replicas: 2
+  selector:
+    matchLabels:
+      name: slb-canary-passthrough-tls
   strategy:
     rollingUpdate:
       maxSurge: 1

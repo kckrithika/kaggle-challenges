@@ -8,6 +8,11 @@ metadata:
   namespace: sam-system
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      apptype: control
+      name: samcontrol-deployer
+      sam.data.sfdc.net/owner: sam
   template:
     metadata:
       labels:

@@ -8,6 +8,10 @@ metadata:
 spec:
   minReadySeconds: 30
   replicas: 3
+  selector:
+    matchLabels:
+      apptype: monitoring
+      name: slb-vip-watchdog
   strategy:
     rollingUpdate:
       maxSurge: 1

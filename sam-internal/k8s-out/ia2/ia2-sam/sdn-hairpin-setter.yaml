@@ -6,6 +6,11 @@ metadata:
   name: sdn-hairpin-setter
   namespace: sam-system
 spec:
+  selector:
+    matchLabels:
+      daemonset: "true"
+      name: sdn-hairpin-setter
+      sam.data.sfdc.net/owner: sdn
   template:
     metadata:
       labels:

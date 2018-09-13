@@ -6,6 +6,12 @@ metadata:
     sam.data.sfdc.net/owner: sam
   name: watchdog-maddogcert
 spec:
+  selector:
+    matchLabels:
+      apptype: monitoring
+      daemonset: "true"
+      name: watchdog-maddogcert
+      sam.data.sfdc.net/owner: sam
   template:
     metadata:
       labels:

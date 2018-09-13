@@ -8,6 +8,9 @@ metadata:
 spec:
   minReadySeconds: 30
   replicas: 1
+  selector:
+    matchLabels:
+      name: slb-bravo
   strategy:
     rollingUpdate:
       maxSurge: 1

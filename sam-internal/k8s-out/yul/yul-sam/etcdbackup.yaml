@@ -6,6 +6,11 @@ metadata:
     sam.data.sfdc.net/owner: sam
   name: etcdbackup
 spec:
+  selector:
+    matchLabels:
+      daemonset: "true"
+      name: etcdbackup
+      sam.data.sfdc.net/owner: sam
   template:
     metadata:
       labels:

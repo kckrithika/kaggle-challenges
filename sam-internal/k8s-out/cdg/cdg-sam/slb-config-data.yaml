@@ -7,6 +7,11 @@ metadata:
   namespace: sam-system
 spec:
   minReadySeconds: 30
+  selector:
+    matchLabels:
+      apptype: control
+      daemonset: "true"
+      name: slb-config-data
   template:
     metadata:
       labels:
