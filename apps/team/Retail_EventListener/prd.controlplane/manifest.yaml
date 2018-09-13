@@ -26,7 +26,7 @@ system:
         path: /home/sfdc-cj/logs
     - name: sherpa-log-volume
       hostPath:
-        path: /home/sfdc-sherpa/logs
+        path: /home/sfdc-cj/logs
 
     containers:
     - name: controlplane
@@ -71,7 +71,7 @@ system:
         - containerPort: 15373
       volumeMounts:
         - name: sherpa-log-volume
-          mountPath: /log
+          mountPath: /home/sfdc-cj/logs
         - name: cccjclientcert
           mountPath: /client-certs
         - name:  cccjservercert
