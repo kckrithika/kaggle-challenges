@@ -197,7 +197,7 @@ system:
     
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:3c38a6
+      image: sfci/casam/sequencer:f16a38
 
       env:
         - name: USE_SWITCHBOARD
@@ -243,7 +243,7 @@ system:
           value: /certs
         - name: CASAM_SETTINGS_PATH
           value: mist.mist61.prd.na1.cyan
-        - name: SUPERPOD
+        - name: CASAM_SUPERPOD
           value: sp2
 
       livenessProbe:
