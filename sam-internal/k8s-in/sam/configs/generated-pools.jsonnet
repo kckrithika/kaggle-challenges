@@ -757,12 +757,14 @@
       "namespaces": [
         "gater",
         "ccait",
-        "service-mesh"
+        "service-mesh",
+        "service-protection"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
-        "team/service-mesh"
+        "team/service-mesh",
+        "team/Service_Protection"
       ],
       "controlEstate": "ia2-sam",
       "estate": "ia2-sam_gater",
@@ -1517,12 +1519,14 @@
       "namespaces": [
         "gater",
         "ccait",
-        "service-mesh"
+        "service-mesh",
+        "service-protection"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
-        "team/service-mesh"
+        "team/service-mesh",
+        "team/Service_Protection"
       ],
       "controlEstate": "ph2-sam",
       "estate": "ph2-sam_gater",
