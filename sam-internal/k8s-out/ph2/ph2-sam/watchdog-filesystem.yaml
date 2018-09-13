@@ -6,6 +6,11 @@ metadata:
     sam.data.sfdc.net/owner: sam
   name: watchdog-filesystem
 spec:
+  selector:
+    matchLabels:
+      apptype: monitoring
+      name: watchdog-filesystem
+      sam.data.sfdc.net/owner: sam
   template:
     metadata:
       labels:

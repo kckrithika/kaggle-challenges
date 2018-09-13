@@ -206,7 +206,7 @@ local utils = import "util_functions.jsonnet",
       local depl = self,
       kind: "Deployment",
       apiVersion: "extensions/v1beta1",
-      [if (kingdom == "prd" || kingdom == "frf") then "spec"]+: {
+      spec+: {
         selector: {
           matchLabels: depl.spec.template.metadata.labels,
         },
@@ -240,7 +240,7 @@ local utils = import "util_functions.jsonnet",
       local ds = self,
       kind: "DaemonSet",
       apiVersion: "extensions/v1beta1",
-      [if (kingdom == "prd" || kingdom == "frf") then "spec"]+: {
+      spec+: {
         selector: {
           matchLabels: ds.spec.template.metadata.labels,
         },

@@ -6,6 +6,12 @@ metadata:
     sam.data.sfdc.net/owner: sam
   name: watchdog-common
 spec:
+  selector:
+    matchLabels:
+      app: watchdog-common
+      apptype: monitoring
+      daemonset: "true"
+      sam.data.sfdc.net/owner: sam
   template:
     metadata:
       labels:

@@ -7,6 +7,10 @@ spec:
   minReadySeconds: 45
   replicas: 3
   revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      sam.data.sfdc.net/owner: sam
+      service: madkubserver
   template:
     metadata:
       labels:

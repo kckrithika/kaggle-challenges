@@ -7,6 +7,10 @@ metadata:
   namespace: flowsnake
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      apptype: monitoring
+      name: watchdog-etcd-quorum
   template:
     metadata:
       labels:

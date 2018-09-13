@@ -6,6 +6,12 @@ metadata:
   name: sdn-peering-agent
   namespace: sam-system
 spec:
+  selector:
+    matchLabels:
+      apptype: control
+      daemonset: "true"
+      name: sdn-peering-agent
+      sam.data.sfdc.net/owner: sdn
   template:
     metadata:
       labels:
