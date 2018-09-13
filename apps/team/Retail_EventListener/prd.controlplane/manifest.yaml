@@ -69,8 +69,8 @@ system:
         name: sherpa-h1
       - containerPort: 15373
       volumeMounts:
-      - name: sherpa-log-volume
-        mountPath: /log
+      - name: logvol
+        mountPath: /home/sfdc-cj/logs
       - name: cccjclientcert
         mountPath: /clientcert
       - name: cccjservercert
