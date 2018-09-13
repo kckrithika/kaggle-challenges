@@ -24,6 +24,9 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-cj/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
 
     containers:
     - name: controlplane
@@ -50,14 +53,13 @@ system:
           port: 15372
       volumeMounts:
       - name: cccjclientcert
-        mountPath: /clientcert
+        mountPath: /client-certs
       - name: cccjservercert
-        mountPath: /servercert
-      - name: secretvol
-        mountPath: /secrets/
-        readOnly: true
+        mountPath: /server-certs
       - name: logvol
         mountPath: /home/sfdc-cj/logs
+      - name: sherpa-log-volume
+        mountPath: /log
 
     - name: sherpa-commerce-journeys-control-plane
       image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
@@ -68,23 +70,16 @@ system:
       - containerPort: 7014
         name: sherpa-h1
       - containerPort: 15373
-      volumeMounts:
-      - name: logvol
-        mountPath: /home/sfdc-cj/logs
-      - name: cccjclientcert
-        mountPath: /clientcert
-      - name: cccjservercert
-        mountPath: /servercert
       livenessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-alive"
+          - "./bin/is-alive"
         initialDelaySeconds: 60
         periodSeconds: 120
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-ready"
+          - "./bin/is-ready"
         initialDelaySeconds: 60
         periodSeconds: 120
 
@@ -98,9 +93,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - retail-eventlistener/commerce-journeys-control-plane:DATACENTER_ALLENV:7014
+      - retail-eventlistener/controlplane:DATACENTER_ALLENV:7014
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
-          - "/home/scone/is-alive.sh"
+          - "./is-alive.sh"
