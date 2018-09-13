@@ -5,7 +5,7 @@ system:
     email:
       - cschealthcp@salesforce.com
   functions:
-  - name: report-collectorha
+  - name: report-collector
     count: 3
     volumes:
       - name: pki-server-cert
@@ -38,7 +38,7 @@ system:
       - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
         value: 1
       - name: ReportCollector_redis_host
-        value: $(REDISNOHALB_SERVICE_HOST)
+        value: $(REDISLB_SERVICE_HOST)
       - name: ReportCollector_redis_fullPathToAuthFile
         value: /var/secrets/redis/auth
       - name: ReportCollector_app_https_enabled
@@ -129,7 +129,7 @@ system:
               find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mmin +$CLEANUP_FILE_AGE_MINUTES -type f -print -delete;
           done
       ']
-  - name: redisnoha
+  - name: redis
     count: 1
     volumes:
       - name: redisauthvol
@@ -150,16 +150,16 @@ system:
         initialDelaySeconds: 5
 
   loadbalancers:
-  - lbname: reportcollectorhalb
-    function: report-collectorha
+  - lbname: reportcollectorlb
+    function: report-collector
     nodeExposed: true
     ports:
     - port: 8082
       targetport: 8082
     - port: 8443
       targetport: 8443
-  - lbname: redisnohalb
-    function: redisnoha
+  - lbname: redislb
+    function: redis
     nodeExposed: true
     ports:
       - port: 6379
