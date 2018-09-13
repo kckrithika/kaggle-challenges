@@ -67,3 +67,89 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+- lbname: testlab1-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of testlab1-0-prd.slb.sfdc.net
+  customlbname: testlab1-0-prd
+  servers:
+   - snd1ops0-artifactrepo1-1-prd.eng.sfdc.net
+   - snd1ops0-artifactrepo2-1-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 18443
+     lbtype: http
+     tls: true
+     reencrypt: true
+     healthport: 8080
+     healthpath: "/artifactory/api/system/ping"
+- lbname: testlab2-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of testlab2-0-prd.slb.sfdc.net
+  customlbname: testlab2-0-prd
+  servers:
+   - snd1ops0-artifactrepo1-2-prd.eng.sfdc.net
+   - snd1ops0-artifactrepo2-2-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 18443
+     lbtype: http
+     tls: true
+     reencrypt: true
+     healthport: 8080
+     healthpath: "/artifactory/api/system/ping"
+- lbname: testlab3-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of testlab3-0-prd.slb.sfdc.net
+  customlbname: testlab3-0-prd
+  servers:
+   - snd1ops0-artifactrepo1-3-prd.eng.sfdc.net
+   - snd1ops0-artifactrepo2-3-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 18443
+     lbtype: http
+     tls: true
+     sticky: 0
+     reencrypt: true
+     healthport: 8080
+     healthpath: "/artifactory/api/system/ping"
+- lbname: testlab4-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of testlab4-0-prd.slb.sfdc.net
+  customlbname: testlab4-0-prd
+  servers:
+   - snd1ops0-artifactrepo1-4-prd.eng.sfdc.net
+   - snd1ops0-artifactrepo2-4-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 18443
+     lbtype: http
+     tls: true
+     reencrypt: true
+     healthport: 8080
+     healthpath: "/artifactory/api/system/ping"
+- lbname: testlab5-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of testlab5-0-prd.slb.sfdc.net
+  customlbname: testlab5-0-prd
+  servers:
+   - snd1ops0-artifactrepo1-5-prd.eng.sfdc.net
+   - snd1ops0-artifactrepo2-5-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 18443
+     lbtype: http
+     tls: true
+     sticky: 0
+     reencrypt: true
+     healthport: 8080
+     healthpath: "/artifactory/api/system/ping"
+- lbname: testlab6-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of testlab6-0-prd.slb.sfdc.net
+  customlbname: testlab6-0-prd
+  servers:
+   - snd2ops0-artifactrepo2-3-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 18443
+     lbtype: http
+     tls: true
+     sticky: 0
+     reencrypt: true
+     healthport: 8080
+     healthpath: "/artifactory/api/system/ping"
