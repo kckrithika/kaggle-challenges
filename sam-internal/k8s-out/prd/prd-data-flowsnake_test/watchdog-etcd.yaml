@@ -11,16 +11,12 @@ spec:
       app: watchdog-etcd
       apptype: monitoring
       daemonset: "true"
-      flowsnakeOwner: dva-transform
-      flowsnakeRole: WatchdogEtcd
   template:
     metadata:
       labels:
         app: watchdog-etcd
         apptype: monitoring
         daemonset: "true"
-        flowsnakeOwner: dva-transform
-        flowsnakeRole: WatchdogEtcd
     spec:
       containers:
       - command:

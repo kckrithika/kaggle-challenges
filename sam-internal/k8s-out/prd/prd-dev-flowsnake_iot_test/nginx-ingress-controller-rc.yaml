@@ -14,8 +14,6 @@ spec:
   template:
     metadata:
       labels:
-        flowsnakeOwner: dva-transform
-        flowsnakeRole: NginxIngressController
         k8s-app: nginx-ingress-lb
         name: nginx-ingress-lb
     spec:

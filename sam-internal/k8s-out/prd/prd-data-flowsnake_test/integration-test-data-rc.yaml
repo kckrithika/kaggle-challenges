@@ -14,8 +14,6 @@ spec:
     metadata:
       labels:
         app: flowsnake-test-data
-        flowsnakeOwner: dva-transform
-        flowsnakeRole: FlowsnakeTestData
     spec:
       containers:
       - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-test-data:681

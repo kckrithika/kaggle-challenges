@@ -11,8 +11,6 @@ spec:
     metadata:
       labels:
         apptype: control
-        flowsnakeOwner: dva-transform
-        flowsnakeRole: SamControlDeployer
         name: samcontrol-deployer
     spec:
       containers:
