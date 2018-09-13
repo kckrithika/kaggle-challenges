@@ -30,7 +30,7 @@ system:
 
     containers:
     - name: controlplane
-      image: sfci/mc-retail/commerce-journeys-control-plane:1.4.3
+      image: sfci/mc-retail/commerce-journeys-control-plane:1.4.4
       ports:
         - containerPort: 7022
         - containerPort: 15372
@@ -105,3 +105,11 @@ system:
         exec:
           command:
           - "./is-alive.sh"
+
+  loadbalancers:
+  - lbname: commerce-journeys-control-plane-lb
+    function: controlplane
+    slbEnabled: true
+    ports:
+    - port: 80
+      targetport: 7014
