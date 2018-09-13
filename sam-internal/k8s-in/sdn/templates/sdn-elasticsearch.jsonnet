@@ -25,6 +25,12 @@ if configs.estate == "prd-sam" then {
                 },
             },
         ],
+        selector: {
+            matchLabels: {
+              apptype: "monitoring",
+              name: "sdn-elasticsearch",
+            } + configs.ownerLabel.sdn,
+         },
         replicas: 1,
         template: {
             spec: {
