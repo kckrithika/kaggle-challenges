@@ -18,6 +18,7 @@
                  ] + (
                      if configs.estate == "prd-sdc" then [
                          "--period=1200s",
+                         "--vipsToAcl=10.251.129.226",
                      ] else [
                          "--period=1800s",
                      ]
