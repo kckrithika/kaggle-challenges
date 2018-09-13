@@ -31,7 +31,7 @@ exitIfMergeCommitFound() {
 
 exitIfMergeCommitFound
 
-/opt/sam/aclrepo  --repo="$TNRP_PRODUCT" --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER --moratoriumEnabled=true --moratoriumBegin="2018-09-17T04:01:00Z" --moratoriumEnd="2018-09-29T19:15:59Z" --MoratoriumAccessDisabledMessage="We are currently under Dreamforce moratorium  Monday, September 17, 2018 @ 12:01AM EDT to  Saturday, September 29, 11:59PM EDT. All production-related changes are prohibited except for approved hotfixes. More info about it can be found here: https://gus.lightning.force.com/one/one.app#eyJjb21wb25lbnREZWYiOiJmb3JjZUNoYXR0ZXI6ZGVza3RvcENoYXR0ZXIiLCJhdHRyaWJ1dGVzIjp7ImZlZWRFbGVtZW50SWQiOiIwRDVCMDAwMDAwaXQ2UXNLQUkifSwic3RhdGUiOnt9fQ%3D%3D"
+/opt/sam/aclrepo  --repo="$TNRP_PRODUCT" --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER --moratoriumEnabled=true --moratoriumBegin="2018-09-17T04:01:00Z" --moratoriumEnd="2018-09-29T19:15:59Z" --MoratoriumAccessDisabledMessage="Dreamforce moratorium is in effect (Starts Monday, September 17, 2018 12:01AM EDT, Ends September 29, 11:59PM EDT). During the moratorium all PRs require approval by an admin, and admins are required to ensure that changes properly follow the moratorium guidelines. For more information see http://sfdc.co/sam-admins"
 
 cd /tmp
 rm -rf manifests || true
