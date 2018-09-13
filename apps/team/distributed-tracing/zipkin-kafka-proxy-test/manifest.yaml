@@ -25,6 +25,8 @@ system:
           value: zipkin-kafka-proxy-test
         - name: QUERY_PORT
           value: 7022
+        - name: ZIPKIN_LOGGING_LEVEL
+          value: DEBUG
         args:
         - ajna0-broker1-0-$(KINGDOM).data.sfdc.net:9093
         - sfdc.test.distributed-tracing.zipkin-kafka-proxy-test__$(KINGDOM).ajna_local__tracing_test
