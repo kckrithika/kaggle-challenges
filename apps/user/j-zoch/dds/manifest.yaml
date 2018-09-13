@@ -27,7 +27,6 @@ system:
         - name: secretvol
           mountPath: /secrets/
           readOnly: true
-
     # mTLS container 
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.23
