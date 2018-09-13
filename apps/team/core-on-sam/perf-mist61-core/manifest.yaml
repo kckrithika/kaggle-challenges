@@ -197,7 +197,7 @@ system:
     
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:dea534
+      image: sfci/casam/sequencer:f16a38
 
       env:
         - name: USE_SWITCHBOARD
@@ -213,7 +213,7 @@ system:
         - name: JMX_HOST
           value: shared2-samminioncoreapp1-1-prd.eng.sfdc.net
         - name: JMX_PORT
-          value: 8998
+          value: 18998
         - name: OLD_DWARF
           value: sneezy
 #          value: happy
@@ -243,6 +243,8 @@ system:
           value: /certs
         - name: CASAM_SETTINGS_PATH
           value: mist.mist61.prd.na1.cyan
+        - name: CASAM_SUPERPOD
+          value: sp2
 
       livenessProbe:
         httpGet:
@@ -276,7 +278,7 @@ system:
     function: mist61-core
     nodeExposed: true
     ports:
-# TODO - What port is this? Do we need to expose this one?
+# JMX port of coreapp
     - port: 18998
       targetport: 8998
 # HTTP listen port of coreapp - TODO - Remove this as all traffic will come through the side car
