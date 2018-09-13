@@ -1,18 +1,24 @@
 apiVersion: v1
 system:
   functions:
-  - name: default
-    count: 2
+  - name: dds
+    count: 1
     containers:
-
     - name: dds
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/dds:develop # golang app
       ports:
-      - containerPort: 9090
+      - containerPort: 7020
+        name: grpc
       livenessProbe:
         httpGet:
-          path: /
-          port: 9090
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 130
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 115
       volumeMounts:
         - name: tls-client-cert
           mountPath: /client-certs
@@ -26,22 +32,25 @@ system:
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.23
       ports:
-      - containerPort: 7443
-        name: http2
       - containerPort: 15373
-        name: admin
+        name: sherpa-adm
+      - containerPort: 7443
+        name: h2-tls-in
+      - containerPort: 7012
+        name: grpc-in
       livenessProbe:
         exec:
           command:
           - ./bin/is-alive
-        initialDelaySeconds: 120
+        initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - ./bin/is-ready
-        initialDelaySeconds: 110
+        initialDelaySeconds: 15
         periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
 
       # Mount volumes with certificates
       volumeMounts:
@@ -63,17 +72,17 @@ system:
       k4aSecret:
         secretName: datadomain
   # Announces service
-  # - name: beacon
-  #     image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-  #     args:
-  #     - -endpoint
-  #     - samapp/user-j-zoch/dds:DATACENTER:7443
+  - name: beacon
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - samapp/user-j-zoch/dds:DATACENTER_ALLENV:7443
 
   loadbalancers:
   - lbname: ddslb
-    function: default
+    function: dds
     slbenabled: true
     ports:
       - port: 9090
-        targetport: 9090
+        targetport: 7020
         lbtype: tcp
