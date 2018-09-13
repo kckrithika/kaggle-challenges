@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/moe/deployerbot:v-0001152-84c91097
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/moe/deployerbot:20180913-mgrass-git-commit-signing
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -19,6 +19,8 @@ system:
       - "slb@salesforce.com"
       - "-minBakeTime"
       - "1h"
+      - "-pgpkeypath"
+      - "/gpgsecrets/moe-signing-key.asc"
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -29,10 +31,16 @@ system:
       - mountPath: /secrets
         name: deployerbot-ghe-pat
         readOnly: true
+      - mountPath: /gpgsecrets
+        name: moe-gpg-signing-key
+        readOnly: true
     volumes:
     - name: deployerbot-ghe-pat
       k4aSecret:
         secretName: speedometer-ghe-pat
+    - name: moe-gpg-signing-key
+      k4aSecret:
+        secretName: moe-gpg-signing-key
   loadbalancers:
   - lbname: deployerbot
     function: deployerbot
