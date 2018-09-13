@@ -82,6 +82,19 @@ data:
               ]
             }
           ]
+        },
+        {
+          "job_name": "kubernetes-dns",
+          "scheme": "http",
+          "static_configs": [
+            {
+              "targets": [
+                "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:10055",
+                "shared0-samdevkubeapi2-1-prd.eng.sfdc.net:10055",
+                "shared0-samdevkubeapi3-1-prd.eng.sfdc.net:10055"
+              ]
+            }
+          ]
         }
       ]
     }
