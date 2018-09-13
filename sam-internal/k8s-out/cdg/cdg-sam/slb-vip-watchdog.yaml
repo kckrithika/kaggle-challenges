@@ -65,7 +65,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001156-2846b155
         name: slb-vip-watchdog
         volumeMounts:
         - mountPath: /host/data/slb
@@ -105,7 +105,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001156-2846b155
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -142,7 +142,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001156-2846b155
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -166,7 +166,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-vip-watchdog/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001156-2846b155
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -184,7 +184,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001156-2846b155
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -217,7 +217,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001150-4f9a472e
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001156-2846b155
         name: slb-manifest-watcher
         securityContext:
           privileged: true
