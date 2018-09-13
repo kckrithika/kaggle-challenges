@@ -161,10 +161,12 @@ data:
     LIKE ''%ceph%''\n                        AND minionpool NOT LIKE ''%slb%''\n                        AND
     minionpool NOT LIKE ''%storage%''\n                  GROUP BY minionpool\n              )
     ss\n              ) ss2\n              WHERE (TotalCount < 10 AND NotReadyCount
-    >=2) OR (TotalCount >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency": "10m"},
-    {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
-    "10m", "instructions": "The following SAM control stack components dont have even
-    1 healhty pod", "name": "SqlSamControl", "sql": "SELECT * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
+    >=2 AND minionpool like ''par-sam'' AND NotReadyPerc >=0.5) \n              OR
+    (TotalCount < 10 AND NotReadyCount >=2 AND minionpool not like ''par-sam'')\n\n              OR
+    (TotalCount >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency": "10m"}, {"alertAction":
+    "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m",
+    "instructions": "The following SAM control stack components dont have even 1 healhty
+    pod", "name": "SqlSamControl", "sql": "SELECT * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
     ''$.spec.replicas'') AS desiredReplicas,\n                      JSON_EXTRACT(Payload,
     ''$.status.availableReplicas'') AS availableReplicas,\n                      JSON_EXTRACT(Payload,
     ''$.status.updatedReplicas'') AS updatedReplicas,\n                      (JSON_EXTRACT(Payload,
