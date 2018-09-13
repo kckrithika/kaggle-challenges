@@ -34,7 +34,7 @@ spec:
         - --monitorFrequency=180s
         - --nginxWDmetricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --nginxWDhostnameOverride=$(NODE_NAME)
-        - --monitorFrequency=18s
+        - --monitorFrequency=10s
         env:
         - name: NODE_NAME
           valueFrom:

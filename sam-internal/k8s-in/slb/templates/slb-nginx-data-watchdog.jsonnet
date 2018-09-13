@@ -46,10 +46,10 @@ if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slb
                                                  "--nginxWDhostnameOverride=$(NODE_NAME)",
                                              ]
                                              + (
-if configs.estate == "prd-sdc" then
-                                                    [
-                                                        "--monitorFrequency=18s",
-                                                    ] else []
+                                                 if configs.estate == "prd-sdc" then
+                                                     [
+                                                         "--monitorFrequency=10s",
+                                                     ] else []
                                              ),
                                     volumeMounts: configs.filter_empty(
                                         [
