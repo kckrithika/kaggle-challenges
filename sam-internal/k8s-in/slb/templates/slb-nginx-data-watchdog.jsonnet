@@ -41,16 +41,21 @@ if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slb
                                                  configs.sfdchosts_arg,
                                                  "--k8sapiserver=",
                                                  "--connPort=" + slbports.slb.nginxDataConnPort,
-                                                 "--monitorFrequency=180s",
-                                                 "--nginxWDmetricsEndpoint=" + configs.funnelVIP,
-                                                 "--nginxWDhostnameOverride=$(NODE_NAME)",
                                              ]
                                              + (
                                                  if configs.estate == "prd-sdc" then
                                                      [
                                                          "--monitorFrequency=10s",
-                                                     ] else []
-                                             ),
+                                                     ] else
+                                                     [
+                                                         "--monitorFrequency=180s",
+                                                     ]
+                                             )
+                                             + [
+
+                                                 "--nginxWDmetricsEndpoint=" + configs.funnelVIP,
+                                                 "--nginxWDhostnameOverride=$(NODE_NAME)",
+                                             ],
                                     volumeMounts: configs.filter_empty(
                                         [
                                             configs.maddog_cert_volume_mount,
