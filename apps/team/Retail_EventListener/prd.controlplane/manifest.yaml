@@ -30,7 +30,7 @@ system:
 
     containers:
     - name: controlplane
-      image: sfci/mc-retail/commerce-journeys-control-plane:1.4.1
+      image: sfci/mc-retail/commerce-journeys-control-plane:1.4.2
       ports:
         - containerPort: 7022
         - containerPort: 15372
@@ -56,6 +56,9 @@ system:
         mountPath: /client-certs
       - name: cccjservercert
         mountPath: /server-certs
+      - name: secretvol
+        mountPath: /secrets/
+        readOnly: true
       - name: logvol
         mountPath: /home/sfdc-cj/logs
       - name: sherpa-log-volume
