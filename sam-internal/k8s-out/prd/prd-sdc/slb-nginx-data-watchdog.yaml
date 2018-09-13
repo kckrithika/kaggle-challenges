@@ -31,10 +31,9 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --k8sapiserver=
         - --connPort=9125
-        - --monitorFrequency=180s
+        - --monitorFrequency=10s
         - --nginxWDmetricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --nginxWDhostnameOverride=$(NODE_NAME)
-        - --monitorFrequency=10s
         env:
         - name: NODE_NAME
           valueFrom:
@@ -57,7 +56,7 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /host/data/slb/config/slb-nginx-data-watchdog
+        - mountPath: /host/data/slb/config/
           name: var-config-volume
       - command:
         - /sdn/slb-cleanup
@@ -84,7 +83,7 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/slb-nginx-data-watchdog
+        - mountPath: /host/data/slb/config/
           name: var-config-volume
         - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog
           name: var-logs-volume
