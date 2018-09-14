@@ -7,7 +7,7 @@
     // Eventually I'd like there to be a /cert1 for server, /cert2 for nginx client, and /cert3 for slb-internal
     // A parameter should pass an array of which cert classes it needs and based on that compute the volumes, volumeMounts, annotations, and maddog parameters
 
-    madkubRefactor20180913: (if slbimages.phaseNum <= 2 then true else false),  // For backward compatibility
+    madkubRefactor20180913: (if slbimages.phaseNum <= 3 then true else false),  // For backward compatibility
     local reverseVolumeMounts = ! $.madkubRefactor20180913,
 
     local madkubContainerArgsOld = [
