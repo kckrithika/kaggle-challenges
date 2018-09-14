@@ -4,7 +4,7 @@ data:
     {
       "dockerRegistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
       "enableDNS": true,
-      "enableIdentityEnvVar": false,
+      "enableIdentityEnvVar": true,
       "enableMaddog": true,
       "enableMaddogCopyTestCA": true,
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",

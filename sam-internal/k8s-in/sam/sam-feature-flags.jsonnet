@@ -55,6 +55,5 @@ local utils = import "util_functions.jsonnet";
      ipAddressCapacityRequest: configs.estate == "prd-samdev" || configs.estate == "prd-sam",
 
      enableIdentityEnvVar:
-        configs.estate == "prd-samdev" ||
-        configs.estate == "prd-samtest",
+        configs.kingdom == "prd",
 }
