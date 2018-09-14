@@ -5,7 +5,7 @@
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbimages = (import "slbimages.jsonnet") + { dirSuffix:: $.dirSuffix },
     // Eventually I'd like there to be a /cert1 for server, /cert2 for nginx client, and /cert3 for slb-internal
-    // A parameter should pass an array of which cert classes it needs and based on that compuse the volumes, volumeMounts, annotations, and maddog parameters
+    // A parameter should pass an array of which cert classes it needs and based on that compute the volumes, volumeMounts, annotations, and maddog parameters
 
     madkubRefactor20180913: (if slbimages.phaseNum <= 1 then true else false),  // For backward compatibility
     local reverseVolumeMounts = ! $.madkubRefactor20180913,
