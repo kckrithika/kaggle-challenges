@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-estate-installer" };
 
-if configs.estate == "prd-sdc" || configs.estate == "fra-sam" then configs.daemonSetBase("slb") {
+if configs.estate == "prd-sdc" || configs.estate == "fra-sam" || slbimages.phaseNum == 2 then configs.daemonSetBase("slb") {
     metadata: {
         labels: {
             name: "slb-estate-installer",
