@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/moe/deployerbot:20180913-mgrass-git-commit-signing
+      image: tnrp/moe/deployerbot:v-0001163-204efb2b
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
