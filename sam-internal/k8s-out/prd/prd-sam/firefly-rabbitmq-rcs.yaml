@@ -209,18 +209,20 @@ spec:
           value: sfdc-rabbitmq
         - name: REDEPLOY_COUNT
           value: "2"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq-sidecar:99
+        - name: RABBITMQ_NODENAME
+          value: rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE).svc.prd-sam.prd.sam.sfdc.net.
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq-monitord:111
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 10
           httpGet:
-            path: /actuator/health
+            path: /actuator
             port: admin-port
           initialDelaySeconds: 180
           periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 60
-        name: rabbitmq-sidecar
+        name: rabbitmq-monitord
         ports:
         - containerPort: 8081
           name: admin-port
@@ -228,7 +230,7 @@ spec:
         readinessProbe:
           failureThreshold: 10
           httpGet:
-            path: /actuator/health
+            path: /actuator
             port: admin-port
           initialDelaySeconds: 180
           periodSeconds: 30

@@ -32,6 +32,7 @@ chown 7447:7447 /data/firefly
 * Git repo: https://git.soma.salesforce.com/tnrpfirefly/firefly/rabbitmq/docker
 * If you need to upgrade Erlang or RabbitMQ RPMs, please follow the instructions here https://salesforce.quip.com/AHWRA7d3atlP. Once the RPMs are in the isd repo, you need to trigger a new firefly-rabbitmq Docker image build by changing any file on the docker-rabbitmq repo and committing it.
 * Reference the [Best Practices](https://git.soma.salesforce.com/sam/sam/wiki/Sam-Internals-Best-Practices) link if you have any questions. Please feel free to contribute there if you encounter a new issue/question.
+* When initially building a cluster, make sure to comment out readiness probe. It can be re-enabled once all the nodes have properly discovered each other.
 
 ## Firefly Services
 Service jsonnets are defined in a hierarchical manner. At the root of the hierarchy is the base service template file **firefly-service-deployment.jsonnet.TEMPLATE**. This file defines a service and deployment kube object of List type. Files that end with .TEMPLATE suffix are not processed by the build script. 
