@@ -69,7 +69,7 @@ system:
       ports:
         - containerPort: 7014
           name: sherpa-h1-plain
-        - containerPort: 7014
+        - containerPort: 7012
           name: sherpa-h2-plain
         - containerPort: 7443
           name: sherpa-h2-tls
