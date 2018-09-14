@@ -60,9 +60,6 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
-      - hostPath:
-          path: /manifests
-        name: sfdc-volume
       - configMap:
           name: sam-network-reporter
         name: config

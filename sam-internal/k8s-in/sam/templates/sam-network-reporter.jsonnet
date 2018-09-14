@@ -45,12 +45,6 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" then configs.daemonSetBa
                 ]
                 + [
                     {
-                        hostPath: {
-                            path: "/manifests",
-                        },
-                        name: "sfdc-volume",
-                    },
-                    {
                         configMap: {
                             name: "sam-network-reporter",
                         },
