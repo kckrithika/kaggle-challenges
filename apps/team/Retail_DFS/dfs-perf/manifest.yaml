@@ -83,6 +83,9 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
         - containerPort: 7442
         - containerPort: 7014
