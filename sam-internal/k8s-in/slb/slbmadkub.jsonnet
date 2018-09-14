@@ -7,31 +7,6 @@
     // Eventually I'd like there to be a /cert1 for server, /cert2 for nginx client, and /cert3 for slb-internal
     // A parameter should pass an array of which cert classes it needs and based on that compute the volumes, volumeMounts, annotations, and maddog parameters
 
-    madkubRefactor20180913: (if slbimages.phaseNum <= 4 then true else false),  // For backward compatibility
-    local reverseVolumeMounts = ! $.madkubRefactor20180913,
-
-    local madkubContainerArgsOld = [
-        "/sam/madkub-client",
-        "--madkub-endpoint",
-        "https://$(MADKUBSERVER_SERVICE_HOST):32007",
-        "--maddog-endpoint",
-        "" + configs.maddogEndpoint + "",
-        "--maddog-server-ca",
-        "/maddog-certs/ca/security-ca.pem",
-        "--madkub-server-ca",
-        "/maddog-certs/ca/cacerts.pem",
-        "--cert-folders",
-        "cert1:/cert1/",
-        "--cert-folders",
-        "cert2:/cert2/",
-        "--token-folder",
-        "/tokens/",
-        "--requested-cert-type",
-        "client",
-        "--ca-folder",
-        "/maddog-certs/ca",
-    ],
-
     local madkubContainerArgsNew = [
         "/sam/madkub-client",
         "--madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007",
@@ -70,13 +45,6 @@
         },
     ],
 
-    madkubSlbMadkubVolumeMountsCompat(reverse=false):: (
-        if reverse then [
-            $.madkubSlbMadkubVolumeMounts[1],
-            $.madkubSlbMadkubVolumeMounts[0],
-        ] else $.madkubSlbMadkubVolumeMounts
-    ),
-
     madkubSlbMadkubVolumeMounts: [
         {
             mountPath: "/maddog-certs/",
@@ -87,6 +55,7 @@
             name: "tokens",
         },
     ],
+
     madkubSlbMadkubVolumes():: [
         {
             emptyDir: {
@@ -95,12 +64,13 @@
             name: "tokens",
         },
     ],
+
     madkubInitContainer: {
         image: "" + samimages.madkub + "",
-        args: (if $.madkubRefactor20180913 then madkubContainerArgsNew else madkubContainerArgsOld),
+        args: madkubContainerArgsNew,
         name: "madkub-init",
         imagePullPolicy: "IfNotPresent",
-        volumeMounts: $.madkubSlbNginxVolumeMounts() + $.madkubSlbMadkubVolumeMountsCompat(false),
+        volumeMounts: $.madkubSlbNginxVolumeMounts() + $.madkubSlbMadkubVolumeMounts,
         env: [
             {
                 name: "MADKUB_NODENAME",
@@ -133,7 +103,7 @@
         ],
         name: "madkub-refresher",
         resources: {},
-        volumeMounts: $.madkubSlbNginxVolumeMounts() + $.madkubSlbMadkubVolumeMountsCompat(reverseVolumeMounts),
+        volumeMounts: $.madkubSlbNginxVolumeMounts() + $.madkubSlbMadkubVolumeMounts,
     },
 
     madkubCertsAnnotation():: {

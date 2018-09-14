@@ -185,62 +185,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                  },
                                 },
                                 slbshared.slbFileWatcher,
-                                (if madkub.madkubRefactor20180913 then madkub.madkubRefreshContainer
-                                else {
-                                    args: [
-                                        "/sam/madkub-client",
-                                        "--madkub-endpoint",
-                                        "https://$(MADKUBSERVER_SERVICE_HOST):32007",
-                                        "--maddog-endpoint",
-                                        configs.maddogEndpoint,
-                                        "--maddog-server-ca",
-                                        "/maddog-certs/ca/security-ca.pem",
-                                        "--madkub-server-ca",
-                                        "/maddog-certs/ca/cacerts.pem",
-                                        "--cert-folders",
-                                        "cert1:/cert1/",
-                                        "--cert-folders",
-                                        "cert2:/cert2/",
-                                        "--token-folder",
-                                        "/tokens/",
-                                        "--requested-cert-type",
-                                        "client",
-                                        "--refresher",
-                                        "--run-init-for-refresher-mode",
-                                        "--ca-folder",
-                                        "/maddog-certs/ca",
-                                    ],
-                                    env: [
-                                        {
-                                            name: "MADKUB_NODENAME",
-                                            valueFrom: {
-                                                fieldRef: {
-                                                    fieldPath: "spec.nodeName",
-                                                },
-                                            },
-                                        },
-                                        {
-                                            name: "MADKUB_NAME",
-                                            valueFrom: {
-                                                fieldRef: {
-                                                    fieldPath: "metadata.name",
-                                                },
-                                            },
-                                        },
-                                        {
-                                            name: "MADKUB_NAMESPACE",
-                                            valueFrom: {
-                                                fieldRef: {
-                                                    fieldPath: "metadata.namespace",
-                                                },
-                                            },
-                                        },
-                                    ],
-                                    image: samimages.madkub,
-                                    name: "madkub-refresher",
-                                    resources: {},
-                                    volumeMounts: madkub.madkubSlbNginxVolumeMounts() + madkub.madkubSlbMadkubVolumeMountsCompat(true),
-                                }),
+                                madkub.madkubRefreshContainer,
                                 {
                                         name: "slb-cert-checker",
                                         image: slbimages.hypersdn,
