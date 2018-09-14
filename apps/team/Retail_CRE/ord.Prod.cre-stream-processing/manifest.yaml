@@ -6,11 +6,19 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-sp
-    count: 3
+    count: 1
     containers:
     - name: cre-sp
-      image: sfci/cre/cre-stream-processing:0.0.1.57.master.ad919e0.125
+      image: sfci/cre/cre-stream-processing:1.3.1.1.master.05fcab1.162
       env:
+        - name: PUBLISHING_TOPIC
+          value: sfdc.prod.cre__ord.ajna_local__cre_outbound
+        - name: PUBLISHING_GROUP_ID
+          value: cre_outbound_group_id
+        - name: PUBLISHING_KAFKA_SERVER
+          value: ajna0-broker1-0-ord.data.sfdc.net:9093
+        - name: BUFFER_IN_TOPIC
+          value: sfdc.prod.cre__ord.ajna_local__cre_inbound
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__ord.ajna_local__cre_metrics
         - name: METRICS_KAFKA_SERVER
@@ -18,7 +26,7 @@ system:
         - name: METRICS_KAFKA_GROUP_ID
           value: cre-sp-ord
         - name: SFDC_ENVIRONMENT
-          value: prod          
+          value: prod
         - name: METRICS_KAFKA_ENABLED
           value: true
         - name: MADDOG_CLIENT_KEYSTORE
@@ -26,10 +34,12 @@ system:
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
         - name: METRICS_FUNNEL_URI
-          value: http://ajna0-funnel1-0-ord.data.sfdc.net                     
+          value: http://ajna0-funnel1-0-ord.data.sfdc.net
+        - name: CONTROLPLANE_ENDPOINT
+          value: http://cre-control-plane-lb.retail-cre.ord-sam.ord.slb.sfdc.net:8094/streamprocessing
       ports:
       - containerPort: 8080
-      - containerPort: 7020
+      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         initialDelaySeconds: 120
@@ -40,19 +50,23 @@ system:
           port: 15372
           scheme: HTTP
       volumeMounts:
-      - mountPath: /myclientcert
-        name: myclientcert
-      - mountPath: /myservercert
-        name: myservercert        
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
       - mountPath: /opt/cre/cre-sp-prod
         name: logvol
     - name: sherpa-cre-stream-processing
-      image: sfci/servicelibs/sherpa:2.0.23
+       # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
+       # Use the full git SHA as the docker image tag.
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       volumeMounts:
-      - mountPath: /myclientcert
-        name: myclientcert
-      - mountPath: /myservercert
-        name: myservercert 
+      - mountPath: /log
+        name: sherpa-log-volume
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
       env:
         - name: SFDC_ENVIRONMENT
           value: prod
@@ -60,36 +74,47 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7012
-        name: sherpa-ot-http2
-      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-        name: sherpa-in-http1
+      - containerPort: 7442
+        name: sh-in-http1-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
+          - "/home/sfdc-sherpa/bin/is-alive"
         initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
+          - "/home/sfdc-sherpa/bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+    - name: beacon
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      args:
+      - -endpoint
+      - retail-cre/cre-sp:DATACENTER_ALLENV:7442
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
     volumes:
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-sp-prod
-    - name: myclientcert
+    - name: client-certs
       maddogCert:
         type: client
-    - name: myservercert
+    - name: server-certs
       maddogCert:
         type: server
         lbnames:
-          - cre-sp-lb      
+          - cre-sp-lb
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
   loadbalancers:
   - lbname: cre-sp-lb
     function: cre-sp
