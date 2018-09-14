@@ -217,8 +217,8 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
           },
           madkub.madkubRefreshContainer(),
           {
-            name: 'rabbitmq-sidecar',
-            image: images.rabbitmq_sidecar,
+            name: 'rabbitmq-monitord',
+            image: images.rabbitmq_monitord,
             securityContext: {
               runAsNonRoot: false,
               runAsUser: 0,
@@ -299,6 +299,10 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                 name: 'REDEPLOY_COUNT',
                 value: '2',
               },
+              {
+                name: 'RABBITMQ_NODENAME',
+                value: 'rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE).svc.' + configs.estate + '.' + configs.kingdom + '.sam.sfdc.net.',
+              },
             ],
             ports: [
               {
@@ -327,7 +331,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
             ],
             livenessProbe: {
               httpGet: {
-                path: '/actuator/health',
+                path: '/actuator',
                 port: 'admin-port',
               },
               initialDelaySeconds: 180,
@@ -338,7 +342,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
             },
             readinessProbe: {
               httpGet: {
-                path: '/actuator/health',
+                path: '/actuator',
                 port: 'admin-port',
               },
               initialDelaySeconds: 180,

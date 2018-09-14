@@ -35,7 +35,7 @@ local configs = import "config.jsonnet";
         ### Release Phase 0 - prd-samtest
         "0": $.per_phase["1"] {
              rabbitmq: "86",
-             rabbitmqsidecar: "106",
+             rabbitmqmonitord: "111",
              },
 
         ### Release Phase 1 - prd-samdev
@@ -47,7 +47,7 @@ local configs = import "config.jsonnet";
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
              rabbitmq: "86",
-             rabbitmqsidecar: "106",
+             rabbitmqmonitord: "111",
             },
 
         ### Release Phase 2 - prd-sam (Canary)
@@ -59,7 +59,7 @@ local configs = import "config.jsonnet";
              fireflypullrequest: "105",
              fireflydind: "86",
              rabbitmq: "86",
-             rabbitmqsidecar: "106",
+             rabbitmqmonitord: "111",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
@@ -71,7 +71,7 @@ local configs = import "config.jsonnet";
              fireflypullrequest: "105",
              fireflydind: "86",
              rabbitmq: "86",
-             rabbitmqsidecar: "106",
+             rabbitmqmonitord: "111",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
@@ -106,7 +106,7 @@ local configs = import "config.jsonnet";
 
     # These are the images used by the templates
     rabbitmq: configs.registry + "/dva/firefly-rabbitmq:" + $.per_phase[$.phase].rabbitmq,
-    rabbitmq_sidecar: configs.registry + "/dva/firefly-rabbitmq-sidecar:" + $.per_phase[$.phase].rabbitmqsidecar,
+    rabbitmq_monitord: configs.registry + "/dva/firefly-rabbitmq-monitord:" + $.per_phase[$.phase].rabbitmqmonitord,
     fireflyintake: configs.registry + "/dva/firefly-intake:" + $.per_phase[$.phase].fireflyintake,
     fireflycrawler: configs.registry + "/dva/firefly-crawler:" + $.per_phase[$.phase].fireflycrawler,
     fireflypullrequest: configs.registry + "/dva/firefly-pullrequest:" + $.per_phase[$.phase].fireflypullrequest,
