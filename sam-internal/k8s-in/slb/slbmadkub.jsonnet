@@ -97,7 +97,7 @@
     ],
     madkubInitContainer: {
         image: "" + samimages.madkub + "",
-        args: madkubContainerArgsOld,
+        args: (if $.madkubRefactor20180913 then madkubContainerArgsNew else madkubContainerArgsOld),
         name: "madkub-init",
         imagePullPolicy: "IfNotPresent",
         volumeMounts: $.madkubSlbNginxVolumeMounts() + $.madkubSlbMadkubVolumeMountsCompat(false),
