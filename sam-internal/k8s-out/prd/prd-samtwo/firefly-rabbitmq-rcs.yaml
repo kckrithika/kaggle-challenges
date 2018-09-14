@@ -204,7 +204,7 @@ spec:
           value: sfdc-rabbitmq
         - name: REDEPLOY_COUNT
           value: "2"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq-sidecar:99
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq-sidecar:106
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 10
