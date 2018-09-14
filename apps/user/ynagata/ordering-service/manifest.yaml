@@ -14,8 +14,9 @@ system:
       maddogCert:
         type: client
     containers:
+    #
     - name: ordering-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20180817-6ca0f35
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20180913-b85d177
       ports:
       - containerPort: 7020
       - containerPort: 15372
