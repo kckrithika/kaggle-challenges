@@ -96,7 +96,8 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                      [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                                     command: [
                                         "/sdn/slb-nginx-config",
-                                        "--configDir=" + slbconfigs.configDir,
+                                        ] + (if slbimages.hypersdn_build < 1165 then ["--configDir=" + slbconfigs.configDir] else []) + [
+
                                         "--target=" + slbconfigs.slbDir + "/nginx/config",
                                         "--netInterfaceName=eth0",
                                         "--metricsEndpoint=" + configs.funnelVIP,
