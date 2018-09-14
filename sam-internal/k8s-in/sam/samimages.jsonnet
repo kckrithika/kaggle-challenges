@@ -32,6 +32,7 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
         "prd,prd-sam_storagedev,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
         "prd,prd-sam_storage,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
+        "frf,frf-sam,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
 
         #[W-5431932] Fix k8s-resource-reporter crashing
         "prd,prd-samtest,k8s-resource-reporter,hypersam": "sam-0002282-d7702ab4",
@@ -51,7 +52,6 @@ for ce in [
             "chx-sam",
             "dfw-sam",
             "fra-sam",
-            "frf-sam",
             "hnd-sam",
             "ia2-sam",
             "iad-sam",
