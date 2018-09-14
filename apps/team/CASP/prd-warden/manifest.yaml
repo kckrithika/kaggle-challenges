@@ -35,6 +35,9 @@ system:
         - mountPath: /wardenpki/
           name: wardenpki
           readOnly: true
+        - mountPath: /warden-secrets/
+          name: splunk-credentials
+          readOnly: true
         livenessProbe:
           httpGet:
             path: /manage/health
@@ -50,6 +53,9 @@ system:
       - name: wardenpki
         k4aSecret:
           secretName: wardenpki
+      - name: splunk-credentials
+        k4aSecret:
+          secretName: warden-secrets
 
     loadbalancers:
     - lbname: warden
