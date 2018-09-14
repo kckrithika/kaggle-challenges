@@ -38,7 +38,7 @@ spec:
         - --client.serverInterface=lo
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001156-2846b155
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001158-13d51cf1
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -82,7 +82,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001156-2846b155
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001158-13d51cf1
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -119,7 +119,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001156-2846b155
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001158-13d51cf1
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -141,7 +141,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001156-2846b155
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001158-13d51cf1
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -169,7 +169,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-dns-register/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001156-2846b155
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001158-13d51cf1
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -194,7 +194,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001156-2846b155
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001158-13d51cf1
         name: slb-manifest-watcher
         securityContext:
           privileged: true
