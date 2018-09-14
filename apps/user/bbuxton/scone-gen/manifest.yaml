@@ -18,10 +18,10 @@ system:
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
-      volumeMounts:
-      - mountPath: /secrets/service-config/
-        name: secretvol
-        readOnly: true
+      # volumeMounts:
+      # - mountPath: /secrets/service-config/
+      #   name: secretvol
+      #   readOnly: true
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -39,10 +39,10 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-    volumes:
-    - name: secretvol
-      k4aSecret:
-        secretName: sconegenguscreds
+    # volumes:
+    # - name: secretvol
+    #   k4aSecret:
+    #     secretName: sconegenguscreds
   # loadbalancers:
   # - lbname: sconegenerator
   #   function: sconegen
