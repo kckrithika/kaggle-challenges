@@ -32,6 +32,7 @@ system:
     - name: controlplane
       image: sfci/mc-retail/commerce-journeys-control-plane:1.4.4
       ports:
+        - containerPort: 7020
         - containerPort: 7022
         - containerPort: 15372
       resources:
@@ -67,7 +68,11 @@ system:
         value: prd
       ports:
         - containerPort: 7014
-          name: sherpa-h1
+          name: sherpa-h1-plain
+        - containerPort: 7014
+          name: sherpa-h2-plain
+        - containerPort: 7443
+          name: sherpa-h2-tls
         - containerPort: 15373
       volumeMounts:
         - name: sherpa-log-volume
@@ -99,7 +104,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - retail-eventlistener/controlplane:DATACENTER_ALLENV:7014
+      - retail-eventlistener/controlplane:DATACENTER_ALLENV:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
