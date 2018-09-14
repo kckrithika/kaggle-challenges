@@ -64,6 +64,26 @@ Note: Crawler and Intake are multitenant services. Meaning, a single service ins
 ### Adding/Modifying environment variables.
 Currently, the environment specific parameters are defined in tnrp/firefly_service_conf.jsonnet file. If you want to customize a parameter for a specific environment, change the structure for that environment to override or add. The environmentMapping is used by the service template based on the estate being configured. 
 
+### Running your own instance of service in a different namespace
+Following are the steps for running a separate instance of the service for local testing in prdsam:
+* ssh to <username>@shared0-samkubeapi2-1-prd.eng.sfdc.net using your kerb password
+* scp sam-internal/k8s-out/prd/prd-sam/firefly-test-firefly-manifests-svc.yaml or firefly-test_sam_manifests-svc.yaml to prd-sam /tmp directory
+* Edit the file and change the docker image to point to docker-sam repository in your namespace. Make sure you change the build.gradle file of the service you want to test and modify it to push the docker image to your namespace under docker-sam.
+* Change **_namespace: firefly_** to **_namespace: firefly[username]_**
+* Scale down any instance of the service running on other namespaces for the same repo. If you want to totally avoid any clashes, you can create your own repo and run a single instance of RabbitMq.
+* To scale down a service, run **_kubectl scale deployment firefly-[servicename]-[reponame] -n firefly[username] --replicas 0_** example: **_kubectl scale deployment firefly-pullrequest-tfm -n fireflytest --replicas 0_**, where tfm stands for test-firefly-manifests repo under SAM org
+* Run **_kubectl create -f /tmp/firefly-test-firefly-manifests-svc.yaml -n firefly<username>_** to create the service
+* Ensure services are running **_kubectl get pods -n firefly[username]_**
+
+
+### Adding your own repository
+Following are the steps for creating a separate repository for your own testing needs:
+* To create a clone of SAM manifests, you can clone test_sam_manifests under tnrpfirefly repo. 
+* To create a service for the new repo, copy firefly-test-firefly-manifests-svc.yaml to a new file firefly-**repo_name**-svc.yaml under sam-internal/k8s-in/tnrp/templates directory.
+* Edit the file and change the config.estate based on where you want the service for this repo to run. If you are testing, it is best to stick with prd-sam.
+* Change instanceType to the newly created repo. 
+* Change the queue names to your repo name. Intake service uses this to know where to route a request. There are some naming conventions followed in the code. For manifests, choose a repo name that has **manifests** in the name.
+* Run build.sh under k8s-in directory and raise a PR. 
 #### Directory structure:
 
 * configs - store any app-specific configs in this directory
