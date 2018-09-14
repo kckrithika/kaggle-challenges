@@ -3,50 +3,104 @@
     local configs = import "config.jsonnet",
     local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile },
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
+    local slbimages = (import "slbimages.jsonnet") + { dirSuffix:: $.dirSuffix },
+    // Eventually I'd like there to be a /cert1 for server, /cert2 for nginx client, and /cert3 for slb-internal
+    // A parameter should pass an array of which cert classes it needs and based on that compuse the volumes, volumeMounts, annotations, and maddog parameters
 
-    madkubInitContainer():: {
+    madkubRefactor20180913: (if slbimages.phaseNum <= 1 then true else false),  // For backward compatibility
+    local reverseVolumeMounts = ! $.madkubRefactor20180913,
+
+    local madkubContainerArgsOld = [
+        "/sam/madkub-client",
+        "--madkub-endpoint",
+        "https://$(MADKUBSERVER_SERVICE_HOST):32007",
+        "--maddog-endpoint",
+        "" + configs.maddogEndpoint + "",
+        "--maddog-server-ca",
+        "/maddog-certs/ca/security-ca.pem",
+        "--madkub-server-ca",
+        "/maddog-certs/ca/cacerts.pem",
+        "--cert-folders",
+        "cert1:/cert1/",
+        "--cert-folders",
+        "cert2:/cert2/",
+        "--token-folder",
+        "/tokens/",
+        "--requested-cert-type",
+        "client",
+        "--ca-folder",
+        "/maddog-certs/ca",
+    ],
+
+    local madkubContainerArgsNew = [
+        "/sam/madkub-client",
+        "--madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007",
+        "--maddog-endpoint=" + configs.maddogEndpoint + "",
+        "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
+        "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
+        "--cert-folders=cert1:/cert1/",
+        "--cert-folders=cert2:/cert2/",
+        "--token-folder=/tokens/",
+        "--requested-cert-type=client",
+        "--ca-folder=/maddog-certs/ca",
+    ],
+
+    madkubSlbNginxVolumeMounts():: [
+        {
+            mountPath: "/cert1",
+            name: "cert1",
+        },
+        {
+            mountPath: "/cert2",
+            name: "cert2",
+        },
+    ],
+    madkubSlbNginxVolumes():: [
+        {
+            emptyDir: {
+                medium: "Memory",
+            },
+            name: "cert1",
+        },
+        {
+            emptyDir: {
+                medium: "Memory",
+            },
+            name: "cert2",
+        },
+    ],
+
+    madkubSlbMadkubVolumeMountsCompat(reverse=false):: (
+        if reverse then [
+            $.madkubSlbMadkubVolumeMounts[1],
+            $.madkubSlbMadkubVolumeMounts[0],
+        ] else $.madkubSlbMadkubVolumeMounts
+    ),
+
+    madkubSlbMadkubVolumeMounts: [
+        {
+            mountPath: "/maddog-certs/",
+            name: "maddog-certs",
+        },
+        {
+            mountPath: "/tokens",
+            name: "tokens",
+        },
+    ],
+    madkubSlbMadkubVolumes():: [
+        {
+            emptyDir: {
+                medium: "Memory",
+            },
+            name: "tokens",
+        },
+    ],
+    madkubInitContainer: {
         image: "" + samimages.madkub + "",
-        args: [
-            "/sam/madkub-client",
-            "--madkub-endpoint",
-            "https://$(MADKUBSERVER_SERVICE_HOST):32007",
-            "--maddog-endpoint",
-            "" + configs.maddogEndpoint + "",
-            "--maddog-server-ca",
-            "/maddog-certs/ca/security-ca.pem",
-            "--madkub-server-ca",
-            "/maddog-certs/ca/cacerts.pem",
-            "--cert-folders",
-            "cert1:/cert1/",
-            "--cert-folders",
-            "cert2:/cert2/",
-            "--token-folder",
-            "/tokens/",
-            "--requested-cert-type",
-            "client",
-            "--ca-folder",
-            "/maddog-certs/ca",
-        ],
+        args: madkubContainerArgsOld,
         name: "madkub-init",
         imagePullPolicy: "IfNotPresent",
-        volumeMounts: [
-            {
-                mountPath: "/cert1",
-                name: "cert1",
-            },
-            {
-                mountPath: "/cert2",
-                name: "cert2",
-            },
-            {
-                mountPath: "/maddog-certs/",
-                name: "maddog-certs",
-            },
-            {
-                mountPath: "/tokens",
-                name: "tokens",
-            },
-        ],
+        volumeMounts: $.madkubSlbNginxVolumeMounts() + $.madkubSlbMadkubVolumeMountsCompat(false),
         env: [
             {
                 name: "MADKUB_NODENAME",
@@ -70,6 +124,16 @@
                     },
             },
         ],
+    },
+
+    madkubRefreshContainer: $.madkubInitContainer {
+        args+: [
+            "--refresher",
+            "--run-init-for-refresher-mode",
+        ],
+        name: "madkub-refresher",
+        resources: {},
+        volumeMounts: $.madkubSlbNginxVolumeMounts() + $.madkubSlbMadkubVolumeMountsCompat(reverseVolumeMounts),
     },
 
     madkubCertsAnnotation():: {
