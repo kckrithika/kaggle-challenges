@@ -11,22 +11,22 @@ system:
         httpGet:
             path: /health
     - name: edge-rptc
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_rptc:1.0-0000224-e9559d0a
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_rptc:1.0-0000226-64a3822e
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-config-agent
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_config_agent:1.0-0000224-e9559d0a
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_config_agent:1.0-0000226-64a3822e
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-rptc-stunnel-client
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_rptc_stunnel_client:1.0-0000224-e9559d0a
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_rptc_stunnel_client:1.0-0000226-64a3822e
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-cfgagent-stunnel-client
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_cfgagent_stunnel_client:1.0-0000224-e9559d0a
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_cfgagent_stunnel_client:1.0-0000226-64a3822e
       livenessProbe:
         httpGet:
             path: /health
