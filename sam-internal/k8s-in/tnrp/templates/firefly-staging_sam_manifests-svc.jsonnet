@@ -30,7 +30,7 @@ if configs.estate == "prd-sam" then
   },
   local pullrequest = pullrequestsvc {
       serviceConf:: super.serviceConf {
-          repoName: "tsm",
+          repoName: "stgmanifests",
       },
       env:: super.env + [
           {
@@ -50,7 +50,7 @@ if configs.estate == "prd-sam" then
   },
   local promotion = promotionsvc {
       serviceConf:: super.serviceConf {
-          repoName: "tsm",
+          repoName: "stgmanifests",
       },
       env:: super.env + [
           {
