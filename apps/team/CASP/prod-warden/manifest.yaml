@@ -29,6 +29,9 @@ system:
           name: warden-vol
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
+        - mountPath: /warden-secrets/
+          name: splunk-credentials
+          readOnly: true
         livenessProbe:
           httpGet:
             path: /manage/health
@@ -41,6 +44,9 @@ system:
       - name: log-vol
         hostPath:
           path: /home/sfdc-casp/logs
+      - name: splunk-credentials
+        k4aSecret:
+          secretName: warden-secrets
 
     loadbalancers:
     - lbname: wardenlb
