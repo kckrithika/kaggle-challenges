@@ -22,6 +22,8 @@ system:
       volumeMounts:
       - name: datavol
         mountPath: /var/lib/postgresql/data
+      - name: datavol-rdi
+        mountPath: /var/lib/postgresql/data-rdi
 
       ports:
       - containerPort: 5432
@@ -51,6 +53,9 @@ system:
     - name: datavol
       storageClassName: moe-hdd-pool
       storageSizeRequest: 100Gi
+    - name: datavol-rdi
+      storageClassName: moe-rdi-hdd-pool
+      storageSizeRequest: 500Gi
 
   - name: redis
     count: 1
@@ -62,6 +67,8 @@ system:
       volumeMounts:
       - name: datavol
         mountPath: /data
+      - name: datavol-rdi
+        mountPath: /data-rdi
 
       ports:
       - containerPort: 6379
@@ -90,6 +97,9 @@ system:
     volumeClaimTemplates:
     - name: datavol
       storageClassName: moe-hdd-pool
+      storageSizeRequest: 100Gi
+    - name: datavol-rdi
+      storageClassName: moe-rdi-hdd-pool
       storageSizeRequest: 100Gi
 
   - name: monitor
@@ -152,6 +162,8 @@ system:
         readOnly: true
       - name: datavol
         mountPath: /archive
+      - name: datavol-rdi
+        mountPath: /archive-rdi
       livenessProbe:
         exec:
           command: ["ls", "/"]
@@ -170,6 +182,8 @@ system:
         readOnly: true
       - name: datavol
         mountPath: /archive
+      - name: datavol-rdi
+        mountPath: /archive-rdi
       ports:
       - containerPort: 5000
       livenessProbe:
@@ -184,6 +198,8 @@ system:
       volumeMounts:
       - name: datavol
         mountPath: /archive
+      - name: datavol-rdi
+        mountPath: /archive-rdi
       # TODO: maddog certs are good for service-service communication, but not trusted by default from dev boxes.
       # Acquire real certs.
       - name: certs
@@ -208,10 +224,11 @@ system:
     - name: datavol
       storageClassName: moe-hdd-pool
       storageSizeRequest: 100Gi
+    - name: datavol-rdi
+      storageClassName: moe-rdi-hdd-pool
+      storageSizeRequest: 500Gi
 
     volumes:
-    # TODO: maddog certs are good for service-service communication, but not trusted by default from dev boxes.
-    # Acquire real certs.
     - name: certs
       maddogCert:
         type: server
