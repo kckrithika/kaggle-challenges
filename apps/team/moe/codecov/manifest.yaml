@@ -46,7 +46,7 @@ system:
     lbname: postgres-headless-lb
 
     # Give containers a bit of time to shut down, as they might be syncing
-    # state into the PV on shutdown
+    # state into the PV on shutdown.
     terminationGracePeriodSeconds: 30
 
     volumeClaimTemplates:
@@ -91,7 +91,7 @@ system:
     lbname: redis-headless-lb
 
     # Give containers a bit of time to shut down, as they might be syncing
-    # state into the PV on shutdown
+    # state into the PV on shutdown.
     terminationGracePeriodSeconds: 30
 
     volumeClaimTemplates:
@@ -138,7 +138,7 @@ system:
     lbname: codecov-monitor-headless-lb
 
     # Give containers a bit of time to shut down, as they might be syncing
-    # state into the PV on shutdown
+    # state into the PV on shutdown.
     terminationGracePeriodSeconds: 30
 
     volumes:
@@ -200,8 +200,6 @@ system:
         mountPath: /archive-old
       - name: datavol-rdi
         mountPath: /archive
-      # TODO: maddog certs are good for service-service communication, but not trusted by default from dev boxes.
-      # Acquire real certs.
       - name: certs
         mountPath: /certs
       ports:
@@ -217,7 +215,7 @@ system:
     lbname: codecov-headless-lb
 
     # Give containers a bit of time to shut down, as they might be syncing
-    # state into the PV on shutdown
+    # state into the PV on shutdown.
     terminationGracePeriodSeconds: 30
 
     volumeClaimTemplates:
