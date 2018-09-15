@@ -26,7 +26,8 @@ local slbreleases = import "slbreleases.json";
             "1"
         else if kingdom in { [k]: 1 for k in ['prd'] } then
             "2"
-        else if kingdom in { [k]: 1 for k in ['phx', 'iad', 'xrd'] } then
+        // else if kingdom in { [k]: 1 for k in ['phx', 'iad', 'xrd'] } then
+        else if kingdom in { [k]: 1 for k in ['xrd'] } then
             "3"
         else
             "4"
