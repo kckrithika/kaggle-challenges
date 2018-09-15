@@ -20,8 +20,6 @@ system:
         value: /var/lib/postgresql/data/pgdata
 
       volumeMounts:
-      - name: datavol
-        mountPath: /var/lib/postgresql/data-old
       - name: datavol-rdi
         mountPath: /var/lib/postgresql/data
 
@@ -50,9 +48,6 @@ system:
     terminationGracePeriodSeconds: 30
 
     volumeClaimTemplates:
-    - name: datavol
-      storageClassName: moe-hdd-pool
-      storageSizeRequest: 100Gi
     - name: datavol-rdi
       storageClassName: moe-rdi-hdd-pool
       storageSizeRequest: 500Gi
@@ -65,8 +60,6 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/redis:3.0.7-alpine
 
       volumeMounts:
-      - name: datavol
-        mountPath: /data-old
       - name: datavol-rdi
         mountPath: /data
 
@@ -95,9 +88,6 @@ system:
     terminationGracePeriodSeconds: 30
 
     volumeClaimTemplates:
-    - name: datavol
-      storageClassName: moe-hdd-pool
-      storageSizeRequest: 100Gi
     - name: datavol-rdi
       storageClassName: moe-rdi-hdd-pool
       storageSizeRequest: 100Gi
@@ -160,8 +150,6 @@ system:
       - name: codecov-config
         mountPath: /config
         readOnly: true
-      - name: datavol
-        mountPath: /archive-old
       - name: datavol-rdi
         mountPath: /archive
       livenessProbe:
@@ -180,8 +168,6 @@ system:
       - name: codecov-config
         mountPath: /config
         readOnly: true
-      - name: datavol
-        mountPath: /archive-old
       - name: datavol-rdi
         mountPath: /archive
       ports:
@@ -196,8 +182,6 @@ system:
     - name: nginx
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:7
       volumeMounts:
-      - name: datavol
-        mountPath: /archive-old
       - name: datavol-rdi
         mountPath: /archive
       - name: certs
@@ -219,9 +203,6 @@ system:
     terminationGracePeriodSeconds: 30
 
     volumeClaimTemplates:
-    - name: datavol
-      storageClassName: moe-hdd-pool
-      storageSizeRequest: 100Gi
     - name: datavol-rdi
       storageClassName: moe-rdi-hdd-pool
       storageSizeRequest: 500Gi
