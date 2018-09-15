@@ -297,7 +297,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               },
               {
                 name: 'REDEPLOY_COUNT',
-                value: '3',
+                value: '4',
               },
               {
                 name: 'RABBITMQ_NODENAME',
