@@ -21,9 +21,9 @@ system:
 
       volumeMounts:
       - name: datavol
-        mountPath: /var/lib/postgresql/data
+        mountPath: /var/lib/postgresql/data-old
       - name: datavol-rdi
-        mountPath: /var/lib/postgresql/data-rdi
+        mountPath: /var/lib/postgresql/data
 
       ports:
       - containerPort: 5432
@@ -66,9 +66,9 @@ system:
 
       volumeMounts:
       - name: datavol
-        mountPath: /data
+        mountPath: /data-old
       - name: datavol-rdi
-        mountPath: /data-rdi
+        mountPath: /data
 
       ports:
       - containerPort: 6379
@@ -161,9 +161,9 @@ system:
         mountPath: /config
         readOnly: true
       - name: datavol
-        mountPath: /archive
+        mountPath: /archive-old
       - name: datavol-rdi
-        mountPath: /archive-rdi
+        mountPath: /archive
       livenessProbe:
         exec:
           command: ["ls", "/"]
@@ -181,9 +181,9 @@ system:
         mountPath: /config
         readOnly: true
       - name: datavol
-        mountPath: /archive
+        mountPath: /archive-old
       - name: datavol-rdi
-        mountPath: /archive-rdi
+        mountPath: /archive
       ports:
       - containerPort: 5000
       livenessProbe:
@@ -197,9 +197,9 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:7
       volumeMounts:
       - name: datavol
-        mountPath: /archive
+        mountPath: /archive-old
       - name: datavol-rdi
-        mountPath: /archive-rdi
+        mountPath: /archive
       # TODO: maddog certs are good for service-service communication, but not trusted by default from dev boxes.
       # Acquire real certs.
       - name: certs
