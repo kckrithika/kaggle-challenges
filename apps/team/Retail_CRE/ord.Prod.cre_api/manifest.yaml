@@ -27,6 +27,8 @@ system:
           value: prod
         - name: HBASE_DATA_CENTER
           value: ord
+        - name: CONTROL_PLANE_URL
+          value: cre-control-plane.retail-cre.localhost.mesh.force.com:5443
       resources:
         limits: { cpu: "2", memory: "20Gi" }
         requests: { cpu: "2", memory: "20Gi" }
