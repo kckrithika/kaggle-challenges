@@ -1,0 +1,384 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: na2-mist61app-prd
+    count: 1
+    volumes:
+    - name: envoy-config-volume
+      emptyDir: {}
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    - name: log-volume-sfdc
+      hostPath:
+        path: /data/logs/sfdc
+    - name: log-volume-jvm
+      hostPath:
+        path: /data/logs/jvm
+
+    containers:
+    - name: coreapp
+      image: tnrp/casam/coreapp:214_patch__16407912-0000116-b05f1a1e
+
+      env:
+        # DB info
+        - name: DB_USER
+          value: sleepy
+        - name: DB_SID
+          value: mist61c214utf
+        - name: IP_DB
+          value: mist61ice1-db1-1-prd.eng.sfdc.net
+
+        # Matches the external port on the load balancer, used for redirection upon login
+        - name: PUBLIC_PORT
+          value: 8086
+
+        # Set to true it PUBLIC_PORT is an https endpoint
+        - name: PUBLIC_PORT_IS_SECURE
+          value: true
+
+        # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
+        # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
+        # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
+        - name: PUBLIC_HOST_NAME
+          value: mist61-na2-cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+        # This maps to http_port
+        - name: PORT
+          value: 12100
+        # This maps to https_port
+        - name: SPORT
+          value: 12099
+        # This maps to https2way_port
+        - name: S2PORT
+          value: 12098
+
+        # Set to true to trigger a plsql stats load during startup
+        - name: PLSQL_UPDATE_RUNSTATS
+          value: false
+
+        # By default we patch server to NOT expire sessions across major release bounday.
+        # Comment out this name/value pair to revert back to normal session invalidation.
+        - name: DISABLE_AUTH_RELEASE_CHECK
+          value: true
+
+        # App color to be used for blue/green release
+        - name: CASAM_APP_COLOR
+          value: green
+
+        # Override port being announced in SD by coreapp - use the Envoy side car's listen port
+        - name: SD_PORT_OVERRIDE
+          value: 13065
+
+        # Settings.path
+        - name: CASAM_SETTINGS_PATH
+          value: mist.mist61.prd.na2.app
+
+        # Cluster name
+        - name: CLUSTER_NAME
+          value: MIST61
+
+        - name: DEPLOYMENT
+          value: B
+
+        # Increase DB connections
+        - name: DB_CONN_NUM
+          value: 25
+
+      livenessProbe:
+        exec:
+          command:
+           - echo
+           - HEALTHY
+        initialDelaySeconds: 480
+        periodSeconds: 1
+
+      readinessProbe:
+        httpGet:
+          path: /ping.jsp
+        initialDelaySeconds: 120
+        periodSeconds: 1
+        failureThreshold: 10
+
+      ports:
+        # Actually used by the container
+        - containerPort: 8998
+        - containerPort: 12100
+        - containerPort: 11211
+        - containerPort: 12098
+        - containerPort: 12099
+
+      volumeMounts:
+        - name: log-volume-sfdc
+          mountPath: /home/sfdc/logs/sfdc
+        - name: log-volume-jvm
+          mountPath: /home/sfdc/logs/jvm
+        - name: tls-client-cert
+          mountPath: /certs
+
+    - name: envoy-sidecar-config
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
+      env:
+      - name: CONFIG_DIR
+        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
+      volumeMounts:
+      - name: envoy-config-volume
+        mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/live
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 10
+        periodSeconds: 5
+
+    - name: envoy-sidecar
+      image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: envoy-sidecar
+      args:
+      - --template
+      - /cyan-config/tls-terminator-config.yaml.template
+      ports:
+      - containerPort: 13065
+      - containerPort: 15373
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - name: envoy-config-volume
+        mountPath: /cyan-config
+      - name: tls-client-cert
+        mountPath: /certs/cert-client
+      - name: tls-server-cert
+        mountPath: /certs/cert-server
+
+    terminationGracePeriodSeconds: 500
+    progressDeadlineSeconds: 300
+
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 200%
+        maxUnavailable: 0
+
+
+  - name: na2-mist61seq-prd
+
+    count: 1
+
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
+
+    containers:
+    - name: sequencer
+      image: sfci/casam/sequencer:f16a38
+
+      env:
+        - name: USE_SWITCHBOARD
+          value: 1
+        - name: CYAN
+          value: https://mist61-na2-cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
+        - name: CURL_GLOBAL_OPTS
+          value: -k
+        - name: K4A
+          value: have_to_get_this
+        - name: WAITTIME_PD
+          value: 60
+        - name: JMX_HOST
+          value: shared2-samminioncoreapp1-1-prd.eng.sfdc.net
+        - name: JMX_PORT
+          value: 65520
+        - name: OLD_DWARF
+          value: sneezy
+#          value: happy
+        - name: CURRENT_RELEASE_VERSION
+          value: blue
+#          value: green
+        - name: NEW_RELEASE_VERSION
+          value: green
+#          value: blue
+        # Min number of ready servers for cyan to indicate the new pod is ready
+        - name: READY_SERVER_COUNT
+          value: 1
+        - name: DB_SID
+#          value: mist61a216utf
+          value: mist61c214utf
+        - name: LOCK_DWARF
+          value: 1
+        - name: TRIGGER_CAFFEINE
+          value: 1
+        - name: UNLOCK_DWARF
+          value: 1
+#        - name: K4A_OUTPUT
+#          value: /tmp/files/repo/user.properties
+        - name: SNOWWHITE_PWD
+          value: rotate
+        - name: MADDOG_CLIENT
+          value: /certs
+        - name: CASAM_SETTINGS_PATH
+          value: mist.mist61.prd.na2.cyan
+        - name: CASAM_SUPERPOD
+          value: sp2
+
+      livenessProbe:
+        httpGet:
+          path: /login
+          port: 12062
+        initialDelaySeconds: 60
+        periodSeconds: 1
+        failureThreshold: 10
+
+      readinessProbe:
+        httpGet:
+          path: /login
+          port: 12062
+        initialDelaySeconds: 60
+        periodSeconds: 1
+        failureThreshold: 10
+
+      ports:
+        # Actually used by the container
+        - containerPort: 12062
+
+      volumeMounts:
+        - name: cert
+          mountPath: /certs
+
+    terminationGracePeriodSeconds: 500
+    progressDeadlineSeconds: 300
+
+  - name: na2-mist61cyan-prd
+    count: 1
+    containers:
+    - name: front-proxy-config
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
+      env:
+      - name: CONFIG_DIR
+        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
+      - name: CASAM_SETTINGS_PATH
+        value: mist.mist61.prd.na2.cyan
+      volumeMounts:
+      - name: envoy-config-volume
+        mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
+      resources:
+        limits: { cpu: "1", memory: "64Mi" }
+        requests: { cpu: "1", memory: "64Mi" }
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/live
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 10
+        periodSeconds: 5
+
+    - name: front-proxy
+      image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
+      env:
+      - name: ENVOY_DEBUG_OPTIONS
+        value: --concurrency 200 --log-level debug
+      args:
+      - --template=/cyan-config/front-proxy-config.yaml.template
+      ports:
+      - containerPort: 12060
+      - containerPort: 12065
+      - containerPort: 15373
+#      resources:
+#        limits: { cpu: "1", memory: "1Gi" }
+#        requests: { cpu: "1", memory: "1Gi" }
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - name: envoy-config-volume
+        mountPath: /cyan-config
+      - name: tls-client-cert
+        mountPath: /certs/cert-client
+      - name: tls-server-cert
+        mountPath: /certs/cert-server
+
+    volumes:
+    - name: envoy-config-volume
+      emptyDir: {}
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+
+
+  loadbalancers:
+  - lbname: na2-mist61app-prd
+    function: na2-mist61app-prd
+    nodeExposed: true
+    ports:
+# JMX port of coreapp - used by Sequencer
+    - port: 65520
+      targetport: 8998
+# HTTP listen port of coreapp - Exposed only for debugging.
+    - port: 65521
+      targetport: 12100
+# side car Envoy's HTTPS listen port
+    - port: 65522
+      targetport: 13065
+# side car Envoy's admin port - Exposed only for debugging purpose
+    - port: 65523
+      targetport: 15373
+
+  - lbname: na2-mist61seq-prd
+    function: na2-mist61seq-prd
+    nodeExposed: true
+    ports:
+    - port: 65524
+      targetport: 12062
+
+  - lbname: na2-mist61cyan-prd
+    function: na2-mist61cyan-prd
+    nodeExposed: false
+    slbEnabled: true
+    ports:
+# HTTPS listen port of Envoy.
+    - port: 8086
+      targetport: 12065
+# Cyan Admin port - TODO - Don't expose this. Exposed for now for debugging.
+    - port: 8087
+      targetport: 15373

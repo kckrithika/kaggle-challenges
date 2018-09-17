@@ -14,5 +14,5 @@ apps:
   - name: prd/prd-sp2-sam_coreapp
  perf-mist61-jmeter:
   - name: prd/prd-sp2-sam_coreapp
- debug-perf:
+ mist61-na2:
   - name: prd/prd-sp2-sam_coreapp
