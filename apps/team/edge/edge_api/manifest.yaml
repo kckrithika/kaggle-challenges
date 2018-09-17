@@ -11,7 +11,7 @@ system:
         httpGet:
             path: /health
     - name: edge-rptc
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_rptc:1.0-0000226-64a3822e
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_rptc:1.0-0000229-3d99c8ae
       livenessProbe:
         httpGet:
             path: /health
