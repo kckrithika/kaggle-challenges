@@ -373,7 +373,7 @@ system:
 
   - lbname: na2-mist61cyan-prd
     function: na2-mist61cyan-prd
-    nodeExposed: true
+    nodeExposed: false
     slbEnabled: true
     ports:
 # HTTPS listen port of Envoy.
