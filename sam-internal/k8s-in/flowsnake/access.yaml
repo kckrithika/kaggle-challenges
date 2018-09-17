@@ -4,11 +4,14 @@
 users:
   #Flowsnake team members
   - khogeland
-  - mgilham
-  - lorrin.nelson
   - cmeister
   - jgruenberg
   - jinxing.wang
   - vgiridaran
   - robert.reid
   - mike.cox
+
+# Admins are responsible for ensuring only approved changes are made during moratoriums.  See https://sfdc.co/sam-admins
+admins:
+  - mgilham
+  - lorrin.nelson
