@@ -45,7 +45,7 @@ system:
         # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
         # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
-          value: mist61-na2-cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+          value: us2-mist61cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
         # This maps to http_port
         - name: PORT
           value: 12100
@@ -372,7 +372,7 @@ system:
     - port: 65524
       targetport: 12062
 
-  - lbname: na2-mist61cyan-prd
+  - lbname: us2-mist61cyan-lb
     function: na2-mist61cyan-prd
     nodeExposed: false
     slbEnabled: true
