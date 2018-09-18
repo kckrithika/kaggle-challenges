@@ -4,7 +4,7 @@ system:
   functions:
   - name: csr212
 
-    count: 1
+    count: 2
     
     volumes:
     - name: cert
