@@ -55,6 +55,8 @@ system:
           value: false
         - name: SECRET_KEY_FILE
           value: /keys-kube/cre-aes.key
+        - name: OU_NAME
+          value: app, retail-cre.cre-api
       ports:
       - containerPort: 8080
       - containerPort: 7020
