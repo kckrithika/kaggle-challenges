@@ -1,7 +1,5 @@
 version: v2
 apps:
- prd-sp2-casam-func-7500:
-  - name: prd/prd-sp2-sam_coreapp
  kaiju:
   - name: prd/prd-sp2-sam_coreapp
  switchboard:
