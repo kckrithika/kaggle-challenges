@@ -98,7 +98,7 @@ system:
 
       readinessProbe:
         httpGet:
-          path: /ping.jsp
+          path: /samReady.jsp
           port: 8085
         initialDelaySeconds: 120
         periodSeconds: 1
@@ -223,8 +223,7 @@ system:
         - name: READY_SERVER_COUNT
           value: 1
         - name: DB_SID
-#          value: mist61a216utf
-          value: mist61c214utf
+          value: mist61a216utf
         - name: LOCK_DWARF
           value: 1
         - name: TRIGGER_CAFFEINE
