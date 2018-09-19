@@ -54,6 +54,7 @@ spec:
           name: sfdchosts
         - mountPath: /host/data/slb/logs/cleanup
           name: var-cleanup-logs-volume
+      dnsPolicy: Default
       hostNetwork: true
       volumes:
       - hostPath:

@@ -47,6 +47,7 @@ spec:
           name: var-logs-volume
         - mountPath: /host/proc
           name: proc-volume
+      dnsPolicy: Default
       volumes:
       - hostPath:
           path: /data/slb

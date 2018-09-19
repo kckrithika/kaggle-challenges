@@ -51,6 +51,7 @@ spec:
           name: kubeconfig
         - mountPath: /usr/bin/kubectl
           name: kubectl
+      dnsPolicy: Default
       nodeSelector:
         master: "true"
       securityContext:
