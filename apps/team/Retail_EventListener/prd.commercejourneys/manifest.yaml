@@ -21,6 +21,9 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-cj/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-cj/logs
     containers:
     - name: commercejourneys
       image: sfci/mc-retail/commerce-journeys:1.4.5
