@@ -14,7 +14,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: prod
         - name: AUTHORIZED_USERS
-          value: "morun@salesforce.com,adray@salesforce.com,mbahrenburg@salesforce.com,adray@sbt3.salesforce.com"
+          value: "morun@salesforce.com,morun@sbt2.salesforce.com,morun@sbt3.salesforce.com,mbahrenburg@salesforce.com,mbahrenburg@sbt2.salesforce.com,mbahrenburg@sbt3.salesforce.com,adray@salesforce.com,adray@sbt2.salesforce.com,adray@sbt3.salesforce.com"
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets/cre-prod-gdot-private-key.json
         - name: GDOT_ENVIRONMENT
