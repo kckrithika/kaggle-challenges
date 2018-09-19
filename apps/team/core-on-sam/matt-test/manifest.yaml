@@ -98,8 +98,8 @@ system:
           value: true
 
       resources:
-        limits: { memory: "10240M" }
-        requests: { memory: "8292M" }
+        limits: { memory: "20480M" }
+        requests: { memory: "20480M" }
  
       livenessProbe:
         exec:
