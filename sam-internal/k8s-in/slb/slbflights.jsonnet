@@ -2,7 +2,7 @@
     dirSuffix:: "",
     local slbimages = import "slbimages.jsonnet",
     local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: $.dirSuffix },
-
+    local slbconfigs = import "slbconfig.jsonnet",
     local nodeApiUnixSocketEnabled = (if slbimages.hypersdn_build >= 1028 then true else false),
     # Special feature flag for portal so we can initially release manifest watcher in portal's pod only
     local portalManifestWatcherEnabled = (if slbimages.hypersdn_build >= 1057 then true else false),
@@ -34,6 +34,7 @@
     getSimpleDiffAndNewConfigGeneratorIfEnabled():: (if slbimages.phaseNum == 1 then [
                                                      "--enableSimpleDiff=true",
                                                      "--newConfigGenerator=true",
+                                                     "--control.nginxReloadSentinel=" + slbconfigs.slbDir + "/nginx/config/nginx.marker",
                                                  ] else []),
 
 }
