@@ -4,6 +4,7 @@ local slbports = import "slbports.jsonnet";
 local logCleanupEnabled = configs.estate == "prd-sdc";
 local slbconfigs = (import "slbconfig.jsonnet") + (if logCleanupEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
 local slbshared = (import "slbsharedservices.jsonnet") + (if logCleanupEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
+local slbflights = import "slbflights.jsonnet";
 
 if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slbInKingdom) then configs.deploymentBase("slb") {
     metadata+: {
@@ -82,7 +83,7 @@ if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slb
                                     slbshared.slbLogCleanup,
                                 ] else []
                             ),
-            } + (
+            } + slbflights.getDnsPolicy() + (
                 if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
             ),
             metadata: {

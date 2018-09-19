@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbflights = import "slbflights.jsonnet";
 
 if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
     metadata: {
@@ -61,7 +62,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                         },
                     },
                 ],
-            },
+            } + slbflights.getDnsPolicy(),
         },
         strategy: {
             type: "RollingUpdate",

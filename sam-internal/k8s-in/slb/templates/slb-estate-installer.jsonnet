@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-estate-installer" };
+local slbflights = import "slbflights.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "fra-sam" || slbimages.phaseNum == 2 then configs.daemonSetBase("slb") {
     metadata: {
@@ -84,7 +85,7 @@ if configs.estate == "prd-sdc" || configs.estate == "fra-sam" || slbimages.phase
                         ],
                     },
                 ],
-            },
+            } + slbflights.getDnsPolicy(),
         },
         updateStrategy: {
             type: "RollingUpdate",

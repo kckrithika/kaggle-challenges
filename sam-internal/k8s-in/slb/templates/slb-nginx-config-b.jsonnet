@@ -257,7 +257,8 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                 initContainers: [
                     madkub.madkubInitContainer,
                 ],
-            } + slbflights.getDnsPolicy(),
+                dnsPolicy: "Default",
+            },
         },
         strategy: {
             type: "RollingUpdate",

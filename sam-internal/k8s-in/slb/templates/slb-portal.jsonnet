@@ -88,7 +88,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                       nodeSelector: {
                           "slb-dns-register": "true",
                       },
-                  } + slbflights.getDnsPolicy()
+                      dnsPolicy: "Default",
+                  }
                   + (
                       if configs.estate == "prd-sdc" then {
                           affinity: {

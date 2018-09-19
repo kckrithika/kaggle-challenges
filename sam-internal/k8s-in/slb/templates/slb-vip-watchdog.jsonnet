@@ -127,10 +127,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                           slbshared.slbLogCleanup,
                       ] + slbflights.getManifestWatcherIfEnabled(),
+                      dnsPolicy: "Default",
                   }
                   + (
                       if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
-                  ) + slbflights.getDnsPolicy(),
+                  ),
             metadata: {
                 labels: {
                     name: "slb-vip-watchdog",

@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = import "slbsharedservices.jsonnet";
+local slbflights = import "slbflights.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then configs.daemonSetBase("slb") {
     metadata: {
@@ -33,7 +34,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 containers: [
                     slbshared.slbLogCleanup,
                 ],
-            },
+            } + slbflights.getDnsPolicy(),
         },
         updateStrategy: {
             type: "RollingUpdate",
