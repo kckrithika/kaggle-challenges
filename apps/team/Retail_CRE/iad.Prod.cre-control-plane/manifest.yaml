@@ -57,6 +57,8 @@ system:
           value: /keys-kube/cre-aes.key
         - name: OU_NAME
           value: app, retail-cre.cre-api
+        - name: DUMMY_RESTART_VAR
+          value: 1
       ports:
       - containerPort: 8080
       - containerPort: 7020
