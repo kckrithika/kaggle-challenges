@@ -109,6 +109,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                     ] + (if slbimages.phaseNum == 1 then [
                                             "--blueGreenFeature=true",
                                         ] else []) + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir) +
+                                        slbflights.getSimpleDiffAndNewConfigGeneratorIfEnabled() +
                                         (if slbflights.certDeployerEnabled then [
                                             "--custCertsDir=" + slbconfigs.customerCertsPath,
                                         ] else []),
