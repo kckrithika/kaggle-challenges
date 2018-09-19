@@ -101,10 +101,6 @@ system:
         - name: DISABLE_AUTH_RELEASE_CHECK
           value: true
 
-      resources:
-        limits: { memory: "20480M" }
-        requests: { memory: "20480M" }
- 
       livenessProbe:
         exec:
           command:
