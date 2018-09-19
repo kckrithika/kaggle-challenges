@@ -10,4 +10,7 @@ users:
   - pkonieczny
   - rkimble
   - rstevens
+
+  # Service Accounts
   - tok-sfci4 # Jenkins user
+  - svc-email-infra
