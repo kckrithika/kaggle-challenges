@@ -56,6 +56,8 @@ system:
           value: mist61ice1-search42-2-prd.eng.sfdc.net
         - name: IP_SEARCH6
           value: mist61ice1-search43-2-prd.eng.sfdc.net
+        - name: IP_MNDS1
+          value: 127.0.0.1
 
         # Only needed if desire to override ZK registration value
         - name: CASAM_CYAN_PATH
