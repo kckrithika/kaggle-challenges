@@ -22,14 +22,14 @@ system:
 
     containers:
     - name: coreapp
-      image: tnrp/casam/coreapp:214_patch__16568164-0000119-0e8addf4
+      image: tnrp/casam/coreapp:216_patch__16615500-0000120-1da9fcd3
 
       env:
         # DB info
         - name: DB_USER
           value: sleepy
         - name: DB_SID
-          value: mist61c214utf
+          value: mist61a216utf
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
 
@@ -211,7 +211,7 @@ system:
         - name: JMX_HOST
           value: shared2-samminioncoreapp1-1-prd.eng.sfdc.net
         - name: JMX_PORT
-          value: 65520
+          value: 6020
         - name: OLD_DWARF
           value: sneezy
 #          value: happy
