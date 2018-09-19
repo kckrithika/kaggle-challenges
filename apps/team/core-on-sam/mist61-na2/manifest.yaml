@@ -48,10 +48,10 @@ system:
           value: us2-mist61cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
         # This maps to http_port
         - name: PORT
-          value: 12100
+          value: 8085
         # This maps to https_port
         - name: SPORT
-          value: 12099
+          value: 8443
         # This maps to https2way_port
         - name: S2PORT
           value: 12098
@@ -67,7 +67,7 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: green
+          value: blue
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
@@ -107,10 +107,10 @@ system:
       ports:
         # Actually used by the container
         - containerPort: 8998
-        - containerPort: 12100
+        - containerPort: 8085
         - containerPort: 11211
         - containerPort: 12098
-        - containerPort: 12099
+        - containerPort: 8443
 
       volumeMounts:
         - name: log-volume-sfdc
@@ -216,11 +216,9 @@ system:
           value: sneezy
 #          value: happy
         - name: CURRENT_RELEASE_VERSION
-          value: blue
-#          value: green
-        - name: NEW_RELEASE_VERSION
           value: green
-#          value: blue
+        - name: NEW_RELEASE_VERSION
+          value: blue
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 1
@@ -353,23 +351,23 @@ system:
     nodeExposed: true
     ports:
 # JMX port of coreapp - used by Sequencer
-    - port: 65520
+    - port: 6020
       targetport: 8998
 # HTTP listen port of coreapp - Exposed only for debugging.
-    - port: 65521
-      targetport: 12100
+    - port: 6021
+      targetport: 8085
 # side car Envoy's HTTPS listen port
-    - port: 65522
+    - port: 6022
       targetport: 13065
 # side car Envoy's admin port - Exposed only for debugging purpose
-    - port: 65523
+    - port: 6023
       targetport: 15373
 
   - lbname: na2-mist61seq-prd
     function: na2-mist61seq-prd
     nodeExposed: true
     ports:
-    - port: 65524
+    - port: 6024
       targetport: 12062
 
   - lbname: us2-mist61cyan-lb
