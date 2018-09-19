@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
+local slbflights = import "slbflights.jsonnet";
 
 if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
     metadata: {
@@ -56,7 +57,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then configs.deplo
                 nodeSelector: {
                     pool: configs.estate,
                 },
-            } + (
+            } + slbflights.getDnsPolicy() + (
                 if configs.estate == "prd-sdc" then {
                     affinity: {
                         podAntiAffinity: {

@@ -35,6 +35,7 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
+      dnsPolicy: Default
       volumes:
       - hostPath:
           path: /data/slb

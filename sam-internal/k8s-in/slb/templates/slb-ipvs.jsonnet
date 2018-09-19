@@ -240,7 +240,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             },
                         },
                     },
-               },
+               } + slbflights.getDnsPolicy(),
         },
         strategy: {
             type: "RollingUpdate",

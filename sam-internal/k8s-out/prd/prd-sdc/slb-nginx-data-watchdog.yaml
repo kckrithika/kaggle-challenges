@@ -91,6 +91,7 @@ spec:
           name: sfdchosts
         - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog/cleanup
           name: var-cleanup-logs-volume
+      dnsPolicy: Default
       nodeSelector:
         pool: prd-sdc
       volumes:

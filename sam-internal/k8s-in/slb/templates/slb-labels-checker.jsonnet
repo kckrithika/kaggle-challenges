@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbflights = import "slbflights.jsonnet";
 
 if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then configs.deploymentBase("slb") {
     metadata: {
@@ -59,7 +60,7 @@ if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "
                         ],
                     },
                 ],
-            }
+            } + slbflights.getDnsPolicy()
             + (
                     if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
               ),

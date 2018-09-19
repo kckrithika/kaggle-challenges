@@ -86,6 +86,7 @@ spec:
           name: sfdchosts
         - mountPath: /host/data/slb/logs/slb-canary-creator/cleanup
           name: var-cleanup-logs-volume
+      dnsPolicy: Default
       nodeSelector:
         master: "true"
       volumes:

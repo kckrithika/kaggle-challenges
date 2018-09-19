@@ -53,6 +53,7 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-estate-installer
           name: var-logs-volume
+      dnsPolicy: Default
       volumes:
       - hostPath:
           path: /etc/yum.repos.d

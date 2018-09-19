@@ -72,6 +72,7 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
+      dnsPolicy: Default
       hostNetwork: true
       nodeSelector:
         pool: prd-sdc

@@ -3,6 +3,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-canary-creator" };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-canary-creator" };
 local portconfigs = import "portconfig.jsonnet";
+local slbflights = import "slbflights.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
     metadata: {
@@ -69,7 +70,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     },
                     slbshared.slbLogCleanup,
                 ],
-            },
+            } + slbflights.getDnsPolicy(),
         },
         strategy: {
             type: "RollingUpdate",

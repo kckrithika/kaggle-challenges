@@ -75,6 +75,7 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
+      dnsPolicy: Default
       nodeSelector:
         pool: prd-sdc
       volumes:

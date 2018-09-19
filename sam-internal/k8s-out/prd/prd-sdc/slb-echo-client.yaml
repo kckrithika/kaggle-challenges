@@ -55,6 +55,7 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/config/
           name: var-config-volume
+      dnsPolicy: Default
       nodeSelector:
         pool: prd-sdc
       volumes:
