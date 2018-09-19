@@ -21,6 +21,8 @@ system:
           value: U
         - name: DB_USER
           value: sneezy
+        - name: SERVER_ID
+          value: x
 
         - name: DB_SID
           value: mist61b218utf
