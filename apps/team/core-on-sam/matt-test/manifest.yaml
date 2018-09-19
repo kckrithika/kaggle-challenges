@@ -121,7 +121,7 @@ system:
           scheme: HTTPS
           path: /ping.jsp
           port: 7502
-        initialDelaySeconds: 120
+        initialDelaySeconds: 1200
         periodSeconds: 1
         failureThreshold: 10
 
