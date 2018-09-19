@@ -30,4 +30,10 @@
                                      ] else []),
 
     getDnsPolicy():: (if kubeDnsEnabled then {} else { dnsPolicy: "Default" }),
+
+    getSimpleDiffAndNewConfigGeneratorIfEnabled():: (if slbimages.phaseNum == 1 then [
+                                                     "--enableSimpleDiff=true",
+                                                     "--newConfigGenerator=true",
+                                                 ] else []),
+
 }
