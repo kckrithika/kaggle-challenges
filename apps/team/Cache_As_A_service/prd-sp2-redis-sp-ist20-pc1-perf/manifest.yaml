@@ -10,7 +10,7 @@ system:
     containers:
     - name: caas-redis-12071
       # container image/version to  run
-      image: docker-dva-rc/dva/caas/caas-redis-release-4.0.10:4
+      image: docker-dva-rc/dva/caas/release/caas-redis-4.0.10:9
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1024M" }
