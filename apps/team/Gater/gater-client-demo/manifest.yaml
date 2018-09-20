@@ -15,6 +15,7 @@ system:
       - --grpc.gater.request.deadline=200
       - --client.test.gates=com.salesforce.gater.alwaysEnabled
       - --grpc.gater.endpoint=gater.gater.localhost.mesh.force.com
+      - --grpc.gater.port=5443
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8181
