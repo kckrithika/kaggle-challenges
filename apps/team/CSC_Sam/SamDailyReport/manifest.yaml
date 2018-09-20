@@ -21,6 +21,7 @@ system:
         httpGet:
           path: /probe
           port: 64122
+        initialDelaySeconds: 30
       volumeMounts:
         - mountPath: /var/secrets/git
           name: gitvol
