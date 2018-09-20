@@ -85,3 +85,16 @@ system:
         exec:
           command:
           - "/home/scone/is-alive.sh"
+  loadbalancers:
+  - function: universal-search
+    lbname: universal-search-slb
+    ports:
+    - port: 7020
+      targetport: 7012
+    - lbtype: http
+      port: 15372
+      targetport: 15372
+    - lbtype: http
+      port: 15373
+      targetport: 15373
+    slbEnabled: true
