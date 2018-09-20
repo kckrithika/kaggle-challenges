@@ -57,7 +57,7 @@ system:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
     - name: sherpa-b
-      image: sfci/servicelibs/sherpa-envoy:1b5c3e7ba112965505f3178d324e11a1a9e4ddf1
+      image: sfci/servicelibs/sherpa-envoy:1.0.0
       ports:
       - name: sherpa-b-tls
         containerPort: 7443
