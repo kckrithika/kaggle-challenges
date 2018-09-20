@@ -283,7 +283,7 @@ WHERE latency > 45",
 
    argus_metrics: [
    {
-     watchdogFrequency: "60m",
+     watchdogFrequency: "15m",
      name: "MachineCountByKernelVersion",
      sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate, 'sql.machineCountByKernelVersion' as Metric, COUNT(*) as Value, CONCAT('KernelVersion=',KernelVersion) as Tags from nodeDetailView group by kernelVersion",
    },
@@ -291,7 +291,7 @@ WHERE latency > 45",
 # =====
 
    {
-     watchdogFrequency: "60m",
+     watchdogFrequency: "15m",
      name: "MachineCountByKingdomAndKernelVersion",
      sql: "select UPPER(kingdom) as Kingdom, 'NONE' as SuperPod, ControlEstate as Estate, 'sql.machineCountByKingdomAndKernelVersion' as Metric, COUNT(*) as Value, CONCAT('KernelVersion=',KernelVersion) as Tags from nodeDetailView group by ControlEstate, kingdom, kernelVersion",
    },
@@ -307,7 +307,7 @@ WHERE latency > 45",
 # =====
 
    {
-     watchdogFrequency: "60m",
+     watchdogFrequency: "15m",
      name: "WatchdogSuccessPct",
      sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate, 
 'sql.checkerPassPct' as Metric, SuccessPct as Value, CONCAT('CheckerName=',CheckerName) as Tags
@@ -328,8 +328,53 @@ from (
   group by CheckerName
 ) as ss2",
   },
+
+# ====
+
   {
-     watchdogFrequency: "60m",
+    watchdogFrequency: "15m",
+    name: "WatchdogSuccessCount",
+    sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate, 
+'sql.checkerFailCount' as Metric, FailureCount as Value, CONCAT('CheckerName=',CheckerName) as Tags
+from (
+  select
+    CheckerName,
+    SUM(FailureCount) as FailureCount
+  from
+  (
+    select
+      Payload->>'$.status.report.CheckerName' as CheckerName,
+      case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount
+    from k8s_resource
+    where ApiKind = 'WatchDog'
+  ) as ss
+  where CheckerName not like 'Sql%' and CheckerName not like 'MachineCount%'
+  group by CheckerName
+) as ss2
+union all
+select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate, 
+'sql.checkerSuccessCount' as Metric, SuccessCount as Value, CONCAT('CheckerName=',CheckerName) as Tags
+from (
+  select
+    CheckerName,
+    SUM(SuccessCount) as SuccessCount
+  from
+  (
+    select
+      Payload->>'$.status.report.CheckerName' as CheckerName,
+      case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount
+    from k8s_resource
+    where ApiKind = 'WatchDog'
+  ) as ss3
+  where CheckerName not like 'Sql%' and CheckerName not like 'MachineCount%'
+  group by CheckerName
+) as ss4",
+  },
+
+# ====
+
+  {
+     watchdogFrequency: "15m",
      name: "WatchdogSuccessPctByKingdom",
      sql: "select UPPER(kingdom) as Kingdom, 'NONE' as SuperPod, ControlEstate as Estate,
 'sql.checkerPassPctPerKingdom' as Metric, SuccessPct as Value, CONCAT('CheckerName=',CheckerName) as Tags
@@ -354,6 +399,28 @@ from (
   group by CheckerName, ControlEstate, Kingdom
 ) as ss2",
   },
+
+# =====
+
+# =====
+
+   {
+     watchdogFrequency: "15m",
+     name: "SqlNodeReadyCount",
+     sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate, 'sql.nodeCountByStatus' as Metric, CONCAT('Ready=',Ready) as Tags, Count as Value
+from (
+  select Ready, Count(*) as Count
+  from nodeDetailView
+  group by Ready
+) as ss
+union all
+select UPPER(kingdom) as Kingdom, 'NONE' as SuperPod, ControlEstate as Estate, 'sql.sql.nodeCountByStatusPerKingdom' as Metric, CONCAT('Ready=',Ready) as Tags, Count as Value
+from (
+  select kingdom, ControlEstate, Ready, Count(*) as Count
+  from nodeDetailView
+  group by kingdom, ControlEstate, Ready
+) as ss2",
+   },
 
 # =====
 
@@ -458,10 +525,9 @@ SELECT
     temp WHERE temp.row_num = ROUND (.95* @row_num)",
     },
 
+# ====
 
-# =====
-
-# =====
+# ====
 
    {
       watchdogFrequency: "15m",
