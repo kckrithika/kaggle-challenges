@@ -19,7 +19,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: test-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/r.bansal/universal-search-client-example:20180920
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/r.bansal/universal-search-client-example:20180920.2
       ports:
       - name: admin-port
         containerPort: 15372
