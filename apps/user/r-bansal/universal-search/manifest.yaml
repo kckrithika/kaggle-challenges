@@ -77,7 +77,7 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - samapp/user-rbansal/universal-search:DATACENTER_ALLENV:7443
+      - samapp/user-r-bansal/universal-search:DATACENTER_ALLENV:7443
       - -endpoint
       - universal-search-sandbox-test:DATACENTER_ALLENV:7012
       livenessProbe:
