@@ -1,6 +1,12 @@
 #Use corp user name instead of git user ids e.g. prahlad.joshi instead of prahlad-joshi
+admins:
+  - evorobiev
+  - james.spagnola
+  - jhua
+  - rchase
+  - robert.snell
+  - vivanov
 users:
-  - blatorre
   - evorobiev
   - cdienhart
   - dayong-gu
