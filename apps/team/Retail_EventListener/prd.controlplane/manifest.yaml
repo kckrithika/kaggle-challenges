@@ -30,7 +30,7 @@ system:
 
     containers:
     - name: controlplane
-      image: sfci/mc-retail/commerce-journeys-control-plane:1.4.7
+      image: sfci/mc-retail/commerce-journeys-control-plane:1.4.8
       ports:
         - containerPort: 7020
         - containerPort: 7022
@@ -104,7 +104,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - retail-eventlistener/controlplane:DATACENTER_ALLENV:7012
+      - retail-eventlistener/controlplane:DATACENTER_ALLENV:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
