@@ -1,0 +1,35 @@
+- lbname: pra-dsm-prd
+  customlbname: pra-dsm-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of pra-dsm-prd.slb.sfdc.net
+  servers:
+    - ops0-praapp1-1-prd.eng.sfdc.net
+    - ops0-praapp1-2-prd.eng.sfdc.net
+    - ops0-praapp2-1-prd.eng.sfdc.net
+  ports:
+    - port: 1984
+      targetport: 1984
+      lbtype: dsr
+- lbname: pra-sfc-prd
+  customlbname: pra-sfc-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of pra-sfc-prd.slb.sfdc.net
+  servers:
+    - ops0-praapp1-1-prd.eng.sfdc.net
+    - ops0-praapp1-2-prd.eng.sfdc.net
+    - ops0-praapp2-1-prd.eng.sfdc.net
+  ports:
+    - port: 3984
+      targetport: 3984
+      lbtype: dsr
+- lbname: pra-prd
+  customlbname: pra-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of pra-prd.slb.sfdc.net
+  servers:
+    - ops0-praapp1-1-prd.eng.sfdc.net
+    - ops0-praapp1-2-prd.eng.sfdc.net
+    - ops0-praapp2-1-prd.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 2984
+      lbtype: http
+      tls: true
+      reencrypt: true
