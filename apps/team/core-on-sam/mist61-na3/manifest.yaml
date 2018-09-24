@@ -366,7 +366,7 @@ system:
     function: na3-mist61seq-prd
     nodeExposed: true
     ports:
-    - port: 6024
+    - port: 6034
       targetport: 12062
 
   - lbname: us3-mist61cyan-lb
