@@ -14,7 +14,7 @@ system:
     containers:
     - name: csr-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:staging_main_16554591
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:staging_main_16631990
 
       env:
         - name: DEPLOYMENT
@@ -100,6 +100,10 @@ system:
         # Comment out this name/value pair to revert back to normal session invalidation.
         - name: DISABLE_AUTH_RELEASE_CHECK
           value: true
+
+        # Settings.path
+        - name: CASAM_SETTINGS_PATH
+          value: mist.mist61.prd.na10.app
 
       livenessProbe:
         exec:
