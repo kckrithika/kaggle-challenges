@@ -26,5 +26,6 @@ system:
     slbEnabled: true
     ports:
       - port: 80
+        tls: true
         targetport: 5000
         lbtype: http
