@@ -1,3 +1,5 @@
 apps:
   appcatalog:
     - prd/prd-sam
+  harverify:
+    - prd/prd-sam
