@@ -7,15 +7,18 @@ system:
     count: 2
     
     volumes:
-    - name: cert
+    - name: tls-client-cert
       maddogCert:
         type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
     
     containers:
     - name: csr-sam
 
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:staging_main_16631990
-
+      command: ['/usr/bin/bash', '-c', '"cd /home/sfdc/salesforce/build; rm sam_user.properties; ./sam_startup.sh"']
       env:
         - name: DEPLOYMENT
           value: U
@@ -118,9 +121,9 @@ system:
 
       readinessProbe:
         httpGet:
-          scheme: HTTPS
+          scheme: HTTP
           path: /ping.jsp
-          port: 7502
+          port: 7501
         initialDelaySeconds: 1200
         periodSeconds: 1
         failureThreshold: 10
@@ -133,7 +136,7 @@ system:
         - containerPort: 7503
 
       volumeMounts:
-        - name: cert
+        - name: tls-client-cert
           mountPath: /certs
     
     terminationGracePeriodSeconds: 500
