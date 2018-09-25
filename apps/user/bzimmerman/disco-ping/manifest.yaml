@@ -45,8 +45,8 @@ system:
       - mountPath: /log
         name: logvolbeacon
     - name: sherpa-disco-ping
-      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md
-      image: sfci/servicelibs/sherpa:2.0.25
+      # https://git.soma.salesforce.com/servicelibs/sherpa-envoy
+      image: sfci/servicelibs/sherpa-envoy:71a494bfe38cee2949ce3c57ef0545e6f03710e1
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       ports:
       - containerPort: 15373
