@@ -16,5 +16,7 @@ apps:
   - name: prd/prd-sp2-sam_coreapp
  mist61-na3:
   - name: prd/prd-sp2-sam_coreapp
+ mist61-na10:
+  - name: prd/prd-sp2-sam_coreapp
  matt-test:
   - name: prd/prd-sp2-sam_coreapp
