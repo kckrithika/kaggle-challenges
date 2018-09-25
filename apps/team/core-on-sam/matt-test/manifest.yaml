@@ -18,7 +18,9 @@ system:
     - name: csr-sam
 
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:staging_main_16631990
-      command: ['/usr/bin/bash', '-c', '"cd /home/sfdc/salesforce/build; rm sam_user.properties; ./sam_startup.sh"']
+      command: ["/usr/bin/bash", "-c"]
+      args: ["cd /home/sfdc/salesforce/build ; rm sam_user.properties ; ./sam_startup.sh"]
+
       env:
         - name: DEPLOYMENT
           value: U
