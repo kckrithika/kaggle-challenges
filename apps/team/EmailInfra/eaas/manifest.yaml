@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: eaas
-      image: docker-sfci-dev/sfci/eaas/emailservice:1.0.23-99c17379a243bfb802c4f14cc973d9f64af1b6ba
+      image: docker-sfci-dev/sfci/eaas/emailservice:1.0.25-54b19adbe495d48579aaf39f69e03b545d4d22c1
       ports:
       - name: grpc
         containerPort: 7020
