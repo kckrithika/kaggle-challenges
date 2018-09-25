@@ -25,7 +25,7 @@ system:
     function: harverify
     slbEnabled: true
     ports:
-      - port: 443
-        tls: true
+      - port: 80
+        tls: false
         targetport: 5000
         lbtype: http
