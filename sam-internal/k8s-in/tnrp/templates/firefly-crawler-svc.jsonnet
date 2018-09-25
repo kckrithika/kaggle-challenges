@@ -3,7 +3,7 @@ local images = import "fireflyimages.jsonnet";
 local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
-local envConfiguration = import "firefly_service_conf.jsonnet";
+local envConfig = import "configs/firefly_service_conf.jsonnet";
 
 if firefly_feature_flags.is_firefly_svc_enabled then
 {
@@ -33,11 +33,11 @@ if firefly_feature_flags.is_firefly_svc_enabled then
       env:: super.commonEnv + [
           {
               name: "INTAKE_ENDPOINT",
-              value: envConfiguration.environmentMapping[configs.estate].intakeEndpoint,
+              value: envConfig.environmentMapping[configs.estate].intakeEndpoint,
           },
           {
               name: "REPOSITORIES",
-              value: envConfiguration.environmentMapping[configs.estate].repositories,
+              value: envConfig.environmentMapping[configs.estate].repositories,
           },
       ],
       volumeMounts:: super.commonVolMounts,

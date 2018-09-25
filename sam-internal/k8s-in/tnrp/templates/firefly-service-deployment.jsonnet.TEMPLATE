@@ -2,7 +2,7 @@ local madkub = (import "firefly_madkub.jsonnet") + { templateFileName:: std.this
 local images = import "fireflyimages.jsonnet";
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
-local envConfiguration = import "firefly_service_conf.jsonnet";
+local envConfig = import "configs/firefly_service_conf.jsonnet";
 {
     // Required arguments for this template
     serviceName:: error "serviceName must be specified",
@@ -69,23 +69,23 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
         },
         {
             name: "rabbitMqEndpoint",
-            value: envConfiguration.environmentMapping[configs.estate].rabbitMqEndpoint,
+            value: envConfig.environmentMapping[configs.estate].rabbitMqEndpoint,
         },
         {
             name: "rabbitMqPort",
-            value: envConfiguration.environmentMapping[configs.estate].rabbitMqPort,
+            value: envConfig.environmentMapping[configs.estate].rabbitMqPort,
         },
         {
             name: "rabbitMqUserName",
-            value: envConfiguration.environmentMapping[configs.estate].rabbitMqUserName,
+            value: envConfig.environmentMapping[configs.estate].rabbitMqUserName,
         },
         {
             name: "artifactoryDevHost",
-            value: envConfiguration.environmentMapping[configs.estate].artifactoryDevHost,
+            value: envConfig.environmentMapping[configs.estate].artifactoryDevHost,
         },
         {
             name: "artifactoryP2PHost",
-            value: envConfiguration.environmentMapping[configs.estate].artifactoryP2PHost,
+            value: envConfig.environmentMapping[configs.estate].artifactoryP2PHost,
         },
         {
             name: "artifactoryUserName",
@@ -93,11 +93,11 @@ local envConfiguration = import "firefly_service_conf.jsonnet";
         },
         {
             name: "artifactoryContentRepoUserName",
-            value: envConfiguration.environmentMapping[configs.estate].artifactoryContentRepoUserName,
+            value: envConfig.environmentMapping[configs.estate].artifactoryContentRepoUserName,
         },
         {
             name: "artifactoryContentRepoUserNameProd",
-            value: envConfiguration.environmentMapping[configs.estate].artifactoryContentRepoUserNameProd,
+            value: envConfig.environmentMapping[configs.estate].artifactoryContentRepoUserNameProd,
         },
         {
             name: "KINGDOM",
