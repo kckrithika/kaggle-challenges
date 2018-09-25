@@ -21,6 +21,19 @@ spec:
         app: rabbitmq
         name: rabbitmq
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: pool
+                operator: In
+                values:
+                - prd-sam
+              - key: kubernetes.io/hostname
+                operator: NotIn
+                values:
+                - shared0-samcompute2-1-prd.eng.sfdc.net
       containers:
       - env:
         - name: RABBITMQ_DEFAULT_USER
@@ -67,7 +80,7 @@ spec:
           value: /var/lib/rabbitmq/$(MY_POD_NAME)/schema
         - name: RABBITMQ_GENERATED_CONFIG_DIR
           value: /var/lib/rabbitmq/$(MY_POD_NAME)/config
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:86
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq:140
         imagePullPolicy: Always
         lifecycle:
           postStart:
@@ -172,6 +185,7 @@ spec:
         - -jar
         - /home/rabbitmq/rabbitmq-monitor-svc.jar
         - --spring.profiles.active=prd-sam
+        - --spring.config.location=/home/rabbitmq/config/
         env:
         - name: MY_POD_IP
           valueFrom:
@@ -189,29 +203,17 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        - name: KINGDOM
-          value: PRD
         - name: ESTATE
           value: prd-sam
         - name: SFDC_METRICS_SERVICE_HOST
           value: ajna0-funnel1-0-prd.data.sfdc.net
         - name: SFDC_METRICS_SERVICE_PORT
           value: "80"
-        - name: SUPERPOD
-          value: NONE
-        - name: FUNCTION_INSTANCE_NAME
-          value: rabbitmq
-        - name: rabbitMqEndpoint
-          value: localhost
-        - name: rabbitMqApiHttpPort
-          value: "15672"
-        - name: rabbitMqUserName
-          value: sfdc-rabbitmq
         - name: REDEPLOY_COUNT
           value: "4"
         - name: RABBITMQ_NODENAME
           value: rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE).svc.prd-sam.prd.sam.sfdc.net.
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq-monitord:111
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq-monitord:140
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 10
@@ -253,6 +255,8 @@ spec:
           name: tokens
         - mountPath: /maddog-certs/
           name: maddog-certs
+        - mountPath: /home/rabbitmq/config
+          name: monitord-config-volume
       initContainers:
       - args:
         - /sam/madkub-client
@@ -315,8 +319,6 @@ spec:
           name: maddog-certs
         - mountPath: /vols/data-volume
           name: data-volume
-      nodeSelector:
-        pool: prd-sam
       securityContext:
         fsGroup: 7447
         runAsNonRoot: true
@@ -339,6 +341,14 @@ spec:
                 path: enabled_plugins
               - key: definitions.json
                 path: definitions.json
+              name: rabbitmq-configmap
+      - name: monitord-config-volume
+        projected:
+          sources:
+          - configMap:
+              items:
+              - key: application.yml
+                path: application.yml
               name: rabbitmq-configmap
       - emptyDir:
           medium: Memory

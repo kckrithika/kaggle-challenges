@@ -34,8 +34,8 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 0 - prd-samtest
         "0": $.per_phase["1"] {
-             rabbitmq: "86",
-             rabbitmqmonitord: "111",
+             rabbitmq: "140",
+             rabbitmqmonitord: "140",
              },
 
         ### Release Phase 1 - prd-samdev
@@ -46,8 +46,8 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-             rabbitmq: "86",
-             rabbitmqmonitord: "111",
+             rabbitmq: "140",
+             rabbitmqmonitord: "140",
             },
 
         ### Release Phase 2 - prd-sam (Canary)
@@ -58,8 +58,8 @@ local configs = import "config.jsonnet";
              fireflypromotion: "112",
              fireflypullrequest: "112",
              fireflydind: "86",
-             rabbitmq: "86",
-             rabbitmqmonitord: "111",
+             rabbitmq: "140",
+             rabbitmqmonitord: "140",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
@@ -70,8 +70,8 @@ local configs = import "config.jsonnet";
              fireflypromotion: "112",
              fireflypullrequest: "112",
              fireflydind: "86",
-             rabbitmq: "86",
-             rabbitmqmonitord: "111",
+             rabbitmq: "140",
+             rabbitmqmonitord: "140",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia

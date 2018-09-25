@@ -223,7 +223,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               runAsNonRoot: false,
               runAsUser: 0,
             },
-            command: ["java", "-jar", "/home/rabbitmq/rabbitmq-monitor-svc.jar", "--spring.profiles.active=" + configs.estate],
+            command: ["java", "-jar", "/home/rabbitmq/rabbitmq-monitor-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/home/rabbitmq/config/"],
             [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
             imagePullPolicy: 'Always',
             env: [
@@ -260,10 +260,6 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                 },
               },
               {
-                name: 'KINGDOM',
-                value: 'PRD',
-              },
-              {
                 name: 'ESTATE',
                 value: configs.estate,
               },
@@ -274,26 +270,6 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               {
                 name: 'SFDC_METRICS_SERVICE_PORT',
                 value: '80',
-              },
-              {
-                name: 'SUPERPOD',
-                value: 'NONE',
-              },
-              {
-                  name: "FUNCTION_INSTANCE_NAME",
-                  value: 'rabbitmq',
-              },
-              {
-                name: 'rabbitMqEndpoint',
-                value: 'localhost',
-              },
-              {
-                name: 'rabbitMqApiHttpPort',
-                value: '15672',
-              },
-              {
-                name: 'rabbitMqUserName',
-                value: 'sfdc-rabbitmq',
               },
               {
                 name: 'REDEPLOY_COUNT',
@@ -327,6 +303,10 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               {
                   mountPath: "/maddog-certs/",
                   name: "maddog-certs",
+              },
+              {
+                name: 'monitord-config-volume',
+                mountPath: '/home/rabbitmq/config',
               },
             ],
             livenessProbe: {
@@ -391,6 +371,24 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
             },
           },
           {
+            name: 'monitord-config-volume',
+            projected: {
+              sources: [
+                {
+                  configMap: {
+                    name: 'rabbitmq-configmap',
+                    items: [
+                      {
+                        key: 'application.yml',
+                        path: 'application.yml',
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
               emptyDir: {
                   medium: "Memory",
               },
@@ -416,8 +414,30 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
           runAsNonRoot: true,
           runAsUser: 7447,
         },
-        nodeSelector: {
-          pool: if configs.estate == "prd-samtwo" then 'prd-sam_tnrp_signer' else configs.estate,
+        [if configs.estate == "prd-samtwo" then "nodeSelector"]: {
+          pool: 'prd-sam_tnrp_signer',
+        },
+        [if configs.estate != "prd-samtwo" then "affinity"]: {
+          nodeAffinity: {
+            requiredDuringSchedulingIgnoredDuringExecution: {
+              nodeSelectorTerms: [
+                {
+                  matchExpressions: [
+                  {
+                    key: "pool",
+                    operator: "In",
+                    values: [configs.estate],
+                  },
+                  {
+                    key: "kubernetes.io/hostname",
+                    operator: "NotIn",
+                    values: ["shared0-samcompute2-1-prd.eng.sfdc.net"],
+                  },
+                  ],
+                },
+              ],
+            },
+          },
         },
       },
     },
