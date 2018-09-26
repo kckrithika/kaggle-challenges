@@ -159,7 +159,7 @@ items:
                 fieldPath: status.podIP
           - name: webHookSecretTokenValidationEnabled
             value: "false"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:112
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:141
           imagePullPolicy: Always
           name: firefly-intake
           ports:
