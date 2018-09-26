@@ -35,6 +35,7 @@ local orgs = [
     "retail-cre",
     "retail-rsui",
     "retail-mds",
+    "emailinfra",
 ];
 
 {
