@@ -1,0 +1,31 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: sip-experiment-manager
+      image: sip-em-sam ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/fhassan/sip-em-sam:fhassan-20181218-1 
+      ports:
+      - containerPort: 8181
+      livenessProbe:
+        tcpSocket:
+          port: 8181 
+        initialDelaySeconds: 15
+        periodSeconds: 20
+      volumeMounts:
+      - mountPath: /secrets/
+        name: secretvol
+        readOnly: true
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: super-duper-secret
+  loadbalancers:
+  - lbname: sipemlb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 8181 
+        targetport: 8181
+        lbtype: tcp
