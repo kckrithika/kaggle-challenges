@@ -4,6 +4,8 @@ local portConfig = import "portconfig.jsonnet";
 {
     common:: {
         intakeEndpoint:: "http://firefly-intake.firefly." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net:" + portConfig.firefly.intake_http,
+        exchangeName:: 'firefly.dev-delivery',
+        webHookSecretTokenValidationEnabled:: false,
     },
     dev:: $.common {
         artifactoryDevHost:: 'testrepo1-0-prd.data.sfdc.net',
@@ -18,6 +20,7 @@ local portConfig = import "portconfig.jsonnet";
         artifactoryContentRepoUserName:: 'svc_tnrp_ci',
         artifactoryContentRepoUserNameProd:: 'svc_tnrp_cd',
         rabbitMqUserName:: 'sfdc-rabbitmq',
+        exchangeName:: 'firefly.delivery',
     },
     prdsam:: $.dev {
         rabbitMqEndpoint:: 'firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net',
