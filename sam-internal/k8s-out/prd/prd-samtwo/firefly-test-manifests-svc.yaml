@@ -613,6 +613,7 @@ items:
           - -jar
           - /package-svc.jar
           - --spring.profiles.active=prd-samtwo
+          - --spring.config.location=/etc/firefly/config/
           env:
           - name: MY_NODE_NAME
             valueFrom:
@@ -1083,6 +1084,7 @@ items:
           "appconfig": {
               "artifactory": {
                   "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
+                  "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
                   "artifactory-content-repo-user-name": "svc_tnrp_ci",
                   "artifactory-content-repo-user-name-prod": "svc_tnrp_cd",
                   "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
@@ -1324,8 +1326,6 @@ items:
             value: test-manifests
           - name: rabbitmqQueueName
             value: test-manifests.promotion
-          - name: rabbitMqExchangeName
-            value: firefly.delivery
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:141
           imagePullPolicy: Always
           name: firefly-promotion

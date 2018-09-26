@@ -86,10 +86,6 @@ if configs.estate == "prd-samtwo" then
                 name: "rabbitmqQueueName",
                 value: "test-manifests.promotion",
             },
-            {
-                name: "rabbitMqExchangeName",
-                value: "firefly.delivery",
-            },
        ],
 
     },
