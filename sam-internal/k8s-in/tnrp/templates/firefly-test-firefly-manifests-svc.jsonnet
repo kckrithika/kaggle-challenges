@@ -12,19 +12,19 @@ if configs.estate == "prd-sam" then
       },
       env:: super.env + [
           {
-              name: "instanceType",
+              name: "INSTANCE_TYPE",
               value: "test-firefly-manifests",
           },
           {
-              name: "packageQ",
+              name: "PACKAGE_QUEUE",
               value: "test-firefly-manifests.package",
           },
           {
-              name: "promotionQ",
+              name: "PROMOTION_QUEUE",
               value: "test-firefly-manifests.promotion",
           },
           {
-              name: "latestfileQ",
+              name: "LATEST_FILE_QUEUE",
               value: "test-firefly-manifests.latestfile",
           },
      ],
@@ -35,19 +35,19 @@ if configs.estate == "prd-sam" then
       },
       env:: super.env + [
           {
-              name: "instanceType",
+              name: "INSTANCE_TYPE",
               value: "test-firefly-manifests",
           },
           {
-              name: "packageQ",
+              name: "PACKAGE_QUEUE",
               value: "test-firefly-manifests.package",
           },
           {
-              name: "promotionQ",
+              name: "PROMOTION_QUEUE",
               value: "test-firefly-manifests.promotion",
           },
           {
-              name: "latestfileQ",
+              name: "LATEST_FILE_QUEUE",
               value: "test-firefly-manifests.latestfile",
           },
      ],
@@ -58,11 +58,11 @@ if configs.estate == "prd-sam" then
       },
       env:: super.env + [
           {
-              name: "instanceType",
+              name: "INSTANCE_TYPE",
               value: "test-firefly-manifests",
           },
           {
-              name: "rabbitmqQueueName",
+              name: "RABBIT_MQ_QUEUE_NAME",
               value: "test-firefly-manifests.pr",
           },
      ],
@@ -74,11 +74,11 @@ if configs.estate == "prd-sam" then
       },
       env:: super.env + [
           {
-              name: "instanceType",
+              name: "INSTANCE_TYPE",
               value: "test-firefly-manifests",
           },
           {
-              name: "rabbitmqQueueName",
+              name: "RABBIT_MQ_QUEUE_NAME",
               value: "test-firefly-manifests.promotion",
           },
      ],

@@ -31,7 +31,7 @@ items:
                   "remote-docker-host": "http://localhost:2375"
               },
               "health-check-repo": "tnrpfirefly",
-              "instance-type": "${instanceType}",
+              "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
               "repo-config": {
                   "manifest_driven_promotions": {
@@ -45,7 +45,7 @@ items:
               "security": {
                   "secret-service-url": "secretservice.dmz.salesforce.com"
               },
-              "service-mode": "${serviceMode}"
+              "service-mode": "${SERVICE_MODE}"
           },
           "firefly": {
               "monitoring": {
@@ -84,10 +84,10 @@ items:
           },
           "rabbitmq": {
               "exchange-name": "firefly.delivery",
-              "latestfile-q": "${latestfileQ}",
-              "package-q": "${packageQ}",
-              "promotion-q": "${promotionQ}",
-              "service-mode": "${serviceMode}"
+              "latestfile-q": "${LATEST_FILE_QUEUE}",
+              "package-q": "${PACKAGE_QUEUE}",
+              "promotion-q": "${PROMOTION_QUEUE}",
+              "service-mode": "${SERVICE_MODE}"
           },
           "scm": {
               "ghe": {
@@ -260,15 +260,17 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
-          - name: serviceMode
+          - name: SERVICE_MODE
             value: multi
-          - name: instanceType
+          - name: CONFIG_VERSION
+            value: "1"
+          - name: INSTANCE_TYPE
             value: manifests
-          - name: packageQ
+          - name: PACKAGE_QUEUE
             value: test-manifests.package
-          - name: promotionQ
+          - name: PROMOTION_QUEUE
             value: test-manifests.promotion
-          - name: latestfileQ
+          - name: LATEST_FILE_QUEUE
             value: test-manifests.latestfile
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:141
           imagePullPolicy: Always
@@ -401,7 +403,7 @@ items:
                   "remote-docker-host": "http://localhost:2375"
               },
               "health-check-repo": "tnrpfirefly",
-              "instance-type": "${instanceType}",
+              "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
               "repo-config": {
                   "manifest_driven_promotions": {
@@ -415,7 +417,7 @@ items:
               "security": {
                   "secret-service-url": "secretservice.dmz.salesforce.com"
               },
-              "service-mode": "${serviceMode}"
+              "service-mode": "${SERVICE_MODE}"
           },
           "firefly": {
               "monitoring": {
@@ -454,10 +456,10 @@ items:
           },
           "rabbitmq": {
               "exchange-name": "firefly.delivery",
-              "latestfile-q": "${latestfileQ}",
-              "package-q": "${packageQ}",
-              "promotion-q": "${promotionQ}",
-              "service-mode": "${serviceMode}"
+              "latestfile-q": "${LATEST_FILE_QUEUE}",
+              "package-q": "${PACKAGE_QUEUE}",
+              "promotion-q": "${PROMOTION_QUEUE}",
+              "service-mode": "${SERVICE_MODE}"
           },
           "scm": {
               "ghe": {
@@ -630,15 +632,17 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
-          - name: serviceMode
+          - name: SERVICE_MODE
             value: singleton
-          - name: instanceType
+          - name: CONFIG_VERSION
+            value: "1"
+          - name: INSTANCE_TYPE
             value: test-manifests
-          - name: packageQ
+          - name: PACKAGE_QUEUE
             value: test-manifests.package
-          - name: promotionQ
+          - name: PROMOTION_QUEUE
             value: test-manifests.promotion
-          - name: latestfileQ
+          - name: LATEST_FILE_QUEUE
             value: test-manifests.latestfile
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:141
           imagePullPolicy: Always
@@ -758,7 +762,7 @@ items:
                   "pipeline-manifest-json": "/tnrp/pipeline_manifest.json"
               },
               "health-check-repo": "tnrpfirefly",
-              "instance-type": "${instanceType}",
+              "instance-type": "${INSTANCE_TYPE}",
               "workspace-config": {
                   "root-dir": "/tmp"
               }
@@ -800,7 +804,7 @@ items:
           },
           "rabbitmq": {
               "exchange-name": "firefly.delivery",
-              "queue-name": "${rabbitmqQueueName}"
+              "queue-name": "${RABBIT_MQ_QUEUE_NAME}"
           },
           "scm": {
               "ghe": {
@@ -973,9 +977,11 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
-          - name: instanceType
+          - name: CONFIG_VERSION
+            value: "1"
+          - name: INSTANCE_TYPE
             value: test-manifests
-          - name: rabbitmqQueueName
+          - name: RABBIT_MQ_QUEUE_NAME
             value: test-manifests.pr
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:141
           imagePullPolicy: Always
@@ -1101,7 +1107,7 @@ items:
               },
               "context-prefix": "",
               "health-check-repo": "tnrpfirefly",
-              "instance-type": "${instanceType}",
+              "instance-type": "${INSTANCE_TYPE}",
               "repo-config": {
                   "manifest_driven_promotions": {
                       "type": "artifacts"
@@ -1148,8 +1154,8 @@ items:
           },
           "rabbitmq": {
               "exchange-name": "firefly.delivery",
-              "instance-type": "${instanceType}",
-              "queue-name": "${rabbitmqQueueName}"
+              "instance-type": "${INSTANCE_TYPE}",
+              "queue-name": "${RABBIT_MQ_QUEUE_NAME}"
           },
           "scm": {
               "ghe": {
@@ -1322,9 +1328,11 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
-          - name: instanceType
+          - name: CONFIG_VERSION
+            value: "1"
+          - name: INSTANCE_TYPE
             value: test-manifests
-          - name: rabbitmqQueueName
+          - name: RABBIT_MQ_QUEUE_NAME
             value: test-manifests.promotion
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:141
           imagePullPolicy: Always

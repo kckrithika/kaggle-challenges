@@ -5,7 +5,7 @@ local configs = import "config.jsonnet";
 local promotionConfig = import "configs/firefly-promotion.jsonnet";
 
 
-serviceDeployment + {
+serviceDeployment {
     serviceConf:: {
         dindEnabled: false,
         healthPort: portConfig.firefly.promotion_mgmt,
@@ -25,10 +25,15 @@ serviceDeployment + {
                sticky: 0,
         },
     ],
-    portConfigs:: [ portConfig.service_health_port('promotion_mgmt_nodeport'), ],
+    portConfigs:: [portConfig.service_health_port('promotion_mgmt_nodeport')],
     replicas:: 1,
     command:: ["java", "-jar", "/promotion-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/firefly/config/"],
-    env:: super.commonEnv,
+    env:: super.commonEnv + [
+        {
+           name: "CONFIG_VERSION",
+           value: "1",
+        },
+    ],
     volumeMounts:: super.commonVolMounts,
     data:: {
         "application.yml": std.manifestJson(promotionConfig.config("firefly-promotion")),

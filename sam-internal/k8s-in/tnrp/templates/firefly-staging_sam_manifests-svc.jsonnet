@@ -12,19 +12,19 @@ if configs.estate == "prd-sam" then
       },
       env:: super.env + [
           {
-              name: "instanceType",
+              name: "INSTANCE_TYPE",
               value: "staging_sam_manifests",
           },
           {
-              name: "packageQ",
+              name: "PACKAGE_QUEUE",
               value: "staging_sam_manifests.package",
           },
           {
-              name: "promotionQ",
+              name: "PROMOTION_QUEUE",
               value: "staging_sam_manifests.promotion",
           },
           {
-              name: "latestfileQ",
+              name: "LATEST_FILE_QUEUE",
               value: "staging_sam_manifests.latestfile",
           },
      ],
@@ -35,19 +35,19 @@ if configs.estate == "prd-sam" then
       },
       env:: super.env + [
           {
-              name: "instanceType",
+              name: "INSTANCE_TYPE",
               value: "staging_sam_manifests",
           },
           {
-              name: "packageQ",
+              name: "PACKAGE_QUEUE",
               value: "staging_sam_manifests.package",
           },
           {
-              name: "promotionQ",
+              name: "PROMOTION_QUEUE",
               value: "staging_sam_manifests.promotion",
           },
           {
-              name: "latestfileQ",
+              name: "LATEST_FILE_QUEUE",
               value: "staging_sam_manifests.latestfile",
           },
      ],
@@ -59,11 +59,11 @@ if configs.estate == "prd-sam" then
       replicas:: 2,
       env:: super.env + [
           {
-              name: "instanceType",
+              name: "INSTANCE_TYPE",
               value: "staging_sam_manifests",
           },
           {
-              name: "rabbitmqQueueName",
+              name: "RABBIT_MQ_QUEUE_NAME",
               value: "staging_sam_manifests.pr",
           },
      ],
@@ -75,11 +75,11 @@ if configs.estate == "prd-sam" then
       },
       env:: super.env + [
           {
-              name: "instanceType",
+              name: "INSTANCE_TYPE",
               value: "staging_sam_manifests",
           },
           {
-              name: "rabbitmqQueueName",
+              name: "RABBIT_MQ_QUEUE_NAME",
               value: "staging_sam_manifests.promotion",
           },
      ],

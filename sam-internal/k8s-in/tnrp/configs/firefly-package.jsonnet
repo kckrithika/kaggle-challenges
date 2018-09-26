@@ -30,10 +30,10 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       ghe: gheConfig,
     },
     rabbitmq: {
-      'package-q': '${packageQ}',
-      'promotion-q': '${promotionQ}',
-      'latestfile-q': '${latestfileQ}',
-      'service-mode': '${serviceMode}',
+      'package-q': '${PACKAGE_QUEUE}',
+      'promotion-q': '${PROMOTION_QUEUE}',
+      'latestfile-q': '${LATEST_FILE_QUEUE}',
+      'service-mode': '${SERVICE_MODE}',
       'exchange-name': envConfig.environmentMapping[configs.estate].exchangeName,
     },
     appconfig: {
@@ -46,8 +46,8 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
         },
       },
       'root-dir': envConfig.environmentMapping[configs.estate].rootDir,
-      'instance-type': '${instanceType}',
-      'service-mode': '${serviceMode}',
+      'instance-type': '${INSTANCE_TYPE}',
+      'service-mode': '${SERVICE_MODE}',
       'max-attempts': 4,
       'back-off-period': '2000ms',
       security: {

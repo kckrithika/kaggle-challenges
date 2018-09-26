@@ -255,8 +255,8 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
-          - name: webHookSecretTokenValidationEnabled
-            value: "false"
+          - name: CONFIG_VERSION
+            value: "1"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:141
           imagePullPolicy: Always
           name: firefly-intake

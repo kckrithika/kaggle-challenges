@@ -30,11 +30,11 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       ghe: gheConfig,
     },
     rabbitmq: {
-      'queue-name': '${rabbitmqQueueName}',
+      'queue-name': '${RABBIT_MQ_QUEUE_NAME}',
       'exchange-name': envConfig.environmentMapping[configs.estate].exchangeName,
     },
     appconfig: {
-      'instance-type': '${instanceType}',
+      'instance-type': '${INSTANCE_TYPE}',
       'workspace-config': {
         'root-dir': envConfig.environmentMapping[configs.estate].rootDir,
       },

@@ -31,7 +31,12 @@ if firefly_feature_flags.is_firefly_svc_enabled then
       portConfigs:: [portConfig.service_health_port('package_mgmt_nodeport')],
       replicas:: 1,
       command:: ["java", "-jar", "/crawler-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/firefly/config/"],
-      env:: super.commonEnv,
+      env:: super.commonEnv + [
+          {
+              name: "CONFIG_VERSION",
+              value: "1",
+          },
+      ],
       volumeMounts:: super.commonVolMounts,
       data:: {
           "application.yml": std.manifestJson(crawlerConfig.config("firefly-crawler")),
