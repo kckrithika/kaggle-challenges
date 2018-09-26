@@ -1,6 +1,152 @@
 apiVersion: v1
 items:
 - apiVersion: v1
+  data:
+    application.yml: |-
+      {
+          "appconfig": {
+              "artifactory": {
+                  "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
+                  "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
+                  "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
+                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd_test",
+                  "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
+                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
+                  "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
+                  "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
+                  "artifactory-password": "${artifactoryPassword#FromSecretService}",
+                  "artifactory-user-name": "svc_tnrp_artifactory",
+                  "backoff-time": "1000ms",
+                  "connection-timeout": "20000ms",
+                  "max-retry": 3,
+                  "socket-timeout": "30000ms"
+              },
+              "back-off-period": "2000ms",
+              "context-prefix": "",
+              "docker": {
+                  "connect-timeout": "480000ms",
+                  "docker-cert-path": "/etc/docker/certs.d",
+                  "read-timeout": "480000ms",
+                  "remote-docker-host": "http://localhost:2375"
+              },
+              "health-check-repo": "tnrpfirefly",
+              "instance-type": "${instanceType}",
+              "max-attempts": 4,
+              "repo-config": {
+                  "manifest_driven_promotions": {
+                      "type": "artifacts"
+                  },
+                  "manifests": {
+                      "type": "content_and_artifacts"
+                  }
+              },
+              "root-dir": "/tmp",
+              "security": {
+                  "secret-service-url": "secretservice.dmz.salesforce.com"
+              },
+              "service-mode": "${serviceMode}"
+          },
+          "firefly": {
+              "monitoring": {
+                  "datacenter": "prd",
+                  "pod": "firefly-package",
+                  "report-frequency": 1,
+                  "superpod": "NONE",
+                  "system-exception-threshold": 5
+              }
+          },
+          "logging": {
+              "level": {
+                  "com.salesforce": "DEBUG",
+                  "org": "INFO"
+              },
+              "pattern": {
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - e=%X{eventType} SHA=%X{SHA} REPO=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
+              }
+          },
+          "management": {
+              "endpoint": {
+                  "health": {
+                      "show-details": "always"
+                  }
+              },
+              "endpoints": {
+                  "web": {
+                      "exposure": {
+                          "include": "*"
+                      }
+                  }
+              },
+              "server": {
+                  "port": 8081
+              }
+          },
+          "rabbitmq": {
+              "exchange-name": "firefly.delivery",
+              "latestfile-q": "${latestfileQ}",
+              "package-q": "${packageQ}",
+              "promotion-q": "${promotionQ}",
+              "service-mode": "${serviceMode}"
+          },
+          "scm": {
+              "ghe": {
+                  "api-url": "https://git.soma.salesforce.com/api/v3/",
+                  "connect-timeout": "60000ms",
+                  "keep-alive-duration": "60000ms",
+                  "max-idle-connections": 10,
+                  "oauth-token": "${gitRWPassword#FromSecretService}",
+                  "read-timeout": "60000ms",
+                  "url": "https://git.soma.salesforce.com",
+                  "user": "svc-tnrp-git-rw",
+                  "write-timeout": "60000ms"
+              }
+          },
+          "server": {
+              "port": -1
+          },
+          "spring": {
+              "rabbitmq": {
+                  "connection-timeout": "10000ms",
+                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "listener": {
+                      "simple": {
+                          "retry": {
+                              "enabled": true,
+                              "initial-interval": "1000ms",
+                              "max-attempts": 3,
+                              "max-interval": "10000ms",
+                              "multiplier": 2,
+                              "stateless": true
+                          }
+                      }
+                  },
+                  "password": "${rabbitMqDefaultPass#FromSecretService}",
+                  "port": 5672,
+                  "publisher-confirms": true,
+                  "publisher-returns": true,
+                  "template": {
+                      "mandatory": true,
+                      "reply-timeout": "60000ms",
+                      "retry": {
+                          "enabled": true,
+                          "initial-interval": "1000ms",
+                          "max-attempts": 10,
+                          "max-interval": "10000ms",
+                          "multiplier": 2
+                      }
+                  },
+                  "username": "sfdc-rabbitmq"
+              }
+          }
+      }
+  kind: ConfigMap
+  metadata:
+    labels:
+      sam.data.sfdc.net/owner: tnrp
+    name: firefly-package-tfm-configmap
+    namespace: firefly
+- apiVersion: v1
   kind: Service
   metadata:
     annotations:
@@ -100,37 +246,8 @@ items:
           - -jar
           - /package-svc.jar
           - --spring.profiles.active=prd-sam
+          - --spring.config.location=/etc/firefly/config/
           env:
-          - name: exchangeName
-            value: firefly.delivery
-          - name: DOCKER_HOST
-            value: http://localhost:2375
-          - name: rootDir
-            value: /tmp
-          - name: dockerCertPath
-            value: /etc/docker/certs.d
-          - name: rabbitMqEndpoint
-            value: firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net
-          - name: rabbitMqPort
-            value: "5672"
-          - name: rabbitMqUserName
-            value: sfdc-rabbitmq
-          - name: artifactoryDevHost
-            value: testrepo1-0-prd.data.sfdc.net
-          - name: artifactoryP2PHost
-            value: testrepo2-0-prd.data.sfdc.net
-          - name: artifactoryUserName
-            value: svc_tnrp_artifactory
-          - name: artifactoryContentRepoUserName
-            value: svc_tnrp_ci_test
-          - name: artifactoryContentRepoUserNameProd
-            value: svc_tnrp_cd_test
-          - name: KINGDOM
-            value: prd
-          - name: SUPERPOD
-            value: none
-          - name: FUNCTION_INSTANCE_NAME
-            value: firefly-package
           - name: MY_NODE_NAME
             valueFrom:
               fieldRef:
@@ -173,6 +290,8 @@ items:
             name: certs
           - mountPath: /root/.ssh/
             name: git-ssh-keys
+          - mountPath: /etc/firefly/config
+            name: app-config-volume
           - mountPath: /tmp
             name: docker-build-dir
         - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:86
@@ -235,6 +354,14 @@ items:
           pool: prd-sam
         terminationGracePeriodSeconds: 10
         volumes:
+        - name: app-config-volume
+          projected:
+            sources:
+            - configMap:
+                items:
+                - key: application.yml
+                  path: application.yml
+                name: firefly-package-tfm-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
@@ -251,6 +378,152 @@ items:
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
+- apiVersion: v1
+  data:
+    application.yml: |-
+      {
+          "appconfig": {
+              "artifactory": {
+                  "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
+                  "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
+                  "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
+                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd_test",
+                  "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
+                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
+                  "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
+                  "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
+                  "artifactory-password": "${artifactoryPassword#FromSecretService}",
+                  "artifactory-user-name": "svc_tnrp_artifactory",
+                  "backoff-time": "1000ms",
+                  "connection-timeout": "20000ms",
+                  "max-retry": 3,
+                  "socket-timeout": "30000ms"
+              },
+              "back-off-period": "2000ms",
+              "context-prefix": "",
+              "docker": {
+                  "connect-timeout": "480000ms",
+                  "docker-cert-path": "/etc/docker/certs.d",
+                  "read-timeout": "480000ms",
+                  "remote-docker-host": "http://localhost:2375"
+              },
+              "health-check-repo": "tnrpfirefly",
+              "instance-type": "${instanceType}",
+              "max-attempts": 4,
+              "repo-config": {
+                  "manifest_driven_promotions": {
+                      "type": "artifacts"
+                  },
+                  "manifests": {
+                      "type": "content_and_artifacts"
+                  }
+              },
+              "root-dir": "/tmp",
+              "security": {
+                  "secret-service-url": "secretservice.dmz.salesforce.com"
+              },
+              "service-mode": "${serviceMode}"
+          },
+          "firefly": {
+              "monitoring": {
+                  "datacenter": "prd",
+                  "pod": "firefly-package",
+                  "report-frequency": 1,
+                  "superpod": "NONE",
+                  "system-exception-threshold": 5
+              }
+          },
+          "logging": {
+              "level": {
+                  "com.salesforce": "DEBUG",
+                  "org": "INFO"
+              },
+              "pattern": {
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - e=%X{eventType} SHA=%X{SHA} REPO=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
+              }
+          },
+          "management": {
+              "endpoint": {
+                  "health": {
+                      "show-details": "always"
+                  }
+              },
+              "endpoints": {
+                  "web": {
+                      "exposure": {
+                          "include": "*"
+                      }
+                  }
+              },
+              "server": {
+                  "port": 8081
+              }
+          },
+          "rabbitmq": {
+              "exchange-name": "firefly.delivery",
+              "latestfile-q": "${latestfileQ}",
+              "package-q": "${packageQ}",
+              "promotion-q": "${promotionQ}",
+              "service-mode": "${serviceMode}"
+          },
+          "scm": {
+              "ghe": {
+                  "api-url": "https://git.soma.salesforce.com/api/v3/",
+                  "connect-timeout": "60000ms",
+                  "keep-alive-duration": "60000ms",
+                  "max-idle-connections": 10,
+                  "oauth-token": "${gitRWPassword#FromSecretService}",
+                  "read-timeout": "60000ms",
+                  "url": "https://git.soma.salesforce.com",
+                  "user": "svc-tnrp-git-rw",
+                  "write-timeout": "60000ms"
+              }
+          },
+          "server": {
+              "port": -1
+          },
+          "spring": {
+              "rabbitmq": {
+                  "connection-timeout": "10000ms",
+                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "listener": {
+                      "simple": {
+                          "retry": {
+                              "enabled": true,
+                              "initial-interval": "1000ms",
+                              "max-attempts": 3,
+                              "max-interval": "10000ms",
+                              "multiplier": 2,
+                              "stateless": true
+                          }
+                      }
+                  },
+                  "password": "${rabbitMqDefaultPass#FromSecretService}",
+                  "port": 5672,
+                  "publisher-confirms": true,
+                  "publisher-returns": true,
+                  "template": {
+                      "mandatory": true,
+                      "reply-timeout": "60000ms",
+                      "retry": {
+                          "enabled": true,
+                          "initial-interval": "1000ms",
+                          "max-attempts": 10,
+                          "max-interval": "10000ms",
+                          "multiplier": 2
+                      }
+                  },
+                  "username": "sfdc-rabbitmq"
+              }
+          }
+      }
+  kind: ConfigMap
+  metadata:
+    labels:
+      sam.data.sfdc.net/owner: tnrp
+    name: firefly-package-singleton-tfm-configmap
+    namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
@@ -352,36 +625,6 @@ items:
           - /package-svc.jar
           - --spring.profiles.active=prd-sam
           env:
-          - name: exchangeName
-            value: firefly.delivery
-          - name: DOCKER_HOST
-            value: http://localhost:2375
-          - name: rootDir
-            value: /tmp
-          - name: dockerCertPath
-            value: /etc/docker/certs.d
-          - name: rabbitMqEndpoint
-            value: firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net
-          - name: rabbitMqPort
-            value: "5672"
-          - name: rabbitMqUserName
-            value: sfdc-rabbitmq
-          - name: artifactoryDevHost
-            value: testrepo1-0-prd.data.sfdc.net
-          - name: artifactoryP2PHost
-            value: testrepo2-0-prd.data.sfdc.net
-          - name: artifactoryUserName
-            value: svc_tnrp_artifactory
-          - name: artifactoryContentRepoUserName
-            value: svc_tnrp_ci_test
-          - name: artifactoryContentRepoUserNameProd
-            value: svc_tnrp_cd_test
-          - name: KINGDOM
-            value: prd
-          - name: SUPERPOD
-            value: none
-          - name: FUNCTION_INSTANCE_NAME
-            value: firefly-package-singleton
           - name: MY_NODE_NAME
             valueFrom:
               fieldRef:
@@ -424,6 +667,8 @@ items:
             name: certs
           - mountPath: /root/.ssh/
             name: git-ssh-keys
+          - mountPath: /etc/firefly/config
+            name: app-config-volume
         initContainers:
         - args:
           - /sam/madkub-client
@@ -473,6 +718,14 @@ items:
           pool: prd-sam
         terminationGracePeriodSeconds: 10
         volumes:
+        - name: app-config-volume
+          projected:
+            sources:
+            - configMap:
+                items:
+                - key: application.yml
+                  path: application.yml
+                name: firefly-package-singleton-tfm-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
@@ -489,6 +742,138 @@ items:
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
+- apiVersion: v1
+  data:
+    application.yml: |-
+      {
+          "appconfig": {
+              "artifactory": {
+                  "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
+                  "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
+                  "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
+                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
+                  "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
+                  "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
+                  "artifactory-password": "${artifactoryPassword#FromSecretService}",
+                  "artifactory-user-name": "svc_tnrp_artifactory",
+                  "backoff-time": "1000ms",
+                  "connection-timeout": "20000ms",
+                  "max-retry": 3,
+                  "socket-timeout": "30000ms"
+              },
+              "context-prefix": "",
+              "docker": {
+                  "connect-timeout": "480000ms",
+                  "docker-cert-path": "/etc/docker/certs.d",
+                  "read-timeout": "480000ms",
+                  "remote-docker-host": "http://localhost:2375"
+              },
+              "evaluation-config": {
+                  "pipeline-manifest-json": "/tnrp/pipeline_manifest.json"
+              },
+              "health-check-repo": "tnrpfirefly",
+              "instance-type": "${instanceType}",
+              "workspace-config": {
+                  "root-dir": "/tmp"
+              }
+          },
+          "firefly": {
+              "monitoring": {
+                  "datacenter": "prd",
+                  "pod": "firefly-pullrequest",
+                  "report-frequency": 1,
+                  "superpod": "NONE",
+                  "system-exception-threshold": 5
+              }
+          },
+          "logging": {
+              "level": {
+                  "com.salesforce": "DEBUG",
+                  "org": "INFO"
+              },
+              "pattern": {
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - instanceType=${instanceType} e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
+              }
+          },
+          "management": {
+              "endpoint": {
+                  "health": {
+                      "show-details": "always"
+                  }
+              },
+              "endpoints": {
+                  "web": {
+                      "exposure": {
+                          "include": "*"
+                      }
+                  }
+              },
+              "server": {
+                  "port": 8081
+              }
+          },
+          "rabbitmq": {
+              "exchange-name": "firefly.delivery",
+              "queue-name": "${rabbitmqQueueName}"
+          },
+          "scm": {
+              "ghe": {
+                  "api-url": "https://git.soma.salesforce.com/api/v3/",
+                  "connect-timeout": "60000ms",
+                  "keep-alive-duration": "60000ms",
+                  "max-idle-connections": 10,
+                  "oauth-token": "${gitRWPassword#FromSecretService}",
+                  "read-timeout": "60000ms",
+                  "url": "https://git.soma.salesforce.com",
+                  "user": "svc-tnrp-git-rw",
+                  "write-timeout": "60000ms"
+              }
+          },
+          "server": {
+              "port": -1
+          },
+          "spring": {
+              "rabbitmq": {
+                  "connection-timeout": "10000ms",
+                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "listener": {
+                      "simple": {
+                          "retry": {
+                              "enabled": true,
+                              "initial-interval": "1000ms",
+                              "max-attempts": 3,
+                              "max-interval": "10000ms",
+                              "multiplier": 2,
+                              "stateless": true
+                          }
+                      }
+                  },
+                  "password": "${rabbitMqDefaultPass#FromSecretService}",
+                  "port": 5672,
+                  "publisher-confirms": true,
+                  "publisher-returns": true,
+                  "template": {
+                      "mandatory": true,
+                      "reply-timeout": "60000ms",
+                      "retry": {
+                          "enabled": true,
+                          "initial-interval": "1000ms",
+                          "max-attempts": 10,
+                          "max-interval": "10000ms",
+                          "multiplier": 2
+                      }
+                  },
+                  "username": "sfdc-rabbitmq"
+              }
+          }
+      }
+  kind: ConfigMap
+  metadata:
+    labels:
+      sam.data.sfdc.net/owner: tnrp
+    name: firefly-pullrequest-tfm-configmap
+    namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
@@ -589,37 +974,8 @@ items:
           - -jar
           - /pullrequest-svc.jar
           - --spring.profiles.active=prd-sam
+          - --spring.config.location=/etc/firefly/config/
           env:
-          - name: exchangeName
-            value: firefly.delivery
-          - name: DOCKER_HOST
-            value: http://localhost:2375
-          - name: rootDir
-            value: /tmp
-          - name: dockerCertPath
-            value: /etc/docker/certs.d
-          - name: rabbitMqEndpoint
-            value: firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net
-          - name: rabbitMqPort
-            value: "5672"
-          - name: rabbitMqUserName
-            value: sfdc-rabbitmq
-          - name: artifactoryDevHost
-            value: testrepo1-0-prd.data.sfdc.net
-          - name: artifactoryP2PHost
-            value: testrepo2-0-prd.data.sfdc.net
-          - name: artifactoryUserName
-            value: svc_tnrp_artifactory
-          - name: artifactoryContentRepoUserName
-            value: svc_tnrp_ci_test
-          - name: artifactoryContentRepoUserNameProd
-            value: svc_tnrp_cd_test
-          - name: KINGDOM
-            value: prd
-          - name: SUPERPOD
-            value: none
-          - name: FUNCTION_INSTANCE_NAME
-            value: firefly-pullrequest
           - name: MY_NODE_NAME
             valueFrom:
               fieldRef:
@@ -639,8 +995,6 @@ items:
             value: test-firefly-manifests
           - name: rabbitmqQueueName
             value: test-firefly-manifests.pr
-          - name: rabbitMqExchangeName
-            value: firefly.delivery
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:141
           imagePullPolicy: Always
           name: firefly-pullrequest
@@ -658,6 +1012,8 @@ items:
             name: certs
           - mountPath: /root/.ssh/
             name: git-ssh-keys
+          - mountPath: /etc/firefly/config
+            name: app-config-volume
           - mountPath: /tmp
             name: docker-build-dir
         - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:86
@@ -720,6 +1076,14 @@ items:
           pool: prd-sam
         terminationGracePeriodSeconds: 10
         volumes:
+        - name: app-config-volume
+          projected:
+            sources:
+            - configMap:
+                items:
+                - key: application.yml
+                  path: application.yml
+                name: firefly-pullrequest-tfm-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
@@ -736,6 +1100,136 @@ items:
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
+- apiVersion: v1
+  data:
+    application.yml: |-
+      {
+          "appconfig": {
+              "artifactory": {
+                  "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
+                  "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
+                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd_test",
+                  "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
+                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
+                  "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
+                  "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
+                  "artifactory-password": "${artifactoryPassword#FromSecretService}",
+                  "artifactory-user-name": "svc_tnrp_artifactory",
+                  "backoff-time": "1000ms",
+                  "connection-timeout": "20000ms",
+                  "max-retry": 3,
+                  "socket-timeout": "30000ms"
+              },
+              "context-prefix": "",
+              "health-check-repo": "tnrpfirefly",
+              "instance-type": "${instanceType}",
+              "repo-config": {
+                  "manifest_driven_promotions": {
+                      "type": "artifacts"
+                  },
+                  "manifests": {
+                      "type": "content_and_artifacts"
+                  }
+              }
+          },
+          "firefly": {
+              "monitoring": {
+                  "datacenter": "prd",
+                  "pod": "firefly-promotion",
+                  "report-frequency": 1,
+                  "superpod": "NONE",
+                  "system-exception-threshold": 5
+              }
+          },
+          "logging": {
+              "level": {
+                  "com.salesforce": "DEBUG",
+                  "org": "INFO"
+              },
+              "pattern": {
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - instanceType=${instanceType} - details=[%msg]  %n"
+              }
+          },
+          "management": {
+              "endpoint": {
+                  "health": {
+                      "show-details": "always"
+                  }
+              },
+              "endpoints": {
+                  "web": {
+                      "exposure": {
+                          "include": "*"
+                      }
+                  }
+              },
+              "server": {
+                  "port": 8081
+              }
+          },
+          "rabbitmq": {
+              "exchange-name": "firefly.delivery",
+              "instance-type": "${instanceType}",
+              "queue-name": "${rabbitmqQueueName}"
+          },
+          "scm": {
+              "ghe": {
+                  "api-url": "https://git.soma.salesforce.com/api/v3/",
+                  "connect-timeout": "60000ms",
+                  "keep-alive-duration": "60000ms",
+                  "max-idle-connections": 10,
+                  "oauth-token": "${gitRWPassword#FromSecretService}",
+                  "read-timeout": "60000ms",
+                  "url": "https://git.soma.salesforce.com",
+                  "user": "svc-tnrp-git-rw",
+                  "write-timeout": "60000ms"
+              }
+          },
+          "server": {
+              "port": -1
+          },
+          "spring": {
+              "rabbitmq": {
+                  "connection-timeout": "10000ms",
+                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "listener": {
+                      "simple": {
+                          "retry": {
+                              "enabled": true,
+                              "initial-interval": "1000ms",
+                              "max-attempts": 3,
+                              "max-interval": "10000ms",
+                              "multiplier": 2,
+                              "stateless": true
+                          }
+                      }
+                  },
+                  "password": "${rabbitMqDefaultPass#FromSecretService}",
+                  "port": 5672,
+                  "publisher-confirms": true,
+                  "publisher-returns": true,
+                  "template": {
+                      "mandatory": true,
+                      "reply-timeout": "60000ms",
+                      "retry": {
+                          "enabled": true,
+                          "initial-interval": "1000ms",
+                          "max-attempts": 10,
+                          "max-interval": "10000ms",
+                          "multiplier": 2
+                      }
+                  },
+                  "username": "sfdc-rabbitmq"
+              }
+          }
+      }
+  kind: ConfigMap
+  metadata:
+    labels:
+      sam.data.sfdc.net/owner: tnrp
+    name: firefly-promotion-tfm-configmap
+    namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
@@ -836,37 +1330,8 @@ items:
           - -jar
           - /promotion-svc.jar
           - --spring.profiles.active=prd-sam
+          - --spring.config.location=/etc/firefly/config/
           env:
-          - name: exchangeName
-            value: firefly.delivery
-          - name: DOCKER_HOST
-            value: http://localhost:2375
-          - name: rootDir
-            value: /tmp
-          - name: dockerCertPath
-            value: /etc/docker/certs.d
-          - name: rabbitMqEndpoint
-            value: firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net
-          - name: rabbitMqPort
-            value: "5672"
-          - name: rabbitMqUserName
-            value: sfdc-rabbitmq
-          - name: artifactoryDevHost
-            value: testrepo1-0-prd.data.sfdc.net
-          - name: artifactoryP2PHost
-            value: testrepo2-0-prd.data.sfdc.net
-          - name: artifactoryUserName
-            value: svc_tnrp_artifactory
-          - name: artifactoryContentRepoUserName
-            value: svc_tnrp_ci_test
-          - name: artifactoryContentRepoUserNameProd
-            value: svc_tnrp_cd_test
-          - name: KINGDOM
-            value: prd
-          - name: SUPERPOD
-            value: none
-          - name: FUNCTION_INSTANCE_NAME
-            value: firefly-promotion
           - name: MY_NODE_NAME
             valueFrom:
               fieldRef:
@@ -886,8 +1351,6 @@ items:
             value: test-firefly-manifests
           - name: rabbitmqQueueName
             value: test-firefly-manifests.promotion
-          - name: rabbitMqExchangeName
-            value: firefly.delivery
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:141
           imagePullPolicy: Always
           name: firefly-promotion
@@ -905,6 +1368,8 @@ items:
             name: certs
           - mountPath: /root/.ssh/
             name: git-ssh-keys
+          - mountPath: /etc/firefly/config
+            name: app-config-volume
         initContainers:
         - args:
           - /sam/madkub-client
@@ -954,6 +1419,14 @@ items:
           pool: prd-sam
         terminationGracePeriodSeconds: 10
         volumes:
+        - name: app-config-volume
+          projected:
+            sources:
+            - configMap:
+                items:
+                - key: application.yml
+                  path: application.yml
+                name: firefly-promotion-tfm-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}

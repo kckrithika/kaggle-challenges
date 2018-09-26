@@ -1,6 +1,98 @@
 apiVersion: v1
 items:
 - apiVersion: v1
+  data:
+    application.yml: |-
+      {
+          "firefly": {
+              "crawler": {
+                  "ghe-context-prefix": "",
+                  "ghe-health-check-repo": "tnrpfirefly",
+                  "job-interval-in-milliseconds": 300000,
+                  "max-commit-retry": 10,
+                  "max-prr-retry": 10,
+                  "repositories": "tnrpfirefly/test_sam_manifests,sam/test-firefly-manifests",
+                  "since-commit-time-in-minutes": 30,
+                  "since-prr-time-in-minutes": 30,
+                  "until-commit-status-time-in-minutes": 2,
+                  "until-commit-time-in-minutes": 5,
+                  "until-prr-status-time-in-minutes": 2,
+                  "until-prr-time-in-minutes": 5
+              },
+              "intake": {
+                  "api-url": "http://firefly-intake.firefly.prd-sam.prd.slb.sfdc.net:8080",
+                  "connect-timeout": "10000ms",
+                  "http-logging-interceptor-level": "NONE",
+                  "keep-alive-duration": "5m",
+                  "max-idle-connections": 10,
+                  "read-timeout": "10000ms",
+                  "write-timeout": "10000ms"
+              },
+              "monitoring": {
+                  "datacenter": "prd",
+                  "pod": "firefly-crawler",
+                  "report-frequency": 1,
+                  "superpod": "NONE",
+                  "system-exception-threshold": 5
+              }
+          },
+          "logging": {
+              "level": {
+                  "com.salesforce": "INFO",
+                  "org": "INFO"
+              },
+              "pattern": {
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - details=[%msg]  %n"
+              }
+          },
+          "management": {
+              "endpoint": {
+                  "health": {
+                      "show-details": "always"
+                  }
+              },
+              "endpoints": {
+                  "web": {
+                      "exposure": {
+                          "include": "*"
+                      }
+                  }
+              },
+              "server": {
+                  "port": 8081
+              }
+          },
+          "scm": {
+              "ghe": {
+                  "api-url": "https://git.soma.salesforce.com/api/v3/",
+                  "connect-timeout": "60000ms",
+                  "keep-alive-duration": "60000ms",
+                  "max-idle-connections": 10,
+                  "oauth-token": "${gitRWPassword#FromSecretService}",
+                  "read-timeout": "60000ms",
+                  "url": "https://git.soma.salesforce.com",
+                  "user": "svc-tnrp-git-rw",
+                  "write-timeout": "60000ms"
+              }
+          },
+          "server": {
+              "port": -1
+          },
+          "spring": {
+              "quartz": {
+                  "properties": {
+                      "org.quartz.threadPool.threadCount": 100
+                  }
+              }
+          }
+      }
+  kind: ConfigMap
+  metadata:
+    labels:
+      sam.data.sfdc.net/owner: tnrp
+    name: firefly-crawler-configmap
+    namespace: firefly
+- apiVersion: v1
   kind: Service
   metadata:
     annotations:
@@ -100,37 +192,8 @@ items:
           - -jar
           - /crawler-svc.jar
           - --spring.profiles.active=prd-sam
+          - --spring.config.location=/etc/firefly/config/
           env:
-          - name: exchangeName
-            value: firefly.delivery
-          - name: DOCKER_HOST
-            value: http://localhost:2375
-          - name: rootDir
-            value: /tmp
-          - name: dockerCertPath
-            value: /etc/docker/certs.d
-          - name: rabbitMqEndpoint
-            value: firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net
-          - name: rabbitMqPort
-            value: "5672"
-          - name: rabbitMqUserName
-            value: sfdc-rabbitmq
-          - name: artifactoryDevHost
-            value: testrepo1-0-prd.data.sfdc.net
-          - name: artifactoryP2PHost
-            value: testrepo2-0-prd.data.sfdc.net
-          - name: artifactoryUserName
-            value: svc_tnrp_artifactory
-          - name: artifactoryContentRepoUserName
-            value: svc_tnrp_ci_test
-          - name: artifactoryContentRepoUserNameProd
-            value: svc_tnrp_cd_test
-          - name: KINGDOM
-            value: prd
-          - name: SUPERPOD
-            value: none
-          - name: FUNCTION_INSTANCE_NAME
-            value: firefly-crawler
           - name: MY_NODE_NAME
             valueFrom:
               fieldRef:
@@ -146,10 +209,6 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
-          - name: INTAKE_ENDPOINT
-            value: http://firefly-intake.firefly.prd-sam.prd.slb.sfdc.net:8080
-          - name: REPOSITORIES
-            value: tnrpfirefly/test_sam_manifests,sam/test-firefly-manifests
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:141
           imagePullPolicy: Always
           name: firefly-crawler
@@ -167,6 +226,8 @@ items:
             name: certs
           - mountPath: /root/.ssh/
             name: git-ssh-keys
+          - mountPath: /etc/firefly/config
+            name: app-config-volume
         initContainers:
         - args:
           - /sam/madkub-client
@@ -216,6 +277,14 @@ items:
           pool: prd-sam
         terminationGracePeriodSeconds: 10
         volumes:
+        - name: app-config-volume
+          projected:
+            sources:
+            - configMap:
+                items:
+                - key: application.yml
+                  path: application.yml
+                name: firefly-crawler-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}

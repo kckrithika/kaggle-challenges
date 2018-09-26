@@ -4,6 +4,7 @@ local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
 local envConfig = import "configs/firefly_service_conf.jsonnet";
+local crawlerConfig = import "configs/firefly-crawler.jsonnet";
 
 if firefly_feature_flags.is_firefly_svc_enabled then
 {
@@ -29,19 +30,13 @@ if firefly_feature_flags.is_firefly_svc_enabled then
       ],
       portConfigs:: [portConfig.service_health_port('package_mgmt_nodeport')],
       replicas:: 1,
-      command:: ["java", "-jar", "/crawler-svc.jar", "--spring.profiles.active=" + configs.estate],
-      env:: super.commonEnv + [
-          {
-              name: "INTAKE_ENDPOINT",
-              value: envConfig.environmentMapping[configs.estate].intakeEndpoint,
-          },
-          {
-              name: "REPOSITORIES",
-              value: envConfig.environmentMapping[configs.estate].repositories,
-          },
-      ],
+      command:: ["java", "-jar", "/crawler-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/firefly/config/"],
+      env:: super.commonEnv,
       volumeMounts:: super.commonVolMounts,
-  },
+      data:: {
+          "application.yml": std.manifestJson(crawlerConfig.config("firefly-crawler")),
+      },
+ },
 
   apiVersion: "v1",
   kind: "List",

@@ -41,10 +41,6 @@ if configs.estate == "prd-sam" then
               name: "rabbitmqQueueName",
               value: "test_sam_manifests.pr",
           },
-          {
-              name: "rabbitMqExchangeName",
-              value: "firefly.delivery",
-          },
      ],
 
   },
@@ -60,10 +56,6 @@ if configs.estate == "prd-sam" then
           {
               name: "rabbitmqQueueName",
               value: "test_sam_manifests.promotion",
-          },
-          {
-              name: "rabbitMqExchangeName",
-              value: "firefly.delivery",
           },
      ],
 

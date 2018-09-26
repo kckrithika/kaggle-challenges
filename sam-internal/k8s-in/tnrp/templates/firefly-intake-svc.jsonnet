@@ -3,6 +3,7 @@ local images = import "fireflyimages.jsonnet";
 local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
+local intakeConfig = import "configs/firefly-intake.jsonnet";
 
 if firefly_feature_flags.is_firefly_svc_enabled then
 {
@@ -72,7 +73,7 @@ if firefly_feature_flags.is_firefly_svc_enabled then
           },
       ],
       replicas:: 1,
-      command:: ["java", "-jar", "/intake-svc.jar", "--spring.profiles.active=" + configs.estate],
+      command:: ["java", "-jar", "/intake-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/firefly/config/"],
       env:: super.commonEnv + [
           {
               name: 'webHookSecretTokenValidationEnabled',
@@ -80,6 +81,9 @@ if firefly_feature_flags.is_firefly_svc_enabled then
           },
       ],
       volumeMounts:: super.commonVolMounts,
+      data:: {
+          "application.yml": std.manifestJson(intakeConfig.config("firefly-intake")),
+      },
   },
 
   apiVersion: "v1",
