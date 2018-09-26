@@ -37,7 +37,7 @@ system:
         value: /home/datapool/client-certs/client
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE
-        value: dva/flowsnake-job-datapool-engine:jenkins-insights-WaveDataPool-master-233-itest
+        value: dva/datapool-engine:jenkins-insights-WaveDataPool-master-233-itest
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_KIND
         value: dockerDefaultRegistryImage
