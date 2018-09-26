@@ -35,7 +35,7 @@ serviceDeployment {
         },
         {
             name: "CONFIG_VERSION",
-            value: "1",
+            value: "2",
         },
     ],
     volumeMounts:: super.commonVolMounts,
