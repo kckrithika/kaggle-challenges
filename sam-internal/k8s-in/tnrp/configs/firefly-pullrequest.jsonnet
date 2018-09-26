@@ -5,6 +5,8 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
 local rabbitConfig = import "configs/firefly-spring-rabbitmq.jsonnet";
 local monitoringConfig = import "configs/firefly-monitoring.jsonnet";
 local gheConfig = import "configs/firefly-ghe.jsonnet";
+local artifactoryConfig = import "configs/firefly-artifactory.jsonnet";
+local dockerConfig = import "configs/firefly-docker.jsonnet";
 
 {
   config(serviceName):: {
@@ -14,23 +16,7 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
     server: {
       port: -1,
     },
-    management: {
-      server: {
-        port: portConfig.firefly.pullrequest_mgmt,
-      },
-      endpoint: {
-        health: {
-          'show-details': 'always',
-        },
-      },
-      endpoints: {
-        web: {
-          exposure: {
-            include: '*',
-          },
-        },
-      },
-    },
+    management: monitoringConfig.management(portConfig.firefly.pullrequest_mgmt),
     logging: {
       level: {
         org: 'INFO',
@@ -55,27 +41,8 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
       'evaluation-config': {
         'pipeline-manifest-json': '/tnrp/pipeline_manifest.json',
       },
-      docker: {
-        'remote-docker-host': envConfig.environmentMapping[configs.estate].dockerHost,
-        'docker-cert-path': envConfig.environmentMapping[configs.estate].dockerCertPath,
-        'read-timeout': '480000ms',
-        'connect-timeout': '480000ms',
-      },
-      artifactory: {
-        'artifactory-dev-host': envConfig.environmentMapping[configs.estate].artifactoryDevHost,
-        'artifactory-p2p-host': envConfig.environmentMapping[configs.estate].artifactoryP2PHost,
-        'artifactory-dev-endpoint': 'https://${appconfig.artifactory.artifactory-dev-host}/',
-        'artifactory-p2p-endpoint': 'https://${appconfig.artifactory.artifactory-p2p-host}/',
-        'artifactory-p2p-api-endpoint': 'https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/',
-        'artifactory-user-name': envConfig.environmentMapping[configs.estate].artifactoryUserName,
-        'artifactory-password': '${artifactoryPassword#FromSecretService}',
-        'artifactory-content-repo-user-name': envConfig.environmentMapping[configs.estate].artifactoryContentRepoUserName,
-        'socket-timeout': '30000ms',
-        'connection-timeout': '20000ms',
-        'artifactory-content-repo-password': '${artifactoryContentRepoPassword#FromSecretService}',
-        'max-retry': 3,
-        'backoff-time': '1000ms',
-      },
+      docker: dockerConfig,
+      artifactory: artifactoryConfig.base,
       'context-prefix': '',
       'health-check-repo': 'tnrpfirefly',
     },

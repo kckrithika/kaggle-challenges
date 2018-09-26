@@ -14,23 +14,7 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
     server: {
       port: portConfig.firefly.intake_http,
     },
-    management: {
-      server: {
-        port: portConfig.firefly.intake_mgmt,
-      },
-      endpoint: {
-        health: {
-          'show-details': 'always',
-        },
-      },
-      endpoints: {
-        web: {
-          exposure: {
-            include: '*',
-          },
-        },
-      },
-    },
+    management: monitoringConfig.management(portConfig.firefly.intake_mgmt),
     logging: {
       level: {
         org: 'INFO',

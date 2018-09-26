@@ -624,6 +624,7 @@ items:
           - -jar
           - /package-svc.jar
           - --spring.profiles.active=prd-sam
+          - --spring.config.location=/etc/firefly/config/
           env:
           - name: MY_NODE_NAME
             valueFrom:
@@ -1107,6 +1108,7 @@ items:
           "appconfig": {
               "artifactory": {
                   "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
+                  "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
                   "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
                   "artifactory-content-repo-user-name-prod": "svc_tnrp_cd_test",
                   "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
