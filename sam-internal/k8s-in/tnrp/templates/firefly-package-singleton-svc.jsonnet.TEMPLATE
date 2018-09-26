@@ -5,7 +5,7 @@ local configs = import "config.jsonnet";
 local packageConfig = import "configs/firefly-package.jsonnet";
 
 
-serviceDeployment + {
+serviceDeployment {
     serviceConf:: {
         dindEnabled: false,
         healthPort: portConfig.firefly.package_mgmt,
@@ -25,16 +25,20 @@ serviceDeployment + {
                sticky: 0,
         },
     ],
-    portConfigs:: [ portConfig.service_health_port('package_mgmt_nodeport'), ],
+    portConfigs:: [portConfig.service_health_port('package_mgmt_nodeport')],
     replicas:: 1,
     command:: ["java", "-jar", "/package-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/firefly/config/"],
     env:: super.commonEnv + [
         {
-            name: "serviceMode",
+            name: "SERVICE_MODE",
             value: "singleton",
         },
+        {
+            name: "CONFIG_VERSION",
+            value: "1",
+        },
     ],
-    volumeMounts:: super.commonVolMounts ,
+    volumeMounts:: super.commonVolMounts,
     data:: {
         "application.yml": std.manifestJson(packageConfig.config("firefly-package")),
     },

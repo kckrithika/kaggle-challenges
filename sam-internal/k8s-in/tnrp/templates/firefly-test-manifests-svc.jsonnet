@@ -13,19 +13,19 @@ if configs.estate == "prd-samtwo" then
         replicas:: 2,
         env:: super.env + [
             {
-                name: "instanceType",
+                name: "INSTANCE_TYPE",
                 value: "manifests",
             },
             {
-                name: "packageQ",
+                name: "PACKAGE_QUEUE",
                 value: "test-manifests.package",
             },
             {
-                name: "promotionQ",
+                name: "PROMOTION_QUEUE",
                 value: "test-manifests.promotion",
             },
             {
-                name: "latestfileQ",
+                name: "LATEST_FILE_QUEUE",
                 value: "test-manifests.latestfile",
             },
        ],
@@ -38,19 +38,19 @@ if configs.estate == "prd-samtwo" then
         replicas:: 2,
         env:: super.env + [
             {
-                name: "instanceType",
+                name: "INSTANCE_TYPE",
                 value: "test-manifests",
             },
             {
-                name: "packageQ",
+                name: "PACKAGE_QUEUE",
                 value: "test-manifests.package",
             },
             {
-                name: "promotionQ",
+                name: "PROMOTION_QUEUE",
                 value: "test-manifests.promotion",
             },
             {
-                name: "latestfileQ",
+                name: "LATEST_FILE_QUEUE",
                 value: "test-manifests.latestfile",
             },
        ],
@@ -62,11 +62,11 @@ if configs.estate == "prd-samtwo" then
         replicas:: 2,
         env:: super.env + [
             {
-                name: "instanceType",
+                name: "INSTANCE_TYPE",
                 value: "test-manifests",
             },
             {
-                name: "rabbitmqQueueName",
+                name: "RABBIT_MQ_QUEUE_NAME",
                 value: "test-manifests.pr",
             },
        ],
@@ -79,11 +79,11 @@ if configs.estate == "prd-samtwo" then
         replicas:: 2,
         env:: super.env + [
             {
-                name: "instanceType",
+                name: "INSTANCE_TYPE",
                 value: "test-manifests",
             },
             {
-                name: "rabbitmqQueueName",
+                name: "RABBIT_MQ_QUEUE_NAME",
                 value: "test-manifests.promotion",
             },
        ],

@@ -76,8 +76,8 @@ if firefly_feature_flags.is_firefly_svc_enabled then
       command:: ["java", "-jar", "/intake-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/firefly/config/"],
       env:: super.commonEnv + [
           {
-              name: 'webHookSecretTokenValidationEnabled',
-              value: 'false',
+              name: "CONFIG_VERSION",
+              value: "1",
           },
       ],
       volumeMounts:: super.commonVolMounts,

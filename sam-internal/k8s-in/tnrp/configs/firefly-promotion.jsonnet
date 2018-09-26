@@ -29,9 +29,9 @@ local artifactoryConfig = import "configs/firefly-artifactory.jsonnet";
       ghe: gheConfig,
     },
     rabbitmq: {
-      'queue-name': '${rabbitmqQueueName}',
+      'queue-name': '${RABBIT_MQ_QUEUE_NAME}',
       'exchange-name': envConfig.environmentMapping[configs.estate].exchangeName,
-      'instance-type': '${instanceType}',
+      'instance-type': '${INSTANCE_TYPE}',
     },
     appconfig: {
       'repo-config': {
@@ -42,7 +42,7 @@ local artifactoryConfig = import "configs/firefly-artifactory.jsonnet";
           type: 'artifacts',
         },
       },
-      'instance-type': '${instanceType}',
+      'instance-type': '${INSTANCE_TYPE}',
       artifactory: artifactoryConfig.prod,
       'context-prefix': '',
       'health-check-repo': 'tnrpfirefly',

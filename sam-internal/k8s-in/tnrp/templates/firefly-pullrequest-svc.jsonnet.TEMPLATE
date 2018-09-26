@@ -5,7 +5,7 @@ local configs = import "config.jsonnet";
 local prConfig = import "configs/firefly-pullrequest.jsonnet";
 
 
-serviceDeployment + {
+serviceDeployment {
     serviceConf:: {
         dindEnabled: true,
         healthPort: portConfig.firefly.pullrequest_mgmt,
@@ -15,7 +15,7 @@ serviceDeployment + {
     serviceName:: "firefly-pullrequest",
     role:: "firefly",
     dockerImage:: images.fireflypullrequest,
-    portAnnotations:: 
+    portAnnotations::
     [
       {
              port: portConfig.firefly.pullrequest_mgmt,
@@ -26,10 +26,15 @@ serviceDeployment + {
              sticky: 0,
       },
     ],
-    portConfigs:: [ portConfig.service_health_port('pullrequest_mgmt_nodeport'), ],
+    portConfigs:: [portConfig.service_health_port('pullrequest_mgmt_nodeport')],
     replicas:: 1,
     command:: ["java", "-jar", "/pullrequest-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/firefly/config/"],
-    env:: super.commonEnv ,
+    env:: super.commonEnv + [
+        {
+            name: "CONFIG_VERSION",
+            value: "1",
+        },
+    ],
     volumeMounts:: super.commonVolMounts + [
         {
             name: "docker-build-dir",

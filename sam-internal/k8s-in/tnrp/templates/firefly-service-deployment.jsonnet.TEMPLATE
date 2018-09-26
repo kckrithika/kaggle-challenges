@@ -52,7 +52,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
           name: 'app-config-volume',
           mountPath: '/etc/firefly/config',
         },
-    ] ,
+    ],
     // arguments for template
     commonEnv:: [
         {
@@ -93,7 +93,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
         kind: 'Service',
         apiVersion: 'v1',
         metadata: {
-            name: std.join("-", [$.serviceName] + [ if "repoName" in $.serviceConf then $.serviceConf.repoName]+ ['service']),
+            name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['service']),
             namespace: 'firefly',
             labels: {
                 app: $.serviceName,
@@ -114,7 +114,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
         },
     },
 
-    local deployment = configs.deploymentBase("tnrp"){
+    local deployment = configs.deploymentBase("tnrp") {
         metadata: {
             name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
             namespace: "firefly",
@@ -127,7 +127,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
             template: {
                metadata: {
                     namespace: "firefly",
-                    name: std.join("-", [$.serviceName]+ [ if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
+                    name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
                     labels: {
                         name: $.serviceName,
                     } + configs.ownerLabel.tnrp,
@@ -154,7 +154,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                                      protocol: "TCP",
                                      containerPort: $.serviceConf.healthPort,
                                  },
-                        ] + if std.length($.serviceConf.port) <0 then [] else $.serviceConf.port,
+                        ] + if std.length($.serviceConf.port) < 0 then [] else $.serviceConf.port,
                         volumeMounts: $.volumeMounts,
                     },
                    ] + if $.serviceConf.dindEnabled == false then [] else [
@@ -187,7 +187,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                         sources: [
                           {
                             configMap: {
-                              name: std.join("-", [$.serviceName]+ [ if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['configmap']),
+                              name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['configmap']),
                               items: [
                                 {
                                   key: 'application.yml',
