@@ -11,12 +11,14 @@ system:
       type: RollingUpdate
     containers:
     - name: eaas
-      image:  docker-sfci-dev/sfci/eaas/emailservice:1.0.18-325f2cbb4da4f2a2e3a40dd3a6e32b46d4445913
+      image: docker-sfci-dev/sfci/eaas/emailservice:1.0.25-54b19adbe495d48579aaf39f69e03b545d4d22c1
       env:
       - name: SFDC_ENVIRONMENT
         value: "prd"
       - name: SCONE_SERVICE_NAME
         value: eaas
+      - name: SCONE_POD
+        value: pkonieczny  
       ports:
         - name: grpc
           containerPort: 7020
