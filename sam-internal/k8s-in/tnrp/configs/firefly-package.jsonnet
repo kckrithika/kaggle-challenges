@@ -23,7 +23,7 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
         'com.salesforce': 'DEBUG',
       },
       pattern: {
-        console: '%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - e=%X{eventType} SHA=%X{SHA} REPO=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n',
+        console: '%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - instanceType=${INSTANCE_TYPE} e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n',
       },
     },
     scm: {

@@ -62,7 +62,7 @@ items:
                   "org": "INFO"
               },
               "pattern": {
-                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - e=%X{eventType} SHA=%X{SHA} REPO=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - instanceType=${INSTANCE_TYPE} e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
               }
           },
           "management": {
@@ -266,7 +266,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "1"
+            value: "2"
           - name: INSTANCE_TYPE
             value: test-firefly-manifests
           - name: PACKAGE_QUEUE
@@ -442,7 +442,7 @@ items:
                   "org": "INFO"
               },
               "pattern": {
-                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - e=%X{eventType} SHA=%X{SHA} REPO=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - instanceType=${INSTANCE_TYPE} e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
               }
           },
           "management": {
@@ -646,7 +646,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "1"
+            value: "2"
           - name: INSTANCE_TYPE
             value: test-firefly-manifests
           - name: PACKAGE_QUEUE
