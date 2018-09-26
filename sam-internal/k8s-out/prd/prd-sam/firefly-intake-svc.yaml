@@ -257,7 +257,7 @@ items:
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
             value: "1"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:141
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:143
           imagePullPolicy: Always
           name: firefly-intake
           ports:
