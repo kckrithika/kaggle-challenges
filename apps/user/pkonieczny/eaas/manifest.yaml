@@ -17,7 +17,7 @@ system:
         value: "prd"
       - name: SCONE_SERVICE_NAME
         value: eaas
-      - name: SCONE_POD
+      - name: SFDC_POD
         value: pkonieczny  
       ports:
         - name: grpc
