@@ -227,7 +227,7 @@ system:
         - name: READY_SERVER_COUNT
           value: 1
         - name: DB_SID
-          value: mist61a216utf
+          value: mist61b218utf
         - name: LOCK_DWARF
           value: 1
         - name: TRIGGER_CAFFEINE
@@ -346,7 +346,8 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-
+        lbnames:
+        - us10-mist61cyan-lb
 
   loadbalancers:
   - lbname: na10-mist61app-prd
