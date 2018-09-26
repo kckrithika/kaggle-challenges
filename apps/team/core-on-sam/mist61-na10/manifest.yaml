@@ -346,7 +346,8 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-
+        lbnames:
+        - us10-mist61cyan-lb
 
   loadbalancers:
   - lbname: na10-mist61app-prd
