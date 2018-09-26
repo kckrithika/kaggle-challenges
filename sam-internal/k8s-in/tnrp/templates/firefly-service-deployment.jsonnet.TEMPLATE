@@ -48,69 +48,13 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
           name: "git-ssh-keys",
           mountPath: "/root/.ssh/",
         },
+        {
+          name: 'app-config-volume',
+          mountPath: '/etc/firefly/config',
+        },
     ] ,
     // arguments for template
     commonEnv:: [
-        {
-           name: "exchangeName",
-           value: "firefly.delivery",
-        },
-        {
-            name: "DOCKER_HOST",
-            value: "http://localhost:2375",
-        },
-        {
-            name: "rootDir",
-            value: "/tmp",
-        },
-        {
-            name: "dockerCertPath",
-            value: "/etc/docker/certs.d",
-        },
-        {
-            name: "rabbitMqEndpoint",
-            value: envConfig.environmentMapping[configs.estate].rabbitMqEndpoint,
-        },
-        {
-            name: "rabbitMqPort",
-            value: envConfig.environmentMapping[configs.estate].rabbitMqPort,
-        },
-        {
-            name: "rabbitMqUserName",
-            value: envConfig.environmentMapping[configs.estate].rabbitMqUserName,
-        },
-        {
-            name: "artifactoryDevHost",
-            value: envConfig.environmentMapping[configs.estate].artifactoryDevHost,
-        },
-        {
-            name: "artifactoryP2PHost",
-            value: envConfig.environmentMapping[configs.estate].artifactoryP2PHost,
-        },
-        {
-            name: "artifactoryUserName",
-            value: "svc_tnrp_artifactory",
-        },
-        {
-            name: "artifactoryContentRepoUserName",
-            value: envConfig.environmentMapping[configs.estate].artifactoryContentRepoUserName,
-        },
-        {
-            name: "artifactoryContentRepoUserNameProd",
-            value: envConfig.environmentMapping[configs.estate].artifactoryContentRepoUserNameProd,
-        },
-        {
-            name: "KINGDOM",
-            value: "prd",
-        },
-        {
-            name: "SUPERPOD",
-            value: "none",
-        },
-        {
-            name: "FUNCTION_INSTANCE_NAME",
-            value: $.serviceName,
-        },
         {
             name: "MY_NODE_NAME",
             valueFrom:
@@ -133,6 +77,18 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
             },
         },
     ],
+
+    local configmap = {
+        apiVersion: 'v1',
+        kind: 'ConfigMap',
+        metadata: {
+          name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['configmap']),
+          namespace: 'firefly',
+          labels: {} + configs.ownerLabel.tnrp,
+        },
+        data: $.data,
+    },
+
     local service = {
         kind: 'Service',
         apiVersion: 'v1',
@@ -225,33 +181,51 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                     },
                   ],
                   volumes: [
-                     {
-                         name: "docker-graph-storage",
-                         emptyDir: {},
-                     },
-                     {
+                    {
+                      name: 'app-config-volume',
+                      projected: {
+                        sources: [
+                          {
+                            configMap: {
+                              name: std.join("-", [$.serviceName]+ [ if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['configmap']),
+                              items: [
+                                {
+                                  key: 'application.yml',
+                                  path: 'application.yml',
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      name: "docker-graph-storage",
+                      emptyDir: {},
+                    },
+                    {
                          name: "docker-build-dir",
                          emptyDir: {},
-                     },
-                     {
+                    },
+                    {
                          name: "tokens",
                          emptyDir: {
                              medium: "Memory",
                          },
-                     },
-                     {
+                    },
+                    {
                          name: "certs",
                          emptyDir: {
                              medium: "Memory",
                          },
-                     },
-                     {
+                    },
+                    {
                          name: "git-ssh-keys",
                          emptyDir: {
                              medium: "Memory",
                          },
-                     },
-                     configs.maddog_cert_volume,
+                    },
+                    configs.maddog_cert_volume,
                   ],
                   terminationGracePeriodSeconds: 10,
                   nodeSelector: {
@@ -271,5 +245,5 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
 
     apiVersion: 'v1',
     kind: 'List',
-    items: [service, deployment],
+    items: [configmap, service, deployment],
 }

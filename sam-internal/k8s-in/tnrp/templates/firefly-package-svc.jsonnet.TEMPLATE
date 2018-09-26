@@ -2,6 +2,7 @@ local serviceDeployment = import "firefly-service-deployment.jsonnet.TEMPLATE";
 local images = import "fireflyimages.jsonnet";
 local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
+local packageConfig = import "configs/firefly-package.jsonnet";
 
 
 serviceDeployment + {
@@ -26,7 +27,7 @@ serviceDeployment + {
     ],
     portConfigs:: [ portConfig.service_health_port('package_mgmt_nodeport'), ],
     replicas:: 1,
-    command:: ["java", "-jar", "/package-svc.jar", "--spring.profiles.active=" + configs.estate],
+    command:: ["java", "-jar", "/package-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/firefly/config/"],
     env:: super.commonEnv + [
         {
             name: "serviceMode",
@@ -39,4 +40,7 @@ serviceDeployment + {
             mountPath: "/tmp",
         },
     ],
+    data:: {
+        "application.yml": std.manifestJson(packageConfig.config("firefly-package")),
+    },
 }

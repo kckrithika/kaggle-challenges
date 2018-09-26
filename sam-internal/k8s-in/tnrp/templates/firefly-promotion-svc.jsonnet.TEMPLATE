@@ -2,6 +2,7 @@ local serviceDeployment = import "firefly-service-deployment.jsonnet.TEMPLATE";
 local images = import "fireflyimages.jsonnet";
 local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
+local promotionConfig = import "configs/firefly-promotion.jsonnet";
 
 
 serviceDeployment + {
@@ -26,7 +27,10 @@ serviceDeployment + {
     ],
     portConfigs:: [ portConfig.service_health_port('promotion_mgmt_nodeport'), ],
     replicas:: 1,
-    command:: ["java", "-jar", "/promotion-svc.jar", "--spring.profiles.active=" + configs.estate],
+    command:: ["java", "-jar", "/promotion-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/firefly/config/"],
     env:: super.commonEnv,
     volumeMounts:: super.commonVolMounts,
+    data:: {
+        "application.yml": std.manifestJson(promotionConfig.config("firefly-promotion")),
+    },
 }
