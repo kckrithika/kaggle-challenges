@@ -16,7 +16,9 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "prd"
       - name: SCONE_SERVICE_NAME
-        value: eaas
+        value: eaas 
+      # THIS IS REQUIRED ONLY FOR USER DIRECTORY DEPLOYMENTS
+      # although we are a kingdom level service, this will differentiate argus metrics
       - name: SFDC_POD
         value: pkonieczny  
       ports:
