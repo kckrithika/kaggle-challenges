@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/moe/deployerbot:v-0001225-744a46a7
+      image: tnrp/moe/deployerbot:v-0001226-69cd5338
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -35,6 +35,20 @@ system:
       - mountPath: /gpgsecrets
         name: moe-gpg-signing-key
         readOnly: true
+    - name: tnrpdeployer
+      image: tnrp/moe/deployerbot:v-0001226-69cd5338
+      command: ["/moe/tnrpdeployer"]
+      args:
+      - "-deployerbotServiceEndpoint"
+      - "http://localhost:8080/deploy"
+      - "-interval"
+      - "10m"
+      livenessProbe:
+        exec:
+          command: ["ls", "/"]
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60
     volumes:
     - name: deployerbot-ghe-pat
       k4aSecret:
