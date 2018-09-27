@@ -3,32 +3,33 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - tvlaming@salesforce.com
-      - gogden@salesforce.com
-      - afranken@salesforce.com
-      - gmercer@salesforce.com
-      - xjayaseelan@salesforce.com
-      - mklosak@salesforce.com
-      - mhowald@salesforce.com
+    - tvlaming@salesforce.com
+    - gogden@salesforce.com
+    - afranken@salesforce.com
+    - gmercer@salesforce.com
+    - xjayaseelan@salesforce.com
+    - mhowald@salesforce.com
   functions:
-  - name: wh-con
-    count: 0
+  - name: event-notification-service
+    identity:
+      serviceName: wh-con
+    count: 5
     volumes:
     - name: cert
       maddogCert:
         type: client
     containers:
     - name: event-notification-service
-      image: sfci/mc-eventing/event-notification:215.0.4
+      image: sfci/mc-eventing/event-notification:215.0.10
       ports:
-        - containerPort: 15372
+      - containerPort: 15372
       env:
-        - name: MANAGEMENT_PORT
-          value: 15372
-        - name: AJNA_NAMESPACE
-          value: mc.prod.mceventbusprod
-        - name: METRICS_FUNNELENDPOINTURL
-          value: http://ajna0-funnel1-0-ord.data.sfdc.net
+      - name: MANAGEMENT_PORT
+        value: 15372
+      - name: AJNA_NAMESPACE
+        value: mc.prod.mceventbusprod
+      - name: METRICS_FUNNELENDPOINTURL
+        value: http://ajna0-funnel1-0-ord.data.sfdc.net
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
@@ -41,7 +42,7 @@ system:
         mountPath: /certs
   loadbalancers:
   - lbname: event-notification-service-lb
-    function: wh-con
+    function: event-notification-service
     nodeExposed: true
     ports:
     - port: 15373
