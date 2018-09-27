@@ -11,6 +11,7 @@
       reencrypt: false
       healthport: 80
       healthpath: /login
+      healthprotocol: http
     - port: 443
       targetport: 80
       lbtype: http
@@ -18,6 +19,7 @@
       reencrypt: false
       healthport: 80
       healthpath: /login
+      healthprotocol: http
 - lbname: swarm-bck
   customname: swarm-bck
   servers:
@@ -31,6 +33,7 @@
       reencrypt: false
       healthport: 80
       healthpath: /login
+      healthprotocol: http
     - port: 443
       targetport: 80
       lbtype: http
@@ -38,6 +41,7 @@
       reencrypt: false
       healthport: 80
       healthpath: /login
+      healthprotocol: http
 - lbname: git-test
   customname: git-test
   servers:
@@ -51,6 +55,7 @@
       reencrypt: false
       healthport: 80
       healthpath: /status
+      healthprotocol: http
     - port: 443
       targetport: 443
       lbtype: http
@@ -58,6 +63,7 @@
       reencrypt: true
       healthport: 80
       healthpath: /status
+      healthprotocol: http
 - lbname: git-test-prd
   customname: git-test-prd
   servers:
@@ -71,6 +77,7 @@
       reencrypt: false
       healthport: 80
       healthpath: /status
+      healthprotocol: http
     - port: 443
       targetport: 443
       lbtype: http
@@ -78,6 +85,7 @@
       reencrypt: true
       healthport: 80
       healthpath: /status
+      healthprotocol: http
     - port: 8443
       targetport: 8443
       lbtype: http
@@ -85,6 +93,7 @@
       reencrypt: true
       healthport: 80
       healthpath: /status
+      healthprotocol: http
 - lbname: gitblitz-prd
   customname: gitblitz-prd
   servers:
@@ -98,6 +107,7 @@
       reencrypt: false
       healthport: 80
       healthpath: /status
+      healthprotocol: http
     - port: 443
       targetport: 443
       lbtype: http
@@ -105,6 +115,7 @@
       reencrypt: true
       healthport: 80
       healthpath: /status
+      healthprotocol: http
     - port: 8443
       targetport: 8443
       lbtype: http
@@ -112,3 +123,4 @@
       reencrypt: true
       healthport: 80
       healthpath: /status
+      healthprotocol: http
