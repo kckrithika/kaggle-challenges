@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/moe/deployerbot:v-0001163-204efb2b
+      image: tnrp/moe/deployerbot:v-0001225-744a46a7
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -27,6 +27,7 @@ system:
         httpGet:
           path: /
           port: 8080
+        initialDelaySeconds: 60
       volumeMounts:
       - mountPath: /secrets
         name: deployerbot-ghe-pat
