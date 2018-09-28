@@ -4,3 +4,6 @@ apps:
                  # you can also specify other pools
  idea2test-jmehta:
   - prd/prd-sam
+
+ idea2test-androidbuild-jmehta:
+  - prd/prd-sam
