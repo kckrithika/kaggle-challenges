@@ -92,14 +92,16 @@ items:
           "scm": {
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
-                  "connect-timeout": "60000ms",
+                  "clone-timeout": "60s",
+                  "connect-timeout": "5s",
                   "keep-alive-duration": "60000ms",
+                  "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitRWPassword#FromSecretService}",
-                  "read-timeout": "60000ms",
+                  "read-timeout": "5s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "svc-tnrp-git-rw",
-                  "write-timeout": "60000ms"
+                  "write-timeout": "5s"
               }
           },
           "server": {
@@ -263,7 +265,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "2"
+            value: "3"
           - name: INSTANCE_TYPE
             value: manifests
           - name: PACKAGE_QUEUE
@@ -464,14 +466,16 @@ items:
           "scm": {
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
-                  "connect-timeout": "60000ms",
+                  "clone-timeout": "60s",
+                  "connect-timeout": "5s",
                   "keep-alive-duration": "60000ms",
+                  "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitRWPassword#FromSecretService}",
-                  "read-timeout": "60000ms",
+                  "read-timeout": "5s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "svc-tnrp-git-rw",
-                  "write-timeout": "60000ms"
+                  "write-timeout": "5s"
               }
           },
           "server": {
@@ -635,7 +639,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "2"
+            value: "3"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: PACKAGE_QUEUE
@@ -809,14 +813,16 @@ items:
           "scm": {
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
-                  "connect-timeout": "60000ms",
+                  "clone-timeout": "60s",
+                  "connect-timeout": "5s",
                   "keep-alive-duration": "60000ms",
+                  "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitRWPassword#FromSecretService}",
-                  "read-timeout": "60000ms",
+                  "read-timeout": "5s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "svc-tnrp-git-rw",
-                  "write-timeout": "60000ms"
+                  "write-timeout": "5s"
               }
           },
           "server": {
@@ -978,7 +984,7 @@ items:
                 apiVersion: v1
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
-            value: "1"
+            value: "2"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
@@ -1160,14 +1166,16 @@ items:
           "scm": {
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
-                  "connect-timeout": "60000ms",
+                  "clone-timeout": "60s",
+                  "connect-timeout": "5s",
                   "keep-alive-duration": "60000ms",
+                  "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitRWPassword#FromSecretService}",
-                  "read-timeout": "60000ms",
+                  "read-timeout": "5s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "svc-tnrp-git-rw",
-                  "write-timeout": "60000ms"
+                  "write-timeout": "5s"
               }
           },
           "server": {
@@ -1329,7 +1337,7 @@ items:
                 apiVersion: v1
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
-            value: "1"
+            value: "2"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME

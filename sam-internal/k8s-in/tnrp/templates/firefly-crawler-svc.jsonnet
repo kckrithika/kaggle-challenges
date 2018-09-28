@@ -34,7 +34,7 @@ if firefly_feature_flags.is_firefly_svc_enabled then
       env:: super.commonEnv + [
           {
               name: "CONFIG_VERSION",
-              value: "1",
+              value: "2",
           },
       ],
       volumeMounts:: super.commonVolMounts,
