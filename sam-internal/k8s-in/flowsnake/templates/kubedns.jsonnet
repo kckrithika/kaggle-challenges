@@ -266,7 +266,7 @@ else
                         name: "certs",
                     },
                 ],
-            },
+            } + if std.objectHas(flowsnake_images.feature_flags, "kubedns_host_network") then { hostNetwork: true } else {},
         },
     },
 }
