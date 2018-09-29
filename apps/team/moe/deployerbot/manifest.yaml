@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/moe/deployerbot:v-0001226-69cd5338
+      image: tnrp/moe/deployerbot:v-0001230-eb22f3f1
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -36,7 +36,7 @@ system:
         name: moe-gpg-signing-key
         readOnly: true
     - name: tnrpdeployer
-      image: tnrp/moe/deployerbot:v-0001226-69cd5338
+      image: tnrp/moe/deployerbot:v-0001230-eb22f3f1
       command: ["/moe/tnrpdeployer"]
       args:
       - "-deployerbotServiceEndpoint"
