@@ -189,9 +189,9 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: sfci/casam/coreapp_config_overrides:cb353f
+      image: sfci/casam/coreapp_config_overrides:380407
       env:
-      - name: SETTINGS_PATH
+      - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na2.app
       livenessProbe:
         exec:
