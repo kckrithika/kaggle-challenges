@@ -45,9 +45,9 @@
     {
         name: "SqlSlaNode",
         instructions: "The following minion pools have multiple nodes down in Production requiring immediate attention according to our SLA. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
-        alertThreshold: "10m",
+        alertThreshold: "20m",
         alertFrequency: "24h",
-        watchdogFrequency: "10m",
+        watchdogFrequency: "5m",
         alertProfile: "sam",
         alertAction: "pagerduty",
         sql: "SELECT
@@ -92,9 +92,9 @@
     {
             name: "SqlSamControl",
             instructions: "The following SAM control stack components dont have even 1 healhty pod",
-            alertThreshold: "10m",
+            alertThreshold: "20m",
             alertFrequency: "24h",
-            watchdogFrequency: "10m",
+            watchdogFrequency: "5m",
             alertProfile: "sam",
             alertAction: "email",
             sql: "SELECT * FROM

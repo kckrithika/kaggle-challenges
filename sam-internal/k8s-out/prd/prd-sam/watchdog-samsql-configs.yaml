@@ -180,7 +180,7 @@ data:
     OR kpodsDown >1) AND\n                           NOT ControlEstate LIKE ''prd-%''
     AND\n                           ControlEstate != ''unknown'' AND\n                           desiredReplicas
     > 1", "watchdogFrequency": "10m"}, {"alertAction": "pagerduty", "alertFrequency":
-    "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "The following
+    "24h", "alertProfile": "sam", "alertThreshold": "20m", "instructions": "The following
     minion pools have multiple nodes down in Production requiring immediate attention
     according to our SLA. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
     "name": "SqlSlaNode", "sql": "SELECT\n              \tminionpool,\n              \tTotalCount,\n              \tNotReadyCount,\n              \tNotReadyPerc\n              FROM\n              (\n              SELECT\n                      minionpool,\n                      TotalCount
@@ -194,8 +194,8 @@ data:
     ss\n              ) ss2\n              WHERE (TotalCount < 10 AND NotReadyCount
     >=2 AND minionpool like ''par-sam'' AND NotReadyPerc >=0.5) \n              OR
     (TotalCount < 10 AND NotReadyCount >=2 AND minionpool not like ''par-sam'')\n\n              OR
-    (TotalCount >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency": "10m"}, {"alertAction":
-    "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m",
+    (TotalCount >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency": "5m"}, {"alertAction":
+    "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "20m",
     "instructions": "The following SAM control stack components dont have even 1 healhty
     pod", "name": "SqlSamControl", "sql": "SELECT * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
     ''$.spec.replicas'') AS desiredReplicas,\n                      JSON_EXTRACT(Payload,
@@ -211,7 +211,7 @@ data:
     IS NULL) AND\n                     ControlEstate NOT LIKE ''%sdc%'' AND\n                     ControlEstate
     NOT LIKE ''%storage%'' AND\n                     ControlEstate NOT LIKE ''%sdn%''
     AND\n                     ControlEstate NOT LIKE ''%slb%'' AND\n                     desiredReplicas
-    != 0", "watchdogFrequency": "10m"}, {"alertAction": "email", "alertFrequency":
+    != 0", "watchdogFrequency": "5m"}, {"alertAction": "email", "alertFrequency":
     "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "Following
     PRs have failed to get deployed within 45 minutes of getting authorized.", "name":
     "SqlPRLatency", "sql": "SELECT\n   *   \nFROM\n    (   \n    SELECT\n        prs.pr_num,\n        crds.PoolName,\n        crds.ControlEstate,\n        TIMESTAMPDIFF(MINUTE,prs.most_recent_authorized_time,
