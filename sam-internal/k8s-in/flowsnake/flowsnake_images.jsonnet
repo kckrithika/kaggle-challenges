@@ -90,7 +90,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 kubedns_scale_up: "",  #verified in test fleet
                 # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
-                kubedns_svc_10055: "",
                 kubedns_host_network: "",
             },
             version_mapping: {
