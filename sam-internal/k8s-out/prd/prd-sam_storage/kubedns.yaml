@@ -42,7 +42,7 @@ spec:
           value: "2"
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/k8s-dns-kube-dns:1.14.9
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
@@ -104,7 +104,7 @@ spec:
         - --server=/prd-sam_storage.prd.sam.sfdc.net/127.0.0.1#10053
         - --server=/in-addr.arpa/127.0.0.1#10053
         - --server=/ip6.arpa/127.0.0.1#10053
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-dnsmasq-nanny-amd64:1.14.1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/k8s-dns-dnsmasq-nanny:1.14.9
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
@@ -135,7 +135,7 @@ spec:
         - --logtostderr
         - --probe=kubedns,127.0.0.1:10053,kubernetes.default.svc.prd-sam_storage.prd.sam.sfdc.net,5,A
         - --probe=dnsmasq,127.0.0.1:53,kubernetes.default.svc.prd-sam_storage.prd.sam.sfdc.net,5,A
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-sidecar-amd64:1.14.1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/k8s-dns-sidecar:1.14.9
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
