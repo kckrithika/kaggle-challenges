@@ -89,6 +89,6 @@ system:
   #   slbenabled: true
   #   ports:
   #     - port: 9090
-  #       targetport: 7020
+  #       targetport: 5443
   #       lbtype: tcp
 
