@@ -26,6 +26,7 @@
      # and returns 200 OK on the specified healthpath if the backend is eligible to receive traffic.
      healthport: 12087
      healthpath: /liveness-probe
+     healthprotocol: http
 
 ## ##
 ## This VIP definition creates an HTTP VIP named check-slb-examples-prd.slb.sfdc.net

@@ -8,6 +8,7 @@
      lbtype: http
      healthport: 12087
      healthpath: "/liveness-probe"
+     healthprotocol: http
 - lbname: maureen-dos
   servers:
    - 10.231.187.66
@@ -18,3 +19,4 @@
      lbtype: tcp
      healthport: 12087
      healthpath: "/liveness-probe"
+     healthprotocol: http

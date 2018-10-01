@@ -22,10 +22,11 @@
    - port: 22
      targetport: 22
      lbtype: tcp
-# Note the healthport and healthpath. Each backend has an http endpoint listening on healthport
+# Note the healthport, healthpath, and healthprotocol. Each backend has an http endpoint listening on healthport
 # and returns 200 OK on the specified healthpath if the backend is elibible to receive traffic.
      healthport: 12087
      healthpath: "/liveness-probe"
+     healthprotocol: http
 
 ## ##
 ## This VIP definition creates a VIP named check-slb-xrd.slb.sfdc.net
