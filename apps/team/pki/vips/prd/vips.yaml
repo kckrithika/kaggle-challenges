@@ -1,0 +1,15 @@
+- lbname: ops0-pkicontroller
+  customlbname: ops0-pkicontroller1-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of ops0-pkicontroller1-0-prd.slb.sfdc.net
+  servers:
+    - ops0-pkicontroller1-1-prd.eng.sfdc.net
+    - ops0-pkicontroller1-2-prd.eng.sfdc.net
+    - ops0-pkicontroller2-1-prd.eng.sfdc.net
+    - ops0-pkicontroller2-2-prd.eng.sfdc.net
+  ports:
+    - port: 8443
+      targetport: 8443
+      lbtype: dsr
+      healthport: 8443 
+      healthpath: "sfdc/v1/ping"
+      healthprotocol: https
