@@ -63,7 +63,7 @@ if samfeatureflags.kubedns then {
                         ],
                         image: samimages.kubedns,
                         imagePullPolicy: "IfNotPresent",
-                        livenessProbe: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" then {
+                        livenessProbe: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" || configs.estate == "prd-sam" then {
                           failureThreshold: 5,
                           initialDelaySeconds: 60,
                           periodSeconds: 10,
@@ -137,7 +137,7 @@ if samfeatureflags.kubedns then {
                                 mountPath: "/data/certs",
                                 name: "certs",
                             },
-                        ] + if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" then [{
+                        ] + if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" || configs.estate == "prd-sam" then [{
                                 mountPath: "/scripts",
                                 name: "cert-age",
                             }] else [],
@@ -263,7 +263,7 @@ if samfeatureflags.kubedns then {
                         name: "certs",
                     },
                 ] + (
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" then [{
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" || configs.estate == "prd-sam" then [{
                         configMap: {
                             defaultMode: 511,
                             name: "cert-age",
