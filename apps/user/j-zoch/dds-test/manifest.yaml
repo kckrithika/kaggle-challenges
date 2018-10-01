@@ -9,6 +9,8 @@ system:
       env:
       - name: DDHOST
         value: "datadomain1-1-prd"
+      - name: CONNECTION_STRING
+        value: "dds.user-j-zoch.localhost.mesh.force.com:5443"
       ports:
       - containerPort: 7020
         name: grpc
