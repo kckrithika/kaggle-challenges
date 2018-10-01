@@ -9,3 +9,4 @@
      lbtype: http
      healthport: 9000
      healthpath: "/trace/v3/ping"
+     healthprotocol: "http"
