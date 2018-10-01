@@ -32,7 +32,17 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                             configs.ci_namespaces_volume_mount,
                             configs.cert_volume_mount,
                         ],
-                    },
+                    }
+                    + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+                        livenessProbe: {
+                             httpGet: {
+                                 path: "/healthz",
+                                 port: 21548,
+                             },
+                             initialDelaySeconds: 30,
+                             periodSeconds: 5,
+                         },
+                     } else {}),
                 ],
                 volumes+: [
                     configs.sfdchosts_volume,
