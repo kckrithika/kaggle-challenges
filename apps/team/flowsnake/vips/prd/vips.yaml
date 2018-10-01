@@ -20,9 +20,6 @@
    - port: 443
      targetport: 8443
      lbtype: tcp
-     healthport: 80
-     healthpath: "/ping.jsp"
-     healthprotocol: "http"
 - lbname: flowsnake1-0-prd
   customlbname: flowsnake1-0-prd
   servers:
@@ -200,9 +197,6 @@
    - port: 443
      targetport: 8443
      lbtype: tcp
-     healthport: 80
-     healthpath: "/ping.jsp"
-     healthprotocol: "http"
 - lbname: flowsnake-test1-0-prd
   customlbname: flowsnake-test1-0-prd
   servers:
@@ -220,6 +214,3 @@
    - port: 443
      targetport: 8443
      lbtype: tcp
-     healthport: 80
-     healthpath: "/ping.jsp"
-     healthprotocol: "http"
