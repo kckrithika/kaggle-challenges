@@ -9,7 +9,7 @@ system:
     hostnetwork: true
     containers:
     - name: gater1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.12.0_20180814_102_15eaa8b
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.12.2-SNAPSHOT_20181001_127_1629f53
       args:
       - --server.port=9090
       - --logging.level.com.zaxxer.hikari=debug
@@ -38,9 +38,7 @@ system:
           port: 15372
         initialDelaySeconds: 60
         timeoutSeconds: 10
-
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/75
       image: sfci/servicelibs/sherpa-envoy:7e40ce8be635a6ef46fbc64657af42ab9c39ea65
       ports:
       - name: http2-in
@@ -67,7 +65,6 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
-
     - name: beacon
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
@@ -78,7 +75,6 @@ system:
           command:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
-
     volumes:
     - name: logvol
       hostPath:
@@ -92,7 +88,6 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-
     strategy:
       type: RollingUpdate
       rollingUpdate:
