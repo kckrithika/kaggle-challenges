@@ -17,7 +17,8 @@
     # indicates (with a 200 OK response) that the host is eligible to 
     # receive traffic.
     healthport: 7856
-    healthpath: /v1/health
+    healthpath: "/v1/health"
+    healthprotocol: "http"
   - port: 7855
     targetport: 7855
     lbtype: tcp
@@ -25,4 +26,5 @@
     # indicates (with a 200 OK response) that the host is eligible to 
     # receive traffic.
     healthport: 7856
-    healthpath: /v1/health
+    healthpath: "/v1/health"
+    healthprotocol: "http"
