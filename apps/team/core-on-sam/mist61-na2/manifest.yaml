@@ -95,7 +95,7 @@ system:
           value: 1
 
         # SAM host name - used in metrics publishing lib
-        - name: SAM_HOST_NAME
+        - name: CASAM_HOST_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
@@ -189,7 +189,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: sfci/casam/coreapp_config_overrides:ab7354
+      image: sfci/casam/coreapp_config_overrides:cb353f
       env:
       - name: SETTINGS_PATH
         value: mist.mist61.prd.na2.app
