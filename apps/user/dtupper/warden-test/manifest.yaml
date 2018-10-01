@@ -26,6 +26,10 @@ system:
           name: log-vol
         - mountPath: /opt/warden/cantor
           name: cantor-vol
+        - mountPath: /clientcert
+          name: maievclientcert
+        - mountPath: /servercert
+          name: wardenservercert
         livenessProbe:
           httpGet:
             path: /manage/health
@@ -38,6 +42,12 @@ system:
       - name: cantor-vol
         hostPath:
           path: /home/sfdc-casp/cantor
+      - name: maievclientcert
+        maddogCert:
+          type: client
+      - name: wardenservercert
+        maddogCert:
+          type: server
 
     loadbalancers:
     - lbname: wardenlb
