@@ -12,6 +12,7 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
 - lbname: devrepo2-0-prd
   # The customlbname ensures that the VIP retains its existing DNS name of devrepo2-0-prd.slb.sfdc.net
   customlbname: devrepo2-0-prd
@@ -26,6 +27,7 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
 - lbname: devrepo3-0-prd
   # The customlbname ensures that the VIP retains its existing DNS name of devrepo3-0-prd.slb.sfdc.net
   customlbname: devrepo3-0-prd
@@ -39,6 +41,7 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
 - lbname: devrepo4-0-prd
   # The customlbname ensures that the VIP retains its existing DNS name of devrepo4-0-prd.slb.sfdc.net
   customlbname: devrepo4-0-prd
@@ -53,6 +56,7 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
 - lbname: devrepo5-0-prd
   # The customlbname ensures that the VIP retains its existing DNS name of devrepo5-0-prd.slb.sfdc.net
   customlbname: devrepo5-0-prd
@@ -67,6 +71,7 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
 - lbname: testlab1-0-prd
   # The customlbname ensures that the VIP retains its existing DNS name of testlab1-0-prd.slb.sfdc.net
   customlbname: testlab1-0-prd
@@ -81,6 +86,7 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
 - lbname: testlab2-0-prd
   # The customlbname ensures that the VIP retains its existing DNS name of testlab2-0-prd.slb.sfdc.net
   customlbname: testlab2-0-prd
@@ -95,6 +101,7 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
 - lbname: testlab3-0-prd
   # The customlbname ensures that the VIP retains its existing DNS name of testlab3-0-prd.slb.sfdc.net
   customlbname: testlab3-0-prd
@@ -110,6 +117,7 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
 - lbname: testlab4-0-prd
   # The customlbname ensures that the VIP retains its existing DNS name of testlab4-0-prd.slb.sfdc.net
   customlbname: testlab4-0-prd
@@ -124,6 +132,7 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
 - lbname: testlab5-0-prd
   # The customlbname ensures that the VIP retains its existing DNS name of testlab5-0-prd.slb.sfdc.net
   customlbname: testlab5-0-prd
@@ -139,6 +148,7 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
 - lbname: testlab6-0-prd
   # The customlbname ensures that the VIP retains its existing DNS name of testlab6-0-prd.slb.sfdc.net
   customlbname: testlab6-0-prd
@@ -153,3 +163,4 @@
      reencrypt: true
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
