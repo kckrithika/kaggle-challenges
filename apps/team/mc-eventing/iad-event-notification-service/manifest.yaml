@@ -31,6 +31,18 @@ system:
         value: mc.prod.mceventbusprod
       - name: METRICS_FUNNELENDPOINTURL
         value: http://ajna0-funnel1-0-iad.data.sfdc.net
+      - name: EVENTCONSUMER_TOPICNAME
+        value: mc.prod.mceventbusprod__iad.ajna_local__transactional_send_events
+      - name: SUBSCRIPTIONCONSUMER_TOPICNAME
+        value: mc.prod.mceventbusprod__iad.ajna_local__eventnotification_subscriptions
+      - name: BOOTSTRAP_SERVERS
+        value: ajna0-broker1-0-iad.data.sfdc.net:9093
+      - name: SECURITY_PROTOCOL
+        value: SSL
+      - name: EMITTER_PROXY_HOST
+        value: public0-proxy1-0-iad.data.sfdc.net
+      - name: EMITTER_PROXY_PORT
+        value: 8080
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
