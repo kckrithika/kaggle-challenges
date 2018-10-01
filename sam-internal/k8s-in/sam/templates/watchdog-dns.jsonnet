@@ -3,9 +3,9 @@ local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "" then {
-    kind: "Deployment",
-    spec: {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
+configs.deploymentBase("sam") {
+    spec+: {
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
@@ -20,6 +20,7 @@ if configs.estate == "" then {
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args
+                                 + samwdconfig.low_urgency_pagerduty_args
                                  + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
