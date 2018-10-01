@@ -53,6 +53,11 @@ apps:
   shipping-envoy-tls:
     - prd/prd-sam_gater
 
+  ordering-rate-limited:
+    - prd/prd-sam_gater
+  shipping-rate-limited:
+    - prd/prd-sam_gater
+
 # Enable as needed:
 #  geoipnk:
 #    - prd/prd-sam_gater
