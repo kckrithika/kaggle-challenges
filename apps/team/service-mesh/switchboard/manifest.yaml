@@ -12,8 +12,8 @@ system:
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
-      - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
-      - --listeners.external-auth-enabled-clusters[1]=shipping-envoy-tls
+      - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy.service-mesh
+      - --listeners.external-auth-enabled-clusters[1]=shipping-envoy-tls.service-mesh
       - --listeners.external-auth-enabled-clusters[2]=shipping-rate-limited
       - --metrics.maxNumberOfCollectedMetrics=100000
       - --metrics.funnelTimeOut=90000
