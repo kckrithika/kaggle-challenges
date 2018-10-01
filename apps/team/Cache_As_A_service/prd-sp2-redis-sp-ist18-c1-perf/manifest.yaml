@@ -35,7 +35,7 @@ system:
       ports:
       - containerPort: 12051
     - name: caas-redis-announcer-12051
-      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
       - -endpoint
       - caas/cluster/sp-ist18-c1:SUPERPOD:12051
