@@ -1,0 +1,33 @@
+- lbname: ops0-netlog1-0-prd
+  customlbname: ops0-netlog1-0-prd
+  servers: 
+    - 10.252.186.153
+    - 10.252.186.139
+    - 10.252.186.143
+  ports: 
+    - port: 443
+      targetport: 9000
+      lbtype: http
+      tls: true
+      reencrypt: true
+      healthport: 29000
+      healthpath: /
+      healthprotocol: http
+    - port: 12201
+      targetport: 12201
+      lbtype: tcp
+      healthport: 22201
+      healthpath: /
+      healthprotocol: http
+    - port: 12202
+      targetport: 12202
+      lbtype: tcp
+      healthport: 22202
+      healthpath: /
+      healthprotocol: http
+    - port: 5514
+      targetport: 5514
+      lbtype: tcp
+      healthport: 25514
+      healthpath: /
+      healthprotocol: http
