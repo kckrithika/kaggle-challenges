@@ -9,6 +9,7 @@ system:
     - gmercer@salesforce.com
     - xjayaseelan@salesforce.com
     - mhowald@salesforce.com
+    - bryan.barnard@salesforce.com
   functions:
   - name: qa3s1-event-notification-service
     identity:
