@@ -8,3 +8,4 @@
      lbtype: http
      healthport: 12087
      healthpath: "/liveness-probe"
+     healthprotocol: http
