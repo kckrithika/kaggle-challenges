@@ -7,6 +7,8 @@ system:
     volumes:
     - name: envoy-config-volume
       emptyDir: {}
+    - name: coreapp-config-volume
+      emptyDir: {}
     - name: tls-client-cert
       maddogCert:
         type: client
@@ -88,6 +90,16 @@ system:
         - name: DB_CONN_NUM
           value: 25
 
+        # Wait for config override side car container to come up
+        - name: USE_CONFIG_SIDECAR
+          value: 1
+
+        # SAM host name - used in metrics publishing lib
+        - name: SAM_HOST_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+
       livenessProbe:
         exec:
           command:
@@ -119,6 +131,8 @@ system:
           mountPath: /home/sfdc/logs/jvm
         - name: tls-client-cert
           mountPath: /certs
+        - name: coreapp-config-volume
+          mountPath: /home/sfdc/config_override
 
     - name: envoy-sidecar-config
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
@@ -173,6 +187,29 @@ system:
         mountPath: /certs/cert-client
       - name: tls-server-cert
         mountPath: /certs/cert-server
+
+    - name: config-sidecar
+      image: sfci/casam/coreapp_config_overrides:ab7354
+      env:
+      - name: SETTINGS_PATH
+        value: mist.mist61.prd.na2.app
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/live
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      volumeMounts:
+      - name: coreapp-config-volume
+        mountPath: /home/sfdc/config_override
 
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
@@ -342,7 +379,8 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-
+        lbnames:
+        - us2-mist61cyan-lb
 
   loadbalancers:
   - lbname: na2-mist61app-prd
