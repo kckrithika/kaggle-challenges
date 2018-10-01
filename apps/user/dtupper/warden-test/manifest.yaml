@@ -26,9 +26,9 @@ system:
           name: log-vol
         - mountPath: /opt/warden/cantor
           name: cantor-vol
-        - mountPath: /clientcert
+        - mountPath: /tmp/user/client
           name: maievclientcert
-        - mountPath: /servercert
+        - mountPath: /tmp/user/server
           name: wardenservercert
         livenessProbe:
           httpGet:
