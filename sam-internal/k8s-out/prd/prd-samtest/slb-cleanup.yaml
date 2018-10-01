@@ -35,7 +35,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001217-75da0502
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001168-dba3058c
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -50,7 +50,6 @@ spec:
           name: sfdchosts
         - mountPath: /host/data/slb/logs/cleanup
           name: var-cleanup-logs-volume
-      dnsPolicy: Default
       hostNetwork: true
       volumes:
       - hostPath:
