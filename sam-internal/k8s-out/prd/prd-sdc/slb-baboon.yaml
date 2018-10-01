@@ -85,7 +85,6 @@ spec:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-baboon
         - --period=1200s
-        - --vipsToAcl=10.251.129.226
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
