@@ -14,12 +14,10 @@ system:
         value: mesh
       - name: SCONE_SHIPPING_DEST
         value: shipping-rate-limited.service-mesh.localhost.mesh.force.com:7011
-      - name: SCONE_SHIPPING_INTERVAL
-        value: 5000
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: SCONE_DEPLOYMENT_JVM_OPTIONS
-        value: -Dscone.service.name=ordering-service-rate-limited
+        value: "-Dscone.service.name=ordering-service-rate-limited -Dshipping.interval=5000"
       ports:
       - containerPort: 7020
         name: grpc-svc
