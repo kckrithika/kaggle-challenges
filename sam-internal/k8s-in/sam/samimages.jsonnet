@@ -1,6 +1,7 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local utils = import "util_functions.jsonnet";
+local configs = import "config.jsonnet";
 
 {
     # ================== SAM RELEASE ====================
@@ -151,26 +152,11 @@ for ce in [
         ),
 
         k4aInitContainerImage: "sam-0001948-03d9baca",
-        kubedns: (
-            if (estate == "prd-samdev" || estate == "prd-samtest") then
-                "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.10-2-g71f9bf5-dirty"
-            else
-                "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.1"
-           ),
-
-        kubednsmasq: (
-            if (estate == "prd-samdev" || estate == "prd-samtest") then
-                "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-dnsmasq-nanny-amd64:1.14.10-2-g71f9bf5-dirty"
-            else
-                "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-dnsmasq-nanny-amd64:1.14.1"
-           ),
-        kubednssidecar: (
-            if (estate == "prd-samdev" || estate == "prd-samtest") then
-                "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-sidecar-amd64:1.14.10-2-g71f9bf5-dirty"
-            else
-                "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-sidecar-amd64:1.14.1"
-           ),
-
+        local kubedns_image_tag = "1.14.9",
+        local strata_registry = configs.registry + "/dva",
+        kubedns: strata_registry + "/k8s-dns-kube-dns:" + kubedns_image_tag,
+        kubednsmasq: strata_registry + "/k8s-dns-dnsmasq-nanny:" + kubedns_image_tag,
+        kubednssidecar: strata_registry + "/k8s-dns-sidecar:" + kubedns_image_tag,
     },
 
     # ====== DO NOT EDIT BELOW HERE ======
