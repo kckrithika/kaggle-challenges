@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: dds-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/dds-test:develop # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/dds-test:develop 
       env:
       - name: DDHOST
         value: "datadomain1-1-prd"
