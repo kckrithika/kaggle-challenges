@@ -61,7 +61,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-ordering-linkerd-tls/logs
+        path: /home/sfdc-ordering-rate-limited/logs
     - name: tls-client-cert
       maddogCert:
         type: client
