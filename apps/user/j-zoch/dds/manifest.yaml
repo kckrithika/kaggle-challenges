@@ -9,6 +9,7 @@ system:
       env:
       - name: DDHOST
         value: "datadomain1-1-prd"
+        
       ports:
       - containerPort: 7020
         name: grpc
@@ -34,12 +35,12 @@ system:
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.23
       ports:
-      - containerPort: 15373
-        name: sherpa-adm
-      - containerPort: 7443
-        name: h2-tls-in
-      - containerPort: 7012
-        name: grpc-in
+      - name: http2-in
+        containerPort: 7012
+      - name: http2-tls-in
+        containerPort: 7443
+      - name: sherpa-adm
+        containerPort: 15373
       livenessProbe:
         exec:
           command:
@@ -64,7 +65,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
       livenessProbe:
         exec:
           command:
