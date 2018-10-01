@@ -149,7 +149,7 @@ else
                             "-restartDnsmasq=true",
                             "--",
                             "-k",
-                            "--cache-size=1000",
+                            "--cache-size=" + if std.objectHas(flowsnake_images.feature_flags, "kubedns_scale_up") then 50000 else 1000,
                             "--log-facility=-",
                             "--server=/cluster.local/127.0.0.1#10053",
                             "--server=/in-addr.arpa/127.0.0.1#10053",

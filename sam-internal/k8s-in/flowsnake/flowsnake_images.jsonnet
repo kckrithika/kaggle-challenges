@@ -81,6 +81,7 @@ local utils = import "util_functions.jsonnet";
 
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
+            kubedns_image_tag: "1.14.9",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.

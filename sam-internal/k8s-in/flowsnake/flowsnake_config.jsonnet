@@ -79,6 +79,6 @@ local util = import "util_functions.jsonnet";
     kubedns_manifests_enabled: !self.is_minikube,
     # Performance impact of logging DNS queries unknown. In test fleet alone it is ~5000 per minute. Presume this can
     # only be done temporarily.
-    kubedns_log_queries: estate == "prd-dev-flowsnake_iot_test",
+    kubedns_log_queries: false,
     node_controller_enabled: !self.is_minikube,
 }
