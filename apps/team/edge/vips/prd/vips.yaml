@@ -8,16 +8,19 @@
      lbtype: tcp
      healthport: 80
      healthpath: "/ping.jsp"
+     healthprotocol: "http"
    - port: 443
      targetport: 443
      lbtype: tcp
      healthport: 80
      healthpath: "/ping.jsp"
+     healthprotocol: "http"
    - port: 8443
      targetport: 8443
      lbtype: tcp
      healthport: 80
      healthpath: "/ping.jsp"
+     healthprotocol: "http"
 - lbname: sledge-mist51
   # The customlbname ensures that the VIP retains its existing DNS name of sledge-mist51-prd.slb.sfdc.net
   customlbname: sledge-mist51-prd
@@ -30,13 +33,16 @@
      lbtype: dsr
      healthport: 80
      healthpath: "/ping.jsp"
+     healthprotocol: "http"
    - port: 443
      targetport: 443
      lbtype: dsr
      healthport: 80
      healthpath: "/ping.jsp"
+     healthprotocol: "http"
    - port: 8443
      targetport: 8443
      lbtype: dsr
      healthport: 80
      healthpath: "/ping.jsp"
+     healthprotocol: "http"
