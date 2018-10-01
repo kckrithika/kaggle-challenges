@@ -21,7 +21,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 5
     - name: sherpa-xlt
-      image: sfci/servicelibs/sherpa-envoy:97d84e3b8b412b7a41eca405303334b477c2c5d0
+      image: sfci/servicelibs/sherpa-envoy:1.0.0
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
