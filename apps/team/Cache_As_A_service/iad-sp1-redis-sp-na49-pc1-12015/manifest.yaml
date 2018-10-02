@@ -52,8 +52,6 @@ system:
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
-       - name: CAAS_ENVIRONMENT
-         value: prod
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }

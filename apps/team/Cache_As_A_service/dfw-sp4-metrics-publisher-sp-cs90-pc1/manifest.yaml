@@ -39,7 +39,7 @@ system:
        - name: SFDC_ENVIRONMENT
          value: prod
        - name: CAAS_ENVIRONMENT
-         value: none
+         value: dummy_used_for_restart
     volumes:
     - name: logvol
       hostPath:
