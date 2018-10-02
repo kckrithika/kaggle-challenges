@@ -53,11 +53,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                      "--client.serverInterface=lo",
                                  ]
                                  + (
-                                     if slbimages.phaseNum == 1 then [
+                                     if slbimages.phaseNum <= 2 then [
                                          "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
-                                     ] else [
-
-                                     ]
+                                     ] else []
                                  )
                                  + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
                         volumeMounts: configs.filter_empty([
