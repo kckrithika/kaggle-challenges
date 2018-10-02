@@ -9,7 +9,7 @@ system:
       count: 3
       containers:
       - name: ak-warden-test
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/caspwarden:test-0015
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/caspwarden:test-0017
         ports:
         - name: http
           containerPort: 8889
@@ -20,7 +20,7 @@ system:
           containerPort: 7878
         env:
         - name: BRANCH
-          value: "dev"
+          value: "eng_production"
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
