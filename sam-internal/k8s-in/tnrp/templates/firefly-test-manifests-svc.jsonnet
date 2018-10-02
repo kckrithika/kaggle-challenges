@@ -28,10 +28,6 @@ if configs.estate == "prd-samtwo" then
                 name: "LATEST_FILE_QUEUE",
                 value: "test-manifests.latestfile",
             },
-            {
-                name: "DARKLAUNCH",
-                value: "true",
-            },
        ],
 
     },
@@ -57,10 +53,6 @@ if configs.estate == "prd-samtwo" then
                 name: "LATEST_FILE_QUEUE",
                 value: "test-manifests.latestfile",
             },
-            {
-                name: "DARKLAUNCH",
-                value: "true",
-            },
        ],
     },
     local pullrequest = pullrequestsvc {
@@ -76,10 +68,6 @@ if configs.estate == "prd-samtwo" then
             {
                 name: "RABBIT_MQ_QUEUE_NAME",
                 value: "test-manifests.pr",
-            },
-            {
-                name: "DARKLAUNCH",
-                value: "true",
             },
        ],
 
@@ -97,10 +85,6 @@ if configs.estate == "prd-samtwo" then
             {
                 name: "RABBIT_MQ_QUEUE_NAME",
                 value: "test-manifests.promotion",
-            },
-            {
-                name: "DARKLAUNCH",
-                value: "true",
             },
        ],
 

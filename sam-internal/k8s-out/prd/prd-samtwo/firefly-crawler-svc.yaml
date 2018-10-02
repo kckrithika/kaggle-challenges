@@ -212,7 +212,7 @@ items:
           - name: CONFIG_VERSION
             value: "2"
           - name: DARKLAUNCH
-            value: "false"
+            value: "true"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:143
           imagePullPolicy: Always
           name: firefly-crawler

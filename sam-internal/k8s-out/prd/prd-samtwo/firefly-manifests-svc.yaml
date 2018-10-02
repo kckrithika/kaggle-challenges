@@ -268,7 +268,7 @@ items:
           - name: CONFIG_VERSION
             value: "3"
           - name: DARKLAUNCH
-            value: "false"
+            value: "true"
           - name: INSTANCE_TYPE
             value: manifests
           - name: PACKAGE_QUEUE
@@ -277,8 +277,6 @@ items:
             value: manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: manifests.latestfile
-          - name: DARKLAUNCH
-            value: "true"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:143
           imagePullPolicy: Always
           name: firefly-package
@@ -647,7 +645,7 @@ items:
           - name: CONFIG_VERSION
             value: "3"
           - name: DARKLAUNCH
-            value: "false"
+            value: "true"
           - name: INSTANCE_TYPE
             value: manifests
           - name: PACKAGE_QUEUE
@@ -656,8 +654,6 @@ items:
             value: manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: manifests.latestfile
-          - name: DARKLAUNCH
-            value: "true"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:143
           imagePullPolicy: Always
           name: firefly-package-singleton
@@ -997,13 +993,11 @@ items:
           - name: CONFIG_VERSION
             value: "2"
           - name: DARKLAUNCH
-            value: "false"
+            value: "true"
           - name: INSTANCE_TYPE
             value: manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: manifests.pr
-          - name: DARKLAUNCH
-            value: "true"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:143
           imagePullPolicy: Always
           name: firefly-pullrequest
@@ -1358,8 +1352,6 @@ items:
             value: manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: manifests.promotion
-          - name: DARKLAUNCH
-            value: "true"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:143
           imagePullPolicy: Always
           name: firefly-promotion
