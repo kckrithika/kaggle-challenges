@@ -73,12 +73,12 @@ spec:
         - --target=/host/data/slb/nginx/config
         - --netInterfaceName=eth0
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
         - --maxDeleteServiceCount=20
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverInterface=lo
         - --hostnameOverride=$(NODE_NAME)
-        - --client.socketDir=/host/data/slb/config/
+        - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
         - --client.dialSocket=true
         env:
         - name: NODE_NAME
@@ -99,7 +99,7 @@ spec:
           name: var-target-config-volume
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -137,7 +137,7 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -212,7 +212,7 @@ spec:
         - /sdn/slb-cert-checker
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --hostnameOverride=$(NODE_NAME)
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: NODE_NAME
@@ -230,7 +230,7 @@ spec:
           name: cert2
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -466,7 +466,7 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-nginx-config-b
         name: var-logs-volume
       - configMap:
           name: sfdchosts
@@ -493,8 +493,8 @@ spec:
           path: /data/certs
         name: certs
       - hostPath:
-          path: /data/slb/config/
+          path: /data/slb/config/slb-nginx-config-b
         name: var-config-volume
       - hostPath:
-          path: /data/slb/logs/cleanup
+          path: /data/slb/logs/slb-nginx-config-b/cleanup
         name: var-cleanup-logs-volume
