@@ -7,5 +7,3 @@
    - port: 80
      targetport: 12087
      lbtype: http
-     healthport: 12087
-     healthpath: "/liveness-probe"
