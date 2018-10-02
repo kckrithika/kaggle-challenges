@@ -30,7 +30,7 @@ system:
 
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:1.4.3
+      image: sfci/mc-retail/retail-mc-event-beacon:1.4.4
       ports:
         - containerPort: 7022
         - containerPort: 15372
@@ -44,6 +44,8 @@ system:
           value: 7022
         - name: MANAGEMENT_PORT
           value: 15372
+        - name: JVM_ARGS
+          value: "-Xmx3G -Xms512m"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
