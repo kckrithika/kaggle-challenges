@@ -79,7 +79,7 @@ if configs.estate == "prd-samtwo" || configs.estate == "prd-sam" then
       env:: super.commonEnv + [
           {
               name: "CONFIG_VERSION",
-              value: "3",
+              value: "4",
           },
           {
               name: "DARKLAUNCH",

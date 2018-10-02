@@ -34,7 +34,7 @@ if firefly_feature_flags.is_firefly_svc_enabled then
       env:: super.commonEnv + [
           {
               name: "CONFIG_VERSION",
-              value: "2",
+              value: "4",
           },
           {
               name: "DARKLAUNCH",
