@@ -40,7 +40,7 @@ system:
        - name: SFDC_POD
          value: sp-cs64-pc
        - name: CAAS_ENVIRONMENT
-         value: none
+         value: dummy_used_for_restart
     volumes:
     - name: logvol
       hostPath:
