@@ -17,8 +17,8 @@ system:
         initialDelaySeconds: 20
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/90
-      image: sfci/servicelibs/sherpa-envoy:33e8f55bc90f7012ba524b58e05fbb2252f1a204
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/92
+      image: sfci/servicelibs/sherpa-envoy:f488bd0ccfc2aa726d52db749ea82742f5835c53
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
