@@ -64,6 +64,8 @@ system:
       args:
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      - -endpoint
+      - samapp/user-j-zoch/dds:DATACENTER_ALLENV:7443
       livenessProbe:
         exec:
           command:
