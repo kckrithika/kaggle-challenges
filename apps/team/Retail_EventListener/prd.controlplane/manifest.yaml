@@ -30,7 +30,7 @@ system:
 
     containers:
     - name: controlplane
-      image: sfci/mc-retail/commerce-journeys-control-plane:1.4.8
+      image: sfci/mc-retail/commerce-journeys-control-plane:1.4.9
       ports:
         - containerPort: 7020
         - containerPort: 7022
@@ -45,6 +45,8 @@ system:
           value: 7022
         - name: MANAGEMENT_PORT
           value: 15372
+        - name: JVM_ARGS
+          value: "-Xmx3G -Xms512m"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
