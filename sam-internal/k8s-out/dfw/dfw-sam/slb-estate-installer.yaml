@@ -40,7 +40,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001168-dba3058c
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0001233-4877427d
         name: slb-estate-installer
         securityContext:
           privileged: true
@@ -53,6 +53,7 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-estate-installer
           name: var-logs-volume
+      dnsPolicy: Default
       volumes:
       - hostPath:
           path: /etc/yum.repos.d
