@@ -8,7 +8,7 @@ if configs.estate == "prd-samtwo" then
 {
     local package = packagesvc {
         serviceConf:: super.serviceConf {
-            repoName: "test-manifests",
+            repoName: "manifests",
         },
         replicas:: 2,
         env:: super.env + [
@@ -18,15 +18,15 @@ if configs.estate == "prd-samtwo" then
             },
             {
                 name: "PACKAGE_QUEUE",
-                value: "test-manifests.package",
+                value: "manifests.package",
             },
             {
                 name: "PROMOTION_QUEUE",
-                value: "test-manifests.promotion",
+                value: "manifests.promotion",
             },
             {
                 name: "LATEST_FILE_QUEUE",
-                value: "test-manifests.latestfile",
+                value: "manifests.latestfile",
             },
             {
                 name: "DARKLAUNCH",
@@ -37,25 +37,25 @@ if configs.estate == "prd-samtwo" then
     },
     local packagesingleton = packagesvcsingleton {
         serviceConf:: super.serviceConf {
-            repoName: "test-manifests",
+            repoName: "manifests",
         },
         replicas:: 2,
         env:: super.env + [
             {
                 name: "INSTANCE_TYPE",
-                value: "test-manifests",
+                value: "manifests",
             },
             {
                 name: "PACKAGE_QUEUE",
-                value: "test-manifests.package",
+                value: "manifests.package",
             },
             {
                 name: "PROMOTION_QUEUE",
-                value: "test-manifests.promotion",
+                value: "manifests.promotion",
             },
             {
                 name: "LATEST_FILE_QUEUE",
-                value: "test-manifests.latestfile",
+                value: "manifests.latestfile",
             },
             {
                 name: "DARKLAUNCH",
@@ -65,17 +65,17 @@ if configs.estate == "prd-samtwo" then
     },
     local pullrequest = pullrequestsvc {
         serviceConf:: super.serviceConf {
-            repoName: "test-manifests",
+            repoName: "manifests",
         },
         replicas:: 2,
         env:: super.env + [
             {
                 name: "INSTANCE_TYPE",
-                value: "test-manifests",
+                value: "manifests",
             },
             {
                 name: "RABBIT_MQ_QUEUE_NAME",
-                value: "test-manifests.pr",
+                value: "manifests.pr",
             },
             {
                 name: "DARKLAUNCH",
@@ -86,17 +86,17 @@ if configs.estate == "prd-samtwo" then
     },
     local promotion = promotionsvc {
         serviceConf:: super.serviceConf {
-            repoName: "test-manifests",
+            repoName: "manifests",
         },
         replicas:: 2,
         env:: super.env + [
             {
                 name: "INSTANCE_TYPE",
-                value: "test-manifests",
+                value: "manifests",
             },
             {
                 name: "RABBIT_MQ_QUEUE_NAME",
-                value: "test-manifests.promotion",
+                value: "manifests.promotion",
             },
             {
                 name: "DARKLAUNCH",

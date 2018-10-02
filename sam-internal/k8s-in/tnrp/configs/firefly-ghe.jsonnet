@@ -9,5 +9,6 @@
   'keep-alive-duration': '60000ms',
   url: 'https://git.soma.salesforce.com',
   'max-attempts': 3,
-  'clone-timeout': '60s'
+  'clone-timeout': '60s',
+  'dark-launch': '${DARKLAUNCH}',
 }

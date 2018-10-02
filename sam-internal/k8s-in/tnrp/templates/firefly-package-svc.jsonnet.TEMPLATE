@@ -37,6 +37,10 @@ serviceDeployment {
             name: "CONFIG_VERSION",
             value: "3",
         },
+        {
+            name: "DARKLAUNCH",
+            value: "false",
+        },
     ],
     volumeMounts:: super.commonVolMounts + [
         {

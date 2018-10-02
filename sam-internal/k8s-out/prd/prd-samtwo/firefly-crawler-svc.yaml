@@ -5,52 +5,44 @@ items:
     application.yml: |-
       {
           "firefly": {
-              "ghe": {
-                  "commit-signing": false,
-                  "context-prefix": "",
-                  "health-check-repo": "tnrpfirefly",
-                  "webhook-secret-token-validation": false
+              "crawler": {
+                  "ghe-context-prefix": "",
+                  "ghe-health-check-repo": "tnrpfirefly",
+                  "job-interval-in-milliseconds": 300000,
+                  "max-commit-retry": 10,
+                  "max-prr-retry": 10,
+                  "repositories": "sam/test-manifests",
+                  "since-commit-time-in-minutes": 30,
+                  "since-prr-time-in-minutes": 30,
+                  "until-commit-status-time-in-minutes": 2,
+                  "until-commit-time-in-minutes": 5,
+                  "until-prr-status-time-in-minutes": 2,
+                  "until-prr-time-in-minutes": 5
               },
               "intake": {
-                  "repo-config-map": {
-                      "sam-test-firefly-manifests": {
-                          "handle-only-latest-commit": true,
-                          "webhook-secret-token": "${samTestFireflyManifests#FromSecretService}"
-                      },
-                      "sam-test-manifests": {
-                          "handle-only-latest-commit": true,
-                          "webhook-secret-token": "${samTestManifests#FromSecretService}"
-                      },
-                      "tnrpfirefly-test_manifest_driven_promotions": {
-                          "handle-only-latest-commit": true,
-                          "webhook-secret-token": "${tnrpfireflyTestManifestDrivenPromotions#FromSecretService}"
-                      },
-                      "tnrpfirefly-test_sam_manifests": {
-                          "handle-only-latest-commit": true,
-                          "webhook-secret-token": "${tnrpfireflyTestSamManifests#FromSecretService}"
-                      }
-                  }
+                  "api-url": "http://firefly-intake.firefly.prd-samtwo.prd.slb.sfdc.net:8080",
+                  "connect-timeout": "10000ms",
+                  "http-logging-interceptor-level": "NONE",
+                  "keep-alive-duration": "5m",
+                  "max-idle-connections": 10,
+                  "read-timeout": "10000ms",
+                  "write-timeout": "10000ms"
               },
               "monitoring": {
                   "datacenter": "prd",
-                  "pod": "firefly-intake",
+                  "pod": "firefly-crawler",
                   "report-frequency": 1,
                   "superpod": "NONE",
                   "system-exception-threshold": 5
-              },
-              "rabbitmq": {
-                  "exchange-name": "firefly.delivery",
-                  "prr-routing-key-format": "%s.pr",
-                  "push-routing-key-format": "%s.package"
               }
           },
           "logging": {
               "level": {
-                  "com.salesforce": "DEBUG",
+                  "com.salesforce": "INFO",
                   "org": "INFO"
               },
               "pattern": {
-                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread gua=%X{userAgent} ghd=%X{gitHubDelivery}] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - details=[%msg]  %n"
               }
           },
           "management": {
@@ -87,40 +79,13 @@ items:
               }
           },
           "server": {
-              "port": 8080
+              "port": -1
           },
           "spring": {
-              "rabbitmq": {
-                  "connection-timeout": "10000ms",
-                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
-                  "listener": {
-                      "simple": {
-                          "retry": {
-                              "enabled": true,
-                              "initial-interval": "1000ms",
-                              "max-attempts": 3,
-                              "max-interval": "10000ms",
-                              "multiplier": 2,
-                              "stateless": true
-                          }
-                      }
-                  },
-                  "password": "${rabbitMqDefaultPass#FromSecretService}",
-                  "port": 5672,
-                  "publisher-confirms": true,
-                  "publisher-returns": true,
-                  "template": {
-                      "mandatory": true,
-                      "reply-timeout": "60000ms",
-                      "retry": {
-                          "enabled": true,
-                          "initial-interval": "1000ms",
-                          "max-attempts": 10,
-                          "max-interval": "10000ms",
-                          "multiplier": 2
-                      }
-                  },
-                  "username": "sfdc-rabbitmq"
+              "quartz": {
+                  "properties": {
+                      "org.quartz.threadPool.threadCount": 100
+                  }
               }
           }
       }
@@ -128,53 +93,39 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-configmap
+    name: firefly-crawler-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
-    annotations:
-      slb.sfdc.net/name: firefly-intake
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}, {"lbtype": "http",
-        "port": 8080, "reencrypt": false, "sticky": 0, "targetPort": 8080, "tls":
-        false}, {"lbtype": "http", "port": 8443, "reencrypt": false, "sticky": 0,
-        "targetPort": 8080, "tls": true}]'
     labels:
-      app: firefly-intake
+      app: firefly-crawler
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-service
+    name: firefly-crawler-service
     namespace: firefly
   spec:
     ports:
-    - name: intake-http
-      port: 8080
-      protocol: TCP
-      targetPort: 8080
-    - name: intake-https
-      port: 8443
-      protocol: TCP
-      targetPort: 8080
     - name: admin-port
+      nodePort: 32085
       port: 8081
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-intake
-    type: NodePort
+      name: firefly-crawler
+    type: LoadBalancer
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-intake
+      name: firefly-crawler
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-deployment
+    name: firefly-crawler-deployment
     namespace: firefly
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-intake
+        name: firefly-crawler
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -187,9 +138,9 @@ items:
           madkub.sam.sfdc.net/allcerts: '{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client",
             "kingdom":"prd", "role": "firefly"}]}'
         labels:
-          name: firefly-intake
+          name: firefly-crawler
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-intake-deployment
+        name: firefly-crawler-deployment
         namespace: firefly
       spec:
         containers:
@@ -239,8 +190,8 @@ items:
         - command:
           - java
           - -jar
-          - /intake-svc.jar
-          - --spring.profiles.active=prd-sam
+          - /crawler-svc.jar
+          - --spring.profiles.active=prd-samtwo
           - --spring.config.location=/etc/firefly/config/
           env:
           - name: MY_NODE_NAME
@@ -259,24 +210,16 @@ items:
                 apiVersion: v1
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
-            value: "3"
+            value: "2"
           - name: DARKLAUNCH
             value: "false"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:154
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:143
           imagePullPolicy: Always
-          name: firefly-intake
+          name: firefly-crawler
           ports:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          - containerPort: 8080
-            name: intake-http
-            protocol: TCP
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -330,7 +273,7 @@ items:
           - mountPath: /tokens
             name: tokens
         nodeSelector:
-          pool: prd-sam
+          pool: prd-sam_tnrp_signer
         terminationGracePeriodSeconds: 10
         volumes:
         - name: app-config-volume
@@ -340,7 +283,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-intake-configmap
+                name: firefly-crawler-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}

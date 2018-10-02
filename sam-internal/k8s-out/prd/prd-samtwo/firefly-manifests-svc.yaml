@@ -8,13 +8,13 @@ items:
               "artifactory": {
                   "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
                   "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
-                  "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
-                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd_test",
+                  "artifactory-content-repo-user-name": "svc_tnrp_ci",
+                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd",
                   "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
-                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-dev-host": "ops0-artifactrepo1-0-prd.data.sfdc.net",
                   "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
                   "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
-                  "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
+                  "artifactory-p2p-host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
                   "artifactory-password": "${artifactoryPassword#FromSecretService}",
                   "artifactory-user-name": "svc_tnrp_artifactory",
                   "backoff-time": "1000ms",
@@ -111,7 +111,7 @@ items:
           "spring": {
               "rabbitmq": {
                   "connection-timeout": "10000ms",
-                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "host": "shared0-samtwokubeapi1-1-prd.eng.sfdc.net",
                   "listener": {
                       "simple": {
                           "retry": {
@@ -147,39 +147,36 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-tfm-configmap
+    name: firefly-package-manifests-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
-    annotations:
-      slb.sfdc.net/name: firefly-package
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
       app: firefly-package
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-tfm-service
+    name: firefly-package-manifests-service
     namespace: firefly
   spec:
     ports:
     - name: admin-port
+      nodePort: 32085
       port: 8081
       protocol: TCP
       targetPort: 8081
     selector:
       name: firefly-package
-    type: NodePort
+    type: LoadBalancer
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
       name: firefly-package
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-tfm-deployment
+    name: firefly-package-manifests-deployment
     namespace: firefly
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: firefly-package
@@ -197,7 +194,7 @@ items:
         labels:
           name: firefly-package
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-package-tfm-deployment
+        name: firefly-package-manifests-deployment
         namespace: firefly
       spec:
         containers:
@@ -248,7 +245,7 @@ items:
           - java
           - -jar
           - /package-svc.jar
-          - --spring.profiles.active=prd-sam
+          - --spring.profiles.active=prd-samtwo
           - --spring.config.location=/etc/firefly/config/
           env:
           - name: MY_NODE_NAME
@@ -273,25 +270,22 @@ items:
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
-            value: test-firefly-manifests
+            value: manifests
           - name: PACKAGE_QUEUE
-            value: test-firefly-manifests.package
+            value: manifests.package
           - name: PROMOTION_QUEUE
-            value: test-firefly-manifests.promotion
+            value: manifests.promotion
           - name: LATEST_FILE_QUEUE
-            value: test-firefly-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:154
+            value: manifests.latestfile
+          - name: DARKLAUNCH
+            value: "true"
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:143
           imagePullPolicy: Always
           name: firefly-package
           ports:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -358,7 +352,7 @@ items:
           - mountPath: /tokens
             name: tokens
         nodeSelector:
-          pool: prd-sam
+          pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
         volumes:
         - name: app-config-volume
@@ -368,7 +362,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-package-tfm-configmap
+                name: firefly-package-manifests-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
@@ -393,13 +387,13 @@ items:
               "artifactory": {
                   "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
                   "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
-                  "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
-                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd_test",
+                  "artifactory-content-repo-user-name": "svc_tnrp_ci",
+                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd",
                   "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
-                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-dev-host": "ops0-artifactrepo1-0-prd.data.sfdc.net",
                   "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
                   "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
-                  "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
+                  "artifactory-p2p-host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
                   "artifactory-password": "${artifactoryPassword#FromSecretService}",
                   "artifactory-user-name": "svc_tnrp_artifactory",
                   "backoff-time": "1000ms",
@@ -496,7 +490,7 @@ items:
           "spring": {
               "rabbitmq": {
                   "connection-timeout": "10000ms",
-                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "host": "shared0-samtwokubeapi1-1-prd.eng.sfdc.net",
                   "listener": {
                       "simple": {
                           "retry": {
@@ -532,39 +526,36 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-singleton-tfm-configmap
+    name: firefly-package-singleton-manifests-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
-    annotations:
-      slb.sfdc.net/name: firefly-package-singleton
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
       app: firefly-package-singleton
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-singleton-tfm-service
+    name: firefly-package-singleton-manifests-service
     namespace: firefly
   spec:
     ports:
     - name: admin-port
+      nodePort: 32085
       port: 8081
       protocol: TCP
       targetPort: 8081
     selector:
       name: firefly-package-singleton
-    type: NodePort
+    type: LoadBalancer
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
       name: firefly-package-singleton
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-singleton-tfm-deployment
+    name: firefly-package-singleton-manifests-deployment
     namespace: firefly
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: firefly-package-singleton
@@ -582,7 +573,7 @@ items:
         labels:
           name: firefly-package-singleton
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-package-singleton-tfm-deployment
+        name: firefly-package-singleton-manifests-deployment
         namespace: firefly
       spec:
         containers:
@@ -633,7 +624,7 @@ items:
           - java
           - -jar
           - /package-svc.jar
-          - --spring.profiles.active=prd-sam
+          - --spring.profiles.active=prd-samtwo
           - --spring.config.location=/etc/firefly/config/
           env:
           - name: MY_NODE_NAME
@@ -658,25 +649,22 @@ items:
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
-            value: test-firefly-manifests
+            value: manifests
           - name: PACKAGE_QUEUE
-            value: test-firefly-manifests.package
+            value: manifests.package
           - name: PROMOTION_QUEUE
-            value: test-firefly-manifests.promotion
+            value: manifests.promotion
           - name: LATEST_FILE_QUEUE
-            value: test-firefly-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:154
+            value: manifests.latestfile
+          - name: DARKLAUNCH
+            value: "true"
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:143
           imagePullPolicy: Always
           name: firefly-package-singleton
           ports:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -730,7 +718,7 @@ items:
           - mountPath: /tokens
             name: tokens
         nodeSelector:
-          pool: prd-sam
+          pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
         volumes:
         - name: app-config-volume
@@ -740,7 +728,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-package-singleton-tfm-configmap
+                name: firefly-package-singleton-manifests-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
@@ -764,12 +752,12 @@ items:
           "appconfig": {
               "artifactory": {
                   "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
-                  "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
+                  "artifactory-content-repo-user-name": "svc_tnrp_ci",
                   "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
-                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-dev-host": "ops0-artifactrepo1-0-prd.data.sfdc.net",
                   "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
                   "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
-                  "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
+                  "artifactory-p2p-host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
                   "artifactory-password": "${artifactoryPassword#FromSecretService}",
                   "artifactory-user-name": "svc_tnrp_artifactory",
                   "backoff-time": "1000ms",
@@ -854,7 +842,7 @@ items:
           "spring": {
               "rabbitmq": {
                   "connection-timeout": "10000ms",
-                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "host": "shared0-samtwokubeapi1-1-prd.eng.sfdc.net",
                   "listener": {
                       "simple": {
                           "retry": {
@@ -890,39 +878,36 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-pullrequest-tfm-configmap
+    name: firefly-pullrequest-manifests-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
-    annotations:
-      slb.sfdc.net/name: firefly-pullrequest
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
       app: firefly-pullrequest
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-pullrequest-tfm-service
+    name: firefly-pullrequest-manifests-service
     namespace: firefly
   spec:
     ports:
     - name: admin-port
+      nodePort: 32084
       port: 8081
       protocol: TCP
       targetPort: 8081
     selector:
       name: firefly-pullrequest
-    type: NodePort
+    type: LoadBalancer
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
       name: firefly-pullrequest
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-pullrequest-tfm-deployment
+    name: firefly-pullrequest-manifests-deployment
     namespace: firefly
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: firefly-pullrequest
@@ -940,7 +925,7 @@ items:
         labels:
           name: firefly-pullrequest
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-pullrequest-tfm-deployment
+        name: firefly-pullrequest-manifests-deployment
         namespace: firefly
       spec:
         containers:
@@ -991,7 +976,7 @@ items:
           - java
           - -jar
           - /pullrequest-svc.jar
-          - --spring.profiles.active=prd-sam
+          - --spring.profiles.active=prd-samtwo
           - --spring.config.location=/etc/firefly/config/
           env:
           - name: MY_NODE_NAME
@@ -1014,21 +999,18 @@ items:
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
-            value: test-firefly-manifests
+            value: manifests
           - name: RABBIT_MQ_QUEUE_NAME
-            value: test-firefly-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:154
+            value: manifests.pr
+          - name: DARKLAUNCH
+            value: "true"
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:143
           imagePullPolicy: Always
           name: firefly-pullrequest
           ports:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -1095,7 +1077,7 @@ items:
           - mountPath: /tokens
             name: tokens
         nodeSelector:
-          pool: prd-sam
+          pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
         volumes:
         - name: app-config-volume
@@ -1105,7 +1087,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-pullrequest-tfm-configmap
+                name: firefly-pullrequest-manifests-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
@@ -1130,13 +1112,13 @@ items:
               "artifactory": {
                   "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
                   "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
-                  "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
-                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd_test",
+                  "artifactory-content-repo-user-name": "svc_tnrp_ci",
+                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd",
                   "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
-                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-dev-host": "ops0-artifactrepo1-0-prd.data.sfdc.net",
                   "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
                   "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
-                  "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
+                  "artifactory-p2p-host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
                   "artifactory-password": "${artifactoryPassword#FromSecretService}",
                   "artifactory-user-name": "svc_tnrp_artifactory",
                   "backoff-time": "1000ms",
@@ -1218,7 +1200,7 @@ items:
           "spring": {
               "rabbitmq": {
                   "connection-timeout": "10000ms",
-                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "host": "shared0-samtwokubeapi1-1-prd.eng.sfdc.net",
                   "listener": {
                       "simple": {
                           "retry": {
@@ -1254,39 +1236,36 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-promotion-tfm-configmap
+    name: firefly-promotion-manifests-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
-    annotations:
-      slb.sfdc.net/name: firefly-promotion
-      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
       app: firefly-promotion
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-promotion-tfm-service
+    name: firefly-promotion-manifests-service
     namespace: firefly
   spec:
     ports:
     - name: admin-port
+      nodePort: 32085
       port: 8081
       protocol: TCP
       targetPort: 8081
     selector:
       name: firefly-promotion
-    type: NodePort
+    type: LoadBalancer
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
       name: firefly-promotion
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-promotion-tfm-deployment
+    name: firefly-promotion-manifests-deployment
     namespace: firefly
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
         name: firefly-promotion
@@ -1304,7 +1283,7 @@ items:
         labels:
           name: firefly-promotion
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-promotion-tfm-deployment
+        name: firefly-promotion-manifests-deployment
         namespace: firefly
       spec:
         containers:
@@ -1355,7 +1334,7 @@ items:
           - java
           - -jar
           - /promotion-svc.jar
-          - --spring.profiles.active=prd-sam
+          - --spring.profiles.active=prd-samtwo
           - --spring.config.location=/etc/firefly/config/
           env:
           - name: MY_NODE_NAME
@@ -1376,21 +1355,18 @@ items:
           - name: CONFIG_VERSION
             value: "2"
           - name: INSTANCE_TYPE
-            value: test-firefly-manifests
+            value: manifests
           - name: RABBIT_MQ_QUEUE_NAME
-            value: test-firefly-manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:154
+            value: manifests.promotion
+          - name: DARKLAUNCH
+            value: "true"
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:143
           imagePullPolicy: Always
           name: firefly-promotion
           ports:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -1444,7 +1420,7 @@ items:
           - mountPath: /tokens
             name: tokens
         nodeSelector:
-          pool: prd-sam
+          pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
         volumes:
         - name: app-config-volume
@@ -1454,7 +1430,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-promotion-tfm-configmap
+                name: firefly-promotion-manifests-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
