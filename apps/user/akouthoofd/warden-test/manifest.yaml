@@ -20,7 +20,7 @@ system:
           containerPort: 7878
         env:
         - name: BRANCH
-          value: "eng_production"
+          value: "eng_production_staging"
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
