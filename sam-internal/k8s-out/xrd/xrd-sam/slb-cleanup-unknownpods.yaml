@@ -30,7 +30,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001168-dba3058c
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001233-4877427d
         name: slb-cleanup-unknownpods
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -51,6 +51,7 @@ spec:
           name: kubeconfig
         - mountPath: /usr/bin/kubectl
           name: kubectl
+      dnsPolicy: Default
       nodeSelector:
         master: "true"
       securityContext:
