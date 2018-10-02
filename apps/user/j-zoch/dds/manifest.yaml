@@ -31,7 +31,7 @@ system:
           mountPath: /secrets/
           readOnly: true
 
-    # mTLS container 
+    # mTLS container s
     - name: sherpa
       image:  sfci/servicelibs/sherpa-envoy:f488bd0ccfc2aa726d52db749ea82742f5835c53 
       ports:
@@ -57,8 +57,8 @@ system:
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
-    
-     # Announces service
+
+     # Announces services
     - name: beacon
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
