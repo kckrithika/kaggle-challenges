@@ -14,6 +14,7 @@
                             ControlEstate,
                             Namespace,
                             Name,
+                            JSON_EXTRACT(Payload, '$.metadata.labels.\"sam.data.sfdc.net/owner\"') AS ownerlabel,
                             JSON_EXTRACT(Payload, '$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"') AS email,
                             CASE WHEN JSON_EXTRACT(Payload, '$.metadata.labels.sam_app') is NULL then False
                                  ELSE True END AS IsSamApp,
@@ -28,7 +29,7 @@
                             WHERE ApiKind = 'Deployment'
                         ) AS ss
                         WHERE
-                           isSamApp AND
+                           isSamApp AND ownerlabel = 'sam' AND
                            ( Namespace != 'sam-watchdog' AND Namespace != 'sam-system' AND Namespace != 'csc-sam' AND Namespace NOT LIKE '%slb%' AND Namespace NOT LIKE '%user%' 
                            " + "AND Namespace NOT LIKE '%cloudatlas%'" +  # Follow up work item W-5415695
                            ") AND
@@ -70,7 +71,17 @@
                         SUM(CASE WHEN READY = 'True' THEN 0 ELSE 1 END) as NotReadyCount,
                         minionpool
                   FROM
-                        nodeDetailView
+                        nodeDetailView nd
+                  LEFT JOIN (
+                      SELECT *
+                      FROM (
+                         SELECT
+                             Name,
+                             JSON_EXTRACT(Payload, '$.metadata.labels.\"sam.data.sfdc.net/owner\"') as ownerlabel
+                         FROM k8s_resource
+                         WHERE ApiKind = 'Node') ss
+                      WHERE ownerlabel = 'sam' ) k8s
+                  ON k8s.Name = nd.Name
                   WHERE
                         KINGDOM != 'PRD' AND KINGDOM != 'UNK'
                         AND minionpool NOT LIKE '%ceph%'
@@ -103,6 +114,7 @@
                       ControlEstate,
                       Namespace,
                       Name,
+                      JSON_EXTRACT(Payload, '$.metadata.labels.\"sam.data.sfdc.net/owner\"') AS ownerlabel,
                       JSON_EXTRACT(Payload, '$.spec.replicas') AS desiredReplicas,
                       JSON_EXTRACT(Payload, '$.status.availableReplicas') AS availableReplicas,
                       JSON_EXTRACT(Payload, '$.status.updatedReplicas') AS updatedReplicas,
@@ -113,7 +125,7 @@
                       WHERE ApiKind = 'Deployment'
                   ) AS ss
                   WHERE
-                     Namespace = 'sam-system' AND
+                     Namespace = 'sam-system' AND ownerlabel = 'sam' AND
                      (availableReplicas < 1 OR availableReplicas IS NULL) AND
                      ControlEstate NOT LIKE '%sdc%' AND
                      ControlEstate NOT LIKE '%storage%' AND
