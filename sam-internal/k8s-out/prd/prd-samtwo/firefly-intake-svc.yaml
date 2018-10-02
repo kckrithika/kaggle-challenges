@@ -257,7 +257,7 @@ items:
           - name: CONFIG_VERSION
             value: "3"
           - name: DARKLAUNCH
-            value: "false"
+            value: "true"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:143
           imagePullPolicy: Always
           name: firefly-intake
