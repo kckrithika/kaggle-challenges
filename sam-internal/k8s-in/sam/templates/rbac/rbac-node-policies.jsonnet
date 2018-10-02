@@ -27,6 +27,20 @@ local rbac_utils = import "sam_rbac_functions.jsonnet";
             "*",
           ],
         },
+        {
+          apiGroups: [
+             "*",
+          ],
+          resources: [
+             "nodes",
+          ],
+          resourceNames: [
+             node,
+          ],
+          verbs: [
+             "patch",
+          ],
+        },
       ],
   },
 

@@ -13,6 +13,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-sdcsamcompute1-10-prd.eng.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -26,6 +34,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-sdcsamcompute1-11-prd.eng.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -39,6 +55,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-sdcsamcompute1-3-prd.eng.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -52,6 +76,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-sdcsamcompute1-5-prd.eng.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -65,6 +97,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-sdcsamcompute1-6-prd.eng.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -78,6 +118,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-sdcsamcompute1-7-prd.eng.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -91,6 +139,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-sdcsamcompute2-1-prd.eng.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -104,6 +160,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-sdcsamcompute2-10-prd.eng.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -117,6 +181,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-sdcsamcompute2-11-prd.eng.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -130,6 +202,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-sdcsamcompute2-2-prd.eng.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -143,6 +223,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-sdcsamcompute2-3-prd.eng.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:

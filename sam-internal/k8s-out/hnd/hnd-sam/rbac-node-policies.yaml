@@ -13,6 +13,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samcompute1-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -26,6 +34,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samcompute1-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -39,6 +55,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samcompute2-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -52,6 +76,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt1-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -65,6 +97,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt1-10-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -78,6 +118,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt1-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -91,6 +139,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt1-3-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -104,6 +160,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt1-4-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -117,6 +181,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt1-5-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -130,6 +202,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt1-6-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -143,6 +223,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt1-7-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -156,6 +244,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt1-8-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -169,6 +265,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt1-9-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -182,6 +286,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt2-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -195,6 +307,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt2-10-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -208,6 +328,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt2-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -221,6 +349,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt2-3-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -234,6 +370,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt2-4-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -247,6 +391,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt2-5-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -260,6 +412,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt2-6-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -273,6 +433,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt2-7-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -286,6 +454,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt2-8-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -299,6 +475,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionchatbotrt2-9-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -312,6 +496,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionatlasfe1-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -325,6 +517,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionatlasfe2-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -338,6 +538,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionatlasdir1-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -351,6 +559,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionatlasdir1-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -364,6 +580,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionatlasdir2-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -377,6 +601,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminiongater1-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -390,6 +622,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminiongater1-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -403,6 +643,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminiongater1-3-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -416,6 +664,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminiongater2-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -429,6 +685,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminiongater2-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -442,6 +706,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionmoderationeinstein1-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -455,6 +727,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionmoderationeinstein1-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -468,6 +748,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionmoderationeinstein2-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -481,6 +769,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionreportcollector1-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -494,6 +790,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionreportcollector2-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -507,6 +811,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionreportcollector3-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -520,6 +832,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionwarden1-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -533,6 +853,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionwarden1-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -546,6 +874,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionwarden2-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -559,6 +895,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsme1-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -572,6 +916,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsme1-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -611,6 +963,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsme1-4-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -624,6 +984,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsme1-5-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -637,6 +1005,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsme2-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -650,6 +1026,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsme2-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -663,6 +1047,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsme2-3-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -676,6 +1068,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsme2-4-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -689,6 +1089,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsme1-3-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -702,6 +1110,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsme2-5-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -715,6 +1131,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -728,6 +1152,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-10-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -741,6 +1173,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -754,6 +1194,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-3-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -767,6 +1215,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-4-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -780,6 +1236,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-5-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -793,6 +1257,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-6-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -806,6 +1278,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-7-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -819,6 +1299,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-8-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -832,6 +1320,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-9-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -845,6 +1341,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -858,6 +1362,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-10-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -871,6 +1383,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -884,6 +1404,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-3-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -897,6 +1425,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-4-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -910,6 +1446,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-5-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -923,6 +1467,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-6-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -936,6 +1488,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-7-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -949,6 +1509,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-8-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -962,6 +1530,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-9-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -975,6 +1551,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -988,6 +1572,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1001,6 +1593,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-3-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1014,6 +1614,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-4-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1027,6 +1635,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-5-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1040,6 +1656,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1053,6 +1677,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1066,6 +1698,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-3-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1079,6 +1719,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-4-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1092,6 +1740,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-5-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1105,6 +1761,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-1-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1118,6 +1782,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-2-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1131,6 +1803,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-3-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1144,6 +1824,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-4-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -1235,6 +1923,14 @@ items:
     - nodes/status
     verbs:
     - '*'
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-5-hnd.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
