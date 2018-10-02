@@ -6,10 +6,10 @@ system:
         - dtupper@salesforce.com
     functions:
     - name: dtwarden-test-func
-      count: 1
+      count: 3
       containers:
       - name: dt-warden-test
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/casp-warden:test-0002
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/casp-warden:test-0003
         ports:
         - name: http
           containerPort: 8889
@@ -20,15 +20,15 @@ system:
           containerPort: 7878
         env:
         - name: BRANCH
-          value: "dev"
+          value: "eng_production"
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
         - mountPath: /opt/warden/cantor
           name: cantor-vol
-        - mountPath: /tmp/user/client
+        - mountPath: /home/sfdc-casp/pki/client
           name: maievclientcert
-        - mountPath: /tmp/user/server
+        - mountPath: /home/sfdc-casp/pki/server
           name: wardenservercert
         livenessProbe:
           httpGet:
