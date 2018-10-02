@@ -46,7 +46,7 @@ system:
         - name: MANAGEMENT_PORT
           value: 15372
         - name: JVM_ARGS
-          value: ""-Xmx3G -Xms512m"
+          value: "-Xmx3G -Xms512m"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
