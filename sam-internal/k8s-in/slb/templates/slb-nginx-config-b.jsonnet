@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + (if configs.estate != "prd-samtwo" then { dirSuffix:: "slb-nginx-config-b" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
