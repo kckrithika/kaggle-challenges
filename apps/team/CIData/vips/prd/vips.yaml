@@ -1,0 +1,8 @@
+- lbname: coverage-pipeline
+  servers:
+   - cidata.coverage.pipeline-1-prd.eng.sfdc.net
+   - cidata.coverage.pipeline-2-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 443
+     lbtype: tcp
