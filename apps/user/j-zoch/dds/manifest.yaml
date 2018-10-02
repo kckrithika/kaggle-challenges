@@ -9,7 +9,6 @@ system:
       env:
       - name: DDHOST
         value: "datadomain1-1-prd"
-        
       ports:
       - containerPort: 7020
         name: grpc
@@ -31,12 +30,11 @@ system:
         - name: secretvol
           mountPath: /secrets/
           readOnly: true
+          
     # mTLS container 
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.23
       ports:
-      - name: http2-in
-        containerPort: 7012
       - name: http2-tls-in
         containerPort: 7443
       - name: sherpa-adm
@@ -65,7 +63,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
         exec:
           command:
