@@ -44,7 +44,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001168-dba3058c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001233-4877427d
         name: slb-nginx-data-watchdog
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -59,6 +59,7 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
+      dnsPolicy: Default
       nodeSelector:
         pool: prd-samdev
       volumes:
