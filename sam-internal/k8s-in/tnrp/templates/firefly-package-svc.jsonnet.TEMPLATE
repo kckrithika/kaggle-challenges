@@ -37,6 +37,10 @@ serviceDeployment {
             name: "CONFIG_VERSION",
             value: "3",
         },
+        {
+            name: "DARKLAUNCH",
+            value: if configs.estate == "prd-samtwo" then "true" else "false",
+        },
     ],
     volumeMounts:: super.commonVolMounts + [
         {

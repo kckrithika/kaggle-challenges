@@ -94,6 +94,7 @@ items:
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
                   "connect-timeout": "5s",
+                  "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
@@ -266,6 +267,8 @@ items:
             value: multi
           - name: CONFIG_VERSION
             value: "3"
+          - name: DARKLAUNCH
+            value: "true"
           - name: INSTANCE_TYPE
             value: manifests
           - name: PACKAGE_QUEUE
@@ -468,6 +471,7 @@ items:
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
                   "connect-timeout": "5s",
+                  "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
@@ -640,6 +644,8 @@ items:
             value: singleton
           - name: CONFIG_VERSION
             value: "3"
+          - name: DARKLAUNCH
+            value: "true"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: PACKAGE_QUEUE
@@ -815,6 +821,7 @@ items:
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
                   "connect-timeout": "5s",
+                  "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
@@ -985,6 +992,8 @@ items:
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
             value: "2"
+          - name: DARKLAUNCH
+            value: "true"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
@@ -1168,6 +1177,7 @@ items:
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
                   "connect-timeout": "5s",
+                  "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,

@@ -5,7 +5,9 @@ local configs = import "config.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
 local intakeConfig = import "configs/firefly-intake.jsonnet";
 
-if firefly_feature_flags.is_firefly_svc_enabled then
+# we don't want to enable crawler for dark launch so enabling estates individually for intake
+#if firefly_feature_flags.is_firefly_svc_enabled then
+if configs.estate == "prd-samtwo" || configs.estate == "prd-sam" then
 {
   local intakeservice = serviceDeployment {
       serviceConf:: {
@@ -78,6 +80,10 @@ if firefly_feature_flags.is_firefly_svc_enabled then
           {
               name: "CONFIG_VERSION",
               value: "3",
+          },
+          {
+              name: "DARKLAUNCH",
+              value: if configs.estate == "prd-samtwo" then "true" else "false",
           },
       ],
       volumeMounts:: super.commonVolMounts,
