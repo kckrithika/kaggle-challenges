@@ -4,7 +4,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-estate-installer" };
 local slbflights = import "slbflights.jsonnet";
 
-if slbimages.phaseNum <= 2 || configs.estate == "prd-samtwo" || slbconfigs.slbInProdKingdom then configs.daemonSetBase("slb") {
+if slbimages.phaseNum <= 2 || slbconfigs.slbInProdKingdom then configs.daemonSetBase("slb") {
     metadata: {
         labels: {
             name: "slb-estate-installer",
