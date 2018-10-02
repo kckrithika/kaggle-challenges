@@ -31,7 +31,7 @@ system:
           mountPath: /server-certs
         # mTLS container 
     - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa-envoy:f488bd0ccfc2aa726d52db749ea82742f5835c53 
       ports:
       - name: http2-in
         containerPort: 7012
@@ -60,7 +60,7 @@ system:
     
      # Announces service
     - name: beacon
-      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
@@ -68,7 +68,7 @@ system:
         exec:
           command:
           - /home/scone/is-alive.sh
-        initialDelaySeconds: 5
+        initialDelaySeconds: 30
 
     # Add MadDog certificate volumes
     volumes:
