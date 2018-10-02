@@ -6,3 +6,5 @@
   - port: 22
     targetport: 22
     lbtype: tcp
+    healthport: 12087
+    healthpath: "/liveness-probe"
