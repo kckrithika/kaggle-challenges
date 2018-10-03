@@ -106,7 +106,11 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                         configs.sfdchosts_arg,
                                         "--client.serverInterface=lo",
                                         "--hostnameOverride=$(NODE_NAME)",
-                                    ] + (if slbimages.phaseNum == 1 then [
+                                    ] + (
+                                        if configs.estate == "prd-sam" then [
+                                            "--maxDeleteServiceCount=10",
+                                            ] else []
+                                        ) + (if slbimages.phaseNum == 1 then [
                                             "--blueGreenFeature=true",
                                         ] else []) + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir) +
                                         slbflights.getSimpleDiffAndNewConfigGeneratorIfEnabled() +

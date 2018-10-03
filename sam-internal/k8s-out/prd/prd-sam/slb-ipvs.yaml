@@ -90,6 +90,7 @@ spec:
         - --proxyHealthChecks=true
         - --httpTimeout=1s
         - --enablePersistence=false
+        - --maximumDeleteCount=10
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001239-d75a30e0

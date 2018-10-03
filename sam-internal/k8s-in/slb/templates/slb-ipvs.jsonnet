@@ -131,7 +131,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--proxyHealthChecks=true",
                             "--httpTimeout=1s",
                             "--enablePersistence=false",
-                        ] + (if slbflights.stockIpvsModules then [
+                        ] + (
+                            if configs.estate == "prd-sam" then [
+                                  "--maximumDeleteCount=10",
+                                  ] else []
+                              ) + (if slbflights.stockIpvsModules then [
                             "--sforceScheduler=false",
                             ] else []) + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
                             + slbflights.getIPVSHealthCheckRiseFallSettings(),
