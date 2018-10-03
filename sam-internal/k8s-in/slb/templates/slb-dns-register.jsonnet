@@ -57,6 +57,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                          "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
                                      ] else []
                                  )
+                                 + (
+                                    if configs.estate == "prd-sam" then [
+                                        "--maxDeleteEntries=10",
+                                        ] else []
+                                    )
                                  + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
