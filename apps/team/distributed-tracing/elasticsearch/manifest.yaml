@@ -34,9 +34,11 @@ system:
         #periodSeconds: 10
         #failureThreshold: 100
         exec:
-              # TODO: Check if process is running?
-              command:
-              - /bin/true
+            # TODO: Check if process is running?
+            command:
+            - /bin/true
+        initialDelaySeconds: 5
+        periodSeconds: 5
     #volumes:
     #- name: elasticsearch-persistent-storage
     #  hostPath:
