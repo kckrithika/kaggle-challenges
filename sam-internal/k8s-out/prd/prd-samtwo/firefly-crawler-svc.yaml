@@ -210,7 +210,7 @@ items:
                 apiVersion: v1
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
-            value: "4"
+            value: "5"
           - name: DARKLAUNCH
             value: "true"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:157
