@@ -30,8 +30,7 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: sherpa
-      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
-      image: sfci/servicelibs/sherpa:2.0.25
+      image: sfci/servicelibs/sherpa-envoy:f488bd0ccfc2aa726d52db749ea82742f5835c53
       env:
         - name: SFDC_ENVIRONMENT
           value: sconex
@@ -53,13 +52,13 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-        initialDelaySeconds: 10
+        initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 5
+        initialDelaySeconds: 15
         periodSeconds: 5
       volumeMounts:
         - name: tls-client-cert
