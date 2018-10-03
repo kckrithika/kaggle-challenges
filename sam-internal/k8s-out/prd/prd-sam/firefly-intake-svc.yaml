@@ -13,21 +13,29 @@ items:
               },
               "intake": {
                   "repo-config-map": {
+                      "manifests": {
+                          "handle-only-latest-commit": true,
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
                       "sam-test-firefly-manifests": {
                           "handle-only-latest-commit": true,
-                          "webhook-secret-token": "${samTestFireflyManifests#FromSecretService}"
+                          "webhook-secret-token": "feature_not_enabled"
                       },
                       "sam-test-manifests": {
                           "handle-only-latest-commit": true,
-                          "webhook-secret-token": "${samTestManifests#FromSecretService}"
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
+                      "test-manifests": {
+                          "handle-only-latest-commit": true,
+                          "webhook-secret-token": "feature_not_enabled"
                       },
                       "tnrpfirefly-test_manifest_driven_promotions": {
                           "handle-only-latest-commit": true,
-                          "webhook-secret-token": "${tnrpfireflyTestManifestDrivenPromotions#FromSecretService}"
+                          "webhook-secret-token": "feature_not_enabled"
                       },
                       "tnrpfirefly-test_sam_manifests": {
                           "handle-only-latest-commit": true,
-                          "webhook-secret-token": "${tnrpfireflyTestSamManifests#FromSecretService}"
+                          "webhook-secret-token": "feature_not_enabled"
                       }
                   }
               },
