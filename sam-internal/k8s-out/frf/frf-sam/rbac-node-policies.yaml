@@ -1342,6 +1342,110 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:samkingdomcaas0-caasminion1-1-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samkingdomcaas0-caasminion1-1-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samkingdomcaas0-caasminion1-2-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samkingdomcaas0-caasminion1-2-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samkingdomcaas0-caasminion1-3-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samkingdomcaas0-caasminion1-3-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samkingdomcaas0-caasminion2-1-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samkingdomcaas0-caasminion2-1-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samkingdomcaas0-caasminion2-2-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samkingdomcaas0-caasminion2-2-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samkingdomcaas0-caasminion2-3-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samkingdomcaas0-caasminion2-3-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samkingdomcaas0-caasminion3-1-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samkingdomcaas0-caasminion3-1-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samkingdomcaas0-caasminion3-2-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samkingdomcaas0-caasminion3-2-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-samminionmoderationeinstein1-1-frf.ops.sfdc.net
   rules:
   - apiGroups:
@@ -1862,6 +1966,58 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:samcaas1-caasminion1-10-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-10-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion1-11-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-11-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion1-12-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-12-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion1-13-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-13-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:samcaas1-caasminion1-2-frf.ops.sfdc.net
   rules:
   - apiGroups:
@@ -1901,12 +2057,129 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:samcaas1-caasminion1-5-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-5-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion1-6-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-6-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion1-7-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-7-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion1-8-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-8-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion1-9-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion1-9-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:samcaas1-caasminion2-1-frf.ops.sfdc.net
   rules:
   - apiGroups:
     - '*'
     resourceNames:
     - samcaas1-caasminion2-1-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion2-10-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-10-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion2-11-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-11-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion2-12-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-12-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion2-13-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-13-frf.ops.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -1940,12 +2213,129 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:samcaas1-caasminion2-4-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-4-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion2-5-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-5-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion2-6-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-6-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion2-7-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-7-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion2-8-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-8-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion2-9-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion2-9-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:samcaas1-caasminion3-1-frf.ops.sfdc.net
   rules:
   - apiGroups:
     - '*'
     resourceNames:
     - samcaas1-caasminion3-1-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion3-10-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-10-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion3-11-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-11-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion3-12-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-12-frf.ops.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -1972,6 +2362,84 @@ items:
     - '*'
     resourceNames:
     - samcaas1-caasminion3-3-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion3-4-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-4-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion3-5-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-5-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion3-6-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-6-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion3-7-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-7-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion3-8-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-8-frf.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:samcaas1-caasminion3-9-frf.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - samcaas1-caasminion3-9-frf.ops.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -3151,6 +3619,94 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:samkingdomcaas0-caasminion1-1-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samkingdomcaas0-caasminion1-1-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion1-1-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samkingdomcaas0-caasminion1-2-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samkingdomcaas0-caasminion1-2-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion1-2-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samkingdomcaas0-caasminion1-3-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samkingdomcaas0-caasminion1-3-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion1-3-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samkingdomcaas0-caasminion2-1-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samkingdomcaas0-caasminion2-1-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion2-1-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samkingdomcaas0-caasminion2-2-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samkingdomcaas0-caasminion2-2-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion2-2-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samkingdomcaas0-caasminion2-3-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samkingdomcaas0-caasminion2-3-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion2-3-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samkingdomcaas0-caasminion3-1-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samkingdomcaas0-caasminion3-1-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion3-1-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samkingdomcaas0-caasminion3-2-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samkingdomcaas0-caasminion3-2-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion3-2-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-samminionmoderationeinstein1-1-frf.ops.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -3591,6 +4147,50 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:samcaas1-caasminion1-10-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion1-10-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-10-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion1-11-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion1-11-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-11-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion1-12-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion1-12-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-12-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion1-13-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion1-13-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-13-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:samcaas1-caasminion1-2-frf.ops.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -3624,6 +4224,61 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:samcaas1-caasminion1-5-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion1-5-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-5-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion1-6-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion1-6-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-6-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion1-7-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion1-7-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-7-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion1-8-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion1-8-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-8-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion1-9-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion1-9-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-9-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:samcaas1-caasminion2-1-frf.ops.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -3632,6 +4287,50 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion2-1-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion2-10-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion2-10-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion2-10-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion2-11-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion2-11-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion2-11-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion2-12-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion2-12-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion2-12-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion2-13-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion2-13-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion2-13-frf.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
@@ -3657,6 +4356,72 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:samcaas1-caasminion2-4-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion2-4-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion2-4-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion2-5-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion2-5-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion2-5-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion2-6-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion2-6-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion2-6-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion2-7-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion2-7-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion2-7-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion2-8-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion2-8-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion2-8-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion2-9-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion2-9-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion2-9-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:samcaas1-caasminion3-1-frf.ops.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -3665,6 +4430,39 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion3-1-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion3-10-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion3-10-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion3-10-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion3-11-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion3-11-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion3-11-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion3-12-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion3-12-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion3-12-frf.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
@@ -3687,6 +4485,72 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion3-3-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion3-4-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion3-4-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion3-4-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion3-5-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion3-5-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion3-5-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion3-6-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion3-6-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion3-6-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion3-7-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion3-7-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion3-7-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion3-8-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion3-8-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion3-8-frf.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:samcaas1-caasminion3-9-frf.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:samcaas1-caasminion3-9-frf.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion3-9-frf.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:

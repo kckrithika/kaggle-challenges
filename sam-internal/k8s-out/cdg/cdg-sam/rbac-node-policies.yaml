@@ -898,6 +898,123 @@ items:
     verbs:
     - '*'
 - apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared1-samminioncoreappalpha1-1-cdg.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared1-samminioncoreappalpha1-1-cdg.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared1-samminioncoreappalpha1-2-cdg.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared1-samminioncoreappalpha1-2-cdg.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared1-samminioncoreappalpha1-3-cdg.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared1-samminioncoreappalpha1-3-cdg.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared1-samminioncoreappalpha2-1-cdg.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared1-samminioncoreappalpha2-1-cdg.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared1-samminioncoreappalpha2-2-cdg.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared1-samminioncoreappalpha2-2-cdg.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared1-samminioncoreappalpha2-3-cdg.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared1-samminioncoreappalpha2-3-cdg.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared1-samminioncoreappalpha3-1-cdg.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared1-samminioncoreappalpha3-1-cdg.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared1-samminioncoreappalpha3-2-cdg.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared1-samminioncoreappalpha3-2-cdg.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared1-samminioncoreappalpha3-3-cdg.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared1-samminioncoreappalpha3-3-cdg.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samcompute1-1-cdg.ops.sfdc.net
@@ -1656,5 +1773,104 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion3-9-cdg.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared1-samminioncoreappalpha1-1-cdg.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared1-samminioncoreappalpha1-1-cdg.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared1-samminioncoreappalpha1-1-cdg.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared1-samminioncoreappalpha1-2-cdg.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared1-samminioncoreappalpha1-2-cdg.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared1-samminioncoreappalpha1-2-cdg.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared1-samminioncoreappalpha1-3-cdg.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared1-samminioncoreappalpha1-3-cdg.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared1-samminioncoreappalpha1-3-cdg.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared1-samminioncoreappalpha2-1-cdg.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared1-samminioncoreappalpha2-1-cdg.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared1-samminioncoreappalpha2-1-cdg.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared1-samminioncoreappalpha2-2-cdg.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared1-samminioncoreappalpha2-2-cdg.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared1-samminioncoreappalpha2-2-cdg.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared1-samminioncoreappalpha2-3-cdg.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared1-samminioncoreappalpha2-3-cdg.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared1-samminioncoreappalpha2-3-cdg.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared1-samminioncoreappalpha3-1-cdg.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared1-samminioncoreappalpha3-1-cdg.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared1-samminioncoreappalpha3-1-cdg.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared1-samminioncoreappalpha3-2-cdg.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared1-samminioncoreappalpha3-2-cdg.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared1-samminioncoreappalpha3-2-cdg.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared1-samminioncoreappalpha3-3-cdg.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared1-samminioncoreappalpha3-3-cdg.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared1-samminioncoreappalpha3-3-cdg.ops.sfdc.net
 kind: List
 metadata: {}

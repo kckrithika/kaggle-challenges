@@ -827,6 +827,105 @@ data:
           "pod": "none",
           "rack": "b30-dh14",
           "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_coreappalpha",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sp1-sam_coreappalpha",
+          "hostname": "shared1-samminioncoreappalpha1-1-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "f32-dh14",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_coreappalpha",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sp1-sam_coreappalpha",
+          "hostname": "shared1-samminioncoreappalpha1-2-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "f32-dh14",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_coreappalpha",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sp1-sam_coreappalpha",
+          "hostname": "shared1-samminioncoreappalpha1-3-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "f32-dh14",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_coreappalpha",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sp1-sam_coreappalpha",
+          "hostname": "shared1-samminioncoreappalpha2-1-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "y15-dh14",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_coreappalpha",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sp1-sam_coreappalpha",
+          "hostname": "shared1-samminioncoreappalpha2-2-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "y15-dh14",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_coreappalpha",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sp1-sam_coreappalpha",
+          "hostname": "shared1-samminioncoreappalpha2-3-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "y15-dh14",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_coreappalpha",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sp1-sam_coreappalpha",
+          "hostname": "shared1-samminioncoreappalpha3-1-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "b47-dh14",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_coreappalpha",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sp1-sam_coreappalpha",
+          "hostname": "shared1-samminioncoreappalpha3-2-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "b47-dh14",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_coreappalpha",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sp1-sam_coreappalpha",
+          "hostname": "shared1-samminioncoreappalpha3-3-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "b47-dh14",
+          "superpod": "sp1"
         }
       ]
     }
