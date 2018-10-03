@@ -12,6 +12,20 @@ system:
     containers:
     - name: sconegenbbuxton
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-gen-bazel:bbuxton-1538594465
+      command: ["java"]
+      args: ["${JAVA_OPTS}",
+             "-Dscone.service.name=bbuxtonsconegen",
+             "-Dgus.fake=true",
+             "-Dspring.config.location='classpath:/,classpath:/config/,file:./,file:./config/,file:/secrets/service-config/secret.properties'",
+             "-Dgus.proxy.host=public0-proxy1-0-prd.data.sfdc.net:8080",
+             "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9010",
+             "-Dcom.sun.management.jmxremote.rmi.port=9010",
+             "-Djava.rmi.server.hostname=${FUNCTION_INSTANCE_IP}",
+             "-Dcom.sun.management.jmxremote.local.only=false",
+             "-Dcom.sun.management.jmxremote.authenticate=false",
+             "-Dcom.sun.management.jmxremote.ssl=false",
+             "-jar",
+             "service.jar"]
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
