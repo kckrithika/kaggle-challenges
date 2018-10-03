@@ -4,6 +4,9 @@ local configs = import "config.jsonnet";
 {
   base:: {
     'artifactory-dev-host': envConfig.environmentMapping[configs.estate].artifactoryDevHost,
+  },
+
+  prod:: self.base + {
     'artifactory-p2p-host': envConfig.environmentMapping[configs.estate].artifactoryP2PHost,
     'artifactory-dev-endpoint': 'https://${appconfig.artifactory.artifactory-dev-host}/',
     'artifactory-p2p-endpoint': 'https://${appconfig.artifactory.artifactory-p2p-host}/',
@@ -16,10 +19,7 @@ local configs = import "config.jsonnet";
     'connection-timeout': '20000ms',
     'max-retry': 3,
     'backoff-time': '1000ms',
-  },
-
-  prod:: self.base + {
-        'artifactory-content-repo-user-name-prod': envConfig.environmentMapping[configs.estate].artifactoryContentRepoUserNameProd,
-        'artifactory-content-repo-password-prod': '${artifactoryContentRepoPasswordProd#FromSecretService}',
+    'artifactory-content-repo-user-name-prod': envConfig.environmentMapping[configs.estate].artifactoryContentRepoUserNameProd,
+    'artifactory-content-repo-password-prod': '${artifactoryContentRepoPasswordProd#FromSecretService}',
   },
 }
