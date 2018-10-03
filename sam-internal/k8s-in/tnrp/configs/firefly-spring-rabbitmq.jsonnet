@@ -4,7 +4,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
 
 {
   host: envConfig.environmentMapping[configs.estate].rabbitMqEndpoint,
-  port: portConfig.firefly.rabbitmq_amqp,
+  port: envConfig.environmentMapping[configs.estate].rabbitMqPort,
   username: envConfig.environmentMapping[configs.estate].rabbitMqUserName,
   password: '${rabbitMqDefaultPass#FromSecretService}',
   'publisher-confirms': true,
