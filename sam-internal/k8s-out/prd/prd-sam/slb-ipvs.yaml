@@ -271,6 +271,7 @@ spec:
         - --client.serverInterface=lo
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
+        - --maxDeleteVipCount=10
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001239-d75a30e0
         name: slb-iface-processor
         securityContext:
