@@ -28,7 +28,7 @@ system:
         secretName: mds-gdot-secrets-prd
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.3.65
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/metadata-service:0.4.55-HACK
       ports:
       - containerPort: 9091
       - containerPort: 15523
