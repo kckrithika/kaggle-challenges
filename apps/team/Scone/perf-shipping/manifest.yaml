@@ -66,8 +66,7 @@ system:
         name: logvolbeacon
 
     - name: sherpa
-      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2026---2018-04-12
-      image: sfci/servicelibs/sherpa:2.0.27
+      image: sfci/servicelibs/sherpa-envoy:f488bd0ccfc2aa726d52db749ea82742f5835c53
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -89,13 +88,13 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-        initialDelaySeconds: 120
+        initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 110
+        initialDelaySeconds: 15
         periodSeconds: 5
       volumeMounts:
         - name: tls-client-cert
