@@ -1878,6 +1878,17 @@ data:
           "controlestate": "iad-sam",
           "devicerole": "samcompute",
           "estate": "iad-sam_kingdom_caas",
+          "hostname": "samkingdomcaas0-caasminion1-3-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "a03-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_kingdom_caas",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_kingdom_caas",
           "hostname": "samkingdomcaas0-caasminion2-1-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
@@ -1889,10 +1900,43 @@ data:
           "controlestate": "iad-sam",
           "devicerole": "samcompute",
           "estate": "iad-sam_kingdom_caas",
+          "hostname": "samkingdomcaas0-caasminion2-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h14-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_kingdom_caas",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_kingdom_caas",
+          "hostname": "samkingdomcaas0-caasminion2-3-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "h14-9a",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_kingdom_caas",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_kingdom_caas",
           "hostname": "samkingdomcaas0-caasminion3-1-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
           "rack": "f06-9b",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_kingdom_caas",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_kingdom_caas",
+          "hostname": "samkingdomcaas0-caasminion3-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "rack": "f13-9a",
           "superpod": "none"
         },
         {

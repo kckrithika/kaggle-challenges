@@ -1,4 +1,12 @@
 Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate,RemoteAs
+samkingdomcaas0-caasminion1-1-ia2.ops.sfdc.net,10.227.151.34/29,10.163.16.0/27,g55-01,ia2-sam_kingdom_caas,4203071228
+samkingdomcaas0-caasminion1-2-ia2.ops.sfdc.net,10.227.151.35/29,10.163.16.32/27,g55-01,ia2-sam_kingdom_caas,4203071228
+samkingdomcaas0-caasminion1-3-ia2.ops.sfdc.net,10.227.151.36/29,10.163.16.64/27,g55-01,ia2-sam_kingdom_caas,4203071228
+samkingdomcaas0-caasminion2-1-ia2.ops.sfdc.net,10.227.151.42/29,10.163.16.160/27,j06-01,ia2-sam_kingdom_caas,4203051212
+samkingdomcaas0-caasminion2-2-ia2.ops.sfdc.net,10.227.151.43/29,10.163.16.192/27,j06-01,ia2-sam_kingdom_caas,4203051212
+samkingdomcaas0-caasminion2-3-ia2.ops.sfdc.net,10.227.151.44/29,10.163.16.224/27,j06-01,ia2-sam_kingdom_caas,4203051212
+samkingdomcaas0-caasminion3-1-ia2.ops.sfdc.net,10.227.151.50/29,10.163.16.96/27,h45-01,ia2-sam_kingdom_caas,4203071209
+samkingdomcaas0-caasminion3-2-ia2.ops.sfdc.net,10.227.151.51/29,10.163.16.128/27,h45-01,ia2-sam_kingdom_caas,4203071209
 shared0-samcompute1-1-ia2.ops.sfdc.net,10.227.135.2/29,10.163.0.0/27,k02-01,ia2-sam,4203051203
 shared0-samcompute1-2-ia2.ops.sfdc.net,10.227.135.3/29,10.163.0.32/27,k02-01,ia2-sam,4203051203
 shared0-samcompute2-1-ia2.ops.sfdc.net,10.227.135.10/29,10.163.0.192/27,l42-01,ia2-sam,4203031204

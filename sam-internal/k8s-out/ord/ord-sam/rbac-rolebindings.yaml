@@ -884,9 +884,17 @@ items:
   - kind: User
     name: samkingdomcaas0-caasminion1-2-ord.ops.sfdc.net
   - kind: User
+    name: samkingdomcaas0-caasminion1-3-ord.ops.sfdc.net
+  - kind: User
     name: samkingdomcaas0-caasminion2-1-ord.ops.sfdc.net
   - kind: User
+    name: samkingdomcaas0-caasminion2-2-ord.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion2-3-ord.ops.sfdc.net
+  - kind: User
     name: samkingdomcaas0-caasminion3-1-ord.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion3-2-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
