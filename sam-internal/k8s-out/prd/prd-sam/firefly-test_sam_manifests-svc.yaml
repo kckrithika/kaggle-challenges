@@ -125,7 +125,7 @@ items:
                       }
                   },
                   "password": "${rabbitMqDefaultPass#FromSecretService}",
-                  "port": 5672,
+                  "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
                   "template": {
@@ -510,7 +510,7 @@ items:
                       }
                   },
                   "password": "${rabbitMqDefaultPass#FromSecretService}",
-                  "port": 5672,
+                  "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
                   "template": {
@@ -868,7 +868,7 @@ items:
                       }
                   },
                   "password": "${rabbitMqDefaultPass#FromSecretService}",
-                  "port": 5672,
+                  "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
                   "template": {
@@ -1232,7 +1232,7 @@ items:
                       }
                   },
                   "password": "${rabbitMqDefaultPass#FromSecretService}",
-                  "port": 5672,
+                  "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
                   "template": {
