@@ -24,7 +24,7 @@ system:
 
     containers:
     - name: coreapp
-      image: tnrp/casam/coreapp:216_patch__16615500-0000120-1da9fcd3
+      image: tnrp/casam/coreapp:216_patch__16685310-0000121-38476ee0
 
       env:
         # DB info
@@ -189,7 +189,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: sfci/casam/coreapp_config_overrides:380407
+      image: sfci/casam/coreapp_config_overrides:6e2708
       env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na2.app
