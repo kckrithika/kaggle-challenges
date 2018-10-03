@@ -7,7 +7,6 @@ local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
          protocol: 'TCP',
          port: 8081,
          targetPort: 8081,
-         [if !firefly_feature_flags.is_slb_enabled then "nodePort"]: $.firefly[portName],
       }
   ),
   firefly:
