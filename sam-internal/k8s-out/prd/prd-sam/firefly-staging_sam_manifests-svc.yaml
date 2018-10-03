@@ -280,7 +280,7 @@ items:
             value: staging_sam_manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: staging_sam_manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:154
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:157
           imagePullPolicy: Always
           name: firefly-package
           ports:
@@ -665,7 +665,7 @@ items:
             value: staging_sam_manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: staging_sam_manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:154
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:157
           imagePullPolicy: Always
           name: firefly-package-singleton
           ports:
@@ -1017,7 +1017,7 @@ items:
             value: staging_sam_manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: staging_sam_manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:154
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:157
           imagePullPolicy: Always
           name: firefly-pullrequest
           ports:
@@ -1379,7 +1379,7 @@ items:
             value: staging_sam_manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: staging_sam_manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:154
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:157
           imagePullPolicy: Always
           name: firefly-promotion
           ports:
