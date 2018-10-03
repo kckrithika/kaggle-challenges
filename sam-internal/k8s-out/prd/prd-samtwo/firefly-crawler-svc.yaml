@@ -106,7 +106,6 @@ items:
   spec:
     ports:
     - name: admin-port
-      nodePort: 32085
       port: 8081
       protocol: TCP
       targetPort: 8081
