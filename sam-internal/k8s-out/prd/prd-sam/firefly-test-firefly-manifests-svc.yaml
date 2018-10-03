@@ -762,6 +762,9 @@ items:
     application.yml: |-
       {
           "appconfig": {
+              "artifactory": {
+                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net"
+              },
               "context-prefix": "",
               "docker": {
                   "connect-timeout": "480000ms",
@@ -995,7 +998,7 @@ items:
                 apiVersion: v1
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
-            value: "4"
+            value: "5"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
