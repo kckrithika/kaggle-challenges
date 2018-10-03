@@ -532,7 +532,7 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-singleton-test-manifests-configmap
+    name: firefly-package-singleton-tsm-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
@@ -544,7 +544,7 @@ items:
     labels:
       app: firefly-package-singleton
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-singleton-test-manifests-service
+    name: firefly-package-singleton-tsm-service
     namespace: firefly
   spec:
     ports:
@@ -561,7 +561,7 @@ items:
     labels:
       name: firefly-package-singleton
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-singleton-test-manifests-deployment
+    name: firefly-package-singleton-tsm-deployment
     namespace: firefly
   spec:
     replicas: 2
@@ -582,7 +582,7 @@ items:
         labels:
           name: firefly-package-singleton
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-package-singleton-test-manifests-deployment
+        name: firefly-package-singleton-tsm-deployment
         namespace: firefly
       spec:
         containers:
@@ -740,7 +740,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-package-singleton-test-manifests-configmap
+                name: firefly-package-singleton-tsm-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}

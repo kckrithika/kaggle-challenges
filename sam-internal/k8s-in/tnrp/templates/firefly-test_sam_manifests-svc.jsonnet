@@ -33,7 +33,7 @@ if configs.estate == "prd-sam" then
   },
   local packagesingleton = packagesvcsingleton {
        serviceConf:: super.serviceConf {
-           repoName: "test-manifests",
+           repoName: "tsm",
        },
        replicas:: 2,
        env:: super.env + [
