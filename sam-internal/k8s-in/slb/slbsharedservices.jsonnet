@@ -80,24 +80,24 @@
         name: "slb-node-api",
         image: slbimages.hypersdn,
         command: [
-            "/sdn/slb-node-api",
-            "--port=" + nodeApiPort,
-            "--configDir=" + slbconfigs.configDir,
-            "--log_dir=" + slbconfigs.logsDir,
-            "--netInterface=lo",
-            "--checkSentinel=true",
-            "--control.configProcSentinel=" + configProcSentinel,
-            "--control.sentinelExpiration=1800s",  # config processor's interval
-        ] + slbflights.getNodeApiServerSocketSettings()
-        + (if slbflights.mwSentinelEnabled then [
-                    "--checkMwSentinel=" + mwSentinelNeedsCheck,
-                    "--control.manifestWatcherSentinel=" + mwSentinel,
-                ] else []),
+                     "/sdn/slb-node-api",
+                     "--port=" + nodeApiPort,
+                     "--configDir=" + slbconfigs.configDir,
+                     "--log_dir=" + slbconfigs.logsDir,
+                     "--netInterface=lo",
+                     "--checkSentinel=true",
+                     "--control.configProcSentinel=" + configProcSentinel,
+                     "--control.sentinelExpiration=1800s",  # config processor's interval
+                 ] + slbflights.getNodeApiServerSocketSettings()
+                 + (if slbflights.mwSentinelEnabled then [
+                        "--checkMwSentinel=" + mwSentinelNeedsCheck,
+                        "--control.manifestWatcherSentinel=" + mwSentinel,
+                    ] else []),
         volumeMounts: configs.filter_empty([
-            slbconfigs.slb_volume_mount,
-            slbconfigs.logs_volume_mount,
-        ]
-        + if slbimages.phaseNum <= 1 || configs.estate == "prd-samtwo" then [slbconfigs.slb_config_volume_mount] else []),
+                                               slbconfigs.slb_volume_mount,
+                                               slbconfigs.logs_volume_mount,
+                                           ]
+                                           + if slbimages.phaseNum <= 1 || configs.estate == "prd-samtwo" then [slbconfigs.slb_config_volume_mount] else []),
     },
     slbCleanupConfig: {
         name: "slb-cleanup-config-processor",
@@ -139,10 +139,6 @@
                      "--period=5s",
                      "--netInterfaceName=eth0",
                      "--log_dir=" + slbconfigs.logsDir,
-                 ] + (if slbimages.hypersdn_build < 1098 then [
-                          configs.sfdchosts_arg,
-                      ] else []) +
-                 [
                      "--client.serverPort=" + nodeApiPort,
                      "--client.serverInterface=lo",
                  ] + (if $.dirSuffix == "slb-nginx-config-b" && slbimages.hypersdn_build >= 1061 then [
@@ -151,7 +147,13 @@
                  + [
                      "--nginxPodMode=" + nginxPodMode,
                  ]
-                 + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                 + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+                 + (
+                     if configs.estate == "prd-sam" then [
+                         "--maxDeleteVipCount=10",
+                     ] else []
+                 )
+        ,
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.sbin_volume_mount,
@@ -193,17 +195,22 @@
         name: "slb-iface-processor",
         image: slbimages.hypersdn,
         command: [
-            "/sdn/slb-iface-processor",
-            "--configDir=" + slbconfigs.configDir,
-            "--control.sentinelExpiration=120s",
-            "--period=5s",
-            "--metricsEndpoint=" + configs.funnelVIP,
-            "--log_dir=" + slbconfigs.logsDir,
-            configs.sfdchosts_arg,
-            "--readVipsFromIpvs=true",
-            "--client.serverPort=" + nodeApiPort,
-            "--client.serverInterface=lo",
-        ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                     "/sdn/slb-iface-processor",
+                     "--configDir=" + slbconfigs.configDir,
+                     "--control.sentinelExpiration=120s",
+                     "--period=5s",
+                     "--metricsEndpoint=" + configs.funnelVIP,
+                     "--log_dir=" + slbconfigs.logsDir,
+                     configs.sfdchosts_arg,
+                     "--readVipsFromIpvs=true",
+                     "--client.serverPort=" + nodeApiPort,
+                     "--client.serverInterface=lo",
+                 ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+                 + (
+                     if configs.estate == "prd-sam" then [
+                         "--maxDeleteVipCount=10",
+                     ] else []
+                 ),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
@@ -219,17 +226,17 @@
         name: "slb-manifest-watcher",
         image: slbimages.hypersdn,
         command: [
-            "/sdn/slb-manifest-watcher",
-            "--manifestOutputDir=" + slbconfigs.manifestDir,
-            "--tnrpEndpoint=" + (if configs.estate == "hnd-sam" then "https://ops0-piperepo2-1-hnd.ops.sfdc.net/" else configs.tnrpEndpoint),
-            "--hostnameOverride=$(NODE_NAME)",
-            "--log_dir=" + slbconfigs.logsDir,
-            configs.sfdchosts_arg,
-        ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
-        + (if slbflights.mwSentinelEnabled then [
-                    "--client.allowStale=true",
-                    "--control.manifestWatcherSentinel=" + mwSentinel,
-                ] else []),
+                     "/sdn/slb-manifest-watcher",
+                     "--manifestOutputDir=" + slbconfigs.manifestDir,
+                     "--tnrpEndpoint=" + (if configs.estate == "hnd-sam" then "https://ops0-piperepo2-1-hnd.ops.sfdc.net/" else configs.tnrpEndpoint),
+                     "--hostnameOverride=$(NODE_NAME)",
+                     "--log_dir=" + slbconfigs.logsDir,
+                     configs.sfdchosts_arg,
+                 ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+                 + (if slbflights.mwSentinelEnabled then [
+                        "--client.allowStale=true",
+                        "--control.manifestWatcherSentinel=" + mwSentinel,
+                    ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             configs.sfdchosts_volume_mount,
