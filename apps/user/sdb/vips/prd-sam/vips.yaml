@@ -1,7 +1,5 @@
 - lbname: koipond
   servers:
-   - sayonara1a-mnds1-1-prd.eng.sfdc.net
-   - sayonara1a-mnds1-2-prd.eng.sfdc.net
    - sayonara1a-mnds1-3-prd.eng.sfdc.net
   ports:
    - port: 80
