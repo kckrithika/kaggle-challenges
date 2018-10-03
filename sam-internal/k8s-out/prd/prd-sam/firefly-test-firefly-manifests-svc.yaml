@@ -269,7 +269,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "5"
+            value: "6"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -654,7 +654,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "3"
+            value: "4"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -1010,7 +1010,7 @@ items:
                 apiVersion: v1
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
-            value: "3"
+            value: "4"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
