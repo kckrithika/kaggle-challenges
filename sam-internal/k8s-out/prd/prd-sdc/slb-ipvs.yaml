@@ -86,6 +86,8 @@ spec:
         - --enablePersistence=false
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
+        - --healthcheck.riseCount=5
+        - --healthcheck.fallCount=2
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001235-68c41c3f
         name: slb-ipvs-processor
         securityContext:

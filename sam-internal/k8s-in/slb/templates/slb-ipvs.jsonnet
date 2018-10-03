@@ -133,7 +133,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--enablePersistence=false",
                         ] + (if slbflights.stockIpvsModules then [
                             "--sforceScheduler=false",
-                            ] else []) + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                            ] else []) + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+                            + slbflights.getIPVSHealthCheckRiseFallSettings(),
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
