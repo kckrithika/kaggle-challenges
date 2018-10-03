@@ -744,21 +744,6 @@ items:
     application.yml: |-
       {
           "appconfig": {
-              "artifactory": {
-                  "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
-                  "artifactory-content-repo-user-name": "svc_tnrp_ci",
-                  "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
-                  "artifactory-dev-host": "ops0-artifactrepo1-0-prd.data.sfdc.net",
-                  "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
-                  "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
-                  "artifactory-p2p-host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
-                  "artifactory-password": "${artifactoryPassword#FromSecretService}",
-                  "artifactory-user-name": "svc_tnrp_artifactory",
-                  "backoff-time": "1000ms",
-                  "connection-timeout": "20000ms",
-                  "max-retry": 3,
-                  "socket-timeout": "30000ms"
-              },
               "context-prefix": "",
               "docker": {
                   "connect-timeout": "480000ms",

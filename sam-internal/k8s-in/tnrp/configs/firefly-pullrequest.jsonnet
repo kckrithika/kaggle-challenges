@@ -42,7 +42,6 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
         'pipeline-manifest-json': '/tnrp/pipeline_manifest.json',
       },
       docker: dockerConfig,
-      artifactory: artifactoryConfig.base,
       'context-prefix': '',
       'health-check-repo': 'tnrpfirefly',
     },
