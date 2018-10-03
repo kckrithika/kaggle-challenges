@@ -34,7 +34,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --k8sapiserver=
         - --connPort=9125
-        - --monitorFrequency=180s
+        - --monitorFrequency=10s
         - --nginxWDmetricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --nginxWDhostnameOverride=$(NODE_NAME)
         env:
