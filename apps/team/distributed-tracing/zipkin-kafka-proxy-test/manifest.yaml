@@ -19,7 +19,7 @@ system:
               type: client
       containers:
       - name: zipkin-kafka-proxy-test
-        image: docker-all/dva/zipkin-kafka-proxy:28
+        image: docker-all/dva/zipkin-kafka-proxy:31
         env:
         - name: ZIPKIN_KAFKA_PROXY_HOST
           value: zipkin-kafka-proxy-test
