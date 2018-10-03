@@ -39,6 +39,6 @@ local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
       crawler_mgmt_nodeport: 32082,
 
       promotion_mgmt: 8081,
-      promotion_mgmt_nodeport: 32085,
+      promotion_mgmt_nodeport: 32083,
     },
 }
