@@ -25,7 +25,7 @@ system:
         secretName: mds-gdot-secrets-prd
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.3.65
+      image: sfci/metadata-cannon/metadata-service:0.4.55
       ports:
       # 9091 is for REST which is disabled in prod
       - containerPort: 9091
