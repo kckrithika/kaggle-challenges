@@ -4,6 +4,15 @@ set -e
 
 REPO_OWNER=sam
 
+if [ -z "$FIREFLY" ]; then
+   OPTDIR=/opt
+else
+   echo "*** EXECUTING IN $FIREFLY ENVIRONMENT"
+   OPTDIR=''
+   yum install -y slb-manifest-builder
+fi
+
+
 #exitIfMergeCommitFound checks if there are any
 #merge commits introduced by the current branch
 #which are not present in the origin/master.
@@ -31,7 +40,7 @@ exitIfMergeCommitFound() {
 
 exitIfMergeCommitFound
 
-/opt/sam/aclrepo  --repo="$TNRP_PRODUCT" --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER --moratoriumEnabled=true --moratoriumBegin="2018-09-17T04:01:00Z" --moratoriumEnd="2018-09-29T19:15:59Z" --MoratoriumAccessDisabledMessage="Dreamforce moratorium is in effect (Starts Monday, September 17, 2018 12:01AM EDT, Ends September 29, 11:59PM EDT). During the moratorium all PRs require approval by an admin, and admins are required to ensure that changes properly follow the moratorium guidelines. For more information see http://sfdc.co/sam-admins "
+$OPTDIR/sam/aclrepo  --repo="$TNRP_PRODUCT" --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER --moratoriumEnabled=true --moratoriumBegin="2018-09-17T04:01:00Z" --moratoriumEnd="2018-09-29T19:15:59Z" --MoratoriumAccessDisabledMessage="Dreamforce moratorium is in effect (Starts Monday, September 17, 2018 12:01AM EDT, Ends September 29, 11:59PM EDT). During the moratorium all PRs require approval by an admin, and admins are required to ensure that changes properly follow the moratorium guidelines. For more information see http://sfdc.co/sam-admins "
 
 cd /tmp
 rm -rf manifests || true
@@ -39,7 +48,7 @@ git clone git@git.soma.salesforce.com:sam/${TNRP_PRODUCT}.git manifests
 
 cd -
 
-/opt/sam/evaluate-pr -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb /opt/sam/sam-manifest-builder -repo-name="$TNRP_PRODUCT" -unvalidated-image-prefixes "minikube" -full-schema
+$OPTDIR/sam/evaluate-pr -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb $OPTDIR/sam/sam-manifest-builder -repo-name="$TNRP_PRODUCT" -unvalidated-image-prefixes "minikube" -full-schema
 
 # Validate vips.yaml files for SLB, this does not copy any files to output
 /opt/slb/slb-manifest-builder -root $PWD -output $PWD -validate -v=1

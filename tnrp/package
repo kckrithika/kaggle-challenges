@@ -11,6 +11,15 @@ git version
 git log -n 1
 # End of standard setup
 
+if [ -z "$FIREFLY" ]; then
+   OPTDIR=/opt
+else
+   echo "*** EXECUTING IN $FIREFLY ENVIRONMENT"
+   OPTDIR=''
+   yum install -y slb-manifest-builder
+fi
+
+
 while getopts ":o:" opt; do
   case $opt in
     o)
@@ -28,13 +37,13 @@ while getopts ":o:" opt; do
 done
 
 #Generate git history file
-/opt/sam/manifestctl manifest-git-info --inputDir . -outputPath ${OUTPUT_DIR}/git-info.yaml -gitHistoryMode lib -alsologtostderr
+$OPTDIR/sam/manifestctl manifest-git-info --inputDir . -outputPath ${OUTPUT_DIR}/git-info.yaml -gitHistoryMode lib -alsologtostderr
  # Disable estates check for now until we work out the access token stuff
-/opt/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -tnrppipelinelabel ${TNRP_PIPELINE_LABEL} -root . -validationExceptionsFile=./sam-internal/validation-whitelist.yaml --swaggerspecdir=/opt/sam/swagger-spec -imagefileoutdir . -internalpassthrough k8s-out,sdn,authorizer -gitHistoryInfoFile ${OUTPUT_DIR}/git-info.yaml -skip-sam-internals -alsologtostderr
+$OPTDIR/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -tnrppipelinelabel ${TNRP_PIPELINE_LABEL} -root . -validationExceptionsFile=./sam-internal/validation-whitelist.yaml --swaggerspecdir=$OPTDIR/sam/swagger-spec -imagefileoutdir . -internalpassthrough k8s-out,sdn,authorizer -gitHistoryInfoFile ${OUTPUT_DIR}/git-info.yaml -skip-sam-internals -alsologtostderr
 
-/opt/sam/manifestctl build-repo -inputManifestDir . -outputDir ${OUTPUT_DIR} -alsologtostderr
+$OPTDIR/sam/manifestctl build-repo -inputManifestDir . -outputDir ${OUTPUT_DIR} -alsologtostderr
 
-/opt/sam/manifestctl compare-manifests -oldManifestDir=${OUTPUT_DIR}/goal-state -newManifestDir=${OUTPUT_DIR}/goal
+$OPTDIR/sam/manifestctl compare-manifests -oldManifestDir=${OUTPUT_DIR}/goal-state -newManifestDir=${OUTPUT_DIR}/goal
 
 # Copy over vips.yaml files for SLB
 /opt/slb/slb-manifest-builder -root . -output ${OUTPUT_DIR} -v=2
