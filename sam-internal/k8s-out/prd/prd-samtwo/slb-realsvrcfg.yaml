@@ -74,7 +74,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-realsvrcfg
         - --sleepTime=100ms
         - --processKnEConfigs=true
-        - --kneConfigDir=/var/slb/kneconfigs/prd
+        - --kneConfigDir=/var/slb/kneconfigs/testkneconfigs
         - --kneDomainName=slb.sfdc.net
         - --livenessProbePort=12085
         - --shouldRemoveConfig=true
