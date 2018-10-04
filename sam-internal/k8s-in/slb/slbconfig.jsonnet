@@ -100,7 +100,6 @@
         servicesToLbOverride: {
             "prd-sdc": "",
             "prd-sam": "",
-            "prd-samtwo": "",
         },
 
         servicesNotToLbOverride: {
@@ -140,7 +139,6 @@
             "prd-samdev": "name=slb-vip-watchdog",
             "prd-sam_storage": "name=slb-vip-watchdog",
             "prd-sam_storagedev": "name=slb-vip-watchdog",
-            "prd-samtwo": "",
         },
         useVipLabelToSelectSvcs: {
             "prd-sdc": true,
@@ -159,7 +157,7 @@
             "prd-samdev": "",
             "prd-sam_storage": "",
             "prd-sam_storagedev": "",
-            "prd-samtwo": "",
+            "prd-samtwo": "slb.sfdc.net",
         } + {
             [k + "-sam"]: "slb.sfdc.net"
             for k in $.prodKingdoms + ["prd"]
@@ -182,7 +180,7 @@
             "prd-samdev": "/var/slb/kneconfigs/testkneconfigs",
             "prd-sam_storage": "/var/slb/kneconfigs/testkneconfigs",
             "prd-sam_storagedev": "/var/slb/kneconfigs/testkneconfigs",
-            "prd-samtwo": "/var/slb/kneconfigs/testkneconfigs",
+            "prd-samtwo": "/var/slb/kneconfigs/prd",
         } + {
             [k + "-sam"]: "/var/slb/kneconfigs/" + k
             for k in $.prodKingdoms + ["prd"]

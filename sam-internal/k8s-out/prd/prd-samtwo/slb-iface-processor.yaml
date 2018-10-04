@@ -78,8 +78,8 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --sleepTime=100ms
         - --processKnEConfigs=true
-        - --kneConfigDir=/var/slb/kneconfigs/testkneconfigs
-        - --kneDomainName=
+        - --kneConfigDir=/var/slb/kneconfigs/prd
+        - --kneDomainName=slb.sfdc.net
         - --livenessProbePort=12087
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
