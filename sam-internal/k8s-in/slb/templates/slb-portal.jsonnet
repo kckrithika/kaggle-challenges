@@ -9,7 +9,7 @@ local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile,
 
 local certDirs = ["cert3"];
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
+if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-portal",

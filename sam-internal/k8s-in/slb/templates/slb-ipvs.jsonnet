@@ -6,7 +6,7 @@ local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-ipvs" };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ipvs" };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-ipvs" };
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
+if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-ipvs",

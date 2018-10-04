@@ -17,9 +17,9 @@
     slbPortalTemplatePath: "/sdn/webfiles",
     prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd', 'cdg', 'fra'],
     slbKingdoms: $.prodKingdoms + ["prd"],
-    prodEstates: [k + "-sam" for k in $.slbKingdoms],
-    testEstateList: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage', 'prd-sam_storagedev', 'prd-samtwo'],
-    slbEstates: $.prodEstates + $.testEstateList,
+    prodEstates: [k + "-sam" for k in $.slbKingdoms] + ['prd-samtwo'],
+    testEstates: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
+    slbEstates: $.prodEstates + $.testEstates,
     samrole: "samapp.slb",
     maxDeleteDefault: 10,
 
@@ -110,7 +110,7 @@
             "prd-sdc": "slb-bravo-svc",
             "prd-sam": "slb-bravo-svc,csrlb,controlplane-ptest,cyanlb,controlplane-ptest-lb",
         } + set_value_to_all_in_list_skip("", $.prodEstates, "prd-sam")
-          + set_value_to_all_in_list_skip("", $.testEstateList, "prd-sdc"),
+          + set_value_to_all_in_list_skip("", $.testEstates, "prd-sdc"),
 
         podLabelList: {
             "prd-sdc": "name=slb-node-api, name=slb-ipvs, name=slb-portal, name=slb-realsvrcfg, name=slb-dns-register, name=slb-node-os-stats, name=slb-vip-watchdog, name=slb-nginx-config-b, name=slb-ipvsdata-watchdog, name=slb-iface-processor, name=slb-echo-client, name=slb-echo-server, name=slb-cleanup, name=slb-canary-proxy-tcp, name=slb-canary-proxy-http, name=slb-canary-passthrough-tls, name=slb-canary-passthrough-host-network, name=slb-canary, name=slb-bravo",
@@ -123,7 +123,7 @@
         useVipLabelToSelectSvcs: set_value_to_all_in_list(true, $.slbEstates),
         kneDomainName: {
             "prd-sdc": "prd-sdc.slb.sfdc.net",
-        } + set_value_to_all_in_list_skip("", $.testEstateList, "prd-sdc")
+        } + set_value_to_all_in_list_skip("", $.testEstates, "prd-sdc")
           + set_value_to_all_in_list("slb.sfdc.net", $.prodEstates),
 
         processKnEConfigs: {
@@ -148,7 +148,7 @@
         },
         canaryMaxParallelism: {
             "prd-samtwo": 2,
-        } + set_value_to_all_in_list_skip(1, $.testEstateList, "prd-samtwo")
+        } + set_value_to_all_in_list_skip(1, $.testEstates, "prd-samtwo")
           + set_value_to_all_in_list(2, $.prodEstates)
         + {
             "fra-sam": 4,
@@ -293,7 +293,9 @@
     slbProdCluster: estate in { [k]: 1 for k in $.prodEstates },
     slbInKingdom: kingdom in { [k]: 1 for k in $.slbKingdoms },
     slbInProdKingdom: kingdom in { [k]: 1 for k in $.prodKingdoms },
-    isTestEstate: estate in { [e]: 1 for e in $.testEstateList },
+    isTestEstate: estate in { [e]: 1 for e in $.testEstates },
+    isProdEstate: estate in { [e]: 1 for e in $.prodEstates },
+    isSlbEstate: estate in { [e]: 1 for e in $.slbEstates },
 
     sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
     sdn_watchdog_emailrec: "slb@salesforce.com",

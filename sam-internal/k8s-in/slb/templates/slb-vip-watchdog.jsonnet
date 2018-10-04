@@ -5,7 +5,7 @@ local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-vip-
 local slbports = import "slbports.jsonnet";
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-vip-watchdog" };
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-samtwo" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
+if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-vip-watchdog",

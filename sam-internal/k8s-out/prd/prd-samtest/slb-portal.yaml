@@ -2,16 +2,17 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-vip-watchdog
-  name: slb-vip-watchdog
+    name: slb-portal
+    sam.data.sfdc.net/owner: slb
+  name: slb-portal
   namespace: sam-system
 spec:
   minReadySeconds: 30
   replicas: 1
   selector:
     matchLabels:
-      apptype: monitoring
-      name: slb-vip-watchdog
+      name: slb-portal
+      sam.data.sfdc.net/owner: slb
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -20,87 +21,68 @@ spec:
   template:
     metadata:
       labels:
-        apptype: monitoring
-        name: slb-vip-watchdog
+        name: slb-portal
+        sam.data.sfdc.net/owner: slb
       namespace: sam-system
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: slb-service
-                operator: NotIn
-                values:
-                - slb-ipvs
-                - slb-nginx-a
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: name
-                operator: In
-                values:
-                - slb-ipvs
-                - slb-ipvs-a
-                - slb-ipvs-b
-                - slb-nginx-config-a
-                - slb-vip-watchdog
-            topologyKey: kubernetes.io/hostname
       containers:
       - command:
-        - /sdn/slb-vip-watchdog
-        - --log_dir=/host/data/slb/logs/slb-vip-watchdog
-        - --hostnameOverride=$(NODE_NAME)
-        - --hostsConfigFile=/sfdchosts/hosts.json
-        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --httpTimeout=5s
-        - --vipLoop=1
-        - --monitorFrequency=10s
+        - /sdn/slb-portal
+        - --hostname=$(NODE_NAME)
+        - --templatePath=/sdn/webfiles
+        - --port=9112
         - --client.serverInterface=lo
-        - --healthPathCheck=true
-        - --metricsBatchTimeout=30s
-        - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
+        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
+        - --log_dir=/host/data/slb/logs/slb-portal
+        - --cafile=/etc/pki_service/ca/cabundle.pem
+        - --slbEstate=prd-samtest
+        - --client.socketDir=/host/data/slb/config/slb-portal
         - --client.dialSocket=true
-        - --followRedirect=false
-        - --slaRequiresHealthProbes=true
         env:
         - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001239-d75a30e0
-        name: slb-vip-watchdog
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9112
+          initialDelaySeconds: 30
+          periodSeconds: 3
+          timeoutSeconds: 30
+        name: slb-portal
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/slb-vip-watchdog
-          name: var-logs-volume
-        - mountPath: /sfdchosts
-          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
       - command:
         - /sdn/slb-config-processor
-        - --configDir=/host/data/slb/config/slb-vip-watchdog
+        - --configDir=/host/data/slb/config/slb-portal
         - --period=1800s
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
-        - --subnet=10.254.252.0/22
+        - --subnet=10.251.129.241-242
         - --k8sapiserver=
         - --serviceList=
         - --useVipLabelToSelectSvcs=true
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs/slb-vip-watchdog
+        - --log_dir=/host/data/slb/logs/slb-portal
         - --sleepTime=100ms
-        - --processKnEConfigs=true
-        - --kneConfigDir=/var/slb/kneconfigs/prd
-        - --kneDomainName=slb.sfdc.net
+        - --processKnEConfigs=false
+        - --kneConfigDir=/var/slb/kneconfigs/testkneconfigs
+        - --kneDomainName=
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
-        - --control.configProcSentinel=/host/data/slb/config/slb-vip-watchdog/slb-config-proc.sentinel
+        - --control.configProcSentinel=/host/data/slb/config/slb-portal/slb-config-proc.sentinel
         - --alwaysPopulateRealServers=true
         env:
         - name: KUBECONFIG
@@ -125,9 +107,9 @@ spec:
           name: maddog-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/slb-vip-watchdog
+        - mountPath: /host/data/slb/config/slb-portal
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/slb-vip-watchdog
+        - mountPath: /host/data/slb/logs/slb-portal
           name: var-logs-volume
         - mountPath: /data/certs
           name: certs
@@ -139,10 +121,10 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=1h
-        - --filesDirToCleanup=/host/data/slb/config/slb-vip-watchdog
+        - --filesDirToCleanup=/host/data/slb/config/slb-portal
         - --shouldSkipServiceRecords=true
         - --shouldNotDeleteAllFiles=true
-        - --log_dir=/host/data/slb/logs/slb-vip-watchdog
+        - --log_dir=/host/data/slb/logs/slb-portal
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
@@ -153,38 +135,36 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/slb-vip-watchdog
+        - mountPath: /host/data/slb/config/slb-portal
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/slb-vip-watchdog
+        - mountPath: /host/data/slb/logs/slb-portal
           name: var-logs-volume
       - command:
         - /sdn/slb-node-api
         - --port=9130
-        - --configDir=/host/data/slb/config/slb-vip-watchdog
-        - --log_dir=/host/data/slb/logs/slb-vip-watchdog
+        - --configDir=/host/data/slb/config/slb-portal
+        - --log_dir=/host/data/slb/logs/slb-portal
         - --netInterface=lo
         - --checkSentinel=true
-        - --control.configProcSentinel=/host/data/slb/config/slb-vip-watchdog/slb-config-proc.sentinel
+        - --control.configProcSentinel=/host/data/slb/config/slb-portal/slb-config-proc.sentinel
         - --control.sentinelExpiration=1800s
         - --listenOnSocket=true
         - --readOnly=false
         - --checkMwSentinel=true
-        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-vip-watchdog/slb-manifest-watcher.sentinel
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal/slb-manifest-watcher.sentinel
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001239-d75a30e0
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/slb-vip-watchdog
+        - mountPath: /host/data/slb/logs/slb-portal
           name: var-logs-volume
-        - mountPath: /host/data/slb/config/slb-vip-watchdog
-          name: var-config-volume
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=48h
-        - --log_dir=/host/data/slb/logs/slb-vip-watchdog/cleanup
-        - --filesDirToCleanup=/host/data/slb/logs/slb-vip-watchdog
+        - --log_dir=/host/data/slb/logs/slb-portal/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-portal
         - --shouldSkipServiceRecords=false
         - --shouldNotDeleteAllFiles=false
         env:
@@ -197,26 +177,25 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/slb-vip-watchdog
+        - mountPath: /host/data/slb/config/slb-portal
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/slb-vip-watchdog
+        - mountPath: /host/data/slb/logs/slb-portal
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /host/data/slb/logs/slb-vip-watchdog/cleanup
+        - mountPath: /host/data/slb/logs/slb-portal/cleanup
           name: var-cleanup-logs-volume
       - command:
         - /sdn/slb-manifest-watcher
-        - --manifestOutputDir=/host/data/slb/manifests/slb-vip-watchdog
+        - --manifestOutputDir=/host/data/slb/manifests/slb-portal
         - --tnrpEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/
         - --hostnameOverride=$(NODE_NAME)
-        - --log_dir=/host/data/slb/logs/slb-vip-watchdog
+        - --log_dir=/host/data/slb/logs/slb-portal
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
+        - --client.socketDir=/host/data/slb/config/slb-portal
         - --client.dialSocket=true
-        - --maxDeleteLimit=10
         - --client.allowStale=true
-        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-vip-watchdog/slb-manifest-watcher.sentinel
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal/slb-manifest-watcher.sentinel
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -239,23 +218,23 @@ spec:
           name: maddog-certs
       dnsPolicy: Default
       nodeSelector:
-        pool: prd-slb
+        slb-dns-register: "true"
       volumes:
       - hostPath:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs/slb-vip-watchdog
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/slb/config/slb-portal
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-portal
         name: var-logs-volume
       - configMap:
           name: sfdchosts
         name: sfdchosts
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
-          path: /data/slb/config/slb-vip-watchdog
-        name: var-config-volume
       - hostPath:
           path: /data/certs
         name: certs
@@ -263,5 +242,5 @@ spec:
           path: /etc/kubernetes
         name: kubeconfig
       - hostPath:
-          path: /data/slb/logs/slb-vip-watchdog/cleanup
+          path: /data/slb/logs/slb-portal/cleanup
         name: var-cleanup-logs-volume

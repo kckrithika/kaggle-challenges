@@ -4,7 +4,11 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local portconfigs = import "portconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 
+<<<<<<< HEAD
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
+=======
+if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymentBase("slb") {
+>>>>>>> SLBTwo as Prod estate + refactoring.
     metadata: {
         labels: {
             name: "slb-canary",
