@@ -5,7 +5,7 @@ local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
-local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b" };
+local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b", certDirs:: ['cert1', 'cert2'] };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 
 if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploymentBase("slb") {
@@ -26,7 +26,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
                 annotations: {
-                    "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubCertsAnnotation(), " "),
+                    "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(), " "),
                 },
             },
             spec: {
