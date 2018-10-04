@@ -3,6 +3,8 @@
     local kingdom = std.extVar("kingdom"),
     local slbimages = import "slbimages.jsonnet",
     local configs = import "config.jsonnet",
+    local set_value_to_all_in_list(v, list) = { [k]: v for k in list },
+    local set_value_to_all_in_list_skip(v, list, s) = { [k]: v for k in list if k != s },
 
     dirSuffix:: "",
     slbDir: "/host/data/slb",
@@ -14,14 +16,17 @@
     ipvsMarkerFile: self.slbDir + "/ipvs.marker",
     slbPortalTemplatePath: "/sdn/webfiles",
     prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd', 'cdg', 'fra'],
+    slbKingdoms: $.prodKingdoms + ["prd"],
+    prodEstates: [k + "-sam" for k in $.slbKingdoms],
     testEstateList: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage', 'prd-sam_storagedev', 'prd-samtwo'],
+    slbEstates: $.prodEstates + $.testEstateList,
     samrole: "samapp.slb",
     maxDeleteDefault: 10,
 
     perCluster: {
         ddiService: {
             [k]: "https://ddi-api-" + k + ".data.sfdc.net"
-            for k in $.prodKingdoms + ["prd"]
+            for k in $.slbKingdoms
         },
 
         subnet: {
@@ -86,17 +91,8 @@
         },
 
         serviceList: {
-            "prd-sdc": "",
-            "prd-samtest": "",
-            "prd-samdev": "",
-            "prd-sam_storage": "",
-            "prd-sam_storagedev": "",
             "prd-sam": "csrlb,controlplane-ptest",
-            "prd-samtwo": "",
-        } + {
-            [k + "-sam"]: ""
-            for k in $.prodKingdoms
-        },
+        } + set_value_to_all_in_list_skip("", $.slbEstates, "prd-sam"),
 
         servicesToLbOverride: {
             "prd-sdc": "",
@@ -108,30 +104,13 @@
             "prd-sam": "slb-canary-proxy-http-service,slb-alpha-svc,slb-bravo-svc,slb-canary-service",
         },
 
-        namespace: {
-            "prd-sdc": "",
-            "prd-samtest": "",
-            "prd-samdev": "",
-            "prd-sam_storage": "",
-            "prd-sam_storagedev": "",
-            "prd-samtwo": "",
-        } + {
-            [k + "-sam"]: ""
-            for k in $.prodKingdoms + ["prd"]
-        },
+        namespace: set_value_to_all_in_list("", $.slbEstates),
 
         useProxyServicesList: {
             "prd-sdc": "slb-bravo-svc",
-            "prd-samtest": "",
-            "prd-samdev": "",
-            "prd-sam_storage": "",
-            "prd-sam_storagedev": "",
             "prd-sam": "slb-bravo-svc,csrlb,controlplane-ptest,cyanlb,controlplane-ptest-lb",
-            "prd-samtwo": "",
-        } + {
-            [k + "-sam"]: ""
-            for k in $.prodKingdoms
-        },
+        } + set_value_to_all_in_list_skip("", $.prodEstates, "prd-sam")
+          + set_value_to_all_in_list_skip("", $.testEstateList, "prd-sdc"),
 
         podLabelList: {
             "prd-sdc": "name=slb-node-api, name=slb-ipvs, name=slb-portal, name=slb-realsvrcfg, name=slb-dns-register, name=slb-node-os-stats, name=slb-vip-watchdog, name=slb-nginx-config-b, name=slb-ipvsdata-watchdog, name=slb-iface-processor, name=slb-echo-client, name=slb-echo-server, name=slb-cleanup, name=slb-canary-proxy-tcp, name=slb-canary-proxy-http, name=slb-canary-passthrough-tls, name=slb-canary-passthrough-host-network, name=slb-canary, name=slb-bravo",
@@ -141,40 +120,21 @@
             "prd-sam_storage": "name=slb-vip-watchdog",
             "prd-sam_storagedev": "name=slb-vip-watchdog",
         },
-        useVipLabelToSelectSvcs: {
-            "prd-sdc": true,
-            "prd-samtest": true,
-            "prd-samdev": true,
-            "prd-sam_storage": true,
-            "prd-sam_storagedev": true,
-            "prd-samtwo": true,
-        } + {
-            [k + "-sam"]: true
-            for k in $.prodKingdoms + ["prd"]
-        },
+        useVipLabelToSelectSvcs: set_value_to_all_in_list(true, $.slbEstates),
         kneDomainName: {
             "prd-sdc": "prd-sdc.slb.sfdc.net",
-            "prd-samtest": "",
-            "prd-samdev": "",
-            "prd-sam_storage": "",
-            "prd-sam_storagedev": "",
-            "prd-samtwo": "slb.sfdc.net",
-        } + {
-            [k + "-sam"]: "slb.sfdc.net"
-            for k in $.prodKingdoms + ["prd"]
-        },
+        } + set_value_to_all_in_list_skip("", $.testEstateList, "prd-sdc")
+          + set_value_to_all_in_list("slb.sfdc.net", $.prodEstates),
+
         processKnEConfigs: {
             "prd-sdc": true,
             "prd-samtest": false,
             "prd-samdev": false,
             "prd-sam_storage": false,
             "prd-sam_storagedev": false,
-            "prd-sam": true,
             "prd-samtwo": true,
-        } + {
-            [k + "-sam"]: true
-            for k in $.prodKingdoms
-        },
+        } + set_value_to_all_in_list(true, $.prodEstates),
+
         kneConfigDir: {
             "prd-sdc": "/var/slb/kneconfigs/testkneconfigs",
             "prd-samtest": "/var/slb/kneconfigs/testkneconfigs",
@@ -184,20 +144,13 @@
             "prd-samtwo": "/var/slb/kneconfigs/testkneconfigs",
         } + {
             [k + "-sam"]: "/var/slb/kneconfigs/" + k
-            for k in $.prodKingdoms + ["prd"]
+            for k in $.slbKingdoms
         },
         canaryMaxParallelism: {
-            "prd-sdc": 1,
-            "prd-samtest": 1,
-            "prd-samdev": 1,
-            "prd-sam_storage": 1,
-            "prd-sam_storagedev": 1,
-            "prd-sam": 2,
             "prd-samtwo": 2,
-        } + {
-            [k + "-sam"]: 2
-            for k in $.prodKingdoms
-        } + {
+        } + set_value_to_all_in_list_skip(1, $.testEstateList, "prd-samtwo")
+          + set_value_to_all_in_list(2, $.prodEstates)
+        + {
             "fra-sam": 4,
             "cdg-sam": 4,
         },
@@ -337,8 +290,8 @@
     servicesToLbOverride: self.perCluster.servicesToLbOverride[estate],
     servicesNotToLbOverride: self.perCluster.servicesNotToLbOverride[estate],
     canaryMaxParallelism: self.perCluster.canaryMaxParallelism[estate],
-    slbProdCluster: estate in { [k + "-sam"]: 1 for k in $.prodKingdoms + ["prd"] },
-    slbInKingdom: kingdom in { [k]: 1 for k in $.prodKingdoms + ["prd"] },
+    slbProdCluster: estate in { [k]: 1 for k in $.prodEstates },
+    slbInKingdom: kingdom in { [k]: 1 for k in $.slbKingdoms },
     slbInProdKingdom: kingdom in { [k]: 1 for k in $.prodKingdoms },
     isTestEstate: estate in { [e]: 1 for e in $.testEstateList },
 
