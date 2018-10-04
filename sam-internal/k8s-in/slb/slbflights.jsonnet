@@ -31,7 +31,7 @@
 
     getDnsPolicy():: (if kubeDnsEnabled then {} else { dnsPolicy: "Default" }),
 
-    getSimpleDiffAndNewConfigGeneratorIfEnabled():: (if slbimages.phaseNum <= 1 then [
+    getSimpleDiffAndNewConfigGeneratorIfEnabled():: (if slbimages.phaseNum <= 2 then [
                                                      "--enableSimpleDiff=true",
                                                      "--newConfigGenerator=true",
                                                      "--control.nginxReloadSentinel=" + slbconfigs.slbDir + "/nginx/config/nginx.marker",
