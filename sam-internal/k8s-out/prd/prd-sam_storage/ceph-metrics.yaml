@@ -52,10 +52,6 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
-          - name: MC_ZK_SERVERS
-            value: sfstore-zk.slb.sfdc.net
-          - name: MC_PORT
-            value: "8001"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000182-ebb4867b
           imagePullPolicy: IfNotPresent
           name: sfms
@@ -150,10 +146,6 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
-          - name: MC_ZK_SERVERS
-            value: sfstore-zk.slb.sfdc.net
-          - name: MC_PORT
-            value: "8001"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000182-ebb4867b
           imagePullPolicy: IfNotPresent
           name: sfms
