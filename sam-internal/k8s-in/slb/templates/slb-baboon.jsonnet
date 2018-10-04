@@ -5,7 +5,7 @@ local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-babo
 local portconfigs = import "slbports.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 
-if (slbconfigs.isTestEstate && configs.estate != "prd-sam_storagedev") || configs.estate == "prd-sam" then configs.deploymentBase("slb") {
+if slbconfigs.isTestEstate || configs.estate == "prd-sam" then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-baboon",
