@@ -28,17 +28,11 @@ system:
         name: es-transport
 
       livenessProbe:
-        #tcpSocket:
-        #  port: 9200
-        #initialDelaySeconds: 15
-        #periodSeconds: 10
-        #failureThreshold: 100
-        exec:
-            # TODO: Check if process is running?
-            command:
-            - /bin/true
-        initialDelaySeconds: 5
-        periodSeconds: 5
+        tcpSocket:
+         port: 9200
+        initialDelaySeconds: 15
+        periodSeconds: 10
+        failureThreshold: 100
     #volumes:
     #- name: elasticsearch-persistent-storage
     #  hostPath:
