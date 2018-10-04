@@ -1,6 +1,6 @@
 # lbname specifies the unqualified VIP name
 - lbname: ops0-stride1-0-xrd
-  customLbName: ops0-stride1-0-xrd
+  customlbname: ops0-stride1-0-xrd
 
   # servers specifies the pool members for the VIP
   servers:
