@@ -168,8 +168,8 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --sleepTime=100ms
         - --processKnEConfigs=true
-        - --kneConfigDir=/var/slb/kneconfigs/testkneconfigs
-        - --kneDomainName=
+        - --kneConfigDir=/var/slb/kneconfigs/prd
+        - --kneDomainName=slb.sfdc.net
         - --livenessProbePort=12082
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
