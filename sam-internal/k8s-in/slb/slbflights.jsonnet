@@ -45,4 +45,7 @@
             "--healthcheck.fallCount=2",
         ] else []),
 
+    getCheckDuplicateVipSettings():: (if slbimages.phaseNum <= 1 then [
+            "--checkDuplicateVips=true",
+    ] else []),
 }
