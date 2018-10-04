@@ -120,7 +120,9 @@
                     "*.data.sfdc.net",
                     "*.kms.slb.sfdc.net",
                     "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
-                ],
+                ] + if configs.estate == "prd-sam" then [
+                    "*.retail-rsui." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+                ] else [],
             },
             {
                 name: "cert2",
