@@ -180,3 +180,13 @@ system:
         targetport: 15372
       - port: 7020
         targetport: 7020
+  - lbname: rsui-standalone-l7lb
+    function: rsui-standalone
+    slbEnabled: true
+    ports:
+      - port: 443
+        targetport: 7022
+        tls: true
+        lbtype: http
+        reencrypt: true
+
