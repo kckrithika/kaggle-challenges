@@ -181,7 +181,7 @@
      healthpath: "/artifactory/api/system/ping"
      healthprotocol: "http"
 - lbname: ops0-artifactrepo2-0-prd
-  # The customlbname ensures that the VIP retains its existing DNS name of ops0-artifactrepo1-0-prd.slb.sfdc.net
+  # The customlbname ensures that the VIP retains its existing DNS name of ops0-artifactrepo2-0-prd.slb.sfdc.net
   customlbname: ops0-artifactrepo2-0-prd
   servers:
    - ops0-artifactrepo1-1-prd.eng.sfdc.net
