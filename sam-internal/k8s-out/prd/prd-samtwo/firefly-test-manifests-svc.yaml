@@ -269,7 +269,7 @@ items:
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
-            value: manifests
+            value: test-manifests
           - name: PACKAGE_QUEUE
             value: test-manifests.package
           - name: PROMOTION_QUEUE

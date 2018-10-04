@@ -14,7 +14,7 @@ if configs.estate == "prd-samtwo" then
         env:: super.env + [
             {
                 name: "INSTANCE_TYPE",
-                value: "manifests",
+                value: "test-manifests",
             },
             {
                 name: "PACKAGE_QUEUE",
