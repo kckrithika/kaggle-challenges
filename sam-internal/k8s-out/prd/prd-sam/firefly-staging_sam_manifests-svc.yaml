@@ -763,7 +763,9 @@ items:
       {
           "appconfig": {
               "artifactory": {
-                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net"
+                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-password": "${artifactoryPassword#FromSecretService}",
+                  "artifactory-user-name": "svc_tnrp_artifactory"
               },
               "context-prefix": "",
               "docker": {
@@ -998,7 +1000,7 @@ items:
                 apiVersion: v1
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
-            value: "5"
+            value: "6"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
