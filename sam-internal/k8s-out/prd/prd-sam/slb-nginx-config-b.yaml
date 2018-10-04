@@ -36,7 +36,8 @@ spec:
               "*.soma.salesforce.com",
               "*.data.sfdc.net",
               "*.kms.slb.sfdc.net",
-              "*.moe.prd-sam.prd.slb.sfdc.net"
+              "*.moe.prd-sam.prd.slb.sfdc.net",
+              "*.retail-rsui.prd-sam.prd.slb.sfdc.net"
              ]
             },
             {
