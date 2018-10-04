@@ -3,7 +3,7 @@
   customname: swarm
   servers:
     - scmvm1scm-swarm1-1-prd.eng.sfdc.net
-    - cmvm1scm-swarm1-1-prd.eng.sfdc.net
+    - scmvm1scm-swarm1-2-prd.eng.sfdc.net
   ports:
     - port: 80
       targetport: 80
@@ -23,7 +23,7 @@
 - lbname: swarm-bck
   customname: swarm-bck
   servers:
-    - cmvm1scm-swarm2-1-prd.eng.sfdc.net
+    - scmvm1scm-swarm2-1-prd.eng.sfdc.net
     - scmvm1scm-swarm2-2-prd.eng.sfdc.net
   ports:
     - port: 80
