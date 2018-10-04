@@ -84,9 +84,6 @@ spec:
         - --maxDeleteServiceCount=10
         - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
         - --client.dialSocket=true
-        - --enableSimpleDiff=true
-        - --newConfigGenerator=true
-        - --control.nginxReloadSentinel=/host/data/slb/nginx/config/nginx.marker
         env:
         - name: NODE_NAME
           valueFrom:
