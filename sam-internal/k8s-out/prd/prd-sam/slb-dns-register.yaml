@@ -36,7 +36,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-dns-register
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --subnet=10.251.196.0-255,10.251.197.0-255,10.251.198.0-255,10.251.199.0-239
+        - --subnet=10.251.196.0/22
         - --client.serverPort=12088
         - --client.serverInterface=lo
         - --restrictedSubnets=,10.251.196.91/32,10.251.196.42/32,10.251.196.111/32,10.251.196.44/32
@@ -63,7 +63,7 @@ spec:
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
-        - --subnet=10.251.196.0-255,10.251.197.0-255,10.251.198.0-255,10.251.199.0-239
+        - --subnet=10.251.196.0/22
         - --k8sapiserver=
         - --serviceList=csrlb,controlplane-ptest
         - --useVipLabelToSelectSvcs=true
