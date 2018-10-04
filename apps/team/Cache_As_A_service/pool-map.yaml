@@ -2034,3 +2034,27 @@ apps:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-cs6-pc:
   - name: ukb/ukb-sp1-sam_caas
+ dfw-sp1-metrics-publisher-sp-cs51-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-redis-sp-cs51-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-metrics-publisher-sp-na44-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-redis-sp-na44-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-metrics-publisher-sp-na45-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-redis-sp-na45-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ phx-sp1-metrics-publisher-sp-cs51-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-redis-sp-cs51-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-metrics-publisher-sp-na44-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-redis-sp-na44-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-metrics-publisher-sp-na45-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-redis-sp-na45-c1:
+  - name: phx/phx-sp1-sam_caas
