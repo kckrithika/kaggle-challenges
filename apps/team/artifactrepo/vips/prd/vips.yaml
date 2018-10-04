@@ -164,3 +164,35 @@
      healthport: 8080
      healthpath: "/artifactory/api/system/ping"
      healthprotocol: "http"
+- lbname: ops0-artifactrepo1-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of ops0-artifactrepo1-0-prd.slb.sfdc.net
+  customlbname: ops0-artifactrepo1-0-prd
+  servers:
+   - ops0-artifactrepo1-2-prd.eng.sfdc.net
+   - ops0-artifactrepo2-2-prd.eng.sfdc.net
+   - ops0-artifactrepo2-3-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 18443
+     lbtype: http
+     tls: true
+     reencrypt: true
+     healthport: 8080
+     healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
+- lbname: ops0-artifactrepo2-0-prd
+  # The customlbname ensures that the VIP retains its existing DNS name of ops0-artifactrepo2-0-prd.slb.sfdc.net
+  customlbname: ops0-artifactrepo2-0-prd
+  servers:
+   - ops0-artifactrepo1-1-prd.eng.sfdc.net
+   - ops0-artifactrepo1-3-prd.eng.sfdc.net
+   - ops0-artifactrepo2-1-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 18443
+     lbtype: http
+     tls: true
+     reencrypt: true
+     healthport: 8080
+     healthpath: "/artifactory/api/system/ping"
+     healthprotocol: "http"
