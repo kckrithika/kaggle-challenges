@@ -50,7 +50,7 @@ spec:
         - --serviceName=slb-canary-passthrough-tls
         - --log_dir=/host/data/slb/logs/
         - --ports=9114
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001242-122a9e3a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001243-c0190d2c
         name: slb-canary-passthrough-tls
         volumeMounts:
         - mountPath: /host/data/slb/logs/
