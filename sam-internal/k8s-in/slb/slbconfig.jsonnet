@@ -180,7 +180,7 @@
             "prd-samdev": "/var/slb/kneconfigs/testkneconfigs",
             "prd-sam_storage": "/var/slb/kneconfigs/testkneconfigs",
             "prd-sam_storagedev": "/var/slb/kneconfigs/testkneconfigs",
-            "prd-samtwo": "/var/slb/kneconfigs/prd",
+            "prd-samtwo": "/var/slb/kneconfigs/testkneconfigs",
         } + {
             [k + "-sam"]: "/var/slb/kneconfigs/" + k
             for k in $.prodKingdoms + ["prd"]
