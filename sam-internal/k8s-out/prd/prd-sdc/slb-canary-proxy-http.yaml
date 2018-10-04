@@ -58,7 +58,7 @@ spec:
         - --privateKey=/var/slb/canarycerts/server.key
         - --verbose=false
         - --publicKey=/var/slb/canarycerts/sdc.crt
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001244-896a1c5e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001246-33cd0593
         livenessProbe:
           httpGet:
             path: /
