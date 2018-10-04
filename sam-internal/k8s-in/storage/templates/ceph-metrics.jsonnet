@@ -91,19 +91,7 @@ if std.setMember(configs.estate, enabledEstates) then
                                 mountPath: "/etc/ceph",
                             },
                         ],
-                        env: storageutils.sfms_environment_vars(storageconfigs.serviceDefn.ceph_metrics_svc.name) +
-                        if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then
-                        [
-                            {
-                                name: "MC_ZK_SERVERS",
-                                value: storageconfigs.perEstate.sfstore.zkVIP[configs.estate],
-                            },
-                            {
-                                name: "MC_PORT",
-                                value: std.toString(storageconfigs.serviceDefn.ceph_metrics_svc.health.port),
-                            },
-                        ]
-                        else [],
+                        env: storageutils.sfms_environment_vars(storageconfigs.serviceDefn.ceph_metrics_svc.name),
                     },
                     {
                         name: "configwatcher",

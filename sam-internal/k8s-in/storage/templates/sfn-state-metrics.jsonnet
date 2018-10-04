@@ -119,20 +119,7 @@ if std.setMember(configs.estate, enabledEstates) then configs.deploymentBase("st
                             "-j",
                             "prometheus",
                         ],
-                        env: storageutils.sfms_environment_vars(storageconfigs.serviceDefn.sfn_metrics_svc.name) +
-                        //sfmsLogPathEnvVar +
-                        if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then
-                        [
-                            {
-                                name: "MC_ZK_SERVERS",
-                                value: storageconfigs.perEstate.sfstore.zkVIP[configs.estate],
-                            },
-                            {
-                                name: "MC_PORT",
-                                value: std.toString(storageconfigs.serviceDefn.sfn_metrics_svc.health.port),
-                            },
-                        ]
-                        else [],
+                        env: storageutils.sfms_environment_vars(storageconfigs.serviceDefn.sfn_metrics_svc.name),
                     } + sfmsContainerLimits,
                     storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
                 ],
