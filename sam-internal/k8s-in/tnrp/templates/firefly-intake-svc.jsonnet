@@ -83,7 +83,7 @@ if configs.estate == "prd-samtwo" || configs.estate == "prd-sam" then
           },
           {
               name: "DARKLAUNCH",
-              value: if configs.estate == "prd-samtwo" then "true" else "false",
+              value: "false",
           },
       ],
       volumeMounts:: super.commonVolMounts,

@@ -38,7 +38,7 @@ if firefly_feature_flags.is_firefly_svc_enabled then
           },
           {
               name: "DARKLAUNCH",
-              value: if configs.estate == "prd-samtwo" then "true" else "false",
+              value: "false",
           },
       ],
       volumeMounts:: super.commonVolMounts,
