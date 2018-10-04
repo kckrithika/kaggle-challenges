@@ -16,7 +16,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: spaas
-      image: sfci/service-protection/sps:0.0.4.7
+      image: sfci/service-protection/sps:0.0.4.9
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
@@ -53,7 +53,7 @@ system:
           port: 15400
         initialDelaySeconds: 120
     - name: beacon-spaasmesh
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
