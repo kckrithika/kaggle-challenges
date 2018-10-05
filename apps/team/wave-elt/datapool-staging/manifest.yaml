@@ -51,9 +51,6 @@ system:
       - name: FLOWSNAKE_TOTAL_MEMORY_IN_GB
         value: 64
 
-      - name: FLOWSNAKE_DATAPOOL_ENVIRONMENT_NAMES
-        value: wave-elt-1,wave-elt-2
-
       volumeMounts:
       - mountPath: /home/datapool/logs
         name: logvol
