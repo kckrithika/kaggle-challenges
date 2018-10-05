@@ -72,16 +72,6 @@
                         minionpool
                   FROM
                         nodeDetailView nd
-                  LEFT JOIN (
-                      SELECT *
-                      FROM (
-                         SELECT
-                             Name,
-                             JSON_EXTRACT(Payload, '$.metadata.labels.\"sam.data.sfdc.net/owner\"') as ownerlabel
-                         FROM k8s_resource
-                         WHERE ApiKind = 'Node') ss
-                      WHERE ownerlabel = 'sam' ) k8s
-                  ON k8s.Name = nd.Name
                   WHERE
                         KINGDOM != 'PRD' AND KINGDOM != 'UNK'
                         AND minionpool NOT LIKE '%ceph%'
