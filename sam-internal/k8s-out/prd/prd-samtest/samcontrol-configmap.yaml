@@ -4,8 +4,7 @@ data:
     {
       "blackListNamespaceRegexp": [
         "e2e-.*-csc-sam$",
-        "^ci-*",
-        "^user-*"
+        "*"
       ],
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
