@@ -7,3 +7,15 @@
    - port: 80
      targetport: 12087
      lbtype: http
+- lbname: slb-migration-tcp-vip.prd-sdc
+  customlbname: slb-migration-tcp-vip.prd-sdc
+  servers:
+   - shared0-sdcsamcompute1-10-prd.eng.sfdc.net
+   - shared0-sdcsamcompute1-11-prd.eng.sfdc.net
+  ports:
+   - port: 22
+     targetport: 22
+     lbtype: tcp
+     healthport: 12087
+     healthpath: "/liveness-probe"
+     healthprotocol: http
