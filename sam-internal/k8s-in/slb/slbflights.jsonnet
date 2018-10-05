@@ -51,7 +51,7 @@
             "--healthcheck.fallCount=2",
         ] else []),
 
-    getCheckDuplicateVipSettings():: (if slbimages.phaseNum <= 1 then [
+    getCheckDuplicateVipSettings():: (if slbimages.hypersdn_build >= 1255 then [
             "--checkDuplicateVips=true",
     ] else []),
 }
