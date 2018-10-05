@@ -3,11 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbflights = import "slbflights.jsonnet";
 
-<<<<<<< HEAD
-if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then configs.deploymentBase("slb") {
-=======
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
->>>>>>> SLBTwo as Prod estate + refactoring.
     metadata: {
         labels: {
             name: "slb-labels-checker",
