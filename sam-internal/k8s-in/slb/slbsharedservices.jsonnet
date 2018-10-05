@@ -116,12 +116,8 @@
                           "--skipFilesWithSuffix=.sock",
                       ] else [
                           "--skipFilesWithSuffix=slb.block",
-                      ])  # Reduce the maxDeleteFileCount as 1028 rolls out
-                 + (if configs.estate == "prd-sam" && slbimages.hypersdn_build < 1027 then [
-                        "--maxDeleteFileCount=500",
-                    ] else [
-                        "--maxDeleteFileCount=20",
-                    ]),
+                      ])
+                 + ["--maxDeleteFileCount=20"],
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
@@ -149,12 +145,7 @@
                      "--nginxPodMode=" + nginxPodMode,
                  ]
                  + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
-                 + (
-                     if configs.estate == "prd-sam" then [
-                         "--maxDeleteVipCount=10",
-                     ] else []
-                 )
-        ,
+                 + (if slbflights.explicitDeleteLimit then ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.sbin_volume_mount,
@@ -208,11 +199,7 @@
                      "--client.serverInterface=lo",
                  ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
                  + slbflights.getValidateVIPAssignmentSubnet()
-                 + (
-                     if configs.estate == "prd-sam" then [
-                         "--maxDeleteVipCount=10",
-                     ] else []
-                 ),
+                 + (if slbflights.explicitDeleteLimit then ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,

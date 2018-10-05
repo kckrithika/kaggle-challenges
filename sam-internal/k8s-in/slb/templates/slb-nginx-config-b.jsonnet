@@ -104,22 +104,26 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                         "--netInterfaceName=eth0",
                                         "--metricsEndpoint=" + configs.funnelVIP,
                                         "--log_dir=" + slbconfigs.logsDir,
-                                        "--maxDeleteServiceCount=20",
+                                    ] + (
+                                        if slbflights.explicitDeleteLimit then
+                                          ["--maxDeleteServiceCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]]
+                                        else
+                                          ["--maxDeleteServiceCount=20"]
+                                        )
+                                    + [
                                         configs.sfdchosts_arg,
                                         "--client.serverInterface=lo",
                                         "--hostnameOverride=$(NODE_NAME)",
-                                    ] + (
-                                        if configs.estate == "prd-sam" then [
-                                            "--maxDeleteServiceCount=10",
-                                            ] else []
-                                        ) + (if slbimages.phaseNum == 1 then [
+                                    ]
+                                      + (if slbimages.phaseNum == 1 then [
                                             "--blueGreenFeature=true",
-                                        ] else []) + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir) +
-                                        slbflights.getSimpleDiffAndNewConfigGeneratorIfEnabled() +
-                                        (if slbflights.certDeployerEnabled then [
+                                        ] else [])
+                                      + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+                                      + slbflights.getSimpleDiffAndNewConfigGeneratorIfEnabled()
+                                      + (if slbflights.certDeployerEnabled then [
                                             "--custCertsDir=" + slbconfigs.customerCertsPath,
-                                        ] else []) +
-                                        slbflights.getCheckDuplicateVipSettings(),
+                                        ] else [])
+                                      + slbflights.getCheckDuplicateVipSettings(),
                                     volumeMounts: configs.filter_empty([
                                         {
                                             name: "var-target-config-volume",

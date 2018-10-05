@@ -16,6 +16,8 @@
     prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd', 'cdg', 'fra'],
     testEstateList: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage', 'prd-sam_storagedev', 'prd-samtwo'],
     samrole: "samapp.slb",
+    maxDeleteDefault: 10,
+
     perCluster: {
         ddiService: {
             [k]: "https://ddi-api-" + k + ".data.sfdc.net"
@@ -203,6 +205,25 @@
         vipwdOptOutOptions: {
             "prd-sam": ["--optOutServiceList=pra-sfc-prd,pra-dsm-prd", "--optOutNamespace=podgroup-prebuild"],
             "xrd-sam": ["--optOutServiceList=slb-canary-service-ext"],
+        },
+
+        maxDeleteCount: {
+            "prd-sdc": $.maxDeleteDefault,
+            "prd-samtest": $.maxDeleteDefault,
+            "prd-samdev": $.maxDeleteDefault,
+            "prd-sam_storage": $.maxDeleteDefault,
+            "prd-sam_storagedev": $.maxDeleteDefault,
+            "prd-sam": $.maxDeleteDefault,
+            "frf-sam": $.maxDeleteDefault,
+            "phx-sam": $.maxDeleteDefault,
+            "iad-sam": $.maxDeleteDefault,
+            "ord-sam": $.maxDeleteDefault,
+            "dfw-sam": $.maxDeleteDefault,
+            "hnd-sam": $.maxDeleteDefault,
+            "xrd-sam": $.maxDeleteDefault,
+            "cdg-sam": $.maxDeleteDefault,
+            "fra-sam": $.maxDeleteDefault,
+            "prd-samtwo": $.maxDeleteDefault,
         },
     },
 
