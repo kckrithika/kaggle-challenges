@@ -57,7 +57,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
 
                                     ],
                                 },
-                            ] + if slbconfigs.isTestEstate then [{
+                            ] + if slbconfigs.isTestEstate && configs.estate != "prd-samtwo" then [{
                                 matchExpressions: [
                                     {
                                         key: "master",
