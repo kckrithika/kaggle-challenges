@@ -46,6 +46,7 @@ apps:
   - syd/syd-sam
   - cdu/cdu-sam
  SamTestAppSecret:
+  - prd/prd-samtest
   - prd/prd-sam
   - frf/frf-sam
   - dfw/dfw-sam
