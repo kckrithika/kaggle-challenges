@@ -4,7 +4,9 @@ local portconfigs = import "slbports.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-dns-register" };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-dns-register" };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-dns-register" };
-local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b", certDirs:: ["cert3"] };
+local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b" };
+
+local certDirs = ["cert3"];
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
     metadata: {
@@ -24,7 +26,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 namespace: "sam-system",
             } + (if slbflights.roleBasedSecrets then {
                 annotations: {
-                    "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(), " "),
+                    "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(certDirs), " "),
                 },
             } else {}),
             spec: {
@@ -38,7 +40,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.slb_volume,
                     configs.kube_config_volume,
                     slbconfigs.cleanup_logs_volume,
-                ] + (if slbflights.roleBasedSecrets then madkub.madkubSlbCertVolumes() + madkub.madkubSlbMadkubVolumes() else [])),
+                ] + (if slbflights.roleBasedSecrets then madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes() else [])),
                 containers: [
                     {
                         name: "slb-dns-register-processor",
@@ -80,20 +82,20 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,
-                        ] + (if slbflights.roleBasedSecrets then madkub.madkubSlbCertVolumeMounts() else [])),
+                        ] + (if slbflights.roleBasedSecrets then madkub.madkubSlbCertVolumeMounts(certDirs) else [])),
                     },
                     slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort),
                     slbshared.slbCleanupConfig,
                     slbshared.slbLogCleanup,
                     slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort, true),
 
-                ] + (if slbflights.roleBasedSecrets then [madkub.madkubRefreshContainer] else []) + slbflights.getManifestWatcherIfEnabled(),
+                ] + (if slbflights.roleBasedSecrets then [madkub.madkubRefreshContainer(certDirs)] else []) + slbflights.getManifestWatcherIfEnabled(),
                 nodeSelector: {
                     "slb-dns-register": "true",
                 },
             } + (if slbflights.roleBasedSecrets then {
                 initContainers: [
-                    madkub.madkubInitContainer,
+                    madkub.madkubInitContainer(certDirs),
                 ],
 } else {})
             + slbflights.getDnsPolicy(),

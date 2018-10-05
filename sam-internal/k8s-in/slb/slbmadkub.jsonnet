@@ -1,25 +1,13 @@
 {
     dirSuffix:: "",
-    certDirs:: [],  // list of certificate mountpoints to create
     local configs = import "config.jsonnet",
     local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile },
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbimages = (import "slbimages.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: $.dirSuffix },
-    // Eventually I'd like there to be a /cert1 for server, /cert2 for nginx client, and /cert3 for slb-internal
-    // A parameter should pass an array of which cert classes it needs and based on that compute the volumes, volumeMounts, annotations, and maddog parameters
 
-    local madkubContainerArgsNew = [
-        "/sam/madkub-client",
-        "--madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007",
-        "--maddog-endpoint=" + configs.maddogEndpoint + "",
-        "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
-        "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
-     ] + madkubSlbCertFolders + [
-        "--token-folder=/tokens/",
-        "--requested-cert-type=client",
-        "--ca-folder=/maddog-certs/ca",
-    ],
+    // functions in this library take a certsDir paramter which is of the form (e.g.) ["cert1", "cert2"]
+    // A parameter should pass an array of which cert classes it needs and based on that compute the volumes, volumeMounts, annotations, and maddog parameters
 
     local certDirLookup = {
         cert1: {  // server certificate
@@ -88,24 +76,25 @@
         },
     },
 
-    local madkubSlbCertFolders = [
+    madkubSlbCertFolders(certDirs):: [
       '--cert-folders=%s:/%s/' % [dir, dir]
-        for dir in $.certDirs
+        for dir in certDirs
     ],
 
-    madkubSlbCertVolumeMounts():: [
+    madkubSlbCertVolumeMounts(certDirs):: [
         certDirLookup[dir].mount
-                for dir in $.certDirs
-    ],
-    madkubSlbCertVolumes():: [
-        certDirLookup[dir].volume
-                for dir in $.certDirs
+                for dir in certDirs
     ],
 
-    madkubSlbCertsAnnotation():: {
+    madkubSlbCertVolumes(certDirs):: [
+        certDirLookup[dir].volume
+                for dir in certDirs
+    ],
+
+    madkubSlbCertsAnnotation(certDirs):: {
         certreqs: [
                 certDirLookup[dir].annotation
-                        for dir in $.certDirs
+                        for dir in certDirs
         ],
     },
 
@@ -129,12 +118,22 @@
         },
     ],
 
-    madkubInitContainer: {
+    madkubInitContainer(certDirs):: {
         image: "" + samimages.madkub + "",
-        args: madkubContainerArgsNew,
+        args: [
+            "/sam/madkub-client",
+            "--madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007",
+            "--maddog-endpoint=" + configs.maddogEndpoint + "",
+            "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
+            "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
+        ] + $.madkubSlbCertFolders(certDirs) + [
+            "--token-folder=/tokens/",
+            "--requested-cert-type=client",
+            "--ca-folder=/maddog-certs/ca",
+        ],
         name: "madkub-init",
         imagePullPolicy: "IfNotPresent",
-        volumeMounts: $.madkubSlbCertVolumeMounts() + madkubSlbMadkubVolumeMounts,
+        volumeMounts: $.madkubSlbCertVolumeMounts(certDirs) + madkubSlbMadkubVolumeMounts,
         env: [
             {
                 name: "MADKUB_NODENAME",
@@ -160,7 +159,7 @@
         ],
     },
 
-    madkubRefreshContainer: $.madkubInitContainer {
+    madkubRefreshContainer(certDirs):: $.madkubInitContainer(certDirs) {
         args+: [
             "--refresher",
             "--run-init-for-refresher-mode",

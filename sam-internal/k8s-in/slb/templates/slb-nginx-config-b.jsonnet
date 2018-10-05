@@ -5,8 +5,10 @@ local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
-local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b", certDirs:: ['cert1', 'cert2'] };
+local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b" };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
+
+local certDirs = ["cert1", "cert2"];
 
 if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploymentBase("slb") {
     metadata: {
@@ -26,7 +28,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
                 annotations: {
-                    "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(), " "),
+                    "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(certDirs), " "),
                 },
             },
             spec: {
@@ -67,7 +69,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
-                ] + madkub.madkubSlbCertVolumes() + madkub.madkubSlbMadkubVolumes() + [
+                ] + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes() + [
                     configs.maddog_cert_volume,
                     slbconfigs.sbin_volume,
                     configs.kube_config_volume,
@@ -160,7 +162,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                             mountPath: "/etc/nginx/conf.d",
                                         },
                                         slbconfigs.nginx_logs_volume_mount,
-                                    ] + madkub.madkubSlbCertVolumeMounts() +
+                                    ] + madkub.madkubSlbCertVolumeMounts(certDirs) +
                                         (if slbflights.certDeployerEnabled then [
                                         {
                                             mountPath: slbconfigs.customerCertsPath,
@@ -191,7 +193,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                  },
                                 },
                                 slbshared.slbFileWatcher,
-                                madkub.madkubRefreshContainer,
+                                madkub.madkubRefreshContainer(certDirs),
                                 {
                                         name: "slb-cert-checker",
                                         image: slbimages.hypersdn,
@@ -208,7 +210,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                                 mountPath: slbconfigs.slbDir + "/nginx/config",
 
                                             },
-                                        ] + madkub.madkubSlbCertVolumeMounts() + [
+                                        ] + madkub.madkubSlbCertVolumeMounts(certDirs) + [
                                             slbconfigs.slb_volume_mount,
                                             slbconfigs.logs_volume_mount,
                                             configs.sfdchosts_volume_mount,
@@ -246,7 +248,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                             mountPath: slbconfigs.slbDir + "/nginx/config",
 
                                         },
-                                    ] + madkub.madkubSlbCertVolumeMounts() + [
+                                    ] + madkub.madkubSlbCertVolumeMounts(certDirs) + [
                                         {
                                             mountPath: slbconfigs.customerCertsPath,
                                             name: "customer-certs",
@@ -261,7 +263,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                 },
                             ] else []),
                 initContainers: [
-                    madkub.madkubInitContainer,
+                    madkub.madkubInitContainer(certDirs),
                 ],
                 dnsPolicy: "Default",
             },
