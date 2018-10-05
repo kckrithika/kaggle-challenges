@@ -1,6 +1,6 @@
 - lbname: us-prd-1
 # The customlbname ensures that the VIP retains its existing DNS name of us-prd-1.slb.sfdc.net
-  customname: us-prd-1
+  customlbname: us-prd-1
   servers: 
     - vir411-rgw1-1-prd.eng.sfdc.net
     - vir411-rgw1-2-prd.eng.sfdc.net
