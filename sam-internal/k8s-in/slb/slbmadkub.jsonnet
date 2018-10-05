@@ -5,6 +5,7 @@
     local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile },
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbimages = (import "slbimages.jsonnet") + { dirSuffix:: $.dirSuffix },
+    local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: $.dirSuffix },
     // Eventually I'd like there to be a /cert1 for server, /cert2 for nginx client, and /cert3 for slb-internal
     // A parameter should pass an array of which cert classes it needs and based on that compute the volumes, volumeMounts, annotations, and maddog parameters
 
@@ -35,7 +36,7 @@
             annotation: {
                 name: "cert1",
                 "cert-type": "server",
-                kingdom: "prd",
+                kingdom: if slbflights.roleBasedSecrets then configs.kingdom else "prd",
                 role: slbconfigs.samrole,
                 san: [
                     "*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
@@ -63,7 +64,7 @@
             annotation: {
                 name: "cert2",
                 "cert-type": "client",
-                kingdom: "prd",
+                kingdom: if slbflights.roleBasedSecrets then configs.kingdom else "prd",
                 role: slbconfigs.samrole,
             },
         },
@@ -81,7 +82,7 @@
             annotation: {
                 name: "cert3",
                 "cert-type": "client",
-                kingdom: "prd",
+                kingdom: configs.kingdom,
                 role: "slb.internal",
             },
         },
