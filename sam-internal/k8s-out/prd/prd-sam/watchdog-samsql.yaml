@@ -21,7 +21,7 @@ spec:
       containers:
       - command:
         - /sam/watchdog
-        - --role=MYSQL
+        - --role=GLOBAL
         - --sqlDbUsername=root
         - --sqlDbPasswordFile=/var/secrets/mysql.txt
         - --sqlDbHostname=mysql.csc-sam.prd-sam.prd.slb.sfdc.net
