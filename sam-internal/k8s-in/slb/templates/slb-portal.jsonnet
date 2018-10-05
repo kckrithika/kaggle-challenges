@@ -62,12 +62,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            "--certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
                                            "--log_dir=/host/data/slb/logs/slb-portal",
                                            "--cafile=/etc/pki_service/ca/cabundle.pem",
-<<<<<<< HEAD
-                                       ])
-                                       + (if slbconfigs.isTestEstate then [
-=======
-                                       ] + (if slbconfigs.isTestEstate && configs.estate != "prd-samtwo" then [
->>>>>>> added sln-portal and canary services to sam-two + make setting identical to prod
+                                       ]) + (if slbconfigs.isTestEstate && configs.estate != "prd-samtwo" then [
                                                 "--slbEstate=" + configs.estate,
                                             ] else [])
                                        + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
