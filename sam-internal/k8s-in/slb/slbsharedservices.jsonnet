@@ -207,6 +207,7 @@
                      "--client.serverPort=" + nodeApiPort,
                      "--client.serverInterface=lo",
                  ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+                 + slbflights.getValidateVIPAssignmentSubnet()
                  + (
                      if configs.estate == "prd-sam" then [
                          "--maxDeleteVipCount=10",

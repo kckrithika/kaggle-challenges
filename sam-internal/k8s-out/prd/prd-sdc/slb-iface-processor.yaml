@@ -48,6 +48,7 @@ spec:
         - --client.serverInterface=lo
         - --client.socketDir=/host/data/slb/config/slb-iface-processor
         - --client.dialSocket=true
+        - --subnet=10.254.247.0/24,
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001255-7d82d058
         name: slb-iface-processor
         securityContext:

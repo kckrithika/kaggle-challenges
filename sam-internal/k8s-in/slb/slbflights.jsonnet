@@ -23,6 +23,11 @@
                                             "--readOnly=false",
                                         ] else []),
 
+    getValidateVIPAssignmentSubnet():: (if slbimages.phaseNum <= 1 && slbimages.hypersdn_build >= 1253 then [
+                                            "--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet,
+                                        ] else []),
+
+
     getPortalManifestWatcherIfEnabled():: (if portalManifestWatcherEnabled then [
                                             slbshared.slbManifestWatcher(),
                                         ] else []),
