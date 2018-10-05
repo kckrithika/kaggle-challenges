@@ -116,7 +116,8 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                         slbflights.getSimpleDiffAndNewConfigGeneratorIfEnabled() +
                                         (if slbflights.certDeployerEnabled then [
                                             "--custCertsDir=" + slbconfigs.customerCertsPath,
-                                        ] else []),
+                                        ] else []) +
+                                        slbflights.getCheckDuplicateVipSettings(),
                                     volumeMounts: configs.filter_empty([
                                         {
                                             name: "var-target-config-volume",
