@@ -26,6 +26,8 @@ system:
         value: /certs/client/certificates/client.pem
       - name: SECRETSERVICE_PRIVATE_KEY_PATH
         value: /certs/client/keys/client-key.pem
+      - name: DATABASE_HOSTNAME
+        value: mobile-monitoring-postgres.mobile-monitoring.prd-sam.prd.slb.sfdc.net
       - name: DATABASE_USERNAME
         value: postgres
       - name: DATABASE_PASSWORD
@@ -113,9 +115,9 @@ system:
     - name: app-catalog-windowsstore-poll
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_windowsstore_poll:6b3d4a3
       env:
-      - name: SECRETSERVICE_CERT
+      - name: SECRETSERVICE_CERT_PATH
         value: /certs/client/certificates/client.pem
-      - name: SECRETSERVICE_PRIVATE_KEY
+      - name: SECRETSERVICE_PRIVATE_KEY_PATH
         value: /certs/client/keys/client-key.pem
       - name: HTTP_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
