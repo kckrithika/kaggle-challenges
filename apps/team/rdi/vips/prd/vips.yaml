@@ -1,5 +1,5 @@
 - lbname: ops0-rdi-sfcloud1-0-prd
-  customlbname: ops0-rd-sfcloud1-0-prd
+  customlbname: ops0-rdi-sfcloud1-0-prd
   servers:
     - rdi-sfcloudapp1-1-prd.eng.sfdc.net
     - rdi-sfcloudapp1-2-prd.eng.sfdc.net

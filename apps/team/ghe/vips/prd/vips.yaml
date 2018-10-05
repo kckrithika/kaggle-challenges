@@ -1,6 +1,6 @@
 - lbname: swarm
   # this is necessary to keep the custom vip name of swarm.slb.sfdc.net
-  customname: swarm
+  customlbname: swarm
   servers:
     - scmvm1scm-swarm1-1-prd.eng.sfdc.net
     - scmvm1scm-swarm1-2-prd.eng.sfdc.net
@@ -21,7 +21,7 @@
       healthpath: /login
       healthprotocol: http
 - lbname: swarm-bck
-  customname: swarm-bck
+  customlbname: swarm-bck
   servers:
     - scmvm1scm-swarm2-1-prd.eng.sfdc.net
     - scmvm1scm-swarm2-2-prd.eng.sfdc.net
@@ -43,7 +43,7 @@
       healthpath: /login
       healthprotocol: http
 - lbname: git-test
-  customname: git-test
+  customlbname: git-test
   servers:
     - git.soma.salesforce.com
     - scm-github1-1-crd.eng.sfdc.net
@@ -65,7 +65,7 @@
       healthpath: /status
       healthprotocol: http
 - lbname: git-test-prd
-  customname: git-test-prd
+  customlbname: git-test-prd
   servers:
     - 10.252.170.134
     - 10.252.170.135
@@ -95,7 +95,7 @@
       healthpath: /status
       healthprotocol: http
 - lbname: gitblitz-prd
-  customname: gitblitz-prd
+  customlbname: gitblitz-prd
   servers:
     - 10.252.154.106
     - 10.252.154.111
