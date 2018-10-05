@@ -3,6 +3,8 @@ apiVersion: v1
 system:
   functions:
   - name: na3-mist61app-prd
+    identity:
+      pod: na3-mist61
     count: 1
     volumes:
     - name: envoy-config-volume
@@ -185,6 +187,9 @@ system:
 
 
   - name: na3-mist61seq-prd
+    identity:
+      serviceName: sequencer
+      pod: na3-mist61
 
     count: 1
 
