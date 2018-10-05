@@ -189,21 +189,17 @@ data:
     as ''NotReadyPerc''\n\n              FROM\n              (\n                  SELECT\n                        COUNT(*)
     as TotalCount,\n                        SUM(CASE WHEN READY = ''True'' THEN 0
     ELSE 1 END) as NotReadyCount,\n                        minionpool\n                  FROM\n                        nodeDetailView
-    nd\n                  LEFT JOIN (\n                      SELECT *\n                      FROM
-    (\n                         SELECT\n                             Name,\n                             JSON_EXTRACT(Payload,
-    ''$.metadata.labels.\"sam.data.sfdc.net/owner\"'') as ownerlabel\n                         FROM
-    k8s_resource\n                         WHERE ApiKind = ''Node'') ss\n                      WHERE
-    ownerlabel = ''sam'' ) k8s\n                  ON k8s.Name = nd.Name\n                  WHERE\n                        KINGDOM
-    != ''PRD'' AND KINGDOM != ''UNK''\n                        AND minionpool NOT
-    LIKE ''%ceph%''\n                        AND minionpool NOT LIKE ''%slb%''\n                        AND
-    minionpool NOT LIKE ''%storage%''\n                  GROUP BY minionpool\n              )
-    ss\n              ) ss2\n              WHERE (TotalCount < 10 AND NotReadyCount
-    >=2 AND minionpool like ''par-sam'' AND NotReadyPerc >=0.5) \n              OR
-    (TotalCount < 10 AND NotReadyCount >=2 AND minionpool not like ''par-sam'')\n\n              OR
-    (TotalCount >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency": "5m"}, {"alertAction":
-    "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "20m",
-    "instructions": "The following SAM control stack components dont have even 1 healhty
-    pod", "name": "SqlSamControl", "sql": "SELECT * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
+    nd\n                  WHERE\n                        KINGDOM != ''PRD'' AND KINGDOM
+    != ''UNK''\n                        AND minionpool NOT LIKE ''%ceph%''\n                        AND
+    minionpool NOT LIKE ''%slb%''\n                        AND minionpool NOT LIKE
+    ''%storage%''\n                  GROUP BY minionpool\n              ) ss\n              )
+    ss2\n              WHERE (TotalCount < 10 AND NotReadyCount >=2 AND minionpool
+    like ''par-sam'' AND NotReadyPerc >=0.5) \n              OR (TotalCount < 10 AND
+    NotReadyCount >=2 AND minionpool not like ''par-sam'')\n\n              OR (TotalCount
+    >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency": "5m"}, {"alertAction": "email",
+    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
+    "The following SAM control stack components dont have even 1 healhty pod", "name":
+    "SqlSamControl", "sql": "SELECT * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
     ''$.metadata.labels.\"sam.data.sfdc.net/owner\"'') AS ownerlabel,\n                      JSON_EXTRACT(Payload,
     ''$.spec.replicas'') AS desiredReplicas,\n                      JSON_EXTRACT(Payload,
     ''$.status.availableReplicas'') AS availableReplicas,\n                      JSON_EXTRACT(Payload,
