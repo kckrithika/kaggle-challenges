@@ -18,7 +18,7 @@
     prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd', 'cdg', 'fra'],
     slbKingdoms: $.prodKingdoms + ["prd"],
     prodEstates: [k + "-sam" for k in $.slbKingdoms] + ['prd-samtwo'],
-    testEstates: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage', 'prd-sam_storagedev'],
+    testEstates: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
     slbEstates: $.prodEstates + $.testEstates,
     samrole: "samapp.slb",
     maxDeleteDefault: 10,
