@@ -29,11 +29,6 @@ spec:
                 operator: In
                 values:
                 - prd-samtwo
-            - matchExpressions:
-              - key: master
-                operator: In
-                values:
-                - "true"
       containers:
       - command:
         - /sdn/slb-iface-processor

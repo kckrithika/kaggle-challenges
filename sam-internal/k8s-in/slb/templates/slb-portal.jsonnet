@@ -9,7 +9,7 @@ local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile,
 
 local certDirs = ["cert3"];
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-portal",
@@ -62,8 +62,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            "--certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
                                            "--log_dir=/host/data/slb/logs/slb-portal",
                                            "--cafile=/etc/pki_service/ca/cabundle.pem",
+<<<<<<< HEAD
                                        ])
                                        + (if slbconfigs.isTestEstate then [
+=======
+                                       ] + (if slbconfigs.isTestEstate && configs.estate != "prd-samtwo" then [
+>>>>>>> added sln-portal and canary services to sam-two + make setting identical to prod
                                                 "--slbEstate=" + configs.estate,
                                             ] else [])
                                        + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),

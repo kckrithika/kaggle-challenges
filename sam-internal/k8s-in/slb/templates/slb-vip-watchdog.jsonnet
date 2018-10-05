@@ -5,7 +5,7 @@ local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-vip-
 local slbports = import "slbports.jsonnet";
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-vip-watchdog" };
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
+if configs.estate == "prd-sdc" || configs.estate == "prd-samtwo" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-vip-watchdog",
@@ -130,7 +130,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                       dnsPolicy: "Default",
                   }
                   + (
-                      if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
+                      if slbconfigs.isTestEstate && configs.estate != "prd-samtwo" then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
                   ),
             metadata: {
                 labels: {
