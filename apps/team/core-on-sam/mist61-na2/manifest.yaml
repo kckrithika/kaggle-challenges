@@ -232,7 +232,7 @@ system:
 
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:93376c
+      image: sfci/casam/sequencer:f146dc
 
       env:
         - name: USE_SWITCHBOARD
@@ -253,9 +253,9 @@ system:
           value: sneezy
 #          value: happy
         - name: CURRENT_RELEASE_VERSION
-          value: green
-        - name: NEW_RELEASE_VERSION
           value: blue
+        - name: NEW_RELEASE_VERSION
+          value: green
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 1
