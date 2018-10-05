@@ -26,6 +26,10 @@ system:
         value: /certs/client/certificates/client.pem
       - name: SECRETSERVICE_PRIVATE_KEY_PATH
         value: /certs/client/keys/client-key.pem
+      - name: DATABASE_USERNAME
+        value: postgres
+      - name: DATABASE_PASSWORD
+        value: secret
       - name: HTTP_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: HTTPS_PROXY
@@ -56,6 +60,62 @@ system:
       - name: SECRETSERVICE_CERT_PATH
         value: /certs/client/certificates/client.pem
       - name: SECRETSERVICE_PRIVATE_KEY_PATH
+        value: /certs/client/keys/client-key.pem
+      - name: HTTP_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: HTTPS_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: NO_PROXY
+        value: 127.0.0.1,localhost,.sfdc.net,.dmz.salesforce.com
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /certs
+      readinessProbe:
+        exec:
+          command:
+            - "true"
+        initialDelaySeconds: 30
+        periodSeconds: 30
+      livenessProbe:
+        exec:
+          command:
+            - "true"
+        initialDelaySeconds: 15
+        periodSeconds: 20
+    - name: app-catalog-itunes-poll
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_itunes_poll:6b3d4a3
+      env:
+      - name: SECRETSERVICE_CERT
+        value: /certs/client/certificates/client.pem
+      - name: SECRETSERVICE_PRIVATE_KEY
+        value: /certs/client/keys/client-key.pem
+      - name: HTTP_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: HTTPS_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: NO_PROXY
+        value: 127.0.0.1,localhost,.sfdc.net,.dmz.salesforce.com
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /certs
+      readinessProbe:
+        exec:
+          command:
+            - "true"
+        initialDelaySeconds: 30
+        periodSeconds: 30
+      livenessProbe:
+        exec:
+          command:
+            - "true"
+        initialDelaySeconds: 15
+        periodSeconds: 20
+    - name: app-catalog-windowsstore-poll
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_windowsstore_poll:6b3d4a3
+      env:
+      - name: SECRETSERVICE_CERT
+        value: /certs/client/certificates/client.pem
+      - name: SECRETSERVICE_PRIVATE_KEY
         value: /certs/client/keys/client-key.pem
       - name: HTTP_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
