@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     name: slb-portal
-    sam.data.sfdc.net/owner: slb
   name: slb-portal
   namespace: sam-system
 spec:
@@ -12,7 +11,6 @@ spec:
   selector:
     matchLabels:
       name: slb-portal
-      sam.data.sfdc.net/owner: slb
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -22,7 +20,6 @@ spec:
     metadata:
       labels:
         name: slb-portal
-        sam.data.sfdc.net/owner: slb
       namespace: sam-system
     spec:
       containers:
@@ -36,7 +33,7 @@ spec:
         - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --log_dir=/host/data/slb/logs/slb-portal
         - --cafile=/etc/pki_service/ca/cabundle.pem
-        - --slbEstate=prd-samtest
+        - --slbEstate=prd-sam_storagedev
         - --client.socketDir=/host/data/slb/config/slb-portal
         - --client.dialSocket=true
         env:
@@ -67,7 +64,7 @@ spec:
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
-        - --subnet=10.251.129.241-242
+        - --subnet=
         - --k8sapiserver=
         - --serviceList=
         - --useVipLabelToSelectSvcs=true

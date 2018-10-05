@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if slbconfigs.isSlbEstate then {
+if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then {
     kind: "Service",
     apiVersion: "v1",
     metadata: {
