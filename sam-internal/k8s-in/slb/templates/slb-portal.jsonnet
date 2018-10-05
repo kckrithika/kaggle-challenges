@@ -38,7 +38,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           configs.cert_volume,
                           configs.kube_config_volume,
                           slbconfigs.cleanup_logs_volume,
-                      ] + (if slbflights.roleBasedSecrets then madkub.madkubSlbNginxVolumes() + madkub.madkubSlbMadkubVolumes() else [])),
+                      ] + (if slbflights.roleBasedSecrets then madkub.madkubSlbCertVolumes() + madkub.madkubSlbMadkubVolumes() else [])),
                       containers: [
                           {
                               name: "slb-portal",
@@ -70,7 +70,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                       slbconfigs.slb_volume_mount,
                                       configs.maddog_cert_volume_mount,
                                       configs.cert_volume_mount,
-                                  ] + (if slbflights.roleBasedSecrets then madkub.madkubSlbNginxVolumeMounts() else [])
+                                  ] + (if slbflights.roleBasedSecrets then madkub.madkubSlbCertVolumeMounts() else [])
                               ),
                               livenessProbe: {
                                   httpGet: {

@@ -93,11 +93,11 @@
         for dir in $.certDirs
     ],
 
-    madkubSlbNginxVolumeMounts():: [
+    madkubSlbCertVolumeMounts():: [
         certDirLookup[dir].mount
                 for dir in $.certDirs
     ],
-    madkubSlbNginxVolumes():: [
+    madkubSlbCertVolumes():: [
         certDirLookup[dir].volume
                 for dir in $.certDirs
     ],
@@ -134,7 +134,7 @@
         args: madkubContainerArgsNew,
         name: "madkub-init",
         imagePullPolicy: "IfNotPresent",
-        volumeMounts: $.madkubSlbNginxVolumeMounts() + madkubSlbMadkubVolumeMounts,
+        volumeMounts: $.madkubSlbCertVolumeMounts() + madkubSlbMadkubVolumeMounts,
         env: [
             {
                 name: "MADKUB_NODENAME",

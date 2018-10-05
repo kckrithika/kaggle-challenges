@@ -67,7 +67,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
-                ] + madkub.madkubSlbNginxVolumes() + madkub.madkubSlbMadkubVolumes() + [
+                ] + madkub.madkubSlbCertVolumes() + madkub.madkubSlbMadkubVolumes() + [
                     configs.maddog_cert_volume,
                     slbconfigs.sbin_volume,
                     configs.kube_config_volume,
@@ -160,7 +160,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                             mountPath: "/etc/nginx/conf.d",
                                         },
                                         slbconfigs.nginx_logs_volume_mount,
-                                    ] + madkub.madkubSlbNginxVolumeMounts() +
+                                    ] + madkub.madkubSlbCertVolumeMounts() +
                                         (if slbflights.certDeployerEnabled then [
                                         {
                                             mountPath: slbconfigs.customerCertsPath,
@@ -208,7 +208,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                                 mountPath: slbconfigs.slbDir + "/nginx/config",
 
                                             },
-                                        ] + madkub.madkubSlbNginxVolumeMounts() + [
+                                        ] + madkub.madkubSlbCertVolumeMounts() + [
                                             slbconfigs.slb_volume_mount,
                                             slbconfigs.logs_volume_mount,
                                             configs.sfdchosts_volume_mount,
@@ -246,7 +246,7 @@ if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploy
                                             mountPath: slbconfigs.slbDir + "/nginx/config",
 
                                         },
-                                    ] + madkub.madkubSlbNginxVolumeMounts() + [
+                                    ] + madkub.madkubSlbCertVolumeMounts() + [
                                         {
                                             mountPath: slbconfigs.customerCertsPath,
                                             name: "customer-certs",
