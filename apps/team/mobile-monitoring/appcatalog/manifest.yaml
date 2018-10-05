@@ -20,7 +20,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: appcatalog-app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_app:0a920cb
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_app:6b3d4a3
       env:
       - name: SECRETSERVICE_CERT_PATH
         value: /certs/client/certificates/client.pem
@@ -51,7 +51,7 @@ system:
       - containerPort: 7020
         name: grpc
     - name: app-catalog-googleplay-poll
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_googleplay_poll:0a920cb
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_googleplay_poll:6b3d4a3
       env:
       - name: SECRETSERVICE_CERT_PATH
         value: /certs/client/certificates/client.pem
