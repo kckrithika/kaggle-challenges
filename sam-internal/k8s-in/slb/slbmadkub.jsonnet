@@ -4,48 +4,101 @@
     local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile },
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbimages = (import "slbimages.jsonnet") + { dirSuffix:: $.dirSuffix },
-    // Eventually I'd like there to be a /cert1 for server, /cert2 for nginx client, and /cert3 for slb-internal
+    local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: $.dirSuffix },
+
+    // functions in this library take a certsDir paramter which is of the form (e.g.) ["cert1", "cert2"]
     // A parameter should pass an array of which cert classes it needs and based on that compute the volumes, volumeMounts, annotations, and maddog parameters
 
-    local madkubContainerArgsNew = [
-        "/sam/madkub-client",
-        "--madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007",
-        "--maddog-endpoint=" + configs.maddogEndpoint + "",
-        "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
-        "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
-        "--cert-folders=cert1:/cert1/",
-        "--cert-folders=cert2:/cert2/",
-        "--token-folder=/tokens/",
-        "--requested-cert-type=client",
-        "--ca-folder=/maddog-certs/ca",
+    local certDirLookup = {
+        cert1: {  // server certificate
+            mount: {
+                mountPath: "/cert1",
+                name: "cert1",
+            },
+            volume: {
+                emptyDir: {
+                    medium: "Memory",
+                },
+                name: "cert1",
+            },
+            annotation: {
+                name: "cert1",
+                "cert-type": "server",
+                kingdom: if slbflights.roleBasedSecrets then configs.kingdom else "prd",
+                role: slbconfigs.samrole,
+                san: [
+                    "*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+                    "*.slb.sfdc.net",
+                    "*.soma.salesforce.com",
+                    "*.data.sfdc.net",
+                    "*.kms.slb.sfdc.net",
+                    "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+                ] + if configs.estate == "prd-sam" then [
+                    "*.retail-rsui." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+                ] else [],
+            },
+        },
+        cert2: {  // client certificate
+            mount: {
+                mountPath: "/cert2",
+                name: "cert2",
+            },
+            volume: {
+                emptyDir: {
+                    medium: "Memory",
+                },
+                name: "cert2",
+            },
+            annotation: {
+                name: "cert2",
+                "cert-type": "client",
+                kingdom: if slbflights.roleBasedSecrets then configs.kingdom else "prd",
+                role: slbconfigs.samrole,
+            },
+        },
+        cert3: {  // slb internal certificate for SS
+            mount: {
+                mountPath: "/cert3",
+                name: "cert3",
+            },
+            volume: {
+                emptyDir: {
+                    medium: "Memory",
+                },
+                name: "cert3",
+            },
+            annotation: {
+                name: "cert3",
+                "cert-type": "client",
+                kingdom: configs.kingdom,
+                role: "slb.internal",
+            },
+        },
+    },
+
+    madkubSlbCertFolders(certDirs):: [
+      '--cert-folders=%s:/%s/' % [dir, dir]
+        for dir in certDirs
     ],
 
-    madkubSlbNginxVolumeMounts():: [
-        {
-            mountPath: "/cert1",
-            name: "cert1",
-        },
-        {
-            mountPath: "/cert2",
-            name: "cert2",
-        },
-    ],
-    madkubSlbNginxVolumes():: [
-        {
-            emptyDir: {
-                medium: "Memory",
-            },
-            name: "cert1",
-        },
-        {
-            emptyDir: {
-                medium: "Memory",
-            },
-            name: "cert2",
-        },
+    madkubSlbCertVolumeMounts(certDirs):: [
+        certDirLookup[dir].mount
+                for dir in certDirs
     ],
 
-    madkubSlbMadkubVolumeMounts: [
+    madkubSlbCertVolumes(certDirs):: [
+        certDirLookup[dir].volume
+                for dir in certDirs
+    ],
+
+    madkubSlbCertsAnnotation(certDirs):: {
+        certreqs: [
+                certDirLookup[dir].annotation
+                        for dir in certDirs
+        ],
+    },
+
+    local madkubSlbMadkubVolumeMounts = [
         {
             mountPath: "/maddog-certs/",
             name: "maddog-certs",
@@ -65,12 +118,22 @@
         },
     ],
 
-    madkubInitContainer: {
+    madkubInitContainer(certDirs):: {
         image: "" + samimages.madkub + "",
-        args: madkubContainerArgsNew,
+        args: [
+            "/sam/madkub-client",
+            "--madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007",
+            "--maddog-endpoint=" + configs.maddogEndpoint + "",
+            "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
+            "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
+        ] + $.madkubSlbCertFolders(certDirs) + [
+            "--token-folder=/tokens/",
+            "--requested-cert-type=client",
+            "--ca-folder=/maddog-certs/ca",
+        ],
         name: "madkub-init",
         imagePullPolicy: "IfNotPresent",
-        volumeMounts: $.madkubSlbNginxVolumeMounts() + $.madkubSlbMadkubVolumeMounts,
+        volumeMounts: $.madkubSlbCertVolumeMounts(certDirs) + madkubSlbMadkubVolumeMounts,
         env: [
             {
                 name: "MADKUB_NODENAME",
@@ -96,42 +159,13 @@
         ],
     },
 
-    madkubRefreshContainer: $.madkubInitContainer {
+    madkubRefreshContainer(certDirs):: $.madkubInitContainer(certDirs) {
         args+: [
             "--refresher",
             "--run-init-for-refresher-mode",
         ],
         name: "madkub-refresher",
         resources: {},
-        volumeMounts: $.madkubSlbNginxVolumeMounts() + $.madkubSlbMadkubVolumeMounts,
-    },
-
-    madkubCertsAnnotation():: {
-        certreqs: [
-            {
-                name: "cert1",
-                "cert-type": "server",
-                kingdom: "prd",
-                role: slbconfigs.samrole,
-                san: [
-                    "*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
-                    "*.slb.sfdc.net",
-                    "*.soma.salesforce.com",
-                    "*.data.sfdc.net",
-                    "*.kms.slb.sfdc.net",
-                    "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
-                ] + if configs.estate == "prd-sam" then [
-                    "*.retail-rsui." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
-                ] else [],
-            },
-            {
-                name: "cert2",
-                "cert-type": "client",
-                kingdom: "prd",
-                role: slbconfigs.samrole,
-            },
-        ],
-
     },
 
     # image_functions needs to know the filename of the template we are processing
