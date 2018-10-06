@@ -222,6 +222,7 @@
                      "--log_dir=" + slbconfigs.logsDir,
                      configs.sfdchosts_arg,
                  ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+                 + (if slbflights.explicitDeleteLimit then ["--maxDeleteLimit=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]] else [])
                  + (if slbflights.mwSentinelEnabled then [
                         "--client.allowStale=true",
                         "--control.manifestWatcherSentinel=" + mwSentinel,

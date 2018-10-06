@@ -123,7 +123,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--marker=" + slbconfigs.ipvsMarkerFile,
                             "--period=5s",
                             "--log_dir=" + slbconfigs.logsDir,
-                            "--maximumDeleteCount=20",
+                        ] + (
+                            if slbflights.explicitDeleteLimit then
+                              ["--maximumDeleteCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]]
+                            else
+                              ["--maximumDeleteCount=20"]
+                            )
+                        + [
                             configs.sfdchosts_arg,
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                             "--client.serverInterface=lo",
@@ -131,14 +137,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--proxyHealthChecks=true",
                             "--httpTimeout=1s",
                             "--enablePersistence=false",
-                        ] + (
-                            if configs.estate == "prd-sam" then [
-                                  "--maximumDeleteCount=10",
-                                  ] else []
-                              ) + (if slbflights.stockIpvsModules then [
+                        ] + (if slbflights.stockIpvsModules then [
                             "--sforceScheduler=false",
-                            ] else []) + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
-                            + slbflights.getIPVSHealthCheckRiseFallSettings(),
+                            ] else [])
+                          + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+                          + slbflights.getIPVSHealthCheckRiseFallSettings(),
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
