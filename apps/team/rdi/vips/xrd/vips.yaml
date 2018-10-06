@@ -33,8 +33,8 @@
      healthpath: /ping
      healthprotocol: http
      throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     requestthrottle: 5
-     requestthrottleburst: 300
+     clientmaxrps: 5
+     clientmaxrpsburst: 300
    - port: 35357
      targetport: 35357
      lbtype: http
@@ -45,8 +45,8 @@
      healthpath: /ping
      healthprotocol: http
      throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     requestthrottle: 5
-     requestthrottleburst: 300
+     clientmaxrps: 5
+     clientmaxrpsburst: 300
    - port: 8773
      targetport: 8773
      lbtype: http
@@ -57,8 +57,8 @@
      healthpath: /ping
      healthprotocol: http
      throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     requestthrottle: 1
-     requestthrottleburst: 60
+     clientmaxrps: 1
+     clientmaxrpsburst: 60
    - port: 8774
      targetport: 8774
      lbtype: http
@@ -69,8 +69,8 @@
      healthpath: /ping
      healthprotocol: http
      throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     requestthrottle: 1
-     requestthrottleburst: 60
+     clientmaxrps: 1
+     clientmaxrpsburst: 60
    - port: 8778
      targetport: 8778
      lbtype: http
@@ -81,8 +81,8 @@
      healthpath: /ping
      healthprotocol: http
      throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     requestthrottle: 1
-     requestthrottleburst: 60
+     clientmaxrps: 1
+     clientmaxrpsburst: 60
    - port: 8775
      targetport: 8775
      lbtype: http
@@ -93,8 +93,8 @@
      healthpath: /ping
      healthprotocol: http
      throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     requestthrottle: 1
-     requestthrottleburst: 60
+     clientmaxrps: 1
+     clientmaxrpsburst: 60
    - port: 9191
      targetport: 9191
      lbtype: http
@@ -114,8 +114,8 @@
      healthpath: /ping
      healthprotocol: http
      throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     requestthrottle: 3
-     requestthrottleburst: 160
+     clientmaxrps: 3
+     clientmaxrpsburst: 160
    - port: 9696
      targetport: 9696
      lbtype: http
@@ -126,8 +126,8 @@
      healthpath: /ping
      healthprotocol: http
      throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     requestthrottle: 3
-     requestthrottleburst: 60
+     clientmaxrps: 3
+     clientmaxrpsburst: 60
    - port: 8776
      targetport: 8776
      lbtype: http
@@ -138,8 +138,8 @@
      healthpath: /ping
      healthprotocol: http
      throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     requestthrottle: 1
-     requestthrottleburst: 60
+     clientmaxrps: 1
+     clientmaxrpsburst: 60
    - port: 10000
      targetport: 10000
      lbtype: http
@@ -150,5 +150,5 @@
      healthpath: /ping
      healthprotocol: http
      throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     requestthrottle: 5
-     requestthrottleburst: 300
+     clientmaxrps: 5
+     clientmaxrpsburst: 300
