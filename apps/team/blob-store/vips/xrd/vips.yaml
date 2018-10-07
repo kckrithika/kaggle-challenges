@@ -1,0 +1,14 @@
+- lbname: us-xrd-1
+  customlbname: us-xrd-1
+  servers:
+    - 10.210.138.172
+    - 10.210.138.66
+  ports:
+    - port: 443
+      targetport: 443
+      lbtype: http
+      tls: true
+      reencrypt: false
+      healthport: 80
+      healthpath: /
+      healthprotocol: http
