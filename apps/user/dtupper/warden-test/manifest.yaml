@@ -9,7 +9,7 @@ system:
       count: 3
       containers:
       - name: dt-warden-test
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/casp-warden:test-0017
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/casp-warden:test-0018
         ports:
         - name: http
           containerPort: 8889
