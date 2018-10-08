@@ -66,9 +66,7 @@ local util = import "util_functions.jsonnet";
     is_test: (
         estate == "prd-data-flowsnake_test"
     ),
-    // TODO: Snapshots broken in test fleet until Ajna auth fixed
-    // Enable in test fleet after this WI: https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000005CGcBIAW/view
-    snapshots_enabled: (!self.is_minikube && !self.is_test),
+    snapshots_enabled: !self.is_minikube,
     registry: if self.is_minikube then "minikube" else configs.registry,
     strata_registry: if self.is_minikube then "minikube" else configs.registry + "/dva",
     funnel_vip: "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net",
