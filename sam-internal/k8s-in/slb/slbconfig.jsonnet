@@ -3,8 +3,8 @@
     local kingdom = std.extVar("kingdom"),
     local slbimages = import "slbimages.jsonnet",
     local configs = import "config.jsonnet",
-    local set_value_to_all_in_list(v, list) = { [k]: v for k in list },
-    local set_value_to_all_in_list_skip(v, list, s) = { [k]: v for k in list if k != s },
+    local set_value_to_all_in_list(value, list) = { [item]: value for item in list },
+    local set_value_to_all_in_list_skip(value, list, skip) = { [item]: value for item in list if item != skip },
 
     dirSuffix:: "",
     slbDir: "/host/data/slb",
