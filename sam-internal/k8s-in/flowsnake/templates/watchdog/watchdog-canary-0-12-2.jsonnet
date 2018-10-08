@@ -7,7 +7,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
-if !watchdog.watchdog_enabled then
+if !watchdog.watchdog_enabled || !std.objectHas(flowsnake_images.feature_flags, "add_12_2_canary") then
 "SKIP"
 else
 local cert_name = "watchdogcanarycerts";
@@ -16,7 +16,7 @@ configs.deploymentBase("flowsnake") {
         labels: {
             name: "watchdog-canary",
         },
-        name: "watchdog-canary-0-12-1",
+        name: "watchdog-canary-0-12-2",
         namespace: "flowsnake",
     },
     spec+: {
@@ -39,10 +39,10 @@ configs.deploymentBase("flowsnake") {
                     }),
                 },
                 labels: {
-                    app: "watchdog-canary-0-12-1",
+                    app: "watchdog-canary-0-12-2",
                     apptype: "monitoring",
                     flowsnakeOwner: "dva-transform",
-                    flowsnakeRole: "WatchdogCanary-0-12-1",
+                    flowsnakeRole: "WatchdogCanary-0-12-2",
                 }
             },
             spec: {
@@ -59,7 +59,7 @@ configs.deploymentBase("flowsnake") {
                             "-timeout=2s",
                             "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
                             "--config=/config/watchdog.json",
-                            "-cliCheckerCommandTarget=0.12.1",
+                            "-cliCheckerCommandTarget=0.12.2",
                             "--hostsConfigFile=/sfdchosts/hosts.json",
                             "-watchdogFrequency=15m",
                             "-alertThreshold=45m",
