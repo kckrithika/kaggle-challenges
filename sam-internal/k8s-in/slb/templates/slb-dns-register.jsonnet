@@ -66,7 +66,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                      "--client.serverInterface=lo",
                                  ]
                                  + (
-                                     if slbimages.phaseNum <= 2 then [
+                                     if slbimages.hypersdn_build >= 1258 then [
                                          "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
                                      ] else []
                                  )
