@@ -62,7 +62,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                            "--certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
                                            "--log_dir=/host/data/slb/logs/slb-portal",
                                            "--cafile=/etc/pki_service/ca/cabundle.pem",
-                                       ]) + (if slbconfigs.isTestEstate && configs.estate != "prd-samtwo" then [
+                                       ]) + (if slbconfigs.isTestEstate then [
                                                 "--slbEstate=" + configs.estate,
                                             ] else [])
                                        + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),

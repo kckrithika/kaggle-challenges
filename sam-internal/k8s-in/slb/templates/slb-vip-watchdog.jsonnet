@@ -130,7 +130,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                       dnsPolicy: "Default",
                   }
                   + (
-                      if slbconfigs.isTestEstate && configs.estate != "prd-samtwo" then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
+                      if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
                   ),
             metadata: {
                 labels: {

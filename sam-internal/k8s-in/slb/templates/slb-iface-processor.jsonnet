@@ -57,7 +57,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
 
                                     ],
                                 },
-                            ] + if slbconfigs.isTestEstate && configs.estate != "prd-samtwo" then [{
+                            ] + if slbconfigs.isTestEstate then [{
                                 matchExpressions: [
                                     {
                                         key: "master",
