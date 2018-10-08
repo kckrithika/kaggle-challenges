@@ -33,10 +33,3 @@ system:
         path: /home/caas/logs/apps
     - name: amagicvolumethatvanishes
       emptyDir: {}
-  loadbalancers:
-  - lbname: testlb123
-    nodeExposed: true
-    function: samtestfn
-    ports:
-      - port: 8888
-        targetport: 8000
