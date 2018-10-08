@@ -3,7 +3,7 @@ local serviceName = "slb-nginx-reporter";
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: serviceName };
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
+if slbimages.phaseNum <= 2 then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: serviceName,
