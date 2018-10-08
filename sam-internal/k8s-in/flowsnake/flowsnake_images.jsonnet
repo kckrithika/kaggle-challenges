@@ -89,7 +89,7 @@ local utils = import "util_functions.jsonnet";
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
-                kubedns_scale_up: "",  #verified in test fleet
+                kubedns_scale_up: "",  #verified in test, dev fleets
                 # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
                 kubedns_host_network: "",
             },
@@ -123,13 +123,14 @@ local utils = import "util_functions.jsonnet";
 
             fleetService_image_tag: "696",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
+            kubedns_image_tag: "1.14.9",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
-                kubedns_scale_up: "",
+                kubedns_scale_up: "",  # verfieid in test, dev fleets
                 # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
             },
             version_mapping: {
