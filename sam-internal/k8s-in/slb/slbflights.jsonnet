@@ -24,7 +24,7 @@
                                             "--readOnly=false",
                                         ] else []),
 
-    getValidateVIPAssignmentSubnet():: (if slbimages.phaseNum <= 1 && slbimages.hypersdn_build >= 1253 then [
+    getValidateVIPAssignmentSubnet():: (if slbimages.phaseNum <= 2 && slbimages.hypersdn_build >= 1253 then [
                                             "--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet,
                                         ] else []),
 
