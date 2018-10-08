@@ -146,18 +146,10 @@ data:
     OUTER JOIN TNRPManifestData t\n                                                       ON              sam.git_hash
     = t.git_hash )sam2)sam,\n                                       ( SELECT @row_num
     := 0) counter ORDER BY samlatencymin ) temp\n              WHERE  temp.row_num
-    = Round (.95 * @row_num)", "watchdogFrequency": "15m"}, {"alertAction": "email",
-    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "3m", "name":
-    "KubednsPodCount", "sql": "SELECT\n              controlEstate,\n              Running,\n              NotRunning\n            FROM\n            (\n            SELECT\n              controlEstate,\n              SUM(Running)
-    as Running,\n              SUM(NotRunning) as NotRunning\n            FROM\n            (\n            SELECT\n              controlEstate,\n              (CASE
-    WHEN Phase = ''Running'' then 1 else 0 end) as Running,\n              (CASE WHEN
-    Phase <> ''Running'' then 1 else 0 end) as NotRunning\n            FROM podDetailView\n            WHERE
-    namespace = ''kube-system''\n            ) as ss\n            GROUP BY controlEstate\n            ORDER
-    BY NotRunning desc\n            ) as ss1\n            WHERE\n             Running
-    < NotRunning", "watchdogFrequency": "1m"}], "sql_alerts": [{"alertAction": "pagerduty",
-    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions":
-    "The following deployments are reported as bad customer deployments in Production.
-    Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
+    = Round (.95 * @row_num)", "watchdogFrequency": "15m"}], "sql_alerts": [{"alertAction":
+    "pagerduty", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
+    "10m", "instructions": "The following deployments are reported as bad customer
+    deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
     "name": "SqlSlaDepl", "sql": "SELECT * FROM\n                        (\n                          SELECT\n                            ControlEstate,\n                            Namespace,\n                            Name,\n                            JSON_EXTRACT(Payload,
     ''$.metadata.labels.\"sam.data.sfdc.net/owner\"'') AS ownerlabel,\n                            JSON_EXTRACT(Payload,
     ''$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"'') AS email,\n                            CASE
@@ -277,7 +269,15 @@ data:
     *\n                    FROM\n                    crd_history\n                    WHERE
     ApiKind = ''Bundle'') crds\n                ON crds.PRNum = prs.pr_num\n                WHERE  prs.merged_time
     > now() - INTERVAL 10 DAY\n            ORDER BY prs.merged_time desc\n            )
-    imageLatency\n            WHERE  latencyMin > 20", "watchdogFrequency": "10m"}]}'
+    imageLatency\n            WHERE  latencyMin > 20", "watchdogFrequency": "10m"},
+    {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
+    "3m", "name": "KubednsPodCount", "sql": "SELECT\n              controlEstate,\n              Running,\n              NotRunning\n            FROM\n            (\n            SELECT\n              controlEstate,\n              SUM(Running)
+    as Running,\n              SUM(NotRunning) as NotRunning\n            FROM\n            (\n            SELECT\n              controlEstate,\n              (CASE
+    WHEN Phase = ''Running'' then 1 else 0 end) as Running,\n              (CASE WHEN
+    Phase <> ''Running'' then 1 else 0 end) as NotRunning\n            FROM podDetailView\n            WHERE
+    namespace = ''kube-system''\n            ) as ss\n            GROUP BY controlEstate\n            ORDER
+    BY NotRunning desc\n            ) as ss1\n            WHERE\n             Running
+    < NotRunning", "watchdogFrequency": "1m"}]}'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
