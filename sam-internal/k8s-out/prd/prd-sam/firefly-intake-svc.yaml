@@ -277,7 +277,7 @@ items:
             httpGet:
               path: /actuator
               port: admin-port
-            initialDelaySeconds: 60
+            initialDelaySeconds: 30
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
@@ -294,7 +294,7 @@ items:
             httpGet:
               path: /actuator/health
               port: admin-port
-            initialDelaySeconds: 60
+            initialDelaySeconds: 30
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
