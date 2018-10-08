@@ -101,6 +101,7 @@ local utils = import "util_functions.jsonnet";
                   "0.11.0.sluice_fix": 691,
                   "0.12.0": 696,
                   "0.12.1": 10001,
+                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",
                 }
                 +
                 # These are for developer testing only
