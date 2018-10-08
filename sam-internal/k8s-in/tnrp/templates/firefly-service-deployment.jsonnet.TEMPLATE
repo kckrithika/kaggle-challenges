@@ -4,246 +4,268 @@ local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local envConfig = import "configs/firefly_service_conf.jsonnet";
 {
-    // Required arguments for this template
-    serviceName:: error "serviceName must be specified",
-    portAnnotations:: error "portAnnotations must be specified",
-    portConfigs:: error "portConfigs must be specified",
-    replicas:: error "Replicas must be specified",
-    role:: error "Role must be specified for certificate generation",
-    dockerImage:: error "dockerImage must be specified ",
-    command:: error "command must be specified ",
-    env:: error "env must be specified ",
-    volumeMounts:: error "volumeMounts must be specified ",
+  // Required arguments for this template
+  serviceName:: error "serviceName must be specified",
+  portAnnotations:: error "portAnnotations must be specified",
+  portConfigs:: error "portConfigs must be specified",
+  replicas:: error "Replicas must be specified",
+  role:: error "Role must be specified for certificate generation",
+  dockerImage:: error "dockerImage must be specified ",
+  command:: error "command must be specified ",
+  env:: error "env must be specified ",
+  volumeMounts:: error "volumeMounts must be specified ",
 
-    local configs = import "config.jsonnet",
-    local firefly_feature_flags = import "firefly_feature_flags.jsonnet",
-    local strReplace(str, from, to) = (
-        // Cache for performance.
-        local str_len = std.length(str);
-        local from_len = std.length(from);
+  local configs = import "config.jsonnet",
+  local firefly_feature_flags = import "firefly_feature_flags.jsonnet",
+  local strReplace(str, from, to) = (
+    // Cache for performance.
+    local str_len = std.length(str);
+    local from_len = std.length(from);
 
-        // True if from is at str[i].
-        local found_at(i) = str[i:i + from_len] == from;
+    // True if from is at str[i].
+    local found_at(i) = str[i:i + from_len] == from;
 
-        // Return the remainder of 'str' starting with 'start_index' where
-        // all occurrences of 'from' after 'curr_index' are replaced with 'to'.
-        local replace_after(start_index, curr_index, acc) =
-            if curr_index > str_len then
-                acc + str[start_index:curr_index]
-            else if found_at(curr_index) then
-                local new_index = curr_index + std.length(from);
-                replace_after(new_index, new_index, acc + str[start_index:curr_index] + to)
-            else
-                replace_after(start_index, curr_index + 1, acc);
+    // Return the remainder of 'str' starting with 'start_index' where
+    // all occurrences of 'from' after 'curr_index' are replaced with 'to'.
+    local replace_after(start_index, curr_index, acc) =
+      if curr_index > str_len then
+        acc + str[start_index:curr_index]
+      else if found_at(curr_index) then
+        local new_index = curr_index + std.length(from);
+        replace_after(new_index, new_index, acc + str[start_index:curr_index] + to)
+      else
+        replace_after(start_index, curr_index + 1, acc);
 
-        replace_after(0, 0, "")
-    ),
-    serviceConf:: {},
-    commonVolMounts:: [
-        {
-          name: "certs",
-          mountPath: "/certs",
-        },
-        {
-          name: "git-ssh-keys",
-          mountPath: "/root/.ssh/",
-        },
-        {
-          name: 'app-config-volume',
-          mountPath: '/etc/firefly/config',
-        },
-    ],
-    // arguments for template
-    commonEnv:: [
-        {
-            name: "MY_NODE_NAME",
-            valueFrom:
-            {
-                fieldRef: { fieldPath: "spec.nodeName", apiVersion: "v1" },
-            },
-        },
-        {
-            name: "MY_POD_NAME",
-            valueFrom:
-            {
-                fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
-            },
-        },
-        {
-            name: "MY_POD_IP",
-            valueFrom:
-            {
-                fieldRef: { fieldPath: "status.podIP", apiVersion: "v1" },
-            },
-        },
-    ],
-
-    local configmap = {
-        apiVersion: 'v1',
-        kind: 'ConfigMap',
-        metadata: {
-          name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['configmap']),
-          namespace: 'firefly',
-          labels: {} + configs.ownerLabel.tnrp,
-        },
-        data: $.data,
+    replace_after(0, 0, "")
+  ),
+  serviceConf:: {},
+  commonVolMounts:: [
+    {
+      name: "certs",
+      mountPath: "/certs",
     },
-
-    local service = {
-        kind: 'Service',
-        apiVersion: 'v1',
-        metadata: {
-            name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['service']),
-            namespace: 'firefly',
-            labels: {
-                app: $.serviceName,
-            } + configs.ownerLabel.tnrp,
-            [if firefly_feature_flags.is_slb_enabled then "annotations"]: {
-                "slb.sfdc.net/name": $.serviceName,
-                "slb.sfdc.net/portconfigurations": std.toString(
-                        $.portAnnotations,
-                ),
-            },
-        },
-        spec: {
-            type: if firefly_feature_flags.is_slb_enabled then 'NodePort' else 'LoadBalancer',
-            ports: $.portConfigs,
-            selector: {
-                 name: $.serviceName,
-            },
-        },
+    {
+      name: "git-ssh-keys",
+      mountPath: "/root/.ssh/",
     },
-
-    local deployment = configs.deploymentBase("tnrp") {
-        metadata: {
-            name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
-            namespace: "firefly",
-            labels: {
-                name: $.serviceName,
-            } + configs.ownerLabel.tnrp,
-        },
-        spec+: {
-            replicas: $.replicas,
-            template: {
-               metadata: {
-                    namespace: "firefly",
-                    name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
-                    labels: {
-                        name: $.serviceName,
-                    } + configs.ownerLabel.tnrp,
-                    annotations: {
-                        'madkub.sam.sfdc.net/allcerts': strReplace('{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client", "kingdom":"prd", "role": "#role"}]}', '#role', $.role),
-                    },
-               },
-               spec: {
-                  initContainers: [
-                      madkub.madkubInitContainer(),
-                  ],
-                  containers: [
-                    madkub.madkubRefreshContainer(),
-                    {
-                        name: $.serviceName,
-                        image: $.dockerImage,
-                        [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
-                        command: $.command,
-                        imagePullPolicy: 'Always',
-                        env: $.env,
-                        ports: [
-                                 {
-                                     name: "admin-port",
-                                     protocol: "TCP",
-                                     containerPort: $.serviceConf.healthPort,
-                                 },
-                        ] + if std.length($.serviceConf.port) < 0 then [] else $.serviceConf.port,
-                        volumeMounts: $.volumeMounts,
-                    },
-                   ] + if $.serviceConf.dindEnabled == false then [] else [
-                    {
-                       name: "dind-daemon",
-                       image: images.fireflydind,
-                       securityContext: {
-                           privileged: true,
-                       },
-                       volumeMounts: [
-                          {
-                             name: "docker-graph-storage",
-                             mountPath: "/var/lib/docker",
-                          },
-                          {
-                             name: "docker-build-dir",
-                             mountPath: "/tmp",
-                          },
-                          {
-                             name: "git-ssh-keys",
-                             mountPath: "/root/.ssh/",
-                          },
-                       ],
-                    },
-                  ],
-                  volumes: [
-                    {
-                      name: 'app-config-volume',
-                      projected: {
-                        sources: [
-                          {
-                            configMap: {
-                              name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['configmap']),
-                              items: [
-                                {
-                                  key: 'application.yml',
-                                  path: 'application.yml',
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      name: "docker-graph-storage",
-                      emptyDir: {},
-                    },
-                    {
-                         name: "docker-build-dir",
-                         emptyDir: {},
-                    },
-                    {
-                         name: "tokens",
-                         emptyDir: {
-                             medium: "Memory",
-                         },
-                    },
-                    {
-                         name: "certs",
-                         emptyDir: {
-                             medium: "Memory",
-                         },
-                    },
-                    {
-                         name: "git-ssh-keys",
-                         emptyDir: {
-                             medium: "Memory",
-                         },
-                    },
-                    configs.maddog_cert_volume,
-                  ],
-                  terminationGracePeriodSeconds: 10,
-                  nodeSelector: {
-                      pool: $.serviceConf.pool,
-                  },
-               },
-            },
-            strategy: {
-                type: "RollingUpdate",
-                rollingUpdate: {
-                    maxUnavailable: 1,
-                    maxSurge: 0,
-                },
-            },
-        },
+    {
+      name: 'app-config-volume',
+      mountPath: '/etc/firefly/config',
     },
+  ],
+  // arguments for template
+  commonEnv:: [
+    {
+      name: "MY_NODE_NAME",
+      valueFrom:
+      {
+        fieldRef: { fieldPath: "spec.nodeName", apiVersion: "v1" },
+      },
+    },
+    {
+      name: "MY_POD_NAME",
+      valueFrom:
+      {
+        fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
+      },
+    },
+    {
+      name: "MY_POD_IP",
+      valueFrom:
+      {
+        fieldRef: { fieldPath: "status.podIP", apiVersion: "v1" },
+      },
+    },
+  ],
 
+  local configmap = {
     apiVersion: 'v1',
-    kind: 'List',
-    items: [configmap, service, deployment],
+    kind: 'ConfigMap',
+    metadata: {
+      name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['configmap']),
+      namespace: 'firefly',
+      labels: {} + configs.ownerLabel.tnrp,
+    },
+    data: $.data,
+  },
+
+  local service = {
+    kind: 'Service',
+    apiVersion: 'v1',
+    metadata: {
+      name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['service']),
+      namespace: 'firefly',
+      labels: {
+        app: $.serviceName,
+      } + configs.ownerLabel.tnrp,
+      [if firefly_feature_flags.is_slb_enabled then "annotations"]: {
+        "slb.sfdc.net/name": $.serviceName,
+        "slb.sfdc.net/portconfigurations": std.toString(
+            $.portAnnotations,
+        ),
+      },
+    },
+    spec: {
+      type: if firefly_feature_flags.is_slb_enabled then 'NodePort' else 'LoadBalancer',
+      ports: $.portConfigs,
+      selector: {
+         name: $.serviceName,
+      },
+    },
+  },
+
+  local deployment = configs.deploymentBase("tnrp") {
+    metadata: {
+      name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
+      namespace: "firefly",
+      labels: {
+        name: $.serviceName,
+      } + configs.ownerLabel.tnrp,
+    },
+    spec+: {
+      replicas: $.replicas,
+      template: {
+         metadata: {
+          namespace: "firefly",
+          name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
+          labels: {
+            name: $.serviceName,
+          } + configs.ownerLabel.tnrp,
+          annotations: {
+            'madkub.sam.sfdc.net/allcerts': strReplace('{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client", "kingdom":"prd", "role": "#role"}]}', '#role', $.role),
+          },
+         },
+         spec: {
+          initContainers: [
+            madkub.madkubInitContainer(),
+          ],
+          containers: [
+          madkub.madkubRefreshContainer(),
+          {
+            name: $.serviceName,
+            image: $.dockerImage,
+            [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
+            command: $.command,
+            imagePullPolicy: 'Always',
+            env: $.env,
+            ports: [
+                 {
+                   name: "admin-port",
+                   protocol: "TCP",
+                   containerPort: $.serviceConf.healthPort,
+                 },
+            ] + if std.length($.serviceConf.port) < 0 then [] else $.serviceConf.port,
+            volumeMounts: $.volumeMounts,
+            livenessProbe: {
+              httpGet: {
+              path: '/actuator',
+              port: 'admin-port',
+              },
+              initialDelaySeconds: 180,
+              timeoutSeconds: 30,
+              periodSeconds: 30,
+              successThreshold: 1,
+              failureThreshold: 10,
+            },
+            readinessProbe: {
+              httpGet: {
+              path: '/actuator/health',
+              port: 'admin-port',
+              },
+              initialDelaySeconds: 180,
+              timeoutSeconds: 30,
+              periodSeconds: 30,
+              successThreshold: 1,
+              failureThreshold: 10,
+            },
+          },
+           ] + if $.serviceConf.dindEnabled == false then [] else [
+          {
+             name: "dind-daemon",
+             image: images.fireflydind,
+             securityContext: {
+               privileged: true,
+             },
+             volumeMounts: [
+              {
+               name: "docker-graph-storage",
+               mountPath: "/var/lib/docker",
+              },
+              {
+               name: "docker-build-dir",
+               mountPath: "/tmp",
+              },
+              {
+               name: "git-ssh-keys",
+               mountPath: "/root/.ssh/",
+              },
+             ],
+          },
+          ],
+          volumes: [
+          {
+            name: 'app-config-volume',
+            projected: {
+            sources: [
+              {
+              configMap: {
+                name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['configmap']),
+                items: [
+                {
+                  key: 'application.yml',
+                  path: 'application.yml',
+                },
+                ],
+              },
+              },
+            ],
+            },
+          },
+          {
+            name: "docker-graph-storage",
+            emptyDir: {},
+          },
+          {
+             name: "docker-build-dir",
+             emptyDir: {},
+          },
+          {
+             name: "tokens",
+             emptyDir: {
+               medium: "Memory",
+             },
+          },
+          {
+             name: "certs",
+             emptyDir: {
+               medium: "Memory",
+             },
+          },
+          {
+             name: "git-ssh-keys",
+             emptyDir: {
+               medium: "Memory",
+             },
+          },
+          configs.maddog_cert_volume,
+          ],
+          terminationGracePeriodSeconds: 10,
+          nodeSelector: {
+            pool: $.serviceConf.pool,
+          },
+         },
+      },
+      strategy: {
+        type: "RollingUpdate",
+        rollingUpdate: {
+          maxUnavailable: 1,
+          maxSurge: 0,
+        },
+      },
+    },
+  },
+
+  apiVersion: 'v1',
+  kind: 'List',
+  items: [configmap, service, deployment],
 }

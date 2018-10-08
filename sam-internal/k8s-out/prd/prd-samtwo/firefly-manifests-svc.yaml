@@ -278,11 +278,29 @@ items:
             value: manifests.latestfile
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:169
           imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator
+              port: admin-port
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           name: firefly-package
           ports:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
+          readinessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator/health
+              port: admin-port
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -654,11 +672,29 @@ items:
             value: manifests.latestfile
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:169
           imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator
+              port: admin-port
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           name: firefly-package-singleton
           ports:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
+          readinessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator/health
+              port: admin-port
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -988,11 +1024,29 @@ items:
             value: manifests.pr
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:169
           imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator
+              port: admin-port
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           name: firefly-pullrequest
           ports:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
+          readinessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator/health
+              port: admin-port
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -1341,11 +1395,29 @@ items:
             value: manifests.promotion
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:169
           imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator
+              port: admin-port
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           name: firefly-promotion
           ports:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
+          readinessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator/health
+              port: admin-port
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           volumeMounts:
           - mountPath: /certs
             name: certs
