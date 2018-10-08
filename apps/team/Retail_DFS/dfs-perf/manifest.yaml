@@ -58,8 +58,8 @@ system:
                 -Dcom.sun.management.jmxremote.authenticate=false
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       resources:
-        limits: { cpu: "16", memory: "4Gi" }
-        requests: { cpu: "16", memory: "3Gi" }
+        limits: { cpu: "4", memory: "4Gi" }
+        requests: { cpu: "4", memory: "3Gi" }
       ports:
       - containerPort: 7022
       - containerPort: 15372
@@ -102,7 +102,6 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 60
         periodSeconds: 120
-
     - name: beacon-dfs
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       env:
@@ -121,6 +120,7 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
+
   loadbalancers:
   - lbname: dfs-lbpf
     function: dfs-perf

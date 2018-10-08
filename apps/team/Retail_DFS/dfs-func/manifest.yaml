@@ -54,6 +54,9 @@ system:
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+      resources:
+        limits: { cpu: "4", memory: "4Gi" }
+        requests: { cpu: "4", memory: "3Gi" }
       ports:
       - containerPort: 7022
       - containerPort: 15372
@@ -65,7 +68,6 @@ system:
           path: /manage/health
           port: 15372
           scheme: HTTP
-
     - name: sherpa-dfs
       image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       volumeMounts:
@@ -76,6 +78,9 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: stmfa
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
         - containerPort: 7442
         - containerPort: 7014
@@ -92,7 +97,6 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 60
         periodSeconds: 120
-
     - name: beacon-dfs
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       env:
