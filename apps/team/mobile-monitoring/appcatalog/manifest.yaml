@@ -20,7 +20,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: appcatalog-app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_app:6b3d4a3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_app:e1ed077
       env:
       - name: SECRETSERVICE_CERT_PATH
         value: /certs/client/certificates/client.pem
@@ -57,7 +57,7 @@ system:
       - containerPort: 7020
         name: grpc
     - name: app-catalog-googleplay-poll
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_googleplay_poll:6b3d4a3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_googleplay_poll:e1ed077
       env:
       - name: SECRETSERVICE_CERT_PATH
         value: /certs/client/certificates/client.pem
@@ -85,7 +85,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 20
     - name: app-catalog-itunes-poll
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_itunes_poll:6b3d4a3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_itunes_poll:e1ed077
       env:
       - name: SECRETSERVICE_CERT
         value: /certs/client/certificates/client.pem
@@ -113,7 +113,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 20
     - name: app-catalog-windowsstore-poll
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_windowsstore_poll:6b3d4a3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_windowsstore_poll:e1ed077
       env:
       - name: SECRETSERVICE_CERT_PATH
         value: /certs/client/certificates/client.pem
