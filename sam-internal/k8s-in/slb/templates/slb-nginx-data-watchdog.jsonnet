@@ -44,7 +44,7 @@ if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slb
                                                  "--connPort=" + slbports.slb.nginxDataConnPort,
                                              ]
                                              + (
-                                                 if slbimages.phaseNum <= 2 then
+                                                 if slbimages.hypersdn_build >= 1258 then
                                                      [
                                                          "--monitorFrequency=10s",
                                                      ] else
