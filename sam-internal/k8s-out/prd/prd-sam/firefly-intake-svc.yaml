@@ -272,6 +272,15 @@ items:
             value: "false"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:169
           imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator
+              port: admin-port
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           name: firefly-intake
           ports:
           - containerPort: 8081
@@ -280,6 +289,15 @@ items:
           - containerPort: 8080
             name: intake-http
             protocol: TCP
+          readinessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator/health
+              port: admin-port
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           resources:
             limits:
               sam.sfdc.net/ip-address: "1"
