@@ -14,7 +14,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
         namespace: "sam-system",
     },
     spec+: {
-        replicas: if configs.estate == "prd-sdc" then 2 else if (slbconfigs.slbProdCluster && configs.estate != "prd-samtwo") then 3 else 1,
+        replicas: if configs.estate == "prd-sdc" then 2 else if (slbconfigs.isProdEstate && configs.estate != "prd-samtwo") then 3 else 1,
         template: {
             spec: {
                       affinity: {

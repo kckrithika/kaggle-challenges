@@ -290,7 +290,6 @@
     servicesToLbOverride: self.perCluster.servicesToLbOverride[estate],
     servicesNotToLbOverride: self.perCluster.servicesNotToLbOverride[estate],
     canaryMaxParallelism: self.perCluster.canaryMaxParallelism[estate],
-    slbProdCluster: estate in { [k]: 1 for k in $.prodEstates },
     slbInKingdom: kingdom in { [k]: 1 for k in $.slbKingdoms },
     slbInProdKingdom: kingdom in { [k]: 1 for k in $.prodKingdoms },
     isTestEstate: estate in { [e]: 1 for e in $.testEstates },
