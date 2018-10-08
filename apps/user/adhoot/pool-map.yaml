@@ -3,3 +3,5 @@ apps:
 #  - prd/prd-sam
 # TestRCHostNW:
 #  - prd/prd-sam
+    TestStateless:
+        - prd/prd-sam
