@@ -6,7 +6,7 @@ local slbconfigs = (import "slbconfig.jsonnet") + (if logCleanupEnabled then { d
 local slbshared = (import "slbsharedservices.jsonnet") + (if logCleanupEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
 local slbflights = import "slbflights.jsonnet";
 
-if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slbInKingdom) then configs.deploymentBase("slb") {
+if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata+: {
         labels: {
             name: "slb-nginx-data-watchdog",
@@ -84,7 +84,7 @@ if slbimages.phaseNum == 1 || (slbimages.hypersdn_build > 1122 && slbconfigs.slb
                                 ] else []
                             ),
             } + slbflights.getDnsPolicy() + (
-                if slbconfigs.isTestEstate && configs.estate != "prd-samtwo" then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
+                if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
             ),
             metadata: {
                 labels: {

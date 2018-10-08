@@ -5,7 +5,7 @@ local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-iface-proce
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-iface-processor" };
 local slbflights = import "slbflights.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then configs.daemonSetBase("slb") {
+if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
     metadata: {
         labels: {
             name: "slb-iface-processor",
@@ -57,7 +57,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
 
                                     ],
                                 },
-                            ] + if slbconfigs.isTestEstate && configs.estate != "prd-samtwo" then [{
+                            ] + if slbconfigs.isTestEstate then [{
                                 matchExpressions: [
                                     {
                                         key: "master",

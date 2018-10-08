@@ -4,7 +4,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbflights = import "slbflights.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then configs.daemonSetBase("slb") {
+if slbconfigs.isSlbEstate && configs.estate != "prd-sam_storage" then configs.daemonSetBase("slb") {
     metadata: {
         labels: {
             name: "slb-config-data",

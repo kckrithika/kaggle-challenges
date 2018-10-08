@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
+if slbconfigs.isSlbEstate then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbflights = import "slbflights.jsonnet";
 
-if slbimages.hypersdn_build > 1120 && slbconfigs.slbInKingdom then configs.deploymentBase("slb") {
+if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-redundancy-checker",
@@ -67,7 +67,7 @@ if slbimages.hypersdn_build > 1120 && slbconfigs.slbInKingdom then configs.deplo
                     },
                 ],
             } + slbflights.getDnsPolicy() + (
-            if slbconfigs.isTestEstate && configs.estate != "prd-samtwo" then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
+            if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
             ),
         },
         strategy: {

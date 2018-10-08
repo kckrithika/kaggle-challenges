@@ -10,7 +10,7 @@ local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-conf
 
 local certDirs = ["cert1", "cert2"];
 
-if slbconfigs.slbInKingdom || configs.estate == "prd-samtwo" then configs.deploymentBase("slb") {
+if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-nginx-config-b",

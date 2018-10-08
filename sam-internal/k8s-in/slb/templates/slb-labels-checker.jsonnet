@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbflights = import "slbflights.jsonnet";
 
-if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then configs.deploymentBase("slb") {
+if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: "slb-labels-checker",
@@ -62,7 +62,7 @@ if slbconfigs.isTestEstate || slbconfigs.slbInProdKingdom || configs.estate == "
                 ],
             } + slbflights.getDnsPolicy()
             + (
-                    if slbconfigs.isTestEstate && configs.estate != "prd-samtwo" then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
+                    if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
               ),
             metadata: {
                 labels: {
