@@ -278,7 +278,7 @@ local utils = import "util_functions.jsonnet";
     # we only refer to in dynamically created in Kubernetes resources, we list them here for inclusion
     # in a bogus manifest. Note: only images from the three magic prefixes /dva, /sfci, and /tnrp are
     # eligible for promotion.
-    # Airflow, redis, and postgresql were never used in production and cause problems
+    # Airflow, redis, and postgresql are not being built hence cannot be promoted
     flowsnakeImagesToPromote: [
        "flowsnake-spark-driver_2.1.0",
        "flowsnake-spark-master_2.1.0",
