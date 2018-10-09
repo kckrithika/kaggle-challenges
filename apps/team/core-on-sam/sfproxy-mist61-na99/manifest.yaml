@@ -444,7 +444,7 @@ system:
     count: 1
     containers:
     - name: sfproxy-envoy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:7ebd05f
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:329ae32
       env:
       - name: ENVOY_DEBUG_OPTIONS
         value: --concurrency 200
