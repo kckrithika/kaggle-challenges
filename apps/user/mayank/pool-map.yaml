@@ -8,9 +8,9 @@ apps:
  TestApp:
   - name: prd/prd-sam
   - name: prd/prd-samdev
-# StatefulDemoApp:
+ StatefulDemoApp:
 #  - name: prd/prd-samtest
-#  - name: prd/prd-sam
+   - name: prd/prd-sam
 # StatefulAppOnRdi:
 #  - name: prd/prd-samdev
  StatefulAppNoCeph:
