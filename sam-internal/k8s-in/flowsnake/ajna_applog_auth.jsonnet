@@ -48,6 +48,10 @@ local kingdom = std.extVar("kingdom");
                 "sespc",
                 "seuir",
             ],
+            "sayonara-applogs": [
+                "mqdbg",
+                "G",
+            ],
         },
         "prd/prd-data-flowsnake_test": {
         },
