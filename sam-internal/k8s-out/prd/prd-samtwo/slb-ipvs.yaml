@@ -267,7 +267,7 @@ spec:
         - --client.serverInterface=lo
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
-        - --subnet=10.254.252.0/22,
+        - --subnet=10.254.252.0/22,136.146.214.0/23
         - --maxDeleteVipCount=10
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001260-0423a520
         name: slb-iface-processor
