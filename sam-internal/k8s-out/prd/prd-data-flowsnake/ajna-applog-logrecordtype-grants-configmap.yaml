@@ -2,8 +2,8 @@ apiVersion: v1
 data:
   data: '{"edge_intelligence": ["augen", "ailtn", "u"], "einstein_analytics_discovery_monitoring":
     ["aprst", "G", "gglog", "gslog", "iedfc", "iedfs", "iedrn", "ieece", "ieecq"],
-    "flowsnake": ["augen", "ailtn", "u"], "search_dlc": ["5", "Q", "ailtn", "seabt",
-    "seclk", "seeps", "sepro", "serfv", "sespc", "seuir"]}'
+    "flowsnake": ["augen", "ailtn", "u"], "sayonara-applogs": ["mqdbg", "G"], "search_dlc":
+    ["5", "Q", "ailtn", "seabt", "seclk", "seeps", "sepro", "serfv", "sespc", "seuir"]}'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
