@@ -1,0 +1,22 @@
+- lbname: dev0shared0-flowsnakeiottest1-0-prd
+  customlbname: dev0shared0-flowsnakeiottest1-0-prd
+  servers:
+   - dev0shared0-flowsnakeworkeriottest1-1-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-2-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-3-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-4-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-5-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-6-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-7-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-8-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-9-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-10-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-11-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-12-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-13-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-14-prd.eng.sfdc.net
+   - dev0shared0-flowsnakeworkeriottest1-15-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 8443
+     lbtype: tcp
