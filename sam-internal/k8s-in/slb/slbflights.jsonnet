@@ -11,7 +11,7 @@
     mwSentinelEnabled: true,
     stockIpvsModules: (if slbimages.phaseNum > 4 then true else false),
     certDeployerEnabled: (if slbimages.phaseNum <= 4 then true else false),
-    roleBasedSecrets: (if slbimages.phaseNum <= 3 then true else false),
+    roleBasedSecrets: (if slbimages.phaseNum <= 4 then true else false),
     explicitDeleteLimit: (if slbimages.phaseNum <= 3 then true else false),
 
     getNodeApiClientSocketSettings(configDir):: (if nodeApiUnixSocketEnabled then [
