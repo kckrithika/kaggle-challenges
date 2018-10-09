@@ -48,8 +48,7 @@ system:
         name: logvol
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/92
-      image: sfci/servicelibs/sherpa-envoy:f488bd0ccfc2aa726d52db749ea82742f5835c53
+      image: sfci/servicelibs/sherpa-envoy:1.0.1
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
