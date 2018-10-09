@@ -85,7 +85,7 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                add_12_2_canary: "UNVERIFIED",  # testing in Test fleet
+                add_12_2_canary: "verified",  # worked in Test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
@@ -132,6 +132,7 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 kubedns_scale_up: "",  # verfieid in test, dev fleets
                 # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
+                add_12_2_canary: "UNVERIFIED",  # testing in dev fleet
             },
             version_mapping: {
                 main: {
@@ -144,6 +145,7 @@ local utils = import "util_functions.jsonnet";
                   "0.11.0.sluice_fix": 691,
                   "0.12.0": 696,
                   "0.12.1": 10001,
+                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
