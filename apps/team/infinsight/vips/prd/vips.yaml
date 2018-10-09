@@ -1,0 +1,24 @@
+- lbname: ops0-infinsight-api1-0-prd
+  customlbname: ops0-infinsight-api1-0-prd
+  servers:
+    - ina1shared0-infinsighthadoop1-6-prd.eng.sfdc.net
+    - ina1shared0-infinsighthadoop2-3-prd.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 443
+      lbtype: http
+      tls: true
+      reencrypt: true
+      healthport: 80
+      healthpath: /ping.jsp
+      healthprotocol: http
+- lbname: ops0-infinsight-db1-0-prd
+  customlbname: ops0-infinsight-db1-0-prd
+  servers:
+    - ina1shared0-infinsightdb1-1-prd.eng.sfdc.net
+    - ina1shared0-infinsighthadoop1-7-prd.eng.sfdc.net
+    - ina1shared0-infinsighthadoop1-9-prd.eng.sfdc.net
+  ports:
+    - port: 9999
+      targetport: 9999
+      lbtype: tcp
