@@ -35,6 +35,21 @@ system:
       volumeMounts:
       - mountPath: /tmp
         name: temp
+    - name: dashboard-prd-data-test
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/prd-data-flowsnake_test
+        - --insecure-port=9097
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9097
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9097
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
     - name: dashboard-frf
       args:
         - --logtostderr=true
@@ -127,6 +142,13 @@ system:
     ports:
       - port: 80
         targetport: 9091
+        lbtype: dsr
+  - lbname: dashboard-prd-data-test
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9097
         lbtype: dsr
   - lbname: dashboard-frf
     function: dashboard
