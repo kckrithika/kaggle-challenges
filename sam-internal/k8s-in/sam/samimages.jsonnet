@@ -21,28 +21,19 @@ local configs = import "config.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-         # [cbatra] Deploying node controller changes for PRD IP issue
-        "prd,prd-samdev,node-controller,hypersam": "sam-0002289-5a53fd7d",
-        "prd,prd-samtest,node-controller,hypersam": "sam-0002289-5a53fd7d",
-
         #[pjoshi]
         "prd,prd-sam,snapshotconsumer-prd,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
         "prd,prd-sam,snapshotconsumer-prod,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
 
-        "prd,prd-samtest,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
-        "prd,prd-samdev,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
         "prd,prd-sam_storagedev,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
         "prd,prd-sam_storage,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
         "frf,frf-sam,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
 
         #[W-5431932] Fix k8s-resource-reporter crashing
-        "prd,prd-samtest,k8s-resource-reporter,hypersam": "sam-0002282-d7702ab4",
-        "prd,prd-samdev,k8s-resource-reporter,hypersam": "sam-0002282-d7702ab4",
         "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002282-d7702ab4",
 
         #[small]
-        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180830_155128.a66cdb1a.clean.small-ltm",
         "prd,prd-sam,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180830_155128.a66cdb1a.clean.small-ltm",
         }
         + {
@@ -95,7 +86,7 @@ for ce in [
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
             # IMPORTANT! Follow all steps from https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM
-            hypersam: "sam-0002279-7db63f34",
+            hypersam: "sam-0002328-f0e6eae5",
             madkub: "1.0.0-0000077-b1d3a629",
             madkubSidecar: "1.0.0-0000077-b1d3a629",
             },
