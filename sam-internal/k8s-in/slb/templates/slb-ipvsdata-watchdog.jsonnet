@@ -39,7 +39,15 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                             configs.sfdchosts_arg,
                             "--k8sapiserver=",
                             "--connPort=" + portconfigs.slb.ipvsDataConnPort,
-                            "--monitorFrequency=180s",
+                            ] + (
+                                if slbimages.phaseNum <= 1 then
+                                 [
+                                     "--monitorFrequency=10s",
+                                 ] else
+                                 [
+                                     "--monitorFrequency=180s",
+                                 ]
+                            ) + [
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--hostnameOverride=$(NODE_NAME)",
                         ],
