@@ -114,10 +114,6 @@ spec:
         name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-test-data:681
         name: flowsnake-test-data
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-postgresql:681
-        name: flowsnake-postgresql
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-redis:681
-        name: flowsnake-redis
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-environment-service:681
         name: flowsnake-environment-service
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-stream-production-monitor:681
@@ -132,8 +128,6 @@ spec:
         name: flowsnake-job-flowsnake-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:681
         name: flowsnake-job-flowsnake-storm-demo-job
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:681
-        name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:681
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-zookeeper:681
@@ -144,8 +138,6 @@ spec:
         name: flowsnake-job-flowsnake-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.11.0
         name: flowsnake-job-flowsnake-storm-demo-job
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:0.11.0
-        name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.11.0
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:696
@@ -190,10 +182,6 @@ spec:
         name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-test-data:696
         name: flowsnake-test-data
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-postgresql:696
-        name: flowsnake-postgresql
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-redis:696
-        name: flowsnake-redis
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-environment-service:696
         name: flowsnake-environment-service
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-stream-production-monitor:696
@@ -208,8 +196,6 @@ spec:
         name: flowsnake-job-flowsnake-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:696
         name: flowsnake-job-flowsnake-storm-demo-job
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:696
-        name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:696
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-zookeeper:696
@@ -220,8 +206,6 @@ spec:
         name: flowsnake-job-flowsnake-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.12.0
         name: flowsnake-job-flowsnake-storm-demo-job
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:0.12.0
-        name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.0
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:10001
@@ -266,10 +250,6 @@ spec:
         name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-test-data:10001
         name: flowsnake-test-data
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-postgresql:10001
-        name: flowsnake-postgresql
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-redis:10001
-        name: flowsnake-redis
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-environment-service:10001
         name: flowsnake-environment-service
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-stream-production-monitor:10001
@@ -284,8 +264,6 @@ spec:
         name: flowsnake-job-flowsnake-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:10001
         name: flowsnake-job-flowsnake-storm-demo-job
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:10001
-        name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:10001
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-zookeeper:10001
@@ -296,7 +274,5 @@ spec:
         name: flowsnake-job-flowsnake-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.12.1
         name: flowsnake-job-flowsnake-storm-demo-job
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:0.12.1
-        name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.1
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job

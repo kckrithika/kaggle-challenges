@@ -278,6 +278,7 @@ local utils = import "util_functions.jsonnet";
     # we only refer to in dynamically created in Kubernetes resources, we list them here for inclusion
     # in a bogus manifest. Note: only images from the three magic prefixes /dva, /sfci, and /tnrp are
     # eligible for promotion.
+    # Airflow, redis, and postgresql are not being built hence cannot be promoted
     flowsnakeImagesToPromote: [
        "flowsnake-spark-driver_2.1.0",
        "flowsnake-spark-master_2.1.0",
@@ -304,8 +305,8 @@ local utils = import "util_functions.jsonnet";
        #"flowsnake-airflow-webserver",
        #"flowsnake-airflow-scheduler",
        #"flowsnake-airflow-worker",
-       "flowsnake-postgresql",
-       "flowsnake-redis",
+       # "flowsnake-postgresql",
+       # "flowsnake-redis",
        "flowsnake-environment-service",
        "flowsnake-stream-production-monitor",
        "flowsnake-kafka-configurator",
@@ -313,7 +314,7 @@ local utils = import "util_functions.jsonnet";
        "flowsnake-kafka-connect",
        "flowsnake-job-flowsnake-demo-job",
        "flowsnake-job-flowsnake-storm-demo-job",
-       "flowsnake-job-flowsnake-airflow-dags",
+       # "flowsnake-job-flowsnake-airflow-dags",
        "flowsnake-job-flowsnake-spark-local-mode-demo-job",
        "flowsnake-zookeeper",
        "flowsnake-logstash",
