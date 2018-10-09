@@ -36,7 +36,7 @@ spec:
         - --subnet=10.229.32.0/22
         - --client.serverPort=12088
         - --client.serverInterface=lo
-        - --restrictedSubnets=136.146.48.0/23,
+        - --restrictedSubnets=136.146.48.0/23,136.146.67.0/24,
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
         image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001258-431ecb98
