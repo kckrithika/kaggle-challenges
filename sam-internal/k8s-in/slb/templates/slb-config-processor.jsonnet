@@ -5,7 +5,7 @@ local portconfigs = import "slbports.jsonnet";
 local slbshared = import "slbsharedservices.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 
-if slbconfigs.isSlbEstate && configs.estate != "prd-sdc" then configs.daemonSetBase("slb") {
+if slbimages.phaseNum > 1 && slbconfigs.isSlbEstate && configs.estate != "prd-sdc" then configs.daemonSetBase("slb") {
     metadata: {
         labels: {
             name: "slb-config-processor",
