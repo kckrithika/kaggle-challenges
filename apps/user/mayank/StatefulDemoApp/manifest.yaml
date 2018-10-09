@@ -30,5 +30,5 @@ system:
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
     - name: www
-      storageClassName: mayank-hdd-pool
+      storageClassName: standard-ceph0-hdd-pool
       storageSizeRequest: 9Gi
