@@ -10,6 +10,16 @@ system:
       livenessProbe:
         httpGet:
             path: /health
+    - name: edge-api-stunnel
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_stunnel:1.0-0000067-456b511d
+      livenessProbe:
+        httpGet:
+            path: /health
+    - name: edge-api-rsyncd
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_rsyncd:1.0-0000067-456b511d
+      livenessProbe:
+        httpGet:
+            path: /health
     - name: edge-rptc
       image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_rptc:1.0-0000242-69764468
       livenessProbe:
