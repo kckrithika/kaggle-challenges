@@ -34,7 +34,7 @@ local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.t
         containers: [
           configs.containerWithKubeConfigAndMadDog {
             name: "discovery",
-            image: istioImages.pilot,
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/pilot:1.0.2",
             imagePullPolicy: "IfNotPresent",
             args: [
               "discovery",
