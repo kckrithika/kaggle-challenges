@@ -1,0 +1,79 @@
+local estate = std.extVar("estate");
+local kingdom = std.extVar("kingdom");
+
+{
+  ### Global overrides - Anything here will override anything below
+  overrides: {
+    #
+    # This section lets you override any hypersam image for a given kingdom,estate,template,image.
+    # Template is the short name of the template.  For k8s-in/templates/samcontrol.jsonnet use "samcontrol"
+    # Image name
+    #
+    # Example:
+    #   # [alias] Added this override to fix issue xxx
+    #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
+    "prd,prd-samtest,service-mesh,istio-pilot": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/pilot:1.0.2",
+  },
+
+  ### Per-phase image tags
+  per_phase: {
+    ### Release Phase 0 - Nightly deployment of the most recent hypersam to prd-samtest
+    # Under normal cirumstances we should not need to change this section.
+    # Overrides work just fine in this phase.  To see the active hypersam tag visit:
+    # https://git.soma.salesforce.com/sam/sam/wiki/SAM-Auto-Deployer#how-to-find-phase-0-hypersam-tag
+
+    # NOTE:
+    # Each phase is overlayed on the next phase.  This means that for things that are the same everywhere
+    # you are free to simply define it only in Phase4 and all the rest will inherit it.
+
+    ### Release Phase 0 - prd-samtest
+    "0": $.per_phase["1"] {
+       pilot: "1.0.2",
+     },
+
+    ### Release Phase 1 - prd-samdev
+    "1": $.per_phase["2"] {
+       pilot: "N/A",
+     },
+
+    ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
+    "2": $.per_phase["3"] {
+       pilot: "N/A",
+     },
+
+    ### Release Phase 3 - Canary Prod FRF / Pub CDU
+    "3": $.per_phase["4"] {
+       pilot: "N/A",
+     },
+
+    ### Release Phase 4 - Rest of Prod + Pub + Gia + prd-samtwo
+    "4": {
+       pilot: "N/A",
+     },
+  },
+
+  ### Phase kingdom/estate mapping
+  phase: (
+    if (estate == "prd-samtest") then
+      "0"
+    else if (1 == 2) then
+      "1"
+    else if (1 == 2) then
+      "2"
+    else if (1 == 2) then
+      "3"
+    else if (1 == 2) then
+      "4"
+  ),
+
+  pilot: imageFunc.do_override_based_on_tag($.overrides, "service-mesh", "istio-pilot", $.per_phase[$.phase].pilot),
+
+  # image_functions needs to know the filename of the template we are processing
+  # Each template must set this at time of importing this file, for example:
+  #
+  # "local someteamimages = (import "someteamimages.jsonnet")  + { templateFilename:: std.thisFile };"
+  #
+  # Then we pass this again into image_functions at time of import.
+  templateFilename:: error "templateFilename must be passed at time of import",
+  local imageFunc = (import "image_functions.libsonnet") + { templateFilename:: $.templateFilename },
+}
