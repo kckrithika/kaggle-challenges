@@ -41,13 +41,13 @@ system:
          - name: GROK_API_VER
            value: ''
          - name: RENDER_SERVER
-           value: render
+           value: 0.0.0.0
          - name: RENDER_PORT
            value: 8080
          - name: RENDER_TEAMWHITELIST
            value: netqa
          - name: ETHGEN_SERVER
-           value: ethgen
+           value: ethgenlb.user-mgardner.prd-sam.prd.slb.sfdc.net
          - name: ETHGEN_PORT
            value: 50051
          - name: JACKGEN_KEY
