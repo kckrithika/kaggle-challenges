@@ -212,7 +212,7 @@ system:
         - name: K4A
           value: have_to_get_this
         - name: WAITTIME_PD
-          value: 60
+          value: 160
         - name: JMX_HOST
           value: shared2-samminioncoreapp1-1-prd.eng.sfdc.net
         - name: JMX_PORT
