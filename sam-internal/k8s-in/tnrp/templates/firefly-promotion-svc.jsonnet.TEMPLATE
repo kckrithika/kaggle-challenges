@@ -11,6 +11,7 @@ serviceDeployment {
         healthPort: portConfig.firefly.promotion_mgmt,
         pool: if configs.estate == "prd-samtwo" then 'prd-sam_tnrp_merger' else configs.estate,
         port: [],
+        darkLaunch: "false",
     },
     serviceName:: "firefly-promotion",
     role:: "firefly",
@@ -32,6 +33,10 @@ serviceDeployment {
         {
            name: "CONFIG_VERSION",
            value: "2",
+        },
+        {
+            name: "DARKLAUNCH",
+            value: $.serviceConf["darkLaunch"],
         },
     ],
     volumeMounts:: super.commonVolMounts,

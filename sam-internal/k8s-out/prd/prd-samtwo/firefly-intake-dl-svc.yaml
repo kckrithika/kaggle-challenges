@@ -136,15 +136,15 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-configmap
+    name: firefly-intake-dl-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
     labels:
-      app: firefly-intake
+      app: firefly-intake-dl
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-service
+    name: firefly-intake-dl-service
     namespace: firefly
   spec:
     ports:
@@ -164,21 +164,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-intake
+      name: firefly-intake-dl
     type: LoadBalancer
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-intake
+      name: firefly-intake-dl
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-deployment
+    name: firefly-intake-dl-deployment
     namespace: firefly
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-intake
+        name: firefly-intake-dl
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -191,9 +191,9 @@ items:
           madkub.sam.sfdc.net/allcerts: '{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client",
             "kingdom":"prd", "role": "firefly"}]}'
         labels:
-          name: firefly-intake
+          name: firefly-intake-dl
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-intake-deployment
+        name: firefly-intake-dl-deployment
         namespace: firefly
       spec:
         containers:
@@ -265,7 +265,7 @@ items:
           - name: CONFIG_VERSION
             value: "5"
           - name: DARKLAUNCH
-            value: "false"
+            value: "true"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:176
           imagePullPolicy: Always
           livenessProbe:
@@ -277,7 +277,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-intake
+          name: firefly-intake-dl
           ports:
           - containerPort: 8081
             name: admin-port
@@ -357,7 +357,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-intake-configmap
+                name: firefly-intake-dl-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}

@@ -276,7 +276,7 @@ items:
             value: test-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: test-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:169
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:176
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -670,7 +670,7 @@ items:
             value: test-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: test-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:169
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:176
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1022,7 +1022,7 @@ items:
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: test-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:169
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:176
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1389,11 +1389,13 @@ items:
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
             value: "2"
+          - name: DARKLAUNCH
+            value: "false"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: test-manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:169
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:176
           imagePullPolicy: Always
           name: firefly-promotion
           ports:
