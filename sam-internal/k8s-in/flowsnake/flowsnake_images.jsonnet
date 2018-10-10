@@ -85,7 +85,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                add_12_2_canary: "verified",  # worked in Test fleet
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
@@ -134,7 +133,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 kubedns_scale_up: "",  # verfieid in test, dev fleets
                 # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
-                add_12_2_canary: "verified",  # running in dev fleet
                 kubedns_host_network: "",
             },
             version_mapping: {
@@ -166,7 +164,6 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
-                add_12_2_canary: "verified",  # tested in Data fleet
             },
             version_mapping: {
                 main: {
@@ -201,7 +198,6 @@ local utils = import "util_functions.jsonnet";
                 ### the templates. This PR should not result in any k8s-out diffs.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
-                add_12_2_canary: "UNVERIFIED",  # testing in prod fleets
             },
             version_mapping: {
                 main: {
