@@ -318,10 +318,6 @@ spec:
         name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-test-data:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
         name: flowsnake-test-data
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-postgresql:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
-        name: flowsnake-postgresql
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-redis:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
-        name: flowsnake-redis
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-environment-service:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
         name: flowsnake-environment-service
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-stream-production-monitor:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
@@ -336,8 +332,6 @@ spec:
         name: flowsnake-job-flowsnake-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
         name: flowsnake-job-flowsnake-storm-demo-job
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
-        name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-zookeeper:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
@@ -348,7 +342,5 @@ spec:
         name: flowsnake-job-flowsnake-demo-job
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.12.2
         name: flowsnake-job-flowsnake-storm-demo-job
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:0.12.2
-        name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.2
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
