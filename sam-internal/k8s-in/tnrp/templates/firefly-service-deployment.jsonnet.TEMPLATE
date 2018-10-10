@@ -156,7 +156,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                  },
             ] + if std.length($.serviceConf.port) < 0 then [] else $.serviceConf.port,
             volumeMounts: $.volumeMounts,
-            livenessProbe: {
+            [if $.serviceName != "firefly-promotion"  then "livenessProbe"]: {
               httpGet: {
               path: '/actuator',
               port: 'admin-port',
@@ -167,7 +167,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
               successThreshold: 1,
               failureThreshold: 10,
             },
-            readinessProbe: {
+            [if $.serviceName != "firefly-promotion"  then "readinessProbe"]: {
               httpGet: {
               path: '/actuator/health',
               port: 'admin-port',

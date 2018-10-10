@@ -1395,29 +1395,11 @@ items:
             value: manifests.promotion
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:169
           imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 10
-            httpGet:
-              path: /actuator
-              port: admin-port
-            initialDelaySeconds: 30
-            periodSeconds: 30
-            successThreshold: 1
-            timeoutSeconds: 30
           name: firefly-promotion
           ports:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          readinessProbe:
-            failureThreshold: 10
-            httpGet:
-              path: /actuator/health
-              port: admin-port
-            initialDelaySeconds: 30
-            periodSeconds: 30
-            successThreshold: 1
-            timeoutSeconds: 30
           volumeMounts:
           - mountPath: /certs
             name: certs
