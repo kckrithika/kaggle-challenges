@@ -49,6 +49,7 @@ spec:
         - --client.serverPort=12088
         - --client.serverInterface=lo
         - --restrictedSubnets=85.222.140.0/23,
+        - --maxDeleteEntries=10
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
         image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001261-c2aa8b39
@@ -239,6 +240,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
+        - --maxDeleteLimit=10
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-dns-register/slb-manifest-watcher.sentinel
         env:
