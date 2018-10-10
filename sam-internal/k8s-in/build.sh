@@ -50,7 +50,7 @@ fi
 
 
 # Format input jsonnet files.  TODO: Auto-compute these directories
-for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates slb slb/templates storage/templates flowsnake flowsnake/templates tnrp tnrp/templates; do
+for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates slb slb/templates storage/templates flowsnake flowsnake/templates tnrp tnrp/templates service-mesh service-mesh/templates; do
   jsonnet/jsonnet fmt -i $jdir/*.jsonnet
 done
 
@@ -64,6 +64,9 @@ fi
 ./parallel_build.py --src=flowsnake/templates,sdn/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeEstates.json --estatefilter=$1
 # Skip SDN templates for Minikube
 ./parallel_build.py --src=flowsnake/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeMinikubeEstates.json --estatefilter=$1
+
+# Service Mesh - Istio Pilot
+./parallel_build.py --src=service-mesh/templates --out=../k8s-out/ --pools=service-mesh/istio-pilot-estates.json --estatefilter=$1
 
 # Skipper is a tool for creating dev/test k8s clusters in Private Cloud created
 # by the Storage Foundation team.
