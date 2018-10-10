@@ -200,7 +200,7 @@ system:
 
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:f16a38
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:k4a-dbpwd
 
       env:
         - name: USE_SWITCHBOARD
