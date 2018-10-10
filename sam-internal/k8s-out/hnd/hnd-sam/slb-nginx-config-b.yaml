@@ -25,7 +25,7 @@ spec:
            "certreqs": [
             {
              "cert-type": "server",
-             "kingdom": "prd",
+             "kingdom": "hnd",
              "name": "cert1",
              "role": "samapp.slb",
              "san": [
@@ -39,7 +39,7 @@ spec:
             },
             {
              "cert-type": "client",
-             "kingdom": "prd",
+             "kingdom": "hnd",
              "name": "cert2",
              "role": "samapp.slb"
             }
