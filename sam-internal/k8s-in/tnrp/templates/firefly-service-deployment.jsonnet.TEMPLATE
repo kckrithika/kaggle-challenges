@@ -167,7 +167,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
               successThreshold: 1,
               failureThreshold: 10,
             },
-            [if $.serviceName != "firefly-promotion"  then "readinessProbe"]: {
+            [if std.startsWith($.serviceName, "firefly-intake") then "readinessProbe"]: {
               httpGet: {
               path: '/actuator/health',
               port: 'admin-port',
