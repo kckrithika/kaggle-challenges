@@ -292,15 +292,6 @@ items:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          readinessProbe:
-            failureThreshold: 10
-            httpGet:
-              path: /actuator/health
-              port: admin-port
-            initialDelaySeconds: 30
-            periodSeconds: 30
-            successThreshold: 1
-            timeoutSeconds: 30
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -686,15 +677,6 @@ items:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          readinessProbe:
-            failureThreshold: 10
-            httpGet:
-              path: /actuator/health
-              port: admin-port
-            initialDelaySeconds: 30
-            periodSeconds: 30
-            successThreshold: 1
-            timeoutSeconds: 30
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -1038,15 +1020,6 @@ items:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          readinessProbe:
-            failureThreshold: 10
-            httpGet:
-              path: /actuator/health
-              port: admin-port
-            initialDelaySeconds: 30
-            periodSeconds: 30
-            successThreshold: 1
-            timeoutSeconds: 30
           volumeMounts:
           - mountPath: /certs
             name: certs
