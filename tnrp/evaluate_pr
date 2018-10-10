@@ -48,7 +48,7 @@ git clone git@git.soma.salesforce.com:sam/${TNRP_PRODUCT}.git manifests
 
 cd -
 
-$SAMBINDIR/evaluate-pr -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb $SAMBINDIR/sam-manifest-builder -repo-name="$TNRP_PRODUCT" -unvalidated-image-prefixes "minikube" -full-schema
+$SAMBINDIR/evaluate-pr -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb $SAMBINDIR/sam-manifest-builder -repo-name="$TNRP_PRODUCT" -unvalidated-image-prefixes "minikube" -full-schema -image-exists-tries=2 -image-exists-try-sleep-duration=10s
 
 # Validate vips.yaml files for SLB, this does not copy any files to output
 /opt/slb/slb-manifest-builder -root $PWD -output $PWD -validate -v=1
