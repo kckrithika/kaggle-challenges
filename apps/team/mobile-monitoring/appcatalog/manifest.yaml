@@ -15,9 +15,6 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-    - name: sherpa-log-volume
-      hostPath:
-        path: /home/sfdc-sherpa/logs
     containers:
     - name: appcatalog-app
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/app_catalog_app:e1ed077
@@ -141,7 +138,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 20
     - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.26
+      image: sfci/servicelibs/sherpa-envoy:1.0.1
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam" # Use whatever environment your kpod uses
@@ -149,27 +146,30 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
-        - name: sherpa-log-volume
-          mountPath: /log
         - name: tls-client-cert
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
       ports:
-      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
-        name: sherpa-in-admin
+      - name: sherpa-adm
+        containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+      - name: http2-in
+        containerPort: 7012
+      - name: http2-tls-in
+        containerPort: 7443
       livenessProbe:
         exec:
           command:
           - "./bin/is-alive"
-        initialDelaySeconds: 120
+        initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 110
+        initialDelaySeconds: 15
         periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
     - name: beacon
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
