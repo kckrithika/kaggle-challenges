@@ -5,6 +5,7 @@ data:
     0.11.0 = 681
     0.12.0 = 696
     0.12.1 = 10001
+    0.12.2 = jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
 kind: ConfigMap
 metadata:
   creationTimestamp: null

@@ -101,6 +101,8 @@ local utils = import "util_functions.jsonnet";
                   "0.11.0.sluice_fix": 691,
                   "0.12.0": 696,
                   "0.12.1": 10001,
+                  # Due to a problem with the original push to Nexus we've been forced to not use that build
+                  # We have opted to use the itest image built
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",
                 }
                 +
@@ -146,7 +148,7 @@ local utils = import "util_functions.jsonnet";
                   "0.11.0.sluice_fix": 691,
                   "0.12.0": 696,
                   "0.12.1": 10001,
-                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",
+                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -164,7 +166,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
-                add_12_2_canary: "UNVERIFIED",  # testing in PRD
+                add_12_2_canary: "verified",  # tested in Data fleet
             },
             version_mapping: {
                 main: {
@@ -175,7 +177,7 @@ local utils = import "util_functions.jsonnet";
                   "0.11.0.sluice_fix": 691,
                   "0.12.0": 696,
                   "0.12.1": 10001,
-                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",
+                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -199,6 +201,7 @@ local utils = import "util_functions.jsonnet";
                 ### the templates. This PR should not result in any k8s-out diffs.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
+                add_12_2_canary: "UNVERIFIED",  # testing in prod fleets
             },
             version_mapping: {
                 main: {
@@ -206,6 +209,7 @@ local utils = import "util_functions.jsonnet";
                   "0.11.0": 681,
                   "0.12.0": 696,
                   "0.12.1": 10001,
+                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
