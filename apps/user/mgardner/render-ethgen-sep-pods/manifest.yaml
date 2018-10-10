@@ -1,0 +1,95 @@
+apiVersion: v1
+system:
+  functions:
+  - name: ethgenservice
+    count: 2
+    containers:
+    - name: ethgen
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgardner/ethgen:mgardner-20180906-2
+      ports:
+      - containerPort: 50051
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+
+  - name: renderservice 
+    count: 1
+    containers:
+    - name: render
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgardner/render:mgardner-20180906
+      ports:
+      - containerPort: 8080
+      env:
+         - name: KINGDOM_TYPES
+           value: dev
+         - name: DOMAIN_NAME
+           value: ops.sfdc.net
+         - name: PUBLIC_PROXY
+           value: public-proxy1-0-dev.data.sfdc.net:8080
+         - name: RANCID_PATH
+           value: /usr/local/rancid/var/
+         - name: AJNA_FUNNEL
+           value: ajna0-funnel1-0-dev.data.sfdc.net:80
+         - name: SECRET_SERVICE_VIP
+           value: https://secretservice.dmz.salesforce.com:8271/vaultczar/
+         - name: GROK_ENDPOINT
+           value: ''
+         - name: GROK_PORT
+           value: 0
+         - name: GROK_API_VER
+           value: ''
+         - name: RENDER_SERVER
+           value: render
+         - name: RENDER_PORT
+           value: 8080
+         - name: RENDER_TEAMWHITELIST
+           value: netqa
+         - name: ETHGEN_SERVER
+           value: ethgen
+         - name: ETHGEN_PORT
+           value: 50051
+         - name: JACKGEN_KEY
+           value: certs/netqa/jackgen/keys/jackgen-key.pem
+         - name: JACKGEN_CERT
+           value: certs/netqa/jackgen/certificates/jackgen.pem
+         - name: BOOTSTRAP_CLIENT_KEY
+           value: certs/netqa/bootstrap_client/keys/bootstrap_client-key.pem
+         - name: BOOTSTRAP_CLIENT_CERT
+           value: certs/netqa/bootstrap_client/certificates/bootstrap_client.pem
+         - name: ETHGEN_CLIENT_KEY
+           value: certs/netqa/ethgen_client/keys/ethgen_client-key.pem
+         - name: ETHGEN_CLIENT_CERT
+           value: certs/netqa/ethgen_client/certificates/ethgen_client.pem
+         - name: RENDER_SERVER_KEY
+           value: certs/netqa/render_server/keys/render_server-key.pem
+         - name: RENDER_SERVER_CERT
+           value: certs/netqa/render_server/certificates/render_server.pem
+         - name: ETHGEN_SERVER_KEY
+           value: certs/netqa/ethgen_server/keys/ethgen_server-key.pem
+         - name: ETHGEN_SERVER_CERT
+           value: certs/netqa/ethgen_server/certificates/ethgen_server.pem
+         - name: NQA_CA
+           value: certs/ca/cacerts.pem
+      livenessProbe:
+        exec:
+         command:
+             - echo
+             - always_healthy
+  
+  loadbalancers:
+  - lbname: renderlb
+    function: renderservice
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: tcp
+  - lbname: ethgenlb
+    function: ethgenservice
+    slbenabled: true
+    ports:
+      - port: 50051
+        targetport: 50051
+        lbtype: tcp
