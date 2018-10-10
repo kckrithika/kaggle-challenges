@@ -1,11 +1,11 @@
 local configs = import "config.jsonnet";
 local istioUtils = import "istio-utils.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+{
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
   kind: "ClusterRole",
   metadata: {
-    name: "istio-pilot-mesh-control-plane",
+    name: "istio-pilot-service-mesh",
     labels: istioUtils.istioLabels,
   },
   rules: [
@@ -127,4 +127,3 @@ if configs.estate == "prd-samtest" then {
     },
   ],
 }
-else "SKIP"

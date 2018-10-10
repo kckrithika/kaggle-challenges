@@ -2,12 +2,12 @@ local configs = import "config.jsonnet";
 local istioUtils = import "istio-utils.jsonnet";
 local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-samtest" then {
+{
   apiVersion: "extensions/v1beta1",
   kind: "Deployment",
   metadata: {
     name: "istio-pilot",
-    namespace: "mesh-control-plane",
+    namespace: "service-mesh",
       labels: istioUtils.istioLabels {
       istio: "pilot",
     },
@@ -209,4 +209,3 @@ if configs.estate == "prd-samtest" then {
     },
   },
 }
-else "SKIP"

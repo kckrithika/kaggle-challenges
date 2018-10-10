@@ -60,11 +60,13 @@ else
   /opt/sam/manifestctl generate-pool-list --in ../pools/ --out  ../k8s-in/sam/configs/generated-pools.jsonnet
 fi
 
-./parallel_build.py --src=sam/templates/,sdn/templates/,slb/templates/,storage/templates/,tnrp/templates,service-mesh/templates --out=../k8s-out/ --pools=../pools/ --estatefilter=$1
+./parallel_build.py --src=sam/templates/,sdn/templates/,slb/templates/,storage/templates/,tnrp/templates --out=../k8s-out/ --pools=../pools/ --estatefilter=$1
 ./parallel_build.py --src=flowsnake/templates,sdn/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeEstates.json --estatefilter=$1
 # Skip SDN templates for Minikube
 ./parallel_build.py --src=flowsnake/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeMinikubeEstates.json --estatefilter=$1
-#./parallel_build.py --src=service-mesh/templates --out=../k8s-out/ --pools=service-mesh/estates.json --estatefilter=$1
+
+# Service Mesh - Istio Pilot
+./parallel_build.py --src=service-mesh/templates --out=../k8s-out/ --pools=service-mesh/istio-pilot-estates.json --estatefilter=$1
 
 # Skipper is a tool for creating dev/test k8s clusters in Private Cloud created
 # by the Storage Foundation team.

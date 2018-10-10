@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+{
   apiVersion: "autoscaling/v2beta1",
   kind: "HorizontalPodAutoscaler",
   metadata: {
@@ -28,4 +28,3 @@ if configs.estate == "prd-samtest" then {
     ],
   },
 }
-else "SKIP"

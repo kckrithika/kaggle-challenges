@@ -11,6 +11,4 @@ local annotations = {
   "helm.sh/hook-weight": "-5",
 };
 
-if configs.estate == "prd-samtest" then
-  istioUtils.istioCrd(crd, annotations)
-else "SKIP"
+istioUtils.istioCrd(crd, annotations)

@@ -10,7 +10,7 @@ metadata:
     istio: pilot
     release: istio
   name: istio-pilot
-  namespace: mesh-control-plane
+  namespace: service-mesh
 spec:
   replicas: 1
   template:

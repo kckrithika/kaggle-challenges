@@ -64,25 +64,24 @@ local meshConfig = |||
     concurrency: 0
     #
     # Zipkin trace collector
-    zipkinAddress: zipkin.mesh-control-plane:9411
+    zipkinAddress: zipkin.service-mesh:9411
     #
     # Mutual TLS authentication between sidecars and istio control plane.
     controlPlaneAuthPolicy: NONE
     #
     # Address where istio Pilot service is running
-    discoveryAddress: istio-pilot.mesh-control-plane:15007
+    discoveryAddress: istio-pilot.service-mesh:15007
 |||;
 
-if configs.estate == "prd-samtest" then {
+{
   apiVersion: "v1",
   kind: "ConfigMap",
   metadata: {
     name: "istio",
-    namespace: "mesh-control-plane",
+    namespace: "service-mesh",
     labels: istioUtils.istioLabels,
   },
   data: {
     mesh: meshConfig,
   },
 }
-else "SKIP"

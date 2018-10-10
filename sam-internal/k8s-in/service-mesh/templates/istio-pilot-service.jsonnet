@@ -1,12 +1,12 @@
 local configs = import "config.jsonnet";
 local istioUtils = import "istio-utils.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+{
   apiVersion: "v1",
   kind: "Service",
   metadata: {
     name: "istio-pilot",
-    namespace: "mesh-control-plane",
+    namespace: "service-mesh",
     labels: istioUtils.istioLabels,
   },
   spec: {
@@ -33,4 +33,3 @@ if configs.estate == "prd-samtest" then {
     },
   },
 }
-else "SKIP"

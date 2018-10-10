@@ -10,6 +10,4 @@ local crd = {
 
 local annotations = {};
 
-if configs.estate == "prd-samtest" then
-  istioUtils.istioCrd(crd, annotations)
-else "SKIP"
+istioUtils.istioCrd(crd, annotations)

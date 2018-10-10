@@ -1,24 +1,23 @@
 local configs = import "config.jsonnet";
 local istioUtils = import "istio-utils.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+{
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
   kind: "ClusterRoleBinding",
   metadata: {
-    name: "istio-pilot-mesh-control-plane",
+    name: "istio-pilot-service-mesh",
     labels: istioUtils.istioLabels,
   },
   roleRef: {
     apiGroup: "rbac.authorization.k8s.io",
     kind: "ClusterRole",
-    name: "istio-pilot-mesh-control-plane",
+    name: "istio-pilot-service-mesh",
   },
   subjects: [
     {
       kind: "ServiceAccount",
       name: "istio-pilot-service-account",
-      namespace: "mesh-control-plane",
+      namespace: "service-mesh",
     },
   ],
 }
-else "SKIP"

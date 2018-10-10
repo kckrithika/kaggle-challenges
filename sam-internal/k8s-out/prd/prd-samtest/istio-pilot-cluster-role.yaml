@@ -6,7 +6,7 @@ metadata:
     chart: istio-1.0.1
     heritage: Tiller
     release: istio
-  name: istio-pilot-mesh-control-plane
+  name: istio-pilot-service-mesh
 rules:
 - apiGroups:
   - config.istio.io
