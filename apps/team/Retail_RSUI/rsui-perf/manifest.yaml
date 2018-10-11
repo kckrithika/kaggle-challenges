@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: rsui-perf
-    count: 1
+    count: 2
     identity:
      serviceName: retail-setup
     volumes:
@@ -25,7 +25,7 @@ system:
 
     containers:
     - name: rsui-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:78567f0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.4.50
       ports:
       - containerPort: 7022
         name: rsui-in-http1
