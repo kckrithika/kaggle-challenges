@@ -103,6 +103,10 @@ configs.deploymentBase("service-mesh") {
                 name: "PILOT_TRACE_SAMPLING",
                 value: "100",
               },
+              {
+                name: "DUMMY_SD",
+                value: "SD",
+              },
             ],
             resources: {
               requests: {
