@@ -133,7 +133,7 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 kubedns_scale_up: "",  # verfieid in test, dev fleets
                 # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
-                kubedns_host_network: "",    # testing in dev fleet
+                kubedns_host_network: "",  # testing in dev fleet
             },
             version_mapping: {
                 main: {
