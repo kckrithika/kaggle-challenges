@@ -942,6 +942,11 @@ data:
             }
           ],
           "name": "PR metrics"
+        },
+        {
+          "name": "Customer App Restarts by SAM in Test Beds",
+          "note": "This is a list of customer SAM apps in prd-samdev and prd-samtest that have 2 or more ReplicaSets with the same manifest PR.  This generally indicates our controller has changed the PodSpecTemplate.  Use the DownloadRsCmd then diff the output files to see details",
+          "sql": "\nselect\n  controlEstate,\n  namespace,\n  rsNames,\n  rsCount,\n  FLOOR(minRsAgeHours) as minRsAgeHours,\n  FLOOR(maxRsAgeHours) as maxRsAgeHours,\n  CONCAT('echo \\'',rsNames,'\\' | xargs -n 1 -t -I % sh -c \\'kubectl get --context ',controlEstate,' -n ',namespace,' -o yaml rs % \u003e %.yaml\\'') as DownloadRsCmd\nfrom\n(\n  select\n    SUBSTRING(controlEstate,1,3) as kingdom,\n    controlEstate,\n    namespace,\n    ownerDeployment,\n    titleLine,\n    sum(rsCount) as rsCount,\n    sum(replicas) as replicaCount,\n    REPLACE(GROUP_CONCAT(rsName,' '),',',' ') as rsNames,\n    MIN(ageInHours) as minRsAgeHours,\n    MAX(ageInHours) as maxRsAgeHours\n  from\n  (\n    select\n      name as rsName,\n      namespace,\n      controlEstate,\n      Payload-\u003e\u003e'$.metadata.annotations.titleLine' as titleLine,\n      Payload-\u003e\u003e'$.metadata.ownerReferences[0].name' as ownerDeployment,\n      Payload-\u003e\u003e'$.spec.replicas' as replicas,\n      TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload-\u003e\u003e'$.metadata.creationTimestamp','%Y-%m-%dT%H:%i:%s'), NOW())/60.0 as ageInHours,\n      1 as rsCount\n    from\n      k8s_resource\n    where\n      ApiKind = 'ReplicaSet'\n    and (ControlEstate = 'prd-samdev' or ControlEstate = 'prd-samtest')\n  ) as ss\n  where not ownerDeployment is null and not titleLine is null\n  group by controlEstate, namespace, ownerDeployment, titleLine\n  having replicaCount \u003e 0\n) as ss2\nwhere rsCount\u003e1\norder by minRsAgeHours"
         }
       ]
     }

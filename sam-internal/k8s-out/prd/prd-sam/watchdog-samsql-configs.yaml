@@ -116,7 +116,37 @@ data:
     p.git_hash = t.git_hash\n            WHERE p.state =''merged''   AND p.`merged_time`
     > NOW() - INTERVAL 24 HOUR            \n)prLatency,\n (SELECT @row_num:=0) counter
     ORDER BY prLatency.latency\n     )\n    temp WHERE temp.row_num = ROUND (.95*
-    @row_num)", "watchdogFrequency": "15m"}, {"name": "Sql95thPctPRSamLatencyOverLast24Hr",
+    @row_num)", "watchdogFrequency": "15m"}, {"name": "SamAppsRestatedBySamGlobal",
+    "sql": "select\n  ''GLOBAL'' as Kingdom,\n  ''NONE'' as SuperPod,\n  ''global''
+    as Estate,\n  ''sql.samAppChangedBySamLastHourGlobal'' as Metric,\n  CONCAT(''ChangedLastHour='',appChangedBySamInLastHour)
+    as Tags,\n  count as Value\nfrom\n(\n\nselect\n  appChangedBySamInLastHour,\n  COUNT(*)
+    as count\nfrom\n(\n  select\n    SUBSTRING(controlEstate,1,3) as kingdom,\n    controlEstate,\n    namespace,\n    ownerDeployment,\n    titleLine,\n    sum(rsCount)
+    as rsCount,\n    sum(replicas) as replicaCount,\n    GROUP_CONCAT(rsName,'''')
+    as rsNames,\n    MIN(ageInHours) as minRsAgeHours,\n    MAX(ageInHours) as maxRsAgeHours,\n    CASE
+    WHEN MIN(ageInHours)<1.0 and sum(rsCount)>1 THEN ''yes'' ELSE ''no'' END as appChangedBySamInLastHour\n  from\n  (\n    select\n      name
+    as rsName,\n      namespace,\n      controlEstate,\n      Payload->>''$.metadata.annotations.titleLine''
+    as titleLine,\n      Payload->>''$.metadata.ownerReferences[0].name'' as ownerDeployment,\n      Payload->>''$.spec.replicas''
+    as replicas,\n      TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>''$.metadata.creationTimestamp'',''%Y-%m-%dT%H:%i:%s''),
+    NOW())/60.0 as ageInHours,\n      1 as rsCount\n    from\n      k8s_resource\n    where\n      ApiKind
+    = ''ReplicaSet''\n  ) as ss\n  where not ownerDeployment is null and not titleLine
+    is null\n  group by controlEstate, namespace, ownerDeployment, titleLine\n  having
+    replicaCount > 0\n) as ss2\ngroup by appChangedBySamInLastHour\n) as ss3", "watchdogFrequency":
+    "15m"}, {"name": "SamAppsRestatedBySam", "sql": "select\n  UPPER(kingdom) as Kingdom,\n  ''NONE''
+    as SuperPod,\n  ControlEstate as Estate,\n  ''sql.samAppChangedBySamLastHour''
+    as Metric,\n  CONCAT(''ChangedLastHour='',appChangedBySamInLastHour) as Tags,\n  count
+    as Value\nfrom\n(\n\nselect\n  kingdom,\n  controlEstate,\n  appChangedBySamInLastHour,\n  COUNT(*)
+    as count\nfrom\n(\n  select\n    SUBSTRING(controlEstate,1,3) as kingdom,\n    controlEstate,\n    namespace,\n    ownerDeployment,\n    titleLine,\n    sum(rsCount)
+    as rsCount,\n    sum(replicas) as replicaCount,\n    GROUP_CONCAT(rsName,'''')
+    as rsNames,\n    MIN(ageInHours) as minRsAgeHours,\n    MAX(ageInHours) as maxRsAgeHours,\n    CASE
+    WHEN MIN(ageInHours)<1.0 and sum(rsCount)>1 THEN ''yes'' ELSE ''no'' END as appChangedBySamInLastHour\n  from\n  (\n    select\n      name
+    as rsName,\n      namespace,\n      controlEstate,\n      Payload->>''$.metadata.annotations.titleLine''
+    as titleLine,\n      Payload->>''$.metadata.ownerReferences[0].name'' as ownerDeployment,\n      Payload->>''$.spec.replicas''
+    as replicas,\n      TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>''$.metadata.creationTimestamp'',''%Y-%m-%dT%H:%i:%s''),
+    NOW())/60.0 as ageInHours,\n      1 as rsCount\n    from\n      k8s_resource\n    where\n      ApiKind
+    = ''ReplicaSet''\n  ) as ss\n  where not ownerDeployment is null and not titleLine
+    is null\n  group by controlEstate, namespace, ownerDeployment, titleLine\n  having
+    replicaCount > 0\n) as ss2\ngroup by kingdom, controlEstate, appChangedBySamInLastHour\n)
+    as ss3", "watchdogFrequency": "15m"}, {"name": "Sql95thPctPRSamLatencyOverLast24Hr",
     "sql": "select ''GLOBAL'' as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate,\n''sql.95thPctPRSamLatencyOverLast24Hr''
     as Metric, samlatencymin as Value, '''' as Tags FROM   (  \n              SELECT
     sam.*,\n                     @row_num := @row_num + 1 AS row_num\n              FROM   (  \n                              SELECT   pr_num,\n                                       totallatencymin
