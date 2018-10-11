@@ -2,39 +2,27 @@ local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbportconfiguration = import "slbportconfiguration.libsonnet";
+local slbbaseservice = import "slb-base-service.libsonnet";
+
+local canaryName = "slb-canary-passthrough-tls";
+local serviceName = canaryName + "-service";
+local vipName = "slb-canary-pt-tls";
 
 local canaryPortConfig = [
-    slbportconfiguration.newPortConfiguration(port=portconfigs.slb.canaryServicePassthroughTlsPort, lbType="dsr") { healthpath: "/health" },
+    slbportconfiguration.newPortConfiguration(
+        port=portconfigs.slb.canaryServicePassthroughTlsPort,
+        lbType="dsr",
+        name=canaryName + "-port",
+    ) { healthpath: "/health" },
 ];
 
-if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
-    kind: "Service",
-    apiVersion: "v1",
-    metadata: {
-        name: "slb-canary-passthrough-tls-service",
-        namespace: "sam-system",
-        labels: {
-            app: "slb-canary-passthrough-tls-service",
-            "slb.sfdc.net/name": "slb-canary-pt-tls",
+if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then
+    slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {
+
+    // TODO: this is vestigial and should be removed.
+    metadata+: {
+        labels+: {
             "slb.sfdc.net/type": "none",
-        } + configs.ownerLabel.slb,
-        annotations: {
-            "slb.sfdc.net/name": "slb-canary-pt-tls",
-            "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(canaryPortConfig),
         },
-    },
-    spec: {
-        ports: [
-            {
-                name: "slb-canary-passthrough-tls-port",
-                port: portconfigs.slb.canaryServicePassthroughTlsPort,
-                protocol: "TCP",
-                targetPort: portconfigs.slb.canaryServicePassthroughTlsPort,
-            },
-        ],
-        selector: {
-            name: "slb-canary-passthrough-tls",
-        },
-        type: "NodePort",
     },
 } else "SKIP"
