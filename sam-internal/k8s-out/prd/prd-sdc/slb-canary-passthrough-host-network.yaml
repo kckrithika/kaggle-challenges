@@ -59,8 +59,8 @@ spec:
           httpGet:
             path: /
             port: 9113
-          initialDelaySeconds: 5
-          periodSeconds: 3
+          initialDelaySeconds: 15
+          periodSeconds: 10
         name: slb-canary-passthrough-host-network
         volumeMounts:
         - mountPath: /host/data/slb/logs/

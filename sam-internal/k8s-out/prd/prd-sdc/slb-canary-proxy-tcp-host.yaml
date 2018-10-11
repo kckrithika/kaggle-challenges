@@ -51,6 +51,12 @@ spec:
         - --log_dir=/host/data/slb/logs/
         - --ports=9120
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001265-a27294ec
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9120
+          initialDelaySeconds: 15
+          periodSeconds: 10
         name: slb-canary-proxy-tcp
         volumeMounts:
         - mountPath: /host/data/slb/logs/
