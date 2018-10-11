@@ -18,7 +18,7 @@ system:
           port: 8060
       volumeMounts:
       - name: servercert
-        mountPath: /certs/sds/zones-bot/
+        mountPath: /servercerts
   loadbalancers:
   - lbname: zones-bot-lb
     function: zones-bot
