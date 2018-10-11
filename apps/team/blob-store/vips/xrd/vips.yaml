@@ -1,0 +1,14 @@
+- lbname: us-xrd-1
+  customlbname: us-xrd-1
+  servers:
+    - ceph0rdi-mon1-2-xrd.eng.sfdc.net
+    - ceph0rdi-mon2-2-xrd.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 80
+      lbtype: http
+      tls: true
+      reencrypt: false
+      healthport: 80
+      healthpath: /
+      healthprotocol: http
