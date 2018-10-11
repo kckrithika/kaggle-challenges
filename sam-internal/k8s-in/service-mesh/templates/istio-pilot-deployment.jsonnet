@@ -6,7 +6,12 @@ configs.deploymentBase("service-mesh") {
   metadata+: {
     name: "istio-pilot",
     namespace: "service-mesh",
-    labels: istioUtils.istioLabels {
+    labels: {
+      name: "istio-pilot",
+      app: "istio-pilot",
+      chart: "pilot-1.0.1",
+      release: "istio",
+      heritage: "Tiller",
       istio: "pilot",
     },
     annotations: {
@@ -18,6 +23,8 @@ configs.deploymentBase("service-mesh") {
     template: {
       metadata: {
         labels: {
+          name: "istio-pilot",
+          apptype: "control",
           istio: "pilot",
           app: "pilot",
         },
