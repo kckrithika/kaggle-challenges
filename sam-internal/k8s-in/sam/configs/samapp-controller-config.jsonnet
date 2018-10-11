@@ -17,6 +17,7 @@ std.prune({
 
   #k4a
   [if configs.estate == "vpod" then "enableK4a"]: false,
+  k4aInitContainerImage: samimages.k4aInitContainerImage,
 
   # others
     volPermissionInitContainerImage: samimages.permissionInitContainer,
