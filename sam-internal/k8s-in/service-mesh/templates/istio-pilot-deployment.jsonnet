@@ -24,6 +24,7 @@ configs.deploymentBase("service-mesh") {
       metadata: {
         labels: {
           name: "istio-pilot",
+          apptype: "control",
           istio: "pilot",
           app: "pilot",
         },
