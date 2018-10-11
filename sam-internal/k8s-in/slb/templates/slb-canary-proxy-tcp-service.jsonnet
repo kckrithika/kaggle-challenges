@@ -2,6 +2,12 @@ local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbportconfiguration = import "slbportconfiguration.libsonnet";
+
+local canaryPortConfig = [
+    slbportconfiguration.newPortConfiguration(port=portconfigs.slb.canaryServiceProxyTcpPort, lbType="tcp") { healthPath: "/" },
+];
+
 if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
     kind: "Service",
     apiVersion: "v1",
@@ -15,7 +21,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
         } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-canary-proxy-tcp",
-            "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"lbtype\":\"tcp\",\"healthPath\":\"/\"}]",
+            "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(canaryPortConfig),
         },
     },
     spec: {

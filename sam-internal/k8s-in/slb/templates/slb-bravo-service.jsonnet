@@ -2,6 +2,15 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
+local slbportconfiguration = import "slbportconfiguration.libsonnet";
+
+local bravoPortConfig = [
+    slbportconfiguration.newPortConfiguration(port=9090, lbType="tcp"),
+    slbportconfiguration.newPortConfiguration(port=9091, lbType="http"),
+    slbportconfiguration.newPortConfiguration(port=9092, lbType="dsr"),
+    slbportconfiguration.newPortConfiguration(port=portconfigs.slb.canaryServiceTlsPort, lbType="dsr"),
+];
+
 if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then {
     kind: "Service",
     apiVersion: "v1",
@@ -14,7 +23,7 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then {
         } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-bravo-svc",
-            "slb.sfdc.net/portconfigurations": "[{\"port\":9090,\"targetport\":9090,\"lbtype\":\"tcp\"},{\"port\":9091,\"targetport\":9091,\"lbtype\":\"http\"},{\"port\":9092,\"targetport\":9092,\"lbtype\":\"dsr\"},{\"port\":" + portconfigs.slb.canaryServiceTlsPort + ",\"targetport\":" + portconfigs.slb.canaryServiceTlsPort + ",\"lbtype\":\"dsr\"}]",
+            "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(bravoPortConfig),
         },
     },
     spec: {

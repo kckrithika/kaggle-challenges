@@ -2,6 +2,11 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbportconfiguration = import "slbportconfiguration.libsonnet";
+
+local portalPortConfig = [
+    slbportconfiguration.newPortConfiguration(port=portconfigs.slb.slbPortalServicePort, lbType="http"),
+];
 
 if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then {
     kind: "Service",
@@ -15,7 +20,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then {
         } + configs.ownerLabel.slb,
         annotations: {
            "slb.sfdc.net/name": "slb-portal-service",
-           "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.slbPortalServicePort + ",\"targetport\":" + portconfigs.slb.slbPortalServicePort + ",\"lbtype\":\"http\"}]",
+           "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(portalPortConfig),
         },
     },
     spec: {
