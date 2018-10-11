@@ -3,7 +3,7 @@ local images = import "fireflyimages.jsonnet";
 local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
-local intakeConfig = import "configs/firefly-intake.jsonnet";
+local intakeConfig = import "configs/firefly-intake-dl.jsonnet";
 
 # we don't want to enable crawler for dark launch so enabling estates individually for intake
 #if firefly_feature_flags.is_firefly_svc_enabled then
