@@ -164,7 +164,6 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
-                add_12_1_canary: "verified",  #verified in test fleet
                 kubedns_host_network: "",
             },
             version_mapping: {
