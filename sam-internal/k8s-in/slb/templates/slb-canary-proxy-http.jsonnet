@@ -37,12 +37,13 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                                      "--ports=" + portconfigs.slb.canaryServiceProxyHttpPort,
                                      "--tlsPorts=443",
                                      "--privateKey=/var/slb/canarycerts/server.key",
-                                         "--verbose=false",
                                  ]
                                  + (
                                      if configs.estate == "prd-sdc" then [
+                                         "--verbose=true",
                                          "--publicKey=/var/slb/canarycerts/sdc.crt",
                                      ] else [
+                                         "--verbose=false",
                                          "--publicKey=/var/slb/canarycerts/sam.crt",
                                      ]
                                    ),
