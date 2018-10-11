@@ -29,8 +29,8 @@ local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.t
         },
       },
       spec: configs.specWithKubeConfigAndMadDog {
-        serviceAccount: "istio-pilot-service-account",
-        serviceAccountName: "istio-pilot-service-account",
+//        serviceAccount: "istio-pilot-service-account",
+//        serviceAccountName: "istio-pilot-service-account",
         containers: [
           configs.containerWithKubeConfigAndMadDog {
             name: "discovery",
@@ -132,13 +132,13 @@ local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.t
               name: "istio",
             },
           },
-          {
-            name: "istio-certs",
-            secret: {
-              secretName: "istio.istio-pilot-service-account",
-              optional: true,
-            },
-          },
+//          {
+//            name: "istio-certs",
+//            secret: {
+//              secretName: "istio.istio-pilot-service-account",
+//              optional: true,
+//            },
+//          },
         ],
         affinity: {
           nodeAffinity: {
