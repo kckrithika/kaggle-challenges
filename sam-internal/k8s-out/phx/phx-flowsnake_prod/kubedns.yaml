@@ -9,7 +9,7 @@ metadata:
   namespace: kube-system
 spec:
   progressDeadlineSeconds: 600
-  replicas: 1
+  replicas: 3
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -36,7 +36,7 @@ spec:
         env:
         - name: PROMETHEUS_PORT
           value: "10055"
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/k8s-dns-kube-dns:1.10.0
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/k8s-dns-kube-dns:1.14.9
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -94,12 +94,12 @@ spec:
         - -restartDnsmasq=true
         - --
         - -k
-        - --cache-size=1000
+        - --cache-size=50000
         - --log-facility=-
         - --server=/cluster.local/127.0.0.1#10053
         - --server=/in-addr.arpa/127.0.0.1#10053
         - --server=/ip6.arpa/127.0.0.1#10053
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/k8s-dns-dnsmasq-nanny:1.10.0
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/k8s-dns-dnsmasq-nanny:1.14.9
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
@@ -130,7 +130,7 @@ spec:
         - --logtostderr
         - --probe=kubedns,127.0.0.1:10053,kubernetes.default.svc.cluster.local,5,A
         - --probe=dnsmasq,127.0.0.1:53,kubernetes.default.svc.cluster.local,5,A
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/k8s-dns-sidecar:1.10.0
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/k8s-dns-sidecar:1.14.9
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5

@@ -18,7 +18,7 @@ else
     },
     spec: {
         progressDeadlineSeconds: 600,
-        replicas: if std.objectHas(flowsnake_images.feature_flags, "kubedns_scale_up") then 3 else 1,
+        replicas: 3,
         revisionHistoryLimit: 2,
         selector: {
             matchLabels: {
@@ -149,7 +149,7 @@ else
                             "-restartDnsmasq=true",
                             "--",
                             "-k",
-                            "--cache-size=" + if std.objectHas(flowsnake_images.feature_flags, "kubedns_scale_up") then 50000 else 1000,
+                            "--cache-size=50000",
                             "--log-facility=-",
                             "--server=/cluster.local/127.0.0.1#10053",
                             "--server=/in-addr.arpa/127.0.0.1#10053",
