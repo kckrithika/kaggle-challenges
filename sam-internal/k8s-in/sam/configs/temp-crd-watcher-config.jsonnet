@@ -14,4 +14,5 @@ local configs = import "config.jsonnet";
   manifestV1Enabled: false,
   etcdAppFolder: "temp-crd-watcher",
   livenessProbePort: "21553",
+  k4aEnabled: true,
 }
