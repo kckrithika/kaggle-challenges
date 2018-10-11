@@ -8,12 +8,12 @@ system:
     count: 3
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:c85878d52594aad4ae51899965efa1fa6c2ec080
+      image: sfci/servicelibs/switchboard:823dc7e8bac88c2be9f6b74ad6fd8efebedede83
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
-      - --metrics.maxNumberOfCollectedMetrics=50000
-      - --metrics.funnelTimeOut=50000
+      - --metrics.maxNumberOfCollectedMetrics=100000
+      - --metrics.funnelTimeOut=90000
       ports:
       - containerPort: 15372
       env:
@@ -46,7 +46,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:7e40ce8be635a6ef46fbc64657af42ab9c39ea65
+      image: sfci/servicelibs/sherpa-envoy:1.0.1
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
