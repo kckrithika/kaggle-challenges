@@ -2,20 +2,18 @@ local configs = import "config.jsonnet";
 local istioUtils = import "istio-utils.jsonnet";
 local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
 
-{
-  apiVersion: "extensions/v1beta1",
-  kind: "Deployment",
-  metadata: {
+configs.deploymentBase("service-mesh") {
+  metadata+: {
     name: "istio-pilot",
     namespace: "service-mesh",
-      labels: istioUtils.istioLabels {
+    labels: istioUtils.istioLabels {
       istio: "pilot",
     },
     annotations: {
       "checksum/config-volume": "f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9",
     },
   },
-  spec: {
+  spec+: {
     replicas: 1,
     template: {
       metadata: {
