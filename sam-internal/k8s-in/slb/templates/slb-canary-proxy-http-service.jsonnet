@@ -1,6 +1,13 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local slbportconfiguration = import "slbportconfiguration.libsonnet";
+
+local canaryPortConfig = [
+    slbportconfiguration.newPortConfiguration(port=portconfigs.slb.canaryServiceProxyHttpPort, lbType="http"),
+    slbportconfiguration.newPortConfiguration(port=443, lbType="http") { reencrypt: true, sticky: 300, healthport: 9116, hEaLtHpath: "/health", tls: true },
+];
+
 if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then {
     kind: "Service",
     apiVersion: "v1",
@@ -12,16 +19,10 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then {
                       "slb.sfdc.net/name": "slb-canary-proxy-http",
                       "slb.sfdc.net/type": "http",
                   } + configs.ownerLabel.slb,
-              } +
-              if configs.estate == "prd-sdc" then {
+              } + {
                   annotations: {
                       "slb.sfdc.net/name": "slb-canary-proxy-http",
-                      "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"lbtype\":\"http\"},{\"port\":443,\"targetport\":443,\"lbtype\":\"http\",\"reencrypt\":true,\"sticky\":300,\"healthport\":9116,\"hEaLtHpath\":\"/health\",\"tls\":true}]",
-                  },
-              } else {
-                  annotations: {
-                      "slb.sfdc.net/name": "slb-canary-proxy-http",
-                      "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"lbtype\":\"http\"},{\"port\":443,\"targetport\":443,\"lbtype\":\"http\",\"reencrypt\":true,\"sticky\":300,\"healthport\":9116,\"hEaLtHpath\":\"/health\",\"tls\":true}]",
+                      "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(canaryPortConfig),
                   },
               },
     spec: {

@@ -1,6 +1,12 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
+local slbportconfiguration = import "slbportconfiguration.libsonnet";
+
+local canaryPortConfig = [
+    slbportconfiguration.newPortConfiguration(port=portconfigs.slb.canaryServicePassthroughTlsPort, lbType="dsr") { healthpath: "/health" },
+];
+
 if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
     kind: "Service",
     apiVersion: "v1",
@@ -14,7 +20,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
         } + configs.ownerLabel.slb,
         annotations: {
             "slb.sfdc.net/name": "slb-canary-pt-tls",
-            "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServicePassthroughTlsPort + ",\"targetport\":" + portconfigs.slb.canaryServicePassthroughTlsPort + ",\"lbtype\":\"dsr\",\"healthpath\":\"/health\"}]",
+            "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(canaryPortConfig),
         },
     },
     spec: {
