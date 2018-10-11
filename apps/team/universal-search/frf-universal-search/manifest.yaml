@@ -72,7 +72,7 @@ system:
         - name: server-cert-vol
           mountPath: /server-certs
         - name: client-cert-vol  # Client certs required here for zipkin
-        mountPath: /client-certs
+          mountPath: /client-certs
         - name: sherpa-log-vol
           mountPath: /log
       livenessProbe:
