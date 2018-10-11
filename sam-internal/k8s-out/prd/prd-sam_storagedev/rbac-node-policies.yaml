@@ -13,14 +13,6 @@ items:
     - nodes/status
     verbs:
     - '*'
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcomputedev1-1-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -34,14 +26,6 @@ items:
     - nodes/status
     verbs:
     - '*'
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcomputedev1-2-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -55,14 +39,6 @@ items:
     - nodes/status
     verbs:
     - '*'
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcomputedev2-1-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -76,14 +52,6 @@ items:
     - nodes/status
     verbs:
     - '*'
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcomputedev2-2-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -97,14 +65,6 @@ items:
     - nodes/status
     verbs:
     - '*'
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcomputedev3-1-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
@@ -118,14 +78,6 @@ items:
     - nodes/status
     verbs:
     - '*'
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagetwosamcomputedev1-1-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
