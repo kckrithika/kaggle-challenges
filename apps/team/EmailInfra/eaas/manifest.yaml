@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: eaas
-      image: docker-sfci-dev/sfci/eaas/emailservice:1.0.25-54b19adbe495d48579aaf39f69e03b545d4d22c1
+      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.2-34df95fbc348c606b5f2331f729a022a4c52d91c
       ports:
       - name: grpc
         containerPort: 7020
@@ -35,7 +35,7 @@ system:
         periodSeconds: 60
         timeoutSeconds: 30
     - name: beacon-eaas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      image: docker-sfci-dev/sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
       - -endpoint
       - emailinfra/eaas:DATACENTER_ALLENV:7443
