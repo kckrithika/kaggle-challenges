@@ -1,0 +1,15 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate,RemoteAs
+shared0-samcompute1-1-lo2.ops.sfdc.net,10.161.150.226/29,10.177.2.0/27,b04-01,lo2-sam,4203041207
+shared0-samcompute1-2-lo2.ops.sfdc.net,10.161.150.227/29,10.177.2.32/27,b04-01,lo2-sam,4203041207
+shared0-samcompute2-1-lo2.ops.sfdc.net,10.161.150.236/29,10.177.2.192/27,f03-01,lo2-sam,4203061205
+shared0-samkubeapi1-1-lo2.ops.sfdc.net,10.161.150.228/29,10.177.2.64/27,b04-01,lo2-sam,4203041207
+shared0-samkubeapi1-2-lo2.ops.sfdc.net,10.161.150.229/29,10.177.2.96/27,b04-01,lo2-sam,4203041207
+shared0-samkubeapi2-1-lo2.ops.sfdc.net,10.161.150.234/29,10.177.2.224/27,f03-01,lo2-sam,4203061205
+shared0-samkubeapi2-2-lo2.ops.sfdc.net,10.161.150.235/29,10.177.3.0/27,f03-01,lo2-sam,4203061205
+shared0-samkubeapi3-1-lo2.ops.sfdc.net,10.161.150.242/29,10.177.2.128/27,b15-01,lo2-sam,4203041227
+shared0-samkubeapi3-2-lo2.ops.sfdc.net,10.161.150.243/29,10.177.2.160/27,b15-01,lo2-sam,4203041227
+shared0-samminiongater1-1-lo2.ops.sfdc.net,10.161.150.210/29,10.177.0.0/27,a05-01,lo2-sam_gater,4203041210
+shared0-samminiongater1-2-lo2.ops.sfdc.net,10.161.150.211/29,10.177.0.32/27,a05-01,lo2-sam_gater,4203041210
+shared0-samminiongater1-3-lo2.ops.sfdc.net,10.161.150.212/29,10.177.0.64/27,a05-01,lo2-sam_gater,4203041210
+shared0-samminiongater2-1-lo2.ops.sfdc.net,10.161.150.219/29,10.177.0.96/27,b15-01,lo2-sam_gater,4203041227
+shared0-samminiongater2-2-lo2.ops.sfdc.net,10.161.150.218/29,10.177.0.128/27,b15-01,lo2-sam_gater,4203041227
