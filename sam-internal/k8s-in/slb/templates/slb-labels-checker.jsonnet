@@ -61,9 +61,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     },
                 ],
             } + slbflights.getDnsPolicy()
-            + (
-                    if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
-              ),
+              + slbconfigs.slbEstateNodeSelector,
             metadata: {
                 labels: {
                     name: "slb-labels-checker",

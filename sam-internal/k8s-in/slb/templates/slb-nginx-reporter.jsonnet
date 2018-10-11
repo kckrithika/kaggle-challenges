@@ -49,9 +49,7 @@ if slbconfigs.isTestEstate || configs.estate == "prd-sam" then configs.deploymen
                         ],
                     },
                 ],
-            } + (
-                if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
-            ),
+            } + slbconfigs.slbEstateNodeSelector,
             metadata: {
                 labels: {
                     name: serviceName,

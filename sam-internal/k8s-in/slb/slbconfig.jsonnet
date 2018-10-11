@@ -23,6 +23,21 @@
     samrole: "samapp.slb",
     maxDeleteDefault: 10,
 
+    slbEstate: (
+        if $.isTestEstate then
+            configs.estate
+        else if configs.estate == "prd-samtwo" then
+            "prd-slbtwo"
+        else
+            configs.kingdom + "-slb"
+    ),
+
+    slbEstateNodeSelector: {
+        nodeSelector: {
+            pool: $.slbEstate,
+        },
+    },
+
     perCluster: {
         ddiService: {
             [k]: "https://ddi-api-" + k + ".data.sfdc.net"

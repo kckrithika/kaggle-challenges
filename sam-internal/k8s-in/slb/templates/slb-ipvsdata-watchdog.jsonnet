@@ -65,9 +65,8 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                         ],
                     },
                 ],
-            } + slbflights.getDnsPolicy() + (
-                if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
-            ),
+            } + slbflights.getDnsPolicy()
+              + slbconfigs.slbEstateNodeSelector,
             metadata: {
                 labels: {
                     name: "slb-ipvsdata-watchdog",

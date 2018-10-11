@@ -129,9 +129,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                       ] + slbflights.getManifestWatcherIfEnabled(),
                       dnsPolicy: "Default",
                   }
-                  + (
-                      if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
-                  ),
+                  + slbconfigs.slbEstateNodeSelector,
             metadata: {
                 labels: {
                     name: "slb-vip-watchdog",

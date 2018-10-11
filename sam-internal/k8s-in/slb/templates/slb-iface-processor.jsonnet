@@ -52,7 +52,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                                         {
                                             key: "pool",
                                             operator: "In",
-                                            values: if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then [configs.kingdom + "-slb"] else [configs.estate],
+                                            values: [slbconfigs.slbEstate],
                                         },
 
                                     ],
