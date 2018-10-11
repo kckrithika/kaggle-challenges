@@ -66,9 +66,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         ],
                     },
                 ],
-            } + slbflights.getDnsPolicy() + (
-            if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
-            ),
+            } + slbflights.getDnsPolicy()
+              + slbconfigs.slbEstateNodeSelector,
         },
         strategy: {
             type: "RollingUpdate",

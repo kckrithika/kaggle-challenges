@@ -28,7 +28,7 @@ spec:
               - key: pool
                 operator: In
                 values:
-                - prd-samtwo
+                - prd-slbtwo
       containers:
       - command:
         - /sdn/slb-iface-processor

@@ -48,7 +48,7 @@ if slbconfigs.isTestEstate || configs.estate == "prd-sam" then configs.daemonSet
                                         {
                                             key: "pool",
                                             operator: "In",
-                                            values: if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then [configs.kingdom + "-slb"] else [configs.estate],
+                                            values: [slbconfigs.slbEstate],
                                         },
                                     ],
                                 },

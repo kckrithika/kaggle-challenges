@@ -83,9 +83,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                     slbshared.slbLogCleanup,
                                 ] else []
                             ),
-            } + slbflights.getDnsPolicy() + (
-                if slbconfigs.isTestEstate then { nodeSelector: { pool: configs.estate } } else { nodeSelector: { pool: configs.kingdom + "-slb" } }
-            ),
+            } + slbflights.getDnsPolicy()
+              + slbconfigs.slbEstateNodeSelector,
             metadata: {
                 labels: {
                     name: "slb-nginx-data-watchdog",

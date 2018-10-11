@@ -77,7 +77,7 @@ spec:
           name: sfdchosts
       dnsPolicy: Default
       nodeSelector:
-        pool: prd-slb
+        pool: prd-slbtwo
       volumes:
       - hostPath:
           path: /etc/pki_service
