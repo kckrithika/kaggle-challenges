@@ -113,8 +113,6 @@ spec:
           readOnly: true
       nodeSelector:
         master: "true"
-      serviceAccount: istio-pilot-service-account
-      serviceAccountName: istio-pilot-service-account
       volumes:
       - hostPath:
           path: /etc/pki_service
@@ -125,7 +123,3 @@ spec:
       - configMap:
           name: istio
         name: config-volume
-      - name: istio-certs
-        secret:
-          optional: true
-          secretName: istio.istio-pilot-service-account
