@@ -28,6 +28,13 @@ local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
       intake_https_nodeport: 32443,
       intake_mgmt_nodeport: 32081,
 
+      intake_dl_http: 8180,
+      intake_dl_https: 8543,
+      intake_dl_mgmt: 8181,
+      intake_dl_http_nodeport: 32180,
+      intake_dl_https_nodeport: 32543,
+      intake_dl_mgmt_nodeport: 32181,
+
       pullrequest_mgmt: 8081,
       pullrequest_mgmt_nodeport: 32084,
 
