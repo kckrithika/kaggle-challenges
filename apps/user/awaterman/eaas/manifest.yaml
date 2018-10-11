@@ -6,7 +6,7 @@ system:
       - awaterman@salesforce.com
   functions:
   - name: eaas
-    count: 7 
+    count: 2 
     strategy:
       type: RollingUpdate
     containers:
@@ -23,11 +23,11 @@ system:
         value: awaterman
       resources:
         requests:
-          memory: "12G"
-          cpu: "300m"
+          memory: "3G"
+          cpu: "200m"
         limits:
-          memory: "12G"
-          cpu: "800m"
+          memory: "6G"
+          cpu: "500m"
       ports:
         - name: grpc
           containerPort: 7020
