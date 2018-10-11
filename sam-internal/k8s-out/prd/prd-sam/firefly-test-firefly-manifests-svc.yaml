@@ -786,6 +786,7 @@ items:
                   "artifactory-password": "${artifactoryPassword#FromSecretService}",
                   "artifactory-user-name": "svc_tnrp_artifactory"
               },
+              "back-off-period": "2000ms",
               "context-prefix": "",
               "docker": {
                   "connect-timeout": "480000ms",
@@ -1162,6 +1163,7 @@ items:
                   "max-retry": 3,
                   "socket-timeout": "30000ms"
               },
+              "back-off-period": "2000ms",
               "context-prefix": "",
               "health-check-repo": "tnrpfirefly",
               "instance-type": "${INSTANCE_TYPE}",

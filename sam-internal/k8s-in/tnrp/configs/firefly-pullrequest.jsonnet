@@ -45,6 +45,7 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       artifactory: artifactoryConfig.base,
       'context-prefix': '',
       'health-check-repo': 'tnrpfirefly',
+      'back-off-period': '2000ms',
     },
     firefly: {
       monitoring: monitoringConfig.monitor(serviceName),
