@@ -22,19 +22,7 @@ local configs = import "config.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         #[pjoshi]
-        "prd,prd-sam,snapshotconsumer-prd,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
-        "prd,prd-sam,snapshotconsumer-prod,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180822_120038.195d1827.dirty.prahladjos-ltm",
-
-        "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
-        "prd,prd-sam_storagedev,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
-        "prd,prd-sam_storage,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
         "frf,frf-sam,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
-
-        #[W-5431932] Fix k8s-resource-reporter crashing
-        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002282-d7702ab4",
-
-        #[small]
-        "prd,prd-sam,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180830_155128.a66cdb1a.clean.small-ltm",
         }
         + {
           #[thargrove] Pin the auto-deplopyer to the build before we stiched to v1 deployments.  Remove when all of sam-internals is fixed
@@ -53,7 +41,6 @@ for ce in [
             "ph2-sam",
             "phx-sam",
             "prd-samtwo",
-            "prd-sdc",
             "syd-sam",
             "ukb-sam",
             "wax-sam",
@@ -93,7 +80,7 @@ for ce in [
 
         ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
         "2": $.per_phase["3"] {
-            hypersam: "sam-0002279-7db63f34",
+            hypersam: "sam-0002328-f0e6eae5",
             madkub: "1.0.0-0000077-b1d3a629",
             madkubSidecar: "1.0.0-0000077-b1d3a629",
             },
