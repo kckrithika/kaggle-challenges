@@ -2,4 +2,4 @@
 
 # This should always change at the same time as tnrp/pipeline_manifest.json and use the same sha1
 
-SLBMB=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sdn/slb-manifest-builder:v-0001233-4877427d
+SLBMB=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sdn/slb-manifest-builder:v-0001265-a27294ec
