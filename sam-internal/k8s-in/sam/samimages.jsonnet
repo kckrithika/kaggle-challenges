@@ -21,15 +21,12 @@ local configs = import "config.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        #[pjoshi]
-        "frf,frf-sam,samcontrol-deployer,hypersam": "sam-0002281-4c736d48",
         }
         + {
           #[thargrove] Pin the auto-deplopyer to the build before we stiched to v1 deployments.  Remove when all of sam-internals is fixed
           [std.substr(ce, 0, 3) + "," + ce + ",samcontrol-deployer,hypersam"]: "sam-0002190-d048106f"
 for ce in [
             "cdg-sam",
-            "cdu-sam",
             "chx-sam",
             "dfw-sam",
             "fra-sam",
@@ -87,7 +84,7 @@ for ce in [
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": $.per_phase["4"] {
-            hypersam: "sam-0002279-7db63f34",
+            hypersam: "sam-0002328-f0e6eae5",
             madkub: "1.0.0-0000077-b1d3a629",
             madkubSidecar: "1.0.0-0000077-b1d3a629",
             },
