@@ -5,6 +5,7 @@ local estate = std.extVar("estate");
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 
 if estate == "prd-data-flowsnake" then ({
+    local label_node = self.spec.template.metadata.labels,
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -18,7 +19,8 @@ if estate == "prd-data-flowsnake" then ({
         replicas: 1,
         selector: {
             matchLabels: {
-                name: "snapshotconsumer",
+                apptype: label_node.apptype,
+                name: label_node.name,
             },
         },
         template: {

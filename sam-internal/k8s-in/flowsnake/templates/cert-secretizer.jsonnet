@@ -10,6 +10,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 
 configs.deploymentBase("flowsnake") {
+  local label_node = self.spec.template.metadata.labels,
   metadata: {
     name: "cert-secretizer",
     namespace: "flowsnake",
@@ -17,6 +18,11 @@ configs.deploymentBase("flowsnake") {
   spec+: {
     replicas: 1,
     minReadySeconds: 45,
+    selector: {
+      matchLabels: {
+        name: label_node.name,
+      },
+    },
     template: {
       metadata: {
         annotations: {

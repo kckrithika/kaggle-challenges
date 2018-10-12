@@ -5,6 +5,7 @@ local util = import "util_functions.jsonnet";
 local kingdom = std.extVar("kingdom");
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 {
+    local label_node = self.spec.template.metadata.labels,
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -18,7 +19,7 @@ local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_
         replicas: 1,
         selector: {
             matchLabels: {
-                app: "flowsnake-fleet-service",
+                app: label_node.name,
             },
         },
         template: {

@@ -8,9 +8,16 @@ if !watchdog.watchdog_enabled || true then
 "SKIP"
 else
 {
+  local label_node = self.spec.template.metadata.labels,
   kind: "Deployment",
    spec: {
        replicas: 1,
+        selector: {
+            matchLabels: {
+                apptype: label_node.apptype,
+                name: label_node.name,
+            },
+        },
        template: {
            spec: {
                hostNetwork: true,
@@ -96,11 +103,6 @@ else
               } else {},
           },
        },
-      selector: {
-          matchLabels: {
-              name: "watchdog-kuberesources",
-          },
-      },
    },
   apiVersion: "extensions/v1beta1",
   metadata: {

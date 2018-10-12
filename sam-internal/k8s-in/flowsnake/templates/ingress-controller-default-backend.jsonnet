@@ -2,6 +2,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flag_fs_metric_labels = std.objectHas(flowsnakeimage.feature_flags, "fs_metric_labels");
 {
+    local label_node = self.spec.template.metadata.labels,
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -15,7 +16,7 @@ local flag_fs_metric_labels = std.objectHas(flowsnakeimage.feature_flags, "fs_me
         replicas: 1,
         selector: {
             matchLabels: {
-                app: "default-http-backend",
+                app: label_node.app,
             },
         },
         template: {

@@ -6,6 +6,7 @@ if flowsnakeconfig.is_minikube then
 "SKIP"
 else
 {
+    local label_node = self.spec.template.metadata.labels,
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -19,7 +20,7 @@ else
         replicas: 1,
         selector: {
             matchLabels: {
-                app: "flowsnake-event-exporter",
+                app: label_node.app,
             },
         },
         template: {

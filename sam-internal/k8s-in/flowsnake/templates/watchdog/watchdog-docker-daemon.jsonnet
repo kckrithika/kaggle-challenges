@@ -11,11 +11,18 @@ if !watchdog.watchdog_enabled || !std.objectHas(flowsnake_images.feature_flags, 
 "SKIP"
 else
 configs.daemonSetBase("flowsnake") {
+    local label_node = self.spec.template.metadata.labels,
     metadata: {
         name: "watchdog-docker-daemon",
         namespace: "flowsnake",
     },
     spec+: {
+        selector: {
+            matchLabels: {
+                app: label_node.app,
+                apptype: label_node.apptype,
+            },
+        },
         template: {
             metadata: {
                 labels: {

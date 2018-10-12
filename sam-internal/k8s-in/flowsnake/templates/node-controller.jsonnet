@@ -5,9 +5,16 @@ local configs = import "config.jsonnet";
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 if flowsnakeconfig.node_controller_enabled then
 {
+    local label_node = self.spec.template.metadata.labels,
     kind: "Deployment",
     spec: {
         replicas: 1,
+        selector: {
+            matchLabels: {
+                name: label_node.name,
+                apptype: label_node.apptype,
+            },
+        },
         template: {
             spec: {
                 containers: [
@@ -62,11 +69,6 @@ if flowsnakeconfig.node_controller_enabled then
                     flowsnakeOwner: "dva-transform",
                     flowsnakeRole: "NodeController",
                 } else {},
-            },
-        },
-        selector: {
-            matchLabels: {
-                name: "node-controller",
             },
         },
     },

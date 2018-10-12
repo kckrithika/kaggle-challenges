@@ -5,6 +5,7 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 {
+    local label_node = self.spec.template.metadata.labels,
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -19,7 +20,8 @@ local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_
         replicas: 1,
         selector: {
             matchLabels: {
-                "k8s-app": "nginx-ingress-lb",
+                name: label_node.name,
+                "k8s-app": label_node["k8s-app"],
             },
         },
         template: {

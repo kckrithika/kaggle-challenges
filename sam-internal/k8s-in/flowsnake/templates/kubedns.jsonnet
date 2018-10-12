@@ -5,6 +5,7 @@ if !flowsnake_config.kubedns_manifests_enabled then
 "SKIP"
 else
 {
+    local label_node = self.spec.template.metadata.labels,
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -22,7 +23,7 @@ else
         revisionHistoryLimit: 2,
         selector: {
             matchLabels: {
-                "k8s-app": "kube-dns",
+                "k8s-app": label_node["k8s-app"],
             },
         },
         strategy: {

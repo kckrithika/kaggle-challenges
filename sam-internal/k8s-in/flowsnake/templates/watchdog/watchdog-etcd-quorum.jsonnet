@@ -9,8 +9,15 @@ if !watchdog.watchdog_enabled then
 "SKIP"
 else
 configs.deploymentBase("flowsnake") {
+    local label_node = self.spec.template.metadata.labels,
     spec+: {
         replicas: 1,
+        selector: {
+            matchLabels: {
+                name: label_node.name,
+                apptype: label_node.apptype,
+            },
+        },
         template: {
             spec: {
                 hostNetwork: true,

@@ -11,6 +11,7 @@ spec:
   selector:
     matchLabels:
       k8s-app: nginx-ingress-lb
+      name: nginx-ingress-lb
   template:
     metadata:
       labels:

@@ -9,7 +9,15 @@ if !watchdog.watchdog_enabled then
 "SKIP"
 else
 configs.daemonSetBase("flowsnake") {
+    local label_node = self.spec.template.metadata.labels,
     spec+: {
+        selector:  {
+            matchLabels: {
+                app: label_node.app,
+                apptype: label_node.apptype,
+                daemonset: label_node.daemonset,
+            }
+        },
         template: {
             spec: {
                 containers: [

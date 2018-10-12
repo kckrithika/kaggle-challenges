@@ -6,6 +6,7 @@ local configs = import "config.jsonnet";
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 
 configs.deploymentBase("flowsnake") {
+  local label_node = self.spec.template.metadata.labels,
   metadata: {
     labels: {
         service: "madkubserver",
@@ -16,6 +17,11 @@ configs.deploymentBase("flowsnake") {
   spec+: {
     replicas: if flowsnakeconfig.is_minikube then 1 else 3,
     minReadySeconds: 45,
+    selector: {
+      matchLabels: {
+        service: label_node.service,
+      },
+    },
     template: {
       metadata: {
         labels: {
@@ -83,7 +89,7 @@ configs.deploymentBase("flowsnake") {
               },
             ] +
             (
-if flowsnakeconfig.is_minikube then [
+              if flowsnakeconfig.is_minikube then [
                 {
                   mountPath: "/maddog-onebox",
                   name: "maddog-onebox-certs",
@@ -211,7 +217,7 @@ if flowsnakeconfig.is_minikube then [
           },
         ] +
         (
-if flowsnakeconfig.is_minikube then [
+          if flowsnakeconfig.is_minikube then [
             {
               name: "kubeconfig",
               configMap: {
