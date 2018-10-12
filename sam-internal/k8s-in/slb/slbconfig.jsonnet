@@ -181,7 +181,7 @@
             "prd-samdev": $.maxDeleteDefault,
             "prd-sam_storage": $.maxDeleteDefault,
             "prd-sam_storagedev": $.maxDeleteDefault,
-            "prd-sam": $.maxDeleteDefault,
+            "prd-sam": 50,
             "frf-sam": $.maxDeleteDefault,
             "phx-sam": $.maxDeleteDefault,
             "iad-sam": $.maxDeleteDefault,
