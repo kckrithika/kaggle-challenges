@@ -9,7 +9,7 @@ system:
           type: server
     containers:
     - name: zones-bot
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/zones-bot:test-20181011-2 # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/zones-bot:test-20181011-3 # golang app
       ports:
       - containerPort: 8060
       livenessProbe:
