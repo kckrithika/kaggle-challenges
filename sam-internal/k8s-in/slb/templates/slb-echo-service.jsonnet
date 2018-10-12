@@ -2,40 +2,28 @@ local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbportconfiguration = import "slbportconfiguration.libsonnet";
+local slbbaseservice = import "slb-base-service.libsonnet";
+
+local deploymentName = "slb-echo-server";
+local serviceName = "slb-echo-svc";
+local vipName = serviceName;
 
 local echoSvcPortConfig = [
-    slbportconfiguration.newPortConfiguration(port=portconfigs.slb.slbEchoServicePort, lbType="tcp"),
+    slbportconfiguration.newPortConfiguration(
+        port=portconfigs.slb.slbEchoServicePort,
+        lbType="tcp",
+        name="slb-echo-port",
+        nodePort=portconfigs.slb.slbEchoServiceNodePort,
+    ),
 ];
 
-if configs.estate == "prd-sdc" then {
-    kind: "Service",
-    apiVersion: "v1",
-    metadata: {
-        name: "slb-echo-svc",
-        namespace: "sam-system",
-        labels: {
-            app: "slb-echo-svc",
-            "slb.sfdc.net/name": "slb-echo-svc",
+if configs.estate == "prd-sdc" then
+    slbbaseservice.slbCanaryBaseService(deploymentName, echoSvcPortConfig, serviceName, vipName) {
+
+    // TODO: this is vestigial and should be removed.
+    metadata+: {
+        labels+: {
             "slb.sfdc.net/type": "tcp",
-        } + configs.ownerLabel.slb,
-        annotations: {
-            "slb.sfdc.net/name": "slb-echo-svc",
-            "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(echoSvcPortConfig),
         },
-    },
-    spec: {
-        ports: [
-            {
-                name: "slb-echo-port",
-                port: portconfigs.slb.slbEchoServicePort,
-                protocol: "TCP",
-                targetPort: portconfigs.slb.slbEchoServicePort,
-                nodePort: portconfigs.slb.slbEchoServiceNodePort,
-            },
-        ],
-        selector: {
-            name: "slb-echo-server",
-        },
-        type: "NodePort",
     },
 } else "SKIP"

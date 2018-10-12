@@ -2,48 +2,33 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local slbportconfiguration = import "slbportconfiguration.libsonnet";
+local slbbaseservice = import "slb-base-service.libsonnet";
+
+local canaryName = "slb-canary-proxy-http";
+local serviceName = canaryName + "-service";
+local vipName = canaryName;
 
 local canaryPortConfig = [
-    slbportconfiguration.newPortConfiguration(port=portconfigs.slb.canaryServiceProxyHttpPort, lbType="http"),
-    slbportconfiguration.newPortConfiguration(port=443, lbType="http") { reencrypt: true, sticky: 300, healthport: 9116, hEaLtHpath: "/health", tls: true },
+    slbportconfiguration.newPortConfiguration(
+        port=portconfigs.slb.canaryServiceProxyHttpPort,
+        lbType="http",
+        name="slb-canary-proxy-http-port",
+        nodePort=portconfigs.slb.canaryServiceProxyHttpNodePort,
+    ),
+    slbportconfiguration.newPortConfiguration(
+        port=443,
+        lbType="http",
+        name="slb-canary-proxy-https-port",
+    ) { reencrypt: true, sticky: 300, healthport: 9116, hEaLtHpath: "/health", tls: true },
 ];
 
-if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then {
-    kind: "Service",
-    apiVersion: "v1",
-    metadata: {
-                  name: "slb-canary-proxy-http-service",
-                  namespace: "sam-system",
-                  labels: {
-                      app: "slb-canary-proxy-http-service",
-                      "slb.sfdc.net/name": "slb-canary-proxy-http",
-                      "slb.sfdc.net/type": "http",
-                  } + configs.ownerLabel.slb,
-              } + {
-                  annotations: {
-                      "slb.sfdc.net/name": "slb-canary-proxy-http",
-                      "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(canaryPortConfig),
-                  },
-              },
-    spec: {
-        ports: [
-            {
-                name: "slb-canary-proxy-http-port",
-                port: portconfigs.slb.canaryServiceProxyHttpPort,
-                protocol: "TCP",
-                targetPort: portconfigs.slb.canaryServiceProxyHttpPort,
-                nodePort: portconfigs.slb.canaryServiceProxyHttpNodePort,
-            },
-            {
-                name: "slb-canary-proxy-https-port",
-                port: 443,
-                protocol: "TCP",
-                targetPort: 443,
-            },
-        ],
-        selector: {
-            name: "slb-canary-proxy-http",
+if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then
+    slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {
+
+    // TODO: this is vestigial and should be removed.
+    metadata+: {
+        labels+: {
+            "slb.sfdc.net/type": "http",
         },
-        type: "NodePort",
     },
 } else "SKIP"

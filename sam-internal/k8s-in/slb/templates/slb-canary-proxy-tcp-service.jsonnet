@@ -3,40 +3,28 @@ local portconfigs = import "portconfig.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbportconfiguration = import "slbportconfiguration.libsonnet";
+local slbbaseservice = import "slb-base-service.libsonnet";
+
+local canaryName = "slb-canary-proxy-tcp";
+local serviceName = canaryName + "-service";
+local vipName = canaryName;
 
 local canaryPortConfig = [
-    slbportconfiguration.newPortConfiguration(port=portconfigs.slb.canaryServiceProxyTcpPort, lbType="tcp") { healthPath: "/" },
+    slbportconfiguration.newPortConfiguration(
+        port=portconfigs.slb.canaryServiceProxyTcpPort,
+        lbType="tcp",
+        name=canaryName + "-port",
+        nodePort=portconfigs.slb.canaryServiceProxyTcpNodePort,
+    ) { healthPath: "/" },
 ];
 
-if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
-    kind: "Service",
-    apiVersion: "v1",
-    metadata: {
-        name: "slb-canary-proxy-tcp-service",
-        namespace: "sam-system",
-        labels: {
-            app: "slb-canary-proxy-tcp-service",
-            "slb.sfdc.net/name": "slb-canary-proxy-tcp",
+if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then
+   slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {
+
+    // TODO: this is vestigial and should be removed.
+    metadata+: {
+        labels+: {
             "slb.sfdc.net/type": "tcp",
-        } + configs.ownerLabel.slb,
-        annotations: {
-            "slb.sfdc.net/name": "slb-canary-proxy-tcp",
-            "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(canaryPortConfig),
         },
-    },
-    spec: {
-        ports: [
-            {
-                name: "slb-canary-proxy-tcp-port",
-                port: portconfigs.slb.canaryServiceProxyTcpPort,
-                protocol: "TCP",
-                targetPort: portconfigs.slb.canaryServiceProxyTcpPort,
-                nodePort: portconfigs.slb.canaryServiceProxyTcpNodePort,
-            },
-        ],
-        selector: {
-            name: "slb-canary-proxy-tcp",
-        },
-        type: "NodePort",
     },
 } else "SKIP"
