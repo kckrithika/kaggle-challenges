@@ -9,7 +9,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: flowsnake-fleet-service
+      name: flowsnake-fleet-service
   template:
     metadata:
       labels:
