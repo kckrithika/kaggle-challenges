@@ -16,7 +16,7 @@ if configs.estate == "prd-sam" then {
                         image: samimages.hypersam,
                         command: [
                                     "/sam/watchdog",
-                                    "--role=MYSQL",
+                                    "--role=GLOBAL",
                                     "--sqlDbUsername=" + mysql.userName,
                                     "--sqlDbPasswordFile=/var/secrets/mysql.txt",
                                     "--sqlDbHostname=" + mysql.hostName,
