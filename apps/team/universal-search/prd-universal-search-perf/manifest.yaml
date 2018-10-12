@@ -46,9 +46,9 @@ system:
       - name: ZK_CHROOT
         value: /search/universal/solr-cloud/cre
       - name: SERVICE_THREADCOUNT
-        value: 2000
+        value: 4000
       - name: CLIENT_MAXCONNPERROUTE
-        value: 2000
+        value: 4000
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
@@ -79,8 +79,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
       resources:
-        limits: { cpu: "1", memory: "2Gi" }
-        requests: { cpu: "1", memory: "2Gi" }
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
