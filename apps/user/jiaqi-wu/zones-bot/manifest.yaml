@@ -15,7 +15,7 @@ system:
       livenessProbe:
         httpGet:
           path: /livecheck
-          port: 8060
+          port: 8061
       volumeMounts:
       - name: servercert
         mountPath: /servercerts
@@ -26,5 +26,5 @@ system:
     ports:
       - port: 8060
         targetport: 8060
-        lbtype: tcp
+        lbtype: http
         tls: true
