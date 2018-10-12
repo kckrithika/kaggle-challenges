@@ -10,7 +10,6 @@ spec:
     matchLabels:
       app: watchdog-master
       apptype: monitoring
-      daemonset: "true"
   template:
     metadata:
       labels:
