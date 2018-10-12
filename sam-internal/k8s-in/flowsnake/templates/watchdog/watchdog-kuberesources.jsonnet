@@ -14,12 +14,13 @@ else
   kind: "Deployment",
    spec: {
        replicas: 1,
-        [if flag_fs_matchlabels then "selector"]: {
-            matchLabels: {
-                name: label_node.name,
-                apptype: label_node.apptype,
-            },
-        },
+       selector: {
+           matchLabels: {
+               name: label_node.name,
+           } + if flag_fs_matchlabels then {
+               apptype: label_node.apptype,
+           } else {},
+       },
        template: {
            spec: {
                hostNetwork: true,

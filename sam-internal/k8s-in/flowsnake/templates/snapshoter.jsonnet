@@ -18,11 +18,12 @@ if flowsnake_config.snapshots_enabled then ({
     },
     spec: {
         replicas: 1,
-        [if flag_fs_matchlabels then "selector"]: {
+        selector: {
             matchLabels: {
                 name: label_node.name,
+            } + if flag_fs_matchlabels then {
                 apptype: label_node.apptype,
-            },
+            } else {},
         },
         template: {
             metadata: {

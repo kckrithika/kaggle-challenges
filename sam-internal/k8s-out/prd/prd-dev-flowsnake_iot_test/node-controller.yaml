@@ -7,6 +7,9 @@ metadata:
   namespace: flowsnake
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      name: node-controller
   template:
     metadata:
       labels:

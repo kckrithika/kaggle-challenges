@@ -11,11 +11,12 @@ if flowsnakeconfig.node_controller_enabled then
     kind: "Deployment",
     spec: {
         replicas: 1,
-        [if flag_fs_matchlabels then "selector"]: {
+        selector: {
             matchLabels: {
                 name: label_node.name,
+            } + if flag_fs_matchlabels then {
                 apptype: label_node.apptype,
-            },
+            } else {},
         },
         template: {
             spec: {
