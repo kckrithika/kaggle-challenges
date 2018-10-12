@@ -1,3 +1,5 @@
 apps:
  scone-gen:
   - prd/prd-sam
+ perf-shipping-test:
+  - prd/prd-sam
