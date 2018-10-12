@@ -27,10 +27,6 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: pool
-                operator: In
-                values:
-                - prd-sdc
               - key: slb-service
                 operator: NotIn
                 values:
@@ -66,8 +62,8 @@ spec:
           httpGet:
             path: /
             port: 9111
-          initialDelaySeconds: 5
-          periodSeconds: 3
+          initialDelaySeconds: 15
+          periodSeconds: 10
         name: slb-canary
         volumeMounts:
         - mountPath: /host/data/slb/logs/
