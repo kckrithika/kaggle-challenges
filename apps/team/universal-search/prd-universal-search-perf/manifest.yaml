@@ -34,8 +34,8 @@ system:
       - name: admin-port
         containerPort: 15372
       resources:
-        limits: { cpu: "2", memory: "8Gi" }
-        requests: { cpu: "2", memory: "8Gi" }
+        limits: { cpu: "3", memory: "8Gi" }
+        requests: { cpu: "3", memory: "8Gi" }
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
@@ -79,8 +79,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: { cpu: "1", memory: "2Gi" }
+        requests: { cpu: "1", memory: "2Gi" }
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
