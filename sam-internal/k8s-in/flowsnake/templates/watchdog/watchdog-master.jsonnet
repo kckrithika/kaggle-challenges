@@ -16,6 +16,7 @@ configs.daemonSetBase("flowsnake") {
             matchLabels: {
                 app: label_node.app,
                 apptype: label_node.apptype,
+                daemonset: label_node.daemonset,
             }
         },
         template: {
