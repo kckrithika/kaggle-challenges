@@ -18,7 +18,7 @@ apps:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
     - shared2-samminioncoreapp3-2-prd.eng.sfdc.net
-mist61-na5:
+ mist61-na5:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
     - shared2-samminioncoreapp3-2-prd.eng.sfdc.net
