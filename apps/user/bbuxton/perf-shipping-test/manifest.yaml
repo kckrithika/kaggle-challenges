@@ -16,7 +16,8 @@ system:
       args: ["-Xmx128m",
              "-Dscone.service.name=bbuxtonperfshipping",
              "-jar",
-             "/perf-shipping-scone_springboot.jar"]
+             "/perf-shipping-scone_springboot.jar",
+             "--debug"]
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
