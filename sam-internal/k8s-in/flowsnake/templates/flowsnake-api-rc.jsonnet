@@ -19,7 +19,7 @@ local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_
         replicas: 1,
         selector: {
             matchLabels: {
-                app: label_node.name,
+                name: label_node.name,
             },
         },
         template: {
