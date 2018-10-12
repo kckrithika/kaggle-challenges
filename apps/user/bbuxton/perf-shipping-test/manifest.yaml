@@ -12,6 +12,11 @@ system:
       # Bazel monorepo
       #   https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/perf-shipping/perf-shipping-scone
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/perf-shipping-service:bbuxton-1538752284
+      command: ["java"]
+      args: ["-Xmx128m",
+             "-Dscone.service.name=bbuxtonperfshipping",
+             "-jar",
+             "/perf-shipping-scone_springboot.jar"]
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
