@@ -1,0 +1,22 @@
+apiVersion: v1
+  
+system:
+  functions:
+  - name: grafana-lizhang
+    count: 1
+    containers:
+    - name: lizhang-grafana
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lizhang/grafana:lizhang-10042018
+      ports:
+      - containerPort: 3000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 3000
+
+  loadbalancers:
+  - lbname: lizhang-grafana-lb
+    function: grafana-lizhang
+    ports:
+      - port: 3000
+        targetport: 3000
