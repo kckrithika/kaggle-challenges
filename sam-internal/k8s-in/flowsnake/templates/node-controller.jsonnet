@@ -14,6 +14,7 @@ if flowsnakeconfig.node_controller_enabled then
         [if flag_fs_matchlabels then "selector"]: {
             matchLabels: {
                 name: label_node.name,
+                apptype: label_node.apptype,
             },
         },
         template: {

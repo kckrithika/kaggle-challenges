@@ -21,6 +21,7 @@ if estate == "prd-data-flowsnake" then ({
         [if flag_fs_matchlabels then "selector"]: {
             matchLabels: {
                 name: label_node.name,
+                apptype: label_node.apptype,
             },
         },
         template: {
