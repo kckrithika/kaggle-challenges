@@ -4,6 +4,7 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local configs = import "config.jsonnet";
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
 
 configs.deploymentBase("flowsnake") {
   local label_node = self.spec.template.metadata.labels,
@@ -17,7 +18,7 @@ configs.deploymentBase("flowsnake") {
   spec+: {
     replicas: if flowsnakeconfig.is_minikube then 1 else 3,
     minReadySeconds: 45,
-    selector: {
+    [if flag_fs_matchlabels then "selector"]: {
       matchLabels: {
         service: label_node.service,
       },

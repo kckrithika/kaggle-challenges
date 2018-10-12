@@ -2,6 +2,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local auto_deployer = import "auto_deployer.jsonnet";
 local configs = import "config.jsonnet";
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
 
 if !auto_deployer.auto_deployer_enabled then
 "SKIP"
@@ -17,7 +18,7 @@ configs.deploymentBase("flowsnake") {
   },
   spec: {
     replicas: 1,
-    selector: {
+    [if flag_fs_matchlabels then "selector"]: {
       matchLabels: {
         apptype: label_node.apptype,
         name: label_node.name,

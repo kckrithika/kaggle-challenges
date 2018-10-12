@@ -1,4 +1,4 @@
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local estate = std.extVar("estate");
@@ -8,6 +8,7 @@ local cert_name = "ingresscerts";
 local configs = import "config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
 
 configs.deploymentBase("flowsnake") {
   local label_node = self.spec.template.metadata.labels,
@@ -18,7 +19,7 @@ configs.deploymentBase("flowsnake") {
   spec+: {
     replicas: 1,
     minReadySeconds: 45,
-    selector: {
+    [if flag_fs_matchlabels then "selector"]: {
       matchLabels: {
         name: label_node.name,
       },
@@ -52,7 +53,7 @@ configs.deploymentBase("flowsnake") {
         containers: [
             {
             name: "cert-secretizer",
-            image: flowsnakeimage.cert_secretizer,
+            image: flowsnake_images.cert_secretizer,
             imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
             volumeMounts: [
               {

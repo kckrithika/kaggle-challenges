@@ -4,6 +4,8 @@ local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
+
 {
     local label_node = self.spec.template.metadata.labels,
     apiVersion: "extensions/v1beta1",
@@ -18,7 +20,7 @@ local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_
     },
     spec: {
         replicas: 1,
-        selector: {
+        [if flag_fs_matchlabels then "selector"]: {
             matchLabels: {
                 "k8s-app": label_node["k8s-app"],
             },

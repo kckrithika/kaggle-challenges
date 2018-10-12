@@ -1,8 +1,10 @@
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
-local flag_fs_metric_labels = std.objectHas(flowsnakeimage.feature_flags, "fs_metric_labels");
+local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
+
 // Disable everywhere for now because too noisy, because at any given time we have failed customer pods.
 if !watchdog.watchdog_enabled || true then
 "SKIP"
@@ -12,7 +14,7 @@ else
   kind: "Deployment",
    spec: {
        replicas: 1,
-        selector: {
+        [if flag_fs_matchlabels then "selector"]: {
             matchLabels: {
                 name: label_node.name,
             },
@@ -23,7 +25,7 @@ else
                containers: [
                    {
                        name: "watchdog-kuberesources",
-                       image: flowsnakeimage.watchdog,
+                       image: flowsnake_images.watchdog,
                        command: [
                            "/sam/watchdog",
                            "-role=KUBERESOURCES",

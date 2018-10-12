@@ -7,9 +7,6 @@ metadata:
   namespace: flowsnake
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: flowsnake-event-exporter
   template:
     metadata:
       labels:

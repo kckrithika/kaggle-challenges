@@ -7,10 +7,6 @@ metadata:
   namespace: sam-system
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      apptype: control
-      name: samcontrol-deployer
   template:
     metadata:
       labels:

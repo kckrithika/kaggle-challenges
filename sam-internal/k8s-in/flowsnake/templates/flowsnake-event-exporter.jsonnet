@@ -2,6 +2,8 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
+
 if flowsnakeconfig.is_minikube then
 "SKIP"
 else
@@ -18,7 +20,7 @@ else
     },
     spec: {
         replicas: 1,
-        selector: {
+        [if flag_fs_matchlabels then "selector"]: {
             matchLabels: {
                 app: label_node.app,
             },

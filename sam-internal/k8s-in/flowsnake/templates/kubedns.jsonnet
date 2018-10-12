@@ -1,6 +1,8 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
+
 if !flowsnake_config.kubedns_manifests_enabled then
 "SKIP"
 else
@@ -21,7 +23,7 @@ else
         progressDeadlineSeconds: 600,
         replicas: if std.objectHas(flowsnake_images.feature_flags, "kubedns_scale_up") then 3 else 1,
         revisionHistoryLimit: 2,
-        selector: {
+        [if flag_fs_matchlabels then "selector"]: {
             matchLabels: {
                 "k8s-app": label_node["k8s-app"],
             },
