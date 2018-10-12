@@ -1,6 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnake_clichecker_commands = import "flowsnake_clichecker_commands.jsonnet";
 local samconfig = import "config.jsonnet";
@@ -21,14 +21,14 @@ local samconfig = import "config.jsonnet";
     watchdog_config: {
         cliCheckerFullCommands: flowsnake_clichecker_commands.command_sets,
         "deployer-funnelEndpoint": flowsnakeconfig.funnel_vip_and_port,
-        "deployer-imageName": flowsnakeimage.deployer,
+        "deployer-imageName": flowsnake_images.deployer,
         "deployer-rcImtEndpoint": samconfig.rcImtEndpoint,
         "deployer-recipient": "flowsnake@salesforce.com",
         "deployer-sender": "flowsnake@salesforce.com",
         "deployer-smtpServer": samconfig.smtpServer,
         "email-subject-prefix": "FLOWSNAKEWD",
         funnelEndpoint: flowsnakeconfig.funnel_vip_and_port,
-        imageName: flowsnakeimage.watchdog,
+        imageName: flowsnake_images.watchdog,
         kubeResourceNamespacePrefixBlacklist: "sam-watchdog",
         kubeResourceNamespacePrefixWhitelist: "sam-system,flowsnake",
         maxUptimeSampleSize: 5,
