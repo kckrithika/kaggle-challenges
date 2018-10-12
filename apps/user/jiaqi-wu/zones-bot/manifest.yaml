@@ -27,3 +27,4 @@ system:
       - port: 8060
         targetport: 8060
         lbtype: tcp
+        tls: true
