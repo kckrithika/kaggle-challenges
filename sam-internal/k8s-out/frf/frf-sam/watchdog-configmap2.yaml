@@ -5,7 +5,7 @@ data:
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "deployer-funnelEndpoint": "mandm-funnel-frf1.data.sfdc.net:8080",
-      "deployer-imageName": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0002279-7db63f34",
+      "deployer-imageName": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0002328-f0e6eae5",
       "deployer-rcImtEndpoint": "https://reportcollector-frf.data.sfdc.net:18443/v1/bark",
       "deployer-recipient": "sam-alerts@salesforce.com",
       "deployer-sender": "sam-alerts@salesforce.com",
@@ -24,7 +24,7 @@ data:
         "/home/"
       ],
       "funnelEndpoint": "mandm-funnel-frf1.data.sfdc.net:8080",
-      "imageName": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0002279-7db63f34",
+      "imageName": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0002328-f0e6eae5",
       "k8sproxyEndpoint": "http://localhost:40000",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "laddr": "0.0.0.0:8083",
