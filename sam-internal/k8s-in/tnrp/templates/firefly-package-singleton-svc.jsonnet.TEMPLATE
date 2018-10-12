@@ -3,7 +3,7 @@ local images = import "fireflyimages.jsonnet";
 local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
 local packageConfig = import "configs/firefly-package.jsonnet";
-
+local fireflyConfigs = import "fireflyconfigs.jsonnet";
 
 serviceDeployment {
     serviceConf:: {
@@ -36,7 +36,7 @@ serviceDeployment {
         },
         {
             name: "CONFIG_VERSION",
-            value: "5",
+            value: fireflyConfigs.fireflypackagesingleton,
         },
         {
             name: "DARKLAUNCH",

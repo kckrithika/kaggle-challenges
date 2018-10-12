@@ -20,10 +20,11 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
     logging: {
       level: {
         org: 'INFO',
-        'com.salesforce': 'DEBUG',
+        'com.salesforce': 'INFO',
+        'com.salesforce.firefly.packageservice': 'DEBUG',
       },
       pattern: {
-        console: '%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - instanceType=${INSTANCE_TYPE} e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n',
+        console: '%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n',
       },
     },
     scm: {
@@ -59,7 +60,7 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       'health-check-repo': 'tnrpfirefly',
     },
     firefly: {
-      monitoring: monitoringConfig.monitor(serviceName),
-    },
-  },
+      monitoring: monitoringConfig.monitor(serviceName)
+    }
+  }
 }

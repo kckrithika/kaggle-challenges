@@ -18,7 +18,8 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
     logging: {
       level: {
         org: 'INFO',
-        'com.salesforce': 'DEBUG',
+        'com.salesforce': 'INFO',
+        'com.salesforce.firefly.intakeservice': 'DEBUG',
       },
       pattern: {
         console: '%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread gua=%X{userAgent} ghd=%X{gitHubDelivery}] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n',
@@ -56,7 +57,6 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
           },
         },
       },
-      monitoring: monitoringConfig.monitor(serviceName),
       rabbitmq: {
         'exchange-name': envConfig.environmentMapping[configs.estate].exchangeName,
         'prr-routing-key-format': '%s.pr',
@@ -68,6 +68,11 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
         'context-prefix': '',
         'health-check-repo': 'tnrpfirefly',
       },
-    },
-  },
+      local custom_monitoring_configs = {
+        'enable-metrics-logging': false,
+        'enable-funnel-publisher': true,
+      },
+      monitoring: std.mergePatch(monitoringConfig.monitor(serviceName), custom_monitoring_configs)
+    }
+  }
 }

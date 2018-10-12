@@ -5,6 +5,7 @@ local configs = import "config.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
 local envConfig = import "configs/firefly_service_conf.jsonnet";
 local crawlerConfig = import "configs/firefly-crawler.jsonnet";
+local fireflyConfigs = import "fireflyconfigs.jsonnet";
 
 if firefly_feature_flags.is_firefly_svc_enabled then
 {
@@ -34,7 +35,7 @@ if firefly_feature_flags.is_firefly_svc_enabled then
       env:: super.commonEnv + [
           {
               name: "CONFIG_VERSION",
-              value: "6",
+              value: fireflyConfigs.fireflycrawler,
           },
           {
               name: "DARKLAUNCH",
