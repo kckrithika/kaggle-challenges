@@ -23,7 +23,7 @@ else
         progressDeadlineSeconds: 600,
         replicas: if std.objectHas(flowsnake_images.feature_flags, "kubedns_scale_up") then 3 else 1,
         revisionHistoryLimit: 2,
-        [if flag_fs_matchlabels then "selector"]: {
+        selector: {
             matchLabels: {
                 "k8s-app": label_node["k8s-app"],
             },

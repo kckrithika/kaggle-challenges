@@ -20,7 +20,7 @@ else
     },
     spec: {
         replicas: 1,
-        [if flag_fs_matchlabels then "selector"]: {
+        selector: {
             matchLabels: {
                 app: label_node.app,
             },

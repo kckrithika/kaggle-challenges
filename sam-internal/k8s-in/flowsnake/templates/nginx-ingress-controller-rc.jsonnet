@@ -20,7 +20,7 @@ local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_ma
     },
     spec: {
         replicas: 1,
-        [if flag_fs_matchlabels then "selector"]: {
+        selector: {
             matchLabels: {
                 "k8s-app": label_node["k8s-app"],
             },
