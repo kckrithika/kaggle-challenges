@@ -309,7 +309,7 @@ system:
     count: 1
     containers:
     - name: front-proxy-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/cyan-config:58361b
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
@@ -342,7 +342,7 @@ system:
       - name: ENVOY_DEBUG_OPTIONS
         value: --concurrency 200 --log-level debug
       args:
-      - --template=/cyan-config/front-proxy-config.yaml.template
+      - --template=/cyan-config/front-proxy-config-tls-to-switchboard-poc.yaml.template
       ports:
       - containerPort: 12060
       - containerPort: 12065
