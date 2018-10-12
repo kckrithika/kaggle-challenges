@@ -28,7 +28,7 @@ system:
         secretName: mds-gdot-secrets-prd
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.4.71
+      image: sfci/metadata-cannon/metadata-service:0.4.73
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -44,7 +44,7 @@ system:
         value: 15523
       - name: JVM_ARGS
         value: "-Djwt-validation.enabled=false
-                -Dgdot.server-url=https://na48.stmfa.stm.salesforce.asdf/empire/cloudatlas/scim
+                -Dgdot.server-url=https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
                 -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                 -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
