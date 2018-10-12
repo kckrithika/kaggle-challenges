@@ -12,7 +12,6 @@ if flowsnakeconfig.node_controller_enabled then
         selector: {
             matchLabels: {
                 name: label_node.name,
-                apptype: label_node.apptype,
             },
         },
         template: {

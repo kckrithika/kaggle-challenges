@@ -19,7 +19,6 @@ if flowsnake_config.snapshots_enabled then ({
         replicas: 1,
         selector: {
             matchLabels: {
-                apptype: label_node.apptype,
                 name: label_node.name,
             },
         },

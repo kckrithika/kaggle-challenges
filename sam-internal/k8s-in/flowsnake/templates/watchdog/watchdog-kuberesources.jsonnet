@@ -14,7 +14,6 @@ else
        replicas: 1,
         selector: {
             matchLabels: {
-                apptype: label_node.apptype,
                 name: label_node.name,
             },
         },
