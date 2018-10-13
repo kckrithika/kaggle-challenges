@@ -3,8 +3,10 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local estate = std.extVar("estate");
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
 
 if flowsnake_config.snapshots_enabled then ({
+    local label_node = self.spec.template.metadata.labels,
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -18,8 +20,10 @@ if flowsnake_config.snapshots_enabled then ({
         replicas: 1,
         selector: {
             matchLabels: {
-                name: "snapshoter",
-            },
+                name: label_node.name,
+            } + if flag_fs_matchlabels then {
+                apptype: label_node.apptype,
+            } else {},
         },
         template: {
             metadata: {

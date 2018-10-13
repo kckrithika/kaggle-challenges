@@ -1,4 +1,4 @@
-local flowsnakeimages = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local util = import "util_functions.jsonnet";
 local kingdom = std.extVar("kingdom");
@@ -8,7 +8,7 @@ local configs = import "config.jsonnet";
 # Builds an image promotion entry with the image tagged based on the version mapping
 local build_mapped_entry(imageName, version) = {
   name: std.join("-", std.split(std.join("-", std.split(imageName, "_")), ".")),
-  image: flowsnakeconfig.strata_registry + "/" + imageName + ":" + flowsnakeimages.version_mapping.main[version],
+  image: flowsnakeconfig.strata_registry + "/" + imageName + ":" + flowsnake_images.version_mapping.main[version],
 };
 
 # Builds an image promotion entry with the image tagged directly with the version
@@ -27,10 +27,10 @@ if util.is_production(kingdom) then
         containers: std.flattenArrays(
         [
           # If an override exists for this version, use it.
-          local imageNames = if std.objectHas(flowsnakeimages.flowsnakeImagesToPromoteOverrides, version) then
-              flowsnakeimages.flowsnakeImagesToPromoteOverrides[version]
+          local imageNames = if std.objectHas(flowsnake_images.flowsnakeImagesToPromoteOverrides, version) then
+              flowsnake_images.flowsnakeImagesToPromoteOverrides[version]
           else
-               flowsnakeimages.flowsnakeImagesToPromote;
+               flowsnake_images.flowsnakeImagesToPromote;
           [
             build_mapped_entry(imageName, version)
             for imageName in imageNames
@@ -40,7 +40,7 @@ if util.is_production(kingdom) then
                 build_versioned_entry(imageName, version)
             for imageName in imageNames
           ])
-          for version in std.objectFields(flowsnakeimages.version_mapping.main)
+          for version in std.objectFields(flowsnake_images.version_mapping.main)
         ]
 ),
       },

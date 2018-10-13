@@ -1,7 +1,10 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-local flag_fs_metric_labels = std.objectHas(flowsnakeimage.feature_flags, "fs_metric_labels");
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
+
 {
+    local label_node = self.spec.template.metadata.labels,
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -15,7 +18,7 @@ local flag_fs_metric_labels = std.objectHas(flowsnakeimage.feature_flags, "fs_me
         replicas: 1,
         selector: {
             matchLabels: {
-                app: "default-http-backend",
+                app: label_node.app,
             },
         },
         template: {
@@ -33,7 +36,7 @@ local flag_fs_metric_labels = std.objectHas(flowsnakeimage.feature_flags, "fs_me
                 containers: [
                     {
                         name: "default-http-backend",
-                        image: flowsnakeimage.ingress_default_backend,
+                        image: flowsnake_images.ingress_default_backend,
                         livenessProbe: {
                             httpGet: {
                                 path: "/healthz",

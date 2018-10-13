@@ -1,10 +1,13 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
+
 if !flowsnake_config.kubedns_manifests_enabled then
 "SKIP"
 else
 {
+    local label_node = self.spec.template.metadata.labels,
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -22,7 +25,7 @@ else
         revisionHistoryLimit: 2,
         selector: {
             matchLabels: {
-                "k8s-app": "kube-dns",
+                "k8s-app": label_node["k8s-app"],
             },
         },
         strategy: {

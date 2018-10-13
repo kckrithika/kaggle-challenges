@@ -1,4 +1,4 @@
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 {
     apiVersion: "v1",
     kind: "ConfigMap",
@@ -7,6 +7,6 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
         namespace: "flowsnake",
     },
     data: {
-        "version-mapping.properties": std.manifestIni(flowsnakeimage.version_mapping),
+        "version-mapping.properties": std.manifestIni(flowsnake_images.version_mapping),
     },
 }

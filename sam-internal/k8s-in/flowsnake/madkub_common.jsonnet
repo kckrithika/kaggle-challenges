@@ -1,4 +1,4 @@
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
  local flowsnakeconfig = import "flowsnake_config.jsonnet";
  local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
  local estate = std.extVar("estate");
@@ -60,7 +60,7 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
          "--log-level",
          "7",
      ]),
-     image: flowsnakeimage.madkub,
+     image: flowsnake_images.madkub,
      resources: {
      },
      volumeMounts: [
@@ -137,7 +137,7 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
          "--log-level",
          "7",
      ]),
-     image: flowsnakeimage.madkub,
+     image: flowsnake_images.madkub,
      resources: {
      },
      volumeMounts: [

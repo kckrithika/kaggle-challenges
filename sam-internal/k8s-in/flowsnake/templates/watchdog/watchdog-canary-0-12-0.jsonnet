@@ -7,11 +7,13 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
 if !watchdog.watchdog_enabled then
 "SKIP"
 else
 local cert_name = "watchdogcanarycerts";
 configs.deploymentBase("flowsnake") {
+    local label_node = self.spec.template.metadata.labels,
     metadata: {
         labels: {
             name: "watchdog-canary",
@@ -20,6 +22,12 @@ configs.deploymentBase("flowsnake") {
         namespace: "flowsnake",
     },
     spec+: {
+        [if flag_fs_matchlabels then "selector"]: {
+            matchLabels: {
+                app: label_node.app,
+                apptype: label_node.apptype,
+            }
+        },
         template: {
             metadata: {
                 annotations: {

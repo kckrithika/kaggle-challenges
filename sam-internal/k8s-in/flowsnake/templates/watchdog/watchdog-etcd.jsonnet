@@ -1,22 +1,30 @@
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local estate = std.extVar("estate");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 local configs = import "config.jsonnet";
-local flag_fs_metric_labels = std.objectHas(flowsnakeimage.feature_flags, "fs_metric_labels");
+local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
 
 if !watchdog.watchdog_enabled then
 "SKIP"
 else
 configs.daemonSetBase("flowsnake") {
+    local label_node = self.spec.template.metadata.labels,
     spec+: {
+        [if flag_fs_matchlabels then "selector"]: {
+            matchLabels: {
+                app: label_node.app,
+                apptype: label_node.apptype,
+            }
+        },
         template: {
             spec: {
                 hostNetwork: true,
                 containers: [
                     {
-                        image: flowsnakeimage.watchdog,
+                        image: flowsnake_images.watchdog,
                         command: [
                             "/sam/watchdog",
                             "-role=ETCD",
