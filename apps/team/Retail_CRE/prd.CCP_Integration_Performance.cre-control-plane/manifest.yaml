@@ -9,12 +9,18 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.4.0.0.develop-1.4.09a2208.13
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.4.0.0.at-cp-metrics.512d6ad.21
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,admin@bt.salesforce.com"
+        - name: METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
+        - name: METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
           value: ccp-perf
+        - name: METRICS_KAFKA_ENABLED
+          value: true
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets/cre-gdot-private-key.json
         - name: GRPC_PORT
