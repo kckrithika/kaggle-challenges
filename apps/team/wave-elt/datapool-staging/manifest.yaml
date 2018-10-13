@@ -52,7 +52,7 @@ system:
         value: 64
 
       - name: FLOWSNAKE_DATAPOOL_ENVIRONMENT_NAMES
-        value: wave-datapool
+        value: wave-datapool,wave-elt-1
 
       volumeMounts:
       - mountPath: /home/datapool/logs
