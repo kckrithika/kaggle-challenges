@@ -11,10 +11,9 @@ system:
       #   image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:86a47e93cb4796e4a24f63cee4b305356ddecc1e
       # Bazel monorepo
       #   https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/perf-shipping/perf-shipping-scone
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/perf-shipping-service:bbuxton-1538752284
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/perf-shipping-service:bbuxton-w5351940-test
       command: ["java"]
       args: ["-Xmx128m",
-             "-Dscone.service.namespace=bbuxton",
              "-jar",
              "/perf-shipping-scone_springboot.jar",
              "--debug"]
@@ -36,7 +35,7 @@ system:
           cpu: "2"
           memory: "3Gi"
       livenessProbe:
-        initialDelaySeconds: 120
+        initialDelaySeconds: 240
         httpGet:
           path: /manage/health
           port: 15372
