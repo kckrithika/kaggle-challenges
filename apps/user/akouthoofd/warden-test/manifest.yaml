@@ -29,6 +29,10 @@ system:
         - mountPath: /warden-secrets/
           name: splunk-credentials
           readOnly: true
+        - mountPath: /home/sfdc-casp/pki/client
+          name: maievclientcert
+        - mountPath: /home/sfdc-casp/pki/server
+          name: wardenservercert
         livenessProbe:
           httpGet:
             path: /manage/health
@@ -44,6 +48,12 @@ system:
       - name: splunk-credentials
         k4aSecret:
           secretName: warden-secrets
+      - name: maievclientcert
+        maddogCert:
+          type: client
+      - name: wardenservercert
+        maddogCert:
+          type: server
 
     loadbalancers:
     - lbname: wardenlb
