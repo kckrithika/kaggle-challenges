@@ -26,7 +26,9 @@ shared0-samcompute1-1-hnd.ops.sfdc.net,10.219.181.50/28,10.213.66.160/27,f16-02,
 shared0-samcompute1-2-hnd.ops.sfdc.net,10.219.181.34/28,10.213.66.32/27,c08-02,hnd-sam,65009
 shared0-samcompute2-1-hnd.ops.sfdc.net,10.219.181.66/28,10.213.66.128/27,f04-02,hnd-sam,65009
 shared0-samkubeapi1-1-hnd.ops.sfdc.net,10.219.181.10/28,10.213.66.96/27,d16-02,hnd-sam,65009
+shared0-samkubeapi1-2-hnd.ops.sfdc.net,10.219.181.98/29,10.213.66.224/27,d10-01,hnd-sam,65009
 shared0-samkubeapi2-1-hnd.ops.sfdc.net,10.219.181.82/28,10.213.66.0/27,b01-02,hnd-sam,65009
+shared0-samkubeapi2-2-hnd.ops.sfdc.net,10.219.181.83/28,10.213.66.192/27,b01-02,hnd-sam,65009
 shared0-samkubeapi3-1-hnd.ops.sfdc.net,10.219.181.18/28,10.213.66.64/27,d13-02,hnd-sam,65009
 shared0-samminionatlasdir1-1-hnd.ops.sfdc.net,10.219.183.18/29,10.213.74.64/27,d16-02,hnd-sam_cloudatlas_dir,65009
 shared0-samminionatlasdir1-2-hnd.ops.sfdc.net,10.219.183.10/29,10.213.74.32/27,b09-02,hnd-sam_cloudatlas_dir,65009

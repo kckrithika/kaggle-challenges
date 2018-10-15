@@ -63,7 +63,9 @@ shared0-samcompute1-1-iad.ops.sfdc.net,10.222.222.18/28,10.213.130.64/27,d10-02,
 shared0-samcompute1-2-iad.ops.sfdc.net,10.222.222.34/28,10.213.130.128/27,d12-02,iad-sam,65009
 shared0-samcompute2-1-iad.ops.sfdc.net,10.222.222.10/28,10.213.130.0/27,d09-02,iad-sam,65009
 shared0-samkubeapi1-1-iad.ops.sfdc.net,10.222.222.19/28,10.213.130.96/27,d10-02,iad-sam,65009
+shared0-samkubeapi1-2-iad.ops.sfdc.net,10.222.222.50/29,10.213.130.192/27,b10-01,iad-sam,65009
 shared0-samkubeapi2-1-iad.ops.sfdc.net,10.222.222.11/28,10.213.130.32/27,d09-02,iad-sam,65009
+shared0-samkubeapi2-2-iad.ops.sfdc.net,10.222.222.2/28,10.213.130.224/27,d09-02,iad-sam,65009
 shared0-samkubeapi3-1-iad.ops.sfdc.net,10.222.222.35/28,10.213.130.160/27,d12-02,iad-sam,65009
 shared0-samminionatlasdir1-1-iad.ops.sfdc.net,10.222.223.106/29,10.213.142.64/27,j10-03,iad-sam_cloudatlas_dir,65009
 shared0-samminionatlasdir1-2-iad.ops.sfdc.net,10.222.223.100/29,10.213.142.0/27,b10-01,iad-sam_cloudatlas_dir,65009

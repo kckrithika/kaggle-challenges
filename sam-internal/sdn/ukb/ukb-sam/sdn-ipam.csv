@@ -39,7 +39,9 @@ shared0-samcompute1-1-ukb.ops.sfdc.net,10.218.148.66/28,10.213.58.0/27,b07-02,uk
 shared0-samcompute1-2-ukb.ops.sfdc.net,10.218.148.18/28,10.213.58.32/27,d07-02,ukb-sam,65009
 shared0-samcompute2-1-ukb.ops.sfdc.net,10.218.148.50/28,10.213.58.64/27,f07-02,ukb-sam,65009
 shared0-samkubeapi1-1-ukb.ops.sfdc.net,10.218.148.10/28,10.213.58.96/27,j08-02,ukb-sam,65009
+shared0-samkubeapi1-2-ukb.ops.sfdc.net,10.218.148.98/29,10.213.58.224/27,q01-02,ukb-sam,65009
 shared0-samkubeapi2-1-ukb.ops.sfdc.net,10.218.148.34/28,10.213.58.128/27,l28-01,ukb-sam,65009
+shared0-samkubeapi2-2-ukb.ops.sfdc.net,10.218.148.106/29,10.213.58.192/27,n02-02,ukb-sam,65009
 shared0-samkubeapi3-1-ukb.ops.sfdc.net,10.218.148.82/28,10.213.58.160/27,m09-02,ukb-sam,65009
 shared0-samminionatlasdir1-1-ukb.ops.sfdc.net,10.218.152.170/29,10.213.4.32/27,h02-02,ukb-sam_cloudatlas_dir,65009
 shared0-samminionatlasdir1-2-ukb.ops.sfdc.net,10.218.152.162/29,10.213.4.0/27,b07-02,ukb-sam_cloudatlas_dir,65009
