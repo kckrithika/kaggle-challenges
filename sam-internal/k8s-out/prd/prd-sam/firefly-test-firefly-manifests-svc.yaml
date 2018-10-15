@@ -280,7 +280,7 @@ items:
             value: test-firefly-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: test-firefly-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:176
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:192
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -674,7 +674,7 @@ items:
             value: test-firefly-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: test-firefly-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:176
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:192
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1027,7 +1027,7 @@ items:
             value: test-firefly-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: test-firefly-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:176
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:192
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1401,8 +1401,17 @@ items:
             value: test-firefly-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: test-firefly-manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:176
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:192
           imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator
+              port: admin-port
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           name: firefly-promotion
           ports:
           - containerPort: 8081
