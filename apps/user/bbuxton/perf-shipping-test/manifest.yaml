@@ -32,7 +32,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - "echo 'healthy'"
+          - "java -version"
         initialDelaySeconds: 10
         periodSeconds: 5
 
