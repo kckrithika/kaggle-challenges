@@ -6,11 +6,10 @@ system:
     count: 1
     containers:
     - name: shipping
-      # Maven repo
-      #   https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/231/
-      #   image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:86a47e93cb4796e4a24f63cee4b305356ddecc1e
-      # Bazel monorepo
+      # Shipping App
       #   https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/shipping/shipping-scone
+      # Shipping Config
+      #   https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/shipping/shipping-scone/src/main/resources/config/application.properties
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:bazel-monorepo
       env:
       - name: SFDC_ENVIRONMENT
@@ -20,7 +19,7 @@ system:
       ports:
       - containerPort: 7020
         name: grpc-svc
-      - containerPort: 15372
+      - containerPort: 15375
         name: scone-mgmt
       - containerPort: 9010
         name: jmx-remote
@@ -28,7 +27,7 @@ system:
         initialDelaySeconds: 15
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15375
 
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
