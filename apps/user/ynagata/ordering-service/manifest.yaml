@@ -28,10 +28,7 @@ system:
         - mountPath: /home/sfdc-ynagata/logs
           name: logvol
     - name: sherpa-ynagata-ordering-service
-      image: sfci/servicelibs/sherpa:2.0.26
-      args:
-      - --zipkin-rate
-      - 1.0
+      image: sfci/servicelibs/sherpa-envoy:1.0.1
       ports:
       - containerPort: 7012
         name: http2-in
