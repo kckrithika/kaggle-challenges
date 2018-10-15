@@ -3,18 +3,13 @@ apps:
         - prd/prd-sam
     shipping:
         - prd/prd-sam
-    sconeconfig:
-        - prd/prd-sam
     perf-report-gen:
         - prd/prd-sam_gater
     perf-shipping:
         - prd/prd-sam_gater
-    bazel-spike:
-        - prd/prd-sam
     scone-go:
         - prd/prd-sam
     basic-rest-service-pki:
         - prd/prd-sam
     scone-gen:
         - prd/prd-sam_gater
-        
