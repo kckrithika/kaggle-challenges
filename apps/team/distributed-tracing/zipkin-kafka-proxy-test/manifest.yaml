@@ -45,7 +45,7 @@ system:
         - mountPath: /etc/pki_service/zipkin-kafka-proxy-test
           name: client-certs
       - name: sherpa
-        image: sfci/servicelibs/sherpa:2.0.26
+        image: sfci/servicelibs/sherpa-envoy:1.0.1
         args: ["--zipkin-rate", "0.0"]
         env:
         - name: SFDC_ENVIRONMENT
