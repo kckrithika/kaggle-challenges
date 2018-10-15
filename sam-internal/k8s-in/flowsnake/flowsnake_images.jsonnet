@@ -88,7 +88,7 @@ local utils = import "util_functions.jsonnet";
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
                 # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
-                fs_matchlabels: "UNVERIFIED",  # need to verify in test fleet
+                fs_matchlabels: "verified",  # works in test fleet
                 kubedns_host_network: "",  # testing in test fleet
             },
             version_mapping: {
@@ -130,6 +130,7 @@ local utils = import "util_functions.jsonnet";
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
                 # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
+                fs_matchlabels: "UNVERIFIED",  # need to verify in dev
                 kubedns_host_network: "",  # testing in dev fleet
             },
             version_mapping: {
