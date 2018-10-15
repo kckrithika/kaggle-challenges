@@ -197,7 +197,10 @@
                      "--readVipsFromIpvs=true",
                      "--client.serverPort=" + nodeApiPort,
                      "--client.serverInterface=lo",
-                 ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+                 ] + (if configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1271 then [
+                     "--turnDownOnSIGTERM=true",
+                     ] else [])
+                 + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
                  + slbflights.getValidateVIPAssignmentSubnet()
                  + (if slbflights.explicitDeleteLimit then ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]] else []),
         volumeMounts: configs.filter_empty([
