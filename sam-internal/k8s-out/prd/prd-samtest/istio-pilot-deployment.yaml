@@ -83,8 +83,6 @@ spec:
           value: "100"
         - name: PILOT_TRACE_SAMPLING
           value: "100"
-        - name: DUMMY_SD
-          value: SD
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio-pilot:1.0.2
         imagePullPolicy: IfNotPresent
         name: discovery
@@ -110,9 +108,6 @@ spec:
           name: kubeconfig
         - mountPath: /etc/istio/config
           name: config-volume
-        - mountPath: /etc/certs
-          name: istio-certs
-          readOnly: true
       nodeSelector:
         master: "true"
       volumes:

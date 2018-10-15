@@ -103,10 +103,6 @@ configs.deploymentBase("service-mesh") {
                 name: "PILOT_TRACE_SAMPLING",
                 value: "100",
               },
-              {
-                name: "DUMMY_SD",
-                value: "SD",
-              },
             ],
             resources: {
               requests: {
@@ -119,11 +115,11 @@ configs.deploymentBase("service-mesh") {
                 name: "config-volume",
                 mountPath: "/etc/istio/config",
               },
-              {
-                name: "istio-certs",
-                mountPath: "/etc/certs",
-                readOnly: true,
-              },
+//              {
+//                name: "istio-certs",
+//                mountPath: "/etc/certs",
+//                readOnly: true,
+//              },
             ],
           },
         ],
