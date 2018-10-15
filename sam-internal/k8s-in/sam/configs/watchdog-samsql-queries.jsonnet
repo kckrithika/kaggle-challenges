@@ -129,11 +129,11 @@
     {
                 name: "SqlSamAppWithoutBundle",
                 instructions: "The following alert is for SamApp CRDs that dont have corresponding Bundle CRDs",
-                alertThreshold: "5m",
+                alertThreshold: "20m",
                 alertFrequency: "24h",
-                watchdogFrequency: "1m",
+                watchdogFrequency: "5m",
                 alertProfile: "sam",
-                alertAction: "email",
+                alertAction: "businesshours_pagerduty",
                 sql: "SELECT
                         samApp.controlEstate,
                         samApp.name,
