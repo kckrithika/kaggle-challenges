@@ -266,6 +266,7 @@ spec:
         - --readVipsFromIpvs=true
         - --client.serverPort=12081
         - --client.serverInterface=lo
+        - --turnDownOnSIGTERM=true
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
         - --subnet=10.254.247.0/24,
