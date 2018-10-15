@@ -50,7 +50,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --IpvsPath=20180910
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001262-4880a9dd
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001263-934f0031
         name: slb-ipvs-installer
         securityContext:
           capabilities:
@@ -89,7 +89,7 @@ spec:
         - --enablePersistence=false
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001262-4880a9dd
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001263-934f0031
         name: slb-ipvs-processor
         securityContext:
           privileged: true
@@ -109,7 +109,7 @@ spec:
         - --connPort=9107
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001262-4880a9dd
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001263-934f0031
         livenessProbe:
           httpGet:
             path: /
@@ -138,7 +138,7 @@ spec:
         - --enableConntrack=false
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001262-4880a9dd
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001263-934f0031
         name: slb-ipvs-conntrack
         securityContext:
           privileged: true
@@ -184,7 +184,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001262-4880a9dd
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001263-934f0031
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -221,7 +221,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001262-4880a9dd
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001263-934f0031
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -245,7 +245,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-ipvs/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001262-4880a9dd
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001263-934f0031
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -267,7 +267,7 @@ spec:
         - --client.dialSocket=true
         - --subnet=10.214.36.0/22,185.79.140.0/23
         - --maxDeleteVipCount=10
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001262-4880a9dd
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001263-934f0031
         name: slb-iface-processor
         securityContext:
           privileged: true
@@ -293,7 +293,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001262-4880a9dd
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001263-934f0031
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -327,7 +327,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001262-4880a9dd
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001263-934f0031
         name: slb-manifest-watcher
         securityContext:
           privileged: true
