@@ -14,7 +14,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/perf-shipping-service:bbuxton-1538752284
       command: ["java"]
       args: ["-Xmx128m",
-             "-Dscone.service.name=bbuxtonperfshipping",
+             "-Dscone.service.namespace=bbuxton",
              "-jar",
              "/perf-shipping-scone_springboot.jar",
              "--debug"]
