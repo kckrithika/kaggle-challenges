@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scanner
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/product-defense/scanner:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/product-defense/scanner:c3fc15c440057b7f7117f9f3167dff8d3c9a6afa
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
