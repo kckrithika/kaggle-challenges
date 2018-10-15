@@ -1,0 +1,569 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  # name: na99-mist61blue-prd
+  # count: 1
+  # volumes:
+  # - name: envoy-config-volume
+  #   emptyDir: {}
+  # - name: coreapp-config-volume
+  #   emptyDir: {}
+  # - name: tls-client-cert
+  #   maddogCert:
+  #     type: client
+  # - name: tls-server-cert
+  #   maddogCert:
+  #     type: server
+  # - name: log-volume-sfdc
+  #   hostPath:
+  #     path: /data/logs/sfdc
+  # - name: log-volume-jvm
+  #   hostPath:
+  #     path: /data/logs/jvm
+
+  # containers:
+  # - name: coreapp
+  #   image: tnrp/casam/coreapp:216_patch__16685310-0000121-38476ee0
+
+  #   env:
+  #     # DB info
+  #     - name: DB_USER
+  #       value: sleepy
+  #     - name: DB_SID
+  #       value: mist61a216utf
+  #     - name: IP_DB
+  #       value: mist61ice1-db1-1-prd.eng.sfdc.net
+
+  #     # Matches the external port on the load balancer, used for redirection upon login
+  #     - name: PUBLIC_PORT
+  #       value: 8086
+
+  #     # Set to true it PUBLIC_PORT is an https endpoint
+  #     - name: PUBLIC_PORT_IS_SECURE
+  #       value: true
+
+  #     # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
+  #     # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
+  #     # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
+  #     - name: PUBLIC_HOST_NAME
+  #       value: us99-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+  #     # This maps to http_port
+  #     - name: PORT
+  #       value: 8085
+  #     # This maps to https_port
+  #     - name: SPORT
+  #       value: 8443
+  #     # This maps to https2way_port
+  #     - name: S2PORT
+  #       value: 12098
+
+  #     # Set to true to trigger a plsql stats load during startup
+  #     - name: PLSQL_UPDATE_RUNSTATS
+  #       value: false
+
+  #     # By default we patch server to NOT expire sessions across major release bounday.
+  #     # Comment out this name/value pair to revert back to normal session invalidation.
+  #     - name: DISABLE_AUTH_RELEASE_CHECK
+  #       value: true
+
+  #     # App color to be used for blue/green release
+  #     - name: CASAM_APP_COLOR
+  #       value: blue
+
+  #     # Override port being announced in SD by coreapp - use the Envoy side car's listen port
+  #     - name: SD_PORT_OVERRIDE
+  #       value: 13065
+
+  #     # Settings.path
+  #     - name: CASAM_SETTINGS_PATH
+  #       value: mist.mist61.prd.na99.app
+
+  #     # Cluster name
+  #     - name: CLUSTER_NAME
+  #       value: MIST61
+
+  #     - name: DEPLOYMENT
+  #       value: B
+
+  #     # Increase DB connections
+  #     - name: DB_CONN_NUM
+  #       value: 25
+
+  #     # Wait for config override side car container to come up
+  #     - name: USE_CONFIG_SIDECAR
+  #       value: 1
+
+  #     # SAM host name - used in metrics publishing lib
+  #     - name: CASAM_HOST_NAME
+  #       valueFrom:
+  #         fieldRef:
+  #           fieldPath: spec.nodeName
+
+  #   livenessProbe:
+  #     exec:
+  #       command:
+  #        - echo
+  #        - HEALTHY
+  #     initialDelaySeconds: 480
+  #     periodSeconds: 1
+
+  #   readinessProbe:
+  #     httpGet:
+  #       path: /ping.jsp
+  #       port: 8085
+  #     initialDelaySeconds: 120
+  #     periodSeconds: 1
+  #     failureThreshold: 10
+
+  #   ports:
+  #     # Actually used by the container
+  #     - containerPort: 8998
+  #     - containerPort: 8085
+  #     - containerPort: 11211
+  #     - containerPort: 12098
+  #     - containerPort: 8443
+
+  #   volumeMounts:
+  #     - name: log-volume-sfdc
+  #       mountPath: /home/sfdc/logs/sfdc
+  #     - name: log-volume-jvm
+  #       mountPath: /home/sfdc/logs/jvm
+  #     - name: tls-client-cert
+  #       mountPath: /certs
+  #     - name: coreapp-config-volume
+  #       mountPath: /home/sfdc/config_override
+
+  # - name: envoy-sidecar-config
+  #   image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
+  #   env:
+  #   - name: CONFIG_DIR
+  #     value: /home/sfdc-sherpa/sherpa-envoy-config-volume
+  #   volumeMounts:
+  #   - name: envoy-config-volume
+  #     mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
+  #   livenessProbe:
+  #     exec:
+  #       command:
+  #       - cat
+  #       - /tmp/live
+  #     initialDelaySeconds: 10
+  #     periodSeconds: 5
+  #   readinessProbe:
+  #     exec:
+  #       command:
+  #       - cat
+  #       - /tmp/ready
+  #     initialDelaySeconds: 10
+  #     periodSeconds: 5
+
+  # - name: envoy-sidecar
+  #   image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
+  #   env:
+  #   - name: SFDC_ENVIRONMENT
+  #     value: envoy-sidecar
+  #   args:
+  #   - --template
+  #   - /cyan-config/tls-terminator-config.yaml.template
+  #   ports:
+  #   - containerPort: 13065
+  #   - containerPort: 15373
+  #   livenessProbe:
+  #     exec:
+  #       command:
+  #       - ./bin/is-alive
+  #     initialDelaySeconds: 20
+  #     periodSeconds: 5
+  #   readinessProbe:
+  #     exec:
+  #       command:
+  #       - ./bin/is-ready
+  #     initialDelaySeconds: 15
+  #     periodSeconds: 5
+  #   volumeMounts:
+  #   - name: envoy-config-volume
+  #     mountPath: /cyan-config
+  #   - name: tls-client-cert
+  #     mountPath: /certs/cert-client
+  #   - name: tls-server-cert
+  #     mountPath: /certs/cert-server
+
+  # - name: config-sidecar
+  #   image: sfci/casam/coreapp_config_overrides:6e2708
+  #   env:
+  #   - name: CASAM_SETTINGS_PATH
+  #     value: mist.mist61.prd.na99.app
+  #   livenessProbe:
+  #     exec:
+  #       command:
+  #       - cat
+  #       - /tmp/live
+  #     initialDelaySeconds: 10
+  #     periodSeconds: 5
+  #   readinessProbe:
+  #     exec:
+  #       command:
+  #       - cat
+  #       - /tmp/ready
+  #     initialDelaySeconds: 10
+  #     periodSeconds: 5
+  #   volumeMounts:
+  #   - name: coreapp-config-volume
+  #     mountPath: /home/sfdc/config_override
+
+  # terminationGracePeriodSeconds: 500
+  # progressDeadlineSeconds: 300
+
+  # strategy:
+  #   type: RollingUpdate
+  #   rollingUpdate:
+  #     maxSurge: 200%
+  #     maxUnavailable: 0
+
+
+  # name: sfproxy-mist61green-prd
+  # count: 1
+  # volumes:
+  # - name: envoy-config-volume
+  #   emptyDir: {}
+  # - name: coreapp-config-volume
+  #   emptyDir: {}
+  # - name: tls-client-cert
+  #   maddogCert:
+  #     type: client
+  # - name: tls-server-cert
+  #   maddogCert:
+  #     type: server
+  # - name: log-volume-sfdc
+  #   hostPath:
+  #     path: /data/logs/sfdc
+  # - name: log-volume-jvm
+  #   hostPath:
+  #     path: /data/logs/jvm
+
+  # containers:
+  # - name: coreapp
+  #   image: tnrp/casam/coreapp:216_patch__16685310-0000121-38476ee0
+
+  #   env:
+  #     # DB info
+  #     - name: DB_USER
+  #       value: sleepy
+  #     - name: DB_SID
+  #       value: mist61a216utf
+  #     - name: IP_DB
+  #       value: mist61ice1-db1-1-prd.eng.sfdc.net
+
+  #     # Matches the external port on the load balancer, used for redirection upon login
+  #     - name: PUBLIC_PORT
+  #       value: 8086
+
+  #     # Set to true it PUBLIC_PORT is an https endpoint
+  #     - name: PUBLIC_PORT_IS_SECURE
+  #       value: true
+
+  #     # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
+  #     # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
+  #     # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
+  #     - name: PUBLIC_HOST_NAME
+  #       value: us99-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+  #     # This maps to http_port
+  #     - name: PORT
+  #       value: 8085
+  #     # This maps to https_port
+  #     - name: SPORT
+  #       value: 8443
+  #     # This maps to https2way_port
+  #     - name: S2PORT
+  #       value: 12098
+
+  #     # Set to true to trigger a plsql stats load during startup
+  #     - name: PLSQL_UPDATE_RUNSTATS
+  #       value: false
+
+  #     # By default we patch server to NOT expire sessions across major release bounday.
+  #     # Comment out this name/value pair to revert back to normal session invalidation.
+  #     - name: DISABLE_AUTH_RELEASE_CHECK
+  #       value: true
+
+  #     # App color to be used for blue/green release
+  #     - name: CASAM_APP_COLOR
+  #       value: green
+
+  #     # Override port being announced in SD by coreapp - use the Envoy side car's listen port
+  #     - name: SD_PORT_OVERRIDE
+  #       value: 13065
+
+  #     # Settings.path
+  #     - name: CASAM_SETTINGS_PATH
+  #       value: mist.mist61.prd.na99.app
+
+  #     # Cluster name
+  #     - name: CLUSTER_NAME
+  #       value: MIST61
+
+  #     - name: DEPLOYMENT
+  #       value: B
+
+  #     # Increase DB connections
+  #     - name: DB_CONN_NUM
+  #       value: 25
+
+  #     # Wait for config override side car container to come up
+  #     - name: USE_CONFIG_SIDECAR
+  #       value: 1
+
+  #     # SAM host name - used in metrics publishing lib
+  #     - name: CASAM_HOST_NAME
+  #       valueFrom:
+  #         fieldRef:
+  #           fieldPath: spec.nodeName
+
+  #   livenessProbe:
+  #     exec:
+  #       command:
+  #        - echo
+  #        - HEALTHY
+  #     initialDelaySeconds: 480
+  #     periodSeconds: 1
+
+  #   readinessProbe:
+  #     httpGet:
+  #       path: /ping.jsp
+  #       port: 8085
+  #     initialDelaySeconds: 120
+  #     periodSeconds: 1
+  #     failureThreshold: 10
+
+  #   ports:
+  #     # Actually used by the container
+  #     - containerPort: 8998
+  #     - containerPort: 8085
+  #     - containerPort: 11211
+  #     - containerPort: 12098
+  #     - containerPort: 8443
+
+  #   volumeMounts:
+  #     - name: log-volume-sfdc
+  #       mountPath: /home/sfdc/logs/sfdc
+  #     - name: log-volume-jvm
+  #       mountPath: /home/sfdc/logs/jvm
+  #     - name: tls-client-cert
+  #       mountPath: /certs
+  #     - name: coreapp-config-volume
+  #       mountPath: /home/sfdc/config_override
+
+  # - name: envoy-sidecar-config
+  #   image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
+  #   env:
+  #   - name: CONFIG_DIR
+  #     value: /home/sfdc-sherpa/sherpa-envoy-config-volume
+  #   volumeMounts:
+  #   - name: envoy-config-volume
+  #     mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
+  #   livenessProbe:
+  #     exec:
+  #       command:
+  #       - cat
+  #       - /tmp/live
+  #     initialDelaySeconds: 10
+  #     periodSeconds: 5
+  #   readinessProbe:
+  #     exec:
+  #       command:
+  #       - cat
+  #       - /tmp/ready
+  #     initialDelaySeconds: 10
+  #     periodSeconds: 5
+
+  # - name: envoy-sidecar
+  #   image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
+  #   env:
+  #   - name: SFDC_ENVIRONMENT
+  #     value: envoy-sidecar
+  #   args:
+  #   - --template
+  #   - /cyan-config/tls-terminator-config.yaml.template
+  #   ports:
+  #   - containerPort: 13065
+  #   - containerPort: 15373
+  #   livenessProbe:
+  #     exec:
+  #       command:
+  #       - ./bin/is-alive
+  #     initialDelaySeconds: 20
+  #     periodSeconds: 5
+  #   readinessProbe:
+  #     exec:
+  #       command:
+  #       - ./bin/is-ready
+  #     initialDelaySeconds: 15
+  #     periodSeconds: 5
+  #   volumeMounts:
+  #   - name: envoy-config-volume
+  #     mountPath: /cyan-config
+  #   - name: tls-client-cert
+  #     mountPath: /certs/cert-client
+  #   - name: tls-server-cert
+  #     mountPath: /certs/cert-server
+
+  # - name: config-sidecar
+  #   image: sfci/casam/coreapp_config_overrides:6e2708
+  #   env:
+  #   - name: CASAM_SETTINGS_PATH
+  #     value: mist.mist61.prd.na99.app
+  #   livenessProbe:
+  #     exec:
+  #       command:
+  #       - cat
+  #       - /tmp/live
+  #     initialDelaySeconds: 10
+  #     periodSeconds: 5
+  #   readinessProbe:
+  #     exec:
+  #       command:
+  #       - cat
+  #       - /tmp/ready
+  #     initialDelaySeconds: 10
+  #     periodSeconds: 5
+  #   volumeMounts:
+  #   - name: coreapp-config-volume
+  #     mountPath: /home/sfdc/config_override
+
+  # terminationGracePeriodSeconds: 500
+  # progressDeadlineSeconds: 300
+
+  # strategy:
+  #   type: RollingUpdate
+  #   rollingUpdate:
+  #     maxSurge: 200%
+  #     maxUnavailable: 0
+  #
+  #
+  - name: sfproxy-mist61sfproxy-prd
+    count: 1
+    containers:
+    - name: sfproxy-envoy
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:28c4b74
+      env:
+      - name: ENVOY_DEBUG_OPTIONS
+        value: --concurrency 200
+      - name: SETTINGS_PATH
+        value: mist.mist61.prd.na99.sfproxy
+      args:
+      - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-config.yaml.template
+      - --switchboard=127.0.0.1:15001
+      - --log-level=trace
+      ports:
+      - containerPort: 2525
+      - containerPort: 12060
+      - containerPort: 15373
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - name: tls-client-cert
+        mountPath: /cert-client
+      - name: tls-server-cert
+        mountPath: /cert-server
+
+    - name: sfproxy-switchboard
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/switchboard:blue-green
+      env:
+      - name: GRPC_SERVER_PORT
+        value: 15001
+      - name: SETTINGS_PATH
+        value: mist.mist61.prd.na99.switchboard
+      ports:
+      - containerPort: 15001
+      - containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - name: tls-client-cert
+        mountPath: /cert-client
+      - name: tls-server-cert
+        mountPath: /cert-server
+
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+        lbnames:
+        - us99-mist61sfproxy-lb
+
+  loadbalancers:
+  # lbname: na99-mist61blue-lb
+  # function: sfproxy-mist61blue-prd
+  # nodeExposed: true
+  # ports:
+# #MX port of coreapp - used by Sequencer
+  # - port: 6990
+  #   targetport: 8998
+# #TTP listen port of coreapp - Exposed only for debugging.
+  # - port: 6991
+  #   targetport: 8085
+# #ide car Envoy's HTTPS listen port
+  # - port: 6992
+  #   targetport: 13065
+# #ide car Envoy's admin port - Exposed only for debugging purpose
+  # - port: 6993
+  #   targetport: 15373
+
+  # lbname: na99-mist61green-lb
+  # function: sfproxy-mist61green-prd
+  # nodeExposed: true
+  # ports:
+# #MX port of coreapp - used by Sequencer
+  # - port: 6990
+  #   targetport: 8998
+# #TTP listen port of coreapp - Exposed only for debugging.
+  # - port: 6991
+  #   targetport: 8085
+# #ide car Envoy's HTTPS listen port
+  # - port: 6992
+  #   targetport: 13065
+# #ide car Envoy's admin port - Exposed only for debugging purpose
+  # - port: 6993
+  #   targetport: 15373
+  #
+  - lbname: us99-mist61sfproxy-lb
+    function: sfproxy-mist61sfproxy-prd
+    nodeExposed: true
+    slbEnabled: true
+    ports:
+# TCP listen port of Envoy.
+    - port: 2525
+      targetport: 2525
+# HTTP listen port of Envoy.
+    - port: 8086
+      targetport: 12060
+# Admin ports - TODO - Don't expose this. Exposed for now for debugging.
+    - port: 8087
+      targetport: 15373
+    - port: 8088
+      targetport: 15001
+    - port: 8089
+      targetport: 15372
