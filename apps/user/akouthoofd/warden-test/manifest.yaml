@@ -9,7 +9,7 @@ system:
       count: 3
       containers:
       - name: ak-warden-test
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/caspwarden:test-0020
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/caspwarden:test-0021
         ports:
         - name: http
           containerPort: 8889
