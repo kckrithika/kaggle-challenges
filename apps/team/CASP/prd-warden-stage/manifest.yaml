@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden-stage
-        image: tnrp/casp/warden:0.0.1-0000283-febdcab8
+        image: tnrp/casp/warden:0.0.1-0000290-862551bc
         ports:
         - name: http
           containerPort: 8889
@@ -35,6 +35,10 @@ system:
         - mountPath: /wardenpki/
           name: wardenpki
           readOnly: true
+        - mountPath: /home/sfdc-casp/pki/client
+          name: maievclientcert
+        - mountPath: /home/sfdc-casp/pki/server
+          name: wardenservercert
         - mountPath: /warden-secrets/
           name: splunk-credentials
           readOnly: true
@@ -53,6 +57,12 @@ system:
       - name: wardenpki
         k4aSecret:
           secretName: wardenpki
+      - name: maievclientcert
+        maddogCert:
+          type: client
+      - name: wardenservercert
+        maddogCert:
+          type: server
       - name: splunk-credentials
         k4aSecret:
           secretName: warden-secrets
