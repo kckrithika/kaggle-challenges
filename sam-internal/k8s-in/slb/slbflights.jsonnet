@@ -14,6 +14,7 @@
     roleBasedSecrets: (if slbimages.phaseNum <= 4 then true else false),
     explicitDeleteLimit: (if slbimages.phaseNum <= 4 then true else false),
     readablePortConfigurationAnnotations: (slbimages.phaseNum < 1),
+    dnsRegisterPodFloat: (slbimages.phaseNum <= 1),
 
     getNodeApiClientSocketSettings(configDir):: (if nodeApiUnixSocketEnabled then [
                                                      "--client.socketDir=" + configDir,

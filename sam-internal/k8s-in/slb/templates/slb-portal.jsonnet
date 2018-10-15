@@ -98,9 +98,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                           slbshared.slbLogCleanup,
                       ] + (if slbflights.roleBasedSecrets then [madkub.madkubRefreshContainer(certDirs)] else []) + slbflights.getManifestWatcherIfEnabled(),
-                      nodeSelector: {
-                          "slb-dns-register": "true",
-                      },
+                      nodeSelector: (if slbflights.dnsRegisterPodFloat then { pool: slbconfigs.slbEstate } else { "slb-dns-register": "true" }),
                   } + (if slbflights.roleBasedSecrets then {
                      initContainers: [
                          madkub.madkubInitContainer(certDirs),
