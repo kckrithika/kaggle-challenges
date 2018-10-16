@@ -66,30 +66,22 @@ for ce in [
         ### Release Phase 0 - prd-samtest
         "0": $.per_phase["1"] {
              hypersam: "auto",
-             madkub: "1.0.0-0000077-b1d3a629",
-             madkubSidecar: "1.0.0-0000077-b1d3a629",
              },
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
             # IMPORTANT! Follow all steps from https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM
-            hypersam: "sam-0002328-f0e6eae5",
-            madkub: "1.0.0-0000077-b1d3a629",
-            madkubSidecar: "1.0.0-0000077-b1d3a629",
+            hypersam: "sam-0002336-6a8184c1",
             },
 
         ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
         "2": $.per_phase["3"] {
             hypersam: "sam-0002328-f0e6eae5",
-            madkub: "1.0.0-0000077-b1d3a629",
-            madkubSidecar: "1.0.0-0000077-b1d3a629",
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": $.per_phase["4"] {
             hypersam: "sam-0002328-f0e6eae5",
-            madkub: "1.0.0-0000077-b1d3a629",
-            madkubSidecar: "1.0.0-0000077-b1d3a629",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia + prd-samtwo
