@@ -24,7 +24,7 @@
             annotation: {
                 name: "cert1",
                 "cert-type": "server",
-                kingdom: if slbflights.roleBasedSecrets then configs.kingdom else "prd",
+                kingdom: configs.kingdom,
                 role: slbconfigs.samrole,
                 san: [
                     "*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
@@ -52,7 +52,7 @@
             annotation: {
                 name: "cert2",
                 "cert-type": "client",
-                kingdom: if slbflights.roleBasedSecrets then configs.kingdom else "prd",
+                kingdom: configs.kingdom,
                 role: slbconfigs.samrole,
             },
         },
