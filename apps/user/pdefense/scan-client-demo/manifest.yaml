@@ -36,7 +36,7 @@ system:
       # periodSeconds: 5
 
     - name: pd-scan-client-sherpa
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa-envoy:1.0.1
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
