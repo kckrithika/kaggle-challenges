@@ -13,9 +13,8 @@ local slbCanaryTlsPublicKeyPath =
 local slbCanaryTlsPrivateKeyPath = "/var/slb/canarycerts/server.key";
 
 // All of these temp_ functions define overrides for small differences between the canaries that should be phased out over time.
-// The "slbimages.phaseNum > n" portion will be updated to eliminate these differences in a phased approach.
 local temp_getServiceNameParam(canaryName) = (
-    if slbimages.phaseNum > 0 then
+    if slbflights.useDeprecatedCanaryDifferences then
         if canaryName == "slb-bravo" then "slb-bravo-svc"
         else if canaryName == "slb-canary" then "slb-canary-service"
         else canaryName
@@ -23,11 +22,11 @@ local temp_getServiceNameParam(canaryName) = (
 );
 
 local temp_getContainerNameParam(canaryName) = (
-    if canaryName == "slb-canary-proxy-tcp-host" && slbimages.phaseNum > 0 then "slb-canary-proxy-tcp" else canaryName
+    if canaryName == "slb-canary-proxy-tcp-host" && slbflights.useDeprecatedCanaryDifferences then "slb-canary-proxy-tcp" else canaryName
 );
 
 local temp_getContainerSecurityContext(canaryName) = (
-    if canaryName == "slb-canary" && configs.estate != "prd-sdc" && slbimages.phaseNum > 0 then {
+    if canaryName == "slb-canary" && configs.estate != "prd-sdc" && slbflights.useDeprecatedCanaryDifferences then {
         securityContext: {
             privileged: true,
             capabilities: {
@@ -41,7 +40,7 @@ local temp_getContainerSecurityContext(canaryName) = (
 
 local temp_useIPVSPodAntiaffinity(canaryName) = (
     // Unclear why these services anti-affinitize to ipvs everywhere, but they probably don't need to.
-    slbimages.phaseNum > 0 && (
+    slbflights.useDeprecatedCanaryDifferences && (
         canaryName == "slb-canary-proxy-tcp-host" ||
         canaryName == "slb-canary-proxy-tcp" ||
         canaryName == "slb-canary-passthrough-tls"
@@ -70,35 +69,6 @@ local ipvsPodAntiAffinity(canaryName) = (
     } else {}
 );
 
-local temp_useIPVSNodeAntiAffinity(canaryName) = (
-    configs.estate == "prd-sdc" && (
-        canaryName == "slb-bravo" ||
-        canaryName == "slb-canary-passthrough-host-network" ||
-        canaryName == "slb-canary-proxy-http" ||
-        canaryName == "slb-canary"
-    )
-);
-
-local temp_ipvsNodeAntiAffinityExpression(canaryName) = (
-    if temp_useIPVSNodeAntiAffinity(canaryName) then [{
-        key: "slb-service",
-        operator: "NotIn",
-        values: ["slb-ipvs"],
-    }] else []
-);
-
-local temp_useIllumioNodeAntiAffinity() = (
-    configs.estate == "prd-sdc"
-);
-
-local temp_illumioNodeAntiAffinityExpression() = (
-    if temp_useIllumioNodeAntiAffinity() then [{
-        key: "illumio",
-        operator: "NotIn",
-        values: ["a", "b"],
-    }] else []
-);
-
 local fieldIfNonEmpty(name, object, value=object) = {
     [if std.length(object) > 0 then name]: value,
 };
@@ -107,19 +77,8 @@ local getPodAffinity(canaryName) = (
     ipvsPodAntiAffinity(canaryName)
 );
 
-local temp_getNodeAffinity(canaryName) = (
-    local matchExpressions = temp_ipvsNodeAntiAffinityExpression(canaryName) + temp_illumioNodeAntiAffinityExpression();
-    fieldIfNonEmpty("nodeAffinity", matchExpressions, {
-        requiredDuringSchedulingIgnoredDuringExecution: {
-            nodeSelectorTerms: [{
-                matchExpressions: matchExpressions,
-            }]
-        }
-    })
-);
-
 local getAffinity(canaryName) = (
-    local affinity = getPodAffinity(canaryName) + temp_getNodeAffinity(canaryName);
+    local affinity = getPodAffinity(canaryName);
     fieldIfNonEmpty("affinity", affinity)
 );
 
