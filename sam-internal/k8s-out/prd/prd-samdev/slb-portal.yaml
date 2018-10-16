@@ -37,6 +37,16 @@ spec:
         sam.data.sfdc.net/owner: slb
       namespace: sam-system
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: name
+                operator: In
+                values:
+                - slb-ipvs
+            topologyKey: kubernetes.io/hostname
       containers:
       - command:
         - /sdn/slb-portal
