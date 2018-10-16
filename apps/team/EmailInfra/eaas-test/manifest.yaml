@@ -1,25 +1,22 @@
 apiVersion: v1
-
 system:
   notifications:
     email:
-      - emailinfrastructure@salesforce.com
+    - emailinfrastructure@salesforce.com
   functions:
   - name: eaas-test
     count: 3
-    strategy:
-      type: RollingUpdate
     containers:
     - name: eaas-test
-      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.2-34df95fbc348c606b5f2331f729a022a4c52d91c
+      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.4-6afc8ee3a25bdf81aa759e576c7ce43286f51a9f
+      ports:
+      - name: grpc
+        containerPort: 7020
       env:
       - name: SFDC_ENVIRONMENT
-        value: "prd"
+        value: prd
       - name: SCONE_SERVICE_NAME
         value: eaas-test
-      ports:
-        - name: grpc
-          containerPort: 7020
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
@@ -37,60 +34,59 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 60
         timeoutSeconds: 30
-
     - name: beacon-eaas-test
       image: docker-sfci-dev/sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
       args:
-      #Namespaced, mTLS
       - -endpoint
       - emailinfra/eaas-test:DATACENTER_ALLENV:7443
-      #Non-namespaced, plaintext
       - -endpoint
       - eaas-test:DATACENTER:7012
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-
-    - name: sherpa-eaas-test
-      image: sfci/servicelibs/sherpa-envoy:1.0.0
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      ports:
-      - containerPort: 7012
-        name: sherpa-eaas-in
-      - containerPort: 7443
-        name: sherpa-eaas-tls
-      - containerPort: 15373
-        name: sherpa-eaas-adm
+        value: sam
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+    - name: sherpa-eaas-test
+      image: sfci/servicelibs/sherpa-envoy:1.0.0
+      ports:
+      - name: sherpa-eaas-in
+        containerPort: 7012
+      - name: sherpa-eaas-tls
+        containerPort: 7443
+      - name: sherpa-eaas-adm
+        containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /client-certs
+        name: eaas-client-cert
+      - mountPath: /server-certs
+        name: eaas-server-cert
+      - mountPath: /log
+        name: sherpa-log-volume
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
         initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
+          - ./bin/is-ready
         initialDelaySeconds: 110
         periodSeconds: 5
-      volumeMounts:
-      - name: eaas-client-cert
-        mountPath: /client-certs
-      - name: eaas-server-cert
-        mountPath: /server-certs
-      - name: sherpa-log-volume
-        mountPath: /log
-
     volumes:
     - name: logvol
       hostPath:
@@ -104,11 +100,13 @@ system:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
+    strategy:
+      type: RollingUpdate
   loadbalancers:
   - lbname: emailinfra-eaas-test-lb
     function: eaas-test
     slbEnabled: true
     ports:
-      - port: 7020
-        targetport: 7020
-        lbtype : tcp
+    - lbtype: tcp
+      port: 7020
+      targetport: 7020
