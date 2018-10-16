@@ -17,6 +17,9 @@ system:
         - name: client-certs
           maddogCert:
               type: client
+        - name: server-certs
+          maddogCert:
+            type: server
       containers:
       - name: zipkin-kafka-proxy-test
         image: docker-all/dva/zipkin-kafka-proxy:31
