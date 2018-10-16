@@ -300,7 +300,6 @@ spec:
         - mountPath: /cert3
           name: cert3
       dnsPolicy: Default
-      hostNetwork: true
       initContainers:
       - args:
         - /sam/madkub-client
