@@ -82,7 +82,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                       slbshared.slbCleanupConfig,
                                       slbshared.slbLogCleanup,
                                       slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort, true),
-                   ] + [madkub.madkubRefreshContainer(certDirs)]
+                                      madkub.madkubRefreshContainer(certDirs),
+                                  ]
                                   + slbflights.getManifestWatcherIfEnabled()
                                   + (if slbflights.cnameRegisterEnabled then [
                                          {
