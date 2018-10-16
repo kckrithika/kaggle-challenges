@@ -35,7 +35,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
 
             },
             spec: {
-                      hostNetwork: true,
+                      [if slbimages.phaseNum > 1 then "hostNetwork" else null]: true,
                       volumes: configs.filter_empty([
                           configs.maddog_cert_volume,
                           configs.cert_volume,
