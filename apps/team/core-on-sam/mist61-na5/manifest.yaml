@@ -189,7 +189,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: sfci/casam/coreapp_config_overrides:341349
+      image: sfci/casam/coreapp_config_overrides:82e297
       env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na5.app
