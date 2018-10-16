@@ -99,7 +99,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                   }
                   + slbflights.getDnsPolicy()
                   + (
-                      if configs.estate == "prd-sdc" then {
+                      if slbflights.dnsRegisterPodFloat then {
                           affinity: {
                               podAntiAffinity: {
                                   requiredDuringSchedulingIgnoredDuringExecution: [{
