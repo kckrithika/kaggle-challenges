@@ -25,11 +25,10 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                     name: "slb-portal",
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
-            } + (if slbflights.roleBasedSecrets then {
                 annotations: {
                     "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(certDirs), " "),
                 },
-            } else {}),
+            },
             spec: {
                       volumes: configs.filter_empty([
                           slbconfigs.slb_volume,
@@ -40,7 +39,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                           configs.cert_volume,
                           configs.kube_config_volume,
                           slbconfigs.cleanup_logs_volume,
-                      ] + (if slbflights.roleBasedSecrets then madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes() else [])),
+                      ] + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()),
                       containers: [
                           {
                               name: "slb-portal",
@@ -52,17 +51,11 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                            "--templatePath=" + slbconfigs.slbPortalTemplatePath,
                                            "--port=" + portconfigs.slb.slbPortalServicePort,
                                            "--client.serverInterface=lo",
-                                       ] + (if slbflights.roleBasedSecrets then [
                                            "--keyfile=/cert3/client/keys/client-key.pem",
                                            "--certfile=/cert3/client/certificates/client.pem",
                                            "--log_dir=/host/data/slb/logs/slb-portal",
                                            "--cafile=/cert3/ca/cabundle.pem",
-                                       ] else [
-                                           "--keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
-                                           "--certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
-                                           "--log_dir=/host/data/slb/logs/slb-portal",
-                                           "--cafile=/etc/pki_service/ca/cabundle.pem",
-                                       ]) + (if slbconfigs.isTestEstate then [
+                                       ] + (if slbconfigs.isTestEstate then [
                                                 "--slbEstate=" + configs.estate,
                                             ] else [])
                                        + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
@@ -71,7 +64,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                       slbconfigs.slb_volume_mount,
                                       configs.maddog_cert_volume_mount,
                                       configs.cert_volume_mount,
-                                  ] + (if slbflights.roleBasedSecrets then madkub.madkubSlbCertVolumeMounts(certDirs) else [])
+                                  ] + madkub.madkubSlbCertVolumeMounts(certDirs)
                               ),
                               livenessProbe: {
                                   httpGet: {
@@ -97,13 +90,12 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                           slbshared.slbCleanupConfig,
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                           slbshared.slbLogCleanup,
-                      ] + (if slbflights.roleBasedSecrets then [madkub.madkubRefreshContainer(certDirs)] else []) + slbflights.getManifestWatcherIfEnabled(),
+                      ] + [madkub.madkubRefreshContainer(certDirs)] + slbflights.getManifestWatcherIfEnabled(),
                       nodeSelector: (if slbflights.dnsRegisterPodFloat then { pool: slbconfigs.slbEstate } else { "slb-dns-register": "true" }),
-                  } + (if slbflights.roleBasedSecrets then {
-                     initContainers: [
-                         madkub.madkubInitContainer(certDirs),
-                     ],
-                  } else {})
+                      initContainers: [
+                          madkub.madkubInitContainer(certDirs),
+                      ],
+                  }
                   + slbflights.getDnsPolicy()
                   + (
                       if configs.estate == "prd-sdc" then {

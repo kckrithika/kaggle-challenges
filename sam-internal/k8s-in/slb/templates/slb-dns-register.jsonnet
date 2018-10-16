@@ -7,6 +7,11 @@ local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-dns-regist
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b" };
 
 local certDirs = ["cert3"];
+local roleBasedSecretArgs = [
+    "--keyfile=/cert3/client/keys/client-key.pem",
+    "--certfile=/cert3/client/certificates/client.pem",
+    "--cafile=/cert3/ca/cabundle.pem",
+];
 
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
@@ -24,75 +29,89 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     name: "slb-dns-register",
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
-            } + (if slbflights.roleBasedSecrets then {
                 annotations: {
                     "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(certDirs), " "),
                 },
-            } else {}),
-            spec: {
-                hostNetwork: true,
-                volumes: configs.filter_empty([
-                    configs.maddog_cert_volume,
-                    configs.cert_volume,
-                    slbconfigs.slb_config_volume,
-                    slbconfigs.logs_volume,
-                    configs.sfdchosts_volume,
-                    slbconfigs.slb_volume,
-                    configs.kube_config_volume,
-                    slbconfigs.cleanup_logs_volume,
-                ] + (if slbflights.roleBasedSecrets then madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes() else [])),
-                containers: [
-                    {
-                        name: "slb-dns-register-processor",
-                        image: slbimages.hypersdn,
-                        command: [
-                                     "/sdn/slb-dns-register",
-                                     "--path=" + slbconfigs.configDir,
-                                     "--ddi=" + slbconfigs.ddiService,
-                                 ] + (if slbflights.roleBasedSecrets then [
-                                     "--keyfile=/cert3/client/keys/client-key.pem",
-                                     "--certfile=/cert3/client/certificates/client.pem",
-                                     "--cafile=/cert3/ca/cabundle.pem",
-                                 ] else [
-                                     "--keyfile=" + configs.keyFile,
-                                     "--certfile=" + configs.certFile,
-                                     "--cafile=" + configs.caFile,
-                                 ]) + [
-                                     "--metricsEndpoint=" + configs.funnelVIP,
-                                     "--log_dir=" + slbconfigs.logsDir,
-                                     configs.sfdchosts_arg,
-                                     "--subnet=" + slbconfigs.subnet,
-                                     "--client.serverPort=" + portconfigs.slb.slbNodeApiDnsOverridePort,
-                                     "--client.serverInterface=lo",
-                                 ]
-                                 + (
-                                     if slbimages.hypersdn_build >= 1258 then [
-                                         "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
-                                     ] else []
-                                 )
-                                 + (if slbflights.explicitDeleteLimit then ["--maxDeleteEntries=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]] else [])
-                                 + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
-                            configs.cert_volume_mount,
-                            slbconfigs.slb_config_volume_mount,
-                            slbconfigs.logs_volume_mount,
-                            configs.sfdchosts_volume_mount,
-                        ] + (if slbflights.roleBasedSecrets then madkub.madkubSlbCertVolumeMounts(certDirs) else [])),
-                    },
-                    slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort),
-                    slbshared.slbCleanupConfig,
-                    slbshared.slbLogCleanup,
-                    slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort, true),
 
-                ] + (if slbflights.roleBasedSecrets then [madkub.madkubRefreshContainer(certDirs)] else []) + slbflights.getManifestWatcherIfEnabled(),
-                nodeSelector: (if slbflights.dnsRegisterPodFloat then { pool: slbconfigs.slbEstate } else { "slb-dns-register": "true" }),
-            } + (if slbflights.roleBasedSecrets then {
-                initContainers: [
-                    madkub.madkubInitContainer(certDirs),
-                ],
-} else {})
-            + slbflights.getDnsPolicy(),
+            },
+            spec: {
+                      hostNetwork: true,
+                      volumes: configs.filter_empty([
+                          configs.maddog_cert_volume,
+                          configs.cert_volume,
+                          slbconfigs.slb_config_volume,
+                          slbconfigs.logs_volume,
+                          configs.sfdchosts_volume,
+                          slbconfigs.slb_volume,
+                          configs.kube_config_volume,
+                          slbconfigs.cleanup_logs_volume,
+                      ] + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()),
+                      containers: [
+                                      {
+                                          name: "slb-dns-register-processor",
+                                          image: slbimages.hypersdn,
+                                          command: [
+                                                       "/sdn/slb-dns-register",
+                                                       "--path=" + slbconfigs.configDir,
+                                                       "--ddi=" + slbconfigs.ddiService,
+                                                   ] + roleBasedSecretArgs
+                                                   + [
+                                                       "--metricsEndpoint=" + configs.funnelVIP,
+                                                       "--log_dir=" + slbconfigs.logsDir,
+                                                       configs.sfdchosts_arg,
+                                                       "--subnet=" + slbconfigs.subnet,
+                                                       "--client.serverPort=" + portconfigs.slb.slbNodeApiDnsOverridePort,
+                                                       "--client.serverInterface=lo",
+                                                   ]
+                                                   + (
+                                                       if slbimages.hypersdn_build >= 1258 then [
+                                                           "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
+                                                       ] else []
+                                                   )
+                                                   + (if slbflights.explicitDeleteLimit then ["--maxDeleteEntries=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]] else [])
+                                                   + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                                          volumeMounts: configs.filter_empty([
+                                              configs.maddog_cert_volume_mount,
+                                              configs.cert_volume_mount,
+                                              slbconfigs.slb_config_volume_mount,
+                                              slbconfigs.logs_volume_mount,
+                                              configs.sfdchosts_volume_mount,
+                                          ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
+                                      },
+                                      slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort),
+                                      slbshared.slbCleanupConfig,
+                                      slbshared.slbLogCleanup,
+                                      slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort, true),
+                   ] + [madkub.madkubRefreshContainer(certDirs)]
+                                  + slbflights.getManifestWatcherIfEnabled()
+                                  + (if slbflights.cnameRegisterEnabled then [
+                                         {
+                                             name: "slb-cname-register",
+                                             image: slbimages.hypersdn,
+                                             command: [
+                                                 "/sdn/slb-cname-register",
+                                                 "--ddi=" + slbconfigs.ddiService,
+                                                 "--metricsEndpoint=" + configs.funnelVIP,
+                                                 "--log_dir=" + slbconfigs.logsDir,
+                                                 configs.sfdchosts_arg,
+                                                 "--client.socketDir=" + slbconfigs.configDir,
+                                                 "--client.dialSocket=true",
+                                             ] + roleBasedSecretArgs,
+                                             volumeMounts: configs.filter_empty([
+                                                 configs.maddog_cert_volume_mount,
+                                                 configs.cert_volume_mount,
+                                                 slbconfigs.slb_config_volume_mount,
+                                                 slbconfigs.logs_volume_mount,
+                                                 configs.sfdchosts_volume_mount,
+                                             ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
+                                         },
+                                     ] else []),
+                      nodeSelector: (if slbflights.dnsRegisterPodFloat then { pool: slbconfigs.slbEstate } else { "slb-dns-register": "true" }),
+                      initContainers: [
+                          madkub.madkubInitContainer(certDirs),
+                      ],
+                  }
+                  + slbflights.getDnsPolicy(),
 
         },
         strategy: {
