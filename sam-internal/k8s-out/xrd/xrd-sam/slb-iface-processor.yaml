@@ -44,7 +44,7 @@ spec:
         - --client.socketDir=/host/data/slb/config/slb-iface-processor
         - --client.dialSocket=true
         - --subnet=10.229.32.0/22,136.146.48.0/23,136.146.67.0/24
-        - --maxDeleteVipCount=10
+        - --maxDeleteVipCount=20
         image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001269-8e39add6
         name: slb-iface-processor
         securityContext:

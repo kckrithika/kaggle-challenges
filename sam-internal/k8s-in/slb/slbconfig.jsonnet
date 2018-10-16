@@ -188,7 +188,7 @@
             "ord-sam": $.maxDeleteDefault,
             "dfw-sam": $.maxDeleteDefault,
             "hnd-sam": $.maxDeleteDefault,
-            "xrd-sam": $.maxDeleteDefault,
+            "xrd-sam": 20,
             "cdg-sam": $.maxDeleteDefault,
             "fra-sam": $.maxDeleteDefault,
             "prd-samtwo": $.maxDeleteDefault,
