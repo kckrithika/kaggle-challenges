@@ -15,7 +15,7 @@ system:
         type: client
     containers:
     - name: ordering-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20181016-dae7bc3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20181016-d63801d
       ports:
       - containerPort: 7020
       - containerPort: 15372
