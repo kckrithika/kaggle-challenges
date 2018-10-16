@@ -105,6 +105,10 @@
             "prd-samtwo": "",
         },
 
+        trustedProxies: {
+            "prd-sdc": "10.252.240.0/25,10.252.247.32/27",
+        },
+
         serviceList: {
             "prd-sam": "csrlb,controlplane-ptest",
         } + set_value_to_all_in_list_skip("", $.slbEstates, "prd-sam"),
@@ -193,7 +197,8 @@
             "fra-sam": $.maxDeleteDefault,
             "prd-samtwo": $.maxDeleteDefault,
         },
-    },
+
+  },
 
 
     # Frequently used volume: slb

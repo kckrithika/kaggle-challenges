@@ -118,6 +118,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                       + (if slbimages.phaseNum == 1 then [
                                             "--blueGreenFeature=true",
                                         ] else [])
+                                      + (if slbimages.phaseNum == 1 then [
+                                            "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
+                                        ] else [])
                                       + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
                                       + slbflights.getSimpleDiffAndNewConfigGeneratorIfEnabled()
                                       + (if slbflights.certDeployerEnabled then [
