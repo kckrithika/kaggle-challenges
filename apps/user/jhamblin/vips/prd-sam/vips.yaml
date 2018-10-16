@@ -13,3 +13,6 @@
     lbalgorithm: leastconn
     sticky: 600
     tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
