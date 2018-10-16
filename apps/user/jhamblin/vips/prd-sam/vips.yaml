@@ -9,8 +9,7 @@
   lbalgorithm: leastconn
   sticky: 600
   tls: true
-  reencrypt: true
   ports:
   - port: 443
-    targetport: 6443
+    targetport: 8085 
     lbtype: http
