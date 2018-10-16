@@ -8,14 +8,10 @@ system:
     type: stateful-set
     containers:
     - name: elasticsearch1
-      image: docker-dva-rc/dva/elasticsearch-server:13
+      image: docker-dva-rc/dva/elasticsearch-server:15
       env:
       - name: ES_JAVA_OPTS
         value: '-Xms30g -Xmx30g'
-      - name: discovery.zen.ping.unicast.hosts 
-        value: '["elasticsearch1-1.elasticsearch-stateful-lb1.distributed-tracing.svc.prd-sam.prd.sam.sfdc.net", "elasticsearch1-2.elasticsearch-stateful-lb1.distributed-tracing.svc.prd-sam.prd.sam.sfdc.net",elasticsearch1-3.elasticsearch-stateful-lb1.distributed-tracing.svc.prd-sam.prd.sam.sfdc.net]'
-      - name: discovery.zen.minimum_master_nodes
-        value: '2'
       volumeMounts:
       - mountPath: /var/lib/elasticsearch
         name: elasticsearch-persistent-storage
