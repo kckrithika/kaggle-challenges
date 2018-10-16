@@ -61,6 +61,12 @@ spec:
       nodeSelector:
         pool: chx-sam
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
       - configMap:
           name: sfdchosts
         name: sfdchosts
