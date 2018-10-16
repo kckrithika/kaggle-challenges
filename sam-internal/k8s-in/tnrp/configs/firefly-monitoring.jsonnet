@@ -16,10 +16,8 @@ local configs = import "config.jsonnet";
       'service': 'firefly',
       'subservice': '${MY_APP_NAME}',
       'common-tags': {
-          'k8.namespace': '${MY_POD_NAMESPACE}',
-          'k8.pod.name ': '${MY_POD_NAME}',
-          'k8.node.name': '${MY_NODE_NAME}',
-          'k8.pod.ip': '${MY_POD_IP}'
+        'k8.namespace': '${MY_POD_NAMESPACE}',
+        'k8.node.name': '${MY_NODE_NAME}',
       }
     },
     'funnel': {
