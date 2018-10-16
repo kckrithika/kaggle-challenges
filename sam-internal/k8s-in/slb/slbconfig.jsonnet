@@ -197,8 +197,7 @@
             "fra-sam": $.maxDeleteDefault,
             "prd-samtwo": $.maxDeleteDefault,
         },
-
-  },
+    },
 
 
     # Frequently used volume: slb
