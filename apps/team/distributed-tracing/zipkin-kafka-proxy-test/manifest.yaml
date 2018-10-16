@@ -63,14 +63,19 @@ system:
             exec:
                 command:
                 - "./bin/is-alive"
-            initialDelaySeconds: 120
+            initialDelaySeconds: 60
             periodSeconds: 5
         readinessProbe:
             exec:
                 command:
                 - "./bin/is-ready"
-            initialDelaySeconds: 110
+            initialDelaySeconds: 50
             periodSeconds: 5
+        volumeMounts:
+        - name: client-certs
+          mountPath: /client-certs
+        - name: server-certs
+          mountPath: /server-certs
       - name: beacon
         image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
         env:
