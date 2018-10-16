@@ -52,10 +52,32 @@ data:
           "controlestate": "par-sam",
           "devicerole": "samkubeapi",
           "estate": "par-sam",
+          "hostname": "shared0-samkubeapi1-2-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "j13-1r113",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_kube_api",
+          "controlestate": "par-sam",
+          "devicerole": "samkubeapi",
+          "estate": "par-sam",
           "hostname": "shared0-samkubeapi2-1-par.ops.sfdc.net",
           "kingdom": "par",
           "pod": "none",
           "rack": "j15-1r113",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_kube_api",
+          "controlestate": "par-sam",
+          "devicerole": "samkubeapi",
+          "estate": "par-sam",
+          "hostname": "shared0-samkubeapi2-2-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "rack": "a09-1r050",
           "superpod": "none"
         },
         {

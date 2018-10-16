@@ -52,10 +52,32 @@ data:
           "controlestate": "frf-sam",
           "devicerole": "samkubeapi",
           "estate": "frf-sam",
+          "hostname": "shared0-samkubeapi1-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "k14-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_kube_api",
+          "controlestate": "frf-sam",
+          "devicerole": "samkubeapi",
+          "estate": "frf-sam",
           "hostname": "shared0-samkubeapi2-1-frf.ops.sfdc.net",
           "kingdom": "frf",
           "pod": "none",
           "rack": "a17-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_kube_api",
+          "controlestate": "frf-sam",
+          "devicerole": "samkubeapi",
+          "estate": "frf-sam",
+          "hostname": "shared0-samkubeapi2-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "a19-m306",
           "superpod": "none"
         },
         {
