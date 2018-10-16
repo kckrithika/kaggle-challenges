@@ -135,8 +135,6 @@ local utils = import "util_functions.jsonnet";
             },
             version_mapping: {
                 main: {
-                  "0.9.7": 571,
-                  "0.9.8": 607,
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "spark-2.3-test": 672,
                   "0.10.0": 662,
@@ -362,8 +360,6 @@ local utils = import "util_functions.jsonnet";
             "flowsnake-logstash",
         ],
         # Aliases for pre-0.11.0 versions
-        "0.9.7": self['__pre-spark-2.3'],
-        "0.9.8": self['__pre-spark-2.3'],
         "0.9.10": self['__pre-spark-2.3'],
         "0.10.0": self['__pre-spark-2.3'],
     },

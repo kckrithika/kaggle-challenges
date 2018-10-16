@@ -8,8 +8,6 @@ data:
     0.12.1 = 10001
     0.12.2 = jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
     0.9.10 = 638
-    0.9.7 = 571
-    0.9.8 = 607
     spark-2.3-test = 672
 kind: ConfigMap
 metadata:
