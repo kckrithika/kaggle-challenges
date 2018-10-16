@@ -23,19 +23,6 @@ spec:
       namespace: sam-system
     spec:
       affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: slb-service
-                operator: NotIn
-                values:
-                - slb-ipvs
-              - key: illumio
-                operator: NotIn
-                values:
-                - a
-                - b
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:

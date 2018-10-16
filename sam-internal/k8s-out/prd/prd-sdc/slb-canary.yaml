@@ -23,19 +23,6 @@ spec:
       namespace: sam-system
     spec:
       affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: slb-service
-                operator: NotIn
-                values:
-                - slb-ipvs
-              - key: illumio
-                operator: NotIn
-                values:
-                - a
-                - b
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -51,7 +38,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-canary-service
-        - --serviceName=slb-canary-service
+        - --serviceName=slb-canary
         - --log_dir=/host/data/slb/logs/
         - --ports=9111
         - --tlsPorts=9443
