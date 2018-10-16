@@ -31,7 +31,7 @@ system:
         - name: DB_USER
           value: sleepy
         - name: DB_SID
-          value: mist61a216utf
+          value: mist61b218utf
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
 
