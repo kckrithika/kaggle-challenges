@@ -284,7 +284,7 @@ spec:
         - --keyfile=/cert3/client/keys/client-key.pem
         - --certfile=/cert3/client/certificates/client.pem
         - --cafile=/cert3/ca/cabundle.pem
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001272-2dfb712d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001275-ca29cf71
         name: slb-cname-register
         volumeMounts:
         - mountPath: /etc/pki_service
