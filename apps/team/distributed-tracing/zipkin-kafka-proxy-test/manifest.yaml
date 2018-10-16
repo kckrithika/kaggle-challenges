@@ -73,9 +73,9 @@ system:
             periodSeconds: 5
         volumeMounts:
         - name: client-certs
-          mountPath: /client-certs
+          mountPath: /etc/pki_service/zipkin-kafka-proxy-test
         - name: server-certs
-          mountPath: /server-certs
+          mountPath: /etc/pki_service/zipkin-kafka-proxy-test
       - name: beacon
         image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
         env:
