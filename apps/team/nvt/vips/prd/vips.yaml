@@ -1,0 +1,10 @@
+- lbname: ops0-pm-controller1-0-prd
+  customlbname: ops0-pm-controller1-0-prd
+  servers:
+    - ops0-mom2-1-prd.eng.sfdc.net
+    - ops0-mom1-1-prd.eng.sfdc.net
+  ports:
+    - port: 8980
+      targetport: 8980
+      lbtype: tcp
+      healthprotocol: tcp
