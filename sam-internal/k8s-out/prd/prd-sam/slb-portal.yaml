@@ -315,7 +315,7 @@ spec:
         - mountPath: /tokens
           name: tokens
       nodeSelector:
-        slb-dns-register: "true"
+        pool: prd-slb
       volumes:
       - hostPath:
           path: /data/slb

@@ -306,7 +306,7 @@ spec:
         - mountPath: /tokens
           name: tokens
       nodeSelector:
-        slb-dns-register: "true"
+        pool: prd-samtest
       volumes:
       - hostPath:
           path: /etc/pki_service

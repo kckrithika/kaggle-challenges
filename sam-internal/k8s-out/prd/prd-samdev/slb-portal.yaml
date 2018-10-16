@@ -309,7 +309,7 @@ spec:
         - mountPath: /tokens
           name: tokens
       nodeSelector:
-        slb-dns-register: "true"
+        pool: prd-samdev
       volumes:
       - hostPath:
           path: /data/slb
