@@ -35,18 +35,6 @@ spec:
       namespace: sam-system
     spec:
       affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: slb-service
-                operator: NotIn
-                values:
-                - slb-ipvs
-              - key: slb-dns-register
-                operator: In
-                values:
-                - "true"
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -55,8 +43,6 @@ spec:
                 operator: In
                 values:
                 - slb-ipvs
-                - slb-ipvs-a
-                - slb-ipvs-b
             topologyKey: kubernetes.io/hostname
       containers:
       - command:
@@ -340,7 +326,7 @@ spec:
         - mountPath: /tokens
           name: tokens
       nodeSelector:
-        slb-dns-register: "true"
+        pool: prd-sdc
       volumes:
       - hostPath:
           path: /data/slb

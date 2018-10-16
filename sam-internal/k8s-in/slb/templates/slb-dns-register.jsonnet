@@ -86,9 +86,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort, true),
 
                 ] + (if slbflights.roleBasedSecrets then [madkub.madkubRefreshContainer(certDirs)] else []) + slbflights.getManifestWatcherIfEnabled(),
-                nodeSelector: {
-                    "slb-dns-register": "true",
-                },
+                nodeSelector: (if slbflights.dnsRegisterPodFloat then { pool: slbconfigs.slbEstate } else { "slb-dns-register": "true" }),
             } + (if slbflights.roleBasedSecrets then {
                 initContainers: [
                     madkub.madkubInitContainer(certDirs),
