@@ -116,33 +116,11 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                               operator: "In",
                                               values: [
                                                   "slb-ipvs",
-                                                  "slb-ipvs-a",
-                                                  "slb-ipvs-b",
                                               ],
                                           }],
                                       },
                                       topologyKey: "kubernetes.io/hostname",
                                   }],
-                              },
-                              nodeAffinity: {
-                                  requiredDuringSchedulingIgnoredDuringExecution: {
-                                      nodeSelectorTerms: [
-                                          {
-                                              matchExpressions: [
-                                                  {
-                                                      key: "slb-service",
-                                                      operator: "NotIn",
-                                                      values: ["slb-ipvs"],
-                                                  },
-                                                  {
-                                                      key: "slb-dns-register",
-                                                      operator: "In",
-                                                      values: ["true"],
-                                                  },
-                                              ],
-                                          },
-                                      ],
-                                  },
                               },
                           },
                       } else {}
