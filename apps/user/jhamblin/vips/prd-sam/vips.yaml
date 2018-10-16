@@ -1,0 +1,14 @@
+- lbname: na45-stm
+  servers:
+  - 10.252.224.22
+  - 10.252.224.23
+  - 10.252.224.24
+  - 10.252.224.25
+  - 10.252.224.26
+  - 10.252.224.27
+  lbalgorithm: leastconn
+  sticky: 600
+  ports:
+  - port: 443
+    targetport: 8085
+    lbtype: http
