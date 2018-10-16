@@ -1,0 +1,13 @@
+- lbname: us99-sfproxytest-vip
+  servers:
+   - us99-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+  ports:
+   - port: 9087
+     targetport: 8087
+     lbtype: http
+   - port: 9086
+     targetport: 8086
+     lbtype: http
+     tls: true
+     reencrypt: true
+
