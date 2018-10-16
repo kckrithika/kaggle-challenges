@@ -4,7 +4,7 @@ system:
       - distributedtracing@salesforce.com
   functions: 
   - name: elasticsearch1
-    count: 1
+    count: 3
     type: stateful-set
     containers:
     - name: elasticsearch1
