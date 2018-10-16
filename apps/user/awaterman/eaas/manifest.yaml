@@ -16,18 +16,21 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "prd"
       - name: SCONE_SERVICE_NAME
-        value: eaas 
+        value: "eaas" 
       # THIS IS REQUIRED ONLY FOR USER DIRECTORY DEPLOYMENTS
       # although we are a kingdom level service, this will differentiate argus metrics
       - name: SFDC_POD
-        value: awaterman
+        value: "awaterman"
+      # This is required for JVM memory management in K8
+      - name: JAVA_OPTIONS
+        value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
       resources:
         requests:
-          memory: "3G"
-          cpu: "200m"
+          memory: "12G"
+          cpu: "800m"
         limits:
-          memory: "6G"
-          cpu: "500m"
+          memory: "12G"
+          cpu: "800m"
       ports:
         - name: grpc
           containerPort: 7020
