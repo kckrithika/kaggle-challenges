@@ -15,7 +15,7 @@ system:
       - name: discovery.zen.ping.unicast.hosts 
         value: ["elasticsearch1-1.elasticsearch-stateful-lb1.distributed-tracing.svc.prd-sam.prd.sam.sfdc.net", "elasticsearch1-2.elasticsearch-stateful-lb1.distributed-tracing.svc.prd-sam.prd.sam.sfdc.net",elasticsearch1-3.elasticsearch-stateful-lb1.distributed-tracing.svc.prd-sam.prd.sam.sfdc.net]
       - name: discovery.zen.minimum_master_nodes
-        value: 2
+        value: '2'
       volumeMounts:
       - mountPath: /var/lib/elasticsearch
         name: elasticsearch-persistent-storage
