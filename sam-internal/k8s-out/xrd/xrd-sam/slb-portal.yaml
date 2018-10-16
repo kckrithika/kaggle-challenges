@@ -243,7 +243,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-portal
         - --client.dialSocket=true
-        - --maxDeleteLimit=10
+        - --maxDeleteLimit=20
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal/slb-manifest-watcher.sentinel
         env:

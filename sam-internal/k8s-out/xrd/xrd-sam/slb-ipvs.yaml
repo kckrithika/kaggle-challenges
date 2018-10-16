@@ -79,7 +79,7 @@ spec:
         - --marker=/host/data/slb/ipvs.marker
         - --period=5s
         - --log_dir=/host/data/slb/logs/slb-ipvs
-        - --maximumDeleteCount=10
+        - --maximumDeleteCount=20
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverPort=12081
         - --client.serverInterface=lo
@@ -266,7 +266,7 @@ spec:
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
         - --subnet=10.229.32.0/22,136.146.48.0/23,136.146.67.0/24
-        - --maxDeleteVipCount=10
+        - --maxDeleteVipCount=20
         image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001269-8e39add6
         name: slb-iface-processor
         securityContext:
@@ -317,7 +317,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
-        - --maxDeleteLimit=10
+        - --maxDeleteLimit=20
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-ipvs/slb-manifest-watcher.sentinel
         env:
