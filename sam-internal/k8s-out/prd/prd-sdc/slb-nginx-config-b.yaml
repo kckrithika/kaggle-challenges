@@ -79,6 +79,7 @@ spec:
         - --client.serverInterface=lo
         - --hostnameOverride=$(NODE_NAME)
         - --blueGreenFeature=true
+        - --httpconfig.trustedProxies=10.252.240.0/25,10.252.247.32/27
         - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
         - --client.dialSocket=true
         - --enableSimpleDiff=true
