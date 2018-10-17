@@ -40,7 +40,6 @@ items:
                   }
               },
               "monitoring": {
-                  "datacenter": "prd",
                   "enable-funnel-publisher": true,
                   "enable-metrics-logging": false,
                   "funnel": {
@@ -66,9 +65,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-sam"
                   },
-                  "pod": "firefly-intake",
                   "report-frequency": 60,
-                  "superpod": "NONE",
                   "system-exception-threshold": 5
               },
               "rabbitmq": {

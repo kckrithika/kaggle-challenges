@@ -49,7 +49,6 @@ items:
           },
           "firefly": {
               "monitoring": {
-                  "datacenter": "prd",
                   "funnel": {
                       "avro-schema-fingerprint": "AVG7NnlcHNdk4t_zn2JBnQ",
                       "backoff-time": 1,
@@ -73,9 +72,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-sam"
                   },
-                  "pod": "firefly-package",
                   "report-frequency": 60,
-                  "superpod": "NONE",
                   "system-exception-threshold": 5
               }
           },
@@ -477,7 +474,6 @@ items:
           },
           "firefly": {
               "monitoring": {
-                  "datacenter": "prd",
                   "funnel": {
                       "avro-schema-fingerprint": "AVG7NnlcHNdk4t_zn2JBnQ",
                       "backoff-time": 1,
@@ -501,9 +497,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-sam"
                   },
-                  "pod": "firefly-package",
                   "report-frequency": 60,
-                  "superpod": "NONE",
                   "system-exception-threshold": 5
               }
           },
@@ -873,7 +867,6 @@ items:
           },
           "firefly": {
               "monitoring": {
-                  "datacenter": "prd",
                   "enable-funnel-publisher": true,
                   "enable-metrics-logging": false,
                   "funnel": {
@@ -900,9 +893,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-sam"
                   },
-                  "pod": "firefly-pullrequest",
                   "report-frequency": 60,
-                  "superpod": "NONE",
                   "system-exception-threshold": 5
               }
           },
@@ -1283,7 +1274,6 @@ items:
           },
           "firefly": {
               "monitoring": {
-                  "datacenter": "prd",
                   "enable-funnel-publisher": true,
                   "enable-metrics-logging": false,
                   "funnel": {
@@ -1310,9 +1300,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-sam"
                   },
-                  "pod": "firefly-promotion",
                   "report-frequency": 60,
-                  "superpod": "NONE",
                   "system-exception-threshold": 5
               }
           },
