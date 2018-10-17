@@ -88,7 +88,6 @@ local utils = import "util_functions.jsonnet";
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
                 # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
-                fs_matchlabels: "verified",  # works in test fleet
             },
             version_mapping: {
                 main: {
@@ -129,7 +128,6 @@ local utils = import "util_functions.jsonnet";
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
                 # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
-                fs_matchlabels: "verified",  # verified in dev
             },
             version_mapping: {
                 main: {
@@ -158,7 +156,6 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
-                fs_matchlabels: "verified",  # runs in PRD
             },
             version_mapping: {
                 main: {
@@ -193,7 +190,6 @@ local utils = import "util_functions.jsonnet";
                 ### the templates. This PR should not result in any k8s-out diffs.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
-                fs_matchlabels: "UNVERIFIED",  # ready to go to prod
             },
             version_mapping: {
                 main: {

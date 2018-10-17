@@ -6,7 +6,6 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 local configs = import "config.jsonnet";
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
-local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
 
 if !watchdog.watchdog_enabled || !std.objectHas(flowsnake_images.feature_flags, "docker_daemon_monitor") then
 "SKIP"
@@ -18,7 +17,7 @@ configs.daemonSetBase("flowsnake") {
         namespace: "flowsnake",
     },
     spec+: {
-        [if flag_fs_matchlabels then "selector"]: {
+        selector: {
             matchLabels: {
                 app: label_node.app,
                 apptype: label_node.apptype,

@@ -3,7 +3,6 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local configs = import "config.jsonnet";
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
-local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
 
 if flowsnakeconfig.node_controller_enabled then
 {
@@ -14,9 +13,8 @@ if flowsnakeconfig.node_controller_enabled then
         selector: {
             matchLabels: {
                 name: label_node.name,
-            } + if flag_fs_matchlabels then {
                 apptype: label_node.apptype,
-            } else {},
+            },
         },
         template: {
             spec: {

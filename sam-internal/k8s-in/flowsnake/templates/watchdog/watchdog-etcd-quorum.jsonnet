@@ -4,7 +4,6 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 local configs = import "config.jsonnet";
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
-local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
 
 if !watchdog.watchdog_enabled then
 "SKIP"
@@ -13,7 +12,7 @@ configs.deploymentBase("flowsnake") {
     local label_node = self.spec.template.metadata.labels,
     spec+: {
         replicas: 1,
-        [if flag_fs_matchlabels then "selector"]: {
+        selector: {
             matchLabels: {
                 name: label_node.name,
                 apptype: label_node.apptype,
