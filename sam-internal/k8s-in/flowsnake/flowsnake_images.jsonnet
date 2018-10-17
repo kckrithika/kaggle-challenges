@@ -161,7 +161,7 @@ local utils = import "util_functions.jsonnet";
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
                 kubedns_host_network: "",
-                fs_matchlabels: "UNVERIFIED",  # need to verify in PRD
+                fs_matchlabels: "verified",  # runs in PRD
             },
             version_mapping: {
                 main: {
@@ -196,6 +196,7 @@ local utils = import "util_functions.jsonnet";
                 ### the templates. This PR should not result in any k8s-out diffs.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
+                fs_matchlabels: "UNVERIFIED",  # ready to go to prod
             },
             version_mapping: {
                 main: {
