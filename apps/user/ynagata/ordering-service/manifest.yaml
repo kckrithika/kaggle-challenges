@@ -15,16 +15,16 @@ system:
         type: client
     containers:
     - name: ordering-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20181017-0efcc15
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20181017-9a141b3
       ports:
       - containerPort: 7020
       - containerPort: 15372
       - containerPort: 9010
       env:
       - name: IMAGE_NAME
-        value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20181017-0efcc15
+        value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20181017-9a141b3
       - name: MANIFEST_VERSION
-        value: v1
+        value: v1.4
       livenessProbe:
         httpGet:
           path: /manage/health
