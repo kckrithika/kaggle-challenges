@@ -25,7 +25,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-canary-service
-        - --serviceName=slb-bravo-svc
+        - --serviceName=slb-bravo
         - --log_dir=/host/data/slb/logs/
         - --ports=9090,9091,9092
         - --tlsPorts=9443

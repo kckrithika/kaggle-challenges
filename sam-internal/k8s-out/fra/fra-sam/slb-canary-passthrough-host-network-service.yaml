@@ -6,8 +6,6 @@ metadata:
     slb.sfdc.net/portconfigurations: '[{"port":9113,"targetport":9113,"lbtype":"dsr","healthpath":"/health"}]'
   labels:
     app: slb-canary-passthrough-host-network-service
-    slb.sfdc.net/name: slb-canary-pt-host-nw
-    slb.sfdc.net/type: none
   name: slb-canary-passthrough-host-network-service
   namespace: sam-system
 spec:

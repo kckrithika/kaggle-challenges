@@ -6,8 +6,6 @@ metadata:
     slb.sfdc.net/portconfigurations: '[{"port":9114,"targetport":9114,"lbtype":"dsr","healthpath":"/health"}]'
   labels:
     app: slb-canary-passthrough-tls-service
-    slb.sfdc.net/name: slb-canary-pt-tls
-    slb.sfdc.net/type: none
   name: slb-canary-passthrough-tls-service
   namespace: sam-system
 spec:
