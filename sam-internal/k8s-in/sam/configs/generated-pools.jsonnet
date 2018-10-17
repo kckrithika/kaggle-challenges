@@ -1243,6 +1243,18 @@
     },
     {
       "namespaces": [
+        "solr-service"
+      ],
+      "access": [
+        "team/solr-service"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_search",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "service-protection"
       ],
       "access": [
@@ -1746,6 +1758,18 @@
       "estate": "phx-sp4-sam_caas",
       "kingdom": "phx",
       "superPod": "sp4"
+    },
+    {
+      "namespaces": [
+        "solr-service"
+      ],
+      "access": [
+        "team/solr-service"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "ord-sam_search",
+      "kingdom": "prd",
+      "superPod": "None"
     },
     {
       "namespaces": [
