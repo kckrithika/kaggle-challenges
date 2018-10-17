@@ -3,7 +3,14 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: slb-echo-svc
-    slb.sfdc.net/portconfigurations: '[{"port":9118,"targetport":9118,"lbtype":"tcp"}]'
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "lbtype": "tcp",
+        "port": 9118,
+        "targetport": 9118
+       }
+      ]
   labels:
     app: slb-echo-svc
   name: slb-echo-svc

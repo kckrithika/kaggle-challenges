@@ -3,7 +3,15 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: slb-canary-proxy-tcp
-    slb.sfdc.net/portconfigurations: '[{"port":9115,"targetport":9115,"lbtype":"tcp","healthPath":"/"}]'
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "healthPath": "/",
+        "lbtype": "tcp",
+        "port": 9115,
+        "targetport": 9115
+       }
+      ]
   labels:
     app: slb-canary-proxy-tcp-service
   name: slb-canary-proxy-tcp-service
