@@ -267,7 +267,6 @@ spec:
         - mountPath: /etc/pki_service
           name: maddog-certs
       dnsPolicy: Default
-      hostNetwork: true
       initContainers:
       - args:
         - /sam/madkub-client
