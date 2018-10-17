@@ -95,4 +95,10 @@ local kingdom = std.extVar("kingdom");
     fieldIfNonEmpty(name, object, value=object):: {
         [if std.length(object) > 0 then name]: value,
     },
+
+    # string_replace returns a copy of the string in which all occurrences of string to_replace have been replaced
+    # with string replace_with
+    string_replace(str, to_replace, replace_with):: (
+            std.join("", std.map(function(x) if x == to_replace then replace_with else x, std.stringChars(str)))
+    ),
 }

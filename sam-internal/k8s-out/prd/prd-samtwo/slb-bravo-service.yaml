@@ -5,7 +5,7 @@ metadata:
     slb.sfdc.net/cnames: |-
       [
        {
-        "cname": "bravo.slb.sfdc.net"
+        "cname": "bravo-prd-samtwo.slb.sfdc.net"
        }
       ]
     slb.sfdc.net/name: slb-bravo-svc

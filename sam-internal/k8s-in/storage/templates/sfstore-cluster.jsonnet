@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 local utils = import "storageutils.jsonnet";
+local commonutils = import "util_functions.jsonnet";
 
 // Disable sfstore cluster manifest in prd-sam_storage for now.
 if configs.estate == "TODO: prd-sam_storage" || configs.estate == "prd-skipper" then
@@ -10,7 +11,7 @@ if configs.estate == "TODO: prd-sam_storage" || configs.estate == "prd-skipper" 
         metadata: {},
         items: [
             {
-                local escapedMinionEstate = utils.string_replace(minionEstate, "_", "-"),
+                local escapedMinionEstate = commonutils.string_replace(minionEstate, "_", "-"),
                 local sfstoreClusterName = "prdsam",  // Alternatively, this could come from per-estate config.
                 local sfstoreClusterNamespace = "sfstore",  // Alternatively, this could come from per-estate config.
 

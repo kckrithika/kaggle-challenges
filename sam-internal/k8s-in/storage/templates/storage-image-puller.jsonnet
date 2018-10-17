@@ -13,6 +13,7 @@ local cephclusterimage = (import "ceph-cluster-image.libsonnet") + { templateFil
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageconfigs = import "storageconfig.jsonnet";
 local storageutils = import "storageutils.jsonnet";
+local commonutils = import "util_functions.jsonnet";
 
 local affinitizeToStoragePool = configs.estate != "prd-skipper";
 
@@ -88,7 +89,7 @@ if std.setMember(configs.estate, enabledEstates) then {
         // For control estates that have multiple minion estates, include the escaped minion
         // estate name in the daemonset name.
         local estateSpecificNamePortion = if std.length(storageImageType.minionEstates) > 1
-            then "-" + storageutils.string_replace(storageImageType.estate, "_", "-")
+            then "-" + commonutils.string_replace(storageImageType.estate, "_", "-")
             else "",
         local name = storageImageType.type + estateSpecificNamePortion + "-image-puller",
         local pauseimage = "gcr.io/google_containers/pause-amd64:3.0",
