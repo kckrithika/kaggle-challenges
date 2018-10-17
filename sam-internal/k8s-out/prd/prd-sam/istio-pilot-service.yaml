@@ -19,4 +19,4 @@ spec:
   - name: http-monitoring
     port: 9093
   selector:
-    istio: pilot
+    name: istio-pilot
