@@ -89,7 +89,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
                 fs_matchlabels: "verified",  # works in test fleet
-                kubedns_host_network: "",  # testing in test fleet
             },
             version_mapping: {
                 main: {
@@ -131,7 +130,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
                 fs_matchlabels: "verified",  # verified in dev
-                kubedns_host_network: "",  # testing in dev fleet
             },
             version_mapping: {
                 main: {
@@ -160,7 +158,6 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
-                kubedns_host_network: "",
                 fs_matchlabels: "verified",  # runs in PRD
             },
             version_mapping: {

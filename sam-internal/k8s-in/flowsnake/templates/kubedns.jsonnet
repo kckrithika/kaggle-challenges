@@ -238,6 +238,7 @@ else
                 ],
                 dnsPolicy: "Default",
                 restartPolicy: "Always",
+                hostNetwork: true,
                 schedulerName: "default-scheduler",
                 securityContext: {},
                 serviceAccount: "kube-dns",
@@ -269,7 +270,7 @@ else
                         name: "certs",
                     },
                 ],
-            } + if std.objectHas(flowsnake_images.feature_flags, "kubedns_host_network") then { hostNetwork: true } else {},
+            },
         },
     },
 }
