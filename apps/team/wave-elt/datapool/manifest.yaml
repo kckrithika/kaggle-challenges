@@ -49,7 +49,7 @@ system:
         value: 96
 
       - name: FLOWSNAKE_WORKER_JVM_HEAP_SIZE_MB
-        value: 1024
+        value: 999
 
       - name: FLOWSNAKE_DATAPOOL_ENVIRONMENT_NAMES
         value: wave-datapool
