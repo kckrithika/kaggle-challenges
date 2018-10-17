@@ -286,6 +286,16 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MY_APP_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.labels['name']
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
@@ -695,6 +705,16 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MY_APP_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.labels['name']
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
@@ -1072,6 +1092,16 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MY_APP_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "8"
           - name: DARKLAUNCH
@@ -1464,6 +1494,16 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MY_APP_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "3"
           - name: DARKLAUNCH

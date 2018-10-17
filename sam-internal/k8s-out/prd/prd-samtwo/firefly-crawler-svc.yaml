@@ -233,6 +233,16 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MY_APP_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "6"
           - name: DARKLAUNCH
