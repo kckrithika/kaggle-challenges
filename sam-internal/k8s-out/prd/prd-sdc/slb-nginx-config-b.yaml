@@ -85,7 +85,7 @@ spec:
         - --enableSimpleDiff=true
         - --newConfigGenerator=true
         - --control.nginxReloadSentinel=/host/data/slb/nginx/config/nginx.marker
-        - --custCertsDir=/customerCerts
+        - --httpconfig.custCertsDir=/customerCerts
         - --checkDuplicateVips=true
         env:
         - name: NODE_NAME
