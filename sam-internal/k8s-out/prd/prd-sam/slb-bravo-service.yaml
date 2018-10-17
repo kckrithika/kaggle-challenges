@@ -7,7 +7,6 @@ metadata:
   labels:
     app: slb-bravo-svc
     sam.data.sfdc.net/owner: slb
-    slb.sfdc.net/name: slb-bravo-svc
   name: slb-bravo-svc
   namespace: sam-system
 spec:
