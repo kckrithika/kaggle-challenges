@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 
 {
   monitor(serviceName):: {
-    'report-frequency': 60,
+    'report-frequency': if configs.estate == 'prd-samtwo' then 1 else 60,
     datacenter: configs.kingdom,
     superpod: 'NONE',
     pod: serviceName,

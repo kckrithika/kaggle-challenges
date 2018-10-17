@@ -51,7 +51,7 @@ items:
               "monitoring": {
                   "datacenter": "prd",
                   "pod": "firefly-package",
-                  "report-frequency": 60,
+                  "report-frequency": 1,
                   "superpod": "NONE",
                   "system-exception-threshold": 5
               }
@@ -436,7 +436,7 @@ items:
               "monitoring": {
                   "datacenter": "prd",
                   "pod": "firefly-package",
-                  "report-frequency": 60,
+                  "report-frequency": 1,
                   "superpod": "NONE",
                   "system-exception-threshold": 5
               }
@@ -789,7 +789,7 @@ items:
               "monitoring": {
                   "datacenter": "prd",
                   "pod": "firefly-pullrequest",
-                  "report-frequency": 60,
+                  "report-frequency": 1,
                   "superpod": "NONE",
                   "system-exception-threshold": 5
               }
@@ -1153,7 +1153,7 @@ items:
               "monitoring": {
                   "datacenter": "prd",
                   "pod": "firefly-promotion",
-                  "report-frequency": 60,
+                  "report-frequency": 1,
                   "superpod": "NONE",
                   "system-exception-threshold": 5
               }

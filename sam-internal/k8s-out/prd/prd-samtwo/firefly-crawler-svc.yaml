@@ -31,7 +31,7 @@ items:
               "monitoring": {
                   "datacenter": "prd",
                   "pod": "firefly-crawler",
-                  "report-frequency": 60,
+                  "report-frequency": 1,
                   "superpod": "NONE",
                   "system-exception-threshold": 5
               }
