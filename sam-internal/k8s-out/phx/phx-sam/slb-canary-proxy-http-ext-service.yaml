@@ -6,8 +6,6 @@ metadata:
     slb.sfdc.net/portconfigurations: '[{"port":80,"targetport":9116,"lbtype":"http","healthpath":"/health"}]'
   labels:
     app: slb-canary-proxy-http-ext-service
-    slb.sfdc.net/name: slb-canary-proxy-http-ext
-    slb.sfdc.net/type: http
   name: slb-canary-proxy-http-ext-service
   namespace: sam-system
 spec:
