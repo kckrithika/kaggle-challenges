@@ -3,6 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local slbportconfiguration = import "slbportconfiguration.libsonnet";
 local slbbaseservice = import "slb-base-service.libsonnet";
+local slbimages = import "slbimages.jsonnet";
 
 local canaryName = "slb-bravo";
 local serviceName = canaryName + "-svc";
@@ -35,6 +36,8 @@ local bravoPortConfig = [
     ),
 ];
 
+local cnames = if slbimages.phaseNum == 1 then [{ cname: "bravo.slb.sfdc.net" }] else [];
+
 if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then
-    slbbaseservice.slbCanaryBaseService(canaryName, bravoPortConfig, serviceName, vipName) {
+    slbbaseservice.slbCanaryBaseService(canaryName, bravoPortConfig, serviceName, vipName, cnames) {
 } else "SKIP"
