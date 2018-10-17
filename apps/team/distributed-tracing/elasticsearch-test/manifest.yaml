@@ -8,7 +8,7 @@ system:
     type: stateful-set
     containers:
     - name: elasticsearch-test
-      image: docker-dva-rc/dva/elasticsearch-server:13
+      image: docker-dva-rc/dva/elasticsearch-server:17
       env:
       - name: ES_JAVA_OPTS
         value: '-Xms2g -Xmx2g'
