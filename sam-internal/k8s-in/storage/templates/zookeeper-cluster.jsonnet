@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 local utils = import "storageutils.jsonnet";
+local commonutils = import "util_functions.jsonnet";
 
 if configs.estate == "prd-sam_storagedev" then
     {
@@ -9,7 +10,7 @@ if configs.estate == "prd-sam_storagedev" then
         metadata: {},
         items: [
             {
-                local escapedMinionEstate = utils.string_replace(minionEstate, "_", "-"),
+                local escapedMinionEstate = commonutils.string_replace(minionEstate, "_", "-"),
                 local zookeeperClusterName = "sfn-zk",  // Alternatively, this could come from per-estate config.
                 local zookeeperClusterNamespace = "zookeeper",  // Alternatively, this could come from per-estate config.
 

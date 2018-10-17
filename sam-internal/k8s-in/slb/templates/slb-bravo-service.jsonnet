@@ -5,6 +5,7 @@ local slbportconfiguration = import "slbportconfiguration.libsonnet";
 local slbbaseservice = import "slb-base-service.libsonnet";
 local slbimages = import "slbimages.jsonnet";
 local slbflights = import "slbflights.jsonnet";
+local commonutils = import "util_functions.jsonnet";
 
 local canaryName = "slb-bravo";
 local serviceName = canaryName + "-svc";
@@ -37,7 +38,7 @@ local bravoPortConfig = [
     ),
 ];
 
-local cnames = if slbflights.cnameRegisterEnabled then [{ cname: "bravo.slb.sfdc.net" }] else [];
+local cnames = if slbflights.cnameRegisterEnabled then [{ cname: "bravo-" + commonutils.string_replace(configs.estate, "_", "-") + ".slb.sfdc.net" }] else [];
 
 if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then
     slbbaseservice.slbCanaryBaseService(canaryName, bravoPortConfig, serviceName, vipName, cnames) {

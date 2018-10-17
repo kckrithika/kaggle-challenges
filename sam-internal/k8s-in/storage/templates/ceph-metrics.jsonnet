@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageutils = import "storageutils.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
+local commonutils = import "util_functions.jsonnet";
 
 local enabledEstates = std.set([
     "prd-sam_storage",
@@ -15,7 +16,7 @@ if std.setMember(configs.estate, enabledEstates) then
     metadata: {},
     items: [
         configs.deploymentBase("storage") {
-        local escapedMinionEstate = storageutils.string_replace(minionEstate, "_", "-"),
+        local escapedMinionEstate = commonutils.string_replace(minionEstate, "_", "-"),
         local cephClusterName = "ceph-" + escapedMinionEstate,
         local cephClusterNamespace = (if configs.estate == "prd-sam_storage" then cephClusterName else "legostore"),
 

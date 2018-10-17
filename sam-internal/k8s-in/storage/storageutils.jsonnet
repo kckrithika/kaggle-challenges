@@ -3,9 +3,6 @@ local utils = import "util_functions.jsonnet";
 
 // Public functions
 {
-    string_replace(str, to_replace, replace_with):: (
-        std.join("", std.map(function(x) if x == to_replace then replace_with else x, std.stringChars(str)))
-    ),
     // log_init_volumes provides the set of volumes necessary to support propagation of logs to the host.
     log_init_volumes():: [
         {
