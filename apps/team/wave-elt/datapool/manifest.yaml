@@ -34,19 +34,25 @@ system:
         value: /home/datapool/client-certs/client
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE
-        value: dva/flowsnake-job-datapool-engine:327
+        value: dva/flowsnake-job-datapool-engine:332
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_KIND
         value: dockerDefaultRegistryImage
 
-      - name: FLOWSNAKE_TOTAL_NODE_COUNT
+      - name: FLOWSNAKE_WORKER_COUNT
         value: 120
 
-      - name: FLOWSNAKE_TOTAL_CORE_COUNT
-        value: 4800
+      - name: FLOWSNAKE_WORKER_CORE_COUNT
+        value: 40
 
-      - name: FLOWSNAKE_TOTAL_MEMORY_IN_GB
-        value: 11520
+      - name: FLOWSNAKE_WORKER_MEMORY_GB
+        value: 96
+
+      - name: FLOWSNAKE_WORKER_JVM_HEAP_SIZE_MB
+        value: 1024
+
+      - name: FLOWSNAKE_DATAPOOL_ENVIRONMENT_NAMES
+        value: wave-elt-1
 
       volumeMounts:
       - mountPath: /home/datapool/logs
