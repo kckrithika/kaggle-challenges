@@ -4,14 +4,21 @@ metadata:
   annotations:
     checksum/config-volume: f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9
   labels:
+    app: istio-pilot
+    chart: pilot-1.0.1
+    heritage: Tiller
+    istio: pilot
     name: istio-pilot
+    release: istio
   name: istio-pilot
   namespace: service-mesh
 spec:
   replicas: 1
   selector:
     matchLabels:
+      app: pilot
       apptype: control
+      istio: pilot
       name: istio-pilot
   template:
     metadata:
@@ -19,7 +26,9 @@ spec:
         scheduler.alpha.kubernetes.io/critical-pod: ""
         sidecar.istio.io/inject: "false"
       labels:
+        app: pilot
         apptype: control
+        istio: pilot
         name: istio-pilot
     spec:
       affinity:
