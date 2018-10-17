@@ -87,7 +87,7 @@ local utils = import "util_functions.jsonnet";
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
-                fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
+                fs_metric_labels: "verified",
             },
             version_mapping: {
                 main: {
@@ -127,7 +127,7 @@ local utils = import "util_functions.jsonnet";
                 del_certsvc_certs: "foo",  #Verified successfully in test fleet
                 docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
-                # fs_metric_labels: "UNVERIFIED",  # need to fix the setting of spec.selector.matchLabels first
+                fs_metric_labels: "UNVERIFIED",  # testing in prd-dev
             },
             version_mapping: {
                 main: {
