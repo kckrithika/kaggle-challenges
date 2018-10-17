@@ -15,7 +15,7 @@
     readablePortConfigurationAnnotations: (slbimages.phaseNum <= 1),
     useDeprecatedCanaryDifferences: (slbimages.phaseNum > 2),
     dnsRegisterPodFloat: (slbimages.phaseNum <= 3),
-    cnameRegisterEnabled: (slbimages.phaseNum == 1),
+    cnameRegisterEnabled: (slbimages.phaseNum <= 2),
 
     getNodeApiClientSocketSettings(configDir):: (if nodeApiUnixSocketEnabled then [
                                                      "--client.socketDir=" + configDir,
