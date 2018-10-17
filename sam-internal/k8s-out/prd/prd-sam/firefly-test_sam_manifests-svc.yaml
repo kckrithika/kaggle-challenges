@@ -573,7 +573,7 @@ items:
     name: firefly-package-singleton-tsm-deployment
     namespace: firefly
   spec:
-    replicas: 2
+    replicas: 1
     selector:
       matchLabels:
         name: firefly-package-singleton
@@ -932,7 +932,7 @@ items:
     name: firefly-pullrequest-tsm-deployment
     namespace: firefly
   spec:
-    replicas: 2
+    replicas: 1
     selector:
       matchLabels:
         name: firefly-pullrequest
@@ -1306,7 +1306,7 @@ items:
     name: firefly-promotion-tsm-deployment
     namespace: firefly
   spec:
-    replicas: 2
+    replicas: 1
     selector:
       matchLabels:
         name: firefly-promotion
