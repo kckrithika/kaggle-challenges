@@ -8,7 +8,7 @@
     stockIpvsModules: (if slbimages.phaseNum > 4 then true else false),
     readablePortConfigurationAnnotations: (slbimages.phaseNum <= 3),
     useDeprecatedCanaryDifferences: false,
-    cnameRegisterEnabled: (slbimages.phaseNum <= 2),
+    cnameRegisterEnabled: (slbimages.phaseNum <= 0),
 
     getIPVSHealthCheckRiseFallSettings():: (if slbimages.phaseNum <= 2 then [
             // Defaults are currently rise=2, fall=3 (https://git.soma.salesforce.com/sdn/sdn/blob/assert-validation-succeeds/src/slb/slb-ipvs-processor/healthcheckmanager/health_check_manager.go#L20-L21).
