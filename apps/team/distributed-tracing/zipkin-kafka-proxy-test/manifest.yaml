@@ -3,8 +3,7 @@ apiVersion: v1
 system:
     notifications:
         email:
-        - afalko@salesforce.com
-
+        - distributedtracing@salesforce.com
     functions:
     - name: zipkin-kafka-proxy-test
       count: 1
