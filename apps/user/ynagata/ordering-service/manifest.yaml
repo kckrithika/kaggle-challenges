@@ -25,6 +25,8 @@ system:
         value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20181017-9a141b3
       - name: MANIFEST_VERSION
         value: v1.4
+      - name: SHIPPING_INTERVAL
+        value: 120000
       livenessProbe:
         httpGet:
           path: /manage/health
