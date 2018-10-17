@@ -55,7 +55,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                 nodeSelector: {
                     pool: configs.estate,
                 },
-            } + slbflights.getDnsPolicy(),
+            } + slbconfigs.getDnsPolicy(),
         },
     },
 } else "SKIP"

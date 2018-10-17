@@ -65,7 +65,7 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                         ],
                     },
                 ],
-            } + slbflights.getDnsPolicy()
+            } + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,
             metadata: {
                 labels: {

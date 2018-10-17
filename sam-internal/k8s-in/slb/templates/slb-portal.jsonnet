@@ -58,7 +58,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                        ] + (if slbconfigs.isTestEstate then [
                                                 "--slbEstate=" + configs.estate,
                                             ] else [])
-                                       + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                                       + slbconfigs.getNodeApiClientSocketSettings(),
                               volumeMounts: configs.filter_empty(
                                   [
                                       slbconfigs.slb_volume_mount,
@@ -91,33 +91,32 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                           slbshared.slbLogCleanup,
                           madkub.madkubRefreshContainer(certDirs),
-                      ] + slbflights.getManifestWatcherIfEnabled(),
-                      nodeSelector: (if slbflights.dnsRegisterPodFloat then { pool: slbconfigs.slbEstate } else { "slb-dns-register": "true" }),
+                          slbshared.slbManifestWatcher(),
+                      ],
+                      nodeSelector: { pool: slbconfigs.slbEstate },
                       initContainers: [
                           madkub.madkubInitContainer(certDirs),
                       ],
                   }
-                  + slbflights.getDnsPolicy()
-                  + (
-                      if slbflights.dnsRegisterPodFloat then {
-                          affinity: {
-                              podAntiAffinity: {
-                                  requiredDuringSchedulingIgnoredDuringExecution: [{
-                                      labelSelector: {
-                                          matchExpressions: [{
-                                              key: "name",
-                                              operator: "In",
-                                              values: [
-                                                  "slb-ipvs",
-                                              ],
-                                          }],
-                                      },
-                                      topologyKey: "kubernetes.io/hostname",
-                                  }],
-                              },
-                          },
-                      } else {}
-                  ),
+                  + slbconfigs.getDnsPolicy()
+                  + {
+                        affinity: {
+                            podAntiAffinity: {
+                                requiredDuringSchedulingIgnoredDuringExecution: [{
+                                    labelSelector: {
+                                        matchExpressions: [{
+                                            key: "name",
+                                            operator: "In",
+                                            values: [
+                                                "slb-ipvs",
+                                            ],
+                                        }],
+                                    },
+                                    topologyKey: "kubernetes.io/hostname",
+                                }],
+                            },
+                        },
+                  },
         },
         strategy: {
             type: "RollingUpdate",

@@ -162,7 +162,7 @@ local getCanaryLivenessProbe(port) = (
                     pool: configs.estate,
                 },
             } + getAffinity(canaryName)
-            + slbflights.getDnsPolicy(),
+            + slbconfigs.getDnsPolicy(),
         },
         strategy: {
             type: "RollingUpdate",

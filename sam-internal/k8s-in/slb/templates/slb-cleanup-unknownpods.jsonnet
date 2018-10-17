@@ -76,7 +76,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 nodeSelector: {
                     master: "true",
                 },
-            } + slbflights.getDnsPolicy(),
+            } + slbconfigs.getDnsPolicy(),
             metadata: {
                 labels: {
                     name: "slb-cleanup-unknownpods",

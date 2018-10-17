@@ -42,18 +42,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                  configs.sfdchosts_arg,
                                                  "--k8sapiserver=",
                                                  "--connPort=" + slbports.slb.nginxDataConnPort,
-                                             ]
-                                             + (
-                                                 if slbimages.hypersdn_build >= 1258 then
-                                                     [
-                                                         "--monitorFrequency=10s",
-                                                     ] else
-                                                     [
-                                                         "--monitorFrequency=180s",
-                                                     ]
-                                             )
-                                             + [
-
+                                                 "--monitorFrequency=10s",
                                                  "--nginxWDmetricsEndpoint=" + configs.funnelVIP,
                                                  "--nginxWDhostnameOverride=$(NODE_NAME)",
                                              ],
@@ -83,7 +72,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                     slbshared.slbLogCleanup,
                                 ] else []
                             ),
-            } + slbflights.getDnsPolicy()
+            } + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,
             metadata: {
                 labels: {

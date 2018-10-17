@@ -34,7 +34,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                 containers: [
                     slbshared.slbLogCleanup,
                 ],
-            } + slbflights.getDnsPolicy(),
+            } + slbconfigs.getDnsPolicy(),
         },
         updateStrategy: {
             type: "RollingUpdate",

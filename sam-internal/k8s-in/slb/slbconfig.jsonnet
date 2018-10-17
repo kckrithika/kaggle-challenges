@@ -298,6 +298,20 @@
             },
         },
     },
+
+    getNodeApiClientSocketSettings():: [
+        "--client.socketDir=" + $.configDir,
+        "--client.dialSocket=true",
+    ],
+
+    getNodeApiServerSocketSettings():: [
+        "--listenOnSocket=true",
+        "--readOnly=false",
+    ],
+
+    // Avoid using kubedns for all SLB pods.
+    getDnsPolicy():: { dnsPolicy: "Default" },
+
     subnet: self.perCluster.subnet[estate],
     publicSubnet: self.perCluster.publicSubnet[estate],
     reservedIps: self.perCluster.reservedIps[estate],

@@ -69,7 +69,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                         },
                     },
                 },
-            } + slbflights.getDnsPolicy(),
+            } + slbconfigs.getDnsPolicy(),
         },
         updateStrategy: {
             type: "RollingUpdate",
