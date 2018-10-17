@@ -33,7 +33,7 @@ serviceDeployment {
     env:: super.commonEnv + [
         {
             name: "CONFIG_VERSION",
-            value: "7",
+            value: "8",
         },
         {
             name: "DARKLAUNCH",

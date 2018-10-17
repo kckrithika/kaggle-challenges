@@ -51,7 +51,7 @@ items:
               "monitoring": {
                   "datacenter": "prd",
                   "pod": "firefly-package",
-                  "report-frequency": 1,
+                  "report-frequency": 60,
                   "superpod": "NONE",
                   "system-exception-threshold": 5
               }
@@ -265,7 +265,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "6"
+            value: "7"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -436,7 +436,7 @@ items:
               "monitoring": {
                   "datacenter": "prd",
                   "pod": "firefly-package",
-                  "report-frequency": 1,
+                  "report-frequency": 60,
                   "superpod": "NONE",
                   "system-exception-threshold": 5
               }
@@ -650,7 +650,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "4"
+            value: "5"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -789,7 +789,7 @@ items:
               "monitoring": {
                   "datacenter": "prd",
                   "pod": "firefly-pullrequest",
-                  "report-frequency": 1,
+                  "report-frequency": 60,
                   "superpod": "NONE",
                   "system-exception-threshold": 5
               }
@@ -998,7 +998,7 @@ items:
                 apiVersion: v1
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
-            value: "7"
+            value: "8"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -1153,7 +1153,7 @@ items:
               "monitoring": {
                   "datacenter": "prd",
                   "pod": "firefly-promotion",
-                  "report-frequency": 1,
+                  "report-frequency": 60,
                   "superpod": "NONE",
                   "system-exception-threshold": 5
               }
@@ -1363,7 +1363,7 @@ items:
                 apiVersion: v1
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
-            value: "2"
+            value: "3"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE

@@ -42,7 +42,7 @@ items:
               "monitoring": {
                   "datacenter": "prd",
                   "pod": "firefly-intake",
-                  "report-frequency": 1,
+                  "report-frequency": 60,
                   "superpod": "NONE",
                   "system-exception-threshold": 5
               },
@@ -263,7 +263,7 @@ items:
                 apiVersion: v1
                 fieldPath: status.podIP
           - name: CONFIG_VERSION
-            value: "5"
+            value: "6"
           - name: DARKLAUNCH
             value: "true"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:176
@@ -291,7 +291,7 @@ items:
               path: /actuator/health
               port: admin-port
             initialDelaySeconds: 30
-            periodSeconds: 30
+            periodSeconds: 60
             successThreshold: 1
             timeoutSeconds: 30
           volumeMounts:
