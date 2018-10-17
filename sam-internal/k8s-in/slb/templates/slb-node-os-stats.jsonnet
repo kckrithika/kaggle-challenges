@@ -62,7 +62,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                         },
                     },
                 ],
-            } + slbflights.getDnsPolicy(),
+            } + slbconfigs.getDnsPolicy(),
         },
         strategy: {
             type: "RollingUpdate",

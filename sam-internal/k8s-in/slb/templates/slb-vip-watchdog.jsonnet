@@ -105,10 +105,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                        ] + (
                                            if std.objectHas(slbconfigs.perCluster.vipwdOptOutOptions, configs.estate) then
                                                slbconfigs.perCluster.vipwdOptOutOptions[configs.estate]
-                                           else if slbimages.hypersdn_build < 1098 then ["--optOutNamespace=kne"]  # keeps backward compatibility for phase 3/4
                                            else []
                                        )
-                                       + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+                                       + slbconfigs.getNodeApiClientSocketSettings()
                                        + ([
                                               "--followRedirect=false",
                                               "--slaRequiresHealthProbes=true",
@@ -126,7 +125,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           slbshared.slbCleanupConfig,
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                           slbshared.slbLogCleanup,
-                      ] + slbflights.getManifestWatcherIfEnabled(),
+                          slbshared.slbManifestWatcher(),
+                      ],
                       dnsPolicy: "Default",
                   }
                   + slbconfigs.slbEstateNodeSelector,

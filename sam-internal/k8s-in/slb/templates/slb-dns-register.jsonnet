@@ -61,14 +61,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--subnet=" + slbconfigs.subnet,
                                                        "--client.serverPort=" + portconfigs.slb.slbNodeApiDnsOverridePort,
                                                        "--client.serverInterface=lo",
+                                                       "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
+                                                       "--maxDeleteEntries=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
                                                    ]
-                                                   + (
-                                                       if slbimages.hypersdn_build >= 1258 then [
-                                                           "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
-                                                       ] else []
-                                                   )
-                                                   + (if slbflights.explicitDeleteLimit then ["--maxDeleteEntries=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]] else [])
-                                                   + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                                                   + slbconfigs.getNodeApiClientSocketSettings(),
                                           volumeMounts: configs.filter_empty([
                                               configs.maddog_cert_volume_mount,
                                               configs.cert_volume_mount,
@@ -82,8 +78,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                       slbshared.slbLogCleanup,
                                       slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort, true),
                                       madkub.madkubRefreshContainer(certDirs),
+                                      slbshared.slbManifestWatcher(),
                                   ]
-                                  + slbflights.getManifestWatcherIfEnabled()
                                   + (if slbflights.cnameRegisterEnabled then [
                                          {
                                              name: "slb-cname-register",
@@ -106,12 +102,12 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                              ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
                                          },
                                      ] else []),
-                      nodeSelector: (if slbflights.dnsRegisterPodFloat then { pool: slbconfigs.slbEstate } else { "slb-dns-register": "true" }),
+                      nodeSelector: { pool: slbconfigs.slbEstate },
                       initContainers: [
                           madkub.madkubInitContainer(certDirs),
                       ],
                   }
-                  + slbflights.getDnsPolicy(),
+                  + slbconfigs.getDnsPolicy(),
 
         },
         strategy: {

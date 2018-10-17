@@ -44,13 +44,11 @@
                  ] + (if configs.estate == "prd-sam" then [
                           "--servicesToLbOverride=" + servicesToLbOverride,
                           "--servicesNotToLbOverride=" + servicesNotToLbOverride,
-                      ] else [])
-                 + (if slbimages.hypersdn_build >= 999 then [
-                        "--control.configProcSentinel=" + configProcSentinel,
-                    ] else [])
-                 + (if slbimages.hypersdn_build >= 1011 then [
-                        "--alwaysPopulateRealServers=true",
-                    ] else []),
+                      ] else []) +
+                 [
+                     "--control.configProcSentinel=" + configProcSentinel,
+                     "--alwaysPopulateRealServers=true",
+                 ],
         volumeMounts: configs.filter_empty([
             configs.maddog_cert_volume_mount,
             slbconfigs.slb_volume_mount,
@@ -89,11 +87,12 @@
                      "--checkSentinel=true",
                      "--control.configProcSentinel=" + configProcSentinel,
                      "--control.sentinelExpiration=1800s",  # config processor's interval
-                 ] + slbflights.getNodeApiServerSocketSettings()
-                 + (if slbflights.mwSentinelEnabled then [
-                        "--checkMwSentinel=" + mwSentinelNeedsCheck,
-                        "--control.manifestWatcherSentinel=" + mwSentinel,
-                    ] else []),
+                 ]
+                 + slbconfigs.getNodeApiServerSocketSettings()
+                 + [
+                     "--checkMwSentinel=" + mwSentinelNeedsCheck,
+                     "--control.manifestWatcherSentinel=" + mwSentinel,
+                 ],
         volumeMounts: configs.filter_empty([
                                                slbconfigs.slb_volume_mount,
                                                slbconfigs.logs_volume_mount,
@@ -111,13 +110,10 @@
                      "--shouldSkipServiceRecords=true",
                      "--shouldNotDeleteAllFiles=true",
                      "--log_dir=" + slbconfigs.logsDir,
-                 ] + (if slbimages.hypersdn_build >= 1028 then [
-                          "--shouldSkipSlbBlock=true",
-                          "--skipFilesWithSuffix=.sock",
-                      ] else [
-                          "--skipFilesWithSuffix=slb.block",
-                      ])
-                 + ["--maxDeleteFileCount=20"],
+                     "--shouldSkipSlbBlock=true",
+                     "--skipFilesWithSuffix=.sock",
+                     "--maxDeleteFileCount=20",
+                ],
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
@@ -138,14 +134,14 @@
                      "--log_dir=" + slbconfigs.logsDir,
                      "--client.serverPort=" + nodeApiPort,
                      "--client.serverInterface=lo",
-                 ] + (if $.dirSuffix == "slb-nginx-config-b" && slbimages.hypersdn_build >= 1061 then [
+                 ] + (if $.dirSuffix == "slb-nginx-config-b" then [
                           "--control.sentinelExpiration=1200s",
                       ] else [])
                  + [
                      "--nginxPodMode=" + nginxPodMode,
                  ]
-                 + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
-                 + (if slbflights.explicitDeleteLimit then ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]] else []),
+                 + slbconfigs.getNodeApiClientSocketSettings()
+                 + ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]],
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.sbin_volume_mount,
@@ -200,9 +196,9 @@
                  ] + (if configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1271 then [
                      "--turnDownOnSIGTERM=true",
                      ] else [])
-                 + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
-                 + slbflights.getValidateVIPAssignmentSubnet()
-                 + (if slbflights.explicitDeleteLimit then ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]] else []),
+                 + slbconfigs.getNodeApiClientSocketSettings()
+                 + ["--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet]
+                 + ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]],
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
@@ -224,12 +220,12 @@
                      "--hostnameOverride=$(NODE_NAME)",
                      "--log_dir=" + slbconfigs.logsDir,
                      configs.sfdchosts_arg,
-                 ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
-                 + (if slbflights.explicitDeleteLimit then ["--maxDeleteLimit=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]] else [])
-                 + (if slbflights.mwSentinelEnabled then [
+                 ] + slbconfigs.getNodeApiClientSocketSettings()
+                 + ["--maxDeleteLimit=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]]
+                 + ([
                         "--client.allowStale=true",
                         "--control.manifestWatcherSentinel=" + mwSentinel,
-                    ] else []),
+                    ]),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             configs.sfdchosts_volume_mount,
@@ -255,9 +251,7 @@
             "--filesDirToCleanup=" + slbconfigs.logsDir,
             "--shouldSkipServiceRecords=false",
             "--shouldNotDeleteAllFiles=false",
-        ] + (if slbimages.hypersdn_build < 1098 then [
-                 configs.sfdchosts_arg,
-             ] else []),
+        ],
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,

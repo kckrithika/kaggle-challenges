@@ -60,7 +60,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         ],
                     },
                 ],
-            } + slbflights.getDnsPolicy()
+            } + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,
             metadata: {
                 labels: {

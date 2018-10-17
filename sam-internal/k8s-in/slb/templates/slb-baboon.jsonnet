@@ -61,7 +61,7 @@ if slbconfigs.isTestEstate || configs.estate == "prd-sam" then configs.deploymen
                                 "--deleteIpvsIntfFlag=true",
                                 "--deleteBackendPodFlag=true",
                                 "--client.serverInterface=lo",
-                        ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                        ] + slbconfigs.getNodeApiClientSocketSettings(),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,

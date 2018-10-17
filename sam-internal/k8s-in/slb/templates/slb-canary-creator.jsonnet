@@ -70,7 +70,7 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                     },
                     slbshared.slbLogCleanup,
                 ],
-            } + slbflights.getDnsPolicy(),
+            } + slbconfigs.getDnsPolicy(),
         },
         strategy: {
             type: "RollingUpdate",

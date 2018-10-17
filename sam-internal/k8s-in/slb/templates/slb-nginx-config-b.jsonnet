@@ -76,15 +76,13 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     configs.cert_volume,
                     slbconfigs.slb_config_volume,
                     slbconfigs.cleanup_logs_volume,
-                ] + (if slbflights.certDeployerEnabled then [
-                        {
-                            emptyDir: {
-                                medium: "Memory",
-                            },
-                            name: "customer-certs",
+                    {
+                        emptyDir: {
+                            medium: "Memory",
                         },
-                    ]
-                else [])),
+                        name: "customer-certs",
+                    },
+                ]),
                 containers: [
                                 {
                                     ports: [
@@ -98,18 +96,12 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                      [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                                     command: [
                                         "/sdn/slb-nginx-config",
-                                        ] + (if slbimages.hypersdn_build < 1165 then ["--configDir=" + slbconfigs.configDir] else []) + [
-
                                         "--target=" + slbconfigs.slbDir + "/nginx/config",
                                         "--netInterfaceName=eth0",
                                         "--metricsEndpoint=" + configs.funnelVIP,
                                         "--log_dir=" + slbconfigs.logsDir,
-                                    ] + (
-                                        if slbflights.explicitDeleteLimit then
-                                          ["--maxDeleteServiceCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]]
-                                        else
-                                          ["--maxDeleteServiceCount=20"]
-                                        )
+                                        "--maxDeleteServiceCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
+                                    ]
                                     + [
                                         configs.sfdchosts_arg,
                                         "--client.serverInterface=lo",
@@ -121,14 +113,20 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                       + (if slbimages.phaseNum <= 2 then [
                                             "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
                                         ] else [])
-                                      + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
-                                      + slbflights.getSimpleDiffAndNewConfigGeneratorIfEnabled()
+                                      + slbconfigs.getNodeApiClientSocketSettings()
+                                      + [
+                                            "--enableSimpleDiff=true",
+                                            "--newConfigGenerator=true",
+                                            "--control.nginxReloadSentinel=" + slbconfigs.slbDir + "/nginx/config/nginx.marker",
+                                      ]
                                       + (if slbimages.hypersdn_build >= 1279 then [
                                             "--httpconfig.custCertsDir=" + slbconfigs.customerCertsPath,
                                         ] else [
                                             "--custCertsDir=" + slbconfigs.customerCertsPath,
                                         ])
-                                      + slbflights.getCheckDuplicateVipSettings(),
+                                      + [
+                                            "--checkDuplicateVips=true",
+                                      ],
                                     volumeMounts: configs.filter_empty([
                                         {
                                             name: "var-target-config-volume",
@@ -172,12 +170,12 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                         },
                                         slbconfigs.nginx_logs_volume_mount,
                                     ] + madkub.madkubSlbCertVolumeMounts(certDirs) +
-                                        (if slbflights.certDeployerEnabled then [
+                                    [
                                         {
                                             mountPath: slbconfigs.customerCertsPath,
                                             name: "customer-certs",
                                         },
-                                    ] else [])),
+                                    ]),
                                 },
                                 {
                                  name: "slb-nginx-data",
@@ -223,12 +221,11 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                             slbconfigs.slb_volume_mount,
                                             slbconfigs.logs_volume_mount,
                                             configs.sfdchosts_volume_mount,
-                                        ] + (if slbflights.certDeployerEnabled then [
                                             {
                                                 mountPath: slbconfigs.customerCertsPath,
                                                 name: "customer-certs",
                                             },
-                                        ] else [])),
+                                        ]),
                                         env: [
                                             slbconfigs.node_name_env,
                                         ],
@@ -238,8 +235,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                 slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                                 slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
                                 slbshared.slbLogCleanup,
-                            ] + slbflights.getManifestWatcherIfEnabled() +
-                            (if slbflights.certDeployerEnabled then [
+                                slbshared.slbManifestWatcher(),
                                 {
                                     name: "slb-cert-deployer",
                                     image: slbimages.hypersdn,
@@ -250,7 +246,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                         "--log_dir=" + slbconfigs.logsDir,
                                         "--custCertsDir=" + slbconfigs.customerCertsPath,
                                         configs.sfdchosts_arg,
-                                    ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                                    ] + slbconfigs.getNodeApiClientSocketSettings(),
                                     volumeMounts: configs.filter_empty([
                                         {
                                             name: "var-target-config-volume",
@@ -270,7 +266,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                         slbconfigs.node_name_env,
                                     ],
                                 },
-                            ] else []),
+                            ],
                 initContainers: [
                     madkub.madkubInitContainer(certDirs),
                 ],

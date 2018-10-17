@@ -123,12 +123,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--marker=" + slbconfigs.ipvsMarkerFile,
                             "--period=5s",
                             "--log_dir=" + slbconfigs.logsDir,
-                        ] + (
-                            if slbflights.explicitDeleteLimit then
-                              ["--maximumDeleteCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]]
-                            else
-                              ["--maximumDeleteCount=20"]
-                            )
+                            "--maximumDeleteCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
+                        ]
                         + [
                             configs.sfdchosts_arg,
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
@@ -140,7 +136,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         ] + (if slbflights.stockIpvsModules then [
                             "--sforceScheduler=false",
                             ] else [])
-                          + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
+                          + slbconfigs.getNodeApiClientSocketSettings()
                           + slbflights.getIPVSHealthCheckRiseFallSettings(),
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
@@ -200,7 +196,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             ]) +
                         [
                             "--enableConntrack=false",
-                        ] + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir),
+                        ] + slbconfigs.getNodeApiClientSocketSettings(),
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
@@ -217,7 +213,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbshared.slbNodeApi(slbports.slb.slbNodeApiIpvsOverridePort, true),
                     slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIpvsOverridePort),
                     slbshared.slbLogCleanup,
-                ] + slbflights.getManifestWatcherIfEnabled(),
+                    slbshared.slbManifestWatcher(),
+                ],
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
                 },
@@ -248,7 +245,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             },
                         },
                     },
-               } + slbflights.getDnsPolicy(),
+               } + slbconfigs.getDnsPolicy(),
         },
         strategy: {
             type: "RollingUpdate",
