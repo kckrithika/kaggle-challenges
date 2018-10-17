@@ -8,6 +8,6 @@
    - port: 9086
      targetport: 8086
      lbtype: http
-     tls: true
+     tls: false
      reencrypt: true
 
