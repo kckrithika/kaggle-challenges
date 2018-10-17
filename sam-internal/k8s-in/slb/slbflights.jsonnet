@@ -14,7 +14,7 @@
     explicitDeleteLimit: (if slbimages.phaseNum <= 4 then true else false),
     readablePortConfigurationAnnotations: (slbimages.phaseNum < 1),
     useDeprecatedCanaryDifferences: (slbimages.phaseNum > 2),
-    dnsRegisterPodFloat: (slbimages.phaseNum <= 2),
+    dnsRegisterPodFloat: (slbimages.phaseNum <= 3),
     cnameRegisterEnabled: (slbimages.phaseNum == 1),
 
     getNodeApiClientSocketSettings(configDir):: (if nodeApiUnixSocketEnabled then [
