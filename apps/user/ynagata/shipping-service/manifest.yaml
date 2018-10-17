@@ -20,6 +20,11 @@ system:
       - containerPort: 7020
       - containerPort: 15372
       - containerPort: 9010
+      env:
+      - name: IMAGE_NAME
+        value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/shipping-service:ynagata-20180910-872f5b9
+      - name: MANIFEST_VERSION
+        value: v1
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -30,10 +35,7 @@ system:
     - name: sherpa-ynagata-shipping-service
       # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
       # Use the full git SHA as the docker image tag.
-      image: sfci/servicelibs/sherpa:2.0.26
-      args:
-      - --zipkin-rate
-      - 1.0
+      image: sfci/servicelibs/sherpa-envoy:1.0.1
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       ports:
       - containerPort: 7443
