@@ -3,6 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 local slbCanaryTlsPublicKeyPath =
     if configs.estate == "prd-sdc" then
@@ -69,17 +70,13 @@ local ipvsPodAntiAffinity(canaryName) = (
     } else {}
 );
 
-local fieldIfNonEmpty(name, object, value=object) = {
-    [if std.length(object) > 0 then name]: value,
-};
-
 local getPodAffinity(canaryName) = (
     ipvsPodAntiAffinity(canaryName)
 );
 
 local getAffinity(canaryName) = (
     local affinity = getPodAffinity(canaryName);
-    fieldIfNonEmpty("affinity", affinity)
+    utils.fieldIfNonEmpty("affinity", affinity)
 );
 
 local getCanaryLivenessProbe(port) = (
