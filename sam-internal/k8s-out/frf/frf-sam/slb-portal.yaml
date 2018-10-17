@@ -34,6 +34,16 @@ spec:
         name: slb-portal
       namespace: sam-system
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: name
+                operator: In
+                values:
+                - slb-ipvs
+            topologyKey: kubernetes.io/hostname
       containers:
       - command:
         - /sdn/slb-portal
@@ -305,7 +315,7 @@ spec:
         - mountPath: /tokens
           name: tokens
       nodeSelector:
-        slb-dns-register: "true"
+        pool: frf-slb
       volumes:
       - hostPath:
           path: /data/slb
