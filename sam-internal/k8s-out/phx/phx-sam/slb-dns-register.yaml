@@ -303,7 +303,7 @@ spec:
         - mountPath: /tokens
           name: tokens
       nodeSelector:
-        slb-dns-register: "true"
+        pool: phx-slb
       volumes:
       - hostPath:
           path: /etc/pki_service
