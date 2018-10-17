@@ -20,11 +20,4 @@ local canaryPortConfig = [
 
 if slbconfigs.isProdEstate && configs.estate != "prd-sam" then
     slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {
-
-    // TODO: this is vestigial and should be removed.
-    [if slbflights.useDeprecatedCanaryDifferences then "metadata"]+: {
-        labels+: {
-            "slb.sfdc.net/type": "http",
-        },
-    },
 } else "SKIP"

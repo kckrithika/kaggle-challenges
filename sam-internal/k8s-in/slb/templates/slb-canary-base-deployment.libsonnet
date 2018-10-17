@@ -13,43 +13,8 @@ local slbCanaryTlsPublicKeyPath =
 
 local slbCanaryTlsPrivateKeyPath = "/var/slb/canarycerts/server.key";
 
-// All of these temp_ functions define overrides for small differences between the canaries that should be phased out over time.
-local temp_getServiceNameParam(canaryName) = (
-    if slbflights.useDeprecatedCanaryDifferences then
-        if canaryName == "slb-bravo" then "slb-bravo-svc"
-        else if canaryName == "slb-canary" then "slb-canary-service"
-        else canaryName
-    else canaryName
-);
-
-local temp_getContainerNameParam(canaryName) = (
-    if canaryName == "slb-canary-proxy-tcp-host" && slbflights.useDeprecatedCanaryDifferences then "slb-canary-proxy-tcp" else canaryName
-);
-
-local temp_getContainerSecurityContext(canaryName) = (
-    if canaryName == "slb-canary" && configs.estate != "prd-sdc" && slbflights.useDeprecatedCanaryDifferences then {
-        securityContext: {
-            privileged: true,
-            capabilities: {
-                add: [
-                    "ALL",
-                ],
-            },
-        },
-    } else {}
-);
-
-local temp_useIPVSPodAntiaffinity(canaryName) = (
-    // Unclear why these services anti-affinitize to ipvs everywhere, but they probably don't need to.
-    slbflights.useDeprecatedCanaryDifferences && (
-        canaryName == "slb-canary-proxy-tcp-host" ||
-        canaryName == "slb-canary-proxy-tcp" ||
-        canaryName == "slb-canary-passthrough-tls"
-    )
-);
-
 local ipvsPodAntiAffinity(canaryName) = (
-    if configs.estate == "prd-sdc" || temp_useIPVSPodAntiaffinity(canaryName) then {
+    if configs.estate == "prd-sdc" then {
         podAntiAffinity+: {
             requiredDuringSchedulingIgnoredDuringExecution: [{
                 labelSelector: {
@@ -75,11 +40,12 @@ local getPodAffinity(canaryName) = (
 );
 
 local getAffinity(canaryName) = (
-    local affinity = getPodAffinity(canaryName);
-    utils.fieldIfNonEmpty("affinity", affinity)
+    local podAffinity = getPodAffinity(canaryName);
+    utils.fieldIfNonEmpty("affinity", podAffinity)
 );
 
 local getCanaryLivenessProbe(port) = (
+    // TODO: phase in this liveness probe everywhere.
     if configs.estate == "prd-sdc" then {
         livenessProbe: {
             httpGet: {
@@ -127,12 +93,12 @@ local getCanaryLivenessProbe(port) = (
                 ]),
                 containers: [
                     {
-                        name: temp_getContainerNameParam(canaryName),
+                        name: canaryName,
                         image: slbimages.hypersdn,
                         [if !hostNetwork && configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: std.prune([
                                      "/sdn/slb-canary-service",
-                                     "--serviceName=" + temp_getServiceNameParam(canaryName),
+                                     "--serviceName=" + canaryName,
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--ports=" + std.join(",", ports),
                                  ]
@@ -156,7 +122,6 @@ local getCanaryLivenessProbe(port) = (
                         ]),
                     }
                     + getCanaryLivenessProbe(ports[0])
-                    + temp_getContainerSecurityContext(canaryName),
                 ],
                 nodeSelector: {
                     pool: configs.estate,
