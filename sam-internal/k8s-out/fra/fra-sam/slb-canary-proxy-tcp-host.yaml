@@ -22,19 +22,6 @@ spec:
         name: slb-canary-proxy-tcp-host
       namespace: sam-system
     spec:
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: name
-                operator: In
-                values:
-                - slb-ipvs
-                - slb-ipvs-a
-                - slb-ipvs-b
-                - slb-vip-watchdog
-            topologyKey: kubernetes.io/hostname
       containers:
       - command:
         - /sdn/slb-canary-service
@@ -42,11 +29,12 @@ spec:
         - --log_dir=/host/data/slb/logs/
         - --ports=9120
         image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001273-cc8a2e31
-        name: slb-canary-proxy-tcp
+        name: slb-canary-proxy-tcp-host
         volumeMounts:
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
       dnsPolicy: Default
+      hostNetwork: true
       nodeSelector:
         pool: fra-sam
       volumes:

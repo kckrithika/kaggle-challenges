@@ -25,7 +25,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-canary-service
-        - --serviceName=slb-canary-service
+        - --serviceName=slb-canary
         - --log_dir=/host/data/slb/logs/
         - --ports=9111
         - --tlsPorts=9443
@@ -33,11 +33,6 @@ spec:
         - --publicKey=/var/slb/canarycerts/sam.crt
         image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001273-cc8a2e31
         name: slb-canary
-        securityContext:
-          capabilities:
-            add:
-            - ALL
-          privileged: true
         volumeMounts:
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
