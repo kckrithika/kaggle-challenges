@@ -4,7 +4,6 @@ local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local util = import "util_functions.jsonnet";
 local kingdom = std.extVar("kingdom");
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
-local flag_fs_matchlabels = std.objectHas(flowsnake_images.feature_flags, "fs_matchlabels");
 
 {
     local label_node = self.spec.template.metadata.labels,
