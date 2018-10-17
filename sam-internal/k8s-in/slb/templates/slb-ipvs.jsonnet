@@ -195,7 +195,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                             "--client.serverInterface=lo",
                         ] + (if configs.estate == "prd-sdc" then [
-                                "--enableAcl=true",
+                                "--enableAcl=false",
                             ] else [
                             ]) +
                         [
