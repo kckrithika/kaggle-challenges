@@ -32,7 +32,24 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 },
             },
             spec: {
-                affinity: {
+                affinity:
+                (if slbflights.nginxPodFloat then {
+                    podAntiAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: [{
+                            labelSelector: {
+                              matchExpressions: [{
+                                  key: "name",
+                                  operator: "In",
+                                  values: [
+                                      "slb-ipvs",
+                                      "slb-nginx-config-b",
+                                  ],
+                              }],
+                            },
+                            topologyKey: "kubernetes.io/hostname",
+                      }],
+                    },
+                } else {
                     podAntiAffinity: {
                         requiredDuringSchedulingIgnoredDuringExecution: [{
                             labelSelector: {
@@ -58,7 +75,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             }],
                         },
                     },
-                },
+                }),
                 volumes: configs.filter_empty([
                     {
                         name: "var-target-config-volume",
@@ -271,7 +288,13 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     madkub.madkubInitContainer(certDirs),
                 ],
                 dnsPolicy: "Default",
-            },
+            }
+            + (
+            if slbflights.nginxPodFloat then
+                    {
+                        nodeSelector: { pool: slbconfigs.slbEstate },
+                    } else {}
+                    ),
         },
         strategy: {
             type: "RollingUpdate",
