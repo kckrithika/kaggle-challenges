@@ -123,9 +123,11 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                         ] else [])
                                       + slbflights.getNodeApiClientSocketSettings(slbconfigs.configDir)
                                       + slbflights.getSimpleDiffAndNewConfigGeneratorIfEnabled()
-                                      + (if slbflights.certDeployerEnabled then [
+                                      + (if slbimages.hypersdn_build >= 1279 then [
+                                            "--httpconfig.custCertsDir=" + slbconfigs.customerCertsPath,
+                                        ] else [
                                             "--custCertsDir=" + slbconfigs.customerCertsPath,
-                                        ] else [])
+                                        ])
                                       + slbflights.getCheckDuplicateVipSettings(),
                                     volumeMounts: configs.filter_empty([
                                         {
