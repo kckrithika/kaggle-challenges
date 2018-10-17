@@ -6,7 +6,7 @@ local slbflights = import "slbflights.jsonnet";
 local slbportconfiguration = import "slbportconfiguration.libsonnet";
 
 {
-  slbCanaryBaseService(canaryName, portConfigurations, serviceName=canaryName, vipName=canaryName)::
+  slbCanaryBaseService(canaryName, portConfigurations, serviceName=canaryName, vipName=canaryName, cnames=[])::
   {
     apiVersion: "v1",
     kind: "Service",
@@ -20,7 +20,9 @@ local slbportconfiguration = import "slbportconfiguration.libsonnet";
       annotations: {
         "slb.sfdc.net/name": vipName,
         "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(portConfigurations),
-      },
+      } + (if std.length(cnames) > 0 then {
+        "slb.sfdc.net/cnames": std.manifestJsonEx(cnames, " ")
+      } else {}) ,
     },
 
     spec: {
