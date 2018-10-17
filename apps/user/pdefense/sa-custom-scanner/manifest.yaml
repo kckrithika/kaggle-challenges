@@ -56,9 +56,9 @@ system:
         value: "sam"
       args:
       - -endpoint
-      - samapp/user-pdefense/scanner-pd-sandbox:DATACENTER_ALLENV:7443
+      - samapp/user-pdefense/sa-custom-scanner:DATACENTER_ALLENV:7443
       - -endpoint
-      - scanner-pd-sandbox-plain:DATACENTER_ALLENV:7012
+      - sa-custom-scanner-plain:DATACENTER_ALLENV:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
