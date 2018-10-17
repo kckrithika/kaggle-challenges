@@ -4,6 +4,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local portconfigs = import "portconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 local slbportconfiguration = import "slbportconfiguration.libsonnet";
+local utils = import "util_functions.jsonnet";
 
 {
   slbCanaryBaseService(canaryName, portConfigurations, serviceName=canaryName, vipName=canaryName, cnames=[])::
@@ -20,9 +21,7 @@ local slbportconfiguration = import "slbportconfiguration.libsonnet";
       annotations: {
         "slb.sfdc.net/name": vipName,
         "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(portConfigurations),
-      } + (if std.length(cnames) > 0 then {
-        "slb.sfdc.net/cnames": std.manifestJsonEx(cnames, " ")
-      } else {}) ,
+      } + utils.fieldIfNonEmpty("slb.sfdc.net/cnames", cnames, std.manifestJsonEx(cnames, " ")),
     },
 
     spec: {
