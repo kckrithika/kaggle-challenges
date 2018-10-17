@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 
 {
   monitor(serviceName):: {
-    'report-frequency': 1,
+    'report-frequency': 60,
     datacenter: configs.kingdom,
     superpod: 'NONE',
     pod: serviceName,

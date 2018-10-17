@@ -174,7 +174,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
               },
               initialDelaySeconds: 30,
               timeoutSeconds: 30,
-              periodSeconds: 30,
+              periodSeconds: 60,
               successThreshold: 1,
               failureThreshold: 10,
             },

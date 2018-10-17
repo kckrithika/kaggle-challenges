@@ -56,7 +56,7 @@ if configs.estate == "prd-sam" then
       serviceConf:: super.serviceConf {
           repoName: "stgmanifests",
       },
-      replicas:: 2,
+      replicas:: 1,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
