@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         app: flowsnake-event-exporter
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: FlowsnakeEventExporter
         name: flowsnake-event-exporter
     spec:
       containers:
