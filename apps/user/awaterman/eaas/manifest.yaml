@@ -6,7 +6,7 @@ system:
       - awaterman@salesforce.com
   functions:
   - name: eaas
-    count: 2 
+    count: 3 
     strategy:
       type: RollingUpdate
     containers:
@@ -26,11 +26,11 @@ system:
         value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
       resources:
         requests:
-          memory: "12G"
-          cpu: "800m"
+          memory: "6G"
+          cpu: "500m"
         limits:
-          memory: "12G"
-          cpu: "800m"
+          memory: "6G"
+          cpu: "500m"
       ports:
         - name: grpc
           containerPort: 7020
