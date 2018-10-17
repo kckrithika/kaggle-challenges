@@ -3,15 +3,7 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: slb-canary-pt-host-nw
-    slb.sfdc.net/portconfigurations: |-
-      [
-       {
-        "healthpath": "/health",
-        "lbtype": "dsr",
-        "port": 9113,
-        "targetport": 9113
-       }
-      ]
+    slb.sfdc.net/portconfigurations: '[{"port":9113,"targetport":9113,"lbtype":"dsr","healthpath":"/health"}]'
   labels:
     app: slb-canary-passthrough-host-network-service
   name: slb-canary-passthrough-host-network-service
