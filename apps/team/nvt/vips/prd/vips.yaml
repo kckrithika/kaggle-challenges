@@ -8,3 +8,13 @@
       targetport: 8980
       lbtype: tcp
       healthprotocol: tcp
+- lbname: ops0-momapi1-0-prd
+  customlbname: ops0-momapi1-0-prd
+  servers:
+    - ops0-mom2-1-prd.eng.sfdc.net
+    - ops0-mom1-1-prd.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 8443
+      lbtype: tcp
+      healthprotocol: tcp
