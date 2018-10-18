@@ -3,3 +3,5 @@ apps:
     - prd/prd-sam
   scanner-pd-sandbox:
     - prd/prd-sam
+  sa-custom-scanner:
+    - prd/prd-sam
