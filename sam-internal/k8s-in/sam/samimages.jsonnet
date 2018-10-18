@@ -76,7 +76,7 @@ for ce in [
 
         ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
         "2": $.per_phase["3"] {
-            hypersam: "sam-0002328-f0e6eae5",
+            hypersam: "sam-0002336-6a8184c1",
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
