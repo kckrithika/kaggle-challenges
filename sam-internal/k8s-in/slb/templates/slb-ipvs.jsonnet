@@ -135,9 +135,13 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--enablePersistence=false",
                         ] + (if slbflights.stockIpvsModules then [
                             "--sforceScheduler=false",
-                            ] else [])
-                          + slbconfigs.getNodeApiClientSocketSettings()
-                          + slbflights.getIPVSHealthCheckRiseFallSettings(),
+                        ] else [])
+                        + slbconfigs.getNodeApiClientSocketSettings()
+                        + [
+                            // Note that current nginx config is hard-coded to rise=2, fall=5 (https://git.soma.salesforce.com/sdn/sdn/blob/assert-validation-succeeds/src/slb/slb-nginx-config/commonconfig/commonconfig.go#L147-L152).
+                            "--healthcheck.riseCount=5",
+                            "--healthcheck.fallCount=2",
+                        ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
