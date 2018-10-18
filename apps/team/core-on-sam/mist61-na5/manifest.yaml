@@ -130,7 +130,7 @@ system:
         - name: log-volume-jvm
           mountPath: /home/sfdc/logs/jvm
         - name: tls-client-cert
-          mountPath: /certs
+          mountPath: /etc/pki_service
         - name: coreapp-config-volume
           mountPath: /home/sfdc/config_override
 
