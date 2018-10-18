@@ -5,6 +5,8 @@ system:
   notifications:
     email:
     - yganji@salesforce.com
+    email:
+    - fvalbuena@salesforce.com
   functions:
   # service name
   - name: spaasmesh
