@@ -33,7 +33,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
             env: [
               {
                 name: "SCONE_SHIPPING_DEST",
-                value: "shipping.service-mesh:7020",
+                value: "shipping-istio.service-mesh:7020",
               },
             ],
             image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-ordering:86a47e93cb4796e4a24f63cee4b305356ddecc1e",
