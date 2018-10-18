@@ -78,7 +78,7 @@ items:
                   },
                   "pod": "firefly-package",
                   "report-frequency": 1,
-                  "superpod": "NONE",
+                  "superpod": "prd-samtwo",
                   "system-exception-threshold": 5
               }
           },
@@ -500,7 +500,7 @@ items:
                   },
                   "pod": "firefly-package",
                   "report-frequency": 1,
-                  "superpod": "NONE",
+                  "superpod": "prd-samtwo",
                   "system-exception-threshold": 5
               }
           },
@@ -890,7 +890,7 @@ items:
                   },
                   "pod": "firefly-pullrequest",
                   "report-frequency": 1,
-                  "superpod": "NONE",
+                  "superpod": "prd-samtwo",
                   "system-exception-threshold": 5
               }
           },
@@ -1291,7 +1291,7 @@ items:
                   },
                   "pod": "firefly-promotion",
                   "report-frequency": 1,
-                  "superpod": "NONE",
+                  "superpod": "prd-samtwo",
                   "system-exception-threshold": 5
               }
           },

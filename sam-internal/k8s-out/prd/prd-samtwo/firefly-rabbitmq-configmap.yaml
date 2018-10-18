@@ -5,10 +5,36 @@ data:
         "firefly": {
             "monitoring": {
                 "datacenter": "prd",
+                "enable-funnel-publisher": true,
+                "enable-metrics-logging": false,
+                "funnel": {
+                    "avro-schema-fingerprint": "AVG7NnlcHNdk4t_zn2JBnQ",
+                    "backoff-time": 1,
+                    "base-path": "funnel",
+                    "endpoint": "ajna0-funnel1-0-prd.data.sfdc.net",
+                    "funnel-api-version": "v1",
+                    "http-port": 80,
+                    "https-port": 443,
+                    "max-publish-tries": 3,
+                    "publish-api": "publishBatch",
+                    "ssl-enabled": true
+                },
+                "metric-fields": {
+                    "common-tags": {
+                        "k8.namespace": "${MY_POD_NAMESPACE}",
+                        "k8.node.name": "${MY_NODE_NAME}",
+                        "node.name": "${RABBITMQ_NODENAME}"
+                    },
+                    "datacenter": "prd",
+                    "pod": "'${MY_POD_NAME}'",
+                    "service": "firefly",
+                    "subservice": "firefly-rabbitmq",
+                    "superpod": "prd-samtwo"
+                },
                 "node-name": "${RABBITMQ_NODENAME}",
-                "pod": "rabbitmq",
+                "pod": "'${MY_POD_NAME}'",
                 "report-frequency": 1,
-                "superpod": "NONE",
+                "superpod": "prd-samtwo",
                 "system-exception-threshold": 5
             },
             "rabbitmqapi": {

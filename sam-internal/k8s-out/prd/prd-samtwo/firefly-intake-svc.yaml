@@ -68,7 +68,7 @@ items:
                   },
                   "pod": "firefly-intake",
                   "report-frequency": 1,
-                  "superpod": "NONE",
+                  "superpod": "prd-samtwo",
                   "system-exception-threshold": 5
               },
               "rabbitmq": {
