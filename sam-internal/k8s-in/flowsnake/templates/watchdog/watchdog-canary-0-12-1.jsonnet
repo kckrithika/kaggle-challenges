@@ -21,7 +21,7 @@ configs.deploymentBase("flowsnake") {
         namespace: "flowsnake",
     },
     spec+: {
-        selector: {
+        [if flag_fs_metric_labels then "selector"]+: {
             matchLabels: {
                 app: label_node.app,
                 apptype: label_node.apptype,
@@ -48,10 +48,9 @@ configs.deploymentBase("flowsnake") {
                 labels: {
                     app: "watchdog-canary-0-12-1",
                     apptype: "monitoring",
-                } + if flag_fs_metric_labels then {
                     flowsnakeOwner: "dva-transform",
                     flowsnakeRole: "WatchdogCanary-0-12-1",
-                } else {},
+                },
             },
             spec: {
                 restartPolicy: "Always",
