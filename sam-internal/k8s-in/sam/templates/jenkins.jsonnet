@@ -13,6 +13,10 @@ if configs.estate == "prd-samdev" then {
                     {
                         name: "jenkins",
                         image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tkuznets/jenkins:20180829",
+                        securityContext: {
+                            runAsNonRoot: false,
+                            runAsUser: 0,
+                        },
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "docker",
@@ -64,6 +68,11 @@ if configs.estate == "prd-samdev" then {
                         ],
                     },
                 ],
+                securityContext: {
+                          fsGroup: 7447,
+                          runAsNonRoot: true,
+                          runAsUser: 7447,
+                        },
                 volumes: [
                     {
                         hostPath: {
