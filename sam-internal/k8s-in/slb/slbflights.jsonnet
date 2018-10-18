@@ -9,7 +9,7 @@
     cnameRegisterEnabled: (slbimages.phaseNum <= 0),
     nginxPodFloat: (slbimages.phaseNum <= 1),
 
-    getIPVSHealthCheckRiseFallSettings():: (if slbimages.phaseNum <= 2 then [
+    getIPVSHealthCheckRiseFallSettings():: (if slbimages.phaseNum <= 3 then [
             // Defaults are currently rise=2, fall=3 (https://git.soma.salesforce.com/sdn/sdn/blob/assert-validation-succeeds/src/slb/slb-ipvs-processor/healthcheckmanager/health_check_manager.go#L20-L21).
             // Flighting change to make this rise=5, fall=2 -- being treated as healthy should require a higher bar than being treated as unhealthy.
             // Note that current nginx config is hard-coded to rise=2, fall=5 (https://git.soma.salesforce.com/sdn/sdn/blob/assert-validation-succeeds/src/slb/slb-nginx-config/commonconfig/commonconfig.go#L147-L152).
