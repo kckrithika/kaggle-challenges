@@ -22,11 +22,4 @@ local canaryPortConfig = [
 
 if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then
     slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {
-
-    // TODO: this is vestigial and should be removed.
-    [if slbflights.useDeprecatedCanaryDifferences then "metadata"]+: {
-        labels+: {
-            "slb.sfdc.net/type": "none",
-        },
-    },
 } else "SKIP"

@@ -16,7 +16,6 @@ local utils = import "util_functions.jsonnet";
       namespace: "sam-system",
       labels: {
         app: serviceName,
-        [if slbflights.useDeprecatedCanaryDifferences then "slb.sfdc.net/name"]: vipName,
       } + configs.ownerLabel.slb,
       annotations: {
         "slb.sfdc.net/name": vipName,
