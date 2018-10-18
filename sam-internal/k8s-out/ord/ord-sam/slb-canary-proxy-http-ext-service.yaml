@@ -3,7 +3,15 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: slb-canary-proxy-http-ext
-    slb.sfdc.net/portconfigurations: '[{"port":80,"targetport":9116,"lbtype":"http","healthpath":"/health"}]'
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "healthpath": "/health",
+        "lbtype": "http",
+        "port": 80,
+        "targetport": 9116
+       }
+      ]
   labels:
     app: slb-canary-proxy-http-ext-service
   name: slb-canary-proxy-http-ext-service
