@@ -6,5 +6,5 @@
      targetport: 9000
      lbtype: http
      healthport: 9000
-     healthpath: "/trace/v3/ping"
+     healthpath: "/index.html?ping"
      healthprotocol: "http"
