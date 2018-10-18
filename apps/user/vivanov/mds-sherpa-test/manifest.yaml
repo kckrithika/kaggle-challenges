@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/metadata-service:liveness2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/metadata-service:liveness3
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -22,8 +22,8 @@ system:
         value: 15523
       livenessProbe:
         initialDelaySeconds: 60
-        periodSeconds: 60
-        timeoutSeconds: 90
+        periodSeconds: 30
+        timeoutSeconds: 10
         httpGet:
           path: /manage/health
           port: 15523
