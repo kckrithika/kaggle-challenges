@@ -16,4 +16,8 @@
             "--healthcheck.riseCount=5",
             "--healthcheck.fallCount=2",
         ] else []),
+
+    getIPVSConsistencyIgnoreServerWeights():: (if slbimages.hypersdn_build >= 1288 then [
+        "--ignoreWeightsInConsistencyCheck=true",
+    ] else []),
 }
