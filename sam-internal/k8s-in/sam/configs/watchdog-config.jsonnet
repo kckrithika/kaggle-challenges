@@ -125,3 +125,9 @@ std.prune({
      KubeletErrorPerSecond: 1,
      KubeletErrorCheckerFrequency: "20s",
   } else {})
+
+  #TODO: TEMP code, remove after sam/sam clean up.
+  # Default value is set to true, when set to true it can cause crashloopbackoff if the deployment is missing.
+  + (if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+         deleteSyntheticDeployment: false,
+      } else {})
