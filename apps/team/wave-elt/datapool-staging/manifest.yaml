@@ -37,7 +37,7 @@ system:
         value: /home/datapool/client-certs/client
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE
-        value: dva/flowsnake-job-datapool-engine:332
+        value: dva/flowsnake-job-datapool-engine:333
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_KIND
         value: dockerDefaultRegistryImage
