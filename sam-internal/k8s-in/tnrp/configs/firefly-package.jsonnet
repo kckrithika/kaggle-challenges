@@ -59,8 +59,17 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       'context-prefix': '',
       'health-check-repo': 'tnrpfirefly',
     },
+    local custom_monitoring_configs = {
+      'enable-metrics-logging': false,
+      'enable-funnel-publisher': true,
+      'metric-fields' : {
+        'common-tags': {
+            'repo': '${INSTANCE_TYPE}',
+        }
+      }
+    },
     firefly: {
-      monitoring: monitoringConfig.monitor(serviceName)
+      monitoring: std.mergePatch(monitoringConfig.monitor(serviceName), custom_monitoring_configs)
     }
   }
 }
