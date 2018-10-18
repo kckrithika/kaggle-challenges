@@ -12,7 +12,7 @@ local kingdom = std.extVar("kingdom");
     # Example:
     #   # [alias] Added this override to fix issue xxx
     #   "prd,prd-sam,*,pilot": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/pilot:1.0.2",
-    # "prd,prd-samtest,istio-pilot-deployment,pilot": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/pilot:1.0.2",
+    #   "prd,prd-samtest,istio-pilot-deployment,pilot": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/pilot:1.0.2",
 
   },
 
@@ -24,12 +24,16 @@ local kingdom = std.extVar("kingdom");
     # https://git.soma.salesforce.com/sam/sam/wiki/SAM-Auto-Deployer#how-to-find-phase-0-hypersam-tag
 
     # NOTE:
-    # Each phase is overlayed on the next phase.  This means that for things that are the same everywhere
+    # Each phase is overlayed on the next phase. This means that for things that are the same everywhere
     # you are free to simply define it only in Phase4 and all the rest will inherit it.
 
     ### Release Phase 0 - prd-sam and prd-samtest
     "0": $.per_phase["1"] {
        pilot: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/pilot:1.0.2",
+       proxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxyv2:1.0.2",
+       proxyinit: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxy_init:1.0.2",
+       shipping: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:86a47e93cb4796e4a24f63cee4b305356ddecc1e",
+       ordering: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-ordering:86a47e93cb4796e4a24f63cee4b305356ddecc1e",
      },
 
     ### Release Phase 1 - TBD
@@ -68,6 +72,10 @@ local kingdom = std.extVar("kingdom");
   ),
 
   pilot: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].pilot),
+  proxy: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].proxy),
+  proxyinit: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].proxyinit),
+  shipping: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].shipping),
+  ordering: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].ordering),
 
   # image_functions needs to know the filename of the template we are processing
   # Each template must set this at time of importing this file, for example:
