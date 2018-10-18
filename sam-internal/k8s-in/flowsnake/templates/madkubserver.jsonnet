@@ -94,18 +94,8 @@ configs.deploymentBase("flowsnake") {
                   mountPath: "/maddog-onebox",
                   name: "maddog-onebox-certs",
                 },
-            ] else if std.objectHas(flowsnake_images.feature_flags, "del_certsvc_certs") then
-            [
-                {
-                  mountPath: "/etc/pki_service/",
-                  name: "pki",
-                },
             ] else
             [
-                {
-                  mountPath: "/data/certs",
-                  name: "kubeconfig-certs",
-                },
                 {
                   mountPath: "/etc/pki_service/",
                   name: "pki",
@@ -230,7 +220,7 @@ configs.deploymentBase("flowsnake") {
                 path: "/tmp/sc_repo",
               },
             },
-        ] else [
+          ] else [
             {
               name: "kubeconfig",
               hostPath: {
@@ -243,15 +233,7 @@ configs.deploymentBase("flowsnake") {
                 path: "/etc/pki_service",
               },
             },
-        ] + (if std.objectHas(flowsnake_images.feature_flags, "del_certsvc_certs") then []
-            else [
-            {
-              name: "kubeconfig-certs",
-              hostPath: {
-                path: "/data/certs",
-              },
-            },
-            ])
+          ]
         ),
       },
     },

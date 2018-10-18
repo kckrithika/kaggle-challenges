@@ -48,9 +48,9 @@ local build_command_sets = {
    },
 };
 
-local build_docker_test_commands = if flag_docker_test then {
+local build_docker_test_commands = {
     DockerDaemon: { DockerDaemon: "/test-docker.sh" },
-} else {};
+};
 
 local build_btrfs_test_commands = if flag_btrfs_test then {
     BtrfsHung: { BtrfsHung: "bash /var/run/check-btrfs/check-btrfs.sh" },
