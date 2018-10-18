@@ -1,15 +1,13 @@
 local configs = import "config.jsonnet";
 
 if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
-{
-  apiVersion: "extensions/v1beta1",
-  kind: "Deployment",
+configs.deploymentBase("service-mesh") {
   metadata: {
     creationTimestamp: null,
     name: "shipping-istio",
     namespace: "service-mesh",
   },
-  spec: {
+  spec+: {
     replicas: 1,
     strategy: {
     },

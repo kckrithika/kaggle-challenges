@@ -6,6 +6,10 @@ metadata:
   namespace: service-mesh
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: shipping-istio
+      version: v1
   strategy: {}
   template:
     metadata:
