@@ -97,10 +97,10 @@ system:
       args:
       # Non-namespaced, plaintext
       - -endpoint
-      - spaasmesh:DATACENTER_ALLENV:7020
+      - spaas:DATACENTER_ALLENV:7020
        # Namespaced, TLS
       - -endpoint
-      - service-protection/spaasmesh:DATACENTER_ALLENV:7443 
+      - service-protection/spaas:DATACENTER_ALLENV:7443 
       - -logging.dir
       - /log
       livenessProbe:
