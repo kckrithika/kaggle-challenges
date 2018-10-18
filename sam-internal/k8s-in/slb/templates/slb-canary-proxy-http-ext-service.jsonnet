@@ -21,9 +21,9 @@ local canaryPortConfig = [
         port=443,
         targetPort=portconfigs.slb.canaryServiceProxyHttpPort,
         lbType="http",
-        name="slb-canary-proxy-http-port",
+        name="slb-canary-proxy-https-port",
     ) {
-        tls: "true",
+        tls: true,
         healthpath: "/health",
         healthprotocol: "http",
         tlscertificate: "secret_service:SlbPublicCanary:" + configs.kingdom + "-cert",

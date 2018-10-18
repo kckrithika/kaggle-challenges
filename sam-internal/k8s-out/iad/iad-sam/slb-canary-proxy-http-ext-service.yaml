@@ -17,7 +17,7 @@ metadata:
         "lbtype": "http",
         "port": 443,
         "targetport": 9116,
-        "tls": "true",
+        "tls": true,
         "tlscertificate": "secret_service:SlbPublicCanary:iad-cert",
         "tlskey": "secret_service:SlbPublicCanary:iad-key"
        }
@@ -32,7 +32,7 @@ spec:
     port: 80
     protocol: TCP
     targetPort: 9116
-  - name: slb-canary-proxy-http-port
+  - name: slb-canary-proxy-https-port
     port: 443
     protocol: TCP
     targetPort: 9116
