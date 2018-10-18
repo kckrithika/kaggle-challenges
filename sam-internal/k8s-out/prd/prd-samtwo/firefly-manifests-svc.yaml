@@ -50,6 +50,8 @@ items:
           "firefly": {
               "monitoring": {
                   "datacenter": "prd",
+                  "enable-funnel-publisher": true,
+                  "enable-metrics-logging": false,
                   "funnel": {
                       "avro-schema-fingerprint": "AVG7NnlcHNdk4t_zn2JBnQ",
                       "backoff-time": 1,
@@ -65,7 +67,8 @@ items:
                   "metric-fields": {
                       "common-tags": {
                           "k8.namespace": "${MY_POD_NAMESPACE}",
-                          "k8.node.name": "${MY_NODE_NAME}"
+                          "k8.node.name": "${MY_NODE_NAME}",
+                          "repo": "${INSTANCE_TYPE}"
                       },
                       "datacenter": "prd",
                       "pod": "firefly-package",
@@ -469,6 +472,8 @@ items:
           "firefly": {
               "monitoring": {
                   "datacenter": "prd",
+                  "enable-funnel-publisher": true,
+                  "enable-metrics-logging": false,
                   "funnel": {
                       "avro-schema-fingerprint": "AVG7NnlcHNdk4t_zn2JBnQ",
                       "backoff-time": 1,
@@ -484,7 +489,8 @@ items:
                   "metric-fields": {
                       "common-tags": {
                           "k8.namespace": "${MY_POD_NAMESPACE}",
-                          "k8.node.name": "${MY_NODE_NAME}"
+                          "k8.node.name": "${MY_NODE_NAME}",
+                          "repo": "${INSTANCE_TYPE}"
                       },
                       "datacenter": "prd",
                       "pod": "firefly-package",
