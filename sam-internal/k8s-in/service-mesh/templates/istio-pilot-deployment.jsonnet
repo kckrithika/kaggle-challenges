@@ -32,7 +32,7 @@ configs.deploymentBase("service-mesh") {
         containers: [
           configs.containerWithKubeConfigAndMadDog {
             name: "discovery",
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio-pilot:1.0.2",
+            image: istioImages.pilot,
             imagePullPolicy: "IfNotPresent",
             args: [
               "discovery",

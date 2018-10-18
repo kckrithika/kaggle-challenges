@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
 
 if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
 configs.deploymentBase("service-mesh") {
@@ -34,7 +35,7 @@ configs.deploymentBase("service-mesh") {
                 value: "shipping-istio.service-mesh:7020",
               },
             ],
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-ordering:86a47e93cb4796e4a24f63cee4b305356ddecc1e",
+            image: istioImages.ordering,
             imagePullPolicy: "IfNotPresent",
             name: "ordering",
             ports: [
@@ -110,7 +111,7 @@ configs.deploymentBase("service-mesh") {
                 value: "REDIRECT",
               },
             ],
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxyv2:1.0.2",
+            image: istioImages.proxy,
             imagePullPolicy: "IfNotPresent",
             name: "istio-proxy",
             resources: {
@@ -153,7 +154,7 @@ configs.deploymentBase("service-mesh") {
               "-d",
               "",
             ],
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxy_init:1.0.2",
+            image: istioImages.proxyinit,
             imagePullPolicy: "IfNotPresent",
             name: "istio-init",
             resources: {
