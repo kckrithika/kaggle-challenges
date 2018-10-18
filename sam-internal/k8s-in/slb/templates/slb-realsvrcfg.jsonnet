@@ -77,7 +77,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
         updateStrategy: {
             type: "RollingUpdate",
             rollingUpdate: {
-                maxUnavailable: "20%",
+                maxUnavailable: "40%",
             },
         },
         minReadySeconds: 30,
