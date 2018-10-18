@@ -17,7 +17,7 @@ system:
     containers:
     - name: spaas
       #Prod image cannot be used directly in sam sandbox?
-      image: sfci/service-protection/sps:0.0.4.10
+      image: sfci/service-protection/sps:0.0.4.12
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.22
       # set container environment variables
       env:
@@ -29,7 +29,7 @@ system:
       - name: management-port
         containerPort: 15400
       - name: grpc-port 
-        containerPort: 7022
+        containerPort: 7020
 
      # In your startup script, set logging.dir to this location
       # /log is mapped outside the container to the host's filesystem
@@ -53,6 +53,41 @@ system:
           path: /manage/health
           port: 15400
         initialDelaySeconds: 60
+
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:5b190980cfa3d123f80a1dbafaa86860e9723a76
+      ports:
+      - name: sherpa-in
+        containerPort: 7012
+      - name: sherpa-in-tls
+        containerPort: 7443
+      - name: sherpa-adm
+        containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - mountPath: /client-certs
+        name: spaasclientcert
+      - mountPath: /server-certs
+        name: spaasservercert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
+
     - name: beacon-spaas
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
@@ -60,8 +95,12 @@ system:
       - name: SFDC_ENVIRONMENT
         value: spaas
       args:
+      # Non-namespaced, plaintext
       - -endpoint
-      - spaas:DATACENTER_ALLENV:7022
+      - spaasmesh:DATACENTER_ALLENV:7020
+       # Namespaced, TLS
+      - -endpoint
+      - service-protection/spaasmesh:DATACENTER_ALLENV:7443 
       - -logging.dir
       - /log
       livenessProbe:
@@ -91,4 +130,8 @@ system:
     nodeExposed: true
     ports:
       - port: 7022
-        targetport: 7022
+        targetport: 7020
+      - lbtype: http
+        port: 15399
+        targetport: 15400
+    slbEnabled: true
