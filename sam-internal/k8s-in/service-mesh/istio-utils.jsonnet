@@ -25,11 +25,10 @@
     },
   },
 
+  # istio-pilot common labels
   istioLabels:: {
-    app: "istio",
-    chart: "istio-1.0.1",
-    release: "istio",
-    heritage: "Tiller",
+    app: "istio-pilot",
+    version: "istio-1.0.1",
   },
 
 }

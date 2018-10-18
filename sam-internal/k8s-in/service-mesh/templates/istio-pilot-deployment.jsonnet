@@ -7,13 +7,8 @@ configs.deploymentBase("service-mesh") {
     name: "istio-pilot",
     namespace: "service-mesh",
     labels: {
-      name: "istio-pilot",
-//      app: "istio-pilot",
-//      chart: "pilot-1.0.1",
-//      release: "istio",
-//      heritage: "Tiller",
-//      istio: "pilot",
-    },
+      istio: "pilot",
+    } + istioUtils.istioLabels,
     annotations: {
       "checksum/config-volume": "f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9",
     },
@@ -23,11 +18,9 @@ configs.deploymentBase("service-mesh") {
     template: {
       metadata: {
         labels: {
-          name: "istio-pilot",
           apptype: "control",
-//          istio: "pilot",
-//          app: "pilot",
-        },
+          istio: "pilot",
+        } + istioUtils.istioLabels,
         annotations: {
           "sidecar.istio.io/inject": "false",
           "scheduler.alpha.kubernetes.io/critical-pod": "",
