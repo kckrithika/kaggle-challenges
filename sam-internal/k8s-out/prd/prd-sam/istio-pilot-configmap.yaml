@@ -74,9 +74,7 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   labels:
-    app: istio
-    chart: istio-1.0.1
-    heritage: Tiller
-    release: istio
+    app: istio-pilot
+    version: istio-1.0.1
   name: istio
   namespace: service-mesh

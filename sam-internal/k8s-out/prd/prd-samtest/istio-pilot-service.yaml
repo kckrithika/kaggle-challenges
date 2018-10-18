@@ -2,10 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: istio
-    chart: istio-1.0.1
-    heritage: Tiller
-    release: istio
+    app: istio-pilot
+    version: istio-1.0.1
   name: istio-pilot
   namespace: service-mesh
 spec:
@@ -19,4 +17,4 @@ spec:
   - name: http-monitoring
     port: 9093
   selector:
-    name: istio-pilot
+    istio: pilot

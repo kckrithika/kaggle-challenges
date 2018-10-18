@@ -29,7 +29,7 @@ local istioUtils = import "istio-utils.jsonnet";
       },
     ],
     selector: {
-      name: "istio-pilot",
+      istio: "pilot",
     },
   },
 }
