@@ -24,7 +24,7 @@ system:
 
     containers:
     - name: coreapp
-      image: tnrp/casam/coreapp:216_patch__16685310-0000121-38476ee0
+      image: tnrp/casam/coreapp:216_patch__16784812-0000124-b13b7783
 
       env:
         # DB info
