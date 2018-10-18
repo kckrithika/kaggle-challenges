@@ -24,6 +24,9 @@ spec:
         ports:
         - containerPort: 8080
           name: jenkins
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
         volumeMounts:
         - mountPath: /usr/bin/docker
           name: docker
@@ -48,6 +51,10 @@ spec:
       hostNetwork: true
       nodeSelector:
         kubernetes.io/hostname: shared0-samdevcompute1-1-prd.eng.sfdc.net
+      securityContext:
+        fsGroup: 7447
+        runAsNonRoot: true
+        runAsUser: 7447
       volumes:
       - hostPath:
           path: /home/xiaozhou/jenkins_home
