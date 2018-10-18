@@ -55,7 +55,7 @@ system:
         initialDelaySeconds: 60
 
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:5b190980cfa3d123f80a1dbafaa86860e9723a76
+      image: sfci/servicelibs/sherpa-envoy:1.0.1
       ports:
       - name: sherpa-in
         containerPort: 7012
@@ -65,7 +65,7 @@ system:
         containerPort: 15373
       env:
       - name: SFDC_ENVIRONMENT
-        value: mesh
+        value: sconex
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -93,7 +93,7 @@ system:
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       env:
       - name: SFDC_ENVIRONMENT
-        value: spaas
+        value: sconex
       args:
       # Non-namespaced, plaintext
       - -endpoint
