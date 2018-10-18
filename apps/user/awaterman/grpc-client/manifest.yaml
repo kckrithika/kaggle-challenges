@@ -6,7 +6,7 @@ system:
       - emailinfrastructure@salesforce.com
   functions:
   - name: eaas-grpc-client
-    count: 3 
+    count: 1 
     strategy:
       type: RollingUpdate
     containers:
