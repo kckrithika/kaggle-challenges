@@ -290,11 +290,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 dnsPolicy: "Default",
             }
             + (
-            if slbflights.nginxPodFloat then
-                    {
-                        nodeSelector: { pool: slbconfigs.slbEstate },
-                    } else {}
-                    ),
+            if slbflights.nginxPodFloat then {
+                nodeSelector: { pool: slbconfigs.slbEstate },
+            } else {}
+            ),
         },
         strategy: {
             type: "RollingUpdate",
