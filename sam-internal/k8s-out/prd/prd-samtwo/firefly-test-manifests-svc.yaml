@@ -50,6 +50,29 @@ items:
           "firefly": {
               "monitoring": {
                   "datacenter": "prd",
+                  "funnel": {
+                      "avro-schema-fingerprint": "AVG7NnlcHNdk4t_zn2JBnQ",
+                      "backoff-time": 1,
+                      "base-path": "funnel",
+                      "endpoint": "ajna0-funnel1-0-prd.data.sfdc.net",
+                      "funnel-api-version": "v1",
+                      "http-port": 80,
+                      "https-port": 443,
+                      "max-publish-tries": 3,
+                      "publish-api": "publishBatch",
+                      "ssl-enabled": true
+                  },
+                  "metric-fields": {
+                      "common-tags": {
+                          "k8.namespace": "${MY_POD_NAMESPACE}",
+                          "k8.node.name": "${MY_NODE_NAME}"
+                      },
+                      "datacenter": "prd",
+                      "pod": "firefly-package",
+                      "service": "firefly",
+                      "subservice": "${MY_APP_NAME}",
+                      "superpod": "prd-samtwo"
+                  },
                   "pod": "firefly-package",
                   "report-frequency": 1,
                   "superpod": "NONE",
@@ -58,11 +81,12 @@ items:
           },
           "logging": {
               "level": {
-                  "com.salesforce": "DEBUG",
+                  "com.salesforce": "INFO",
+                  "com.salesforce.firefly.packageservice": "DEBUG",
                   "org": "INFO"
               },
               "pattern": {
-                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - instanceType=${INSTANCE_TYPE} e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
               }
           },
           "management": {
@@ -262,6 +286,16 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MY_APP_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.labels['name']
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
@@ -435,6 +469,29 @@ items:
           "firefly": {
               "monitoring": {
                   "datacenter": "prd",
+                  "funnel": {
+                      "avro-schema-fingerprint": "AVG7NnlcHNdk4t_zn2JBnQ",
+                      "backoff-time": 1,
+                      "base-path": "funnel",
+                      "endpoint": "ajna0-funnel1-0-prd.data.sfdc.net",
+                      "funnel-api-version": "v1",
+                      "http-port": 80,
+                      "https-port": 443,
+                      "max-publish-tries": 3,
+                      "publish-api": "publishBatch",
+                      "ssl-enabled": true
+                  },
+                  "metric-fields": {
+                      "common-tags": {
+                          "k8.namespace": "${MY_POD_NAMESPACE}",
+                          "k8.node.name": "${MY_NODE_NAME}"
+                      },
+                      "datacenter": "prd",
+                      "pod": "firefly-package",
+                      "service": "firefly",
+                      "subservice": "${MY_APP_NAME}",
+                      "superpod": "prd-samtwo"
+                  },
                   "pod": "firefly-package",
                   "report-frequency": 1,
                   "superpod": "NONE",
@@ -443,11 +500,12 @@ items:
           },
           "logging": {
               "level": {
-                  "com.salesforce": "DEBUG",
+                  "com.salesforce": "INFO",
+                  "com.salesforce.firefly.packageservice": "DEBUG",
                   "org": "INFO"
               },
               "pattern": {
-                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - instanceType=${INSTANCE_TYPE} e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
               }
           },
           "management": {
@@ -647,6 +705,16 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MY_APP_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.labels['name']
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
@@ -788,6 +856,32 @@ items:
           "firefly": {
               "monitoring": {
                   "datacenter": "prd",
+                  "enable-funnel-publisher": true,
+                  "enable-metrics-logging": false,
+                  "funnel": {
+                      "avro-schema-fingerprint": "AVG7NnlcHNdk4t_zn2JBnQ",
+                      "backoff-time": 1,
+                      "base-path": "funnel",
+                      "endpoint": "ajna0-funnel1-0-prd.data.sfdc.net",
+                      "funnel-api-version": "v1",
+                      "http-port": 80,
+                      "https-port": 443,
+                      "max-publish-tries": 3,
+                      "publish-api": "publishBatch",
+                      "ssl-enabled": true
+                  },
+                  "metric-fields": {
+                      "common-tags": {
+                          "k8.namespace": "${MY_POD_NAMESPACE}",
+                          "k8.node.name": "${MY_NODE_NAME}",
+                          "repo": "${INSTANCE_TYPE}"
+                      },
+                      "datacenter": "prd",
+                      "pod": "firefly-pullrequest",
+                      "service": "firefly",
+                      "subservice": "${MY_APP_NAME}",
+                      "superpod": "prd-samtwo"
+                  },
                   "pod": "firefly-pullrequest",
                   "report-frequency": 1,
                   "superpod": "NONE",
@@ -796,11 +890,12 @@ items:
           },
           "logging": {
               "level": {
-                  "com.salesforce": "DEBUG",
+                  "com.salesforce": "INFO",
+                  "com.salesforce.firefly.pullrequestservice": "DEBUG",
                   "org": "INFO"
               },
               "pattern": {
-                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - instanceType=${instanceType} e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
               }
           },
           "management": {
@@ -997,6 +1092,16 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MY_APP_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "8"
           - name: DARKLAUNCH
@@ -1152,6 +1257,32 @@ items:
           "firefly": {
               "monitoring": {
                   "datacenter": "prd",
+                  "enable-funnel-publisher": true,
+                  "enable-metrics-logging": false,
+                  "funnel": {
+                      "avro-schema-fingerprint": "AVG7NnlcHNdk4t_zn2JBnQ",
+                      "backoff-time": 1,
+                      "base-path": "funnel",
+                      "endpoint": "ajna0-funnel1-0-prd.data.sfdc.net",
+                      "funnel-api-version": "v1",
+                      "http-port": 80,
+                      "https-port": 443,
+                      "max-publish-tries": 3,
+                      "publish-api": "publishBatch",
+                      "ssl-enabled": true
+                  },
+                  "metric-fields": {
+                      "common-tags": {
+                          "k8.namespace": "${MY_POD_NAMESPACE}",
+                          "k8.node.name": "${MY_NODE_NAME}",
+                          "repo": "${INSTANCE_TYPE}"
+                      },
+                      "datacenter": "prd",
+                      "pod": "firefly-promotion",
+                      "service": "firefly",
+                      "subservice": "${MY_APP_NAME}",
+                      "superpod": "prd-samtwo"
+                  },
                   "pod": "firefly-promotion",
                   "report-frequency": 1,
                   "superpod": "NONE",
@@ -1160,11 +1291,12 @@ items:
           },
           "logging": {
               "level": {
-                  "com.salesforce": "DEBUG",
+                  "com.salesforce": "INFO",
+                  "com.salesforce.firefly.promotionservice": "DEBUG",
                   "org": "INFO"
               },
               "pattern": {
-                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - instanceType=${instanceType} - details=[%msg]  %n"
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - details=[%msg]  %n"
               }
           },
           "management": {
@@ -1362,6 +1494,16 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: status.podIP
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          - name: MY_APP_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
             value: "3"
           - name: DARKLAUNCH

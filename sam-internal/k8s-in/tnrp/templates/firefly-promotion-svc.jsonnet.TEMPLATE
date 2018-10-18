@@ -3,7 +3,7 @@ local images = import "fireflyimages.jsonnet";
 local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
 local promotionConfig = import "configs/firefly-promotion.jsonnet";
-
+local fireflyConfigs = import "fireflyconfigs.jsonnet";
 
 serviceDeployment {
     serviceConf:: {
@@ -32,7 +32,7 @@ serviceDeployment {
     env:: super.commonEnv + [
         {
            name: "CONFIG_VERSION",
-           value: "3",
+           value: fireflyConfigs.fireflypromotion,
         },
         {
             name: "DARKLAUNCH",

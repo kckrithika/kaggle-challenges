@@ -4,6 +4,7 @@ local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
 local intakeConfig = import "configs/firefly-intake-dl.jsonnet";
+local fireflyConfigs = import "fireflyconfigs.jsonnet";
 
 # we don't want to enable crawler for dark launch so enabling estates individually for intake
 #if firefly_feature_flags.is_firefly_svc_enabled then
@@ -79,7 +80,7 @@ if configs.estate == "prd-samtwo" then
       env:: super.commonEnv + [
           {
               name: "CONFIG_VERSION",
-              value: "6",
+              value: fireflyConfigs.fireflyintake,
           },
           {
               name: "DARKLAUNCH",

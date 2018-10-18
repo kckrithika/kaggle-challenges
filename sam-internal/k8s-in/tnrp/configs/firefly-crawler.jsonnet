@@ -54,7 +54,11 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
         'keep-alive-duration': '5m',
         'http-logging-interceptor-level': 'NONE',
       },
-      monitoring: monitoringConfig.monitor(serviceName),
-    },
+      local custom_monitoring_configs = {
+        'enable-metrics-logging': false,
+        'enable-funnel-publisher': true
+      },
+      monitoring: std.mergePatch(monitoringConfig.monitor(serviceName), custom_monitoring_configs)
+    }
   },
 }

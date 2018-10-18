@@ -19,10 +19,11 @@ local artifactoryConfig = import "configs/firefly-artifactory.jsonnet";
     logging: {
       level: {
         org: 'INFO',
-        'com.salesforce': 'DEBUG',
+        'com.salesforce': 'INFO',
+        'com.salesforce.firefly.promotionservice': 'DEBUG',
       },
       pattern: {
-        console: '%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - instanceType=${instanceType} - details=[%msg]  %n',
+        console: '%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - details=[%msg]  %n',
       },
     },
     scm: {
@@ -48,8 +49,17 @@ local artifactoryConfig = import "configs/firefly-artifactory.jsonnet";
       'health-check-repo': 'tnrpfirefly',
       'back-off-period': '2000ms',
     },
-    firefly: {
-      monitoring: monitoringConfig.monitor(serviceName),
+    local custom_monitoring_configs = {
+      'enable-metrics-logging': false,
+      'enable-funnel-publisher': true,
+      'metric-fields' : {
+        'common-tags': {
+            'repo': '${INSTANCE_TYPE}',
+        }
+      }
     },
-  },
+    firefly: {
+      monitoring: std.mergePatch(monitoringConfig.monitor(serviceName), custom_monitoring_configs)
+    }
+  }
 }

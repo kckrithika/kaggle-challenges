@@ -76,6 +76,20 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
         fieldRef: { fieldPath: "status.podIP", apiVersion: "v1" },
       },
     },
+    {
+      name: 'MY_POD_NAMESPACE',
+      valueFrom:
+      {
+        fieldRef: { fieldPath: 'metadata.namespace', apiVersion: "v1" },
+      },
+    },
+    {
+      name: 'MY_APP_NAME',
+      valueFrom:
+      {
+        fieldRef: { fieldPath: 'metadata.labels[\'name\']', apiVersion: "v1" },
+      },
+    },
   ],
 
   local configmap = {
