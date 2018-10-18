@@ -2,6 +2,7 @@ local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
 local envConfig = import "configs/firefly_service_conf.jsonnet";
+local monitoringConfig = import "configs/firefly-monitoring.jsonnet";
 
 {
   server: {
@@ -46,13 +47,17 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
       'http-logging-interceptor-level': 'NONE',
       'cluster-size': 2,
     },
-    monitoring: {
-      'report-frequency': 1,
+    local custom_monitoring_configs = {
+      'enable-metrics-logging': false,
+      'enable-funnel-publisher': true,
       'node-name': '${RABBITMQ_NODENAME}',
-      datacenter: configs.kingdom,
-      superpod: 'NONE',
-      pod: 'rabbitmq',
-      'system-exception-threshold': 5,
+      'metric-fields' : {
+        'subservice': 'firefly-rabbitmq',
+        'common-tags': {
+          'node.name': '${RABBITMQ_NODENAME}',
+        }
+      }
     },
+    monitoring: std.mergePatch(monitoringConfig.monitor('\'${MY_POD_NAME}\''), custom_monitoring_configs)
   },
 }

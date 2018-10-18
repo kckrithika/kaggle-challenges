@@ -57,7 +57,7 @@ items:
                   },
                   "pod": "firefly-crawler",
                   "report-frequency": 1,
-                  "superpod": "NONE",
+                  "superpod": "prd-samtwo",
                   "system-exception-threshold": 5
               }
           },
