@@ -5,7 +5,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
   apiVersion: "v1",
   kind: "Service",
   metadata: {
-    name: "shipping",
+    name: "shipping-istio",
     namespace: "service-mesh",
   },
   spec: {
@@ -16,7 +16,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
       },
     ],
     selector: {
-      app: "shipping",
+      app: "shipping-istio",
     },
   },
 } else "SKIP"

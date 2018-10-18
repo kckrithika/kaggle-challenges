@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   creationTimestamp: null
-  name: shipping
+  name: shipping-istio
   namespace: service-mesh
 spec:
   replicas: 1
@@ -13,7 +13,7 @@ spec:
         sidecar.istio.io/status: '{"version":"72c62d4fd573294d59a05ccbf9b25cd5627245f130b078c00d2b1f213d98da51","initContainers":["istio-init"],"containers":["istio-proxy"],"volumes":["istio-envoy","istio-certs"],"imagePullSecrets":null}'
       creationTimestamp: null
       labels:
-        app: shipping
+        app: shipping-istio
         version: v1
     spec:
       containers:
@@ -31,7 +31,7 @@ spec:
         - --binaryPath
         - /usr/local/bin/envoy
         - --serviceCluster
-        - shipping
+        - shipping-istio
         - --drainDuration
         - 45s
         - --parentShutdownDuration

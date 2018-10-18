@@ -6,7 +6,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
   kind: "Deployment",
   metadata: {
     creationTimestamp: null,
-    name: "ordering",
+    name: "ordering-istio",
     namespace: "service-mesh",
   },
   spec: {
@@ -20,7 +20,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
         },
         creationTimestamp: null,
         labels: {
-          app: "ordering",
+          app: "ordering-istio",
           version: "v1",
         },
       },
@@ -56,7 +56,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
               "--binaryPath",
               "/usr/local/bin/envoy",
               "--serviceCluster",
-              "ordering",
+              "ordering-istio",
               "--drainDuration",
               "45s",
               "--parentShutdownDuration",
