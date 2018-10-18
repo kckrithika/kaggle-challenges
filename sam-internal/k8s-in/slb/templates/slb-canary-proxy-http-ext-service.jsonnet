@@ -16,7 +16,7 @@ local canaryPortConfig = [
         lbType="http",
         name="slb-canary-proxy-http-port",
     ) { healthpath: "/health" },
-] + (if configs.estate == "iad-sam" then [
+] + (if configs.estate == "iad-sam" || configs.estate == "ord-sam" then [
     slbportconfiguration.newPortConfiguration(
         port=443,
         targetPort=portconfigs.slb.canaryServiceProxyHttpPort,
