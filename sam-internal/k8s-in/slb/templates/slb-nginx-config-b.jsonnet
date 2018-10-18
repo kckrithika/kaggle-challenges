@@ -117,7 +117,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                         "--netInterfaceName=eth0",
                                         "--metricsEndpoint=" + configs.funnelVIP,
                                         "--log_dir=" + slbconfigs.logsDir,
-                                        "--maxDeleteServiceCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
+                                        "--maxDeleteServiceCount=" + (if configs.kingdom == "xrd" then "150" else slbconfigs.perCluster.maxDeleteCount[configs.estate]),
                                     ]
                                     + [
                                         configs.sfdchosts_arg,
