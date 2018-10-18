@@ -12,6 +12,7 @@ if !watchdog.watchdog_enabled then
 else
 local cert_name = "watchdogcanarycerts";
 configs.deploymentBase("flowsnake") {
+    local label_node = self.spec.template.metadata.labels,
     metadata: {
         labels: {
             name: "watchdog-canary",
@@ -20,6 +21,12 @@ configs.deploymentBase("flowsnake") {
         namespace: "flowsnake",
     },
     spec+: {
+        [if flag_fs_metric_labels then "selector"]+: {
+            matchLabels: {
+                app: label_node.app,
+                apptype: label_node.apptype,
+            }
+        },
         template: {
             metadata: {
                 annotations: {
@@ -43,7 +50,7 @@ configs.deploymentBase("flowsnake") {
                     apptype: "monitoring",
                     flowsnakeOwner: "dva-transform",
                     flowsnakeRole: "WatchdogCanary-0-12-1",
-                }
+                },
             },
             spec: {
                 restartPolicy: "Always",
