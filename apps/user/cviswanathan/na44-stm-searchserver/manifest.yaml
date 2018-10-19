@@ -19,75 +19,22 @@ system:
           limits: { cpu: "20", memory: "16Gi" }
           requests: { cpu: "20", memory: "16Gi" }
         ports:
-        - containerPort: 7022 # add additional container ports for the protocols your service uses
+        - containerPort: 8983 # add additional container ports for the protocols your service uses
           name: solr-port
         livenessProbe:
           httpGet:
             path: /ping.jsp
-            port: 7022
+            port: 8983
           initialDelaySeconds: 120 
           periodSeconds: 5
         volumeMounts:
           - mountPath: /home/sfdc-searchserver/logs/solr
-            name: solr-log-volume
-      - name: sherpa-searchserver
-        image: sfci/servicelibs/sherpa:2.0.22 # Use the latest version, see below
-        env:
-        - name: SFDC_ENVIRONMENT
-          value: "stmfa" # Use whatever environment your kpod uses
-        resources:
-          limits: { cpu: "1", memory: "1Gi" }
-          requests: { cpu: "1", memory: "1Gi" }
-        volumeMounts:
-          - mountPath: /log
-            name: sherpa-log-volume
-        ports:
-        - containerPort: 7014 # add additional container ports for the protocols your service uses
-          name: sherpa-in-http1
-        - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues. 
-          name: sherpa-in-admin 
-        livenessProbe:
-          exec:
-            command:
-            - "./bin/is-alive"
-          initialDelaySeconds: 120
-          periodSeconds: 5
-        readinessProbe:
-          exec:
-            command:
-            - "./bin/is-ready"
-          initialDelaySeconds: 110
-          periodSeconds: 5
-      - name: beacon
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-        args:
-        - -endpoint
-        -  $(FUNCTION_INSTANCE_NAME):DATACENTER:7014
-        # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
-        # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
-        # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
-        env:
-        - name: SFDC_ENVIRONMENT
-          value: "stmfa"
-        livenessProbe:
-          initialDelaySeconds: 5
-          exec:
-            command:
-            - "/home/scone/is-alive.sh" 
+            name: solr-log-volume 
       lbname: searchservers
       volumes:
         - name: solr-log-volume
           hostPath: 
-            path: /home/sfdc-searchserver/logs/solr
+            path: /home/sfdc-searchserver/logs/solr/jvm
         - name: sherpa-log-volume
           hostPath:
             path: /home/sfdc-sherpa/logs
-
-  loadbalancers:
-    - lbname: searchserverlb
-      function: na44-stm-searchserver
-      slbenabled: true
-      ports:
-        - port: 7014
-          targetport: 7014
-          lbtype: http
