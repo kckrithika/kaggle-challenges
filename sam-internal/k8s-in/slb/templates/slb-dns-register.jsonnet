@@ -87,11 +87,12 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                              command: [
                                                  "/sdn/slb-cname-register",
                                                  "--ddi=" + slbconfigs.ddiService,
-                                                 "--metricsEndpoint=" + configs.funnelVIP,
                                                  "--log_dir=" + slbconfigs.logsDir,
                                                  configs.sfdchosts_arg,
                                                  "--client.socketDir=" + slbconfigs.configDir,
                                                  "--client.dialSocket=true",
+                                                 "--commonoptions.metricsendpoint=" + configs.funnelVIP,
+                                                 "--commonoptions.hostname=$(NODE_NAME)",
                                              ] + roleBasedSecretArgs,
                                              volumeMounts: configs.filter_empty([
                                                  configs.maddog_cert_volume_mount,
@@ -100,6 +101,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                  slbconfigs.logs_volume_mount,
                                                  configs.sfdchosts_volume_mount,
                                              ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
+                                             env: [
+                                                 slbconfigs.node_name_env,
+                                             ],
                                          },
                                      ] else []),
                       nodeSelector: { pool: slbconfigs.slbEstate },
