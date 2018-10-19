@@ -3,14 +3,15 @@
    - us99-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
    # 10.254.230.228
   ports:
-   - port: 9087
-     targetport: 8087
-     lbtype: http
-   - port: 9086
-     targetport: 8086
+   - port: 9443
+     targetport: 8443
      lbtype: http
      tls: false
      reencrypt: true
-   - port: 9088
+   - port: 9986
      targetport: 8086
+   - port: 9943
+     targetport: 8443
+   - port: 9987
+     targetport: 8087
 
