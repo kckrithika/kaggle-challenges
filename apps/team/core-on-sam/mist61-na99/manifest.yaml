@@ -441,15 +441,20 @@ system:
    
    
   - name: na99-mist61sfproxy-prd
+    identity:
+      serviceName: sfproxy
+      pod: na99
     count: 1
     containers:
     - name: sfproxy-envoy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:7fb0a56
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:0b1e311
       env:
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
-      - name: SETTINGS_PATH
-        value: mist.mist61.prd.na99.sfproxy
+      - name: SFDC_ENVIRONMENT
+        value: mist
+      - name: SFDC_SUBENVIRONMENT
+        value: mist61
       args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
       - --switchboard=us99-mist61switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
@@ -487,6 +492,9 @@ system:
         - us99-mist61sfproxy-lb
 
   - name: na99-mist61switchboard-prd
+    identity:
+      serviceName: switchboard
+      pod: na99
     count: 1
     containers:
     - name: sfproxy-switchboard
@@ -494,8 +502,10 @@ system:
       env:
       - name: GRPC_SERVER_PORT
         value: 15001
-      - name: SETTINGS_PATH
-        value: mist.mist61.prd.na99.switchboard
+      - name: SFDC_ENVIRONMENT
+        value: mist
+      - name: SFDC_SUBENVIRONMENT
+        value: mist61
       ports:
       - containerPort: 15001
       - containerPort: 15372
