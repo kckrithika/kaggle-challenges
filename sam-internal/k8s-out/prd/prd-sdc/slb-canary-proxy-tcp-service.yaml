@@ -12,7 +12,7 @@ metadata:
         "targetport": 9115
        },
        {
-        "healthPath": "/",
+        "healthprotocol": "tcp",
         "lbtype": "tcp",
         "port": 8081,
         "proxyprotocol": true,

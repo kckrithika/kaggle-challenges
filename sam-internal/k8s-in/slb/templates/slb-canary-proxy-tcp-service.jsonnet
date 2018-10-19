@@ -16,7 +16,7 @@ local proxyProtocolPortConfig = if slbflights.proxyProtocolCanaryEnabled then [
         lbType="tcp",
         name=canaryName + "-proxyproto-port",
     ) {
-        healthPath: "/",
+        healthprotocol: "tcp",
         proxyprotocol: true,
     },
 ] else [];
