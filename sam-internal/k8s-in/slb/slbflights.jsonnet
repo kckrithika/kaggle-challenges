@@ -8,6 +8,7 @@
     stockIpvsModules: (if slbimages.phaseNum > 4 then true else false),
     cnameRegisterEnabled: (slbimages.phaseNum <= 1),
     nginxPodFloat: (slbimages.phaseNum <= 1),
+    proxyProtocolCanaryEnabled: (slbimages.phaseNum <= 1),
 
     getIPVSConsistencyIgnoreServerWeights():: (if slbimages.hypersdn_build >= 1288 then [
         "--ignoreWeightsInConsistencyCheck=true",
