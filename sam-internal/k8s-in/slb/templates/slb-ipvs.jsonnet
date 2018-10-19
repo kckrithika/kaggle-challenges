@@ -15,7 +15,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
         namespace: "sam-system",
     },
     spec+: {
-        replicas: if configs.estate == "prd-samtest" then 1 else if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then 3 else 2,
+        replicas: slbconfigs.ipvsReplicaCount,
         template: {
             metadata: {
                 labels: {
