@@ -16,7 +16,7 @@ system:
         path: /home/sfdc-mds/logs
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.5.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/steven.booth/metadata-service:goc-2018-10-19-131058
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -28,7 +28,8 @@ system:
       - name: MANAGEMENT_PORT
         value: 15523
       - name: JVM_ARGS
-        value: "-Dgdot.cloud-name=mds/asdf"
+        value: "-Dgdot.cloud-name=mds/asdf
+                -Dsettings.path=dev.mydev.landmark.-.metadata-service"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 30
