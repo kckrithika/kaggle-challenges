@@ -7,7 +7,7 @@ local watchdog = import "watchdog.jsonnet";
 local configs = import "config.jsonnet";
 local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 
-if !watchdog.watchdog_enabled || !std.objectHas(flowsnake_images.feature_flags, "docker_daemon_monitor") then
+if !watchdog.watchdog_enabled then
 "SKIP"
 else
 configs.daemonSetBase("flowsnake") {

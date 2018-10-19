@@ -3,7 +3,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local util = import "util_functions.jsonnet";
 local kingdom = std.extVar("kingdom");
 local configs = import "config.jsonnet";
-
+local image_renames_and_canary_build_tags = std.objectHas(flowsnake_images.feature_flags, "image_renames_and_canary_build_tags");
 
 # Builds an image promotion entry with the image tagged based on the version mapping
 local build_mapped_entry(imageName, version) = {
@@ -35,7 +35,7 @@ if util.is_production(kingdom) then
             build_mapped_entry(imageName, version)
             for imageName in imageNames
           ] +
-          std.prune([  #other images will result in a NULL entry, so prune them
+          if image_renames_and_canary_build_tags then [] else std.prune([  #other images will result in a NULL entry, so prune them
             if std.startsWith(imageName, "flowsnake-job") then
                 build_versioned_entry(imageName, version)
             for imageName in imageNames

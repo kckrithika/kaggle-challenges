@@ -1,6 +1,7 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
+local image_renames_and_canary_build_tags = std.objectHas(flowsnake_images.feature_flags, "image_renames_and_canary_build_tags");
 
 ## Sets the test target to 'canary' - Used for toggling test logic that differs between minikube, CI, or canary
 local set_test_target = " -Dintegration.test.target=canary";
@@ -9,14 +10,19 @@ local set_test_target = " -Dintegration.test.target=canary";
 local set_vip = " -Dflowsnake.api.host=" + flowsnakeconfig.fleet_vips[estate];
 
 ## Sets the environment version to be validated by the canary tests
-local set_version(version) = " -Dflowsnake.project.version=" + version;
+local set_environment_version(version) = " -Dflowsnake.project.version=" + version;
+
+## Sets the tag of the application to run for the test. Use the same image tag as the environment service for that
+## release.
+local set_app_image_tag(version) = " -Dflowsnake.build.tag=" + flowsnake_images.version_mapping.main[version];
 
 ## Junit and Test artifacts expected on the watchdog-canary image (which parses the cliCheckerFullCommands config)
 ## Properties have to be passed in prior to junit.jar for correct parsing
 local build_run_command(version) = "java -jar " +
                         set_test_target +
                         set_vip +
-                        set_version(version) +
+                        set_environment_version(version) +
+                        (if image_renames_and_canary_build_tags then set_app_image_tag(version) else "") +
                         " junit.jar -cp integration-test.jar -n '.*'";
 
 ## Required for standalone junit to find / execute the target test class
@@ -26,36 +32,46 @@ local set_test_class(test_name) = " -c com.salesforce.dva.transform.flowsnake." 
 ##  and no additional parameters to be passed in, junit and test artifacts from the canary-watchdog image, etc.
 local build_test_command(test_name, version) = build_run_command(version) + set_test_class(test_name);
 
-local flag_docker_test = std.objectHas(flowsnake_images.feature_flags, "docker_daemon_monitor");
 local flag_btrfs_test = std.objectHas(flowsnake_images.feature_flags, "btrfs_watchdog_hard_reset");
 
-local build_command_sets = {
+## Flowsnake release -> Watchdog name -> jUnit Test class
+local tests_for_each_version = {
     "0.11.0": {
-        SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.11.0'),
-        SparkLocal: build_test_command('SparkLocalDriverDemoJobIT', '0.11.0'),
+        SparkStandalone: 'SparkStandaloneDemoJobIT',
+        SparkLocal: 'SparkLocalDriverDemoJobIT',
    },
     "0.12.0": {
-        SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.12.0'),
-        SparkLocal: build_test_command('SparkLocalDriverDemoJobIT', '0.12.0'),
+        SparkStandalone: 'SparkStandaloneDemoJobIT',
+        SparkLocal: 'SparkLocalDriverDemoJobIT',
    },
     "0.12.1": {
-        SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.12.1'),
-        SparkLocal: build_test_command('SparkLocalDriverDemoJobIT', '0.12.1'),
+        SparkStandalone: 'SparkStandaloneDemoJobIT',
+        SparkLocal: 'SparkLocalDriverDemoJobIT',
    },
     "0.12.2": {
-        SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.12.2'),
-        SparkLocal: build_test_command('SparkLocalDriverDemoJobIT', '0.12.2'),
+        SparkStandalone: 'SparkStandaloneDemoJobIT',
+        SparkLocal: 'SparkLocalDriverDemoJobIT',
    },
 };
 
-local build_docker_test_commands = if flag_docker_test then {
+## For each Flowsnake release available current fleet, construct the test commands
+local build_canary_commands = {
+    [version]: {
+        [test]: build_test_command(tests_for_each_version[version][test], version)  # identify jUnit Test class and build command
+        for test in std.objectFields(tests_for_each_version[version])  # iterate tests to run against the version
+        }
+    for version in std.objectFields(flowsnake_images.version_mapping.main)  # iterate versions available in fleet
+    if std.objectHas(tests_for_each_version, version)  # ... but skip versions with no known tests
+};
+
+local build_docker_test_commands = {
     DockerDaemon: { DockerDaemon: "/test-docker.sh" },
-} else {};
+};
 
 local build_btrfs_test_commands = if flag_btrfs_test then {
     BtrfsHung: { BtrfsHung: "bash /var/run/check-btrfs/check-btrfs.sh" },
 } else {};
 
 {
-    command_sets:: build_command_sets + build_docker_test_commands + build_btrfs_test_commands,
+    command_sets:: build_canary_commands + build_docker_test_commands + build_btrfs_test_commands,
 }

@@ -84,10 +84,9 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                del_certsvc_certs: "foo",  #Verified successfully in test fleet
-                docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
                 fs_metric_labels: "verified",
+                image_renames_and_canary_build_tags: "unverified",
             },
             version_mapping: {
                 main: {
@@ -124,8 +123,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                del_certsvc_certs: "foo",  #Verified successfully in test fleet
-                docker_daemon_monitor: "",
                 btrfs_watchdog_hard_reset: "",
                 fs_metric_labels: "verified",  # works in prd-dev
             },
@@ -154,8 +151,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                del_certsvc_certs: "foo",  #Verified successfully in test fleet
-                docker_daemon_monitor: "",
                 fs_metric_labels: "UNVERIFIED",  # testing in prd-dev
             },
             version_mapping: {
@@ -189,8 +184,6 @@ local utils = import "util_functions.jsonnet";
                 ### issue PR to deploy your changes. Then create a follow-on PR
                 ### that deletes all the feature flags and conditional logic from
                 ### the templates. This PR should not result in any k8s-out diffs.
-                del_certsvc_certs: "foo",  #Verified successfully in test fleet
-                docker_daemon_monitor: "",
             },
             version_mapping: {
                 main: {

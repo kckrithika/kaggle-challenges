@@ -75,13 +75,7 @@ configs.deploymentBase("flowsnake") {
                 mountPath: "/config",
                 name: "config",
               },
-            ] + (
-if std.objectHas(flowsnake_images.feature_flags, "del_certsvc_certs") then [] else
-              [{
-                mountPath: "/data/certs",
-                name: "certs",
-              }]
-            ),
+            ],
           },
         ],
         hostNetwork: true,
@@ -110,16 +104,7 @@ if std.objectHas(flowsnake_images.feature_flags, "del_certsvc_certs") then [] el
             },
             name: "config",
           },
-        ] + (
-if std.objectHas(flowsnake_images.feature_flags, "del_certsvc_certs") then [] else [
-          {
-            hostPath: {
-              path: "/data/certs",
-            },
-            name: "certs",
-          },
-]
-        ),
+        ],
       },
     },
   },
