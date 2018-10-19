@@ -21,7 +21,7 @@ system:
        secretName: jkspass
     containers:
     - name: zipkin-collector
-      image: docker-dva-rc/dva/zipkin-collector:31
+      image: docker-dva-rc/dva/zipkin-collector:42
       env:
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
