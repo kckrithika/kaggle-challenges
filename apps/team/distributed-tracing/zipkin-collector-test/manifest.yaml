@@ -16,6 +16,9 @@ system:
     - name: client-certs
       maddogCert:
         type: client
+    - name: secretvol
+      secret:                          
+       secretName: jkspass
     containers:
     - name: zipkin-collector-test
       image: docker-dva-rc/dva/zipkin-collector:42
@@ -39,6 +42,9 @@ system:
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-collector-test
         name: client-certs
+      - mountPath: /var/secrets
+        name: secretvol
+        readOnly: true
       livenessProbe:
         exec:
           # TODO: Check if process is running?
