@@ -313,7 +313,7 @@ items:
             value: manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:176
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:201
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -735,7 +735,7 @@ items:
             value: manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:176
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:201
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1116,7 +1116,7 @@ items:
             value: manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:176
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:201
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1518,7 +1518,7 @@ items:
             value: manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:176
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:201
           imagePullPolicy: Always
           name: firefly-promotion
           ports:
