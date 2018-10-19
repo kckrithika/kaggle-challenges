@@ -263,7 +263,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                         "--log_dir=" + slbconfigs.logsDir,
                                         "--custCertsDir=" + slbconfigs.customerCertsPath,
                                         configs.sfdchosts_arg,
-                                    ] + slbconfigs.getNodeApiClientSocketSettings(),
+                                    ] + slbconfigs.getNodeApiClientSocketSettings() + (if slbimages.hypersdn_build >= 1298 then [
+                                        "--control.nginxReloadSentinel=/host/data/slb/nginx/config/nginx.marker",
+                                    ] else []),
                                     volumeMounts: configs.filter_empty([
                                         {
                                             name: "var-target-config-volume",
