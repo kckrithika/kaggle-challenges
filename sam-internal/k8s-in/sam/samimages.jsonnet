@@ -24,30 +24,6 @@ local configs = import "config.jsonnet";
         #[xiao] Fix CI in prd
         "prd,prd-sam,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181012_161951.65bc4d08.dirty.xiaozhou-ltm2",
 
-        }
-        + {
-          #[thargrove] Pin the auto-deplopyer to the build before we stiched to v1 deployments.  Remove when all of sam-internals is fixed
-          [std.substr(ce, 0, 3) + "," + ce + ",samcontrol-deployer,hypersam"]: "sam-0002190-d048106f"
-for ce in [
-            "cdg-sam",
-            "chx-sam",
-            "dfw-sam",
-            "fra-sam",
-            "hnd-sam",
-            "ia2-sam",
-            "iad-sam",
-            "ord-sam",
-            "par-sam",
-            "ph2-sam",
-            "phx-sam",
-            "prd-samtwo",
-            "syd-sam",
-            "ukb-sam",
-            "wax-sam",
-            "xrd-sam",
-            "yhu-sam",
-            "yul-sam",
-]
         },
 
 
@@ -86,7 +62,7 @@ for ce in [
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia + prd-samtwo
         "4": {
-            hypersam: "sam-0002252-a9ad81d9",
+            hypersam: "sam-0002328-f0e6eae5",
             madkub: "1.0.0-0000077-b1d3a629",
             madkubSidecar: "1.0.0-0000077-b1d3a629",
             },
