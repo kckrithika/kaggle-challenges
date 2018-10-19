@@ -447,12 +447,10 @@ system:
     count: 1
     containers:
     - name: sfproxy-envoy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:0b1e311
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:4b58238
       env:
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
-      - name: SFDC_ENVIRONMENT
-        value: mist
       - name: SFDC_SUBENVIRONMENT
         value: mist61
       args:
@@ -502,8 +500,6 @@ system:
       env:
       - name: GRPC_SERVER_PORT
         value: 15001
-      - name: SFDC_ENVIRONMENT
-        value: mist
       - name: SFDC_SUBENVIRONMENT
         value: mist61
       ports:
