@@ -451,6 +451,8 @@ system:
       env:
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
+      - name: SFDC_ENVIRONMENT
+        value: mist
       - name: SFDC_SUBENVIRONMENT
         value: mist61
       args:
@@ -500,6 +502,8 @@ system:
       env:
       - name: GRPC_SERVER_PORT
         value: 15001
+      - name: SFDC_ENVIRONMENT
+        value: mist
       - name: SFDC_SUBENVIRONMENT
         value: mist61
       ports:
