@@ -1,51 +1,50 @@
 apiVersion: v1
 
 system:
-    notifications:
-      email:
-        - steven.booth@salesforce.com
-      functions:
-      - name: metadata-service
-        count: 1
-        containers:
-        - name: metadata-service
-          image: sfci/metadata-cannon/metadata-service:0.5.4
-          ports:
-          - containerPort: 9091
-          - containerPort: 15523
-          env:
-          - name: SFDC_ENVIRONMENT
-            value: dev
-          - name: SERVER_PORT
-            value: 9091
-          - name: MANAGEMENT_PORT
-            value: 15523
-          - name: JVM-ARGS
-            value: "-Dgdot.cloud-name=mds/asdf"
-          livenessProbe:
-            initialDelaySeconds: 60
-            periodSeconds: 30
-            timeoutSeconds: 10
-            httpGet:
-              path: /manage/health
-              port: 15523
-          volumeMounts:
-          - name: mds-client-cert
-            value: /client-certs
-        volumes:
-        - name: logvol
-          hostPath:
-            path: /home/sfdc-mds/logs
-        - name: mds-server-cert
-            maddogCert:
-              type: server
-        - name: mds-client-cert
-            maddogCert:
-              type: client
-      loadbalancers:
-      - lbname: metadata-servicelb
-        function: metadata-service
-        nodeExposed: true
-        ports:
-        - port: 9091
-          targetport: 9091
+  notifications:
+    email:
+      - steven.booth@salesforce.com
+  functions:
+  - name: metadata-service
+    count: 1
+    volumes:
+    - name: mds-client-cert
+      maddogCert:
+        type: client
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-mds/logs
+    containers:
+    - name: metadata-service
+      image: sfci/metadata-cannon/metadata-service:0.5.4
+      ports:
+      - containerPort: 9091
+      - containerPort: 15523
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: dev
+      - name: SERVER_PORT
+        value: 9091
+      - name: MANAGEMENT_PORT
+        value: 15523
+      - name: JVM_ARGS
+        value: "-Dgdot.cloud-name=mds/asdf"
+      livenessProbe:
+        initialDelaySeconds: 60
+        periodSeconds: 30
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/health
+          port: 15523
+      volumeMounts:
+      - name: mds-client-cert
+        mountPath: /client-certs
+      - name: logvol
+        mountPath: /home/sfdc-mds/logs
+  loadbalancers:
+  - lbname: metadata-servicelb
+    function: metadata-service
+    nodeExposed: true
+    ports:
+    - port: 9093
+      targetport: 9091
