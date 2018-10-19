@@ -46,7 +46,7 @@ system:
         name: client-certs
       - mountPath: /var/secrets
         name: secretvol
-        readonly: true
+        readOnly: true
       livenessProbe:
         exec:
           # TODO: Check if process is running?
