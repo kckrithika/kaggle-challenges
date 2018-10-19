@@ -1,0 +1,14 @@
+- lbname: dev0ops0-grok1-0-prd
+  customlbname: dev0ops0-grok1-0-prd
+  servers:
+    - dev0ops0-grok2-1-prd.eng.sfdc.net
+    - dev0ops0-grok4-1-prd.eng.sfdc.net
+    - dev0ops0-grok1-1-prd.eng.sfdc.net
+    - dev0ops0-grok3-1-prd.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 4200
+      lbtype: tcp
+      healthport: 4201
+      healthpath: /ping.jsp
+      healthprotocol: http
