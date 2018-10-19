@@ -1,7 +1,7 @@
 - lbname: us99-sfproxytest-vip
   servers:
-   - 10.254.230.228
-   # us99-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+   - us99-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+   # 10.254.230.228
   ports:
    - port: 9087
      targetport: 8087
