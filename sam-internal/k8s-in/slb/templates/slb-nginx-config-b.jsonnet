@@ -19,7 +19,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
         namespace: "sam-system",
     },
     spec+: {
-        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else (if configs.estate == "prd-sdc" then 10 else (if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then 3 else 2)),
+        replicas: slbconfigs.nginxConfigReplicaCount,
         revisionHistoryLimit: 2,
         template: {
             metadata: {

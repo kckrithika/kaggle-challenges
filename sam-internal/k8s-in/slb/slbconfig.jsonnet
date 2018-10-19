@@ -184,6 +184,14 @@
             "xrd-sam": ["--optOutServiceList=slb-canary-service-ext"],
         },
 
+        nginxConfigReplicaCount: set_value_to_all_in_list(2, $.slbEstates)
+        + {
+            "prd-sdc": 10,
+            "prd-samtest": 1,
+            "prd-samdev": 1,
+        }
+        + set_value_to_all_in_list(3, $.prodEstates),
+
         maxDeleteCount: {
             "prd-sdc": $.maxDeleteDefault,
             "prd-samtest": $.maxDeleteDefault,
@@ -333,6 +341,7 @@
     isTestEstate: estate in { [e]: 1 for e in $.testEstates },
     isProdEstate: estate in { [e]: 1 for e in $.prodEstates },
     isSlbEstate: estate in { [e]: 1 for e in $.slbEstates },
+    nginxConfigReplicaCount: self.perCluster.nginxConfigReplicaCount[estate],
 
     sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
     sdn_watchdog_emailrec: "slb@salesforce.com",
