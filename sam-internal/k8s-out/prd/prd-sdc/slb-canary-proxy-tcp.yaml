@@ -42,7 +42,7 @@ spec:
         - --log_dir=/host/data/slb/logs/
         - --ports=9115,8081
         - --proxyProtocolPorts=8081
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001298-599d70de
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001300-2e1befe2
         livenessProbe:
           httpGet:
             path: /
