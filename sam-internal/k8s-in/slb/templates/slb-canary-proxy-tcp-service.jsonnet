@@ -10,6 +10,17 @@ local canaryName = "slb-canary-proxy-tcp";
 local serviceName = canaryName + "-service";
 local vipName = canaryName;
 
+local proxyProtocolPortConfig = if slbflights.proxyProtocolCanaryEnabled then [
+    slbportconfiguration.newPortConfiguration(
+        port=8081,
+        lbType="tcp",
+        name=canaryName + "-proxyproto-port",
+    ) {
+        healthPath: "/",
+        proxyprotocol: true,
+    },
+] else [];
+
 local canaryPortConfig = [
     slbportconfiguration.newPortConfiguration(
         port=portconfigs.slb.canaryServiceProxyTcpPort,
@@ -17,7 +28,7 @@ local canaryPortConfig = [
         name=canaryName + "-port",
         nodePort=portconfigs.slb.canaryServiceProxyTcpNodePort,
     ) { healthPath: "/" },
-];
+] + proxyProtocolPortConfig;
 
 if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then
    slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {

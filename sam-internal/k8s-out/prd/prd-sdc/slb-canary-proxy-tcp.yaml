@@ -40,7 +40,8 @@ spec:
         - /sdn/slb-canary-service
         - --serviceName=slb-canary-proxy-tcp
         - --log_dir=/host/data/slb/logs/
-        - --ports=9115
+        - --ports=9115,8081
+        - --proxyProtocolPorts=8081
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001291-7b4405b3
         livenessProbe:
           httpGet:

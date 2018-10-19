@@ -103,7 +103,7 @@ local getCanaryLivenessProbe(port) = (
                                      "--ports=" + std.join(",", [std.toString(port) for port in ports]),
                                  ]
                                  + ( // mix in tls config (if specified).
-                                     if tlsPorts != null then std.prune([
+                                     if tlsPorts != null && std.length(tlsPorts) > 0 then std.prune([
                                          "--tlsPorts=" + std.join(",", [std.toString(port) for port in tlsPorts]),
                                          "--privateKey=" + slbCanaryTlsPrivateKeyPath,
                                          // verbose is mixed in here because that's the way slb-canary-proxy-http currently orders it. *shrug*.
@@ -112,7 +112,7 @@ local getCanaryLivenessProbe(port) = (
                                      ]) else []
                                  )
                                  + ( // mix in proxy protocol ports (if specified).
-                                    if proxyProtocolPorts != null then [
+                                    if proxyProtocolPorts != null && std.length(proxyProtocolPorts) > 0 then [
                                         "--proxyProtocolPorts=" + std.join(",", [std.toString(port) for port in proxyProtocolPorts]),
                                     ] else []
                                  )),
