@@ -34,6 +34,8 @@ system:
         value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
       - name: ES_HOSTS
         value: es-rest-test.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200
+      - name: ES_PIPELINE
+        value: set_received
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-collector-test
         name: client-certs
