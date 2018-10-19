@@ -52,11 +52,11 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             fireflyintake: "200",
-             fireflycrawler: "200",
-             fireflypackage: "200",
-             fireflypromotion: "200",
-             fireflypullrequest: "200",
+             fireflyintake: "201",
+             fireflycrawler: "201",
+             fireflypackage: "201",
+             fireflypromotion: "201",
+             fireflypullrequest: "201",
              fireflydind: "86",
              rabbitmq: "140",
              rabbitmqmonitord: "200",
