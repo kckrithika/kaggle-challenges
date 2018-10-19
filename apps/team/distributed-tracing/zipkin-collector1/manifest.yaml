@@ -23,7 +23,7 @@ system:
        secretName: jkspass
     containers:
     - name: zipkin-collector
-      image: docker-dva-rc/dva/zipkin-collector:41
+      image: docker-dva-rc/dva/zipkin-collector:42
       env:
       - name: ES_HOSTS
         value: es-rest1.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200
