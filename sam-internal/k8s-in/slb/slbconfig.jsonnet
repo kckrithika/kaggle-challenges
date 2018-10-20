@@ -22,6 +22,8 @@
     slbEstates: $.prodEstates + $.testEstates,
     samrole: "samapp.slb",
     maxDeleteDefault: 10,
+    nginxProxyName: "slb-nginx-config-b",
+    hsmNginxProxyName: "slb-hsm-nginx",
 
     slbEstate: (
         if $.isTestEstate then

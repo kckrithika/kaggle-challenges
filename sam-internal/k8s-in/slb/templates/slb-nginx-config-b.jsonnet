@@ -13,9 +13,9 @@ local certDirs = ["cert1", "cert2"];
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
-            name: "slb-nginx-config-b",
+            name: slbconfigs.nginxProxyName,
         } + configs.ownerLabel.slb,
-        name: "slb-nginx-config-b",
+        name: slbconfigs.nginxProxyName,
         namespace: "sam-system",
     },
     spec+: {
@@ -24,7 +24,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
         template: {
             metadata: {
                 labels: {
-                    name: "slb-nginx-config-b",
+                    name: slbconfigs.nginxProxyName,
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
                 annotations: {
@@ -57,7 +57,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                     key: "name",
                                     operator: "In",
                                     values: [
-                                        "slb-nginx-config-b",
+                                        slbconfigs.nginxProxyName,
                                     ],
                                 }],
                             },
