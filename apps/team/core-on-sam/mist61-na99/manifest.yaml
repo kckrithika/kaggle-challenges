@@ -598,6 +598,8 @@ system:
     - port: 8087
       targetport: 15373
       lbtype: http
+    - port: 8888
+      targetport: 12060
 
   - lbname: us99-mist61switchboard-lb
     function: na99-mist61switchboard-prd
