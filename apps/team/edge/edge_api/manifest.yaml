@@ -41,7 +41,7 @@ system:
         httpGet:
             path: /health
     - name: edge-accd
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/accd:7
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/accd:9
       livenessProbe:
         httpGet:
             path: /health
