@@ -222,7 +222,7 @@
                      configs.sfdchosts_arg,
                  ] + slbconfigs.getNodeApiClientSocketSettings()
                  + ["--maxDeleteLimit=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]]
-                 + (if configs.estate == "prd-sdc" then [
+                 + (if slbflights.roleEnabled then [
                      "--isRoleUsed=true",
                      ] else [])
                  + ([
