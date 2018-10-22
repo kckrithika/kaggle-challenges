@@ -47,7 +47,7 @@ local configs = import "config.jsonnet";
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
             # IMPORTANT! Follow all steps from https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM
-            hypersam: "sam-0002336-6a8184c1",
+            hypersam: "sam-0002342-8b25bcbe",
             },
 
         ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
