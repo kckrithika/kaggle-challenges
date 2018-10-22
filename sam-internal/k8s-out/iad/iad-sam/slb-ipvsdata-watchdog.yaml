@@ -61,7 +61,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001298-599d70de
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001303-270bbd78
         name: slb-ipvsdata-watchdog
         volumeMounts:
         - mountPath: /etc/pki_service
