@@ -82,6 +82,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: envoy-sidecar
+      - name: ENVOY_DEBUG_OPTIONS
+        value: --log-level debug
       args:
       - --template
       - /cyan-config/switchboard-tls-terminator-config.yaml.template
