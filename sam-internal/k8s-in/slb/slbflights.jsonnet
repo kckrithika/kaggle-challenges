@@ -10,6 +10,7 @@
     nginxPodFloat: (slbimages.phaseNum <= 1),
     proxyProtocolCanaryEnabled: (slbimages.phaseNum <= 1),
     roleEnabled: (slbimages.phaseNum <= 1),
+    podLevelLogEnabled: (slbimages.phaseNum <= 1),
 
     getIPVSConsistencyIgnoreServerWeights():: (if slbimages.hypersdn_build >= 1288 then [
         "--ignoreWeightsInConsistencyCheck=true",

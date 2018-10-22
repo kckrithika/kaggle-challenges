@@ -1,10 +1,9 @@
 local configs = import "config.jsonnet";
+local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbports = import "slbports.jsonnet";
-local logCleanupEnabled = configs.estate == "prd-sdc";
-local slbconfigs = (import "slbconfig.jsonnet") + (if logCleanupEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if logCleanupEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
-local slbflights = import "slbflights.jsonnet";
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbflights.podLevelLogEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbflights.podLevelLogEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
 
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata+: {
@@ -27,8 +26,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                   configs.sfdchosts_volume,
                                               ]
                                               + (
-                                                  if logCleanupEnabled then [
-                                                      slbconfigs.slb_config_volume,
+                                                  if slbflights.podLevelLogEnabled then [
                                                       slbconfigs.cleanup_logs_volume,
                                                   ] else []
                                               )),
@@ -55,11 +53,6 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                             configs.kube_config_volume_mount,
                                             configs.sfdchosts_volume_mount,
                                         ]
-                                        + (
-                                            if logCleanupEnabled then [
-                                                slbconfigs.slb_config_volume_mount,
-                                            ] else []
-                                        )
                                     ),
                                     env: [
                                         slbconfigs.node_name_env,
@@ -68,7 +61,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                 },
                             ]
                             + (
-                                if logCleanupEnabled then [
+                                if slbflights.podLevelLogEnabled then [
                                     slbshared.slbLogCleanup,
                                 ] else []
                             ),
