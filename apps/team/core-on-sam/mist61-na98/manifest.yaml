@@ -1,0 +1,83 @@
+apiVersion: v1
+ 
+system:
+  functions:   
+  - name: na98-mist61sfproxy-prd
+    identity:
+      serviceName: sfproxy
+      pod: na98
+    count: 1
+    containers:
+    - name: sfproxy-envoy
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:sowmya.tammana-20181022-165655
+      env:
+      - name: ENVOY_DEBUG_OPTIONS
+        value: --log-path /home/sfdc-sherpa/envoy.log
+      - name: SFDC_ENVIRONMENT
+        value: mist
+      - name: SFDC_SUBENVIRONMENT
+        value: mist61
+      args:
+      - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-config.yaml.template
+      - --log-level=trace
+      ports:
+      - containerPort: 2525
+      - containerPort: 12060
+      - containerPort: 15373
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - name: tls-client-cert
+        mountPath: /cert-client
+      - name: tls-server-cert
+        mountPath: /cert-server
+
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+        lbnames:
+        - us98-mist61sfproxy-lb
+
+  loadbalancers:   
+  - lbname: us98-mist61sfproxy-lb
+    function: na98-mist61sfproxy-prd
+    nodeExposed: true
+    slbEnabled: true
+    ports:
+# TCP listen port of Envoy.
+    - port: 2525
+      targetport: 2525
+# HTTP listen port of Envoy.
+# TODO: CASAM might use for readiness. Change to 80 in production
+    - port: 8086
+      targetport: 12060
+      lbtype: http
+      tls: false
+      reencrypt: true
+# HTTPS listen ports of Envoy.
+# TODO: Manifest validation fails for port 443. Add 443 in production
+    - port: 8443
+      targetport: 12060
+      lbtype: http
+      tls: true
+      reencrypt: true
+# Admin ports - TODO - Don't expose this. Exposed for now for debugging.
+    - port: 8087
+      targetport: 15373
+      lbtype: http
+    - port: 8888
+      targetport: 12060
