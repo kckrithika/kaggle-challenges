@@ -80,6 +80,7 @@ std.prune({
   storageClassName: (if configs.estate == "prd-samdev" then "standard"),
   enableK4aChecks: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then true),
   enableMaddogCertChecks: (if samfeatureflags.maddogforsamapps && !utils.is_public_cloud(configs.kingdom) then true else false),
+  deleteSyntheticDeployment: false,
 
   filesystemCheckDirs: [
     "/data/",
@@ -124,10 +125,4 @@ std.prune({
      KubeletErrorCheckerEnabled: true,
      KubeletErrorPerSecond: 1,
      KubeletErrorCheckerFrequency: "20s",
-  } else {})
-
-  #TODO: TEMP code, remove after sam/sam clean up.
-  # Default value is set to true, when set to true it can cause crashloopbackoff if the deployment is missing.
-  + (if configs.kingdom == "prd" || configs.kingdom == "frf" then {
-         deleteSyntheticDeployment: false,
-      } else {})
+    } else {})

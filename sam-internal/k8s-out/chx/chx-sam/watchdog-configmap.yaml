@@ -4,6 +4,7 @@ data:
     {
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "deleteSyntheticDeployment": false,
       "deployer-funnelEndpoint": "mandm-funnel-chx.data.sfdc.net:8080",
       "deployer-imageName": "ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0002328-f0e6eae5",
       "deployer-rcImtEndpoint": "https://reportcollector-chx.data.sfdc.net:18443/v1/bark",
