@@ -149,15 +149,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-                fs_metric_labels: "UNVERIFIED",  # testing in prd-dev
-=======
-                del_certsvc_certs: "foo",  #Verified successfully in test fleet
-                docker_daemon_monitor: "",
->>>>>>> final push everywhere
->>>>>>> final push everywhere
             },
             version_mapping: {
                 main: {
