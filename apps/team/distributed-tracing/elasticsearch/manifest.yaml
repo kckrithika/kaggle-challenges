@@ -36,7 +36,7 @@ system:
     volumes:
     - name: elasticsearch-persistent-storage
       hostPath:
-          path: /data/elasticsearch
+          path: /data/elasticsearch/prod
     terminationGracePeriodSeconds: 20
 
     volumeClaimTemplates:
