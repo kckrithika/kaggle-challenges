@@ -7,7 +7,7 @@
     local kubeDnsEnabled = false,
     stockIpvsModules: (if slbimages.phaseNum > 4 then true else false),
     cnameRegisterEnabled: (slbimages.phaseNum <= 2),
-    nginxPodFloat: (slbimages.phaseNum <= 1),
+    nginxPodFloat: (slbimages.phaseNum <= 2),
     proxyProtocolCanaryEnabled: (slbimages.phaseNum <= 1),
     roleEnabled: (slbimages.phaseNum <= 1),
     podLevelLogEnabled: (slbimages.phaseNum <= 1),
