@@ -4,17 +4,17 @@ system:
       - distributedtracing@salesforce.com
   functions: 
   - name: elasticsearch
-    count: 1
+    count: 3
     type: stateful-set
     containers:
     - name: elasticsearch
-      image: docker-dva-rc/dva/elasticsearch-server:8
+      image: docker-dva-rc/dva/elasticsearch-server:18
       env:
       - name: ES_JAVA_OPTS
         value: '-Xms30g -Xmx30g'
       volumeMounts:
       - mountPath: /var/lib/elasticsearch
-        name: elasticsearch-persistent-storage-2tb-1
+        name: elasticsearch-persistent-storage
       #- mountPath: /certs
       #  name: certs
       #- mountPath: /secrets
@@ -28,21 +28,15 @@ system:
         name: es-transport
 
       livenessProbe:
-        exec:
-          # TODO: Check if process is running?
-          command:
-          - /bin/true
-        initialDelaySeconds: 5
-        periodSeconds: 5
-        # tcpSocket:
-        #  port: 9200
-        # initialDelaySeconds: 15
-        # periodSeconds: 10
-        # failureThreshold: 100
-    #volumes:
-    #- name: elasticsearch-persistent-storage
-    #  hostPath:
-    #      path: /data/elasticsearch
+        tcpSocket:
+          port: 9200
+        initialDelaySeconds: 15
+        periodSeconds: 10
+        failureThreshold: 100
+    volumes:
+    - name: elasticsearch-persistent-storage
+      hostPath:
+          path: /data/elasticsearch
     terminationGracePeriodSeconds: 20
 
     volumeClaimTemplates:
