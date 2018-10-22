@@ -447,7 +447,7 @@ system:
     count: 1
     containers:
     - name: sfproxy-envoy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:4b58238
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:vijay.kota-20181022-115421
       env:
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
@@ -466,13 +466,15 @@ system:
       livenessProbe:
         exec:
           command:
-          - ./bin/is-alive
+          - ./sfproxy/scripts/runprobe
+          # ./bin/is-alive
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - ./bin/is-ready
+          - ./sfproxy/scripts/runprobe
+          # ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
       volumeMounts:
