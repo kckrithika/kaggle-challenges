@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: metrics-publisher
-      image: sfci/cache-as-a-service/caas:asd5
+      image: docker-dva-rc/dva/caas/release/caas-metrics-publisher-2.6.12:3
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
