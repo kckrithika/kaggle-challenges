@@ -27,12 +27,6 @@ local configs = import "config.jsonnet";
       'backoff-time': 1,
       'ssl-enabled': true,
     }
-  } + if configs.estate == 'prd-samtwo' then {
-    // TODO: Remove these once funnel reporter has been enabled in prd-samtwo
-    'datacenter': configs.kingdom,
-    'superpod': configs.estate,
-    'pod': serviceName,
-  } else {
   },
 
   management(port):: {

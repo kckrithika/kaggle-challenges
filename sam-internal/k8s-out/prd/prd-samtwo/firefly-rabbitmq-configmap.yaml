@@ -4,7 +4,6 @@ data:
     {
         "firefly": {
             "monitoring": {
-                "datacenter": "prd",
                 "enable-funnel-publisher": true,
                 "enable-metrics-logging": false,
                 "funnel": {
@@ -32,9 +31,7 @@ data:
                     "superpod": "prd-samtwo"
                 },
                 "node-name": "${RABBITMQ_NODENAME}",
-                "pod": "'${MY_POD_NAME}'",
                 "report-frequency": 1,
-                "superpod": "prd-samtwo",
                 "system-exception-threshold": 5
             },
             "rabbitmqapi": {

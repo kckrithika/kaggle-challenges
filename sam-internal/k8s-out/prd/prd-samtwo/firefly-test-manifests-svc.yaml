@@ -49,7 +49,6 @@ items:
           },
           "firefly": {
               "monitoring": {
-                  "datacenter": "prd",
                   "enable-funnel-publisher": true,
                   "enable-metrics-logging": false,
                   "funnel": {
@@ -76,9 +75,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-samtwo"
                   },
-                  "pod": "firefly-package",
                   "report-frequency": 1,
-                  "superpod": "prd-samtwo",
                   "system-exception-threshold": 5
               }
           },
@@ -179,6 +176,10 @@ items:
 - apiVersion: v1
   kind: Service
   metadata:
+    annotations:
+      slb.sfdc.net/name: firefly-package
+      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
+        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
       app: firefly-package
       sam.data.sfdc.net/owner: tnrp
@@ -192,7 +193,7 @@ items:
       targetPort: 8081
     selector:
       name: firefly-package
-    type: LoadBalancer
+    type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
@@ -471,7 +472,6 @@ items:
           },
           "firefly": {
               "monitoring": {
-                  "datacenter": "prd",
                   "enable-funnel-publisher": true,
                   "enable-metrics-logging": false,
                   "funnel": {
@@ -498,9 +498,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-samtwo"
                   },
-                  "pod": "firefly-package",
                   "report-frequency": 1,
-                  "superpod": "prd-samtwo",
                   "system-exception-threshold": 5
               }
           },
@@ -601,6 +599,10 @@ items:
 - apiVersion: v1
   kind: Service
   metadata:
+    annotations:
+      slb.sfdc.net/name: firefly-package-singleton
+      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
+        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
       app: firefly-package-singleton
       sam.data.sfdc.net/owner: tnrp
@@ -614,7 +616,7 @@ items:
       targetPort: 8081
     selector:
       name: firefly-package-singleton
-    type: LoadBalancer
+    type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
@@ -861,7 +863,6 @@ items:
           },
           "firefly": {
               "monitoring": {
-                  "datacenter": "prd",
                   "enable-funnel-publisher": true,
                   "enable-metrics-logging": false,
                   "funnel": {
@@ -888,9 +889,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-samtwo"
                   },
-                  "pod": "firefly-pullrequest",
                   "report-frequency": 1,
-                  "superpod": "prd-samtwo",
                   "system-exception-threshold": 5
               }
           },
@@ -988,6 +987,10 @@ items:
 - apiVersion: v1
   kind: Service
   metadata:
+    annotations:
+      slb.sfdc.net/name: firefly-pullrequest
+      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
+        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
       app: firefly-pullrequest
       sam.data.sfdc.net/owner: tnrp
@@ -1001,7 +1004,7 @@ items:
       targetPort: 8081
     selector:
       name: firefly-pullrequest
-    type: LoadBalancer
+    type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
@@ -1262,7 +1265,6 @@ items:
           },
           "firefly": {
               "monitoring": {
-                  "datacenter": "prd",
                   "enable-funnel-publisher": true,
                   "enable-metrics-logging": false,
                   "funnel": {
@@ -1289,9 +1291,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-samtwo"
                   },
-                  "pod": "firefly-promotion",
                   "report-frequency": 1,
-                  "superpod": "prd-samtwo",
                   "system-exception-threshold": 5
               }
           },
@@ -1390,6 +1390,10 @@ items:
 - apiVersion: v1
   kind: Service
   metadata:
+    annotations:
+      slb.sfdc.net/name: firefly-promotion
+      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
+        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
       app: firefly-promotion
       sam.data.sfdc.net/owner: tnrp
@@ -1403,7 +1407,7 @@ items:
       targetPort: 8081
     selector:
       name: firefly-promotion
-    type: LoadBalancer
+    type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
@@ -1520,6 +1524,15 @@ items:
             value: test-manifests.promotion
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:201
           imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /actuator
+              port: admin-port
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
           name: firefly-promotion
           ports:
           - containerPort: 8081

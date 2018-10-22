@@ -29,7 +29,6 @@ items:
                   "write-timeout": "10000ms"
               },
               "monitoring": {
-                  "datacenter": "prd",
                   "enable-funnel-publisher": true,
                   "enable-metrics-logging": false,
                   "funnel": {
@@ -55,9 +54,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-samtwo"
                   },
-                  "pod": "firefly-crawler",
                   "report-frequency": 1,
-                  "superpod": "prd-samtwo",
                   "system-exception-threshold": 5
               }
           },
@@ -123,6 +120,10 @@ items:
 - apiVersion: v1
   kind: Service
   metadata:
+    annotations:
+      slb.sfdc.net/name: firefly-crawler
+      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
+        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
       app: firefly-crawler
       sam.data.sfdc.net/owner: tnrp
@@ -136,7 +137,7 @@ items:
       targetPort: 8081
     selector:
       name: firefly-crawler
-    type: LoadBalancer
+    type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
