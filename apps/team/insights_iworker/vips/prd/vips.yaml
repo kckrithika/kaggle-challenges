@@ -1,0 +1,334 @@
+- lbname: mist49insights-iworker2-1-0-prd
+  customlbname: mist49insights-iworker2-1-0-prd
+  servers:
+  - mist49insights2-iworker2-1-prd.eng.sfdc.net
+  - mist49insights2-iworker1-2-prd.eng.sfdc.net
+  - mist49insights2-iworker1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: mist58insights-iworker2-1-0-prd
+  customlbname: mist58insights-iworker2-1-0-prd
+  servers:
+  - mist58insights2-iworker2-1-prd.eng.sfdc.net
+  - mist58insights2-iworker1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: ice1insights-iworker2-1-0-prd
+  customlbname: ice1insights-iworker2-1-0-prd
+  servers:
+  - ice1insights2-iworker3-1-prd.eng.sfdc.net
+  - ice1insights2-iworker5-1-prd.eng.sfdc.net
+  - ice1insights2-iworker1-2-prd.eng.sfdc.net
+  - ice1insights2-iworker4-1-prd.eng.sfdc.net
+  - ice1insights2-iworker5-2-prd.eng.sfdc.net
+  - ice1insights2-iworker1-1-prd.eng.sfdc.net
+  - ice1insights2-iworker3-2-prd.eng.sfdc.net
+  - ice1insights2-iworker2-1-prd.eng.sfdc.net
+  - ice1insights2-iworker2-2-prd.eng.sfdc.net
+  - ice1insights2-iworker4-2-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: stmfd1insights-iworker2-1-0-prd
+  customlbname: stmfd1insights-iworker2-1-0-prd
+  servers:
+  - stmfd1insights2-iworker6-1-prd.eng.sfdc.net
+  - stmfd1insights2-iworker2-2-prd.eng.sfdc.net
+  - stmfd1insights2-iworker2-1-prd.eng.sfdc.net
+  - stmfd1insights2-iworker4-1-prd.eng.sfdc.net
+  - stmfd1insights2-iworker1-1-prd.eng.sfdc.net
+  - stmfd1insights2-iworker3-1-prd.eng.sfdc.net
+  - stmfd1insights2-iworker5-1-prd.eng.sfdc.net
+  - stmfd1insights2-iworker1-2-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: stmda1insights-iworker2-1-0-prd
+  customlbname: stmda1insights-iworker2-1-0-prd
+  servers:
+  - stmda1insights2-iworker2-1-prd.eng.sfdc.net
+  - stmda1insights2-iworker4-1-prd.eng.sfdc.net
+  - stmda1insights2-iworker1-1-prd.eng.sfdc.net
+  - stmda1insights2-iworker2-2-prd.eng.sfdc.net
+  - stmda1insights2-iworker6-1-prd.eng.sfdc.net
+  - stmda1insights2-iworker1-2-prd.eng.sfdc.net
+  - stmda1insights2-iworker3-1-prd.eng.sfdc.net
+  - stmda1insights2-iworker5-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: ist15insights-iworker2-1-0-prd
+  customlbname: ist15insights-iworker2-1-0-prd
+  servers:
+  - ist15insights2-iworker2-1-prd.eng.sfdc.net
+  - ist15insights2-iworker1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: mist45insights-iworker2-1-0-prd
+  customlbname: mist45insights-iworker2-1-0-prd
+  servers:
+  - mist45insights2-iworker1-1-prd.eng.sfdc.net
+  - mist45insights2-iworker2-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: stmua1insights-iworker2-1-0-prd
+  customlbname: stmua1insights-iworker2-1-0-prd
+  servers:
+  - stmua1insights2-iworker3-1-prd.eng.sfdc.net
+  - stmua1insights2-iworker1-2-prd.eng.sfdc.net
+  - stmua1insights2-iworker2-2-prd.eng.sfdc.net
+  - stmua1insights2-iworker6-1-prd.eng.sfdc.net
+  - stmua1insights2-iworker5-1-prd.eng.sfdc.net
+  - stmua1insights2-iworker1-1-prd.eng.sfdc.net
+  - stmua1insights2-iworker4-1-prd.eng.sfdc.net
+  - stmua1insights2-iworker2-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: stmfc1insights-iworker2-1-0-prd
+  customlbname: stmfc1insights-iworker2-1-0-prd
+  servers:
+  - stmfc1insights2-iworker6-1-prd.eng.sfdc.net
+  - stmfc1insights2-iworker2-2-prd.eng.sfdc.net
+  - stmfc1insights2-iworker5-1-prd.eng.sfdc.net
+  - stmfc1insights2-iworker1-2-prd.eng.sfdc.net
+  - stmfc1insights2-iworker3-1-prd.eng.sfdc.net
+  - stmfc1insights2-iworker2-1-prd.eng.sfdc.net
+  - stmfc1insights2-iworker1-1-prd.eng.sfdc.net
+  - stmfc1insights2-iworker4-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: mist40insights-iworker2-1-0-prd
+  customlbname: mist40insights-iworker2-1-0-prd
+  servers:
+  - mist40insights2-iworker11-1-prd.eng.sfdc.net
+  - mist40insights2-iworker10-1-prd.eng.sfdc.net
+  - mist40insights2-iworker1-1-prd.eng.sfdc.net
+  - mist40insights2-iworker4-2-prd.eng.sfdc.net
+  - mist40insights2-iworker8-1-prd.eng.sfdc.net
+  - mist40insights2-iworker4-1-prd.eng.sfdc.net
+  - mist40insights2-iworker9-1-prd.eng.sfdc.net
+  - mist40insights2-iworker3-1-prd.eng.sfdc.net
+  - mist40insights2-iworker7-1-prd.eng.sfdc.net
+  - mist40insights2-iworker2-1-prd.eng.sfdc.net
+  - mist40insights2-iworker5-1-prd.eng.sfdc.net
+  - mist40insights2-iworker8-2-prd.eng.sfdc.net
+  - mist40insights2-iworker7-2-prd.eng.sfdc.net
+  - mist40insights2-iworker3-2-prd.eng.sfdc.net
+  - mist40insights2-iworker6-1-prd.eng.sfdc.net
+  - mist40insights2-iworker2-2-prd.eng.sfdc.net
+  - mist40insights2-iworker9-2-prd.eng.sfdc.net
+  - mist40insights2-iworker1-2-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: mist44insights-iworker2-1-0-prd
+  customlbname: mist44insights-iworker2-1-0-prd
+  servers:
+  - mist44insights2-iworker1-1-prd.eng.sfdc.net
+  - mist44insights2-iworker2-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: mist27insights-iworker2-1-0-prd
+  customlbname: mist27insights-iworker2-1-0-prd
+  servers:
+  - mist27insights2-iworker2-1-prd.eng.sfdc.net
+  - mist27insights2-iworker1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: stmfa1insights-iworker2-1-0-prd
+  customlbname: stmfa1insights-iworker2-1-0-prd
+  servers:
+  - stmfa1insights2-iworker1-2-prd.eng.sfdc.net
+  - stmfa1insights2-iworker5-1-prd.eng.sfdc.net
+  - stmfa1insights2-iworker3-1-prd.eng.sfdc.net
+  - stmfa1insights2-iworker6-1-prd.eng.sfdc.net
+  - stmfa1insights2-iworker4-1-prd.eng.sfdc.net
+  - stmfa1insights2-iworker2-1-prd.eng.sfdc.net
+  - stmfa1insights2-iworker1-1-prd.eng.sfdc.net
+  - stmfa1insights2-iworker2-2-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: stmfb1insights-iworker2-1-0-prd
+  customlbname: stmfb1insights-iworker2-1-0-prd
+  servers:
+  - stmfb1insights2-iworker2-1-prd.eng.sfdc.net
+  - stmfb1insights2-iworker4-1-prd.eng.sfdc.net
+  - stmfb1insights2-iworker1-2-prd.eng.sfdc.net
+  - stmfb1insights2-iworker5-1-prd.eng.sfdc.net
+  - stmfb1insights2-iworker2-2-prd.eng.sfdc.net
+  - stmfb1insights2-iworker6-1-prd.eng.sfdc.net
+  - stmfb1insights2-iworker3-1-prd.eng.sfdc.net
+  - stmfb1insights2-iworker1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: stmub1insights-iworker2-1-0-prd
+  customlbname: stmub1insights-iworker2-1-0-prd
+  servers:
+  - stmub1insights2-iworker5-1-prd.eng.sfdc.net
+  - stmub1insights2-iworker1-2-prd.eng.sfdc.net
+  - stmub1insights2-iworker3-1-prd.eng.sfdc.net
+  - stmub1insights2-iworker2-1-prd.eng.sfdc.net
+  - stmub1insights2-iworker1-1-prd.eng.sfdc.net
+  - stmub1insights2-iworker4-1-prd.eng.sfdc.net
+  - stmub1insights2-iworker6-1-prd.eng.sfdc.net
+  - stmub1insights2-iworker2-2-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: mist47insights-iworker2-1-0-prd
+  customlbname: mist47insights-iworker2-1-0-prd
+  servers:
+  - mist47insights2-iworker2-2-prd.eng.sfdc.net
+  - mist47insights2-iworker6-1-prd.eng.sfdc.net
+  - mist47insights2-iworker3-2-prd.eng.sfdc.net
+  - mist47insights2-iworker4-2-prd.eng.sfdc.net
+  - mist47insights2-iworker1-2-prd.eng.sfdc.net
+  - mist47insights2-iworker3-1-prd.eng.sfdc.net
+  - mist47insights2-iworker5-1-prd.eng.sfdc.net
+  - mist47insights2-iworker2-1-prd.eng.sfdc.net
+  - mist47insights2-iworker4-1-prd.eng.sfdc.net
+  - mist47insights2-iworker1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: dbl23insights-iworker2-1-0-prd
+  customlbname: dbl23insights-iworker2-1-0-prd
+  servers:
+  - dbl23insights2-iworker2-1-prd.eng.sfdc.net
+  - dbl23insights2-iworker1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: stmra1insights-iworker2-1-0-prd
+  customlbname: stmra1insights-iworker2-1-0-prd
+  servers:
+  - stmra1insights2-iworker4-1-prd.eng.sfdc.net
+  - stmra1insights2-iworker1-2-prd.eng.sfdc.net
+  - stmra1insights2-iworker1-1-prd.eng.sfdc.net
+  - stmra1insights2-iworker2-1-prd.eng.sfdc.net
+  - stmra1insights2-iworker6-1-prd.eng.sfdc.net
+  - stmra1insights2-iworker2-2-prd.eng.sfdc.net
+  - stmra1insights2-iworker3-1-prd.eng.sfdc.net
+  - stmra1insights2-iworker5-1-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: stmsa1insights-iworker2-1-0-prd
+  customlbname: stmsa1insights-iworker2-1-0-prd
+  servers:
+  - stmsa1insights2-iworker6-1-prd.eng.sfdc.net
+  - stmsa1insights2-iworker2-2-prd.eng.sfdc.net
+  - stmsa1insights2-iworker1-1-prd.eng.sfdc.net
+  - stmsa1insights2-iworker4-1-prd.eng.sfdc.net
+  - stmsa1insights2-iworker2-1-prd.eng.sfdc.net
+  - stmsa1insights2-iworker5-1-prd.eng.sfdc.net
+  - stmsa1insights2-iworker3-1-prd.eng.sfdc.net
+  - stmsa1insights2-iworker1-2-prd.eng.sfdc.net
+  ports:
+  - port: 8008
+    targetport: 8008
+    lbtype: tcp
+    healthport: 8009
+    healthpath: /manage/health
+    healthprotocol: http
+    lbalgorithm: roundrobin
