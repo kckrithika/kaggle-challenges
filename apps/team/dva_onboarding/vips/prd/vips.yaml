@@ -1,0 +1,12 @@
+- lbname: ops0-dva-onboarding1-0-prd
+  customlbname: ops0-dva-onboarding1-0-prd
+  servers:
+  - shared0-onboarding1-1-prd.eng.sfdc.net
+  - shared0-onboarding2-1-prd.eng.sfdc.net
+  - shared0-onboarding1-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8443
+    lbtype: tcp
+    healthport: 8443
+    lbalgorithm: roundrobin
