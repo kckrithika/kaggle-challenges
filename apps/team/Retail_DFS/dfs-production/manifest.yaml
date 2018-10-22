@@ -21,8 +21,7 @@ system:
 
     containers:
     - name: dfs
-      image: sfci/enterprise-api/sfdc-platform-dfs:3f8acdf
-      # 3f8acdf is the docker tag for DFS v0.11.2 and SFC v1.3
+      image: sfci/enterprise-api/sfdc-platform-dfs:0.12.1
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -55,6 +54,9 @@ system:
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+      resources:
+        limits: { cpu: "4", memory: "4Gi" }
+        requests: { cpu: "4", memory: "3Gi" }
       ports:
       - containerPort: 7022
       - containerPort: 15372
@@ -77,6 +79,9 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: prod
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
         - containerPort: 7442
         - containerPort: 15373
