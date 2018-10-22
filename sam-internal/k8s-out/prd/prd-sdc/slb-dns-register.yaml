@@ -251,6 +251,7 @@ spec:
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
         - --maxDeleteLimit=10
+        - --isRoleUsed=true
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-dns-register/slb-manifest-watcher.sentinel
         env:
