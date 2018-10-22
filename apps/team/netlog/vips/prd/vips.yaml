@@ -1,9 +1,10 @@
 - lbname: ops0-netlog1-0-prd
   customlbname: ops0-netlog1-0-prd
   servers: 
-    - ops0-netlog4-1-prd.eng.sfdc.net
-    - 10.252.186.139
-    - ops0-netlog3-1-prd.eng.sfdc.net
+    - ops0-netlog1-1-prd.eng.sfdc.net
+    - ops0-netlog1-2-prd.eng.sfdc.net
+    - ops0-netlog2-1-prd.eng.sfdc.net
+    - ops0-netlog2--prd.eng.sfdc.net
   ports: 
     - port: 443
       targetport: 9000
