@@ -2,7 +2,7 @@
 
 ## Firefly RabbitMQ
 
-* First sync your enlistment!
+* First sync your enlistment
 
 ```sh
 $ git checkout master

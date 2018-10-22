@@ -1124,7 +1124,7 @@ items:
           - name: CONFIG_VERSION
             value: "9"
           - name: DARKLAUNCH
-            value: "false"
+            value: "true"
           - name: INSTANCE_TYPE
             value: test_sam_manifests
           - name: RABBIT_MQ_QUEUE_NAME

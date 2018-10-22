@@ -8,85 +8,86 @@ local promotionsvc = import "firefly-promotion-svc.jsonnet.TEMPLATE";
 if configs.estate == "prd-sam" then
 {
   local package = packagesvc {
-      serviceConf:: super.serviceConf {
-          repoName: "tsm",
+    serviceConf:: super.serviceConf {
+      repoName: "tsm",
+    },
+    replicas:: 1,
+    env:: super.env + [
+      {
+        name: "INSTANCE_TYPE",
+        value: "test_sam_manifests",
       },
-      replicas:: 1,
-      env:: super.env + [
-          {
-              name: "INSTANCE_TYPE",
-              value: "test_sam_manifests",
-          },
-          {
-              name: "PACKAGE_QUEUE",
-              value: "test_sam_manifests.package",
-          },
-          {
-              name: "PROMOTION_QUEUE",
-              value: "test_sam_manifests.promotion",
-          },
-          {
-              name: "LATEST_FILE_QUEUE",
-              value: "test_sam_manifests.latestfile",
-          },
-     ],
+      {
+        name: "PACKAGE_QUEUE",
+        value: "test_sam_manifests.package",
+      },
+      {
+        name: "PROMOTION_QUEUE",
+        value: "test_sam_manifests.promotion",
+      },
+      {
+        name: "LATEST_FILE_QUEUE",
+        value: "test_sam_manifests.latestfile",
+      },
+   ],
   },
   local packagesingleton = packagesvcsingleton {
-       serviceConf:: super.serviceConf {
-           repoName: "tsm",
+     serviceConf:: super.serviceConf {
+       repoName: "tsm",
+     },
+     replicas:: 1,
+     env:: super.env + [
+       {
+         name: "INSTANCE_TYPE",
+         value: "test_sam_manifests",
        },
-       replicas:: 1,
-       env:: super.env + [
-           {
-               name: "INSTANCE_TYPE",
-               value: "test_sam_manifests",
-           },
-           {
-               name: "PACKAGE_QUEUE",
-               value: "test_sam_manifests.package",
-           },
-           {
-               name: "PROMOTION_QUEUE",
-               value: "test_sam_manifests.promotion",
-           },
-           {
-               name: "LATEST_FILE_QUEUE",
-               value: "test_sam_manifests.latestfile",
-           },
-      ],
+       {
+         name: "PACKAGE_QUEUE",
+         value: "test_sam_manifests.package",
+       },
+       {
+         name: "PROMOTION_QUEUE",
+         value: "test_sam_manifests.promotion",
+       },
+       {
+         name: "LATEST_FILE_QUEUE",
+         value: "test_sam_manifests.latestfile",
+       },
+    ],
   },
   local pullrequest = pullrequestsvc {
-      serviceConf:: super.serviceConf {
-          repoName: "tsm",
+    serviceConf:: super.serviceConf {
+      repoName: "tsm",
+      darkLaunch: "true",
+    },
+    replicas:: 1,
+    env:: super.env + [
+      {
+        name: "INSTANCE_TYPE",
+        value: "test_sam_manifests",
       },
-      replicas:: 1,
-      env:: super.env + [
-          {
-              name: "INSTANCE_TYPE",
-              value: "test_sam_manifests",
-          },
-          {
-              name: "RABBIT_MQ_QUEUE_NAME",
-              value: "test_sam_manifests.pr",
-          },
-     ],
+      {
+        name: "RABBIT_MQ_QUEUE_NAME",
+        value: "test_sam_manifests.pr",
+      },
+   ],
 
   },
   local promotion = promotionsvc {
-      serviceConf:: super.serviceConf {
-          repoName: "tsm",
+    serviceConf:: super.serviceConf {
+      repoName: "tsm",
+    },
+    replicas:: 1,
+    env:: super.env + [
+      {
+        name: "INSTANCE_TYPE",
+        value: "test_sam_manifests",
       },
-      replicas:: 1,
-      env:: super.env + [
-          {
-              name: "INSTANCE_TYPE",
-              value: "test_sam_manifests",
-          },
-          {
-              name: "RABBIT_MQ_QUEUE_NAME",
-              value: "test_sam_manifests.promotion",
-          },
-     ],
+      {
+        name: "RABBIT_MQ_QUEUE_NAME",
+        value: "test_sam_manifests.promotion",
+      },
+   ],
 
   },
 
