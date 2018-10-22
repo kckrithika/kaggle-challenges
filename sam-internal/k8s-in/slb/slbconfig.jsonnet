@@ -200,6 +200,7 @@
             + set_value_to_all_in_list(3, $.prodEstates)
             + {
                 "prd-sdc": 6,
+                "prd-sam": 5,
                 "prd-samtest": 1,
                 "prd-samdev": 1,
             },

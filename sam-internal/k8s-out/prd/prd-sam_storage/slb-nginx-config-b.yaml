@@ -50,14 +50,6 @@ spec:
       namespace: sam-system
     spec:
       affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: slb-service
-                operator: In
-                values:
-                - slb-nginx-b
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -65,6 +57,7 @@ spec:
               - key: name
                 operator: In
                 values:
+                - slb-ipvs
                 - slb-nginx-config-b
             topologyKey: kubernetes.io/hostname
       containers:
@@ -500,6 +493,8 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      nodeSelector:
+        pool: prd-sam_storage
       volumes:
       - hostPath:
           path: /data/slb/nginx/config
