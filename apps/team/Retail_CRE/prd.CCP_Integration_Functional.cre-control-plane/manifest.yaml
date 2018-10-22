@@ -13,8 +13,18 @@ system:
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
+        - name: METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
+        - name: METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
           value: ccp-func
+        - name: METRICS_KAFKA_ENABLED
+          value: true
+        - name: MADDOG_CLIENT_KEYSTORE
+          value: maddog/maddog-client-keystore.json
+        - name: MADDOG_CLIENT_TRUSTSTORE
+          value: maddog/maddog-client-truststore.json
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets/cre-gdot-private-key.json
         - name: GRPC_PORT
