@@ -1,0 +1,24 @@
+- lbname: qd1dchbase-dchbase-qnds1-0-prd
+  customlbname: qd1dchbase-dchbase-qnds1-0-prd
+  servers:
+  - qd1dchbase0a-qnds1-1-prd.eng.sfdc.net
+  - qd1dchbase0a-qnds2-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8765
+    lbtype: tcp
+    healthport: 8765
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+- lbname: devqd1dchbase-dchbase-qnds1-0-prd
+  customlbname: devqd1dchbase-dchbase-qnds1-0-prd
+  servers:
+  - devqd1dchbase0a-qnds2-1-prd.eng.sfdc.net
+  - devqd1dchbase0a-qnds1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8765
+    lbtype: tcp
+    healthport: 8765
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
