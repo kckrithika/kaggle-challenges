@@ -1,0 +1,216 @@
+- lbname: qa0cfg0-ddbapima1-0-prd
+  customlbname: qa0cfg0-ddbapima1-0-prd
+  servers:
+  - qa0cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - qa0cfg0-cfgapp1-1-prd.eng.sfdc.net
+  - qa0cfg0-cfgapp2-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8444
+    lbtype: tcp
+    healthport: 8444
+    lbalgorithm: roundrobin
+- lbname: dev0cfg0-cidbapima1-0-prd
+  customlbname: dev0cfg0-cidbapima1-0-prd
+  servers:
+  - dev0cfg0-cfgapp2-1-prd.eng.sfdc.net
+  - dev0cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - dev0cfg0-cfgapp1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8440
+    lbtype: tcp
+    healthport: 8440
+    lbalgorithm: roundrobin
+- lbname: qa0cfg0-cidbapik1-0-prd
+  customlbname: qa0cfg0-cidbapik1-0-prd
+  servers:
+  - qa0cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - qa0cfg0-cfgapp1-1-prd.eng.sfdc.net
+  - qa0cfg0-cfgapp2-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8441
+    lbtype: tcp
+    healthport: 8441
+    lbalgorithm: roundrobin
+- lbname: cfg0-cidbapik1-0-prd
+  customlbname: cfg0-cidbapik1-0-prd
+  servers:
+  - cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - cfg0-cfgapp2-1-prd.eng.sfdc.net
+  - cfg0-cfgapp1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8441
+    lbtype: tcp
+    healthport: 8441
+    lbalgorithm: roundrobin
+- lbname: qa0cfg0-cidbapima1-0-prd
+  customlbname: qa0cfg0-cidbapima1-0-prd
+  servers:
+  - qa0cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - qa0cfg0-cfgapp1-1-prd.eng.sfdc.net
+  - qa0cfg0-cfgapp2-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8440
+    lbtype: tcp
+    healthport: 8440
+    lbalgorithm: roundrobin
+- lbname: dev0cfg0-idbapima1-0-prd
+  customlbname: dev0cfg0-idbapima1-0-prd
+  servers:
+  - dev0cfg0-cfgapp2-1-prd.eng.sfdc.net
+  - dev0cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - dev0cfg0-cfgapp1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8442
+    lbtype: tcp
+    healthport: 8442
+    lbalgorithm: roundrobin
+- lbname: cfg0-cidbapima1-0-prd
+  customlbname: cfg0-cidbapima1-0-prd
+  servers:
+  - cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - cfg0-cfgapp2-1-prd.eng.sfdc.net
+  - cfg0-cfgapp1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8440
+    lbtype: tcp
+    healthport: 8440
+    lbalgorithm: roundrobin
+- lbname: qa0cfg0-ddbapik1-0-prd
+  customlbname: qa0cfg0-ddbapik1-0-prd
+  servers:
+  - qa0cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - qa0cfg0-cfgapp1-1-prd.eng.sfdc.net
+  - qa0cfg0-cfgapp2-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8445
+    lbtype: tcp
+    healthport: 8445
+    lbalgorithm: roundrobin
+- lbname: cfg0-idbapik1-0-prd
+  customlbname: cfg0-idbapik1-0-prd
+  servers:
+  - cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - cfg0-cfgapp2-1-prd.eng.sfdc.net
+  - cfg0-cfgapp1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8443
+    lbtype: tcp
+    healthport: 8443
+    lbalgorithm: roundrobin
+- lbname: dev0cfg0-cidbapik1-0-prd
+  customlbname: dev0cfg0-cidbapik1-0-prd
+  servers:
+  - dev0cfg0-cfgapp2-1-prd.eng.sfdc.net
+  - dev0cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - dev0cfg0-cfgapp1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8441
+    lbtype: tcp
+    healthport: 8441
+    lbalgorithm: roundrobin
+- lbname: dev0cfg0-ddbapik1-0-prd
+  customlbname: dev0cfg0-ddbapik1-0-prd
+  servers:
+  - dev0cfg0-cfgapp2-1-prd.eng.sfdc.net
+  - dev0cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - dev0cfg0-cfgapp1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8445
+    lbtype: tcp
+    healthport: 8445
+    lbalgorithm: roundrobin
+- lbname: qa0cfg0-idbapima1-0-prd
+  customlbname: qa0cfg0-idbapima1-0-prd
+  servers:
+  - qa0cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - qa0cfg0-cfgapp1-1-prd.eng.sfdc.net
+  - qa0cfg0-cfgapp2-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8442
+    lbtype: tcp
+    healthport: 8442
+    lbalgorithm: roundrobin
+- lbname: cfg0-ddbapima1-0-prd
+  customlbname: cfg0-ddbapima1-0-prd
+  servers:
+  - cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - cfg0-cfgapp2-1-prd.eng.sfdc.net
+  - cfg0-cfgapp1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8444
+    lbtype: tcp
+    healthport: 8444
+    lbalgorithm: roundrobin
+- lbname: cfg0-ddbapik1-0-prd
+  customlbname: cfg0-ddbapik1-0-prd
+  servers:
+  - cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - cfg0-cfgapp2-1-prd.eng.sfdc.net
+  - cfg0-cfgapp1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8445
+    lbtype: tcp
+    healthport: 8445
+    lbalgorithm: roundrobin
+- lbname: qa0cfg0-idbapik1-0-prd
+  customlbname: qa0cfg0-idbapik1-0-prd
+  servers:
+  - qa0cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - qa0cfg0-cfgapp1-1-prd.eng.sfdc.net
+  - qa0cfg0-cfgapp2-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8443
+    lbtype: tcp
+    healthport: 8443
+    lbalgorithm: roundrobin
+- lbname: dev0cfg0-ddbapima1-0-prd
+  customlbname: dev0cfg0-ddbapima1-0-prd
+  servers:
+  - dev0cfg0-cfgapp2-1-prd.eng.sfdc.net
+  - dev0cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - dev0cfg0-cfgapp1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8444
+    lbtype: tcp
+    healthport: 8444
+    lbalgorithm: roundrobin
+- lbname: dev0cfg0-idbapik1-0-prd
+  customlbname: dev0cfg0-idbapik1-0-prd
+  servers:
+  - dev0cfg0-cfgapp2-1-prd.eng.sfdc.net
+  - dev0cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - dev0cfg0-cfgapp1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8443
+    lbtype: tcp
+    healthport: 8443
+    lbalgorithm: roundrobin
+- lbname: cfg0-idbapima1-0-prd
+  customlbname: cfg0-idbapima1-0-prd
+  servers:
+  - cfg0-cfgapp1-2-prd.eng.sfdc.net
+  - cfg0-cfgapp2-1-prd.eng.sfdc.net
+  - cfg0-cfgapp1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8442
+    lbtype: tcp
+    healthport: 8442
+    lbalgorithm: roundrobin
