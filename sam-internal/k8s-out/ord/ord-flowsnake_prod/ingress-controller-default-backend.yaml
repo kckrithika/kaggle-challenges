@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         app: default-http-backend
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: DefaultHttpBackend
         name: default-http-backend
     spec:
       containers:

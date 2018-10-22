@@ -6,7 +6,7 @@ local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
-local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+
 if !watchdog.watchdog_enabled then
 "SKIP"
 else
@@ -21,7 +21,7 @@ configs.deploymentBase("flowsnake") {
         namespace: "flowsnake",
     },
     spec+: {
-        [if flag_fs_metric_labels then "selector"]+: {
+        selector: {
             matchLabels: {
                 app: label_node.app,
                 apptype: label_node.apptype,

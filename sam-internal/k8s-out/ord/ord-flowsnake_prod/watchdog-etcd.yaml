@@ -16,6 +16,8 @@ spec:
         app: watchdog-etcd
         apptype: monitoring
         daemonset: "true"
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: WatchdogEtcd
     spec:
       containers:
       - command:

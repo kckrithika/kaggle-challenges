@@ -25,6 +25,8 @@ spec:
         scheduler.alpha.kubernetes.io/critical-pod: ""
       creationTimestamp: null
       labels:
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: KubeDns
         k8s-app: kube-dns
     spec:
       containers:

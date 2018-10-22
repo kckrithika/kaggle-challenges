@@ -3,7 +3,7 @@ local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 local configs = import "config.jsonnet";
-local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+
 
 if !watchdog.watchdog_enabled then
 "SKIP"
@@ -69,10 +69,9 @@ configs.deploymentBase("flowsnake") {
                 labels: {
                     apptype: "monitoring",
                     name: "watchdog-etcd-quorum",
-                } + if flag_fs_metric_labels then {
                     flowsnakeOwner: "dva-transform",
                     flowsnakeRole: "WatchdogEtcdQuorum",
-                } else {},
+                },
                 namespace: "flowsnake",
             },
         },
