@@ -1,0 +1,32 @@
+# created by scone-gen fccdd18c
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: universal-search-mock-index-workflow
+    count: 1
+    containers:
+    - name: universal-search-mock-index-workflow-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/universal-search-mock-index-workflow:irahim-20181022-6544394
+      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      ports:
+      - containerPort: 8080
+        name: scone-http
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvolservice
+
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+    volumes:
+    - name: logvolservice
+      hostPath:
+        path: /home/sfdc-scone-universal-search-mock-index-workflow/logs

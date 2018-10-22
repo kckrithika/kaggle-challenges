@@ -9,3 +9,5 @@ apps:
   - prd/prd-sam
  universal-search-master-xlt:
   - prd/prd-sam
+ universal-search-mock-index-workflow:
+  - prd/prd-sam
