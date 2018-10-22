@@ -3,7 +3,7 @@ local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-data
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbports = import "slbports.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet") + (if slbflights.podLevelLogEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbflights.podLevelLogEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-data-watchdog" };
 
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata+: {
