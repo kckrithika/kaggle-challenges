@@ -13,6 +13,7 @@ local configs = import "config.jsonnet";
       configs.estate == "prd-sam",
 
    is_slb_enabled:
+      configs.estate == "prd-samtwo" ||
       configs.estate == "prd-sam",
 
 }

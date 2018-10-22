@@ -40,7 +40,6 @@ items:
                   }
               },
               "monitoring": {
-                  "datacenter": "prd",
                   "funnel": {
                       "avro-schema-fingerprint": "AVG7NnlcHNdk4t_zn2JBnQ",
                       "backoff-time": 1,
@@ -64,9 +63,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-samtwo"
                   },
-                  "pod": "firefly-intake",
                   "report-frequency": 1,
-                  "superpod": "prd-samtwo",
                   "system-exception-threshold": 5
               },
               "rabbitmq": {
@@ -165,6 +162,13 @@ items:
 - apiVersion: v1
   kind: Service
   metadata:
+    annotations:
+      slb.sfdc.net/name: firefly-intake-dl
+      slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8181, "reencrypt":
+        false, "sticky": 0, "targetPort": 8181, "tls": false}, {"lbtype": "http",
+        "port": 8180, "reencrypt": false, "sticky": 0, "targetPort": 8180, "tls":
+        false}, {"lbtype": "http", "port": 8543, "reencrypt": false, "sticky": 0,
+        "targetPort": 8180, "tls": true}]'
     labels:
       app: firefly-intake-dl
       sam.data.sfdc.net/owner: tnrp
@@ -173,23 +177,20 @@ items:
   spec:
     ports:
     - name: intake-http
-      nodePort: 32180
       port: 8180
       protocol: TCP
       targetPort: 8180
     - name: intake-https
-      nodePort: 32543
       port: 8543
       protocol: TCP
       targetPort: 8180
     - name: admin-port
-      nodePort: 32181
       port: 8181
       protocol: TCP
       targetPort: 8181
     selector:
       name: firefly-intake-dl
-    type: LoadBalancer
+    type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
