@@ -2,7 +2,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
-local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
+
 
 // Disable everywhere for now because too noisy, because at any given time we have failed customer pods.
 if !watchdog.watchdog_enabled || true then
@@ -98,10 +98,9 @@ else
               labels: {
                   apptype: "monitoring",
                   name: "watchdog-kuberesources",
-                } + if flag_fs_metric_labels then {
                   flowsnakeOwner: "dva-transform",
                   flowsnakeRole: "WatchdogKuberesources",
-              } else {},
+              },
           },
        },
    },

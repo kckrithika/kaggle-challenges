@@ -13,6 +13,8 @@ spec:
       labels:
         app: watchdog-docker-daemon
         apptype: monitoring
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: WatchdogDockerDaemon
     spec:
       containers:
       - command:

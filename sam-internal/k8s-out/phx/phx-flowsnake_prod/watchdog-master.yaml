@@ -16,6 +16,8 @@ spec:
         app: watchdog-master
         apptype: monitoring
         daemonset: "true"
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: WatchdogMaster
     spec:
       containers:
       - command:

@@ -1,6 +1,5 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_metric_labels");
 
 {
     local label_node = self.spec.template.metadata.labels,
@@ -24,10 +23,9 @@ local flag_fs_metric_labels = std.objectHas(flowsnake_images.feature_flags, "fs_
             metadata: {
                 labels: {
                     app: "flowsnake-test-data",
-                } + if flag_fs_metric_labels then {
                     flowsnakeOwner: "dva-transform",
                     flowsnakeRole: "FlowsnakeTestData",
-                } else {},
+                },
             },
             spec: {
                 terminationGracePeriodSeconds: 60,

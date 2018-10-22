@@ -85,7 +85,6 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
-                fs_metric_labels: "verified",
                 image_renames_and_canary_build_tags: "unverified",
             },
             version_mapping: {
@@ -124,7 +123,6 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
-                fs_metric_labels: "verified",  # works in prd-dev
             },
             version_mapping: {
                 main: {
@@ -151,7 +149,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                fs_metric_labels: "UNVERIFIED",  # testing in prd-dev
             },
             version_mapping: {
                 main: {
