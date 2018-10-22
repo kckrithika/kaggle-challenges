@@ -1,0 +1,119 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - jhumphreys@salesforce.com
+  functions:
+  - name: eaas
+    count: 3
+    terminationGracePeriodSeconds: 35
+    containers:
+    - name: eaas
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhumphreys/eaas:jh-W-5539429-2
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prd
+      - name: SCONE_SERVICE_NAME
+        value: eaas
+      # THIS IS REQUIRED ONLY FOR USER DIRECTORY DEPLOYMENTS
+      # although we are a kingdom level service, this will differentiate argus metrics
+      - name: SFDC_POD
+        value: jhumphreys
+      ports:
+        - name: grpc
+          containerPort: 7020
+      volumeMounts:
+      - mountPath: /home/sfdc-eaas/logs
+        name: logvol
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 120
+        periodSeconds: 60
+        timeoutSeconds: 30
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 110
+        periodSeconds: 60
+        timeoutSeconds: 30
+
+    - name: beacon-eaas
+      image: docker-sfci-dev/sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      args:
+      - -endpoint
+      - samapp/jhumphreys/eaas:DATACENTER:7443
+      - -endpoint
+      - samapp/eaas-jhumphreys:DATACENTER:7012
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+    - name: sherpa-eaas
+      image: sfci/servicelibs/sherpa-envoy:1.0.0
+      ports:
+      - name: sherpa-eaas-in
+        containerPort: 7012
+      - name: sherpa-eaas-tls
+        containerPort: 7443
+      - name: sherpa-eaas-adm
+        containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /client-certs
+        name: eaas-client-cert
+      - mountPath: /server-certs
+        name: eaas-server-cert
+      - mountPath: /log
+        name: sherpa-log-volume
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-eaas/logs
+    - name: eaas-client-cert
+      maddogCert:
+        type: client
+    - name: eaas-server-cert
+      maddogCert:
+        type: server
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+    strategy:
+      type: RollingUpdate
+  loadbalancers:
+  - lbname: emailinfra-eaas-jhumphreys-lb
+    function: eaas
+    slbEnabled: true
+    ports:
+    - lbtype: tcp
+      port: 7020
+      targetport: 7020

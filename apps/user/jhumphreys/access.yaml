@@ -1,0 +1,15 @@
+#Use corp user name instead of git user ids e.g. prahlad.joshi instead of prahlad-joshi
+admins:
+  - jhumphreys
+users:
+  - awaterman
+  - dkarbivnychyy
+  - jhumphreys
+  - ksheth
+  - ngolding
+  - nshekhawat
+  - ominaiev
+  - pkonieczny
+  - rkimble
+  - rstevens
+  - tok-sfci4 # Jenkins user

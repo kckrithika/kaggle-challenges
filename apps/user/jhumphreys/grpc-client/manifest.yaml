@@ -1,0 +1,77 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - jhumphreys@salesforce.com
+  functions:
+  - name: eaas-grpc-client
+    count: 3
+    strategy:
+      type: RollingUpdate
+    containers:
+    - name: eaas-grpc-client
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhumphreys/grpc-client:jh-W-5539429-2
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /home/sfdc-eaas/grpc-client.jar
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /etc/pki_service
+        name: eaas-client-cert
+
+    - name: sherpa-eaas-grpc-client
+      image: sfci/servicelibs/sherpa-envoy:1.0.0
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      resources:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
+      ports:
+      - containerPort: 7012
+        name: sherpa-eaas-in
+      - containerPort: 7443
+        name: sherpa-eaas-tls
+      - containerPort: 15373
+        name: sherpa-eaas-adm
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 110
+        periodSeconds: 5
+      volumeMounts:
+      - name: eaas-client-cert
+        mountPath: /client-certs
+      - name: eaas-server-cert
+        mountPath: /server-certs
+      - name: sherpa-log-volume
+        mountPath: /log
+
+    volumes:
+    - name: eaas-client-cert
+      maddogCert:
+        type: client
+    - name: eaas-server-cert
+      maddogCert:
+        type: server
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
