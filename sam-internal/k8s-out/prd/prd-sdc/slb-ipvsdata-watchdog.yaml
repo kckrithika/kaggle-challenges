@@ -132,5 +132,8 @@ spec:
           name: sfdchosts
         name: sfdchosts
       - hostPath:
+          path: /data/slb/config/slb-ipvsdata-watchdog
+        name: var-config-volume
+      - hostPath:
           path: /data/slb/logs/slb-ipvsdata-watchdog/cleanup
         name: var-cleanup-logs-volume
