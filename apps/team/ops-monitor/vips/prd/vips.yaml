@@ -1,0 +1,85 @@
+- lbname: monitor2-0-prd
+  customlbname: monitor2-0-prd
+  servers:
+  - ops0-monitor1-2-prd.eng.sfdc.net
+  - ops0-monitor4-2-prd.eng.sfdc.net
+  - ops0-monitor2-2-prd.eng.sfdc.net
+  - ops0-monitor3-2-prd.eng.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthpath: /cgi-bin/health.cgi
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: test0monitor1-0-prd
+  customlbname: test0monitor1-0-prd
+  servers:
+  - test0ops0-monitor2-1-prd.eng.sfdc.net
+  - test0ops0-monitor1-1-prd.eng.sfdc.net
+  - test0ops0-monitor3-1-prd.eng.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthpath: /cgi-bin/health.cgi
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: monitor3-0-prd
+  customlbname: monitor3-0-prd
+  servers:
+  - ops0-monitor3-3-prd.eng.sfdc.net
+  - ops0-monitor4-3-prd.eng.sfdc.net
+  - ops0-monitor1-3-prd.eng.sfdc.net
+  - ops0-monitor2-3-prd.eng.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthpath: /cgi-bin/health.cgi
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: stage0monitor1-0-prd
+  customlbname: stage0monitor1-0-prd
+  servers:
+  - stage0ops0-monitor1-1-prd.eng.sfdc.net
+  - stage0ops0-monitor2-1-prd.eng.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthpath: /cgi-bin/health.cgi
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: monitor1-0-prd
+  customlbname: monitor1-0-prd
+  servers:
+  - ops0-monitor2-1-prd.eng.sfdc.net
+  - ops0-monitor4-1-prd.eng.sfdc.net
+  - ops0-monitor1-1-prd.eng.sfdc.net
+  - ops0-monitor3-1-prd.eng.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthpath: /cgi-bin/health.cgi
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: ice0monitor2-0-prd
+  customlbname: ice0monitor2-0-prd
+  servers:
+  - ice0ops0-monitor1-2-prd.eng.sfdc.net
+  - ice0ops0-monitor2-2-prd.eng.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthpath: /cgi-bin/health.cgi
+    healthprotocol: http
+    lbalgorithm: roundrobin
