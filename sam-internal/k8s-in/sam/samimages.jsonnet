@@ -22,7 +22,7 @@ local configs = import "config.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         #[xiao] Fix CI in prd
-        "prd,prd-sam,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181012_161951.65bc4d08.dirty.xiaozhou-ltm2",
+        "prd,prd-sam,samapp-controller,hypersam": "sam-0002343-801aef07",
 
         },
 
