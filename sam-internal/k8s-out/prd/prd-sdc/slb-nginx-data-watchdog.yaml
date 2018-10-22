@@ -112,5 +112,8 @@ spec:
           name: sfdchosts
         name: sfdchosts
       - hostPath:
-          path: /data/slb/logs/slb-nginx-data-watchdog/cleanup
+          path: /data/slb/config/
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/cleanup
         name: var-cleanup-logs-volume

@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local slbflights = import "slbflights.jsonnet";
+local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-data-watchdog" };
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbports = import "slbports.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet") + (if slbflights.podLevelLogEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
@@ -24,13 +24,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                   configs.cert_volume,
                                                   configs.kube_config_volume,
                                                   configs.sfdchosts_volume,
-                                              ]
-                                              + (
-                                                  if slbflights.podLevelLogEnabled then [
-                                                      slbconfigs.cleanup_logs_volume,
-                                                  ] else []
-                                              )),
-                containers: [
+                                              ] + slbflights.slbCleanupLogsVolume()),
+                containers: std.prune([
                                 {
                                     name: "slb-nginx-data-watchdog",
                                     image: slbimages.hypersdn,
@@ -59,12 +54,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                         configs.kube_config_env,
                                     ],
                                 },
-                            ]
-                            + (
-                                if slbflights.podLevelLogEnabled then [
-                                    slbshared.slbLogCleanup,
-                                ] else []
-                            ),
+                                slbflights.slbCleanupLogsContainer(),
+                            ]),
             } + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,
             metadata: {

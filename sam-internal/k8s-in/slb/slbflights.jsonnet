@@ -15,4 +15,11 @@
     getIPVSConsistencyIgnoreServerWeights():: (if slbimages.hypersdn_build >= 1288 then [
         "--ignoreWeightsInConsistencyCheck=true",
     ] else []),
+
+    slbCleanupLogsVolume():: (if $.podLevelLogEnabled then [
+            slbconfigs.slb_config_volume,
+            slbconfigs.cleanup_logs_volume,
+        ] else []),
+
+    slbCleanupLogsContainer():: (if $.podLevelLogEnabled then slbshared.slbLogCleanup else null),
 }

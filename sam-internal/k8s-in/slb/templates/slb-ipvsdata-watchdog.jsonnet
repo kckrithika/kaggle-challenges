@@ -27,12 +27,8 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.sfdchosts_volume,
-                ] + (
-                                                                    if slbflights.podLevelLogEnabled then [
-                                                                        slbconfigs.cleanup_logs_volume,
-                                                                    ] else []
-                                                                )),
-                containers: [
+                ] + slbflights.slbCleanupLogsVolume()),
+                containers: std.prune([
                     {
                         name: "slb-ipvsdata-watchdog",
                         image: slbimages.hypersdn,
@@ -69,11 +65,8 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                             configs.kube_config_env,
                         ],
                     },
-                ] + (
-                                                                    if slbflights.podLevelLogEnabled then [
-                                                                        slbshared.slbLogCleanup,
-                                                                    ] else []
-                                                                ),
+                    slbflights.slbCleanupLogsContainer(),
+                ]),
             } + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,
             metadata: {

@@ -80,8 +80,8 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=48h
-        - --log_dir=/host/data/slb/logs/slb-ipvsdata-watchdog/cleanup
-        - --filesDirToCleanup=/host/data/slb/logs/slb-ipvsdata-watchdog
+        - --log_dir=/host/data/slb/logs/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/
         - --shouldSkipServiceRecords=false
         - --shouldNotDeleteAllFiles=false
         env:
@@ -101,13 +101,13 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/slb-ipvsdata-watchdog
+        - mountPath: /host/data/slb/config/
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/slb-ipvsdata-watchdog
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /host/data/slb/logs/slb-ipvsdata-watchdog/cleanup
+        - mountPath: /host/data/slb/logs/cleanup
           name: var-cleanup-logs-volume
       dnsPolicy: Default
       nodeSelector:
@@ -132,5 +132,8 @@ spec:
           name: sfdchosts
         name: sfdchosts
       - hostPath:
-          path: /data/slb/logs/slb-ipvsdata-watchdog/cleanup
+          path: /data/slb/config/
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/cleanup
         name: var-cleanup-logs-volume

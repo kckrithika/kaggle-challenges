@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local slbflights = import "slbflights.jsonnet";
+local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-labels-checker" };
 local slbconfigs = (import "slbconfig.jsonnet") + (if slbflights.podLevelLogEnabled then { dirSuffix:: "slb-labels-checker" } else {});
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-labels-checker" };
@@ -23,12 +23,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     configs.kube_config_volume,
                     configs.cert_volume,
                     configs.maddog_cert_volume,
-                ] + (
-                                                                    if slbflights.podLevelLogEnabled then [
-                                                                        slbconfigs.cleanup_logs_volume,
-                                                                    ] else []
-                                                                )),
-                containers: [
+                ] + slbflights.slbCleanupLogsVolume()),
+                containers: std.prune([
                     {
                         name: "slb-labels-checker",
                         image: slbimages.hypersdn,
@@ -64,11 +60,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             },
                         ],
                     },
-                ] + (
-                                                  if slbflights.podLevelLogEnabled then [
-                                                      slbshared.slbLogCleanup,
-                                                  ] else []
-                                              ),
+                    slbflights.slbCleanupLogsContainer(),
+                ]),
             } + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,
             metadata: {
