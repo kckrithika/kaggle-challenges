@@ -1,8 +1,9 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
+local slbflights = import "slbflights.jsonnet";
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbflights.podLevelLogEnabled then { dirSuffix:: "slb-ipvsdata-watchdog" } else {});
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
-local slbflights = import "slbflights.jsonnet";
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ipvsdata-watchdog" };
 
 if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymentBase("slb") {
     metadata: {
@@ -26,7 +27,11 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.sfdchosts_volume,
-                ]),
+                ] + (
+                                                                    if slbflights.podLevelLogEnabled then [
+                                                                        slbconfigs.cleanup_logs_volume,
+                                                                    ] else []
+                                                                )),
                 containers: [
                     {
                         name: "slb-ipvsdata-watchdog",
@@ -64,7 +69,11 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                             configs.kube_config_env,
                         ],
                     },
-                ],
+                ] + (
+                                                                    if slbflights.podLevelLogEnabled then [
+                                                                        slbshared.slbLogCleanup,
+                                                                    ] else []
+                                                                ),
             } + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,
             metadata: {
