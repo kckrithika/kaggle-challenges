@@ -6,6 +6,11 @@ metadata:
     sam.data.sfdc.net/owner: sam
   name: sam-network-reporter
 spec:
+  selector:
+    matchLabels:
+      apptype: control
+      name: sam-network-reporter
+      sam.data.sfdc.net/owner: sam
   template:
     metadata:
       labels:
@@ -28,7 +33,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/hypersam:sam-0002252-a9ad81d9
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/hypersam:sam-0002336-6a8184c1
         name: sam-network-reporter
         ports:
         - containerPort: 3333
