@@ -16,7 +16,7 @@ system:
         path: /home/sfdc-mds/logs
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/steven.booth/metadata-service:gocauth2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/steven.booth/metadata-service:gocauth3
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -29,7 +29,7 @@ system:
         value: 15523
       - name: JVM_ARGS
         value: "-Dsettings.path=dev.mydev.landmark.-.metadata-service
-                +Dspring.jpa.properties.hibernate.dialect = org.hibernate.dialect.H2Dialect"
+                -Dspring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQL94Dialect"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 30
