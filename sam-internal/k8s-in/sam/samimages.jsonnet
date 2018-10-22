@@ -57,7 +57,7 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": $.per_phase["4"] {
-            hypersam: "sam-0002328-f0e6eae5",
+            hypersam: "sam-0002336-6a8184c1",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia + prd-samtwo
