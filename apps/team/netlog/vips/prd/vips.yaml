@@ -4,7 +4,7 @@
     - ops0-netlog1-1-prd.eng.sfdc.net
     - ops0-netlog1-2-prd.eng.sfdc.net
     - ops0-netlog2-1-prd.eng.sfdc.net
-    - ops0-netlog2--prd.eng.sfdc.net
+    - ops0-netlog2-2-prd.eng.sfdc.net
   ports: 
     - port: 443
       targetport: 9000
