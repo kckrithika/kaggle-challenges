@@ -8,10 +8,14 @@ Please make your changes on a fork of this repo.  Remember to sync changes from 
 
 ```sh
 $ ./validate.sh 
-NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)
+NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/display/SAM/Set+Up+Docker (Set up Docker for Sam)
 sam-manifest-builder build version: 20180131_005446.43e3d41.dirty.9b0f360a10ec
 ### Successful run.  Good files: 1589, Bad Files: 0, Ignored Files: 285
+
+### SUCCESSFUL RUN.
 ```
+
+_NOTE_: The first time you run this, Docker will download a bunch of images, and the output after that will be a bit different: the good/bad files line will be earlier in the output than the `### SUCCESSFUL RUN` line.  Future runs will look like the example above.
 
 To start a pull request: commit your changes, push to your fork, then use the GitHub UI to create a pull request. Please include the validation output in the PR body. To get it to format correctly, add a line before and after the text with three back-ticks.
 
