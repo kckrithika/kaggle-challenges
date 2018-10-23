@@ -576,7 +576,7 @@ system:
    
   - lbname: us99-mist61sfproxy-lb
     function: na99-mist61sfproxy-prd
-    nodeExposed: true
+    nodeExposed: false
     slbEnabled: true
     ports:
 # TCP listen port of Envoy.
@@ -605,7 +605,7 @@ system:
 
   - lbname: us99-mist61switchboard-lb
     function: na99-mist61switchboard-prd
-    nodeExposed: true
+    nodeExposed: false
     slbEnabled: true
     ports:
 # gRPC listen port of switchboard.
