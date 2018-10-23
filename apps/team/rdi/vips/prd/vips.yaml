@@ -78,3 +78,30 @@
       sticky: 300
       reencrypt: true
       tls: true
+- lbname: rdi-repo-prd
+  customlbname: rdi-repo-prd
+  servers:
+  - rdi-repo1-1-prd.eng.sfdc.net
+  - rdi-repo1-3-prd.eng.sfdc.net
+  - rdi-repo1-2-prd.eng.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    lbalgorithm: leastconn
+- lbname: ops-rdi-tms1-0-prd
+  customlbname: ops-rdi-tms1-0-prd
+  servers:
+  - rdi-tmsapp1-4-prd.eng.sfdc.net
+  - rdi-tmsapp1-1-prd.eng.sfdc.net
+  - rdi-tmsapp1-3-prd.eng.sfdc.net
+  - rdi-tmsapp1-5-prd.eng.sfdc.net
+  - rdi-tmsapp1-2-prd.eng.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
