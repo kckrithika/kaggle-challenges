@@ -58,7 +58,6 @@ if configs.estate == "prd-sam" then
   local pullrequest = pullrequestsvc {
     serviceConf:: super.serviceConf {
       repoName: "tsm",
-      darkLaunch: "true",
     },
     replicas:: 1,
     env:: super.env + [
