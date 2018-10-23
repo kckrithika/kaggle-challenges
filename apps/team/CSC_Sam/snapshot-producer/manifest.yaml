@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: snapshot-producer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20180713_141939.13ed4c2d.clean.duncsmith-ltm
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20181023_122231.487bbe4f.clean.duncsmith-ltm
       command:
         - /sam/snapshoter
         - --alsologtostderr
