@@ -1,0 +1,12 @@
+- lbname: gro-jenkins1-0-prd
+  customlbname: gro-jenkins1-0-prd
+  servers:
+  - rd0-groauto1-1-prd.eng.sfdc.net
+  - rd0-groauto2-1-prd.eng.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: http
+    healthport: 80
+    healthprotocol: tcp
+    lbalgorithm: leastconn
