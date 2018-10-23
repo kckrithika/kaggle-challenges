@@ -1,0 +1,115 @@
+- lbname: shared1-argus-writed3-0-prd
+  customlbname: shared1-argus-writed3-0-prd
+  servers:
+  - shared1-argustsdbw1-2-prd.eng.sfdc.net
+  - shared1-argustsdbw2-8-prd.eng.sfdc.net
+  - shared1-argustsdbw1-7-prd.eng.sfdc.net
+  - shared1-argustsdbw1-10-prd.eng.sfdc.net
+  - shared1-argustsdbw1-13-prd.eng.sfdc.net
+  - shared1-argustsdbw1-1-prd.eng.sfdc.net
+  - shared1-argustsdbw1-9-prd.eng.sfdc.net
+  - shared1-argustsdbw1-11-prd.eng.sfdc.net
+  - shared1-argustsdbw2-6-prd.eng.sfdc.net
+  - shared1-argustsdbw2-11-prd.eng.sfdc.net
+  - shared1-argustsdbw2-12-prd.eng.sfdc.net
+  - shared1-argustsdbw2-7-prd.eng.sfdc.net
+  - shared1-argustsdbw2-5-prd.eng.sfdc.net
+  - shared1-argustsdbw1-4-prd.eng.sfdc.net
+  - shared1-argustsdbw1-6-prd.eng.sfdc.net
+  - shared1-argustsdbw2-10-prd.eng.sfdc.net
+  - shared1-argustsdbw2-4-prd.eng.sfdc.net
+  - shared1-argustsdbw2-2-prd.eng.sfdc.net
+  - shared1-argustsdbw1-8-prd.eng.sfdc.net
+  - shared1-argustsdbw2-1-prd.eng.sfdc.net
+  - shared1-argustsdbw1-3-prd.eng.sfdc.net
+  - shared1-argustsdbw2-3-prd.eng.sfdc.net
+  - shared1-argustsdbw1-5-prd.eng.sfdc.net
+  - shared1-argustsdbw2-9-prd.eng.sfdc.net
+  - shared1-argustsdbw1-12-prd.eng.sfdc.net
+  ports:
+  - port: 4477
+    targetport: 4477
+    lbtype: http
+    healthport: 4477
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+- lbname: shared1-argustsdbw2-0-prd
+  customlbname: shared1-argustsdbw2-0-prd
+  servers:
+  - shared1-argustsdbw2-10-prd.eng.sfdc.net
+  - shared1-argustsdbw2-3-prd.eng.sfdc.net
+  - shared1-argustsdbw2-6-prd.eng.sfdc.net
+  - shared1-argustsdbw2-4-prd.eng.sfdc.net
+  - shared1-argustsdbw2-8-prd.eng.sfdc.net
+  - shared1-argustsdbw2-9-prd.eng.sfdc.net
+  - shared1-argustsdbw2-2-prd.eng.sfdc.net
+  - shared1-argustsdbw2-11-prd.eng.sfdc.net
+  - shared1-argustsdbw2-12-prd.eng.sfdc.net
+  - shared1-argustsdbw2-1-prd.eng.sfdc.net
+  - shared1-argustsdbw2-7-prd.eng.sfdc.net
+  - shared1-argustsdbw2-5-prd.eng.sfdc.net
+  ports:
+  - port: 4477
+    targetport: 4477
+    lbtype: http
+    healthport: 4477
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+- lbname: shared1-argustsdbw1-0-prd
+  customlbname: shared1-argustsdbw1-0-prd
+  servers:
+  - shared1-argustsdbw1-3-prd.eng.sfdc.net
+  - shared1-argustsdbw1-2-prd.eng.sfdc.net
+  - shared1-argustsdbw1-4-prd.eng.sfdc.net
+  - shared1-argustsdbw1-9-prd.eng.sfdc.net
+  - shared1-argustsdbw1-6-prd.eng.sfdc.net
+  - shared1-argustsdbw1-11-prd.eng.sfdc.net
+  - shared1-argustsdbw1-5-prd.eng.sfdc.net
+  - shared1-argustsdbw1-7-prd.eng.sfdc.net
+  - shared1-argustsdbw1-10-prd.eng.sfdc.net
+  - shared1-argustsdbw1-8-prd.eng.sfdc.net
+  - shared1-argustsdbw1-13-prd.eng.sfdc.net
+  - shared1-argustsdbw1-12-prd.eng.sfdc.net
+  - shared1-argustsdbw1-1-prd.eng.sfdc.net
+  ports:
+  - port: 4477
+    targetport: 4477
+    lbtype: http
+    healthport: 4477
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+- lbname: shared1-argus-tsdbwrite1-0-prd
+  customlbname: shared1-argus-tsdbwrite1-0-prd
+  servers:
+  - shared1-argustsdbw1-2-prd.eng.sfdc.net
+  - shared1-argustsdbw2-8-prd.eng.sfdc.net
+  - shared1-argustsdbw1-7-prd.eng.sfdc.net
+  - shared1-argustsdbw1-10-prd.eng.sfdc.net
+  - shared1-argustsdbw1-13-prd.eng.sfdc.net
+  - shared1-argustsdbw1-1-prd.eng.sfdc.net
+  - shared1-argustsdbw1-9-prd.eng.sfdc.net
+  - shared1-argustsdbw1-11-prd.eng.sfdc.net
+  - shared1-argustsdbw2-6-prd.eng.sfdc.net
+  - shared1-argustsdbw2-11-prd.eng.sfdc.net
+  - shared1-argustsdbw2-12-prd.eng.sfdc.net
+  - shared1-argustsdbw2-7-prd.eng.sfdc.net
+  - shared1-argustsdbw2-5-prd.eng.sfdc.net
+  - shared1-argustsdbw1-4-prd.eng.sfdc.net
+  - shared1-argustsdbw1-6-prd.eng.sfdc.net
+  - shared1-argustsdbw2-10-prd.eng.sfdc.net
+  - shared1-argustsdbw2-4-prd.eng.sfdc.net
+  - shared1-argustsdbw2-2-prd.eng.sfdc.net
+  - shared1-argustsdbw1-8-prd.eng.sfdc.net
+  - shared1-argustsdbw2-1-prd.eng.sfdc.net
+  - shared1-argustsdbw1-3-prd.eng.sfdc.net
+  - shared1-argustsdbw2-3-prd.eng.sfdc.net
+  - shared1-argustsdbw1-5-prd.eng.sfdc.net
+  - shared1-argustsdbw2-9-prd.eng.sfdc.net
+  - shared1-argustsdbw1-12-prd.eng.sfdc.net
+  ports:
+  - port: 4477
+    targetport: 4477
+    lbtype: http
+    healthport: 4477
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
