@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp
-      image: sfci/cre/cre-stream-processing:1.3.1.2.master.590cd4e.163
+      image: sfci/cre/cre-stream-processing:1.4.0.0.master.0e8da83.165
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__iad.ajna_local__cre_outbound
@@ -37,10 +37,15 @@ system:
           value: http://ajna0-funnel1-0-iad.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
           value: http://cre-control-plane-lb.retail-cre.iad-sam.iad.slb.sfdc.net:8094/streamprocessing
+        - name: JVM_ARGS
+          value: "-Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 8080
       - containerPort: 7022
       - containerPort: 15372
+      resources:
+        limits: { cpu: "2", memory: "10Gi" }
+        requests: { cpu: "2", memory: "10Gi" }      
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
