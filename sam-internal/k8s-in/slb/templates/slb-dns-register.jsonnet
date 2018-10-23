@@ -79,33 +79,31 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                       slbshared.slbNodeApi(portconfigs.slb.slbNodeApiDnsOverridePort, true),
                                       madkub.madkubRefreshContainer(certDirs),
                                       slbshared.slbManifestWatcher(),
-                                  ]
-                                  + (if slbflights.cnameRegisterEnabled then [
-                                         {
-                                             name: "slb-cname-register",
-                                             image: slbimages.hypersdn,
-                                             command: [
-                                                 "/sdn/slb-cname-register",
-                                                 "--ddi=" + slbconfigs.ddiService,
-                                                 "--log_dir=" + slbconfigs.logsDir,
-                                                 configs.sfdchosts_arg,
-                                                 "--client.socketDir=" + slbconfigs.configDir,
-                                                 "--client.dialSocket=true",
-                                                 "--commonoptions.metricsendpoint=" + configs.funnelVIP,
-                                                 "--commonoptions.hostname=$(NODE_NAME)",
-                                             ] + roleBasedSecretArgs,
-                                             volumeMounts: configs.filter_empty([
-                                                 configs.maddog_cert_volume_mount,
-                                                 configs.cert_volume_mount,
-                                                 slbconfigs.slb_config_volume_mount,
-                                                 slbconfigs.logs_volume_mount,
-                                                 configs.sfdchosts_volume_mount,
-                                             ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
-                                             env: [
-                                                 slbconfigs.node_name_env,
-                                             ],
-                                         },
-                                     ] else []),
+                                       {
+                                           name: "slb-cname-register",
+                                           image: slbimages.hypersdn,
+                                           command: [
+                                                       "/sdn/slb-cname-register",
+                                                       "--ddi=" + slbconfigs.ddiService,
+                                                       "--log_dir=" + slbconfigs.logsDir,
+                                                       configs.sfdchosts_arg,
+                                                       "--client.socketDir=" + slbconfigs.configDir,
+                                                       "--client.dialSocket=true",
+                                                       "--commonoptions.metricsendpoint=" + configs.funnelVIP,
+                                                       "--commonoptions.hostname=$(NODE_NAME)",
+                                                     ] + roleBasedSecretArgs,
+                                           volumeMounts: configs.filter_empty([
+                                               configs.maddog_cert_volume_mount,
+                                               configs.cert_volume_mount,
+                                               slbconfigs.slb_config_volume_mount,
+                                               slbconfigs.logs_volume_mount,
+                                               configs.sfdchosts_volume_mount,
+                                           ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
+                                           env: [
+                                               slbconfigs.node_name_env,
+                                           ],
+                                       },
+                                  ],
                       nodeSelector: { pool: slbconfigs.slbEstate },
                       initContainers: [
                           madkub.madkubInitContainer(certDirs),

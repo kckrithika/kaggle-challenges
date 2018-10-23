@@ -38,7 +38,7 @@ local bravoPortConfig = [
     ),
 ];
 
-local cnames = if slbflights.cnameRegisterEnabled then [{ cname: "bravo-" + commonutils.string_replace(configs.estate, "_", "-") + ".slb.sfdc.net" }] else [];
+local cnames = [{ cname: "bravo-" + commonutils.string_replace(configs.estate, "_", "-") + ".slb.sfdc.net" }];
 
 if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then
     slbbaseservice.slbCanaryBaseService(canaryName, bravoPortConfig, serviceName, vipName, cnames) {
