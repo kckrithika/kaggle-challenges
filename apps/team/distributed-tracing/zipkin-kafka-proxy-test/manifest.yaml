@@ -49,6 +49,9 @@ system:
         volumeMounts:
         - mountPath: /etc/pki_service/zipkin-kafka-proxy-test
           name: client-certs
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       - name: sherpa
         image: sfci/servicelibs/sherpa-envoy:1.0.1
         #args: ["--zipkin-rate", "0.0"]
@@ -81,9 +84,6 @@ system:
           mountPath: /client-certs
         - name: server-certs
           mountPath: /server-certs
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
       - name: beacon
         image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
         env:
