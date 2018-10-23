@@ -10,7 +10,7 @@
     nginxPodFloat: (slbimages.phaseNum <= 2),
     proxyProtocolCanaryEnabled: (slbimages.phaseNum <= 1),
     roleEnabled: (slbimages.phaseNum <= 1),
-    podLevelLogEnabled: (slbimages.phaseNum <= 1),
+    podLevelLogEnabled: (slbimages.phaseNum <= 2),
 
     slbCleanupLogsVolume():: (if $.podLevelLogEnabled then [
             slbconfigs.slb_config_volume,
