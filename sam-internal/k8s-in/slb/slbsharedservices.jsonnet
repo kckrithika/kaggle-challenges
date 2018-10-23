@@ -47,8 +47,7 @@
                       ] else []) +
                  [
                      "--control.configProcSentinel=" + configProcSentinel,
-                     "--alwaysPopulateRealServers=true",
-                 ],
+                 ] + slbflights.alwaysPopulateRealServersParam(),
         volumeMounts: configs.filter_empty([
             configs.maddog_cert_volume_mount,
             slbconfigs.slb_volume_mount,
