@@ -1,0 +1,11 @@
+- lbname: ddisrv1-0-prd
+  customlbname: ddisrv1-0-prd
+  servers:
+  - ops0-netbot2-1-prd.eng.sfdc.net
+  - ops0-netbot1-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8443
+    lbtype: tcp
+    healthport: 8443
+    lbalgorithm: roundrobin
