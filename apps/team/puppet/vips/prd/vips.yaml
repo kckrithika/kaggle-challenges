@@ -1,0 +1,36 @@
+- lbname: ops0-puppet1-0-prd
+  customlbname: ops0-puppet1-0-prd
+  servers:
+  - ops0-puppet2-2-prd.eng.sfdc.net
+  - ops0-puppet1-4-prd.eng.sfdc.net
+  - ops0-puppet1-2-prd.eng.sfdc.net
+  - ops0-puppet2-1-prd.eng.sfdc.net
+  - ops0-puppet2-3-prd.eng.sfdc.net
+  - ops0-puppet1-3-prd.eng.sfdc.net
+  - ops0-puppet1-1-prd.eng.sfdc.net
+  - ops0-puppet2-4-prd.eng.sfdc.net
+  ports:
+  - port: 8140
+    targetport: 8140
+    lbtype: tcp
+    healthport: 8140
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+- lbname: puppet1-0-prd
+  customlbname: puppet1-0-prd
+  servers:
+  - ops0-puppet2-2-prd.eng.sfdc.net
+  - ops0-puppet1-4-prd.eng.sfdc.net
+  - ops0-puppet1-2-prd.eng.sfdc.net
+  - ops0-puppet2-1-prd.eng.sfdc.net
+  - ops0-puppet2-3-prd.eng.sfdc.net
+  - ops0-puppet1-3-prd.eng.sfdc.net
+  - ops0-puppet1-1-prd.eng.sfdc.net
+  - ops0-puppet2-4-prd.eng.sfdc.net
+  ports:
+  - port: 8140
+    targetport: 8140
+    lbtype: tcp
+    healthport: 8140
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
