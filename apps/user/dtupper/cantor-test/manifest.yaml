@@ -3,8 +3,7 @@ apiVersion: v1
 system:
     notifications:
       email:
-        - paul.howden@salesforce.com
-        - pteyer@salesforce.com
+        - dtupper@salesforce.com
     functions:
     - name: dtcantor-test-func
       count: 3
@@ -31,11 +30,3 @@ system:
       - name: cantor-vol
         hostPath:
           path: /data/cantor
-
-    loadbalancers:
-    - lbname: cantor
-      function: cantor-func
-      slbEnabled: true
-      ports:
-        - port: 80
-          targetport: 7443
