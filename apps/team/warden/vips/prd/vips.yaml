@@ -1,0 +1,13 @@
+- lbname: ops0-dva-warden1-0-prd
+  customlbname: ops0-dva-warden1-0-prd
+  servers:
+  - shared0-wardenws1-1-prd.eng.sfdc.net
+  - shared0-wardenws2-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    healthport: 8080
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
