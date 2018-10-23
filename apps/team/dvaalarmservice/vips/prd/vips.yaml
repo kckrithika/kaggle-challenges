@@ -1,0 +1,36 @@
+- lbname: test0shared0-dvaalarmservice1-0-prd
+  customlbname: test0shared0-dvaalarmservice1-0-prd
+  servers:
+  - test0shared0-dvaalarmservice1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8080
+    targetport: 8080
+    lbtype: tcp
+    healthport: 8080
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+- lbname: shared0-dvaalarmservice1-0-prd
+  customlbname: shared0-dvaalarmservice1-0-prd
+  servers:
+  - shared0-dvaalarmservice2-1-prd.eng.sfdc.net
+  - shared0-dvaalarmservice3-1-prd.eng.sfdc.net
+  - shared0-dvaalarmservice1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8080
+    targetport: 8080
+    lbtype: tcp
+    healthport: 8080
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+- lbname: stage0shared0-dvaalarmservice1-0-prd
+  customlbname: stage0shared0-dvaalarmservice1-0-prd
+  servers:
+  - stage0shared0-dvaalarmservice2-1-prd.eng.sfdc.net
+  - stage0shared0-dvaalarmservice1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8080
+    targetport: 8080
+    lbtype: tcp
+    healthport: 8080
+    healthprotocol: tcp
+    lbalgorithm: roundrobin

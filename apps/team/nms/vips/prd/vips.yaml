@@ -1,0 +1,32 @@
+- lbname: dvaalarmservice1-0-prd
+  customlbname: dvaalarmservice1-0-prd
+  servers:
+  - ops0-nms2-2-prd.eng.sfdc.net
+  - ops0-nms3-1-prd.eng.sfdc.net
+  - ops0-nms1-2-prd.eng.sfdc.net
+  - ops0-nms2-1-prd.eng.sfdc.net
+  - ops0-nms1-1-prd.eng.sfdc.net
+  - ops0-nms3-2-prd.eng.sfdc.net
+  ports:
+  - port: 8080
+    targetport: 8080
+    lbtype: tcp
+    healthport: 8080
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+- lbname: test0dvaalarmservice1-0-prd
+  customlbname: test0dvaalarmservice1-0-prd
+  servers:
+  - test0ops0-nms1-1-prd.eng.sfdc.net
+  - test0ops0-nms3-2-prd.eng.sfdc.net
+  - test0ops0-nms2-1-prd.eng.sfdc.net
+  - test0ops0-nms1-2-prd.eng.sfdc.net
+  - test0ops0-nms3-1-prd.eng.sfdc.net
+  - test0ops0-nms2-2-prd.eng.sfdc.net
+  ports:
+  - port: 8080
+    targetport: 8080
+    lbtype: tcp
+    healthport: 8080
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
