@@ -34,3 +34,15 @@
     healthport: 8140
     healthprotocol: tcp
     lbalgorithm: roundrobin
+- lbname: ops0-riakdb1-0-prd
+  customlbname: ops0-riakdb1-0-prd
+  servers:
+  - ops0-riakdb2-1-prd.eng.sfdc.net
+  - ops0-riakdb1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8098
+    targetport: 8098
+    lbtype: tcp
+    healthport: 8098
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
