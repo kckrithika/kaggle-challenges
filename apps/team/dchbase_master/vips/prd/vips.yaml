@@ -1,0 +1,20 @@
+- lbname: dchbase-dchbase-master1-0-prd
+  customlbname: dchbase-dchbase-master1-0-prd
+  servers:
+  - iot1dchbase0a-mnds5-1-prd.eng.sfdc.net
+  - iotperf1dchbase1a-mnds1-1-prd.eng.sfdc.net
+  - iot1dchbase0a-mnds1-1-prd.eng.sfdc.net
+  - iot1dchbase0a-mnds3-1-prd.eng.sfdc.net
+  - iotperf1dchbase1a-mnds2-1-prd.eng.sfdc.net
+  - iot1dchbase0a-mnds2-1-prd.eng.sfdc.net
+  - iot1dchbase0a-mnds4-1-prd.eng.sfdc.net
+  - iotperf1dchbase1a-mnds3-1-prd.eng.sfdc.net
+  - iotperf1dchbase1a-mnds5-1-prd.eng.sfdc.net
+  - iotperf1dchbase1a-mnds4-1-prd.eng.sfdc.net
+  ports:
+  - port: 8081
+    targetport: 8081
+    lbtype: tcp
+    healthport: 8081
+    healthprotocol: tcp
+    lbalgorithm: roundrobin

@@ -1,0 +1,15 @@
+- lbname: arg1hbsvc-hbasemon1-0-prd
+  customlbname: arg1hbsvc-hbasemon1-0-prd
+  servers:
+  - arg1hbsvc-mnds5-1-prd.eng.sfdc.net
+  - arg1hbsvc-mnds4-1-prd.eng.sfdc.net
+  - arg1hbsvc-mnds3-1-prd.eng.sfdc.net
+  - arg1hbsvc-mnds2-1-prd.eng.sfdc.net
+  - arg1hbsvc-mnds1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8081
+    targetport: 8081
+    lbtype: http
+    healthport: 8081
+    healthprotocol: tcp
+    lbalgorithm: leastconn
