@@ -226,5 +226,5 @@ spec:
         name: var-cleanup-logs-volume
   updateStrategy:
     rollingUpdate:
-      maxUnavailable: 40%
+      maxUnavailable: 20%
     type: RollingUpdate
