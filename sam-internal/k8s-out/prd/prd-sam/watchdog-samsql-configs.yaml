@@ -301,8 +301,8 @@ data:
     ApiKind = ''Bundle'') crds\n                ON crds.PRNum = prs.pr_num\n                WHERE  prs.merged_time
     > now() - INTERVAL 10 DAY\n            ORDER BY prs.merged_time desc\n            )
     imageLatency\n            WHERE  latencyMin > 20", "watchdogFrequency": "10m"},
-    {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
-    "3m", "name": "KubednsPodCount", "sql": "SELECT\n              controlEstate,\n              Running,\n              NotRunning\n            FROM\n            (\n            SELECT\n              controlEstate,\n              SUM(Running)
+    {"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
+    "sam", "alertThreshold": "3m", "name": "KubednsPodCount", "sql": "SELECT\n              controlEstate,\n              Running,\n              NotRunning\n            FROM\n            (\n            SELECT\n              controlEstate,\n              SUM(Running)
     as Running,\n              SUM(NotRunning) as NotRunning\n            FROM\n            (\n            SELECT\n              controlEstate,\n              (CASE
     WHEN Phase = ''Running'' then 1 else 0 end) as Running,\n              (CASE WHEN
     Phase <> ''Running'' then 1 else 0 end) as NotRunning\n            FROM podDetailView\n            WHERE

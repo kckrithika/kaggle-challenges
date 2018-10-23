@@ -331,7 +331,7 @@ WHERE latency > 45",
       alertFrequency: "24h",
       watchdogFrequency: "1m",
       alertProfile: "sam",
-      alertAction: "email",
+      alertAction: "businesshours_pagerduty",
       sql: "SELECT
               controlEstate,
               Running,
