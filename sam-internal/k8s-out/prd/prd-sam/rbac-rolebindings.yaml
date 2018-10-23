@@ -1103,6 +1103,22 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: solr-service:prd-sam_search:rolebinding
+    namespace: solr-service
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionsearch21-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch22-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch23-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: service-protection:prd-sam_serviceprotection:rolebinding
     namespace: service-protection
   roleRef:
