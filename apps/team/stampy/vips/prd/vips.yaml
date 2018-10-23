@@ -1,0 +1,27 @@
+- lbname: ops0-stampy2-0-prd
+  customlbname: ops0-stampy2-0-prd
+  servers:
+  - ops0-stampy2-1-prd.eng.sfdc.net
+  - ops0-stampy2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 7865
+    lbtype: tcp
+    healthport: 7866
+    healthpath: /v1/status
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: ops0-stampy1-0-prd
+  customlbname: ops0-stampy1-0-prd
+  servers:
+  - ops0-stampy1-2-prd.eng.sfdc.net
+  - ops0-stampy1-1-prd.eng.sfdc.net
+  - ops0-stampy1-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 7865
+    lbtype: tcp
+    healthport: 7866
+    healthpath: /v1/status
+    healthprotocol: http
+    lbalgorithm: roundrobin
