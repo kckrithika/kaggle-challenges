@@ -1,0 +1,40 @@
+apiVersion: v1
+
+system: 
+  functions: 
+    - name: na44-stm-search
+      type: stateful-set
+      count: 3
+      containers:  
+      - name: searchserver 
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/search-teams/solrservice/searchserver:936388a
+        env:
+        - name: SFDC_ENVIRONMENT
+          value: "sam"
+        - name: INSTANCE_URL
+          value: "na44.stmfa.stm.salesforce.com"
+        - name: LBNAME
+          value: "searchservers"
+        resources:
+          limits: { cpu: "20", memory: "32Gi" }
+          requests: { cpu: "20", memory: "32Gi" }
+        ports:
+        - containerPort: 8983
+          name: solr-port
+        livenessProbe:
+          httpGet:
+            path: /ping.jsp
+            port: 8983
+          initialDelaySeconds: 120 
+          periodSeconds: 5
+        volumeMounts:
+          - mountPath: /home/sfdc-searchserver/logs/solr
+            name: solr-log-volume 
+      lbname: searchservers
+      volumes:
+        - name: solr-log-volume
+          hostPath: 
+            path: /home/sfdc-searchserver/logs/solr
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
