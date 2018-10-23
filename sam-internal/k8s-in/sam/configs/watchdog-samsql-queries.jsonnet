@@ -510,13 +510,13 @@ from (
       watchdogFrequency: "15m",
       name: "Sql95thPctPRLatencyOverLast24Hr",
       sql: "SELECT 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate,
-'sql.95thPctPRLatencyOverLast24Hr' as Metric, latency as Value,'' as Tags FROM
+'sql.95thPctPRLatencyOverLast24Hr' as Metric, IFNULL(latency,0) as Value,'' as Tags FROM
      ( SELECT
          prLatency.*,
          @row_num :=@row_num + 1 AS row_num
     FROM
-        (
-       SELECT    
+        (   
+       SELECT 
           prs.pr_num, 
           max(TIMESTAMPDIFF(minute,prs.most_recent_authorized_time, STR_TO_DATE( 
           CASE 
@@ -525,7 +525,7 @@ from (
           END,'%Y-%m-%dT%H:%i:%s' ))) latency 
         FROM PullRequests prs 
         LEFT JOIN 
-          ( 
+          (   
                  SELECT * 
                  FROM   crd_history 
                  WHERE  apikind = 'Bundle') crds 
@@ -534,7 +534,7 @@ from (
                  GROUP BY prs.pr_num 
       ) prLatency ,
      (SELECT @row_num:=0) counter ORDER BY prLatency.latency
-     )
+     )   
     temp WHERE temp.row_num = ROUND (.95* @row_num)",
 
     },
@@ -549,7 +549,7 @@ from (
       watchdogFrequency: "15m",
       name: "Sql95thPctPRImageLatencyOverLast24Hr",
       sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate,
-'sql.95thPctPRImageLatencyOverLast24Hr' as Metric, latencyMin as Value, '' as Tags FROM
+'sql.95thPctPRImageLatencyOverLast24Hr' as Metric, IFNULL(latencyMin, 0) as Value, '' as Tags FROM
      ( SELECT
          imageLatency.*,
          @row_num :=@row_num + 1 AS row_num
@@ -732,7 +732,7 @@ group by kingdom, controlEstate, appChangedBySamInLastHour
       watchdogFrequency: "15m",
       name: "Sql95thPctPRSamLatencyOverLast24Hr",
       sql: "select 'GLOBAL' as Kingdom, 'NONE' as SuperPod, 'global' as Estate,
-'sql.95thPctPRSamLatencyOverLast24Hr' as Metric, samlatencymin as Value, '' as Tags FROM   (  
+'sql.95thPctPRSamLatencyOverLast24Hr' as Metric, IFNULL(samlatencymin,0) as Value, '' as Tags FROM   (  
               SELECT sam.*,
                      @row_num := @row_num + 1 AS row_num
               FROM   (  
