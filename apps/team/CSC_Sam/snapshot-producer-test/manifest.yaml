@@ -5,15 +5,15 @@ system:
     email:
       - d.smith@salesforce.com 
   functions:
-  - name: snapshot-producer-test
+  - name: snapshot-producer
     count: 1
     containers:
     - name: snapshot-producer
-      image:   ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20180719_115219.edb0ddd7.dirty.duncsmith-ltm
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20181023_122231.487bbe4f.clean.duncsmith-ltm
       command:
         - /sam/snapshoter
         - --alsologtostderr
-        - --v=8
+        - --v=4
         - --ca-file=/certs/ca.pem
         - --kafka-endpoint=ajna0-broker1-0-prd.data.sfdc.net:9093
         - --kafka-payload-kb=300
@@ -23,10 +23,10 @@ system:
         - --enableKafkaClientAuth
         - --kube-poll-interval=30m
         - --liveness-probe-port=9095
-        - --sources=test
         - --send-events
         - --include-crds
         - --sinks=kafka
+        - --sources=informer
         - --kafka-topic-template=sfdc.prod.sam__%v.ajna_local__resourcestatus
       volumeMounts:
       - name: certs
