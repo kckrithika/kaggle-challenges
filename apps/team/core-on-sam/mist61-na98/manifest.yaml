@@ -58,26 +58,23 @@ system:
     nodeExposed: true
     slbEnabled: true
     ports:
-# TCP listen port of Envoy.
-    - port: 2525
-      targetport: 2525
 # HTTP listen port of Envoy.
 # TODO: CASAM might use for readiness. Change to 80 in production
-    - port: 8086
+    - port: 8186
       targetport: 12060
       lbtype: http
       tls: false
       reencrypt: true
 # HTTPS listen ports of Envoy.
 # TODO: Manifest validation fails for port 443. Add 443 in production
-    - port: 8443
+    - port: 8543
       targetport: 12060
       lbtype: http
       tls: true
       reencrypt: true
 # Admin ports - TODO - Don't expose this. Exposed for now for debugging.
-    - port: 8087
+    - port: 8187
       targetport: 15373
       lbtype: http
-    - port: 8888
+    - port: 8988
       targetport: 12060
