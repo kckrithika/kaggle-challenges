@@ -27,7 +27,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-labels-checker
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-labels-checker
         - --hostnameOverride=$(NODE_NAME)
         - --metricsEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
         - --hostsConfigFile=/sfdchosts/hosts.json
@@ -44,7 +44,7 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-labels-checker
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -54,6 +54,32 @@ spec:
           name: certs
         - mountPath: /etc/pki_service
           name: maddog-certs
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-labels-checker/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-labels-checker
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0001305-0f4ca801
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-labels-checker
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-labels-checker
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-labels-checker/cleanup
+          name: var-cleanup-logs-volume
       dnsPolicy: Default
       nodeSelector:
         pool: phx-slb
@@ -62,7 +88,7 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-labels-checker
         name: var-logs-volume
       - configMap:
           name: sfdchosts
@@ -76,3 +102,9 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - hostPath:
+          path: /data/slb/config/slb-labels-checker
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-labels-checker/cleanup
+        name: var-cleanup-logs-volume

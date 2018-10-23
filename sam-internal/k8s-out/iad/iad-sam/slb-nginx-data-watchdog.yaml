@@ -48,7 +48,7 @@ spec:
           name: maddog-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog
           name: var-logs-volume
         - mountPath: /data/certs
           name: certs
@@ -56,6 +56,32 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-nginx-data-watchdog/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-nginx-data-watchdog
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001305-0f4ca801
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-nginx-data-watchdog
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-nginx-data-watchdog/cleanup
+          name: var-cleanup-logs-volume
       dnsPolicy: Default
       nodeSelector:
         pool: iad-slb
@@ -67,7 +93,7 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-nginx-data-watchdog
         name: var-logs-volume
       - hostPath:
           path: /data/certs
@@ -78,3 +104,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-nginx-data-watchdog
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-nginx-data-watchdog/cleanup
+        name: var-cleanup-logs-volume
