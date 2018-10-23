@@ -25,7 +25,7 @@ system:
 
     containers:
     - name: rsui-production
-      image: sfci/retail/retail-setup:0.1.3.112.32 # docker image for 1.3 release
+      image: sfci/retail/retail-setup:0.1.4 # docker image for, well, 1.4
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -112,7 +112,7 @@ system:
     - name: sherpa-rsui-production
       # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
       # Use the full git SHA as the docker image tag.
-      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      image: sfci/servicelibs/sherpa-envoy:1.0.1
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -127,7 +127,7 @@ system:
       - name: retailservercert
         mountPath: /server-certs
       ports:
-      - containerPort: 7443 # http2 in port for grpc tls. See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      - containerPort: 7443 # http2 in port for grpc
         name: sher-in-htp2tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
