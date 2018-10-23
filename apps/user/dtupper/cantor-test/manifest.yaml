@@ -1,0 +1,41 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - paul.howden@salesforce.com
+        - pteyer@salesforce.com
+    functions:
+    - name: dtcantor-test-func
+      count: 3
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: dtcantor-test
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0001
+        ports:
+        - name: cantor
+          containerPort: 7443
+          hostPort: 17443
+        volumeMounts:
+        - mountPath: /home/sfdc-cantor/cantor
+          name: cantor-vol
+        livenessProbe:
+          exec:
+            command:
+            - /usr/bin/true
+      volumes:
+      - name: cantor-vol
+        hostPath:
+          path: /data/cantor
+
+    loadbalancers:
+    - lbname: cantor
+      function: cantor-func
+      slbEnabled: true
+      ports:
+        - port: 80
+          targetport: 7443
