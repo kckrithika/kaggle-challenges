@@ -90,7 +90,7 @@ local kingdom = std.extVar("kingdom");
         {
             namespace: "retail-cre",
             authorizedLdapGroups: ["CRE_AD"],
-            authorizedClientCerts: ["retail-cre.cre-control-plane-ccp-func", "retail-cre.cre-control-plane-ccp-perf", "retail-cre.cre-control-plane-ccp-dev"],
+            authorizedClientCerts: ["retail-cre.cre-control-plane-ccp-func", "retail-cre.cre-control-plane-ccp-perf", "retail-cre.cre-control-plane-ccp-dev", "retail-cre.cre-control-plane-ccp-stage", "retail-cre.cre-control-plane-cre-test"],
         },
         {
             namespace: "universal-search",
