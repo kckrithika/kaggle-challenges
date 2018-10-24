@@ -83,5 +83,3 @@ apps:
   - prd/prd-sam
  snapshot-producer:
   - prd/prd-sam
- snapshot-producer-test:
-  - prd/prd-samdev
