@@ -59,7 +59,7 @@ local configs = import "config.jsonnet";
              fireflypullrequest: "206",
              fireflydind: "86",
              rabbitmq: "140",
-             rabbitmqmonitord: "200",
+             rabbitmqmonitord: "206",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
@@ -71,7 +71,7 @@ local configs = import "config.jsonnet";
              fireflypullrequest: "201",
              fireflydind: "86",
              rabbitmq: "140",
-             rabbitmqmonitord: "150",
+             rabbitmqmonitord: "206",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia

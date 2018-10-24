@@ -40,8 +40,8 @@ local portConfig = import "portconfig.jsonnet";
         rabbitMqPort:: '33672',
     },
     prdsamtwo:: $.prod {
-        rabbitMqEndpoint:: 'shared0-samtwokubeapi1-1-prd.eng.sfdc.net',
-        rabbitMqPort:: '33672',
+        rabbitMqEndpoint:: 'firefly-rabbitmq.firefly.prd-samtwo.prd.slb.sfdc.net',
+        rabbitMqPort:: '5672',
         repositories:: 'sam/test-manifests',
     },
     environmentMapping:: {

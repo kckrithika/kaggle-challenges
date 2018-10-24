@@ -135,7 +135,7 @@ items:
           "spring": {
               "rabbitmq": {
                   "connection-timeout": "10000ms",
-                  "host": "shared0-samtwokubeapi1-1-prd.eng.sfdc.net",
+                  "host": "firefly-rabbitmq.firefly.prd-samtwo.prd.slb.sfdc.net",
                   "listener": {
                       "simple": {
                           "retry": {
@@ -149,7 +149,7 @@ items:
                       }
                   },
                   "password": "${rabbitMqDefaultPass#FromSecretService}",
-                  "port": "33672",
+                  "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
                   "template": {
@@ -558,7 +558,7 @@ items:
           "spring": {
               "rabbitmq": {
                   "connection-timeout": "10000ms",
-                  "host": "shared0-samtwokubeapi1-1-prd.eng.sfdc.net",
+                  "host": "firefly-rabbitmq.firefly.prd-samtwo.prd.slb.sfdc.net",
                   "listener": {
                       "simple": {
                           "retry": {
@@ -572,7 +572,7 @@ items:
                       }
                   },
                   "password": "${rabbitMqDefaultPass#FromSecretService}",
-                  "port": "33672",
+                  "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
                   "template": {
@@ -946,7 +946,7 @@ items:
           "spring": {
               "rabbitmq": {
                   "connection-timeout": "10000ms",
-                  "host": "shared0-samtwokubeapi1-1-prd.eng.sfdc.net",
+                  "host": "firefly-rabbitmq.firefly.prd-samtwo.prd.slb.sfdc.net",
                   "listener": {
                       "simple": {
                           "retry": {
@@ -960,7 +960,7 @@ items:
                       }
                   },
                   "password": "${rabbitMqDefaultPass#FromSecretService}",
-                  "port": "33672",
+                  "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
                   "template": {
@@ -1349,7 +1349,7 @@ items:
           "spring": {
               "rabbitmq": {
                   "connection-timeout": "10000ms",
-                  "host": "shared0-samtwokubeapi1-1-prd.eng.sfdc.net",
+                  "host": "firefly-rabbitmq.firefly.prd-samtwo.prd.slb.sfdc.net",
                   "listener": {
                       "simple": {
                           "retry": {
@@ -1363,7 +1363,7 @@ items:
                       }
                   },
                   "password": "${rabbitMqDefaultPass#FromSecretService}",
-                  "port": "33672",
+                  "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
                   "template": {
