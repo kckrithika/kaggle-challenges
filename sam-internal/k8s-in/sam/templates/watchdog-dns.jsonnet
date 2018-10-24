@@ -20,8 +20,8 @@ configs.deploymentBase("sam") {
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args
-                                 + samwdconfig.low_urgency_pagerduty_args
-                                 + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
+                                 + (if configs.estate == "prd-sam" then samwdconfig.low_urgency_pagerduty_args else [])
+                                 + (if configs.estate == "prd-sam" then ["-emailFrequency=24h"] else []),
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
