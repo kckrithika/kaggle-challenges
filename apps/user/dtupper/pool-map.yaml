@@ -1,3 +1,5 @@
 apps:
     warden-test:
         - prd/prd-sam
+    cantor-test:
+        - prd/prd-sam
