@@ -22,6 +22,8 @@ system:
         volumeMounts:
         - mountPath: /home/sfdc-cantor/cantor
           name: cantor-vol
+        - mountPath: /home/sfdc-cantor/pki/server
+          name: cantorservercert
         livenessProbe:
           exec:
             command:
@@ -30,3 +32,6 @@ system:
       - name: cantor-vol
         hostPath:
           path: /data/cantor
+      - name: cantorservercert
+        maddogCert:
+          type: server
