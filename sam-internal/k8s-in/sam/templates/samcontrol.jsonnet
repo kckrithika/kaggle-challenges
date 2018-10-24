@@ -3,8 +3,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local utils = import "util_functions.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-{
-
+if configs.estate != "prd-samtest" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -77,4 +76,4 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
         } + configs.ownerLabel.sam,
         name: "samcontrol",
     },
-}
+} else "SKIP"
