@@ -10,6 +10,13 @@
     healthport: 8080
     healthprotocol: tcp
     lbalgorithm: leastconn
+  - port: 18444
+    targetport: 8081
+    lbtype: http
+    tls: true
+    healthport: 8081
+    healthprotocol: tcp
+    lbalgorithm: leastconn
 - lbname: ops0-pt-reportcollector1-0-prd
   customlbname: ops0-pt-reportcollector1-0-prd
   servers:
@@ -24,5 +31,11 @@
     targetport: 8443
     lbtype: tcp
     healthport: 8443
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+  - port: 18444
+    targetport: 8444
+    lbtype: tcp
+    healthport: 8444
     healthprotocol: tcp
     lbalgorithm: roundrobin
