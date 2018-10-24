@@ -447,7 +447,7 @@ system:
     count: 1
     containers:
     - name: sfproxy-envoy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:vijay.kota-20181022-115421
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:vijay.kota-20181024-151021
       env:
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
@@ -516,6 +516,8 @@ system:
       - name: JVM_HEAP_MAX
         value: 4G
       ports:
+# TODO: 7020 is exposed only for debugging
+      - containerPort: 7020
       - containerPort: 15372
       resources:
         limits:
@@ -668,3 +670,5 @@ system:
       targetport: 15372
     - port: 8090
       targetport: 15373
+    - port: 8888
+      targetport: 7020
