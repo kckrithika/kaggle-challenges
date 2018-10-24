@@ -447,8 +447,10 @@ system:
     count: 1
     containers:
     - name: sfproxy-envoy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:vijay.kota-20181024-151021
+#TODO: Do not use private image
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:vijay.kota-20181024-170626
       env:
+#TODO: Write envoy logs to stdout instead of file
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
       - name: SFDC_ENVIRONMENT
@@ -466,6 +468,7 @@ system:
       livenessProbe:
         exec:
           command:
+# TODO: Use default is-alive
           - ./sfproxy/scripts/runprobe
           # ./bin/is-alive
         initialDelaySeconds: 20
@@ -473,6 +476,7 @@ system:
       readinessProbe:
         exec:
           command:
+# TODO: Use default is-ready
           - ./sfproxy/scripts/runprobe
           # ./bin/is-ready
         initialDelaySeconds: 15
@@ -500,6 +504,7 @@ system:
     count: 1
     containers:
     - name: sfproxy-switchboard
+#TODO: Do not use private image
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/switchboard:blue-green-1
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
@@ -554,6 +559,9 @@ system:
         value: mist
       - name: SFDC_SUBENVIRONMENT
         value: mist61
+#TODO: Write envoy logs to stdout instead of file
+      - name: ENVOY_DEBUG_OPTIONS
+        value: --log-path /home/sfdc-sherpa/envoy.log
       resources:
         limits:
           cpu: 1

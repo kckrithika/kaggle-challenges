@@ -55,7 +55,7 @@ system:
   loadbalancers:   
   - lbname: us98-mist61sfproxy-lb
     function: na98-mist61sfproxy-prd
-    nodeExposed: true
+    nodeExposed: false
     slbEnabled: true
     ports:
 # HTTP listen port of Envoy.
