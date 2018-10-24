@@ -18,6 +18,9 @@ system:
         type: server
         lbnames:
         - zipkin-test
+    - name: secretvol
+      secret:                          
+       secretName: jkspass
     #- name: oauth2-proxy-secrets
     #  k4aSecret:
     #    secretName: oauth2-proxy-test
@@ -55,6 +58,10 @@ system:
       ports:
       - name: zipkin
         containerPort: 9411
+      volumeMounts:
+      - mountPath: /var/secrets
+        name: secretvol
+        readOnly: true
       livenessProbe:
         httpGet:
           path: /health
