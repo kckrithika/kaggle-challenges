@@ -1,0 +1,13 @@
+- lbname: ops0-bm-reportcollector1-0-xrd
+  customlbname: ops0-bm-reportcollector1-0-xrd
+  servers:
+  - ops0-health2-1-xrd.eng.sfdc.net
+  - ops0-health1-1-xrd.eng.sfdc.net
+  ports:
+  - port: 18443
+    targetport: 8080
+    lbtype: http
+    tls: true
+    healthport: 8080
+    healthprotocol: tcp
+    lbalgorithm: leastconn
