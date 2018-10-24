@@ -81,7 +81,6 @@ spec:
         - --client.serverPort=12081
         - --client.serverInterface=lo
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --proxyHealthChecks=true
         - --httpTimeout=1s
         - --enablePersistence=false
         - --client.socketDir=/host/data/slb/config/slb-ipvs

@@ -130,7 +130,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                             "--client.serverInterface=lo",
                             "--metricsEndpoint=" + configs.funnelVIP,
+                        ] + (if slbflights.proxyHealthChecksFlagRemoved then [
                             "--proxyHealthChecks=true",
+                        ] else [])
+                        + [
                             "--httpTimeout=1s",
                             "--enablePersistence=false",
                         ] + (if slbflights.stockIpvsModules then [
