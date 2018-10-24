@@ -6,7 +6,7 @@ system:
         - dtupper@salesforce.com
     functions:
     - name: dtcantor-test-func
-      count: 3
+      count: 1
       strategy:
         type: RollingUpdate
         rollingUpdate:
