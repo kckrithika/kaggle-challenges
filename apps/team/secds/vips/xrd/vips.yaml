@@ -1,0 +1,14 @@
+- lbname: ops0-secds1-0-xrd
+  customlbname: ops0-secds1-0-xrd
+  servers:
+  - ops0-secds2-2-xrd.eng.sfdc.net
+  - ops0-secds2-1-xrd.eng.sfdc.net
+  - ops0-secds1-1-xrd.eng.sfdc.net
+  - ops0-secds1-2-xrd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 443
+    lbtype: tcp
+    healthport: 443
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
