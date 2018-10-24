@@ -11,7 +11,7 @@
     roleEnabled: (slbimages.phaseNum <= 1),
     podLevelLogEnabled: (slbimages.phaseNum <= 3),
     proxyHealthChecksFlagRemoved: (slbimages.hypersdn_build < 1317),
-    trustedProxies: (slbimages.phaseNum <= 3),
+    trustedProxies: (slbimages.phaseNum <= 4),
 
     slbCleanupLogsVolume():: (if $.podLevelLogEnabled then [
             slbconfigs.slb_config_volume,
