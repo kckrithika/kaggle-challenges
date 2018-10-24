@@ -1,0 +1,13 @@
+- lbname: monitor1-0-xrd
+  customlbname: monitor1-0-xrd
+  servers:
+  - ops0-monitor2-1-xrd.eng.sfdc.net
+  - ops0-monitor1-1-xrd.eng.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthpath: /cgi-bin/health.cgi
+    healthprotocol: http
+    lbalgorithm: roundrobin
