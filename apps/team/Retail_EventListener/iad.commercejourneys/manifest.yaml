@@ -23,7 +23,7 @@ system:
         path: /home/sfdc-cj/logs
     containers:
     - name: commercejourneys
-      image: sfci/mc-retail/commerce-journeys:1.3.34
+      image: sfci/mc-retail/commerce-journeys:1.4.21
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -37,6 +37,8 @@ system:
           value: 8080
         - name: MANAGEMENT_PORT
           value: 15372
+        - name: JVM_ARGS
+          value: "-Xmx3G -Xms512m"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
