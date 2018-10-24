@@ -1,0 +1,12 @@
+- lbname: ops0-seciamsvc1-0-xrd
+  customlbname: ops0-seciamsvc1-0-xrd
+  servers:
+  - ops0-seciamsvc1-1-xrd.eng.sfdc.net
+  - ops0-seciamsvc2-1-xrd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 9090
+    lbtype: tcp
+    healthport: 9090
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
