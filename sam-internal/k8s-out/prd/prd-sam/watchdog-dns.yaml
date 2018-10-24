@@ -32,7 +32,7 @@ spec:
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -recipient=sam-test-alerts@salesforce.com,csc-sam-business-hours-only@salesforce.pagerduty.com
-        - -emailFrequency=48h
+        - -emailFrequency=24h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
