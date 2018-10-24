@@ -4,7 +4,8 @@ data:
     ["Flowsnake_Ops_Platform"], "namespace": "flowsnake"}, {"authorizedClientCerts":
     ["flowsnake_test"], "authorizedLdapGroups": ["Flowsnake_Platform"], "namespace":
     "flowsnake_test"}, {"authorizedClientCerts": ["retail-cre.cre-control-plane-ccp-func",
-    "retail-cre.cre-control-plane-ccp-perf", "retail-cre.cre-control-plane-ccp-dev"],
+    "retail-cre.cre-control-plane-ccp-perf", "retail-cre.cre-control-plane-ccp-dev",
+    "retail-cre.cre-control-plane-ccp-stage", "retail-cre.cre-control-plane-cre-test"],
     "authorizedLdapGroups": ["CRE_AD"], "namespace": "retail-cre"}, {"authorizedClientCerts":
     ["universal-search.universal-search"], "authorizedLdapGroups": ["universal-search"],
     "namespace": "universal-search"}, {"authorizedClientCerts": ["iot.provisioning",
