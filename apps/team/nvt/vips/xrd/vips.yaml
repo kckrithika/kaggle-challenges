@@ -1,0 +1,24 @@
+- lbname: ops0-momapi1-0-xrd
+  customlbname: ops0-momapi1-0-xrd
+  servers:
+  - ops0-mom2-1-xrd.eng.sfdc.net
+  - ops0-mom1-1-xrd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8443
+    lbtype: tcp
+    healthport: 8443
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+- lbname: ops0-pm-controller1-0-xrd
+  customlbname: ops0-pm-controller1-0-xrd
+  servers:
+  - ops0-mom2-1-xrd.eng.sfdc.net
+  - ops0-mom1-1-xrd.eng.sfdc.net
+  ports:
+  - port: 8980
+    targetport: 8980
+    lbtype: tcp
+    healthport: 8980
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
