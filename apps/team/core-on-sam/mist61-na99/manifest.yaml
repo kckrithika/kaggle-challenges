@@ -479,9 +479,9 @@ system:
         periodSeconds: 5
       volumeMounts:
       - name: tls-client-cert
-        mountPath: /cert-client
+        mountPath: /client-certs
       - name: tls-server-cert
-        mountPath: /cert-server
+        mountPath: /server-certs
 
     volumes:
     - name: tls-client-cert
@@ -500,17 +500,33 @@ system:
     count: 1
     containers:
     - name: sfproxy-switchboard
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/switchboard:blue-green
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/switchboard:blue-green-1
+      args:
+      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
+      - --clusters.external-clusters[1]=spaasmesh:HTTP2
+      - --metrics.maxNumberOfCollectedMetrics=100000
+      - --metrics.funnelTimeOut=90000
       env:
-      - name: GRPC_SERVER_PORT
-        value: 15001
       - name: SFDC_ENVIRONMENT
         value: mist
       - name: SFDC_SUBENVIRONMENT
         value: mist61
+      - name: GRPC_SERVER_PORT
+        value: 7020
+      - name: JVM_HEAP_MAX
+        value: 4G
       ports:
-      - containerPort: 15001
       - containerPort: 15372
+      resources:
+        limits:
+          cpu: 8
+          memory: 6Gi
+        requests:
+          cpu: 8
+          memory: 6Gi
+      volumeMounts:
+      - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
+        name: envoy-config-volume
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -523,19 +539,56 @@ system:
           port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.1
+      args:
+      - --template
+      - /switchboard-config/switchboard-sidecar.config.yaml.template
+      ports:
+      - containerPort: 15001
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mist
+      - name: SFDC_SUBENVIRONMENT
+        value: mist61
+      resources:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
       volumeMounts:
-      - name: tls-client-cert
-        mountPath: /cert-client
-      - name: tls-server-cert
-        mountPath: /cert-server
+      - mountPath: /switchboard-config
+        name: envoy-config-volume
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
 
     volumes:
+    - name: envoy-config-volume
+      emptyDir: {}
     - name: tls-client-cert
       maddogCert:
         type: client
     - name: tls-server-cert
       maddogCert:
         type: server
+# TODO: Production switchboard sherpa does not use lbnames
         lbnames:
         - us99-mist61switchboard-lb
 
@@ -599,7 +652,6 @@ system:
 # Admin ports - TODO - Don't expose this. Exposed for now for debugging.
     - port: 8087
       targetport: 15373
-      lbtype: http
     - port: 8888
       targetport: 12060
 
@@ -608,9 +660,11 @@ system:
     nodeExposed: false
     slbEnabled: true
     ports:
-# gRPC listen port of switchboard.
+# gRPC listen port of switchboard sherpa
     - port: 8088
       targetport: 15001
-# Admin ports - TODO - Don't expose this. Exposed for now for debugging.
+# Admin ports - TODO - Don't expose these. Exposed for now for debugging.
     - port: 8089
       targetport: 15372
+    - port: 8090
+      targetport: 15373
