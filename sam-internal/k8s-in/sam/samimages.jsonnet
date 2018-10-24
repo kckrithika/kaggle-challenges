@@ -24,6 +24,17 @@ local configs = import "config.jsonnet";
         #[xiao] Fix CI in prd
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002343-801aef07",
 
+        }
+        + {
+           #[prabh.singh] Pin the watchdogs to use new hypersam that honors email frequency.Remove in next phase release
+           [std.substr(ce, 0, 3) + "," + ce + "," + wd + ",hypersam"]: "sam-0002347-34f588d0"
+for ce in [
+                              "prd-sam",
+                              "prd-samdev",
+                              "prd-samtest",
+                              "prd-sdc",
+]
+           for wd in ["watchdog-apiserverlb", "watchdog-common", "watchdog-comparek8sresources", "watchdog-deployment,watchdog-dns", "watchdog-estatesvc", "watchdog-etcd", "watchdog-etcdquorum", "watchdog-filesystem", "watchdog-master", "watchdog-node", "watchdog-rbac", "watchdog-samsql", "watchdog-sql"]
         },
 
 
