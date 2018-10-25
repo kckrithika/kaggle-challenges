@@ -29,10 +29,29 @@ local configs = import "config.jsonnet";
            #[prabh.singh] Pin the watchdogs to use new hypersam that honors email frequency.Remove in next phase release
            [std.substr(ce, 0, 3) + "," + ce + "," + wd + ",hypersam"]: "sam-0002347-34f588d0"
 for ce in [
-                              "prd-sam",
-                              "prd-samdev",
-                              "prd-samtest",
-                              "prd-sdc",
+                        "cdg-sam",
+                        "cdu-sam",
+                        "chx-sam",
+                        "dfw-sam",
+                        "fra-sam",
+                        "hnd-sam",
+                        "ia2-sam",
+                        "iad-sam",
+                        "ord-sam",
+                        "par-sam",
+                        "ph2-sam",
+                        "phx-sam",
+                        "prd-sam",
+                        "prd-samdev",
+                        "prd-samtest",
+                        "prd-samtwo",
+                        "prd-sdc",
+                        "syd-sam",
+                        "ukb-sam",
+                        "wax-sam",
+                        "xrd-sam",
+                        "yhu-sam",
+                        "yul-sam",
 ]
            for wd in ["watchdog-apiserverlb", "watchdog-common", "watchdog-comparek8sresources", "watchdog-deployment,watchdog-dns", "watchdog-estatesvc", "watchdog-etcd", "watchdog-etcdquorum", "watchdog-filesystem", "watchdog-master", "watchdog-node", "watchdog-rbac", "watchdog-samsql", "watchdog-sql"]
         },
