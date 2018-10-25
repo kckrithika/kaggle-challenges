@@ -4,7 +4,7 @@ local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile 
 
 local certDirs = ["cert1"];
 
-if configs.estate == "prd-samdev" then
+if configs.kingdom == "prd" then
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -13,7 +13,7 @@ if configs.estate == "prd-samdev" then
             name: "snapshot-producer-mtls-test",
         } + configs.ownerLabel.sam,
         name: "snapshoter",
-        namespace: "sam-system",
+        namespace: "csc-sam",
     },
     spec: {
         replicas: 1,
@@ -28,14 +28,14 @@ if configs.estate == "prd-samdev" then
                     apptype: "control",
                     name: "snapshoter",
                 } + configs.ownerLabel.sam,
-                namespace: "sam-system",
+                namespace: "csc-sam",
                 annotations: {
                     "madkub.sam.sfdc.net/allcerts":
                     std.manifestJsonEx(
                 {
                     certreqs:
                         [
-                            { role: "sam-system.snapshot-producer" } + certReq
+                            { role: "csc-sam.snapshot-producer" } + certReq
                             for certReq in madkub.madkubSamCertsAnnotation(certDirs).certreqs
                         ],
                 }, " "
