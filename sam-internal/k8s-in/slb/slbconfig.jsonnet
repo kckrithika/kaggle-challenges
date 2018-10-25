@@ -1,7 +1,6 @@
 {
     local estate = std.extVar("estate"),
     local kingdom = std.extVar("kingdom"),
-    local slbimages = import "slbimages.jsonnet",
     local configs = import "config.jsonnet",
     local set_value_to_all_in_list(value, list) = { [item]: value for item in list },
     local set_value_to_all_in_list_skip(value, list, skip) = { [item]: value for item in list if item != skip },
