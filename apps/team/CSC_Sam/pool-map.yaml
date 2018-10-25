@@ -81,7 +81,6 @@ apps:
   - prd/prd-sam
  SamDeploymentPortalV2:
   - prd/prd-sam
- snapshot-producer:
-  - prd/prd-sam
+ snapshot-producer: 
   - frf/frf-sam
   - cdu/cdu-sam

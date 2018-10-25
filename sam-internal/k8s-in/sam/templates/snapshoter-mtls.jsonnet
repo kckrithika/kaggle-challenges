@@ -4,7 +4,7 @@ local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile 
 
 local certDirs = ["cert1"];
 
-if configs.kingdom == "prd" then
+if configs.kingdom == "prd" && configs.estate != "prd-samtwo" then
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
