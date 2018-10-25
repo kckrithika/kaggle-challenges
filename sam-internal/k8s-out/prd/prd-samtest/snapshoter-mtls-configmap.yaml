@@ -7,9 +7,7 @@ data:
       "clientCertFile": "/cert1/client/certificates/client.pem",
       "clientKeyFile": "/cert1/client/keys/client-key.pem",
       "enableKafkaClientAuth": true,
-      "ignored-resources": [
-        "ReplicaSet"
-      ],
+      "ignored-resources": [],
       "include-crds": true,
       "kafka-endpoint": "ajna0-broker1-0-prd.data.sfdc.net:9093",
       "kafka-payload-kb": 300,

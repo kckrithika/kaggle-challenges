@@ -12,30 +12,30 @@ if configs.kingdom == "prd" && configs.estate != "prd-samtwo" then
         labels: {
             name: "snapshot-producer-mtls-test",
         } + configs.ownerLabel.sam,
-        name: "snapshoter",
-        namespace: "csc-sam",
+        name: "snapshot-producer",
+        namespace: "sam-system",
     },
     spec: {
         replicas: 1,
         selector: {
             matchLabels: {
-                name: "snapshoter",
+                name: "snapshot-producer",
             },
         },
         template: {
             metadata: {
                 labels: {
                     apptype: "control",
-                    name: "snapshoter",
+                    name: "snapshot-producer",
                 } + configs.ownerLabel.sam,
-                namespace: "csc-sam",
+                namespace: "sam-system",
                 annotations: {
                     "madkub.sam.sfdc.net/allcerts":
                     std.manifestJsonEx(
                 {
                     certreqs:
                         [
-                            { role: "csc-sam.snapshot-producer" } + certReq
+                            { role: "sam-system.snapshot-producer" } + certReq
                             for certReq in madkub.madkubSamCertsAnnotation(certDirs).certreqs
                         ],
                 }, " "
@@ -66,7 +66,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-samtwo" then
                         timeoutSeconds: 20,
                     },
                     image: samimages.hypersam,
-                    name: "snapshoter",
+                    name: "snapshot-producer",
                 }] + [madkub.madkubRefreshContainer(certDirs)],
                 volumes+: [
                     configs.sfdchosts_volume,

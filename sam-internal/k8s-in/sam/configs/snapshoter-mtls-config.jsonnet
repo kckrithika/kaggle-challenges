@@ -16,9 +16,6 @@ local configs = import "config.jsonnet";
   "ca-file": configs.caFile,
   "send-events": true,
   "liveness-probe-port": 9095,
-  "ignored-resources": (
-    if configs.estate == "prd-samtest" then ["ReplicaSet"]
-    else []
-  ),
+  "ignored-resources": [],
   "include-crds": true,
 }
