@@ -45,7 +45,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-ipvs-data-watchdog
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-ipvsdata-watchdog
         - --namespace=sam-system
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --k8sapiserver=
@@ -68,7 +68,7 @@ spec:
           name: maddog-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-ipvsdata-watchdog
           name: var-logs-volume
         - mountPath: /data/certs
           name: certs
@@ -76,6 +76,32 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-ipvsdata-watchdog/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-ipvsdata-watchdog
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001314-0d4ec205
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-ipvsdata-watchdog
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-ipvsdata-watchdog
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-ipvsdata-watchdog/cleanup
+          name: var-cleanup-logs-volume
       dnsPolicy: Default
       nodeSelector:
         pool: fra-slb
@@ -87,7 +113,7 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-ipvsdata-watchdog
         name: var-logs-volume
       - hostPath:
           path: /data/certs
@@ -98,3 +124,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /data/slb/config/slb-ipvsdata-watchdog
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-ipvsdata-watchdog/cleanup
+        name: var-cleanup-logs-volume

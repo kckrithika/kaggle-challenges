@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-ipvsdata-watchdog" };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbflights.podLevelLogEnabled then { dirSuffix:: "slb-ipvsdata-watchdog" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-ipvsdata-watchdog" };
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ipvsdata-watchdog" };
@@ -27,7 +27,9 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.sfdchosts_volume,
-                ] + slbflights.slbCleanupLogsVolume()),
+                    slbconfigs.slb_config_volume,
+                    slbconfigs.cleanup_logs_volume,
+                ]),
                 containers: std.prune([
                     {
                         name: "slb-ipvsdata-watchdog",
@@ -66,7 +68,7 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                             configs.kube_config_env,
                         ],
                     },
-                    slbflights.slbCleanupLogsContainer(),
+                    slbshared.slbLogCleanup,
                 ]),
             } + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,
