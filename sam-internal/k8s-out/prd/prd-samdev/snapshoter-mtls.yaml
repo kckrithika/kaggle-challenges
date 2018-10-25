@@ -1,22 +1,11 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    madkub.sam.sfdc.net/allcerts: |-
-      {
-       "certreqs": [
-        {
-         "cert-type": "client",
-         "kingdom": "prd",
-         "name": "cert1"
-        }
-       ]
-      }
   labels:
     name: snapshot-producer-mtls-test
     sam.data.sfdc.net/owner: sam
   name: snapshoter
-  namespace: csc-sam
+  namespace: sam-system
 spec:
   replicas: 1
   selector:
@@ -24,6 +13,18 @@ spec:
       name: snapshoter
   template:
     metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: |-
+          {
+           "certreqs": [
+            {
+             "cert-type": "client",
+             "kingdom": "prd",
+             "name": "cert1",
+             "role": "sam-system.snapshot-producer"
+            }
+           ]
+          }
       labels:
         apptype: control
         name: snapshoter
@@ -33,7 +34,7 @@ spec:
       containers:
       - command:
         - /sam/snapshoter
-        - --config=/config/snapshoter.json
+        - --config=/config/snapshoter-mtls.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --v=4
         - --alsologtostderr
@@ -155,11 +156,8 @@ spec:
           path: /data/certs
         name: certs
       - configMap:
-          name: snapshoter
+          name: snapshoter-mtls
         name: config
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
       - emptyDir:
           medium: Memory
         name: cert1

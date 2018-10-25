@@ -12,14 +12,8 @@ if configs.estate == "prd-samdev" then
         labels: {
             name: "snapshot-producer-mtls-test",
         } + configs.ownerLabel.sam,
-        annotations: {
-            "madkub.sam.sfdc.net/allcerts":
-                std.manifestJsonEx(
-                    { certreqs: { role: "csc-sam.snapshot-producer" } } + madkub.madkubSamCertsAnnotation(certDirs), " "
-),
-            },
         name: "snapshoter",
-        namespace: "csc-sam",
+        namespace: "sam-system",
     },
     spec: {
         replicas: 1,
@@ -35,12 +29,24 @@ if configs.estate == "prd-samdev" then
                     name: "snapshoter",
                 } + configs.ownerLabel.sam,
                 namespace: "sam-system",
+                annotations: {
+                    "madkub.sam.sfdc.net/allcerts":
+                    std.manifestJsonEx(
+                {
+                    certreqs:
+                        [
+                            { role: "sam-system.snapshot-producer" } + certReq
+                            for certReq in madkub.madkubSamCertsAnnotation(certDirs).certreqs
+                        ],
+                }, " "
+),
+            },
             },
             spec: configs.specWithKubeConfigAndMadDog {
                 containers: [configs.containerWithKubeConfigAndMadDog {
                     command: [
                         "/sam/snapshoter",
-                        "--config=/config/snapshoter.json",
+                        "--config=/config/snapshoter-mtls.json",
                         "--hostsConfigFile=/sfdchosts/hosts.json",
                         "--v=4",
                         "--alsologtostderr",
@@ -65,8 +71,7 @@ if configs.estate == "prd-samdev" then
                 volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
-                    configs.config_volume("snapshoter"),
-                    configs.maddog_cert_volume,
+                    configs.config_volume("snapshoter-mtls"),
                 ] + madkub.madkubSamCertVolumes(certDirs)
                   + madkub.madkubSamMadkubVolumes(),
                 initContainers+: [
