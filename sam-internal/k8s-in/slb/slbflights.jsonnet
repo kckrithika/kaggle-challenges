@@ -5,12 +5,12 @@
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     # Special feature flag for portal so we can initially release manifest watcher in portal's pod only
     local kubeDnsEnabled = false,
-    stockIpvsModules: (if slbimages.phaseNum > 4 then true else false),
+    stockIpvsModules: (if slbimages.phaseNum > 7 then true else false),
     nginxPodFloat: (slbimages.phaseNum <= 2),
     proxyProtocolCanaryEnabled: (slbimages.phaseNum <= 1),
     roleEnabled: (slbimages.phaseNum <= 1),
     proxyHealthChecksFlagRemoved: (slbimages.hypersdn_build < 1317),
-    trustedProxies: (slbimages.phaseNum <= 4),
+    trustedProxies: (slbimages.phaseNum <= 7),
     ipvsProcessorProxySelection: (slbimages.phaseNum <= 0),
 
     // Phase out this deprecated command-line option. Once it has been removed globally,
