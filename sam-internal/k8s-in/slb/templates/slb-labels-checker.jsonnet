@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-labels-checker" };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbflights.podLevelLogEnabled then { dirSuffix:: "slb-labels-checker" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-labels-checker" };
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-labels-checker" };
 
@@ -23,7 +23,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     configs.kube_config_volume,
                     configs.cert_volume,
                     configs.maddog_cert_volume,
-                ] + slbflights.slbCleanupLogsVolume()),
+                    slbconfigs.slb_config_volume,
+                    slbconfigs.cleanup_logs_volume,
+                ]),
                 containers: std.prune([
                     {
                         name: "slb-labels-checker",
@@ -60,7 +62,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             },
                         ],
                     },
-                    slbflights.slbCleanupLogsContainer(),
+                    slbshared.slbLogCleanup,
                 ]),
             } + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,

@@ -9,16 +9,8 @@
     nginxPodFloat: (slbimages.phaseNum <= 2),
     proxyProtocolCanaryEnabled: (slbimages.phaseNum <= 1),
     roleEnabled: (slbimages.phaseNum <= 1),
-    podLevelLogEnabled: (slbimages.phaseNum <= 3),
     proxyHealthChecksFlagRemoved: (slbimages.hypersdn_build < 1317),
     trustedProxies: (slbimages.phaseNum <= 4),
-
-    slbCleanupLogsVolume():: (if $.podLevelLogEnabled then [
-            slbconfigs.slb_config_volume,
-            slbconfigs.cleanup_logs_volume,
-        ] else []),
-
-    slbCleanupLogsContainer():: (if $.podLevelLogEnabled then slbshared.slbLogCleanup else null),
 
     // Phase out this deprecated command-line option. Once it has been removed globally,
     // the corresponding toggle at https://git.soma.salesforce.com/sdn/sdn/blob/ab2fbbb9692795858829f49ed5c74bfe3e836607/src/slb/slb-config-processor/main.go#L190-L192

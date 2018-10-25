@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-data-watchdog" };
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbports = import "slbports.jsonnet";
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbflights.podLevelLogEnabled then { dirSuffix:: "slb-nginx-data-watchdog" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-nginx-data-watchdog" };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-data-watchdog" };
 
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
@@ -24,7 +24,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                   configs.cert_volume,
                                                   configs.kube_config_volume,
                                                   configs.sfdchosts_volume,
-                                              ] + slbflights.slbCleanupLogsVolume()),
+                                                  slbconfigs.slb_config_volume,
+                                                  slbconfigs.cleanup_logs_volume,
+                                              ]),
                 containers: std.prune([
                                 {
                                     name: "slb-nginx-data-watchdog",
@@ -54,7 +56,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                         configs.kube_config_env,
                                     ],
                                 },
-                                slbflights.slbCleanupLogsContainer(),
+                                slbshared.slbLogCleanup,
                             ]),
             } + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,
