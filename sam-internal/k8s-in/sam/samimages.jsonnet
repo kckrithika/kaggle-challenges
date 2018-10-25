@@ -93,7 +93,7 @@ for ce in [
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia + prd-samtwo
         "4": {
-            hypersam: "sam-0002328-f0e6eae5",
+            hypersam: "sam-0002336-6a8184c1",
             madkub: "1.0.0-0000077-b1d3a629",
             madkubSidecar: "1.0.0-0000077-b1d3a629",
             },
