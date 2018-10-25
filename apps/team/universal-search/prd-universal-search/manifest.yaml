@@ -134,7 +134,9 @@ system:
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-usmt/run.sh  --domain synthetics-shared"
+          - "/home/sfdc-usmt/run.sh"
+          - "--domain"
+          - "synthetics-shared"
         initialDelaySeconds: 60
         timeoutSeconds: 30
         periodSeconds: 900
@@ -156,7 +158,9 @@ system:
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-usmt/run.sh  --domain synthetics-cre"
+          - "/home/sfdc-usmt/run.sh"
+          - "--domain"
+          - "synthetics-cre"
         initialDelaySeconds: 60
         timeoutSeconds: 30
         periodSeconds: 900
