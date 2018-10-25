@@ -23,6 +23,7 @@ local configs = import "config.jsonnet";
 
         #[xiao] Fix CI in prd
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002343-801aef07",
+        "prd,prd-samdev,snapshoter-mtls,hypersam": "sam-0002347-34f588d0",
 
         },
 

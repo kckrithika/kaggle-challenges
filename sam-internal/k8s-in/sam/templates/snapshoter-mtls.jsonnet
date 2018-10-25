@@ -1,16 +1,25 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
+local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate != "prd-sam" && configs.estate != "prd-samdev" then
+local certDirs = ["cert1"];
+
+if configs.estate == "prd-samdev" then
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
         labels: {
-            name: "snapshoter",
+            name: "snapshot-producer-mtls-test",
         } + configs.ownerLabel.sam,
+        annotations: {
+            "madkub.sam.sfdc.net/allcerts":
+                std.manifestJsonEx(
+                    { certreqs: { role: "csc-sam.snapshot-producer" } } + madkub.madkubSamCertsAnnotation(certDirs), " "
+),
+            },
         name: "snapshoter",
-        namespace: "sam-system",
+        namespace: "csc-sam",
     },
     spec: {
         replicas: 1,
@@ -40,7 +49,7 @@ if configs.estate != "prd-sam" && configs.estate != "prd-samdev" then
                         configs.sfdchosts_volume_mount,
                         configs.config_volume_mount,
                         configs.cert_volume_mount,
-                    ],
+                        ] + madkub.madkubSamCertVolumeMounts(certDirs),
                     livenessProbe: {
                         httpGet: {
                             path: "/",
@@ -52,11 +61,16 @@ if configs.estate != "prd-sam" && configs.estate != "prd-samdev" then
                     },
                     image: samimages.hypersam,
                     name: "snapshoter",
-                }],
+                }] + [madkub.madkubRefreshContainer(certDirs)],
                 volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     configs.config_volume("snapshoter"),
+                    configs.maddog_cert_volume,
+                ] + madkub.madkubSamCertVolumes(certDirs)
+                  + madkub.madkubSamMadkubVolumes(),
+                initContainers+: [
+                    madkub.madkubInitContainer(certDirs),
                 ],
                 hostNetwork: true,
                 nodeSelector: {
