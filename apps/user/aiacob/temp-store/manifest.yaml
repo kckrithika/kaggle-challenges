@@ -135,6 +135,20 @@ system:
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
 
+      providers=network-nvt ;
+      providers+=,grok.server_watchdog ;
+      providers+=,sandman ;
+      providers+=,netmgt.sandman ;
+      providers+=,infrastructure-watchdog ;
+      providers+=,app.infrastructure-watchdog-cpt ;
+      providers+=,cbatch.infrastructure-watchdog-cpt ;
+      providers+=,dapp.infrastructure-watchdog-cpt ;
+      providers+=,ffx.infrastructure-watchdog-cpt ;
+      providers+=,search.infrastructure-watchdog-cpt ;
+
+      export CHS_REPORTCOLLECTOR_WHITELIST=${providers} ;
+      echo $CHS_REPORTCOLLECTOR_WHITELIST ;
+
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
         -Dvertx.disableFileCPResolving=true
