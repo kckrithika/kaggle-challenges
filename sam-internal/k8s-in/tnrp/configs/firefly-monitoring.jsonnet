@@ -36,6 +36,10 @@ local configs = import "config.jsonnet";
     endpoint: {
       health: {
         'show-details': 'always',
+        enabled: true,
+      },
+      metrics: {
+        enabled: true,
       },
     },
     endpoints: {

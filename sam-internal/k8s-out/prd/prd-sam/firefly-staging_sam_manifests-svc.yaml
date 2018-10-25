@@ -92,7 +92,11 @@ items:
           "management": {
               "endpoint": {
                   "health": {
+                      "enabled": true,
                       "show-details": "always"
+                  },
+                  "metrics": {
+                      "enabled": true
                   }
               },
               "endpoints": {
@@ -304,7 +308,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "8"
+            value: "9"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -521,7 +525,11 @@ items:
           "management": {
               "endpoint": {
                   "health": {
+                      "enabled": true,
                       "show-details": "always"
+                  },
+                  "metrics": {
+                      "enabled": true
                   }
               },
               "endpoints": {
@@ -733,7 +741,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "6"
+            value: "7"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -918,7 +926,11 @@ items:
           "management": {
               "endpoint": {
                   "health": {
+                      "enabled": true,
                       "show-details": "always"
+                  },
+                  "metrics": {
+                      "enabled": true
                   }
               },
               "endpoints": {
@@ -1125,7 +1137,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "10"
+            value: "11"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -1326,7 +1338,11 @@ items:
           "management": {
               "endpoint": {
                   "health": {
+                      "enabled": true,
                       "show-details": "always"
+                  },
+                  "metrics": {
+                      "enabled": true
                   }
               },
               "endpoints": {
@@ -1534,7 +1550,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "5"
+            value: "6"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
