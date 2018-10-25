@@ -48,7 +48,7 @@ system:
           command:
           - /bin/true
     - name: zipkin-test
-      image: docker-dva-rc/dva/zipkin-server:29
+      image: docker-dva-rc/dva/zipkin-server:27
       env:
       - name: ES_HOSTS
         value: es-rest-test.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200
