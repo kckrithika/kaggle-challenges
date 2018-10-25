@@ -18,10 +18,13 @@ local utils = import "util_functions.jsonnet";
                                      "-role=NODE",
                                      "-watchdogFrequency=60s",
                                      "-alertThreshold=1h",
+                                     # We dont want this watchdog to ever send email.  We already have an SLA SQL checker for node violations.
+                                     # For less important single-node issues like RMA we can get data from SQL
+                                     # Lets keep this running for now as we can query the CRDs in SQL to find stuff like hosts missing from sfdcLocation
+                                     "-emailFrequency=10000h",
                                      "-watchDogKind=" + $.kind,
                                  ]
-                                 + samwdconfig.shared_args
-                                 + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
+                                 + samwdconfig.shared_args,
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,

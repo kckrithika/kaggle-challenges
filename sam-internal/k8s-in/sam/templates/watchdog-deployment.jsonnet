@@ -18,9 +18,11 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "-watchdogFrequency=10s",
                                      "-alertThreshold=1h",
                                      "-watchDogKind=" + $.kind,
+                                     # We dont want this watchdog to ever send email.  We already have an SLA SQL checker for deployment violations.
+                                     # We are keeping this watchdog running because it emits customer-visible argus metrics for things like pod restarts
+                                     "-emailFrequency=10000h",
                                  ]
-                                 + samwdconfig.shared_args
-                                 + ["-emailFrequency=24h"],
+                                 + samwdconfig.shared_args,
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
