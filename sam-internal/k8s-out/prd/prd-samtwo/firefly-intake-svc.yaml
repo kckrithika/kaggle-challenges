@@ -87,7 +87,11 @@ items:
           "management": {
               "endpoint": {
                   "health": {
+                      "enabled": true,
                       "show-details": "always"
+                  },
+                  "metrics": {
+                      "enabled": true
                   }
               },
               "endpoints": {
@@ -301,7 +305,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "7"
+            value: "8"
           - name: DARKLAUNCH
             value: "false"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:201

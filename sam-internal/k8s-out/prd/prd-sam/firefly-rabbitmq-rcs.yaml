@@ -95,7 +95,7 @@ spec:
             - rabbitmqctl
             - node_health_check
           failureThreshold: 10
-          initialDelaySeconds: 180
+          initialDelaySeconds: 60
           periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 60
@@ -121,7 +121,7 @@ spec:
           httpGet:
             path: /actuator/health
             port: admin-port
-          initialDelaySeconds: 180
+          initialDelaySeconds: 60
           periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 60
@@ -220,7 +220,7 @@ spec:
           httpGet:
             path: /actuator
             port: admin-port
-          initialDelaySeconds: 180
+          initialDelaySeconds: 60
           periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 60
@@ -234,7 +234,7 @@ spec:
           httpGet:
             path: /actuator
             port: admin-port
-          initialDelaySeconds: 180
+          initialDelaySeconds: 60
           periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 60
