@@ -6,7 +6,7 @@
     # Special feature flag for portal so we can initially release manifest watcher in portal's pod only
     local kubeDnsEnabled = false,
     stockIpvsModules: (if slbimages.phaseNum > 7 then true else false),
-    nginxPodFloat: (slbimages.phaseNum <= 3),
+    nginxPodFloat: (slbimages.phaseNum <= 2),
     proxyProtocolCanaryEnabled: (slbimages.phaseNum <= 1),
     roleEnabled: (slbimages.phaseNum <= 1),
     podLevelLogEnabled: (slbimages.phaseNum <= 4),
