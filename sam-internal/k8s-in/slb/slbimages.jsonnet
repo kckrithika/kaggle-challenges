@@ -2,7 +2,7 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local utils = import "util_functions.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
+local slbconfig = import "slbconfig.jsonnet";
 local slbreleases = import "slbreleases.json";
 
 {
@@ -21,25 +21,15 @@ local slbreleases = import "slbreleases.json";
     ### Per-phase image tags have been moved to slbreleases.jsonnet
 
     ### Phase kingdom/estate mapping
-    # SLB prod kingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd', 'cdg', 'fra'],
-    # SLB prod estates in prd: ['prd-sam', 'prd-samtwo'],
-    # SLB testEstates: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
-
     phase: (
         if (estate == "prd-sdc") then
             "1"
-        else if slbconfigs.isTestEstate || (estate == "prd-sam") then
+        else if kingdom in { [k]: 1 for k in ['prd'] } then
             "2"
-        else if (estate == "prd-samtwo" || kingdom in { [k]: 1 for k in ['prd', 'xrd'] }) then
+        else if kingdom in { [k]: 1 for k in ['phx', 'iad', 'xrd'] } then
             "3"
-        else if kingdom in { [k]: 1 for k in ['phx', 'iad'] } then
-            "4"
-        else if kingdom in { [k]: 1 for k in ['cdg', 'dfw', 'ord'] } then
-            "5"
-        else if kingdom in { [k]: 1 for k in ['fra', 'hnd', 'frf'] } then
-            "6"
         else
-            "7"
+            "4"
         ),
 
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
