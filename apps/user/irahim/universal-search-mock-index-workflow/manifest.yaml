@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: universal-search-mock-index-workflow-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/universal-search-mock-index-workflow:irahim-20181022-a643903
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/universal-search-mock-index-workflow:irahim-20181024-3bc7fe2
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
