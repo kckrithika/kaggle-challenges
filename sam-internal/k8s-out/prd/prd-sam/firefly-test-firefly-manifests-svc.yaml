@@ -96,9 +96,10 @@ items:
                   }
               },
               "endpoints": {
+                  "enabled-by-default": "false",
                   "web": {
                       "exposure": {
-                          "include": "*"
+                          "include": "health, metrics"
                       }
                   }
               },
@@ -524,9 +525,10 @@ items:
                   }
               },
               "endpoints": {
+                  "enabled-by-default": "false",
                   "web": {
                       "exposure": {
-                          "include": "*"
+                          "include": "health, metrics"
                       }
                   }
               },
@@ -920,9 +922,10 @@ items:
                   }
               },
               "endpoints": {
+                  "enabled-by-default": "false",
                   "web": {
                       "exposure": {
-                          "include": "*"
+                          "include": "health, metrics"
                       }
                   }
               },
@@ -1327,9 +1330,10 @@ items:
                   }
               },
               "endpoints": {
+                  "enabled-by-default": "false",
                   "web": {
                       "exposure": {
-                          "include": "*"
+                          "include": "health, metrics"
                       }
                   }
               },

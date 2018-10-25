@@ -89,9 +89,10 @@ items:
                   }
               },
               "endpoints": {
+                  "enabled-by-default": "false",
                   "web": {
                       "exposure": {
-                          "include": "*"
+                          "include": "health, metrics"
                       }
                   }
               },
