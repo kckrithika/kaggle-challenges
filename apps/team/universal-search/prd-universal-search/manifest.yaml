@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.9.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.9.2
       ports:
       - name: service-port
         containerPort: 7020
@@ -118,7 +118,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search-synthetics
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.5
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
@@ -134,7 +134,29 @@ system:
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-usmt/run.sh"
+          - "/home/sfdc-usmt/run.sh  --domain synthetics-shared"
+        initialDelaySeconds: 60
+        timeoutSeconds: 30
+        periodSeconds: 900
+        failureThreshold: 1
+    - name: universal-search-synthetics-cre
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.5
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - name: synthetics-log-vol
+          mountPath: /home/sfdc-usmt/logs
+      livenessProbe:
+        exec:
+          command: ["true"]
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-usmt/run.sh  --domain synthetics-cre"
         initialDelaySeconds: 60
         timeoutSeconds: 30
         periodSeconds: 900
