@@ -319,6 +319,18 @@
         mountPath: "/host/proc",
     },
 
+    proxyconfig_volume: {
+        name: "proxyconfig",
+        configMap: {
+            name: "slb-proxy-configuration",
+        },
+    },
+
+    proxyconfig_volume_mount: {
+        name: "proxyconfig",
+        mountPath: "/proxyconfig",
+    },
+
     # Frequently used env variable: NODE_NAME
     node_name_env: {
         name: "NODE_NAME",
