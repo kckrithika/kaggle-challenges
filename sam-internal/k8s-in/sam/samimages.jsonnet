@@ -25,6 +25,9 @@ local configs = import "config.jsonnet";
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002343-801aef07",
         "prd,prd-samdev,snapshoter-mtls,hypersam": "sam-0002347-34f588d0",
 
+         #[rbhat] v2 diff fixes
+         "prd,prd-samdev,samapp-controller,hypersam": "sam-0002348-8a7fbf2d",
+
         }
         + {
            #[prabh.singh] Pin the watchdogs to use new hypersam that honors email frequency.Remove in next phase release
