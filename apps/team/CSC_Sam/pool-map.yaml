@@ -85,5 +85,3 @@ apps:
   - prd/prd-sam
   - frf/frf-sam
   - cdu/cdu-sam
- snapshot-producer-test:
-  - prd/prd-samdev
