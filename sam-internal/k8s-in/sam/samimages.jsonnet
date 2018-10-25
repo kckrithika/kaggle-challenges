@@ -53,7 +53,7 @@ for ce in [
                         "yhu-sam",
                         "yul-sam",
 ]
-           for wd in ["watchdog-apiserverlb", "watchdog-common", "watchdog-comparek8sresources", "watchdog-deployment,watchdog-dns", "watchdog-estatesvc", "watchdog-etcd", "watchdog-etcdquorum", "watchdog-filesystem", "watchdog-master", "watchdog-node", "watchdog-rbac", "watchdog-samsql", "watchdog-sql"]
+           for wd in ["watchdog-apiserverlb", "watchdog-common", "watchdog-comparek8sresources", "watchdog-deployment,watchdog-dns", "watchdog-estatesvc", "watchdog-etcd", "watchdog-etcd-quorum", "watchdog-filesystem", "watchdog-master", "watchdog-node", "watchdog-rbac", "watchdog-samsql", "watchdog-sql"]
         },
 
 
