@@ -7,7 +7,7 @@ local timeHour = 60 * timeMinute;
     enabled: true,
     requestsToMake: 105,
     requestsToSkip: 5,
-    port: "3334",
+    port: "3333",
     requestDataSizes: "1B",
     requestDataSizeMax: "1B",
 
@@ -21,7 +21,7 @@ local timeHour = 60 * timeMinute;
 
     enablehttp: false,
     enabletcp: true,
-    tcpPort: "3333",
+    tcpPort: "3334",
 
     requestDelay: 10 * timeMillisecond,
     delay: 5 * timeMinute,
