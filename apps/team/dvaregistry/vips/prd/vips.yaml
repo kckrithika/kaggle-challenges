@@ -1,0 +1,31 @@
+- lbname: ops0-dvaregistry1-0-prd
+  customlbname: ops0-dvaregistry1-0-prd
+  servers: 
+    - ops0-dvaregistry1-1-prd
+    - ops0-dvaregistry1-2-prd
+    - ops0-dvaregistry1-3-prd
+    - ops0-dvaregistry1-4-prd
+  ports:
+    - port: 443
+      targetport: 443
+      lbtype: tcp
+      lbalgorithm: round-robin
+      healthprotocol: tcp
+    - port: 80
+      targetport: 80
+      lbtype: http
+      lbalgorithm: round-robin
+      healthprotocol: tcp
+- lbname: ops0-dvaregistryssl1-0-prd
+  servers: ops0-dvaregistryssl1-0-prd
+    - strataregproxy0ops0-strataregproxy1-1-prd
+    - strataregproxy0ops0-strataregproxy1-2-prd
+    - strataregproxy0ops0-strataregproxy2-1-prd
+    - strataregproxy0ops0-strataregproxy2-2-prd
+  ports:
+    - port: 443
+      targetport: 443
+      tls: true
+      reencrypt: true
+      lbtype: http
+      healthprotocol: tcp
