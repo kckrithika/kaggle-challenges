@@ -39,9 +39,10 @@ local configs = import "config.jsonnet";
       },
     },
     endpoints: {
+      'enabled-by-default': 'false',
       web: {
         exposure: {
-          include: '*',
+          include: 'health, metrics',
         },
       },
     },
