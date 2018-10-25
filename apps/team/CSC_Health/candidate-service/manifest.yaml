@@ -88,8 +88,19 @@ system:
 
         case ${KINGDOM} in
           prd)
-            export CHS_REPORTCOLLECTOR_WHITELIST=network-nvt,grok.server_watchdog,sandman,netmgt.sandman,infrastructure-watchdog ;
-            export CHS_REPORTCOLLECTOR_POLLPERIOD=60s
+            providers=network-nvt ;
+            providers+=,grok.server_watchdog ;
+            providers+=,sandman ;
+            providers+=,netmgt.sandman ;
+            providers+=,infrastructure-watchdog ;
+            providers+=,app.infrastructure-watchdog-cpt ;
+            providers+=,cbatch.infrastructure-watchdog-cpt ;
+            providers+=,dapp.infrastructure-watchdog-cpt ;
+            providers+=,ffx.infrastructure-watchdog-cpt ;
+            providers+=,search.infrastructure-watchdog-cpt ;
+
+            export CHS_REPORTCOLLECTOR_WHITELIST=${providers} ;
+            export CHS_REPORTCOLLECTOR_POLLPERIOD=60s ;
             ;;
           *)
         esac;
