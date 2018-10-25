@@ -5,13 +5,13 @@
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     # Special feature flag for portal so we can initially release manifest watcher in portal's pod only
     local kubeDnsEnabled = false,
-    stockIpvsModules: (if slbimages.phaseNum > 8 then true else false),
-    nginxPodFloat: (slbimages.phaseNum <= 4),
+    stockIpvsModules: (if slbimages.phaseNum > 7 then true else false),
+    nginxPodFloat: (slbimages.phaseNum <= 3),
     proxyProtocolCanaryEnabled: (slbimages.phaseNum <= 1),
     roleEnabled: (slbimages.phaseNum <= 1),
-    podLevelLogEnabled: (slbimages.phaseNum <= 5),
+    podLevelLogEnabled: (slbimages.phaseNum <= 4),
     proxyHealthChecksFlagRemoved: (slbimages.hypersdn_build < 1317),
-    trustedProxies: (slbimages.phaseNum <= 8),
+    trustedProxies: (slbimages.phaseNum <= 7),
 
     slbCleanupLogsVolume():: (if $.podLevelLogEnabled then [
             slbconfigs.slb_config_volume,

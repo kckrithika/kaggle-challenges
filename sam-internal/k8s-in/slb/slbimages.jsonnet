@@ -28,20 +28,18 @@ local slbreleases = import "slbreleases.json";
     phase: (
         if (estate == "prd-sdc") then
             "1"
-        else if slbconfigs.isTestEstate then
+        else if slbconfigs.isTestEstate || (estate == "prd-sam") then
             "2"
-        else if (estate == "prd-sam") then
+        else if (estate == "prd-samtwo" || kingdom in { [k]: 1 for k in ['prd', 'xrd'] }) then
             "3"
-        else if (estate == "prd-samtwo" || kingdom in { [k]: 1 for k in ['prd'] }) then
+        else if kingdom in { [k]: 1 for k in ['phx', 'iad'] } then
             "4"
-        else if kingdom in { [k]: 1 for k in ['phx', 'iad', 'xrd'] } then
-            "5"
         else if kingdom in { [k]: 1 for k in ['cdg', 'dfw', 'ord'] } then
-            "6"
+            "5"
         else if kingdom in { [k]: 1 for k in ['fra', 'hnd', 'frf'] } then
-            "7"
+            "6"
         else
-            "8"
+            "7"
         ),
 
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
