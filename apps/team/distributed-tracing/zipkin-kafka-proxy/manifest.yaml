@@ -18,10 +18,13 @@ system:
           type: client
       - name: server-certs
         maddogCert:
-          type: server    
+          type: server
+      - name: secretvol
+        secret:                          
+         secretName: jkspass    
       containers:
       - name: zipkin-kafka-proxy
-        image: docker-all/dva/zipkin-kafka-proxy:31
+        image: docker-all/dva/zipkin-kafka-proxy:37
         env:
         - name: ZIPKIN_KAFKA_PROXY_HOST
           value: zipkin-kafka-proxy
@@ -38,6 +41,9 @@ system:
         volumeMounts:
         - mountPath: /etc/pki_service/zipkin-kafka-proxy
           name: client-certs
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
         livenessProbe:
             httpGet:
                 path: /metrics
