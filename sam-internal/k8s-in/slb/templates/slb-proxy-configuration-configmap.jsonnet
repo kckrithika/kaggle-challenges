@@ -18,7 +18,7 @@ local proxyConfigs = {
 };
 
 local proxyVipMapping = {
-    proxyvipmapping: [
+    proxyvipmappings: [
         {
             proxyname: slbconfigs.hsmNginxProxyName,
             vips: [

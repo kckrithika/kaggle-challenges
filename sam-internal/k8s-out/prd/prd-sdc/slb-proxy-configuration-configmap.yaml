@@ -17,7 +17,7 @@ data:
     }
   proxyvipmapping.json: |-
     {
-      "proxyvipmapping": [
+      "proxyvipmappings": [
         {
           "proxyname": "slb-hsm-nginx",
           "vips": [
