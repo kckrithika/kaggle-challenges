@@ -224,6 +224,9 @@
                  + (if slbflights.roleEnabled then [
                      "--isRoleUsed=true",
                      ] else [])
+                 + (if slbimages.hypersdn_build >= 1326 then [
+                     "--vcioptions.strict=true",
+                     ] else [])
                  + ([
                         "--client.allowStale=true",
                         "--control.manifestWatcherSentinel=" + mwSentinel,
