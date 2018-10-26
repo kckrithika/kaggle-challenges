@@ -232,11 +232,9 @@ if samfeatureflags.kubedns then {
                     },
                 ],
                 dnsPolicy: "Default",
-                nodeSelector: if configs.kingdom == "prd" then {
-                                  master: "true",
-                              } else {
-                                  pool: configs.estate,
-                              },
+                nodeSelector: {
+                   master: "true",
+                },
                 restartPolicy: "Always",
                 schedulerName: "default-scheduler",
                 securityContext: {},

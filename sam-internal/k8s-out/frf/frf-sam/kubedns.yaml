@@ -161,7 +161,7 @@ spec:
       dnsPolicy: Default
       hostNetwork: true
       nodeSelector:
-        pool: frf-sam
+        master: "true"
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
