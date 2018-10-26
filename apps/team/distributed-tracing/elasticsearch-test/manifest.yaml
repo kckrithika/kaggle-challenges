@@ -39,10 +39,6 @@ system:
     #      path: /data/elasticsearch
     terminationGracePeriodSeconds: 20
 
-    volumeClaimTemplates:
-    - name: elasticsearch-persistent-storage-test
-      storageClassName: zipkin-es-persistent-storage-hdd-pool
-      storageSizeRequest: 20Gi
     lbname: elasticsearch-stateful-lb-test
 
   - name: zipkin-es-curator-test
