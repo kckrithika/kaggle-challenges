@@ -224,7 +224,7 @@
                  + (if slbflights.roleEnabled then [
                      "--isRoleUsed=true",
                      ] else [])
-                 + (if slbimages.hypersdn_build >= 1323 then [
+                 + (if slbimages.hypersdn_build >= 1326 then [
                      "--vcioptions.strict=true",
                      ] else [])
                  + ([
