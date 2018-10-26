@@ -1,12 +1,12 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-nginx-kms" };
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: slbconfigs.hsmNginxProxyName };
 local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-kms" };
-local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-kms" };
-local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-kms" };
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: slbconfigs.hsmNginxProxyName };
+local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: slbconfigs.hsmNginxProxyName };
+local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: slbconfigs.hsmNginxProxyName };
 
 local certDirs = ["cert1", "cert2"];
 
@@ -33,7 +33,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
             },
             spec: {
                 affinity:
-                (if false && slbflights.nginxPodFloat then {
+                (if slbflights.nginxPodFloat then {
                     podAntiAffinity: {
                         requiredDuringSchedulingIgnoredDuringExecution: [{
                             labelSelector: {
@@ -48,6 +48,17 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                             },
                             topologyKey: "kubernetes.io/hostname",
                       }],
+                    },
+                    nodeAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: {
+                            nodeSelectorTerms: [{
+                                matchExpressions: [{
+                                    key: "slb-service",
+                                    operator: "In",
+                                    values: ["slb-nginx-kms"],
+                                }],
+                            }],
+                        },
                     },
                 } else {
                     podAntiAffinity: {
@@ -101,76 +112,76 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                     },
                 ]),
                 containers: [
-#                                {
-#                                    ports: [
-#                                        {
-#                                            name: "slb-nginx-port",
-#                                            containerPort: portconfigs.slb.slbNginxControlPort,
-#                                        },
-#                                    ],
-#                                    name: "slb-nginx-config-kms",
-#                                    image: slbimages.hypersdn,
-#                                     [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
-#                                    command: [
-#                                        "/sdn/slb-nginx-config",
-#                                        "--target=" + slbconfigs.slbDir + "/nginx/config",
-#                                        "--netInterfaceName=eth0",
-#                                        "--metricsEndpoint=" + configs.funnelVIP,
-#                                        "--log_dir=" + slbconfigs.logsDir,
-#                                        "--maxDeleteServiceCount=" + (if configs.kingdom == "xrd" then "150" else slbconfigs.perCluster.maxDeleteCount[configs.estate]),
-#                                    ]
-#                                    + [
-#                                        configs.sfdchosts_arg,
-#                                        "--client.serverInterface=lo",
-#                                        "--hostnameOverride=$(NODE_NAME)",
-#                                    ]
-#                                      + (if slbimages.phaseNum == 1 then [
-#                                            "--blueGreenFeature=true",
-#                                        ] else [])
-#                                      + (if slbflights.trustedProxies then [
-#                                            "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
-#                                        ] else [])
-#                                      + slbconfigs.getNodeApiClientSocketSettings()
-#                                      + [
-#                                            "--enableSimpleDiff=true",
-#                                            "--newConfigGenerator=true",
-#                                            "--control.nginxReloadSentinel=" + slbconfigs.slbDir + "/nginx/config/nginx.marker",
-#                                      ]
-#                                      + (if slbimages.hypersdn_build >= 1279 then [
-#                                            "--httpconfig.custCertsDir=" + slbconfigs.customerCertsPath,
-#                                        ] else [
-#                                            "--custCertsDir=" + slbconfigs.customerCertsPath,
-#                                        ])
-#                                      + [
-#                                            "--checkDuplicateVips=true",
-#                                      ],
-#                                    volumeMounts: configs.filter_empty([
-#                                        {
-#                                            name: "var-target-config-volume",
-#                                            mountPath: slbconfigs.slbDir + "/nginx/config",
-#                                        },
-#                                        slbconfigs.slb_volume_mount,
-#                                        slbconfigs.logs_volume_mount,
-#                                        configs.sfdchosts_volume_mount,
-#                                    ]),
-#                                    securityContext: {
-#                                        privileged: true,
-#                                    },
-#                                    env: [
-#                                        {
-#                                            name: "NODE_NAME",
-#                                            valueFrom: {
-#                                                fieldRef: {
-#                                                    fieldPath: "spec.nodeName",
-#                                                },
-#                                            },
-#                                        },
-#                                        configs.kube_config_env,
-#                                    ],
-#                                },
                                 {
-                                    name: "slb-nginx-kms-proxy",
-                                    image: "ops0-artifactrepo2-0-prd.slb.sfdc.net/docker-sam/pablo/slb-nginx-proxy-kms:pablo-201810251525",
+                                    ports: [
+                                        {
+                                            name: "slb-nginx-port",
+                                            containerPort: portconfigs.slb.slbNginxControlPort,
+                                        },
+                                    ],
+                                    name: "slb-nginx-config-kms",
+                                    image: slbimages.hypersdn,
+                                     [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
+                                    command: [
+                                        "/sdn/slb-nginx-config",
+                                        "--target=" + slbconfigs.slbDir + "/nginx/config",
+                                        "--netInterfaceName=eth0",
+                                        "--metricsEndpoint=" + configs.funnelVIP,
+                                        "--log_dir=" + slbconfigs.logsDir,
+                                        "--maxDeleteServiceCount=" + (if configs.kingdom == "xrd" then "150" else slbconfigs.perCluster.maxDeleteCount[configs.estate]),
+                                    ]
+                                    + [
+                                        configs.sfdchosts_arg,
+                                        "--client.serverInterface=lo",
+                                        "--hostnameOverride=$(NODE_NAME)",
+                                    ]
+                                      + (if slbimages.phaseNum == 1 then [
+                                            "--blueGreenFeature=true",
+                                        ] else [])
+                                      + (if slbflights.trustedProxies then [
+                                            "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
+                                        ] else [])
+                                      + slbconfigs.getNodeApiClientSocketSettings()
+                                      + [
+                                            "--enableSimpleDiff=true",
+                                            "--newConfigGenerator=true",
+                                            "--control.nginxReloadSentinel=" + slbconfigs.slbDir + "/nginx/config/nginx.marker",
+                                      ]
+                                      + (if slbimages.hypersdn_build >= 1279 then [
+                                            "--httpconfig.custCertsDir=" + slbconfigs.customerCertsPath,
+                                        ] else [
+                                            "--custCertsDir=" + slbconfigs.customerCertsPath,
+                                        ])
+                                      + [
+                                            "--checkDuplicateVips=true",
+                                      ],
+                                    volumeMounts: configs.filter_empty([
+                                        {
+                                            name: "var-target-config-volume",
+                                            mountPath: slbconfigs.slbDir + "/nginx/config",
+                                        },
+                                        slbconfigs.slb_volume_mount,
+                                        slbconfigs.logs_volume_mount,
+                                        configs.sfdchosts_volume_mount,
+                                    ]),
+                                    securityContext: {
+                                        privileged: true,
+                                    },
+                                    env: [
+                                        {
+                                            name: "NODE_NAME",
+                                            valueFrom: {
+                                                fieldRef: {
+                                                    fieldPath: "spec.nodeName",
+                                                },
+                                            },
+                                        },
+                                        configs.kube_config_env,
+                                    ],
+                                },
+                                {
+                                    name: "slb-nginx-proxy-b",
+                                    image: slbimages.slbnginx,
                                     command: ["/runner.sh"],
                                     livenessProbe: {
                                         httpGet: {
@@ -179,9 +190,6 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                                         },
                                         initialDelaySeconds: 15,
                                         periodSeconds: 10,
-                                    },
-                                    securityContext: {
-                                        privileged: true,
                                     },
                                     volumeMounts: configs.filter_empty([
                                         {
@@ -219,41 +227,41 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                                      periodSeconds: 3,
                                  },
                                 },
-#                                slbshared.slbFileWatcher,
-#                                madkub.madkubRefreshContainer(certDirs),
-#                                {
-#                                        name: "slb-cert-checker",
-#                                        image: slbimages.hypersdn,
-#                                        command: [
-#                                            "/sdn/slb-cert-checker",
-#                                            "--metricsEndpoint=" + configs.funnelVIP,
-#                                            "--hostnameOverride=$(NODE_NAME)",
-#                                            "--log_dir=" + slbconfigs.logsDir,
-#                                            configs.sfdchosts_arg,
-#                                        ],
-#                                        volumeMounts: configs.filter_empty([
-#                                            {
-#                                                name: "var-target-config-volume",
-#                                                mountPath: slbconfigs.slbDir + "/nginx/config",
-#
-#                                            },
-#                                        ] + madkub.madkubSlbCertVolumeMounts(certDirs) + [
-#                                            slbconfigs.slb_volume_mount,
-#                                            slbconfigs.logs_volume_mount,
-#                                            configs.sfdchosts_volume_mount,
-#                                            {
-#                                                mountPath: slbconfigs.customerCertsPath,
-#                                                name: "customer-certs",
-#                                            },
-#                                        ]),
-#                                        env: [
-#                                            slbconfigs.node_name_env,
-#                                        ],
-#                                },
+                                slbshared.slbFileWatcher,
+                                madkub.madkubRefreshContainer(certDirs),
+                                {
+                                        name: "slb-cert-checker",
+                                        image: slbimages.hypersdn,
+                                        command: [
+                                            "/sdn/slb-cert-checker",
+                                            "--metricsEndpoint=" + configs.funnelVIP,
+                                            "--hostnameOverride=$(NODE_NAME)",
+                                            "--log_dir=" + slbconfigs.logsDir,
+                                            configs.sfdchosts_arg,
+                                        ],
+                                        volumeMounts: configs.filter_empty([
+                                            {
+                                                name: "var-target-config-volume",
+                                                mountPath: slbconfigs.slbDir + "/nginx/config",
+
+                                            },
+                                        ] + madkub.madkubSlbCertVolumeMounts(certDirs) + [
+                                            slbconfigs.slb_volume_mount,
+                                            slbconfigs.logs_volume_mount,
+                                            configs.sfdchosts_volume_mount,
+                                            {
+                                                mountPath: slbconfigs.customerCertsPath,
+                                                name: "customer-certs",
+                                            },
+                                        ]),
+                                        env: [
+                                            slbconfigs.node_name_env,
+                                        ],
+                                },
                                 slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                                 slbshared.slbCleanupConfig,
                                 slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
-#                                slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
+                                slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
                                 slbshared.slbLogCleanup,
                                 slbshared.slbManifestWatcher(),
                                 {
@@ -290,7 +298,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                                 },
                             ],
                 initContainers: [
-#                    madkub.madkubInitContainer(certDirs),
+                    madkub.madkubInitContainer(certDirs),
                 ],
                 dnsPolicy: "Default",
             }
