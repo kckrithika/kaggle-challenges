@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.kingdom == "prd" || configs.kingdom == "xrd" then configs.daemonSetBase("sam") {
+if configs.estate == "prd-samtest" then configs.daemonSetBase("sam") {
     spec+: {
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
@@ -33,7 +33,6 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" then configs.daemonSetBa
                         ports: [
                             {
                                 containerPort: 3333,
-                                hostPort: 3333,
                             },
                         ],
                         resources+: configs.ipAddressResource,

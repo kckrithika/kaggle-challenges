@@ -5,7 +5,7 @@ local timeHour = 60 * timeMinute;
 
 {
     enabled: true,
-    requestsToMake: 205,
+    requestsToMake: 105,
     requestsToSkip: 5,
     port: "3333",
     requestDataSizes: "1B",
@@ -25,8 +25,8 @@ local timeHour = 60 * timeMinute;
 
     requestDelay: 10 * timeMillisecond,
     delay: 5 * timeMinute,
-    refreshNodesMaxDelay: 5 * timeMinute,
-    refreshNodesMinDelay: 5 * timeSecond,
+    refreshNodesMaxDelay: 24 * timeHour,
+    refreshNodesMinDelay: 5 * timeMinute,
     timeout: 30 * timeSecond,
     backoffMin: 5 * timeSecond,
     backoffJitterMax: 1 * timeHour,
