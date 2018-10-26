@@ -87,6 +87,7 @@ spec:
         - --client.dialSocket=true
         - --healthcheck.riseCount=5
         - --healthcheck.fallCount=2
+        - --computeProxyServers=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001323-05c08f65
         name: slb-ipvs-processor
         securityContext:
@@ -102,6 +103,12 @@ spec:
           name: usr-sbin-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /proxyconfig
+          name: proxyconfig
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /etc/pki_service
+          name: maddog-certs
       - command:
         - /sdn/slb-ipvs-data
         - --connPort=9107
@@ -394,3 +401,6 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-ipvs/cleanup
         name: var-cleanup-logs-volume
+      - configMap:
+          name: slb-proxy-configuration
+        name: proxyconfig
