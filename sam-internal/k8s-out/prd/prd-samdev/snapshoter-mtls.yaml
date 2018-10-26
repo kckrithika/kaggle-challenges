@@ -43,12 +43,13 @@ spec:
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002347-34f588d0
         livenessProbe:
+          failureThreshold: 5
           httpGet:
             path: /
             port: 9095
-          initialDelaySeconds: 20
-          periodSeconds: 20
-          timeoutSeconds: 20
+          initialDelaySeconds: 600
+          periodSeconds: 30
+          timeoutSeconds: 30
         name: snapshot-producer
         volumeMounts:
         - mountPath: /etc/pki_service

@@ -61,9 +61,12 @@ if configs.kingdom == "prd" && configs.estate != "prd-samtwo" then
                             path: "/",
                             port: 9095,
                         },
-                        initialDelaySeconds: 20,
-                        periodSeconds: 20,
-                        timeoutSeconds: 20,
+                        # Initial delay for snapshot producer is set high
+                        # in order to allow start-up while volume of resources is high
+                        initialDelaySeconds: 600,
+                        periodSeconds: 30,
+                        timeoutSeconds: 30,
+                        failureThreshold: 5,
                     },
                     image: samimages.hypersam,
                     name: "snapshot-producer",
