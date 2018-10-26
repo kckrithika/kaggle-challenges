@@ -127,21 +127,15 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                       + (if slbimages.phaseNum == 1 then [
                                             "--blueGreenFeature=true",
                                         ] else [])
-                                      + (if slbflights.trustedProxies then [
+                                      + [
                                             "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
-                                        ] else [])
+                                      ]
                                       + slbconfigs.getNodeApiClientSocketSettings()
                                       + [
                                             "--enableSimpleDiff=true",
                                             "--newConfigGenerator=true",
                                             "--control.nginxReloadSentinel=" + slbconfigs.slbDir + "/nginx/config/nginx.marker",
-                                      ]
-                                      + (if slbimages.hypersdn_build >= 1279 then [
                                             "--httpconfig.custCertsDir=" + slbconfigs.customerCertsPath,
-                                        ] else [
-                                            "--custCertsDir=" + slbconfigs.customerCertsPath,
-                                        ])
-                                      + [
                                             "--checkDuplicateVips=true",
                                       ],
                                     volumeMounts: configs.filter_empty([
@@ -263,9 +257,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                         "--log_dir=" + slbconfigs.logsDir,
                                         "--custCertsDir=" + slbconfigs.customerCertsPath,
                                         configs.sfdchosts_arg,
-                                    ] + slbconfigs.getNodeApiClientSocketSettings() + (if slbimages.hypersdn_build >= 1298 then [
+                                    ] + slbconfigs.getNodeApiClientSocketSettings()
+                                    + [
                                         "--control.nginxReloadSentinel=/host/data/slb/nginx/config/nginx.marker",
-                                    ] else []),
+                                    ],
                                     volumeMounts: configs.filter_empty([
                                         {
                                             name: "var-target-config-volume",
