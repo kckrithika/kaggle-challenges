@@ -111,7 +111,7 @@ spec:
           name: sfdchosts
       - command:
         - /runner.sh
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000044-7d2b66ab
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000047-de472943
         livenessProbe:
           httpGet:
             path: /
