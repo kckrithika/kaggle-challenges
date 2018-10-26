@@ -1115,7 +1115,8 @@ order by CheckerName, Kingdom, ReportAgeInMinutes",
   bundleCreationTimestamp,
   samAppNumResourceLinks,
   bundleState,
-  bundleStatus
+  bundleStatus,
+  samappStatus
 from
 (
 select
@@ -1123,13 +1124,14 @@ select
   name,
   namespace,
   json_length(Payload->'$.status.resourceLinks') as samAppNumResourceLinks,
-  Payload->>'$.metadata.creationTimestamp' as samAppCreationTimestamp
+  Payload->>'$.metadata.creationTimestamp' as samAppCreationTimestamp,
+  Payload->>'$.status' as samappStatus
 from k8s_resource
 where ApiKind = 'SamApp'
 and Payload->>'$.metadata.labels.deployed_by' is null
 ) samApp
 
-join 
+left join
 
 (
 select
