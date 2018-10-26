@@ -5,6 +5,7 @@ system:
       email:
         - paul.howden@salesforce.com
         - pteyer@salesforce.com
+        - akouthoofd@salesforce.com
     functions:
     - name: warden-stage-func
       count: 3
@@ -15,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden-stage
-        image: tnrp/casp/warden:0.0.1-0000294-350a15c8
+        image: tnrp/casp/warden:0.0.1-0000295-2fedd851
         ports:
         - name: http
           containerPort: 8889
