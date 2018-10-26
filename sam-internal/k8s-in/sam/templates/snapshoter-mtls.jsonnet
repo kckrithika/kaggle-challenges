@@ -43,7 +43,8 @@ if configs.kingdom == "prd" && configs.estate != "prd-samtwo" then
             },
             },
             spec: configs.specWithKubeConfigAndMadDog {
-                containers: [configs.containerWithKubeConfigAndMadDog {
+                containers: [
+configs.containerWithKubeConfigAndMadDog {
                     command: [
                         "/sam/snapshoter",
                         "--config=/config/snapshoter-mtls.json",
@@ -56,6 +57,11 @@ if configs.kingdom == "prd" && configs.estate != "prd-samtwo" then
                         configs.config_volume_mount,
                         configs.cert_volume_mount,
                         ] + madkub.madkubSamCertVolumeMounts(certDirs),
+                    image: samimages.hypersam,
+                    name: "snapshot-producer",
+                } + if configs.estate == "prd-sam" then {
+
+                } else {
                     livenessProbe: {
                         httpGet: {
                             path: "/",
@@ -68,9 +74,8 @@ if configs.kingdom == "prd" && configs.estate != "prd-samtwo" then
                         timeoutSeconds: 30,
                         failureThreshold: 5,
                     },
-                    image: samimages.hypersam,
-                    name: "snapshot-producer",
-                }] + [madkub.madkubRefreshContainer(certDirs)],
+                },
+                ] + [madkub.madkubRefreshContainer(certDirs)],
                 volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
