@@ -38,7 +38,7 @@
     httpsredirectport: 443
     lbtype: http
 
-- lbname: eu1-stmda-stm-prd
+- lbname: eu1-stmda-stm
   servers:
   - stmdaeu1ice1-app1-1-prd
   - stmdaeu1ice1-app1-2-prd
@@ -59,7 +59,7 @@
     httpsredirectport: 443
     lbtype: http
 
-- lbname: eu2-stmda-stm-prd
+- lbname: eu2-stmda-stm
   servers:
   - stmdaeu2ice1-app1-1-prd
   - stmdaeu2ice1-app1-2-prd
