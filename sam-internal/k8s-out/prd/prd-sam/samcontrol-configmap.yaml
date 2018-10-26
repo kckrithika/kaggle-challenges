@@ -14,6 +14,7 @@ data:
       "debug": true,
       "deletionEnabled": true,
       "deletionPercentageThreshold": 20,
+      "dnsEnabledPoolNamesRegex": "^prd-sam$|^prd-sam_search$|^prd-sam_gater$",
       "dockerregistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
       "enableDNS": true,
       "enableIdentityEnvVar": true,
