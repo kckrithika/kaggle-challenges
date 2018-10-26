@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: slb-canary-hsm
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "lbtype": "http",
+        "port": 443,
+        "reencrypt": true,
+        "targetport": 443,
+        "tls": true,
+        "tlscertificate": "secret_service:slbTest:kmscert-prd-20181023",
+        "tlskey": "kms:1:2:4A4C6C75332A0547BB81D5263A9D2F939FB4590FF9AF15C5403A656F8BB913D2:3d023dc5-8926-4c60-9dc0-6386bcacbdde"
+       }
+      ]
+  labels:
+    app: slb-hsm-nginx-service
+  name: slb-hsm-nginx-service
+  namespace: sam-system
+spec:
+  ports:
+  - name: slb-canary-hsm-port
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  selector:
+    name: slb-canary-proxy-http
+  type: NodePort
