@@ -22,11 +22,12 @@ local configs = import "config.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         #[xiao] Fix CI in prd
-        "prd,prd-sam,samapp-controller,hypersam": "sam-0002343-801aef07",
         "prd,prd-samdev,snapshoter-mtls,hypersam": "sam-0002347-34f588d0",
 
          #[rbhat] v2 diff fixes
          "prd,prd-samdev,samapp-controller,hypersam": "sam-0002348-8a7fbf2d",
+         "prd,prd-sam,samapp-controller,hypersam": "sam-0002348-8a7fbf2d",
+         "prd,prd-sam,watchdog-comparek8sresources,hypersam": "sam-0002348-8a7fbf2d",
 
         }
         + {
@@ -57,7 +58,7 @@ for ce in [
                         "yhu-sam",
                         "yul-sam",
 ]
-           for wd in ["watchdog-apiserverlb", "watchdog-common", "watchdog-comparek8sresources", "watchdog-deployment,watchdog-dns", "watchdog-estatesvc", "watchdog-etcd", "watchdog-etcd-quorum", "watchdog-filesystem", "watchdog-master", "watchdog-node", "watchdog-rbac", "watchdog-samsql", "watchdog-sql"]
+           for wd in ["watchdog-apiserverlb", "watchdog-common", "watchdog-deployment,watchdog-dns", "watchdog-estatesvc", "watchdog-etcd", "watchdog-etcd-quorum", "watchdog-filesystem", "watchdog-master", "watchdog-node", "watchdog-rbac", "watchdog-samsql", "watchdog-sql"]
         },
 
 
