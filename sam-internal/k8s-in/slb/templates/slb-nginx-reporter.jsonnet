@@ -3,7 +3,7 @@ local serviceName = "slb-nginx-reporter";
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: serviceName };
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if slbimages.hypersdn_build >= 1298 then configs.deploymentBase("slb") {
+if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: serviceName,
