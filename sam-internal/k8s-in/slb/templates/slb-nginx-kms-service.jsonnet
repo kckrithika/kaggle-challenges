@@ -16,38 +16,10 @@ local canaryPortConfig = [
         port=443,
         lbType="dsr",
         name=canaryName + "-port",
-        nodePort=443,
+        nodePort=0,
     ),
 ];
 
-if configs.estate == "prd-sdc" then {
-    apiVersion: "v1",
-    kind: "Service",
-    metadata: {
-      name: serviceName,
-      namespace: "sam-system",
-      labels: {
-        app: serviceName,
-      } + configs.ownerLabel.slb,
-      annotations: {
-        "slb.sfdc.net/name": vipName,
-        "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(canaryPortConfig),
-      },
-    },
-
-    spec: {
-      ports: [
-        {
-          name: c.name,
-          port: c.port,
-          protocol: "TCP",
-          targetPort: c.targetport,
-        }
-             for c in canaryPortConfig
-],
-      selector: {
-        name: canaryName,
-      },
-      type: "NodePort",
-    },
+if configs.estate == "prd-sdc" then
+    slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {
 } else "SKIP"
