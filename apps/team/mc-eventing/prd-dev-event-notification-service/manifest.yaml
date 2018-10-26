@@ -24,7 +24,7 @@ system:
         secretName: test-secret
     containers:
     - name: dev-event-notification-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:W-5473672_scone_upgrade_test
+      image: sfci/mc-eventing/event-notification:1.0.0
       ports:
       - containerPort: 15372
       env:
