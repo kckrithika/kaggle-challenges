@@ -10,6 +10,63 @@ local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-conf
 
 local certDirs = ["cert1", "cert2"];
 
+local nginxAffinity = (if slbflights.nginxPodFloat then {
+    podAntiAffinity: {
+        requiredDuringSchedulingIgnoredDuringExecution: [{
+            labelSelector: {
+                matchExpressions: [{
+                    key: "name",
+                    operator: "In",
+                    values: [
+                        "slb-ipvs",
+                        "slb-nginx-config-b",
+                    ],
+                }],
+            },
+            topologyKey: "kubernetes.io/hostname",
+        }],
+    },
+    // Ensure that the floating nginx pods don't land on nodes allocated to ipvs.
+    // This is a stopgap solution until ipvs is made to float as well.
+    nodeAffinity: {
+        requiredDuringSchedulingIgnoredDuringExecution: {
+            nodeSelectorTerms: [{
+                matchExpressions: [{
+                    key: "slb-service",
+                    operator: "NotIn",
+                    values: ["slb-ipvs"],
+                }],
+            }],
+        },
+    },
+} else {
+    podAntiAffinity: {
+        requiredDuringSchedulingIgnoredDuringExecution: [{
+            labelSelector: {
+                matchExpressions: [{
+                    key: "name",
+                    operator: "In",
+                    values: [
+                        slbconfigs.nginxProxyName,
+                    ],
+                }],
+            },
+            topologyKey: "kubernetes.io/hostname",
+        }],
+    },
+    nodeAffinity: {
+        requiredDuringSchedulingIgnoredDuringExecution: {
+            nodeSelectorTerms: [{
+                matchExpressions: [{
+                    key: "slb-service",
+                    operator: "In",
+                    values: ["slb-nginx-b"],
+                }],
+            }],
+        },
+    },
+});
+
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
@@ -32,50 +89,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 },
             },
             spec: {
-                affinity:
-                (if slbflights.nginxPodFloat then {
-                    podAntiAffinity: {
-                        requiredDuringSchedulingIgnoredDuringExecution: [{
-                            labelSelector: {
-                              matchExpressions: [{
-                                  key: "name",
-                                  operator: "In",
-                                  values: [
-                                      "slb-ipvs",
-                                      "slb-nginx-config-b",
-                                  ],
-                              }],
-                            },
-                            topologyKey: "kubernetes.io/hostname",
-                      }],
-                    },
-                } else {
-                    podAntiAffinity: {
-                        requiredDuringSchedulingIgnoredDuringExecution: [{
-                            labelSelector: {
-                                matchExpressions: [{
-                                    key: "name",
-                                    operator: "In",
-                                    values: [
-                                        slbconfigs.nginxProxyName,
-                                    ],
-                                }],
-                            },
-                            topologyKey: "kubernetes.io/hostname",
-                        }],
-                    },
-                    nodeAffinity: {
-                        requiredDuringSchedulingIgnoredDuringExecution: {
-                            nodeSelectorTerms: [{
-                                matchExpressions: [{
-                                    key: "slb-service",
-                                    operator: "In",
-                                    values: ["slb-nginx-b"],
-                                }],
-                            }],
-                        },
-                    },
-                }),
+                affinity: nginxAffinity,
                 volumes: configs.filter_empty([
                     {
                         name: "var-target-config-volume",
