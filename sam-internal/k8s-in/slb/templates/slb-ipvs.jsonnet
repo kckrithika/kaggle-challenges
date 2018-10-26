@@ -155,10 +155,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             configs.sfdchosts_volume_mount,
                         ] + (if slbflights.ipvsProcessorProxySelection then [
                              slbconfigs.proxyconfig_volume_mount,
-                             configs.maddog_cert_volume_mount,
                         ] else []))
                         + (if slbimages.hypersdn_build >= 1323 then [
                              configs.kube_config_volume_mount,
+                             configs.maddog_cert_volume_mount,
                         ] else []),
                         securityContext: {
                             privileged: true,
