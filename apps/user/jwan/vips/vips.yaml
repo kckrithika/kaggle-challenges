@@ -1,4 +1,4 @@
-- lbname: grafana_prd
+- lbname: grafana-prd
   servers:
    - sr0-sre1-1-prd.eng.sfdc.net
    - sr0-sre1-2-prd.eng.sfdc.net
