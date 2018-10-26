@@ -21,12 +21,12 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      name: snapshotconsumer-prd
+      name: snapshotconsumer-prd-mtls
   template:
     metadata:
       labels:
         apptype: control
-        name: snapshotconsumer-prd
+        name: snapshotconsumer-prd-mtls
         sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
@@ -40,7 +40,7 @@ spec:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002336-6a8184c1
-        name: snapshotconsumer-prd
+        name: snapshotconsumer-prd-mtls
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
@@ -147,6 +147,9 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
+      - name: mysql-ssc-prd
+        secret:
+          secretName: mysql-ssc-prd
       - configMap:
           name: snapshotconsumer-prd-mtls
         name: config

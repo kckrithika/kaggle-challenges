@@ -28,21 +28,21 @@ if configs.estate == "prd-sam" then {
         replicas: 1,
         selector: {
             matchLabels: {
-                name: "snapshotconsumer-prd",
+                name: "snapshotconsumer-prd-mtls",
             },
         },
         template: {
             metadata: {
                 labels: {
                     apptype: "control",
-                    name: "snapshotconsumer-prd",
+                    name: "snapshotconsumer-prd-mtls",
                 } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
             spec: configs.specWithKubeConfigAndMadDog {
                 containers: [
 configs.containerWithKubeConfigAndMadDog {
-                    name: "snapshotconsumer-prd",
+                    name: "snapshotconsumer-prd-mtls",
                     image: samimages.hypersam,
                     command: [
                         "/sam/snapshotconsumer",
@@ -65,6 +65,12 @@ configs.containerWithKubeConfigAndMadDog {
                 volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
+                    {
+                        secret: {
+                            secretName: "mysql-ssc-prd",
+                        },
+                        name: "mysql-ssc-prd",
+                    },
                     configs.config_volume("snapshotconsumer-prd-mtls"),
                 ] + madkub.madkubSamCertVolumes(certDirs)
                   + madkub.madkubSamMadkubVolumes(),
