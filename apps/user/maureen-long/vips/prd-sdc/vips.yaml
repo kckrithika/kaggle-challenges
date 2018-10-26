@@ -9,8 +9,7 @@
      healthport: 12087
      healthpath: "/liveness-probe"
      healthprotocol: http
-- lbname: maureen-bad
-  notAField: foo
+- lbname: maureen-test-two
   servers:
    - 10.231.187.66
    - 10.231.187.34
