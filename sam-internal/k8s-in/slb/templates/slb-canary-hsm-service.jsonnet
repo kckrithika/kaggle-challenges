@@ -26,5 +26,5 @@ local canaryPortConfig = [
 ];
 
 if configs.estate == "prd-sdc" then
-    slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {
+    slbbaseservice.slbCanaryBaseService("slb-canary-proxy-http", canaryPortConfig, serviceName, vipName) {
 } else "SKIP"
