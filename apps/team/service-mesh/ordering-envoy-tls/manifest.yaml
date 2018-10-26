@@ -30,7 +30,7 @@ system:
           port: 15372
 
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.1
+      image: sfci/servicelibs/sherpa-envoy:9026c7e0032acdb88c607d20b1ca988b5975525d
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
