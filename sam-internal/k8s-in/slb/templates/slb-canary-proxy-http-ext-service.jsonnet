@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
+local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 local slbportconfiguration = import "slbportconfiguration.libsonnet";
 local slbbaseservice = import "slb-base-service.libsonnet";
@@ -16,7 +17,7 @@ local canaryPortConfig = [
         lbType="http",
         name="slb-canary-proxy-http-port",
     ) { healthpath: "/health" },
-] + (if configs.estate == "iad-sam" || configs.estate == "ord-sam" then [
+] + (if configs.estate == "iad-sam" || configs.estate == "ord-sam" || slbimages.hypersdn_build >= 1331 then [
     slbportconfiguration.newPortConfiguration(
         port=443,
         targetPort=portconfigs.slb.canaryServiceProxyHttpPort,
