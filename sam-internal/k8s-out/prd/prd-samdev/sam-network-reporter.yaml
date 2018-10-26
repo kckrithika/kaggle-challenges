@@ -37,7 +37,6 @@ spec:
         name: sam-network-reporter
         ports:
         - containerPort: 3333
-          hostPort: 3333
         resources:
           limits:
             sam.sfdc.net/ip-address: "1"

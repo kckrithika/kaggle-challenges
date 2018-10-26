@@ -21,12 +21,12 @@ local timeHour = 60 * timeMinute;
 
     enablehttp: false,
     enabletcp: true,
-    tcpPort: "3334",
+    tcpPort: "3333",
 
     requestDelay: 10 * timeMillisecond,
     delay: 5 * timeMinute,
     refreshNodesMaxDelay: 24 * timeHour,
-    refreshNodesMinDelay: 23 * timeHour,
+    refreshNodesMinDelay: 5 * timeMinute,
     timeout: 30 * timeSecond,
     backoffMin: 5 * timeSecond,
     backoffJitterMax: 1 * timeHour,

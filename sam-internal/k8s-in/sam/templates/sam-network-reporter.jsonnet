@@ -33,7 +33,6 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then config
                         ports: [
                             {
                                 containerPort: 3333,
-                                hostPort: 3333,
                             },
                         ],
                         resources+: configs.ipAddressResource,
