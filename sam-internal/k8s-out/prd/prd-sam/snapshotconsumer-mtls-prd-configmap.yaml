@@ -1,0 +1,25 @@
+apiVersion: v1
+data:
+  snapshotconsumer-prd-mtls.json: |-
+    {
+      "caFile": "/etc/pki_service/ca/cabundle.pem",
+      "clientCertFile": "/cert1/client/certificates/client.pem",
+      "clientKeyFile": "/cert1/client/keys/client-key.pem",
+      "consumeTableName": "consume",
+      "dbHostname": "mysql-ss-0.mysql-service",
+      "dbPasswordFile": "/var/mysqlPwd/pass.txt",
+      "dbUsername": "ssc-prd-test",
+      "enableKafkaClientAuth": true,
+      "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
+      "k8sResourceDbName": "sam_kube_resource",
+      "k8sResourceTableName": "k8s_resource",
+      "kafkaConsumerEndpoint": "ajna0-brokeragg1-0-prd.data.sfdc.net:9093",
+      "kafkaTopics": "sfdc.prod.sam__prd.ajna_local__resourcestatus"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: sam
+  name: snapshotconsumer-prd
+  namespace: sam-system
