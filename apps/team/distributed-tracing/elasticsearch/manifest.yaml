@@ -39,10 +39,6 @@ system:
           path: /data/elasticsearchProd
     terminationGracePeriodSeconds: 20
 
-    volumeClaimTemplates:
-    - name: elasticsearch-persistent-storage-2tb-1
-      storageClassName: zipkin-es-persistent-storage-hdd-pool
-      storageSizeRequest: 2Ti
     lbname: elasticsearch-stateful-lb  
 
   - name: zipkin-es-curator
