@@ -17,6 +17,17 @@ local proxyConfigs = {
     ],
 };
 
+local proxyVipMapping = {
+    proxyvipmapping: [
+        {
+            proxyname: slbconfigs.hsmNginxProxyName,
+            vips: [
+               "hsm-nginx-canary.slb.sfdc.net",
+            ],
+        },
+    ],
+};
+
 if slbimages.phaseNum <= 1 then {
     kind: "ConfigMap",
     apiVersion: "v1",
@@ -27,5 +38,6 @@ if slbimages.phaseNum <= 1 then {
     },
     data: {
         "proxyconfiguration.json": std.manifestJsonEx(proxyConfigs, " "),
+        "proxyvipmapping.json": std.manifestJsonEx(proxyVipMapping, " "),
     },
 } else "SKIP"
