@@ -87,12 +87,8 @@ spec:
         - --client.dialSocket=true
         - --healthcheck.riseCount=5
         - --healthcheck.fallCount=2
-<<<<<<< HEAD
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001323-05c08f65
-=======
         - --computeProxyServers=true
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001309-f342f10b
->>>>>>> Begin flighting computeproxyservers in slb-ipvs-processor
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001323-05c08f65
         name: slb-ipvs-processor
         securityContext:
           privileged: true
