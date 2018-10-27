@@ -24,16 +24,46 @@ system:
 
     containers:
     - name: coreapp
-      image: tnrp/casam/coreapp:218__16790757-0000127-0514772e
+      image: tnrp/casam/coreapp:218__16847557-0000129-1df39f85
 
       env:
         # DB info
         - name: DB_USER
           value: sleepy
+
+        - name: DB_PASSWORD
+          value: rotate
+
         - name: DB_SID
           value: mist61b218utf
+
+        - name: DB_INSTANCE_NAME
+          value: mist61b218utf-1
+
+        - name: DB_STATS_USER
+          value: snowwhite
+
+        - name: DB_STATS_PASSWORD
+          value: rotate
+
+        - name: SERVER_ID
+          value: x
+
+        - name: DB_CONN_NUM
+          value: 25
+
+        - name: PLSQL_UPDATE_RUNSTATS
+          value: FALSE
+
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
+
+        - name: IP_MNDS1
+          value: 127.0.0.1
+
+        # work around stupid sfm ping check...
+        - name: OFFLINE
+          value: true
 
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
@@ -85,10 +115,6 @@ system:
 
         - name: DEPLOYMENT
           value: B
-
-        # Increase DB connections
-        - name: DB_CONN_NUM
-          value: 25
 
         # Wait for config override side car container to come up
         - name: USE_CONFIG_SIDECAR
@@ -189,7 +215,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: sfci/casam/coreapp_config_overrides:cc52d3
+      image: sfci/casam/coreapp_config_overrides:5b0e68
       env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na5.app
