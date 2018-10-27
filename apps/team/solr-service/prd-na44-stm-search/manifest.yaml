@@ -16,7 +16,7 @@ system:
         - name: LBNAME
           value: "searchservers"
         resources:
-          limits: { cpu: "48", memory: "120Gi" }
+          limits: { cpu: "48", memory: "80Gi" }
           requests: { cpu: "26", memory: "75Gi" }
         ports:
         - containerPort: 8983
