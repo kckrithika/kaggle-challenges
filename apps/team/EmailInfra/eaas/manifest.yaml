@@ -18,7 +18,7 @@ system:
       - name: SCONE_SERVICE_NAME
         value: eaas
       - name: JAVA_OPTIONS
-        value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
+        value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=3"
       resources:
         requests:
           memory: "12G"
