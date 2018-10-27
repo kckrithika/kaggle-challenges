@@ -238,10 +238,10 @@ data:
     LIKE ''%sdc%'' AND\n                     ControlEstate NOT LIKE ''%storage%''
     AND\n                     ControlEstate NOT LIKE ''%sdn%'' AND\n                     ControlEstate
     NOT LIKE ''%slb%'' AND\n                     desiredReplicas != 0", "watchdogFrequency":
-    "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
-    "sam", "alertThreshold": "20m", "instructions": "The following alert is for SamApp
-    CRDs that dont have corresponding Bundle CRDs", "name": "SqlSamAppWithoutBundle",
-    "sql": "SELECT\n                        samApp.controlEstate,\n                        samApp.name,\n                        samApp.namespace,\n                        samAppCreationTimestamp,\n                        bundleCreationTimestamp,\n                        samAppNumResourceLinks,\n                        bundleState,\n                        bundleStatus\n                      FROM\n                      (\n                          SELECT\n                            controlEstate,\n                            name,\n                            namespace,\n                            json_length(Payload->''$.status.resourceLinks'')
+    "5m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
+    "alertThreshold": "20m", "instructions": "The following alert is for SamApp CRDs
+    that dont have corresponding Bundle CRDs", "name": "SqlSamAppWithoutBundle", "sql":
+    "SELECT\n                        samApp.controlEstate,\n                        samApp.name,\n                        samApp.namespace,\n                        samAppCreationTimestamp,\n                        bundleCreationTimestamp,\n                        samAppNumResourceLinks,\n                        bundleState,\n                        bundleStatus\n                      FROM\n                      (\n                          SELECT\n                            controlEstate,\n                            name,\n                            namespace,\n                            json_length(Payload->''$.status.resourceLinks'')
     as samAppNumResourceLinks,\n                            Payload->>''$.metadata.creationTimestamp''
     as samAppCreationTimestamp\n                          FROM\n                            k8s_resource\n                          WHERE\n                            ApiKind
     = ''SamApp''\n                            AND Payload->>''$.metadata.labels.deployed_by''

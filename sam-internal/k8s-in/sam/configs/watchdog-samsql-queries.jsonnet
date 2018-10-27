@@ -133,7 +133,7 @@
                 alertFrequency: "24h",
                 watchdogFrequency: "5m",
                 alertProfile: "sam",
-                alertAction: "businesshours_pagerduty",
+                alertAction: "email",
                 sql: "SELECT
                         samApp.controlEstate,
                         samApp.name,
