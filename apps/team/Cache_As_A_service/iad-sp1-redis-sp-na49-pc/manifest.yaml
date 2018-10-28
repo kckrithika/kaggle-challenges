@@ -55,7 +55,7 @@ system:
        - name: SFDC_POD
          value: sp-na49-pc
        - name: CAAS_ENVIRONMENT
-         value: dummy_used_for_restart_4
+         value: dummy_used_for_restart_5
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
