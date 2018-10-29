@@ -349,7 +349,7 @@ WHERE latency > 45",
               (CASE WHEN Phase = 'Running' then 1 else 0 end) as Running,
               (CASE WHEN Phase <> 'Running' then 1 else 0 end) as NotRunning
             FROM podDetailView
-            WHERE namespace = 'kube-system'
+            WHERE namespace = 'kube-system' AND name LIKE 'kube-dns-%'
             ) as ss
             GROUP BY controlEstate
             ORDER BY NotRunning desc

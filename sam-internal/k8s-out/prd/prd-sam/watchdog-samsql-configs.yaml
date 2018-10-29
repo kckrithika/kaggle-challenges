@@ -306,8 +306,8 @@ data:
     as Running,\n              SUM(NotRunning) as NotRunning\n            FROM\n            (\n            SELECT\n              controlEstate,\n              (CASE
     WHEN Phase = ''Running'' then 1 else 0 end) as Running,\n              (CASE WHEN
     Phase <> ''Running'' then 1 else 0 end) as NotRunning\n            FROM podDetailView\n            WHERE
-    namespace = ''kube-system''\n            ) as ss\n            GROUP BY controlEstate\n            ORDER
-    BY NotRunning desc\n            ) as ss1\n            WHERE\n             Running
+    namespace = ''kube-system'' AND name LIKE ''kube-dns-%''\n            ) as ss\n            GROUP
+    BY controlEstate\n            ORDER BY NotRunning desc\n            ) as ss1\n            WHERE\n             Running
     < NotRunning", "watchdogFrequency": "1m"}]}'
 kind: ConfigMap
 metadata:
