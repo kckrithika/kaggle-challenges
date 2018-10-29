@@ -9,6 +9,7 @@
     nginxPodFloat: (slbimages.phaseNum <= 2),
     proxyProtocolCanaryEnabled: (slbimages.hypersdn_build >= 1331),
     roleEnabled: (slbimages.phaseNum <= 1),
+    slbCleanupTerminatingPods: (slbimages.phaseNum <= 1),
     ipvsProcessorProxySelection: (slbimages.phaseNum <= 0),
     nginxSlbVolumeMount: (slbimages.slbnginx_build >= 50),
     proxyConfigMapEnabled: (slbimages.hypersdn_build >= 1334),
