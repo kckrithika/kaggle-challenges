@@ -1,3 +1,5 @@
+local configs = import "config.jsonnet";
+
 {
     dirSuffix:: "",
     local slbimages = import "slbimages.jsonnet",
@@ -13,4 +15,5 @@
     ipvsProcessorProxySelection: (slbimages.phaseNum <= 1),
     nginxSlbVolumeMount: (slbimages.slbnginx_build >= 50),
     proxyConfigMapEnabled: (slbimages.hypersdn_build >= 1334),
+    hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 1),
 }
