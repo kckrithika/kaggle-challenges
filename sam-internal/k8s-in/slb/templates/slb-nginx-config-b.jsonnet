@@ -67,6 +67,8 @@ local nginxAffinity = (if slbflights.nginxPodFloat then {
     },
 });
 
+local nginxReloadSentinelParam = "--control.nginxReloadSentinel=" + slbconfigs.slbDir + "/nginx/config/nginx.marker";
+
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
@@ -148,7 +150,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                       + [
                                             "--enableSimpleDiff=true",
                                             "--newConfigGenerator=true",
-                                            "--control.nginxReloadSentinel=" + slbconfigs.slbDir + "/nginx/config/nginx.marker",
+                                            nginxReloadSentinelParam,
                                             "--httpconfig.custCertsDir=" + slbconfigs.customerCertsPath,
                                             "--checkDuplicateVips=true",
                                       ],
@@ -275,7 +277,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                         configs.sfdchosts_arg,
                                     ] + slbconfigs.getNodeApiClientSocketSettings()
                                     + [
-                                        "--control.nginxReloadSentinel=/host/data/slb/nginx/config/nginx.marker",
+                                        nginxReloadSentinelParam,
                                     ],
                                     volumeMounts: configs.filter_empty([
                                         {
