@@ -1,0 +1,16 @@
+- lbname: dvaalarmservice1-0-frf
+  customlbname: dvaalarmservice1-0-frf
+  servers:
+  - ops0-nms2-1-frf.ops.sfdc.net
+  - ops0-nms3-1-frf.ops.sfdc.net
+  - ops0-nms1-1-frf.ops.sfdc.net
+  - ops0-nms3-2-frf.ops.sfdc.net
+  - ops0-nms2-2-frf.ops.sfdc.net
+  - ops0-nms1-2-frf.ops.sfdc.net
+  ports:
+  - port: 8080
+    targetport: 8080
+    lbtype: tcp
+    healthport: 8080
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
