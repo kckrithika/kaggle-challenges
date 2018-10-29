@@ -444,7 +444,7 @@ system:
     identity:
       serviceName: sfproxy
       pod: na99
-    count: 1
+    count: 2
     containers:
     - name: sfproxy-envoy
 #TODO: Do not use private image
@@ -505,7 +505,7 @@ system:
     containers:
     - name: sfproxy-switchboard
 #TODO: Do not use private image
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/switchboard:blue-green-1
+      image: sfci/servicelibs/switchboard:389f17b9b2c2344c1df20c92bf06cd682e38a711
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
