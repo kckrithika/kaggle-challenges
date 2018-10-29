@@ -3,6 +3,7 @@ data:
   snapshotconsumer-prd-mtls.json: |-
     {
       "caFile": "/etc/pki_service/ca/cabundle.pem",
+      "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "clientCertFile": "/cert1/client/certificates/client.pem",
       "clientKeyFile": "/cert1/client/keys/client-key.pem",
       "consumeTableName": "consume",
@@ -14,7 +15,8 @@ data:
       "k8sResourceDbName": "sam_kube_resource",
       "k8sResourceTableName": "k8s_resource",
       "kafkaConsumerEndpoint": "ajna0-brokeragg1-0-prd.data.sfdc.net:9093",
-      "kafkaTopics": "sfdc.prod.sam__prd.ajna_local__resourcestatus"
+      "kafkaTopics": "sfdc.prod.sam__prd.ajna_local__resourcestatus",
+      "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
     }
 kind: ConfigMap
 metadata:

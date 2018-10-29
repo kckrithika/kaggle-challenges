@@ -8,45 +8,45 @@ if configs.estate == "prd-sam" then {
     kind: "Deployment",
     metadata: {
         labels: {
-            name: "snapshotconsumer-prd-mtls",
+            name: "snapshot-consumer-prd-mtls-test",
         } + configs.ownerLabel.sam,
-        name: "snapshotconsumer-prd-mtls",
+        name: "snapshot-consumer-prd-mtls",
+        namespace: "sam-system",
     },
     spec: {
         replicas: 1,
         selector: {
             matchLabels: {
-                name: "snapshotconsumer-prd-mtls",
+                name: "snapshot-consumer-prd-mtls",
             },
         },
         template: {
             metadata: {
                 labels: {
                     apptype: "control",
-                    name: "snapshotconsumer-prd-mtls",
+                    name: "snapshot-consumer-prd-mtls",
                 } + configs.ownerLabel.sam,
-                annotations: {
-                            "madkub.sam.sfdc.net/allcerts":
-                            std.manifestJsonEx(
-                        {
-                            certreqs:
-                                [
-                                    { role: "sam-system.snapshotconsumer-prd-mtls" } + certReq
-                                    for certReq in madkub.madkubSamCertsAnnotation(certDirs).certreqs
-                                ],
-                        }, " "
-                    ),
-                },
                 namespace: "sam-system",
+                annotations: {
+                    "madkub.sam.sfdc.net/allcerts":
+                    std.manifestJsonEx(
+                {
+                    certreqs:
+                        [
+                            { role: "sam-system.snapshot-consumer-prd-mtls" } + certReq
+                            for certReq in madkub.madkubSamCertsAnnotation(certDirs).certreqs
+                        ],
+                }, " "
+),
+            },
             },
             spec: configs.specWithKubeConfigAndMadDog {
-                containers: [
-configs.containerWithKubeConfigAndMadDog {
-                    name: "snapshotconsumer-prd-mtls",
+                containers: [{
+                    name: "snapshot-consumer-prd-mtls",
                     image: samimages.hypersam,
                     command: [
                         "/sam/snapshotconsumer",
-                        "--config=/config/snapshotconsumer-prd-mtls.json",
+                        "--config=/config/snapshot-consumer-prd-mtls.json",
                         "--hostsConfigFile=/sfdchosts/hosts.json",
                         "-v=3",
                     ],
@@ -59,25 +59,26 @@ configs.containerWithKubeConfigAndMadDog {
                             name: "mysql-ssc-prd",
                             readOnly: true,
                         },
-                        ] + madkub.madkubSamCertVolumeMounts(certDirs),
-                },
-                ] + [madkub.madkubRefreshContainer(certDirs)],
+] + madkub.madkubSamCertVolumeMounts(certDirs),
+                }] +
+                [madkub.madkubRefreshContainer(certDirs)],
                 volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
-                    {
-                        secret: {
-                            secretName: "mysql-ssc-prd",
-                        },
-                        name: "mysql-ssc-prd",
-                    },
-                    configs.config_volume("snapshotconsumer-prd-mtls"),
+                    configs.config_volume("snapshot-consumer-prd-mtls"),
                 ] + madkub.madkubSamCertVolumes(certDirs)
                   + madkub.madkubSamMadkubVolumes(),
                 initContainers+: [
                     madkub.madkubInitContainer(certDirs),
                 ],
                 hostNetwork: true,
+                nodeSelector: {
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
         },
     },
