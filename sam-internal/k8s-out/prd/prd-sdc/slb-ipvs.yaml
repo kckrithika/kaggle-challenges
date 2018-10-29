@@ -87,6 +87,7 @@ spec:
         - --client.dialSocket=true
         - --healthcheck.riseCount=5
         - --healthcheck.fallCount=2
+        - --computeProxyServers=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -105,6 +106,8 @@ spec:
           name: usr-sbin-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /proxyconfig
+          name: proxyconfig
         - mountPath: /kubeconfig
           name: kubeconfig
         - mountPath: /etc/pki_service
@@ -402,3 +405,6 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-ipvs/cleanup
         name: var-cleanup-logs-volume
+      - configMap:
+          name: slb-proxy-configuration
+        name: proxyconfig
