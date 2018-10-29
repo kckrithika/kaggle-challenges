@@ -76,7 +76,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 nodeSelector: {
                     master: "true",
                 },
-            } + slbconfigs.getDnsPolicy(),
+            } + slbconfigs.getGracePeriod()
+              + slbconfigs.getDnsPolicy(),
             metadata: {
                 labels: {
                     name: "slb-cleanup-unknownpods",

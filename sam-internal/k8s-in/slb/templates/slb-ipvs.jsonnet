@@ -263,7 +263,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             },
                         },
                     },
-               } + slbconfigs.getDnsPolicy(),
+               } + slbconfigs.getGracePeriod()
+                 + slbconfigs.getDnsPolicy(),
         },
         strategy: {
             type: "RollingUpdate",

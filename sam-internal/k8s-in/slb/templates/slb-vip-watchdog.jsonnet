@@ -128,7 +128,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           slbshared.slbManifestWatcher(),
                       ],
                       dnsPolicy: "Default",
-                  }
+                  } + slbconfigs.getGracePeriod()
                   + slbconfigs.slbEstateNodeSelector,
             metadata: {
                 labels: {

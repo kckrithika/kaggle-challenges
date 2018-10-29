@@ -58,7 +58,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                 },
                                 slbshared.slbLogCleanup,
                             ]),
-            } + slbconfigs.getDnsPolicy()
+            } + slbconfigs.getGracePeriod()
+              + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,
             metadata: {
                 labels: {

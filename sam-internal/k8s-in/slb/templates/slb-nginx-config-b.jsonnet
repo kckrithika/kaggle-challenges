@@ -304,6 +304,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 ],
                 dnsPolicy: "Default",
             }
+            + slbconfigs.getGracePeriod()
             + (
             if slbflights.nginxPodFloat then {
                 nodeSelector: { pool: slbconfigs.slbEstate },

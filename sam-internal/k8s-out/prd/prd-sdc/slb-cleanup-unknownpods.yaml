@@ -57,6 +57,7 @@ spec:
       securityContext:
         fsGroup: 0
         runAsUser: 0
+      terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
           path: /etc/pki_service

@@ -55,7 +55,8 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                 nodeSelector: {
                     pool: configs.estate,
                 },
-            } + slbconfigs.getDnsPolicy(),
+            } + slbconfigs.getGracePeriod()
+              + slbconfigs.getDnsPolicy(),
         },
     },
 } else "SKIP"

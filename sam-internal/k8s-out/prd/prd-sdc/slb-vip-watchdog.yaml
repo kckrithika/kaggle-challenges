@@ -255,6 +255,7 @@ spec:
       dnsPolicy: Default
       nodeSelector:
         pool: prd-sdc
+      terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
           path: /data/slb

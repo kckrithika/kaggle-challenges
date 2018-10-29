@@ -51,7 +51,8 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                 nodeSelector: {
                     "slb-service": "slb-echo-server",
                 },
-            } + slbconfigs.getDnsPolicy(),
+            } + slbconfigs.getGracePeriod()
+              + slbconfigs.getDnsPolicy(),
         },
     },
 } else "SKIP"

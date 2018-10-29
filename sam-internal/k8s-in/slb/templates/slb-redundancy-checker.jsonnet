@@ -66,7 +66,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         ],
                     },
                 ],
-            } + slbconfigs.getDnsPolicy()
+            } + slbconfigs.getGracePeriod()
+              + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,
         },
         strategy: {

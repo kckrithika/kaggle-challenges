@@ -69,7 +69,8 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                         },
                     },
                 },
-            } + slbconfigs.getDnsPolicy(),
+            } + slbconfigs.getGracePeriod()
+              + slbconfigs.getDnsPolicy(),
         },
         updateStrategy: {
             type: "RollingUpdate",

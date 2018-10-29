@@ -108,8 +108,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                       initContainers: [
                           madkub.madkubInitContainer(certDirs),
                       ],
-                  }
-                  + slbconfigs.getDnsPolicy(),
+                  } + slbconfigs.getGracePeriod()
+                    + slbconfigs.getDnsPolicy(),
 
         },
         strategy: {
