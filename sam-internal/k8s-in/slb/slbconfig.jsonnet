@@ -232,6 +232,10 @@
             "fra-sam": $.maxDeleteDefault,
             "prd-samtwo": $.maxDeleteDefault,
         },
+
+        hsmEnabledVips:
+            set_value_to_all_in_list([], $.testEstates)
+            + set_value_to_all_in_list([], $.prodEstates),
     },
 
 
@@ -377,6 +381,7 @@
     isSlbEstate: estate in { [e]: 1 for e in $.slbEstates },
     nginxConfigReplicaCount: self.perCluster.nginxConfigReplicaCount[estate],
     ipvsReplicaCount: self.perCluster.ipvsReplicaCount[estate],
+    hsmEnabledVips: self.perCluster.hsmEnabledVips[estate],
 
     sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
     sdn_watchdog_emailrec: "slb@salesforce.com",

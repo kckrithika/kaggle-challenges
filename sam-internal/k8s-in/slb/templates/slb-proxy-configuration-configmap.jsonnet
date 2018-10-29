@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
-
+local slbflights = import "slbflights.jsonnet";
 local proxyConfigs = {
     proxyconfigs: [
         {
@@ -21,14 +21,12 @@ local proxyVipMapping = {
     proxyvipmappings: [
         {
             proxyname: slbconfigs.hsmNginxProxyName,
-            vips: [
-               "hsm-nginx-canary.slb.sfdc.net",
-            ],
+            vips: slbconfigs.hsmEnabledVips,
         },
     ],
 };
 
-if slbimages.phaseNum <= 1 then {
+if slbconfigs.isSlbEstate && slbflights.proxyConfigMapEnabled then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
