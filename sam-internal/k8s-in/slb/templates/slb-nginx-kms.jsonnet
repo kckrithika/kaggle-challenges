@@ -297,7 +297,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                     madkub.madkubInitContainer(certDirs),
                 ],
                 dnsPolicy: "Default",
-            } + slbconfigs.getGracePeriod()
+            }
             + (
             if slbflights.nginxPodFloat then {
                 nodeSelector: { pool: slbconfigs.slbEstate },
