@@ -2,15 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: snapshot-consumer-mtls-mtls-test
+    name: snapshot-consumer-prd-mtls-test
     sam.data.sfdc.net/owner: sam
-  name: snapshot-consumer-mtls
+  name: snapshot-consumer-prd-mtls
   namespace: sam-system
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: snapshot-consumer-mtls
+      name: snapshot-consumer-prd-mtls
   template:
     metadata:
       annotations:
@@ -21,13 +21,13 @@ spec:
              "cert-type": "client",
              "kingdom": "prd",
              "name": "cert1",
-             "role": "sam-system.snapshot-consumer-mtls"
+             "role": "sam-system.snapshot-consumer-prd-mtls"
             }
            ]
           }
       labels:
         apptype: control
-        name: snapshot-consumer-mtls
+        name: snapshot-consumer-prd-mtls
         sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
@@ -146,6 +146,10 @@ spec:
       - configMap:
           name: snapshot-consumer-prd-mtls
         name: config
+      - name: mysql-ssc-prd
+        secret:
+          defaultMode: 420
+          secretName: mysql-ssc-prd
       - emptyDir:
           medium: Memory
         name: cert1

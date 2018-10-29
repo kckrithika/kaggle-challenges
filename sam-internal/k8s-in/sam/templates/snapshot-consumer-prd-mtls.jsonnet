@@ -66,6 +66,13 @@ if configs.estate == "prd-sam" then {
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     configs.config_volume("snapshot-consumer-prd-mtls"),
+                            {
+                              name: "mysql-ssc-prd",
+                              secret: {
+                                  defaultMode: 420,
+                                  secretName: "mysql-ssc-prd",
+                                },
+                            },
                 ] + madkub.madkubSamCertVolumes(certDirs)
                   + madkub.madkubSamMadkubVolumes(),
                 initContainers+: [
