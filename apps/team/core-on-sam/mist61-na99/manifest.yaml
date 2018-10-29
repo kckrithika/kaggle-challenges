@@ -77,7 +77,7 @@ system:
 
         # TODO: Work around SAM bug. Settings.path
         - name: CASAM_SETTINGS_PATH
-          value: mist.-.prd.na99.app
+          value: mist.mist61.prd.na99.app
 
         # Cluster name
         - name: CLUSTER_NAME
@@ -193,7 +193,7 @@ system:
       env:
         # TODO: Work around SAM bug. Settings.path
       - name: CASAM_SETTINGS_PATH
-        value: mist.-.prd.na99.app
+        value: mist.mist61.prd.na99.app
       livenessProbe:
         exec:
           command:
@@ -297,7 +297,7 @@ system:
 
         # TODO: Work around SAM bug. Settings.path
         - name: CASAM_SETTINGS_PATH
-          value: mist.-.prd.na99.app
+          value: mist.mist61.prd.na99.app
 
         # Cluster name
         - name: CLUSTER_NAME
@@ -413,7 +413,7 @@ system:
       env:
 # TODO: Work around SAM bug
       - name: CASAM_SETTINGS_PATH
-        value: mist.-.prd.na99.app
+        value: mist.mist61.prd.na99.app
       livenessProbe:
         exec:
           command:
