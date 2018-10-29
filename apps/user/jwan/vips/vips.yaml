@@ -9,3 +9,4 @@
      lbtype: tcp
      sticky: 300
      tls: true
+     reencrypt: true
