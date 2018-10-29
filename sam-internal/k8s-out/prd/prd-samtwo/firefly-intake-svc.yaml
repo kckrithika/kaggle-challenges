@@ -5,10 +5,10 @@ items:
     application.yml: |-
       {
           "firefly": {
+              "dark-launch": "${DARKLAUNCH}",
               "ghe": {
                   "commit-signing": false,
                   "context-prefix": "",
-                  "health-check-repo": "tnrpfirefly",
                   "webhook-secret-token-validation": false
               },
               "intake": {

@@ -8,10 +8,10 @@ items:
               "ghe": {
                   "commit-signing": false,
                   "context-prefix": "",
-                  "health-check-repo": "tnrpfirefly",
                   "webhook-secret-token-validation": false
               },
               "intake": {
+                  "dark-launch": "${DARKLAUNCH}",
                   "repo-config-map": {
                       "manifests": {
                           "handle-only-latest-commit": true,

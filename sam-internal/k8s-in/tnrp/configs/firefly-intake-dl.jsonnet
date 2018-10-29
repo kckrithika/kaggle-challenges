@@ -56,7 +56,8 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
             'webhook-secret-token': 'feature_not_enabled',
           },
         },
-      },
+       'dark-launch': '${DARKLAUNCH}',
+     },
       monitoring: monitoringConfig.monitor(serviceName),
       rabbitmq: {
         'exchange-name': envConfig.environmentMapping[configs.estate].exchangeName,
@@ -67,7 +68,6 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
         'webhook-secret-token-validation': envConfig.environmentMapping[configs.estate].webHookSecretTokenValidationEnabled,
         'commit-signing': false,
         'context-prefix': '',
-        'health-check-repo': 'tnrpfirefly',
       },
     },
   },

@@ -43,7 +43,6 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
         'until-prr-status-time-in-minutes': 2,
         'max-prr-retry': 3,
         'ghe-context-prefix': '',
-        'ghe-health-check-repo': 'tnrpfirefly',
       },
       intake: {
         'api-url': envConfig.environmentMapping[configs.estate].intakeEndpoint,

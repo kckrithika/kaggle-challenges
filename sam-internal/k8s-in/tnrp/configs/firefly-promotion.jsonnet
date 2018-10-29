@@ -46,7 +46,6 @@ local artifactoryConfig = import "configs/firefly-artifactory.jsonnet";
       'instance-type': '${INSTANCE_TYPE}',
       artifactory: artifactoryConfig.prod,
       'context-prefix': '',
-      'health-check-repo': 'tnrpfirefly',
       'back-off-period': '2000ms',
     },
     local custom_monitoring_configs = {
