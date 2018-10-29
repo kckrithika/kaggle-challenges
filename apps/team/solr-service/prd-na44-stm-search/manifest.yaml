@@ -4,7 +4,7 @@ system:
   functions: 
     - name: prd-na44-stm-search
       type: stateful-set
-      count: 2
+      count: 3
       containers:  
       - name: searchserver 
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/search-teams/solrservice/searchserver:936388a
@@ -16,7 +16,7 @@ system:
         - name: LBNAME
           value: "searchservers"
         resources:
-          limits: { cpu: "48", memory: "80Gi" }
+          limits: { cpu: "48", memory: "90Gi" }
           requests: { cpu: "26", memory: "75Gi" }
         ports:
         - containerPort: 8983
