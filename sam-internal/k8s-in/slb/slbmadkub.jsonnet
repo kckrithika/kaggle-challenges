@@ -9,6 +9,29 @@
     // functions in this library take a certsDir paramter which is of the form (e.g.) ["cert1", "cert2"]
     // A parameter should pass an array of which cert classes it needs and based on that compute the volumes, volumeMounts, annotations, and maddog parameters
 
+    local steamVipSans = [
+        "*.eu2.stmda.stm.salesforce.com",
+        "*.my.stmda.stm.salesforce.com",
+        "*.eu2.stmda.stm.force.com",
+        "*.stmda.stm.force.com",
+        "*.eu2.visual.stmda.stm.force.com",
+        "*.eu2.content.stmda.stm.force.com",
+        "*.stmda.stm.cloudforce.com",
+        "*.stmda.stm.database.com",
+        "*.builder.stmda.stm.salesforce-communities.com",
+        "*.preview.stmda.stm.salesforce-communities.com",
+        "*.livepreview.stmda.stm.salesforce-communities.com",
+        "*.stmda.stm.documentforce.com",
+        "*.stmda.stm.visualforce.com",
+        "*.lightning.stmda.stm.force.com",
+        "*.container.stmda.stm.lightning.com",
+        "services.stmda.stm.salesforce.com",
+        "cloudatlas.stmda.stm.salesforce.com",
+        "*.a.stmda.stm.forceusercontent.com",
+        "*.d.stmda.stm.forceusercontent.com",
+
+    ],
+
     local certDirLookup = {
         cert1: {  // server certificate
             mount: {
@@ -35,9 +58,9 @@
                     "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
                 ] + (if slbimages.hypersdn_build >= 1323 then [
                     "*.internal.salesforce.com",
-                ] else []) + if configs.estate == "prd-sam" then [
+                ] else []) + (if configs.estate == "prd-sam" then (steamVipSans + [
                     "*.retail-rsui." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
-                ] else [],
+                ]) else []),
             },
         },
         cert2: {  // client certificate
