@@ -30,7 +30,6 @@ items:
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
-              "health-check-repo": "tnrpfirefly",
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
               "repo-config": {
@@ -458,7 +457,6 @@ items:
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
-              "health-check-repo": "tnrpfirefly",
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
               "repo-config": {
@@ -865,7 +863,6 @@ items:
               "evaluation-config": {
                   "pipeline-manifest-json": "/tnrp/pipeline_manifest.json"
               },
-              "health-check-repo": "tnrpfirefly",
               "instance-type": "${INSTANCE_TYPE}",
               "workspace-config": {
                   "root-dir": "/tmp"
@@ -1267,7 +1264,6 @@ items:
               },
               "back-off-period": "2000ms",
               "context-prefix": "",
-              "health-check-repo": "tnrpfirefly",
               "instance-type": "${INSTANCE_TYPE}",
               "repo-config": {
                   "manifest_driven_promotions": {

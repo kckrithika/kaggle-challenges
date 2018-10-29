@@ -8,23 +8,7 @@ local monitoringConfig = import "configs/firefly-monitoring.jsonnet";
   server: {
     port: -1,
   },
-  management: {
-    server: {
-      port: 8081,
-    },
-    endpoint: {
-      health: {
-        'show-details': 'always',
-      },
-    },
-    endpoints: {
-      web: {
-        exposure: {
-          include: '*',
-        },
-      },
-    },
-  },
+  management: monitoringConfig.management(portConfig.firefly.rabbitmq_health),
   logging: {
     level: {
       org: 'INFO',

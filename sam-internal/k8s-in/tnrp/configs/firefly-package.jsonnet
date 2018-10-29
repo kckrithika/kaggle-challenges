@@ -57,7 +57,6 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       docker: dockerConfig,
       artifactory: artifactoryConfig.prod,
       'context-prefix': '',
-      'health-check-repo': 'tnrpfirefly',
     },
     local custom_monitoring_configs = {
       'enable-metrics-logging': false,

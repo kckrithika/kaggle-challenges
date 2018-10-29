@@ -57,6 +57,7 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
           },
         },
       },
+      'dark-launch': '${DARKLAUNCH}',
       rabbitmq: {
         'exchange-name': envConfig.environmentMapping[configs.estate].exchangeName,
         'prr-routing-key-format': '%s.pr',
@@ -66,7 +67,6 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
         'webhook-secret-token-validation': envConfig.environmentMapping[configs.estate].webHookSecretTokenValidationEnabled,
         'commit-signing': false,
         'context-prefix': '',
-        'health-check-repo': 'tnrpfirefly',
       },
       local custom_monitoring_configs = {
         'enable-metrics-logging': false,

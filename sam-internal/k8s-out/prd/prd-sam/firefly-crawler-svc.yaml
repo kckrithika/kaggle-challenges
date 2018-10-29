@@ -7,7 +7,6 @@ items:
           "firefly": {
               "crawler": {
                   "ghe-context-prefix": "",
-                  "ghe-health-check-repo": "tnrpfirefly",
                   "job-interval-in-milliseconds": 300000,
                   "max-commit-retry": 3,
                   "max-prr-retry": 3,
@@ -253,7 +252,7 @@ items:
             value: "9"
           - name: DARKLAUNCH
             value: "false"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:210
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:213
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10

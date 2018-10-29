@@ -7,7 +7,6 @@ items:
           "firefly": {
               "crawler": {
                   "ghe-context-prefix": "",
-                  "ghe-health-check-repo": "tnrpfirefly",
                   "job-interval-in-milliseconds": 300000,
                   "max-commit-retry": 3,
                   "max-prr-retry": 3,
