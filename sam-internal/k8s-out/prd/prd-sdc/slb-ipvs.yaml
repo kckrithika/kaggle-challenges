@@ -6,7 +6,7 @@ metadata:
   name: slb-ipvs
   namespace: sam-system
 spec:
-  minReadySeconds: 120
+  minReadySeconds: 60
   replicas: 3
   selector:
     matchLabels:
