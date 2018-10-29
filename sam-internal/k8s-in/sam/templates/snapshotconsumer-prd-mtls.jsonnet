@@ -56,7 +56,7 @@ configs.containerWithKubeConfigAndMadDog {
                         configs.cert_volume_mount,
                         {
                             mountPath: "/var/mysqlPwd",
-                            name: "mysql-scc-prd",
+                            name: "mysql-ssc-prd",
                             readOnly: true,
                         },
                         ] + madkub.madkubSamCertVolumeMounts(certDirs),
@@ -67,9 +67,9 @@ configs.containerWithKubeConfigAndMadDog {
                     configs.cert_volume,
                     {
                         secret: {
-                            secretName: "mysql-scc-prd",
+                            secretName: "mysql-ssc-prd",
                         },
-                        name: "mysql-scc-prd",
+                        name: "mysql-ssc-prd",
                     },
                     configs.config_volume("snapshotconsumer-prd-mtls"),
                 ] + madkub.madkubSamCertVolumes(certDirs)
