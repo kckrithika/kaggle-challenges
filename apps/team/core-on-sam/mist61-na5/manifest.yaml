@@ -261,23 +261,20 @@ system:
       image: sfci/casam/sequencer:6d185a
 
       env:
-        - name: USE_SWITCHBOARD
-          value: 1
+        - name: DEPLOY_ENV
+          value: alpha
         - name: CYAN
           value: https://us5-mist61cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
         - name: CURL_GLOBAL_OPTS
           value: -k
         - name: K4A
           value: have_to_get_this
-        - name: WAITTIME_PD
-          value: 60
-        - name: JMX_HOST
-          value: shared2-samminioncoreapp1-1-prd.eng.sfdc.net
-        - name: JMX_PORT
-          value: 6050
+        - name: ENABLE_DB_SCHEMA_UPGRADE
+          value: 1
+        - name: SET_DEFAULT_ORACLE_EDITION
+          value: 1
         - name: OLD_DWARF
           value: sneezy
-#          value: happy
         - name: CURRENT_RELEASE_VERSION
           value: green
         - name: NEW_RELEASE_VERSION
