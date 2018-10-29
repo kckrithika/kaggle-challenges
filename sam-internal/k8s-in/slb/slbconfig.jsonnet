@@ -235,7 +235,10 @@
 
         hsmEnabledVips:
             set_value_to_all_in_list([], $.testEstates)
-            + set_value_to_all_in_list([], $.prodEstates),
+            + set_value_to_all_in_list([], $.prodEstates)
+            + {
+              "prd-sdc": ["slb-canary-hsm.sam-system.prd-sdc.prd.slb.sfdc.net"],
+            },
     },
 
 
