@@ -272,6 +272,6 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 maxSurge: 0,
             },
         },
-        minReadySeconds: 120,
+        minReadySeconds: (if slbimages.hypersdn_build >= 1334 then 60 else 120),
     },
 } else "SKIP"
