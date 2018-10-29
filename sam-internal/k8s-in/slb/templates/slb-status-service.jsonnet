@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = import "slbconfig.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local slbportconfiguration = import "slbportconfiguration.libsonnet";
@@ -18,6 +19,6 @@ local portConfig = [
     ) { healthpath: "/" },
 ];
 
-if configs.estate == "prd-sdc" then
+if slbimages.phaseNum <= 2 then
     slbbaseservice.slbCanaryBaseService(labelSelector, portConfig, serviceName, vipName) {
 } else "SKIP"
