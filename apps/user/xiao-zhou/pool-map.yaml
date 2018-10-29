@@ -10,6 +10,6 @@ apps:
 # - prd/prd-samdev
   - prd/prd-sam
  test-secret-app:
-#  - prd/prd-samdev
+  - prd/prd-samdev
   - prd/prd-sam
 
