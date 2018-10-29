@@ -10,4 +10,5 @@
     proxyProtocolCanaryEnabled: (slbimages.hypersdn_build >= 1331),
     roleEnabled: (slbimages.phaseNum <= 1),
     ipvsProcessorProxySelection: (slbimages.phaseNum <= 0),
+    nginxSlbVolumeMount: (slbimages.slbnginx_build >= 50),
 }

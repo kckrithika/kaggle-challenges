@@ -186,7 +186,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                             mountPath: slbconfigs.customerCertsPath,
                                             name: "customer-certs",
                                         },
-                                    ]),
+                                    ] + if slbflights.nginxSlbVolumeMount then [
+                                        slbconfigs.slb_volume_mount,
+                                    ] else []),
                                 },
                                 {
                                  name: "slb-nginx-data",
