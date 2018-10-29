@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
-
+local slbflights = import "slbflights.jsonnet";
 local proxyConfigs = {
     proxyconfigs: [
         {
@@ -17,7 +17,16 @@ local proxyConfigs = {
     ],
 };
 
-if slbimages.phaseNum <= 1 then {
+local proxyVipMapping = {
+    proxyvipmappings: [
+        {
+            proxyname: slbconfigs.hsmNginxProxyName,
+            vips: slbconfigs.hsmEnabledVips,
+        },
+    ],
+};
+
+if slbconfigs.isSlbEstate && slbflights.proxyConfigMapEnabled then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
@@ -27,5 +36,6 @@ if slbimages.phaseNum <= 1 then {
     },
     data: {
         "proxyconfiguration.json": std.manifestJsonEx(proxyConfigs, " "),
+        "proxyvipmapping.json": std.manifestJsonEx(proxyVipMapping, " "),
     },
 } else "SKIP"

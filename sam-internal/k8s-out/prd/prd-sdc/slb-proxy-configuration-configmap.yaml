@@ -15,6 +15,15 @@ data:
         }
       ]
     }
+  proxyvipmapping.json: |-
+    {
+      "proxyvipmappings": [
+        {
+          "proxyname": "slb-hsm-nginx",
+          "vips": []
+        }
+      ]
+    }
 kind: ConfigMap
 metadata:
   creationTimestamp: null
