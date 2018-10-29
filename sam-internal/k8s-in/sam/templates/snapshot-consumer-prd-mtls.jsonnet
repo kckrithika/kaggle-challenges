@@ -78,7 +78,6 @@ if configs.estate == "prd-sam" then {
                 initContainers+: [
                     madkub.madkubInitContainer(certDirs),
                 ],
-                hostNetwork: true,
                 nodeSelector: {
                               } +
                               if configs.kingdom == "prd" then {
