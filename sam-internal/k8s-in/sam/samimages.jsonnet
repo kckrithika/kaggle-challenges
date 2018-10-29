@@ -23,10 +23,10 @@ local configs = import "config.jsonnet";
 
         #[xiao] Fix CI in prd
         "prd,prd-samdev,snapshoter-mtls,hypersam": "sam-0002347-34f588d0",
+        "prd,prd-sam,samapp-controller,hypersam": "sam-0002342-8b25bcbe",
 
          #[rbhat] v2 diff fixes
          "prd,prd-samdev,samapp-controller,hypersam": "sam-0002348-8a7fbf2d",
-         "prd,prd-sam,samapp-controller,hypersam": "sam-0002348-8a7fbf2d",
          "prd,prd-sam,watchdog-comparek8sresources,hypersam": "sam-0002348-8a7fbf2d",
 
         }
