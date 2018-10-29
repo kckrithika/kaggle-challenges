@@ -2,14 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: snapshotconsumer-prd-mtls
+    name: snapshot-consumer-prd-mtls-test
     sam.data.sfdc.net/owner: sam
-  name: snapshotconsumer-prd-mtls
+  name: snapshot-consumer-prd-mtls
+  namespace: sam-system
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: snapshotconsumer-prd-mtls
+      name: snapshot-consumer-prd-mtls
   template:
     metadata:
       annotations:
@@ -20,32 +21,25 @@ spec:
              "cert-type": "client",
              "kingdom": "prd",
              "name": "cert1",
-             "role": "sam-system.snapshotconsumer-prd-mtls"
+             "role": "sam-system.snapshot-consumer-prd-mtls"
             }
            ]
           }
       labels:
         apptype: control
-        name: snapshotconsumer-prd-mtls
+        name: snapshot-consumer-prd-mtls
         sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:
       - command:
         - /sam/snapshotconsumer
-        - --config=/config/snapshotconsumer-prd-mtls.json
+        - --config=/config/snapshot-consumer-prd-mtls.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -v=3
-        env:
-        - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002336-6a8184c1
-        name: snapshotconsumer-prd-mtls
+        name: snapshot-consumer-prd-mtls
         volumeMounts:
-        - mountPath: /etc/pki_service
-          name: maddog-certs
-        - mountPath: /kubeconfig
-          name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
         - mountPath: /config
@@ -134,6 +128,8 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      nodeSelector:
+        master: "true"
       volumes:
       - hostPath:
           path: /etc/pki_service
@@ -147,12 +143,13 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
+      - configMap:
+          name: snapshot-consumer-prd-mtls
+        name: config
       - name: mysql-ssc-prd
         secret:
+          defaultMode: 420
           secretName: mysql-ssc-prd
-      - configMap:
-          name: snapshotconsumer-prd-mtls
-        name: config
       - emptyDir:
           medium: Memory
         name: cert1
