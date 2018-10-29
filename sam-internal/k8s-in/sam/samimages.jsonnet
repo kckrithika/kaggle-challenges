@@ -29,6 +29,9 @@ local configs = import "config.jsonnet";
          "prd,prd-samdev,samapp-controller,hypersam": "sam-0002348-8a7fbf2d",
          "prd,prd-sam,watchdog-comparek8sresources,hypersam": "sam-0002348-8a7fbf2d",
 
+         #[min.wang] Test Watchdog InitMetricsClient
+         "prd, prd-samtest, node-controller, hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/min.wang/hypersam:20181029_160337.c61213b4.clean.minwang-ltm0",
+
         }
         + {
            #[prabh.singh] Pin the watchdogs to use new hypersam that honors email frequency.Remove in next phase release
