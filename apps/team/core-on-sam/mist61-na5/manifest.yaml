@@ -258,7 +258,7 @@ system:
 
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:6d185a
+      image: sfci/casam/sequencer:4905b0
 
       env:
         - name: DEPLOY_ENV
