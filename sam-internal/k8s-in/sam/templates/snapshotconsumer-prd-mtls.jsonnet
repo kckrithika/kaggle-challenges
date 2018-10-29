@@ -11,18 +11,6 @@ if configs.estate == "prd-sam" then {
             name: "snapshotconsumer-prd-mtls",
         } + configs.ownerLabel.sam,
         name: "snapshotconsumer-prd-mtls",
-        annotations: {
-                    "madkub.sam.sfdc.net/allcerts":
-                    std.manifestJsonEx(
-                {
-                    certreqs:
-                        [
-                            { role: "sam-system.snapshotconsumer-prd" } + certReq
-                            for certReq in madkub.madkubSamCertsAnnotation(certDirs).certreqs
-                        ],
-                }, " "
-            ),
-        },
     },
     spec: {
         replicas: 1,
@@ -37,6 +25,18 @@ if configs.estate == "prd-sam" then {
                     apptype: "control",
                     name: "snapshotconsumer-prd-mtls",
                 } + configs.ownerLabel.sam,
+                annotations: {
+                            "madkub.sam.sfdc.net/allcerts":
+                            std.manifestJsonEx(
+                        {
+                            certreqs:
+                                [
+                                    { role: "sam-system.snapshotconsumer-prd-mtls" } + certReq
+                                    for certReq in madkub.madkubSamCertsAnnotation(certDirs).certreqs
+                                ],
+                        }, " "
+                    ),
+                },
                 namespace: "sam-system",
             },
             spec: configs.specWithKubeConfigAndMadDog {
@@ -56,7 +56,7 @@ configs.containerWithKubeConfigAndMadDog {
                         configs.cert_volume_mount,
                         {
                             mountPath: "/var/mysqlPwd",
-                            name: "mysql-ssc-prd",
+                            name: "mysql-scc-prd",
                             readOnly: true,
                         },
                         ] + madkub.madkubSamCertVolumeMounts(certDirs),
@@ -67,9 +67,9 @@ configs.containerWithKubeConfigAndMadDog {
                     configs.cert_volume,
                     {
                         secret: {
-                            secretName: "mysql-ssc-prd",
+                            secretName: "mysql-scc-prd",
                         },
-                        name: "mysql-ssc-prd",
+                        name: "mysql-scc-prd",
                     },
                     configs.config_volume("snapshotconsumer-prd-mtls"),
                 ] + madkub.madkubSamCertVolumes(certDirs)

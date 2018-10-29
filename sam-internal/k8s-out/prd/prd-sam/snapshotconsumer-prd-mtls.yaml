@@ -1,18 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    madkub.sam.sfdc.net/allcerts: |-
-      {
-       "certreqs": [
-        {
-         "cert-type": "client",
-         "kingdom": "prd",
-         "name": "cert1",
-         "role": "sam-system.snapshotconsumer-prd"
-        }
-       ]
-      }
   labels:
     name: snapshotconsumer-prd-mtls
     sam.data.sfdc.net/owner: sam
@@ -24,6 +12,18 @@ spec:
       name: snapshotconsumer-prd-mtls
   template:
     metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: |-
+          {
+           "certreqs": [
+            {
+             "cert-type": "client",
+             "kingdom": "prd",
+             "name": "cert1",
+             "role": "sam-system.snapshotconsumer-prd-mtls"
+            }
+           ]
+          }
       labels:
         apptype: control
         name: snapshotconsumer-prd-mtls
@@ -53,7 +53,7 @@ spec:
         - mountPath: /data/certs
           name: certs
         - mountPath: /var/mysqlPwd
-          name: mysql-ssc-prd
+          name: mysql-scc-prd
           readOnly: true
         - mountPath: /cert1
           name: cert1
@@ -147,9 +147,9 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
-      - name: mysql-ssc-prd
+      - name: mysql-scc-prd
         secret:
-          secretName: mysql-ssc-prd
+          secretName: mysql-scc-prd
       - configMap:
           name: snapshotconsumer-prd-mtls
         name: config
