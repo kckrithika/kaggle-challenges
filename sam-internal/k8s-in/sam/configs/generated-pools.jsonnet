@@ -71,6 +71,18 @@
     },
     {
       "namespaces": [
+        "core-on-sam-sp1"
+      ],
+      "access": [
+        "team/core-on-sam"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sp1-sam_coreappalpha",
+      "kingdom": "cdg",
+      "superPod": "sp1"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -410,6 +422,18 @@
       ],
       "controlEstate": "fra-sam",
       "estate": "fra-sp1-sam_caas",
+      "kingdom": "fra",
+      "superPod": "sp1"
+    },
+    {
+      "namespaces": [
+        "core-on-sam-sp1"
+      ],
+      "access": [
+        "team/core-on-sam"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-sp1-sam_coreappalpha",
       "kingdom": "fra",
       "superPod": "sp1"
     },
