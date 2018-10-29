@@ -6,7 +6,7 @@ system:
         - dtupper@salesforce.com
     functions:
     - name: dtcantor-test-func
-      count: 1
+      count: 3
       strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: dtcantor-test
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0014
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0015
         ports:
         - name: cantor
           containerPort: 7443
@@ -35,3 +35,10 @@ system:
       - name: cantorservercert
         maddogCert:
           type: server
+    loadbalancers:
+    - lbname: cantor
+      function: dtcantor-test-func
+      slbEnabled: true
+      ports:
+        - port: 80
+          targetport: 7443
