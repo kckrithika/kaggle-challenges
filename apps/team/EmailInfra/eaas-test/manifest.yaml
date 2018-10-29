@@ -5,7 +5,7 @@ system:
     - emailinfrastructure@salesforce.com
   functions:
   - name: eaas-test
-    count: 3
+    count: 3 
     containers:
     - name: eaas-test
       image: docker-sfci-dev/sfci/eaas/emailservice:2.0.4-6afc8ee3a25bdf81aa759e576c7ce43286f51a9f
@@ -17,6 +17,15 @@ system:
         value: prd
       - name: SCONE_SERVICE_NAME
         value: eaas-test
+      - name: JAVA_OPTIONS
+        value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=2"
+      resources:
+        requests:
+          memory: "8G"
+          cpu: "800m"
+        limits:
+          memory: "8G"
+          cpu: "800m"       
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
