@@ -79,3 +79,36 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+
+- lbname: login-stmfa1-0-prd
+  servers:
+  - stmfana43ice1-app1-1-prd
+  - stmfana43ice1-app1-2-prd
+  - stmfana43ice1-app1-3-prd
+  - stmfana43ice1-app2-1-prd
+  - stmfana43ice1-app2-2-prd
+  - stmfana43ice1-app2-3-prd
+  - stmfana44ice1-app1-1-prd
+  - stmfana44ice1-app1-2-prd
+  - stmfana44ice1-app1-3-prd
+  - stmfana44ice1-app2-1-prd
+  - stmfana44ice1-app2-2-prd
+  - stmfana44ice1-app2-3-prd
+  - stmfana45ice1-app1-1-prd
+  - stmfana45ice1-app1-2-prd
+  - stmfana45ice1-app1-3-prd
+  - stmfana45ice1-app2-1-prd
+  - stmfana45ice1-app2-2-prd
+  - stmfana45ice1-app2-3-prd
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 60
+    tls: true
+    addheaders:
+    - name: "SFDC-LOGIN-LOAD-BALANCER"
+      value: "TRUE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
