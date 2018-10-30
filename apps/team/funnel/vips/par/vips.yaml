@@ -1,0 +1,30 @@
+- lbname: ajna0-funnel1-0-par
+  customlbname: ajna0-funnel1-0-par
+  servers:
+  - ajna0-funnel2-7-par.ops.sfdc.net
+  - ajna0-funnel1-10-par.ops.sfdc.net
+  - ajna0-funnel1-5-par.ops.sfdc.net
+  - ajna0-funnel1-8-par.ops.sfdc.net
+  - ajna0-funnel1-7-par.ops.sfdc.net
+  - ajna0-funnel1-2-par.ops.sfdc.net
+  - ajna0-funnel1-4-par.ops.sfdc.net
+  - ajna0-funnel2-8-par.ops.sfdc.net
+  - ajna0-funnel2-5-par.ops.sfdc.net
+  - ajna0-funnel2-2-par.ops.sfdc.net
+  - ajna0-funnel1-6-par.ops.sfdc.net
+  - ajna0-funnel2-3-par.ops.sfdc.net
+  - ajna0-funnel2-9-par.ops.sfdc.net
+  - ajna0-funnel1-1-par.ops.sfdc.net
+  - ajna0-funnel1-3-par.ops.sfdc.net
+  - ajna0-funnel2-6-par.ops.sfdc.net
+  - ajna0-funnel2-10-par.ops.sfdc.net
+  - ajna0-funnel2-4-par.ops.sfdc.net
+  - ajna0-funnel2-1-par.ops.sfdc.net
+  - ajna0-funnel1-9-par.ops.sfdc.net
+  ports:
+  - port: 80
+    targetport: 8080
+    lbtype: tcp
+    healthport: 8080
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
