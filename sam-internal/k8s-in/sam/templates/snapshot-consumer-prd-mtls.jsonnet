@@ -41,6 +41,7 @@ if configs.estate == "prd-sam" then {
             },
             },
             spec: configs.specWithKubeConfigAndMadDog {
+                dnsPolicy: "ClusterFirst",
                 containers: [{
                     name: "snapshot-consumer-prd-mtls",
                     image: samimages.hypersam,
@@ -59,7 +60,7 @@ if configs.estate == "prd-sam" then {
                             name: "mysql-ssc-prd",
                             readOnly: true,
                         },
-] + madkub.madkubSamCertVolumeMounts(certDirs),
+                        ] + madkub.madkubSamCertVolumeMounts(certDirs),
                 }] +
                 [madkub.madkubRefreshContainer(certDirs)],
                 volumes+: [
