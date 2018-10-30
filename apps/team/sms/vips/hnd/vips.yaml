@@ -1,0 +1,36 @@
+- lbname: smsapi1-0-hnd
+  customlbname: smsapi1-0-hnd
+  servers:
+  - sec0-smsapi2-1-hnd.ops.sfdc.net
+  - sec0-smsapi1-1-hnd.ops.sfdc.net
+  - sec0-smsapi3-1-hnd.ops.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8443
+    lbtype: tcp
+    healthport: 8443
+    lbalgorithm: roundrobin
+- lbname: smscps1-0-hnd
+  customlbname: smscps1-0-hnd
+  servers:
+  - sec0-smscps2-1-hnd.ops.sfdc.net
+  - sec0-smscps1-1-hnd.ops.sfdc.net
+  - sec0-smscps3-1-hnd.ops.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8443
+    lbtype: tcp
+    healthport: 8443
+    lbalgorithm: roundrobin
+- lbname: smsproxy1-0-hnd
+  customlbname: smsproxy1-0-hnd
+  servers:
+  - sec0-smsproxy2-1-hnd.ops.sfdc.net
+  - sec0-smsproxy3-1-hnd.ops.sfdc.net
+  - sec0-smsproxy1-1-hnd.ops.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8443
+    lbtype: tcp
+    healthport: 8443
+    lbalgorithm: roundrobin
