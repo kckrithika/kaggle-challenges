@@ -1,0 +1,31 @@
+apiVersion: v1
+data:
+  proxyconfiguration.json: |-
+    {
+      "proxyconfigs": [
+        {
+          "healthpath": "/",
+          "healthport": 12080,
+          "name": "slb-nginx-config-b"
+        },
+        {
+          "healthpath": "/",
+          "healthport": 12080,
+          "name": "slb-hsm-nginx"
+        }
+      ]
+    }
+  proxyvipmapping.json: |-
+    {
+      "proxyvipmappings": [
+        {
+          "proxyname": "slb-hsm-nginx",
+          "vips": []
+        }
+      ]
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-proxy-configuration
+  namespace: sam-system
