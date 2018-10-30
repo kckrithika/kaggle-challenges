@@ -96,7 +96,7 @@ if slbconfigs.isTestEstate || configs.estate == "prd-sam" then configs.deploymen
                     master: "true",
                 },
                 dnsPolicy: "Default",
-            },
+            } + slbconfigs.getGracePeriod(),
             metadata: {
                 labels: {
                     name: "slb-baboon",

@@ -361,6 +361,9 @@
     // Avoid using kubedns for all SLB pods.
     getDnsPolicy():: { dnsPolicy: "Default" },
 
+    getGracePeriod():: (if configs.estate == "prd-sdc" then { terminationGracePeriodSeconds: 5 } else {}),
+
+
     subnet: self.perCluster.subnet[estate],
     publicSubnet: self.perCluster.publicSubnet[estate],
     reservedIps: self.perCluster.reservedIps[estate],

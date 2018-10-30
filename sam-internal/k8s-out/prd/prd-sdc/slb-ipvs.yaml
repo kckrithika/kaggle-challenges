@@ -365,6 +365,7 @@ spec:
       hostNetwork: true
       nodeSelector:
         slb-service: slb-ipvs
+      terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
           path: /data/slb

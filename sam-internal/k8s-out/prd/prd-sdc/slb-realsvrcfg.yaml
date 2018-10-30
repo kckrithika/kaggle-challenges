@@ -196,6 +196,7 @@ spec:
           name: var-cleanup-logs-volume
       dnsPolicy: Default
       hostNetwork: true
+      terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
           path: /data/slb

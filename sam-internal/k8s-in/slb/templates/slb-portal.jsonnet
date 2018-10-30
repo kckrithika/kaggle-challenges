@@ -98,6 +98,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                           madkub.madkubInitContainer(certDirs),
                       ],
                   }
+                  + slbconfigs.getGracePeriod()
                   + slbconfigs.getDnsPolicy()
                   + {
                         affinity: {

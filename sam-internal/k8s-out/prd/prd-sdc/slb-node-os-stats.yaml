@@ -48,6 +48,7 @@ spec:
         - mountPath: /host/proc
           name: proc-volume
       dnsPolicy: Default
+      terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
           path: /data/slb

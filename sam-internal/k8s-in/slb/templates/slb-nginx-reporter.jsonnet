@@ -49,7 +49,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         ],
                     },
                 ],
-            } + slbconfigs.slbEstateNodeSelector,
+            } + slbconfigs.getGracePeriod()
+              + slbconfigs.slbEstateNodeSelector,
             metadata: {
                 labels: {
                     name: serviceName,

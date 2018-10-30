@@ -34,7 +34,8 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                 containers: [
                     slbshared.slbLogCleanup,
                 ],
-            } + slbconfigs.getDnsPolicy(),
+            } + slbconfigs.getGracePeriod()
+              + slbconfigs.getDnsPolicy(),
         },
         updateStrategy: {
             type: "RollingUpdate",

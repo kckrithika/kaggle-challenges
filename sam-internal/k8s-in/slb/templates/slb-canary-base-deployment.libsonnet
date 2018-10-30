@@ -126,8 +126,9 @@ local getCanaryLivenessProbe(port) = (
                 nodeSelector: {
                     pool: configs.estate,
                 },
-            } + getAffinity(canaryName)
-            + slbconfigs.getDnsPolicy(),
+            } + slbconfigs.getGracePeriod()
+              + getAffinity(canaryName)
+              + slbconfigs.getDnsPolicy(),
         },
         strategy: {
             type: "RollingUpdate",
