@@ -134,22 +134,18 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                         "--metricsEndpoint=" + configs.funnelVIP,
                                         "--log_dir=" + slbconfigs.logsDir,
                                         "--maxDeleteServiceCount=" + (if configs.kingdom == "xrd" then "150" else slbconfigs.perCluster.maxDeleteCount[configs.estate]),
-                                    ]
-                                    + [
                                         configs.sfdchosts_arg,
                                         "--client.serverInterface=lo",
                                         "--hostnameOverride=$(NODE_NAME)",
+                                        "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
                                     ]
-                                      + (if slbimages.phaseNum == 1 then [
-                                            "--blueGreenFeature=true",
-                                        ] else [])
-                                      + [
-                                            "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
-                                      ]
                                       + slbconfigs.getNodeApiClientSocketSettings()
-                                      + [
-                                            "--enableSimpleDiff=true",
-                                            "--newConfigGenerator=true",
+                                      + (if slbflights.removeDeprecatedNginxParameters then [
+                                      ] else [
+                                        "--enableSimpleDiff=true",
+                                        "--newConfigGenerator=true",
+                                      ]) +
+                                      [
                                             nginxReloadSentinelParam,
                                             "--httpconfig.custCertsDir=" + slbconfigs.customerCertsPath,
                                             "--checkDuplicateVips=true",
