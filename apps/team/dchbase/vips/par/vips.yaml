@@ -1,0 +1,25 @@
+- lbname: dchbase-dchbase-master1-0-par
+  customlbname: dchbase-dchbase-master1-0-par
+  servers:
+  - dchbase0a-mnds1-2-par.ops.sfdc.net
+  - dchbase0a-mnds3-3-par.ops.sfdc.net
+  - dchbase0a-mnds2-1-par.ops.sfdc.net
+  - dchbase0a-mnds1-3-par.ops.sfdc.net
+  - dchbase0a-mnds5-3-par.ops.sfdc.net
+  - dchbase0a-mnds2-3-par.ops.sfdc.net
+  - dchbase0a-mnds1-1-par.ops.sfdc.net
+  - dchbase0a-mnds4-3-par.ops.sfdc.net
+  - dchbase0a-mnds5-2-par.ops.sfdc.net
+  - dchbase0a-mnds4-1-par.ops.sfdc.net
+  - dchbase0a-mnds2-2-par.ops.sfdc.net
+  - dchbase0a-mnds5-1-par.ops.sfdc.net
+  - dchbase0a-mnds4-2-par.ops.sfdc.net
+  - dchbase0a-mnds3-2-par.ops.sfdc.net
+  - dchbase0a-mnds3-1-par.ops.sfdc.net
+  ports:
+  - port: 8081
+    targetport: 8081
+    lbtype: tcp
+    healthport: 8081
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
