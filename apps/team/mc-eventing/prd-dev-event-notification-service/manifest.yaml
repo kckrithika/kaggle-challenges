@@ -22,18 +22,9 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: test-secret
-    - name: testsecret-v1
-      k4aSecret:
-        secretName: testsecret-v1
-    - name: testsecret-v2
-      k4aSecret:
-        secretName: testsecret-v2
-    - name: testsecret-v3
-      k4aSecret:
-        secretName: testsecret-v3
     containers:
     - name: dev-event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.0
+      image: sfci/mc-eventing/event-notification:1.0.1
       ports:
       - containerPort: 15372
       env:
@@ -55,17 +46,8 @@ system:
       volumeMounts:
       - name: cert
         mountPath: /certs
-      - name: secretvol
-        mountPath: /secrets
-        readOnly: true
-      - name: testsecret-v1
-        mountPath: /testsecrets/testsecret-v1
-        readOnly: true
-      - name: testsecret-v2
-        mountPath: /testsecrets/testsecret-v2
-        readOnly: true
-      - name: testsecret-v3
-        mountPath: /testsecrets/testsecret-v3
+      - mountPath: /secrets
+        name: secretvol
         readOnly: true
   loadbalancers:
   - lbname: dev-event-notification-service-lb
