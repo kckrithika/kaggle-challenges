@@ -10,6 +10,13 @@ metadata:
         "lbtype": "tcp",
         "port": 9115,
         "targetport": 9115
+       },
+       {
+        "healthprotocol": "tcp",
+        "lbtype": "tcp",
+        "port": 8081,
+        "proxyprotocol": true,
+        "targetport": 8081
        }
       ]
   labels:
@@ -23,6 +30,10 @@ spec:
     port: 9115
     protocol: TCP
     targetPort: 9115
+  - name: slb-canary-proxy-tcp-proxyproto-port
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
   selector:
     name: slb-canary-proxy-tcp
   type: NodePort

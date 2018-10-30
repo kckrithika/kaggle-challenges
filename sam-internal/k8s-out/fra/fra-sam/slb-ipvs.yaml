@@ -50,7 +50,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --IpvsPath=20180910
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001322-81660130
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001326-af3f7c64
         name: slb-ipvs-installer
         securityContext:
           capabilities:
@@ -90,7 +90,10 @@ spec:
         - --client.dialSocket=true
         - --healthcheck.riseCount=5
         - --healthcheck.fallCount=2
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001322-81660130
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001326-af3f7c64
         name: slb-ipvs-processor
         securityContext:
           privileged: true
@@ -105,12 +108,16 @@ spec:
           name: usr-sbin-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /etc/pki_service
+          name: maddog-certs
       - command:
         - /sdn/slb-ipvs-data
         - --connPort=9107
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001322-81660130
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001326-af3f7c64
         livenessProbe:
           httpGet:
             path: /
@@ -139,7 +146,7 @@ spec:
         - --enableConntrack=false
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001322-81660130
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001326-af3f7c64
         name: slb-ipvs-conntrack
         securityContext:
           privileged: true
@@ -184,7 +191,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001322-81660130
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001326-af3f7c64
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -221,7 +228,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001322-81660130
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001326-af3f7c64
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -245,7 +252,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-ipvs/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001322-81660130
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001326-af3f7c64
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -267,7 +274,7 @@ spec:
         - --client.dialSocket=true
         - --subnet=10.160.8.0/22,85.222.140.0/23
         - --maxDeleteVipCount=10
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001322-81660130
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001326-af3f7c64
         name: slb-iface-processor
         securityContext:
           privileged: true
@@ -293,7 +300,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001322-81660130
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001326-af3f7c64
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -318,6 +325,7 @@ spec:
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
         - --maxDeleteLimit=10
+        - --vcioptions.strict=true
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-ipvs/slb-manifest-watcher.sentinel
         env:
@@ -327,7 +335,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001322-81660130
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001326-af3f7c64
         name: slb-manifest-watcher
         securityContext:
           privileged: true
