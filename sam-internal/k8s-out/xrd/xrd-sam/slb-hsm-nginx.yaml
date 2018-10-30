@@ -2,16 +2,16 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-nginx-config-b
-  name: slb-nginx-config-b
+    name: slb-hsm-nginx
+  name: slb-hsm-nginx
   namespace: sam-system
 spec:
   minReadySeconds: 60
-  replicas: 3
+  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      name: slb-nginx-config-b
+      name: slb-hsm-nginx
   strategy:
     rollingUpdate:
       maxSurge: 0
@@ -47,7 +47,7 @@ spec:
            ]
           }
       labels:
-        name: slb-nginx-config-b
+        name: slb-hsm-nginx
       namespace: sam-system
     spec:
       affinity:
@@ -58,7 +58,7 @@ spec:
               - key: slb-service
                 operator: In
                 values:
-                - slb-nginx-b
+                - slb-hsm-nginx
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -66,7 +66,7 @@ spec:
               - key: name
                 operator: In
                 values:
-                - slb-nginx-config-b
+                - slb-hsm-nginx
             topologyKey: kubernetes.io/hostname
       containers:
       - command:
@@ -74,13 +74,13 @@ spec:
         - --target=/host/data/slb/nginx/config
         - --netInterfaceName=eth0
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --log_dir=/host/data/slb/logs/slb-hsm-nginx
         - --maxDeleteServiceCount=150
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverInterface=lo
         - --hostnameOverride=$(NODE_NAME)
         - --httpconfig.trustedProxies=0.0.0.0/0
-        - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
+        - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
         - --client.dialSocket=true
         - --enableSimpleDiff=true
         - --newConfigGenerator=true
@@ -95,7 +95,7 @@ spec:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001337-b4f9fb89
-        name: slb-nginx-config-b
+        name: slb-nginx-config-hsm
         ports:
         - containerPort: 32146
           name: slb-nginx-port
@@ -106,20 +106,20 @@ spec:
           name: var-target-config-volume
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+        - mountPath: /host/data/slb/logs/slb-hsm-nginx
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
       - command:
         - /runner.sh
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000050-7c6f4c0a
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/slb-nginx-kms:v-0000053-2a3c3f79
         livenessProbe:
           httpGet:
             path: /
             port: 12080
           initialDelaySeconds: 15
           periodSeconds: 10
-        name: slb-nginx-proxy-b
+        name: slb-nginx-proxy-hsm
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
@@ -148,19 +148,19 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+        - mountPath: /host/data/slb/logs/slb-hsm-nginx
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
       - command:
         - /sdn/slb-file-watcher
-        - --filePath=/host/data/slb/logs/slb-nginx-config-b/slb-nginx-proxy.emerg.log
+        - --filePath=/host/data/slb/logs/slb-hsm-nginx/slb-nginx-proxy.emerg.log
         - --metricName=nginx-emergency
         - --lastModReportTime=120s
         - --scanPeriod=10s
         - --skipZeroLengthFiles=true
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --log_dir=/host/data/slb/logs/slb-hsm-nginx
         - --hostnameOverride=$(NODE_NAME)
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
@@ -173,7 +173,7 @@ spec:
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
-        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+        - mountPath: /host/data/slb/logs/slb-hsm-nginx
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -223,7 +223,7 @@ spec:
         - /sdn/slb-cert-checker
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --hostnameOverride=$(NODE_NAME)
-        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --log_dir=/host/data/slb/logs/slb-hsm-nginx
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: NODE_NAME
@@ -241,7 +241,7 @@ spec:
           name: cert2
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+        - mountPath: /host/data/slb/logs/slb-hsm-nginx
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -249,7 +249,7 @@ spec:
           name: customer-certs
       - command:
         - /sdn/slb-config-processor
-        - --configDir=/host/data/slb/config/slb-nginx-config-b
+        - --configDir=/host/data/slb/config/slb-hsm-nginx
         - --period=1800s
         - --podPhaseCheck=true
         - --namespace=
@@ -259,7 +259,7 @@ spec:
         - --serviceList=
         - --useVipLabelToSelectSvcs=true
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --log_dir=/host/data/slb/logs/slb-hsm-nginx
         - --sleepTime=100ms
         - --processKnEConfigs=true
         - --kneConfigDir=/var/slb/kneconfigs/xrd
@@ -269,8 +269,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
-        - --servicesNotToLbOverride=slb-canary-hsm-service
-        - --control.configProcSentinel=/host/data/slb/config/slb-nginx-config-b/slb-config-proc.sentinel
+        - --control.configProcSentinel=/host/data/slb/config/slb-hsm-nginx/slb-config-proc.sentinel
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -294,9 +293,9 @@ spec:
           name: maddog-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/slb-nginx-config-b
+        - mountPath: /host/data/slb/config/slb-hsm-nginx
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+        - mountPath: /host/data/slb/logs/slb-hsm-nginx
           name: var-logs-volume
         - mountPath: /data/certs
           name: certs
@@ -308,10 +307,10 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=1h
-        - --filesDirToCleanup=/host/data/slb/config/slb-nginx-config-b
+        - --filesDirToCleanup=/host/data/slb/config/slb-hsm-nginx
         - --shouldSkipServiceRecords=true
         - --shouldNotDeleteAllFiles=true
-        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --log_dir=/host/data/slb/logs/slb-hsm-nginx
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
@@ -322,41 +321,40 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/slb-nginx-config-b
+        - mountPath: /host/data/slb/config/slb-hsm-nginx
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+        - mountPath: /host/data/slb/logs/slb-hsm-nginx
           name: var-logs-volume
       - command:
         - /sdn/slb-node-api
         - --port=9130
-        - --configDir=/host/data/slb/config/slb-nginx-config-b
-        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --configDir=/host/data/slb/config/slb-hsm-nginx
+        - --log_dir=/host/data/slb/logs/slb-hsm-nginx
         - --netInterface=lo
         - --checkSentinel=true
-        - --control.configProcSentinel=/host/data/slb/config/slb-nginx-config-b/slb-config-proc.sentinel
+        - --control.configProcSentinel=/host/data/slb/config/slb-hsm-nginx/slb-config-proc.sentinel
         - --control.sentinelExpiration=1800s
         - --listenOnSocket=true
         - --readOnly=false
         - --checkMwSentinel=true
-        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-nginx-config-b/slb-manifest-watcher.sentinel
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-hsm-nginx/slb-manifest-watcher.sentinel
         image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001337-b4f9fb89
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+        - mountPath: /host/data/slb/logs/slb-hsm-nginx
           name: var-logs-volume
       - command:
         - /sdn/slb-realsvrcfg
-        - --configDir=/host/data/slb/config/slb-nginx-config-b
+        - --configDir=/host/data/slb/config/slb-hsm-nginx
         - --period=5s
         - --netInterfaceName=eth0
-        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --log_dir=/host/data/slb/logs/slb-hsm-nginx
         - --client.serverPort=9130
         - --client.serverInterface=lo
-        - --control.sentinelExpiration=1200s
         - --nginxPodMode=true
-        - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
+        - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
         - --client.dialSocket=true
         - --maxDeleteVipCount=20
         image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001337-b4f9fb89
@@ -368,7 +366,7 @@ spec:
           name: var-slb-volume
         - mountPath: /host/sbin
           name: sbin-volume
-        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+        - mountPath: /host/data/slb/logs/slb-hsm-nginx
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -376,8 +374,8 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=48h
-        - --log_dir=/host/data/slb/logs/slb-nginx-config-b/cleanup
-        - --filesDirToCleanup=/host/data/slb/logs/slb-nginx-config-b
+        - --log_dir=/host/data/slb/logs/slb-hsm-nginx/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-hsm-nginx
         - --shouldSkipServiceRecords=false
         - --shouldNotDeleteAllFiles=false
         env:
@@ -390,27 +388,27 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/slb-nginx-config-b
+        - mountPath: /host/data/slb/config/slb-hsm-nginx
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+        - mountPath: /host/data/slb/logs/slb-hsm-nginx
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /host/data/slb/logs/slb-nginx-config-b/cleanup
+        - mountPath: /host/data/slb/logs/slb-hsm-nginx/cleanup
           name: var-cleanup-logs-volume
       - command:
         - /sdn/slb-manifest-watcher
-        - --manifestOutputDir=/host/data/slb/manifests/slb-nginx-config-b
+        - --manifestOutputDir=/host/data/slb/manifests/slb-hsm-nginx
         - --tnrpEndpoint=https://ops0-piperepo1-0-xrd.data.sfdc.net/
         - --hostnameOverride=$(NODE_NAME)
-        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --log_dir=/host/data/slb/logs/slb-hsm-nginx
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
+        - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
         - --client.dialSocket=true
         - --maxDeleteLimit=20
         - --vcioptions.strict=true
         - --client.allowStale=true
-        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-nginx-config-b/slb-manifest-watcher.sentinel
+        - --control.manifestWatcherSentinel=/host/data/slb/config/slb-hsm-nginx/slb-manifest-watcher.sentinel
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -435,10 +433,10 @@ spec:
         - /sdn/slb-cert-deployer
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --hostnameOverride=$(NODE_NAME)
-        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --log_dir=/host/data/slb/logs/slb-hsm-nginx
         - --custCertsDir=/customerCerts
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
+        - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
         - --client.dialSocket=true
         - --control.nginxReloadSentinel=/host/data/slb/nginx/config/nginx.marker
         env:
@@ -459,7 +457,7 @@ spec:
           name: customer-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+        - mountPath: /host/data/slb/logs/slb-hsm-nginx
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -512,7 +510,7 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs/slb-nginx-config-b
+          path: /data/slb/logs/slb-hsm-nginx
         name: var-logs-volume
       - configMap:
           name: sfdchosts
@@ -539,10 +537,10 @@ spec:
           path: /data/certs
         name: certs
       - hostPath:
-          path: /data/slb/config/slb-nginx-config-b
+          path: /data/slb/config/slb-hsm-nginx
         name: var-config-volume
       - hostPath:
-          path: /data/slb/logs/slb-nginx-config-b/cleanup
+          path: /data/slb/logs/slb-hsm-nginx/cleanup
         name: var-cleanup-logs-volume
       - emptyDir:
           medium: Memory
