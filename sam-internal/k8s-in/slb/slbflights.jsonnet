@@ -16,4 +16,5 @@ local configs = import "config.jsonnet";
     nginxSlbVolumeMount: (slbimages.slbnginx_build >= 50),
     proxyConfigMapEnabled: (slbimages.hypersdn_build >= 1334),
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 1),
+    removeDeprecatedNginxParameters: (slbimages.phaseNum <= 1),
 }
