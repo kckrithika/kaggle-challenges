@@ -61,7 +61,7 @@ system:
       - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
       # Non-namespaced, plaintext.
       - -endpoint
-      - $(FUNCTION):DATACENTER_ALLENV:HTTP1
+      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -86,10 +86,9 @@ system:
       image: tnrp/sdn/hypersdn:v-0001279-72dec9aa
       command: ["/sdn/slb-canary-service"]
       args:
-      - --serviceName=aviary
+      - --serviceName=aviary-v2
       - --logtostderr
       - --ports=7022
-      - --verbose=false
       ports:
       - containerPort: 7022
       livenessProbe:
@@ -136,7 +135,7 @@ system:
       - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
       # Non-namespaced, plaintext.
       - -endpoint
-      - $(FUNCTION):DATACENTER_ALLENV:HTTP1
+      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1
       livenessProbe:
         initialDelaySeconds: 5
         exec:
