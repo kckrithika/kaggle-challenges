@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: na99-mist61blue-prd
-    count: 1
+    count: 2
     volumes:
     - name: envoy-config-volume
       emptyDir: {}
