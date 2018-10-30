@@ -89,7 +89,6 @@ system:
       - --serviceName=aviary-v2
       - --logtostderr
       - --ports=7022
-      - --verbose=false
       ports:
       - containerPort: 7022
       livenessProbe:
