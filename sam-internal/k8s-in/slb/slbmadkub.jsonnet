@@ -10,12 +10,12 @@
     // A parameter should pass an array of which cert classes it needs and based on that compute the volumes, volumeMounts, annotations, and maddog parameters
 
     local steamVipSans = [
-        "*.eu2.stmda.stm.salesforce.com",
+        "*.stmda.stm.salesforce.com",
         "*.my.stmda.stm.salesforce.com",
         "*.eu2.stmda.stm.force.com",
         "*.stmda.stm.force.com",
-        "*.eu2.visual.stmda.stm.force.com",
-        "*.eu2.content.stmda.stm.force.com",
+        "*.visual.stmda.stm.force.com",
+        "*.content.stmda.stm.force.com",
         "*.stmda.stm.cloudforce.com",
         "*.stmda.stm.database.com",
         "*.builder.stmda.stm.salesforce-communities.com",
