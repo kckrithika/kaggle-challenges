@@ -88,8 +88,22 @@
               OR (TotalCount >= 10 AND NotReadyPerc >=0.2)",
         },
 
-# =====
+# =====SqlKubeApiNode=========
+    {
+        name: "SqlKubeApiNode",
+        instructions: "The following minion pools have multiple kubeApi nodes down in Production requiring immediate attention. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
+        alertThreshold: "20m",
+        alertFrequency: "24h",
+        watchdogFrequency: "5m",
+        alertProfile: "sam",
+        alertAction: "pagerduty",
+        sql: "Select Name,
+              ControlEstate,
+              MinionPool,
+              Ready FROM nodeDetailView WHERE Name LIKE '%kubeapi%' AND Ready !='True' AND KINGDOM != 'PRD' AND KINGDOM != 'UNK'",
+        },
 
+# =====
     {
             name: "SqlSamControl",
             instructions: "The following SAM control stack components dont have even 1 healhty pod",
