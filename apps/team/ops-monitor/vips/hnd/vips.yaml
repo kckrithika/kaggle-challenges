@@ -1,0 +1,15 @@
+- lbname: monitor1-0-hnd
+  customlbname: monitor1-0-hnd
+  servers:
+  - ops0-monitor1-1-hnd.ops.sfdc.net
+  - ops0-monitor2-1-hnd.ops.sfdc.net
+  - ops0-monitor3-1-hnd.ops.sfdc.net
+  - ops0-monitor4-1-hnd.ops.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthpath: /cgi-bin/health.cgi
+    healthprotocol: http
+    lbalgorithm: roundrobin
