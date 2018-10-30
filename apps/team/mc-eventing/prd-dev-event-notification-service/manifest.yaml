@@ -22,7 +22,7 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: test-secret
-    - name: testsecret-v1
+    - name: testsecrets
       k4aSecret:
         secretName: testsecret-v1
     containers:
@@ -49,8 +49,11 @@ system:
       volumeMounts:
       - name: cert
         mountPath: /certs
-      - mountPath: /secrets
-        name: secretvol
+      - name: secretvol
+        mountPath: /secrets
+        readOnly: true
+      - name: testsecrets
+        mountPath: /testsecrets
         readOnly: true
   loadbalancers:
   - lbname: dev-event-notification-service-lb
