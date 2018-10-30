@@ -55,7 +55,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                                 matchExpressions: [{
                                     key: "slb-service",
                                     operator: "In",
-                                    values: ["slb-nginx-kms"],
+                                    values: [slbconfigs.hsmNginxProxyName],
                                 }],
                             }],
                         },
@@ -81,7 +81,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                                 matchExpressions: [{
                                     key: "slb-service",
                                     operator: "In",
-                                    values: ["slb-nginx-kms"],
+                                    values: [slbconfigs.hsmNginxProxyName],
                                 }],
                             }],
                         },

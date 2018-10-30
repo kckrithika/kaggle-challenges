@@ -58,7 +58,7 @@ spec:
               - key: slb-service
                 operator: In
                 values:
-                - slb-nginx-kms
+                - slb-hsm-nginx
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
