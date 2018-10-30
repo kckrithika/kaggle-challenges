@@ -119,7 +119,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                                             containerPort: portconfigs.slb.slbNginxControlPort,
                                         },
                                     ],
-                                    name: "slb-nginx-config-kms",
+                                    name: "slb-nginx-config-hsm",
                                     image: slbimages.hypersdn,
                                      [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                                     command: [
@@ -174,8 +174,8 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                                     ],
                                 },
                                 {
-                                    name: "slb-nginx-proxy-b",
-                                    image: slbimages.slbnginx,
+                                    name: "slb-nginx-proxy-hsm",
+                                    image: slbimages.hsmnginx,
                                     command: ["/runner.sh"],
                                     livenessProbe: {
                                         httpGet: {
