@@ -22,7 +22,7 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: geoip-go
-      image: scone/go/geoip-go:0.0.5
+      image: sfci/scone/go/geoip-go:0.0.5
       resources:
         limits:
           cpu: "1"
