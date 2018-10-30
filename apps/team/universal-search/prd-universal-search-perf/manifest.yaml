@@ -26,8 +26,8 @@ system:
     containers:
     - name: universal-search
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.9.1
-      # athrogmorton TODO: using this image for now to test spark-MT streaming changes
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/athrogmorton/universal-search-with-streaming:0.1
+      # psalagnac TODO: this image does NOT forward queries to Solr
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/psalagnac/universal-search:noop1
       ports:
       - name: service-port
         containerPort: 7020
