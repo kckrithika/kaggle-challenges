@@ -28,6 +28,9 @@ system:
     - name: testsecret-v2
       k4aSecret:
         secretName: testsecret-v2
+    - name: testsecret-v3
+      k4aSecret:
+        secretName: testsecret-v3
     containers:
     - name: dev-event-notification-service
       image: sfci/mc-eventing/event-notification:1.0.0
@@ -60,6 +63,9 @@ system:
         readOnly: true
       - name: testsecret-v2
         mountPath: /testsecrets/testsecret-v2
+        readOnly: true
+      - name: testsecret-v3
+        mountPath: /testsecrets/testsecret-v3
         readOnly: true
   loadbalancers:
   - lbname: dev-event-notification-service-lb
