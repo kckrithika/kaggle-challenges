@@ -1,0 +1,13 @@
+- lbname: shared0-dvaalarmservice1-0-dfw
+  customlbname: shared0-dvaalarmservice1-0-dfw
+  servers:
+  - shared0-dvaalarmservice3-1-dfw.ops.sfdc.net
+  - shared0-dvaalarmservice1-1-dfw.ops.sfdc.net
+  - shared0-dvaalarmservice2-1-dfw.ops.sfdc.net
+  ports:
+  - port: 8080
+    targetport: 8080
+    lbtype: tcp
+    healthport: 8080
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
