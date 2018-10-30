@@ -7,8 +7,6 @@ std.prune({
   dbHostname: "mysql-ss-0.mysql-service",
   dbUsername: "ssc-prd-test",
   dbPasswordFile: "/var/mysqlPwd/pass.txt",
-  "key-file": configs.keyFile,
-  "cert-file": configs.certFile,
   k8sResourceDbName: mysql.visibilityDBName,
   k8sResourceTableName: "k8s_resource",
   consumeTableName: "consume",
