@@ -44,6 +44,8 @@
                  ] + (if configs.estate == "prd-sam" then [
                           "--servicesToLbOverride=" + servicesToLbOverride,
                           "--servicesNotToLbOverride=" + servicesNotToLbOverride,
+                      ] else if $.dirSuffix == "slb-nginx-config-b" && slbflights.hsmCanaryEnabled then [
+                          "--servicesNotToLbOverride=slb-hsm-nginx-service",
                       ] else []) +
                  [
                      "--control.configProcSentinel=" + configProcSentinel,
