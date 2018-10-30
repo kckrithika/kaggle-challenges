@@ -1,0 +1,11 @@
+- lbname: smsapi1-0-cdg
+  customlbname: smsapi1-0-cdg
+  servers:
+  - sec0-smsapi2-1-cdg.ops.sfdc.net
+  - sec0-smsapi1-1-cdg.ops.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8443
+    lbtype: tcp
+    healthport: 8443
+    lbalgorithm: roundrobin
