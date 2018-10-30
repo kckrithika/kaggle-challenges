@@ -22,6 +22,9 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: test-secret
+    - name: testsecret-v1
+      k4aSecret:
+        secretName: testsecret-v1
     containers:
     - name: dev-event-notification-service
       image: sfci/mc-eventing/event-notification:1.0.0
