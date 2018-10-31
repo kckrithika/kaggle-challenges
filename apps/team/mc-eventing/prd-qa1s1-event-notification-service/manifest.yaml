@@ -24,7 +24,7 @@ system:
         secretName: test-secret
     containers:
     - name: qa1s1-event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.0
+      image: sfci/mc-eventing/event-notification:1.0.1
       ports:
       - containerPort: 15372
       env:
