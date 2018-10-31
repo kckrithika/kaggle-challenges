@@ -24,6 +24,7 @@
     maxDeleteDefault: 10,
     nginxProxyName: "slb-nginx-config-b",
     hsmNginxProxyName: "slb-hsm-nginx",
+    envoyProxyName: "slb-envoy",
 
     slbEstate: (
         if $.isTestEstate then
