@@ -3,3 +3,5 @@ apps:
         - prd/prd-sam
     dlr-metrics-emitter:
         - prd/prd-sam
+    geoip-go-sandbox:
+        - prd/prd-sam
