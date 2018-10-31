@@ -1,0 +1,1885 @@
+- lbname: cs1-stmfa1-0-prd
+  servers:
+  - stmfacs1ice1-app1-1-prd.eng.sfdc.net
+  - stmfacs1ice1-app1-2-prd.eng.sfdc.net
+  - stmfacs1ice1-app1-3-prd.eng.sfdc.net
+  - stmfacs1ice1-app2-1-prd.eng.sfdc.net
+  - stmfacs1ice1-app2-2-prd.eng.sfdc.net
+  - stmfacs1ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs1-stmfb1-0-prd
+  servers:
+  - stmfbcs1ice1-app1-1-prd.eng.sfdc.net
+  - stmfbcs1ice1-app1-2-prd.eng.sfdc.net
+  - stmfbcs1ice1-app1-3-prd.eng.sfdc.net
+  - stmfbcs1ice1-app2-1-prd.eng.sfdc.net
+  - stmfbcs1ice1-app2-2-prd.eng.sfdc.net
+  - stmfbcs1ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs2-stmfa1-0-prd
+  servers:
+  - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+  - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+  - stmfacs2ice1-app1-3-prd.eng.sfdc.net
+  - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+  - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  - stmfacs2ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs2-stmfb1-0-prd
+  servers:
+  - stmfbcs2ice1-app1-1-prd.eng.sfdc.net
+  - stmfbcs2ice1-app1-2-prd.eng.sfdc.net
+  - stmfbcs2ice1-app1-3-prd.eng.sfdc.net
+  - stmfbcs2ice1-app2-1-prd.eng.sfdc.net
+  - stmfbcs2ice1-app2-2-prd.eng.sfdc.net
+  - stmfbcs2ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs2-stmfc1-0-prd
+  servers:
+  - stmfccs2ice1-app1-1-prd.eng.sfdc.net
+  - stmfccs2ice1-app1-2-prd.eng.sfdc.net
+  - stmfccs2ice1-app1-3-prd.eng.sfdc.net
+  - stmfccs2ice1-app2-1-prd.eng.sfdc.net
+  - stmfccs2ice1-app2-2-prd.eng.sfdc.net
+  - stmfccs2ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs2-stmsa1-0-prd
+  servers:
+  - stmsacs2ice1-app1-1-prd.eng.sfdc.net
+  - stmsacs2ice1-app1-2-prd.eng.sfdc.net
+  - stmsacs2ice1-app1-3-prd.eng.sfdc.net
+  - stmsacs2ice1-app2-1-prd.eng.sfdc.net
+  - stmsacs2ice1-app2-2-prd.eng.sfdc.net
+  - stmsacs2ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs2-stmua1-0-prd
+  servers:
+  - stmuacs2ice1-app1-1-prd.eng.sfdc.net
+  - stmuacs2ice1-app1-2-prd.eng.sfdc.net
+  - stmuacs2ice1-app1-3-prd.eng.sfdc.net
+  - stmuacs2ice1-app2-1-prd.eng.sfdc.net
+  - stmuacs2ice1-app2-2-prd.eng.sfdc.net
+  - stmuacs2ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs2-stmub1-0-prd
+  servers:
+  - stmubcs2ice1-app1-1-prd.eng.sfdc.net
+  - stmubcs2ice1-app1-2-prd.eng.sfdc.net
+  - stmubcs2ice1-app1-3-prd.eng.sfdc.net
+  - stmubcs2ice1-app2-1-prd.eng.sfdc.net
+  - stmubcs2ice1-app2-2-prd.eng.sfdc.net
+  - stmubcs2ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs3-stmfa1-0-prd
+  servers:
+  - stmfacs3ice1-app1-1-prd.eng.sfdc.net
+  - stmfacs3ice1-app1-2-prd.eng.sfdc.net
+  - stmfacs3ice1-app1-3-prd.eng.sfdc.net
+  - stmfacs3ice1-app2-1-prd.eng.sfdc.net
+  - stmfacs3ice1-app2-2-prd.eng.sfdc.net
+  - stmfacs3ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs3-stmfb1-0-prd
+  servers:
+  - stmfbcs3ice1-app1-1-prd.eng.sfdc.net
+  - stmfbcs3ice1-app1-2-prd.eng.sfdc.net
+  - stmfbcs3ice1-app1-3-prd.eng.sfdc.net
+  - stmfbcs3ice1-app2-1-prd.eng.sfdc.net
+  - stmfbcs3ice1-app2-2-prd.eng.sfdc.net
+  - stmfbcs3ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs3-stmfc1-0-prd
+  servers:
+  - stmfccs3ice1-app1-1-prd.eng.sfdc.net
+  - stmfccs3ice1-app1-2-prd.eng.sfdc.net
+  - stmfccs3ice1-app1-3-prd.eng.sfdc.net
+  - stmfccs3ice1-app2-1-prd.eng.sfdc.net
+  - stmfccs3ice1-app2-2-prd.eng.sfdc.net
+  - stmfccs3ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs3-stmua1-0-prd
+  servers:
+  - stmuacs3ice1-app1-1-prd.eng.sfdc.net
+  - stmuacs3ice1-app1-2-prd.eng.sfdc.net
+  - stmuacs3ice1-app1-3-prd.eng.sfdc.net
+  - stmuacs3ice1-app2-1-prd.eng.sfdc.net
+  - stmuacs3ice1-app2-2-prd.eng.sfdc.net
+  - stmuacs3ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs3-stmub1-0-prd
+  servers:
+  - stmubcs3ice1-app1-1-prd.eng.sfdc.net
+  - stmubcs3ice1-app1-2-prd.eng.sfdc.net
+  - stmubcs3ice1-app1-3-prd.eng.sfdc.net
+  - stmubcs3ice1-app2-1-prd.eng.sfdc.net
+  - stmubcs3ice1-app2-2-prd.eng.sfdc.net
+  - stmubcs3ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: cs4-stmda1-0-prd
+  servers:
+  - stmdacs4ice1-app1-1-prd.eng.sfdc.net
+  - stmdacs4ice1-app1-2-prd.eng.sfdc.net
+  - stmdacs4ice1-app1-3-prd.eng.sfdc.net
+  - stmdacs4ice1-app2-1-prd.eng.sfdc.net
+  - stmdacs4ice1-app2-2-prd.eng.sfdc.net
+  - stmdacs4ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: eu1-stmda1-0-prd
+  servers:
+  - stmdaeu1ice1-app1-1-prd.eng.sfdc.net
+  - stmdaeu1ice1-app1-2-prd.eng.sfdc.net
+  - stmdaeu1ice1-app1-3-prd.eng.sfdc.net
+  - stmdaeu1ice1-app2-1-prd.eng.sfdc.net
+  - stmdaeu1ice1-app2-2-prd.eng.sfdc.net
+  - stmdaeu1ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: eu2-stmda1-0-prd
+  servers:
+  - stmdaeu2ice1-app1-1-prd.eng.sfdc.net
+  - stmdaeu2ice1-app1-2-prd.eng.sfdc.net
+  - stmdaeu2ice1-app1-3-prd.eng.sfdc.net
+  - stmdaeu2ice1-app2-1-prd.eng.sfdc.net
+  - stmdaeu2ice1-app2-2-prd.eng.sfdc.net
+  - stmdaeu2ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: la2-stmda1-0-prd
+  servers:
+  - stmda1la2-lapp1-1-prd.eng.sfdc.net
+  - stmda1la2-lapp1-2-prd.eng.sfdc.net
+  - stmda1la2-lapp1-3-prd.eng.sfdc.net
+  - stmda1la2-lapp1-4-prd.eng.sfdc.net
+  - stmda1la2-lapp2-1-prd.eng.sfdc.net
+  - stmda1la2-lapp2-2-prd.eng.sfdc.net
+  - stmda1la2-lapp2-3-prd.eng.sfdc.net
+  - stmda1la2-lapp2-4-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: la2-stmfa1-0-prd
+  servers:
+  - stmfa1la2-lapp1-1-prd.eng.sfdc.net
+  - stmfa1la2-lapp1-2-prd.eng.sfdc.net
+  - stmfa1la2-lapp1-3-prd.eng.sfdc.net
+  - stmfa1la2-lapp1-4-prd.eng.sfdc.net
+  - stmfa1la2-lapp2-1-prd.eng.sfdc.net
+  - stmfa1la2-lapp2-2-prd.eng.sfdc.net
+  - stmfa1la2-lapp2-3-prd.eng.sfdc.net
+  - stmfa1la2-lapp2-4-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: la2-stmfb1-0-prd
+  servers:
+  - stmfb1la2-lapp1-1-prd.eng.sfdc.net
+  - stmfb1la2-lapp1-2-prd.eng.sfdc.net
+  - stmfb1la2-lapp1-3-prd.eng.sfdc.net
+  - stmfb1la2-lapp1-4-prd.eng.sfdc.net
+  - stmfb1la2-lapp2-1-prd.eng.sfdc.net
+  - stmfb1la2-lapp2-2-prd.eng.sfdc.net
+  - stmfb1la2-lapp2-3-prd.eng.sfdc.net
+  - stmfb1la2-lapp2-4-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: la2-stmfb1-0-prd
+  servers:
+  - stmfb1la2-lapp1-1-prd.eng.sfdc.net
+  - stmfb1la2-lapp1-2-prd.eng.sfdc.net
+  - stmfb1la2-lapp1-3-prd.eng.sfdc.net
+  - stmfb1la2-lapp1-4-prd.eng.sfdc.net
+  - stmfb1la2-lapp2-1-prd.eng.sfdc.net
+  - stmfb1la2-lapp2-2-prd.eng.sfdc.net
+  - stmfb1la2-lapp2-3-prd.eng.sfdc.net
+  - stmfb1la2-lapp2-4-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: la2-stmfc1-0-prd
+  servers:
+  - stmfc1la2-lapp1-1-prd.eng.sfdc.net
+  - stmfc1la2-lapp1-2-prd.eng.sfdc.net
+  - stmfc1la2-lapp1-3-prd.eng.sfdc.net
+  - stmfc1la2-lapp1-4-prd.eng.sfdc.net
+  - stmfc1la2-lapp2-1-prd.eng.sfdc.net
+  - stmfc1la2-lapp2-2-prd.eng.sfdc.net
+  - stmfc1la2-lapp2-3-prd.eng.sfdc.net
+  - stmfc1la2-lapp2-4-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: la2-stmfd1-0-prd
+  servers:
+  - stmfd1la2-lapp1-1-prd.eng.sfdc.net
+  - stmfd1la2-lapp1-2-prd.eng.sfdc.net
+  - stmfd1la2-lapp1-3-prd.eng.sfdc.net
+  - stmfd1la2-lapp1-4-prd.eng.sfdc.net
+  - stmfd1la2-lapp2-1-prd.eng.sfdc.net
+  - stmfd1la2-lapp2-2-prd.eng.sfdc.net
+  - stmfd1la2-lapp2-3-prd.eng.sfdc.net
+  - stmfd1la2-lapp2-4-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: la2-stmra1-0-prd
+  servers:
+  - stmra1la2-lapp1-1-prd.eng.sfdc.net
+  - stmra1la2-lapp1-2-prd.eng.sfdc.net
+  - stmra1la2-lapp2-1-prd.eng.sfdc.net
+  - stmra1la2-lapp2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: la2-stmsa1-0-prd
+  servers:
+  - stmsa1la2-lapp1-1-prd.eng.sfdc.net
+  - stmsa1la2-lapp1-2-prd.eng.sfdc.net
+  - stmsa1la2-lapp1-3-prd.eng.sfdc.net
+  - stmsa1la2-lapp1-4-prd.eng.sfdc.net
+  - stmsa1la2-lapp2-1-prd.eng.sfdc.net
+  - stmsa1la2-lapp2-2-prd.eng.sfdc.net
+  - stmsa1la2-lapp2-3-prd.eng.sfdc.net
+  - stmsa1la2-lapp2-4-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: la2-stmua1-0-prd
+  servers:
+  - stmua1la2-lapp1-1-prd.eng.sfdc.net
+  - stmua1la2-lapp1-2-prd.eng.sfdc.net
+  - stmua1la2-lapp2-1-prd.eng.sfdc.net
+  - stmua1la2-lapp2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: la2-stmub1-0-prd
+  servers:
+  - stmub1la2-lapp1-1-prd.eng.sfdc.net
+  - stmub1la2-lapp1-2-prd.eng.sfdc.net
+  - stmub1la2-lapp1-3-prd.eng.sfdc.net
+  - stmub1la2-lapp1-4-prd.eng.sfdc.net
+  - stmub1la2-lapp2-1-prd.eng.sfdc.net
+  - stmub1la2-lapp2-2-prd.eng.sfdc.net
+  - stmub1la2-lapp2-3-prd.eng.sfdc.net
+  - stmub1la2-lapp2-4-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: login-stmda1-0-prd
+  servers:
+  - stmdaeu1ice1-app1-1-prd.eng.sfdc.net
+  - stmdaeu1ice1-app1-2-prd.eng.sfdc.net
+  - stmdaeu1ice1-app1-3-prd.eng.sfdc.net
+  - stmdaeu1ice1-app2-1-prd.eng.sfdc.net
+  - stmdaeu1ice1-app2-2-prd.eng.sfdc.net
+  - stmdaeu1ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 60
+    tls: true
+    addheaders:
+    - name: "SFDC-LOGIN-LOAD-BALANCER"
+      value: "TRUE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: login-stmfd1-0-prd
+  servers:
+  - stmfdna44ice1-app1-1-prd.eng.sfdc.net
+  - stmfdna44ice1-app1-2-prd.eng.sfdc.net
+  - stmfdna44ice1-app1-3-prd.eng.sfdc.net
+  - stmfdna44ice1-app2-1-prd.eng.sfdc.net
+  - stmfdna44ice1-app2-2-prd.eng.sfdc.net
+  - stmfdna44ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 60
+    tls: true
+    addheaders:
+    - name: "SFDC-LOGIN-LOAD-BALANCER"
+      value: "TRUE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: login-stmra1-0-prd
+  servers:
+  - stmrana20ice1-app1-1-prd.eng.sfdc.net
+  - stmrana20ice1-app1-2-prd.eng.sfdc.net
+  - stmrana20ice1-app1-3-prd.eng.sfdc.net
+  - stmrana20ice1-app2-1-prd.eng.sfdc.net
+  - stmrana20ice1-app2-2-prd.eng.sfdc.net
+  - stmrana20ice1-app2-3-prd.eng.sfdc.net
+  - stmrana22ice1-app1-1-prd.eng.sfdc.net
+  - stmrana22ice1-app1-2-prd.eng.sfdc.net
+  - stmrana22ice1-app1-3-prd.eng.sfdc.net
+  - stmrana22ice1-app2-1-prd.eng.sfdc.net
+  - stmrana22ice1-app2-2-prd.eng.sfdc.net
+  - stmrana22ice1-app2-3-prd.eng.sfdc.net
+  - stmrana24ice1-app1-1-prd.eng.sfdc.net
+  - stmrana24ice1-app1-2-prd.eng.sfdc.net
+  - stmrana24ice1-app1-3-prd.eng.sfdc.net
+  - stmrana24ice1-app2-1-prd.eng.sfdc.net
+  - stmrana24ice1-app2-2-prd.eng.sfdc.net
+  - stmrana24ice1-app2-3-prd.eng.sfdc.net
+  - stmrana26ice1-app1-1-prd.eng.sfdc.net
+  - stmrana26ice1-app1-2-prd.eng.sfdc.net
+  - stmrana26ice1-app1-3-prd.eng.sfdc.net
+  - stmrana26ice1-app2-1-prd.eng.sfdc.net
+  - stmrana26ice1-app2-2-prd.eng.sfdc.net
+  - stmrana26ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 60
+    tls: true
+    addheaders:
+    - name: "SFDC-LOGIN-LOAD-BALANCER"
+      value: "TRUE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: login-stmua1-0-prd
+  servers:
+  - stmuana44ice1-app1-1-prd.eng.sfdc.net
+  - stmuana44ice1-app1-2-prd.eng.sfdc.net
+  - stmuana44ice1-app1-3-prd.eng.sfdc.net
+  - stmuana44ice1-app2-1-prd.eng.sfdc.net
+  - stmuana44ice1-app2-2-prd.eng.sfdc.net
+  - stmuana44ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 60
+    tls: true
+    addheaders:
+    - name: "SFDC-LOGIN-LOAD-BALANCER"
+      value: "TRUE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: login-stmub1-0-prd
+  servers:
+  - stmubna44ice1-app1-1-prd.eng.sfdc.net
+  - stmubna44ice1-app1-2-prd.eng.sfdc.net
+  - stmubna44ice1-app1-3-prd.eng.sfdc.net
+  - stmubna44ice1-app2-1-prd.eng.sfdc.net
+  - stmubna44ice1-app2-2-prd.eng.sfdc.net
+  - stmubna44ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 60
+    tls: true
+    addheaders:
+    - name: "SFDC-LOGIN-LOAD-BALANCER"
+      value: "TRUE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na20-stmra1-0-prd
+  servers:
+  - stmrana20ice1-app1-1-prd.eng.sfdc.net
+  - stmrana20ice1-app1-2-prd.eng.sfdc.net
+  - stmrana20ice1-app1-3-prd.eng.sfdc.net
+  - stmrana20ice1-app2-1-prd.eng.sfdc.net
+  - stmrana20ice1-app2-2-prd.eng.sfdc.net
+  - stmrana20ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na21-stmra1-0-prd
+  servers:
+  - stmrana21ice1-app1-1-prd.eng.sfdc.net
+  - stmrana21ice1-app1-2-prd.eng.sfdc.net
+  - stmrana21ice1-app1-3-prd.eng.sfdc.net
+  - stmrana21ice1-app2-1-prd.eng.sfdc.net
+  - stmrana21ice1-app2-2-prd.eng.sfdc.net
+  - stmrana21ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na22-stmra1-0-prd
+  servers:
+  - stmrana22ice1-app1-1-prd.eng.sfdc.net
+  - stmrana22ice1-app1-2-prd.eng.sfdc.net
+  - stmrana22ice1-app1-3-prd.eng.sfdc.net
+  - stmrana22ice1-app2-1-prd.eng.sfdc.net
+  - stmrana22ice1-app2-2-prd.eng.sfdc.net
+  - stmrana22ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na23-stmra1-0-prd
+  servers:
+  - stmrana23ice1-app1-1-prd.eng.sfdc.net
+  - stmrana23ice1-app1-2-prd.eng.sfdc.net
+  - stmrana23ice1-app1-3-prd.eng.sfdc.net
+  - stmrana23ice1-app2-1-prd.eng.sfdc.net
+  - stmrana23ice1-app2-2-prd.eng.sfdc.net
+  - stmrana23ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na24-stmra1-0-prd
+  servers:
+  - stmrana24ice1-app1-1-prd.eng.sfdc.net
+  - stmrana24ice1-app1-2-prd.eng.sfdc.net
+  - stmrana24ice1-app1-3-prd.eng.sfdc.net
+  - stmrana24ice1-app2-1-prd.eng.sfdc.net
+  - stmrana24ice1-app2-2-prd.eng.sfdc.net
+  - stmrana24ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na25-stmra1-0-prd
+  servers:
+  - stmrana25ice1-app1-1-prd.eng.sfdc.net
+  - stmrana25ice1-app1-2-prd.eng.sfdc.net
+  - stmrana25ice1-app1-3-prd.eng.sfdc.net
+  - stmrana25ice1-app2-1-prd.eng.sfdc.net
+  - stmrana25ice1-app2-2-prd.eng.sfdc.net
+  - stmrana25ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na26-stmra1-0-prd
+  servers:
+  - stmrana26ice1-app1-1-prd.eng.sfdc.net
+  - stmrana26ice1-app1-2-prd.eng.sfdc.net
+  - stmrana26ice1-app1-3-prd.eng.sfdc.net
+  - stmrana26ice1-app2-1-prd.eng.sfdc.net
+  - stmrana26ice1-app2-2-prd.eng.sfdc.net
+  - stmrana26ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na40-stmfa1-0-prd
+  servers:
+  - stmfana40ice1-app1-1-prd.eng.sfdc.net
+  - stmfana40ice1-app1-2-prd.eng.sfdc.net
+  - stmfana40ice1-app1-3-prd.eng.sfdc.net
+  - stmfana40ice1-app2-1-prd.eng.sfdc.net
+  - stmfana40ice1-app2-2-prd.eng.sfdc.net
+  - stmfana40ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na40-stmfb1-0-prd
+  servers:
+  - stmfbna40ice1-app1-1-prd.eng.sfdc.net
+  - stmfbna40ice1-app1-2-prd.eng.sfdc.net
+  - stmfbna40ice1-app1-3-prd.eng.sfdc.net
+  - stmfbna40ice1-app2-1-prd.eng.sfdc.net
+  - stmfbna40ice1-app2-2-prd.eng.sfdc.net
+  - stmfbna40ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na41-stmfa1-0-prd
+  servers:
+  - stmfana41ice1-app1-1-prd.eng.sfdc.net
+  - stmfana41ice1-app1-2-prd.eng.sfdc.net
+  - stmfana41ice1-app1-3-prd.eng.sfdc.net
+  - stmfana41ice1-app2-1-prd.eng.sfdc.net
+  - stmfana41ice1-app2-2-prd.eng.sfdc.net
+  - stmfana41ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na41-stmfb1-0-prd
+  servers:
+  - stmfbna41ice1-app1-1-prd.eng.sfdc.net
+  - stmfbna41ice1-app1-2-prd.eng.sfdc.net
+  - stmfbna41ice1-app1-3-prd.eng.sfdc.net
+  - stmfbna41ice1-app2-1-prd.eng.sfdc.net
+  - stmfbna41ice1-app2-2-prd.eng.sfdc.net
+  - stmfbna41ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na41-stmfc1-0-prd
+  servers:
+  - stmfcna41ice1-app1-1-prd.eng.sfdc.net
+  - stmfcna41ice1-app1-2-prd.eng.sfdc.net
+  - stmfcna41ice1-app1-3-prd.eng.sfdc.net
+  - stmfcna41ice1-app2-1-prd.eng.sfdc.net
+  - stmfcna41ice1-app2-2-prd.eng.sfdc.net
+  - stmfcna41ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na41-stmua1-0-prd
+  servers:
+  - stmuana41ice1-app1-1-prd.eng.sfdc.net
+  - stmuana41ice1-app1-2-prd.eng.sfdc.net
+  - stmuana41ice1-app1-3-prd.eng.sfdc.net
+  - stmuana41ice1-app2-1-prd.eng.sfdc.net
+  - stmuana41ice1-app2-2-prd.eng.sfdc.net
+  - stmuana41ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na41-stmub1-0-prd
+  servers:
+  - stmubna41ice1-app1-1-prd.eng.sfdc.net
+  - stmubna41ice1-app1-2-prd.eng.sfdc.net
+  - stmubna41ice1-app1-3-prd.eng.sfdc.net
+  - stmubna41ice1-app2-1-prd.eng.sfdc.net
+  - stmubna41ice1-app2-2-prd.eng.sfdc.net
+  - stmubna41ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na42-stmfa1-0-prd
+  servers:
+  - stmfana42ice1-app1-1-prd.eng.sfdc.net
+  - stmfana42ice1-app1-2-prd.eng.sfdc.net
+  - stmfana42ice1-app1-3-prd.eng.sfdc.net
+  - stmfana42ice1-app2-1-prd.eng.sfdc.net
+  - stmfana42ice1-app2-2-prd.eng.sfdc.net
+  - stmfana42ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na42-stmfb1-0-prd
+  servers:
+  - stmfbna42ice1-app1-1-prd.eng.sfdc.net
+  - stmfbna42ice1-app1-2-prd.eng.sfdc.net
+  - stmfbna42ice1-app1-3-prd.eng.sfdc.net
+  - stmfbna42ice1-app2-1-prd.eng.sfdc.net
+  - stmfbna42ice1-app2-2-prd.eng.sfdc.net
+  - stmfbna42ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na42-stmfc1-0-prd
+  servers:
+  - stmfcna42ice1-app1-1-prd.eng.sfdc.net
+  - stmfcna42ice1-app1-2-prd.eng.sfdc.net
+  - stmfcna42ice1-app1-3-prd.eng.sfdc.net
+  - stmfcna42ice1-app2-1-prd.eng.sfdc.net
+  - stmfcna42ice1-app2-2-prd.eng.sfdc.net
+  - stmfcna42ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na42-stmua1-0-prd
+  servers:
+  - stmuana42ice1-app1-1-prd.eng.sfdc.net
+  - stmuana42ice1-app1-2-prd.eng.sfdc.net
+  - stmuana42ice1-app1-3-prd.eng.sfdc.net
+  - stmuana42ice1-app2-1-prd.eng.sfdc.net
+  - stmuana42ice1-app2-2-prd.eng.sfdc.net
+  - stmuana42ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na42-stmub1-0-prd
+  servers:
+  - stmubna42ice1-app1-1-prd.eng.sfdc.net
+  - stmubna42ice1-app1-2-prd.eng.sfdc.net
+  - stmubna42ice1-app1-3-prd.eng.sfdc.net
+  - stmubna42ice1-app2-1-prd.eng.sfdc.net
+  - stmubna42ice1-app2-2-prd.eng.sfdc.net
+  - stmubna42ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na43-stmfa1-0-prd
+  servers:
+  - stmfana43ice1-app1-1-prd.eng.sfdc.net
+  - stmfana43ice1-app1-2-prd.eng.sfdc.net
+  - stmfana43ice1-app1-3-prd.eng.sfdc.net
+  - stmfana43ice1-app2-1-prd.eng.sfdc.net
+  - stmfana43ice1-app2-2-prd.eng.sfdc.net
+  - stmfana43ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na43-stmfb1-0-prd
+  servers:
+  - stmfbna43ice1-app1-1-prd.eng.sfdc.net
+  - stmfbna43ice1-app1-2-prd.eng.sfdc.net
+  - stmfbna43ice1-app1-3-prd.eng.sfdc.net
+  - stmfbna43ice1-app2-1-prd.eng.sfdc.net
+  - stmfbna43ice1-app2-2-prd.eng.sfdc.net
+  - stmfbna43ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na43-stmfc1-0-prd
+  servers:
+  - stmfcna43ice1-app1-1-prd.eng.sfdc.net
+  - stmfcna43ice1-app1-2-prd.eng.sfdc.net
+  - stmfcna43ice1-app1-3-prd.eng.sfdc.net
+  - stmfcna43ice1-app2-1-prd.eng.sfdc.net
+  - stmfcna43ice1-app2-2-prd.eng.sfdc.net
+  - stmfcna43ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na44-stmfa1-0-prd
+  servers:
+  - stmfana44ice1-app1-1-prd.eng.sfdc.net
+  - stmfana44ice1-app1-2-prd.eng.sfdc.net
+  - stmfana44ice1-app1-3-prd.eng.sfdc.net
+  - stmfana44ice1-app2-1-prd.eng.sfdc.net
+  - stmfana44ice1-app2-2-prd.eng.sfdc.net
+  - stmfana44ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na44-stmfb1-0-prd
+  servers:
+  - stmfbna44ice1-app1-1-prd.eng.sfdc.net
+  - stmfbna44ice1-app1-2-prd.eng.sfdc.net
+  - stmfbna44ice1-app1-3-prd.eng.sfdc.net
+  - stmfbna44ice1-app2-1-prd.eng.sfdc.net
+  - stmfbna44ice1-app2-2-prd.eng.sfdc.net
+  - stmfbna44ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na44-sitestmfc1-0-prd
+  servers:
+  - stmfcna44ice1-app1-1-prd.eng.sfdc.net
+  - stmfcna44ice1-app1-2-prd.eng.sfdc.net
+  - stmfcna44ice1-app1-3-prd.eng.sfdc.net
+  - stmfcna44ice1-app2-1-prd.eng.sfdc.net
+  - stmfcna44ice1-app2-2-prd.eng.sfdc.net
+  - stmfcna44ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na44-stmfc1-0-prd
+  servers:
+  - stmfcna44ice1-app1-1-prd.eng.sfdc.net
+  - stmfcna44ice1-app1-2-prd.eng.sfdc.net
+  - stmfcna44ice1-app1-3-prd.eng.sfdc.net
+  - stmfcna44ice1-app2-1-prd.eng.sfdc.net
+  - stmfcna44ice1-app2-2-prd.eng.sfdc.net
+  - stmfcna44ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na44-sitestmfd1-0-prd
+  servers:
+  - stmfdna44ice1-app1-1-prd.eng.sfdc.net
+  - stmfdna44ice1-app1-2-prd.eng.sfdc.net
+  - stmfdna44ice1-app1-3-prd.eng.sfdc.net
+  - stmfdna44ice1-app2-1-prd.eng.sfdc.net
+  - stmfdna44ice1-app2-2-prd.eng.sfdc.net
+  - stmfdna44ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na44-stmfd1-0-prd
+  servers:
+  - stmfdna44ice1-app1-1-prd.eng.sfdc.net
+  - stmfdna44ice1-app1-2-prd.eng.sfdc.net
+  - stmfdna44ice1-app1-3-prd.eng.sfdc.net
+  - stmfdna44ice1-app2-1-prd.eng.sfdc.net
+  - stmfdna44ice1-app2-2-prd.eng.sfdc.net
+  - stmfdna44ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na44-stmsa1-0-prd
+  servers:
+  - stmsana44ice1-app1-1-prd.eng.sfdc.net
+  - stmsana44ice1-app1-2-prd.eng.sfdc.net
+  - stmsana44ice1-app1-3-prd.eng.sfdc.net
+  - stmsana44ice1-app2-1-prd.eng.sfdc.net
+  - stmsana44ice1-app2-2-prd.eng.sfdc.net
+  - stmsana44ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na44-stmua1-0-prd
+  servers:
+  - stmuana44ice1-app1-1-prd.eng.sfdc.net
+  - stmuana44ice1-app1-2-prd.eng.sfdc.net
+  - stmuana44ice1-app1-3-prd.eng.sfdc.net
+  - stmuana44ice1-app2-1-prd.eng.sfdc.net
+  - stmuana44ice1-app2-2-prd.eng.sfdc.net
+  - stmuana44ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na44-stmub1-0-prd
+  servers:
+  - stmubna44ice1-app1-1-prd.eng.sfdc.net
+  - stmubna44ice1-app1-2-prd.eng.sfdc.net
+  - stmubna44ice1-app1-3-prd.eng.sfdc.net
+  - stmubna44ice1-app2-1-prd.eng.sfdc.net
+  - stmubna44ice1-app2-2-prd.eng.sfdc.net
+  - stmubna44ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na45-stmfa1-0-prd
+  servers:
+  - stmfana45ice1-app1-1-prd.eng.sfdc.net
+  - stmfana45ice1-app1-2-prd.eng.sfdc.net
+  - stmfana45ice1-app1-3-prd.eng.sfdc.net
+  - stmfana45ice1-app2-1-prd.eng.sfdc.net
+  - stmfana45ice1-app2-2-prd.eng.sfdc.net
+  - stmfana45ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na45-stmfb1-0-prd
+  servers:
+  - stmfbna45ice1-app1-1-prd.eng.sfdc.net
+  - stmfbna45ice1-app1-2-prd.eng.sfdc.net
+  - stmfbna45ice1-app1-3-prd.eng.sfdc.net
+  - stmfbna45ice1-app2-1-prd.eng.sfdc.net
+  - stmfbna45ice1-app2-2-prd.eng.sfdc.net
+  - stmfbna45ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na45-stmfc1-0-prd
+  servers:
+  - stmfcna45ice1-app1-1-prd.eng.sfdc.net
+  - stmfcna45ice1-app1-2-prd.eng.sfdc.net
+  - stmfcna45ice1-app1-3-prd.eng.sfdc.net
+  - stmfcna45ice1-app2-1-prd.eng.sfdc.net
+  - stmfcna45ice1-app2-2-prd.eng.sfdc.net
+  - stmfcna45ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na45-stmua1-0-prd
+  servers:
+  - stmuana45ice1-app1-1-prd.eng.sfdc.net
+  - stmuana45ice1-app1-2-prd.eng.sfdc.net
+  - stmuana45ice1-app1-3-prd.eng.sfdc.net
+  - stmuana45ice1-app2-1-prd.eng.sfdc.net
+  - stmuana45ice1-app2-2-prd.eng.sfdc.net
+  - stmuana45ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na45-stmub1-0-prd
+  servers:
+  - stmubna45ice1-app1-1-prd.eng.sfdc.net
+  - stmubna45ice1-app1-2-prd.eng.sfdc.net
+  - stmubna45ice1-app1-3-prd.eng.sfdc.net
+  - stmubna45ice1-app2-1-prd.eng.sfdc.net
+  - stmubna45ice1-app2-2-prd.eng.sfdc.net
+  - stmubna45ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na46-stmfb1-0-prd
+  servers:
+  - stmfbna46ice1-app1-1-prd.eng.sfdc.net
+  - stmfbna46ice1-app1-2-prd.eng.sfdc.net
+  - stmfbna46ice1-app1-3-prd.eng.sfdc.net
+  - stmfbna46ice1-app2-1-prd.eng.sfdc.net
+  - stmfbna46ice1-app2-2-prd.eng.sfdc.net
+  - stmfbna46ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na46-stmfc1-0-prd
+  servers:
+  - stmfcna46ice1-app1-1-prd.eng.sfdc.net
+  - stmfcna46ice1-app1-2-prd.eng.sfdc.net
+  - stmfcna46ice1-app1-3-prd.eng.sfdc.net
+  - stmfcna46ice1-app2-1-prd.eng.sfdc.net
+  - stmfcna46ice1-app2-2-prd.eng.sfdc.net
+  - stmfcna46ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na47-stmfa1-0-prd
+  servers:
+  - stmfana47ice1-app1-1-prd.eng.sfdc.net
+  - stmfana47ice1-app1-2-prd.eng.sfdc.net
+  - stmfana47ice1-app1-3-prd.eng.sfdc.net
+  - stmfana47ice1-app2-1-prd.eng.sfdc.net
+  - stmfana47ice1-app2-2-prd.eng.sfdc.net
+  - stmfana47ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na6-stmsa1-0-prd
+  servers:
+  - stmsana6ice1-app1-1-prd.eng.sfdc.net
+  - stmsana6ice1-app1-2-prd.eng.sfdc.net
+  - stmsana6ice1-app1-3-prd.eng.sfdc.net
+  - stmsana6ice1-app2-1-prd.eng.sfdc.net
+  - stmsana6ice1-app2-2-prd.eng.sfdc.net
+  - stmsana6ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na7-stmsa1-0-prd
+  servers:
+  - stmsana7ice1-app1-1-prd.eng.sfdc.net
+  - stmsana7ice1-app1-2-prd.eng.sfdc.net
+  - stmsana7ice1-app1-3-prd.eng.sfdc.net
+  - stmsana7ice1-app2-1-prd.eng.sfdc.net
+  - stmsana7ice1-app2-2-prd.eng.sfdc.net
+  - stmsana7ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na8-stmsa1-0-prd
+  servers:
+  - stmsana8ice1-app1-1-prd.eng.sfdc.net
+  - stmsana8ice1-app1-2-prd.eng.sfdc.net
+  - stmsana8ice1-app1-3-prd.eng.sfdc.net
+  - stmsana8ice1-app2-1-prd.eng.sfdc.net
+  - stmsana8ice1-app2-2-prd.eng.sfdc.net
+  - stmsana8ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: na9-stmsa1-0-prd
+  servers:
+  - stmsana9ice1-app1-1-prd.eng.sfdc.net
+  - stmsana9ice1-app1-2-prd.eng.sfdc.net
+  - stmsana9ice1-app1-3-prd.eng.sfdc.net
+  - stmsana9ice1-app2-1-prd.eng.sfdc.net
+  - stmsana9ice1-app2-2-prd.eng.sfdc.net
+  - stmsana9ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: stm-edge1-0-prd
+  servers:
+  - stm0public0-gateway1-1-prd.eng.sfdc.net
+  - stm0public0-gateway2-1-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: stmdashared2-pbsmatch1-0-prd
+  servers:
+  - stmda1shared2-pbsmatch1-1-prd.eng.sfdc.net
+  - stmda1shared2-pbsmatch1-2-prd.eng.sfdc.net
+  - stmda1shared2-pbsmatch1-3-prd.eng.sfdc.net
+  - stmda1shared2-pbsmatch2-1-prd.eng.sfdc.net
+  - stmda1shared2-pbsmatch2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: stmfbshared2-pbsmatch1-0-prd
+  servers:
+  - stmfb1shared2-pbsmatch1-1-prd.eng.sfdc.net
+  - stmfb1shared2-pbsmatch1-2-prd.eng.sfdc.net
+  - stmfb1shared2-pbsmatch1-3-prd.eng.sfdc.net
+  - stmfb1shared2-pbsmatch2-1-prd.eng.sfdc.net
+  - stmfb1shared2-pbsmatch2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: stmfcshared2-pbsmatch1-0-prd
+  servers:
+  - stmfc1shared2-pbsmatch1-1-prd.eng.sfdc.net
+  - stmfc1shared2-pbsmatch1-2-prd.eng.sfdc.net
+  - stmfc1shared2-pbsmatch1-3-prd.eng.sfdc.net
+  - stmfc1shared2-pbsmatch2-1-prd.eng.sfdc.net
+  - stmfc1shared2-pbsmatch2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: stmfdshared2-pbsmatch1-0-prd
+  servers:
+  - stmfd1shared2-pbsmatch1-1-prd.eng.sfdc.net
+  - stmfd1shared2-pbsmatch1-2-prd.eng.sfdc.net
+  - stmfd1shared2-pbsmatch1-3-prd.eng.sfdc.net
+  - stmfd1shared2-pbsmatch2-1-prd.eng.sfdc.net
+  - stmfd1shared2-pbsmatch2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: stmrashared2-pbsmatch1-0-prd
+  servers:
+  - stmra1shared2-pbsmatch1-1-prd.eng.sfdc.net
+  - stmra1shared2-pbsmatch1-2-prd.eng.sfdc.net
+  - stmra1shared2-pbsmatch1-3-prd.eng.sfdc.net
+  - stmra1shared2-pbsmatch2-1-prd.eng.sfdc.net
+  - stmra1shared2-pbsmatch2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: stmsashared2-pbsmatch1-0-prd
+  servers:
+  - stmsa1shared2-pbsmatch1-1-prd.eng.sfdc.net
+  - stmsa1shared2-pbsmatch1-2-prd.eng.sfdc.net
+  - stmsa1shared2-pbsmatch1-3-prd.eng.sfdc.net
+  - stmsa1shared2-pbsmatch2-1-prd.eng.sfdc.net
+  - stmsa1shared2-pbsmatch2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: stmshared2-pbsgeo2-0-prd
+  servers:
+  - stm0shared0-pbsgeo1-1-prd.eng.sfdc.net
+  - stm0shared0-pbsgeo1-2-prd.eng.sfdc.net
+  - stm0shared0-pbsgeo1-3-prd.eng.sfdc.net
+  - stm0shared0-pbsgeo2-1-prd.eng.sfdc.net
+  - stm0shared0-pbsgeo2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: stmuashared2-pbsmatch1-0-prd
+  servers:
+  - stmua1shared2-pbsmatch1-1-prd.eng.sfdc.net
+  - stmua1shared2-pbsmatch1-2-prd.eng.sfdc.net
+  - stmua1shared2-pbsmatch1-3-prd.eng.sfdc.net
+  - stmua1shared2-pbsmatch2-1-prd.eng.sfdc.net
+  - stmua1shared2-pbsmatch2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: stmubshared2-pbsmatch1-0-prd
+  servers:
+  - stmub1shared2-pbsmatch1-1-prd.eng.sfdc.net
+  - stmub1shared2-pbsmatch1-2-prd.eng.sfdc.net
+  - stmub1shared2-pbsmatch1-3-prd.eng.sfdc.net
+  - stmub1shared2-pbsmatch2-1-prd.eng.sfdc.net
+  - stmub1shared2-pbsmatch2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: test-stmda1-0-prd
+  servers:
+  - stmdacs4ice1-app1-1-prd.eng.sfdc.net
+  - stmdacs4ice1-app1-2-prd.eng.sfdc.net
+  - stmdacs4ice1-app1-3-prd.eng.sfdc.net
+  - stmdacs4ice1-app2-1-prd.eng.sfdc.net
+  - stmdacs4ice1-app2-2-prd.eng.sfdc.net
+  - stmdacs4ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: test-stmfb1-0-prd
+  servers:
+  - stmfbcs2ice1-app1-1-prd.eng.sfdc.net
+  - stmfbcs2ice1-app1-2-prd.eng.sfdc.net
+  - stmfbcs2ice1-app1-3-prd.eng.sfdc.net
+  - stmfbcs2ice1-app2-1-prd.eng.sfdc.net
+  - stmfbcs2ice1-app2-2-prd.eng.sfdc.net
+  - stmfbcs2ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: test-stmsa1-0-prd
+  servers:
+  - stmsacs2ice1-app1-1-prd.eng.sfdc.net
+  - stmsacs2ice1-app1-2-prd.eng.sfdc.net
+  - stmsacs2ice1-app1-3-prd.eng.sfdc.net
+  - stmsacs2ice1-app2-1-prd.eng.sfdc.net
+  - stmsacs2ice1-app2-2-prd.eng.sfdc.net
+  - stmsacs2ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: test-stmua1-0-prd
+  servers:
+  - stmuacs2ice1-app1-1-prd.eng.sfdc.net
+  - stmuacs2ice1-app1-2-prd.eng.sfdc.net
+  - stmuacs2ice1-app1-3-prd.eng.sfdc.net
+  - stmuacs2ice1-app2-1-prd.eng.sfdc.net
+  - stmuacs2ice1-app2-2-prd.eng.sfdc.net
+  - stmuacs2ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: test-stmub1-0-prd
+  servers:
+  - stmubcs2ice1-app1-1-prd.eng.sfdc.net
+  - stmubcs2ice1-app1-2-prd.eng.sfdc.net
+  - stmubcs2ice1-app1-3-prd.eng.sfdc.net
+  - stmubcs2ice1-app2-1-prd.eng.sfdc.net
+  - stmubcs2ice1-app2-2-prd.eng.sfdc.net
+  - stmubcs2ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
