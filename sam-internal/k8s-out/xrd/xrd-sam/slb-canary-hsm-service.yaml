@@ -2,6 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
+    slb.sfdc.net/cnames: |-
+      [
+       {
+        "cname": "kms-xrd.slb.sfdc.net"
+       }
+      ]
     slb.sfdc.net/name: slb-canary-hsm
     slb.sfdc.net/portconfigurations: |-
       [
@@ -11,7 +17,7 @@ metadata:
         "reencrypt": true,
         "targetport": 443,
         "tls": true,
-        "tlscertificate": "secret_service:slbTest:kmscert-xrd-20181029",
+        "tlscertificate": "secret_service:slbTest:kmscert-xrd-20181030-signed",
         "tlskey": "kms:1:2:4A4C6C75332A0547BB81D5263A9D2F939FB4590FF9AF15C5403A656F8BB913D2:8a2b0f29-6b17-4f1f-9019-5b5302814148"
        }
       ]
