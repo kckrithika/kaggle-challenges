@@ -31,6 +31,8 @@ system:
       ports:
       - containerPort: 7014
         name: http1
+      - containerPort: 7442
+        name: http1-tls
       - containerPort: 15373
         name: sherpa-adm
       livenessProbe:
@@ -61,7 +63,7 @@ system:
       - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
       # Non-namespaced, plaintext.
       - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP1
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -105,6 +107,8 @@ system:
       ports:
       - containerPort: 7014
         name: http1
+      - containerPort: 7442
+        name: http1-tls
       - containerPort: 15373
         name: sherpa-adm
       livenessProbe:
@@ -135,7 +139,7 @@ system:
       - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
       # Non-namespaced, plaintext.
       - -endpoint
-      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP1
       livenessProbe:
         initialDelaySeconds: 5
         exec:
