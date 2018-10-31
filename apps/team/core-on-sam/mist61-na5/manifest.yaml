@@ -161,7 +161,7 @@ system:
           mountPath: /home/sfdc/config_override
 
     - name: envoy-sidecar-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
+      image: sfci/casam/cyan-config:208cc2
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
@@ -184,7 +184,7 @@ system:
         periodSeconds: 5
 
     - name: envoy-sidecar
-      image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
+      image: sfci/servicelibs/sherpa-envoy:1.0.1
       env:
       - name: SFDC_ENVIRONMENT
         value: envoy-sidecar
