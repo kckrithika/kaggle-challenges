@@ -327,15 +327,6 @@ items:
           - containerPort: 8080
             name: intake-http
             protocol: TCP
-          readinessProbe:
-            failureThreshold: 10
-            httpGet:
-              path: /actuator/health
-              port: admin-port
-            initialDelaySeconds: 30
-            periodSeconds: 60
-            successThreshold: 1
-            timeoutSeconds: 30
           volumeMounts:
           - mountPath: /certs
             name: certs

@@ -181,17 +181,17 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
               successThreshold: 1,
               failureThreshold: 10,
             },
-            [if std.startsWith($.serviceName, "firefly-intake") then "readinessProbe"]: {
-              httpGet: {
-              path: '/actuator/health',
-              port: 'admin-port',
-              },
-              initialDelaySeconds: 30,
-              timeoutSeconds: 30,
-              periodSeconds: 60,
-              successThreshold: 1,
-              failureThreshold: 10,
-            },
+//            [if std.startsWith($.serviceName, "firefly-intake") then "readinessProbe"]: {
+//              httpGet: {
+//              path: '/actuator/health',
+//              port: 'admin-port',
+//              },
+//              initialDelaySeconds: 30,
+//              timeoutSeconds: 30,
+//              periodSeconds: 60,
+//              successThreshold: 1,
+//              failureThreshold: 10,
+//            },
           },
            ] + if $.serviceConf.dindEnabled == false then [] else [
           {
