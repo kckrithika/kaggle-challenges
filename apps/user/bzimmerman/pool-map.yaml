@@ -3,4 +3,6 @@ apps:
         - prd/prd-sam
     disco-pong:
         - prd/prd-sam
+    nozk-test-srv:
+        - prd/prd-sam
 
