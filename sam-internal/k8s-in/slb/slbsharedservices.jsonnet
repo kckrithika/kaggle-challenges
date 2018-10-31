@@ -45,7 +45,7 @@
                           "--servicesToLbOverride=" + servicesToLbOverride,
                           "--servicesNotToLbOverride=" + servicesNotToLbOverride,
                       ] else if $.dirSuffix == "slb-nginx-config-b" && slbflights.hsmCanaryEnabled then [
-                          "--servicesNotToLbOverride=slb-hsm-nginx-service",
+                          "--servicesNotToLbOverride=slb-canary-hsm-service",
                       ] else []) +
                  [
                      "--control.configProcSentinel=" + configProcSentinel,
