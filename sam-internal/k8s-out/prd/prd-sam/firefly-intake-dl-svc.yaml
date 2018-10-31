@@ -325,15 +325,6 @@ items:
           - containerPort: 8180
             name: intake-http
             protocol: TCP
-          readinessProbe:
-            failureThreshold: 10
-            httpGet:
-              path: /actuator/health
-              port: admin-port
-            initialDelaySeconds: 30
-            periodSeconds: 60
-            successThreshold: 1
-            timeoutSeconds: 30
           resources:
             limits:
               sam.sfdc.net/ip-address: "1"
