@@ -16,9 +16,6 @@ system:
         requests:
           cpu: "1"
           memory: 1Gi
-      volumeMounts:
-      - mountPath: /dw/data
-        name: maxmind-volume
       livenessProbe:
         httpGet:
           path: /manage/health
