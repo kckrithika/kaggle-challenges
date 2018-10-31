@@ -9,12 +9,22 @@ system:
     count: 1
     containers:
     - name: cre-control-plane
-      image: sfci/cre/cre-control-plane:1.4.0.0.master.99177aa.114
+      image: sfci/cre/cre-control-plane:1.4.1.0.master.2d5575c.115
       env:
         - name: SFDC_ENVIRONMENT
           value: prod
         - name: AUTHORIZED_USERS
           value: "morun@salesforce.com,morun@sbt2.salesforce.com,morun@sbt3.salesforce.com,mbahrenburg@salesforce.com,mbahrenburg@sbt2.salesforce.com,mbahrenburg@sbt3.salesforce.com,adray@salesforce.com,adray@sbt2.salesforce.com,adray@sbt3.salesforce.com"
+        - name: METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__ord.ajna_local__cre_metrics
+        - name: METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-ord.data.sfdc.net:9093
+        - name: METRICS_KAFKA_ENABLED
+          value: true
+        - name: MADDOG_CLIENT_KEYSTORE
+          value: maddog/maddog-client-keystore.json
+        - name: MADDOG_CLIENT_TRUSTSTORE
+          value: maddog/maddog-client-truststore.json
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets/cre-prod-gdot-private-key.json
         - name: GDOT_ENVIRONMENT
@@ -26,7 +36,7 @@ system:
         - name: FLOWSNAKE_ENDPOINT
           value: https://flowsnake-ord.data.sfdc.net
         - name: ENGINE_IMAGE_TAG
-          value: sfci/cre/cre-engine:1.4.0.0.master.246a837.572
+          value: sfci/cre/cre-engine:1.4.1.0.master.fb4c9ff.573
         - name: ENGINE_APPLICATION_NAME
           value: cre-engine
         - name: ENGINE_HBASE_DATACENTER
