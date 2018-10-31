@@ -176,6 +176,12 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                                 {
                                     name: "slb-nginx-proxy-hsm",
                                     image: slbimages.hsmnginx,
+                                    env: [
+                                        {
+                                            name: "KINGDOM",
+                                            value: configs.kingdom,
+                                        },
+                                    ],
                                     command: ["/runner.sh"],
                                     livenessProbe: {
                                         httpGet: {
