@@ -10,6 +10,7 @@ local configs = import "config.jsonnet";
     stockIpvsModules: (if slbimages.phaseNum > 7 then true else false),
     nginxPodFloat: (slbimages.phaseNum <= 2),
     proxyProtocolCanaryEnabled: (slbimages.hypersdn_build >= 1331),
+    envoyProxyEnabled: (slbimages.phaseNum <= 1),
     roleEnabled: (slbimages.phaseNum <= 1),
     slbCleanupTerminatingPods: (slbimages.hypersdn_build >= 1335),
     ipvsProcessorProxySelection: (slbimages.hypersdn_build >= 1337),
