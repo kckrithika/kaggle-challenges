@@ -22,11 +22,9 @@ local configs = import "config.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         #[xiao] Fix CI in prd
-        "prd,prd-samdev,snapshoter-mtls,hypersam": "sam-0002347-34f588d0",
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002342-8b25bcbe",
 
          #[rbhat] v2 diff fixes
-         "prd,prd-samdev,samapp-controller,hypersam": "sam-0002348-8a7fbf2d",
          "prd,prd-sam,watchdog-comparek8sresources,hypersam": "sam-0002348-8a7fbf2d",
 
          #[min.wang] Test Watchdog InitMetricsClient
@@ -50,8 +48,6 @@ for ce in [
                         "ph2-sam",
                         "phx-sam",
                         "prd-sam",
-                        "prd-samdev",
-                        "prd-samtest",
                         "prd-samtwo",
                         "prd-sdc",
                         "syd-sam",
@@ -85,7 +81,7 @@ for ce in [
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
             # IMPORTANT! Follow all steps from https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM
-            hypersam: "sam-0002342-8b25bcbe",
+            hypersam: "sam-0002349-aee54ee7",
             },
 
         ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
