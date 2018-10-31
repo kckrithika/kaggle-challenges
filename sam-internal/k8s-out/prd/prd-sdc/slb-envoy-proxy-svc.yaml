@@ -7,8 +7,23 @@ metadata:
       [
        {
         "lbtype": "http",
-        "port": 9115,
-        "targetport": 9115
+        "port": 7013,
+        "targetport": 7013
+       },
+       {
+        "lbtype": "http",
+        "port": 5442,
+        "targetport": 5442
+       },
+       {
+        "lbtype": "http",
+        "port": 7011,
+        "targetport": 7011
+       },
+       {
+        "lbtype": "http",
+        "port": 5443,
+        "targetport": 5443
        }
       ]
   labels:
@@ -17,10 +32,22 @@ metadata:
   namespace: sam-system
 spec:
   ports:
-  - name: slb-envoy-ingress-port
-    port: 9115
+  - name: slb-envoy-ingress-port-http1
+    port: 7013
     protocol: TCP
-    targetPort: 9115
+    targetPort: 7013
+  - name: slb-envoy-ingress-port-http1-tls
+    port: 5442
+    protocol: TCP
+    targetPort: 5442
+  - name: slb-envoy-ingress-port-http2
+    port: 7011
+    protocol: TCP
+    targetPort: 7011
+  - name: slb-envoy-ingress-port-http2-tls
+    port: 5443
+    protocol: TCP
+    targetPort: 5443
   selector:
     name: slb-envoy-zyzzyx
   type: NodePort

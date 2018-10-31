@@ -241,6 +241,13 @@
               "prd-sdc": ["slb-canary-hsm.sam-system.prd-sdc.prd.slb.sfdc.net"],
               "xrd-sam": ["slb-canary-hsm.sam-system.xrd-sam.xrd.slb.sfdc.net"],
             },
+
+        envoyEnabledVips:
+            set_value_to_all_in_list([], $.testEstates)
+            + set_value_to_all_in_list([], $.prodEstates)
+            + {
+              "prd-sdc": ["service-mesh-ingress.sam-system.prd-sdc.prd.slb.sfdc.net"],
+            },
     },
 
 
@@ -390,6 +397,7 @@
     nginxConfigReplicaCount: self.perCluster.nginxConfigReplicaCount[estate],
     ipvsReplicaCount: self.perCluster.ipvsReplicaCount[estate],
     hsmEnabledVips: self.perCluster.hsmEnabledVips[estate],
+    envoyEnabledVips: self.perCluster.envoyEnabledVips[estate],
 
     sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
     sdn_watchdog_emailrec: "slb@salesforce.com",
