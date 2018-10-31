@@ -5,12 +5,12 @@ system:
     count: 1
     containers:
     - name: accessprobe-prd-frontend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/btsai/accessprobe:20181031.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/btsai/accessprobe:20181031.2
       ports:
       - containerPort: 8080
       livenessProbe:
         httpGet:
-          path: /
+          path: /ping
           port: 8080
   loadbalancers:
   - lbname: accessprobe-prd-lb
