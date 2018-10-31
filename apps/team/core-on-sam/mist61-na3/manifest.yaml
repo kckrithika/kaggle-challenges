@@ -200,7 +200,7 @@ system:
 
     containers:
     - name: sequencer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:c9f6a3
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/casam/sequencer:c9f6a3
 
       env:
         - name: USE_SWITCHBOARD
