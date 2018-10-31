@@ -39,7 +39,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001337-b4f9fb89
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001340-ba6592f7
         name: slb-nginx-reporter
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -56,6 +56,7 @@ spec:
           name: sfdchosts
       nodeSelector:
         pool: xrd-slb
+      terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
           path: /etc/pki_service
