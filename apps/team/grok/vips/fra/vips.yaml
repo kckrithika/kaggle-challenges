@@ -1,0 +1,14 @@
+- lbname: ops0-grok1-0-fra
+  customlbname: ops0-grok1-0-fra
+  servers:
+  - ops0-grok5-1-fra.ops.sfdc.net
+  - ops0-grok2-1-fra.ops.sfdc.net
+  - ops0-grok1-1-fra.ops.sfdc.net
+  - ops0-grok4-1-fra.ops.sfdc.net
+  - ops0-grok3-1-fra.ops.sfdc.net
+  ports:
+  - port: 443
+    targetport: 4200
+    lbtype: tcp
+    healthport: 4200
+    lbalgorithm: roundrobin
