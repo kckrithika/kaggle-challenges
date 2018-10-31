@@ -10,7 +10,7 @@ local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: slbconfigs.hsmN
 
 local certDirs = ["cert1", "cert2"];
 
-if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
+if slbflights.hsmCanaryEnabled then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: slbconfigs.hsmNginxProxyName,
