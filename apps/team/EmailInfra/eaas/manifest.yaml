@@ -5,10 +5,11 @@ system:
     - emailinfrastructure@salesforce.com
   functions:
   - name: eaas
-    count: 7 
+    count: 7
+    terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.7-82864e291fdf6fa7330e41f73527e7d3244cffae
+      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.12-7b5f9e2e519875e7d65d510fc8fff55d007dcd3d
       ports:
       - name: grpc
         containerPort: 7020
