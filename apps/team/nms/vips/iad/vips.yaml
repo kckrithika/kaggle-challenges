@@ -1,0 +1,16 @@
+- lbname: dvaalarmservice1-0-iad
+  customlbname: dvaalarmservice1-0-iad
+  servers:
+  - ops0-nms2-2-iad.ops.sfdc.net
+  - ops0-nms3-1-iad.ops.sfdc.net
+  - ops0-nms1-1-iad.ops.sfdc.net
+  - ops0-nms2-1-iad.ops.sfdc.net
+  - ops0-nms3-2-iad.ops.sfdc.net
+  - ops0-nms1-2-iad.ops.sfdc.net
+  ports:
+  - port: 8080
+    targetport: 443
+    lbtype: tcp
+    healthport: 443
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
