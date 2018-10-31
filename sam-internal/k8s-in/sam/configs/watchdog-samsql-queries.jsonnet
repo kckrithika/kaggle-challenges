@@ -91,16 +91,18 @@
 # =====SqlKubeApiNode=========
     {
         name: "SqlKubeApiNode",
-        instructions: "The following minion pools have multiple kubeApi nodes down in Production requiring immediate attention. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
+        instructions: "The following minion pools have kubeApi nodes down in Production requiring immediate attention. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
         alertThreshold: "20m",
         alertFrequency: "24h",
         watchdogFrequency: "5m",
         alertProfile: "sam",
         alertAction: "pagerduty",
-        sql: "Select Name,
-              ControlEstate,
-              MinionPool,
-              Ready FROM nodeDetailView WHERE Name LIKE '%kubeapi%' AND Ready !='True' AND KINGDOM != 'PRD' AND KINGDOM != 'UNK'",
+        sql: "SELECT Name,
+                ControlEstate,
+                MinionPool,
+                Ready
+              FROM nodeDetailView
+              WHERE Name LIKE '%kubeapi%' AND Ready !='True' AND KINGDOM != 'PRD' AND KINGDOM != 'XRD'",
         },
 
 # =====
