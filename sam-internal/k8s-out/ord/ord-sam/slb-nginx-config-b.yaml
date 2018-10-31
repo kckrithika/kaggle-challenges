@@ -112,7 +112,7 @@ spec:
           name: sfdchosts
       - command:
         - /runner.sh
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000047-de472943
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000050-7c6f4c0a
         livenessProbe:
           httpGet:
             path: /
@@ -131,6 +131,8 @@ spec:
           name: cert2
         - mountPath: /customerCerts
           name: customer-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
       - command:
         - /sdn/slb-nginx-data
         - --target=/host/data/slb/nginx/config
