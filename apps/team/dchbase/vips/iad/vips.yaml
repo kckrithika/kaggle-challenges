@@ -1,0 +1,55 @@
+- lbname: dchbase-dchbase-master1-0-iad
+  customlbname: dchbase-dchbase-master1-0-iad
+  servers:
+  - dchbase0a-mnds2-3-iad.ops.sfdc.net
+  - dchbase0a-mnds5-3-iad.ops.sfdc.net
+  - dchbase0a-mnds5-2-iad.ops.sfdc.net
+  - dchbase0a-mnds3-2-iad.ops.sfdc.net
+  - dchbase0a-mnds4-3-iad.ops.sfdc.net
+  - dchbase0a-mnds2-2-iad.ops.sfdc.net
+  - dchbase0a-mnds5-1-iad.ops.sfdc.net
+  - dchbase0a-mnds4-2-iad.ops.sfdc.net
+  - dchbase0a-mnds2-1-iad.ops.sfdc.net
+  - dchbase0a-mnds1-1-iad.ops.sfdc.net
+  - dchbase0a-mnds1-2-iad.ops.sfdc.net
+  - dchbase0a-mnds4-1-iad.ops.sfdc.net
+  - dchbase0a-mnds3-1-iad.ops.sfdc.net
+  - dchbase0a-mnds3-3-iad.ops.sfdc.net
+  - dchbase0a-mnds1-3-iad.ops.sfdc.net
+  ports:
+  - port: 8081
+    targetport: 8081
+    lbtype: tcp
+    healthport: 8081
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+- lbname: dchbase-dchbase-qnds1-0-iad
+  customlbname: dchbase-dchbase-qnds1-0-iad
+  servers:
+  - dchbase0a-qnds3-2-iad.ops.sfdc.net
+  - dchbase0a-qnds1-3-iad.ops.sfdc.net
+  - dchbase0a-qnds1-2-iad.ops.sfdc.net
+  - dchbase0a-qnds5-4-iad.ops.sfdc.net
+  - dchbase0a-qnds4-1-iad.ops.sfdc.net
+  - dchbase0a-qnds3-3-iad.ops.sfdc.net
+  - dchbase0a-qnds1-4-iad.ops.sfdc.net
+  - dchbase0a-qnds2-4-iad.ops.sfdc.net
+  - dchbase0a-qnds4-4-iad.ops.sfdc.net
+  - dchbase0a-qnds5-1-iad.ops.sfdc.net
+  - dchbase0a-qnds4-2-iad.ops.sfdc.net
+  - dchbase0a-qnds2-2-iad.ops.sfdc.net
+  - dchbase0a-qnds3-1-iad.ops.sfdc.net
+  - dchbase0a-qnds5-2-iad.ops.sfdc.net
+  - dchbase0a-qnds2-1-iad.ops.sfdc.net
+  - dchbase0a-qnds3-4-iad.ops.sfdc.net
+  - dchbase0a-qnds4-3-iad.ops.sfdc.net
+  - dchbase0a-qnds1-1-iad.ops.sfdc.net
+  - dchbase0a-qnds2-3-iad.ops.sfdc.net
+  - dchbase0a-qnds5-3-iad.ops.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8765
+    lbtype: tcp
+    healthport: 8765
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
