@@ -6,6 +6,7 @@ system:
     count: 1
     labels:
       app: ordering-envoy-tls
+      prat-test: true
     containers:
     - name: ordering
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/236/
