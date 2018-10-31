@@ -5,7 +5,7 @@ apiVersion: v1
 system:
   functions:
   - name: disco-pong
-    count: 1
+    count: 0
     containers:
     - name: disco-pong-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bzimmerman/disco-pong:bzimmerman-20180706-8b70aaf
