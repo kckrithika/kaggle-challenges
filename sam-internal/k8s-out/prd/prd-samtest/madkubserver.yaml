@@ -90,8 +90,8 @@ spec:
         - prd
         - --ca-folder
         - /maddog-certs/ca
-        - --cert-folders
-        - madkubInternalCert:/certs/
+        - --run-init-for-refresher-mode
+        - "false"
         env:
         - name: MADKUB_NODENAME
           valueFrom:

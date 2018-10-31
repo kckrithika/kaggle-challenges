@@ -130,6 +130,11 @@
     madkubRefreshContainer(certDirs):: $.madkubInitContainer(certDirs) {
         args+: [
             "--refresher",
+        ] +
+        if configs.estate == "prd-samtest" then [
+            "--run-init-for-refresher-mode",
+            "false",
+        ] else [
             "--run-init-for-refresher-mode",
         ],
         name: "madkub-refresher",
