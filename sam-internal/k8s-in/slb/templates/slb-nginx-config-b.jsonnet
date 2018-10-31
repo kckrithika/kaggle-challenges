@@ -7,6 +7,7 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: "slb-nginx-config-b" };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
+local slbbasenginxproxy = (import "slb-base-nginx-proxy.libsonnet") + { dirSuffix:: slbconfigs.nginxProxyName };
 
 local certDirs = ["cert1", "cert2"];
 
@@ -69,7 +70,9 @@ local nginxAffinity = (if slbflights.nginxPodFloat then {
 
 local nginxReloadSentinelParam = "--control.nginxReloadSentinel=" + slbconfigs.slbDir + "/nginx/config/nginx.marker";
 
-if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
+if slbconfigs.isSlbEstate && slbflights.nginxBaseTemplateEnabled then
+  slbbasenginxproxy.slbBaseNginxProxyDeployment(slbconfigs.nginxProxyName, slbconfigs.nginxConfigReplicaCount, nginxAffinity, slbimages.slbnginx) {}
+  else if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
             name: slbconfigs.nginxProxyName,
