@@ -5,7 +5,7 @@ apiVersion: v1
 system:
   functions:
   - name: disco-ping
-    count: 1
+    count: 0
     containers:
     - name: disco-ping-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bzimmerman/disco-ping:bzimmerman-20180706-b91dad2
