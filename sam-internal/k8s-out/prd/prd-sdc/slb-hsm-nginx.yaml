@@ -114,7 +114,10 @@ spec:
           name: sfdchosts
       - command:
         - /runner.sh
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx-kms:v-0000053-2a3c3f79
+        env:
+        - name: KINGDOM
+          value: prd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx-kms:v-0000054-f9b0050a
         livenessProbe:
           httpGet:
             path: /
