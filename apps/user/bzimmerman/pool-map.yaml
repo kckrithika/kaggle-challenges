@@ -5,4 +5,8 @@ apps:
         - prd/prd-sam
     nozk-test-srv:
         - prd/prd-sam
+    nozk-test-one:
+        - prd/prd-sam
+    nozk-test-impatient:
+        - prd/prd-sam
 
