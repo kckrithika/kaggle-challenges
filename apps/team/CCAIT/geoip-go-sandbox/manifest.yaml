@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - servicemesh@salesforce.com
+    - drichelson@salesforce.com
   functions:
   - name: geoip-go
     count: 3
@@ -22,7 +22,7 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: geoip-go
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-go:0.0.6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-go:0.0.8
       resources:
         limits:
           cpu: "1"
