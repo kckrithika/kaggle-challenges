@@ -1,0 +1,24 @@
+- lbname: ops0-puppet1-0-iad
+  customlbname: ops0-puppet1-0-iad
+  servers:
+  - ops0-puppet2-1-iad.ops.sfdc.net
+  - ops0-puppet1-1-iad.ops.sfdc.net
+  ports:
+  - port: 8140
+    targetport: 8140
+    lbtype: tcp
+    healthport: 8140
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
+- lbname: ops0-riakdb1-0-iad
+  customlbname: ops0-riakdb1-0-iad
+  servers:
+  - ops0-riakdb2-1-iad.ops.sfdc.net
+  - ops0-riakdb1-1-iad.ops.sfdc.net
+  ports:
+  - port: 8098
+    targetport: 8098
+    lbtype: tcp
+    healthport: 8098
+    healthprotocol: tcp
+    lbalgorithm: roundrobin
