@@ -69,7 +69,7 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: blue
+          value: green
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
@@ -200,7 +200,7 @@ system:
 
     containers:
     - name: sequencer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:k4a-dbpwd-7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:c9f6a3
 
       env:
         - name: USE_SWITCHBOARD
@@ -221,9 +221,9 @@ system:
           value: sneezy
 #          value: happy
         - name: CURRENT_RELEASE_VERSION
-          value: green
-        - name: NEW_RELEASE_VERSION
           value: blue
+        - name: NEW_RELEASE_VERSION
+          value: green
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 1
@@ -235,8 +235,6 @@ system:
           value: 1
         - name: UNLOCK_DWARF
           value: 1
-#        - name: K4A_OUTPUT
-#          value: /tmp/files/repo/user.properties
         - name: SNOWWHITE_PWD
           value: rotate
         - name: MADDOG_CLIENT
@@ -245,6 +243,16 @@ system:
           value: mist.mist61.prd.na3.cyan
         - name: CASAM_SUPERPOD
           value: sp2
+        - name: SWITCHBOARD_HOST
+          value: shared2-samminioncoreapp3-4-prd.eng.sfdc.net
+        - name: SWITCHBOARD_PORT
+          value: 13065
+        - name: SWITCHBOARD_TLS_ENABLED
+          value: true
+        - name: DNS_OVERRIDE_ENABLED
+          value: true
+        - name: DNS_OVERRIDE
+          value: switchboard-casam-tls-poc.core-on-sam.sfdc-role
 
       livenessProbe:
         httpGet:
