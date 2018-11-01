@@ -20,7 +20,7 @@ system:
 
     containers:
     - name: dfs-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.12.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.14.0
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
@@ -124,3 +124,5 @@ system:
     ports:
     - port: 7022
       targetport: 7022
+    - port: 15372
+      targetport: 15372
