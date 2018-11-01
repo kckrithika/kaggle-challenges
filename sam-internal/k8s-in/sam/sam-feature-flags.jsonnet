@@ -46,7 +46,7 @@ local utils = import "util_functions.jsonnet";
         configs.estate == "prd-sdc" ||
         configs.estate == "xrd-sam",
 
-     syntheticwdPagerDutyEnabled: !utils.is_gia(configs.kingdom) && !utils.is_public_cloud(configs.kingdom) && utils.is_production(configs.kingdom),
+     syntheticwdPagerDutyEnabled: true,
 
      maddogCopyTestCA: (if configs.kingdom == "prd" then true),
 
