@@ -1,0 +1,41 @@
+# created by scone-gen fccdd18c
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: service-mesh-einstein
+    count: 1
+    containers:
+    - name: service-mesh-einstein-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash.das/service-mesh-einstein:shaktiprakash.das-20181101-5ed1216
+      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      ports:
+      - containerPort: 8080
+        name: scone-http
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvolservice
+
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+    volumes:
+    - name: logvolservice
+      hostPath:
+        path: /home/sfdc-scone-service-mesh-einstein/logs
+  loadbalancers:
+  - function: service-mesh-einstein
+    lbname: sme
+    slbEnabled: true
+    ports:
+    - port: 8080
+      targetport: 8080

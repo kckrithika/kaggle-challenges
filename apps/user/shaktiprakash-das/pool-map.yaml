@@ -1,4 +1,6 @@
 apps:
+  service-mesh-einstein:
+    - prd/prd-sam
 #  switchboard:
 #    - prd/prd-sam
 #  geoip-tls:
