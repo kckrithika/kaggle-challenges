@@ -2,7 +2,7 @@ apiVersion: v1
 
 system: 
   functions: 
-    - name: prd-na44-stm-search
+    - name: na44-search-prd
       type: stateful-set
       count: 3
       containers:  
