@@ -3,12 +3,14 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile };
 
 local certDirs = ["cert1"];
-if configs.estate == "prd-sam" then {
+
+if configs.estate == "prd-sam" then
+{
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
         labels: {
-            name: "snapshot-consumer-prd-mtls-test",
+            name: "snapshot-consumer-prd-mtls",
         } + configs.ownerLabel.sam,
         name: "snapshot-consumer-prd-mtls",
         namespace: "sam-system",
@@ -42,9 +44,10 @@ if configs.estate == "prd-sam" then {
             },
             spec: configs.specWithKubeConfigAndMadDog {
                 dnsPolicy: "ClusterFirst",
-                containers: [{
-                    name: "snapshot-consumer-prd-mtls",
-                    image: samimages.hypersam,
+                containers: [
+                    configs.containerWithKubeConfigAndMadDog {
+                        name: "snapshot-consumer-prd-mtls",
+                        image: samimages.hypersam,
                     command: [
                         "/sam/snapshotconsumer",
                         "--config=/config/snapshot-consumer-prd-mtls.json",
@@ -60,28 +63,26 @@ if configs.estate == "prd-sam" then {
                             name: "mysql-ssc-prd",
                             readOnly: true,
                         },
-                        ] + madkub.madkubSamCertVolumeMounts(certDirs),
-                }] +
-                [madkub.madkubRefreshContainer(certDirs)],
+] + madkub.madkubSamCertVolumeMounts(certDirs),
+                },
+] + [madkub.madkubRefreshContainer(certDirs)],
                 volumes+: [
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     configs.config_volume("snapshot-consumer-prd-mtls"),
-                            {
+                    {
                               name: "mysql-ssc-prd",
                               secret: {
                                   defaultMode: 420,
                                   secretName: "mysql-ssc-prd",
-                                },
+                               },
                             },
                 ] + madkub.madkubSamCertVolumes(certDirs)
                   + madkub.madkubSamMadkubVolumes(),
                 initContainers+: [
                     madkub.madkubInitContainer(certDirs),
                 ],
-                nodeSelector: {
-                              } +
-                              if configs.kingdom == "prd" then {
+                nodeSelector: if configs.kingdom == "prd" then {
                                   master: "true",
                               } else {
                                   pool: configs.estate,

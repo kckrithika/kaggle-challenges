@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: snapshot-consumer-prd-mtls-test
+    name: snapshot-consumer-prd-mtls
     sam.data.sfdc.net/owner: sam
   name: snapshot-consumer-prd-mtls
   namespace: sam-system
@@ -37,9 +37,16 @@ spec:
         - --config=/config/snapshot-consumer-prd-mtls.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -v=3
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002336-6a8184c1
         name: snapshot-consumer-prd-mtls
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
         - mountPath: /config
