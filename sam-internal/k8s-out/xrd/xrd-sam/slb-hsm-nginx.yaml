@@ -59,19 +59,10 @@ spec:
                 operator: In
                 values:
                 - slb-hsm-nginx
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: name
-                operator: In
-                values:
-                - slb-hsm-nginx
-            topologyKey: kubernetes.io/hostname
       containers:
       - command:
         - /sdn/slb-nginx-config
-        - --target=/host/data/slb/nginx/config
+        - --target=/host/data/slb/slb-hsm-nginx/config
         - --netInterfaceName=eth0
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-hsm-nginx
@@ -82,9 +73,7 @@ spec:
         - --httpconfig.trustedProxies=0.0.0.0/0
         - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
         - --client.dialSocket=true
-        - --enableSimpleDiff=true
-        - --newConfigGenerator=true
-        - --control.nginxReloadSentinel=/host/data/slb/nginx/config/nginx.marker
+        - --control.nginxReloadSentinel=/host/data/slb/slb-hsm-nginx/config/nginx.marker
         - --httpconfig.custCertsDir=/customerCerts
         - --checkDuplicateVips=true
         env:
@@ -95,14 +84,14 @@ spec:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001340-ba6592f7
-        name: slb-nginx-config-hsm
+        name: slb-nginx-config
         ports:
         - containerPort: 32146
           name: slb-nginx-port
         securityContext:
           privileged: true
         volumeMounts:
-        - mountPath: /host/data/slb/nginx/config
+        - mountPath: /host/data/slb/slb-hsm-nginx/config
           name: var-target-config-volume
         - mountPath: /host/data/slb
           name: var-slb-volume
@@ -122,23 +111,23 @@ spec:
             port: 12080
           initialDelaySeconds: 15
           periodSeconds: 10
-        name: slb-nginx-proxy-hsm
+        name: slb-nginx-proxy
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
+        - mountPath: /customerCerts
+          name: customer-certs
         - mountPath: /cert1
           name: cert1
         - mountPath: /cert2
           name: cert2
-        - mountPath: /customerCerts
-          name: customer-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
       - command:
         - /sdn/slb-nginx-data
-        - --target=/host/data/slb/nginx/config
+        - --target=/host/data/slb/slb-hsm-nginx/config
         - --connPort=9125
         image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001340-ba6592f7
         livenessProbe:
@@ -149,6 +138,8 @@ spec:
           periodSeconds: 3
         name: slb-nginx-data
         volumeMounts:
+        - mountPath: /host/data/slb/slb-hsm-nginx/config
+          name: var-target-config-volume
         - mountPath: /host/data/slb
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-hsm-nginx
@@ -236,12 +227,12 @@ spec:
         image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001340-ba6592f7
         name: slb-cert-checker
         volumeMounts:
-        - mountPath: /host/data/slb/nginx/config
-          name: var-target-config-volume
         - mountPath: /cert1
           name: cert1
         - mountPath: /cert2
           name: cert2
+        - mountPath: /host/data/slb/slb-hsm-nginx/config
+          name: var-target-config-volume
         - mountPath: /host/data/slb
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-hsm-nginx
@@ -441,7 +432,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
         - --client.dialSocket=true
-        - --control.nginxReloadSentinel=/host/data/slb/nginx/config/nginx.marker
+        - --control.nginxReloadSentinel=/host/data/slb/slb-hsm-nginx/config/nginx.marker
         env:
         - name: NODE_NAME
           valueFrom:
@@ -450,12 +441,12 @@ spec:
         image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001340-ba6592f7
         name: slb-cert-deployer
         volumeMounts:
-        - mountPath: /host/data/slb/nginx/config
-          name: var-target-config-volume
         - mountPath: /cert1
           name: cert1
         - mountPath: /cert2
           name: cert2
+        - mountPath: /host/data/slb/slb-hsm-nginx/config
+          name: var-target-config-volume
         - mountPath: /customerCerts
           name: customer-certs
         - mountPath: /host/data/slb
@@ -507,17 +498,26 @@ spec:
           name: tokens
       volumes:
       - hostPath:
-          path: /data/slb/nginx/config
-        name: var-target-config-volume
-      - hostPath:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
           path: /data/slb/logs/slb-hsm-nginx
         name: var-logs-volume
+      - hostPath:
+          path: /data/slb/config/slb-hsm-nginx
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs/slb-hsm-nginx/cleanup
+        name: var-cleanup-logs-volume
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /sbin
+        name: sbin-volume
       - emptyDir:
           medium: Memory
         name: cert1
@@ -528,23 +528,14 @@ spec:
           medium: Memory
         name: tokens
       - hostPath:
+          path: /data/slb/slb-hsm-nginx/config
+        name: var-target-config-volume
+      - hostPath:
           path: /etc/pki_service
         name: maddog-certs
       - hostPath:
-          path: /sbin
-        name: sbin-volume
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
-      - hostPath:
           path: /data/certs
         name: certs
-      - hostPath:
-          path: /data/slb/config/slb-hsm-nginx
-        name: var-config-volume
-      - hostPath:
-          path: /data/slb/logs/slb-hsm-nginx/cleanup
-        name: var-cleanup-logs-volume
       - emptyDir:
           medium: Memory
         name: customer-certs
