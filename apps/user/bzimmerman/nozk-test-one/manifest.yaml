@@ -26,7 +26,7 @@ system:
       - mountPath: /home/scone/logs
         name: logvolservice
       - mountPath: /client-certs
-        name: nozk-test-client-cert
+        name: nozk-test-one-client-cert
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822

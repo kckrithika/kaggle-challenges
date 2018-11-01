@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: nozk-test-impatient
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bzimmerman/no-zk-test:1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bzimmerman/no-zk-test-impatient:1
       args:
       - --deadline.seconds=30
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
@@ -28,7 +28,7 @@ system:
       - mountPath: /home/scone/logs
         name: logvolservice
       - mountPath: /client-certs
-        name: nozk-test-client-cert
+        name: nozk-test-impatient-client-cert
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
