@@ -1916,7 +1916,7 @@ items:
             value: manifests.pr
           - name: EVAL_RESULT_MONITOR_QUEUE
             value: evalresultmonitor.manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-evalresultmonitor:201
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-evalresultmonitor:224
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
