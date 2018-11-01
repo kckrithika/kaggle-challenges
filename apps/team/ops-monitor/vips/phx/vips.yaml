@@ -1,0 +1,60 @@
+- lbname: monitor3-0-phx
+  customlbname: monitor3-0-phx
+  servers:
+  - ops0-monitor1-3-phx.ops.sfdc.net
+  - ops0-monitor3-3-phx.ops.sfdc.net
+  - ops0-monitor2-3-phx.ops.sfdc.net
+  - ops0-monitor4-3-phx.ops.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthpath: /cgi-bin/health.cgi
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: monitor1-0-phx
+  customlbname: monitor1-0-phx
+  servers:
+  - ops0-monitor3-1-phx.ops.sfdc.net
+  - ops0-monitor4-1-phx.ops.sfdc.net
+  - ops0-monitor1-1-phx.ops.sfdc.net
+  - ops0-monitor2-1-phx.ops.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthpath: /cgi-bin/health.cgi
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: monitor4-0-phx
+  customlbname: monitor4-0-phx
+  servers:
+  - ops0-monitor1-4-phx.ops.sfdc.net
+  - ops0-monitor4-4-phx.ops.sfdc.net
+  - ops0-monitor2-4-phx.ops.sfdc.net
+  - ops0-monitor3-4-phx.ops.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthpath: /cgi-bin/health.cgi
+    healthprotocol: http
+    lbalgorithm: roundrobin
+- lbname: monitor2-0-phx
+  customlbname: monitor2-0-phx
+  servers:
+  - ops0-monitor4-2-phx.ops.sfdc.net
+  - ops0-monitor3-2-phx.ops.sfdc.net
+  - ops0-monitor2-2-phx.ops.sfdc.net
+  - ops0-monitor1-2-phx.ops.sfdc.net
+  ports:
+  - port: 80
+    targetport: 80
+    lbtype: tcp
+    healthport: 80
+    healthpath: /cgi-bin/health.cgi
+    healthprotocol: http
+    lbalgorithm: roundrobin
