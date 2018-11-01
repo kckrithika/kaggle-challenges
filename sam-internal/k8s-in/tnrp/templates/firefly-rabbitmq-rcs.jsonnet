@@ -205,7 +205,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
             },
             readinessProbe: {
               httpGet: {
-                path: '/actuator/health',
+                path: '/actuator',
                 port: 'admin-port',
               },
               initialDelaySeconds: 60,

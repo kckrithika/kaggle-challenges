@@ -119,7 +119,7 @@ spec:
         readinessProbe:
           failureThreshold: 10
           httpGet:
-            path: /actuator/health
+            path: /actuator
             port: admin-port
           initialDelaySeconds: 60
           periodSeconds: 30
