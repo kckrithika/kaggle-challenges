@@ -1883,3 +1883,225 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+- lbname: login-stmfa1-0-prd
+  servers:
+  - stmfana44ice1-app1-1-prd.eng.sfdc.net
+  - stmfana44ice1-app1-2-prd.eng.sfdc.net
+  - stmfana44ice1-app1-3-prd.eng.sfdc.net
+  - stmfana44ice1-app2-1-prd.eng.sfdc.net
+  - stmfana44ice1-app2-2-prd.eng.sfdc.net
+  - stmfana44ice1-app2-3-prd.eng.sfdc.net
+  - stmfana43ice1-app1-1-prd.eng.sfdc.net
+  - stmfana43ice1-app1-2-prd.eng.sfdc.net
+  - stmfana43ice1-app1-3-prd.eng.sfdc.net
+  - stmfana43ice1-app2-1-prd.eng.sfdc.net
+  - stmfana43ice1-app2-2-prd.eng.sfdc.net
+  - stmfana43ice1-app2-3-prd.eng.sfdc.net
+  - stmfana45ice1-app1-1-prd.eng.sfdc.net
+  - stmfana45ice1-app1-2-prd.eng.sfdc.net
+  - stmfana45ice1-app1-3-prd.eng.sfdc.net
+  - stmfana45ice1-app2-1-prd.eng.sfdc.net
+  - stmfana45ice1-app2-2-prd.eng.sfdc.net
+  - stmfana45ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 60
+    tls: true
+    addheaders:
+    - name: "SFDC-LOGIN-LOAD-BALANCER"
+      value: "TRUE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: login-stmfb1-0-prd
+  servers:
+  - stmfbna44ice1-app1-1-prd.eng.sfdc.net
+  - stmfbna44ice1-app1-2-prd.eng.sfdc.net
+  - stmfbna44ice1-app1-3-prd.eng.sfdc.net
+  - stmfbna44ice1-app2-1-prd.eng.sfdc.net
+  - stmfbna44ice1-app2-2-prd.eng.sfdc.net
+  - stmfbna44ice1-app2-3-prd.eng.sfdc.net
+  - stmfbna43ice1-app1-1-prd.eng.sfdc.net
+  - stmfbna43ice1-app1-2-prd.eng.sfdc.net
+  - stmfbna43ice1-app1-3-prd.eng.sfdc.net
+  - stmfbna43ice1-app2-1-prd.eng.sfdc.net
+  - stmfbna43ice1-app2-2-prd.eng.sfdc.net
+  - stmfbna43ice1-app2-3-prd.eng.sfdc.net
+  - stmfbna45ice1-app1-1-prd.eng.sfdc.net
+  - stmfbna45ice1-app1-2-prd.eng.sfdc.net
+  - stmfbna45ice1-app1-3-prd.eng.sfdc.net
+  - stmfbna45ice1-app2-1-prd.eng.sfdc.net
+  - stmfbna45ice1-app2-2-prd.eng.sfdc.net
+  - stmfbna45ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 60
+    tls: true
+    addheaders:
+    - name: "SFDC-LOGIN-LOAD-BALANCER"
+      value: "TRUE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: login-stmfc1-0-prd
+  servers:
+  - stmfcna41ice1-app1-1-prd.eng.sfdc.net
+  - stmfcna41ice1-app1-2-prd.eng.sfdc.net
+  - stmfcna41ice1-app1-3-prd.eng.sfdc.net
+  - stmfcna41ice1-app2-1-prd.eng.sfdc.net
+  - stmfcna41ice1-app2-2-prd.eng.sfdc.net
+  - stmfcna41ice1-app2-3-prd.eng.sfdc.net
+  - stmfcna42ice1-app1-1-prd.eng.sfdc.net
+  - stmfcna42ice1-app1-2-prd.eng.sfdc.net
+  - stmfcna42ice1-app1-3-prd.eng.sfdc.net
+  - stmfcna42ice1-app2-1-prd.eng.sfdc.net
+  - stmfcna42ice1-app2-2-prd.eng.sfdc.net
+  - stmfcna42ice1-app2-3-prd.eng.sfdc.net
+  - stmfcna43ice1-app1-1-prd.eng.sfdc.net
+  - stmfcna43ice1-app1-2-prd.eng.sfdc.net
+  - stmfcna43ice1-app1-3-prd.eng.sfdc.net
+  - stmfcna43ice1-app2-1-prd.eng.sfdc.net
+  - stmfcna43ice1-app2-2-prd.eng.sfdc.net
+  - stmfcna43ice1-app2-3-prd.eng.sfdc.net
+  - stmfcna44ice1-app1-1-prd.eng.sfdc.net
+  - stmfcna44ice1-app1-2-prd.eng.sfdc.net
+  - stmfcna44ice1-app1-3-prd.eng.sfdc.net
+  - stmfcna44ice1-app2-1-prd.eng.sfdc.net
+  - stmfcna44ice1-app2-2-prd.eng.sfdc.net
+  - stmfcna44ice1-app2-3-prd.eng.sfdc.net
+  - stmfcna45ice1-app1-1-prd.eng.sfdc.net
+  - stmfcna45ice1-app1-2-prd.eng.sfdc.net
+  - stmfcna45ice1-app1-3-prd.eng.sfdc.net
+  - stmfcna45ice1-app2-1-prd.eng.sfdc.net
+  - stmfcna45ice1-app2-2-prd.eng.sfdc.net
+  - stmfcna45ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 60
+    tls: true
+    addheaders:
+    - name: "SFDC-LOGIN-LOAD-BALANCER"
+      value: "TRUE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: login-stmsa1-0-prd
+  servers:
+  - stmsana44ice1-app1-1-prd.eng.sfdc.net
+  - stmsana44ice1-app1-2-prd.eng.sfdc.net
+  - stmsana44ice1-app1-3-prd.eng.sfdc.net
+  - stmsana44ice1-app2-1-prd.eng.sfdc.net
+  - stmsana44ice1-app2-2-prd.eng.sfdc.net
+  - stmsana44ice1-app2-3-prd.eng.sfdc.net
+  - stmsana6ice1-app1-1-prd.eng.sfdc.net
+  - stmsana6ice1-app1-2-prd.eng.sfdc.net
+  - stmsana6ice1-app1-3-prd.eng.sfdc.net
+  - stmsana6ice1-app2-1-prd.eng.sfdc.net
+  - stmsana6ice1-app2-2-prd.eng.sfdc.net
+  - stmsana6ice1-app2-3-prd.eng.sfdc.net
+  - stmsana7ice1-app1-1-prd.eng.sfdc.net
+  - stmsana7ice1-app1-2-prd.eng.sfdc.net
+  - stmsana7ice1-app1-3-prd.eng.sfdc.net
+  - stmsana7ice1-app2-1-prd.eng.sfdc.net
+  - stmsana7ice1-app2-2-prd.eng.sfdc.net
+  - stmsana7ice1-app2-3-prd.eng.sfdc.net
+  - stmsana8ice1-app1-1-prd.eng.sfdc.net
+  - stmsana8ice1-app1-2-prd.eng.sfdc.net
+  - stmsana8ice1-app1-3-prd.eng.sfdc.net
+  - stmsana8ice1-app2-1-prd.eng.sfdc.net
+  - stmsana8ice1-app2-2-prd.eng.sfdc.net
+  - stmsana8ice1-app2-3-prd.eng.sfdc.net
+  - stmsana9ice1-app1-1-prd.eng.sfdc.net
+  - stmsana9ice1-app1-2-prd.eng.sfdc.net
+  - stmsana9ice1-app1-3-prd.eng.sfdc.net
+  - stmsana9ice1-app2-1-prd.eng.sfdc.net
+  - stmsana9ice1-app2-2-prd.eng.sfdc.net
+  - stmsana9ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 60
+    tls: true
+    addheaders:
+    - name: "SFDC-LOGIN-LOAD-BALANCER"
+      value: "TRUE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: stmfashared2-pbsmatch1-0-prd
+  servers:
+  - stmfa1shared2-pbsmatch1-2-prd.eng.sfdc.net
+  - stmfa1shared2-pbsmatch1-3-prd.eng.sfdc.net
+  - stmfa1shared2-pbsmatch2-1-prd.eng.sfdc.net
+  - stmfa1shared2-pbsmatch2-2-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: test-stmfa1-0-prd
+  servers:
+  - stmfacs2ice1-app1-1-prd.eng.sfdc.net
+  - stmfacs2ice1-app1-2-prd.eng.sfdc.net
+  - stmfacs2ice1-app1-3-prd.eng.sfdc.net
+  - stmfacs2ice1-app2-1-prd.eng.sfdc.net
+  - stmfacs2ice1-app2-2-prd.eng.sfdc.net
+  - stmfacs2ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
+
+- lbname: test-stmfc1-0-prd
+  servers:
+  - stmfccs2ice1-app1-1-prd.eng.sfdc.net
+  - stmfccs2ice1-app1-2-prd.eng.sfdc.net
+  - stmfccs2ice1-app1-3-prd.eng.sfdc.net
+  - stmfccs2ice1-app2-1-prd.eng.sfdc.net
+  - stmfccs2ice1-app2-2-prd.eng.sfdc.net
+  - stmfccs2ice1-app2-3-prd.eng.sfdc.net
+  - stmfccs3ice1-app1-1-prd.eng.sfdc.net
+  - stmfccs3ice1-app1-2-prd.eng.sfdc.net
+  - stmfccs3ice1-app1-3-prd.eng.sfdc.net
+  - stmfccs3ice1-app2-1-prd.eng.sfdc.net
+  - stmfccs3ice1-app2-2-prd.eng.sfdc.net
+  - stmfccs3ice1-app2-3-prd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8085 
+    lbtype: http
+    sticky: 600
+    tls: true
+    addheaders:
+    - name: "X-Salesforce-VIP"
+      value: "FORCE"
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
