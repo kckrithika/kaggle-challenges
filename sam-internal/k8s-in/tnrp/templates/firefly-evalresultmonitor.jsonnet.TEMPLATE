@@ -1,0 +1,47 @@
+local serviceDeployment = import "firefly-service-deployment.jsonnet.TEMPLATE";
+local images = import "fireflyimages.jsonnet";
+local portConfig = import "portconfig.jsonnet";
+local configs = import "config.jsonnet";
+local evalresultmonitorConfig = import "configs/firefly-evalresultmonitor.jsonnet";
+local fireflyConfigs = import "fireflyconfigs.jsonnet";
+
+serviceDeployment {
+    serviceConf:: {
+        dindEnabled: false,
+        healthPort: portConfig.firefly.evalresultmonitor_mgmt,
+        pool: if configs.estate == "prd-samtwo" then 'prd-sam_tnrp_merger' else configs.estate,
+        port: [],
+        darkLaunch: "true",
+    },
+    serviceName:: "firefly-evalresultmonitor",
+    role:: "firefly",
+    dockerImage:: images.fireflyevalresultmonitor,
+    portAnnotations::
+    [
+      {
+             port: portConfig.firefly.evalresultmonitor_mgmt,
+             targetPort: portConfig.firefly.evalresultmonitor_mgmt,
+             lbtype: "http",
+             tls: false,
+             reencrypt: false,
+             sticky: 0,
+      },
+    ],
+    portConfigs:: [portConfig.service_health_port('evalresultmonitor_mgmt_nodeport')],
+    replicas:: 1,
+    command:: ["java", "-jar", "/evalresultmonitor.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/etc/firefly/config/"],
+    env:: super.commonEnv + [
+        {
+            name: "CONFIG_VERSION",
+            value: fireflyConfigs.fireflyevalresultmonitor,
+        },
+        {
+            name: "DARKLAUNCH",
+            value: $.serviceConf["darkLaunch"],
+        },
+    ],
+    volumeMounts:: super.commonVolMounts,
+    data:: {
+        "application.yml": std.manifestJson(evalresultmonitorConfig.config("firefly-evalresultmonitor")),
+    },
+}

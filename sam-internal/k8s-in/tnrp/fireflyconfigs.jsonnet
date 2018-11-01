@@ -32,6 +32,7 @@ local kingdom = std.extVar("kingdom");
              fireflypackagesingleton: "7",
              fireflypromotion: "6",
              fireflypullrequest: "11",
+             fireflyevalresultmonitor: "1",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
@@ -42,6 +43,7 @@ local kingdom = std.extVar("kingdom");
              fireflypackagesingleton: "7",
              fireflypromotion: "5",
              fireflypullrequest: "10",
+             fireflyevalresultmonitor: "1",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
@@ -72,4 +74,5 @@ local kingdom = std.extVar("kingdom");
     fireflypackage: $.per_phase[$.phase].fireflypackage,
     fireflypackagesingleton: $.per_phase[$.phase].fireflypackagesingleton,
     fireflypromotion: $.per_phase[$.phase].fireflypromotion,
+    fireflyevalresultmonitor: $.per_phase[$.phase].fireflyevalresultmonitor,
 }

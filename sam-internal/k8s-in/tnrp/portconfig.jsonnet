@@ -38,6 +38,9 @@ local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
       pullrequest_mgmt: 8081,
       pullrequest_mgmt_nodeport: 32084,
 
+      evalresultmonitor_mgmt: 8081,
+      evalresultmonitor_mgmt_nodeport: 32086,
+
       package_mgmt: 8081,
       package_mgmt_nodeport: 32085,
 

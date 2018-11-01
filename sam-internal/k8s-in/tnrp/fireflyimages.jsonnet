@@ -52,12 +52,13 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             fireflyintake: "219",
-             fireflycrawler: "219",
-             fireflypackage: "219",
-             fireflypromotion: "219",
-             fireflypullrequest: "219",
-             fireflydind: "219",
+             fireflyintake: "224",
+             fireflycrawler: "224",
+             fireflypackage: "224",
+             fireflypromotion: "224",
+             fireflypullrequest: "224",
+             fireflyevalresultmonitor: "224",
+             fireflydind: "224",
              rabbitmq: "140",
              rabbitmqmonitord: "213",
             },
@@ -69,6 +70,7 @@ local configs = import "config.jsonnet";
              fireflypackage: "201",
              fireflypromotion: "201",
              fireflypullrequest: "201",
+             fireflyevalresultmonitor: "201",
              fireflydind: "86",
              rabbitmq: "140",
              rabbitmqmonitord: "213",
@@ -113,5 +115,6 @@ local configs = import "config.jsonnet";
     fireflypackage: configs.registry + "/dva/firefly-package:" + $.per_phase[$.phase].fireflypackage,
     fireflypromotion: configs.registry + "/dva/firefly-promotion:" + $.per_phase[$.phase].fireflypromotion,
     fireflydind: configs.registry + "/dva/firefly-dind:" + $.per_phase[$.phase].fireflydind,
+    fireflyevalresultmonitor: configs.registry + "/dva/firefly-evalresultmonitor:" + $.per_phase[$.phase].fireflyevalresultmonitor,
 
 }
