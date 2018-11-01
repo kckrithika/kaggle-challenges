@@ -559,6 +559,12 @@ spec:
           path: /etc/kubernetes
         name: kubeconfig
       - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
           path: /sbin
         name: sbin-volume
       - emptyDir:
@@ -573,12 +579,6 @@ spec:
       - hostPath:
           path: /data/slb/slb-nginx-config-b/config
         name: var-target-config-volume
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
-          path: /data/certs
-        name: certs
       - emptyDir:
           medium: Memory
         name: customer-certs

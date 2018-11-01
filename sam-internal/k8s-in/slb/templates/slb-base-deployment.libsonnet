@@ -5,19 +5,19 @@
   local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: $.dirSuffix },
   local slbports = import "slbports.jsonnet",
 
-  slbBaseProxyDeployment(
-    proxyName,
+  slbBaseDeployment(
+    name,
     replicas=2,
     affinity,
     beforeSharedContainers,
-    afterSharedContainers
+    afterSharedContainers=[],
   ):: configs.deploymentBase("slb") {
 
     metadata: {
       labels: {
-        name: proxyName,
+        name: name,
       } + configs.ownerLabel.slb,
-      name: proxyName,
+      name: name,
       namespace: "sam-system",
     },
     spec+: {
@@ -26,19 +26,21 @@
       template: {
         metadata: {
           labels: {
-            name: proxyName,
+            name: name,
           } + configs.ownerLabel.slb,
           namespace: "sam-system",
         },
         spec: {
                 affinity: affinity,
-                volumes: configs.filter_empty([
+                volumes: std.prune([
                   slbconfigs.slb_volume,
                   slbconfigs.logs_volume,
                   slbconfigs.slb_config_volume,
                   slbconfigs.cleanup_logs_volume,
                   configs.sfdchosts_volume,
                   configs.kube_config_volume,
+                  configs.maddog_cert_volume,
+                  configs.cert_volume,
                   slbconfigs.sbin_volume,
                 ]),
                 containers: beforeSharedContainers + [
