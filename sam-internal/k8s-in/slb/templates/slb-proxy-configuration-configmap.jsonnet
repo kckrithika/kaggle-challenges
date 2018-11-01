@@ -14,7 +14,13 @@ local proxyConfigs = {
             healthport: 12080,
             healthpath: "/",
         },
-    ],
+    ] + if slbflights.envoyProxyEnabled then [
+        {
+            name: slbconfigs.envoyProxyName,
+            healthport: 12080,
+            healthpath: "/",
+        },
+    ] else [],
 };
 
 local proxyVipMapping = {
@@ -23,7 +29,13 @@ local proxyVipMapping = {
             proxyname: slbconfigs.hsmNginxProxyName,
             vips: slbconfigs.hsmEnabledVips,
         },
-    ],
+
+    ] + if slbflights.envoyProxyEnabled then [
+        {
+            proxyname: slbconfigs.envoyProxyName,
+            vips: slbconfigs.envoyEnabledVips,
+        },
+    ] else [],
 };
 
 if slbconfigs.isSlbEstate && slbflights.proxyConfigMapEnabled then {

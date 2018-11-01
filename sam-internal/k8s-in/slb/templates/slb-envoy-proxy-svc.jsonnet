@@ -11,10 +11,28 @@ local vipName = "service-mesh-ingress";
 
 local portConfig = [
     slbportconfiguration.newPortConfiguration(
-        port=9115,
+        port=7013,
         // lbType="dsr" -- if configuring via pipelines doesn't work.
         lbType="http",
-        name="slb-envoy-ingress-port",
+        name="slb-envoy-ingress-port-http1",
+    ),
+    slbportconfiguration.newPortConfiguration(
+        port=5442,
+        // lbType="dsr" -- if configuring via pipelines doesn't work.
+        lbType="http",
+        name="slb-envoy-ingress-port-http1-tls",
+    ),
+    slbportconfiguration.newPortConfiguration(
+        port=7011,
+        // lbType="dsr" -- if configuring via pipelines doesn't work.
+        lbType="http",
+        name="slb-envoy-ingress-port-http2",
+    ),
+    slbportconfiguration.newPortConfiguration(
+        port=5443,
+        // lbType="dsr" -- if configuring via pipelines doesn't work.
+        lbType="http",
+        name="slb-envoy-ingress-port-http2-tls",
     ),
 ];
 
