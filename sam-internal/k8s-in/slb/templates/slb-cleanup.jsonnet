@@ -4,7 +4,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local slbshared = import "slbsharedservices.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 
-if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
+if slbconfigs.isSlbEstate && !slbflights.removeCleanupDs then configs.daemonSetBase("slb") {
     metadata: {
         labels: {
             name: "slb-cleanup",
