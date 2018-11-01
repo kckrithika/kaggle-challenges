@@ -19,4 +19,5 @@ local configs = import "config.jsonnet";
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     removeDeprecatedNginxParameters: (slbimages.hypersdn_build >= 1340),
     nginxBaseTemplateEnabled: (slbimages.phaseNum <= 1),
+    removeCleanupDs: (slbimages.hypersdn_build >= 1344),
 }
