@@ -10,7 +10,7 @@ system:
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhumphreys/eaas:jh-W-5539429-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhumphreys/eaas:jh-death-test-1
       env:
       - name: SFDC_ENVIRONMENT
         value: prd
@@ -48,7 +48,7 @@ system:
         value: sam
       args:
       - -endpoint
-      - samapp/jhumphreys/eaas:DATACENTER:7443
+      - samapp/user-jhumphreys/eaas:DATACENTER:7443
       - -endpoint
       - samapp/eaas-jhumphreys:DATACENTER:7012
       livenessProbe:
