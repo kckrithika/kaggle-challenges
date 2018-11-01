@@ -6,7 +6,7 @@
   local portconfigs = import "portconfig.jsonnet",
   local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
   local slbports = import "slbports.jsonnet",
-  local slbbaseproxy = (import "slb-base-proxy.libsonnet") + { dirSuffix:: $.dirSuffix },
+  local slbbasedeployment = (import "slb-base-deployment.libsonnet") + { dirSuffix:: $.dirSuffix },
   local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: $.dirSuffix },
   local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: $.dirSuffix },
   local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: $.dirSuffix },
@@ -200,7 +200,7 @@ local afterSharedContainers = [
     replicas=2,
     affinity,
     proxyImage
-  ):: slbbaseproxy.slbBaseProxyDeployment(proxyName, replicas, affinity, beforeSharedContainers(proxyImage), afterSharedContainers) {
+  ):: slbbasedeployment.slbBaseDeployment(proxyName, replicas, affinity, beforeSharedContainers(proxyImage), afterSharedContainers) {
 
     spec+: {
       template+: {
@@ -214,8 +214,6 @@ local afterSharedContainers = [
                    madkub.madkubSlbCertVolumes(certDirs)
                    + madkub.madkubSlbMadkubVolumes() + [
                    target_config_volume,
-                   configs.maddog_cert_volume,
-                   configs.cert_volume,
                    {
                      emptyDir: {
                        medium: "Memory",
