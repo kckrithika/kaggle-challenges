@@ -16,4 +16,6 @@ std.prune({
   enableKafkaClientAuth: true,
   clientKeyFile: "/cert1/client/keys/client-key.pem",
   clientCertFile: "/cert1/client/certificates/client.pem",
+  "key-file": configs.keyFile,
+  "cert-file": configs.certFile,
 }) else "SKIP"
