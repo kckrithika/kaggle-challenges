@@ -76,6 +76,7 @@ spec:
         - --control.nginxReloadSentinel=/host/data/slb/slb-hsm-nginx/config/nginx.marker
         - --httpconfig.custCertsDir=/customerCerts
         - --checkDuplicateVips=true
+        - --httpconfig.accessLogFormat=main
         env:
         - name: NODE_NAME
           valueFrom:
