@@ -278,6 +278,13 @@ GROUP BY DayHour;",
 #===================
 
     {
+      name: "Api-Servers-Not-Ready-Sam",
+     sql: "SELECT * FROM nodeDetailView WHERE Ready != 'True' AND NOT Name like '%minionceph%' and Name like '%kubeapi%'",
+    },
+
+#===================
+
+    {
       name: "Hosts-Not-Ready-Sam",
      sql: "SELECT * FROM nodeDetailView WHERE Ready != 'True' AND NOT Name like '%minionceph%'",
     },
