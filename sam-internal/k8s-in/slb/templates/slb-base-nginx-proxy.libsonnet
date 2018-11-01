@@ -66,7 +66,9 @@
                                      nginxReloadSentinelParam,
                                      "--httpconfig.custCertsDir=" + slbconfigs.customerCertsPath,
                                      "--checkDuplicateVips=true",
-                                   ],
+                                   ] + (if slbflights.newAccessLogFormat then [
+                                     "--httpconfig.accessLogFormat=main",
+                                   ] else []),
                           volumeMounts: configs.filter_empty([
                             target_config_volume_mount,
                             slbconfigs.slb_volume_mount,
