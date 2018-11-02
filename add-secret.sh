@@ -63,8 +63,11 @@ if [[ -n $1 ]];  then
 fi
 
 if [ "${KINGDOM}" != "prd" ] &&  [ "${KINGDOM}" != "xrd" ]; then
-  echo "The Keys for All (K4A) team does not provide a production-level SLA for K4A.  As a result, SAM does not support K4A in production.  If your SAM app requires K4A in production, contact Anubhav Dhoot (SAM PO) and Richard Clayton (SAM TPM)." 
-  exit 1
+  echo ""
+  echo "=========="
+  echo "NOTE: K4A Secret support in production is in limited release right now, and SLA is only provided to customers with a special agreement with SAM+K4A.  This is temporary and we expect to reach GA soon (~end of FY19).  For more info contact Anubhav Dhoot (SAM PO) and Richard Clayton (SAM TPM)."
+  echo "=========="
+  echo ""
 fi
 
 # Use this to get hypersam env var
