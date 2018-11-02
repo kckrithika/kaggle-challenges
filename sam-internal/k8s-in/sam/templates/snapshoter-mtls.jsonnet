@@ -105,11 +105,6 @@ configs.containerWithKubeConfigAndMadDog {
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
                             configs.cert_volume_mount,
-                            {
-                                mountPath: "/var/mysqlPwd",
-                                name: "mysql-ssc-prd",
-                                readOnly: true,
-                            },
                         ] + madkub.madkubSamCertVolumeMounts(certDirs),
                     },
                 ],

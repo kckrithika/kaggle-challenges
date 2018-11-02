@@ -151,9 +151,6 @@ spec:
           name: config
         - mountPath: /data/certs
           name: certs
-        - mountPath: /var/mysqlPwd
-          name: mysql-ssc-prd
-          readOnly: true
         - mountPath: /cert1
           name: cert1
       nodeSelector:
