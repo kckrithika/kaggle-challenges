@@ -3,7 +3,7 @@ local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "ord-sam" then
 configs.deploymentBase("sam") {
     spec+: {
         template: {
@@ -20,6 +20,8 @@ configs.deploymentBase("sam") {
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args
+                                 + (if configs.estate == "ord-sam" then ["-recipient=rgade@salesforce.com"] else [])
+                                 + (if configs.estate == "ord-sam" then ["-emailFrequency=24h"] else [])
                                  + (if configs.estate == "prd-sam" then samwdconfig.low_urgency_pagerduty_args else [])
                                  + (if configs.estate == "prd-sam" then ["-emailFrequency=24h"] else []),
                         volumeMounts+: [
