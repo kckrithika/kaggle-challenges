@@ -1,6 +1,9 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
+local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile };
+
+local certDirs = ["cert1"];
 
 if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
             apiVersion: "apps/v1beta1",
@@ -32,6 +35,18 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                           sam_app: "mysql-ss",
                           sam_function: "mysql-ss",
                           sam_loadbalancer: "mysql-ss",
+                        },
+                        annotations: {
+                          "madkub.sam.sfdc.net/allcerts":
+                            std.manifestJsonEx(
+                           {
+                            certreqs:
+                              [
+                                { role: "sam-system.mysql-ss" } + certReq
+                                  for certReq in madkub.madkubSamCertsAnnotation(certDirs).certreqs
+                                ],
+                              }, " "
+                            ),
                         },
                     },
                   spec: {

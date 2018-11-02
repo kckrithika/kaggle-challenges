@@ -18,6 +18,18 @@ spec:
   serviceName: mysql-service
   template:
     metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: |-
+          {
+           "certreqs": [
+            {
+             "cert-type": "client",
+             "kingdom": "prd",
+             "name": "cert1",
+             "role": "sam-system.mysql-ss"
+            }
+           ]
+          }
       labels:
         app: mysql-ss
         sam_app: mysql-ss
