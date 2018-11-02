@@ -602,7 +602,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                     {
                       metadata: {
                           annotations: {
-                              "volume.beta.kubernetes.io/storage-class": "mysql-hdd-pool",
+                              "volume.beta.kubernetes.io/storage-class": "standard-rdi-hdd-pool",
                             },
                           creationTimestamp: null,
                           name: "mysql-persistent-storage-replicated",
