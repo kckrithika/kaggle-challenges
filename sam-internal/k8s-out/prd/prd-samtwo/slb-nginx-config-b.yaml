@@ -56,9 +56,9 @@ spec:
             nodeSelectorTerms:
             - matchExpressions:
               - key: slb-service
-                operator: In
+                operator: NotIn
                 values:
-                - slb-nginx-b
+                - slb-ipvs
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -66,6 +66,7 @@ spec:
               - key: name
                 operator: In
                 values:
+                - slb-ipvs
                 - slb-nginx-config-b
             topologyKey: kubernetes.io/hostname
       containers:
@@ -508,6 +509,8 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      nodeSelector:
+        pool: prd-slbtwo
       volumes:
       - hostPath:
           path: /data/slb

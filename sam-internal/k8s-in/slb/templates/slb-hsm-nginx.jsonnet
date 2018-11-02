@@ -62,6 +62,7 @@ else if slbflights.hsmCanaryEnabled then configs.deploymentBase("slb") {
                                   values: [
                                       "slb-ipvs",
                                       "slb-nginx-config-b",
+                                      slbconfigs.hsmNginxProxyName,
                                   ],
                               }],
                             },
