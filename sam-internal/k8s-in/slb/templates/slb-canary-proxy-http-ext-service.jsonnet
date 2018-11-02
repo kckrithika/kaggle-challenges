@@ -17,7 +17,6 @@ local canaryPortConfig = [
         lbType="http",
         name="slb-canary-proxy-http-port",
     ) { healthpath: "/health" },
-] + (if configs.estate == "iad-sam" || configs.estate == "ord-sam" || slbimages.hypersdn_build >= 1331 then [
     slbportconfiguration.newPortConfiguration(
         port=443,
         targetPort=portconfigs.slb.canaryServiceProxyHttpPort,
@@ -30,7 +29,7 @@ local canaryPortConfig = [
         tlscertificate: "secret_service:SlbPublicCanary:" + configs.kingdom + "-cert",
         tlskey: "secret_service:SlbPublicCanary:" + configs.kingdom + "-key",
         },
-] else []);
+];
 
 if slbconfigs.isProdEstate && configs.estate != "prd-sam" then
     slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {
