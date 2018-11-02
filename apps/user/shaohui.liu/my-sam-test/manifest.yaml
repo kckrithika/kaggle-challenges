@@ -4,19 +4,20 @@ system:
   - name: default
     count: 2
     containers:
-    - name: samhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaohui.liu/samhello:bob-20160630 # golang app
+    - name: ia-namenode
+      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaohui.liu/namenode:test-20181101
+       # namenode app
       ports:
-      - containerPort: 9090
+      - containerPort: 50070
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 50070
   loadbalancers:
-  - lbname: samhellolb
+  - lbname: ia-namenode
     function: default
     slbenabled: true
     ports:
-      - port: 9090
-        targetport: 9090
+      - port: 50070
+        targetport: 50070
         lbtype: tcp
