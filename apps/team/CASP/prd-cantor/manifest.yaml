@@ -21,7 +21,7 @@ system:
           containerPort: 7443
           hostPort: 17443
         volumeMounts:
-        - mountPath: /home/sfdc-cantor/cantor
+        - mountPath: /home/sfdc-cantor/cantor-h2.db
           name: cantor-vol
         livenessProbe:
           exec:
