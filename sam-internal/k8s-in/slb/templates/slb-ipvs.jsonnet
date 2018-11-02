@@ -201,10 +201,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                             "--client.serverInterface=lo",
-                        ] + (if configs.estate == "prd-sdc" then [
-                                "--enableAcl=false",
-                            ] else [
-                            ]) +
+                        ] + (if slbflights.aclEnabled then [
+                                "--enableAcl=true",
+                             ] else [
+                             ]) +
                         [
                             "--enableConntrack=false",
                         ] + slbconfigs.getNodeApiClientSocketSettings(),

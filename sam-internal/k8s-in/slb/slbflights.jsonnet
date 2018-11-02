@@ -17,4 +17,5 @@ local configs = import "config.jsonnet";
     nginxBaseTemplateEnabled: (slbimages.hypersdn_build >= 1340),
     removeCleanupDs: (slbimages.hypersdn_build >= 1344),
     newAccessLogFormat: (slbimages.phaseNum <= 1),
+    aclEnabled: (slbimages.phaseNum <= 1),
 }
