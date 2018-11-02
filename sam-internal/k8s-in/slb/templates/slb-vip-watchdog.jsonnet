@@ -119,7 +119,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                               ]),
                               env: [
                                   slbconfigs.node_name_env,
-                              ],
+                              ] + (if slbimages.phaseNum == 1 then [
+                                  slbconfigs.function_namespace_env,
+                                  slbconfigs.function_instance_name_env,
+                              ] else []),
                           },
                           slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                           slbshared.slbCleanupConfig,
