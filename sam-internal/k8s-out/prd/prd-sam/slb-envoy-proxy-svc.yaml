@@ -4,7 +4,7 @@ metadata:
   annotations:
     slb.sfdc.net/cnames: |-
       [
-       "mesh-prd-sdc.slb.sfdc.net"
+       "mesh-prd-sam.slb.sfdc.net"
       ]
     slb.sfdc.net/name: service-mesh-ingress
     slb.sfdc.net/portconfigurations: |-
@@ -32,6 +32,7 @@ metadata:
       ]
   labels:
     app: slb-envoy-service
+    sam.data.sfdc.net/owner: slb
   name: slb-envoy-service
   namespace: sam-system
 spec:
