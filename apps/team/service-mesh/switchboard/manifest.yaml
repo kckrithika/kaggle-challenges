@@ -15,6 +15,7 @@ system:
       # External Authz
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy.service-mesh
       - --listeners.external-auth-enabled-clusters[1]=shipping-envoy-tls.service-mesh
+      - --listeners.external-auth-enabled-clusters[2]=shipping-rate-limited.service-mesh
       # Rate limit enabled clusters
       - --listeners.rate-limit-enabled-clusters[0]=shipping-rate-limited.service-mesh
       # Rate limit descriptors for clusters
