@@ -4,9 +4,9 @@ data:
     {
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
-      "clientCertFile": "/cert1/client/certificates/client.pem",
-      "clientKeyFile": "/cert1/client/keys/client-key.pem",
-      "enableKafkaClientAuth": true,
+      "client-cert-file": "/cert1/client/certificates/client.pem",
+      "client-key-file": "/cert1/client/keys/client-key.pem",
+      "enable-kafka-client-auth": true,
       "ignored-resources": [],
       "include-crds": true,
       "kafka-endpoint": "ajna0-broker1-0-prd.data.sfdc.net:9093",

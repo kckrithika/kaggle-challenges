@@ -133,6 +133,29 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      - command:
+        - bash
+        - -c
+        - "set -ex\nchmod 775 -R /data/certs && chown -R 7447:7447 /data/certs \nchmod
+          775 -R /cert1 && chown -R 7447:7447 /cert1\n"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673
+        imagePullPolicy: Always
+        name: permissionsetterinitcontainer
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /config
+          name: config
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /var/mysqlPwd
+          name: mysql-ssc-prd
+          readOnly: true
+        - mountPath: /cert1
+          name: cert1
       nodeSelector:
         master: "true"
       volumes:
