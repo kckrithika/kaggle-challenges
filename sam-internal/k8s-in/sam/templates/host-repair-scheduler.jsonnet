@@ -32,7 +32,6 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
                     command: [
                         "/sam/host-repair-scheduler",
                         "--config=/config/host-repair-scheduler.json",
-                        "--hostsConfigFile=/sfdchosts/hosts.json",
                         "-v=0",
                     ],
                     volumeMounts+: [
