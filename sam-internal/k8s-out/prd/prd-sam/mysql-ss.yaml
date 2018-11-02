@@ -137,28 +137,43 @@ spec:
       - command:
         - bash
         - -c
-        - "set -ex\ncd /var/lib/mysql\n# Determine binlog position of cloned data,
-          if any.\nif [[ -f xtrabackup_slave_info ]]; then\n  # XtraBackup already
-          generated a partial \"CHANGE MASTER TO\" query\n  # because we're cloning
-          from an existing slave.\n  mv xtrabackup_slave_info change_master_to.sql.in\n
-          \ # Ignore xtrabackup_binlog_info in this case (it's useless).\n  rm -f
-          xtrabackup_binlog_info\nelif [[ -f xtrabackup_binlog_info ]]; then\n  #
-          We're cloning directly from master. Parse binlog position.\n  [[ `cat xtrabackup_binlog_info`
-          =~ ^(.*?)[[:space:]]+(.*?)$ ]] || exit 1\n  rm xtrabackup_binlog_info\n
-          \ echo \"CHANGE MASTER TO MASTER_LOG_FILE='${BASH_REMATCH[1]}',\n        MASTER_LOG_POS=${BASH_REMATCH[2]}\"
-          > change_master_to.sql.in\nfi\n# Check if we need to complete a clone by
-          starting replication.\nif [[ -f change_master_to.sql.in ]]; then\n  echo
-          \"Waiting for mysqld to be ready (accepting connections)\"\n  until mysql
-          -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS -h 127.0.0.1 -e \"SELECT 1\"; do sleep
-          1; done\n  echo \"Initializing replication from clone position\"\n  # In
-          case of container restart, attempt this at-most-once.\n  mv change_master_to.sql.in
-          change_master_to.sql.orig\n  mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
-          <<EOF\n  $(<change_master_to.sql.orig),\n  MASTER_HOST='mysql-ss-0.mysql-service',\n
-          \ MASTER_USER='$MYSQL_ROOT_USER',\n  MASTER_PASSWORD='$MYSQL_ROOT_PASS',\n
-          \ MASTER_CONNECT_RETRY=10;\n  START SLAVE;\n  EOF\nfi\n# Start a server
-          to send backups when requested by peers.\nexec ncat --listen --keep-open
-          --send-only --max-conns=1 3307 -c \n  \"xtrabackup --backup --slave-info
-          --stream=xbstream --host=127.0.0.1 --user=$MYSQL_ROOT_USER --password=$MYSQL_ROOT_PASS\"\n"
+        - |
+          set -ex
+          cd /var/lib/mysql
+          # Determine binlog position of cloned data, if any.
+          if [[ -f xtrabackup_slave_info ]]; then
+            # XtraBackup already generated a partial "CHANGE MASTER TO" query
+            # because we're cloning from an existing slave.
+            mv xtrabackup_slave_info change_master_to.sql.in
+            # Ignore xtrabackup_binlog_info in this case (it's useless).
+            rm -f xtrabackup_binlog_info
+          elif [[ -f xtrabackup_binlog_info ]]; then
+            # We're cloning directly from master. Parse binlog position.
+            [[ `cat xtrabackup_binlog_info` =~ ^(.*?)[[:space:]]+(.*?)$ ]] || exit 1
+            rm xtrabackup_binlog_info
+            echo "CHANGE MASTER TO MASTER_LOG_FILE='${BASH_REMATCH[1]}',
+                  MASTER_LOG_POS=${BASH_REMATCH[2]}" > change_master_to.sql.in
+          fi
+          # Check if we need to complete a clone by starting replication.
+          if [[ -f change_master_to.sql.in ]]; then
+            echo "Waiting for mysqld to be ready (accepting connections)"
+            until mysql -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS -h 127.0.0.1 -e "SELECT 1"; do sleep 1; done
+            echo "Initializing replication from clone position"
+            # In case of container restart, attempt this at-most-once.
+            mv change_master_to.sql.in change_master_to.sql.orig
+            mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS <<EOF
+            $(<change_master_to.sql.orig),
+            MASTER_HOST='mysql-ss-0.mysql-service',
+            MASTER_USER='$MYSQL_ROOT_USER',
+            MASTER_PASSWORD='$MYSQL_ROOT_PASS',
+            MASTER_CONNECT_RETRY=10;
+            START SLAVE;
+          # This EOF literally needs to be indented like this
+          # or the script will straight up break. It's loony
+          EOF
+          fi
+          # Start a server to send backups when requested by peers.
+          exec ncat --listen --keep-open --send-only --max-conns=1 3307 -c "xtrabackup --backup --slave-info --stream=xbstream --host=127.0.0.1 --user=$MYSQL_ROOT_USER --password=$MYSQL_ROOT_PASS"
         env:
         - name: MYSQL_ROOT_USER
           value: root
@@ -213,61 +228,6 @@ spec:
           name: conf
       dnsPolicy: ClusterFirst
       initContainers:
-      - args:
-        - /sam/madkub-client
-        - --madkub-endpoint
-        - https://10.254.208.254:32007
-        - --maddog-endpoint
-        - https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
-        - --maddog-server-ca
-        - /maddog-hostdata/ca/security-ca.pem
-        - --madkub-server-ca
-        - /maddog-hostdata/ca/cacerts.pem
-        - --ca-folder
-        - /maddog-hostdata/ca
-        - --token-folder
-        - /tokens
-        - --funnel-endpoint
-        - http://ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --kingdom
-        - prd
-        - --superpod
-        - None
-        - --estate
-        - prd-sam
-        - --testca-folder
-        - /maddog-hostdata/ca_test
-        - --cert-folders
-        - certs:/certs-certs
-        env:
-        - name: MADKUB_NODENAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: spec.nodeName
-        - name: MADKUB_NAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.name
-        - name: MADKUB_NAMESPACE
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000077-b1d3a629
-        imagePullPolicy: Always
-        name: sam-madkub-integration-init
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        volumeMounts:
-        - mountPath: /maddog-hostdata
-          name: sam-maddog-cahost
-        - mountPath: /tokens
-          name: sam-maddog-token
-        - mountPath: /certs-certs
-          name: certs
       - args:
         - chmod -R 775 /vols/sam-maddog-cahost
         - chown -R 7447:7447 /vols/sam-maddog-cahost
