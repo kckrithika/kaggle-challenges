@@ -9,6 +9,9 @@ system:
        # namenode app
       ports:
       - containerPort: 50070
+      env:
+      - name: CLUSTER_NAME
+        value: 'test'
       livenessProbe:
         httpGet:
           path: /
