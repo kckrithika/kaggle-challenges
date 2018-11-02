@@ -357,6 +357,26 @@
         },
     },
 
+    function_namespace_env: {
+        name: "FUNCTION_NAMESPACE",
+        valueFrom: {
+            fieldRef: {
+                apiVersion: "v1",
+                fieldPath: "metadata.namespace",
+            },
+        },
+    },
+
+    function_instance_name_env: {
+        name: "FUNCTION_INSTANCE_NAME",
+        valueFrom: {
+            fieldRef: {
+                apiVersion: "v1",
+                fieldPath: "metadata.name",
+            },
+        },
+    },
+
     getNodeApiClientSocketSettings():: [
         "--client.socketDir=" + $.configDir,
         "--client.dialSocket=true",
