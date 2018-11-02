@@ -496,6 +496,8 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      nodeSelector:
+        pool: xrd-slb
       volumes:
       - hostPath:
           path: /data/slb
