@@ -16,7 +16,7 @@ if samfeatureflags.kubedns then {
     },
     spec: {
         progressDeadlineSeconds: 600,
-        replicas: 3,
+        replicas: (if configs.kingdom == "ord" || configs.kingdom == "frf" then 5 else 3),
         revisionHistoryLimit: 2,
         selector: {
             matchLabels: {
@@ -63,7 +63,7 @@ if samfeatureflags.kubedns then {
                         ],
                         image: samimages.kubedns,
                         imagePullPolicy: "IfNotPresent",
-                        livenessProbe: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" || configs.estate == "prd-sam" then {
+                        livenessProbe: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" || configs.estate == "prd-sam" || configs.kingdom == "ord" then {
                           failureThreshold: 5,
                           initialDelaySeconds: 60,
                           periodSeconds: 10,
@@ -137,7 +137,7 @@ if samfeatureflags.kubedns then {
                                 mountPath: "/data/certs",
                                 name: "certs",
                             },
-                        ] + if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" || configs.estate == "prd-sam" then [{
+                        ] + if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" || configs.estate == "prd-sam" || configs.kingdom == "ord" then [{
                                 mountPath: "/scripts",
                                 name: "cert-age",
                             }] else [],
@@ -261,7 +261,7 @@ if samfeatureflags.kubedns then {
                         name: "certs",
                     },
                 ] + (
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" || configs.estate == "prd-sam" then [{
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" || configs.estate == "prd-sam" || configs.kingdom == "ord" then [{
                         configMap: {
                             defaultMode: 511,
                             name: "cert-age",

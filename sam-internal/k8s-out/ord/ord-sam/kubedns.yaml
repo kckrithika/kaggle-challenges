@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - args:
-        - --domain=frf-sam.frf.sam.sfdc.net.
+        - --domain=ord-sam.ord.sam.sfdc.net.
         - --dns-port=10053
         - --kubecfg-file=/etc/kubernetes/kubeconfig
         - --v=2
@@ -42,14 +42,14 @@ spec:
           value: "2"
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/k8s-dns-kube-dns:1.14.9
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/k8s-dns-kube-dns:1.14.9
         imagePullPolicy: IfNotPresent
         livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - /scripts/cert_age.sh
           failureThreshold: 5
-          httpGet:
-            path: /healthcheck/kubedns
-            port: 10054
-            scheme: HTTP
           initialDelaySeconds: 60
           periodSeconds: 10
           successThreshold: 1
@@ -92,6 +92,8 @@ spec:
           name: kubernetes
         - mountPath: /data/certs
           name: certs
+        - mountPath: /scripts
+          name: cert-age
       - args:
         - -v=2
         - -logtostderr
@@ -101,10 +103,10 @@ spec:
         - -k
         - --cache-size=1000
         - --log-facility=-
-        - --server=/frf-sam.frf.sam.sfdc.net/127.0.0.1#10053
+        - --server=/ord-sam.ord.sam.sfdc.net/127.0.0.1#10053
         - --server=/in-addr.arpa/127.0.0.1#10053
         - --server=/ip6.arpa/127.0.0.1#10053
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/k8s-dns-dnsmasq-nanny:1.14.9
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/k8s-dns-dnsmasq-nanny:1.14.9
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
@@ -133,9 +135,9 @@ spec:
       - args:
         - --v=2
         - --logtostderr
-        - --probe=kubedns,127.0.0.1:10053,kubernetes.default.svc.frf-sam.frf.sam.sfdc.net,5,A
-        - --probe=dnsmasq,127.0.0.1:53,kubernetes.default.svc.frf-sam.frf.sam.sfdc.net,5,A
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/k8s-dns-sidecar:1.14.9
+        - --probe=kubedns,127.0.0.1:10053,kubernetes.default.svc.ord-sam.ord.sam.sfdc.net,5,A
+        - --probe=dnsmasq,127.0.0.1:53,kubernetes.default.svc.ord-sam.ord.sam.sfdc.net,5,A
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/k8s-dns-sidecar:1.14.9
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
@@ -184,3 +186,7 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
+      - configMap:
+          defaultMode: 511
+          name: cert-age
+        name: cert-age
