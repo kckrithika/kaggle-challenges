@@ -221,14 +221,16 @@ data:
     NotReadyCount >=2 AND minionpool not like ''par-sam'')\n\n              OR (TotalCount
     >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency": "5m"}, {"alertAction": "pagerduty",
     "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
-    "The following minion pools have kubeApi nodes down in Production requiring immediate
-    attention. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
+    "The following minion pools have kubeApi nodes down requiring immediate attention.
+    Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
     "name": "SqlKubeApiNode", "sql": "SELECT Name,\n                ControlEstate,\n                MinionPool,\n                Ready\n              FROM
     nodeDetailView\n              WHERE Name LIKE ''%kubeapi%'' AND Ready !=''True''
-    AND KINGDOM != ''PRD'' AND KINGDOM != ''XRD''", "watchdogFrequency": "5m"}, {"alertAction":
-    "email", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "20m",
-    "instructions": "The following SAM control stack components dont have even 1 healhty
-    pod", "name": "SqlSamControl", "sql": "SELECT * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
+    AND\n                 ControlEstate NOT LIKE ''%sdc%'' AND\n                 ControlEstate
+    NOT LIKE ''%storage%'' AND\n                 ControlEstate NOT LIKE ''%samdev%''
+    AND\n                 ControlEstate NOT LIKE ''%samtest%''", "watchdogFrequency":
+    "5m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
+    "alertThreshold": "20m", "instructions": "The following SAM control stack components
+    dont have even 1 healhty pod", "name": "SqlSamControl", "sql": "SELECT * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
     ''$.metadata.labels.\"sam.data.sfdc.net/owner\"'') AS ownerlabel,\n                      JSON_EXTRACT(Payload,
     ''$.spec.replicas'') AS desiredReplicas,\n                      JSON_EXTRACT(Payload,
     ''$.status.availableReplicas'') AS availableReplicas,\n                      JSON_EXTRACT(Payload,
