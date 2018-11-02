@@ -119,7 +119,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                               ]),
                               env: [
                                   slbconfigs.node_name_env,
-                              ] + (if slbimages.phaseNum == 1 then [
+                              ] + (if slbimages.hypersdn_build >= 1345 then [
                                   slbconfigs.function_namespace_env,
                                   slbconfigs.function_instance_name_env,
                               ] else []),
