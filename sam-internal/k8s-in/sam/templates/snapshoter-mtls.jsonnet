@@ -84,6 +84,29 @@ configs.containerWithKubeConfigAndMadDog {
                   + madkub.madkubSamMadkubVolumes(),
                 initContainers+: [
                     madkub.madkubInitContainer(certDirs),
+{
+                        image: samimages.permissionInitContainer,
+                        name: "permissionsetterinitcontainer",
+                        imagePullPolicy: "Always",
+                        command: [
+                                  "bash",
+                                  "-c",
+|||
+                                  set -ex
+                                  chmod 775 -R /data/certs && chown -R 7447:7447 /data/certs 
+                                  chmod 775 -R /cert1 && chown -R 7447:7447 /cert1
+|||,
+                        ],
+                        securityContext: {
+                          runAsNonRoot: false,
+                          runAsUser: 0,
+                        },
+                        volumeMounts: [
+                            configs.sfdchosts_volume_mount,
+                            configs.config_volume_mount,
+                            configs.cert_volume_mount,
+                        ] + madkub.madkubSamCertVolumeMounts(certDirs),
+                    },
                 ],
                 hostNetwork: true,
                 nodeSelector: {
