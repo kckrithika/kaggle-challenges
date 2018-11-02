@@ -1,6 +1,9 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
+local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile };
+
+local certDirs = ["cert1"];
 
 if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
             apiVersion: "apps/v1beta1",
@@ -32,6 +35,18 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                           sam_app: "mysql-ss",
                           sam_function: "mysql-ss",
                           sam_loadbalancer: "mysql-ss",
+                        },
+                        annotations: {
+                          "madkub.sam.sfdc.net/allcerts":
+                            std.manifestJsonEx(
+                           {
+                            certreqs:
+                              [
+                                { role: "sam-system.mysql-ss" } + certReq
+                                  for certReq in madkub.madkubSamCertsAnnotation(certDirs).certreqs
+                                ],
+                              }, " "
+                            ),
                         },
                     },
                   spec: {
@@ -240,11 +255,12 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                                     MASTER_PASSWORD='$MYSQL_ROOT_PASS',
                                     MASTER_CONNECT_RETRY=10;
                                     START SLAVE;
-                                    EOF
+                                  # This EOF literally needs to be indented like this
+                                  # or the script will straight up break. It's loony
+                                  EOF
                                   fi
                                   # Start a server to send backups when requested by peers.
-                                  exec ncat --listen --keep-open --send-only --max-conns=1 3307 -c 
-                                    "xtrabackup --backup --slave-info --stream=xbstream --host=127.0.0.1 --user=$MYSQL_ROOT_USER --password=$MYSQL_ROOT_PASS"
+                                  exec ncat --listen --keep-open --send-only --max-conns=1 3307 -c "xtrabackup --backup --slave-info --stream=xbstream --host=127.0.0.1 --user=$MYSQL_ROOT_USER --password=$MYSQL_ROOT_PASS"
 |||,
                                 ],
                               env: [
@@ -343,85 +359,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                         ],
                       dnsPolicy: "ClusterFirst",
                       initContainers: [
-                            {
-                             args: [
-                                    "/sam/madkub-client",
-                                    "--madkub-endpoint",
-                                    "https://10.254.208.254:32007",
-                                    "--maddog-endpoint",
-                                    "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
-                                    "--maddog-server-ca",
-                                    "/maddog-hostdata/ca/security-ca.pem",
-                                    "--madkub-server-ca",
-                                    "/maddog-hostdata/ca/cacerts.pem",
-                                    "--ca-folder",
-                                    "/maddog-hostdata/ca",
-                                    "--token-folder",
-                                    "/tokens",
-                                    "--funnel-endpoint",
-                                    "http://ajna0-funnel1-0-prd.data.sfdc.net:80",
-                                    "--kingdom",
-                                    "prd",
-                                    "--superpod",
-                                    "None",
-                                    "--estate",
-                                    "prd-sam",
-                                    "--testca-folder",
-                                    "/maddog-hostdata/ca_test",
-                                    "--cert-folders",
-                                    "certs:/certs-certs",
-                                ],
-                              env: [
-                                    {
-                                      name: "MADKUB_NODENAME",
-                                      valueFrom: {
-                                          fieldRef: {
-                                              apiVersion: "v1",
-                                              fieldPath: "spec.nodeName",
-                                            },
-                                        },
-                                    },
-                                    {
-                                      name: "MADKUB_NAME",
-                                      valueFrom: {
-                                          fieldRef: {
-                                              apiVersion: "v1",
-                                              fieldPath: "metadata.name",
-                                            },
-                                        },
-                                    },
-                                    {
-                                      name: "MADKUB_NAMESPACE",
-                                      valueFrom: {
-                                          fieldRef: {
-                                              apiVersion: "v1",
-                                              fieldPath: "metadata.namespace",
-                                            },
-                                        },
-                                    },
-                                ],
-                              image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000077-b1d3a629",
-                              imagePullPolicy: "Always",
-                              name: "sam-madkub-integration-init",
-                              resources: {},
-                              terminationMessagePath: "/dev/termination-log",
-                              terminationMessagePolicy: "File",
-                              volumeMounts: [
-                                    {
-                                      mountPath: "/maddog-hostdata",
-                                      name: "sam-maddog-cahost",
-                                    },
-                                    {
-                                      mountPath: "/tokens",
-                                      name: "sam-maddog-token",
-                                    },
-                                    {
-                                      mountPath: "/certs-certs",
-                                      name: "certs",
-                                    },
-                                ],
-                            },
-                            {
+                             {
                               args: [
                                   "chmod -R 775 /vols/sam-maddog-cahost",
                                   "chown -R 7447:7447 /vols/sam-maddog-cahost",
