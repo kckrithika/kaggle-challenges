@@ -797,6 +797,54 @@
     },
     {
       "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-sam_kingdom_caas",
+      "kingdom": "ia2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-health"
+      ],
+      "access": [
+        "team/CSC_Health"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-sam_report_collector",
+      "kingdom": "ia2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service-sp1"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-sp1-sam_caas",
+      "kingdom": "ia2",
+      "superPod": "sp1"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service-sp2"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-sp2-sam_caas",
+      "kingdom": "ia2",
+      "superPod": "sp2"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -1568,6 +1616,54 @@
       "estate": "ph2-sam_gater",
       "kingdom": "ph2",
       "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-sam_kingdom_caas",
+      "kingdom": "ph2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-health"
+      ],
+      "access": [
+        "team/CSC_Health"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-sam_report_collector",
+      "kingdom": "ph2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service-sp1"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-sp1-sam_caas",
+      "kingdom": "ph2",
+      "superPod": "sp1"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service-sp2"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-sp2-sam_caas",
+      "kingdom": "ph2",
+      "superPod": "sp2"
     },
     {
       "namespaces": [
