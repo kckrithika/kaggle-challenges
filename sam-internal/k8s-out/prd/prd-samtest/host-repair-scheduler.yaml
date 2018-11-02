@@ -22,7 +22,6 @@ spec:
       - command:
         - /sam/host-repair-scheduler
         - --config=/config/host-repair-scheduler.json
-        - --hostsConfigFile=/sfdchosts/hosts.json
         - -v=0
         env:
         - name: KUBECONFIG
