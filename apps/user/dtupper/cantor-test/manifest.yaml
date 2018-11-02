@@ -35,6 +35,8 @@ system:
       - name: cantorservercert
         maddogCert:
           type: server
+          lbnames:
+          - cantor
     loadbalancers:
     - lbname: cantor
       function: dtcantor-test-func
