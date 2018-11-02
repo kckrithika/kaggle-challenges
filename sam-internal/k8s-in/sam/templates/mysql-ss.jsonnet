@@ -504,10 +504,9 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                                     echo "This pod is ss index 0 therefore must be the write master with no data in /mysql . Will only clone from subordinates if clone flag is set"
                                     # If this is master - check for cloning from ro-subordinates 
                                     if [[ $INITIALIZE_EMPTY_MASTER -eq 0 ]]; then
-                                      # Clone data from subordinate at statefulset index 1
-                                      ncat --recv-only mysql-ss-1.mysql-service 3307 | xbstream -x -C /var/lib/mysql 
-                                      # Prepare the backup.
-                                      xtrabackup --prepare --target-dir=/var/lib/mysql
+                                      echo "No data found in /var/mysql but the initialize empty flag is not set. This is an invalid state. This pod will remain in crashloopbackoff until either A. This startup script finds a db to start in /var/mysql or B. the INITIALIZE_EMPTY_MASTER flag is set to some value other than 0."
+                                      sleep 600
+                                      exit 1
                                     fi
                                   else
                                     # Clone data from previous peer.
@@ -520,7 +519,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                               env: [
                                     {
                                       name: "INITIALIZE_EMPTY_MASTER",
-                                      value: "0",
+                                      value: "1",
                                     },
                                 ],
                               image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/xtrabackup:1.0",
