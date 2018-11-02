@@ -11,7 +11,7 @@ system:
       - containerPort: 50070
       env:
       - name: CLUSTER_NAME
-        value: 'test'
+        value: "test"
       livenessProbe:
         httpGet:
           path: /
