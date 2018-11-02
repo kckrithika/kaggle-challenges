@@ -25,8 +25,8 @@ local canaryPortConfig = [
           tlskey: "kms:1:2:4A4C6C75332A0547BB81D5263A9D2F939FB4590FF9AF15C5403A656F8BB913D2:85cbe09f-790c-43a8-aecc-eb4376ef6a45",  # prd
         }
         else if configs.estate == "xrd-sam" then {
-#          tlscertificate: "secret_service:slbTest:kmscert-xrd-20181030-signed",
-#          tlskey: "kms:1:2:4A4C6C75332A0547BB81D5263A9D2F939FB4590FF9AF15C5403A656F8BB913D2:79f1260d-ce7b-4eac-8876-709bd0185683",  # xrd
+          tlscertificate: "secret_service:slbTest:kmscert-xrd-20181102-signed",
+          tlskey: "kms:1:2:4A4C6C75332A0547BB81D5263A9D2F939FB4590FF9AF15C5403A656F8BB913D2:79f1260d-ce7b-4eac-8876-709bd0185683",  # xrd
         } else {}),
 ];
 
