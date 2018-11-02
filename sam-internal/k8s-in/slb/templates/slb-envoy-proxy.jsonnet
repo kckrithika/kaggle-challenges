@@ -8,6 +8,9 @@ local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: slbconfig
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: slbconfigs.envoyProxyName };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: slbconfigs.envoyProxyName };
 
+local slbbasedeployment = (import "slb-base-deployment.libsonnet") + { dirSuffix:: slbconfigs.envoyProxyName };
+
+// cert1 = server cert, cert2 = client cert.
 local certDirs = ["cert1", "cert2"];
 
 local sherpaContainer = {
@@ -65,110 +68,79 @@ local sherpaContainer = {
     ],
 };
 
-if slbconfigs.isSlbEstate && slbflights.envoyProxyEnabled then configs.deploymentBase("slb") {
-    metadata: {
-        labels: {
-            name: slbconfigs.envoyProxyName,
-        } + configs.ownerLabel.slb,
-        name: slbconfigs.envoyProxyName,
-        namespace: "sam-system",
+local nginxContainer = {
+    name: slbconfigs.envoyProxyName,
+    image: slbimages.slbnginx,
+    command: ["nginx", "-g", "daemon off;"],
+    livenessProbe: {
+        httpGet: {
+            path: "/",
+            port: portconfigs.slb.slbNginxProxyLivenessProbePort,
+        },
+        initialDelaySeconds: 15,
+        periodSeconds: 10,
     },
+    volumeMounts: configs.filter_empty([
+        {
+            name: "slb-envoy-nginx-configuration",
+            mountPath: "/etc/nginx/conf.d",
+        },
+        slbconfigs.nginx_logs_volume_mount,
+        slbconfigs.slb_volume_mount,
+    ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
+};
+
+// Anti-affinitize the proxy to ipvs and to itself -- the proxy can't run on the same node as ipvs.
+local affinity = {
+    podAntiAffinity: {
+        requiredDuringSchedulingIgnoredDuringExecution: [{
+            labelSelector: {
+                matchExpressions: [{
+                    key: "name",
+                    operator: "In",
+                    values: [
+                        "slb-ipvs",
+                        slbconfigs.envoyProxyName,
+                    ],
+                }],
+            },
+            topologyKey: "kubernetes.io/hostname",
+        }],
+    },
+};
+
+if slbconfigs.isSlbEstate && slbflights.envoyProxyEnabled then
+    slbbasedeployment.slbBaseDeployment(
+        name=slbconfigs.envoyProxyName,
+        replicas=3,
+        affinity=affinity,
+        beforeSharedContainers=[nginxContainer, sherpaContainer, madkub.madkubRefreshContainer(certDirs)],
+    ) {
     spec+: {
-        replicas: 1,
-        revisionHistoryLimit: 2,
-        template: {
-            metadata: {
-                labels: {
-                    name: slbconfigs.envoyProxyName,
-                } + configs.ownerLabel.slb,
-                namespace: "sam-system",
-                annotations: {
+        template+: {
+            metadata+: {
+                annotations+: {
                     "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(certDirs), " "),
                 },
             },
-            spec: {
-                affinity: {
-                    podAntiAffinity: {
-                        requiredDuringSchedulingIgnoredDuringExecution: [{
-                            labelSelector: {
-                              matchExpressions: [{
-                                  key: "name",
-                                  operator: "In",
-                                  values: [
-                                      "slb-ipvs",
-                                      slbconfigs.envoyProxyName,
-                                  ],
-                              }],
-                            },
-                            topologyKey: "kubernetes.io/hostname",
-                      }],
-                    },
-                },
+            spec+: {
                 securityContext: {
                     fsGroup: 7447,
                 },
-                volumes: std.prune([
+                volumes+: [
                     {
                         name: "slb-envoy-nginx-configuration",
                         configMap: {
                             name: "slb-envoy-nginx-configuration",
                         },
                     },
-                    slbconfigs.slb_volume,
-                    slbconfigs.logs_volume,
-                    configs.sfdchosts_volume,
-                    configs.maddog_cert_volume,
-                    configs.kube_config_volume,
-                    configs.cert_volume,
-                    slbconfigs.slb_config_volume,
-                    slbconfigs.cleanup_logs_volume,
-                    slbconfigs.sbin_volume,
                 ] + madkub.madkubSlbCertVolumes(certDirs)
-                + madkub.madkubSlbMadkubVolumes()),
-                containers: [
-                    {
-                        name: slbconfigs.envoyProxyName,
-                        image: slbimages.slbnginx,
-                        command: ["nginx", "-g", "daemon off;"],
-                        livenessProbe: {
-                            httpGet: {
-                                path: "/",
-                                port: portconfigs.slb.slbNginxProxyLivenessProbePort,
-                            },
-                            initialDelaySeconds: 15,
-                            periodSeconds: 10,
-                        },
-                        volumeMounts: configs.filter_empty([
-                            {
-                                name: "slb-envoy-nginx-configuration",
-                                mountPath: "/etc/nginx/conf.d",
-                            },
-                            slbconfigs.nginx_logs_volume_mount,
-                            slbconfigs.slb_volume_mount,
-                        ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
-                    },
-                    sherpaContainer,
-                    madkub.madkubRefreshContainer(certDirs),
-                    slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
-                    slbshared.slbCleanupConfig,
-                    slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, false),
-                    slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
-                    slbshared.slbLogCleanup,
-                ],
-                initContainers: [
+                + madkub.madkubSlbMadkubVolumes(),
+                initContainers+: [
                     madkub.madkubInitContainer(certDirs),
                 ],
-                dnsPolicy: "Default",
                 nodeSelector: { pool: slbconfigs.slbEstate },
             },
         },
-        strategy: {
-            type: "RollingUpdate",
-            rollingUpdate: {
-                maxUnavailable: 1,
-                maxSurge: 0,
-            },
-        },
-        minReadySeconds: 60,
     },
 } else "SKIP"
