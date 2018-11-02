@@ -5,8 +5,7 @@ local portconfigs = import "portconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 local canary = import "slb-canary-base-deployment.libsonnet";
 
-local proxyProtocolPorts =
-    if slbflights.proxyProtocolCanaryEnabled then [8081] else [];
+local proxyProtocolPorts = [8081];
 
 if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then
     canary.slbCanaryBaseDeployment(

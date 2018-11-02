@@ -54,7 +54,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     configs.kube_config_volume,
                     slbconfigs.sbin_volume,
                     slbconfigs.cleanup_logs_volume,
-                    (if slbflights.ipvsProcessorProxySelection then slbconfigs.proxyconfig_volume else {}),
+                    slbconfigs.proxyconfig_volume,
                 ]),
                 containers: [
                     {
@@ -142,32 +142,25 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             // Note that current nginx config is hard-coded to rise=2, fall=5 (https://git.soma.salesforce.com/sdn/sdn/blob/assert-validation-succeeds/src/slb/slb-nginx-config/commonconfig/commonconfig.go#L147-L152).
                             "--healthcheck.riseCount=5",
                             "--healthcheck.fallCount=2",
-                        ] + (if slbflights.ipvsProcessorProxySelection then [
                             "--computeProxyServers=true",
-                        ] else []),
-                        volumeMounts: configs.filter_empty([
+                        ],
+                        volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
                             slbconfigs.usr_sbin_volume_mount,
                             configs.sfdchosts_volume_mount,
-                        ] + (if slbflights.ipvsProcessorProxySelection then [
-                             slbconfigs.proxyconfig_volume_mount,
-                        ] else []))
-                        + (if slbimages.hypersdn_build >= 1323 then [
-                             configs.kube_config_volume_mount,
-                             configs.maddog_cert_volume_mount,
-                        ] else []),
+                            slbconfigs.proxyconfig_volume_mount,
+                            configs.kube_config_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                        ]),
                         securityContext: {
                             privileged: true,
                         },
-                    } + (
-                      if slbimages.hypersdn_build >= 1323 then {
                         env: [
-                         configs.kube_config_env,
+                            configs.kube_config_env,
                         ],
-                      } else {}
-),
+                    },
                     {
                         name: "slb-ipvs-data",
                         image: slbimages.hypersdn,
@@ -273,6 +266,6 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 maxSurge: 0,
             },
         },
-        minReadySeconds: (if slbimages.hypersdn_build >= 1334 then 60 else 120),
+        minReadySeconds: 60,
     },
 } else "SKIP"

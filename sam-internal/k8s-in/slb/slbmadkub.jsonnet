@@ -56,9 +56,8 @@
                     "*.data.sfdc.net",
                     "*.kms.slb.sfdc.net",
                     "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
-                ] + (if slbimages.hypersdn_build >= 1323 then [
                     "*.internal.salesforce.com",
-                ] else []) + (if configs.estate == "prd-sam" then (steamVipSans + [
+                ] + (if configs.estate == "prd-sam" then (steamVipSans + [
                     "*.retail-rsui." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
                 ]) else []),
             },

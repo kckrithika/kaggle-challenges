@@ -38,7 +38,7 @@ local proxyVipMapping = {
     ] else [],
 };
 
-if slbconfigs.isSlbEstate && slbflights.proxyConfigMapEnabled then {
+if slbconfigs.isSlbEstate then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

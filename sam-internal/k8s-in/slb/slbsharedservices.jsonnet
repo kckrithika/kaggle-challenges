@@ -226,13 +226,11 @@
                  + (if slbflights.roleEnabled then [
                      "--isRoleUsed=true",
                      ] else [])
-                 + (if slbimages.hypersdn_build >= 1326 then [
-                     "--vcioptions.strict=true",
-                     ] else [])
-                 + ([
+                 + [
+                        "--vcioptions.strict=true",
                         "--client.allowStale=true",
                         "--control.manifestWatcherSentinel=" + mwSentinel,
-                    ]),
+                    ],
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             configs.sfdchosts_volume_mount,
