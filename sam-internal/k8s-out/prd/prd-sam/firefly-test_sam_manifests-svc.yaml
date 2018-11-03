@@ -126,10 +126,10 @@ items:
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
-                  "oauth-token": "${gitRWPassword#FromSecretService}",
+                  "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
                   "read-timeout": "5s",
                   "url": "https://git.soma.salesforce.com",
-                  "user": "svc-tnrp-git-rw",
+                  "user": "tok_firefly_git_test",
                   "write-timeout": "5s"
               }
           },
@@ -307,7 +307,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "9"
+            value: "10"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -558,10 +558,10 @@ items:
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
-                  "oauth-token": "${gitRWPassword#FromSecretService}",
+                  "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
                   "read-timeout": "5s",
                   "url": "https://git.soma.salesforce.com",
-                  "user": "svc-tnrp-git-rw",
+                  "user": "tok_firefly_git_test",
                   "write-timeout": "5s"
               }
           },
@@ -739,7 +739,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "7"
+            value: "8"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -955,10 +955,10 @@ items:
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
-                  "oauth-token": "${gitRWPassword#FromSecretService}",
+                  "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
                   "read-timeout": "5s",
                   "url": "https://git.soma.salesforce.com",
-                  "user": "svc-tnrp-git-rw",
+                  "user": "tok_firefly_git_test",
                   "write-timeout": "5s"
               }
           },
@@ -1134,7 +1134,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "11"
+            value: "12"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -1367,10 +1367,10 @@ items:
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
-                  "oauth-token": "${gitRWPassword#FromSecretService}",
+                  "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
                   "read-timeout": "5s",
                   "url": "https://git.soma.salesforce.com",
-                  "user": "svc-tnrp-git-rw",
+                  "user": "tok_firefly_git_test",
                   "write-timeout": "5s"
               }
           },
@@ -1546,7 +1546,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "6"
+            value: "7"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE

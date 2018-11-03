@@ -1,7 +1,10 @@
+local envConfig = import "configs/firefly_service_conf.jsonnet";
+local configs = import "config.jsonnet";
+
 {
   'api-url': 'https://git.soma.salesforce.com/api/v3/',
-  user: 'svc-tnrp-git-rw',
-  'oauth-token': '${gitRWPassword#FromSecretService}',
+  user: envConfig.environmentMapping[configs.estate].gitUser,
+  'oauth-token': envConfig.environmentMapping[configs.estate].gitOauthToken,
   'connect-timeout': '5s',
   'read-timeout': '5s',
   'write-timeout': '5s',
