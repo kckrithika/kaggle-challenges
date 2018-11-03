@@ -19,7 +19,9 @@ local cnameLocation =
         configs.kingdom;
 
 local cnames = [
-        "mesh-" + cnameLocation + ".slb.sfdc.net",
+    {
+        cname: "mesh-" + cnameLocation + ".slb.sfdc.net",
+    },
 ];
 
 local portConfig = [

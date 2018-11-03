@@ -4,7 +4,9 @@ metadata:
   annotations:
     slb.sfdc.net/cnames: |-
       [
-       "mesh-prd-sam.slb.sfdc.net"
+       {
+        "cname": "mesh-prd-sam.slb.sfdc.net"
+       }
       ]
     slb.sfdc.net/name: service-mesh-ingress
     slb.sfdc.net/portconfigurations: |-
