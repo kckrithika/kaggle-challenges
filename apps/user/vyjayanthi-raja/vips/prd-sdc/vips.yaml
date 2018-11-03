@@ -1,5 +1,7 @@
 - lbname: helloselfservice2
   customlbname: slb-canary-migration-prd-sdc
+  cnames:
+   - cname: slb-migration.slb.sfdc.net
   servers:
    - shared0-sdcsamcompute1-3-prd.eng.sfdc.net
    - shared0-sdcsamcompute1-5-prd.eng.sfdc.net
