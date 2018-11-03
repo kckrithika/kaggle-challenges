@@ -19,7 +19,7 @@ system:
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: SCONE_DEPLOYMENT_JVM_OPTIONS
-        value: "-Dscone.service.name=ordering-service-rate-limited -Dshipping.interval=5000"
+        value: "-Dscone.service.name=ordering-service-rate-limited -Dshipping.interval=10000"
       ports:
       - containerPort: 7020
         name: grpc-svc
