@@ -88,24 +88,24 @@
         },
 
         reservedIps: {
-            "prd-sdc": "",
-            "prd-samtest": "",
-            "prd-samdev": "",
-            "prd-sam_storage": "",
-            "prd-sam_storagedev": "",
-            "prd-sam": "10.251.196.91/32,10.251.196.42/32,10.251.196.111/32,10.251.196.44/32",
-            "frf-sam": "",
-            "phx-sam": "",
-            "iad-sam": "10.208.108.0/32",
-            "ord-sam": "10.208.148.10/32",
-            "dfw-sam": "",
-            "hnd-sam": "",
-            "xrd-sam": "",
-            "cdg-sam": "",
-            "fra-sam": "",
-            "par-sam": "",
-            "ukb-sam": "",
-            "prd-samtwo": "",
+            "prd-sdc": [],
+            "prd-samtest": [],
+            "prd-samdev": [],
+            "prd-sam_storage": [],
+            "prd-sam_storagedev": [],
+            "prd-sam": ["10.251.196.91/32", "10.251.196.42/32", "10.251.196.111/32", "10.251.196.44/32"],
+            "frf-sam": [],
+            "phx-sam": [],
+            "iad-sam": ["10.208.108.0/32"],
+            "ord-sam": ["10.208.148.10/32"],
+            "dfw-sam": [],
+            "hnd-sam": [],
+            "xrd-sam": [],
+            "cdg-sam": [],
+            "fra-sam": [],
+            "par-sam": [],
+            "ukb-sam": [],
+            "prd-samtwo": [],
         },
 
         trustedProxies: {
@@ -246,15 +246,10 @@
             },
 
         envoyEnabledVips:
-            set_value_to_all_in_list([], $.testEstates)
-            + set_value_to_all_in_list([], $.prodEstates)
-            + {
-              "prd-sdc": ["service-mesh-ingress.sam-system.prd-sdc.prd.slb.sfdc.net"],
-              "prd-sam": ["service-mesh-ingress.sam-system.prd-sam.prd.slb.sfdc.net"],
-            },
+            set_value_to_all_in_list(["service-mesh-ingress.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net"], $.slbEstates),
 
         envoyVip:
-            set_value_to_all_in_list("", $.slbEstates)
+            set_value_to_all_in_list([], $.slbEstates)
             + {
               "prd-sdc": "10.254.247.107",
               "prd-sam": "10.251.197.48",
@@ -406,7 +401,7 @@
 
     subnet: self.perCluster.subnet[estate],
     publicSubnet: self.perCluster.publicSubnet[estate],
-    reservedIps: self.perCluster.reservedIps[estate],
+    reservedIps: std.join(",", std.prune(self.perCluster.reservedIps[estate] + if $.envoyVip != "" then [$.envoyVip] else [])),
     serviceList: self.perCluster.serviceList[estate],
     namespace: self.perCluster.namespace[estate],
     ddiService: self.perCluster.ddiService[kingdom],
