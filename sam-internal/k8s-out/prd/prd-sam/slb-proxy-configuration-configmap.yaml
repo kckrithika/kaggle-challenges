@@ -12,6 +12,11 @@ data:
           "healthpath": "/",
           "healthport": 12080,
           "name": "slb-hsm-nginx"
+        },
+        {
+          "healthpath": "/",
+          "healthport": 12080,
+          "name": "slb-envoy"
         }
       ]
     }
@@ -21,6 +26,12 @@ data:
         {
           "proxyname": "slb-hsm-nginx",
           "vips": []
+        },
+        {
+          "proxyname": "slb-envoy",
+          "vips": [
+            "service-mesh-ingress.sam-system.prd-sam.prd.slb.sfdc.net"
+          ]
         }
       ]
     }

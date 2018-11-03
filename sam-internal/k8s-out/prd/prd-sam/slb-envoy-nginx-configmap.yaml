@@ -1,7 +1,36 @@
-{
-    local slbconfigs = import "slbconfig.jsonnet",
+apiVersion: v1
+data:
+  default.conf: |
+    server {
+        listen       12080;
+        server_name  localhost;
 
-    data: |||
+        location /_slb/status {
+            vhost_traffic_status_display;
+        }
+
+        location /_slb/health {
+            healthcheck_status;
+        }
+
+        location / {
+            root   /usr/share/nginx/html;
+            index  index.html index.htm;
+        }
+
+        location /logs {
+            autoindex on;
+            root /host/data/slb/;
+        }
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
+    }
+  service-mesh.conf: |
     # Envoy port reference: https://git.soma.salesforce.com/servicelibs/sherpa#ports
     upstream service_mesh_http1 {
         check interval=3000 rise=2 fall=5 timeout=1000 type=tcp port=7013;
@@ -22,7 +51,7 @@
 
     # http1 server
     server {
-        listen %(envoyVip)s:7013;
+        listen 10.251.197.48:7013;
         access_log /host/data/slb/logs/slb-envoy-proxy.access.slb_envoy_proxy_service_sam_system_9115.log combined buffer=64k gzip=1 flush=5m;
         location ~ ^/(?<service>[^\/]+) {
             set $mesh_host $service.localhost.mesh.force.com;
@@ -39,7 +68,7 @@
 
     # http1-tls server
     server {
-        listen %(envoyVip)s:5442 ssl;
+        listen 10.251.197.48:5442 ssl;
         access_log /host/data/slb/logs/slb-envoy-proxy.access.slb_envoy_proxy_service_sam_system_9115.log combined buffer=64k gzip=1 flush=5m;
         location ~ ^/(?<service>[^\/]+) {
             set $mesh_host $service.localhost.mesh.force.com;
@@ -58,7 +87,7 @@
 
     # http2 server
     server {
-        listen %(envoyVip)s:7011 http2;
+        listen 10.251.197.48:7011 http2;
         access_log /host/data/slb/logs/slb-envoy-proxy.access.slb_envoy_proxy_service_sam_system_9115.log combined buffer=64k gzip=1 flush=5m;
         location ~ ^/(?<service>[^\/]+) {
             set $mesh_host $service.localhost.mesh.force.com;
@@ -75,7 +104,7 @@
 
     # http2-tls server
     server {
-        listen %(envoyVip)s:5443 ssl http2;
+        listen 10.251.197.48:5443 ssl http2;
         access_log /host/data/slb/logs/slb-envoy-proxy.access.slb_envoy_proxy_service_sam_system_9115.log combined buffer=64k gzip=1 flush=5m;
         location ~ ^/(?<service>[^\/]+) {
             set $mesh_host $service.localhost.mesh.force.com;
@@ -91,5 +120,10 @@
         ssl_certificate /cert1/server/certificates/server.pem; ssl_certificate_key /cert1/server/keys/server-key.pem;
         ssl_client_certificate /cert1/ca.pem; ssl_verify_client optional; ssl_verify_depth 10;
     }
-||| % slbconfigs
-}
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: slb
+  name: slb-envoy-nginx-configuration
+  namespace: sam-system

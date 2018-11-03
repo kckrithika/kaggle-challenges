@@ -250,6 +250,14 @@
             + set_value_to_all_in_list([], $.prodEstates)
             + {
               "prd-sdc": ["service-mesh-ingress.sam-system.prd-sdc.prd.slb.sfdc.net"],
+              "prd-sam": ["service-mesh-ingress.sam-system.prd-sam.prd.slb.sfdc.net"],
+            },
+
+        envoyVip:
+            set_value_to_all_in_list("", $.slbEstates)
+            + {
+              "prd-sdc": "10.254.247.107",
+              "prd-sam": "10.251.197.48",
             },
     },
 
@@ -421,6 +429,7 @@
     ipvsReplicaCount: self.perCluster.ipvsReplicaCount[estate],
     hsmEnabledVips: self.perCluster.hsmEnabledVips[estate],
     envoyEnabledVips: self.perCluster.envoyEnabledVips[estate],
+    envoyVip: self.perCluster.envoyVip[estate],
 
     sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
     sdn_watchdog_emailrec: "slb@salesforce.com",
