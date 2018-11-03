@@ -4,10 +4,23 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbportconfiguration = import "slbportconfiguration.libsonnet";
 local slbbaseservice = import "slb-base-service.libsonnet";
 local slbflights = import "slbflights.jsonnet";
+local commonutils = import "util_functions.jsonnet";
 
 local podName = slbconfigs.envoyProxyName;
 local serviceName = podName + "-service";
 local vipName = "service-mesh-ingress";
+
+// prd is special since we have several estates -- disambiguate using the location.
+// For non-prd kingdoms, disambiguate using the kingdom.
+local cnameLocation =
+    if configs.kingdom == "prd" then
+        commonutils.string_replace(configs.estate, "_", "-")
+    else
+        configs.kingdom;
+
+local cnames = [
+        "mesh-" + cnameLocation + ".slb.sfdc.net",
+];
 
 local portConfig = [
     slbportconfiguration.newPortConfiguration(
@@ -36,8 +49,8 @@ local portConfig = [
     ),
 ];
 
-if slbconfigs.isSlbEstate && slbflights.envoyProxyEnabled then
-    slbbaseservice.slbCanaryBaseService(podName, portConfig, serviceName, vipName) {
+if slbconfigs.isSlbEstate && (slbflights.envoyProxyEnabled || configs.estate == "prd-sam") then
+    slbbaseservice.slbCanaryBaseService(podName, portConfig, serviceName, vipName, cnames) {
     spec+: {
         // Override the selector -- I don't want this VIP to select any pods for now.
         selector: {
