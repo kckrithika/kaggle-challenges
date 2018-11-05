@@ -24,6 +24,8 @@ system:
           name: cantor-vol
         - mountPath: /home/sfdc-cantor/pki/server
           name: cantorservercert
+        - mountPath: /home/sfdc-cantor/pki/client
+          name: cantorclientcert
         livenessProbe:
           exec:
             command:
@@ -37,6 +39,9 @@ system:
           type: server
           lbnames:
           - cantor
+      - name: cantorclientcert
+        maddogCert:
+          type: client
     loadbalancers:
     - lbname: cantor
       function: dtcantor-test-func
