@@ -15,7 +15,7 @@ if configs.estate == "prd-sam" then {
                         command: [
                                      "/sam/watchdog",
                                      "-role=PULLREQUEST",
-                                     "-watchdogFrequency=3m",
+                                     "-watchdogFrequency=4m",
                                      "-alertThreshold=10s",
                                      "-emailFrequency=1h",
                                      "-watchDogKind=" + $.kind,
