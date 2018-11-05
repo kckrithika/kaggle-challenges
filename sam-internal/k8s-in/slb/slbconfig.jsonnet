@@ -249,9 +249,9 @@
             set_value_to_all_in_list(["service-mesh-ingress.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net"], $.slbEstates),
 
         envoyVip:
-            set_value_to_all_in_list([], $.slbEstates)
+            set_value_to_all_in_list("", $.slbEstates)
             + {
-              "prd-sdc": "10.254.247.107",
+              "prd-sdc": "10.254.247.101",
               "prd-sam": "10.251.197.48",
             },
     },
@@ -401,7 +401,7 @@
 
     subnet: self.perCluster.subnet[estate],
     publicSubnet: self.perCluster.publicSubnet[estate],
-    reservedIps: std.join(",", std.prune(self.perCluster.reservedIps[estate] + if $.envoyVip != "" then [$.envoyVip] else [])),
+    reservedIps: std.join(",", self.perCluster.reservedIps[estate] + self.envoyVipCIDR),
     serviceList: self.perCluster.serviceList[estate],
     namespace: self.perCluster.namespace[estate],
     ddiService: self.perCluster.ddiService[kingdom],
@@ -425,6 +425,7 @@
     hsmEnabledVips: self.perCluster.hsmEnabledVips[estate],
     envoyEnabledVips: self.perCluster.envoyEnabledVips[estate],
     envoyVip: self.perCluster.envoyVip[estate],
+    envoyVipCIDR: if std.length(self.envoyVip) != 0 then ([self.envoyVip + "/32"]) else [],
 
     sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
     sdn_watchdog_emailrec: "slb@salesforce.com",
