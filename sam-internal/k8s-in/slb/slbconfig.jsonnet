@@ -214,6 +214,8 @@
                 "prd-samtest": 1,
                 "prd-samdev": 1,
                 "xrd-sam": 8,
+                "phx-sam": 8,
+                "iad-sam": 8,
             },
 
         maxDeleteCount: {
