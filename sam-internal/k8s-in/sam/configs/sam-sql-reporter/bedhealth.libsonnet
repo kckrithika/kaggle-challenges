@@ -57,7 +57,7 @@
                 name: "Unhealthy Pods in Sam-System",
                 note: "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
                 sql: "select
-        case when (Phase='Pending' and Name like '%watchdog%') then 'YELLOW' else 'RED' end as Status,
+        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,
         ControlEstate,
         Namespace,
         Name,
@@ -81,7 +81,7 @@
                 note: "For phased releases, items in red should be fixed.",
                 sql: "select * from (
         select
-        case when GROUP_CONCAT(Error, '') is null then '' when CheckerName in ('puppetChecker', 'kubeResourcesChecker', 'nodeChecker') then 'YELLOW' else 'RED' end as Status,
+        case when SUM(FailureCount)=0 then '' when CheckerName in ('puppetChecker', 'kubeResourcesChecker', 'nodeChecker', 'deploymentChecker') then 'YELLOW' else 'RED' end as Status,
         CheckerName,
         SUM(SuccessCount) as SuccessCount,
         SUM(FailureCount) as FailureCount,
@@ -132,7 +132,7 @@
             LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,
             1 as Count
           from podDetailView
-          where IsSamApp = True and ProduceAgeInMinutes<60
+          where IsSamApp = True and ProduceAgeInMinutes<60 and name not like 'syntheticwd%'
           and ControlEstate = '" + bed + "'
           union all
           select '" + bed + "' as ControlEstate, 0 as PodAgeDays, 0 as Count
@@ -175,7 +175,7 @@
             LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,
             Phase
           from podDetailView
-          where IsSamApp = True and ProduceAgeInMinutes<60 and Phase = 'Running'
+          where IsSamApp = True and ProduceAgeInMinutes<60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'
           and ControlEstate = '" + bed + "'
           order by PodAgeDays
           limit 20",
@@ -195,7 +195,7 @@
   case when Phase != 'Running' then Payload->>'$.status.containerStatuses[*].state' end as containerStatuses
 from podDetailView
 where IsSamApp = True and ProduceAgeInMinutes<60
-and ControlEstate = '" + bed + "' and Phase != 'Running'
+and ControlEstate = '" + bed + "' and Phase != 'Running' and name not like 'syntheticwd%'
 limit 20",
             },
 
