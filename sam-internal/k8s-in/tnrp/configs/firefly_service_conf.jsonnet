@@ -18,7 +18,7 @@ local portConfig = import "portconfig.jsonnet";
         artifactoryContentRepoUserNameProd:: 'svc_tnrp_cd_test',
         rabbitMqUserName:: 'rabbitmq-admin',
         rabbitMqPassword:: '${rabbitMqAdmin#FromSecretService}',
-        gitUser: 'tok_firefly_git_test',
+        gitUser: 'tok-firefly-git-test',
         gitOauthToken: '${gitFireflyTestOauthToken#FromSecretService}',
     },
     prod:: $.common {
