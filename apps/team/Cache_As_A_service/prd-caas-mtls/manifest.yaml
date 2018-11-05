@@ -59,6 +59,8 @@ system:
          value: localhost
        - name: CONNECT_TIMEOUT
          value: 0.25s
+      args:
+      - --log-level=trace
       ports:
       - containerPort: 12010
       - containerPort: 12000
