@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local hosts = import "configs/hosts.jsonnet";
 local pools = import "configs/generated-pools.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 {
     minionRole:: "samcompute",
@@ -30,5 +31,5 @@ local pools = import "configs/generated-pools.jsonnet";
 
     # In production DC SAM control estate nodes get cluster-admin permission
     # In PRD only kubeapi nodes get cluster-admin permission
-    getMasterNodes(kingdom, controlestate):: if kingdom == "prd" then $.get_Nodes(kingdom, controlestate, $.masterRole) else [h.hostname for h in hosts.hosts if h.kingdom == kingdom && h.estate == controlestate],
+    getMasterNodes(kingdom, controlestate):: if !utils.is_production(kingdom) then $.get_Nodes(kingdom, controlestate, $.masterRole) else [h.hostname for h in hosts.hosts if h.kingdom == kingdom && h.estate == controlestate],
   }

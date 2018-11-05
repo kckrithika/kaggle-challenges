@@ -74,7 +74,7 @@ local data = {
             local hosts = rbac_utils.get_Estate_Nodes(configs.kingdom, minionEstate, rbac_utils.minionRole);
             # In Prod samcompute & samkubeapi nodes get admin access.
             # In PRD customer apps run on samcompute nodes. So samcompute nodes get restricted access but all the  permissions are across namespace(clusterRoleBinding)
-            if configs.kingdom == "prd" && utils.is_test_cluster(minionEstate) then [
+            if utils.is_test_cluster(minionEstate) then [
               functions.createClusterRoleBinding(minionEstate, hosts),
             ] else [
               # if namespace "*" (allow all) create clusterrolebinding
