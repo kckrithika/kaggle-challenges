@@ -307,7 +307,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "11"
+            value: "12"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -318,7 +318,7 @@ items:
             value: test-firefly-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: test-firefly-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:236
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:238
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -739,7 +739,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "9"
+            value: "10"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -750,7 +750,7 @@ items:
             value: test-firefly-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: test-firefly-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:236
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:238
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1134,14 +1134,14 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "13"
+            value: "14"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
             value: test-firefly-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: test-firefly-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:236
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:238
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1546,14 +1546,14 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "8"
+            value: "9"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
             value: test-firefly-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: test-firefly-manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:236
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:238
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
