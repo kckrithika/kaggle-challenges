@@ -19,7 +19,7 @@ system:
         name: maxmind-volume
 
     - name: ccait-geoip-backend
-      image: sfci/ccait/geoip:8d0126e7fc0ac428347444a3a458dfc68842d24e
+      image: sfci/ccait/geoip:071e636b19368f93bfd2a3a6ca84ae680c4aeec7
       env:
       - name: JAVA_OPTS
         value: "-Xms512m -Xmx512m"
