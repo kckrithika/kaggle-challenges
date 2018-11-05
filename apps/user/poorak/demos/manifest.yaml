@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: default
+  - name: default-demos
     count: 2
     containers:
     - name: demos
