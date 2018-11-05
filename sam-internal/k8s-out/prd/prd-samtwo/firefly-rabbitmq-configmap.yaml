@@ -41,9 +41,9 @@ data:
                 "http-logging-interceptor-level": "NONE",
                 "keep-alive-duration": "300000ms",
                 "max-idle-connections": 10,
-                "password": "${rabbitMqDefaultPass#FromSecretService}",
+                "password": "${rabbitMqAdmin#FromSecretService}",
                 "read-timeout": "10000ms",
-                "user": "sfdc-rabbitmq",
+                "user": "rabbitmq-admin",
                 "write-timeout": "10000ms"
             }
         },

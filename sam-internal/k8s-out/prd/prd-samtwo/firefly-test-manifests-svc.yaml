@@ -152,7 +152,7 @@ items:
                           }
                       }
                   },
-                  "password": "${rabbitMqDefaultPass#FromSecretService}",
+                  "password": "${rabbitMqAdmin#FromSecretService}",
                   "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
@@ -167,7 +167,7 @@ items:
                           "multiplier": 2
                       }
                   },
-                  "username": "sfdc-rabbitmq"
+                  "username": "rabbitmq-admin"
               }
           }
       }
@@ -307,7 +307,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "9"
+            value: "10"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -579,7 +579,7 @@ items:
                           }
                       }
                   },
-                  "password": "${rabbitMqDefaultPass#FromSecretService}",
+                  "password": "${rabbitMqAdmin#FromSecretService}",
                   "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
@@ -594,7 +594,7 @@ items:
                           "multiplier": 2
                       }
                   },
-                  "username": "sfdc-rabbitmq"
+                  "username": "rabbitmq-admin"
               }
           }
       }
@@ -734,7 +734,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "7"
+            value: "8"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -971,7 +971,7 @@ items:
                           }
                       }
                   },
-                  "password": "${rabbitMqDefaultPass#FromSecretService}",
+                  "password": "${rabbitMqAdmin#FromSecretService}",
                   "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
@@ -986,7 +986,7 @@ items:
                           "multiplier": 2
                       }
                   },
-                  "username": "sfdc-rabbitmq"
+                  "username": "rabbitmq-admin"
               }
           }
       }
@@ -1124,7 +1124,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "10"
+            value: "11"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -1378,7 +1378,7 @@ items:
                           }
                       }
                   },
-                  "password": "${rabbitMqDefaultPass#FromSecretService}",
+                  "password": "${rabbitMqAdmin#FromSecretService}",
                   "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
@@ -1393,7 +1393,7 @@ items:
                           "multiplier": 2
                       }
                   },
-                  "username": "sfdc-rabbitmq"
+                  "username": "rabbitmq-admin"
               }
           }
       }
@@ -1531,7 +1531,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "5"
+            value: "6"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -1754,7 +1754,7 @@ items:
                           }
                       }
                   },
-                  "password": "${rabbitMqDefaultPass#FromSecretService}",
+                  "password": "${rabbitMqAdmin#FromSecretService}",
                   "port": "5672",
                   "publisher-confirms": true,
                   "publisher-returns": true,
@@ -1769,7 +1769,7 @@ items:
                           "multiplier": 2
                       }
                   },
-                  "username": "sfdc-rabbitmq"
+                  "username": "rabbitmq-admin"
               }
           }
       }
@@ -1907,7 +1907,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "1"
+            value: "2"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
