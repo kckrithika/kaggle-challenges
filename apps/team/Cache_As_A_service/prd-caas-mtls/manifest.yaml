@@ -61,6 +61,7 @@ system:
          value: 0.25s
       args:
       - --log-level=trace
+      - --admin-port=12010
       ports:
       - containerPort: 12010
       - containerPort: 12000
