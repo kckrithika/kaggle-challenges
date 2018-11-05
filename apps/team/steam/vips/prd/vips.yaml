@@ -412,6 +412,7 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
     healthprotocol: http
     healthpath: /ping.jsp?allBusy 
     sticky: 600
@@ -439,6 +440,7 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
     healthprotocol: http
     healthpath: /ping.jsp?allBusy 
     sticky: 600
@@ -466,6 +468,7 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
     healthprotocol: http
     healthpath: /ping.jsp?allBusy 
     sticky: 600
@@ -477,34 +480,7 @@
     httpsredirectport: 443
     lbtype: http
     healthprotocol: http
-    healthpath: /ping.jsp?allBusy 
-
-- lbname: la2-stmfb1-0-prd
-  servers:
-  - stmfb1la2-lapp1-1-prd.eng.sfdc.net
-  - stmfb1la2-lapp1-2-prd.eng.sfdc.net
-  - stmfb1la2-lapp1-3-prd.eng.sfdc.net
-  - stmfb1la2-lapp1-4-prd.eng.sfdc.net
-  - stmfb1la2-lapp2-1-prd.eng.sfdc.net
-  - stmfb1la2-lapp2-2-prd.eng.sfdc.net
-  - stmfb1la2-lapp2-3-prd.eng.sfdc.net
-  - stmfb1la2-lapp2-4-prd.eng.sfdc.net
-  ports:
-  - port: 443
-    targetport: 8085 
-    lbtype: http
-    healthprotocol: http
-    healthpath: /ping.jsp?allBusy 
-    sticky: 600
-    tls: true
-    addheaders:
-    - name: "X-Salesforce-VIP"
-      value: "FORCE"
-  - port: 80
-    httpsredirectport: 443
-    lbtype: http
-    healthprotocol: http
-    healthpath: /ping.jsp?allBusy 
+    healthpath: /ping.jsp?allBusy
 
 - lbname: la2-stmfc1-0-prd
   servers:
@@ -520,6 +496,7 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
     healthprotocol: http
     healthpath: /ping.jsp?allBusy 
     sticky: 600
@@ -547,6 +524,7 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
     healthprotocol: http
     healthpath: /ping.jsp?allBusy 
     sticky: 600
@@ -570,6 +548,7 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
     healthprotocol: http
     healthpath: /ping.jsp?allBusy 
     sticky: 600
@@ -597,6 +576,7 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
     healthprotocol: http
     healthpath: /ping.jsp?allBusy 
     sticky: 600
@@ -620,6 +600,7 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
     healthprotocol: http
     healthpath: /ping.jsp?allBusy 
     sticky: 600
@@ -647,6 +628,7 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
     healthprotocol: http
     healthpath: /ping.jsp?allBusy 
     sticky: 600
