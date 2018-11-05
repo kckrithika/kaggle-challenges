@@ -6,7 +6,7 @@ system:
       - sam@salesforce.com
   functions:
   - name: samtestfn
-    count: 2
+    count: 3
     progressDeadlineSeconds: 120
     containers:
     - name: samtestapp
