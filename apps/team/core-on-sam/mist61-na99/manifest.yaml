@@ -77,7 +77,7 @@ system:
 
         # TODO: Work around SAM bug. Settings.path
         - name: CASAM_SETTINGS_PATH
-          value: mist.mist61.prd.na99.app
+          value: mist61.-.prd.na99.app
 
         # Cluster name
         - name: CLUSTER_NAME
@@ -193,7 +193,7 @@ system:
       env:
         # TODO: Work around SAM bug. Settings.path
       - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na99.app
+        value: mist61.-.prd.na99.app
       livenessProbe:
         exec:
           command:
@@ -297,7 +297,7 @@ system:
 
         # TODO: Work around SAM bug. Settings.path
         - name: CASAM_SETTINGS_PATH
-          value: mist.mist61.prd.na99.app
+          value: mist61.-.prd.na99.app
 
         # Cluster name
         - name: CLUSTER_NAME
@@ -413,7 +413,7 @@ system:
       env:
 # TODO: Work around SAM bug
       - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na99.app
+        value: mist61.-.prd.na99.app
       livenessProbe:
         exec:
           command:
@@ -441,23 +441,19 @@ system:
         maxSurge: 200%
         maxUnavailable: 0
    
-   
-  - name: na99-mist61sfproxy-prd
+# TODO - Remove dummy sfproxies
+  - name: na99-mist61sfproxy2-prd
     identity:
-      serviceName: sfproxy
+      serviceName: sfproxy2
       pod: na99
     count: 2
     containers:
-    - name: sfproxy-envoy
-#TODO: Do not use private image
+    - name: sfproxy2-envoy
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:vijay.kota-20181024-170626
       env:
-#TODO: Write envoy logs to stdout instead of file
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
       - name: SFDC_ENVIRONMENT
-        value: mist
-      - name: SFDC_SUBENVIRONMENT
         value: mist61
       args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
@@ -470,7 +466,6 @@ system:
       livenessProbe:
         exec:
           command:
-# TODO: Use default is-alive
           - ./sfproxy/scripts/runprobe
           # ./bin/is-alive
         initialDelaySeconds: 20
@@ -478,7 +473,6 @@ system:
       readinessProbe:
         exec:
           command:
-# TODO: Use default is-ready
           - ./sfproxy/scripts/runprobe
           # ./bin/is-ready
         initialDelaySeconds: 15
@@ -497,16 +491,15 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - us99-mist61sfproxy-lb
+        - us99-mist61sfproxy2-lb
 
   - name: na99-mist61switchboard-prd
     identity:
-      serviceName: switchboard
+      serviceName: sfproxy-switchboard
       pod: na99
     count: 1
     containers:
-    - name: sfproxy-switchboard
-#TODO: Do not use private image
+    - name: sfproxy-switchboard-server
       image: sfci/servicelibs/switchboard:389f17b9b2c2344c1df20c92bf06cd682e38a711
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
@@ -515,8 +508,6 @@ system:
       - --metrics.funnelTimeOut=90000
       env:
       - name: SFDC_ENVIRONMENT
-        value: mist
-      - name: SFDC_SUBENVIRONMENT
         value: mist61
       - name: GRPC_SERVER_PORT
         value: 7020
@@ -548,7 +539,7 @@ system:
           port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
-    - name: sherpa
+    - name: sfproxy-switchboard-sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.1
       args:
       - --template
@@ -558,8 +549,6 @@ system:
       - containerPort: 15373
       env:
       - name: SFDC_ENVIRONMENT
-        value: mist
-      - name: SFDC_SUBENVIRONMENT
         value: mist61
 #TODO: Write envoy logs to stdout instead of file
       - name: ENVOY_DEBUG_OPTIONS
@@ -604,21 +593,19 @@ system:
         lbnames:
         - us99-mist61switchboard-lb
 
-  - name: na99-mist61sfproxy2-prd
+  - name: na99-mist61sfproxy-prd
     identity:
-      serviceName: sfproxy2
+      serviceName: sfproxy
       pod: na99
-    count: 1
+    count: 2
     containers:
-    - name: sfproxy2-envoy
-      image: sfci/frontend-gateway/sfproxy:a3adc
+    - name: sfproxy-envoy
+      image: sfci/frontend-gateway/sfproxy:7d7fc16
       env:
 #TODO: Write envoy logs to stdout instead of file
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
       - name: SFDC_ENVIRONMENT
-        value: mist
-      - name: SFDC_SUBENVIRONMENT
         value: mist61
       args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
@@ -654,7 +641,7 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - us99-mist61sfproxy2-lb
+        - us99-mist61sfproxy-lb
 
   loadbalancers:
   - lbname: na99-mist61blue-lb
@@ -700,13 +687,13 @@ system:
     - port: 2525
       targetport: 2525
 # HTTP listen port of Envoy.
-# TODO: CASAM might use for readiness. Change to 80 in production
+# TODO: Change to 80 in production
     - port: 8086
       targetport: 12060
       lbtype: http
       tls: false
       reencrypt: true
-# HTTPS listen ports of Envoy.
+# HTTPS listen port of Envoy.
 # TODO: Manifest validation fails for port 443. Add 443 in production
     - port: 8443
       targetport: 12060
@@ -735,13 +722,18 @@ system:
     - port: 8888
       targetport: 7020
    
+# TODO - Remove dummy VIP
   - lbname: us99-mist61sfproxy2-lb
     function: na99-mist61sfproxy2-prd
     nodeExposed: false
     slbEnabled: true
     ports:
-# Admin ports - TODO - Don't expose this. Exposed for now for debugging.
-    - port: 8086
+    - port: 8443
       targetport: 12060
+      lbtype: http
+      tls: true
+      reencrypt: true
     - port: 8087
       targetport: 15373
+    - port: 8888
+      targetport: 12060
