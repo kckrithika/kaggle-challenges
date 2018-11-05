@@ -10,6 +10,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -18,6 +20,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs1-stmfb1-0-prd
   servers:
@@ -31,6 +35,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -39,6 +45,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs2-stmfa1-0-prd
   servers:
@@ -52,6 +60,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -60,6 +70,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs2-stmfb1-0-prd
   servers:
@@ -73,6 +85,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -81,6 +95,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs2-stmfc1-0-prd
   servers:
@@ -94,6 +110,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -102,6 +120,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs2-stmsa1-0-prd
   servers:
@@ -115,6 +135,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -123,6 +145,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs2-stmua1-0-prd
   servers:
@@ -136,6 +160,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -144,6 +170,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs2-stmub1-0-prd
   servers:
@@ -157,6 +185,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -165,6 +195,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs3-stmfa1-0-prd
   servers:
@@ -178,6 +210,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -186,6 +220,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs3-stmfb1-0-prd
   servers:
@@ -199,6 +235,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -207,6 +245,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs3-stmfc1-0-prd
   servers:
@@ -220,6 +260,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -228,6 +270,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs3-stmua1-0-prd
   servers:
@@ -241,6 +285,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -249,6 +295,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs3-stmub1-0-prd
   servers:
@@ -262,6 +310,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -270,6 +320,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: cs4-stmda1-0-prd
   servers:
@@ -283,6 +335,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -291,6 +345,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: eu1-stmda1-0-prd
   servers:
@@ -304,6 +360,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -312,6 +370,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: eu2-stmda1-0-prd
   servers:
@@ -325,6 +385,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -333,6 +395,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: la2-stmda1-0-prd
   servers:
@@ -348,6 +412,9 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -356,6 +423,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: la2-stmfa1-0-prd
   servers:
@@ -371,6 +440,9 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -379,6 +451,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: la2-stmfb1-0-prd
   servers:
@@ -394,6 +468,9 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -402,29 +479,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
-
-- lbname: la2-stmfb1-0-prd
-  servers:
-  - stmfb1la2-lapp1-1-prd.eng.sfdc.net
-  - stmfb1la2-lapp1-2-prd.eng.sfdc.net
-  - stmfb1la2-lapp1-3-prd.eng.sfdc.net
-  - stmfb1la2-lapp1-4-prd.eng.sfdc.net
-  - stmfb1la2-lapp2-1-prd.eng.sfdc.net
-  - stmfb1la2-lapp2-2-prd.eng.sfdc.net
-  - stmfb1la2-lapp2-3-prd.eng.sfdc.net
-  - stmfb1la2-lapp2-4-prd.eng.sfdc.net
-  ports:
-  - port: 443
-    targetport: 8085 
-    lbtype: http
-    sticky: 600
-    tls: true
-    addheaders:
-    - name: "X-Salesforce-VIP"
-      value: "FORCE"
-  - port: 80
-    httpsredirectport: 443
-    lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy
 
 - lbname: la2-stmfc1-0-prd
   servers:
@@ -440,6 +496,9 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -448,6 +507,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: la2-stmfd1-0-prd
   servers:
@@ -463,6 +524,9 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -471,6 +535,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: la2-stmra1-0-prd
   servers:
@@ -482,6 +548,9 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -490,6 +559,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: la2-stmsa1-0-prd
   servers:
@@ -505,6 +576,9 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -513,6 +587,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: la2-stmua1-0-prd
   servers:
@@ -524,6 +600,9 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -532,6 +611,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: la2-stmub1-0-prd
   servers:
@@ -547,6 +628,9 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthport: 8095
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -555,6 +639,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: login-stmda1-0-prd
   servers:
@@ -568,6 +654,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 60
     tls: true
     addheaders:
@@ -576,6 +664,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: login-stmfd1-0-prd
   servers:
@@ -589,6 +679,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 60
     tls: true
     addheaders:
@@ -597,6 +689,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: login-stmra1-0-prd
   servers:
@@ -628,6 +722,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 60
     tls: true
     addheaders:
@@ -636,6 +732,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: login-stmua1-0-prd
   servers:
@@ -649,6 +747,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 60
     tls: true
     addheaders:
@@ -657,6 +757,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: login-stmub1-0-prd
   servers:
@@ -670,6 +772,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 60
     tls: true
     addheaders:
@@ -678,6 +782,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na20-stmra1-0-prd
   servers:
@@ -691,6 +797,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -699,6 +807,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na21-stmra1-0-prd
   servers:
@@ -712,6 +822,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -720,6 +832,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na22-stmra1-0-prd
   servers:
@@ -733,6 +847,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -741,6 +857,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na23-stmra1-0-prd
   servers:
@@ -754,6 +872,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -762,6 +882,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na24-stmra1-0-prd
   servers:
@@ -775,6 +897,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -783,6 +907,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na25-stmra1-0-prd
   servers:
@@ -796,6 +922,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -804,6 +932,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na26-stmra1-0-prd
   servers:
@@ -817,6 +947,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -825,6 +957,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na40-stmfa1-0-prd
   servers:
@@ -838,6 +972,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -846,6 +982,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na40-stmfb1-0-prd
   servers:
@@ -859,6 +997,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -867,6 +1007,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na41-stmfa1-0-prd
   servers:
@@ -880,6 +1022,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -888,6 +1032,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na41-stmfb1-0-prd
   servers:
@@ -901,6 +1047,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -909,6 +1057,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na41-stmfc1-0-prd
   servers:
@@ -922,6 +1072,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -930,6 +1082,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na41-stmua1-0-prd
   servers:
@@ -943,6 +1097,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -951,6 +1107,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na41-stmub1-0-prd
   servers:
@@ -964,6 +1122,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -972,6 +1132,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na42-stmfa1-0-prd
   servers:
@@ -985,6 +1147,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -993,6 +1157,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na42-stmfb1-0-prd
   servers:
@@ -1006,6 +1172,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1014,6 +1182,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na42-stmfc1-0-prd
   servers:
@@ -1027,6 +1197,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1035,6 +1207,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na42-stmua1-0-prd
   servers:
@@ -1048,6 +1222,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1056,6 +1232,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na42-stmub1-0-prd
   servers:
@@ -1069,6 +1247,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1077,6 +1257,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na43-stmfa1-0-prd
   servers:
@@ -1090,6 +1272,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1098,6 +1282,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na43-stmfb1-0-prd
   servers:
@@ -1111,6 +1297,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1119,6 +1307,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na43-stmfc1-0-prd
   servers:
@@ -1132,6 +1322,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1140,6 +1332,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na44-stmfa1-0-prd
   servers:
@@ -1153,6 +1347,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1161,6 +1357,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na44-stmfb1-0-prd
   servers:
@@ -1174,6 +1372,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1182,6 +1382,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na44-sitestmfc1-0-prd
   servers:
@@ -1195,6 +1397,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1203,6 +1407,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na44-stmfc1-0-prd
   servers:
@@ -1216,6 +1422,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1224,6 +1432,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na44-sitestmfd1-0-prd
   servers:
@@ -1237,6 +1447,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1245,6 +1457,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na44-stmfd1-0-prd
   servers:
@@ -1258,6 +1472,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1266,6 +1482,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na44-stmsa1-0-prd
   servers:
@@ -1279,6 +1497,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1287,6 +1507,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na44-stmua1-0-prd
   servers:
@@ -1300,6 +1522,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1308,6 +1532,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na44-stmub1-0-prd
   servers:
@@ -1321,6 +1547,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1329,6 +1557,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na45-stmfa1-0-prd
   servers:
@@ -1342,6 +1572,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1350,6 +1582,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na45-stmfb1-0-prd
   servers:
@@ -1363,6 +1597,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1371,6 +1607,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na45-stmfc1-0-prd
   servers:
@@ -1384,6 +1622,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1392,6 +1632,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na45-stmua1-0-prd
   servers:
@@ -1405,6 +1647,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1413,6 +1657,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na45-stmub1-0-prd
   servers:
@@ -1426,6 +1672,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1434,6 +1682,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na46-stmfb1-0-prd
   servers:
@@ -1447,6 +1697,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1455,6 +1707,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na46-stmfc1-0-prd
   servers:
@@ -1468,6 +1722,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1476,6 +1732,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na47-stmfa1-0-prd
   servers:
@@ -1489,6 +1747,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1497,6 +1757,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na6-stmsa1-0-prd
   servers:
@@ -1510,6 +1772,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1518,6 +1782,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na7-stmsa1-0-prd
   servers:
@@ -1531,6 +1797,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1539,6 +1807,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na8-stmsa1-0-prd
   servers:
@@ -1552,6 +1822,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1560,6 +1832,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: na9-stmsa1-0-prd
   servers:
@@ -1573,6 +1847,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1581,6 +1857,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: stm-edge1-0-prd
   servers:
@@ -1590,6 +1868,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1598,6 +1878,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: stmdashared2-pbsmatch1-0-prd
   servers:
@@ -1610,6 +1892,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1618,6 +1902,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: stmfbshared2-pbsmatch1-0-prd
   servers:
@@ -1630,6 +1916,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1638,6 +1926,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: stmfcshared2-pbsmatch1-0-prd
   servers:
@@ -1650,6 +1940,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1658,6 +1950,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: stmfdshared2-pbsmatch1-0-prd
   servers:
@@ -1670,6 +1964,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1678,6 +1974,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: stmrashared2-pbsmatch1-0-prd
   servers:
@@ -1690,6 +1988,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1698,6 +1998,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: stmsashared2-pbsmatch1-0-prd
   servers:
@@ -1710,6 +2012,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1718,6 +2022,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: stmshared2-pbsgeo2-0-prd
   servers:
@@ -1730,6 +2036,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1738,6 +2046,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: stmuashared2-pbsmatch1-0-prd
   servers:
@@ -1750,6 +2060,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1758,6 +2070,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: stmubshared2-pbsmatch1-0-prd
   servers:
@@ -1770,6 +2084,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1778,6 +2094,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: test-stmda1-0-prd
   servers:
@@ -1791,6 +2109,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1799,6 +2119,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: test-stmfb1-0-prd
   servers:
@@ -1812,6 +2134,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1820,6 +2144,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: test-stmsa1-0-prd
   servers:
@@ -1833,6 +2159,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1841,6 +2169,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: test-stmua1-0-prd
   servers:
@@ -1854,6 +2184,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1862,6 +2194,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: test-stmub1-0-prd
   servers:
@@ -1875,6 +2209,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -1883,6 +2219,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 - lbname: login-stmfa1-0-prd
   servers:
   - stmfana44ice1-app1-1-prd.eng.sfdc.net
@@ -1907,6 +2245,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 60
     tls: true
     addheaders:
@@ -1915,6 +2255,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: login-stmfb1-0-prd
   servers:
@@ -1940,6 +2282,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 60
     tls: true
     addheaders:
@@ -1948,6 +2292,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: login-stmfc1-0-prd
   servers:
@@ -1985,6 +2331,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 60
     tls: true
     addheaders:
@@ -1993,6 +2341,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: login-stmsa1-0-prd
   servers:
@@ -2030,6 +2380,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 60
     tls: true
     addheaders:
@@ -2038,6 +2390,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: stmfashared2-pbsmatch1-0-prd
   servers:
@@ -2049,6 +2403,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -2057,6 +2413,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: test-stmfa1-0-prd
   servers:
@@ -2070,6 +2428,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -2078,6 +2438,8 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
 
 - lbname: test-stmfc1-0-prd
   servers:
@@ -2097,6 +2459,8 @@
   - port: 443
     targetport: 8085 
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
     sticky: 600
     tls: true
     addheaders:
@@ -2105,3 +2469,5 @@
   - port: 80
     httpsredirectport: 443
     lbtype: http
+    healthprotocol: http
+    healthpath: /ping.jsp?allBusy 
