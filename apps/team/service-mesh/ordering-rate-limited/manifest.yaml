@@ -10,7 +10,7 @@ system:
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/2/
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-ordering:5ccad648fba8117c1724580f12fb3d50580e2fee
       args:
-      - --shipping.interval=5000
+      - --shipping.interval=10000
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
