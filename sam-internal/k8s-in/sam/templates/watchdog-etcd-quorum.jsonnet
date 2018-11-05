@@ -18,6 +18,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "-role=ETCDQUORUM",
                                      "-watchdogFrequency=10s",
                                      "-alertThreshold=2m",
+                                     "-snoozedAlarms=etcdQuorumChecker=2018/11/12",
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.pagerduty_args

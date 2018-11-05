@@ -24,6 +24,7 @@ spec:
         - -role=ETCDQUORUM
         - -watchdogFrequency=10s
         - -alertThreshold=2m
+        - -snoozedAlarms=etcdQuorumChecker=2018/11/12
         - -watchDogKind=Deployment
         - -recipient=sam-test-alerts@salesforce.com,sam-pagerduty@salesforce.com
         - -timeout=2s
