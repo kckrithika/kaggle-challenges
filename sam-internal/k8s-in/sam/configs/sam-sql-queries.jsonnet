@@ -5,7 +5,30 @@ local bedhealth = (import "sam-sql-reporter/bedhealth.libsonnet").bedhealth;
 {
   queries: [
 
-#===================
+#
+# Queries in this file can be one of two forms:
+#
+# == Single SQL query.  Page will have a single table ==
+#
+#    {
+#      name: "Name of query page",
+#      note: "Some note to put above the query".
+#      sql: "select 123 as A",
+#    },
+#
+# == Multi-sql query.  This will generate a page with many tables ==
+#
+#    {
+#      name: "Name of page",
+#      note: "Some top-level note",
+#      multisql: [
+#        {
+#          name: "Name of this result set",
+#          note: "Nodes",
+#          sql: "select 123 as A",
+#        }
+#      ],
+#    }
 
     bedhealth("R&D", "prd-samdev"),
     bedhealth("R&D", "prd-samtest"),
@@ -30,8 +53,6 @@ local bedhealth = (import "sam-sql-reporter/bedhealth.libsonnet").bedhealth;
     bedhealth("PROD", "wax-sam"),
     bedhealth("PROD", "yhu-sam"),
     bedhealth("PROD", "yul-sam"),
-
-#===================
 
     (import "sam-sql-reporter/kube-resource-kafka-pipeline-latencies-bycontrolestate.libsonnet"),
     (import "sam-sql-reporter/kube-resource-kafka-pipeline-latencies-byhour.libsonnet"),
@@ -70,30 +91,5 @@ local bedhealth = (import "sam-sql-reporter/bedhealth.libsonnet").bedhealth;
     (import "sam-sql-reporter/failedcreatepodsandbox.libsonnet"),
     (import "sam-sql-reporter/pr-metrics.libsonnet"),
     (import "sam-sql-reporter/customer-app-restarts-by-sam-in-test-beds.libsonnet"),
-
-#===================
-# # Single SQL query
-#
-#    {
-#      name: "",
-#      note: "".
-#      sql: "",
-#    },
-
-#===================
-# # Multi-sql query
-#
-#    {
-#      name: "",
-#      note: "",
-#      multisql: [
-#        {
-#          name: "",
-#          note: "",
-#          sql: "",
-#        }
-#      ],
-#    }
-
   ],
 }
