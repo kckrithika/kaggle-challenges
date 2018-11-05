@@ -1014,7 +1014,7 @@ apps:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
     - samcaas2-caasminion2-2-prd.eng.sfdc.net
- prd-caas-sdn:
+ prd-caas-mtls:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
     - samcaas2-caasminion2-2-prd.eng.sfdc.net
