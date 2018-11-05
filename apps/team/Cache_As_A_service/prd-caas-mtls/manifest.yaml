@@ -49,8 +49,7 @@ system:
         - mountPath: /tmp
           name: redis-sock
         - name: server-certs
-          maddogCert:
-            type: server
+          mountPath: /server-certs
       env:
        - name: ADMIN_PORT
          value: 12010
@@ -87,3 +86,6 @@ system:
         path: /home/sfdc-caas/logs
     - name: redis-sock
       emptyDir: {}
+    - name: server-certs
+      maddogCert:
+        type: server
