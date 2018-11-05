@@ -22,7 +22,7 @@ local monitoringConfig = import "configs/firefly-monitoring.jsonnet";
     rabbitmqapi: {
       'api-url': 'http://localhost:' + portConfig.firefly.rabbitmq_http,
       user: envConfig.environmentMapping[configs.estate].rabbitMqUserName,
-      password: '${rabbitMqDefaultPass#FromSecretService}',
+      password: '${rabbitMqAdmin#FromSecretService}',
       'connect-timeout': '10000ms',
       'read-timeout': '10000ms',
       'write-timeout': '10000ms',

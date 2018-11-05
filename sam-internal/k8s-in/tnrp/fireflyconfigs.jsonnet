@@ -26,24 +26,28 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             fireflyintake: "10",
-             fireflycrawler: "10",
-             fireflypackage: "10",
-             fireflypackagesingleton: "8",
-             fireflypromotion: "7",
-             fireflypullrequest: "12",
-             fireflyevalresultmonitor: "2",
+             fireflyintake: "11",
+             fireflycrawler: "11",
+             fireflypackage: "11",
+             fireflypackagesingleton: "9",
+             fireflypromotion: "8",
+             fireflypullrequest: "13",
+             fireflyevalresultmonitor: "3",
+             fireflyrabbitmq: "2",
+             fireflyrabbitmqmonitor: "2",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             fireflyintake: "8",
-             fireflycrawler: "8",
-             fireflypackage: "9",
-             fireflypackagesingleton: "7",
-             fireflypromotion: "5",
-             fireflypullrequest: "10",
-             fireflyevalresultmonitor: "1",
+             fireflyintake: "9",
+             fireflycrawler: "9",
+             fireflypackage: "10",
+             fireflypackagesingleton: "8",
+             fireflypromotion: "6",
+             fireflypullrequest: "11",
+             fireflyevalresultmonitor: "2",
+             fireflyrabbitmq: "2",
+             fireflyrabbitmqmonitor: "2",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
@@ -75,4 +79,6 @@ local kingdom = std.extVar("kingdom");
     fireflypackagesingleton: $.per_phase[$.phase].fireflypackagesingleton,
     fireflypromotion: $.per_phase[$.phase].fireflypromotion,
     fireflyevalresultmonitor: $.per_phase[$.phase].fireflyevalresultmonitor,
+    fireflyrabbitmq: $.per_phase[$.phase].fireflyrabbitmq,
+    fireflyrabbitmqmonitor: $.per_phase[$.phase].fireflyrabbitmqmonitor,
 }

@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local images = import "fireflyimages.jsonnet";
+local fireflyConfigs = import "fireflyconfigs.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
 local madkub = (import "firefly_madkub.jsonnet") + { templateFileName:: std.thisFile };
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
@@ -130,7 +131,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               },
               {
                 name: 'RABBITMQ_CONFIG_VERSION',
-                value: '1.0',
+                value: fireflyConfigs.fireflyrabbitmq,
               },
               {
                 name: 'REDEPLOY_COUNT',
@@ -272,8 +273,8 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
                 value: '80',
               },
               {
-                name: 'REDEPLOY_COUNT',
-                value: '5',
+                name: 'CONFIG_VERSION',
+                value: fireflyConfigs.fireflyrabbitmqmonitor,
               },
               {
                 name: 'RABBITMQ_NODENAME',
