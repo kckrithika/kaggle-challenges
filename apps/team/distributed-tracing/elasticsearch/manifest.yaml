@@ -6,6 +6,11 @@ system:
   - name: elasticsearch
     count: 3
     type: stateful-set
+    strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxSurge: 0
+            maxUnavailable: 1
     containers:
     - name: elasticsearch
       image: docker-dva-rc/dva/elasticsearch-server:20
