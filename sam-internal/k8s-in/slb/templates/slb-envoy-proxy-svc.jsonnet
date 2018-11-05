@@ -51,7 +51,7 @@ local portConfig = [
     ),
 ];
 
-if slbconfigs.isSlbEstate && (slbflights.envoyProxyEnabled || configs.estate == "prd-sam") then
+if slbconfigs.isSlbEstate && (slbflights.envoyProxyEnabled) then
     slbbaseservice.slbCanaryBaseService(podName, portConfig, serviceName, vipName, cnames) {
     spec+: {
         // Override the selector -- I don't want this VIP to select any pods for now.

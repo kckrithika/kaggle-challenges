@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: slb-envoy
+    sam.data.sfdc.net/owner: slb
   name: slb-envoy
   namespace: sam-system
 spec:
@@ -12,6 +13,7 @@ spec:
   selector:
     matchLabels:
       name: slb-envoy
+      sam.data.sfdc.net/owner: slb
   strategy:
     rollingUpdate:
       maxSurge: 0
@@ -29,13 +31,33 @@ spec:
              "name": "cert1",
              "role": "samapp.slb",
              "san": [
-              "*.sam-system.prd-sdc.prd.slb.sfdc.net",
+              "*.sam-system.prd-sam.prd.slb.sfdc.net",
               "*.slb.sfdc.net",
               "*.soma.salesforce.com",
               "*.data.sfdc.net",
               "*.kms.slb.sfdc.net",
-              "*.moe.prd-sdc.prd.slb.sfdc.net",
-              "*.internal.salesforce.com"
+              "*.moe.prd-sam.prd.slb.sfdc.net",
+              "*.internal.salesforce.com",
+              "*.stmda.stm.salesforce.com",
+              "*.my.stmda.stm.salesforce.com",
+              "*.eu2.stmda.stm.force.com",
+              "*.stmda.stm.force.com",
+              "*.eu2.visual.stmda.stm.force.com",
+              "*.eu2.content.stmda.stm.force.com",
+              "*.stmda.stm.cloudforce.com",
+              "*.stmda.stm.database.com",
+              "*.builder.stmda.stm.salesforce-communities.com",
+              "*.preview.stmda.stm.salesforce-communities.com",
+              "*.livepreview.stmda.stm.salesforce-communities.com",
+              "*.stmda.stm.documentforce.com",
+              "*.stmda.stm.visualforce.com",
+              "*.lightning.stmda.stm.force.com",
+              "*.container.stmda.stm.lightning.com",
+              "services.stmda.stm.salesforce.com",
+              "cloudatlas.stmda.stm.salesforce.com",
+              "*.a.stmda.stm.forceusercontent.com",
+              "*.d.stmda.stm.forceusercontent.com",
+              "*.retail-rsui.prd-sam.prd.slb.sfdc.net"
              ]
             },
             {
@@ -48,6 +70,7 @@ spec:
           }
       labels:
         name: slb-envoy
+        sam.data.sfdc.net/owner: slb
       namespace: sam-system
     spec:
       affinity:
@@ -166,26 +189,27 @@ spec:
       - command:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-envoy
-        - --period=1200s
-        - --vipsToAcl=slb-bravo-svc.sam-system.prd-sdc.prd.slb.sfdc.net
+        - --period=1800s
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
-        - --subnet=10.254.247.0/24
+        - --subnet=10.251.196.0/22
         - --k8sapiserver=
-        - --serviceList=
+        - --serviceList=csrlb,controlplane-ptest
         - --useVipLabelToSelectSvcs=true
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-envoy
         - --sleepTime=100ms
         - --processKnEConfigs=true
-        - --kneConfigDir=/var/slb/kneconfigs/testkneconfigs
-        - --kneDomainName=prd-sdc.slb.sfdc.net
+        - --kneConfigDir=/var/slb/kneconfigs/prd
+        - --kneDomainName=slb.sfdc.net
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
+        - --servicesToLbOverride=
+        - --servicesNotToLbOverride=illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc
         - --control.configProcSentinel=/host/data/slb/config/slb-envoy/slb-config-proc.sentinel
         env:
         - name: KUBECONFIG
@@ -194,7 +218,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001348-44617a0d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001347-b2f89313
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -231,7 +255,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001348-44617a0d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001347-b2f89313
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -255,15 +279,13 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-envoy/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001348-44617a0d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001347-b2f89313
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-envoy
           name: var-logs-volume
-        - mountPath: /host/data/slb/config/slb-envoy
-          name: var-config-volume
       - command:
         - /sdn/slb-realsvrcfg
         - --configDir=/host/data/slb/config/slb-envoy
@@ -275,8 +297,8 @@ spec:
         - --nginxPodMode=true
         - --client.socketDir=/host/data/slb/config/slb-envoy
         - --client.dialSocket=true
-        - --maxDeleteVipCount=10
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001348-44617a0d
+        - --maxDeleteVipCount=50
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001347-b2f89313
         name: slb-realsvrcfg
         securityContext:
           privileged: true
@@ -300,14 +322,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001348-44617a0d
-        livenessProbe:
-          exec:
-            command:
-            - test
-            - '`find /slb-cleanup-heartbeat -mmin -.5`'
-          initialDelaySeconds: 15
-          periodSeconds: 15
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001347-b2f89313
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -331,8 +346,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-envoy
         - --client.dialSocket=true
-        - --maxDeleteLimit=10
-        - --isRoleUsed=true
+        - --maxDeleteLimit=50
         - --vcioptions.strict=true
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-envoy/slb-manifest-watcher.sentinel
@@ -343,7 +357,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001348-44617a0d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001347-b2f89313
         name: slb-manifest-watcher
         securityContext:
           privileged: true
@@ -398,7 +412,7 @@ spec:
         - mountPath: /tokens
           name: tokens
       nodeSelector:
-        pool: prd-sdc
+        pool: prd-slb
       securityContext:
         fsGroup: 7447
       volumes:

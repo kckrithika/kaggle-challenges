@@ -107,6 +107,19 @@ local affinity = {
             topologyKey: "kubernetes.io/hostname",
         }],
     },
+    // Ensure that the floating nginx pods don't land on nodes allocated to ipvs.
+    // This is a stopgap solution until ipvs is made to float as well.
+    nodeAffinity: {
+        requiredDuringSchedulingIgnoredDuringExecution: {
+            nodeSelectorTerms: [{
+                matchExpressions: [{
+                    key: "slb-service",
+                    operator: "NotIn",
+                    values: ["slb-ipvs"],
+                }],
+            }],
+        },
+    },
 };
 
 if slbconfigs.isSlbEstate && slbflights.envoyProxyEnabled then

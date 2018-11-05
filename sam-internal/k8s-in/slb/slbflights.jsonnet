@@ -9,7 +9,7 @@ local configs = import "config.jsonnet";
     local kubeDnsEnabled = false,
     stockIpvsModules: (if slbimages.phaseNum > 7 then true else false),
     nginxPodFloat: (slbimages.phaseNum <= 4),
-    envoyProxyEnabled: (slbimages.phaseNum <= 1),
+    envoyProxyEnabled: (slbimages.phaseNum <= 1 || configs.estate == "prd-sam"),
     roleEnabled: (slbimages.phaseNum <= 1),
     nginxSlbVolumeMount: (slbimages.slbnginx_build >= 50),
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
