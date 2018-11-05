@@ -100,7 +100,7 @@ items:
                   "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
                   "read-timeout": "5s",
                   "url": "https://git.soma.salesforce.com",
-                  "user": "tok_firefly_git_test",
+                  "user": "tok-firefly-git-test",
                   "write-timeout": "5s"
               }
           },
