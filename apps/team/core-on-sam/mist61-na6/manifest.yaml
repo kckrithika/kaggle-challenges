@@ -231,7 +231,7 @@ system:
         type: client
     - name: secretvol
       k4aSecret:
-        secretName: sequencer-chatter
+        secretName: sequencer-gus
 
     containers:
     - name: sequencer
