@@ -3344,7 +3344,7 @@ data:
           "hostname": "shared0-searchidx1-17-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
-          "rack": "b05-10b",
+          "rack": "d11-10b",
           "superpod": "none"
         },
         {
@@ -3531,7 +3531,7 @@ data:
           "hostname": "shared0-searchidx2-15-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
-          "rack": "h05-10b",
+          "rack": "b08-10b",
           "superpod": "none"
         },
         {
@@ -3542,7 +3542,7 @@ data:
           "hostname": "shared0-searchidx2-16-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
-          "rack": "h05-10b",
+          "rack": "b08-10b",
           "superpod": "none"
         },
         {
