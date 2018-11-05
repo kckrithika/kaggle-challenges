@@ -24,7 +24,6 @@ spec:
         - -role=ETCDQUORUM
         - -watchdogFrequency=10s
         - -alertThreshold=2m
-        - -snoozedAlarms=etcdQuorumChecker=2018/11/12
         - -watchDogKind=Deployment
         - -recipient=sam-alerts@salesforce.com,sam-pagerduty@salesforce.com
         - -timeout=2s
@@ -32,6 +31,7 @@ spec:
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -emailFrequency=6h
+        - -snoozedAlarms=etcdQuorumChecker=2018/11/12
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

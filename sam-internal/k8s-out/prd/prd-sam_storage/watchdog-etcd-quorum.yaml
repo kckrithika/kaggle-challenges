@@ -24,7 +24,6 @@ spec:
         - -role=ETCDQUORUM
         - -watchdogFrequency=10s
         - -alertThreshold=2m
-        - -snoozedAlarms=etcdQuorumChecker=2018/11/12
         - -watchDogKind=Deployment
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
