@@ -25,7 +25,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-canary-creator
-        - --canaryImage=ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001337-b4f9fb89
+        - --canaryImage=ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001340-ba6592f7
         - --metricsEndpoint=ajna0-funnel1-0-cdg.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-canary-creator
         - --maxParallelism=4
@@ -40,7 +40,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001337-b4f9fb89
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001340-ba6592f7
         name: slb-canary-creator
         securityContext:
           privileged: true
@@ -64,7 +64,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001337-b4f9fb89
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001340-ba6592f7
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -82,6 +82,7 @@ spec:
       dnsPolicy: Default
       nodeSelector:
         master: "true"
+      terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
           path: /data/slb/logs/slb-canary-creator
