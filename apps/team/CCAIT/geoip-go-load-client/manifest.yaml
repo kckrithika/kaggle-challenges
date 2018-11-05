@@ -8,7 +8,12 @@ system:
     count: 1
     containers:
     - name: geoip-go-load
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-client:0.0.5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip-client:0.0.10
+      env:
+        - name: GEOIP_ADDRESS
+          value: geoip.ccait.localhost.mesh.force.com:5443
+        - name: GEOIP_TOTALRPS
+          value: 10
       resources:
         limits:
           cpu: "1"
