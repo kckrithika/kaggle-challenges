@@ -149,6 +149,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --client.serverPort=12081
         - --client.serverInterface=lo
+        - --enableAcl=true
         - --enableConntrack=false
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
