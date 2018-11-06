@@ -56,11 +56,10 @@ system:
        - name: ENVOY_PORT
          value: 12000
        - name: SAN
-         value: localhost
+         value: app.localhost.mesh.force.com
        - name: CONNECT_TIMEOUT
          value: 0.25s
       args:
-      - --log-level=trace
       - --admin-port=12010
       ports:
       - containerPort: 12010
