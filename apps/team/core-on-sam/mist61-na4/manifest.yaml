@@ -48,9 +48,18 @@ system:
         # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
           value: us4-mist61cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+
+        - name: SFPROXY_VIP
+          value: https://us4-mist61cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
+
         # This maps to http_port
         - name: PORT
           value: 8085
+          
+        # TODO - clean this up. Added temporarily for new readiness probe testing
+        - name: HTTP_PORT
+          value: 8085
+
         # This maps to https_port
         - name: SPORT
           value: 8443
