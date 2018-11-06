@@ -110,6 +110,9 @@ spec:
         - --httpconfig.custCertsDir=/customerCerts
         - --checkDuplicateVips=true
         - --httpconfig.accessLogFormat=main
+        - --commonconfig.riseCount=5
+        - --commonconfig.fallCount=2
+        - --commonconfig.healthTimeout=3000
         env:
         - name: NODE_NAME
           valueFrom:
