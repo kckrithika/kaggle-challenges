@@ -18,9 +18,13 @@
                  ] + (
                      if configs.estate == "prd-sdc" then [
                          "--period=1200s",
-                         "--vipsToAcl=slb-bravo-svc.sam-system.prd-sdc.prd.slb.sfdc.net",
                      ] else [
                          "--period=1800s",
+                     ]
+                 ) + (
+                     if slbflights.vipAclEnabled then [
+                         "--vipsToAcl=slb-bravo-svc.sam-system." + configs.estate + ".prd.slb.sfdc.net",
+                     ] else [
                      ]
                  ) + [
                      "--podPhaseCheck=true",
