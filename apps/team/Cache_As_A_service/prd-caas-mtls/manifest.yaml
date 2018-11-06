@@ -52,7 +52,7 @@ system:
           mountPath: /server-certs
       env:
        - name: ADMIN_PORT
-         value: 12010
+         value: 15373
        - name: ENVOY_PORT
          value: 12000
        - name: SAN
@@ -60,9 +60,9 @@ system:
        - name: CONNECT_TIMEOUT
          value: 0.25s
       args:
-      - --admin-port=12010
+      - --admin-port=15373
       ports:
-      - containerPort: 12010
+      - containerPort: 15373
       - containerPort: 12000
     - name: caas-redis-announcer
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
@@ -102,4 +102,4 @@ system:
     slbEnabled: true
     ports:
      - port: 8888
-       targetport: 12010
+       targetport: 15373
