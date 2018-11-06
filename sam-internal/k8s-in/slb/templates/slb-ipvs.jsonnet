@@ -144,7 +144,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--computeProxyServers=true",
                         ]
                         + (if slbflights.syncHealthConfigEnabled then [
-                            "--healthcheck.healthchecktimeout=5s",
+                            "--healthcheck.healthchecktimeout=3s",
                         ] else []),
                         volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,

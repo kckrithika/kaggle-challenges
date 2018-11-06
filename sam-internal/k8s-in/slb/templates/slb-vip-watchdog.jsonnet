@@ -96,7 +96,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                            "--hostnameOverride=$(NODE_NAME)",
                                            configs.sfdchosts_arg,
                                            "--metricsEndpoint=" + configs.funnelVIP,
-                                           "--httpTimeout=" + (if slbimages.phaseNum == 1 then "10s" else "5s"),
+                                           "--httpTimeout=" + (if slbflights.syncHealthConfigEnabled then "3s" else "5s"),
                                            "--vipLoop=1",
                                            "--monitorFrequency=10s",
                                            "--client.serverInterface=lo",
