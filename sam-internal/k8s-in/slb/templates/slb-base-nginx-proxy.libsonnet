@@ -72,7 +72,7 @@
                                    + (if slbflights.syncHealthConfigEnabled then [
                                      "--commonconfig.riseCount=5",
                                      "--commonconfig.fallCount=2",
-                                     "--commonconfig.healthTimeout=5000",
+                                     "--commonconfig.healthTimeout=3000",
                                    ] else []),
                           volumeMounts: configs.filter_empty([
                             target_config_volume_mount,

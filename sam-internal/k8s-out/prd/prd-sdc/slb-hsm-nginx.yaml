@@ -79,7 +79,7 @@ spec:
         - --httpconfig.accessLogFormat=main
         - --commonconfig.riseCount=5
         - --commonconfig.fallCount=2
-        - --commonconfig.healthTimeout=5000
+        - --commonconfig.healthTimeout=3000
         env:
         - name: NODE_NAME
           valueFrom:
