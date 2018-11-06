@@ -34,6 +34,8 @@ system:
           value: mist61a216utf
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
+        - name: DB_INSTANCE_NAME
+          value: mist61b218utf-1
 
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
