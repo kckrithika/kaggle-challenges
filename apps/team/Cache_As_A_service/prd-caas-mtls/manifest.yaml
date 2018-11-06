@@ -94,7 +94,6 @@ system:
     - name: server-certs
       maddogCert:
         type: server
-        - lbname: us99-mist61sfproxy2-lb
     
     loadbalancers:
     - lbname: caas-mtls-envoy-stats-prd
