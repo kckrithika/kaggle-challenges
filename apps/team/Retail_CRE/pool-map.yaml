@@ -15,6 +15,11 @@ apps:
     hostSubList:
         - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
         - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
+  prd.CRE_Test.cre-stream-processing: # stream-processing cre test instance
+  - name: prd/prd-sam_customerresolutionengine
+    hostSublist:
+        - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
+        - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
   iad.Prod.cre-stream-processing:
   - name: iad/iad-sam_customerresolutionengine
   ord.Prod.cre-stream-processing:
@@ -34,6 +39,11 @@ apps:
   - name: prd/prd-sam_customerresolutionengine
     hostSubList:
     - shared0-samminioncustomerresolutionengine3-2-prd.eng.sfdc.net
+  prd.CRE_Test.cre-api: # api cre test env instance
+  - name: prd/prd-sam_customerresolutionengine
+    hostSubList:
+    - shared0-samminioncustomerresolutionengine2-1-prd.eng.sfdc.net
+    - shared0-samminioncustomerresolutionengine2-2-prd.eng.sfdc.net
   iad.Prod.cre_api:
   - name: iad/iad-sam_customerresolutionengine
   ord.Prod.cre_api:
@@ -54,6 +64,11 @@ apps:
   - name: prd/prd-sam_customerresolutionengine
     hostSubList:
         - shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net
+  prd.CRE_Test.cre-control-plane: # control-plane functional test env instance
+  - name: prd/prd-sam_customerresolutionengine
+    hostSubList:
+        - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
+        - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
 
   # ======= ENGINE ======== #
   iad.Prod.cre-engine:
