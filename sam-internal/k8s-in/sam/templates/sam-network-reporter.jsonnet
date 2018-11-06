@@ -32,7 +32,7 @@ if configs.kingdom == "prd" then configs.daemonSetBase("sam") {
                         ],
                         ports: [
                             {
-                                containerPort: 3333,
+                                containerPort: 53353,
                             },
                         ],
                         resources+: configs.ipAddressResource,
