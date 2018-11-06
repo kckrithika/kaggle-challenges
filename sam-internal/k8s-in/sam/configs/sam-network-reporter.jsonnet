@@ -21,7 +21,7 @@ local timeHour = 60 * timeMinute;
 
     enablehttp: false,
     enabletcp: true,
-    tcpPort: "3333",
+    tcpPort: "53353",
 
     requestDelay: 10 * timeMillisecond,
     delay: 5 * timeMinute,
@@ -32,4 +32,6 @@ local timeHour = 60 * timeMinute;
     backoffJitterMax: 1 * timeHour,
     metricsHttpTimeout: timeSecond * 5,
     metricsBatchTimeout: timeMinute,
+
+    namespace: "sam-system",
 }

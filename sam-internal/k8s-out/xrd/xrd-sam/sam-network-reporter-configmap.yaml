@@ -10,6 +10,7 @@ data:
       "enabletcp": true,
       "metricsBatchTimeout": 60000000000,
       "metricsHttpTimeout": 5000000000,
+      "namespace": "sam-system",
       "numWorkers": 5,
       "port": "3333",
       "refreshNodesMaxDelay": 86400000000000,
@@ -23,7 +24,7 @@ data:
       "requestsToSkip": 5,
       "selectorLabelName": "sam-network-reporter",
       "shouldBatchMetrics": true,
-      "tcpPort": "3333",
+      "tcpPort": "53353",
       "testMode": false,
       "timeout": 30000000000
     }

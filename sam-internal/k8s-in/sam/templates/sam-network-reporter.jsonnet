@@ -1,14 +1,14 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-samtest" then configs.daemonSetBase("sam") {
+if configs.kingdom == "prd" then configs.daemonSetBase("sam") {
     spec+: {
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         name: "sam-network-reporter",
-                        image: samimages.hypersam,
+                        image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002364-0a657f10",
                         command: [
                             "/sam/sam-network-reporter",
                             "--funnelEndpoint=" + configs.funnelVIP,
@@ -32,7 +32,7 @@ if configs.estate == "prd-samtest" then configs.daemonSetBase("sam") {
                         ],
                         ports: [
                             {
-                                containerPort: 3333,
+                                containerPort: 53353,
                             },
                         ],
                         resources+: configs.ipAddressResource,
