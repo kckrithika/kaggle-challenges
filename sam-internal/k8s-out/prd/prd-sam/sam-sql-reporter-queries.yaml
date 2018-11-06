@@ -27,11 +27,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'prd-samdev'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'prd-samdev'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'prd-samdev' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'prd-samdev' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - R\u0026D - prd-samdev",
@@ -61,11 +61,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'prd-samtest'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'prd-samtest'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'prd-samtest' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'prd-samtest' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - R\u0026D - prd-samtest",
@@ -95,11 +95,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'prd-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'prd-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'prd-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'prd-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - R\u0026D - prd-sam",
@@ -129,11 +129,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'prd-samtwo'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'prd-samtwo'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'prd-samtwo' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'prd-samtwo' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - R\u0026D - prd-samtwo",
@@ -163,11 +163,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'xrd-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'xrd-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'xrd-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'xrd-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - R\u0026D - xrd-sam",
@@ -197,11 +197,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'cdg-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'cdg-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'cdg-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'cdg-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - cdg-sam",
@@ -231,11 +231,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'cdu-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'cdu-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'cdu-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'cdu-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - cdu-sam",
@@ -265,11 +265,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'chx-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'chx-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'chx-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'chx-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - chx-sam",
@@ -299,11 +299,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'dfw-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'dfw-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'dfw-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'dfw-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - dfw-sam",
@@ -333,11 +333,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'frf-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'frf-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'frf-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'frf-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - frf-sam",
@@ -367,11 +367,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'hnd-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'hnd-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'hnd-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'hnd-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - hnd-sam",
@@ -401,11 +401,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'ia2-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'ia2-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'ia2-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'ia2-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - ia2-sam",
@@ -435,11 +435,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'iad-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'iad-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'iad-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'iad-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - iad-sam",
@@ -469,11 +469,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'ord-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'ord-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'ord-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'ord-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - ord-sam",
@@ -503,11 +503,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'par-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'par-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'par-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'par-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - par-sam",
@@ -537,11 +537,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'ph2-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'ph2-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'ph2-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'ph2-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - ph2-sam",
@@ -571,11 +571,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'phx-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'phx-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'phx-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'phx-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - phx-sam",
@@ -605,11 +605,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'syd-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'syd-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'syd-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'syd-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - syd-sam",
@@ -639,11 +639,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'ukb-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'ukb-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'ukb-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'ukb-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - ukb-sam",
@@ -673,11 +673,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'wax-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'wax-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'wax-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'wax-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - wax-sam",
@@ -707,11 +707,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'yhu-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'yhu-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'yhu-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'yhu-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - yhu-sam",
@@ -741,11 +741,11 @@ data:
             },
             {
               "name": "List of customer pods ordered by PodAge (top 20)",
-              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'yul-sam'\n          order by PodAgeDays\n          limit 20"
+              "sql": "select\n            case when (LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10)\u003c2) then 'YELLOW' else '' end as Status,\n            Name,\n            Namespace,\n            ControlEstate,\n            LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,\n            Phase\n          from podDetailView\n          where IsSamApp = True and ProduceAgeInMinutes\u003c60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'\n          and ControlEstate = 'yul-sam'\n          order by PodAgeDays\n          limit 20"
             },
             {
               "name": "Unhealthy customer pods (top 20)",
-              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'yul-sam' and Phase != 'Running' and name not like 'syntheticwd%'\nlimit 20"
+              "sql": "select \n  Name,\n  Namespace,\n  ControlEstate,\n  Phase,\n  Message,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.conditions[*].message' end as Conditions,\n  case when Phase != 'Running' then Payload-\u003e\u003e'$.status.containerStatuses[*].state' end as containerStatuses\nfrom podDetailView\nwhere IsSamApp = True and ProduceAgeInMinutes\u003c60\nand ControlEstate = 'yul-sam' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'\nlimit 20"
             }
           ],
           "name": "Bed Health - PROD - yul-sam",

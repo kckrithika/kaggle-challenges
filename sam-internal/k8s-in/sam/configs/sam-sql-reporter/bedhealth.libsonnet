@@ -175,7 +175,7 @@
             LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays,
             Phase
           from podDetailView
-          where IsSamApp = True and ProduceAgeInMinutes<60 and Phase = 'Running' and name not like 'syntheticwd%' and namespace not like 'e2e-%'
+          where IsSamApp = True and ProduceAgeInMinutes<60 and Phase = 'Running' and Phase != 'Failed' and name not like 'syntheticwd%' and namespace not like 'e2e-%'
           and ControlEstate = '" + bed + "'
           order by PodAgeDays
           limit 20",
@@ -195,7 +195,7 @@
   case when Phase != 'Running' then Payload->>'$.status.containerStatuses[*].state' end as containerStatuses
 from podDetailView
 where IsSamApp = True and ProduceAgeInMinutes<60
-and ControlEstate = '" + bed + "' and Phase != 'Running' and name not like 'syntheticwd%'
+and ControlEstate = '" + bed + "' and Phase != 'Running' and Phase != 'Failed' and name not like 'syntheticwd%'
 limit 20",
             },
 
