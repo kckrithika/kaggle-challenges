@@ -24,7 +24,7 @@ spec:
         - -watchdogFrequency=60s
         - -alertThreshold=5m
         - -watchDogKind=Deployment
-        - -recipient=sam-alerts@salesforce.com,csc-sam-sam-email.mbaphr21@salesforce.pagerduty.com
+        - -recipient=sam-alerts@salesforce.com,sam-pagerduty@salesforce.com
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
         - --config=/config/watchdog.json
