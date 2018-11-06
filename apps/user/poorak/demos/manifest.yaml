@@ -14,7 +14,7 @@ system:
           port: 9090
   loadbalancers:
   - lbname: demoslb
-    function: default
+    function: default-demos
     slbenabled: true
     ports:
       - port: 9090
