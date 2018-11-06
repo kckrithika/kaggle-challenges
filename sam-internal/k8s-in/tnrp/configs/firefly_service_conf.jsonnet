@@ -16,8 +16,6 @@ local portConfig = import "portconfig.jsonnet";
         artifactoryP2PHost:: 'testrepo2-0-prd.data.sfdc.net',
         artifactoryContentRepoUserName:: 'svc_tnrp_ci_test',
         artifactoryContentRepoUserNameProd:: 'svc_tnrp_cd_test',
-        rabbitMqUserName:: 'rabbitmq-admin',
-        rabbitMqPassword:: '${rabbitMqAdmin#FromSecretService}',
         gitUser: 'tok-firefly-git-test',
         gitOauthToken: '${gitFireflyTestOauthToken#FromSecretService}',
     },
@@ -33,6 +31,8 @@ local portConfig = import "portconfig.jsonnet";
         gitOauthToken: '${gitRWPassword#FromSecretService}',
     },
     prdsam:: $.dev {
+        rabbitMqUserName:: 'rabbitmq-admin',
+        rabbitMqPassword:: '${rabbitMqAdmin#FromSecretService}',
         rabbitMqEndpoint:: 'firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net',
         rabbitMqPort:: '5672',
         repositories:: 'tnrpfirefly/test_sam_manifests,sam/test-firefly-manifests',
