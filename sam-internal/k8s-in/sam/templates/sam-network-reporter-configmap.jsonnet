@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "xrd" then {
+if configs.kingdom == "prd" || configs.kingdom == "xrd" || configs.kingdom == "frf" then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
