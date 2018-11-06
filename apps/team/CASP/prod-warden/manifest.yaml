@@ -29,6 +29,10 @@ system:
           name: warden-vol
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
+        - mountPath: /home/sfdc-casp/pki/client
+          name: maievclientcert
+        - mountPath: /home/sfdc-casp/pki/server
+          name: wardenservercert
         livenessProbe:
           httpGet:
             path: /manage/health
@@ -41,6 +45,14 @@ system:
       - name: log-vol
         hostPath:
           path: /home/sfdc-casp/logs
+      - name: maievclientcert
+        maddogCert:
+          type: client
+      - name: wardenservercert
+        maddogCert:
+          type: server
+          lbnames:
+          - wardenlb
 
     loadbalancers:
     - lbname: wardenlb
