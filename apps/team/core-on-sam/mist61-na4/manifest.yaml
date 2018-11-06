@@ -30,12 +30,27 @@ system:
         # DB info
         - name: DB_USER
           value: sleepy
+
+        - name: DB_PASSWORD
+          value: rotate
+
         - name: DB_SID
           value: mist61a216utf
+
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
+
         - name: DB_INSTANCE_NAME
           value: mist61b218utf-1
+          
+        - name: DB_STATS_USER
+          value: snowwhite
+
+        - name: DB_STATS_PASSWORD
+          value: rotate
+
+        - name: SERVER_ID
+          value: x
 
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
