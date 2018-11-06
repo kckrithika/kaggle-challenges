@@ -2058,3 +2058,19 @@ apps:
   - name: phx/phx-sp1-sam_caas
  phx-sp1-redis-sp-na45-c1:
   - name: phx/phx-sp1-sam_caas
+ fra-sp1-metrics-publisher-sp-cs103-c1:
+  - name: fra/fra-sp1-sam_caas
+ fra-sp1-redis-sp-cs103-c1:
+  - name: fra/fra-sp1-sam_caas
+ fra-sp1-metrics-publisher-sp-cs103-pc:
+  - name: fra/fra-sp1-sam_caas
+ fra-sp1-redis-sp-cs103-pc:
+  - name: fra/fra-sp1-sam_caas
+ fra-sp1-metrics-publisher-sp-cs104-c1:
+  - name: fra/fra-sp1-sam_caas
+ fra-sp1-redis-sp-cs104-c1:
+  - name: fra/fra-sp1-sam_caas
+ fra-sp1-metrics-publisher-sp-cs104-pc:
+  - name: fra/fra-sp1-sam_caas
+ fra-sp1-redis-sp-cs104-pc:
+  - name: fra/fra-sp1-sam_caas
