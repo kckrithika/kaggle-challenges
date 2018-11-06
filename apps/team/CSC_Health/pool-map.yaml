@@ -1,8 +1,10 @@
 apps:
   reportcollector:
     - prd/prd-sam_report_collector
+    - phx/phx-sam_report_collector
   temp-store:
     - prd/prd-sam_report_collector
+    - phx/phx-sam_report_collector
   reportcollector-perf:
   redis-inspector:
     - prd/prd-sam_report_collector
@@ -21,7 +23,6 @@ apps:
   reportcollectorha:
     - dfw/dfw-sam_report_collector
     - prd/prd-sdc
-    - phx/phx-sam_report_collector
     - frf/frf-sam_report_collector
     - par/par-sam_report_collector
     - ukb/ukb-sam_report_collector
