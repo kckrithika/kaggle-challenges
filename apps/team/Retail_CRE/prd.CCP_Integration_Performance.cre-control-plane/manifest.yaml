@@ -77,9 +77,6 @@ system:
       - mountPath: /keys-kube/
         name: aeskey
         readOnly: true
-      - mountPath: /keys-kube
-        name: aeskey-kube
-        readOnly: true
       - mountPath: /client-certs
         name: client-certs
       - mountPath: /server-certs
