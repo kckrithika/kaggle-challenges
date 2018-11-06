@@ -81,7 +81,7 @@ items:
           "logging": {
               "level": {
                   "com.salesforce": "INFO",
-                  "com.salesforce.firefly.packageservice": "DEBUG",
+                  "com.salesforce.firefly": "DEBUG",
                   "org": "INFO"
               },
               "pattern": {
@@ -121,16 +121,16 @@ items:
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
-                  "connect-timeout": "5s",
+                  "connect-timeout": "20s",
                   "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
-                  "read-timeout": "5s",
+                  "read-timeout": "20s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "tok-firefly-git-test",
-                  "write-timeout": "5s"
+                  "write-timeout": "20s"
               }
           },
           "server": {
@@ -307,7 +307,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "12"
+            value: "13"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -513,7 +513,7 @@ items:
           "logging": {
               "level": {
                   "com.salesforce": "INFO",
-                  "com.salesforce.firefly.packageservice": "DEBUG",
+                  "com.salesforce.firefly": "DEBUG",
                   "org": "INFO"
               },
               "pattern": {
@@ -553,16 +553,16 @@ items:
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
-                  "connect-timeout": "5s",
+                  "connect-timeout": "20s",
                   "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
-                  "read-timeout": "5s",
+                  "read-timeout": "20s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "tok-firefly-git-test",
-                  "write-timeout": "5s"
+                  "write-timeout": "20s"
               }
           },
           "server": {
@@ -739,7 +739,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "10"
+            value: "11"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -913,7 +913,7 @@ items:
           "logging": {
               "level": {
                   "com.salesforce": "INFO",
-                  "com.salesforce.firefly.pullrequestservice": "DEBUG",
+                  "com.salesforce.firefly": "DEBUG",
                   "org": "INFO"
               },
               "pattern": {
@@ -950,16 +950,16 @@ items:
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
-                  "connect-timeout": "5s",
+                  "connect-timeout": "20s",
                   "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
-                  "read-timeout": "5s",
+                  "read-timeout": "20s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "tok-firefly-git-test",
-                  "write-timeout": "5s"
+                  "write-timeout": "20s"
               }
           },
           "server": {
@@ -1134,7 +1134,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "14"
+            value: "15"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -1324,7 +1324,7 @@ items:
           "logging": {
               "level": {
                   "com.salesforce": "INFO",
-                  "com.salesforce.firefly.promotionservice": "DEBUG",
+                  "com.salesforce.firefly": "DEBUG",
                   "org": "INFO"
               },
               "pattern": {
@@ -1362,16 +1362,16 @@ items:
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
-                  "connect-timeout": "5s",
+                  "connect-timeout": "20s",
                   "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
-                  "read-timeout": "5s",
+                  "read-timeout": "20s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "tok-firefly-git-test",
-                  "write-timeout": "5s"
+                  "write-timeout": "20s"
               }
           },
           "server": {
@@ -1546,7 +1546,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "9"
+            value: "10"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE

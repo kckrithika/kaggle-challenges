@@ -19,7 +19,7 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
       level: {
         org: 'INFO',
         'com.salesforce': 'INFO',
-        'com.salesforce.firefly.intakeservice': 'DEBUG',
+        'com.salesforce.firefly': 'DEBUG',
       },
       pattern: {
         console: '%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread gua=%X{userAgent} ghd=%X{gitHubDelivery}] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n',

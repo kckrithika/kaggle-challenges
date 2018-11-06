@@ -20,7 +20,7 @@ local artifactoryConfig = import "configs/firefly-artifactory.jsonnet";
       level: {
         org: 'INFO',
         'com.salesforce': 'INFO',
-        'com.salesforce.firefly.promotionservice': 'DEBUG',
+        'com.salesforce.firefly': 'DEBUG',
       },
       pattern: {
         console: '%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - details=[%msg]  %n',
