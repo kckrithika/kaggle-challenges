@@ -130,11 +130,11 @@ system:
         periodSeconds: 1
 
       readinessProbe:
-        httpGet:
-          path: /ping.jsp
-          port: 8085
+        exec:
+          command:
+           - /home/sfdc/salesforce/build/ready_probe.sh
         initialDelaySeconds: 120
-        periodSeconds: 1
+        periodSeconds: 5
         failureThreshold: 10
 
       ports:
