@@ -216,6 +216,9 @@
                 "xrd-sam": 8,
                 "phx-sam": 8,
                 "iad-sam": 8,
+                "cdg-sam": 8,
+                "dfw-sam": 8,
+                "ord-sam": 8,
             },
 
         maxDeleteCount: {
