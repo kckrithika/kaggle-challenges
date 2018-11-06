@@ -6,11 +6,6 @@ system:
   - name: elasticsearch
     count: 3
     type: stateful-set
-    strategy:
-        type: RollingUpdate
-        rollingUpdate:
-            maxSurge: 0
-            maxUnavailable: 1
     containers:
     - name: elasticsearch
       image: docker-dva-rc/dva/elasticsearch-server:20
@@ -55,7 +50,7 @@ system:
             maxUnavailable: 1
     containers:
     - name: zipkin-es-curator
-      image: docker-dva-rc/dva/zipkin-es-curator:3
+      image: docker-dva-rc/dva/zipkin-es-curator:4
       env: 
       - name: DELETE_AFTER_DAYS
         value: 7
