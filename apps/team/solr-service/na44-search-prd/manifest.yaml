@@ -7,7 +7,7 @@ system:
       count: 3
       containers:  
       - name: searchserver 
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/search-teams/solrservice/searchserver:281
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/search-teams/solrservice/searchserver:309
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
