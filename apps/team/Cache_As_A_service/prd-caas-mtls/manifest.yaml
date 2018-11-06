@@ -97,7 +97,7 @@ system:
     
   loadbalancers:
   - lbname: caas-mtls-envoy-stats-prd
-    function: mtls-envoy-stats-prd
+    function: caas-mtls-test
     nodeExposed: true
     slbEnabled: true
     ports:
