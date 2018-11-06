@@ -31,7 +31,6 @@ spec:
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -emailFrequency=6h
-        - -snoozedAlarms=etcdQuorumChecker=2018/11/12
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

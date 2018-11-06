@@ -14,6 +14,7 @@ std.prune({
   snooze: [
     #[a.mitra] rbac is disabled in prd-sam for k8s upgrade. snoozing alerts for now
     { instanceRegex: "-frf.ops.sfdc.net$", checker: "rbacChecker", until: "2018/06/12" },
+    { estates: ["phx-sam", "ukb-sam", "par-sam"], checker: "etcdQuorumChecker", until: "2018/11/12" },
     ],
 
   # Shared

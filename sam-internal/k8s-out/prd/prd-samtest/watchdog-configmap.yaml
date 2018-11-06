@@ -73,6 +73,15 @@ data:
           "checker": "rbacChecker",
           "instanceRegex": "-frf.ops.sfdc.net$",
           "until": "2018/06/12"
+        },
+        {
+          "checker": "etcdQuorumChecker",
+          "estates": [
+            "phx-sam",
+            "ukb-sam",
+            "par-sam"
+          ],
+          "until": "2018/11/12"
         }
       ],
       "tlsEnabled": true,
