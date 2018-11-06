@@ -1,0 +1,14 @@
+- lbname: ops0-nvtddicache1-0-prd
+  customlbname: ops0-nvtddicache1-0-prd
+  servers: 
+    - ops0-netmonitor1-1-prd.eng.sfdc.net
+    - ops0-netmonitor2-1-prd.eng.sfdc.net
+  ports: 
+    - port: 13111
+      targetport: 13111
+      lbtype: http
+      tls: true
+      reencrypt: true
+      healthport: 23111
+      healthpath: /
+      healthprotocol: http
