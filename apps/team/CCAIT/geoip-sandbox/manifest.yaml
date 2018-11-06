@@ -49,7 +49,7 @@ system:
           port: 15372
         initialDelaySeconds: 115
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:9026c7e0032acdb88c607d20b1ca988b5975525d
+      image: sfci/servicelibs/sherpa-envoy:caac21420828be92a02942c8fa36c3fee9643ada
       ports:
       - name: http2-in
         containerPort: 7012
@@ -57,9 +57,6 @@ system:
         containerPort: 7443
       - name: sherpa-adm
         containerPort: 15373
- #     env:
- #     - name: ENVOY_DEBUG_OPTIONS
- #       value: --component-log-level upstream:debug,config:debug
       volumeMounts:
       - mountPath: /client-certs
         name: tls-client-cert
