@@ -91,6 +91,7 @@ spec:
         - --healthcheck.riseCount=5
         - --healthcheck.fallCount=2
         - --computeProxyServers=true
+        - --healthcheck.healthchecktimeout=3s
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
