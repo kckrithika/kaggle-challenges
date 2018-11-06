@@ -94,3 +94,12 @@ system:
     - name: server-certs
       maddogCert:
         type: server
+    
+  loadbalancers:
+  - lbname: caas-mtls-envoy-stats-prd
+    function: caas-mtls-test
+    nodeExposed: true
+    slbEnabled: true
+    ports:
+     - port: 8888
+       targetport: 12010
