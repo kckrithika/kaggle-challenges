@@ -28,3 +28,51 @@
       targetport: 8981
       lbtype: tcp
       healthprotocol: tcp
+- lbname: ops0-nvtddicache1-0-prd
+  customlbname: ops0-nvtddicache1-0-prd
+  servers:
+    - ops0-netmonitor1-1-prd.eng.sfdc.net
+    - ops0-netmonitor2-1-prd.eng.sfdc.net
+  ports:
+    - port: 13111
+      targetport: 13111
+      lbtype: http
+      tls: true
+      reencrypt: true
+      healthport: 23111
+      healthpath: /
+      healthprotocol: http
+- lbname: ops0-netlog1-0-prd
+  customlbname: ops0-netlog1-0-prd
+  servers:
+    - ops0-netlog1-1-prd.eng.sfdc.net
+    - ops0-netlog1-2-prd.eng.sfdc.net
+    - ops0-netlog2-1-prd.eng.sfdc.net
+    - ops0-netlog2-2-prd.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 9000
+      lbtype: http
+      tls: true
+      reencrypt: true
+      healthport: 29000
+      healthpath: /
+      healthprotocol: http
+    - port: 12201
+      targetport: 12201
+      lbtype: tcp
+      healthport: 22201
+      healthpath: /
+      healthprotocol: http
+    - port: 12202
+      targetport: 12202
+      lbtype: tcp
+      healthport: 22202
+      healthpath: /
+      healthprotocol: http
+    - port: 5514
+      targetport: 5514
+      lbtype: tcp
+      healthport: 25514
+      healthpath: /
+      healthprotocol: http
