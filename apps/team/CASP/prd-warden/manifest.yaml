@@ -64,6 +64,8 @@ system:
       - name: wardenservercert
         maddogCert:
           type: server
+          lbnames:
+          - warden
       - name: splunk-credentials
         k4aSecret:
           secretName: warden-secrets
