@@ -24,7 +24,7 @@ system:
 
     containers:
     - name: coreapp
-      image: tnrp/casam/coreapp:216_patch__16900215-0000130-8ecd049f
+      image: tnrp/casam/coreapp:216_patch__16900215-0000131-ce255dbc
 
       env:
         # DB info
@@ -52,11 +52,6 @@ system:
         - name: SFPROXY_VIP
           value: https://us4-mist61cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
 
-        # This maps to http_port
-        - name: PORT
-          value: 8085
-          
-        # TODO - clean this up. Added temporarily for new readiness probe testing
         - name: HTTP_PORT
           value: 8085
 
