@@ -18,4 +18,5 @@ local configs = import "config.jsonnet";
     removeCleanupDs: (slbimages.hypersdn_build >= 1344),
     newAccessLogFormat: (slbimages.hypersdn_build >= 1347),
     aclEnabled: (slbimages.phaseNum <= 2),
+    syncHealthConfigEnabled: (slbimages.phaseNum <= 1),
 }

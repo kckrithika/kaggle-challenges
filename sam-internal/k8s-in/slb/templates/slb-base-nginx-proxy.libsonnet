@@ -68,6 +68,11 @@
                                      "--checkDuplicateVips=true",
                                    ] + (if slbflights.newAccessLogFormat then [
                                      "--httpconfig.accessLogFormat=main",
+                                   ] else [])
+                                   + (if slbflights.syncHealthConfigEnabled then [
+                                     "--commonconfig.riseCount=5",
+                                     "--commonconfig.fallCount=2",
+                                     "--commonconfig.healthTimeout=5000",
                                    ] else []),
                           volumeMounts: configs.filter_empty([
                             target_config_volume_mount,
