@@ -26,7 +26,7 @@ local timeHour = 60 * timeMinute;
     requestDelay: 10 * timeMillisecond,
     delay: 5 * timeMinute,
     refreshNodesMaxDelay: 24 * timeHour,
-    refreshNodesMinDelay: 5 * timeMinute,
+    refreshNodesMinDelay: 1 * timeHour,
     timeout: 30 * timeSecond,
     backoffMin: 5 * timeSecond,
     backoffJitterMax: 1 * timeHour,

@@ -14,7 +14,7 @@ data:
       "numWorkers": 5,
       "port": "3333",
       "refreshNodesMaxDelay": 86400000000000,
-      "refreshNodesMinDelay": 300000000000,
+      "refreshNodesMinDelay": 3600000000000,
       "reportsEndpointEnabled": true,
       "reportsPercentiles": "50,75,90,95,99",
       "requestDataSizeMax": "1B",
