@@ -57,9 +57,9 @@ system:
         containerPort: 7443
       - name: sherpa-adm
         containerPort: 15373
-      env:
-      - name: ENVOY_DEBUG_OPTIONS
-        value: --component-log-level upstream:debug,config:debug
+ #     env:
+ #     - name: ENVOY_DEBUG_OPTIONS
+ #       value: --component-log-level upstream:debug,config:debug
       volumeMounts:
       - mountPath: /client-certs
         name: tls-client-cert
