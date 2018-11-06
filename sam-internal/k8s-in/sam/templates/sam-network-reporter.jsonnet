@@ -8,7 +8,7 @@ if configs.kingdom == "prd" then configs.daemonSetBase("sam") {
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         name: "sam-network-reporter",
-                        image: samimages.hypersam,
+                        image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002364-0a657f10",
                         command: [
                             "/sam/sam-network-reporter",
                             "--funnelEndpoint=" + configs.funnelVIP,
