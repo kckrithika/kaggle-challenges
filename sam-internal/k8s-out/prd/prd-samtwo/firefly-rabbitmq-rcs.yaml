@@ -24,7 +24,7 @@ spec:
       containers:
       - env:
         - name: RABBITMQ_DEFAULT_USER
-          value: sfdc-rabbitmq
+          value: rabbitmq-admin
         - name: MY_POD_IP
           valueFrom:
             fieldRef:

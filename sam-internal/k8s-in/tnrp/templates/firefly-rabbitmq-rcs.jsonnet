@@ -6,6 +6,7 @@ local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
 local madkub = (import "firefly_madkub.jsonnet") + { templateFileName:: std.thisFile };
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local permsetter = (import "firefly_permsetter.jsonnet") + { templateFileName:: std.thisFile };
+local envConfig = import "configs/firefly_service_conf.jsonnet";
 
 if firefly_feature_flags.is_rabbitmq_enabled then {
   apiVersion: 'apps/v1beta1',
@@ -63,7 +64,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
             env: [
               {
                 name: 'RABBITMQ_DEFAULT_USER',
-                value: 'sfdc-rabbitmq',
+                value: envConfig.environmentMapping[configs.estate].rabbitMqUserName,
               },
               {
                 name: 'MY_POD_IP',
