@@ -38,7 +38,11 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                                      "-alertThreshold=1h",
                                      "-emailFrequency=12h",
                                      "-laddr=" + samwdconfig.laddr,
-                                     "-imageName=" + samimages.hypersam,
+                                     # SAM AutoDeployer replaces "auto" keyword with the newest hypersam tag but only in containers[*].image, not in command line.  We will just use hypersam from next phase
+                                     # TODO: When we move to the bundle controller and deployer bot we can move this back to simply be samimages.hypersam
+                                     "-imageName=" + (if samimages.per_phase[samimages.phase].hypersam == "auto" then
+                                        ((import "image_functions.libsonnet") + { templateFilename:: std.thisFile }).do_override_based_on_tag({}, "sam", "hypersam", samimages.per_phase["1"].hypersam)
+                                        else samimages.hypersam),
                                      "-watchDogKind=" + $.kind,
                                      "-enableStatefulChecks=false",
                                  ]
