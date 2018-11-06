@@ -1,8 +1,3 @@
-local timeMillisecond = 1000000;
-local timeSecond = timeMillisecond * 1000;
-local timeMinute = 60 * timeSecond;
-local timeHour = 60 * timeMinute;
-
 {
     enabled: true,
     requestsToMake: 105,
@@ -23,15 +18,15 @@ local timeHour = 60 * timeMinute;
     enabletcp: true,
     tcpPort: "53353",
 
-    requestDelay: 10 * timeMillisecond,
-    delay: 5 * timeMinute,
-    refreshNodesMaxDelay: 24 * timeHour,
-    refreshNodesMinDelay: 1 * timeHour,
-    timeout: 30 * timeSecond,
-    backoffMin: 5 * timeSecond,
-    backoffJitterMax: 1 * timeHour,
-    metricsHttpTimeout: timeSecond * 5,
-    metricsBatchTimeout: timeMinute,
+    requestDelay: "10ms",
+    delay: "5m",
+    refreshNodesMaxDelay: "24h",
+    refreshNodesMinDelay: "1h",
+    timeout: "30s",
+    backoffMin: "5s",
+    backoffJitterMax: "1h",
+    metricsHttpTimeout: "5s",
+    metricsBatchTimeout: "1m",
 
     namespace: "sam-system",
 }
