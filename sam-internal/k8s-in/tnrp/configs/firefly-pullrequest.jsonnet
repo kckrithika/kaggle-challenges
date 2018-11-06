@@ -21,7 +21,7 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       level: {
         org: 'INFO',
         'com.salesforce': 'INFO',
-        'com.salesforce.firefly.pullrequestservice': 'DEBUG',
+        'com.salesforce.firefly': 'DEBUG',
 
       },
       pattern: {

@@ -81,7 +81,7 @@ items:
           "logging": {
               "level": {
                   "com.salesforce": "INFO",
-                  "com.salesforce.firefly.packageservice": "DEBUG",
+                  "com.salesforce.firefly": "DEBUG",
                   "org": "INFO"
               },
               "pattern": {
@@ -121,16 +121,16 @@ items:
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
-                  "connect-timeout": "5s",
+                  "connect-timeout": "20s",
                   "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitRWPassword#FromSecretService}",
-                  "read-timeout": "5s",
+                  "read-timeout": "20s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "svc-tnrp-git-rw",
-                  "write-timeout": "5s"
+                  "write-timeout": "20s"
               }
           },
           "server": {
@@ -508,7 +508,7 @@ items:
           "logging": {
               "level": {
                   "com.salesforce": "INFO",
-                  "com.salesforce.firefly.packageservice": "DEBUG",
+                  "com.salesforce.firefly": "DEBUG",
                   "org": "INFO"
               },
               "pattern": {
@@ -548,16 +548,16 @@ items:
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
-                  "connect-timeout": "5s",
+                  "connect-timeout": "20s",
                   "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitRWPassword#FromSecretService}",
-                  "read-timeout": "5s",
+                  "read-timeout": "20s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "svc-tnrp-git-rw",
-                  "write-timeout": "5s"
+                  "write-timeout": "20s"
               }
           },
           "server": {
@@ -903,7 +903,7 @@ items:
           "logging": {
               "level": {
                   "com.salesforce": "INFO",
-                  "com.salesforce.firefly.pullrequestservice": "DEBUG",
+                  "com.salesforce.firefly": "DEBUG",
                   "org": "INFO"
               },
               "pattern": {
@@ -940,16 +940,16 @@ items:
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
-                  "connect-timeout": "5s",
+                  "connect-timeout": "20s",
                   "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitRWPassword#FromSecretService}",
-                  "read-timeout": "5s",
+                  "read-timeout": "20s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "svc-tnrp-git-rw",
-                  "write-timeout": "5s"
+                  "write-timeout": "20s"
               }
           },
           "server": {
@@ -1309,7 +1309,7 @@ items:
           "logging": {
               "level": {
                   "com.salesforce": "INFO",
-                  "com.salesforce.firefly.promotionservice": "DEBUG",
+                  "com.salesforce.firefly": "DEBUG",
                   "org": "INFO"
               },
               "pattern": {
@@ -1347,16 +1347,16 @@ items:
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
-                  "connect-timeout": "5s",
+                  "connect-timeout": "20s",
                   "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitRWPassword#FromSecretService}",
-                  "read-timeout": "5s",
+                  "read-timeout": "20s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "svc-tnrp-git-rw",
-                  "write-timeout": "5s"
+                  "write-timeout": "20s"
               }
           },
           "server": {
@@ -1723,16 +1723,16 @@ items:
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
-                  "connect-timeout": "5s",
+                  "connect-timeout": "20s",
                   "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitRWPassword#FromSecretService}",
-                  "read-timeout": "5s",
+                  "read-timeout": "20s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "svc-tnrp-git-rw",
-                  "write-timeout": "5s"
+                  "write-timeout": "20s"
               }
           },
           "server": {

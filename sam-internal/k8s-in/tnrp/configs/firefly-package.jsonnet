@@ -21,7 +21,7 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       level: {
         org: 'INFO',
         'com.salesforce': 'INFO',
-        'com.salesforce.firefly.packageservice': 'DEBUG',
+        'com.salesforce.firefly': 'DEBUG',
       },
       pattern: {
         console: '%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n',
