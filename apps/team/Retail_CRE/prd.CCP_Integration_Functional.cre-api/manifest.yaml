@@ -119,4 +119,4 @@ system:
     slbenabled: true
     ports:
       - port: 8082
-        targetport: 7022
+        targetport: 8080
