@@ -7,7 +7,7 @@ if samfeatureflags.k8sproxy then {
     spec: {
         # prd-samtest is down an api server and the bad pod is showing RED in release report
         # no need for 3 in test beds; 2 is sufficient
-        replicas: (if configs.estate == "prd-sam" then 3 else 2),
+        replicas: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 2 else 3),
         template: {
             spec: configs.specWithMadDog {
                 hostNetwork: true,
