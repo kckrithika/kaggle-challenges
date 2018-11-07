@@ -68,10 +68,10 @@ items:
                   "report-frequency": 1,
                   "system-exception-threshold": 5
               },
+              "prr-routing-key-format": "%s.pr",
+              "push-routing-key-format": "%s.package",
               "rabbitmq": {
-                  "exchange-name": "firefly.delivery",
-                  "prr-routing-key-format": "%s.pr",
-                  "push-routing-key-format": "%s.package"
+                  "exchange-name": "firefly.delivery"
               }
           },
           "logging": {

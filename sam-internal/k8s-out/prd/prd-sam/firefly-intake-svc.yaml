@@ -68,10 +68,10 @@ items:
                   "report-frequency": 60,
                   "system-exception-threshold": 5
               },
+              "prr-routing-key-format": "%s-%s.pr",
+              "push-routing-key-format": "%s-%s.package",
               "rabbitmq": {
-                  "exchange-name": "firefly.delivery",
-                  "prr-routing-key-format": "%s-%s.pr",
-                  "push-routing-key-format": "%s-%s.package"
+                  "exchange-name": "firefly.delivery"
               }
           },
           "logging": {
@@ -306,7 +306,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "14"
+            value: "15"
           - name: DARKLAUNCH
             value: "false"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:248
