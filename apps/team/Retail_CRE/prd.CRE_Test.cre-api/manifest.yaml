@@ -33,6 +33,8 @@ system:
           value: cre-control-plane-cre-test.retail-cre.localhost.mesh.force.com:5443
         - name: LOG_JWT
           value: true
+        - name: DUMMY_RETRY_VAR
+          value: helloworld
       ports:
       - containerPort: 8080
       - containerPort: 7022
