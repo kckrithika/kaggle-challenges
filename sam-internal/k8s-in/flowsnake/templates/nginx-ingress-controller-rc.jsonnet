@@ -46,15 +46,35 @@ local kingdom = std.extVar("kingdom");
                                 scheme: "HTTP",
                             },
                         },
-                        livenessProbe: {
-                            httpGet: {
-                                path: "/healthz",
-                                port: 80,
-                                scheme: "HTTP",
-                            },
-                            initialDelaySeconds: 10,
-                            timeoutSeconds: 1,
-                        },
+                        livenessProbe:  if std.objectHas(flowsnake_images.feature_flags, "ingress_daily_restart") then {
+                                exec: {
+                                    # Verify responding health endpoint reachability AND kill once daily to ensure fresh PKI cert
+                                    # See also https://github.com/kubernetes/kubernetes/issues/37218#issuecomment-372887460
+                                    # Note: bash ps etime syntax is <days>-<hours>:<minutes>:<seconds>, but busybox is
+                                    # <minutes>:<seconds> even for large minute counts. Use 2000 minutes ( ~ 1.4 days) as
+                                    # the threshold.
+                                    # grep -c (count) | grep 0 will yield an error if the count non-zero and thus fail the
+                                    # liveness check.
+                                    command: [
+                                        "sh",
+                                        "-c",
+                                        "reply=$(curl -s -o /dev/null -w %{http_code} http://127.0.0.1:80/healthz); if [ \"$reply\" -lt 200 -o \"$reply\" -ge 400 ]; then exit 1; && ps -o etime= | grep -c - | grep -q 0",
+                                    ],
+                                },
+                                initialDelaySeconds: 60,
+                                periodSeconds: 10,
+                                successThreshold: 1,
+                                failureThreshold: 5,
+                                timeoutSeconds: 5,
+                                } else {
+                                    httpGet: {
+                                        path: "/healthz",
+                                        port: 80,
+                                        scheme: "HTTP",
+                                    },
+                                    initialDelaySeconds: 10,
+                                    timeoutSeconds: 1,
+                                },
                         env: [
                             {
                                 name: "POD_NAME",
