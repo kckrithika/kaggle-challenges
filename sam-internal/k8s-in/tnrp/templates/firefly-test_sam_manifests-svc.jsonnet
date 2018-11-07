@@ -15,19 +15,19 @@ if configs.estate == "prd-sam" then
     env:: super.env + [
       {
         name: "INSTANCE_TYPE",
-        value: "test_sam_manifests",
+        value: "tnrpfirefly-test_sam_manifests",
       },
       {
         name: "PACKAGE_QUEUE",
-        value: "test_sam_manifests.package",
+        value: "tnrpfirefly-test_sam_manifests.package",
       },
       {
         name: "PROMOTION_QUEUE",
-        value: "test_sam_manifests.promotion",
+        value: "tnrpfirefly-test_sam_manifests.promotion",
       },
       {
         name: "LATEST_FILE_QUEUE",
-        value: "test_sam_manifests.latestfile",
+        value: "tnrpfirefly-test_sam_manifests.latestfile",
       },
    ],
   },
@@ -39,19 +39,19 @@ if configs.estate == "prd-sam" then
      env:: super.env + [
        {
          name: "INSTANCE_TYPE",
-         value: "test_sam_manifests",
+         value: "tnrpfirefly-test_sam_manifests",
        },
        {
          name: "PACKAGE_QUEUE",
-         value: "test_sam_manifests.package",
+         value: "tnrpfirefly-test_sam_manifests.package",
        },
        {
          name: "PROMOTION_QUEUE",
-         value: "test_sam_manifests.promotion",
+         value: "tnrpfirefly-test_sam_manifests.promotion",
        },
        {
          name: "LATEST_FILE_QUEUE",
-         value: "test_sam_manifests.latestfile",
+         value: "tnrpfirefly-test_sam_manifests.latestfile",
        },
     ],
   },
@@ -63,11 +63,11 @@ if configs.estate == "prd-sam" then
     env:: super.env + [
       {
         name: "INSTANCE_TYPE",
-        value: "test_sam_manifests",
+        value: "tnrpfirefly-test_sam_manifests",
       },
       {
         name: "RABBIT_MQ_QUEUE_NAME",
-        value: "test_sam_manifests.pr",
+        value: "tnrpfirefly-test_sam_manifests.pr",
       },
    ],
 
@@ -80,11 +80,11 @@ if configs.estate == "prd-sam" then
     env:: super.env + [
       {
         name: "INSTANCE_TYPE",
-        value: "test_sam_manifests",
+        value: "tnrpfirefly-test_sam_manifests",
       },
       {
         name: "RABBIT_MQ_QUEUE_NAME",
-        value: "test_sam_manifests.promotion",
+        value: "tnrpfirefly-test_sam_manifests.promotion",
       },
    ],
 
