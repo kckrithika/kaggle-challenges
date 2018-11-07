@@ -4,6 +4,7 @@ system:
   functions:
   - name: na3-mist61app-prd
     identity:
+      serviceName: app
       pod: na3-mist61
     count: 1
     volumes:
