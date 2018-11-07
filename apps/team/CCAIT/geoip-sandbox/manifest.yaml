@@ -22,7 +22,7 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: geoip
-      image: sfci/ccait/geoip:04dce033b2925a0fa3a7a80ed9d88bf7ee5de287
+      image: sfci/ccait/geoip:25aa4b7c3639c1d8b0069c995bfeab80a99e09b1
       env:
       - name: JAVA_OPTS
         value: -Xms512m -Xmx512m
