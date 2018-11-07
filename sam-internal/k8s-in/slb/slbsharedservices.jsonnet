@@ -195,7 +195,8 @@
                      "--metricsEndpoint=" + configs.funnelVIP,
                      "--log_dir=" + slbconfigs.logsDir,
                      configs.sfdchosts_arg,
-                     "--readVipsFromIpvs=true",
+                 ] + (if slbimages.hypersdn_build >= 1355 then [] else ["--readVipsFromIpvs=true"])
+                 + [
                      "--client.serverPort=" + nodeApiPort,
                      "--client.serverInterface=lo",
                  ] + (if configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1271 then [
@@ -203,7 +204,7 @@
                      ] else [])
                  + slbconfigs.getNodeApiClientSocketSettings()
                  + ["--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet]
-                 + ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]],
+                 + (if slbimages.hypersdn_build >= 1355 then [] else ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]]),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
