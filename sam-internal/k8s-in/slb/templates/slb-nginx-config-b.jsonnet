@@ -11,7 +11,7 @@ local slbbasenginxproxy = (import "slb-base-nginx-proxy.libsonnet") + { dirSuffi
 
 local certDirs = ["cert1", "cert2"];
 
-local nginxAffinity = (if slbflights.nginxPodFloat then {
+local nginxAffinity = {
     podAntiAffinity: {
         requiredDuringSchedulingIgnoredDuringExecution: [{
             labelSelector: {
@@ -40,34 +40,7 @@ local nginxAffinity = (if slbflights.nginxPodFloat then {
             }],
         },
     },
-} else {
-    podAntiAffinity: {
-        requiredDuringSchedulingIgnoredDuringExecution: [{
-            labelSelector: {
-                matchExpressions: [{
-                    key: "name",
-                    operator: "In",
-                    values: [
-                        slbconfigs.nginxProxyName,
-                    ],
-                }],
-            },
-            topologyKey: "kubernetes.io/hostname",
-        }],
-    },
-    nodeAffinity: {
-        requiredDuringSchedulingIgnoredDuringExecution: {
-            nodeSelectorTerms: [{
-                matchExpressions: [{
-                    key: "slb-service",
-                    operator: "In",
-                    values: ["slb-nginx-b"],
-                }],
-            }],
-        },
-    },
-});
-
+};
 local nginxReloadSentinelParam = "--control.nginxReloadSentinel=" + slbconfigs.slbDir + "/nginx/config/nginx.marker";
 
 if slbconfigs.isSlbEstate then

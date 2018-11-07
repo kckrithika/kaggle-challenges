@@ -233,12 +233,8 @@ local afterSharedContainers = [
                  initContainers: [
                    madkub.madkubInitContainer(certDirs),
                  ],
-               }
-               + (
-                 if slbflights.nginxPodFloat then {
-                   nodeSelector: { pool: slbconfigs.slbEstate },
-                 } else {}
-               ),
+                 nodeSelector: { pool: slbconfigs.slbEstate },
+               },
       },
     },
   },
