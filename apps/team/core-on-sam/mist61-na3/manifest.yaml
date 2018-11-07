@@ -4,6 +4,7 @@ system:
   functions:
   - name: na3-mist61app-prd
     identity:
+      serviceName: app
       pod: na3-mist61
     count: 1
     volumes:
@@ -69,7 +70,7 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: blue
+          value: green
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
@@ -221,9 +222,9 @@ system:
           value: sneezy
 #          value: happy
         - name: CURRENT_RELEASE_VERSION
-          value: green
-        - name: NEW_RELEASE_VERSION
           value: blue
+        - name: NEW_RELEASE_VERSION
+          value: green
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 1
