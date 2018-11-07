@@ -126,6 +126,12 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 10
         name: slb-nginx-proxy
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 12080
+          initialDelaySeconds: 5
+          periodSeconds: 10
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
