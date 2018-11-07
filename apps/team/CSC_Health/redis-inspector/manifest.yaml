@@ -52,7 +52,7 @@ system:
       export RINSP_REDIS_PORT=$(REDISNOHALB_SERVICE_PORT) ;
 
       case ${KINGDOM} in
-        prd|phx|dfw|frf|par)
+        prd|phx|dfw|frf|par|ukb|iad|hnd)
           export RINSP_REDIS_HOST=$(REDISLB_SERVICE_HOST) ;
           export RINSP_REDIS_PORT=$(REDISLB_SERVICE_PORT) ;
           ;;
