@@ -13,8 +13,6 @@ local configs = import "config.jsonnet";
     roleEnabled: (slbimages.phaseNum <= 1),
     nginxSlbVolumeMount: (slbimages.slbnginx_build >= 50),
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
-    removeDeprecatedNginxParameters: (slbimages.hypersdn_build >= 1340),
-    nginxBaseTemplateEnabled: (slbimages.hypersdn_build >= 1340),
     removeCleanupDs: (slbimages.hypersdn_build >= 1347),
     newAccessLogFormat: (slbimages.hypersdn_build >= 1347),
     aclEnabled: (slbimages.phaseNum <= 4),

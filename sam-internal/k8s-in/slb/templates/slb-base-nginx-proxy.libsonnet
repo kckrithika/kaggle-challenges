@@ -57,12 +57,7 @@
                                      "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
                                    ]
                                    + slbconfigs.getNodeApiClientSocketSettings()
-                                   + (if slbflights.removeDeprecatedNginxParameters then [
-                                      ] else [
-                                        "--enableSimpleDiff=true",
-                                        "--newConfigGenerator=true",
-                                      ]) +
-                                   [
+                                   + [
                                      nginxReloadSentinelParam,
                                      "--httpconfig.custCertsDir=" + slbconfigs.customerCertsPath,
                                      "--checkDuplicateVips=true",
