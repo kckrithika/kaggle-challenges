@@ -22,7 +22,7 @@ spec:
       - command:
         - /sam/watchdog
         - --role=GLOBAL
-        - --sqlDbUsername=root
+        - --sqlDbUsername=watchdog
         - --sqlDbPasswordFile=/var/secrets/mysql.txt
         - --sqlDbHostname=mysql.csc-sam.prd-sam.prd.slb.sfdc.net
         - --sqlK8sResourceDbName=sam_kube_resource

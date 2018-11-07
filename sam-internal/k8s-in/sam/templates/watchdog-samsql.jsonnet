@@ -17,7 +17,7 @@ if configs.estate == "prd-sam" then {
                         command: [
                                     "/sam/watchdog",
                                     "--role=GLOBAL",
-                                    "--sqlDbUsername=" + mysql.userName,
+                                    "--sqlDbUsername=watchdog",
                                     "--sqlDbPasswordFile=/var/secrets/mysql.txt",
                                     "--sqlDbHostname=" + mysql.hostName,
                                     "--sqlK8sResourceDbName=" + mysql.visibilityDBName,
