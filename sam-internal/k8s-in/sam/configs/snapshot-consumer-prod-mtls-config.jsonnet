@@ -14,6 +14,7 @@ std.prune({
   kafkaTopics: "sfdc.prod.sam__cdu.ajna_local__resourcestatus,sfdc.prod.sam__chx.ajna_local__resourcestatus,sfdc.prod.sam__dfw.ajna_local__resourcestatus,sfdc.prod.sam__frf.ajna_local__resourcestatus,sfdc.prod.sam__hnd.ajna_local__resourcestatus,sfdc.prod.sam__iad.ajna_local__resourcestatus,sfdc.prod.sam__ord.ajna_local__resourcestatus,sfdc.prod.sam__par.ajna_local__resourcestatus,sfdc.prod.sam__phx.ajna_local__resourcestatus,sfdc.prod.sam__syd.ajna_local__resourcestatus,sfdc.prod.sam__ukb.ajna_local__resourcestatus,sfdc.prod.sam__wax.ajna_local__resourcestatus,sfdc.prod.sam__yhu.ajna_local__resourcestatus,sfdc.prod.sam__yul.ajna_local__resourcestatus,sfdc.prod.sam__xrd.ajna_local__resourcestatus",
   funnelEndpoint: configs.funnelVIP,
   enableKafkaClientAuth: true,
+  kafkaClientId: "snapshot-consumer-prod",
   clientKeyFile: "/cert1/client/keys/client-key.pem",
   clientCertFile: "/cert1/client/certificates/client.pem",
   "key-file": configs.keyFile,

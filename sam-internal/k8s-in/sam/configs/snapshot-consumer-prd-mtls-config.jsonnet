@@ -13,6 +13,7 @@ std.prune({
   kafkaConsumerEndpoint: "ajna0-brokeragg1-0-prd.data.sfdc.net:9093",
   kafkaTopics: "sfdc.prod.sam__prd.ajna_local__resourcestatus",
   funnelEndpoint: configs.funnelVIP,
+  kafkaClientId: "snapshot-consumer-prd",
   enableKafkaClientAuth: true,
   clientKeyFile: "/cert1/client/keys/client-key.pem",
   clientCertFile: "/cert1/client/certificates/client.pem",
