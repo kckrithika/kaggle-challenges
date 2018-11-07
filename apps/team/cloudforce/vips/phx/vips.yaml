@@ -773,6 +773,7 @@
     httpsredirectport: 443
     lbtype: http
   - port: 443
+    targetport: 8085
     lbtype: http
     sticky: 600
     tls: true
