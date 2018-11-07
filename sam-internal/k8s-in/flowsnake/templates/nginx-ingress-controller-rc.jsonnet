@@ -58,7 +58,7 @@ local kingdom = std.extVar("kingdom");
                                     command: [
                                         "sh",
                                         "-c",
-                                        "reply=$(curl -s -o /dev/null -w %{http_code} http://127.0.0.1:80/healthz); if [ \"$reply\" -lt 200 -o \"$reply\" -ge 400 ]; then exit 1; && ps -o etime= | grep -c - | grep -q 0",
+                                        "reply=$(curl -s -o /dev/null -w %{http_code} http://127.0.0.1:80/healthz); if [ \"$reply\" -lt 200 -o \"$reply\" -ge 400 ]; then exit 1;  fi; && ps -o comm,etime | grep nginx-ingress | grep -cE '[2-9][0-9][0-9][0-9]:' | grep -q 0",
                                     ],
                                 },
                                 initialDelaySeconds: 60,
