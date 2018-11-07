@@ -273,8 +273,6 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --turnDownOnSIGTERM=true
-        - --client.socketDir=/host/data/slb/config/slb-ipvs
-        - --client.dialSocket=true
         - --subnet=10.254.247.0/24,
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
         name: slb-iface-processor
