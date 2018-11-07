@@ -64,6 +64,21 @@ for ce in [
                         "yul-sam",
 ]
            for wd in ["watchdog-apiserverlb", "watchdog-common", "watchdog-deployment,watchdog-dns", "watchdog-estatesvc", "watchdog-etcd", "watchdog-etcd-quorum", "watchdog-filesystem", "watchdog-master", "watchdog-node", "watchdog-node-controller", "watchdog-rbac", "watchdog-samsql", "watchdog-sql"]
+        }
+        #[karim] Network reporter with port and high api server query fixes
+        + {
+            [std.substr(cl, 0, 3) + "," + cl + "," + "sam-network-reporter" + ",hypersam"]: "sam-0002364-0a657f10"
+            for cl in [
+                "frf-sam",
+                "prd-sam",
+                "prd-samdev",
+                "prd-sam_storage",
+                "prd-sam_storagedev",
+                "prd-samtest",
+                "prd-samtwo",
+                "prd-sdc",
+                "xrd-sam",
+            ]
         },
 
 

@@ -8,7 +8,7 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" || configs.kingdom == "f
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         name: "sam-network-reporter",
-                        image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002364-0a657f10",
+                        image: samimages.hypersam,
                         command: [
                             "/sam/sam-network-reporter",
                             "--funnelEndpoint=" + configs.funnelVIP,
