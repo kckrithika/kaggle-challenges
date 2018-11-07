@@ -25,16 +25,16 @@ system:
       image: sfci/ccait/geoip:3d530f11f5140d8badd6f12afab43cfe8bac5460
       env:
       - name: JAVA_OPTS
-        value: -Xms512m -Xmx512m
+        value: -Xms1g -Xmx1g
       - name: COM_MAXMIND_DATABASE_FILE
         value: /dw/data/GeoIP2-City.mmdb
       resources:
         limits:
           cpu: "2"
-          memory: 1Gi
+          memory: 2Gi
         requests:
           cpu: "2"
-          memory: 1Gi
+          memory: 2Gi
       volumeMounts:
       - mountPath: /dw/data
         name: maxmind-volume
