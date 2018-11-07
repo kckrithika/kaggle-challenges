@@ -24,6 +24,12 @@ local configs = import "config.jsonnet";
         #[xiao] Fix CI in prd
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002342-8b25bcbe",
 
+        #[xiao] Fix synthetic in prd
+        "prd,prd-samtest,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181106_151024.1e51285a8.clean.xiaozhou-ltm2",
+        "prd,prd-samdev,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181106_151024.1e51285a8.clean.xiaozhou-ltm2",
+        "prd,prd-sam,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181106_151024.1e51285a8.clean.xiaozhou-ltm2",
+        "prd,prd-samdev,samapp-controller,hypersam": "sam-0002365-809ebf54",
+
          #[rbhat] v2 diff fixes
          "prd,prd-sam,watchdog-comparek8sresources,hypersam": "sam-0002348-8a7fbf2d",
 

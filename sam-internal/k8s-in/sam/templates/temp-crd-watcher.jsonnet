@@ -19,6 +19,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                                 "--v=2",
                                 "--logtostderr=true",
                                 "--config=/config/tempmanifestwatcher.json",
+                                "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
                                 configs.sfdchosts_arg,
                             ]),
                             volumeMounts+: [
