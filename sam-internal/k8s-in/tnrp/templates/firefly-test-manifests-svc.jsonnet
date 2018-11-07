@@ -96,22 +96,22 @@ if configs.estate == "prd-samtwo" then
     },
     local evrmonitor = evalresultmonitor {
         serviceConf:: super.serviceConf {
-            repoName: "manifests",
+            repoName: "test-manifests",
             darkLaunch: "true",
         },
         replicas:: 1,
         env:: super.env + [
             {
                 name: "INSTANCE_TYPE",
-                value: "manifests",
+                value: "test-manifests",
             },
             {
                 name: "RABBIT_MQ_QUEUE_NAME",
-                value: "manifests.pr",
+                value: "test-manifests.pr",
             },
             {
                 name: "EVAL_RESULT_MONITOR_QUEUE",
-                value: "evalresultmonitor.manifests.pr",
+                value: "evalresultmonitor.test-manifests.pr",
             },
        ],
 
