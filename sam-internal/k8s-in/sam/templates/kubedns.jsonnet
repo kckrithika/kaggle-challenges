@@ -16,7 +16,7 @@ if samfeatureflags.kubedns then {
     },
     spec: {
         progressDeadlineSeconds: 600,
-        replicas: (if configs.kingdom == "yhu" || configs.kingdom == "ord" || configs.kingdom == "frf" then 5 else 3),
+        replicas: (if configs.kingdom == "ord" || configs.kingdom == "frf" then 5 else 3),
         revisionHistoryLimit: 2,
         selector: {
             matchLabels: {
