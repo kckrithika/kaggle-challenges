@@ -14,10 +14,11 @@ system:
           maxUnavailable: 1
       containers:
       - name: dtcantor-test
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0032
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0035
         ports:
-        - name: grpc
+        - name: cantor
           containerPort: 7443
+          hostPort: 17443
         volumeMounts:
         - mountPath: /home/sfdc-cantor/cantor
           name: cantor-vol
@@ -46,5 +47,5 @@ system:
       function: dtcantor-test-func
       slbEnabled: true
       ports:
-        - port: 7443
+        - port: 80
           targetport: 7443
