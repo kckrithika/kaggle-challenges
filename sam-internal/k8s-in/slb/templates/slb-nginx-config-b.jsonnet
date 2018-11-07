@@ -71,7 +71,15 @@ local nginxAffinity = (if slbflights.nginxPodFloat then {
 local nginxReloadSentinelParam = "--control.nginxReloadSentinel=" + slbconfigs.slbDir + "/nginx/config/nginx.marker";
 
 if slbconfigs.isSlbEstate && slbflights.nginxBaseTemplateEnabled then
-  slbbasenginxproxy.slbBaseNginxProxyDeployment(slbconfigs.nginxProxyName, slbconfigs.nginxConfigReplicaCount, nginxAffinity, slbimages.slbnginx) {}
+  slbbasenginxproxy.slbBaseNginxProxyDeployment(slbconfigs.nginxProxyName, slbconfigs.nginxConfigReplicaCount, nginxAffinity, slbimages.slbnginx) {
+    spec+: {
+        strategy+: {
+            rollingUpdate+: {
+                maxSurge: if configs.estate == "prd-sam" then 1 else 0,
+            },
+        },
+    },
+  }
   else if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
         labels: {
