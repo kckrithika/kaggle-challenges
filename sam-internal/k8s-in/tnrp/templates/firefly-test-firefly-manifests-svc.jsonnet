@@ -13,19 +13,19 @@ if configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "test-firefly-manifests",
+              value: "sam-test-firefly-manifests",
           },
           {
               name: "PACKAGE_QUEUE",
-              value: "test-firefly-manifests.package",
+              value: "sam-test-firefly-manifests.package",
           },
           {
               name: "PROMOTION_QUEUE",
-              value: "test-firefly-manifests.promotion",
+              value: "sam-test-firefly-manifests.promotion",
           },
           {
               name: "LATEST_FILE_QUEUE",
-              value: "test-firefly-manifests.latestfile",
+              value: "sam-test-firefly-manifests.latestfile",
           },
      ],
   },
@@ -36,19 +36,19 @@ if configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "test-firefly-manifests",
+              value: "sam-test-firefly-manifests",
           },
           {
               name: "PACKAGE_QUEUE",
-              value: "test-firefly-manifests.package",
+              value: "sam-test-firefly-manifests.package",
           },
           {
               name: "PROMOTION_QUEUE",
-              value: "test-firefly-manifests.promotion",
+              value: "sam-test-firefly-manifests.promotion",
           },
           {
               name: "LATEST_FILE_QUEUE",
-              value: "test-firefly-manifests.latestfile",
+              value: "sam-test-firefly-manifests.latestfile",
           },
      ],
   },
@@ -59,11 +59,11 @@ if configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "test-firefly-manifests",
+              value: "sam-test-firefly-manifests",
           },
           {
               name: "RABBIT_MQ_QUEUE_NAME",
-              value: "test-firefly-manifests.pr",
+              value: "sam-test-firefly-manifests.pr",
           },
      ],
 
@@ -75,11 +75,11 @@ if configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "test-firefly-manifests",
+              value: "sam-test-firefly-manifests",
           },
           {
               name: "RABBIT_MQ_QUEUE_NAME",
-              value: "test-firefly-manifests.promotion",
+              value: "sam-test-firefly-manifests.promotion",
           },
      ],
 

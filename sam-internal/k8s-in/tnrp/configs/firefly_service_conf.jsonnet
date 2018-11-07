@@ -11,6 +11,8 @@ local portConfig = import "portconfig.jsonnet";
         dockerCertPath:: "/etc/docker/certs.d",
         artifactoryUserName:: 'svc_tnrp_artifactory',
         gitHttpLogging:: 'NONE',
+        prrRoutingKeyFormat:: '%s-%s.pr',
+        pushRoutingKeyFormat:: '%s-%s.package',
     },
     dev:: $.common {
         artifactoryDevHost:: 'testrepo1-0-prd.data.sfdc.net',
@@ -30,6 +32,8 @@ local portConfig = import "portconfig.jsonnet";
         repositories:: 'sam/test-manifests',
         gitUser: 'svc-tnrp-git-rw',
         gitOauthToken: '${gitRWPassword#FromSecretService}',
+        prrRoutingKeyFormat:: '%s.pr',
+        pushRoutingKeyFormat:: '%s.package',
     },
     prdsam:: $.dev {
         gitHttpLogging:: 'BODY',
