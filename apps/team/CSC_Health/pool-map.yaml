@@ -15,9 +15,6 @@ apps:
   locust:
     - prd/prd-sam_report_collector
   reportcollectorha:
-    - ukb/ukb-sam_report_collector
-    - iad/iad-sam_report_collector
-    - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
@@ -28,6 +25,9 @@ apps:
     - dfw/dfw-sam_report_collector
     - frf/frf-sam_report_collector
     - par/par-sam_report_collector
+    - ukb/ukb-sam_report_collector
+    - iad/iad-sam_report_collector
+    - ord/ord-sam_report_collector
   temp-store:
     - prd/prd-sdc
     - prd/prd-sam_report_collector
@@ -35,6 +35,9 @@ apps:
     - dfw/dfw-sam_report_collector
     - frf/frf-sam_report_collector
     - par/par-sam_report_collector
+    - ukb/ukb-sam_report_collector
+    - iad/iad-sam_report_collector
+    - ord/ord-sam_report_collector
   reportcollector-pc:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
