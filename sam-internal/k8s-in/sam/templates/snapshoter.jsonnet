@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate != "prd-sam" && configs.estate != "prd-samdev" then
+if configs.estate != "prd-sam" && configs.estate != "prd-samdev" && configs.kingdom != "cdu" && configs.kingdom != "frf" then
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
