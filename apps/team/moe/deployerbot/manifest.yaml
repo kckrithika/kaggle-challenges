@@ -12,15 +12,9 @@ system:
         value: 1
       command: ["/moe/deployerbot"]
       args:
-      - "-gheTokenPath"
-      - "/secrets/ghe_pat"
-      - "-promote"
-      - "-emailRecipients"
-      - "slb@salesforce.com"
-      - "-minBakeTime"
-      - "1h"
-      - "-pgpkeypath"
-      - "/gpgsecrets/moe-signing-key.asc"
+      - "-gheTokenPath=/secrets/ghe_pat"
+      - "-minBakeTime=1h"
+      - "-pgpkeypath=/gpgsecrets/moe-signing-key.asc"
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -39,10 +33,8 @@ system:
       image: tnrp/moe/deployerbot:v-0001354-5ac17be1
       command: ["/moe/tnrpdeployer"]
       args:
-      - "-deployerbotServiceEndpoint"
-      - "http://localhost:8080/deploy"
-      - "-interval"
-      - "10m"
+      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
+      - "-interval=10m"
       livenessProbe:
         exec:
           command: ["ls", "/"]
