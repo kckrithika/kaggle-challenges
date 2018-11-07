@@ -30,10 +30,10 @@ system:
         value: /dw/data/GeoIP2-City.mmdb
       resources:
         limits:
-          cpu: "1"
+          cpu: "2"
           memory: 1Gi
         requests:
-          cpu: "1"
+          cpu: "2"
           memory: 1Gi
       volumeMounts:
       - mountPath: /dw/data
