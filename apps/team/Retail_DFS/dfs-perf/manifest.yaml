@@ -129,3 +129,5 @@ system:
     ports:
     - port: 7023
       targetport: 7022
+    - port: 15373
+      targetport: 15372
