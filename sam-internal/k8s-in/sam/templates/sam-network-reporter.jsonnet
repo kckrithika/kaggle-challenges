@@ -35,7 +35,7 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" || configs.kingdom == "f
                                 containerPort: 53353,
                             },
                         ],
-                        resources+: configs.ipAddressResource,
+                        [if configs.kingdom == "prd" then "resources"]+: configs.ipAddressResource,
                     },
                 ],
                 volumes+: [
