@@ -60,9 +60,9 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
       'dark-launch': '${DARKLAUNCH}',
       rabbitmq: {
         'exchange-name': envConfig.environmentMapping[configs.estate].exchangeName,
+        'prr-routing-key-format': envConfig.environmentMapping[configs.estate].prrRoutingKeyFormat,
+        'push-routing-key-format': envConfig.environmentMapping[configs.estate].pushRoutingKeyFormat,
       },
-      'prr-routing-key-format': envConfig.environmentMapping[configs.estate].prrRoutingKeyFormat,
-      'push-routing-key-format': envConfig.environmentMapping[configs.estate].pushRoutingKeyFormat,
       ghe: {
         'webhook-secret-token-validation': envConfig.environmentMapping[configs.estate].webHookSecretTokenValidationEnabled,
         'commit-signing': false,
