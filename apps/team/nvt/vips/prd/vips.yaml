@@ -36,9 +36,7 @@
   ports:
     - port: 13111
       targetport: 13111
-      lbtype: http
-      tls: true
-      reencrypt: true
+      lbtype: tcp
       healthport: 23111
       healthpath: /
       healthprotocol: http
