@@ -120,8 +120,9 @@ spec:
           httpGet:
             path: /
             port: 12080
-          initialDelaySeconds: 5
-          periodSeconds: 10
+          initialDelaySeconds: 2
+          periodSeconds: 5
+          successThreshold: 4
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume

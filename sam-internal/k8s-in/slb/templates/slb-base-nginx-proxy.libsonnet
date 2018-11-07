@@ -123,8 +123,9 @@
                               path: "/",
                               port: portconfigs.slb.slbNginxProxyLivenessProbePort,
                             },
-                            initialDelaySeconds: 5,
-                            periodSeconds: 10,
+                            initialDelaySeconds: 2,
+                            periodSeconds: 5,
+                            successThreshold: 4,
                           }
                         } else {}),
                         {
