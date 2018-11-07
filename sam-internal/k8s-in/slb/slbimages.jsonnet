@@ -1,4 +1,3 @@
-# kick
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local utils = import "util_functions.jsonnet";
@@ -34,12 +33,14 @@ local slbreleases = import "slbreleases.json";
             "3"
         else if kingdom in { [k]: 1 for k in ['phx', 'iad'] } then
             "4"
-        else if kingdom in { [k]: 1 for k in ['cdg', 'dfw', 'ord'] } then
-            "5"
-        else if kingdom in { [k]: 1 for k in ['fra', 'hnd', 'frf'] } then
-            "6"
         else
-            "7"
+            "5"
+        # else  if kingdom in { [k]: 1 for k in ['cdg', 'dfw', 'ord'] } then
+        #     "5"
+        # else if kingdom in { [k]: 1 for k in ['fra', 'hnd', 'frf'] } then
+        #     "6"
+        # else
+        #     "7"
         ),
 
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
