@@ -117,7 +117,16 @@
                           + if slbflights.nginxSlbVolumeMount then [
                             slbconfigs.slb_volume_mount,
                           ] else []),
-                        },
+                        } + (if slbflights.nginxReadinessProbeEnabled then {
+                          readinessProbe: {
+                            httpGet: {
+                              path: "/",
+                              port: portconfigs.slb.slbNginxProxyLivenessProbePort,
+                            },
+                            initialDelaySeconds: 15,
+                            periodSeconds: 10,
+                          }
+                        } else {}),
                         {
                           name: "slb-nginx-data",
                           image: slbimages.hypersdn,
