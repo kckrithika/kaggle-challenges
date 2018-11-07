@@ -10,6 +10,7 @@ local portConfig = import "portconfig.jsonnet";
         rootDir:: "/tmp",
         dockerCertPath:: "/etc/docker/certs.d",
         artifactoryUserName:: 'svc_tnrp_artifactory',
+        gitHttpLogging:: 'NONE',
     },
     dev:: $.common {
         artifactoryDevHost:: 'testrepo1-0-prd.data.sfdc.net',
@@ -31,6 +32,7 @@ local portConfig = import "portconfig.jsonnet";
         gitOauthToken: '${gitRWPassword#FromSecretService}',
     },
     prdsam:: $.dev {
+        gitHttpLogging:: 'BODY',
         rabbitMqUserName:: 'rabbitmq-admin',
         rabbitMqPassword:: '${rabbitMqAdmin#FromSecretService}',
         rabbitMqEndpoint:: 'firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net',

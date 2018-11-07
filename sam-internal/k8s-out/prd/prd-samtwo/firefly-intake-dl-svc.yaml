@@ -110,6 +110,7 @@ items:
                   "clone-timeout": "60s",
                   "connect-timeout": "60s",
                   "dark-launch": "${DARKLAUNCH}",
+                  "http-logging-interceptor-level": "NONE",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
