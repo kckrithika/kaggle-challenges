@@ -8,7 +8,6 @@ local configs = import "config.jsonnet";
     # Special feature flag for portal so we can initially release manifest watcher in portal's pod only
     local kubeDnsEnabled = false,
     stockIpvsModules: (if slbimages.phaseNum > 7 then true else false),
-    nginxPodFloat: (slbimages.phaseNum <= 5),
     envoyProxyEnabled: (slbimages.phaseNum <= 1 || configs.estate == "prd-sam"),
     roleEnabled: (slbimages.phaseNum <= 1),
     nginxSlbVolumeMount: (slbimages.slbnginx_build >= 50),

@@ -207,18 +207,13 @@
 
         nginxConfigReplicaCount:
             set_value_to_all_in_list(2, $.testEstates)
-            + set_value_to_all_in_list(3, $.prodEstates)
+            + set_value_to_all_in_list(8, $.prodEstates)
             + {
                 "prd-sdc": 6,
                 "prd-sam": 4,
                 "prd-samtest": 1,
                 "prd-samdev": 1,
-                "xrd-sam": 8,
-                "phx-sam": 8,
-                "iad-sam": 8,
-                "cdg-sam": 8,
-                "dfw-sam": 8,
-                "ord-sam": 8,
+                "prd-samtwo": 3,
             },
 
         maxDeleteCount: {
