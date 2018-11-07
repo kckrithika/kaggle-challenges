@@ -108,16 +108,16 @@ items:
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
                   "clone-timeout": "60s",
-                  "connect-timeout": "20s",
+                  "connect-timeout": "60s",
                   "dark-launch": "${DARKLAUNCH}",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
                   "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
-                  "read-timeout": "20s",
+                  "read-timeout": "60s",
                   "url": "https://git.soma.salesforce.com",
                   "user": "tok-firefly-git-test",
-                  "write-timeout": "20s"
+                  "write-timeout": "60s"
               }
           },
           "server": {
@@ -303,7 +303,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "13"
+            value: "14"
           - name: DARKLAUNCH
             value: "true"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:241
