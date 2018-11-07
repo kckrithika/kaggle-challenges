@@ -14,6 +14,7 @@ data:
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "k8sResourceDbName": "sam_kube_resource",
       "k8sResourceTableName": "k8s_resource",
+      "kafkaClientId": "snapshot-consumer-prd",
       "kafkaConsumerEndpoint": "ajna0-brokeragg1-0-prd.data.sfdc.net:9093",
       "kafkaTopics": "sfdc.prod.sam__prd.ajna_local__resourcestatus",
       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"

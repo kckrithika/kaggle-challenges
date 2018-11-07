@@ -7,6 +7,7 @@ local configs = import "config.jsonnet";
   "cert-file": configs.certFile,
   "client-key-file": "/cert1/client/keys/client-key.pem",
   "client-cert-file": "/cert1/client/certificates/client.pem",
+  funnelEndpoint: configs.funnelVIP,
   "enable-kafka-client-auth": true,
   "kube-poll-interval": "30m",
   "kafka-push-interval": "10s",

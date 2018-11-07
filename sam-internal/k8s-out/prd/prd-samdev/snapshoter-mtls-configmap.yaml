@@ -7,6 +7,7 @@ data:
       "client-cert-file": "/cert1/client/certificates/client.pem",
       "client-key-file": "/cert1/client/keys/client-key.pem",
       "enable-kafka-client-auth": true,
+      "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "ignored-resources": [],
       "include-crds": true,
       "kafka-endpoint": "ajna0-broker1-0-prd.data.sfdc.net:9093",
