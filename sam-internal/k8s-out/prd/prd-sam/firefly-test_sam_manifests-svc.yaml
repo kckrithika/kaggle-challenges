@@ -123,6 +123,7 @@ items:
                   "clone-timeout": "60s",
                   "connect-timeout": "60s",
                   "dark-launch": "${DARKLAUNCH}",
+                  "http-logging-interceptor-level": "BODY",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
@@ -555,6 +556,7 @@ items:
                   "clone-timeout": "60s",
                   "connect-timeout": "60s",
                   "dark-launch": "${DARKLAUNCH}",
+                  "http-logging-interceptor-level": "BODY",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
@@ -952,6 +954,7 @@ items:
                   "clone-timeout": "60s",
                   "connect-timeout": "60s",
                   "dark-launch": "${DARKLAUNCH}",
+                  "http-logging-interceptor-level": "BODY",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
@@ -1134,7 +1137,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "16"
+            value: "17"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -1364,6 +1367,7 @@ items:
                   "clone-timeout": "60s",
                   "connect-timeout": "60s",
                   "dark-launch": "${DARKLAUNCH}",
+                  "http-logging-interceptor-level": "BODY",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,

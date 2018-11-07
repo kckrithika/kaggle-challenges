@@ -31,7 +31,7 @@ local kingdom = std.extVar("kingdom");
              fireflypackage: "14",
              fireflypackagesingleton: "12",
              fireflypromotion: "11",
-             fireflypullrequest: "16",
+             fireflypullrequest: "17",
              fireflyevalresultmonitor: "6",
              fireflyrabbitmq: "3",
              fireflyrabbitmqmonitor: "3",
