@@ -43,8 +43,6 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --client.serverPort=12086
-        - --client.serverInterface=lo
         - --turnDownOnSIGTERM=true
         - --client.socketDir=/host/data/slb/config/slb-iface-processor
         - --client.dialSocket=true

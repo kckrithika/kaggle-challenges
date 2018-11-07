@@ -272,8 +272,6 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --client.serverPort=12081
-        - --client.serverInterface=lo
         - --turnDownOnSIGTERM=true
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
