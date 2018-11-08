@@ -51,6 +51,7 @@ if slbconfigs.isSlbEstate then
                 maxSurge: if configs.estate == "prd-sam" then 1 else 0,
             },
         },
+        minReadySeconds: (if slbflights.reduceNginxMinReady then 30 else 60),
     },
   }
 else "SKIP"

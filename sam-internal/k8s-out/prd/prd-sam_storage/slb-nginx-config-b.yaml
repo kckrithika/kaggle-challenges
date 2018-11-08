@@ -6,7 +6,7 @@ metadata:
   name: slb-nginx-config-b
   namespace: sam-system
 spec:
-  minReadySeconds: 60
+  minReadySeconds: 30
   replicas: 2
   revisionHistoryLimit: 2
   selector:
