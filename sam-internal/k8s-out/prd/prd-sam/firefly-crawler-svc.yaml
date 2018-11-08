@@ -40,7 +40,7 @@ items:
                       "https-port": 443,
                       "max-publish-tries": 3,
                       "publish-api": "publishBatch",
-                      "ssl-enabled": true
+                      "ssl-enabled": false
                   },
                   "metric-fields": {
                       "common-tags": {
@@ -250,7 +250,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "14"
+            value: "15"
           - name: DARKLAUNCH
             value: "false"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:252

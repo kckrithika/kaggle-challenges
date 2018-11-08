@@ -16,7 +16,7 @@ data:
                     "https-port": 443,
                     "max-publish-tries": 3,
                     "publish-api": "publishBatch",
-                    "ssl-enabled": true
+                    "ssl-enabled": false
                 },
                 "metric-fields": {
                     "common-tags": {

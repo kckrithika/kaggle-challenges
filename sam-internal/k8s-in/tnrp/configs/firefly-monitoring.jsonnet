@@ -25,7 +25,7 @@ local configs = import "config.jsonnet";
       'avro-schema-fingerprint': 'AVG7NnlcHNdk4t_zn2JBnQ',
       'max-publish-tries': 3,
       'backoff-time': 1,
-      'ssl-enabled': true,
+      'ssl-enabled': false,
     }
   },
 
