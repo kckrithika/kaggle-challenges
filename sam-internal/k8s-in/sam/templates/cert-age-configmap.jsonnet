@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "xrd" || configs.kingdom == "ord" || configs.kingdom == "frf" || configs.kingdom == "yhu" then {
+if samfeatureflags.kubedns then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

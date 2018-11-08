@@ -43,7 +43,7 @@ std.prune({
   # Technically enabling this without kubedns running only causes some misc events in the pod describe, but
   # we will enable kubedns soon and then we can enable it for prod as well.
   enableDNS: if samfeatureflags.kubedns then true,
-  dnsEnabledPoolNamesRegex: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then ".*"),
+  dnsEnabledPoolNamesRegex: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then ".*" else if configs.estate == "ord-sam" || configs.estate == "yhu-sam" then "^prd-sam_search$"),
 
 
   #enableIdentityEnvVar
