@@ -17,7 +17,7 @@ system:
       - "-samInternalTeamName=SLB"
       - "-slackChannelToNotify=#slb-private"
       - "-releaseFile=sam-internal/k8s-in/slb/slbreleases.json"
-      - "-promotion.image=hypersdn"
+      - "-promotion.image="
       - "-promotion.intervalTime=1h"
       - "-promotion.minBakeTime=1h"
       - "-promotion.singlephase=false"
