@@ -11,6 +11,7 @@
     affinity,
     beforeSharedContainers,
     afterSharedContainers=[],
+    supportedProxies=[],
   ):: configs.deploymentBase("slb") {
 
     metadata: {
@@ -44,12 +45,15 @@
                   slbconfigs.sbin_volume,
                 ]),
                 containers: beforeSharedContainers + [
-                  slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
+                  slbshared.slbConfigProcessor(
+                    slbports.slb.slbConfigProcessorLivenessProbePort,
+                    supportedProxies=supportedProxies),
                   slbshared.slbCleanupConfig,
                   slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                   slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
                   slbshared.slbLogCleanup,
-                  slbshared.slbManifestWatcher(),
+                  slbshared.slbManifestWatcher(
+                    supportedProxies=supportedProxies),
                 ] + afterSharedContainers,
               } + slbconfigs.getDnsPolicy(),
       },

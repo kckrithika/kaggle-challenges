@@ -285,8 +285,8 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
-        - --servicesNotToLbOverride=slb-canary-hsm-service
         - --control.configProcSentinel=/host/data/slb/config/slb-nginx-config-b/slb-config-proc.sentinel
+        - --pipeline.supportedProxies=slb-nginx-config-b
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -320,6 +320,8 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /proxyconfig
+          name: proxyconfig
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
@@ -437,6 +439,7 @@ spec:
         - --vcioptions.strict=true
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-nginx-config-b/slb-manifest-watcher.sentinel
+        - --pipeline.supportedProxies=slb-nginx-config-b
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -457,6 +460,8 @@ spec:
           name: kubeconfig
         - mountPath: /etc/pki_service
           name: maddog-certs
+        - mountPath: /proxyconfig
+          name: proxyconfig
       - command:
         - /sdn/slb-cert-deployer
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80

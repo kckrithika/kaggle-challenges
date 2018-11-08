@@ -9,7 +9,13 @@
     local configProcSentinel = slbconfigs.configDir + "/slb-config-proc.sentinel",
     local mwSentinel = slbconfigs.configDir + "/slb-manifest-watcher.sentinel",
 
-    slbConfigProcessor(configProcessorLivenessPort, proxyLabelSelector="slb-nginx-config-b", servicesToLbOverride="", servicesNotToLbOverride="illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc"): {
+    slbConfigProcessor(
+      configProcessorLivenessPort,
+      proxyLabelSelector="slb-nginx-config-b",
+      servicesToLbOverride="",
+      servicesNotToLbOverride="illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc",
+      supportedProxies=[]
+): {
         name: "slb-config-processor",
         image: slbimages.hypersdn,
         command: [
@@ -48,13 +54,16 @@
                  ] + (if configs.estate == "prd-sam" then [
                           "--servicesToLbOverride=" + servicesToLbOverride,
                           "--servicesNotToLbOverride=" + servicesNotToLbOverride,
-                      ] else if $.dirSuffix == "slb-nginx-config-b" && slbflights.hsmCanaryEnabled then [
+                      ] else if $.dirSuffix == "slb-nginx-config-b" && slbflights.hsmCanaryEnabled && !slbflights.supportedProxiesEnabled then [
+                          # Phase out this flag as we phase in the supported proxies
                           "--servicesNotToLbOverride=slb-canary-hsm-service",
                       ] else []) +
                  [
                      "--control.configProcSentinel=" + configProcSentinel,
-                 ],
-        volumeMounts: configs.filter_empty([
+                 ] + (if slbflights.supportedProxiesEnabled && std.length(supportedProxies) > 0 then [
+                        "--pipeline.supportedProxies=" + std.join(",", supportedProxies),
+                    ] else []),
+        volumeMounts: std.prune([
             configs.maddog_cert_volume_mount,
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
@@ -62,6 +71,7 @@
             configs.cert_volume_mount,
             configs.kube_config_volume_mount,
             configs.sfdchosts_volume_mount,
+            (if slbflights.supportedProxiesEnabled then slbconfigs.proxyconfig_volume_mount else {}),
         ]),
         env: [
             configs.kube_config_env,
@@ -98,7 +108,7 @@
                      "--checkMwSentinel=" + mwSentinelNeedsCheck,
                      "--control.manifestWatcherSentinel=" + mwSentinel,
                  ],
-        volumeMounts: configs.filter_empty([
+        volumeMounts: std.prune([
                                                slbconfigs.slb_volume_mount,
                                                slbconfigs.logs_volume_mount,
                                            ]
@@ -119,7 +129,7 @@
                      "--skipFilesWithSuffix=.sock",
                      "--maxDeleteFileCount=20",
                 ],
-        volumeMounts: configs.filter_empty([
+        volumeMounts: std.prune([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
             slbconfigs.logs_volume_mount,
@@ -147,7 +157,7 @@
                  ]
                  + slbconfigs.getNodeApiClientSocketSettings()
                  + ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]],
-        volumeMounts: configs.filter_empty([
+        volumeMounts: std.prune([
             slbconfigs.slb_volume_mount,
             slbconfigs.sbin_volume_mount,
             slbconfigs.logs_volume_mount,
@@ -175,7 +185,7 @@
         env: [
             slbconfigs.node_name_env,
         ],
-        volumeMounts: configs.filter_empty([
+        volumeMounts: std.prune([
             {
                 name: "var-target-config-volume",
                 mountPath: "/etc/nginx/conf.d",
@@ -206,7 +216,7 @@
                  + (if slbimages.hypersdn_build >= 1355 then [] else slbconfigs.getNodeApiClientSocketSettings())
                  + ["--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet]
                  + (if slbimages.hypersdn_build >= 1355 then [] else ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]]),
-        volumeMounts: configs.filter_empty([
+        volumeMounts: std.prune([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
             slbconfigs.logs_volume_mount,
@@ -217,7 +227,7 @@
             privileged: true,
         },
     },
-    slbManifestWatcher(): {
+    slbManifestWatcher(supportedProxies=[]): {
         name: "slb-manifest-watcher",
         image: slbimages.hypersdn,
         command: [
@@ -236,12 +246,15 @@
                         "--vcioptions.strict=true",
                         "--client.allowStale=true",
                         "--control.manifestWatcherSentinel=" + mwSentinel,
-                    ],
-        volumeMounts: configs.filter_empty([
+                    ] + (if slbflights.supportedProxiesEnabled && std.length(supportedProxies) > 0 then [
+                        "--pipeline.supportedProxies=" + std.join(",", supportedProxies),
+                    ] else []),
+        volumeMounts: std.prune([
             slbconfigs.slb_volume_mount,
             configs.sfdchosts_volume_mount,
             configs.kube_config_volume_mount,
             configs.maddog_cert_volume_mount,
+            (if slbflights.supportedProxiesEnabled then slbconfigs.proxyconfig_volume_mount else {}),
         ]),
         env: [
             configs.kube_config_env,
@@ -263,7 +276,7 @@
             "--shouldSkipServiceRecords=false",
             "--shouldNotDeleteAllFiles=false",
         ],
-        volumeMounts: configs.filter_empty([
+        volumeMounts: std.prune([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
             slbconfigs.logs_volume_mount,
