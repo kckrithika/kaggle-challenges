@@ -4,6 +4,7 @@
   local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
   local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: $.dirSuffix },
   local slbports = import "slbports.jsonnet",
+  local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: $.dirSuffix },
 
   slbBaseDeployment(
     name,
@@ -43,6 +44,7 @@
                   configs.maddog_cert_volume,
                   configs.cert_volume,
                   slbconfigs.sbin_volume,
+                  slbflights.proxyconfig_volume,
                 ]),
                 containers: beforeSharedContainers + [
                   slbshared.slbConfigProcessor(

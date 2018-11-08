@@ -227,6 +227,9 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - configMap:
+          name: slb-proxy-configuration
+        name: proxyconfig
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 20%

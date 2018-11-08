@@ -434,6 +434,9 @@ spec:
           path: /sbin
         name: sbin-volume
       - configMap:
+          name: slb-proxy-configuration
+        name: proxyconfig
+      - configMap:
           name: slb-envoy-nginx-configuration
         name: slb-envoy-nginx-configuration
       - emptyDir:

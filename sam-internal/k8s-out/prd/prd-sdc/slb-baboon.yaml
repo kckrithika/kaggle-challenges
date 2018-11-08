@@ -249,3 +249,6 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-baboon/cleanup
         name: var-cleanup-logs-volume
+      - configMap:
+          name: slb-proxy-configuration
+        name: proxyconfig

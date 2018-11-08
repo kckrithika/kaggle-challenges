@@ -358,6 +358,9 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-portal/cleanup
         name: var-cleanup-logs-volume
+      - configMap:
+          name: slb-proxy-configuration
+        name: proxyconfig
       - emptyDir:
           medium: Memory
         name: cert3

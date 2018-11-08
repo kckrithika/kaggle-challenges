@@ -554,6 +554,9 @@ spec:
       - hostPath:
           path: /sbin
         name: sbin-volume
+      - configMap:
+          name: slb-proxy-configuration
+        name: proxyconfig
       - emptyDir:
           medium: Memory
         name: cert1

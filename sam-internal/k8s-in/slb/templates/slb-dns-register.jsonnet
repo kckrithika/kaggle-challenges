@@ -44,6 +44,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           slbconfigs.slb_volume,
                           configs.kube_config_volume,
                           slbconfigs.cleanup_logs_volume,
+                          slbflights.proxyconfig_volume,
                       ] + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()),
                       containers: [
                                       {
