@@ -7,7 +7,7 @@ std.prune({
         "tnrp-bot-account-names": ["svc-tnrp-git-rw", "svc-tnrp-git"],
         "tnrp-bot-scan-frequency": "30s",
         "db-hostname": mysql.hostName,
-        "db-username": mysql.userName,
+        "db-username": "mani-repo-watch",
         "db-password-file": "/var/mysqlPwd/pass.txt",
         "db-name": mysql.visibilityDBName,
         "git-url": "https://git.soma.salesforce.com/api/v3/",
