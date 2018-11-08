@@ -43,9 +43,14 @@
                      "--metricsEndpoint=" + configs.funnelVIP,
                      "--log_dir=" + slbconfigs.logsDir,
                      "--sleepTime=100ms",
+                 ] + (
+                     if slbimages.hypersdn_build > 1355 then [
+                 ] else [
                      "--processKnEConfigs=" + slbconfigs.processKnEConfigs,
                      "--kneConfigDir=" + slbconfigs.kneConfigDir,
                      "--kneDomainName=" + slbconfigs.kneDomainName,
+                     ]
+                  ) + [
                      "--livenessProbePort=" + configProcessorLivenessPort,
                      "--shouldRemoveConfig=true",
                      configs.sfdchosts_arg,
