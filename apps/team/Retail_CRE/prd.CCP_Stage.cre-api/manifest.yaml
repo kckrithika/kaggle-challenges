@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-api-ccp-stage
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.4.0-freeze-002.0.release-1.4.b5e54b0.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.5.0.0.develop-1.5.6ccbdf8.23
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Stage
@@ -121,4 +121,4 @@ system:
     slbenabled: true
     ports:
       - port: 8095
-        targetport: 8080
+        targetport: 7022

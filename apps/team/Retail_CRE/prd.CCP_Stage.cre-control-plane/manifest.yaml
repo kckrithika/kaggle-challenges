@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-stage
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.4.0-freeze-002.0.release-1.4.a8fe035.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.5.0.0.develop-1.5.c96e425.17
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
@@ -161,4 +161,4 @@ system:
     slbEnabled: true
     ports:
       - port: 8098
-        targetport: 8080
+        targetport: 7020
