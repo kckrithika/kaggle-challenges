@@ -140,14 +140,14 @@ if slbconfigs.isSlbEstate && slbflights.envoyProxyEnabled then
                 securityContext: {
                     fsGroup: 7447,
                 },
-                volumes+: [
+                volumes+: std.prune([
                     {
                         name: "slb-envoy-nginx-configuration",
                         configMap: {
                             name: "slb-envoy-nginx-configuration",
                         },
                     },
-                ] + madkub.madkubSlbCertVolumes(certDirs)
+                ]) + madkub.madkubSlbCertVolumes(certDirs)
                 + madkub.madkubSlbMadkubVolumes(),
                 initContainers+: [
                     madkub.madkubInitContainer(certDirs),
