@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp
-      image: sfci/cre/cre-stream-processing:1.4.1.0.master.638db8d.166
+      image: sfci/cre/cre-stream-processing:1.4.2.0.master.1369c18.167
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__iad.ajna_local__cre_outbound
