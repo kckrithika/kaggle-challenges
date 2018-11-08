@@ -36,5 +36,5 @@ system:
       function: cantor-func
       slbEnabled: true
       ports:
-        - port: 80
+        - port: 11983
           targetport: 7443
