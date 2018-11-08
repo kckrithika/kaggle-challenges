@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/moe/deployerbot:v-0001361-c9252166
+      image: tnrp/moe/deployerbot:v-0001359-1c6e55dd
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -36,7 +36,7 @@ system:
         name: moe-gpg-signing-key
         readOnly: true
     - name: tnrpdeployer-hypersdn
-      image: tnrp/moe/deployerbot:v-0001361-c9252166
+      image: tnrp/moe/deployerbot:v-0001359-1c6e55dd
       command: ["/moe/tnrpdeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -53,7 +53,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 60
     - name: tnrpdeployer-nginx
-      image: tnrp/moe/deployerbot:v-0001361-c9252166
+      image: tnrp/moe/deployerbot:v-0001359-1c6e55dd
       command: ["/moe/tnrpdeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -80,7 +80,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/moe/deployerbot:v-0001361-c9252166
+      image: tnrp/moe/deployerbot:v-0001359-1c6e55dd
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -111,7 +111,7 @@ system:
         name: moe-gpg-signing-key
         readOnly: true
     - name: tnrpdeployer-hypersam
-      image: tnrp/moe/deployerbot:v-0001361-c9252166
+      image: tnrp/moe/deployerbot:v-0001359-1c6e55dd
       command: ["/moe/tnrpdeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
