@@ -193,6 +193,72 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 50
         periodSeconds: 5
+  - name: universal-search-mock-index-workflow
+    count: 1
+    volumes:
+    - name: mock-index-workflow-log-vol
+      hostpath:
+        path: /home/sfdc-usmt/logs
+    containers:
+    - name: universal-search-mock-index-workflow
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-mock-index-workflow:0.0.13
+      ports:
+      - name: service-port
+        containerPort: 8080
+      - name: admin-port
+        containerPort: 15372
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - name: mock-index-workflow-log-vol
+          mountPath: /home/sfdc-usmt/logs
+      livenessProbe:
+        exec:
+          command: ["true"]
+      readinessProbe:
+        exec:
+          command: ["true"]
+        initialDelaySeconds: 60
+        timeoutSeconds: 30
+        periodSeconds: 900
+        failureThreshold: 1
+  - name: universal-search-mock-streaming-index
+    count: 1
+    volumes:
+    - name: mock-streaming-log-vol
+      hostpath:
+        path: /home/sfdc-usmt/logs
+    containers:
+    - name: universal-search-mock-streaming-index
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-mock-streaming-index:0.0.13
+      ports:
+      - name: service-port
+        containerPort: 8080
+      - name: admin-port
+        containerPort: 15372
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "stmfa"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - name: mock-streaming-log-vol
+          mountPath: /home/sfdc-usmt/logs
+      livenessProbe:
+        exec:
+          command: ["true"]
+      readinessProbe:
+        exec:
+          command: ["true"]
+        initialDelaySeconds: 60
+        timeoutSeconds: 30
+        periodSeconds: 900
+        failureThreshold: 1
   loadbalancers:
   - function: universal-search
     lbname: universal-search-slb
@@ -205,4 +271,24 @@ system:
     - lbtype: http
       port: 15373
       targetport: 15373
+    slbEnabled: true
+  - function: universal-search-mock-index-workflow
+    lbname: universal-search-mock-index-workflow-slb
+    ports:
+    - lbtype: http
+      port: 8080
+      targetport: 8080
+    - lbtype: http
+      port: 15372
+      targetport: 15372
+    slbEnabled: true
+  - function: universal-search-mock-streaming-index
+    lbname: universal-search-mock-streaming-index-slb
+    ports:
+    - lbtype: http
+      port: 8080
+      targetport: 8080
+    - lbtype: http
+      port: 15372
+      targetport: 15372
     slbEnabled: true
