@@ -30,12 +30,17 @@ system:
           name: maievclientcert
         - mountPath: /home/sfdc-casp/pki/server
           name: wardenservercert
+        - mountPath: /wardenpki/
+          name: wardenpki
         livenessProbe:
           httpGet:
             path: /manage/health
             port: 15372
           initialDelaySeconds: 120
       volumes:
+      - name: wardenpki
+        k4aSecret:
+          secretName: wardenpki
       - name: log-vol
         hostPath:
           path: /home/sfdc-casp/logs
