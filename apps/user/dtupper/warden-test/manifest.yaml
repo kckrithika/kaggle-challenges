@@ -9,7 +9,7 @@ system:
       count: 3
       containers:
       - name: dt-warden-test
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/casp-warden:test-0078
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/casp-warden:test-0079
         ports:
         - name: http
           containerPort: 8889
@@ -30,12 +30,17 @@ system:
           name: maievclientcert
         - mountPath: /home/sfdc-casp/pki/server
           name: wardenservercert
+        - mountPath: /wardenpki/
+          name: wardenpki
         livenessProbe:
           httpGet:
             path: /manage/health
             port: 15372
           initialDelaySeconds: 120
       volumes:
+      - name: wardenpki
+        k4aSecret:
+          secretName: wardenpki
       - name: log-vol
         hostPath:
           path: /home/sfdc-casp/logs
