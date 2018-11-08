@@ -26,28 +26,28 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             fireflyintake: "17",
-             fireflycrawler: "15",
-             fireflypackage: "15",
-             fireflypackagesingleton: "13",
-             fireflypromotion: "12",
-             fireflypullrequest: "18",
-             fireflyevalresultmonitor: "7",
+             fireflyintake: "18",
+             fireflycrawler: "16",
+             fireflypackage: "16",
+             fireflypackagesingleton: "14",
+             fireflypromotion: "13",
+             fireflypullrequest: "19",
+             fireflyevalresultmonitor: "8",
              fireflyrabbitmq: "3",
-             fireflyrabbitmqmonitor: "4",
+             fireflyrabbitmqmonitor: "5",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             fireflyintake: "11",
-             fireflycrawler: "11",
-             fireflypackage: "12",
-             fireflypackagesingleton: "10",
-             fireflypromotion: "8",
-             fireflypullrequest: "13",
-             fireflyevalresultmonitor: "4",
+             fireflyintake: "12",
+             fireflycrawler: "12",
+             fireflypackage: "13",
+             fireflypackagesingleton: "11",
+             fireflypromotion: "9",
+             fireflypullrequest: "14",
+             fireflyevalresultmonitor: "5",
              fireflyrabbitmq: "2",
-             fireflyrabbitmqmonitor: "3",
+             fireflyrabbitmqmonitor: "4",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia

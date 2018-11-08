@@ -21,7 +21,8 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
     logging: {
       level: {
         org: 'INFO',
-        'com.salesforce': 'INFO',
+        'com.salesforce.firefly': 'DEBUG',
+        'com.salesforce.firefly.metrics': 'INFO',
       },
       pattern: {
         console: '%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - details=[%msg]  %n',

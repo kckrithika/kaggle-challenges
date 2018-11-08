@@ -82,6 +82,7 @@ items:
               "level": {
                   "com.salesforce": "INFO",
                   "com.salesforce.firefly": "DEBUG",
+                  "com.salesforce.firefly.metrics": "INFO",
                   "org": "INFO"
               },
               "pattern": {
@@ -308,7 +309,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "12"
+            value: "13"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -510,6 +511,7 @@ items:
               "level": {
                   "com.salesforce": "INFO",
                   "com.salesforce.firefly": "DEBUG",
+                  "com.salesforce.firefly.metrics": "INFO",
                   "org": "INFO"
               },
               "pattern": {
@@ -736,7 +738,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "10"
+            value: "11"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -906,6 +908,7 @@ items:
               "level": {
                   "com.salesforce": "INFO",
                   "com.salesforce.firefly": "DEBUG",
+                  "com.salesforce.firefly.metrics": "INFO",
                   "org": "INFO"
               },
               "pattern": {
@@ -1127,7 +1130,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "13"
+            value: "14"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -1313,6 +1316,7 @@ items:
               "level": {
                   "com.salesforce": "INFO",
                   "com.salesforce.firefly": "DEBUG",
+                  "com.salesforce.firefly.metrics": "INFO",
                   "org": "INFO"
               },
               "pattern": {
@@ -1535,7 +1539,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "8"
+            value: "9"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -1912,7 +1916,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "4"
+            value: "5"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
