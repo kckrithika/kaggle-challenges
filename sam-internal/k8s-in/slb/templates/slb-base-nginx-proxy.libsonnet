@@ -210,7 +210,13 @@ local afterSharedContainers = [
     replicas=2,
     affinity,
     proxyImage
-  ):: slbbasedeployment.slbBaseDeployment(proxyName, replicas, affinity, beforeSharedContainers(proxyImage), afterSharedContainers) {
+  ):: slbbasedeployment.slbBaseDeployment(
+    proxyName,
+    replicas,
+    affinity,
+    beforeSharedContainers(proxyImage),
+    afterSharedContainers,
+    supportedProxies=[proxyName]) {
 
     spec+: {
       template+: {

@@ -151,6 +151,8 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /proxyconfig
+          name: proxyconfig
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
@@ -262,6 +264,8 @@ spec:
           name: kubeconfig
         - mountPath: /etc/pki_service
           name: maddog-certs
+        - mountPath: /proxyconfig
+          name: proxyconfig
       dnsPolicy: Default
       nodeSelector:
         pool: prd-sdc
