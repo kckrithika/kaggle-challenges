@@ -13,7 +13,7 @@ std.prune({
 
   # DNS
     enableDNS: if samfeatureflags.kubedns then true,
-    dnsEnabledPoolNamesRegex: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then ".*"),
+    dnsEnabledPoolNamesRegex: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then ".*" else if configs.estate == "ord-sam" || configs.estate == "yhu-sam" then "^prd-sam_search$"),
 
   #k4a
   [if configs.estate == "vpod" then "enableK4a"]: false,
