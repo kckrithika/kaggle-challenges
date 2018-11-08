@@ -15,13 +15,13 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-mysql
-        image: tnrp/casp/mysql:0.0.1-0000019-b6e8ef86
+        image: tnrp/casp/mysql:0.0.1-0000020-9abaf42b
         ports:
         - name: mysql
           containerPort: 3306
           hostPort: 7014
         volumeMounts:
-        - mountPath: /home/sfdc/mysql
+        - mountPath: /home/sfdc/mysql/data
           name: mysql-vol
         livenessProbe:
           exec:
