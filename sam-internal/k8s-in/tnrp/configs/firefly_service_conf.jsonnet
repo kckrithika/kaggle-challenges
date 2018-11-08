@@ -32,8 +32,6 @@ local portConfig = import "portconfig.jsonnet";
         repositories:: 'sam/test-manifests',
         gitUser: 'svc-tnrp-git-rw',
         gitOauthToken: '${gitRWPassword#FromSecretService}',
-        prrRoutingKeyFormat:: '%s.pr',
-        pushRoutingKeyFormat:: '%s.package',
     },
     prdsam:: $.dev {
         gitHttpLogging:: 'BODY',

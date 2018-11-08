@@ -312,14 +312,14 @@ items:
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
-            value: sam-test-firefly-manifests
+            value: test-firefly-manifests
           - name: PACKAGE_QUEUE
             value: sam-test-firefly-manifests.package
           - name: PROMOTION_QUEUE
             value: sam-test-firefly-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: sam-test-firefly-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:250
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:252
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -745,14 +745,14 @@ items:
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
-            value: sam-test-firefly-manifests
+            value: test-firefly-manifests
           - name: PACKAGE_QUEUE
             value: sam-test-firefly-manifests.package
           - name: PROMOTION_QUEUE
             value: sam-test-firefly-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: sam-test-firefly-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:250
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:252
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1141,10 +1141,10 @@ items:
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
-            value: sam-test-firefly-manifests
+            value: test-firefly-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: sam-test-firefly-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:250
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:252
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1554,10 +1554,10 @@ items:
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
-            value: sam-test-firefly-manifests
+            value: test-firefly-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: sam-test-firefly-manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:250
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:252
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10

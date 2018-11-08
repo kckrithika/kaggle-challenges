@@ -13,7 +13,7 @@ if configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "sam-test-firefly-manifests",
+              value: "test-firefly-manifests",
           },
           {
               name: "PACKAGE_QUEUE",
@@ -36,7 +36,7 @@ if configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "sam-test-firefly-manifests",
+              value: "test-firefly-manifests",
           },
           {
               name: "PACKAGE_QUEUE",
@@ -59,7 +59,7 @@ if configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "sam-test-firefly-manifests",
+              value: "test-firefly-manifests",
           },
           {
               name: "RABBIT_MQ_QUEUE_NAME",
@@ -75,7 +75,7 @@ if configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "sam-test-firefly-manifests",
+              value: "test-firefly-manifests",
           },
           {
               name: "RABBIT_MQ_QUEUE_NAME",

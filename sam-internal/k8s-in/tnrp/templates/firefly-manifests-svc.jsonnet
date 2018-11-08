@@ -20,15 +20,15 @@ if configs.estate == "prd-samtwo" then
             },
             {
                 name: "PACKAGE_QUEUE",
-                value: "manifests.package",
+                value: "sam-manifests.package",
             },
             {
                 name: "PROMOTION_QUEUE",
-                value: "manifests.promotion",
+                value: "sam-manifests.promotion",
             },
             {
                 name: "LATEST_FILE_QUEUE",
-                value: "manifests.latestfile",
+                value: "sam-manifests.latestfile",
             },
        ],
 
@@ -46,15 +46,15 @@ if configs.estate == "prd-samtwo" then
             },
             {
                 name: "PACKAGE_QUEUE",
-                value: "manifests.package",
+                value: "sam-manifests.package",
             },
             {
                 name: "PROMOTION_QUEUE",
-                value: "manifests.promotion",
+                value: "sam-manifests.promotion",
             },
             {
                 name: "LATEST_FILE_QUEUE",
-                value: "manifests.latestfile",
+                value: "sam-manifests.latestfile",
             },
        ],
     },
@@ -71,7 +71,7 @@ if configs.estate == "prd-samtwo" then
             },
             {
                 name: "RABBIT_MQ_QUEUE_NAME",
-                value: "manifests.pr",
+                value: "sam-manifests.pr",
             },
        ],
 
@@ -89,7 +89,7 @@ if configs.estate == "prd-samtwo" then
             },
             {
                 name: "RABBIT_MQ_QUEUE_NAME",
-                value: "manifests.promotion",
+                value: "sam-manifests.promotion",
             },
        ],
 
@@ -107,11 +107,11 @@ if configs.estate == "prd-samtwo" then
             },
             {
                 name: "RABBIT_MQ_QUEUE_NAME",
-                value: "manifests.pr",
+                value: "sam-manifests.pr",
             },
             {
                 name: "EVAL_RESULT_MONITOR_QUEUE",
-                value: "evalresultmonitor.manifests.pr",
+                value: "evalresultmonitor.sam-manifests.pr",
             },
        ],
 
