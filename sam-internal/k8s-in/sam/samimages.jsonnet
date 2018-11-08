@@ -24,7 +24,7 @@ local configs = import "config.jsonnet";
         #[xiao] Fix synthetic in prd
         "prd,prd-samtest,temp-crd-watcher,hypersam": "sam-0002369-86f6c658",
         "prd,prd-samdev,temp-crd-watcher,hypersam": "sam-0002369-86f6c658",
-        "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0002369-86f6c6582",
+        "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0002369-86f6c658",
         "prd,prd-samdev,samapp-controller,hypersam": "sam-0002365-809ebf54",
 
          #[min.wang] Test Watchdog InitMetricsClient
