@@ -1,9 +1,13 @@
 apiVersion: v1
 data:
-  snapshoter.json: |-
+  snapshoter-mtls.json: |-
     {
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "client-cert-file": "/cert1/client/certificates/client.pem",
+      "client-key-file": "/cert1/client/keys/client-key.pem",
+      "enable-kafka-client-auth": true,
+      "funnelEndpoint": "ajna0-funnel1-0-cdu.data.sfdc.net:80",
       "ignored-resources": [],
       "include-crds": true,
       "kafka-endpoint": "ajna0-broker1-0-cdu.data.sfdc.net:9093",
@@ -22,5 +26,5 @@ metadata:
   creationTimestamp: null
   labels:
     sam.data.sfdc.net/owner: sam
-  name: snapshoter
+  name: snapshoter-mtls
   namespace: sam-system
