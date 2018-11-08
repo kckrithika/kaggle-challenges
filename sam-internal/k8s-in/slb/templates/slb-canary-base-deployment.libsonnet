@@ -35,8 +35,24 @@ local ipvsPodAntiAffinity(canaryName) = (
     } else {}
 );
 
+local ipvsNodeAntiAffinity(canaryName) = (
+    if configs.estate == "prd-sdc" then {
+        nodeAffinity+: {
+        requiredDuringSchedulingIgnoredDuringExecution: {
+            nodeSelectorTerms: [{
+                matchExpressions: [{
+                    key: "slb-service",
+                    operator: "NotIn",
+                    values: ["slb-ipvs"],
+                }],
+            }],
+        },
+    },
+    } else {}
+);
+
 local getPodAffinity(canaryName) = (
-    ipvsPodAntiAffinity(canaryName)
+    ipvsPodAntiAffinity(canaryName) + ipvsNodeAntiAffinity(canaryName)
 );
 
 local getAffinity(canaryName) = (
