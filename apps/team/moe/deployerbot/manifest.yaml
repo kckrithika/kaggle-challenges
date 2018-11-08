@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/moe/deployerbot:v-0001354-5ac17be1
+      image: tnrp/moe/deployerbot:v-0001357-8ecbc4e6
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -15,6 +15,11 @@ system:
       - "-gheTokenPath=/secrets/ghe_pat"
       - "-minBakeTime=1h"
       - "-pgpkeypath=/gpgsecrets/moe-signing-key.asc"
+      - "-image=hypersdn"
+      - "-samInternalTeamName=SLB"
+      - "-slackChannelToNotify=#slb-private"
+      - "-intervalTime=1h"
+      - "-releaseFile=sam-internal/k8s-in/slb/slbreleases.json"
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -29,12 +34,90 @@ system:
       - mountPath: /gpgsecrets
         name: moe-gpg-signing-key
         readOnly: true
-    - name: tnrpdeployer
-      image: tnrp/moe/deployerbot:v-0001354-5ac17be1
+    - name: tnrpdeployer-hypersdn
+      image: tnrp/moe/deployerbot:v-0001357-8ecbc4e6
       command: ["/moe/tnrpdeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
       - "-interval=10m"
+      - "-image=hypersdn"
+      - "-imageKey=hypersdn" # The name of the object to update in slbreleases.json.
+      - "-owner=sdn"
+      - "-samInternalTeamName=SLB"
+      - "-targetPhaseNumber=1"
+      livenessProbe:
+        exec:
+          command: ["ls", "/"]
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60
+    - name: tnrpdeployer-nginx
+      image: tnrp/moe/deployerbot:v-0001357-8ecbc4e6
+      command: ["/moe/tnrpdeployer"]
+      args:
+      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
+      - "-interval=10m"
+      - "-image=slb-nginx" # The name of the image in artifactory.
+      - "-owner=sdn"
+      - "-imageKey=slbnginx" # The name of the object to update in slbreleases.json.
+      - "-samInternalTeamName=SLB"
+      - "-targetPhaseNumber=1"
+      livenessProbe:
+        exec:
+          command: ["ls", "/"]
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60
+    volumes:
+    - name: deployerbot-ghe-pat
+      k4aSecret:
+        secretName: speedometer-ghe-pat
+    - name: moe-gpg-signing-key
+      k4aSecret:
+        secretName: moe-gpg-signing-key
+  - name: deployerbot-sam
+    count: 1
+    containers:
+    - name: deployerbot
+      image: tnrp/moe/deployerbot:v-0001357-8ecbc4e6
+      env:
+      - name: GO_PIPELINE_LABEL
+        value: 1
+      command: ["/moe/deployerbot"]
+      args:
+      - "-gheTokenPath=/secrets/ghe_pat"
+      - "-minBakeTime=24h"
+      - "-pgpkeypath=/gpgsecrets/moe-signing-key.asc"
+      - "-image=hypersam"
+      - "-samInternalTeamName=SAM"
+      - "-slackChannelToNotify=@mike.grass"
+      - "-intervalTime=1h"
+      - "-releaseFile=sam-internal/k8s-in/sam/samreleases.json"
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+        initialDelaySeconds: 60
+      volumeMounts:
+      - mountPath: /secrets
+        name: deployerbot-ghe-pat
+        readOnly: true
+      - mountPath: /gpgsecrets
+        name: moe-gpg-signing-key
+        readOnly: true
+    - name: tnrpdeployer-hypersam
+      image: tnrp/moe/deployerbot:v-0001357-8ecbc4e6
+      command: ["/moe/tnrpdeployer"]
+      args:
+      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
+      - "-interval=10m"
+      - "-image=hypersam"
+      - "-imageKey=hypersam" # The name of the object to update in samreleases.json.
+      - "-owner=sam"
+      - "-samInternalTeamName=SAM"
+      - "-targetPhaseNumber=1"
       livenessProbe:
         exec:
           command: ["ls", "/"]
@@ -51,6 +134,17 @@ system:
   loadbalancers:
   - lbname: deployerbot
     function: deployerbot
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 8080
+        lbtype: http
+      - port: 443
+        targetport: 8080
+        lbtype: http
+        tls: true
+  - lbname: deployerbot-sam
+    function: deployerbot-sam
     slbenabled: true
     ports:
       - port: 80
