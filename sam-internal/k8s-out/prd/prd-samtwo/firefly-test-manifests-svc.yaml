@@ -319,7 +319,7 @@ items:
             value: test-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: test-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:250
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:246
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -747,7 +747,7 @@ items:
             value: test-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: test-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:250
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:246
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1134,7 +1134,7 @@ items:
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: test-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:250
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:246
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1542,7 +1542,7 @@ items:
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: test-manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:250
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:246
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1921,7 +1921,7 @@ items:
             value: test-manifests.pr
           - name: EVAL_RESULT_MONITOR_QUEUE
             value: evalresultmonitor.test-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-evalresultmonitor:250
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-evalresultmonitor:246
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
