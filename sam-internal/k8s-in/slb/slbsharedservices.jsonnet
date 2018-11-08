@@ -205,7 +205,7 @@
         command: [
                      "/sdn/slb-iface-processor",
                      "--configDir=" + slbconfigs.configDir,
-                     "--control.sentinelExpiration=120s",
+                     "--control.sentinelExpiration=" + (if slbflights.tuneIfaceSentinelExpiration then "300s" else "120s"),
                      "--period=5s",
                      "--metricsEndpoint=" + configs.funnelVIP,
                      "--log_dir=" + slbconfigs.logsDir,
