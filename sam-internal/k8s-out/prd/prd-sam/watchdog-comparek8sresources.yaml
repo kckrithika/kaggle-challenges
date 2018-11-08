@@ -35,7 +35,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002348-8a7fbf2d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002347-34f588d0
         name: watchdog-comparek8sresources
         volumeMounts:
         - mountPath: /etc/pki_service

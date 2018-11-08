@@ -63,7 +63,32 @@ for ce in [
                         "yhu-sam",
                         "yul-sam",
 ]
-           for wd in ["watchdog-apiserverlb", "watchdog-common", "watchdog-deployment,watchdog-dns", "watchdog-estatesvc", "watchdog-etcd", "watchdog-etcd-quorum", "watchdog-filesystem", "watchdog-master", "watchdog-node", "watchdog-node-controller", "watchdog-rbac", "watchdog-samsql", "watchdog-sql"]
+           for wd in [
+                        "watchdog-apiserverlb",
+                        "watchdog-common",
+                        "watchdog-comparek8sresources",
+                        "watchdog-deployment",
+                        "watchdog-dns",
+                        "watchdog-estatesvc",
+                        "watchdog-etcd-quorum",
+                        "watchdog-etcd",
+                        "watchdog-filesystem",
+                        "watchdog-hairpindeployer",
+                        "watchdog-k8sproxy",
+                        "watchdog-kuberesources",
+                        "watchdog-maddog",
+                        "watchdog-maddogcert",
+                        "watchdog-manifestzip",
+                        "watchdog-master",
+                        "watchdog-node-controller",
+                        "watchdog-node",
+                        "watchdog-pullrequest",
+                        "watchdog-puppet",
+                        "watchdog-rbac",
+                        "watchdog-samsql",
+                        "watchdog-sdp",
+                        "watchdog-synthetic",
+                ]
         }
         #[karim] Network reporter with port and high api server query fixes
         + {
