@@ -67,6 +67,8 @@ system:
           value: false
         - name: SECRET_KEY_FILE
           value: /keys-kube/cre-aes.key
+        - name: DUMMY_RETRY_VAR
+          value: helloworld
       ports:
       - containerPort: 8080
       - containerPort: 7020
