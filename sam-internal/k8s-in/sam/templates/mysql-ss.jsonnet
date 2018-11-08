@@ -5,7 +5,7 @@ local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile 
 
 local certDirs = ["cert1"];
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-sam" then {
             apiVersion: "apps/v1beta1",
             kind: "StatefulSet",
             metadata: {

@@ -5,7 +5,9 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
 if samfeatureflags.k8sproxy then {
     kind: "Deployment",
     spec: {
-        replicas: 3,
+        # prd-samtest is down an api server and the bad pod is showing RED in release report
+        # no need for 3 in test beds; 2 is sufficient
+        replicas: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 2 else 3),
         template: {
             spec: configs.specWithMadDog {
                 hostNetwork: true,
