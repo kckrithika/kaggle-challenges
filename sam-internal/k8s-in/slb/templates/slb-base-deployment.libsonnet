@@ -44,7 +44,7 @@
                   configs.maddog_cert_volume,
                   configs.cert_volume,
                   slbconfigs.sbin_volume,
-                  (if slbflights.supportedProxiesEnabled then slbconfigs.proxyconfig_volume else {}),
+                  slbflights.proxyconfig_volume,
                 ]),
                 containers: beforeSharedContainers + [
                   slbshared.slbConfigProcessor(

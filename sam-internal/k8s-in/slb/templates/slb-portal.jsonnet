@@ -39,7 +39,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                           configs.cert_volume,
                           configs.kube_config_volume,
                           slbconfigs.cleanup_logs_volume,
-                          (if slbflights.supportedProxiesEnabled then slbconfigs.proxyconfig_volume else {}),
+                          slbflights.proxyconfig_volume,
                       ] + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()),
                       containers: [
                           {
