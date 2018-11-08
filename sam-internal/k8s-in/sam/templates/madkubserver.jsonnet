@@ -126,7 +126,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                                   "--run-init-for-refresher-mode",
                                   "false",
                               ] else [] +
-                              if samimages.per_phase[samimages.phase].madkub == "1.0.0-0000035-9241ed31" then [
+                              if samimages.madkub == "1.0.0-0000035-9241ed31" then [
                                   "--cert-folder",
                                   "/certs/",
                                   "--requested-cert-type",
