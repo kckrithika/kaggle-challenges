@@ -7,7 +7,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
 local crawlerConfig = import "configs/firefly-crawler.jsonnet";
 local fireflyConfigs = import "fireflyconfigs.jsonnet";
 
-if firefly_feature_flags.is_firefly_svc_enabled then
+if configs.estate == "prd-sam" then
 {
   local crawlerservice = serviceDeployment {
     serviceConf:: {
