@@ -7,7 +7,6 @@ data:
       "crdDeletionEnabled": false,
       "crdEnabled": true,
       "disableCertsCheck": true,
-      "endpointRepoName": "test-manifests",
       "etcdAppFolder": "temp-crd-watcher",
       "k4aEnabled": true,
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
