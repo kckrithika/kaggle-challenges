@@ -16,7 +16,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: temp-store
-      image: tnrp/csc-health/report-collector:1.21.0-0000313-c320d751
+      image: docker-all/dva/report-collector:3
       ports:
       - name: provider-https
         containerPort: 8443
