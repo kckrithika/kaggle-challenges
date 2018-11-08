@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-mysql
-        image: tnrp/casp/mysql:0.0.1-0000020-9abaf42b
+        image: tnrp/casp/mysql:0.0.1-0000021-4517372f
         ports:
         - name: mysql
           containerPort: 3306
