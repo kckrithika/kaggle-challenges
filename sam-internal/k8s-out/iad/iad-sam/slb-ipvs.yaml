@@ -169,6 +169,7 @@ spec:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-ipvs
         - --period=1800s
+        - --vipsToAcl=slb-bravo-svc.sam-system.iad-sam.prd.slb.sfdc.net
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
