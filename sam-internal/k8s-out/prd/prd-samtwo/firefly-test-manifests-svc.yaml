@@ -308,18 +308,18 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "10"
+            value: "11"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: PACKAGE_QUEUE
-            value: test-manifests.package
+            value: sam-test-manifests.package
           - name: PROMOTION_QUEUE
-            value: test-manifests.promotion
+            value: sam-test-manifests.promotion
           - name: LATEST_FILE_QUEUE
-            value: test-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:246
+            value: sam-test-manifests.latestfile
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:252
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -736,18 +736,18 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "8"
+            value: "9"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: PACKAGE_QUEUE
-            value: test-manifests.package
+            value: sam-test-manifests.package
           - name: PROMOTION_QUEUE
-            value: test-manifests.promotion
+            value: sam-test-manifests.promotion
           - name: LATEST_FILE_QUEUE
-            value: test-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:246
+            value: sam-test-manifests.latestfile
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:252
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1127,14 +1127,14 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "11"
+            value: "12"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
-            value: test-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:246
+            value: sam-test-manifests.pr
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:252
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1535,14 +1535,14 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "6"
+            value: "7"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
-            value: test-manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:246
+            value: sam-test-manifests.promotion
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:252
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1912,16 +1912,16 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "2"
+            value: "3"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
-            value: test-manifests.pr
+            value: sam-test-manifests.pr
           - name: EVAL_RESULT_MONITOR_QUEUE
-            value: evalresultmonitor.test-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-evalresultmonitor:246
+            value: evalresultmonitor.sam-test-manifests.pr
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-evalresultmonitor:252
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10

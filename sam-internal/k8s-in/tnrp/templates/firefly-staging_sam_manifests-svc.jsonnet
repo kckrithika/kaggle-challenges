@@ -13,7 +13,7 @@ if configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "tnrpfirefly-staging_sam_manifests",
+              value: "staging_sam_manifests",
           },
           {
               name: "PACKAGE_QUEUE",
@@ -36,7 +36,7 @@ if configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "tnrpfirefly-staging_sam_manifests",
+              value: "staging_sam_manifests",
           },
           {
               name: "PACKAGE_QUEUE",
@@ -60,7 +60,7 @@ if configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "tnrpfirefly-staging_sam_manifests",
+              value: "staging_sam_manifests",
           },
           {
               name: "RABBIT_MQ_QUEUE_NAME",
@@ -76,7 +76,7 @@ if configs.estate == "prd-sam" then
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "tnrpfirefly-staging_sam_manifests",
+              value: "staging_sam_manifests",
           },
           {
               name: "RABBIT_MQ_QUEUE_NAME",

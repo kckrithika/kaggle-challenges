@@ -20,15 +20,15 @@ if configs.estate == "prd-samtwo" then
             },
             {
                 name: "PACKAGE_QUEUE",
-                value: "test-manifests.package",
+                value: "sam-test-manifests.package",
             },
             {
                 name: "PROMOTION_QUEUE",
-                value: "test-manifests.promotion",
+                value: "sam-test-manifests.promotion",
             },
             {
                 name: "LATEST_FILE_QUEUE",
-                value: "test-manifests.latestfile",
+                value: "sam-test-manifests.latestfile",
             },
        ],
 
@@ -46,15 +46,15 @@ if configs.estate == "prd-samtwo" then
             },
             {
                 name: "PACKAGE_QUEUE",
-                value: "test-manifests.package",
+                value: "sam-test-manifests.package",
             },
             {
                 name: "PROMOTION_QUEUE",
-                value: "test-manifests.promotion",
+                value: "sam-test-manifests.promotion",
             },
             {
                 name: "LATEST_FILE_QUEUE",
-                value: "test-manifests.latestfile",
+                value: "sam-test-manifests.latestfile",
             },
        ],
     },
@@ -71,7 +71,7 @@ if configs.estate == "prd-samtwo" then
             },
             {
                 name: "RABBIT_MQ_QUEUE_NAME",
-                value: "test-manifests.pr",
+                value: "sam-test-manifests.pr",
             },
        ],
 
@@ -89,7 +89,7 @@ if configs.estate == "prd-samtwo" then
             },
             {
                 name: "RABBIT_MQ_QUEUE_NAME",
-                value: "test-manifests.promotion",
+                value: "sam-test-manifests.promotion",
             },
        ],
 
@@ -107,11 +107,11 @@ if configs.estate == "prd-samtwo" then
             },
             {
                 name: "RABBIT_MQ_QUEUE_NAME",
-                value: "test-manifests.pr",
+                value: "sam-test-manifests.pr",
             },
             {
                 name: "EVAL_RESULT_MONITOR_QUEUE",
-                value: "evalresultmonitor.test-manifests.pr",
+                value: "evalresultmonitor.sam-test-manifests.pr",
             },
        ],
 

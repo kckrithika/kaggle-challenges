@@ -250,10 +250,10 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "9"
+            value: "10"
           - name: DARKLAUNCH
             value: "false"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:246
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:252
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10

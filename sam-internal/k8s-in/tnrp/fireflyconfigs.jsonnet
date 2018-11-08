@@ -39,13 +39,13 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             fireflyintake: "9",
-             fireflycrawler: "9",
-             fireflypackage: "10",
-             fireflypackagesingleton: "8",
-             fireflypromotion: "6",
-             fireflypullrequest: "11",
-             fireflyevalresultmonitor: "2",
+             fireflyintake: "10",
+             fireflycrawler: "10",
+             fireflypackage: "11",
+             fireflypackagesingleton: "9",
+             fireflypromotion: "7",
+             fireflypullrequest: "12",
+             fireflyevalresultmonitor: "3",
              fireflyrabbitmq: "2",
              fireflyrabbitmqmonitor: "2",
             },
