@@ -253,7 +253,7 @@ items:
             value: "9"
           - name: DARKLAUNCH
             value: "false"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:250
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:246
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
