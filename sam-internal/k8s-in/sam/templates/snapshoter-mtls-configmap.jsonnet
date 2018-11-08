@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-if (configs.kingdom == "prd" || configs.kingdom == "cdu" || configs.kingdom == "frf") && configs.estate != "prd-samtwo" then {
+{
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
@@ -11,4 +11,4 @@ if (configs.kingdom == "prd" || configs.kingdom == "cdu" || configs.kingdom == "
     data: {
         "snapshoter-mtls.json": std.toString(import "configs/snapshoter-mtls-config.jsonnet"),
     },
-} else "SKIP"
+}
