@@ -60,7 +60,7 @@ items:
                       "https-port": 443,
                       "max-publish-tries": 3,
                       "publish-api": "publishBatch",
-                      "ssl-enabled": true
+                      "ssl-enabled": false
                   },
                   "metric-fields": {
                       "common-tags": {
@@ -308,7 +308,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "11"
+            value: "12"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -488,7 +488,7 @@ items:
                       "https-port": 443,
                       "max-publish-tries": 3,
                       "publish-api": "publishBatch",
-                      "ssl-enabled": true
+                      "ssl-enabled": false
                   },
                   "metric-fields": {
                       "common-tags": {
@@ -736,7 +736,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "9"
+            value: "10"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -884,7 +884,7 @@ items:
                       "https-port": 443,
                       "max-publish-tries": 3,
                       "publish-api": "publishBatch",
-                      "ssl-enabled": true
+                      "ssl-enabled": false
                   },
                   "metric-fields": {
                       "common-tags": {
@@ -1127,7 +1127,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "12"
+            value: "13"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -1291,7 +1291,7 @@ items:
                       "https-port": 443,
                       "max-publish-tries": 3,
                       "publish-api": "publishBatch",
-                      "ssl-enabled": true
+                      "ssl-enabled": false
                   },
                   "metric-fields": {
                       "common-tags": {
@@ -1535,7 +1535,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "7"
+            value: "8"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -1668,7 +1668,7 @@ items:
                       "https-port": 443,
                       "max-publish-tries": 3,
                       "publish-api": "publishBatch",
-                      "ssl-enabled": true
+                      "ssl-enabled": false
                   },
                   "metric-fields": {
                       "common-tags": {
@@ -1912,7 +1912,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "3"
+            value: "4"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
