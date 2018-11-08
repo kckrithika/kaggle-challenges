@@ -21,17 +21,11 @@ local configs = import "config.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        #[xiao] Fix CI in prd
-        "prd,prd-sam,samapp-controller,hypersam": "sam-0002342-8b25bcbe",
-
         #[xiao] Fix synthetic in prd
         "prd,prd-samtest,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181106_151024.1e51285a8.clean.xiaozhou-ltm2",
         "prd,prd-samdev,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181106_151024.1e51285a8.clean.xiaozhou-ltm2",
         "prd,prd-sam,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181106_151024.1e51285a8.clean.xiaozhou-ltm2",
         "prd,prd-samdev,samapp-controller,hypersam": "sam-0002365-809ebf54",
-
-         #[rbhat] v2 diff fixes
-         "prd,prd-sam,watchdog-comparek8sresources,hypersam": "sam-0002348-8a7fbf2d",
 
          #[min.wang] Test Watchdog InitMetricsClient
          "prd, prd-samtest, node-controller, hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/min.wang/hypersam:20181029_160337.c61213b4.clean.minwang-ltm0",
@@ -53,7 +47,6 @@ for ce in [
                         "par-sam",
                         "ph2-sam",
                         "phx-sam",
-                        "prd-sam",
                         "prd-samtwo",
                         "prd-sdc",
                         "syd-sam",
@@ -132,7 +125,7 @@ for ce in [
 
         ### Release Phase 2 - prd-sam, xrd-sam, and everything else in prd except prd-samtwo
         "2": $.per_phase["3"] {
-            hypersam: "sam-0002336-6a8184c1",
+            hypersam: "sam-0002362-f00e1afb",
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
