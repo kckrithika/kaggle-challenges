@@ -22,9 +22,9 @@ local configs = import "config.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         #[xiao] Fix synthetic in prd
-        "prd,prd-samtest,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181106_151024.1e51285a8.clean.xiaozhou-ltm2",
-        "prd,prd-samdev,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181106_151024.1e51285a8.clean.xiaozhou-ltm2",
-        "prd,prd-sam,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181106_151024.1e51285a8.clean.xiaozhou-ltm2",
+        "prd,prd-samtest,temp-crd-watcher,hypersam": "sam-0002369-86f6c658",
+        "prd,prd-samdev,temp-crd-watcher,hypersam": "sam-0002369-86f6c658",
+        "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0002369-86f6c6582",
         "prd,prd-samdev,samapp-controller,hypersam": "sam-0002365-809ebf54",
 
          #[min.wang] Test Watchdog InitMetricsClient
