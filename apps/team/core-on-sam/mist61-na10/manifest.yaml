@@ -379,9 +379,18 @@ system:
     nodeExposed: false
     slbEnabled: true
     ports:
+# From SLB HTTP to Envoy HTTPS
+    - port: 8085
+      targetport: 12065
+      lbtype: http
+      tls: false
+      reencrypt: true
 # HTTPS listen port of Envoy.
     - port: 8086
       targetport: 12065
+      lbtype: http
+      tls: true
+      reencrypt: true
 # Cyan Admin port - TODO - Don't expose this. Exposed for now for debugging.
     - port: 8087
       targetport: 15373
