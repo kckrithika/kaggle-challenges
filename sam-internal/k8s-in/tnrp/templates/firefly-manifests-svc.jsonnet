@@ -119,6 +119,6 @@ if configs.estate == "prd-samtwo" then
 
     apiVersion: "v1",
     kind: "List",
-    items: std.flattenArrays([package.items, packagesingleton.items, pullrequest.items, promotion.items, evrmonitor.items]),
+    items: std.flattenArrays([package.items, packagesingleton.items, pullrequest.items, evrmonitor.items]),
 }
 else "SKIP"
