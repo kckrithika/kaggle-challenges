@@ -28,5 +28,11 @@ local hsmNginxAffinity = {
 local certDirs = ["cert1", "cert2"];
 
 if slbflights.hsmCanaryEnabled then
-    slbbasenginxproxy.slbBaseNginxProxyDeployment(slbconfigs.hsmNginxProxyName, 1, hsmNginxAffinity, slbimages.hsmnginx) {}
+    slbbasenginxproxy.slbBaseNginxProxyDeployment(
+      slbconfigs.hsmNginxProxyName,
+      1,
+      hsmNginxAffinity,
+      slbimages.hsmnginx,
+      deleteLimitOverride=(if slbflights.supportedProxiesEnabled then 150 else 0)
+) {}
 else "SKIP"

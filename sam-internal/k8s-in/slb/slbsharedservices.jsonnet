@@ -143,7 +143,7 @@
             privileged: true,
         },
     },
-    slbRealSvrCfg(nodeApiPort, nginxPodMode):: {
+    slbRealSvrCfg(nodeApiPort, nginxPodMode, deleteLimitOverride=0):: {
         name: "slb-realsvrcfg",
         image: slbimages.hypersdn,
         command: [
@@ -161,7 +161,7 @@
                      "--nginxPodMode=" + nginxPodMode,
                  ]
                  + slbconfigs.getNodeApiClientSocketSettings()
-                 + ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]],
+                 + ["--maxDeleteVipCount=" + slbconfigs.maxDeleteLimit(deleteLimitOverride)],
         volumeMounts: std.prune([
             slbconfigs.slb_volume_mount,
             slbconfigs.sbin_volume_mount,
@@ -199,7 +199,7 @@
             configs.sfdchosts_volume_mount,
         ]),
     },
-    slbIfaceProcessor(nodeApiPort): {
+    slbIfaceProcessor(nodeApiPort, deleteLimitOverride=0): {
         name: "slb-iface-processor",
         image: slbimages.hypersdn,
         command: [
@@ -220,7 +220,7 @@
                      ] else [])
                  + (if slbimages.hypersdn_build >= 1355 then [] else slbconfigs.getNodeApiClientSocketSettings())
                  + ["--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet]
-                 + (if slbimages.hypersdn_build >= 1355 then [] else ["--maxDeleteVipCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]]),
+                 + (if slbimages.hypersdn_build >= 1355 then [] else ["--maxDeleteVipCount=" + slbconfigs.maxDeleteLimit(deleteLimitOverride)]),
         volumeMounts: std.prune([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
@@ -232,7 +232,7 @@
             privileged: true,
         },
     },
-    slbManifestWatcher(supportedProxies=[]): {
+    slbManifestWatcher(supportedProxies=[], deleteLimitOverride=0): {
         name: "slb-manifest-watcher",
         image: slbimages.hypersdn,
         command: [
@@ -243,7 +243,7 @@
                      "--log_dir=" + slbconfigs.logsDir,
                      configs.sfdchosts_arg,
                  ] + slbconfigs.getNodeApiClientSocketSettings()
-                 + ["--maxDeleteLimit=" + slbconfigs.perCluster.maxDeleteCount[configs.estate]]
+                 + ["--maxDeleteLimit=" + slbconfigs.maxDeleteLimit(deleteLimitOverride)]
                  + (if slbflights.roleEnabled then [
                      "--isRoleUsed=true",
                      ] else [])

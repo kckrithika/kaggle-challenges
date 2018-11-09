@@ -13,6 +13,7 @@
     beforeSharedContainers,
     afterSharedContainers=[],
     supportedProxies=[],
+    deleteLimitOverride=0,
   ):: configs.deploymentBase("slb") {
 
     metadata: {
@@ -52,10 +53,10 @@
                     supportedProxies=supportedProxies),
                   slbshared.slbCleanupConfig,
                   slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
-                  slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
+                  slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true, deleteLimitOverride=deleteLimitOverride),
                   slbshared.slbLogCleanup,
                   slbshared.slbManifestWatcher(
-                    supportedProxies=supportedProxies),
+                    supportedProxies=supportedProxies, deleteLimitOverride=deleteLimitOverride),
                 ] + afterSharedContainers,
               } + slbconfigs.getDnsPolicy(),
       },

@@ -429,4 +429,8 @@
     sdn_watchdog_emailrec: "slb@salesforce.com",
 
     customerCertsPath: "/customerCerts",
+
+    maxDeleteLimit(deleteLimitOverride): (if deleteLimitOverride > 0
+        then deleteLimitOverride
+        else $.perCluster.maxDeleteCount[configs.estate]),
 }
