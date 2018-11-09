@@ -18,7 +18,7 @@ local configs = import "config.jsonnet";
     syncHealthConfigEnabled: (slbimages.phaseNum <= 2),
     vipAclEnabled: (slbimages.phaseNum <= 4),
     nginxReadinessProbeEnabled: (slbimages.hypersdn_build >= 1355),
-    supportedProxiesEnabled: (slbimages.phaseNum <= 1),
+    supportedProxiesEnabled: (slbimages.hypersdn_build > 1355),
     proxyconfig_volume: (if $.supportedProxiesEnabled then slbconfigs.proxyconfig_volume else {}),
     reduceNginxMinReady: (slbimages.hypersdn_build >= 1355),
     tuneIfaceSentinelExpiration: (slbimages.hypersdn_build > 1355),
