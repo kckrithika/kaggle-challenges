@@ -33,9 +33,6 @@
     name: "var-target-config-volume",
     mountPath: "/etc/nginx/conf.d",
   },
-  local maxDeleteLimit(deleteLimitOverride) = (if configs.kingdom == "xrd" then "150"
-    else if deleteLimitOverride > 0 then deleteLimitOverride
-    else slbconfigs.perCluster.maxDeleteCount[configs.estate]),
 
   local beforeSharedContainers(proxyImage, deleteLimitOverride=0) = [
      {
@@ -54,7 +51,7 @@
                                      "--netInterfaceName=eth0",
                                      "--metricsEndpoint=" + configs.funnelVIP,
                                      "--log_dir=" + slbconfigs.logsDir,
-                                     "--maxDeleteServiceCount=" + maxDeleteLimit(deleteLimitOverride),
+                                     "--maxDeleteServiceCount=" + (if configs.kingdom == "xrd" then "150" else slbconfigs.maxDeleteLimit(deleteLimitOverride)),
                                      configs.sfdchosts_arg,
                                      "--client.serverInterface=lo",
                                      "--hostnameOverride=$(NODE_NAME)",

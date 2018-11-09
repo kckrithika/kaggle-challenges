@@ -9,10 +9,6 @@
     local configProcSentinel = slbconfigs.configDir + "/slb-config-proc.sentinel",
     local mwSentinel = slbconfigs.configDir + "/slb-manifest-watcher.sentinel",
 
-    local maxDeleteLimit(deleteLimitOverride) = (if deleteLimitOverride > 0
-        then deleteLimitOverride
-        else slbconfigs.perCluster.maxDeleteCount[configs.estate]),
-
     slbConfigProcessor(
       configProcessorLivenessPort,
       proxyLabelSelector="slb-nginx-config-b",
@@ -165,7 +161,7 @@
                      "--nginxPodMode=" + nginxPodMode,
                  ]
                  + slbconfigs.getNodeApiClientSocketSettings()
-                 + ["--maxDeleteVipCount=" + maxDeleteLimit(deleteLimitOverride)],
+                 + ["--maxDeleteVipCount=" + slbconfigs.maxDeleteLimit(deleteLimitOverride)],
         volumeMounts: std.prune([
             slbconfigs.slb_volume_mount,
             slbconfigs.sbin_volume_mount,
@@ -224,7 +220,7 @@
                      ] else [])
                  + (if slbimages.hypersdn_build >= 1355 then [] else slbconfigs.getNodeApiClientSocketSettings())
                  + ["--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet]
-                 + (if slbimages.hypersdn_build >= 1355 then [] else ["--maxDeleteVipCount=" + maxDeleteLimit(deleteLimitOverride)]),
+                 + (if slbimages.hypersdn_build >= 1355 then [] else ["--maxDeleteVipCount=" + slbconfigs.maxDeleteLimit(deleteLimitOverride)]),
         volumeMounts: std.prune([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
@@ -247,7 +243,7 @@
                      "--log_dir=" + slbconfigs.logsDir,
                      configs.sfdchosts_arg,
                  ] + slbconfigs.getNodeApiClientSocketSettings()
-                 + ["--maxDeleteLimit=" + maxDeleteLimit(deleteLimitOverride)]
+                 + ["--maxDeleteLimit=" + slbconfigs.maxDeleteLimit(deleteLimitOverride)]
                  + (if slbflights.roleEnabled then [
                      "--isRoleUsed=true",
                      ] else [])
