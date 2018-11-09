@@ -201,9 +201,6 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-envoy
         - --sleepTime=100ms
-        - --processKnEConfigs=true
-        - --kneConfigDir=/var/slb/kneconfigs/prd
-        - --kneDomainName=slb.sfdc.net
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
@@ -219,7 +216,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -245,6 +242,8 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /proxyconfig
+          name: proxyconfig
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
@@ -256,7 +255,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -280,7 +279,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-envoy/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -299,7 +298,7 @@ spec:
         - --client.socketDir=/host/data/slb/config/slb-envoy
         - --client.dialSocket=true
         - --maxDeleteVipCount=50
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-realsvrcfg
         securityContext:
           privileged: true
@@ -323,7 +322,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -358,7 +357,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-manifest-watcher
         securityContext:
           privileged: true
@@ -371,6 +370,8 @@ spec:
           name: kubeconfig
         - mountPath: /etc/pki_service
           name: maddog-certs
+        - mountPath: /proxyconfig
+          name: proxyconfig
       dnsPolicy: Default
       initContainers:
       - args:
@@ -444,6 +445,9 @@ spec:
       - hostPath:
           path: /sbin
         name: sbin-volume
+      - configMap:
+          name: slb-proxy-configuration
+        name: proxyconfig
       - configMap:
           name: slb-envoy-nginx-configuration
         name: slb-envoy-nginx-configuration
