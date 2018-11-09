@@ -27,12 +27,8 @@
                      ] else [
                          "--period=1800s",
                      ]
-                 ) + (
-                     if slbflights.vipAclEnabled then [
-                         "--vipsToAcl=slb-bravo-svc.sam-system." + configs.estate + ".prd.slb.sfdc.net",
-                     ] else [
-                     ]
                  ) + [
+                     "--vipsToAcl=slb-bravo-svc.sam-system." + configs.estate + ".prd.slb.sfdc.net",
                      "--podPhaseCheck=true",
                      "--namespace=" + slbconfigs.namespace,
                      "--podstatus=running",
