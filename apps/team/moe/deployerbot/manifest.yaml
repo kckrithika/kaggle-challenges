@@ -90,12 +90,12 @@ system:
       - "-pgpkeypath=/gpgsecrets/moe-signing-key.asc"
       - "-samInternalTeamName=SAM"
       - "-slackWebhookURL=https://hooks.slack.com/services/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"
-      - "-slackChannelToNotify=@xiao.zhou"
+      - "-slackChannelToNotify=#phase_release"
       - "-releaseFile=sam-internal/k8s-in/sam/samreleases.json"
       - "-promotion.image=hypersam"
-      - "-promotion.intervalTime=1h"
+      - "-promotion.intervalTime=24h"
       - "-promotion.minBakeTime=24h"
-      - "-promotion.singlephase=false"
+      - "-promotion.singlephase=true"
       ports:
       - containerPort: 8080
       livenessProbe:
