@@ -51,7 +51,7 @@ system:
         - name: server-certs
           mountPath: /server-certs
       args:
-        - --log-level=trace
+        - --envoy.ciphers=
       ports:
       - containerPort: 12010
       - containerPort: 12000
