@@ -33,7 +33,11 @@
     name: "var-target-config-volume",
     mountPath: "/etc/nginx/conf.d",
   },
-  local beforeSharedContainers(proxyImage) = [
+  local maxDeleteLimit(deleteLimitOverride) = (if configs.kingdom == "xrd" then "150"
+    else if deleteLimitOverride > 0 then deleteLimitOverride
+    else slbconfigs.perCluster.maxDeleteCount[configs.estate]),
+
+  local beforeSharedContainers(proxyImage, deleteLimitOverride=0) = [
      {
                           ports: [
                             {
@@ -50,7 +54,7 @@
                                      "--netInterfaceName=eth0",
                                      "--metricsEndpoint=" + configs.funnelVIP,
                                      "--log_dir=" + slbconfigs.logsDir,
-                                     "--maxDeleteServiceCount=" + (if configs.kingdom == "xrd" then "150" else slbconfigs.perCluster.maxDeleteCount[configs.estate]),
+                                     "--maxDeleteServiceCount=" + maxDeleteLimit(deleteLimitOverride),
                                      configs.sfdchosts_arg,
                                      "--client.serverInterface=lo",
                                      "--hostnameOverride=$(NODE_NAME)",
@@ -209,14 +213,16 @@ local afterSharedContainers = [
     proxyName,
     replicas=2,
     affinity,
-    proxyImage
+    proxyImage,
+    deleteLimitOverride=0,
   ):: slbbasedeployment.slbBaseDeployment(
     proxyName,
     replicas,
     affinity,
-    beforeSharedContainers(proxyImage),
+    beforeSharedContainers(proxyImage, deleteLimitOverride),
     afterSharedContainers,
-    supportedProxies=[proxyName]) {
+    supportedProxies=[proxyName],
+    deleteLimitOverride=deleteLimitOverride) {
 
     spec+: {
       template+: {
