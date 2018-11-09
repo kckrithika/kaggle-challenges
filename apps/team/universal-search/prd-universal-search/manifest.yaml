@@ -195,70 +195,54 @@ system:
         periodSeconds: 5
   - name: universal-search-mock-index-workflow
     count: 1
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
-    - name: mock-index-workflow-log-vol
-      hostpath:
-        path: /home/sfdc-usmt/logs
+    - name: logvolservice
+      hostPath:
+        path: /home/sfdc-scone-universal-search-mock-index-workflow/logs
     containers:
-    - name: universal-search-mock-index-workflow
+    - name: universal-search-mock-index-workflow-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-mock-index-workflow:0.0.13
+      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
-      - name: service-port
-        containerPort: 8080
-      - name: admin-port
-        containerPort: 15372
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      volumeMounts:
-        - name: mock-index-workflow-log-vol
-          mountPath: /home/sfdc-usmt/logs
+      - containerPort: 8080
+        name: scone-http
+      - containerPort: 15372
+        name: scone-mgmt
       livenessProbe:
-        exec:
-          command: ["true"]
-      readinessProbe:
-        exec:
-          command: ["true"]
-        initialDelaySeconds: 60
-        timeoutSeconds: 30
-        periodSeconds: 900
-        failureThreshold: 1
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvolservice
   - name: universal-search-mock-streaming-index
     count: 1
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
-    - name: mock-streaming-log-vol
-      hostpath:
-        path: /home/sfdc-usmt/logs
+    - name: logvolservice
+      hostPath:
+        path: /home/sfdc-scone-universal-search-mock-streaming-index/logs
     containers:
-    - name: universal-search-mock-streaming-index
+    - name: universal-search-mock-streaming-index-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-mock-streaming-index:0.0.13
+      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
-      - name: service-port
-        containerPort: 8080
-      - name: admin-port
-        containerPort: 15372
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      volumeMounts:
-        - name: mock-streaming-log-vol
-          mountPath: /home/sfdc-usmt/logs
+      - containerPort: 8080
+        name: scone-http
+      - containerPort: 15372
+        name: scone-mgmt
       livenessProbe:
-        exec:
-          command: ["true"]
-      readinessProbe:
-        exec:
-          command: ["true"]
-        initialDelaySeconds: 60
-        timeoutSeconds: 30
-        periodSeconds: 900
-        failureThreshold: 1
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvolservice
   loadbalancers:
   - function: universal-search
     lbname: universal-search-slb
