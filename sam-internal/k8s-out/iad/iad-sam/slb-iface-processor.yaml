@@ -38,14 +38,8 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --readVipsFromIpvs=true
-        - --client.serverPort=12086
-        - --client.serverInterface=lo
-        - --client.socketDir=/host/data/slb/config/slb-iface-processor
-        - --client.dialSocket=true
         - --subnet=10.208.108.0/22,13.110.24.0/23
-        - --maxDeleteVipCount=10
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001354-5ac17be1
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
         name: slb-iface-processor
         securityContext:
           privileged: true
@@ -91,7 +85,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001354-5ac17be1
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -128,7 +122,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001354-5ac17be1
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -152,7 +146,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=false
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-iface-processor/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001354-5ac17be1
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -170,7 +164,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001354-5ac17be1
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
         name: slb-cleanup
         securityContext:
           privileged: true
