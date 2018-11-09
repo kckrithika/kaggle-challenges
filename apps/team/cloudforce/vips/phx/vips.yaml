@@ -777,6 +777,8 @@
     lbtype: http
     sticky: 600
     tls: true
+    tlscertificate: secret_service:login-cloudforce:cert
+    tlskey: secret_service:login-cloudforce:key
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     addheaders:
