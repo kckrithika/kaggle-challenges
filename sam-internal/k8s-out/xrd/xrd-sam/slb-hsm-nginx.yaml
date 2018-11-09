@@ -84,7 +84,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-nginx-config
         ports:
         - containerPort: 32146
@@ -137,7 +137,7 @@ spec:
         - /sdn/slb-nginx-data
         - --target=/host/data/slb/slb-hsm-nginx/config
         - --connPort=9125
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         livenessProbe:
           httpGet:
             path: /
@@ -170,7 +170,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
@@ -232,7 +232,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-cert-checker
         volumeMounts:
         - mountPath: /cert1
@@ -264,15 +264,13 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-hsm-nginx
         - --sleepTime=100ms
-        - --processKnEConfigs=true
-        - --kneConfigDir=/var/slb/kneconfigs/xrd
-        - --kneDomainName=slb.sfdc.net
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
         - --control.configProcSentinel=/host/data/slb/config/slb-hsm-nginx/slb-config-proc.sentinel
+        - --pipeline.supportedProxies=slb-hsm-nginx
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -280,7 +278,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -306,6 +304,8 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /proxyconfig
+          name: proxyconfig
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
@@ -317,7 +317,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -341,7 +341,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-hsm-nginx/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -359,8 +359,8 @@ spec:
         - --nginxPodMode=true
         - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
         - --client.dialSocket=true
-        - --maxDeleteVipCount=20
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        - --maxDeleteVipCount=150
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-realsvrcfg
         securityContext:
           privileged: true
@@ -384,7 +384,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -408,10 +408,11 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
         - --client.dialSocket=true
-        - --maxDeleteLimit=20
+        - --maxDeleteLimit=150
         - --vcioptions.strict=true
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-hsm-nginx/slb-manifest-watcher.sentinel
+        - --pipeline.supportedProxies=slb-hsm-nginx
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -419,7 +420,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-manifest-watcher
         securityContext:
           privileged: true
@@ -432,6 +433,8 @@ spec:
           name: kubeconfig
         - mountPath: /etc/pki_service
           name: maddog-certs
+        - mountPath: /proxyconfig
+          name: proxyconfig
       - command:
         - /sdn/slb-cert-deployer
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
@@ -447,7 +450,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-cert-deployer
         volumeMounts:
         - mountPath: /cert1
@@ -535,6 +538,9 @@ spec:
       - hostPath:
           path: /sbin
         name: sbin-volume
+      - configMap:
+          name: slb-proxy-configuration
+        name: proxyconfig
       - emptyDir:
           medium: Memory
         name: cert1
