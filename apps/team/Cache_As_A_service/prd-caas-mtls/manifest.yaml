@@ -6,7 +6,7 @@ system:
       - rpragada@salesforce.com
   functions:
   - name: caas-mtls-test
-    count: 2
+    count: 1
     containers:
     - name: caas-redis
       image: docker-all/dva/caas/caas-redis-mtls:7
@@ -32,7 +32,7 @@ system:
       ports:
       - containerPort: 12015
     - name: caas-sherpa-envoy
-      image: docker-all/dva/caas/caas-sherpa-envoy:12
+      image: docker-all/dva/caas/caas-sherpa-envoy:13
       livenessProbe:
         exec:
           command:
