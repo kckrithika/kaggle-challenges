@@ -95,7 +95,7 @@ system:
       - "-promotion.image=hypersam"
       - "-promotion.intervalTime=24h"
       - "-promotion.minBakeTime=24h"
-      - "-promotion.singlephase=false"
+      - "-promotion.singlephase=true"
       ports:
       - containerPort: 8080
       livenessProbe:
