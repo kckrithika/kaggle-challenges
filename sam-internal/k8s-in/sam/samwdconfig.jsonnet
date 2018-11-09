@@ -28,7 +28,8 @@ pagerduty_args: (if utils.is_public_cloud(configs.kingdom) || utils.is_gia(confi
         "-recipient=" + $.recipient + "," + "sam-pagerduty@salesforce.com",
 ] else []),
 
-low_urgency_pagerduty_args: (["-recipient=" + $.recipient + (if $.recipient != "" then "," else "") + "csc-sam-business-hours-only@salesforce.pagerduty.com"]),
+low_urgency_pagerduty_args: (if configs.estate == "prd-sdc" || configs.estate == "prd-sam_storage" || configs.estate == "prd-sam_storagedev" then []
+                            else ["-recipient=" + $.recipient + (if $.recipient != "" then "," else "") + "csc-sam-business-hours-only@salesforce.pagerduty.com"]),
 
 filesystem_watchdog_args: (["-recipient=" + $.recipient + (if $.recipient != "" then "," else "") + "make@salesforce.com"]),
 
