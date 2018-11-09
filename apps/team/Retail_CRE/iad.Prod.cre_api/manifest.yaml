@@ -29,8 +29,6 @@ system:
           value: iad
         - name: CONTROL_PLANE_URL
           value: cre-control-plane.retail-cre.localhost.mesh.force.com:5443
-        - name: HBASE_SUPER_TENANT_IDS_FLUSH
-          value: 00Dg0000006NhSqEAK
       resources:
         limits: { cpu: "2", memory: "20Gi" }
         requests: { cpu: "2", memory: "20Gi" }
