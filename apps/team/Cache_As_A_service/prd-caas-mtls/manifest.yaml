@@ -6,7 +6,7 @@ system:
       - rpragada@salesforce.com
   functions:
   - name: caas-mtls-test
-    count: 1
+    count: 2
     containers:
     - name: caas-redis
       image: docker-all/dva/caas/caas-redis-mtls:7
@@ -32,7 +32,7 @@ system:
       ports:
       - containerPort: 12015
     - name: caas-sherpa-envoy
-      image: docker-all/dva/caas/caas-sherpa-envoy:6
+      image: docker-all/dva/caas/caas-sherpa-envoy:10
       livenessProbe:
         exec:
           command:
@@ -50,25 +50,14 @@ system:
           name: redis-sock
         - name: server-certs
           mountPath: /server-certs
-      env:
-       - name: ADMIN_PORT
-         value: 15373
-       - name: ENVOY_PORT
-         value: 12000
-       - name: SAN
-         value: app.localhost.mesh.force.com
-       - name: CONNECT_TIMEOUT
-         value: 0.25s
-      args:
-      - --admin-port=15373
       ports:
-      - containerPort: 15373
+      - containerPort: 12010
       - containerPort: 12000
     - name: caas-redis-announcer
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
-      - caas/cluster/sp-sdn-c1:SUPERPOD:12015
+      - caas/cluster/sp-mtls-c1:SUPERPOD:12000
       - -logdir
       - /home/sfdc-caas/logs/sp-sdn-c1-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
@@ -94,12 +83,3 @@ system:
     - name: server-certs
       maddogCert:
         type: server
-    
-  loadbalancers:
-  - lbname: caas-mtls-envoy-stats-prd
-    function: caas-mtls-test
-    nodeExposed: true
-    slbEnabled: true
-    ports:
-     - port: 8888
-       targetport: 15373
