@@ -203,11 +203,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                             "--client.serverInterface=lo",
-                        ] + (if slbflights.aclEnabled then [
-                                "--enableAcl=true",
-                             ] else [
-                             ]) +
-                        [
+                            "--enableAcl=true",
                             "--enableConntrack=false",
                         ] + slbconfigs.getNodeApiClientSocketSettings(),
                         volumeMounts: configs.filter_empty([
