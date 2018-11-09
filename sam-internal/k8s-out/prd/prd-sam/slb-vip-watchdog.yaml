@@ -85,7 +85,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.name
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-vip-watchdog
         resources:
           limits:
@@ -114,9 +114,6 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-vip-watchdog
         - --sleepTime=100ms
-        - --processKnEConfigs=true
-        - --kneConfigDir=/var/slb/kneconfigs/prd
-        - --kneDomainName=slb.sfdc.net
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
@@ -132,7 +129,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -158,6 +155,8 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /proxyconfig
+          name: proxyconfig
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
@@ -169,7 +168,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -193,7 +192,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-vip-watchdog/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -211,7 +210,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -246,7 +245,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001355-92d9fbdd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001359-1c6e55dd
         name: slb-manifest-watcher
         securityContext:
           privileged: true
@@ -259,6 +258,8 @@ spec:
           name: kubeconfig
         - mountPath: /etc/pki_service
           name: maddog-certs
+        - mountPath: /proxyconfig
+          name: proxyconfig
       dnsPolicy: Default
       nodeSelector:
         pool: prd-slb
@@ -288,3 +289,6 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-vip-watchdog/cleanup
         name: var-cleanup-logs-volume
+      - configMap:
+          name: slb-proxy-configuration
+        name: proxyconfig
