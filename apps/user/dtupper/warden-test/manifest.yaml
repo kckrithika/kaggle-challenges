@@ -48,8 +48,6 @@ system:
       - name: wardenservercert
         maddogCert:
           type: server
-          lbnames:
-          - wardenlb
 
     loadbalancers:
     - lbname: wardenlb
