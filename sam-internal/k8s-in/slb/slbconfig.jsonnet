@@ -396,6 +396,7 @@
 
     getGracePeriod():: (if slbimages.hypersdn_build >= 1340 then { terminationGracePeriodSeconds: 5 } else {}),
 
+
     subnet: self.perCluster.subnet[estate],
     publicSubnet: self.perCluster.publicSubnet[estate],
     reservedIps: std.join(",", self.perCluster.reservedIps[estate] + self.envoyVipCIDR),
