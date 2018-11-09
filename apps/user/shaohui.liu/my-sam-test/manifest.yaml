@@ -1,5 +1,8 @@
 apiVersion: v1
 system:
+  notifications:
+    email:
+      - shaohui.liu@salesforce.com
   functions:
   - name: default
     count: 2
@@ -16,6 +19,13 @@ system:
         httpGet:
           path: /
           port: 50070
+      volumeMounts:
+      - mountPath: /hadoop/dfs/name
+        name: sfdc
+    volumes:
+    - name: sfdc
+      hostPath:
+        path: /data/ia-name
   loadbalancers:
   - lbname: ia-namenode
     function: default
