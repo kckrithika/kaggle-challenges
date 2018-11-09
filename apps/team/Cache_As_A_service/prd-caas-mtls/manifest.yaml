@@ -32,7 +32,7 @@ system:
       ports:
       - containerPort: 12015
     - name: caas-sherpa-envoy
-      image: docker-all/dva/caas/caas-sherpa-envoy:6
+      image: docker-all/dva/caas/caas-sherpa-envoy:10
       livenessProbe:
         exec:
           command:
@@ -50,19 +50,8 @@ system:
           name: redis-sock
         - name: server-certs
           mountPath: /server-certs
-      env:
-       - name: ADMIN_PORT
-         value: 15373
-       - name: ENVOY_PORT
-         value: 12000
-       - name: SAN
-         value: app.localhost.mesh.force.com
-       - name: CONNECT_TIMEOUT
-         value: 0.25s
-      args:
-      - --admin-port=15373
       ports:
-      - containerPort: 15373
+      - containerPort: 12010
       - containerPort: 12000
     - name: caas-redis-announcer
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
@@ -94,12 +83,3 @@ system:
     - name: server-certs
       maddogCert:
         type: server
-    
-  loadbalancers:
-  - lbname: caas-mtls-envoy-stats-prd
-    function: caas-mtls-test
-    nodeExposed: true
-    slbEnabled: true
-    ports:
-     - port: 8888
-       targetport: 15373
