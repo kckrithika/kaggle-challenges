@@ -9,7 +9,7 @@ system:
       count: 3
       containers:
       - name: dt-warden-test
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/casp-warden:test-0089
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/casp-warden:test-0090
         ports:
         - name: http
           containerPort: 8889
@@ -20,7 +20,7 @@ system:
           containerPort: 7878
         env:
         - name: BRANCH
-          value: "dev"
+          value: "eng_production"
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
