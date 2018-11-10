@@ -26,13 +26,13 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             fireflyintake: "18",
-             fireflycrawler: "16",
-             fireflypackage: "16",
-             fireflypackagesingleton: "14",
-             fireflypromotion: "13",
-             fireflypullrequest: "19",
-             fireflyevalresultmonitor: "9",
+             fireflyintake: "19",
+             fireflycrawler: "17",
+             fireflypackage: "17",
+             fireflypackagesingleton: "15",
+             fireflypromotion: "14",
+             fireflypullrequest: "20",
+             fireflyevalresultmonitor: "10",
              fireflyrabbitmq: "3",
              fireflyrabbitmqmonitor: "5",
             },
