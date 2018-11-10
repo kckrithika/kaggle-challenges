@@ -124,7 +124,7 @@ items:
                   "clone-timeout": "60s",
                   "connect-timeout": "60s",
                   "dark-launch": "${DARKLAUNCH}",
-                  "http-logging-interceptor-level": "BODY",
+                  "http-logging-interceptor-level": "NONE",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
@@ -309,7 +309,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "16"
+            value: "17"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -320,7 +320,7 @@ items:
             value: tnrpfirefly-staging_sam_manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: tnrpfirefly-staging_sam_manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:254
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:252
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -558,7 +558,7 @@ items:
                   "clone-timeout": "60s",
                   "connect-timeout": "60s",
                   "dark-launch": "${DARKLAUNCH}",
-                  "http-logging-interceptor-level": "BODY",
+                  "http-logging-interceptor-level": "NONE",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
@@ -743,7 +743,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "14"
+            value: "15"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -754,7 +754,7 @@ items:
             value: tnrpfirefly-staging_sam_manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: tnrpfirefly-staging_sam_manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:254
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:252
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -957,7 +957,7 @@ items:
                   "clone-timeout": "60s",
                   "connect-timeout": "60s",
                   "dark-launch": "${DARKLAUNCH}",
-                  "http-logging-interceptor-level": "BODY",
+                  "http-logging-interceptor-level": "NONE",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
@@ -1140,7 +1140,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "19"
+            value: "20"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -1371,7 +1371,7 @@ items:
                   "clone-timeout": "60s",
                   "connect-timeout": "60s",
                   "dark-launch": "${DARKLAUNCH}",
-                  "http-logging-interceptor-level": "BODY",
+                  "http-logging-interceptor-level": "NONE",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
@@ -1554,7 +1554,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "13"
+            value: "14"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE

@@ -110,7 +110,7 @@ items:
                   "clone-timeout": "60s",
                   "connect-timeout": "60s",
                   "dark-launch": "${DARKLAUNCH}",
-                  "http-logging-interceptor-level": "BODY",
+                  "http-logging-interceptor-level": "NONE",
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
@@ -304,7 +304,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "18"
+            value: "19"
           - name: DARKLAUNCH
             value: "true"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:252

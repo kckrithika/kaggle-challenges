@@ -34,7 +34,7 @@ local portConfig = import "portconfig.jsonnet";
         gitOauthToken: '${gitRWPassword#FromSecretService}',
     },
     prdsam:: $.dev {
-        gitHttpLogging:: 'BODY',
+        gitHttpLogging:: 'NONE',
         rabbitMqUserName:: 'rabbitmq-admin',
         rabbitMqPassword:: '${rabbitMqAdmin#FromSecretService}',
         rabbitMqEndpoint:: 'firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net',
