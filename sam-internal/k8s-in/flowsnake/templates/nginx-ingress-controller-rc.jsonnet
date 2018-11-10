@@ -48,17 +48,24 @@ local kingdom = std.extVar("kingdom");
                         },
                         livenessProbe: if std.objectHas(flowsnake_images.feature_flags, "ingress_daily_restart") then {
                                 exec: {
-                                    # Verify responding health endpoint reachability AND kill once daily to ensure fresh PKI cert
+                                    # Verify health endpoint reachability AND kill once daily to ensure fresh PKI cert
                                     # See also https://github.com/kubernetes/kubernetes/issues/37218#issuecomment-372887460
                                     # Note: bash ps etime syntax is <days>-<hours>:<minutes>:<seconds>, but busybox is
                                     # <minutes>:<seconds> even for large minute counts. Use 2000 minutes ( ~ 1.4 days) as
                                     # the threshold.
                                     # grep -c (count) | grep 0 will yield an error if the count non-zero and thus fail the
                                     # liveness check.
+                                    #
+                                    # For the nginx case, we have bash ps etime syntax, not busybox syntax.
+                                    # After a day of running, it switches to this format of (number of days)-(h):(m):(s)
+                                    # "ps -o comm,etime | grep nginx-ingress"
+                                    # nginx-ingress-c  2-01:08:02
+                                    #
+                                    # We'll grep for the dash delimiter that indicates it has been running for at least a day.
                                     command: [
                                         "sh",
                                         "-c",
-                                        "reply=$(curl -s -o /dev/null -w %{http_code} http://127.0.0.1:80/healthz); if [ \"$reply\" -lt 200 -o \"$reply\" -ge 400 ]; then exit 1; fi; ps -o comm,etime | grep nginx-ingress | grep -cE '[2-9][0-9][0-9][0-9]:' | grep -q 0",
+                                        "reply=$(curl -s -o /dev/null -w %{http_code} http://127.0.0.1:80/healthz); if [ \"$reply\" -lt 200 -o \"$reply\" -ge 400 ]; then exit 1; fi; ps -o comm,etime | grep nginx-ingress | grep -cE '[1-9]-[0-9]' | grep -q 0",
                                     ],
                                 },
                                 initialDelaySeconds: 60,
