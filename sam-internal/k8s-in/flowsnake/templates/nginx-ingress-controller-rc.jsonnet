@@ -48,7 +48,7 @@ local kingdom = std.extVar("kingdom");
                         },
                         livenessProbe: if std.objectHas(flowsnake_images.feature_flags, "ingress_daily_restart") then {
                                 exec: {
-                                    # Verify responding to DNS requests AND kill once daily to ensure fresh PKI cert
+                                    # Verify health endpoint reachability AND kill once daily to ensure fresh PKI cert
                                     # See also https://github.com/kubernetes/kubernetes/issues/37218#issuecomment-372887460
                                     # Note: bash ps etime syntax is <days>-<hours>:<minutes>:<seconds>, but busybox is
                                     # <minutes>:<seconds> even for large minute counts. Use 2000 minutes ( ~ 1.4 days) as
