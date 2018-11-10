@@ -32,7 +32,7 @@ system:
         - name: HBASE_SUPER_TENANT_IDS_FLUSH
           value: 00Dg0000006NfYxEAK
         - name: DUMMY_RESTART_VAR
-          value: 10
+          value: 20
       resources:
         limits: { cpu: "2", memory: "20Gi" }
         requests: { cpu: "2", memory: "20Gi" }
