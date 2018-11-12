@@ -67,7 +67,7 @@ system:
 
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
-          value: 8086
+          value: 8443
 
         # Set to true it PUBLIC_PORT is an https endpoint
         - name: PUBLIC_PORT_IS_SECURE
@@ -77,7 +77,7 @@ system:
         # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
         # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
-          value: us5-mist61cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+          value: us5-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
         # This maps to http_port
         - name: PORT
           value: 8085
@@ -264,7 +264,7 @@ system:
         - name: DEPLOY_ENV
           value: alpha
         - name: CYAN
-          value: https://us5-mist61cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
+          value: https://us5-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
         - name: CURL_GLOBAL_OPTS
           value: -k
         - name: K4A
@@ -328,51 +328,28 @@ system:
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
 
-  - name: na5-mist61cyan-prd
+  - name: na5-mist61sfproxy-prd
+    identity:
+      serviceName: sfproxy
+      pod: na5
     count: 1
     containers:
-    - name: front-proxy-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
+    - name: sfproxy-envoy
+      image: sfci/frontend-gateway/sfproxy:659513c
       env:
-      - name: CONFIG_DIR
-        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
-      - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na5.cyan
-      volumeMounts:
-      - name: envoy-config-volume
-        mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
-      resources:
-        limits: { cpu: "1", memory: "64Mi" }
-        requests: { cpu: "1", memory: "64Mi" }
-      livenessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/live
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 10
-        periodSeconds: 5
-
-    - name: front-proxy
-      image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
-      env:
+#TODO: Write envoy logs to stdout instead of file
       - name: ENVOY_DEBUG_OPTIONS
-        value: --concurrency 200 --log-level debug
+        value: --log-path /home/sfdc-sherpa/envoy.log
+      - name: SFDC_ENVIRONMENT
+        value: mist61
       args:
-      - --template=/cyan-config/front-proxy-config.yaml.template
+      - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
+      - --switchboard=us99-mist61switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
+      - --log-level=trace
       ports:
+      - containerPort: 2525
       - containerPort: 12060
-      - containerPort: 12065
       - containerPort: 15373
-#      resources:
-#        limits: { cpu: "1", memory: "1Gi" }
-#        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         exec:
           command:
@@ -386,16 +363,12 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
       volumeMounts:
-      - name: envoy-config-volume
-        mountPath: /cyan-config
       - name: tls-client-cert
-        mountPath: /certs/cert-client
+        mountPath: /client-certs
       - name: tls-server-cert
-        mountPath: /certs/cert-server
+        mountPath: /server-certs
 
     volumes:
-    - name: envoy-config-volume
-      emptyDir: {}
     - name: tls-client-cert
       maddogCert:
         type: client
@@ -403,7 +376,7 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - us5-mist61cyan-lb
+        - us5-mist61sfproxy-lb
 
   loadbalancers:
   - lbname: na5-mist61app-prd
@@ -430,14 +403,31 @@ system:
     - port: 6054
       targetport: 12062
 
-  - lbname: us5-mist61cyan-lb
-    function: na5-mist61cyan-prd
+  - lbname: us5-mist61sfproxy-lb
+    function: na5-mist61sfproxy-prd
     nodeExposed: false
     slbEnabled: true
     ports:
-# HTTPS listen port of Envoy.
+# TCP listen port of Envoy.
+    - port: 2525
+      targetport: 2525
+# HTTP listen port of Envoy.
+# TODO: Change to 80 in production
     - port: 8086
-      targetport: 12065
-# Cyan Admin port - TODO - Don't expose this. Exposed for now for debugging.
+      targetport: 12060
+      lbtype: http
+      tls: false
+      reencrypt: true
+# HTTPS listen port of Envoy.
+# TODO: Manifest validation fails for port 443. Add 443 in production
+    - port: 8443
+      targetport: 12060
+      lbtype: http
+      tls: true
+      reencrypt: true
+# Admin ports - TODO - Don't expose this. Exposed for now for debugging.
     - port: 8087
       targetport: 15373
+    - port: 8888
+      targetport: 12060
+
