@@ -34,7 +34,7 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
       'exchange-name': envConfig.environmentMapping[configs.estate].exchangeName,
     },
     appconfig: {
-      'monitor-wait-time': '180000ms',
+      'monitor-wait-time': '360000ms',
       'instance-type': '${INSTANCE_TYPE}',
       'workspace-config': {
         'root-dir': envConfig.environmentMapping[configs.estate].rootDir,
