@@ -40,10 +40,14 @@ system:
       # SAM will bounce the container if this returns an HTTP response code other than 200-399
       livenessProbe:
         initialDelaySeconds: 60
+        #httpGet:
+        #  scheme: HTTPS
+        #  path: /ping.jsp
+        #  port: 8080
         httpGet:
           scheme: HTTPS
-          path: /ping.jsp
-          port: 8080
+          path: /manage/health
+          port: 15372
     #lbName: mgmtserviceslb
 
     #terminationGracePeriodSeconds: 33
