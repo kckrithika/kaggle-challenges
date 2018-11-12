@@ -27,6 +27,12 @@ spec:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lizhang/kube-state-metrics:v1.4.0
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
         name: kube-state-metrics
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -36,7 +42,7 @@ spec:
         - mountPath: /data/certs
           name: certs
       nodeSelector:
-        master: "true"
+        pool: prd-samtest
       volumes:
       - hostPath:
           path: /etc/pki_service
