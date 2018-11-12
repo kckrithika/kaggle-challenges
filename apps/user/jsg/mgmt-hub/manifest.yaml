@@ -6,7 +6,7 @@ system:
             - jsanzgonzalez@salesforce.com (mailto:jsanzgonzalez@salesforce.com)
   functions:
   # service name
-  - name: mgmt
+  - name: mgmt-hub
     #type: stateful-set
     # number of instances ("kpods") to deploy and run
     count: 1
