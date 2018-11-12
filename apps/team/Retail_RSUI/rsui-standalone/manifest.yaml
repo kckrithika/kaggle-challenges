@@ -25,7 +25,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.5.s.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.5.s.6
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -91,7 +91,7 @@ system:
                 -Dcom.sun.management.jmxremote.rmi.port=8898
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
-                -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+                -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Daura.production=true"
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: ALL
       livenessProbe:
