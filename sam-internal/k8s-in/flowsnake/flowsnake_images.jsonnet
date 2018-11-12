@@ -86,7 +86,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
-                ingress_daily_restart: "unverified",
+                ingress_daily_restart: "verified",
             },
             version_mapping: {
                 main: {
@@ -124,6 +124,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
+                ingress_daily_restart: "unverified",
             },
             version_mapping: {
                 main: {
