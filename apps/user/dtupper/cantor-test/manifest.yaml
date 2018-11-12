@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: dtcantor-test-1
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0035
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0036
         ports:
         - name: cantor
           containerPort: 7443
@@ -33,7 +33,7 @@ system:
             command:
             - /usr/bin/true
       - name: dtcantor-test-2
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0035
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0036
         ports:
         - name: cantor
           containerPort: 7444
@@ -47,12 +47,14 @@ system:
         env:
         - name: SHARD
           value: "2"
+        - name : CANTOR_GRPC_PORT
+          value: 7444
         livenessProbe:
           exec:
             command:
             - /usr/bin/true
       - name: dtcantor-test-3
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0035
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0036
         ports:
         - name: cantor
           containerPort: 7445
@@ -66,6 +68,8 @@ system:
         env:
         - name: SHARD
           value: "3"
+        - name : CANTOR_GRPC_PORT
+          value: 7445
         livenessProbe:
           exec:
             command:
