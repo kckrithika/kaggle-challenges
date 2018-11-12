@@ -92,7 +92,7 @@ system:
             providers+=,grok.server_watchdog ;
             providers+=,sandman ;
             providers+=,netmgt.sandman ;
-            providers+=,infrastructure-watchdog ;
+            providers+=,mom ;
             providers+=,app.infrastructure-watchdog-cpt ;
             providers+=,cbatch.infrastructure-watchdog-cpt ;
             providers+=,dapp.infrastructure-watchdog-cpt ;
