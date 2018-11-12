@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: kube-state-metrics
+    sam.data.sfdc.net/owner: sam
+  name: kube-state-metrics
+  namespace: kube-system
+spec:
+  ports:
+  - name: http-metrics
+    port: 8080
+    protocol: TCP
+    targetPort: http-metrics
+  - name: telemetry
+    port: 8081
+    protocol: TCP
+    targetPort: telemetry
+  selector:
+    name: kube-state-metrics
