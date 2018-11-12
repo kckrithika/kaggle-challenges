@@ -51,7 +51,7 @@
                                      "--netInterfaceName=eth0",
                                      "--metricsEndpoint=" + configs.funnelVIP,
                                      "--log_dir=" + slbconfigs.logsDir,
-                                     "--maxDeleteServiceCount=" + (if configs.kingdom == "xrd" then "150" else slbconfigs.maxDeleteLimit(deleteLimitOverride)),
+                                     "--maxDeleteServiceCount=" + std.max((if configs.kingdom == "xrd" then 150 else 0), slbconfigs.maxDeleteLimit(deleteLimitOverride)),
                                      configs.sfdchosts_arg,
                                      "--client.serverInterface=lo",
                                      "--hostnameOverride=$(NODE_NAME)",
