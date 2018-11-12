@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-api-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.4.0-freeze-002.0.release-1.4.b5e54b0.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.5.0.0.develop-1.5.070e97c.27
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
@@ -31,6 +31,8 @@ system:
           value: cre-control-plane-ccp-perf.retail-cre.localhost.mesh.force.com:5443
         - name: LOG_JWT
           value: true
+        - name: HBASE_SUPER_TENANT_IDS_FLUSH
+          value: 00Dx00000005SuREAU
       ports:
       - containerPort: 8080
       - containerPort: 7022
