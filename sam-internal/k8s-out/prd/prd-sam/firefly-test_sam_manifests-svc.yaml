@@ -75,7 +75,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-sam"
                   },
-                  "report-frequency": 60,
+                  "report-frequency": 1,
                   "system-exception-threshold": 5
               }
           },
@@ -310,7 +310,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "18"
+            value: "19"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -510,7 +510,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-sam"
                   },
-                  "report-frequency": 60,
+                  "report-frequency": 1,
                   "system-exception-threshold": 5
               }
           },
@@ -745,7 +745,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "16"
+            value: "17"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -912,7 +912,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-sam"
                   },
-                  "report-frequency": 60,
+                  "report-frequency": 1,
                   "system-exception-threshold": 5
               }
           },
@@ -1142,7 +1142,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "20"
+            value: "21"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -1325,7 +1325,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-sam"
                   },
-                  "report-frequency": 60,
+                  "report-frequency": 1,
                   "system-exception-threshold": 5
               }
           },
@@ -1556,7 +1556,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "14"
+            value: "15"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE

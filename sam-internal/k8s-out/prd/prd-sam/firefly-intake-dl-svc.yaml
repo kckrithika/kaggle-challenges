@@ -63,7 +63,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-sam"
                   },
-                  "report-frequency": 60,
+                  "report-frequency": 1,
                   "system-exception-threshold": 5
               },
               "rabbitmq": {
@@ -304,7 +304,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "19"
+            value: "20"
           - name: DARKLAUNCH
             value: "true"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:258

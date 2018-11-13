@@ -31,7 +31,7 @@ data:
                     "superpod": "prd-sam"
                 },
                 "node-name": "${RABBITMQ_NODENAME}",
-                "report-frequency": 60,
+                "report-frequency": 1,
                 "system-exception-threshold": 5
             },
             "rabbitmqapi": {
