@@ -46,7 +46,7 @@ configs.deploymentBase("service-mesh") {
                 containerPort: 8080,
               },
               {
-                containerPort: 15010,
+                containerPort: 15005,
               },
               {
                 containerPort: 15011,
