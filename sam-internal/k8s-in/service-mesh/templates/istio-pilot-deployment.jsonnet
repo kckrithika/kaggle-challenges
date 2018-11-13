@@ -46,7 +46,7 @@ configs.deploymentBase("service-mesh") {
                 containerPort: 8080,
               },
               {
-                containerPort: 15010,
+                containerPort: if configs.estate == "prd-sam_gater" then 15005 else 15010,
               },
               {
                 containerPort: 15011,
@@ -116,12 +116,13 @@ configs.deploymentBase("service-mesh") {
             ],
           },
         ],
-          # In PRD only kubeapi nodes get cluster-admin permission
+        # In PRD only kubeapi (master) nodes get cluster-admin permission
+        # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
-          if configs.kingdom == "prd" then {
-              master: "true",  # In PRD only kubeapi nodes get cluster-admin permission
+          if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
+              master: "true",  # In PRD only kubeapi nodes get cluster-admin permission.
           } else {
-              pool: configs.estate,  # In production, SAM control estate nodes get cluster-admin permission
+              pool: configs.estate,  # Deploy to the sam_gater estate for others.
           },
         volumes+: [
           {

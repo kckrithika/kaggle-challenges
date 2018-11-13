@@ -12,7 +12,7 @@ local istioUtils = import "istio-utils.jsonnet";
   spec: {
     ports: [
       {
-        port: 15010,
+        port: if configs.estate == "prd-sam_gater" then 15005 else 15010,
         name: "grpc-xds",
       },
       {
