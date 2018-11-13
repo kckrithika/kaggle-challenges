@@ -32,7 +32,7 @@ system:
       ports:
       - containerPort: 12015
     - name: caas-sherpa-envoy
-      image: docker-all/dva/caas/caas-sherpa-envoy:21
+      image: docker-all/dva/caas/caas-sherpa-envoy:22
       livenessProbe:
         exec:
           command:
