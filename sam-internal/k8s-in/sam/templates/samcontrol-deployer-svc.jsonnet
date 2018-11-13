@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-if configs.kingdom == "prd" then {
+if configs.kingdom == "prd" || configs.kingdom == "xrd" then {
     kind: "Service",
     apiVersion: "v1",
     metadata: {
@@ -8,7 +8,7 @@ if configs.kingdom == "prd" then {
         labels: {
             app: "samcontrol-deployer",
         } + configs.ownerLabel.sam,
-        annotations: if configs.estate == "prd-sam" then {
+        annotations: if configs.estate == "prd-sam" || configs.estate == "xrd-sam" then {
             "slb.sfdc.net/name": "samcontrol-deployer",
             "slb.sfdc.net/portconfigurations": std.toString(
                 [
