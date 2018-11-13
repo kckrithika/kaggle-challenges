@@ -10,7 +10,7 @@ system:
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/2/
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-ordering:5ccad648fba8117c1724580f12fb3d50580e2fee
       args:
-      - --shipping.interval=10000
+      - --shipping.interval=5000
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -19,7 +19,7 @@ system:
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: SCONE_DEPLOYMENT_JVM_OPTIONS
-        value: "-Dscone.service.name=ordering-service-rate-limited -Dshipping.interval=10000"
+        value: "-Dscone.service.name=ordering-service-rate-limited -Dshipping.interval=5000"
       ports:
       - containerPort: 7020
         name: grpc-svc
@@ -32,8 +32,8 @@ system:
           port: 15372
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/107
-      image: sfci/servicelibs/sherpa-envoy:15ba701b80f98b71517e4705c12ca2ac339ab9a7
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/115
+      image: sfci/servicelibs/sherpa-envoy:a4d3a324972ddb29a0b7c2b071ac822cb50d746c
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
