@@ -278,6 +278,16 @@
         name: "var-config-volume",
         mountPath: "/host/data/slb/config/" + $.dirSuffix,
     },
+    slb_kern_log_volume: {
+        name: "var-kern-log-volume",
+        hostPath: {
+            path: "/var/log",
+        },
+    },
+    slb_kern_log_volume_mount: {
+        name: "var-kern-log-volume",
+        mountPath: "/var/log",
+    },
 
     # Frequently used volume: logs
     logs_volume: {

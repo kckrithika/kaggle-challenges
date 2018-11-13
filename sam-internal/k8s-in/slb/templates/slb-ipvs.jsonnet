@@ -55,6 +55,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbconfigs.sbin_volume,
                     slbconfigs.cleanup_logs_volume,
                     slbconfigs.proxyconfig_volume,
+                    if slbflights.kernLogCleanup then slbconfigs.slb_kern_log_volume else {},
                 ]),
                 containers: [
                     {
@@ -223,7 +224,23 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIpvsOverridePort, true),
                     slbshared.slbLogCleanup,
                     slbshared.slbManifestWatcher(),
-                ],
+                ] + (if slbflights.kernLogCleanup then [
+                    {
+                        name: "slb-cleanup-kern-logs",
+                        image: slbimages.hypersdn,
+                         [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
+                        command: [
+                            "/bin/bash",
+                            "-xe",
+                            "/config/slb-cleanup-logs.sh",
+                            "\"/var/log/kern.*\"",
+                        ],
+                        volumeMounts: configs.filter_empty([
+                            configs.config_volume_mount,
+                            slbconfigs.slb_kern_log_volume_mount,
+                        ]),
+                    },
+                ] else []),
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
                 },

@@ -20,4 +20,5 @@ local configs = import "config.jsonnet";
     proxyconfig_volume: (if $.supportedProxiesEnabled then slbconfigs.proxyconfig_volume else {}),
     reduceNginxMinReady: (slbimages.hypersdn_build >= 1355),
     tuneIfaceSentinelExpiration: (slbimages.hypersdn_build > 1355),
+    kernLogCleanup: (slbimages.phaseNum <= 1),
 }
