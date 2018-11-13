@@ -1,6 +1,8 @@
 local configs = import "config.jsonnet";
 local istioUtils = import "istio-utils.jsonnet";
 
+if configs.estate != "prd-sam" then
+// Skip for prd-sam. For PRD, we will be deploying to prd-sam_gater pool.
 {
   apiVersion: "v1",
   kind: "Service",
@@ -12,7 +14,7 @@ local istioUtils = import "istio-utils.jsonnet";
   spec: {
     ports: [
       {
-        port: if configs.estate == "prd-sam_gater" then 15005 else 15010,
+        port: 15005,
         name: "grpc-xds",
       },
       {
@@ -33,3 +35,4 @@ local istioUtils = import "istio-utils.jsonnet";
     },
   },
 }
+else "SKIP"
