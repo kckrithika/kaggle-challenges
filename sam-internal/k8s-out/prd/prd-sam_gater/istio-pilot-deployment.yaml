@@ -115,7 +115,7 @@ spec:
         - mountPath: /etc/istio/config
           name: config-volume
       nodeSelector:
-        master: "true"
+        pool: prd-sam_gater
       volumes:
       - hostPath:
           path: /etc/pki_service

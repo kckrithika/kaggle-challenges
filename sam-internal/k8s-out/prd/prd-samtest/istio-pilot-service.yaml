@@ -9,7 +9,7 @@ metadata:
 spec:
   ports:
   - name: grpc-xds
-    port: 15005
+    port: 15010
   - name: https-xds
     port: 15011
   - name: http-legacy-discovery
