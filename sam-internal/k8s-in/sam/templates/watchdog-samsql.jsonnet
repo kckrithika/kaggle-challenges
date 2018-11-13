@@ -19,7 +19,7 @@ if configs.estate == "prd-sam" then {
                                     "--role=GLOBAL",
                                     "--sqlDbUsername=watchdog",
                                     "--sqlDbPasswordFile=/var/secrets/mysql.txt",
-                                    "--sqlDbHostname=" + mysql.hostName,
+                                    "--sqlDbHostname=" + mysql.readOnlyHostName,
                                     "--sqlK8sResourceDbName=" + mysql.visibilityDBName,
                                     "--sqlDbPort=3306",
                                     "--sqlQueryFile=/var/queries/watchdog-samsql-queries.jsonnet",
