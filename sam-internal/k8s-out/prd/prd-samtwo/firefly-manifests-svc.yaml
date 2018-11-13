@@ -32,6 +32,7 @@ items:
               },
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
+              "max-latency": "600000ms",
               "repo-config": {
                   "manifest_driven_promotions": {
                       "type": "artifacts"
@@ -309,7 +310,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "13"
+            value: "14"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -461,6 +462,7 @@ items:
               },
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
+              "max-latency": "600000ms",
               "repo-config": {
                   "manifest_driven_promotions": {
                       "type": "artifacts"
@@ -738,7 +740,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "11"
+            value: "12"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE

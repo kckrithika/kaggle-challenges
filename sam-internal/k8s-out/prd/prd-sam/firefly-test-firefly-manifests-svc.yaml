@@ -32,6 +32,7 @@ items:
               },
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
+              "max-latency": "600000ms",
               "repo-config": {
                   "manifest_driven_promotions": {
                       "type": "artifacts"
@@ -309,7 +310,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "17"
+            value: "18"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -320,7 +321,7 @@ items:
             value: sam-test-firefly-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: sam-test-firefly-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:255
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:258
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -466,6 +467,7 @@ items:
               },
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
+              "max-latency": "600000ms",
               "repo-config": {
                   "manifest_driven_promotions": {
                       "type": "artifacts"
@@ -743,7 +745,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "15"
+            value: "16"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -754,7 +756,7 @@ items:
             value: sam-test-firefly-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: sam-test-firefly-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:255
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:258
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1147,7 +1149,7 @@ items:
             value: test-firefly-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: sam-test-firefly-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:256
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:258
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1561,7 +1563,7 @@ items:
             value: test-firefly-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: sam-test-firefly-manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:255
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:258
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10

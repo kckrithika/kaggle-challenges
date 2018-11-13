@@ -28,8 +28,8 @@ local kingdom = std.extVar("kingdom");
         "2": $.per_phase["3"] {
              fireflyintake: "19",
              fireflycrawler: "17",
-             fireflypackage: "17",
-             fireflypackagesingleton: "15",
+             fireflypackage: "18",
+             fireflypackagesingleton: "16",
              fireflypromotion: "14",
              fireflypullrequest: "20",
              fireflyevalresultmonitor: "11",
@@ -41,8 +41,8 @@ local kingdom = std.extVar("kingdom");
         "3": $.per_phase["4"] {
              fireflyintake: "12",
              fireflycrawler: "12",
-             fireflypackage: "13",
-             fireflypackagesingleton: "11",
+             fireflypackage: "14",
+             fireflypackagesingleton: "12",
              fireflypromotion: "9",
              fireflypullrequest: "14",
              fireflyevalresultmonitor: "7",
