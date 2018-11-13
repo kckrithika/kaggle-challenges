@@ -21,13 +21,13 @@ if configs.estate == "prd-samtest" then {
                 name: "http-metrics",
                 port: 8080,
                 protocol: "TCP",
-                targetPort: "http-metrics",
+                targetPort: 8080,
             },
             {
                 name: "telemetry",
                 port: 8081,
                 protocol: "TCP",
-                targetPort: "telemetry",
+                targetPort: 8081,
             },
         ],
         selector: {
