@@ -20,7 +20,7 @@ system:
           name: redis-sock
       args: 
         - --port=12015
-        - --maxMemoryMB=5120
+        - --maxMemoryMB=4096
         - --logDir=/home/caas/logs
         - --disableProtectedMode
       livenessProbe:
