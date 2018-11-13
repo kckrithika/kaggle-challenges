@@ -9,7 +9,7 @@ system:
       command:
       - "/sam/sam-deployment-portal-v2"
       - --port=64123
-      - --db-hostname=mysql.csc-sam.prd-sam.prd.slb.sfdc.net
+      - --db-hostname=mysql-read.sam-system.prd-sam.prd.slb.sfdc.net
       - --db-username=sdpv2
       - --db-password-file=/volumes/sql-dbpass/sql-dbpass
       - --db-name=sam_kube_resource
