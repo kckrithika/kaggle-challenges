@@ -38,7 +38,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                     (if slbflights.supportedProxiesEnabled then slbconfigs.proxyconfig_volume else {}),
                 ]),
                 containers: [
-                    slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIfaceOverridePort),
+                    slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIfaceOverridePort, false),
                     slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorIfaceLivenessProbeOverridePort),
                     slbshared.slbCleanupConfig,
                     slbshared.slbNodeApi(slbports.slb.slbNodeApiIfaceOverridePort, false),
