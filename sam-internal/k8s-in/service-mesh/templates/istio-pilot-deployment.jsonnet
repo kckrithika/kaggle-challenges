@@ -3,7 +3,7 @@ local istioUtils = import "istio-utils.jsonnet";
 local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
 
 if configs.estate != "prd-sam" then
-// Skip for prd-sam. For PRD, we will be deploying to prd-sam_gater pool.
+  // Skip for prd-sam. For PRD, we will be deploying to prd-sam_gater pool.
   configs.deploymentBase("service-mesh") {
     metadata+: {
       name: "istio-pilot",
