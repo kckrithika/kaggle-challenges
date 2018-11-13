@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: kube-state-metrics
+  name: kube-state-metrics
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: kube-state-metrics
+  template:
+    metadata:
+      labels:
+        name: kube-state-metrics
+        sam.data.sfdc.net/owner: sam
+      namespace: kube-system
+    spec:
+      containers:
+      - command:
+        - /kube-state-metrics
+        - --kubeconfig=/kubeconfig/kubeconfig-platform
+        - --port=8080
+        - --telemetry-port=8081
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lizhang/kube-state-metrics:v1.4.0
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        name: kube-state-metrics
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /data/certs
+          name: certs
+      nodeSelector:
+        pool: prd-sam
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs

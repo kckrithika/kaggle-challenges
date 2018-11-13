@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     kind: "Service",
     apiVersion: "v1",
     metadata: {
