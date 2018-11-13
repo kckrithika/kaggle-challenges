@@ -25,12 +25,14 @@ system:
         value: 18443
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PROTOCOL
         value: https
+      - name: RC_WD_REPORTCOLLECTOR_PROVIDER_TIMEOUTMS
+        value: 17000
       - name: RC_WD_REPORTCOLLECTOR_CONSUMER_PORT
         value: 18444
       - name: RC_WD_REPORTCOLLECTOR_CONSUMER_PROTOCOL
         value: https
       - name: RC_WD_REPORTCOLLECTOR_CONSUMER_TIMEOUTMS
-        value: 90000
+        value: 32000
       - name: RC_WD_VERIFYREPORTISTRUSTED
         value: true
       - name: RC_WD_SSL_VERIFYSERVERIDENTITY
