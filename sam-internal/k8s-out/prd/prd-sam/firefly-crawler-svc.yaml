@@ -53,7 +53,7 @@ items:
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-sam"
                   },
-                  "report-frequency": 60,
+                  "report-frequency": 1,
                   "system-exception-threshold": 5
               }
           },
