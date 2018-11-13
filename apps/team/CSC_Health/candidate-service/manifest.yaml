@@ -97,6 +97,7 @@ system:
             providers+=,cbatch.infrastructure-watchdog-cpt ;
             providers+=,dapp.infrastructure-watchdog-cpt ;
             providers+=,ffx.infrastructure-watchdog-cpt ;
+            providers+=,health.infrastructure-watchdog-cpt ;
             providers+=,search.infrastructure-watchdog-cpt ;
 
             export CHS_REPORTCOLLECTOR_WHITELIST=${providers} ;
