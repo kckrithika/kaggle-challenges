@@ -47,6 +47,7 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
           type: 'artifacts',
         },
       },
+      'max-latency': '600000ms',
       'root-dir': envConfig.environmentMapping[configs.estate].rootDir,
       'instance-type': '${INSTANCE_TYPE}',
       'service-mode': '${SERVICE_MODE}',
