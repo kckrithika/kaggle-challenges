@@ -415,16 +415,10 @@ system:
 # TODO: Change to 80 in production
     - port: 8086
       targetport: 12060
-      lbtype: http
-      tls: false
-      reencrypt: true
 # HTTPS listen port of Envoy.
 # TODO: Manifest validation fails for port 443. Add 443 in production
     - port: 8443
       targetport: 12060
-      lbtype: http
-      tls: true
-      reencrypt: true
 # Admin ports - TODO - Don't expose this. Exposed for now for debugging.
     - port: 8087
       targetport: 15373
