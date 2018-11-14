@@ -1,0 +1,35 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - thargrove@salesforce.com
+  functions:
+  - name: guslint
+    count: 1
+    containers:
+    - name: guslint 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/guscop:thargrove-20181114_115651-9e2982c
+      command: ["/bin/guscop"]
+      args: ["--port=8000","--secretfile=/var/secrets/gussecret.json"]
+      ports:
+      - containerPort: 8000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
+      volumeMounts:
+        - mountPath: /var/secrets/
+          name: gussecret
+          readOnly: true
+    volumes:
+    - name: gussecret
+      secret:
+        secretName: gussecret
+  loadbalancers:
+  - lbname: guslint
+    function: guslint
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 8000
