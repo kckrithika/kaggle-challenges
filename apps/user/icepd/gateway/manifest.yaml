@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: gateway
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ice-pd/gateway:1.1.0-8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ice-pd/gateway:1.1.0-9
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -20,6 +20,7 @@ system:
       - containerPort: 8080
       - containerPort: 15372
       - containerPort: 7020
+      - containerPort: 8081
       volumeMounts:
       - mountPath: /secrets/
         name: secretvol
@@ -50,3 +51,6 @@ system:
       - port: 7020
         targetport: 7020
         lbtype: tcp
+      - port: 8081
+	targetport: 8081
+	lbtype: tcp
