@@ -779,6 +779,7 @@
     tlscertificate: secret_service:login-cloudforce:cert
     tlskey: secret_service:login-cloudforce:key
     healthprotocol: http
+    healthport: 8085
     healthpath: /ping.jsp?allBusy
     addheaders:
     - name: "SFDC-LOGIN-LOAD-BALANCER"
