@@ -195,7 +195,7 @@
             configs.sfdchosts_volume_mount,
         ]),
     },
-    slbIfaceProcessor(nodeApiPort, deleteLimitOverride=0): {
+    slbIfaceProcessor(nodeApiPort, addIfaceIfIPVSHost, deleteLimitOverride=0): {
         name: "slb-iface-processor",
         image: slbimages.hypersdn,
         command: [
@@ -216,7 +216,8 @@
                      ] else [])
                  + (if slbimages.hypersdn_build >= 1355 then [] else slbconfigs.getNodeApiClientSocketSettings())
                  + ["--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet]
-                 + (if slbimages.hypersdn_build >= 1355 then [] else ["--maxDeleteVipCount=" + slbconfigs.maxDeleteLimit(deleteLimitOverride)]),
+                 + (if slbimages.hypersdn_build >= 1355 then [] else ["--maxDeleteVipCount=" + slbconfigs.maxDeleteLimit(deleteLimitOverride)])
+                 + (if configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1362 then ["--addIfaceIfIPVSHost=" + addIfaceIfIPVSHost] else []),
         volumeMounts: std.prune([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
