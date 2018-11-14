@@ -5,7 +5,7 @@ system:
       - xiao.zhou@salesforce.com
   functions:
   - name: secret-test
-    count: 1
+    count: 2
     progressDeadlineSeconds: 120
     containers:
     - name: secrethello
