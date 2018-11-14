@@ -31,6 +31,22 @@ system:
           value: cre-control-plane-ccp-perf.retail-cre.localhost.mesh.force.com:5443
         - name: LOG_JWT
           value: true
+        - name: JVM_ARGS
+          value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=8
+                  -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                  -Xloggc:/opt/cre/cre-api-ccp-perf/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                  -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/opt/cre/cre-api-ccp-perf
+                  -Dcom.sun.management.jmxremote.port=8898
+                  -Dcom.sun.management.jmxremote.rmi.port=8898
+                  -Dcom.sun.management.jmxremote.ssl=false
+                  -Dcom.sun.management.jmxremote.authenticate=false
+                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
+      resources:
+        limits: { cpu: "8", memory: "6Gi" }
+        requests: { cpu: "8", memory: "5Gi" }
       ports:
       - containerPort: 8080
       - containerPort: 7022
@@ -92,6 +108,9 @@ system:
       # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
       # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
       # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -119,4 +138,4 @@ system:
     slbenabled: true
     ports:
       - port: 8084
-        targetport: 8080
+        targetport: 7022
