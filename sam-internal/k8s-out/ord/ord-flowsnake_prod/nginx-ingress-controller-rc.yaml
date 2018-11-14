@@ -37,12 +37,18 @@ spec:
         image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-ingress-controller-nginx:662
         imagePullPolicy: IfNotPresent
         livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 80
-            scheme: HTTP
-          initialDelaySeconds: 10
-          timeoutSeconds: 1
+          exec:
+            command:
+            - sh
+            - -c
+            - reply=$(curl -s -o /dev/null -w %{http_code} http://127.0.0.1:80/healthz);
+              if [ "$reply" -lt 200 -o "$reply" -ge 400 ]; then exit 1; fi; ps -o
+              comm,etime | grep nginx-ingress | grep -cE '[1-9]-[0-9]' | grep -q 0
+          failureThreshold: 5
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
         name: nginx-ingress-lb
         ports:
         - containerPort: 80
