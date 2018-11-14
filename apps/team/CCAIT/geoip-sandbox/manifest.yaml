@@ -29,7 +29,7 @@ system:
       - name: COM_MAXMIND_DATABASE_FILE
         value: /dw/data/GeoIP2-City.mmdb
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-        value: 2
+        value: "2"
       resources:
         limits:
           cpu: "4"
@@ -50,9 +50,8 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
-
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:7e3156776f7666607e0429456ff19291c0c5060a
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
       ports:
       - name: http2-in
         containerPort: 7012
