@@ -26,10 +26,7 @@ local samreleases = import "samreleases.json";
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002365-809ebf54",
 
         #[xiao] Fix synthetic in prd
-        "prd,prd-samtest,temp-crd-watcher,hypersam": "sam-0002369-86f6c658",
-        "prd,prd-samdev,temp-crd-watcher,hypersam": "sam-0002369-86f6c658",
         "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0002369-86f6c658",
-        "prd,prd-samdev,samapp-controller,hypersam": "sam-0002365-809ebf54",
 
          #[min.wang] Test Watchdog InitMetricsClient
          "prd, prd-samtest, node-controller, hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/min.wang/hypersam:20181029_160337.c61213b4.clean.minwang-ltm0",
@@ -40,7 +37,6 @@ local samreleases = import "samreleases.json";
            [std.substr(ce, 0, 3) + "," + ce + "," + wd + ",hypersam"]: "sam-0002347-34f588d0"
 for ce in [
                         "cdg-sam",
-                        "cdu-sam",
                         "chx-sam",
                         "dfw-sam",
                         "fra-sam",
@@ -56,7 +52,6 @@ for ce in [
                         "syd-sam",
                         "ukb-sam",
                         "wax-sam",
-                        "xrd-sam",
                         "yhu-sam",
                         "yul-sam",
 ]
@@ -93,10 +88,8 @@ for ce in [
             for cl in [
                 "frf-sam",
                 "prd-sam",
-                "prd-samdev",
                 "prd-sam_storage",
                 "prd-sam_storagedev",
-                "prd-samtest",
                 "prd-samtwo",
                 "prd-sdc",
                 "xrd-sam",
