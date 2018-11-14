@@ -6,7 +6,7 @@ system:
         - dtupper@salesforce.com
     functions:
     - name: dtmaiev-test-func
-      count: 10
+      count: 1
       containers:
       - name: dt-warden-test
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/casp-maiev:test-0001
