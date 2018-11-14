@@ -360,7 +360,6 @@ spec:
           name: proxyconfig
       - command:
         - /bin/bash
-        - -xe
         - /config/slb-cleanup-logs.sh
         - '"/var/log/kern.*"'
         - "3600"

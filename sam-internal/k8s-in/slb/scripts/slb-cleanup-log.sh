@@ -20,6 +20,6 @@ interval_in_seconds=$2
 while true
 do
     clean_logs "$log_path"
-    sleep $interval_in_seconds
+    sleep "$interval_in_seconds"
 done
 

@@ -23,7 +23,7 @@ data:
     while true
     do
         clean_logs "$log_path"
-        sleep $interval_in_seconds
+        sleep "$interval_in_seconds"
     done
 
 kind: ConfigMap

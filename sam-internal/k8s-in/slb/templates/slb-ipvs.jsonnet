@@ -25,7 +25,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
             },
             spec: {
                 hostNetwork: true,
-                volumes: configs.filter_empty([
+                volumes: std.prune([
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
                     {
@@ -78,7 +78,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         [
                             configs.sfdchosts_arg,
                         ],
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts: std.prune([
                             {
                                 name: "dev-volume",
                                 mountPath: "/dev",
@@ -148,7 +148,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         + (if slbflights.syncHealthConfigEnabled then [
                             "--healthcheck.healthchecktimeout=3s",
                         ] else []),
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
@@ -174,7 +174,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--log_dir=" + slbconfigs.logsDir,
                             configs.sfdchosts_arg,
                         ],
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
                             slbconfigs.usr_sbin_volume_mount,
@@ -208,7 +208,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--enableAcl=true",
                             "--enableConntrack=false",
                         ] + slbconfigs.getNodeApiClientSocketSettings(),
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
@@ -229,15 +229,13 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     {
                         name: "slb-cleanup-kern-logs",
                         image: slbimages.hypersdn,
-                         [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                             "/bin/bash",
-                            "-xe",
                             "/config/slb-cleanup-logs.sh",
-                            "\"/var/log/kern.*\"",
+                            '\"/var/log/kern.*\"',
                             "3600",
                         ],
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts: std.prune([
                             configs.config_volume_mount,
                             slbconfigs.slb_kern_log_volume_mount,
                         ]),
