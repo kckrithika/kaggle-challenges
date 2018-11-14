@@ -57,7 +57,7 @@ system:
           readOnly: true
 
     - name: sherpa-mds
-      image: sfci/servicelibs/sherpa-envoy:1.0.2
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
       env:
         - name: SFDC_ENVIRONMENT
           value: stmfa

@@ -28,7 +28,7 @@ system:
         secretName: mds-gdot-secrets-prd
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.5.32
+      image: sfci/metadata-cannon/metadata-service:0.5.44
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -73,7 +73,7 @@ system:
           readOnly: true
 
     - name: sherpa-mds
-      image: sfci/servicelibs/sherpa-envoy:1.0.2
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
