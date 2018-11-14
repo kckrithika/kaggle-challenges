@@ -4,7 +4,7 @@ system:
   functions: 
     - name: na72-search-mario-ord
       type: stateful-set
-      count: 3
+      count: 15
       containers:  
       - name: searchserver 
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/search-teams/solrservice/searchserver:309
