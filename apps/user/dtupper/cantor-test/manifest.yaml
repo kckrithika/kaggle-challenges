@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: dtcantor-test-1
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0037
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0040
         ports:
         - name: cantor
           containerPort: 7443
@@ -33,7 +33,7 @@ system:
             command:
             - /usr/bin/true
       - name: dtcantor-test-2
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0037
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0040
         ports:
         - name: cantor
           containerPort: 7444
@@ -54,7 +54,7 @@ system:
             command:
             - /usr/bin/true
       - name: dtcantor-test-3
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0038
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0040
         ports:
         - name: cantor
           containerPort: 7445
