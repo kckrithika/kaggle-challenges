@@ -421,3 +421,6 @@ spec:
       - hostPath:
           path: /var/log
         name: var-kern-log-volume
+      - configMap:
+          name: slb-cleanup-logs
+        name: config

@@ -56,6 +56,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbconfigs.cleanup_logs_volume,
                     slbconfigs.proxyconfig_volume,
                     if slbflights.kernLogCleanup then slbconfigs.slb_kern_log_volume else {},
+                    if slbflights.kernLogCleanup then configs.config_volume("slb-cleanup-logs") else {},
                 ]),
                 containers: [
                     {
