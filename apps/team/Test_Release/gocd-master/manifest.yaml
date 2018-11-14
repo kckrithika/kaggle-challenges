@@ -8,7 +8,7 @@ system:
     - name: jenkins-master
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/testandrelease/gocd_server_docker:1.0-0000024-b0c87f85
       ports:
-      - name: ui3
+      - name: ui4
         containerPort: 8153
       - name: agent
         containerPort: 8154
