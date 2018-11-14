@@ -151,7 +151,7 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                ingress_daily_restart: "unverified",
+                ingress_daily_restart: "verified",
             },
             version_mapping: {
                 main: {
@@ -184,6 +184,7 @@ local utils = import "util_functions.jsonnet";
                 ### issue PR to deploy your changes. Then create a follow-on PR
                 ### that deletes all the feature flags and conditional logic from
                 ### the templates. This PR should not result in any k8s-out diffs.
+                ingress_daily_restart: "unverified",
             },
             version_mapping: {
                 main: {
