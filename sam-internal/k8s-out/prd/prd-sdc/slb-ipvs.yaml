@@ -363,6 +363,7 @@ spec:
         - -xe
         - /config/slb-cleanup-logs.sh
         - '"/var/log/kern.*"'
+        - "3600"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001367-96a6bbe0
         name: slb-cleanup-kern-logs
         volumeMounts:

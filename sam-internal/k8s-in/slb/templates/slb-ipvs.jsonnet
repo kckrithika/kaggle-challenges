@@ -235,6 +235,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "-xe",
                             "/config/slb-cleanup-logs.sh",
                             "\"/var/log/kern.*\"",
+                            "3600",
                         ],
                         volumeMounts: configs.filter_empty([
                             configs.config_volume_mount,

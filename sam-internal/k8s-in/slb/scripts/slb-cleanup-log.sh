@@ -16,9 +16,10 @@ function clean_logs() {
 }
 
 log_path=$1
+interval_in_seconds=$2
 while true
 do
     clean_logs "$log_path"
-    sleep 10
+    sleep $interval_in_seconds
 done
 
