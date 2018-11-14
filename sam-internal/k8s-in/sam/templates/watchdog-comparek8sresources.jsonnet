@@ -17,7 +17,7 @@ if configs.estate == "prd-sam" then {
                                     "/sam/watchdog",
                                     "--role=COMPAREK8SRESOURCES",
                                     "--emailFrequency=24h",
-                                    "--watchdogFrequency=15m",
+                                    "--watchdogFrequency=12h",
                                     "--alertThreshold=1h",
                                     "--enableEmailPerCheckerInstance=true",
                                     "--recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com,prabh.singh@salesforce.com",
