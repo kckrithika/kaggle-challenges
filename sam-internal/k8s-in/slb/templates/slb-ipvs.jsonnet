@@ -25,7 +25,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
             },
             spec: {
                 hostNetwork: true,
-                volumes: configs.filter_empty([
+                volumes: std.prune([
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
                     {
@@ -55,6 +55,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbconfigs.sbin_volume,
                     slbconfigs.cleanup_logs_volume,
                     slbconfigs.proxyconfig_volume,
+                    if slbflights.kernLogCleanup then slbconfigs.slb_kern_log_volume else {},
+                    if slbflights.kernLogCleanup then configs.config_volume("slb-cleanup-logs") else {},
                 ]),
                 containers: [
                     {
@@ -76,7 +78,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         [
                             configs.sfdchosts_arg,
                         ],
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts: std.prune([
                             {
                                 name: "dev-volume",
                                 mountPath: "/dev",
@@ -146,7 +148,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         + (if slbflights.syncHealthConfigEnabled then [
                             "--healthcheck.healthchecktimeout=3s",
                         ] else []),
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
@@ -172,7 +174,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--log_dir=" + slbconfigs.logsDir,
                             configs.sfdchosts_arg,
                         ],
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
                             slbconfigs.usr_sbin_volume_mount,
@@ -206,7 +208,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--enableAcl=true",
                             "--enableConntrack=false",
                         ] + slbconfigs.getNodeApiClientSocketSettings(),
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
@@ -223,7 +225,22 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIpvsOverridePort, true),
                     slbshared.slbLogCleanup,
                     slbshared.slbManifestWatcher(),
-                ],
+                ] + (if slbflights.kernLogCleanup then [
+                    {
+                        name: "slb-cleanup-kern-logs",
+                        image: slbimages.hypersdn,
+                        command: [
+                            "/bin/bash",
+                            "/config/slb-cleanup-logs.sh",
+                            '"/var/log/kern.*"',
+                            "3600",
+                        ],
+                        volumeMounts: std.prune([
+                            configs.config_volume_mount,
+                            slbconfigs.slb_kern_log_volume_mount,
+                        ]),
+                    },
+                ] else []),
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
                 },
