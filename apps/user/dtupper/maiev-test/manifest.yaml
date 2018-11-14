@@ -1,0 +1,12 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - dtupper@salesforce.com
+    functions:
+    - name: dtmaiev-test-func
+      count: 1
+      containers:
+      - name: dt-warden-test
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-maiev:test-0001
