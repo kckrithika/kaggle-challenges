@@ -16,6 +16,7 @@ system:
       - containerPort: 8000
       livenessProbe:
         initialDelaySeconds: 30
+        periodSeconds: 15
         httpGet:
           path: /probe
           port: 8000
