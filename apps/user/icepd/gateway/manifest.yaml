@@ -3,13 +3,13 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - iceplatformdev@salesforce.com 
+      - gk-support@salesforce.com 
   functions:
   - name: gateway
     count: 3
     containers:
     - name: gateway
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ice-pd/gateway:1.1.0-6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ice-pd/gateway:1.1.0-8
       livenessProbe:
         httpGet:
           path: /manage/health
