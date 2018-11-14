@@ -54,7 +54,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:9026c7e0032acdb88c607d20b1ca988b5975525d
+      image: sfci/servicelibs/sherpa-envoy:7e3156776f7666607e0429456ff19291c0c5060a
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
