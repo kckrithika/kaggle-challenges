@@ -82,7 +82,6 @@ std.prune({
   enableK4aChecks: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then true),
   enableMaddogCertChecks: (if samfeatureflags.maddogforsamapps && !utils.is_public_cloud(configs.kingdom) then true else false),
   deleteSyntheticDeployment: false,
-
   filesystemCheckDirs: [
     "/data/",
     "/data/logs/sdn/",
@@ -127,3 +126,7 @@ std.prune({
      KubeletErrorPerSecond: 1,
      KubeletErrorCheckerFrequency: "20s",
     } else {})
+
+  + (if configs.estate == "prd-sam" then {
+     whiteListNamespaceRegexp: ["^[^.]+"],
+     } else {})
