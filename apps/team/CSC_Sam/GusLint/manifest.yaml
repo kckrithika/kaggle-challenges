@@ -9,14 +9,16 @@ system:
     count: 1
     containers:
     - name: guslint 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/guscop:thargrove-20181114_115651-9e2982c
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/guscop:thargrove-20181114_130404-69a18d7
       command: ["/bin/guscop"]
       args: ["--port=8000","--secretfile=/var/secrets/gussecret.json"]
       ports:
       - containerPort: 8000
       livenessProbe:
+        initialDelaySeconds: 30
+        periodSeconds: 15
         httpGet:
-          path: /
+          path: /probe
           port: 8000
       volumeMounts:
         - mountPath: /var/secrets/
