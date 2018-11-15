@@ -10,3 +10,10 @@ system:
       containers:
       - name: dt-maiev-test
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-maiev:test-0002
+    loadbalancers:
+    - lbname: maievlb
+      function: dtmaiev-test-func
+      slbEnabled: true
+      ports:
+        - port: 80
+          targetport: 8889
