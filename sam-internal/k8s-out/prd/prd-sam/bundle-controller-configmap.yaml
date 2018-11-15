@@ -8,7 +8,10 @@ data:
       "whiteListNamespaceRegexp": [
         "^ci-*",
         "user-xiao-zhou",
-        "user-rbhat"
+        "user-rbhat",
+        "user-thargrove",
+        "user-minwang",
+        "user-jiayi-yan"
       ]
     }
 kind: ConfigMap
