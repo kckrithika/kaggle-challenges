@@ -62,6 +62,22 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: firefly:prd-sam_tnrp_merger:rolebinding
+    namespace: firefly
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiontnrpmerger1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiontnrpmerger1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiontnrpmerger2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: test-release:prd-sam_tnrp_merger:rolebinding
     namespace: test-release
   roleRef:
@@ -78,6 +94,22 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: firefly:prd-sam_tnrp_promoter:rolebinding
+    namespace: firefly
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiontnrppromoter1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiontnrppromoter1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiontnrppromoter2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: test-release:prd-sam_tnrp_promoter:rolebinding
     namespace: test-release
   roleRef:
@@ -91,6 +123,22 @@ items:
     name: shared0-samminiontnrppromoter1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminiontnrppromoter2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: firefly:prd-sam_tnrp_signer:rolebinding
+    namespace: firefly
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiontnrpsigner1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiontnrpsigner1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiontnrpsigner2-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:

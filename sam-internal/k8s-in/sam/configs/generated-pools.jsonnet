@@ -2213,10 +2213,12 @@
     },
     {
       "namespaces": [
-        "test-release"
+        "test-release",
+        "firefly"
       ],
       "access": [
-        "team/Test_Release"
+        "team/Test_Release",
+        "team/firefly"
       ],
       "controlEstate": "prd-samtwo",
       "estate": "prd-sam_tnrp_merger",
@@ -2225,10 +2227,12 @@
     },
     {
       "namespaces": [
-        "test-release"
+        "test-release",
+        "firefly"
       ],
       "access": [
-        "team/Test_Release"
+        "team/Test_Release",
+        "team/firefly"
       ],
       "controlEstate": "prd-samtwo",
       "estate": "prd-sam_tnrp_promoter",
@@ -2237,10 +2241,12 @@
     },
     {
       "namespaces": [
-        "test-release"
+        "test-release",
+        "firefly"
       ],
       "access": [
-        "team/Test_Release"
+        "team/Test_Release",
+        "team/firefly"
       ],
       "controlEstate": "prd-samtwo",
       "estate": "prd-sam_tnrp_signer",
