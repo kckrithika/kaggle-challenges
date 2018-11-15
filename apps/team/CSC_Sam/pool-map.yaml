@@ -84,5 +84,5 @@ apps:
  snapshot-producer: 
   - frf/frf-sam
   - cdu/cdu-sam
- GusLint2:
+ GusLint:
   - prd/prd-sam
