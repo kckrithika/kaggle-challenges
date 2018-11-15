@@ -73,6 +73,8 @@ system:
       env:
        - name: SFDC_ENVIRONMENT
          value: mist30
+       - name: CAAS_DUMMY_FOR_RESTART
+         value: 1
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
