@@ -3,3 +3,5 @@ apps:
         - prd/prd-sam
     cantor-test:
         - prd/prd-sam
+    maiev-test:
+        - prd/prd-sam
