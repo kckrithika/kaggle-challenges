@@ -9,7 +9,8 @@ data:
         "user-rbhat",
         "user-thargrove",
         "user-minwang",
-        "user-jiayi-yan"
+        "user-jiayi-yan",
+        "moe"
       ],
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
