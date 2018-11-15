@@ -28,7 +28,7 @@ spec:
         - --serviceName=slb-canary-proxy-tcp-host
         - --log_dir=/host/data/slb/logs/
         - --ports=9120
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001371-596e3790
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001372-6d3379f9
         name: slb-canary-proxy-tcp-host
         volumeMounts:
         - mountPath: /host/data/slb/logs/
