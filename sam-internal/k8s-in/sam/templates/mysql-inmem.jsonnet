@@ -5,7 +5,7 @@ local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile 
 
 local certDirs = ["cert1"];
 
-if configs.estate == "prd-samdev" then {
+if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
             apiVersion: "apps/v1beta1",
             kind: "StatefulSet",
             metadata: {
@@ -60,7 +60,7 @@ if configs.estate == "prd-samdev" then {
                                                   key: "pool",
                                                   operator: "In",
                                                   values: [
-                                                      "prd-sam",
+                                                      "prd-samdev",
                                                     ],
                                                 },
                                             ],
@@ -250,7 +250,7 @@ if configs.estate == "prd-samdev" then {
                                     mv change_master_to.sql.in change_master_to.sql.orig
                                     mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS <<EOF
                                     $(<change_master_to.sql.orig),
-                                    MASTER_HOST='mysql-inmem-0.mysql-service',
+                                    MASTER_HOST='mysql-inmem-0.mysql-inmem-service',
                                     MASTER_USER='$MYSQL_ROOT_USER',
                                     MASTER_PASSWORD='$MYSQL_ROOT_PASS',
                                     MASTER_CONNECT_RETRY=10;
@@ -447,9 +447,11 @@ if configs.estate == "prd-samdev" then {
                                       exit 1
                                     fi
                                   else
-                                    # Clone data from previous peer.
-                                    ncat --recv-only mysql-inmem-$(($ordinal-1)).mysql-service 3307 | xbstream -x -C /var/lib/mysql
-                                    # Prepare the backup.
+                                    ## # Clone data from previous peer.
+                                    # I don't believe this works for IDEMPOTENT slaves. Trying to set master to 0 to see if that fixes this problem
+                                    # ncat --recv-only mysql-inmem-$(($ordinal-1)).mysql-inmem-service 3307 | xbstream -x -C /var/lib/mysql
+                                    ncat --recv-only mysql-inmem-0.mysql-inmem-service 3307 | xbstream -x -C /var/lib/mysql
+                                    ### Prepare the backup.
                                     xtrabackup --prepare --target-dir=/var/lib/mysql
                                   fi
 |||,
@@ -469,7 +471,7 @@ if configs.estate == "prd-samdev" then {
                               volumeMounts: [
                                     {
                                       mountPath: "/var/lib/mysql",
-                                      name: "mysql-persistent-storage-replicated",
+                                      name: "mysql-inmem-fs",
                                       subPath: "mysql",
                                     },
                                     {
