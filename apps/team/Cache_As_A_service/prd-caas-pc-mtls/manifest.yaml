@@ -5,7 +5,7 @@ system:
     email:
       - rpragada@salesforce.com
   functions:
-  - name: caas-mtls-test
+  - name: caas-mtls-pc-test
     count: 10
     containers:
     - name: caas-redis
