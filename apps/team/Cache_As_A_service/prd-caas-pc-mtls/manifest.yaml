@@ -1,0 +1,90 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - rpragada@salesforce.com
+  functions:
+  - name: caas-mtls-pc-test
+    count: 10
+    containers:
+    - name: caas-redis
+      image: docker-all/dva/caas/caas-redis-mtls:10
+      resources:
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /tmp
+          name: redis-sock
+      args: 
+        - --port=12015
+        - --maxMemoryMB=4096
+        - --logDir=/home/caas/logs
+        - --disableProtectedMode
+        - --maxMemoryPolicy=noeviction
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      ports:
+      - containerPort: 12015
+    - name: caas-sherpa-envoy
+      image: docker-all/dva/caas/caas-sherpa-envoy:22
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+        - mountPath: /tmp
+          name: redis-sock
+        - name: server-certs
+          mountPath: /server-certs
+      args:
+        - --envoy.ciphers=ECDHE-RSA-AES256-SHA
+      ports:
+      - containerPort: 12010
+      - containerPort: 12000
+    - name: caas-redis-announcer
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
+      args:
+      - -endpoint
+      - caas/cluster/sp-mtls-pc1:SUPERPOD:12000
+      - -logdir
+      - /home/sfdc-caas/logs/sp-mtls-pc1-$(FUNCTION_INSTANCE_IP)
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mist30
+       - name: CAAS_DUMMY_FOR_RESTART
+         value: 1
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-caas/logs
+    - name: redis-sock
+      emptyDir: {}
+    - name: server-certs
+      maddogCert:
+        type: server
