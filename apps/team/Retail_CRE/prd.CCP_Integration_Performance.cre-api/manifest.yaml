@@ -32,7 +32,7 @@ system:
         - name: LOG_JWT
           value: true
         - name: HBASE_SUPER_TENANT_IDS_FLUSH
-          value: 00Dx00000005SydEAE
+          value: 00Dx00000005Syd
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
