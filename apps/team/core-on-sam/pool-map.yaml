@@ -24,6 +24,8 @@ apps:
     - shared2-samminioncoreapp3-2-prd.eng.sfdc.net
  mist61-na6:
   - name: prd/prd-sp2-sam_coreapp
+ mist61-na7:
+   - name: prd/prd-sp2-sam_coreapp
  mist61-na10:
   - name: prd/prd-sp2-sam_coreapp
  mist61-na98:
