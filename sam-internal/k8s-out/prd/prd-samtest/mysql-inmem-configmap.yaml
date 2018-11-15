@@ -22,6 +22,6 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   labels:
-    app: mysql_ss
-  name: mysql_ss
-  namespace: mysql_rep
+    app: mysql-inmem
+  name: mysql-inmem
+  namespace: sam-system
