@@ -6,7 +6,7 @@ system:
       - rpragada@salesforce.com
   functions:
   - name: caas-mtls-test
-    count: 1
+    count: 10
     containers:
     - name: caas-redis
       image: docker-all/dva/caas/caas-redis-mtls:8
