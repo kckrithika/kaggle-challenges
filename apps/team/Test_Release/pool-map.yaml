@@ -1,5 +1,6 @@
 apps:
  gocd-master:
   - prd/prd-sam
+  - xrd/xrd-sampool
  jenkins-master:
   - prd/prd-sam
