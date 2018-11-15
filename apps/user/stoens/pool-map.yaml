@@ -1,3 +1,5 @@
 apps:
  testservice:
   - prd/prd-sam
+ apple:
+  - prd/prd-sam
