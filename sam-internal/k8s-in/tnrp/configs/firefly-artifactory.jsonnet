@@ -7,6 +7,7 @@ local configs = import "config.jsonnet";
     'artifactory-p2p-host': envConfig.environmentMapping[configs.estate].artifactoryP2PHost,
     'artifactory-user-name': envConfig.environmentMapping[configs.estate].artifactoryUserName,
     'artifactory-password': '${artifactoryPassword#FromSecretService}',
+    'artifact-manifest-time-property-key':'snd_artifact_promotion_time_test',
   },
 
   prod:: self.base + {
