@@ -54,9 +54,9 @@ local configs = import "config.jsonnet";
         "2": $.per_phase["3"] {
              fireflyintake: "259",
              fireflycrawler: "259",
-             fireflypackage: "261",
+             fireflypackage: "263",
              fireflypromotion: "259",
-             fireflypullrequest: "259",
+             fireflypullrequest: "263",
              fireflyevalresultmonitor: "259",
              fireflydind: "224",
              rabbitmq: "140",
@@ -67,9 +67,9 @@ local configs = import "config.jsonnet";
         "3": $.per_phase["4"] {
              fireflyintake: "259",
              fireflycrawler: "259",
-             fireflypackage: "261",
+             fireflypackage: "263",
              fireflypromotion: "259",
-             fireflypullrequest: "259",
+             fireflypullrequest: "263",
              fireflyevalresultmonitor: "259",
              fireflydind: "224",
              rabbitmq: "140",
