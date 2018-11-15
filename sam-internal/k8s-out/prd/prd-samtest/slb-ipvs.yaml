@@ -355,7 +355,7 @@ spec:
       - command:
         - /bin/bash
         - /config/slb-cleanup-logs.sh
-        - '"/var/log/kern.*"'
+        - /var/log/kern.*
         - "3600"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001375-71389927
         name: slb-cleanup-kern-logs
