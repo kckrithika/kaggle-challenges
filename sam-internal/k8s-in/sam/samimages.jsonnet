@@ -26,56 +26,6 @@ local samreleases = import "samreleases.json";
          "prd, prd-samtest, node-controller, hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/min.wang/hypersam:20181029_160337.c61213b4.clean.minwang-ltm0",
 
         }
-        + {
-           #[prabh.singh] Pin the watchdogs to use new hypersam that honors email frequency.Remove in next phase release
-           [std.substr(ce, 0, 3) + "," + ce + "," + wd + ",hypersam"]: "sam-0002347-34f588d0"
-for ce in [
-                        "cdg-sam",
-                        "chx-sam",
-                        "dfw-sam",
-                        "fra-sam",
-                        "hnd-sam",
-                        "ia2-sam",
-                        "iad-sam",
-                        "ord-sam",
-                        "par-sam",
-                        "ph2-sam",
-                        "phx-sam",
-                        "prd-samtwo",
-                        "prd-sdc",
-                        "syd-sam",
-                        "ukb-sam",
-                        "wax-sam",
-                        "yhu-sam",
-                        "yul-sam",
-]
-           for wd in [
-                        "watchdog-apiserverlb",
-                        "watchdog-common",
-                        "watchdog-comparek8sresources",
-                        "watchdog-deployment",
-                        "watchdog-dns",
-                        "watchdog-estatesvc",
-                        "watchdog-etcd-quorum",
-                        "watchdog-etcd",
-                        "watchdog-filesystem",
-                        "watchdog-hairpindeployer",
-                        "watchdog-k8sproxy",
-                        "watchdog-kuberesources",
-                        "watchdog-maddog",
-                        "watchdog-maddogcert",
-                        "watchdog-manifestzip",
-                        "watchdog-master",
-                        "watchdog-node-controller",
-                        "watchdog-node",
-                        "watchdog-pullrequest",
-                        "watchdog-puppet",
-                        "watchdog-rbac",
-                        "watchdog-samsql",
-                        "watchdog-sdp",
-                        "watchdog-synthetic",
-                ]
-        }
         #[karim] Network reporter with port and high api server query fixes
         + {
             [std.substr(cl, 0, 3) + "," + cl + "," + "sam-network-reporter" + ",hypersam"]: "sam-0002364-0a657f10"
