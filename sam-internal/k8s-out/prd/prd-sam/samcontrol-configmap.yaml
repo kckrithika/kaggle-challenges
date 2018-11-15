@@ -6,7 +6,10 @@ data:
         "e2e-.*-csc-sam$",
         "^ci-*",
         "user-xiao-zhou",
-        "user-rbhat"
+        "user-rbhat",
+        "user-thargrove",
+        "user-minwang",
+        "user-jiayi-yan"
       ],
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
