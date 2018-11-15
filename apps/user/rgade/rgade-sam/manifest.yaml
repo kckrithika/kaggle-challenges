@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - cschealthcp@salesforce.com
+    - rgade@salesforce.com
   functions:
   - name: rahul-sam-wd
     count: 1
