@@ -27,7 +27,7 @@ system:
         secretName: rsui-consumer-key
     - name: consumer-secret
       k4aSecret:
-        secretName: rsui-secret-key
+        secretName: rsui-consumer-secret
 
     containers:
     - name: retail-setup
