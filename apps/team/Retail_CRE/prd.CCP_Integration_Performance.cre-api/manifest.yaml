@@ -32,7 +32,7 @@ system:
         - name: LOG_JWT
           value: true
         - name: JVM_ARGS
-          value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=8
+          value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                   -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
