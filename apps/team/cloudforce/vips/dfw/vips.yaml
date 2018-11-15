@@ -101,30 +101,10 @@
   - na8-app1-20-dfw.ops.sfdc.net
   - na8-app2-11-dfw.ops.sfdc.net
   - na8-app2-13-dfw.ops.sfdc.net
-  - na7-app1-11-dfw.ops.sfdc.net
-  - na7-app1-12-dfw.ops.sfdc.net
-  - na7-app1-13-dfw.ops.sfdc.net
-  - na7-app1-14-dfw.ops.sfdc.net
-  - na7-app1-15-dfw.ops.sfdc.net
   - na8-app2-12-dfw.ops.sfdc.net
   - na8-app2-14-dfw.ops.sfdc.net
-  - na7-app2-11-dfw.ops.sfdc.net
-  - na7-app2-12-dfw.ops.sfdc.net
-  - na7-app2-13-dfw.ops.sfdc.net
-  - na7-app2-14-dfw.ops.sfdc.net
-  - na7-app2-15-dfw.ops.sfdc.net
   - na8-app2-15-dfw.ops.sfdc.net
-  - na7-app1-17-dfw.ops.sfdc.net
-  - na7-app1-20-dfw.ops.sfdc.net
-  - na7-app2-17-dfw.ops.sfdc.net
-  - na7-app2-18-dfw.ops.sfdc.net
   - na8-app2-19-dfw.ops.sfdc.net
-  - na7-app1-16-dfw.ops.sfdc.net
-  - na7-app1-19-dfw.ops.sfdc.net
-  - na7-app2-16-dfw.ops.sfdc.net
-  - na7-app2-20-dfw.ops.sfdc.net
-  - na7-app1-18-dfw.ops.sfdc.net
-  - na7-app2-19-dfw.ops.sfdc.net
   - na8-app1-12-dfw.ops.sfdc.net
   - na8-app1-15-dfw.ops.sfdc.net
   - na8-app1-16-dfw.ops.sfdc.net
@@ -311,36 +291,6 @@
   - na33-app2-23-dfw.ops.sfdc.net
   - na33-app2-24-dfw.ops.sfdc.net
   - na33-app2-25-dfw.ops.sfdc.net
-  - na43-app2-10-dfw.ops.sfdc.net
-  - na43-app2-7-dfw.ops.sfdc.net
-  - na43-app2-9-dfw.ops.sfdc.net
-  - na43-app2-13-dfw.ops.sfdc.net
-  - na43-app2-14-dfw.ops.sfdc.net
-  - na43-app2-2-dfw.ops.sfdc.net
-  - na43-app2-5-dfw.ops.sfdc.net
-  - na43-app1-5-dfw.ops.sfdc.net
-  - na43-app2-6-dfw.ops.sfdc.net
-  - na43-app2-11-dfw.ops.sfdc.net
-  - na43-app2-12-dfw.ops.sfdc.net
-  - na43-app1-10-dfw.ops.sfdc.net
-  - na43-app1-2-dfw.ops.sfdc.net
-  - na43-app1-6-dfw.ops.sfdc.net
-  - na43-app1-11-dfw.ops.sfdc.net
-  - na43-app1-7-dfw.ops.sfdc.net
-  - na43-app1-12-dfw.ops.sfdc.net
-  - na43-app2-1-dfw.ops.sfdc.net
-  - na43-app2-8-dfw.ops.sfdc.net
-  - na43-app2-15-dfw.ops.sfdc.net
-  - na43-app1-9-dfw.ops.sfdc.net
-  - na43-app1-3-dfw.ops.sfdc.net
-  - na43-app1-4-dfw.ops.sfdc.net
-  - na43-app1-13-dfw.ops.sfdc.net
-  - na43-app1-14-dfw.ops.sfdc.net
-  - na43-app2-3-dfw.ops.sfdc.net
-  - na43-app2-4-dfw.ops.sfdc.net
-  - na43-app1-1-dfw.ops.sfdc.net
-  - na43-app1-8-dfw.ops.sfdc.net
-  - na43-app1-15-dfw.ops.sfdc.net
   - na48-app1-10-dfw.ops.sfdc.net
   - na48-app1-2-dfw.ops.sfdc.net
   - na48-app1-9-dfw.ops.sfdc.net
@@ -453,26 +403,6 @@
   - na32-app2-4-dfw.ops.sfdc.net
   - na32-app2-2-dfw.ops.sfdc.net
   - na32-app2-1-dfw.ops.sfdc.net
-  - na7-app1-6-dfw.ops.sfdc.net
-  - na7-app1-2-dfw.ops.sfdc.net
-  - na7-app1-1-dfw.ops.sfdc.net
-  - na7-app1-4-dfw.ops.sfdc.net
-  - na7-app1-9-dfw.ops.sfdc.net
-  - na7-app1-10-dfw.ops.sfdc.net
-  - na7-app2-6-dfw.ops.sfdc.net
-  - na7-app2-4-dfw.ops.sfdc.net
-  - na7-app2-9-dfw.ops.sfdc.net
-  - na7-app2-8-dfw.ops.sfdc.net
-  - na7-app2-10-dfw.ops.sfdc.net
-  - na7-app2-1-dfw.ops.sfdc.net
-  - na7-app2-3-dfw.ops.sfdc.net
-  - na7-app1-8-dfw.ops.sfdc.net
-  - na7-app1-3-dfw.ops.sfdc.net
-  - na7-app2-5-dfw.ops.sfdc.net
-  - na7-app2-2-dfw.ops.sfdc.net
-  - na7-app2-7-dfw.ops.sfdc.net
-  - na7-app1-5-dfw.ops.sfdc.net
-  - na7-app1-7-dfw.ops.sfdc.net
   - na33-app1-10-dfw.ops.sfdc.net
   - na33-app1-7-dfw.ops.sfdc.net
   - na33-app1-9-dfw.ops.sfdc.net
@@ -561,6 +491,10 @@
   - port: 80
     targetport: 8085
     lbtype: http
+    removeheaders:
+    - "CipherSuite"
+    - "X-Forwarded-Proto"
+    - "X-Real-IP"
   - port: 443
     targetport: 8085
     lbtype: http
