@@ -1,0 +1,13 @@
+- lbname: shared0-discovery1-0-phx
+  customlbname: shared0-discovery1-0-phx
+  servers:
+  - ops0-deploydata1-1-phx.ops.sfdc.net
+  - ops0-deploydata1-2-phx.ops.sfdc.net
+  - ops0-deploydata1-3-phx.ops.sfdc.net
+  - ops0-deploydata2-1-phx.ops.sfdc.net
+  - ops0-deploydata2-2-phx.ops.sfdc.net
+  ports:
+  - port: 2181
+    targetport: 2181
+    lbtype: tcp
+    healthprotocol: tcp
