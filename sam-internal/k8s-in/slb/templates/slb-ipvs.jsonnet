@@ -232,7 +232,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         command: [
                             "/bin/bash",
                             "/config/slb-cleanup-logs.sh",
-                            '"/var/log/kern.*"',
+                            "/var/log/kern.*",
                             "3600",
                         ],
                         volumeMounts: std.prune([
