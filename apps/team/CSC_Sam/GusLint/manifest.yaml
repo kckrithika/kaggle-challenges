@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: guslint
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/guscop:thargrove-20181115_094556-f923464
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/guscop:thargrove-20181115_115459-a21d367
       command: ["/bin/guscop"]
       args: ["--port=8000","--secretfile=/var/secrets/gussecret.json","--proxy=http://public0-proxy1-0-prd.data.sfdc.net:8080","--webfiles=/bin/webfiles/"]
       ports:
