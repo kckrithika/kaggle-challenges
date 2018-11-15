@@ -9,4 +9,4 @@ system:
       count: 1
       containers:
       - name: dt-maiev-test
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-maiev:test-0001
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-maiev:test-0002
