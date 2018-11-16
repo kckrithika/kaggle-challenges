@@ -31,6 +31,8 @@ spec:
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -recipient=rgade@salesforce.com
+        - -emailFrequency=48h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

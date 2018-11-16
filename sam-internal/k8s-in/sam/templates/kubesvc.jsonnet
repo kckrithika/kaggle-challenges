@@ -1,8 +1,8 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-local samfeatureflags = import "sam-feature-flags.jsonnet";
+local utils = import "util_functions.jsonnet";
 
-if samfeatureflags.kubedns then {
+if !utils.is_flowsnake_cluster(configs.estate) then {
     apiVersion: "v1",
     kind: "Service",
     metadata: {
