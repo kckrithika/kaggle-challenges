@@ -7,11 +7,7 @@ data:
       "resyncinterval": "5m",
       "whiteListNamespaceRegexp": [
         "^ci-*",
-        "user-xiao-zhou",
-        "user-rbhat",
-        "user-thargrove",
-        "user-minwang",
-        "user-jiayi-yan",
+        "^user-*",
         "moe",
         "csc-sam"
       ]
