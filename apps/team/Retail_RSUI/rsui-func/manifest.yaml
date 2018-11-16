@@ -86,7 +86,7 @@ system:
       - name: CORE_OAUTH_URL
         value: https://na44.stmfa.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
-        value: https://rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
+        value: https://rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
       - name: OAUTH_CONSUMER_KEY
         value: 3MVG9qKMKuRGRcbuw4QeSjOU47oRMqNPxFQJiDaPWlIydU0tCX4TVAemnnqNhGZ50K6LPcKe_pq1n1t.C7t_O
       - name: OAUTH_CONSUMER_SECRET
@@ -196,16 +196,10 @@ system:
         targetport: 7022
       - port: 443
         targetport: 7022
+        tls: true
+        lbtype: http
+        reencrypt: true
       - port: 15372
         targetport: 15372
       - port: 7020
         targetport: 7020
-  - lbname: rsui-func-l7lb
-    function: rsui-func
-    slbEnabled: true
-    ports:
-      - port: 443
-        targetport: 7022
-        tls: true
-        lbtype: http
-        reencrypt: true
