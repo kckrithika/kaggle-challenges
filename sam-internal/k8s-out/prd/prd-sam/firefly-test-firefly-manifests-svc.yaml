@@ -6,7 +6,7 @@ items:
       {
           "appconfig": {
               "artifactory": {
-                  "artifact-manifest-time-property-key": "snd_artifact_promotion_time_test",
+                  "artifact-manifest-time-property-key": "snd_artifact_promotion_time",
                   "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
                   "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
                   "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
@@ -442,7 +442,7 @@ items:
       {
           "appconfig": {
               "artifactory": {
-                  "artifact-manifest-time-property-key": "snd_artifact_promotion_time_test",
+                  "artifact-manifest-time-property-key": "snd_artifact_promotion_time",
                   "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
                   "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
                   "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
@@ -865,7 +865,7 @@ items:
       {
           "appconfig": {
               "artifactory": {
-                  "artifact-manifest-time-property-key": "snd_artifact_promotion_time_test",
+                  "artifact-manifest-time-property-key": "snd_artifact_promotion_time",
                   "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
                   "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
                   "artifactory-password": "${artifactoryPassword#FromSecretService}",
@@ -1272,7 +1272,7 @@ items:
       {
           "appconfig": {
               "artifactory": {
-                  "artifact-manifest-time-property-key": "snd_artifact_promotion_time_test",
+                  "artifact-manifest-time-property-key": "snd_artifact_promotion_time",
                   "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
                   "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
                   "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
