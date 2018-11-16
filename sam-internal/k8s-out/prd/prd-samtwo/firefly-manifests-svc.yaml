@@ -311,7 +311,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "15"
+            value: "16"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
@@ -742,7 +742,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "13"
+            value: "14"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
