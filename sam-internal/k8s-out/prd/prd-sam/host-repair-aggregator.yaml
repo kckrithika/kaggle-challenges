@@ -43,6 +43,7 @@ spec:
         - mountPath: /var/mysqlPwd
           name: mysql-ssc-prd
           readOnly: true
+      dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       nodeSelector:
         master: "true"

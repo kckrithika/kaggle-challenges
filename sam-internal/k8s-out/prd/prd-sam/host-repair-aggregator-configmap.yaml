@@ -5,7 +5,9 @@ data:
       "crdNamespace": "sam-system",
       "crdPollFrequency": "5m",
       "crdPushFrequency": "10m",
+      "dbHostname": "mysql-ss-0.mysql-service.sam-system",
       "dbPasswordFile": "/var/mysqlPwd/pass.txt",
+      "dbUsername": "ssc-prd",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "k8sCeListFromDB": [
         "prd-sam",

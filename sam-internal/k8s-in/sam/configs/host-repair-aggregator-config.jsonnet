@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local mysql = import "sammysqlconfig.jsonnet";
 
 if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
 std.prune({
@@ -15,6 +16,8 @@ std.prune({
           "prd-samtwo",
           "frf-sam",
   ],
+  dbHostname: mysql.readWriteHostName,
+  dbUsername: "ssc-prd",
   dbPasswordFile: "/var/mysqlPwd/pass.txt",
   signals: [
     "filesystemChecker",

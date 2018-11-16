@@ -59,6 +59,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
                     },
                 ],
                 hostNetwork: true,
+                dnsPolicy: "ClusterFirstWithHostNet",
                 nodeSelector: {
                     master: "true",
                 },
