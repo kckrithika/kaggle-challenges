@@ -24,7 +24,7 @@ if (configs.estate == "prd-samtest" || configs.estate == "prd-samdev") then {
         updateStrategy: {
             type: "RollingUpdate",
             rollingUpdate: {
-                maxUnavailable: "25%",
+                maxUnavailable: "50%",
             },
         },
         template: {
