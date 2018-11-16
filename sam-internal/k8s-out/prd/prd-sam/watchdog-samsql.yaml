@@ -60,6 +60,7 @@ spec:
           name: config
         - mountPath: /data/certs
           name: certs
+      dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       nodeSelector:
         pool: prd-sam

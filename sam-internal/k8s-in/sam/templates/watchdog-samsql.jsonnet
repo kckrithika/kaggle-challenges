@@ -10,6 +10,7 @@ if configs.estate == "prd-sam" then {
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
+                dnsPolicy: "ClusterFirstWithHostNet",
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         name: "watchdog-samsql",
