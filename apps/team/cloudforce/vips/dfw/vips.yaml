@@ -493,8 +493,6 @@
     lbtype: http
     removeheaders:
     - "CipherSuite"
-    - "X-Forwarded-Proto"
-    - "X-Real-IP"
   - port: 443
     targetport: 8085
     lbtype: http
