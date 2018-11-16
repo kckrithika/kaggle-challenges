@@ -80,7 +80,7 @@
 
                                                     "httpGet": {
                                                         "type": "object",
-                                                        "allOf": [ { "$ref": "manifestConfigs#/Requirements_livenessProbeHttpGet/Required" } ],
+                                                        "allOf": [ { "$ref": "manifestConfigs#/Requirements_httpGet/Required" } ],
                                                         "properties": {
 
                                                             "path": {
@@ -122,7 +122,7 @@
                                                     "allOf": [
                                                         { "$ref": "manifestConfigs#/Requirements_volumeMount/Required" },
                                                         { "$ref": "manifestConfigs#/Requirements_volumeMount/Unsupported" },
-                                                        { "$ref": "manifestConfigs#/Rule_volumeMountValidation/secretVolume" }
+                                                        { "$ref": "manifestConfigs#/Rule_volumeMountValidation/SecretVolume" }
                                                     ],
                                                     "properties": {
 
@@ -133,7 +133,7 @@
 
                                                         "mountPath": {
                                                             "type": "string",
-                                                            "$ref": "manifestConfigs#/Rule_volumeMountValidation/mountPathPattern"
+                                                            "$ref": "manifestConfigs#/Rule_volumeMountValidation/MountPathPattern"
                                                         },
 
                                                         "readOnly": {
