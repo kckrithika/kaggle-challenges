@@ -5,7 +5,17 @@ data:
       "crdNamespace": "sam-system",
       "crdPollFrequency": "5m",
       "crdPushFrequency": "10m",
+      "dbPasswordFile": "/var/mysqlPwd/pass.txt",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
+      "k8sCeListFromDB": [
+        "prd-sam",
+        "xrd-sam",
+        "prd-samtwo",
+        "frf-sam"
+      ],
+      "k8sFromDB": true,
+      "k8sResourceDbName": "sam_kube_resource",
+      "k8sResourceTableName": "k8s_resource",
       "nodeOfflineAfterTime": "60m",
       "signals": [
         "filesystemChecker",
