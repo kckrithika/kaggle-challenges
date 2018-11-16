@@ -21,5 +21,5 @@ local configs = import "config.jsonnet";
     reduceNginxMinReady: (slbimages.hypersdn_build >= 1355),
     tuneIfaceSentinelExpiration: (slbimages.hypersdn_build > 1355),
     kernLogCleanup: (slbimages.phaseNum <= 2),
-    cleanupHostNet: (slbimages.phaseNum <= 1),
+    cleanupHostNet: (slbimages.hypersdn_build >= 1376),
 }
