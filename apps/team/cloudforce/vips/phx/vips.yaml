@@ -688,6 +688,7 @@
   ports:
   - port: 80
     targetport: 8085
+    lbtype: http
     addheaders:
     - name: "SFDC-LOGIN-LOAD-BALANCER"
       value: "TRUE"
