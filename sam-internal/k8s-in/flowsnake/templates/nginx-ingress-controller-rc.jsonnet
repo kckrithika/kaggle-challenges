@@ -46,7 +46,7 @@ local kingdom = std.extVar("kingdom");
                                 scheme: "HTTP",
                             },
                         },
-                        livenessProbe: if std.objectHas(flowsnake_images.feature_flags, "ingress_daily_restart") then {
+                        livenessProbe: {
                                 exec: {
                                     # Verify health endpoint reachability AND kill once daily to ensure fresh PKI cert
                                     # See also https://github.com/kubernetes/kubernetes/issues/37218#issuecomment-372887460
@@ -73,14 +73,6 @@ local kingdom = std.extVar("kingdom");
                                 successThreshold: 1,
                                 failureThreshold: 5,
                                 timeoutSeconds: 5,
-                                } else {
-                                    httpGet: {
-                                        path: "/healthz",
-                                        port: 80,
-                                        scheme: "HTTP",
-                                    },
-                                    initialDelaySeconds: 10,
-                                    timeoutSeconds: 1,
                                 },
                         env: [
                             {
