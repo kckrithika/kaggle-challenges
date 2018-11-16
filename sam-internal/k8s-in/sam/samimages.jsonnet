@@ -29,6 +29,10 @@ local samreleases = import "samreleases.json";
         "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0002380-bfc62a8b",
         "xrd,xrd-sam,samcontrol-deployer,hypersam": "sam-0002385-4b9fc0dd",
 
+        #[jiayi] Handle stale sql data
+        "prd,prd-sam,host-repair-aggregator,hypersam": "sam-0002387-4a4e10a1",
+        "prd,prd-sam,host-repair-scheduler,hypersam": "sam-0002387-4a4e10a1",
+
          #[min.wang] Test Watchdog InitMetricsClient
          "prd, prd-samtest, node-controller, hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/min.wang/hypersam:20181029_160337.c61213b4.clean.minwang-ltm0",
          "prd,prd-sam,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rbhat/hypersam:20181115_172734.fc8dd4e3.dirty.rbhat-ltm1",
