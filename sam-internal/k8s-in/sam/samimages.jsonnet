@@ -24,7 +24,7 @@ local samreleases = import "samreleases.json";
 
          #[min.wang] Test Watchdog InitMetricsClient
          "prd, prd-samtest, node-controller, hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/min.wang/hypersam:20181029_160337.c61213b4.clean.minwang-ltm0",
-
+         "prd,prd-sam,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rbhat/hypersam:20181115_172734.fc8dd4e3.dirty.rbhat-ltm1",
         }
         + {
            #[prabh.singh] Pin the watchdogs to use new hypersam that honors email frequency.Remove in next phase release
