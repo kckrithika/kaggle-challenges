@@ -60,6 +60,7 @@ spec:
         - mountPath: /usr/bin/kubectl
           name: kubectl
       dnsPolicy: Default
+      hostNetwork: true
       nodeSelector:
         master: "true"
       securityContext:
