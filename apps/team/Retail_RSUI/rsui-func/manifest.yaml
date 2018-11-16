@@ -22,10 +22,16 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-retail/logs
+    - name: consumer-key
+      k4aSecret:
+        secretName: rsui-consumer-key
+    - name: consumer-secret
+      k4aSecret:
+        secretName: rsui-consumer-secret
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.5.20
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.5.s.11
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -77,6 +83,20 @@ system:
         value: http://cre-api-ccp-func.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+      - name: CORE_OAUTH_URL
+        value: https://na44.stmfa.stm.salesforce.com
+      - name: RSUI_OAUTH_CALLBACK
+        value: https://rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
+      - name: OAUTH_CONSUMER_KEY
+        value: 3MVG9qKMKuRGRcbuw4QeSjOU47oRMqNPxFQJiDaPWlIydU0tCX4TVAemnnqNhGZ50K6LPcKe_pq1n1t.C7t_O
+      - name: OAUTH_CONSUMER_SECRET
+        value: 486971517558541925
+      - name: OAUTH_CONSUMER_KEY_FILE_PATH
+        value: secrets/consumer-key/rsui-consumer-key.key
+      - name: OAUTH_CONSUMER_SECRET_FILE_PATH
+        value: secrets/consumer-secret/rsui-consumer-secret.key
+      - name: GATER_EMBEDDED_MODE
+        value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
         value: live
       - name: JVM_ARGS
@@ -180,3 +200,12 @@ system:
         targetport: 15372
       - port: 7020
         targetport: 7020
+  - lbname: rsui-func-l7lb
+    function: rsui-func
+    slbEnabled: true
+    ports:
+      - port: 443
+        targetport: 7022
+        tls: true
+        lbtype: http
+        reencrypt: true
