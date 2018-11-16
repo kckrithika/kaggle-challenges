@@ -1,5 +1,5 @@
 apiVersion: extensions/v1beta1
-kind: Deployment
+kind: DaemonSet
 metadata:
   labels:
     addonmanager.kubernetes.io/mode: Reconcile
@@ -9,17 +9,10 @@ metadata:
   name: kube-dns
   namespace: kube-system
 spec:
-  progressDeadlineSeconds: 600
-  replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
       k8s-app: kube-dns
-  strategy:
-    rollingUpdate:
-      maxSurge: 0
-      maxUnavailable: 1
-    type: RollingUpdate
   template:
     metadata:
       annotations:
@@ -190,3 +183,7 @@ spec:
           defaultMode: 511
           name: cert-age
         name: cert-age
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 50%
+    type: RollingUpdate
