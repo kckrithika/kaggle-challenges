@@ -1,0 +1,251 @@
+{
+    "$id": "manifestConfigs",
+
+    "rules": {
+
+        "reservedPorts": {
+            "not": {
+                "anyOf": [
+                    { "enum": [ 2379, 2380, 4194, 8000, 8002, 8080, 9099, 9100, 10250, 10251, 10252, 10255, 64121 ] }, 
+                    { "minimum": 0, "maximum": 1024 },
+                    { "minimum": 32000, "maximum": 40000 }
+                ]
+            }
+        },
+
+        "hostPathList": {
+            "allOf": [
+                {
+                    "anyOf": [
+                        { "pattern": "^/data/([a-zA-Z-_]+/?)+$" },
+                        { "pattern": "^/fastdata/([a-zA-Z-_]+/?)+$" },
+                        { "pattern": "^/cowdata/([a-zA-Z-_]+/?)+$" },
+                        { "pattern": "^/var/log/([a-zA-Z-_]+/?)+$" },
+                        { "pattern": "^/home/caas/([a-zA-Z-_]+/?)+$" },
+                        { "pattern": "^/home/sfdc-([a-zA-Z-_]+)([a-zA-Z-_]+/?)+$" }
+                    ]
+                },
+                {
+                    "not": {
+                        "pattern": "^(/data/certs).*$"
+                    }
+                }
+            ]
+        },
+
+        "imageForm": {
+            "allOf": [
+                {
+                    "oneOf": [
+                        { "pattern": "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+/.+:.+$" }
+                    ]
+                },
+                {
+                    "not": {
+                        "anyOf": [
+                            { "pattern": "^.*(latest)$" },
+                            { "pattern": "^ops0-artifactrepo2-0-prd.data.sfdc.net/(docker-p2p|docker-sam).+:.+$" }
+                        ]
+                    }
+                }
+            ]
+        },
+
+        "maddogValidation": {
+            "properties": {
+                "type": { "enum": [ "server", "client" ] },
+                "lbnames": { "type": "array" }
+            },
+
+            "required": [ "type" ],
+                            
+            "dependencies": {
+                "lbnames": {
+                    "properties": {
+                        "type": { "enum": [ "server" ] }
+                    }
+                }
+            }
+        },
+
+        "envVariableName": {
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+            "not": {
+                "enum": [
+                    "HOST_TYPE",
+                    "SFDC_METRICS_SERVICE_HOST",
+                    "SFDC_METRICS_SERVICE_PORT",
+                    "FUNCTION_NAMESPACE",
+                    "FUNCTION_INSTANCE_NAME",
+                    "FUNCTION_INSTANCE_IP",
+                    "SFDC_SETTINGS_PATH",
+                    "SFDC_SETTINGS_SUPERPOD",
+                    "KINGDOM",
+                    "ESTATE",
+                    "SUPERPOD",
+                    "FUNCTION"
+                ]
+            }
+        },
+
+        "isDNSValidation": {
+            "maxLength": 63,
+            "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+        },
+
+        "volumeMountValidation": {
+            "mountPathPattern": {
+                "pattern": "^[^:]+$"
+            },
+
+            "secretVolume": {
+                "if": {
+                    "anyOf": [
+                        { "properties": { "name": { "enum": [ "secretvol" ] } } },
+                        { "properties": { "mountPath": { "enum": [ "/secrets/" ] } } }
+                    ]
+                },
+                "then": {
+                    "allOf": [
+                        { "required": [ "readOnly" ] },
+                        { "properties": { "readOnly": { "enum": [ true ] } } }
+                    ]
+                }
+            }
+        },
+
+        "volumesFormat": {
+            "anyOf": [
+                { 
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "$ref": "manifestConfigs#/rules/isDNSValidation"
+                        },
+                        "maddogCert": {
+                            "allOf": [
+                                { "$ref": "#/rules/maddogValidation" }
+                            ]
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                { 
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "$ref": "manifestConfigs#/rules/isDNSValidation"
+                        }
+                    },
+                    "patternProperties": {
+                        "^(k4aSecret)$|(secret)$" : {
+                            "type": "object",
+                            "required": [ "secretName" ],
+                            "properties": {
+                                "secretName": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "$ref": "manifestConfigs#/rules/isDNSValidation"
+                        },
+                        "hostPath": {
+                            "type": "object",
+                            "properties": {
+                                "path": {
+                                    "type": "string",
+                                    "$ref": "manifestConfigs#/rules/hostPathList"
+                                }
+                            }
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "$ref": "manifestConfigs#/rules/isDNSValidation"
+                        },
+                        "emptyDir": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {}
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            ]
+        }
+
+    },
+
+
+    "requirements": {
+
+        "manifestRequires": {
+            "required": [
+                "apiVersion",
+                "system"
+            ]
+        },
+
+        "systemRequires": {
+            "required": [
+                "functions"
+            ]
+        },
+
+        "functionsRequires": {
+            "required": [
+                "name",
+                "count",
+                "containers"
+            ]
+        },
+
+        "envRequires": {
+            "required": [ 
+                "name", 
+                "value" 
+            ]
+        },
+
+        "livenessProbeHttpGetRequires": {
+            "required": [
+                "port"
+            ]
+        },
+
+        "containerRequires": {
+            "required": [
+                "name",
+                "image"
+            ],
+            "not": {
+                "anyOf": [
+                    { "required": [ "securitycontext" ] },
+                    { "required": [ "lifecycle" ] }
+                ]
+            }
+        },
+
+        "volumeMountRequires": {
+            "required": [
+                "name",
+                "mountPath"
+            ],
+            "not": {
+                "required": [ "subPath" ] 
+            }
+        }
+        
+    }
+}

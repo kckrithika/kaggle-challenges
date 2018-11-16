@@ -1,0 +1,172 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Validation Schema for Manifest Files",
+    "$ref": "#/allProperties",
+
+    "allProperties": {
+        "type": "object",
+        "allOf": [ { "$ref": "manifestConfigs#/Requirements_manifest/Required" } ],
+        "properties": {
+
+            "apiVersion": {
+
+            },
+
+            "system": {
+                "type": "object",
+                "allOf": [ { "$ref": "manifestConfigs#/Requirements_system/Required" } ],
+                "properties": {
+
+                    "notifications": {
+
+                    },
+        
+                    "functions": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "allOf": [ { "$ref": "manifestConfigs#/Requirements_functions/Required" } ],
+                            "properties": {
+
+                                "name": {
+                                    "type": "string",
+                                    "$ref": "manifestConfigs#/Rule_isDNSValidation"
+                                },
+
+                                "count": {
+                                    "type": "integer"
+                                },
+
+                                "containers": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "allOf": [
+                                            { "$ref": "manifestConfigs#/Requirements_container/Required" },
+                                            { "$ref": "manifestConfigs#/Requirements_container/Unsupported" }
+                                        ],
+                                        "properties": {
+
+                                            "name": {
+                                                "type": "string",
+                                                "$ref": "manifestConfigs#/Rule_isDNSValidation"
+                                            },
+
+                                            "env": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "allOf": [ { "$ref": "manifestConfigs#/Requirements_env/Required" } ],
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string",
+                                                            "$ref": "manifestConfigs#/Rule_envVariableName"
+                                                        },
+                                                        "value": {
+                                                            "type": [ "string", "integer", "boolean" ]
+                                                        }
+                                                    }
+                                                }
+                                            },
+
+                                            "image": {
+                                                "type": "string",
+                                                "$ref": "manifestConfigs#/Rule_imageForm"
+                                            },
+
+                                            "livenessProbe": {
+                                                "type": "object",
+                                                "properties": {
+
+                                                    "httpGet": {
+                                                        "type": "object",
+                                                        "allOf": [ { "$ref": "manifestConfigs#/Requirements_livenessProbeHttpGet/Required" } ],
+                                                        "properties": {
+
+                                                            "path": {
+
+                                                            },
+
+                                                            "port": {
+                                                                "type": "integer"
+                                                            }
+
+                                                        }
+                                                    }
+
+                                                }
+                                            },
+
+                                            "ports": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                
+                                                        "containerPort": {
+                                                            "type": "integer"
+                                                        },
+                                                        
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                
+                                                    }
+                                                }
+                                            },
+
+                                            "volumeMounts": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "allOf": [
+                                                        { "$ref": "manifestConfigs#/Requirements_volumeMount/Required" },
+                                                        { "$ref": "manifestConfigs#/Requirements_volumeMount/Unsupported" },
+                                                        { "$ref": "manifestConfigs#/Rule_volumeMountValidation/secretVolume" }
+                                                    ],
+                                                    "properties": {
+
+                                                        "name": {
+                                                            "type": "string",
+                                                            "$ref": "manifestConfigs#/Rule_isDNSValidation"
+                                                        },
+
+                                                        "mountPath": {
+                                                            "type": "string",
+                                                            "$ref": "manifestConfigs#/Rule_volumeMountValidation/mountPathPattern"
+                                                        },
+
+                                                        "readOnly": {
+                                                            "type": "boolean"
+                                                        }
+
+                                                    }
+                                                }
+                                            },
+
+                                            "resources": {
+
+                                            }
+
+                                        }
+                                    }
+                                },
+
+                                "volumes": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "$ref": "manifestConfigs#/Rule_volumesFormat"
+                                    }
+
+                                }
+
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
