@@ -130,6 +130,12 @@ system:
       #mount splunk logs mount
       - name: logvol
         mountPath: /home/retail-setup/logs
+      - name: consumer-key
+        mountPath: /home/retail-setup/secrets/consumer-key
+        readOnly: true
+      - name: consumer-secret
+        mountPath: /home/retail-setup/secrets/consumer-secret
+        readOnly: true
 
     - name: sherpa-rsui-func
       # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
