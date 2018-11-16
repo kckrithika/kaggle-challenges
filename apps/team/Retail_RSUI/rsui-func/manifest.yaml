@@ -22,10 +22,16 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-retail/logs
+    - name: consumer-key
+      k4aSecret:
+        secretName: rsui-consumer-key
+    - name: consumer-secret
+      k4aSecret:
+        secretName: rsui-consumer-secret
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.5.20
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.5.s.11
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -77,6 +83,20 @@ system:
         value: http://cre-api-ccp-func.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+      - name: CORE_OAUTH_URL
+        value: https://na44.stmfa.stm.salesforce.com
+      - name: RSUI_OAUTH_CALLBACK
+        value: https://rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
+      - name: OAUTH_CONSUMER_KEY
+        value: 3MVG9qKMKuRGRcbuw4QeSjOU47oRMqNPxFQJiDaPWlIydU0tCX4TVAemnnqNhGZ50K6LPcKe_pq1n1t.C7t_O
+      - name: OAUTH_CONSUMER_SECRET
+        value: 486971517558541925
+      - name: OAUTH_CONSUMER_KEY_FILE_PATH
+        value: secrets/consumer-key/rsui-consumer-key.key
+      - name: OAUTH_CONSUMER_SECRET_FILE_PATH
+        value: secrets/consumer-secret/rsui-consumer-secret.key
+      - name: GATER_EMBEDDED_MODE
+        value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
         value: live
       - name: JVM_ARGS
@@ -91,7 +111,7 @@ system:
                 -Dcom.sun.management.jmxremote.rmi.port=8898
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
-                -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+                -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Daura.production=true"
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: ALL
       livenessProbe:
@@ -110,6 +130,12 @@ system:
       #mount splunk logs mount
       - name: logvol
         mountPath: /home/retail-setup/logs
+      - name: consumer-key
+        mountPath: /home/retail-setup/secrets/consumer-key
+        readOnly: true
+      - name: consumer-secret
+        mountPath: /home/retail-setup/secrets/consumer-secret
+        readOnly: true
 
     - name: sherpa-rsui-func
       # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
@@ -176,6 +202,9 @@ system:
         targetport: 7022
       - port: 443
         targetport: 7022
+        tls: true
+        lbtype: http
+        reencrypt: true
       - port: 15372
         targetport: 15372
       - port: 7020
