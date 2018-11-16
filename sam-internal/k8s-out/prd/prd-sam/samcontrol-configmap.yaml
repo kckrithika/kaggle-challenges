@@ -5,11 +5,7 @@ data:
       "blackListNamespaceRegexp": [
         "e2e-.*-csc-sam$",
         "^ci-*",
-        "user-xiao-zhou",
-        "user-rbhat",
-        "user-thargrove",
-        "user-minwang",
-        "user-jiayi-yan",
+        "^user-*",
         "moe",
         "csc-sam"
       ],
