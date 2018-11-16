@@ -22,6 +22,12 @@ local samreleases = import "samreleases.json";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        #[xiao] Fix synthetic in prd
+        "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0002380-bfc62a8b",
+        "prd,prd-samdev,temp-crd-watcher,hypersam": "sam-0002380-bfc62a8b",
+        "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0002380-bfc62a8b",
+        "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0002380-bfc62a8b",
+
          #[min.wang] Test Watchdog InitMetricsClient
          "prd, prd-samtest, node-controller, hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/min.wang/hypersam:20181029_160337.c61213b4.clean.minwang-ltm0",
 
