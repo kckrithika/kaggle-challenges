@@ -31,7 +31,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.5.s.11
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.5.24
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -87,10 +87,6 @@ system:
         value: https://na44.stmfa.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
-      - name: OAUTH_CONSUMER_KEY
-        value: 3MVG9qKMKuRGRcbuw4QeSjOU47oRMqNPxFQJiDaPWlIydU0tCX4TVAemnnqNhGZ50K6LPcKe_pq1n1t.C7t_O
-      - name: OAUTH_CONSUMER_SECRET
-        value: 486971517558541925
       - name: OAUTH_CONSUMER_KEY_FILE_PATH
         value: secrets/consumer-key/rsui-consumer-key.key
       - name: OAUTH_CONSUMER_SECRET_FILE_PATH
