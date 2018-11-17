@@ -12,4 +12,5 @@ local configs = import "config.jsonnet";
     cleanupHostNet: (slbimages.phaseNum <= 2),
     ipvsTurnDownOnSIGTERM: (slbimages.phaseNum <= 1),
     ifaceProcessorAddIfaceIfIPVSHost: (slbimages.phaseNum <= 1),
+    ipvsHealthCheckerCustomUserAgent: (slbimages.hypersdn_build >= 1379),
 }
