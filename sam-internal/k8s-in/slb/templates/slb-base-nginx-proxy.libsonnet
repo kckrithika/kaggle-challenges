@@ -62,14 +62,11 @@
                                      nginxReloadSentinelParam,
                                      "--httpconfig.custCertsDir=" + slbconfigs.customerCertsPath,
                                      "--checkDuplicateVips=true",
-                                   ] + (if slbflights.newAccessLogFormat then [
                                      "--httpconfig.accessLogFormat=main",
-                                   ] else [])
-                                   + (if slbflights.syncHealthConfigEnabled then [
                                      "--commonconfig.riseCount=5",
                                      "--commonconfig.fallCount=2",
                                      "--commonconfig.healthTimeout=3000",
-                                   ] else []),
+                                   ],
                           volumeMounts: configs.filter_empty([
                             target_config_volume_mount,
                             slbconfigs.slb_volume_mount,
@@ -109,16 +106,15 @@
                             initialDelaySeconds: 15,
                             periodSeconds: 10,
                           },
-                          volumeMounts: configs.filter_empty([
+                          volumeMounts: std.prune([
                             nginx_config_volume_mount,
                             slbconfigs.nginx_logs_volume_mount,
                             customer_certs_volume_mount
                           ]
                           + madkub.madkubSlbCertVolumeMounts(certDirs)
-                          + if slbflights.nginxSlbVolumeMount then [
+                          + [
                             slbconfigs.slb_volume_mount,
-                          ] else []),
-                        } + (if slbflights.nginxReadinessProbeEnabled then {
+                          ]),
                           readinessProbe: {
                             httpGet: {
                               path: "/",
@@ -128,7 +124,7 @@
                             periodSeconds: 5,
                             successThreshold: 4,
                           }
-                        } else {}),
+                        },
                         {
                           name: "slb-nginx-data",
                           image: slbimages.hypersdn,

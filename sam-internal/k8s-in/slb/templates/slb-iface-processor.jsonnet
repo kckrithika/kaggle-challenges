@@ -35,7 +35,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                     slbconfigs.cleanup_logs_volume,
                     configs.maddog_cert_volume,
                     configs.kube_config_volume,
-                    (if slbflights.supportedProxiesEnabled then slbconfigs.proxyconfig_volume else {}),
+                    slbconfigs.proxyconfig_volume,
                 ]),
                 containers: [
                     slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIfaceOverridePort, false),

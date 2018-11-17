@@ -5,7 +5,7 @@ local slbflights = import "slbflights.jsonnet";
 local script =
     std.toString(importstr "scripts/slb-cleanup-log.sh");
 
-if slbflights.kernLogCleanup then {
+{
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
@@ -16,5 +16,4 @@ if slbflights.kernLogCleanup then {
     data: {
         "slb-cleanup-logs.sh": script,
     },
-} else
-    "SKIP"
+}

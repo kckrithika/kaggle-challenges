@@ -39,14 +39,6 @@
                      "--metricsEndpoint=" + configs.funnelVIP,
                      "--log_dir=" + slbconfigs.logsDir,
                      "--sleepTime=100ms",
-                 ] + (
-                     if slbimages.hypersdn_build > 1355 then [
-                 ] else [
-                     "--processKnEConfigs=" + slbconfigs.processKnEConfigs,
-                     "--kneConfigDir=" + slbconfigs.kneConfigDir,
-                     "--kneDomainName=" + slbconfigs.kneDomainName,
-                     ]
-                  ) + [
                      "--livenessProbePort=" + configProcessorLivenessPort,
                      "--shouldRemoveConfig=true",
                      configs.sfdchosts_arg,
@@ -55,13 +47,10 @@
                  ] + (if configs.estate == "prd-sam" then [
                           "--servicesToLbOverride=" + servicesToLbOverride,
                           "--servicesNotToLbOverride=" + servicesNotToLbOverride,
-                      ] else if $.dirSuffix == "slb-nginx-config-b" && slbflights.hsmCanaryEnabled && !slbflights.supportedProxiesEnabled then [
-                          # Phase out this flag as we phase in the supported proxies
-                          "--servicesNotToLbOverride=slb-canary-hsm-service",
                       ] else []) +
                  [
                      "--control.configProcSentinel=" + configProcSentinel,
-                 ] + (if slbflights.supportedProxiesEnabled && std.length(supportedProxies) > 0 then [
+                 ] + (if std.length(supportedProxies) > 0 then [
                         "--pipeline.supportedProxies=" + std.join(",", supportedProxies),
                     ] else []),
         volumeMounts: std.prune([
@@ -72,7 +61,7 @@
             configs.cert_volume_mount,
             configs.kube_config_volume_mount,
             configs.sfdchosts_volume_mount,
-            (if slbflights.supportedProxiesEnabled then slbconfigs.proxyconfig_volume_mount else {}),
+            slbconfigs.proxyconfig_volume_mount,
         ]),
         env: [
             configs.kube_config_env,
@@ -201,23 +190,16 @@
         command: [
                      "/sdn/slb-iface-processor",
                      "--configDir=" + slbconfigs.configDir,
-                     "--control.sentinelExpiration=" + (if slbflights.tuneIfaceSentinelExpiration then "300s" else "120s"),
+                     "--control.sentinelExpiration=300s",
                      "--period=5s",
                      "--metricsEndpoint=" + configs.funnelVIP,
                      "--log_dir=" + slbconfigs.logsDir,
                      configs.sfdchosts_arg,
-                 ] + (if slbimages.hypersdn_build >= 1355 then [] else [
-                     "--readVipsFromIpvs=true",
-                     "--client.serverPort=" + nodeApiPort,
-                     "--client.serverInterface=lo",
-                 ])
-                   + (if configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1271 then [
+                ] + (if slbflights.ipvsTurnDownOnSIGTERM then [
                      "--turnDownOnSIGTERM=true",
                      ] else [])
-                 + (if slbimages.hypersdn_build >= 1355 then [] else slbconfigs.getNodeApiClientSocketSettings())
                  + ["--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet]
-                 + (if slbimages.hypersdn_build >= 1355 then [] else ["--maxDeleteVipCount=" + slbconfigs.maxDeleteLimit(deleteLimitOverride)])
-                 + (if configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1362 then ["--addIfaceIfIPVSHost=" + addIfaceIfIPVSHost] else []),
+                 + (if slbflights.ifaceProcessorAddIfaceIfIPVSHost then ["--addIfaceIfIPVSHost=" + addIfaceIfIPVSHost] else []),
         volumeMounts: std.prune([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
@@ -248,7 +230,7 @@
                         "--vcioptions.strict=true",
                         "--client.allowStale=true",
                         "--control.manifestWatcherSentinel=" + mwSentinel,
-                    ] + (if slbflights.supportedProxiesEnabled && std.length(supportedProxies) > 0 then [
+                    ] + (if std.length(supportedProxies) > 0 then [
                         "--pipeline.supportedProxies=" + std.join(",", supportedProxies),
                     ] else []),
         volumeMounts: std.prune([
@@ -256,7 +238,7 @@
             configs.sfdchosts_volume_mount,
             configs.kube_config_volume_mount,
             configs.maddog_cert_volume_mount,
-            (if slbflights.supportedProxiesEnabled then slbconfigs.proxyconfig_volume_mount else {}),
+            slbconfigs.proxyconfig_volume_mount,
         ]),
         env: [
             configs.kube_config_env,

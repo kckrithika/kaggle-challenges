@@ -84,7 +84,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           configs.cert_volume,
                           configs.kube_config_volume,
                           slbconfigs.cleanup_logs_volume,
-                          slbflights.proxyconfig_volume,
+                          slbconfigs.proxyconfig_volume,
                       ]),
                       containers: [
                           {
@@ -97,7 +97,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                            "--hostnameOverride=$(NODE_NAME)",
                                            configs.sfdchosts_arg,
                                            "--metricsEndpoint=" + configs.funnelVIP,
-                                           "--httpTimeout=" + (if slbflights.syncHealthConfigEnabled then "3s" else "5s"),
+                                           "--httpTimeout=3s",
                                            "--vipLoop=1",
                                            "--monitorFrequency=10s",
                                            "--client.serverInterface=lo",
@@ -120,10 +120,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                               ]),
                               env: [
                                   slbconfigs.node_name_env,
-                              ] + (if slbimages.hypersdn_build >= 1345 then [
                                   slbconfigs.function_namespace_env,
                                   slbconfigs.function_instance_name_env,
-                              ] else []),
+                              ],
                           },
                           slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                           slbshared.slbCleanupConfig,

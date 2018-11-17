@@ -45,7 +45,7 @@
                   configs.maddog_cert_volume,
                   configs.cert_volume,
                   slbconfigs.sbin_volume,
-                  slbflights.proxyconfig_volume,
+                  slbconfigs.proxyconfig_volume,
                 ]),
                 containers: beforeSharedContainers + [
                   slbshared.slbConfigProcessor(

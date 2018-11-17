@@ -10,6 +10,6 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then
         canaryName="slb-bravo",
         ports=[9090, 9091, 9092],
         tlsPorts=[portconfigs.slb.canaryServiceTlsPort],
-        replicas=if slbimages.hypersdn_build >= 1350 then 2 else 1,
+        replicas=2,
 ) {
 } else "SKIP"

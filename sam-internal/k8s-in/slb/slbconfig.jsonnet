@@ -404,7 +404,7 @@
     // Avoid using kubedns for all SLB pods.
     getDnsPolicy():: { dnsPolicy: "Default" },
 
-    getGracePeriod():: (if slbimages.hypersdn_build >= 1340 then { terminationGracePeriodSeconds: 5 } else {}),
+    getGracePeriod():: { terminationGracePeriodSeconds: 5 },
 
 
     subnet: self.perCluster.subnet[estate],
