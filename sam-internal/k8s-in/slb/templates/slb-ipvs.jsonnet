@@ -149,7 +149,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         },
                         env: [
                             configs.kube_config_env,
-                        ],
+                        ] + (if slbflights.ipvsHealthCheckerCustomUserAgent then [
+                            slbconfigs.function_namespace_env,
+                            slbconfigs.function_instance_name_env,
+                        ] else []),
                     },
                     {
                         name: "slb-ipvs-data",
