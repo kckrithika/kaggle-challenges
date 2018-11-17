@@ -32,7 +32,7 @@ if slbconfigs.isTestEstate || configs.estate == "prd-sam" then configs.deploymen
                     },
                     configs.sfdchosts_volume,
                     slbconfigs.cleanup_logs_volume,
-                    slbflights.proxyconfig_volume,
+                    slbconfigs.proxyconfig_volume,
                 ]),
                 containers: [
                     {

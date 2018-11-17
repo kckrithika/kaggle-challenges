@@ -55,8 +55,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbconfigs.sbin_volume,
                     slbconfigs.cleanup_logs_volume,
                     slbconfigs.proxyconfig_volume,
-                    if slbflights.kernLogCleanup then slbconfigs.slb_kern_log_volume else {},
-                    if slbflights.kernLogCleanup then configs.config_volume("slb-cleanup-logs") else {},
+                    slbconfigs.slb_kern_log_volume,
+                    configs.config_volume("slb-cleanup-logs"),
                 ]),
                 containers: [
                     {
@@ -69,13 +69,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
-                        ] + (if slbflights.stockIpvsModules then [
-                                "--IpvsPath=stock",
-                                "--IpvsSchedModule=ip_vs_sh",
-                            ] else [
-                                "--IpvsPath=20180910",
-                            ]) +
-                        [
+                            "--IpvsPath=20180910",
                             configs.sfdchosts_arg,
                         ],
                         volumeMounts: std.prune([
@@ -126,28 +120,20 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--period=5s",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maximumDeleteCount=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
-                        ]
-                        + [
                             configs.sfdchosts_arg,
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                             "--client.serverInterface=lo",
                             "--metricsEndpoint=" + configs.funnelVIP,
-                        ]
-                        + [
                             "--httpTimeout=1s",
                             "--enablePersistence=false",
-                        ] + (if slbflights.stockIpvsModules then [
-                            "--sforceScheduler=false",
-                        ] else [])
+                        ]
                         + slbconfigs.getNodeApiClientSocketSettings()
                         + [
                             "--healthcheck.riseCount=5",
                             "--healthcheck.fallCount=2",
                             "--computeProxyServers=true",
-                        ]
-                        + (if slbflights.syncHealthConfigEnabled then [
                             "--healthcheck.healthchecktimeout=3s",
-                        ] else []),
+                        ],
                         volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
@@ -225,7 +211,6 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIpvsOverridePort, true),
                     slbshared.slbLogCleanup,
                     slbshared.slbManifestWatcher(),
-                ] + (if slbflights.kernLogCleanup then [
                     {
                         name: "slb-cleanup-kern-logs",
                         image: slbimages.hypersdn,
@@ -240,7 +225,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             slbconfigs.slb_kern_log_volume_mount,
                         ]),
                     },
-                ] else []),
+                ],
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
                 },

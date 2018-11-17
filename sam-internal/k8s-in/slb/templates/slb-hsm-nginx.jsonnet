@@ -33,6 +33,6 @@ if slbflights.hsmCanaryEnabled then
       1,
       hsmNginxAffinity,
       slbimages.hsmnginx,
-      deleteLimitOverride=(if slbflights.supportedProxiesEnabled then 250 else 0)
+      deleteLimitOverride=(if slbflights.hsmDeleteLimitOverride then 250 else 0)
 ) {}
 else "SKIP"
