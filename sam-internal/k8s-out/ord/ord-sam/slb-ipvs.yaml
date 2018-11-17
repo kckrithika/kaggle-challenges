@@ -349,6 +349,18 @@ spec:
           name: maddog-certs
         - mountPath: /proxyconfig
           name: proxyconfig
+      - command:
+        - /bin/bash
+        - /config/slb-cleanup-logs.sh
+        - /var/log/kern.*
+        - "3600"
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0001375-71389927
+        name: slb-cleanup-kern-logs
+        volumeMounts:
+        - mountPath: /config
+          name: config
+        - mountPath: /var/log
+          name: var-kern-log-volume
       dnsPolicy: Default
       hostNetwork: true
       nodeSelector:
@@ -397,3 +409,9 @@ spec:
       - configMap:
           name: slb-proxy-configuration
         name: proxyconfig
+      - hostPath:
+          path: /var/log
+        name: var-kern-log-volume
+      - configMap:
+          name: slb-cleanup-logs
+        name: config
