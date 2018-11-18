@@ -5,6 +5,7 @@
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile },
     local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: $.dirSuffix },
+    local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: $.dirSuffix },
 
     local configProcSentinel = slbconfigs.configDir + "/slb-config-proc.sentinel",
     local mwSentinel = slbconfigs.configDir + "/slb-manifest-watcher.sentinel",
@@ -288,4 +289,97 @@
         }
         else {}
     ),
+    slbNginxConfig(deleteLimitOverride=0, vipInterfaceName=""): {
+        ports: [
+                            {
+                              name: "slb-nginx-port",
+                              containerPort: portconfigs.slb.slbNginxControlPort,
+                            },
+                          ],
+                          name: "slb-nginx-config",
+                          image: slbimages.hypersdn,
+                          [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
+                          command: [
+                                     "/sdn/slb-nginx-config",
+                                     "--target=" + slbconfigs.nginxContainerTargetDir,
+                                     "--netInterfaceName=eth0",
+                                     "--metricsEndpoint=" + configs.funnelVIP,
+                                     "--log_dir=" + slbconfigs.logsDir,
+                                     "--maxDeleteServiceCount=" + std.max((if configs.kingdom == "xrd" then 150 else 0), slbconfigs.maxDeleteLimit(deleteLimitOverride)),
+                                     configs.sfdchosts_arg,
+                                     "--client.serverInterface=lo",
+                                     "--hostnameOverride=$(NODE_NAME)",
+                                     "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
+                                   ]
+                                   + slbconfigs.getNodeApiClientSocketSettings()
+                                   + [
+                                     slbconfigs.nginxReloadSentinelParam,
+                                     "--httpconfig.custCertsDir=" + slbconfigs.customerCertsPath,
+                                     "--checkDuplicateVips=true",
+                                     "--httpconfig.accessLogFormat=main",
+                                     "--commonconfig.riseCount=5",
+                                     "--commonconfig.fallCount=2",
+                                     "--commonconfig.healthTimeout=3000",
+                                   ] + (if std.length(vipInterfaceName) > 0 then [
+                                     # The default vip interface name is tunl0
+                                     "--vipInterfaceName=" + vipInterfaceName,
+                                   ] else []),
+                          volumeMounts: configs.filter_empty([
+                            slbconfigs.target_config_volume_mount,
+                            slbconfigs.slb_volume_mount,
+                            slbconfigs.logs_volume_mount,
+                            configs.sfdchosts_volume_mount,
+                          ]),
+                          securityContext: {
+                            privileged: true,
+                          },
+                          env: [
+                            {
+                              name: "NODE_NAME",
+                              valueFrom: {
+                                fieldRef: {
+                                  fieldPath: "spec.nodeName",
+                                },
+                              },
+                            },
+                            configs.kube_config_env,
+                          ],
+    },
+    slbNginxProxy(proxyImage): {
+        name: "slb-nginx-proxy",
+                          image: proxyImage,
+                          env: [
+                              {
+                                 name: "KINGDOM",
+                                 value: configs.kingdom,
+                              },
+                          ],
+                          command: ["/runner.sh"],
+                          livenessProbe: {
+                            httpGet: {
+                              path: "/",
+                              port: portconfigs.slb.slbNginxProxyLivenessProbePort,
+                            },
+                            initialDelaySeconds: 15,
+                            periodSeconds: 10,
+                          },
+                          volumeMounts: std.prune([
+                            slbconfigs.nginx_config_volume_mount,
+                            slbconfigs.nginx_logs_volume_mount,
+                            slbconfigs.customer_certs_volume_mount,
+                          ]
+                          + madkub.madkubSlbCertVolumeMounts(slbconfigs.nginxCertDirs)
+                          + [
+                            slbconfigs.slb_volume_mount,
+                          ]),
+                          readinessProbe: {
+                            httpGet: {
+                              path: "/",
+                              port: portconfigs.slb.slbNginxProxyLivenessProbePort,
+                            },
+                            initialDelaySeconds: 2,
+                            periodSeconds: 5,
+                            successThreshold: 4,
+                          },
+    },
 }
