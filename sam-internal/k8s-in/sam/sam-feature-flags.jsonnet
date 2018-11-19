@@ -10,13 +10,9 @@ local utils = import "util_functions.jsonnet";
 # in a small subset of places.  (Like our jenkins runs only in prd-sam and has no plans to run in prod)
 
 {
-    # RBAC
-
-    # rbac required Kube 1.7 everywhere.  As soon as we fix CDU we can add public cloud.
-    rbac: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom),
 
     # for the first pr keeping logic the same, but we should unify this with the one above
-    rbacwd: !utils.is_gia(configs.kingdom) && !utils.is_flowsnake_cluster(configs.estate),
+    rbacwd: !utils.is_gia(configs.kingdom) && !utils.is_flowsnake_cluster(configs.estate) && configs.estate != "prd-sdc",
 
     # todo: explain what is blocking this from going everywhere
     rbacstorage:
