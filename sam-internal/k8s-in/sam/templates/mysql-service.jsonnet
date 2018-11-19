@@ -17,6 +17,9 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                 creationTimestamp: "2018-09-21T22:32:11Z",
                 labels: {
                     app: "mysql-ss",
+                    sam_app: "mysql-ss",
+                    sam_function: "mysql-ss",
+                    sam_loadbalancer: "mysql-ss",
                 },
                 name: "mysql-read",
                 namespace: "sam-system",

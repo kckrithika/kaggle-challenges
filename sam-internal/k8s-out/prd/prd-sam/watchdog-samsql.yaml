@@ -24,7 +24,7 @@ spec:
         - --role=GLOBAL
         - --sqlDbUsername=watchdog
         - --sqlDbPasswordFile=/var/secrets/mysql.txt
-        - --sqlDbHostname=mysql-read.sam-system
+        - --sqlDbHostname=mysql-read.sam-system.prd-sam.prd.slb.sfdc.net
         - --sqlK8sResourceDbName=sam_kube_resource
         - --sqlDbPort=3306
         - --sqlQueryFile=/var/queries/watchdog-samsql-queries.jsonnet
