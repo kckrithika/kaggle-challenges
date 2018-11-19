@@ -34,7 +34,7 @@ system:
         - name: ENGINE_PKI_NAME_OVERRIDE
           value: cre-engine-ccp-stage
         - name: ENGINE_IMAGE_TAG
-          value: docker-sam/cre/cre-engine:1.5.0.0.develop-1.5.b0d187e.23
+          value: docker-sam/cre/cre-engine:1.5.0.0.develop-1.5.147908c.28
         - name: ENGINE_APPLICATION_NAME
           value: cre-engine-ccp-stage
         - name: ENGINE_HBASE_DATACENTER
