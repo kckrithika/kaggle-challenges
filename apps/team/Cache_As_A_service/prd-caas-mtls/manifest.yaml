@@ -50,8 +50,6 @@ system:
           name: redis-sock
         - name: server-certs
           mountPath: /server-certs
-      args:
-        - --envoy.ciphers=ECDHE-RSA-AES256-SHA
       ports:
       - containerPort: 12010
       - containerPort: 12000
