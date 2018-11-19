@@ -9,14 +9,14 @@ local util = import "util.jsonnet";
     Rule_reservedPorts: util.ListNotAllowed(base.reservedPorts),
 
 
-    Rule_hostPathList: util.MatchPatterns(base.hostPathList.allowed, base.hostPathList.notAllowed),
+    Rule_hostPathList: util.MatchRegex(base.hostPathList.allowed, base.hostPathList.notAllowed),
 
 
-    Rule_imageForm: util.MatchPatterns(base.imageForm.allowed, base.imageForm.notAllowed),
+    Rule_imageForm: util.MatchRegex(base.imageForm.allowed, base.imageForm.notAllowed),
 
 
     Rule_envVariableName: {
-        EnvNamePatterns: util.MatchPatterns(base.envNamePattern),
+        EnvNamePatterns: util.MatchRegex(base.envNamePattern),
         ReservedEnvName: util.ValuesNotAllowed(base.reservedEnvName)
     },
 
@@ -31,7 +31,7 @@ local util = import "util.jsonnet";
 
 
     Rule_volumeMountValidation: {
-        MountPathPattern: util.MatchPatterns(base.mountPathPattern),
+        MountPathPattern: util.MatchRegex(base.mountPathPattern),
         SecretVolume: base.secretVolumeMountValidation
     },
 

@@ -1,7 +1,7 @@
 {
     # Receives an array of patterns and the value must match at least one of these patterns
     # OPTIONAL: notAllowed flag to make sure values must NOT match any of the patterns
-    MatchPatterns(allowed, notAllowed=[]):: {
+    MatchRegex(allowed, notAllowed=[]):: {
         allOf: [
             {
                 anyOf: [ 
