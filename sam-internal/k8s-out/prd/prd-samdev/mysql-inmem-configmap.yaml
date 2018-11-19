@@ -11,11 +11,11 @@ data:
     #datadir=/var/lib/mysql/mysql
     #socket=/var/lib/mysql/mysql.sock
   master.cnf: "# Apply this config only on the master.\n[mysqld]\n# Configs specific
-    to master\nlog-bin\nbinlog_stmt_cache_size=1G\nexpire_logs_days=1\nsync_binlog=0\nbinlog_row_image=minimal\nbinlog_format=MIXED\n#
+    to master\n# log-bin\nbinlog_stmt_cache_size=1G\nexpire_logs_days=1\nsync_binlog=0\nbinlog_row_image=minimal\nbinlog_format=MIXED\n#
     For a detailed explanation of these\n# vars, see https://git.soma.salesforce.com/sam/sam/wiki/MySQL_Performance_Tuning\ninnodb_buffer_pool_size=16GiB\ninnodb_change_buffer_max_size=50\ninnodb_flush_log_at_trx_commit=1
     \ninnodb_io_capacity=400\ninnodb_log_buffer_size=1GiB\ninnodb_lock_wait_timeout=10\nbulk_insert_buffer_size=128MiB\ntmp_table_size=1GiB\nmax_heap_table_size=1GiB\nskip_name_resolve=1\n\n"
   slave.cnf: "# Apply this config only on slaves.\n[mysqld]\n# Configs specific to
-    replication slaves\nread-only\nslave_parallel_workers=128\nslave_pending_jobs_size_max=1GiB\nslave_compressed_protocol=1\nslave_exec_mode=IDEMPOTENT\n#
+    replication slaves\nsuper-read-only\nslave_parallel_workers=128\nslave_pending_jobs_size_max=1GiB\nslave_compressed_protocol=1\nslave_exec_mode=IDEMPOTENT\n#
     For a detailed explanation of these\n# vars, see https://git.soma.salesforce.com/sam/sam/wiki/MySQL_Performance_Tuning\ninnodb_buffer_pool_size=16GiB\ninnodb_change_buffer_max_size=50\ninnodb_flush_log_at_trx_commit=1
     \ninnodb_io_capacity=400\ninnodb_log_buffer_size=1GiB\ninnodb_lock_wait_timeout=10\nbulk_insert_buffer_size=128MiB\ntmp_table_size=1GiB\nmax_heap_table_size=1GiB\nskip_name_resolve=1\n"
 kind: ConfigMap

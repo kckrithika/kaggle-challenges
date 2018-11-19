@@ -19,7 +19,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         # Apply this config only on the master.
         [mysqld]
         # Configs specific to master
-        log-bin
+        # log-bin
         binlog_stmt_cache_size=1G
         expire_logs_days=1
         sync_binlog=0
@@ -43,7 +43,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         # Apply this config only on slaves.
         [mysqld]
         # Configs specific to replication slaves
-        read-only
+        super-read-only
         slave_parallel_workers=128
         slave_pending_jobs_size_max=1GiB
         slave_compressed_protocol=1
@@ -65,10 +65,10 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     kind: "ConfigMap",
     metadata: {
         labels: {
-            app: "mysql_ss",
+            app: "mysql-ss",
         },
-        name: "mysql_ss",
-        namespace: "mysql_rep",
+        name: "mysql-ss",
+        namespace: "sam-system",
     },
     apiVersion: "v1",
 } else "SKIP"
