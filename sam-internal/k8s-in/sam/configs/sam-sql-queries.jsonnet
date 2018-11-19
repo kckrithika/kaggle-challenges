@@ -91,5 +91,6 @@ local bedhealth = (import "sam-sql-reporter/bedhealth.libsonnet").bedhealth;
     (import "sam-sql-reporter/failedcreatepodsandbox.libsonnet"),
     (import "sam-sql-reporter/pr-metrics.libsonnet"),
     (import "sam-sql-reporter/customer-app-restarts-by-sam-in-test-beds.libsonnet"),
+    (import "sam-sql-reporter/sandbox-ips-by-user.libsonnet"),
   ],
 }
