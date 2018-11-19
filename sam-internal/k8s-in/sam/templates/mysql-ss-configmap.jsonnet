@@ -65,9 +65,9 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     kind: "ConfigMap",
     metadata: {
         labels: {
-            app: "mysql_ss",
+            app: "mysql-ss",
         },
-        name: "mysql_ss",
+        name: "mysql-ss",
         namespace: "sam-system",
     },
     apiVersion: "v1",

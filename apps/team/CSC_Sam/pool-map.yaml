@@ -59,12 +59,6 @@ apps:
   - hnd/hnd-sam
  SamSelectorLabelTest:
   - prd/prd-samtest
- mysql:
-  - prd/prd-sam
-  - prd/prd-samdev
-  - prd/prd-samtest
- watchdog-mysql:
-  - prd/prd-sam
  ajnaConsumer:
   - prd/prd-sam
  SamDailyReport:
