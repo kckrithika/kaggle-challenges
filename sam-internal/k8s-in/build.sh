@@ -75,7 +75,7 @@ fi
 # that are appropriate for this environment.
 ./parallel_build.py --src=storage/templates/ --out=../k8s-out/ --pools=skipperEstates.json --estatefilter=$1
 
-./parallel_build.py --src=sam/templates/ --out=../k8s-out/ --pools=vpod/vpodEstates.json --estatefilter=$1
+./parallel_build.py --src=sam/templates/,slb/templates/ --out=../k8s-out/ --pools=vpod/vpodEstates.json --estatefilter=$1
 
 # Json is quite poor when it comes to multi-line strings.  Since configMaps are a kubernetes resource with files
 # encoded as strings within that file, you end up with generated configMaps with enormous lines that are hard to read

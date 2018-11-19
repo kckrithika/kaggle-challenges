@@ -1,18 +1,18 @@
 local deplName = "slb-vpod-nginx";
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.deplName };
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: deplName };
 local portconfigs = import "portconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
-local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: $.deplName };
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: deplName };
 local slbports = import "slbports.jsonnet";
 
-if configs.estate == "vpod" then configs.deploymentBase("slb") {
-metadata: {
+if configs.kingdom == "vpod" then configs.deploymentBase("slb") {
+    metadata: {
         labels: {
-            name: $.deplName,
+            name: deplName,
         } + configs.ownerLabel.slb,
-        name: $.deplName,
+        name: deplName,
         namespace: "sam-system",
     },
     spec+: {
@@ -20,7 +20,7 @@ metadata: {
         template: {
             metadata: {
                 labels: {
-                    name: $.deplName,
+                    name: deplName,
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
             },
