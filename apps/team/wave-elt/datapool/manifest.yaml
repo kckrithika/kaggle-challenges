@@ -37,10 +37,10 @@ system:
         value: dva/flowsnake-job-datapool-engine:333
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_NEXT
-        value: null
+        value: ''
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
-        value: null
+        value: ''
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_KIND
         value: dockerDefaultRegistryImage
