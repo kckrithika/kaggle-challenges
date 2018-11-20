@@ -20,7 +20,7 @@ system:
 
     containers:
     - name: dfs-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/hack:hack-dfs-scone5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/hack:hack-dfs-unexpectedErrorLogging
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
