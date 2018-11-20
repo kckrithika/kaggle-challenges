@@ -44,7 +44,7 @@ local utils = import "util_functions.jsonnet";
                 snapshot_consumer_image_tag: "sam-0002052-bc0d9ea5",
                 kubedns_image_tag: "1.14.9",
                 eventExporter_image_tag: "726",
-                jdk8_base_tag: "latest",
+                jdk8_base_tag: "33",
         },
 
         ### Release Phase minikube
@@ -245,7 +245,7 @@ local utils = import "util_functions.jsonnet";
     kubednsmasq: flowsnakeconfig.strata_registry + "/k8s-dns-dnsmasq-nanny:" + $.per_phase[$.phase].kubedns_image_tag,
     kubednssidecar: flowsnakeconfig.strata_registry + "/k8s-dns-sidecar:" + $.per_phase[$.phase].kubedns_image_tag,
     # Used by synthetic-dns-check; possible future use for other config-map-script-based helper-pods
-    jdk8_base: flowsnakeconfig.strata_registry + "/dva/sfdc_centos7_jdk8:" + $.per_phase[$.phase].jdk8_base_tag,
+    jdk8_base: flowsnakeconfig.strata_registry + "/sfdc_centos7_jdk8:" + $.per_phase[$.phase].jdk8_base_tag,
 
     # image function logic borrowed from samimages.jsonnet. We currently do not use the override functionality,
     # but benefit from the automatic DC-correct determination of which artifactrepo to use.
