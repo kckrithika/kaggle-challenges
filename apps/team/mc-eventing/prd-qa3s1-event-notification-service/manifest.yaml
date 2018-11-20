@@ -19,9 +19,6 @@ system:
     - name: cert
       maddogCert:
         type: client
-    - name: secretvol
-      k4aSecret:
-        secretName: test-secret
     containers:
     - name: qa3s1-event-notification-service
       image: sfci/mc-eventing/event-notification:215.0.10
@@ -46,9 +43,6 @@ system:
       volumeMounts:
       - name: cert
         mountPath: /certs
-      - mountPath: /secrets
-        name: secretvol
-        readOnly: true
   loadbalancers:
   - lbname: qa3s1-event-notification-service-lb
     function: qa3s1-event-notification-service
