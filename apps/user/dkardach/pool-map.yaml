@@ -1,9 +1,9 @@
 apps:
- hello-dkardach:
-  - prd/prd-sam
- aqueduct-test-deploy:
-  - prd/prd-sam
- controlplane:
-  - prd/prd-sam
- aqueduct:
-  - prd/prd-sam
+# hello-dkardach:
+#  - prd/prd-sam
+# aqueduct-test-deploy:
+#  - prd/prd-sam
+# controlplane:
+#  - prd/prd-sam
+# aqueduct:
+#  - prd/prd-sam

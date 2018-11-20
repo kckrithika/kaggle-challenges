@@ -1,9 +1,9 @@
 apps:
- samhello:
-  - prd/prd-sam
- render-ethgen-test:
-  - prd/prd-sam
- render-ethgen-sep-pods:
-  - prd/prd-sam
- tftp-test:
-  - prd/prd-sam
+# samhello:
+#  - prd/prd-sam
+# render-ethgen-test:
+#  - prd/prd-sam
+# render-ethgen-sep-pods:
+#  - prd/prd-sam
+# tftp-test:
+#  - prd/prd-sam
