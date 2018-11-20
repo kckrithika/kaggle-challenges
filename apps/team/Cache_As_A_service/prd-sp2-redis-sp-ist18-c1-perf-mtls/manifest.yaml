@@ -21,7 +21,7 @@ system:
       args: 
         - --port=12015
         - --maxMemoryMB=4096
-        - --logDir=/home/sfdc-caas/logs/redis-$(FUNCTION_INSTANCE_IP)
+        - --logDir=/home/caas/logs
         - --disableProtectedMode
       livenessProbe:
         exec:
