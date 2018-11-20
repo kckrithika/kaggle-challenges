@@ -21,7 +21,7 @@ spec:
         - /var/run/check-dns/check-dns.sh
         - dig_kubedns
         - "100"
-        image: dva-registry.internal.salesforce.com/dva/sfdc_centos7_jdk8:latest
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/dva/sfdc_centos7_jdk8:latest
         name: dig-kubedns
         volumeMounts:
         - mountPath: /hostetc

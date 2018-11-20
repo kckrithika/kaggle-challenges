@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local flowsnake_config = import "flowsnake_config.jsonnet";
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 
 if flowsnake_config.kubedns_synthetic_requests then
 configs.deploymentBase("flowsnake") {
@@ -27,7 +28,7 @@ configs.deploymentBase("flowsnake") {
         containers: [
           {
             name: "dig-kubedns",
-            image: "dva-registry.internal.salesforce.com/dva/sfdc_centos7_jdk8:latest",
+            image: flowsnake_images.jdk8_base,
             command: ["/bin/sh", "/var/run/check-dns/check-dns.sh", "dig_kubedns", std.toString(flowsnake_config.kubedns_synthetic_requests_config.rate) ],
             volumeMounts: [
               {
