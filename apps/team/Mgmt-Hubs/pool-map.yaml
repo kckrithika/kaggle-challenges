@@ -1,0 +1,4 @@
+version: v2
+apps:
+  mgmt-hub:
+   - prd/prd-sam
