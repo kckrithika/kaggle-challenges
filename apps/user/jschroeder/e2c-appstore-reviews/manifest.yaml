@@ -16,7 +16,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: appstorereview
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/appstore_reviews:c94a054
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/appstore_reviews:9880d2a
       env:
       - name: SECRETSERVICE_CERT_PATH
         value: /certs/client/certificates/client.pem
