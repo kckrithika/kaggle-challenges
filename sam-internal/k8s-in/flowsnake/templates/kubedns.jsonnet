@@ -149,7 +149,7 @@ else
                             "-restartDnsmasq=true",
                             "--",
                             "-k",
-                            "--cache-size=50000",
+                            "--cache-size=" + std.toString(flowsnake_config.kubedns_cache_size),
                             "--log-facility=-",
                             "--server=/cluster.local/127.0.0.1#10053",
                             "--server=/in-addr.arpa/127.0.0.1#10053",

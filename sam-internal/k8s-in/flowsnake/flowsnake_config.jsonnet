@@ -77,6 +77,17 @@ local util = import "util_functions.jsonnet";
     kubedns_manifests_enabled: !self.is_minikube,
     # Performance impact of logging DNS queries unknown. In test fleet alone it is ~5000 per minute. Presume this can
     # only be done temporarily.
-    kubedns_log_queries: false,
+    kubedns_cache_size: 50000,
+    kubedns_synthetic_requests_estates: {
+        "prd-data-flowsnake_test": {
+            replicas: 5,
+            rate: 100,  # requests per second per replica
+        },
+    },
+    # Query logging theoretically independent of synthetic requests, for now we enable them together.
+    kubedns_log_queries: std.objectHas(self.kubedns_synthetic_requests_estates, estate),
+    kubedns_synthetic_requests: std.objectHas(self.kubedns_synthetic_requests_estates, estate),
+    kubedns_synthetic_requests_config: if std.objectHas(self.kubedns_synthetic_requests_estates, estate) then
+        self.kubedns_synthetic_requests_estates[estate] else {},
     node_controller_enabled: !self.is_minikube,
 }
