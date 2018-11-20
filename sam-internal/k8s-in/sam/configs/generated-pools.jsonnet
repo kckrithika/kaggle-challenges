@@ -2867,6 +2867,18 @@
     },
     {
       "namespaces": [
+        "solr-service"
+      ],
+      "access": [
+        "team/solr-service"
+      ],
+      "controlEstate": "yhu-sam",
+      "estate": "yhu-sam_search",
+      "kingdom": "yhu",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -2900,6 +2912,18 @@
       ],
       "controlEstate": "yul-sam",
       "estate": "yul-sam_report_collector",
+      "kingdom": "yul",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "solr-service"
+      ],
+      "access": [
+        "team/solr-service"
+      ],
+      "controlEstate": "yul-sam",
+      "estate": "yul-sam_search",
       "kingdom": "yul",
       "superPod": "None"
     },

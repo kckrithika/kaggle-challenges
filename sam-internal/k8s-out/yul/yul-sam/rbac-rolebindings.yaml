@@ -110,6 +110,46 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: solr-service:yul-sam_search:rolebinding
+    namespace: solr-service
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionsearch1-1-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch1-2-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch1-3-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch1-4-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch1-5-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch2-1-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch2-2-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch2-3-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch2-4-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch2-5-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch3-1-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch3-2-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch3-3-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch3-4-yul.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch3-5-yul.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: sdn:yul-sdn_control:rolebinding
     namespace: sdn
   roleRef:
