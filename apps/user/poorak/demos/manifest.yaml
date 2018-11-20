@@ -10,7 +10,7 @@ system:
       - containerPort: 9090
       livenessProbe:
         httpGet:
-          path: /
+          path: /mlnamematch
           port: 9090
   loadbalancers:
   - lbname: demoslb
