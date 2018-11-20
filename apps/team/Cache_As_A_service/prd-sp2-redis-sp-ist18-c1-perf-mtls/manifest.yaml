@@ -57,9 +57,9 @@ system:
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
-      - caas/cluster/sp-ist18-c1:SUPERPOD:12000
+      - caas/cluster/sp-ist18-c1-mtls:SUPERPOD:12000
       - -logdir
-      - /home/sfdc-caas/logs/sp-ist18-c1-$(FUNCTION_INSTANCE_IP)
+      - /home/sfdc-caas/logs/sp-ist18-c1-mtls-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         initialDelaySeconds: 5
         exec:
