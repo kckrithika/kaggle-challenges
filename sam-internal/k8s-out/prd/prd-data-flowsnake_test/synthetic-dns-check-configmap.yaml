@@ -1297,3 +1297,4 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: synthetic-dns-check
+  namespace: flowsnake
