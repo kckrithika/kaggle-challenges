@@ -83,6 +83,10 @@ local util = import "util_functions.jsonnet";
             replicas: 5,
             rate: 100,  # requests per second per replica
         },
+        "iad-flowsnake_prod": {
+            replicas: 20,
+            rate: 50,  # requests per second per replica
+        },
     },
     # Query logging theoretically independent of synthetic requests, for now we enable them together.
     kubedns_log_queries: std.objectHas(self.kubedns_synthetic_requests_estates, estate),
