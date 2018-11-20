@@ -36,6 +36,8 @@ system:
         value: mc.test.mceventbusqa3s1
       - name: EVENTCONSUMER_GROUP_ID
         value: eventing-notification-qa3s1
+      - name: DUMMY_CONFIG
+        value: restart
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
