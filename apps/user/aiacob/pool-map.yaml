@@ -1,11 +1,11 @@
 apps:
- report-collectorha:
-   - prd/prd-sam
- temp-store:
-   - prd/prd-sam
- report-cache-builder:
- report-collector:
- repcollavailwd:
-   - prd/prd-sam
- report-collector-provider-perf:
- report-collector-consumer-perf:
+# report-collectorha:
+#   - prd/prd-sam
+# temp-store:
+#   - prd/prd-sam
+# report-cache-builder:
+# report-collector:
+# repcollavailwd:
+#   - prd/prd-sam
+# report-collector-provider-perf:
+# report-collector-consumer-perf:

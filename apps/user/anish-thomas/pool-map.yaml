@@ -1,15 +1,15 @@
 apps:
-  content-imagemagick-scone:
-    - prd/prd-sam
-
-  content-zookeeper:
-    - prd/prd-sam
-
-  content-kafka:
-    - prd/prd-sam
-
-  content-jmagick:
-    - prd/prd-sam
-
-  content-broker-service:
-    - prd/prd-sam
+#  content-imagemagick-scone:
+#    - prd/prd-sam
+#
+#  content-zookeeper:
+#    - prd/prd-sam
+#
+#  content-kafka:
+#    - prd/prd-sam
+#
+#  content-jmagick:
+#    - prd/prd-sam
+#
+#  content-broker-service:
+#    - prd/prd-sam

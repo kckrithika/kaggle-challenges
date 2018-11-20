@@ -1,24 +1,24 @@
 apps:
  my-sam-test:
-  - prd/prd-sam
+#  - prd/prd-sam
 
  rpc-client:
-  - prd/prd-sam
+#  - prd/prd-sam
 
  rpc-server:
-  - prd/prd-sam
+#  - prd/prd-sam
 
  geoip-client:
-  - prd/prd-sam
+#  - prd/prd-sam
 
  xlt-search:
-  - prd/prd-sam
+#  - prd/prd-sam
 
  search-model:
-  - prd/prd-sam
+#  - prd/prd-sam
 
  load-grpc:
-  - prd/prd-sam
+#  - prd/prd-sam
 
 # switchboard:
 #  - prd/prd-sam
