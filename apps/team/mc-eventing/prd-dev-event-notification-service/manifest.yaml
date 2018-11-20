@@ -21,7 +21,7 @@ system:
         type: client
     containers:
     - name: dev-event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.1
+      image: sfci/mc-eventing/event-notification:1.0.2
       ports:
       - containerPort: 15372
       env:
