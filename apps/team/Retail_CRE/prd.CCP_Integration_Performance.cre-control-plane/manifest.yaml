@@ -61,6 +61,22 @@ system:
           value: false
         - name: SECRET_KEY_FILE
           value: /keys-kube/cre-aes.key
+        - name: JVM_ARGS
+          value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
+                  -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                  -Xloggc:/opt/cre/cre-control-plane-ccp-perf/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                  -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/opt/cre/cre-control-plane-ccp-perf
+                  -Dcom.sun.management.jmxremote.port=8898
+                  -Dcom.sun.management.jmxremote.rmi.port=8898
+                  -Dcom.sun.management.jmxremote.ssl=false
+                  -Dcom.sun.management.jmxremote.authenticate=false
+                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
+      resources:
+        limits: { cpu: "2", memory: "6Gi" }
+        requests: { cpu: "2", memory: "5Gi" }
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -122,6 +138,9 @@ system:
       args:
       - -endpoint
       - retail-cre/cre-control-plane-ccp-perf:DATACENTER_ALLENV:7443
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         initialDelaySeconds: 5
         exec:
