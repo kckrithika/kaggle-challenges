@@ -24,7 +24,7 @@ system:
         secretName: eventbusajna-ens-v1
     containers:
     - name: qa1s1-event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.2
+      image: sfci/mc-eventing/event-notification:1.0.3
       ports:
       - containerPort: 15372
       env:
@@ -36,8 +36,6 @@ system:
         value: mc.test.mceventbusqa1s1
       - name: EVENTCONSUMER_GROUP_ID
         value: eventing-notification-qa1s1
-      - name: DUMMY_CONFIG
-        value: restart
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
