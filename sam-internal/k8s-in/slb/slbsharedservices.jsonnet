@@ -30,7 +30,7 @@
                          "--period=1800s",
                      ]
                  ) + [
-                     "--vipsToAcl=slb-bravo-svc.sam-system." + configs.estate + ".prd.slb.sfdc.net",
+                     "--vipsToAcl=" + slbconfigs.vipsToAcl,
                      "--podPhaseCheck=true",
                      "--namespace=" + slbconfigs.namespace,
                      "--podstatus=running",

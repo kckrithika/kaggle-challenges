@@ -104,7 +104,7 @@ spec:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-vpod-nginx
         - --period=1800s
-        - --vipsToAcl=slb-bravo-svc.sam-system.vpod.prd.slb.sfdc.net
+        - --vipsToAcl=
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running

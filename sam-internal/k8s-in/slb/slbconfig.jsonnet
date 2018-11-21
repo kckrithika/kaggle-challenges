@@ -258,6 +258,10 @@
               "prd-sdc": "10.254.247.101",
               "prd-sam": "10.251.197.48",
             },
+
+        vipsToAcl:
+            set_value_to_all_in_list("slb-bravo-svc.sam-system." + configs.estate + ".prd.slb.sfdc.net", $.slbEstates)
+            + { vpod: "" },
     },
 
 
@@ -475,6 +479,7 @@
     envoyEnabledVips: self.perCluster.envoyEnabledVips[estate],
     envoyVip: self.perCluster.envoyVip[estate],
     envoyVipCIDR: if std.length(self.envoyVip) != 0 then ([self.envoyVip + "/32"]) else [],
+    vipsToAcl: self.perCluster.vipsToAcl[estate],
 
     sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
     sdn_watchdog_emailrec: "slb@salesforce.com",
