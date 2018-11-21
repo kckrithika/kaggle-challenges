@@ -25,6 +25,7 @@ if configs.kingdom == "vpod" then configs.deploymentBase("slb") {
                 namespace: "sam-system",
             },
             spec: {
+                hostNetwork: true,
                 volumes: std.prune([
                     slbconfigs.logs_volume,
                     configs.maddog_cert_volume,

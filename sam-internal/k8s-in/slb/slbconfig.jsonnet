@@ -64,7 +64,7 @@
             "cdg-sam": "10.229.136.0/22",
             "fra-sam": "10.160.8.0/22",
             "prd-samtwo": "10.254.252.0/22",
-            "vpod": "",
+            vpod: "",
         },
 
         publicSubnet: {
@@ -86,7 +86,7 @@
             "par-sam": "185.79.142.0/23",
             "ukb-sam": "161.71.146.0/23",
             "prd-samtwo": "136.146.214.0/23,96.43.157.0/24",
-            "vpod": "",
+            vpod: "",
         },
 
         reservedIps: {
@@ -126,11 +126,13 @@
             "hnd-sam": "0.0.0.0/0",
             "ord-sam": "0.0.0.0/0",
             "cdg-sam": "0.0.0.0/0",
+            vpod: "0.0.0.0/0",
         },
 
         serviceList: {
             "prd-sam": "csrlb,controlplane-ptest",
-        } + set_value_to_all_in_list_skip("", $.slbEstates, "prd-sam"),
+        } + set_value_to_all_in_list_skip("", $.slbEstates, "prd-sam")
+        + { vpod: "" },
 
         servicesToLbOverride: {
             "prd-sdc": "",
@@ -142,7 +144,7 @@
             "prd-sam": "slb-canary-proxy-http-service,slb-alpha-svc,slb-bravo-svc,slb-canary-service",
         },
 
-        namespace: set_value_to_all_in_list("", $.slbEstates),
+        namespace: set_value_to_all_in_list("", $.slbEstates) + { vpod: "" },
 
         useProxyServicesList: {
             "prd-sdc": "slb-bravo-svc",
@@ -158,7 +160,8 @@
             "prd-sam_storage": "name=slb-vip-watchdog",
             "prd-sam_storagedev": "name=slb-vip-watchdog",
         },
-        useVipLabelToSelectSvcs: set_value_to_all_in_list(true, $.slbEstates),
+        useVipLabelToSelectSvcs: set_value_to_all_in_list(true, $.slbEstates)
+          + { vpod: true },
         kneDomainName: {
             "prd-sdc": "prd-sdc.slb.sfdc.net",
         } + set_value_to_all_in_list_skip("", $.testEstates, "prd-sdc")
@@ -235,6 +238,7 @@
             "cdg-sam": $.maxDeleteDefault,
             "fra-sam": $.maxDeleteDefault,
             "prd-samtwo": $.maxDeleteDefault,
+            vpod: $.maxDeleteDefault,
         },
 
         hsmEnabledVips:
