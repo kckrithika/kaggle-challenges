@@ -6,6 +6,7 @@ local portconfigs = import "portconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: deplName };
 local slbports = import "slbports.jsonnet";
+local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: deplName };
 
 if configs.kingdom == "vpod" then configs.deploymentBase("slb") {
     metadata: {
@@ -34,7 +35,10 @@ if configs.kingdom == "vpod" then configs.deploymentBase("slb") {
                     slbconfigs.cleanup_logs_volume,
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
-                ]),
+                    slbconfigs.target_config_volume,
+                    configs.cert_volume,
+                    slbconfigs.customer_certs_volume,
+                ] + madkub.madkubSlbCertVolumes(slbconfigs.nginxCertDirs)),
                 containers: [
                     slbshared.slbNginxConfig(deleteLimitOverride=0, vipInterfaceName="eth0"),
                     slbshared.slbNginxProxy(slbimages.slbnginx),

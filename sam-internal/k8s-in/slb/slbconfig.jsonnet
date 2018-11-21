@@ -373,6 +373,13 @@
     nginxContainerTargetDir: $.slb_volume_mount.mountPath + "/" + $.dirSuffix + "/config",
     nginxReloadSentinelParam: "--control.nginxReloadSentinel=" + $.nginxContainerTargetDir + "/nginx.marker",
 
+    customer_certs_volume: {
+      emptyDir: {
+        medium: "Memory",
+      },
+      name: "customer-certs",
+    },
+
     target_config_volume: {
       name: "var-target-config-volume",
       hostPath: {

@@ -118,12 +118,7 @@ local afterSharedContainers = [
                    madkub.madkubSlbCertVolumes(slbconfigs.nginxCertDirs)
                    + madkub.madkubSlbMadkubVolumes() + [
                    slbconfigs.target_config_volume,
-                   {
-                     emptyDir: {
-                       medium: "Memory",
-                     },
-                     name: "customer-certs",
-                   },
+                   slbconfigs.customer_certs_volume,
                  ]),
                  initContainers: [
                    madkub.madkubInitContainer(slbconfigs.nginxCertDirs),

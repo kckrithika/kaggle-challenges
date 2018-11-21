@@ -201,3 +201,18 @@ spec:
       - hostPath:
           path: /data/slb/config/slb-vpod-nginx
         name: var-config-volume
+      - hostPath:
+          path: /data/slb/slb-vpod-nginx/config
+        name: var-target-config-volume
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - emptyDir:
+          medium: Memory
+        name: customer-certs
+      - emptyDir:
+          medium: Memory
+        name: cert1
+      - emptyDir:
+          medium: Memory
+        name: cert2
