@@ -64,7 +64,7 @@
             "cdg-sam": "10.229.136.0/22",
             "fra-sam": "10.160.8.0/22",
             "prd-samtwo": "10.254.252.0/22",
-            vpod: "",
+            vpod: "192.0.2.1/32",  # Placeholder subnet value since SLB doesn't manage IP allocation in VPOD-land
         },
 
         publicSubnet: {
