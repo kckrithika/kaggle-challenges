@@ -20,6 +20,7 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                 },
                 spec: {
                     hostNetwork: true,
+                    dnsPolicy: "ClusterFirstWithHostNet",
                     containers: [{
                         name: "sam-manifest-repo-watcher",
                         image: samimages.hypersam,

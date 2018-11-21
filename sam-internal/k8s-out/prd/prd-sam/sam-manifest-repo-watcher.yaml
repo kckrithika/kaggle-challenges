@@ -47,6 +47,7 @@ spec:
         - mountPath: /var/webhook-token
           name: webhook-token
           readOnly: true
+      dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       nodeSelector:
         master: "true"
