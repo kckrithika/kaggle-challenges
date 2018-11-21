@@ -87,6 +87,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
+                synthetic_dns_checks_yum_repo_fix: "unverified",
             },
             version_mapping: {
                 main: {
