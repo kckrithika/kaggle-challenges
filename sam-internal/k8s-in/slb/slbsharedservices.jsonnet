@@ -15,7 +15,8 @@
       proxyLabelSelector="slb-nginx-config-b",
       servicesToLbOverride="",
       servicesNotToLbOverride="illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc",
-      supportedProxies=[]
+      supportedProxies=[],
+      includeProxyConfigurationVolume=true,
 ): {
         name: "slb-config-processor",
         image: slbimages.hypersdn,
@@ -62,7 +63,7 @@
             configs.cert_volume_mount,
             configs.kube_config_volume_mount,
             configs.sfdchosts_volume_mount,
-            slbconfigs.proxyconfig_volume_mount,
+            (if includeProxyConfigurationVolume then slbconfigs.proxyconfig_volume_mount else {}),
         ]),
         env: [
             configs.kube_config_env,

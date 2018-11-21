@@ -154,8 +154,6 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /proxyconfig
-          name: proxyconfig
       - command:
         - /sdn/slb-node-api
         - --port=9130
