@@ -30,6 +30,9 @@ spec:
         - mountPath: /var/run/check-dns
           name: check-dns
           readOnly: true
+        - mountPath: /etc/yum.repos.d
+          name: yum-estates-repo-config-volume
+          readOnly: true
       restartPolicy: Always
       volumes:
       - hostPath:
@@ -38,3 +41,6 @@ spec:
       - configMap:
           name: synthetic-dns-check
         name: check-dns
+      - hostPath:
+          path: /etc/yum.repos.d
+        name: yum-estates-repo-config-volume
