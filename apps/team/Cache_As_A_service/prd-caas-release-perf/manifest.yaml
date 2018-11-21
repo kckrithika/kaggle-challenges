@@ -52,6 +52,7 @@ system:
           mountPath: /server-certs
       args:
       - --envoy.port=12015
+      - --envoy.ciphers=ECDHE-RSA-AES256-SHA
       ports:
       - containerPort: 12010
       - containerPort: 12015
