@@ -5,7 +5,7 @@
 
     "allProperties": {
         "type": "object",
-        "allOf": [ { "$ref": "manifestConfigs#/Requirements_manifest/Required" } ],
+        "allOf": [ { "$ref": "manifestConfigs#/Rule_ManifestRequirements/MustExist" } ],
         "properties": {
 
             "apiVersion": {
@@ -14,7 +14,7 @@
 
             "system": {
                 "type": "object",
-                "allOf": [ { "$ref": "manifestConfigs#/Requirements_system/Required" } ],
+                "allOf": [ { "$ref": "manifestConfigs#/Rule_SystemRequirements/MustExist" } ],
                 "properties": {
 
                     "notifications": {
@@ -25,12 +25,12 @@
                         "type": "array",
                         "items": {
                             "type": "object",
-                            "allOf": [ { "$ref": "manifestConfigs#/Requirements_functions/Required" } ],
+                            "allOf": [ { "$ref": "manifestConfigs#/Rule_FunctionsRequirements/MustExist" } ],
                             "properties": {
 
                                 "name": {
                                     "type": "string",
-                                    "$ref": "manifestConfigs#/Rule_isDNSValidation"
+                                    "$ref": "manifestConfigs#/Rule_IsDNSValidation"
                                 },
 
                                 "count": {
@@ -42,25 +42,29 @@
                                     "items": {
                                         "type": "object",
                                         "allOf": [
-                                            { "$ref": "manifestConfigs#/Requirements_container/Required" },
-                                            { "$ref": "manifestConfigs#/Requirements_container/Unsupported" }
+                                            { "$ref": "manifestConfigs#/Rule_ContainerRequirements/MustExist" },
+                                            { "$ref": "manifestConfigs#/Rule_ContainerRequirements/NotAllowed" }
                                         ],
                                         "properties": {
 
                                             "name": {
                                                 "type": "string",
-                                                "$ref": "manifestConfigs#/Rule_isDNSValidation"
+                                                "$ref": "manifestConfigs#/Rule_IsDNSValidation"
                                             },
 
                                             "env": {
                                                 "type": "array",
                                                 "items": {
                                                     "type": "object",
-                                                    "allOf": [ { "$ref": "manifestConfigs#/Requirements_env/Required" } ],
+                                                    "allOf": [ { "$ref": "manifestConfigs#/Rule_EnvRequirements/MustExist" } ],
                                                     "properties": {
                                                         "name": {
                                                             "type": "string",
-                                                            "$ref": "manifestConfigs#/Rule_envVariableName"
+                                                            "allOf": [
+                                                                { "$ref": "manifestConfigs#/Rule_EnvVariableName/EnvNamePatterns" },
+                                                                { "$ref": "manifestConfigs#/Rule_EnvVariableName/ReservedEnvName" }
+                                                            ]
+                                                            
                                                         },
                                                         "value": {
                                                             "type": [ "string", "integer", "boolean" ]
@@ -71,7 +75,7 @@
 
                                             "image": {
                                                 "type": "string",
-                                                "$ref": "manifestConfigs#/Rule_imageForm"
+                                                "$ref": "manifestConfigs#/Rule_ImageForm"
                                             },
 
                                             "livenessProbe": {
@@ -80,7 +84,7 @@
 
                                                     "httpGet": {
                                                         "type": "object",
-                                                        "allOf": [ { "$ref": "manifestConfigs#/Requirements_httpGet/Required" } ],
+                                                        "allOf": [ { "$ref": "manifestConfigs#/Rule_HttpGetRequirements/MustExist" } ],
                                                         "properties": {
 
                                                             "path": {
@@ -120,20 +124,20 @@
                                                 "items": {
                                                     "type": "object",
                                                     "allOf": [
-                                                        { "$ref": "manifestConfigs#/Requirements_volumeMount/Required" },
-                                                        { "$ref": "manifestConfigs#/Requirements_volumeMount/Unsupported" },
-                                                        { "$ref": "manifestConfigs#/Rule_volumeMountValidation/SecretVolume" }
+                                                        { "$ref": "manifestConfigs#/Rule_VolumeMountRequirements/MustExist" },
+                                                        { "$ref": "manifestConfigs#/Rule_VolumeMountRequirements/NotAllowed" },
+                                                        { "$ref": "manifestConfigs#/Rule_VolumeMountValidation/SecretVolume" }
                                                     ],
                                                     "properties": {
 
                                                         "name": {
                                                             "type": "string",
-                                                            "$ref": "manifestConfigs#/Rule_isDNSValidation"
+                                                            "$ref": "manifestConfigs#/Rule_IsDNSValidation"
                                                         },
 
                                                         "mountPath": {
                                                             "type": "string",
-                                                            "$ref": "manifestConfigs#/Rule_volumeMountValidation/MountPathPattern"
+                                                            "$ref": "manifestConfigs#/Rule_VolumeMountValidation/MountPathPattern"
                                                         },
 
                                                         "readOnly": {
@@ -156,7 +160,7 @@
                                     "type": "array",
                                     "items": {
                                         "type": "object",
-                                        "$ref": "manifestConfigs#/Rule_volumesFormat"
+                                        "$ref": "manifestConfigs#/Rule_VolumesFormat"
                                     }
 
                                 }
