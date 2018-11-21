@@ -42,7 +42,11 @@ if configs.kingdom == "vpod" then configs.deploymentBase("slb") {
                 containers: [
                     slbshared.slbNginxConfig(deleteLimitOverride=0, vipInterfaceName="eth0"),
                     slbshared.slbNginxProxy(slbimages.slbnginx),
-                    slbshared.slbConfigProcessor(configProcessorLivenessPort=slbports.slb.slbConfigProcessorLivenessProbePort, includeProxyConfigurationVolume=false),
+                    slbshared.slbConfigProcessor(
+                      configProcessorLivenessPort=slbports.slb.slbConfigProcessorLivenessProbePort,
+                      proxyLabelSelector=deplName,
+                      includeProxyConfigurationVolume=false,
+                    ),
                     slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, false),
                 ],
             },

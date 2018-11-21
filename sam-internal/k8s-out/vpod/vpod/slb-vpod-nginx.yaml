@@ -118,7 +118,7 @@ spec:
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --proxySelectorLabelValue=slb-nginx-config-b
+        - --proxySelectorLabelValue=slb-vpod-nginx
         - --hostnameOverride=$(NODE_NAME)
         - --control.configProcSentinel=/host/data/slb/config/slb-vpod-nginx/slb-config-proc.sentinel
         env:
