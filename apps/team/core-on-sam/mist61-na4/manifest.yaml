@@ -41,7 +41,7 @@ system:
           value: mist61ice1-db1-1-prd.eng.sfdc.net
 
         - name: DB_INSTANCE_NAME
-          value: mist61b218utf-1
+          value: mist61a216utf-1
           
         - name: DB_STATS_USER
           value: snowwhite
@@ -90,7 +90,7 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: blue
+          value: green
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
@@ -253,7 +253,7 @@ system:
 
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:6d185a
+      image: sfci/casam/sequencer:6ea866
 
       env:
         - name: USE_SWITCHBOARD
@@ -274,20 +274,20 @@ system:
           value: sneezy
 #          value: happy
         - name: CURRENT_RELEASE_VERSION
-          value: green
-        - name: NEW_RELEASE_VERSION
           value: blue
+        - name: NEW_RELEASE_VERSION
+          value: green
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 1
         - name: DB_SID
           value: mist61a216utf
         - name: LOCK_DWARF
-          value: 1
+          value: 0
         - name: TRIGGER_CAFFEINE
-          value: 1
+          value: 0
         - name: UNLOCK_DWARF
-          value: 1
+          value: 0
 #        - name: K4A_OUTPUT
 #          value: /tmp/files/repo/user.properties
         - name: SNOWWHITE_PWD
@@ -298,6 +298,10 @@ system:
           value: mist.mist61.prd.na4.cyan
         - name: CASAM_SUPERPOD
           value: sp2
+        - name: ENABLE_DB_SCHEMA_UPGRADE
+          value: 0
+        - name: SET_DEFAULT_ORACLE_EDITION
+          value: 0
 
       livenessProbe:
         httpGet:
