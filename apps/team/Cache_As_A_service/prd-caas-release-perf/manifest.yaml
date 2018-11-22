@@ -6,54 +6,37 @@ system:
       - caas-dev@salesforce.com
   functions:
   - name: caas-release-perf
-    count: 8
+    count: 8 
+    strategy:
+      type: Recreate
     containers:
-    - name: caas-redis-12020
-      image: docker-all/dva/caas/caas-redis-mtls:10
+    - name: caas-redis-12015 
+      # container image/version to  run
+      image: docker-all/dva/caas/release/caas-redis-4.0.10:7
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
-        - mountPath: /tmp
-          name: redis-sock
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+        - name: cert
+          mountPath: /servercert
       args: 
-        - --port=12020
+        - --port=12015
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
-        - --disableProtectedMode
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12015
         initialDelaySeconds: 15
         timeoutSeconds: 10
+      # expose redis outside the container
       ports:
-      - containerPort: 12020
-    - name: caas-sherpa-envoy
-      image: docker-all/dva/caas/caas-sherpa-envoy:22
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      volumeMounts:
-        - mountPath: /tmp
-          name: redis-sock
-        - name: server-certs
-          mountPath: /server-certs
-      args:
-      - --envoy.port=12015
-      ports:
-      - containerPort: 12010
       - containerPort: 12015
     - name: caas-redis-announcer
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
@@ -61,7 +44,7 @@ system:
       - -endpoint
       - caas/cluster/sp-nightly:SUPERPOD:12015
       - -logdir
-      - /home/sfdc-caas/logs/sp-nightly-$(FUNCTION_INSTANCE_IP)
+      - /home/sfdc-caas/logs/sp-nightly-12015
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -72,18 +55,17 @@ system:
         name: logvol
       env:
        - name: SFDC_ENVIRONMENT
-         value: mistperf2
-       - name: CAAS_DUMMY_FOR_RESTART
-         value: 3
+         value: mistperf2 
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-caas/logs
-    - name: redis-sock
-      emptyDir: {}
-    - name: server-certs
+        path: /home/caas/logs/caas
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-c1
+    - name: cert
       maddogCert:
         type: server
