@@ -40,7 +40,7 @@ system:
         value: dva/flowsnake-job-datapool-engine:333
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_NEXT
-        value: dva/datapool-engine:jenkins-insights-WaveDataPool-master-259-itest
+        value: dva/datapool-engine:jenkins-insights-WaveDataPool-master-264-itest
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
         value: mist40,stmfa
