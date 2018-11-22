@@ -449,7 +449,6 @@ system:
     count: 2
     containers:
     - name: sfproxy2-envoy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sfci-dev/sfci/frontend-gateway/sfproxy:1f2c2db
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfproxy/envoy-config:vijay.kota-20181024-170626
       env:
       - name: ENVOY_DEBUG_OPTIONS
