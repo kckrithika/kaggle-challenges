@@ -600,7 +600,7 @@ system:
     count: 2
     containers:
     - name: sfproxy-envoy
-      image: sfci/frontend-gateway/sfproxy:659513c
+      image: sfci/frontend-gateway/sfproxy:1f2c2db
       env:
 #TODO: Write envoy logs to stdout instead of file
       - name: ENVOY_DEBUG_OPTIONS
