@@ -73,7 +73,7 @@ system:
         name: logvol
       env:
        - name: SFDC_ENVIRONMENT
-         value: ist18
+         value: mist30
        - name: CAAS_DUMMY_FOR_RESTART
          value: 1
       resources:
