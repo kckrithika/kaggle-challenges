@@ -34,7 +34,7 @@ system:
       - name: KAFKA_BOOTSTRAP_SERVERS
         value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
       - name: KAFKA_GROUP_ID
-        value: zipkin-beta
+        value: dt-zk-beta
       - name: KAFKA_TOPIC
         value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy__prd.ajna_local__tracing,sfdc.prod.distributed-tracing.zipkin-kafka-proxy__ord.ajna_local__tracing,sfdc.prod.distributed-tracing.zipkin-kafka-proxy__iad.ajna_local__tracing
       - name: ZIPKIN_ARGS
