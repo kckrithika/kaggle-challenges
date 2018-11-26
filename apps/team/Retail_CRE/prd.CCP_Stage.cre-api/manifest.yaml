@@ -33,6 +33,8 @@ system:
           value: cre-control-plane-ccp-stage.retail-cre.localhost.mesh.force.com:5443
         - name: LOG_JWT
           value: true
+        - name: C2C_TENANT_GROUP_ONLY
+          value: false
       ports:
       - containerPort: 8080
       - containerPort: 7022
