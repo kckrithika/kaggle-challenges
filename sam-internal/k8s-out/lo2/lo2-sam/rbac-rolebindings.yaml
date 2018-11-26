@@ -1,0 +1,159 @@
+apiVersion: v1
+items:
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: minion:clusterrolebinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:clusterrole
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: update-secrets
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: update-secrets
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: update-crd
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: update-crd
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: csc-sam:lo2-sam:rolebinding
+    namespace: csc-sam
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samcompute1-1-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-2-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-1-lo2.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: ccait:lo2-sam_gater:rolebinding
+    namespace: ccait
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-lo2.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: gater:lo2-sam_gater:rolebinding
+    namespace: gater
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-lo2.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: service-mesh:lo2-sam_gater:rolebinding
+    namespace: service-mesh
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-lo2.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: service-protection:lo2-sam_gater:rolebinding
+    namespace: service-protection
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-lo2.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-lo2.ops.sfdc.net
+kind: List
+metadata: {}

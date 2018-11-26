@@ -1122,6 +1122,66 @@
       "access": [
         "team/CSC_Sam"
       ],
+      "controlEstate": "lo2-sam",
+      "estate": "lo2-sam",
+      "kingdom": "lo2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater",
+        "ccait",
+        "service-mesh",
+        "service-protection"
+      ],
+      "access": [
+        "team/Gater",
+        "team/CCAIT",
+        "team/service-mesh",
+        "team/Service_Protection"
+      ],
+      "controlEstate": "lo2-sam",
+      "estate": "lo2-sam_gater",
+      "kingdom": "lo2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
+      "controlEstate": "lo3-sam",
+      "estate": "lo3-sam",
+      "kingdom": "lo3",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater",
+        "ccait",
+        "service-mesh",
+        "service-protection"
+      ],
+      "access": [
+        "team/Gater",
+        "team/CCAIT",
+        "team/service-mesh",
+        "team/Service_Protection"
+      ],
+      "controlEstate": "lo3-sam",
+      "estate": "lo3-sam_gater",
+      "kingdom": "lo3",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam",
       "kingdom": "ord",
