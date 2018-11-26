@@ -37,6 +37,7 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                             "--port=64212",
                             "--queryFile=/var/queries/sam-sql-queries.json",
                             "--dbHostname=mysql-read.sam-system",
+                            "--dbUsername=reporter",
                         ],
                         command: [
                             "/sam/sam-sql-reporter",
