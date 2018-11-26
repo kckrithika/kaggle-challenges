@@ -19,11 +19,11 @@
                           image: slbimages.hypersdn,
                           command: [
                             "/sdn/slb-nginx-data",
-                            "--target=" + slbconfigs.nginxContainerTargetDir,
+                            "--target=" + slbconfigs.nginx.containerTargetDir,
                             "--connPort=" + slbports.slb.nginxDataConnPort,
                           ],
                           volumeMounts: configs.filter_empty([
-                            slbconfigs.target_config_volume_mount,
+                            slbconfigs.nginx.target_config_volume_mount,
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,
@@ -38,7 +38,7 @@
                           },
                         },
                         slbshared.slbFileWatcher,
-                        madkub.madkubRefreshContainer(slbconfigs.nginxCertDirs),
+                        madkub.madkubRefreshContainer(slbconfigs.nginx.certDirs),
                         {
                           name: "slb-cert-checker",
                           image: slbimages.hypersdn,
@@ -50,12 +50,12 @@
                             configs.sfdchosts_arg,
                           ],
                           volumeMounts: configs.filter_empty(
-                            madkub.madkubSlbCertVolumeMounts(slbconfigs.nginxCertDirs) + [
-                            slbconfigs.target_config_volume_mount,
+                            madkub.madkubSlbCertVolumeMounts(slbconfigs.nginx.certDirs) + [
+                            slbconfigs.nginx.target_config_volume_mount,
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,
-                            slbconfigs.customer_certs_volume_mount,
+                            slbconfigs.nginx.customer_certs_volume_mount,
                           ]),
                           env: [
                             slbconfigs.node_name_env,
@@ -71,16 +71,16 @@ local afterSharedContainers = [
                                    "--metricsEndpoint=" + configs.funnelVIP,
                                    "--hostnameOverride=$(NODE_NAME)",
                                    "--log_dir=" + slbconfigs.logsDir,
-                                   "--custCertsDir=" + slbconfigs.customerCertsPath,
+                                   "--custCertsDir=" + slbconfigs.nginx.customerCertsPath,
                                    configs.sfdchosts_arg,
                                  ] + slbconfigs.getNodeApiClientSocketSettings()
                                  + [
-                                   slbconfigs.nginxReloadSentinelParam,
+                                   slbconfigs.nginx.reloadSentinelParam,
                                  ],
                         volumeMounts: configs.filter_empty(
-                          madkub.madkubSlbCertVolumeMounts(slbconfigs.nginxCertDirs) + [
-                          slbconfigs.target_config_volume_mount,
-                          slbconfigs.customer_certs_volume_mount,
+                          madkub.madkubSlbCertVolumeMounts(slbconfigs.nginx.certDirs) + [
+                          slbconfigs.nginx.target_config_volume_mount,
+                          slbconfigs.nginx.customer_certs_volume_mount,
                           slbconfigs.slb_volume_mount,
                           slbconfigs.logs_volume_mount,
                           configs.sfdchosts_volume_mount,
@@ -110,18 +110,18 @@ local afterSharedContainers = [
       template+: {
         metadata+: {
           annotations: {
-            "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(slbconfigs.nginxCertDirs), " "),
+            "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(slbconfigs.nginx.certDirs), " "),
           },
         },
         spec+: {
                  volumes+: configs.filter_empty(
-                   madkub.madkubSlbCertVolumes(slbconfigs.nginxCertDirs)
+                   madkub.madkubSlbCertVolumes(slbconfigs.nginx.certDirs)
                    + madkub.madkubSlbMadkubVolumes() + [
-                   slbconfigs.target_config_volume,
-                   slbconfigs.customer_certs_volume,
+                   slbconfigs.nginx.target_config_volume,
+                   slbconfigs.nginx.customer_certs_volume,
                  ]),
                  initContainers: [
-                   madkub.madkubInitContainer(slbconfigs.nginxCertDirs),
+                   madkub.madkubInitContainer(slbconfigs.nginx.certDirs),
                  ],
                  nodeSelector: { pool: slbconfigs.slbEstate },
                },

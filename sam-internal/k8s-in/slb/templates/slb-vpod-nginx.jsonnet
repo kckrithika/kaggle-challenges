@@ -35,10 +35,10 @@ if configs.kingdom == "vpod" then configs.deploymentBase("slb") {
                     slbconfigs.cleanup_logs_volume,
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
-                    slbconfigs.target_config_volume,
+                    slbconfigs.nginx.target_config_volume,
                     configs.cert_volume,
-                    slbconfigs.customer_certs_volume,
-                ] + madkub.madkubSlbCertVolumes(slbconfigs.nginxCertDirs)),
+                    slbconfigs.nginx.customer_certs_volume,
+                ] + madkub.madkubSlbCertVolumes(slbconfigs.nginx.certDirs)),
                 containers: [
                     slbshared.slbNginxConfig(deleteLimitOverride=0, vipInterfaceName="eth0"),
                     slbshared.slbNginxProxy(slbimages.slbnginx),

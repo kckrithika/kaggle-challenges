@@ -371,39 +371,41 @@
         mountPath: "/proxyconfig",
     },
 
-    nginxCertDirs: ["cert1", "cert2"],
-    customerCertsPath: "/customerCerts",
-    nginxHostTargetDir: $.slb_volume.hostPath.path + "/" + $.dirSuffix + "/config",
-    nginxContainerTargetDir: $.slb_volume_mount.mountPath + "/" + $.dirSuffix + "/config",
-    nginxReloadSentinelParam: "--control.nginxReloadSentinel=" + $.nginxContainerTargetDir + "/nginx.marker",
+    nginx: {
+          certDirs: ["cert1", "cert2"],
+          customerCertsPath: "/customerCerts",
+          hostTargetDir: $.slb_volume.hostPath.path + "/" + $.dirSuffix + "/config",
+          containerTargetDir: $.slb_volume_mount.mountPath + "/" + $.dirSuffix + "/config",
+          reloadSentinelParam: "--control.nginxReloadSentinel=" + $.nginx.containerTargetDir + "/nginx.marker",
 
-    customer_certs_volume: {
-      emptyDir: {
-        medium: "Memory",
-      },
-      name: "customer-certs",
-    },
+          customer_certs_volume: {
+            emptyDir: {
+              medium: "Memory",
+            },
+            name: "customer-certs",
+          },
 
-    target_config_volume: {
-      name: "var-target-config-volume",
-      hostPath: {
-        path: $.nginxHostTargetDir,
-      },
-    },
+          target_config_volume: {
+            name: "var-target-config-volume",
+            hostPath: {
+              path: $.nginx.hostTargetDir,
+            },
+          },
 
-    target_config_volume_mount: {
-      name: "var-target-config-volume",
-      mountPath: $.nginxContainerTargetDir,
-    },
+          target_config_volume_mount: {
+            name: "var-target-config-volume",
+            mountPath: $.nginx.containerTargetDir,
+          },
 
-    nginx_config_volume_mount: {
-      name: "var-target-config-volume",
-      mountPath: "/etc/nginx/conf.d",
-    },
+          nginx_config_volume_mount: {
+            name: "var-target-config-volume",
+            mountPath: "/etc/nginx/conf.d",
+          },
 
-    customer_certs_volume_mount: {
-      name: "customer-certs",
-      mountPath: $.customerCertsPath,
+          customer_certs_volume_mount: {
+            name: "customer-certs",
+            mountPath: $.nginx.customerCertsPath,
+          },
     },
 
     # Frequently used env variable: NODE_NAME
