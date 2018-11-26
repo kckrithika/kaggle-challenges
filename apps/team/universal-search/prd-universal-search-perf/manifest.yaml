@@ -6,7 +6,7 @@ system:
     - universalsearch@salesforce.com
   functions:
   - name: universal-search-perf
-    count: 6
+    count: 12
     volumes:
     - name: client-cert-vol
       maddogCert:
