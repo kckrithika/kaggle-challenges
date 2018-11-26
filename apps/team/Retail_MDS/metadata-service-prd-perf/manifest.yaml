@@ -33,8 +33,8 @@ system:
       - containerPort: 9091
       - containerPort: 15523
       resources:
-        limits: { cpu: "4", memory: "2Gi" }
-        requests: { cpu: "4", memory: "2Gi" }
+        limits: { cpu: "4", memory: "3Gi" }
+        requests: { cpu: "4", memory: "3Gi" }
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
@@ -49,13 +49,13 @@ system:
                 -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                 -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
                 -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
-                -Xloggc:/home/scone/logs/mds/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                -Xloggc:/home/sfdc-mds/logs/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                 -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/dfs
                 -Dcom.sun.management.jmxremote.port=8898
                 -Dcom.sun.management.jmxremote.rmi.port=8898
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
-                -Xmx1G -Xms1G -XX:ParallelGCThreads=8"
+                -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 30
@@ -78,8 +78,8 @@ system:
         - name: SFDC_ENVIRONMENT
           value: mist
       resources:
-        limits: { cpu: "2", memory: "2Gi" }
-        requests: { cpu: "2", memory: "2Gi" }
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       # leave plaintext in for perf team for now
         - containerPort: 7012
