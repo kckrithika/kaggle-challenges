@@ -52,4 +52,10 @@ local utils = import "util_functions.jsonnet";
 
      enableIdentityEnvVar:
         configs.kingdom == "prd",
+
+     kafkaProducer:
+       configs.estate != "prd-sam_storage" && configs.estate != "prd-sam_storagedev" && configs.estate != "prd-sdc" && configs.estate != "vpod",
+
+     kafkaConsumer:
+       configs.estate == "prd-sam",
 }
