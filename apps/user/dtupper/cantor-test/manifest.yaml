@@ -6,70 +6,22 @@ system:
         - dtupper@salesforce.com
     functions:
     - name: dtcantor-test-func
-      count: 1
+      count: 3
       strategy:
         type: RollingUpdate
         rollingUpdate:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-      - name: dtcantor-test-1
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0040
+      - name: dtcantor-test
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0045
         ports:
         - name: cantor
           containerPort: 7443
+          hostPort: 17443
         volumeMounts:
-        - mountPath: /home/sfdc-cantor/cantor
+        - mountPath: /home/sfdc-cantor/cantor-h2.db
           name: cantor-vol
-        - mountPath: /home/sfdc-cantor/pki/server
-          name: cantorservercert
-        - mountPath: /home/sfdc-cantor/pki/client
-          name: cantorclientcert
-        env:
-        - name: SHARD
-          value: "1"
-        livenessProbe:
-          exec:
-            command:
-            - /usr/bin/true
-      - name: dtcantor-test-2
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0040
-        ports:
-        - name: cantor
-          containerPort: 7444
-        volumeMounts:
-        - mountPath: /home/sfdc-cantor/cantor
-          name: cantor-vol
-        - mountPath: /home/sfdc-cantor/pki/server
-          name: cantorservercert
-        - mountPath: /home/sfdc-cantor/pki/client
-          name: cantorclientcert
-        env:
-        - name: SHARD
-          value: "2"
-        - name : CANTOR_GRPC_PORT
-          value: 7444
-        livenessProbe:
-          exec:
-            command:
-            - /usr/bin/true
-      - name: dtcantor-test-3
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dtupper/sfdc-cantor:test-0040
-        ports:
-        - name: cantor
-          containerPort: 7445
-        volumeMounts:
-        - mountPath: /home/sfdc-cantor/cantor
-          name: cantor-vol
-        - mountPath: /home/sfdc-cantor/pki/server
-          name: cantorservercert
-        - mountPath: /home/sfdc-cantor/pki/client
-          name: cantorclientcert
-        env:
-        - name: SHARD
-          value: "3"
-        - name : CANTOR_GRPC_PORT
-          value: 7445
         livenessProbe:
           exec:
             command:
@@ -78,22 +30,10 @@ system:
       - name: cantor-vol
         hostPath:
           path: /data/cantor
-      - name: cantorservercert
-        maddogCert:
-          type: server
-          lbnames:
-          - cantor
-      - name: cantorclientcert
-        maddogCert:
-          type: client
     loadbalancers:
     - lbname: cantor
       function: dtcantor-test-func
       slbEnabled: true
       ports:
-        - port: 7443
+        - port: 11983
           targetport: 7443
-        - port: 7444
-          targetport: 7444
-        - port: 7445
-          targetport: 7445
