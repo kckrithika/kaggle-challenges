@@ -1,11 +1,11 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile };
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 local certDirs = ["cert1"];
 
-if configs.estate == "prd-sam" then
-{
+if samfeatureflags.kafkaConsumer then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
