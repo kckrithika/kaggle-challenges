@@ -305,6 +305,9 @@ system:
           value: 0
         - name: SET_DEFAULT_ORACLE_EDITION
           value: 0
+        # set http proxy required for gus chatter binary to reach to login.salesforce.com
+        - name: HTTP_PROXY
+          value: public0-proxy1-0-prd.data.sfdc.net:8080
 
       livenessProbe:
         httpGet:

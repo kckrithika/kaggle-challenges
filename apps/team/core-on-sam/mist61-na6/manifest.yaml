@@ -280,6 +280,9 @@ system:
           value: mist.mist61.prd.na6.cyan
         - name: CASAM_SUPERPOD
           value: sp2
+        # set http proxy required for gus chatter binary to reach to login.salesforce.com
+        - name: HTTP_PROXY
+          value: public0-proxy1-0-prd.data.sfdc.net:8080
 
       livenessProbe:
         httpGet:
