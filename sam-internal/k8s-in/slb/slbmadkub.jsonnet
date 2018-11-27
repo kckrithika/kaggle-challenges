@@ -98,6 +98,24 @@
                 role: "slb.internal",
             },
         },
+        canaryCert: {  // slb internal certificate for SS
+            mount: {
+                mountPath: "/canaryCert",
+                name: "canaryCert",
+            },
+            volume: {
+                emptyDir: {
+                    medium: "Memory",
+                },
+                name: "canaryCert",
+            },
+            annotation: {
+                name: "canaryCert",
+                "cert-type": "client",
+                kingdom: configs.kingdom,
+                role: "slb.canary",
+            },
+        },
     },
 
     madkubSlbCertFolders(certDirs):: [
