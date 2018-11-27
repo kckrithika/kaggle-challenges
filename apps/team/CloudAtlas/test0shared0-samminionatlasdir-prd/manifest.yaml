@@ -135,6 +135,7 @@ system:
     - name: k4a-secrets
       k4asecret:
         secretName: backupencryption
+      k4asecret:
         secretName: passwd
     - name: logvolsherpa
       hostPath:
