@@ -1,0 +1,120 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: sidecarInjectorWebhook
+    chart: sidecarInjectorWebhook-1.0.1
+    heritage: Tiller
+    istio: sidecar-injector
+    release: RELEASE-NAME
+  name: istio-sidecar-injector
+  namespace: service-mesh
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      istio: sidecar-injector
+  template:
+    metadata:
+      annotations:
+        scheduler.alpha.kubernetes.io/critical-pod: ""
+        sidecar.istio.io/inject: "false"
+      labels:
+        istio: sidecar-injector
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+            weight: 2
+          - preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - ppc64le
+            weight: 2
+          - preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - s390x
+            weight: 2
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+                - ppc64le
+                - s390x
+      containers:
+      - args:
+        - --caCertFile=/etc/pki_service/ca/cabundle.pem
+        - --tlsCertFile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
+        - --tlsKeyFile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --injectConfig=/etc/istio/inject/config
+        - --meshConfig=/etc/istio/config/mesh
+        - --healthCheckInterval=2s
+        - --healthCheckFile=/health
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.0.2
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          exec:
+            command:
+            - /usr/local/bin/sidecar-injector
+            - probe
+            - --probe-path=/health
+            - --interval=4s
+          initialDelaySeconds: 4
+          periodSeconds: 4
+        name: sidecar-injector-webhook
+        readinessProbe:
+          exec:
+            command:
+            - /usr/local/bin/sidecar-injector
+            - probe
+            - --probe-path=/health
+            - --interval=4s
+          initialDelaySeconds: 4
+          periodSeconds: 4
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /etc/istio/config
+          name: config-volume
+          readOnly: true
+        - mountPath: /etc/istio/inject
+          name: inject-config
+          readOnly: true
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: istio
+        name: config-volume
+      - configMap:
+          items:
+          - key: config
+            path: config
+          name: istio-sidecar-injector
+        name: inject-config

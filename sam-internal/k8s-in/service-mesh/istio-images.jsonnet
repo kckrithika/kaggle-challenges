@@ -32,6 +32,7 @@ local kingdom = std.extVar("kingdom");
        pilot: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/pilot:1.0.2",
        proxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxyv2:1.0.2",
        proxyinit: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxy_init:1.0.2",
+       sidecarinjector: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.0.2",
        shipping: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:86a47e93cb4796e4a24f63cee4b305356ddecc1e",
        ordering: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-ordering:86a47e93cb4796e4a24f63cee4b305356ddecc1e",
      },
@@ -74,6 +75,7 @@ local kingdom = std.extVar("kingdom");
   pilot: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].pilot),
   proxy: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].proxy),
   proxyinit: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].proxyinit),
+  sidecarinjector: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].sidecarinjector),
   shipping: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].shipping),
   ordering: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].ordering),
 
