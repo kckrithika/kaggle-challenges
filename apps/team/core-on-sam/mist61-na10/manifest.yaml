@@ -1,5 +1,5 @@
 apiVersion: v1
- 
+
 system:
   functions:
   - name: na10-mist61app-prd
@@ -22,9 +22,7 @@ system:
 
     containers:
     - name: coreapp
-
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:staging_main_16862010
-
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_1680018
       command: ["/usr/bin/bash", "-c"]
       args: ["cd /home/sfdc/salesforce/build ; sed -i.bak 's/jetty.ssl.enabled = true/jetty.ssl.enabled = false/' sam_user.properties ;  echo \\<?xml version=\\'1.0\\' encoding=\\'UTF-8\\' standalone=\\'yes\\'?\\>\\<config\\>\\<section name=\\'ConduitKafka\\' owner=\\'Enterprise Messaging Platform\\'\\>\\<boolean name=\\'UseDynamicKeyStore\\'\\>\\<default\\>false\\</default\\>\\</boolean\\>\\</section\\>\\</config\\> > /home/sfdc/salesforce/config/settings/overrides/enterprise_messaging.xml ; cat /home/sfdc/salesforce/config/settings/overrides/enterprise_messaging.xml ; ./sam_startup.sh"]
 
@@ -71,7 +69,7 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: blue
+          value: green
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
@@ -122,7 +120,7 @@ system:
         - name: log-volume-jvm
           mountPath: /home/sfdc/logs/jvm
         - name: tls-client-cert
-          mountPath: /certs
+          mountPath: /etc/pki_service
 
     - name: envoy-sidecar-config
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
@@ -220,9 +218,9 @@ system:
           value: sneezy
 #          value: happy
         - name: CURRENT_RELEASE_VERSION
-          value: green
-        - name: NEW_RELEASE_VERSION
           value: blue
+        - name: NEW_RELEASE_VERSION
+          value: green
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 1
