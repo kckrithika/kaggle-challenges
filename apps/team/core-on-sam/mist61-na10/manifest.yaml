@@ -22,7 +22,7 @@ system:
 
     containers:
     - name: coreapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_1680018
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_16800186
       command: ["/usr/bin/bash", "-c"]
       args: ["cd /home/sfdc/salesforce/build ; sed -i.bak 's/jetty.ssl.enabled = true/jetty.ssl.enabled = false/' sam_user.properties ;  echo \\<?xml version=\\'1.0\\' encoding=\\'UTF-8\\' standalone=\\'yes\\'?\\>\\<config\\>\\<section name=\\'ConduitKafka\\' owner=\\'Enterprise Messaging Platform\\'\\>\\<boolean name=\\'UseDynamicKeyStore\\'\\>\\<default\\>false\\</default\\>\\</boolean\\>\\</section\\>\\</config\\> > /home/sfdc/salesforce/config/settings/overrides/enterprise_messaging.xml ; cat /home/sfdc/salesforce/config/settings/overrides/enterprise_messaging.xml ; ./sam_startup.sh"]
 
