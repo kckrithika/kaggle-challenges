@@ -64,6 +64,7 @@
             "cdg-sam": "10.229.136.0/22",
             "fra-sam": "10.160.8.0/22",
             "prd-samtwo": "10.254.252.0/22",
+            vpod: "192.0.2.1/32",  # Placeholder subnet value since SLB doesn't manage IP allocation in VPOD-land
         },
 
         publicSubnet: {
@@ -85,6 +86,7 @@
             "par-sam": "185.79.142.0/23",
             "ukb-sam": "161.71.146.0/23",
             "prd-samtwo": "136.146.214.0/23,96.43.157.0/24",
+            vpod: "",
         },
 
         reservedIps: {
@@ -124,11 +126,13 @@
             "hnd-sam": "0.0.0.0/0",
             "ord-sam": "0.0.0.0/0",
             "cdg-sam": "0.0.0.0/0",
+            vpod: "0.0.0.0/0",
         },
 
         serviceList: {
             "prd-sam": "csrlb,controlplane-ptest",
-        } + set_value_to_all_in_list_skip("", $.slbEstates, "prd-sam"),
+        } + set_value_to_all_in_list_skip("", $.slbEstates, "prd-sam")
+        + { vpod: "" },
 
         servicesToLbOverride: {
             "prd-sdc": "",
@@ -140,7 +144,7 @@
             "prd-sam": "slb-canary-proxy-http-service,slb-alpha-svc,slb-bravo-svc,slb-canary-service",
         },
 
-        namespace: set_value_to_all_in_list("", $.slbEstates),
+        namespace: set_value_to_all_in_list("", $.slbEstates) + { vpod: "" },
 
         useProxyServicesList: {
             "prd-sdc": "slb-bravo-svc",
@@ -156,7 +160,8 @@
             "prd-sam_storage": "name=slb-vip-watchdog",
             "prd-sam_storagedev": "name=slb-vip-watchdog",
         },
-        useVipLabelToSelectSvcs: set_value_to_all_in_list(true, $.slbEstates),
+        useVipLabelToSelectSvcs: set_value_to_all_in_list(true, $.slbEstates)
+          + { vpod: true },
         kneDomainName: {
             "prd-sdc": "prd-sdc.slb.sfdc.net",
         } + set_value_to_all_in_list_skip("", $.testEstates, "prd-sdc")
@@ -233,6 +238,7 @@
             "cdg-sam": $.maxDeleteDefault,
             "fra-sam": $.maxDeleteDefault,
             "prd-samtwo": $.maxDeleteDefault,
+            vpod: $.maxDeleteDefault,
         },
 
         hsmEnabledVips:
@@ -252,6 +258,10 @@
               "prd-sdc": "10.254.247.101",
               "prd-sam": "10.251.197.48",
             },
+
+        vipsToAcl:
+            set_value_to_all_in_list("slb-bravo-svc.sam-system." + configs.estate + ".prd.slb.sfdc.net", $.slbEstates)
+            + { vpod: "" },
     },
 
 
@@ -361,6 +371,43 @@
         mountPath: "/proxyconfig",
     },
 
+    nginx: {
+          certDirs: ["cert1", "cert2"],
+          customerCertsPath: "/customerCerts",
+          hostTargetDir: $.slb_volume.hostPath.path + "/" + $.dirSuffix + "/config",
+          containerTargetDir: $.slb_volume_mount.mountPath + "/" + $.dirSuffix + "/config",
+          reloadSentinelParam: "--control.nginxReloadSentinel=" + $.nginx.containerTargetDir + "/nginx.marker",
+
+          customer_certs_volume: {
+            emptyDir: {
+              medium: "Memory",
+            },
+            name: "customer-certs",
+          },
+
+          target_config_volume: {
+            name: "var-target-config-volume",
+            hostPath: {
+              path: $.nginx.hostTargetDir,
+            },
+          },
+
+          target_config_volume_mount: {
+            name: "var-target-config-volume",
+            mountPath: $.nginx.containerTargetDir,
+          },
+
+          nginx_config_volume_mount: {
+            name: "var-target-config-volume",
+            mountPath: "/etc/nginx/conf.d",
+          },
+
+          customer_certs_volume_mount: {
+            name: "customer-certs",
+            mountPath: $.nginx.customerCertsPath,
+          },
+    },
+
     # Frequently used env variable: NODE_NAME
     node_name_env: {
         name: "NODE_NAME",
@@ -434,11 +481,10 @@
     envoyEnabledVips: self.perCluster.envoyEnabledVips[estate],
     envoyVip: self.perCluster.envoyVip[estate],
     envoyVipCIDR: if std.length(self.envoyVip) != 0 then ([self.envoyVip + "/32"]) else [],
+    vipsToAcl: self.perCluster.vipsToAcl[estate],
 
     sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
     sdn_watchdog_emailrec: "slb@salesforce.com",
-
-    customerCertsPath: "/customerCerts",
 
     maxDeleteLimit(deleteLimitOverride): (if deleteLimitOverride > 0
         then deleteLimitOverride
