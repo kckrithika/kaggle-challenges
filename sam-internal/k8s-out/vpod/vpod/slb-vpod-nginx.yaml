@@ -51,7 +51,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001383-0f304d4a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001384-791cfe6e
         name: slb-nginx-config
         ports:
         - containerPort: 32146
@@ -128,7 +128,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001383-0f304d4a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001384-791cfe6e
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -167,7 +167,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=false
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-vpod-nginx/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001383-0f304d4a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001384-791cfe6e
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
