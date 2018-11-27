@@ -34,7 +34,7 @@
   - 10.251.129.25
   ports:
   - port: 80
-    targetport: 12087
+    targetport: 9116
     lbtype: http
     addheaders:
     - name: "SFDC-LOGIN-LOAD-BALANCER"
@@ -47,7 +47,7 @@
   - 10.251.129.25
   ports:
   - port: 80
-    targetport: 12087
+    targetport: 9116
     lbtype: http
     addheaders:
     - name: "SFDC-LOGIN-LOAD-BALANCER"
