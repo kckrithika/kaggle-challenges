@@ -43,7 +43,7 @@
     removeheaders:
     - "X-Forwarded-Proto"
 - lbname: test-two-header-sam
-  customlbname: test-headers-sam
+  customlbname: test-two-headers-sam
   servers:
   - shared0-sdcsamcompute1-10-prd.eng.sfdc.net
   - shared0-sdcsamcompute2-11-prd.eng.sfdc.net
