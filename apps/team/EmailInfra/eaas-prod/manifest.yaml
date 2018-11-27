@@ -1,28 +1,37 @@
 apiVersion: v1
-
 system:
   notifications:
     email:
-      - emailinfrastructure@salesforce.com
+    - emailinfrastructure@salesforce.com
   functions:
   - name: eaas
-    count: 3
-    strategy:
-      type: RollingUpdate
+    #See https://salesforce.quip.com/wbjKA0Z8kZk0 for a discussion of the number of pods (8) per node (3)
+    count: 24
+    terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: sfci/eaas/emailservice:1.0.13-2767274ddf994aa8ade6904a91943599d88d218d
+      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.18-be5be9c0c6e59dc63ecc9f8986136f32a623233f
+      ports:
+      - name: grpc
+        containerPort: 7020
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
+        value: sam
       - name: SCONE_SERVICE_NAME
         value: eaas
-      ports:
-        - name: grpc
-          containerPort: 7020
+      - name: JAVA_OPTIONS
+        value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=3"
+      resources:
+        requests:
+          memory: "12G"
+          cpu: "800m"
+        limits:
+          memory: "12G"
+          cpu: "800m"
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
+      # mount pki client certs (and CA cert) for SMTP connection Eaas -> MTA
       - mountPath: /etc/pki_service
         name: eaas-client-cert
       livenessProbe:
@@ -41,51 +50,60 @@ system:
         timeoutSeconds: 30
 
     - name: beacon-eaas
-      image: sfci/servicelibs/beacon:e58780c97ece43447a97edcbc530c17a4f577cf3
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
+      image: docker-sfci-dev/sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
-      #Namespaced, mTLS
+      # Namespaced, mTLS HTTP2 GRPC
       - -endpoint
       - emailinfra/eaas:DATACENTER_ALLENV:7443
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-
-    - name: sherpa-eaas
-      image: sfci/servicelibs/sherpa:2.0.25
-      args: ["--zipkin-rate", "0.01"]
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      ports:
-      - containerPort: 7443
-        name: sherpa-eaas-tls
-      - containerPort: 15373
-        name: sherpa-eaas-adm
+        value: sam
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+
+    - name: sherpa-eaas
+      # updated based on https://gus.lightning.force.com/one/one.app#eyJjb21wb25lbnREZWYiOiJmb3JjZUNoYXR0ZXI6ZGVza3RvcENoYXR0ZXIiLCJhdHRyaWJ1dGVzIjp7ImZlZWRFbGVtZW50SWQiOiIwRDVCMDAwMDAwbTBFVE8ifSwic3RhdGUiOnt9fQ%3D%3D
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      ports:
+      # mTLS HTTP2 GRPC port
+      - name: sherpa-eaas-tls
+        containerPort: 7443
+      # management port (health, metrics, etc.)
+      - name: sherpa-eaas-adm
+        containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      # mount the client certs even though we do not need them as sherpa will complain otherwise
+      - mountPath: /client-certs
+        name: eaas-client-cert
+      - mountPath: /server-certs
+        name: eaas-server-cert
+      - mountPath: /log
+        name: sherpa-log-volume
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
         initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
+          - ./bin/is-ready
         initialDelaySeconds: 110
         periodSeconds: 5
-      volumeMounts:
-      - name: eaas-server-cert
-        mountPath: /server-certs
-      - name: sherpa-log-volume
-        mountPath: /log
 
     volumes:
     - name: logvol
@@ -100,3 +118,5 @@ system:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
+    strategy:
+      type: RollingUpdate
