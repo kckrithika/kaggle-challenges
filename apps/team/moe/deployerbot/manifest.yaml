@@ -20,7 +20,7 @@ system:
       - "-promotion.image="
       - "-promotion.intervalTime=1h"
       - "-promotion.minBakeTime=1h"
-      - "-promotion.singlephase=false"
+      - "-promotion.singlephase=true"
       ports:
       - containerPort: 8080
       livenessProbe:
