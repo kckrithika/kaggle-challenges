@@ -4,8 +4,8 @@
   - ops-deploydata1-1-crd.eng.sfdc.net
   - ops-deploydata1-2-crd.eng.sfdc.net
   - ops-deploydata1-3-crd.eng.sfdc.net
+  - ops-deploydata1-4-crd.eng.sfdc.net
   - ops-deploydata2-1-crd.eng.sfdc.net
-  - ops-deploydata2-2-crd.eng.sfdc.net
   ports:
   - port: 2181
     targetport: 2181
