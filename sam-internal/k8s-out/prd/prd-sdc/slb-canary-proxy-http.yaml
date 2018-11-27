@@ -18,6 +18,18 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: |-
+          {
+           "certreqs": [
+            {
+             "cert-type": "server",
+             "kingdom": "prd",
+             "name": "canarycert",
+             "role": "slb.canary"
+            }
+           ]
+          }
       labels:
         name: slb-canary-proxy-http
       namespace: sam-system
@@ -155,3 +167,6 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs

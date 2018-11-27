@@ -106,13 +106,18 @@ local getCanaryLivenessProbe(port) = (
                     name: canaryName,
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
+                [if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then "annotations"]: {
+                    "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(madkubCertDirs), " "),
+                },
             },
             spec: {
                 [if hostNetwork then "hostNetwork"]: true,
                 volumes: configs.filter_empty([
                     slbconfigs.logs_volume,
                 ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
-                        madkub.madkubSlbCertVolumes(madkubCertDirs) + madkub.madkubSlbMadkubVolumes() else [])),
+                        (madkub.madkubSlbCertVolumes(madkubCertDirs)
+                         + madkub.madkubSlbMadkubVolumes()
+                         + [configs.maddog_cert_volume]) else [])),
                 containers: [
                     {
                         name: canaryName,

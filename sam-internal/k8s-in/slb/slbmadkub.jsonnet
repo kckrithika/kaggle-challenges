@@ -111,7 +111,7 @@
             },
             annotation: {
                 name: "canarycert",
-                "cert-type": "client",
+                "cert-type": "server",
                 kingdom: configs.kingdom,
                 role: "slb.canary",
             },
