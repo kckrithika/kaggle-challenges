@@ -4,6 +4,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local portconfigs = import "portconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 local utils = import "util_functions.jsonnet";
+local madkub = import "slbmadkub.jsonnet";
 
 local slbCanaryTlsPublicKeyPath =
     if configs.estate == "prd-sdc" then
@@ -12,7 +13,8 @@ local slbCanaryTlsPublicKeyPath =
         "/var/slb/canarycerts/sam.crt";
 
 local slbCanaryTlsPrivateKeyPath = "/var/slb/canarycerts/server.key";
-local certDirs = ["canaryCert"];
+local certDir = "canarycert";
+local madkubCertDirs = [certDir];
 
 local tlsRequired(tlsPorts) = tlsPorts != null && std.length(tlsPorts) > 0;
 
@@ -110,7 +112,7 @@ local getCanaryLivenessProbe(port) = (
                 volumes: configs.filter_empty([
                     slbconfigs.logs_volume,
                 ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
-                        madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes() else {})),
+                        madkub.madkubSlbCertVolumes(madkubCertDirs) + madkub.madkubSlbMadkubVolumes() else [])),
                 containers: [
                     {
                         name: canaryName,
@@ -127,7 +129,8 @@ local getCanaryLivenessProbe(port) = (
                                          "--tlsPorts=" + std.join(",", [std.toString(port) for port in tlsPorts]),
                                      ] + (if slbflights.useMaddogCertsForCanaries then [
                                          // Add the maddog paths here
-
+                                         "--privateKey=/" + certDir + "/server/keys/server-key.pem",
+                                         "--publicKey=/" + certDir + "/server/certificates/server.pem",
                                          if !verbose then "--verbose=false",
                                      ] else [
                                          "--privateKey=" + slbCanaryTlsPrivateKeyPath,
@@ -145,11 +148,11 @@ local getCanaryLivenessProbe(port) = (
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
                         ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
-                            madkub.madkubSlbCertVolumeMounts(certDirs) else {})),
+                            madkub.madkubSlbCertVolumeMounts(madkubCertDirs) else [])),
                     }
                     + getCanaryLivenessProbe(ports[0])
                 ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then [
-                    madkub.madkubRefreshContainer(certDirs),
+                    madkub.madkubRefreshContainer(madkubCertDirs),
                 ] else []),
                 nodeSelector: {
                     pool: configs.estate,
@@ -159,7 +162,7 @@ local getCanaryLivenessProbe(port) = (
               + slbconfigs.getDnsPolicy()
               + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then {
                     initContainers: [
-                       madkub.madkubInitContainer(certDirs),
+                       madkub.madkubInitContainer(madkubCertDirs),
                     ],
               } else {}),
         },
