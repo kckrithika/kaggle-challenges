@@ -31,8 +31,7 @@
 - lbname: test-header-sam
   customlbname: test-headers-sam
   servers:
-  - shared0-sdcsamcompute1-10-prd.eng.sfdc.net
-  - shared0-sdcsamcompute2-11-prd.eng.sfdc.net
+  - 10.251.129.25
   ports:
   - port: 80
     targetport: 12087
@@ -45,8 +44,7 @@
 - lbname: test-two-header-sam
   customlbname: test-two-headers-sam
   servers:
-  - shared0-sdcsamcompute1-10-prd.eng.sfdc.net
-  - shared0-sdcsamcompute2-11-prd.eng.sfdc.net
+  - 10.251.129.25
   ports:
   - port: 80
     targetport: 12087
