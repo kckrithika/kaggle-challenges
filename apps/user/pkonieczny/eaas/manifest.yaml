@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: eaas
-      image: docker-sfci-dev/sfci/pkonieczny/emailservice:2.0.17-5ce5b40e998c116130332f4ead3e58f2021e5876
+      image: docker-sfci-dev/sfci/pkonieczny/emailservice:2.0.19-5363a2b1655c071500a9f0c8f20cca37242af092
       ports:
       - name: grpc
         containerPort: 7020
@@ -19,6 +19,15 @@ system:
         value: eaas
       - name: SFDC_POD
         value: pkonieczny
+      - name: JAVA_OPTIONS
+        value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=3"
+      resources:
+        requests:
+          memory: "12G"
+          cpu: "800m"
+        limits:
+          memory: "12G"
+          cpu: "800m"
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
@@ -39,10 +48,15 @@ system:
     - name: beacon-eaas
       image: docker-sfci-dev/sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
+      # Namespaced, mTLS HTTP2 GRPC
       - -endpoint
       - samapp/user-pkonieczny/eaas:DATACENTER:7443
+      # Non namespaced, plain-text HTTP2 GRPC
       - -endpoint
       - samapp/eaas-pkonieczny:DATACENTER:7012
+      # Non namespaced, plain-text HTTP1 for Chaos endpoint
+      - -endpoint
+      - samapp/eaas-pkonieczny:DATACENTER:7014
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -52,12 +66,18 @@ system:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
     - name: sherpa-eaas
-      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
       ports:
+      # plain-text HTTP2 GRPC port
       - name: sherpa-eaas-in
         containerPort: 7012
+      # plain-text HTTP1 Jetty port
+      - name: sherpa-eaas-jet
+        containerPort: 7014
+      # mTLS HTTP2 GRPC port
       - name: sherpa-eaas-tls
         containerPort: 7443
+      # management port (health, metrics, etc.)
       - name: sherpa-eaas-adm
         containerPort: 15373
       env:
@@ -71,10 +91,11 @@ system:
           cpu: "1"
           memory: 1Gi
       volumeMounts:
-      - mountPath: /server-certs
-        name: eaas-server-cert
+      # mount the client certs even though we do not need them as sherpa will complain otherwise
       - mountPath: /client-certs
         name: eaas-client-cert
+      - mountPath: /server-certs
+        name: eaas-server-cert
       - mountPath: /log
         name: sherpa-log-volume
       livenessProbe:
@@ -104,6 +125,9 @@ system:
         path: /home/sfdc-sherpa/logs
     strategy:
       type: RollingUpdate
+  # Enable a load balancer in PRD so we have a stable FQDN to hit from the dev desktops or anywhere without Sherpa/Zookeeper
+  # Full FQDN template: {lbname}.{namespace}.{estate}.{kingdom}.slb.sfdc.net
+  # Actual FQDN: emailinfra-eaas-pkonieczny-lb.user-pkonieczny.prd-sam.prd.slb.sfdc.net
   loadbalancers:
   - lbname: emailinfra-eaas-pkonieczny-lb
     function: eaas
