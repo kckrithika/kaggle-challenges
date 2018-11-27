@@ -1,0 +1,62 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-fred
+  name: slb-fred
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  selector:
+    matchLabels:
+      name: slb-fred
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: slb-fred
+      namespace: sam-system
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: slb-service
+                operator: NotIn
+                values:
+                - slb-ipvs
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: name
+                operator: In
+                values:
+                - slb-ipvs
+                - slb-ipvs-a
+                - slb-ipvs-b
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - command:
+        - /sdn/slb-fred
+        - --serviceName=slb-fred
+        - --log_dir=/host/data/slb/logs/
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001385-7d099685
+        name: slb-fred
+        volumeMounts:
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+      dnsPolicy: Default
+      nodeSelector:
+        pool: prd-sdc
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - hostPath:
+          path: /data/slb/logs/
+        name: var-logs-volume
