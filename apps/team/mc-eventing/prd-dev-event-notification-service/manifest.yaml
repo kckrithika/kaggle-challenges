@@ -19,6 +19,9 @@ system:
     - name: cert
       maddogCert:
         type: client
+    - name: eventbusajna-ens-v1
+      k4aSecret:
+        secretName: dev-eventbusajna-ens-v1
     containers:
     - name: dev-event-notification-service
       image: sfci/mc-eventing/event-notification:1.0.5
@@ -43,6 +46,9 @@ system:
       volumeMounts:
       - name: cert
         mountPath: /certs
+      - name: eventbusajna-ens-v1
+        mountPath: /secrets/eventbusajna-ens-v1
+        readOnly: true
   loadbalancers:
   - lbname: dev-event-notification-service-lb
     function: dev-event-notification-service
