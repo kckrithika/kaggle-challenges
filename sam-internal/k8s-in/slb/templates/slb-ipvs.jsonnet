@@ -196,7 +196,12 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--client.serverInterface=lo",
                             "--enableAcl=true",
                             "--enableConntrack=false",
-                        ] + slbconfigs.getNodeApiClientSocketSettings(),
+                        ] + (if slbflights.antiDDOS then [
+                            "--enableCheckAntiDdos=true",
+                            "--dropEntry=1",
+                            "--dropPacket=1",
+                        ] else [])
+                        + slbconfigs.getNodeApiClientSocketSettings(),
                         volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,

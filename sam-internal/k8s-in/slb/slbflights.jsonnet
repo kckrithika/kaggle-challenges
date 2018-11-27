@@ -13,4 +13,5 @@ local configs = import "config.jsonnet";
     ipvsTurnDownOnSIGTERM: (slbimages.phaseNum <= 1),
     ifaceProcessorAddIfaceIfIPVSHost: (slbimages.phaseNum <= 1),
     ipvsHealthCheckerCustomUserAgent: (slbimages.hypersdn_build >= 1379),
+    antiDDOS: (slbimages.phaseNum <= 1),
 }
