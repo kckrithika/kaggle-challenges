@@ -136,7 +136,7 @@ system:
       k4asecret:
         secretName: backupencryption
       k4asecret:
-        secretName: passwd
+        secretName: k4apasswd
     - name: logvolsherpa
       hostPath:
         path: /home/sfdc-scone-hellodiscovery-sherpa/logs
