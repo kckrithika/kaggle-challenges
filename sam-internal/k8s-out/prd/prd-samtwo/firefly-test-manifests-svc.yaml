@@ -874,7 +874,7 @@ items:
               },
               "instance-type": "${INSTANCE_TYPE}",
               "workspace-config": {
-                  "root-dir": "/tmp"
+                  "root-dir": "/tmp/firefly"
               }
           },
           "firefly": {
@@ -1135,7 +1135,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "14"
+            value: "15"
           - name: DARKLAUNCH
             value: "true"
           - name: INSTANCE_TYPE
