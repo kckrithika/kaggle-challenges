@@ -224,7 +224,7 @@ system:
     identity:
       serviceName: sfproxy-switchboard
       pod: na97
-    count: 3
+    count: 1
     containers:
     - name: sfproxy-switchboard-server
       image: sfci/servicelibs/switchboard:5437b81b26cbb06c1579c4f603f495b925e52fc7
@@ -317,7 +317,7 @@ system:
     identity:
       serviceName: sfproxy
       pod: na97
-    count: 2
+    count: 3
     containers:
     - name: sfproxy-envoy
       image: sfci/frontend-gateway/sfproxy:1f2c2db
