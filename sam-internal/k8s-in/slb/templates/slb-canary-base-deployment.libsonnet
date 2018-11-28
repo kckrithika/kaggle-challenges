@@ -4,6 +4,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local portconfigs = import "portconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 local utils = import "util_functions.jsonnet";
+local madkub = import "slbmadkub.jsonnet";
 
 local slbCanaryTlsPublicKeyPath =
     if configs.estate == "prd-sdc" then
@@ -12,6 +13,10 @@ local slbCanaryTlsPublicKeyPath =
         "/var/slb/canarycerts/sam.crt";
 
 local slbCanaryTlsPrivateKeyPath = "/var/slb/canarycerts/server.key";
+local certDir = "canarycert";
+local madkubCertDirs = [certDir];
+
+local tlsRequired(tlsPorts) = tlsPorts != null && std.length(tlsPorts) > 0;
 
 local ipvsPodAntiAffinity(canaryName) = (
     if configs.estate == "prd-sdc" then {
@@ -75,6 +80,40 @@ local getCanaryLivenessProbe(port) = (
     else {}
 );
 
+local getVolumes(tlsPorts)= ({
+    volumes: std.prune([
+        slbconfigs.logs_volume,
+    ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
+            madkub.madkubSlbCertVolumes(madkubCertDirs) + madkub.madkubSlbMadkubVolumes() + [ configs.maddog_cert_volume ]
+         else []),),
+});
+
+local getVolumeMounts(tlsPorts)= ({
+    volumeMounts: std.prune([
+        slbconfigs.logs_volume_mount,
+    ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
+            madkub.madkubSlbCertVolumeMounts(madkubCertDirs)
+         else [])),
+});
+
+local getInitContainers(tlsPorts)= (
+    if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
+        [ madkub.madkubInitContainer(madkubCertDirs) ]
+    else []
+);
+
+local getMadkubRefreshContainer(tlsPorts)= (
+    if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
+        madkub.madkubRefreshContainer(madkubCertDirs)
+    else {}
+);
+
+local getMadkubAnnotations(tlsPorts)= (
+    if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then {
+        "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(madkubCertDirs), " "),
+    } else {}
+);
+
 {
     slbCanaryBaseDeployment(
         canaryName,
@@ -101,13 +140,10 @@ local getCanaryLivenessProbe(port) = (
                     name: canaryName,
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
-            },
+            } + utils.fieldIfNonEmpty("annotations", getMadkubAnnotations(tlsPorts)),
             spec: {
                 [if hostNetwork then "hostNetwork"]: true,
-                volumes: configs.filter_empty([
-                    slbconfigs.logs_volume,
-                ]),
-                containers: [
+                containers: std.prune([
                     {
                         name: canaryName,
                         image: slbimages.hypersdn,
@@ -119,32 +155,38 @@ local getCanaryLivenessProbe(port) = (
                                      "--ports=" + std.join(",", [std.toString(port) for port in ports]),
                                  ]
                                  + ( // mix in tls config (if specified).
-                                     if tlsPorts != null && std.length(tlsPorts) > 0 then std.prune([
+                                     if tlsRequired(tlsPorts) then std.prune([
                                          "--tlsPorts=" + std.join(",", [std.toString(port) for port in tlsPorts]),
+                                     ] + (if slbflights.useMaddogCertsForCanaries then [
+                                         // Add the maddog paths here
+                                         "--privateKey=/" + certDir + "/server/keys/server-key.pem",
+                                         "--publicKey=/" + certDir + "/server/certificates/server.pem",
+                                         if !verbose then "--verbose=false",
+                                     ] else [
                                          "--privateKey=" + slbCanaryTlsPrivateKeyPath,
                                          // verbose is mixed in here because that's the way slb-canary-proxy-http currently orders it. *shrug*.
                                          if !verbose then "--verbose=false",
                                          "--publicKey=" + slbCanaryTlsPublicKeyPath,
-                                     ]) else []
+                                     ])) else []
                                  )
                                  + ( // mix in proxy protocol ports (if specified).
                                     if proxyProtocolPorts != null && std.length(proxyProtocolPorts) > 0 then [
                                         "--proxyProtocolPorts=" + std.join(",", [std.toString(port) for port in proxyProtocolPorts]),
                                     ] else []
                                  )),
-
-                        volumeMounts: configs.filter_empty([
-                            slbconfigs.logs_volume_mount,
-                        ]),
                     }
                     + getCanaryLivenessProbe(ports[0])
-                ],
+                    + getVolumeMounts(tlsPorts),
+                    getMadkubRefreshContainer(tlsPorts),
+                ]),
                 nodeSelector: {
                     pool: configs.estate,
                 },
             } + slbconfigs.getGracePeriod()
               + getAffinity(canaryName)
-              + slbconfigs.getDnsPolicy(),
+              + slbconfigs.getDnsPolicy()
+              + utils.fieldIfNonEmpty("initContainers", getInitContainers(tlsPorts))
+              + getVolumes(tlsPorts),
         },
         strategy: {
             type: "RollingUpdate",

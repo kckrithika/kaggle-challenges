@@ -98,6 +98,24 @@
                 role: "slb.internal",
             },
         },
+        canarycert: {  // certificate for canaries setting up https ports
+            mount: {
+                mountPath: "/canarycert",
+                name: "canarycert",
+            },
+            volume: {
+                emptyDir: {
+                    medium: "Memory",
+                },
+                name: "canarycert",
+            },
+            annotation: {
+                name: "canarycert",
+                "cert-type": "server",
+                kingdom: configs.kingdom,
+                role: "slb.canary",
+            },
+        },
     },
 
     madkubSlbCertFolders(certDirs):: [
