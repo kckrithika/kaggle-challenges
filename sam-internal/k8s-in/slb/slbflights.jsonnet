@@ -9,7 +9,7 @@ local configs = import "config.jsonnet";
     roleEnabled: (slbimages.phaseNum <= 1),
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     hsmDeleteLimitOverride: (slbimages.hypersdn_build <= 1379),
-    cleanupHostNet: (slbimages.phaseNum <= 2),
+    cleanupHostNet: (slbimages.phaseNum <= 3),
     ipvsTurnDownOnSIGTERM: (slbimages.phaseNum <= 1),
     ifaceProcessorAddIfaceIfIPVSHost: (slbimages.phaseNum <= 1),
     ipvsHealthCheckerCustomUserAgent: (slbimages.hypersdn_build >= 1379),
