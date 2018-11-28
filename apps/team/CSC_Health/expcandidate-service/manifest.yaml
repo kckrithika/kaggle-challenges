@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: expcandidate-service
-      image: tnrp/csc-health/candidate-service:candidate-service-0000027-2c1e246e
+      image: docker-all/dva/csc-health/candidate-service:1
       ports:
       - containerPort: 8888
       volumeMounts:
