@@ -98,7 +98,7 @@
                 role: "slb.internal",
             },
         },
-        canarycert: {  // slb internal certificate for SS
+        canarycert: {  // certificate for canaries setting up https ports
             mount: {
                 mountPath: "/canarycert",
                 name: "canarycert",

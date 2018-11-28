@@ -80,6 +80,40 @@ local getCanaryLivenessProbe(port) = (
     else {}
 );
 
+local getVolumes(tlsPorts)= ({
+    volumes: std.prune([
+        slbconfigs.logs_volume,
+    ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
+            madkub.madkubSlbCertVolumes(madkubCertDirs) + madkub.madkubSlbMadkubVolumes() + [ configs.maddog_cert_volume ]
+         else []),),
+});
+
+local getVolumeMounts(tlsPorts)= ({
+    volumeMounts: std.prune([
+        slbconfigs.logs_volume_mount,
+    ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
+            madkub.madkubSlbCertVolumeMounts(madkubCertDirs)
+         else [])),
+});
+
+local getInitContainers(tlsPorts)= (
+    if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
+        [ madkub.madkubInitContainer(madkubCertDirs) ]
+    else []
+);
+
+local getMadkubRefreshContainer(tlsPorts)= (
+    if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
+        madkub.madkubRefreshContainer(madkubCertDirs)
+    else {}
+);
+
+local getMadkubAnnotations(tlsPorts)= (
+    if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then {
+        "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(madkubCertDirs), " "),
+    } else {}
+);
+
 {
     slbCanaryBaseDeployment(
         canaryName,
@@ -106,19 +140,10 @@ local getCanaryLivenessProbe(port) = (
                     name: canaryName,
                 } + configs.ownerLabel.slb,
                 namespace: "sam-system",
-                [if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then "annotations"]: {
-                    "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(madkubCertDirs), " "),
-                },
-            },
+            } + utils.fieldIfNonEmpty("annotations", getMadkubAnnotations(tlsPorts)),
             spec: {
                 [if hostNetwork then "hostNetwork"]: true,
-                volumes: configs.filter_empty([
-                    slbconfigs.logs_volume,
-                ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
-                        (madkub.madkubSlbCertVolumes(madkubCertDirs)
-                         + madkub.madkubSlbMadkubVolumes()
-                         + [configs.maddog_cert_volume]) else [])),
-                containers: [
+                containers: std.prune([
                     {
                         name: canaryName,
                         image: slbimages.hypersdn,
@@ -149,27 +174,19 @@ local getCanaryLivenessProbe(port) = (
                                         "--proxyProtocolPorts=" + std.join(",", [std.toString(port) for port in proxyProtocolPorts]),
                                     ] else []
                                  )),
-
-                        volumeMounts: configs.filter_empty([
-                            slbconfigs.logs_volume_mount,
-                        ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
-                            madkub.madkubSlbCertVolumeMounts(madkubCertDirs) else [])),
                     }
                     + getCanaryLivenessProbe(ports[0])
-                ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then [
-                    madkub.madkubRefreshContainer(madkubCertDirs),
-                ] else []),
+                    + getVolumeMounts(tlsPorts),
+                    getMadkubRefreshContainer(tlsPorts),
+                ]),
                 nodeSelector: {
                     pool: configs.estate,
                 },
             } + slbconfigs.getGracePeriod()
               + getAffinity(canaryName)
               + slbconfigs.getDnsPolicy()
-              + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then {
-                    initContainers: [
-                       madkub.madkubInitContainer(madkubCertDirs),
-                    ],
-              } else {}),
+              + utils.fieldIfNonEmpty("initContainers", getInitContainers(tlsPorts))
+              + getVolumes(tlsPorts),
         },
         strategy: {
             type: "RollingUpdate",
