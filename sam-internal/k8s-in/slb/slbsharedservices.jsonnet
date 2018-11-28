@@ -54,7 +54,10 @@
                      "--control.configProcSentinel=" + configProcSentinel,
                  ] + (if std.length(supportedProxies) > 0 then [
                         "--pipeline.supportedProxies=" + std.join(",", supportedProxies),
-                    ] else []),
+                    ] else [])
+                   + (if configs.estate == "vpod" then [
+                        "--vipdnsoptions.slbdomain=t.force.com",
+                      ] else []),
         volumeMounts: std.prune([
             configs.maddog_cert_volume_mount,
             slbconfigs.slb_volume_mount,
