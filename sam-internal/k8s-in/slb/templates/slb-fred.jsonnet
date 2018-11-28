@@ -1,8 +1,9 @@
 local configs = import "config.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet");
+local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1380 then configs.deploymentBase("slb") {
+if slbconfigs.isSlbEstate && slbflights.fredEnabled then configs.deploymentBase("slb") {
 
       metadata: {
           labels: {
@@ -21,20 +22,20 @@ if configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1380 then configs.
                 namespace: "sam-system",
             },
             spec: {
-                volumes: configs.filter_empty([
+                volumes: std.prune([
                     slbconfigs.logs_volume,
                 ]),
                 containers: [
                     {
                         name: "slb-fred",
                         image: slbimages.hypersdn,
-                        command: std.prune([
+                        command: [
                                      "/sdn/slb-fred",
                                      "--serviceName=" + "slb-fred",
                                      "--log_dir=" + slbconfigs.logsDir,
-                                 ]),
+                                 ],
 
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts: std.prune([
                             slbconfigs.logs_volume_mount,
                         ]),
                     },
@@ -43,22 +44,6 @@ if configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1380 then configs.
                     pool: configs.estate,
                 },
                 affinity: {
-                    podAntiAffinity: {
-                        requiredDuringSchedulingIgnoredDuringExecution: [{
-                            labelSelector: {
-                                matchExpressions: [{
-                                    key: "name",
-                                    operator: "In",
-                                    values: [
-                                        "slb-ipvs",
-                                        "slb-ipvs-a",
-                                        "slb-ipvs-b",
-                                    ],
-                                }],
-                            },
-                            topologyKey: "kubernetes.io/hostname",
-                        }],
-                    },
                     nodeAffinity: {
                         requiredDuringSchedulingIgnoredDuringExecution: {
                             nodeSelectorTerms: [{

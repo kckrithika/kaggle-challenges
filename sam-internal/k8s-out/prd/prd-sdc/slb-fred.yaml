@@ -31,17 +31,6 @@ spec:
                 operator: NotIn
                 values:
                 - slb-ipvs
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: name
-                operator: In
-                values:
-                - slb-ipvs
-                - slb-ipvs-a
-                - slb-ipvs-b
-            topologyKey: kubernetes.io/hostname
       containers:
       - command:
         - /sdn/slb-fred
