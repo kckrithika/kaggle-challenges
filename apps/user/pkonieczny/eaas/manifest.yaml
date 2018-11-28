@@ -50,13 +50,13 @@ system:
       args:
       # Namespaced, mTLS HTTP2 GRPC
       - -endpoint
-      - samapp/user-pkonieczny/eaas:DATACENTER:7443
+      - samapp/user-pkonieczny/eaas:DATACENTER_ALLENV:7443
       # Non namespaced, plain-text HTTP2 GRPC
       - -endpoint
-      - samapp/eaas-pkonieczny:DATACENTER:7012
+      - samapp/eaas-pkonieczny:DATACENTER_ALLENV:7012
       # Non namespaced, plain-text HTTP1 for Chaos endpoint
       - -endpoint
-      - samapp/eaas-pkonieczny:DATACENTER:7014
+      - samapp/eaas-pkonieczny-chaos:DATACENTER_ALLENV:7014
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
