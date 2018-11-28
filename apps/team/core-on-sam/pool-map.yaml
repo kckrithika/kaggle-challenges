@@ -123,6 +123,11 @@ apps:
     - shared2-samminioncoreapp2-5-prd.eng.sfdc.net
 
  # sfproxy team's deployments
+ mist61-na97:
+  - name: prd/prd-sp2-sam_coreapp
+    hostSubList:
+    - shared2-samminioncoreapp3-1-prd.eng.sfdc.net
+    - shared2-samminioncoreapp3-2-prd.eng.sfdc.net
  mist61-na98:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
