@@ -36,8 +36,8 @@ local schemaID = "manifestConfigs";
 
     # List of env fields that must exist
     env_requirements:: [
-        "name", 
-        "value" 
+        "name",
+        "value"
     ],
 
     # List of httpGet (livenessProbe) fields that must exist
@@ -45,9 +45,23 @@ local schemaID = "manifestConfigs";
         "port"
     ],
 
+    volumeClaimTemplates_requirements:: [
+        "name"
+    ],
+
+    loadbalancers_requirements:: [
+        "lbname",
+        "ports"
+    ],
+
+    lbPort_requirements:: [
+        "port",
+        "targetport"
+    ],
+
     # List of container fields that must exist
     container_requirements:: {
-        local containerRequirements = [ 
+        local containerRequirements = [
             "name", 
             "image", 
             "livenessProbe" 
@@ -59,7 +73,7 @@ local schemaID = "manifestConfigs";
         
         # List of must exist fields in container
         mustExist:
-            if config.Enable_LivenessProbeWhitelist then 
+            if config.Enable_LivenessProbeWhitelist then
                 util.Whitelist(
                     { image: { not: { "$ref": schemaID + "#/LivenessProbeExceptions" } } },
                     util.Required(containerRequirements),
@@ -73,23 +87,34 @@ local schemaID = "manifestConfigs";
 
     # List of volumeMounts fields that must exist
     volumeMounts_requirements:: {
-        mustExist: [
-            "name",
-            "mountPath"
-        ],
+        mustExist: util.Required([ "name", "mountPath" ]),
 
         # List of not allowed fields in containers
-        notAllowed: [ "subPath" ],
+        notAllowed: util.NotAllowed([ "subPath" ]),
     },
 
 
 ###############################  More Complicated Logic  #####################################
 
+    # Neither serviceName nor pod are required, but they must be DNS1123 valid if they exist
+    identityValidation:: {
+        properties: {
+            serviceName: {
+                type: "string",
+                "$ref": "#/Rule_IsDNSValidation"
+            },
+
+            pod: {
+                type: "string",
+                "$ref": "#/Rule_IsDNSValidation"
+            }
+        }
+    },
 
     # Only type Server can have lbnames property
     maddogValidation:: {
         properties: {
-            type: { enum: [ "server", "client" ] },
+            type: util.AllowedValues( [ "server", "client" ] ),
             lbnames: { type: "array" }
         },
 
@@ -98,7 +123,7 @@ local schemaID = "manifestConfigs";
         dependencies: {
             lbnames: {
                 properties: {
-                    type: { "enum": [ "server" ] }
+                    type: util.AllowedValues( [ "server" ] )
                 }
             }
         }
@@ -120,17 +145,15 @@ local schemaID = "manifestConfigs";
         additionalProperties: false
     },
 
-    # Secret/K4A Volume Format
+    # Secret Volume Format
     secretVolumeFormat:: {
         properties: {
             name: {
                 type: "string",
                 "$ref": "#/Rule_IsDNSValidation"
-            }
-        },
+            },
 
-        patternProperties: {
-            "^(k4aSecret)$|(secret)$" : {
+            secret: {
                 type: "object",
                 required: [ "secretName" ],
                 properties: {
@@ -138,9 +161,29 @@ local schemaID = "manifestConfigs";
                         type: "string"
                     }
                 }
-            }
+            },
         },
+        additionalProperties: false
+    },
 
+    # K4ASecret Volume Format
+    k4aVolumeFormat:: {
+        properties: {
+            name: {
+                type: "string",
+                "$ref": "#/Rule_IsDNSValidation"
+            },
+
+            k4aSecret: {
+                type: "object",
+                required: [ "secretName" ],
+                properties: {
+                    secretName: {
+                        type: "string"
+                    }
+                }
+            },
+        },
         additionalProperties: false
     },
 
@@ -184,15 +227,123 @@ local schemaID = "manifestConfigs";
     secretVolumeMountValidation:: {
         "if": {
             anyOf: [
-                { properties: { name: { enum: [ "secretvol" ] } } },
-                { properties: { mountPath: { enum: [ "/secrets/" ] } } }
+                { properties: { name: util.AllowedValues([ "secretvol" ]) } },
+                { properties: { mountPath: util.AllowedValues([ "/secrets/" ]) } }
             ]
         },
         "then": {
             allOf: [
-                { required: [ "readOnly" ] },
-                { properties: { readOnly: { enum: [ true ] } } }
+                util.Required([ "readOnly" ]),
+                { properties: { readOnly: util.AllowedValues([ true ]) } }
             ]
         }
-    }
+    },
+
+    # Kubernetes requirements for valid container port name and number
+    validateContainerPort:: {
+        isValidPortName: {
+            maxLength: 15,
+            allOf: [
+                { pattern: "^[-a-z0-9]+$" },
+                { pattern: "[a-z]" },
+                # Must not contain consecutive '-' and cannot start/end with '-'
+                util.ListNotAllowed([
+                    { pattern: "^.*--.*$" },
+                    { pattern: "^-.*$" },
+                    { pattern: "^.*-$" }
+                ])
+            ]
+        },
+
+        isValidPortNumber: util.Range([ 1, 65535 ])
+    },
+
+    # Makes sure function types are either stateful or stateless and 
+    validateFunctionType:: {
+        typesAllowed: [ "stateful-set", "deployment" ],
+
+        typeRequirements: {
+            # Stateless by default
+            "if": {
+                properties: { 
+                    type: util.AllowedValues([ "deployment" ])
+                }
+            },
+            "then": util.NotAllowed( [ "lbname", "volumeClaimTemplates" ] ),
+            "else": {
+                allOf: [
+                    util.Required( [ "lbname" ] ),
+                    util.NotAllowed( [ "strategy" ] )
+                ]
+            },
+        }
+    },
+
+    # One and only one of function or selector must exist in loadbalancer
+    LBFunctionOrSelector:: {
+        anyOf: [
+            {
+                allOf: [
+                    util.Required([ "function" ]), 
+                    util.NotAllowed([ "selector" ])
+                ]
+            },
+            { 
+                allOf: [
+                    util.Required([ "selector" ]), 
+                    util.NotAllowed([ "function" ])
+                ]
+            }
+        ]
+    },
+
+    # LoadBalancer Port allowed types and validation
+    LBPortsValidation:: {
+        LBPortAllowedTypes: [ "dsr", "tcp", "http" ],
+        
+        LBPortType: {
+            "if": { properties: { lbtype: util.AllowedValues([ "dsr", "tcp" ]) } },
+            "then": util.NotAllowed([ "reencrypt", "sticky" ])
+        },
+
+        LBPortAllowedAlgorithm: [ "leastconn", "roundrobin", "hash" ],
+
+        LBPortAlgorithm: {
+            "if": { properties: { lbalgorithm: util.AllowedValues([ "leastconn", "roundrobin", "hash" ]) } },
+            "then": { properties: { lbtype: util.ValuesNotAllowed([ "dsr" ]) } }
+        },
+
+        CIDRValidation: {
+            items: {
+                type: "string",
+                pattern: "^([0-9]{1,3}.){3}[0-9]{1,3}(/([0-9]|[1-2][0-9]|3[0-2]))?$"
+            }
+        },
+
+        TLSValidation: {
+            dependencies: {
+                TlsCertificate: {
+                    required: [ "tls", "lbtype" ],
+
+                    properties: {
+                        tls: util.AllowedValues([ true ]),
+                        lbtype: util.AllowedValues([ "http" ])
+                    }
+                },
+    
+                TlsKey: {
+                    required: [ "tls", "lbtype" ],
+
+                    properties: {
+                        tls: util.AllowedValues([ true ]),
+                        lbtype: util.AllowedValues([ "http" ])
+                    }
+                }
+            }
+        },
+
+        TLSPattern: {
+            pattern: "^secret_service:[a-zA-Z0-9]+:[-a-zA-Z0-9]*$"
+        } 
+    },
 }

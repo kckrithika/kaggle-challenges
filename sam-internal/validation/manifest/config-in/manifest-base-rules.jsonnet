@@ -11,45 +11,69 @@ local schemaID = "manifestConfigs";
 
     LivenessProbeExceptions: config.livenessProbeExceptions,
 
+    # Note: This is the same as IsDNS1123Label
+    Rule_IsDNSValidation: {
+        maxLength: 63,
+        pattern: "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+    },
+
+    Rule_IsDNS1035Validation: {
+        maxLength: 63,
+        pattern: "^[a-z]([-a-z0-9]*[a-z0-9])?$"
+    },
 
     Rule_ReservedPorts: util.ListNotAllowed(config.reservedPorts),
 
-
     Rule_HostPathList: util.MatchRegex(config.allowedHostPathList.allowed, config.allowedHostPathList.notAllowed),
 
-
     Rule_ImageForm: util.MatchRegex(config.imageForm.allowed, config.imageForm.notAllowed),
-
 
     Rule_EnvVariableName: {
         EnvNamePatterns: util.MatchRegex(base.envNamePattern),
         ReservedEnvName: util.ValuesNotAllowed(config.reservedEnvName)
     },
 
-
-    Rule_IsDNSValidation: {
-        maxLength: 63,
-        pattern: "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
-    },
-
+    Rule_IdentityValidation: base.identityValidation,
 
     Rule_MaddogValidation: base.maddogValidation,
-
 
     Rule_VolumeMountValidation: {
         MountPathPattern: util.MatchRegex(base.mountPathPattern),
         SecretVolume: base.secretVolumeMountValidation
     },
 
+    Rule_FunctionTypeValidation: {
+        TypesAllowed: util.AllowedValues(base.validateFunctionType.typesAllowed),
+        TypesRequirements: base.validateFunctionType.typeRequirements
+    },
+
+    Rule_ValidateContainerPort: {
+        IsValidPortName: base.validateContainerPort.isValidPortName,
+        IsValidPortNumber: base.validateContainerPort.isValidPortNumber
+    },
 
     Rule_VolumesFormat: {
         anyOf: [
             base.maddogVolumeFormat,
             base.secretVolumeFormat,
+            base.k4aVolumeFormat,
             base.hostPathVolumeFormat,
             base.emptyDirVolumeFormat
         ]
     },
+
+    Rule_LBFunctionOrSelector: base.LBFunctionOrSelector,
+
+    Rule_LBPortsValidation: {
+        LBPortAllowedTypes: util.AllowedValues(base.LBPortsValidation.LBPortAllowedTypes),
+        LBPortAllowedAlgorithm: util.AllowedValues(base.LBPortsValidation.LBPortAllowedAlgorithm),
+        LBPortType: base.LBPortsValidation.LBPortType,
+        LBPortAlgorithm: base.LBPortsValidation.LBPortAlgorithm,
+        TLSValidation: base.LBPortsValidation.TLSValidation,
+        TLSPattern: base.LBPortsValidation.TLSPattern,
+        CIDRValidation: base.LBPortsValidation.CIDRValidation
+    },
+
 
 
     Rule_ManifestRequirements: {
@@ -72,14 +96,26 @@ local schemaID = "manifestConfigs";
         MustExist: util.Required(base.httpGet_requirements)
     },
 
+    Rule_volumeClaimTemplatesRequirements: {
+        MustExist: util.Required(base.volumeClaimTemplates_requirements) 
+    },
+
+    Rule_LBRequirements: {
+        MustExist: util.Required(base.loadbalancers_requirements)
+    },
+
+    Rule_LBPortRequirements: {
+        MustExist: util.Required(base.lbPort_requirements)
+    },
+
     Rule_ContainerRequirements: {
         MustExist: base.container_requirements.mustExist,
         NotAllowed: base.container_requirements.notAllowed
     },
 
     Rule_VolumeMountRequirements: {
-        MustExist: util.Required(base.volumeMounts_requirements.mustExist),
-        NotAllowed: util.NotAllowed(base.volumeMounts_requirements.notAllowed)
+        MustExist: base.volumeMounts_requirements.mustExist,
+        NotAllowed: base.volumeMounts_requirements.notAllowed
     }
 
 }

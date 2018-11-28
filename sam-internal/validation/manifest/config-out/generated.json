@@ -60,19 +60,13 @@
          }
       },
       "NotAllowed": {
-         "not": {
-            "anyOf": [
-               {
-                  "required": [
-                     "securitycontext"
-                  ]
-               },
-               {
-                  "required": [
-                     "lifecycle"
-                  ]
-               }
-            ]
+         "properties": {
+            "lifecycle": {
+               "not": { }
+            },
+            "securitycontext": {
+               "not": { }
+            }
          }
       }
    },
@@ -113,6 +107,51 @@
                "SUPERPOD",
                "FUNCTION"
             ]
+         }
+      }
+   },
+   "Rule_FunctionTypeValidation": {
+      "TypesAllowed": {
+         "enum": [
+            "stateful-set",
+            "deployment"
+         ]
+      },
+      "TypesRequirements": {
+         "else": {
+            "allOf": [
+               {
+                  "required": [
+                     "lbname"
+                  ]
+               },
+               {
+                  "properties": {
+                     "strategy": {
+                        "not": { }
+                     }
+                  }
+               }
+            ]
+         },
+         "if": {
+            "properties": {
+               "type": {
+                  "enum": [
+                     "deployment"
+                  ]
+               }
+            }
+         },
+         "then": {
+            "properties": {
+               "lbname": {
+                  "not": { }
+               },
+               "volumeClaimTemplates": {
+                  "not": { }
+               }
+            }
          }
       }
    },
@@ -167,12 +206,39 @@
          ]
       }
    },
+   "Rule_IdentityValidation": {
+      "properties": {
+         "pod": {
+            "$ref": "#/Rule_IsDNSValidation",
+            "type": "string"
+         },
+         "serviceName": {
+            "$ref": "#/Rule_IsDNSValidation",
+            "type": "string"
+         }
+      }
+   },
    "Rule_ImageForm": {
       "allOf": [
          {
             "anyOf": [
                {
                   "pattern": "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+/.+:.+$"
+               },
+               {
+                  "pattern": "^chatbots/.+/.+:.+$"
+               },
+               {
+                  "pattern": "^ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam/.+/.+:.+$"
+               },
+               {
+                  "pattern": "^tnrp/.+/.+:.+$"
+               },
+               {
+                  "pattern": "^sfci/.+/.+:.+$"
+               },
+               {
+                  "pattern": "^ops0-artifactrepo1-0-xrd.data.sfdc.net/docker-sam/.+/.+:.+$"
                }
             ]
          },
@@ -183,16 +249,183 @@
                      "pattern": "^.*(latest)$"
                   },
                   {
-                     "pattern": "^ops0-artifactrepo2-0-prd.data.sfdc.net/(docker-p2p|docker-sam).+:.+$"
+                     "pattern": "^ops0-artifactrepo2-0-prd.data.sfdc.net/(docker-p2p|docker-sam)/.+:.+$"
                   }
                ]
             }
          }
       ]
    },
+   "Rule_IsDNS1035Validation": {
+      "maxLength": 63,
+      "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$"
+   },
    "Rule_IsDNSValidation": {
       "maxLength": 63,
       "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+   },
+   "Rule_LBFunctionOrSelector": {
+      "anyOf": [
+         {
+            "allOf": [
+               {
+                  "required": [
+                     "function"
+                  ]
+               },
+               {
+                  "properties": {
+                     "selector": {
+                        "not": { }
+                     }
+                  }
+               }
+            ]
+         },
+         {
+            "allOf": [
+               {
+                  "required": [
+                     "selector"
+                  ]
+               },
+               {
+                  "properties": {
+                     "function": {
+                        "not": { }
+                     }
+                  }
+               }
+            ]
+         }
+      ]
+   },
+   "Rule_LBPortRequirements": {
+      "MustExist": {
+         "required": [
+            "port",
+            "targetport"
+         ]
+      }
+   },
+   "Rule_LBPortsValidation": {
+      "CIDRValidation": {
+         "items": {
+            "pattern": "^([0-9]{1,3}.){3}[0-9]{1,3}(/([0-9]|[1-2][0-9]|3[0-2]))?$",
+            "type": "string"
+         }
+      },
+      "LBPortAlgorithm": {
+         "if": {
+            "properties": {
+               "lbalgorithm": {
+                  "enum": [
+                     "leastconn",
+                     "roundrobin",
+                     "hash"
+                  ]
+               }
+            }
+         },
+         "then": {
+            "properties": {
+               "lbtype": {
+                  "not": {
+                     "enum": [
+                        "dsr"
+                     ]
+                  }
+               }
+            }
+         }
+      },
+      "LBPortAllowedAlgorithm": {
+         "enum": [
+            "leastconn",
+            "roundrobin",
+            "hash"
+         ]
+      },
+      "LBPortAllowedTypes": {
+         "enum": [
+            "dsr",
+            "tcp",
+            "http"
+         ]
+      },
+      "LBPortType": {
+         "if": {
+            "properties": {
+               "lbtype": {
+                  "enum": [
+                     "dsr",
+                     "tcp"
+                  ]
+               }
+            }
+         },
+         "then": {
+            "properties": {
+               "reencrypt": {
+                  "not": { }
+               },
+               "sticky": {
+                  "not": { }
+               }
+            }
+         }
+      },
+      "TLSPattern": {
+         "pattern": "^secret_service:[a-zA-Z0-9]+:[-a-zA-Z0-9]*$"
+      },
+      "TLSValidation": {
+         "dependencies": {
+            "TlsCertificate": {
+               "properties": {
+                  "lbtype": {
+                     "enum": [
+                        "http"
+                     ]
+                  },
+                  "tls": {
+                     "enum": [
+                        true
+                     ]
+                  }
+               },
+               "required": [
+                  "tls",
+                  "lbtype"
+               ]
+            },
+            "TlsKey": {
+               "properties": {
+                  "lbtype": {
+                     "enum": [
+                        "http"
+                     ]
+                  },
+                  "tls": {
+                     "enum": [
+                        true
+                     ]
+                  }
+               },
+               "required": [
+                  "tls",
+                  "lbtype"
+               ]
+            }
+         }
+      }
+   },
+   "Rule_LBRequirements": {
+      "MustExist": {
+         "required": [
+            "lbname",
+            "ports"
+         ]
+      }
    },
    "Rule_MaddogValidation": {
       "dependencies": {
@@ -267,6 +500,38 @@
          ]
       }
    },
+   "Rule_ValidateContainerPort": {
+      "IsValidPortName": {
+         "allOf": [
+            {
+               "pattern": "^[-a-z0-9]+$"
+            },
+            {
+               "pattern": "[a-z]"
+            },
+            {
+               "not": {
+                  "anyOf": [
+                     {
+                        "pattern": "^.*--.*$"
+                     },
+                     {
+                        "pattern": "^-.*$"
+                     },
+                     {
+                        "pattern": "^.*-$"
+                     }
+                  ]
+               }
+            }
+         ],
+         "maxLength": 15
+      },
+      "IsValidPortNumber": {
+         "maximum": 65535,
+         "minimum": 1
+      }
+   },
    "Rule_VolumeMountRequirements": {
       "MustExist": {
          "required": [
@@ -275,14 +540,10 @@
          ]
       },
       "NotAllowed": {
-         "not": {
-            "anyOf": [
-               {
-                  "required": [
-                     "subPath"
-                  ]
-               }
-            ]
+         "properties": {
+            "subPath": {
+               "not": { }
+            }
          }
       }
    },
@@ -362,8 +623,12 @@
          },
          {
             "additionalProperties": false,
-            "patternProperties": {
-               "^(k4aSecret)$|(secret)$": {
+            "properties": {
+               "name": {
+                  "$ref": "#/Rule_IsDNSValidation",
+                  "type": "string"
+               },
+               "secret": {
                   "properties": {
                      "secretName": {
                         "type": "string"
@@ -374,8 +639,22 @@
                   ],
                   "type": "object"
                }
-            },
+            }
+         },
+         {
+            "additionalProperties": false,
             "properties": {
+               "k4aSecret": {
+                  "properties": {
+                     "secretName": {
+                        "type": "string"
+                     }
+                  },
+                  "required": [
+                     "secretName"
+                  ],
+                  "type": "object"
+               },
                "name": {
                   "$ref": "#/Rule_IsDNSValidation",
                   "type": "string"
@@ -415,5 +694,12 @@
             }
          }
       ]
+   },
+   "Rule_volumeClaimTemplatesRequirements": {
+      "MustExist": {
+         "required": [
+            "name"
+         ]
+      }
    }
 }

@@ -25,7 +25,10 @@
                         "type": "array",
                         "items": {
                             "type": "object",
-                            "allOf": [ { "$ref": "manifestConfigs#/Rule_FunctionsRequirements/MustExist" } ],
+                            "allOf": [ 
+                                { "$ref": "manifestConfigs#/Rule_FunctionsRequirements/MustExist" },
+                                { "$ref": "manifestConfigs#/Rule_FunctionTypeValidation/TypesRequirements" }
+                            ],
                             "properties": {
 
                                 "name": {
@@ -35,6 +38,21 @@
 
                                 "count": {
                                     "type": "integer"
+                                },
+
+                                "type": {
+                                    "type": "string",
+                                    "$ref": "manifestConfigs#/Rule_FunctionTypeValidation/TypesAllowed"
+                                },
+                        
+                                "identity": {
+                                    "type": "object",
+                                    "$ref": "manifestConfigs#/Rule_IdentityValidation"
+                                },
+
+                                "lbname": {
+                                    "type": "string",
+                                    "$ref": "manifestConfigs#/Rule_IsDNSValidation"
                                 },
 
                                 "containers": {
@@ -108,11 +126,13 @@
                                                     "properties": {
                                                 
                                                         "containerPort": {
-                                                            "type": "integer"
+                                                            "type": "integer",
+                                                            "$ref": "manifestConfigs#/Rule_ValidateContainerPort/IsValidPortNumber"
                                                         },
                                                         
                                                         "name": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "$ref": "manifestConfigs#/Rule_ValidateContainerPort/IsValidPortName"
                                                         }
                                                 
                                                     }
@@ -162,9 +182,119 @@
                                         "type": "object",
                                         "$ref": "manifestConfigs#/Rule_VolumesFormat"
                                     }
+                                },
 
+                                "volumeClaimTemplates": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "allOf": [ { "$ref": "manifestConfigs#/Rule_volumeClaimTemplatesRequirements/MustExist" } ],
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
                                 }
 
+                            }
+                        }
+                    },
+
+                    "loadbalancers": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "allOf": [
+                                { "$ref": "manifestConfigs#/Rule_LBFunctionOrSelector" },
+                                { "$ref": "manifestConfigs#/Rule_LBRequirements/MustExist" }
+                            ],
+                            "properties": {
+
+                                "lbname": {
+                                    "type": "string",
+                                    "$ref":  "manifestConfigs#/Rule_IsDNS1035Validation"
+                                },
+
+                                "function": {
+                                    "type": "string"
+                                },
+
+                                "selector": {
+                                    "type": "string"
+                                },
+
+                                "slbEnabled": {
+                                    "type": "boolean"
+                                },
+
+                                "nodeExposed": {
+                                    "type": "boolean"
+                                },
+
+                                "ports": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "allOf": [
+                                            { "$ref": "manifestConfigs#/Rule_LBPortRequirements/MustExist" },
+                                            { "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBPortType" },
+                                            { "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBPortAlgorithm" },
+                                            { "$ref": "manifestConfigs#/Rule_LBPortsValidation/TLSValidation" }
+                                        ],
+                                        "properties": {
+
+                                            "lbtype": {
+                                                "type": "string",
+                                                "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBPortAllowedTypes"
+                                            },
+
+                                            "port": {
+                                                "type": "integer"
+                                            },
+
+                                            "targetPort": {
+                                                "type": "integer"
+                                            },
+
+                                            "tls": {
+                                                "type": "boolean"
+                                            },
+
+                                            "lbalgorithm": {
+                                                "type": "string",
+                                                "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBPortAllowedAlgorithm"
+                                            },
+
+                                            "allow": {
+                                                "type": "array",
+                                                "$ref": "manifestConfigs#/Rule_LBPortsValidation/CIDRValidation"
+                                            },
+
+                                            "deny": {
+                                                "type": "array",
+                                                "$ref": "manifestConfigs#/Rule_LBPortsValidation/CIDRValidation"
+                                            },
+
+                                            "throttleswhitelist": {
+                                                "type": "array",
+                                                "$ref": "manifestConfigs#/Rule_LBPortsValidation/CIDRValidation"
+                                            },
+
+                                            "tlscertificate": {
+                                                "type": "string",
+                                                "$ref": "manifestConfigs#/Rule_LBPortsValidation/TLSPattern"
+                                            },
+
+                                            "tlskey": {
+                                                "type": "string",
+                                                "$ref": "manifestConfigs#/Rule_LBPortsValidation/TLSPattern"
+                                            }
+
+                                        }
+                                    }
+                                }
+                                
                             }
                         }
                     }
