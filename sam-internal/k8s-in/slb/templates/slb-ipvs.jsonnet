@@ -208,7 +208,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             slbconfigs.logs_volume_mount,
                             slbconfigs.usr_sbin_volume_mount,
                             configs.sfdchosts_volume_mount,
-                        ]),
+                        ] + (if slbflights.antiDDOS then [
+                            slbconfigs.sbin_volume_mount,
+                        ] else [])),
                         securityContext: {
                             privileged: true,
                         },
