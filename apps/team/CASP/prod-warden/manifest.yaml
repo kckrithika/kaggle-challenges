@@ -14,11 +14,13 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-warden
-        image: tnrp/casp/warden:0.0.1-0000301-ed3f0e98
+        image: tnrp/casp/warden:0.0.1-0000304-329ab376
         ports:
         - name: warden
           containerPort: 8889
           hostPort: 18889
+        - name: grpc
+          containerPort: 7442
         env:
         - name: BRANCH
           value: "ops_production"
@@ -61,3 +63,5 @@ system:
       ports:
         - port: 8889
           targetport: 8889
+        - port: 7442
+          targetport: 7442
