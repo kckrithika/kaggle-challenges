@@ -49,6 +49,15 @@ if configs.kingdom == "vpod" then configs.deploymentBase("slb") {
                     ),
                     slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, false),
                 ],
+                nodeSelector: {
+                   master: "true",
+                },
+                tolerations: [{
+                   key: "dedicated",
+                   operator: "Equal",
+                   value: "master",
+                   effect: "NoSchedule",
+                }],
             },
         },
         strategy: {

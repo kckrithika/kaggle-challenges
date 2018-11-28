@@ -121,6 +121,7 @@ spec:
         - --proxySelectorLabelValue=slb-vpod-nginx
         - --hostnameOverride=$(NODE_NAME)
         - --control.configProcSentinel=/host/data/slb/config/slb-vpod-nginx/slb-config-proc.sentinel
+        - --vipdnsoptions.slbdomain=t.force.com
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -177,6 +178,13 @@ spec:
         - mountPath: /host/data/slb/config/slb-vpod-nginx
           name: var-config-volume
       hostNetwork: true
+      nodeSelector:
+        master: "true"
+      tolerations:
+      - effect: NoSchedule
+        key: dedicated
+        operator: Equal
+        value: master
       volumes:
       - hostPath:
           path: /data/slb/logs/slb-vpod-nginx
