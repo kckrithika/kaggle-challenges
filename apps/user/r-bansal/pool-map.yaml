@@ -1,5 +1,5 @@
 apps:
  universal-search:
   - prd/prd-sam
- test-sherpa-client:
-  - prd/prd-sam
+ # test-sherpa-client:
+ #  - prd/prd-sam
