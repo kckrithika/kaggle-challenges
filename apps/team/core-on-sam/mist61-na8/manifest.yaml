@@ -1,8 +1,8 @@
 apiVersion: v1
-
+ 
 system:
   functions:
-  - name: na7-mist61app-prd
+  - name: na8-mist61app-prd
     count: 1
     volumes:
     - name: envoy-config-volume
@@ -24,20 +24,37 @@ system:
 
     containers:
     - name: coreapp
-      image: tnrp/casam/coreapp:216_patch__16784812-0000124-b13b7783
+      image: tnrp/casam/coreapp:216_patch__16900215-0000131-ce255dbc
 
       env:
         # DB info
         - name: DB_USER
           value: sleepy
+
+        - name: DB_PASSWORD
+          value: rotate
+
         - name: DB_SID
           value: mist61a216utf
+
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
 
+        - name: DB_INSTANCE_NAME
+          value: mist61a216utf-1
+          
+        - name: DB_STATS_USER
+          value: snowwhite
+
+        - name: DB_STATS_PASSWORD
+          value: rotate
+
+        - name: SERVER_ID
+          value: x
+
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
-          value: 8086
+          value: 8443
 
         # Set to true it PUBLIC_PORT is an https endpoint
         - name: PUBLIC_PORT_IS_SECURE
@@ -47,10 +64,14 @@ system:
         # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
         # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
-          value: us7-mist61cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
-        # This maps to http_port
-        - name: PORT
+          value: us8-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+
+        - name: SFPROXY_VIP
+          value: https://us8-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
+
+        - name: HTTP_PORT
           value: 8085
+
         # This maps to https_port
         - name: SPORT
           value: 8443
@@ -77,7 +98,7 @@ system:
 
         # Settings.path
         - name: CASAM_SETTINGS_PATH
-          value: mist.mist61.prd.na7.app
+          value: mist.mist61.prd.na8.app
 
         # Cluster name
         - name: CLUSTER_NAME
@@ -109,11 +130,11 @@ system:
         periodSeconds: 1
 
       readinessProbe:
-        httpGet:
-          path: /ping.jsp
-          port: 8085
+        exec:
+          command:
+           - /home/sfdc/salesforce/build/ready_probe.sh
         initialDelaySeconds: 120
-        periodSeconds: 1
+        periodSeconds: 5
         failureThreshold: 10
 
       ports:
@@ -135,7 +156,7 @@ system:
           mountPath: /home/sfdc/config_override
 
     - name: envoy-sidecar-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
+      image: sfci/casam/cyan-config:208cc2
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
@@ -189,10 +210,10 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: sfci/casam/coreapp_config_overrides:6e2708
+      image: sfci/casam/coreapp_config_overrides:f6b69d
       env:
       - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na7.app
+        value: mist.mist61.prd.na8.app
       livenessProbe:
         exec:
           command:
@@ -221,7 +242,7 @@ system:
         maxUnavailable: 0
 
 
-  - name: na7-mist61seq-prd
+  - name: na8-mist61seq-prd
 
     count: 1
 
@@ -229,16 +250,19 @@ system:
     - name: cert
       maddogCert:
         type: client
+    - name: secretvol
+      k4aSecret:
+        secretName: sequencer-gus
 
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:6d185a
+      image: sfci/casam/sequencer:6ea866
 
       env:
         - name: USE_SWITCHBOARD
           value: 1
         - name: CYAN
-          value: https://us7-mist61cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
+          value: https://us8-mist61cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
         - name: CURL_GLOBAL_OPTS
           value: -k
         - name: K4A
@@ -248,7 +272,7 @@ system:
         - name: JMX_HOST
           value: shared2-samminioncoreapp1-1-prd.eng.sfdc.net
         - name: JMX_PORT
-          value: 6070
+          value: 6080
         - name: OLD_DWARF
           value: sneezy
 #          value: happy
@@ -262,11 +286,11 @@ system:
         - name: DB_SID
           value: mist61a216utf
         - name: LOCK_DWARF
-          value: 1
+          value: 0
         - name: TRIGGER_CAFFEINE
-          value: 1
+          value: 0
         - name: UNLOCK_DWARF
-          value: 1
+          value: 0
 #        - name: K4A_OUTPUT
 #          value: /tmp/files/repo/user.properties
         - name: SNOWWHITE_PWD
@@ -274,9 +298,16 @@ system:
         - name: MADDOG_CLIENT
           value: /certs
         - name: CASAM_SETTINGS_PATH
-          value: mist.mist61.prd.na7.cyan
+          value: mist.mist61.prd.na8.cyan
         - name: CASAM_SUPERPOD
           value: sp2
+        - name: ENABLE_DB_SCHEMA_UPGRADE
+          value: 0
+        - name: SET_DEFAULT_ORACLE_EDITION
+          value: 0
+        # set http proxy required for gus chatter binary to reach to login.salesforce.com
+        - name: HTTP_PROXY
+          value: public0-proxy1-0-prd.data.sfdc.net:8080
 
       livenessProbe:
         httpGet:
@@ -301,55 +332,35 @@ system:
       volumeMounts:
         - name: cert
           mountPath: /certs
+        - name: secretvol
+          mountPath: /secrets/
+          readOnly: true
 
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
 
-  - name: na7-mist61cyan-prd
+  - name: na8-mist61sfproxy-prd
+    identity:
+      serviceName: sfproxy
+      pod: na8
     count: 1
     containers:
-    - name: front-proxy-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
+    - name: sfproxy-envoy
+      image: sfci/frontend-gateway/sfproxy:659513c
       env:
-      - name: CONFIG_DIR
-        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
-      - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na7.cyan
-      volumeMounts:
-      - name: envoy-config-volume
-        mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
-      resources:
-        limits: { cpu: "1", memory: "64Mi" }
-        requests: { cpu: "1", memory: "64Mi" }
-      livenessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/live
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 10
-        periodSeconds: 5
-
-    - name: front-proxy
-      image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
-      env:
+#TODO: Write envoy logs to stdout instead of file
       - name: ENVOY_DEBUG_OPTIONS
-        value: --concurrency 200 --log-level debug
+        value: --log-path /home/sfdc-sherpa/envoy.log
+      - name: SFDC_ENVIRONMENT
+        value: mist61
       args:
-      - --template=/cyan-config/front-proxy-config.yaml.template
+      - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
+      - --switchboard=us99-mist61switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
+      - --log-level=trace
       ports:
+      - containerPort: 2525
       - containerPort: 12060
-      - containerPort: 12065
       - containerPort: 15373
-#      resources:
-#        limits: { cpu: "1", memory: "1Gi" }
-#        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         exec:
           command:
@@ -363,16 +374,12 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
       volumeMounts:
-      - name: envoy-config-volume
-        mountPath: /cyan-config
       - name: tls-client-cert
-        mountPath: /certs/cert-client
+        mountPath: /client-certs
       - name: tls-server-cert
-        mountPath: /certs/cert-server
+        mountPath: /server-certs
 
     volumes:
-    - name: envoy-config-volume
-      emptyDir: {}
     - name: tls-client-cert
       maddogCert:
         type: client
@@ -380,41 +387,44 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - us7-mist61cyan-lb
+        - us8-mist61sfproxy-lb
 
   loadbalancers:
-  - lbname: na7-mist61app-prd
-    function: na7-mist61app-prd
+  - lbname: na8-mist61app-prd
+    function: na8-mist61app-prd
     nodeExposed: true
     ports:
-# JMX port of coreapp - used by Sequencer
-    - port: 6070
-      targetport: 8998
 # HTTP listen port of coreapp - Exposed only for debugging.
-    - port: 6071
+    - port: 6081
       targetport: 8085
 # side car Envoy's HTTPS listen port
-    - port: 6072
+    - port: 6082
       targetport: 13065
 # side car Envoy's admin port - Exposed only for debugging purpose
-    - port: 6073
+    - port: 6083
       targetport: 15373
 
-  - lbname: na7-mist61seq-prd
-    function: na7-mist61seq-prd
+  - lbname: na8-mist61seq-prd
+    function: na8-mist61seq-prd
     nodeExposed: true
     ports:
-    - port: 6074
+    - port: 6084
       targetport: 12062
 
-  - lbname: us7-mist61cyan-lb
-    function: na7-mist61cyan-prd
+  - lbname: us8-mist61sfproxy-lb
+    function: na8-mist61sfproxy-prd
     nodeExposed: false
     slbEnabled: true
     ports:
+# TCP listen port of Envoy.
+    - port: 2525
+      targetport: 2525
 # HTTPS listen port of Envoy.
-    - port: 8086
-      targetport: 12065
-# Cyan Admin port - TODO - Don't expose this. Exposed for now for debugging.
+# TODO: Manifest validation fails for port 443. Add 443 in production
+    - port: 8443
+      targetport: 12060
+# Admin ports - TODO - Don't expose this. Exposed for now for debugging.
     - port: 8087
       targetport: 15373
+    - port: 8888
+      targetport: 12060
