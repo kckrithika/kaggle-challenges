@@ -13,6 +13,16 @@
 
 version: v2
 apps:
+# Dummy container to test basic deployment in prd and fra/cdg
+ helloworld:
+  - name: prd/prd-sp2-sam_coreapp
+    hostSubList:
+    - shared2-samminioncoreapp1-1-prd.eng.sfdc.net
+    - shared2-samminioncoreapp1-2-prd.eng.sfdc.net
+    - shared2-samminioncoreapp1-3-prd.eng.sfdc.net
+    - shared2-samminioncoreapp1-4-prd.eng.sfdc.net
+    - shared2-samminioncoreapp1-5-prd.eng.sfdc.net
+
  # CASAM team's non-coreapp deployments. Switchboard & Kaiju in group 1. Redis & jmeter in group 2.
  kaiju:
   - name: prd/prd-sp2-sam_coreapp
