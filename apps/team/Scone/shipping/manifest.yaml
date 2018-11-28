@@ -15,7 +15,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sconex
       - name: JAVA_HEAP_OPTS
-        value: -Xmx64m
+        value: -Xmx256m
       ports:
       - containerPort: 7020
         name: grpc-svc
@@ -26,7 +26,7 @@ system:
       - containerPort: 10001
         name: yourkit-agent
       livenessProbe:
-        initialDelaySeconds: 15
+        initialDelaySeconds: 30
         httpGet:
           path: /manage/health
           port: 15375
@@ -40,7 +40,7 @@ system:
       - -logging.dir
       - /log
       livenessProbe:
-        initialDelaySeconds: 5
+        initialDelaySeconds: 30
         exec:
           command:
           - "/home/scone/is-alive.sh"
