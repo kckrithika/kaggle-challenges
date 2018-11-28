@@ -5,12 +5,12 @@ system:
     - emailinfrastructure@salesforce.com
   functions:
   - name: eaas
-    #See https://salesforce.quip.com/wbjKA0Z8kZk0 for a discussion of the number of pods (8) per node (3)
-    count: 24
+    #See https://salesforce.quip.com/wbjKA0Z8kZk0 for a discussion of the number of pods (7) per node (5)
+    count: 35
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.18-be5be9c0c6e59dc63ecc9f8986136f32a623233f
+      image: sfci/eaas/emailservice:2.0.18-be5be9c0c6e59dc63ecc9f8986136f32a623233f
       ports:
       - name: grpc
         containerPort: 7020
@@ -65,7 +65,7 @@ system:
         initialDelaySeconds: 5
 
     - name: sherpa-eaas
-      # updated based on https://gus.lightning.force.com/one/one.app#eyJjb21wb25lbnREZWYiOiJmb3JjZUNoYXR0ZXI6ZGVza3RvcENoYXR0ZXIiLCJhdHRyaWJ1dGVzIjp7ImZlZWRFbGVtZW50SWQiOiIwRDVCMDAwMDAwbTBFVE8ifSwic3RhdGUiOnt9fQ%3D%3D
+      # updated based on https://gus.lightning.force.com/lightning/r/CollaborationGroup/0F9B0000000LejfKAC/view
       image: sfci/servicelibs/sherpa-envoy:1.0.3
       ports:
       # mTLS HTTP2 GRPC port
