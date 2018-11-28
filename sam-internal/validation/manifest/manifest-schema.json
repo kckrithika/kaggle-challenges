@@ -1,0 +1,176 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Validation Schema for Manifest Files",
+    "$ref": "#/allProperties",
+
+    "allProperties": {
+        "type": "object",
+        "allOf": [ { "$ref": "manifestConfigs#/Rule_ManifestRequirements/MustExist" } ],
+        "properties": {
+
+            "apiVersion": {
+
+            },
+
+            "system": {
+                "type": "object",
+                "allOf": [ { "$ref": "manifestConfigs#/Rule_SystemRequirements/MustExist" } ],
+                "properties": {
+
+                    "notifications": {
+
+                    },
+        
+                    "functions": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "allOf": [ { "$ref": "manifestConfigs#/Rule_FunctionsRequirements/MustExist" } ],
+                            "properties": {
+
+                                "name": {
+                                    "type": "string",
+                                    "$ref": "manifestConfigs#/Rule_IsDNSValidation"
+                                },
+
+                                "count": {
+                                    "type": "integer"
+                                },
+
+                                "containers": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "allOf": [
+                                            { "$ref": "manifestConfigs#/Rule_ContainerRequirements/MustExist" },
+                                            { "$ref": "manifestConfigs#/Rule_ContainerRequirements/NotAllowed" }
+                                        ],
+                                        "properties": {
+
+                                            "name": {
+                                                "type": "string",
+                                                "$ref": "manifestConfigs#/Rule_IsDNSValidation"
+                                            },
+
+                                            "env": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "allOf": [ { "$ref": "manifestConfigs#/Rule_EnvRequirements/MustExist" } ],
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string",
+                                                            "allOf": [
+                                                                { "$ref": "manifestConfigs#/Rule_EnvVariableName/EnvNamePatterns" },
+                                                                { "$ref": "manifestConfigs#/Rule_EnvVariableName/ReservedEnvName" }
+                                                            ]
+                                                            
+                                                        },
+                                                        "value": {
+                                                            "type": [ "string", "integer", "boolean" ]
+                                                        }
+                                                    }
+                                                }
+                                            },
+
+                                            "image": {
+                                                "type": "string",
+                                                "$ref": "manifestConfigs#/Rule_ImageForm"
+                                            },
+
+                                            "livenessProbe": {
+                                                "type": "object",
+                                                "properties": {
+
+                                                    "httpGet": {
+                                                        "type": "object",
+                                                        "allOf": [ { "$ref": "manifestConfigs#/Rule_HttpGetRequirements/MustExist" } ],
+                                                        "properties": {
+
+                                                            "path": {
+
+                                                            },
+
+                                                            "port": {
+                                                                "type": "integer"
+                                                            }
+
+                                                        }
+                                                    }
+
+                                                }
+                                            },
+
+                                            "ports": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                
+                                                        "containerPort": {
+                                                            "type": "integer"
+                                                        },
+                                                        
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                
+                                                    }
+                                                }
+                                            },
+
+                                            "volumeMounts": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "allOf": [
+                                                        { "$ref": "manifestConfigs#/Rule_VolumeMountRequirements/MustExist" },
+                                                        { "$ref": "manifestConfigs#/Rule_VolumeMountRequirements/NotAllowed" },
+                                                        { "$ref": "manifestConfigs#/Rule_VolumeMountValidation/SecretVolume" }
+                                                    ],
+                                                    "properties": {
+
+                                                        "name": {
+                                                            "type": "string",
+                                                            "$ref": "manifestConfigs#/Rule_IsDNSValidation"
+                                                        },
+
+                                                        "mountPath": {
+                                                            "type": "string",
+                                                            "$ref": "manifestConfigs#/Rule_VolumeMountValidation/MountPathPattern"
+                                                        },
+
+                                                        "readOnly": {
+                                                            "type": "boolean"
+                                                        }
+
+                                                    }
+                                                }
+                                            },
+
+                                            "resources": {
+
+                                            }
+
+                                        }
+                                    }
+                                },
+
+                                "volumes": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "$ref": "manifestConfigs#/Rule_VolumesFormat"
+                                    }
+
+                                }
+
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
