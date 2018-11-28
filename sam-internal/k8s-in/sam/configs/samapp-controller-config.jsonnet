@@ -12,7 +12,7 @@ std.prune({
     funnelEndpoint: configs.funnelVIP,
 
   # DNS
-    enableDNS: if samfeatureflags.kubedns then true,
+    enableDNS: true,
     dnsEnabledPoolNamesRegex: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then ".*" else if configs.estate == "ord-sam" then "^ord-sam_search$" else if configs.estate == "yhu-sam" then "^yhu-sam_search$"),
 
   #k4a
