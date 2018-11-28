@@ -496,6 +496,9 @@
       value: "TRUE"
     removeheaders:
     - "CipherSuite"
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Real-IP"
   - port: 443
     targetport: 8085
     lbtype: http
@@ -510,7 +513,9 @@
       value: "TRUE"
     removeheaders:
     - "X-Forwarded-Proto"
-    - "SSL_PROTOCOL"
-    - "SSL_CIPHER"
+    - "X-Forwarded-For"
     - "X-Client-Verify"
     - "X-Real-IP"
+    - "SSL_PROTOCOL"
+    - "SSL_CIPHER"
+    - "SSL_SESSION_ID"
