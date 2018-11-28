@@ -56,7 +56,7 @@ system:
         - name: HBASE_DATACENTER
           value: prd
         - name: MAX_FLOWSNAKE_ENVIRONMENTS
-          value: 25          
+          value: 25
         - name: STREAM_PROCESSING_ENDPOINT
           value: http://cre-sp-ccp-perf.retail-cre.localhost.mesh.force.com:5442
         - name: GDOT_FORCE_PROVISIONING
@@ -70,7 +70,7 @@ system:
                   -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
                   -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
                   -Xloggc:/opt/cre/cre-control-plane-ccp-perf/verbosegc_$(FUNCTION_INSTANCE_NAME).log
-                  -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/opt/cre/cre-control-plane-ccp-perf
+                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-control-plane-ccp-perf
                   -Dcom.sun.management.jmxremote.port=8898
                   -Dcom.sun.management.jmxremote.rmi.port=8898
                   -Dcom.sun.management.jmxremote.ssl=false

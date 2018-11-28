@@ -38,7 +38,7 @@ system:
                   -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
                   -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
                   -Xloggc:/opt/cre/cre-api-ccp-perf/verbosegc_$(FUNCTION_INSTANCE_NAME).log
-                  -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/opt/cre/cre-api-ccp-perf
+                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-api-ccp-perf
                   -Dcom.sun.management.jmxremote.port=8898
                   -Dcom.sun.management.jmxremote.rmi.port=8898
                   -Dcom.sun.management.jmxremote.ssl=false
