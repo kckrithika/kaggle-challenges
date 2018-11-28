@@ -57,7 +57,7 @@ spec:
         name: config
       - name: mysql
         secret:
-          secretName: mysql-pwd
+          secretName: mysql
       - name: token
         secret:
           secretName: git-token
