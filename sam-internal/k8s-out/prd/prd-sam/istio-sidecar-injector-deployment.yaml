@@ -102,6 +102,8 @@ spec:
         - mountPath: /etc/istio/inject
           name: inject-config
           readOnly: true
+      nodeSelector:
+        master: "true"
       volumes:
       - hostPath:
           path: /etc/pki_service
