@@ -15,6 +15,7 @@ version: v2
 apps:
 # Dummy container to test basic deployment in prd and fra/cdg
  helloworld:
+  - name: fra/fra-sp1-sam_coreappalpha
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
     - shared2-samminioncoreapp1-1-prd.eng.sfdc.net
