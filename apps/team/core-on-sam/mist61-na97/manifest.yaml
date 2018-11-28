@@ -391,9 +391,7 @@ system:
     nodeExposed: false
     slbEnabled: true
     ports:
-    - lbtype: dsr
-      port: 15001
+    - port: 15001
       targetport: 15001
-    - lbtype: dsr
-      port: 15370
+    - port: 15370
       targetport: 15372
