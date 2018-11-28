@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: prometheus-rm
+    sam.data.sfdc.net/owner: sam
+  name: prometheus-rm
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: prometheus-rm
+  template:
+    metadata:
+      labels:
+        name: prometheus-rm
+        sam.data.sfdc.net/owner: sam
+    spec:
+      containers:
+      - args:
+        - --config.file
+        - /prometheusconfig/prometheus-rm.json
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/prometheus:20180124
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9090
+          initialDelaySeconds: 300
+          timeoutSeconds: 30
+        name: prometheus-rm
+        ports:
+        - containerPort: 9090
+          name: prometheus-rm
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: certs-volume
+        - mountPath: /prometheus
+          name: prom-rm-data
+        - mountPath: /prometheusconfig
+          name: prometheusconfig-rm
+      nodeSelector:
+        kubernetes.io/hostname: shared0-samtestkubeapi3-1-prd.eng.sfdc.net
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: certs-volume
+      - hostPath:
+          path: /data/prom-rm-data
+        name: prom-rm-data
+      - configMap:
+          name: prometheus-rm
+        name: prometheusconfig-rm
