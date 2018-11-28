@@ -102,6 +102,8 @@ spec:
         - mountPath: /etc/istio/inject
           name: inject-config
           readOnly: true
+      nodeSelector:
+        pool: prd-sam_gater
       volumes:
       - hostPath:
           path: /etc/pki_service
