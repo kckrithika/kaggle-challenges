@@ -176,6 +176,8 @@ spec:
           name: usr-sbin-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /host/sbin
+          name: sbin-volume
       - command:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-ipvs
