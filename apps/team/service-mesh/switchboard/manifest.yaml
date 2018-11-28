@@ -22,6 +22,7 @@ system:
       - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_remote-address=true
       - --metrics.maxNumberOfCollectedMetrics=150000
       - --metrics.funnelTimeOut=100000
+      - --request.limit.per.minute=1000
       ports:
       - containerPort: 15372
       env:
