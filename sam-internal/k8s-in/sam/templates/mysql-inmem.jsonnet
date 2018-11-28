@@ -316,6 +316,12 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                                   do 
                                     echo "Backing up mysql offline db"    
                                     mysqldump -h 127.0.0.1 --all-databases -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS > mysql-backup-$(date +%d).bkup  
+                                    echo "Backup successful\n Purging old logs"
+                                    mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS <<EOF
+                                    PURGE BINARY LOGS BEFORE NOW() - INTERVAL 1 DAY;
+                                  EOF
+                                    echo "Purge successful. Current disk usage is" 
+                                    df -h
                                     sleep $BACKUP_INTERVAL_SECONDS
                                   done
 |||,
@@ -336,7 +342,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                                     },
                                     {
                                       name: "BACKUP_INTERVAL_SECONDS",
-                                      value: "6000",
+                                      value: "30",
                                     },
                                 ],
                               image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/mysql:20180917_111738.0b5255d9.dirty.duncsmith-ltm",
