@@ -4,7 +4,8 @@ data:
     {
       "checkImageExistsFlag": true,
       "funnelEndpoint": "ajna0-funnel1-0-vpod.data.sfdc.net:80",
-      "resyncinterval": "5m",
+      "qps": 100,
+      "resyncinterval": "60m",
       "whiteListNamespaceRegexp": [
         "^ci-*"
       ]
