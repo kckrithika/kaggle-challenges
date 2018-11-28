@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
-local samfeatureflags = import "sam-feature-flags.jsonnet";
+local utils = import "util_functions.jsonnet";
 
-if samfeatureflags.kubedns then {
+if !utils.is_flowsnake_cluster(configs.estate) then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

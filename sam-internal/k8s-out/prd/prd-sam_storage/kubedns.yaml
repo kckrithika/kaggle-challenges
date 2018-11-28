@@ -185,5 +185,5 @@ spec:
         name: cert-age
   updateStrategy:
     rollingUpdate:
-      maxUnavailable: 50%
+      maxUnavailable: 25%
     type: RollingUpdate
