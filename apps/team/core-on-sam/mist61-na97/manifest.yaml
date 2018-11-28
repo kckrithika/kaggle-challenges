@@ -369,14 +369,12 @@ system:
     - port: 2525
       targetport: 2525
 # HTTP listen port of Envoy.
-# TODO: Manifest validation fails for port 80. Change to 80 in production
     - port: 80
       targetport: 12060
       lbtype: http
       tls: false
       reencrypt: true
 # HTTPS listen ports of Envoy.
-# TODO: Manifest validation fails for port 443. Change to 443 in production
     - port: 443
       targetport: 12060
       lbtype: http
