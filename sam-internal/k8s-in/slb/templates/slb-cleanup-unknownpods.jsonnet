@@ -40,7 +40,6 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     {
                         name: "slb-cleanup-unknownpods",
                         image: slbimages.hypersdn,
-                         [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                             "/bin/bash",
                             "-xe",
@@ -77,9 +76,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     master: "true",
                 },
             } + slbconfigs.getDnsPolicy()
-            + (if slbflights.cleanupHostNet then {
+            + {
+              // Run on hostNetwork to avoid potential docker networking issues preventing this pod from talking to the kube api server.
               hostNetwork: true,
-            } else {}),
+            },
             metadata: {
                 labels: {
                     name: "slb-cleanup-unknownpods",
