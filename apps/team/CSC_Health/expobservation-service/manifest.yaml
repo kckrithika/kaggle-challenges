@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: expobservation-service
-      image: tnrp/csc-health/observation-service:observation-service-0000032-17c1c78c
+      image: docker-all/dva/csc-health/observation-service:1
       ports:
       - containerPort: 8080
       volumeMounts:
