@@ -19,6 +19,9 @@ webhooks:
       path: /inject
   failurePolicy: Fail
   name: sidecar-injector.istio.io
+  namespaceSelector:
+    matchLabels:
+      istio-injection: enabled
   rules:
   - apiGroups:
     - ""

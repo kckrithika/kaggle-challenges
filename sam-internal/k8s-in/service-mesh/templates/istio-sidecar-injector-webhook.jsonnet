@@ -42,11 +42,11 @@
         },
       ],
       failurePolicy: "Fail",
-//      "namespaceSelector": {
-//        "matchLabels": {
-//          "istio-injection": "enabled"
-//        }
-//      }
+      namespaceSelector: {
+        matchLabels: {
+          "istio-injection": "enabled",
+        },
+      },
     },
   ],
 }
