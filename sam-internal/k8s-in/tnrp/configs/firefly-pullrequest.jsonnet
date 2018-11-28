@@ -38,7 +38,7 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
     appconfig: {
       'instance-type': '${INSTANCE_TYPE}',
       'workspace-config': {
-        'root-dir': envConfig.environmentMapping[configs.estate].rootDir,
+        'root-dir': envConfig.environmentMapping[configs.estate].rootDir + '/firefly',
       },
       'evaluation-config': {
         'pipeline-manifest-json': '/tnrp/pipeline_manifest.json',
