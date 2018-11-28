@@ -23,6 +23,8 @@ system:
         name: scone-mgmt
       - containerPort: 9010
         name: jmx-remote
+      - containerPort: 10001
+        name: yourkit-agent
       livenessProbe:
         initialDelaySeconds: 15
         httpGet:
