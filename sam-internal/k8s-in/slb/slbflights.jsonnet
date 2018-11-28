@@ -12,5 +12,5 @@ local configs = import "config.jsonnet";
     ifaceProcessorAddIfaceIfIPVSHost: (slbimages.phaseNum <= 1),
     antiDDOS: (slbimages.phaseNum <= 1),
     fredEnabled: (configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1380),
-    useMaddogCertsForCanaries: (slbimages.phaseNum <= 2),
+    useMaddogCertsForCanaries: (slbimages.phaseNum <= 3),
 }
