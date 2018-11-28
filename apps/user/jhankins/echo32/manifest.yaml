@@ -3,7 +3,7 @@ system:
   functions:
   - name: echo32
     labels:
-      chaos.sfdc.net/enable: true
+      chaos.sfdc.net/podDelete: true
     count: 2
     containers:
     - name: echo32
