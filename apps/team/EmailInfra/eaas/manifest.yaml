@@ -13,6 +13,8 @@ system:
       ports:
       - name: grpc
         containerPort: 7020
+      - name: chaos
+        containerPort: 7022
       env:
       - name: SFDC_ENVIRONMENT
         value: prd
@@ -52,10 +54,10 @@ system:
       - emailinfra/eaas:DATACENTER_ALLENV:7443
       # Non namespaced, plain-text HTTP2 GRPC
       - -endpoint
-      - eaas:DATACENTER:7012
+      - eaas:DATACENTER_ALLENV:7012
       # Non namespaced, plain-text HTTP1 for Chaos endpoint
       - -endpoint
-      - eaas:DATACENTER:7014
+      - eaas-chaos:DATACENTER_ALLENV:7014
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -136,3 +138,6 @@ system:
     - lbtype: tcp
       port: 7020
       targetport: 7020
+    - lbtype: tcp
+      port: 7022
+      targetport: 7022
