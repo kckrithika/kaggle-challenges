@@ -38,13 +38,14 @@ local utils = import "util_functions.jsonnet";
             protocol: "TCP",
             targetPort: c.targetport,
             [if c.nodeport != 0 then "nodePort"]: c.nodeport,
-          } for c in portConfigurations
+          }
+for c in portConfigurations
         ],
         selector: {
           name: canaryName,
         },
         type: "NodePort",
-      }
+      },
     }
   ),
 }

@@ -25,12 +25,12 @@ local internal = {
         ),
 
     # Convert full filename "a/b/foo-bar.jsonnet" to just the filepart without ext "foo-bar"
-    get_short_filename(fullFilename) :: (
+    get_short_filename(fullFilename):: (
         # template comes from std.thisFile which contains a path and file extension
         local emptyCheck = if std.length(fullFilename) == 0 then (error "fullFilename can not be empty");
         local splitOnSlash = std.split(fullFilename, "/");
-        local lastPart = splitOnSlash[std.length(splitOnSlash)-1];
-        local dotCheck = if std.length(std.split(lastPart,".")) != 2 then (error ("template filename can only contain a single period: "+lastPart) );
+        local lastPart = splitOnSlash[std.length(splitOnSlash) - 1];
+        local dotCheck = if std.length(std.split(lastPart, ".")) != 2 then (error ("template filename can only contain a single period: " + lastPart));
         std.split(lastPart, ".")[0]
     ),
 

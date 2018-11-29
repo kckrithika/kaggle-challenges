@@ -56,7 +56,8 @@
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,
                             slbconfigs.nginx.customer_certs_volume_mount,
-                          ]),
+                          ]
+),
                           env: [
                             slbconfigs.node_name_env,
                           ],
@@ -84,7 +85,8 @@ local afterSharedContainers = [
                           slbconfigs.slb_volume_mount,
                           slbconfigs.logs_volume_mount,
                           configs.sfdchosts_volume_mount,
-                        ]),
+                        ]
+),
                         env: [
                           slbconfigs.node_name_env,
                         ],
@@ -104,7 +106,8 @@ local afterSharedContainers = [
     beforeSharedContainers(proxyImage, deleteLimitOverride),
     afterSharedContainers,
     supportedProxies=[proxyName],
-    deleteLimitOverride=deleteLimitOverride) {
+    deleteLimitOverride=deleteLimitOverride
+) {
 
     spec+: {
       template+: {
@@ -119,7 +122,8 @@ local afterSharedContainers = [
                    + madkub.madkubSlbMadkubVolumes() + [
                    slbconfigs.nginx.target_config_volume,
                    slbconfigs.nginx.customer_certs_volume,
-                 ]),
+                 ]
+),
                  initContainers: [
                    madkub.madkubInitContainer(slbconfigs.nginx.certDirs),
                  ],

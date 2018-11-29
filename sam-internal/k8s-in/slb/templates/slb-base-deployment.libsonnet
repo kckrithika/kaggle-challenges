@@ -50,13 +50,15 @@
                 containers: beforeSharedContainers + [
                   slbshared.slbConfigProcessor(
                     slbports.slb.slbConfigProcessorLivenessProbePort,
-                    supportedProxies=supportedProxies),
+                    supportedProxies=supportedProxies
+),
                   slbshared.slbCleanupConfig,
                   slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                   slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true, deleteLimitOverride=deleteLimitOverride),
                   slbshared.slbLogCleanup,
                   slbshared.slbManifestWatcher(
-                    supportedProxies=supportedProxies, deleteLimitOverride=deleteLimitOverride),
+                    supportedProxies=supportedProxies, deleteLimitOverride=deleteLimitOverride
+),
                 ] + afterSharedContainers,
               } + slbconfigs.getDnsPolicy(),
       },

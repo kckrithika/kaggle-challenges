@@ -3,9 +3,9 @@ local slbflights = import "slbflights.jsonnet";
 local newPortConfiguration(
     port,
     lbType,
-    targetPort = port,
-    name = "",
-    nodePort = 0
+    targetPort=port,
+    name="",
+    nodePort=0
 ) = {
     port: port,
     targetport: targetPort,
