@@ -4,5 +4,6 @@ local configs = import "config.jsonnet";
   whiteListNamespaceRegexp: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then ["^[^.]+"] else if configs.estate == "prd-sam" then ["^ci-*", "^user-*", "moe", "csc-sam"] else ["^ci-*"]),
   resyncinterval: "60m",
   qps: 100,
+  threadcount: 15,
   funnelEndpoint: configs.funnelVIP,
 }
