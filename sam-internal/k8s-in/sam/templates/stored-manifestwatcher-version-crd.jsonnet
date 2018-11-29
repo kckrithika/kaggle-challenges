@@ -4,7 +4,7 @@ if configs.estate == "prd-samtest" then {
    apiVersion: "apiextensions.k8s.io/v1beta1",
     kind: "CustomResourceDefinition",
     metadata: {
-      name: "hostrepairs.samcrd.salesforce.com",
+      name: "storedmanifestwatcherversion.samcrd.salesforce.com",
       annotations: {
         "manifestctl.sam.data.sfdc.net/swagger": "disable",
       },
@@ -15,9 +15,9 @@ if configs.estate == "prd-samtest" then {
       version: "v1",
       scope: "Namespaced",
       names: {
-        plural: "hostrepairs",
-        singular: "hostrepair",
-        kind: "HostRepair",
+        plural: "storedmanifestwatcherversion",
+        singular: "storedmanifestwatcherversion",
+        kind: "StoredManifestWatcherVersion",
         },
       },
 } else "SKIP"

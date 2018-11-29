@@ -5,12 +5,12 @@ metadata:
     manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     sam.data.sfdc.net/owner: sam
-  name: hostrepairs.samcrd.salesforce.com
+  name: storedmanifestwatcherversion.samcrd.salesforce.com
 spec:
   group: samcrd.salesforce.com
   names:
-    kind: HostRepair
-    plural: hostrepairs
-    singular: hostrepair
+    kind: StoredManifestWatcherVersion
+    plural: storedmanifestwatcherversion
+    singular: storedmanifestwatcherversion
   scope: Namespaced
   version: v1
