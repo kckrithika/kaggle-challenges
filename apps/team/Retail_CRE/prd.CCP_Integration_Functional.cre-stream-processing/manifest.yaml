@@ -38,11 +38,13 @@ system:
         - name: CONTROLPLANE_ENDPOINT
           value: http://cre-control-plane-ccp-func-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8094/streamprocessing
         - name: JVM_ARGS
-          value: "-verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+PrintGCDetails
-                  -Xloggc:/opt/cre/cre-sp-ccp-func/verbosegc_%pid.log
-                  -XX:+PrintGCCause -XX:+DisableExplicitGC
+          value: "-verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                  -Xloggc:/opt/cre/cre-sp-ccp-func/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
-                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp
+                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-sp-ccp-func
                   -Dcom.sun.management.jmxremote.port=8898
                   -Dcom.sun.management.jmxremote.rmi.port=8898
                   -Dcom.sun.management.jmxremote.ssl=false
@@ -53,8 +55,8 @@ system:
       - containerPort: 7022
       - containerPort: 15372
       resources:
-        limits: { cpu: "2", memory: "10Gi" }
-        requests: { cpu: "2", memory: "10Gi" }
+        limits: { cpu: "2", memory: "4Gi" }
+        requests: { cpu: "2", memory: "3Gi" }
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
@@ -109,6 +111,9 @@ system:
       args:
       - -endpoint
       - retail-cre/cre-sp-ccp-func:DATACENTER_ALLENV:7442
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         initialDelaySeconds: 5
         exec:
