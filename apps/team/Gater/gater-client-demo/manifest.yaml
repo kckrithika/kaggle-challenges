@@ -17,7 +17,7 @@ system:
       - --gater.grpc.endpoint=gater.gater.localhost.mesh.force.com
       - --gater.grpc.port=5443
       - --management.server.port=15375
-      - --gater.client-mode=CONDITIONAL
+      - --gater.client-mode=GRPC
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8181
