@@ -5,12 +5,12 @@ metadata:
     manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     sam.data.sfdc.net/owner: sam
-  name: storedmanifestwatcherversion.samcrd.salesforce.com
+  name: storedmanifestwatcherversions.samcrd.salesforce.com
 spec:
   group: samcrd.salesforce.com
   names:
     kind: StoredManifestWatcherVersion
-    plural: storedmanifestwatcherversion
+    plural: storedmanifestwatcherversions
     singular: storedmanifestwatcherversion
   scope: Namespaced
   version: v1
