@@ -3,12 +3,12 @@ apps:
 #  - prd/prd-samdev
  no-image-test:
 #  - prd/prd-samdev
-#  - prd/prd-sam
+  - prd/prd-sam
  deployment-latency-reporter:
   - prd/prd-samdev
  sfci-test:
 # - prd/prd-samdev
-  - prd/prd-sam
+#  - prd/prd-sam
  test-secret-app:
   - prd/prd-samdev
   - prd/prd-sam
