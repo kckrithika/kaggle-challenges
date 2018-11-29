@@ -1142,7 +1142,7 @@ items:
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: sam-test-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:263
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:266
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1534,7 +1534,7 @@ items:
             value: sam-test-manifests.pr
           - name: EVAL_RESULT_MONITOR_QUEUE
             value: evalresultmonitor.sam-test-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-evalresultmonitor:259
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-evalresultmonitor:266
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
