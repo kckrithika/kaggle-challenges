@@ -20,6 +20,12 @@ system:
         value: 2
       - name: OBS_AJNA_ENABLED
         value: true
+      - name: OBS_AJNA_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: OBS_AJNA_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: OBS_AJNA_CACERTPATH
+        value: /certs/ca.pem
       - name: OBS_REPORTCOLLECTOR_WHITELIST
         value: netmgt.nhal_client,netmgt.sandman,sandman
       - name: OBS_REPORTCOLLECTOR_MTLSENABLED
