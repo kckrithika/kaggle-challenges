@@ -328,6 +328,102 @@ system:
       volumeMounts:
       - mountPath: /tmp
         name: temp
+    - name: dashboard-cdg-sam
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/cdg-sam
+        - --insecure-port=9110
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/cdg-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9110
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9110
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-fra-sam
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/fra-sam
+        - --insecure-port=9111
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/fra-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9111
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9111
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-ia2-sam
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ia2-sam
+        - --insecure-port=9112
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ia2-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9112
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9112
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-lo2-sam
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/lo2-sam
+        - --insecure-port=9113
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/lo2-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9113
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9113
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-lo3-sam
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/lo3-sam
+        - --insecure-port=9114
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/lo3-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9114
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9114
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-ph2-sam
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ph2-sam
+        - --insecure-port=9115
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ph2-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9115
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9115
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
     volumes:
     - name: temp
       emptyDir: {}
@@ -440,3 +536,39 @@ system:
     ports:
       - port: 80
         targetport: 9109
+  - lbname: dashboard-cdg
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9110
+  - lbname: dashboard-fra
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9111
+  - lbname: dashboard-ia2
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9112
+  - lbname: dashboard-lo2
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9113
+  - lbname: dashboard-lo3
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9114
+  - lbname: dashboard-cph2
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9115
