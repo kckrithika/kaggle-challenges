@@ -7,6 +7,7 @@
 
 # As of 11-15-18 (This will change based on what requirements will come in future):
 # 2 of the above 15 hosts are dedicated to GateKeeper (GK) env testing - (hosts 3-4 and 3-5). GK uses CI API to deploy to SAM
+# 2 of the remaining hosts are dedicated to Steam (STEAM) env testing - (hosts 2-4 and 2-5). STEAM uses CI API to deploy to SAM
 # 1 host reserved for Statefarm perf test - (mist61-na2 manifest) - host 3-3
 # Limit the sfproxy team's deployments to 2 hosts - 3-1 and 3-2
 # Use the remaining hosts among the rest of the deployments
@@ -55,16 +56,12 @@ apps:
     - shared2-samminioncoreapp2-1-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-2-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-3-prd.eng.sfdc.net
-    - shared2-samminioncoreapp2-4-prd.eng.sfdc.net
-    - shared2-samminioncoreapp2-5-prd.eng.sfdc.net
  perf-mist61-jmeter:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
     - shared2-samminioncoreapp2-1-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-2-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-3-prd.eng.sfdc.net
-    - shared2-samminioncoreapp2-4-prd.eng.sfdc.net
-    - shared2-samminioncoreapp2-5-prd.eng.sfdc.net
 
  # Used for Statefarm workload (perf testing)
  mist61-na2:
@@ -87,8 +84,6 @@ apps:
     - shared2-samminioncoreapp2-1-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-2-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-3-prd.eng.sfdc.net
-    - shared2-samminioncoreapp2-4-prd.eng.sfdc.net
-    - shared2-samminioncoreapp2-5-prd.eng.sfdc.net
  mist61-na5:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
@@ -103,24 +98,18 @@ apps:
     - shared2-samminioncoreapp2-1-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-2-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-3-prd.eng.sfdc.net
-    - shared2-samminioncoreapp2-4-prd.eng.sfdc.net
-    - shared2-samminioncoreapp2-5-prd.eng.sfdc.net
  mist61-na8:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
     - shared2-samminioncoreapp2-1-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-2-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-3-prd.eng.sfdc.net
-    - shared2-samminioncoreapp2-4-prd.eng.sfdc.net
-    - shared2-samminioncoreapp2-5-prd.eng.sfdc.net
  mist61-na10:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
     - shared2-samminioncoreapp2-1-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-2-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-3-prd.eng.sfdc.net
-    - shared2-samminioncoreapp2-4-prd.eng.sfdc.net
-    - shared2-samminioncoreapp2-5-prd.eng.sfdc.net
 
  # sfproxy team's deployments
  mist61-na97:
