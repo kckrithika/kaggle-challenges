@@ -227,7 +227,7 @@ system:
     count: 1
     containers:
     - name: sfproxy-switchboard-server
-      image: sfci/servicelibs/switchboard:389f17b9b2c2344c1df20c92bf06cd682e38a711
+      image: sfci/servicelibs/switchboard:5437b81b26cbb06c1579c4f603f495b925e52fc7
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -265,7 +265,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sfproxy-switchboard-sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.1
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
