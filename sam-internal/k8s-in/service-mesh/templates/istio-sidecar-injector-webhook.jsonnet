@@ -3,7 +3,6 @@
   kind: "MutatingWebhookConfiguration",
   metadata: {
     name: "istio-sidecar-injector",
-    namespace: "service-mesh",
     labels: {
       app: "istio-sidecar-injector",
       chart: "sidecarInjectorWebhook-1.0.1",

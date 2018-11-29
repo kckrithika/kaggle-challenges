@@ -9,7 +9,6 @@ metadata:
     heritage: Tiller
     release: RELEASE-NAME
   name: istio-sidecar-injector
-  namespace: service-mesh
 webhooks:
 - clientConfig:
     caBundle: ""
