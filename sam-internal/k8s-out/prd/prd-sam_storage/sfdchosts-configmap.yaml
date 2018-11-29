@@ -360,28 +360,6 @@ data:
           "controlestate": "prd-sam_storage",
           "devicerole": "samcompute",
           "estate": "prd-sam_storage",
-          "hostname": "shared0-storagesamcompute1-2-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "rack": "a08-45",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "storage_samcompute",
-          "controlestate": "prd-sam_storage",
-          "devicerole": "samcompute",
-          "estate": "prd-sam_storage",
-          "hostname": "shared0-storagesamcompute1-3-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "rack": "t10-45",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "storage_samcompute",
-          "controlestate": "prd-sam_storage",
-          "devicerole": "samcompute",
-          "estate": "prd-sam_storage",
           "hostname": "shared0-storagesamcompute2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
@@ -393,54 +371,10 @@ data:
           "controlestate": "prd-sam_storage",
           "devicerole": "samcompute",
           "estate": "prd-sam_storage",
-          "hostname": "shared0-storagesamcompute2-2-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "rack": "e07-45",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "storage_samcompute",
-          "controlestate": "prd-sam_storage",
-          "devicerole": "samcompute",
-          "estate": "prd-sam_storage",
-          "hostname": "shared0-storagesamcompute2-3-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "rack": "c02-45",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "storage_samcompute",
-          "controlestate": "prd-sam_storage",
-          "devicerole": "samcompute",
-          "estate": "prd-sam_storage",
           "hostname": "shared0-storagesamcompute3-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
           "rack": "e06-45",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "storage_samcompute",
-          "controlestate": "prd-sam_storage",
-          "devicerole": "samcompute",
-          "estate": "prd-sam_storage",
-          "hostname": "shared0-storagesamcompute3-2-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "rack": "w32-45",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "storage_samcompute",
-          "controlestate": "prd-sam_storage",
-          "devicerole": "samcompute",
-          "estate": "prd-sam_storage",
-          "hostname": "shared0-storagesamcompute3-3-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "rack": "w06-45",
           "superpod": "none"
         },
         {

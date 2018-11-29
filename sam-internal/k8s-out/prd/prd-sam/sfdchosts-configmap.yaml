@@ -1885,6 +1885,17 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "storage_samcomputedev2",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_storagedev",
+          "hostname": "shared0-storagetwosamcomputedev1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "k22-45",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_tardis",
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
@@ -2197,6 +2208,17 @@ data:
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
           "estate": "prd-slb",
+          "hostname": "shared0-slbminion1-10-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "z31-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-slb",
           "hostname": "shared0-slbminion1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
@@ -2230,10 +2252,76 @@ data:
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
           "estate": "prd-slb",
+          "hostname": "shared0-slbminion1-5-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "u04-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-slb",
+          "hostname": "shared0-slbminion1-6-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "q09-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-slb",
+          "hostname": "shared0-slbminion1-7-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "z31-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-slb",
+          "hostname": "shared0-slbminion1-8-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "a08-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-slb",
+          "hostname": "shared0-slbminion1-9-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "f43-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-slb",
           "hostname": "shared0-slbminion2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
           "rack": "v04-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-slb",
+          "hostname": "shared0-slbminion2-10-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "c02-45",
           "superpod": "none"
         },
         {
@@ -2267,6 +2355,61 @@ data:
           "kingdom": "prd",
           "pod": "none",
           "rack": "v03-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-slb",
+          "hostname": "shared0-slbminion2-5-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "d18-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-slb",
+          "hostname": "shared0-slbminion2-6-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "d08-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-slb",
+          "hostname": "shared0-slbminion2-7-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "t10-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-slb",
+          "hostname": "shared0-slbminion2-8-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "c02-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-slb",
+          "hostname": "shared0-slbminion2-9-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "p03-45",
           "superpod": "none"
         },
         {

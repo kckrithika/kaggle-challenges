@@ -1953,6 +1953,19 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-storagetwosamcomputedev1-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagetwosamcomputedev1-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-samminiontardis1-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
@@ -2317,6 +2330,19 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-slbminion1-10-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-10-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-slbminion1-2-prd.eng.sfdc.net
   rules:
   - apiGroups:
@@ -2356,12 +2382,90 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-slbminion1-5-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-5-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-slbminion1-6-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-6-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-slbminion1-7-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-7-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-slbminion1-8-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-8-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-slbminion1-9-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion1-9-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-slbminion2-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
     resourceNames:
     - shared0-slbminion2-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-slbminion2-10-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-10-prd.eng.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -2401,6 +2505,71 @@ items:
     - '*'
     resourceNames:
     - shared0-slbminion2-4-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-slbminion2-5-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-5-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-slbminion2-6-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-6-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-slbminion2-7-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-7-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-slbminion2-8-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-8-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-slbminion2-9-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-slbminion2-9-prd.eng.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -4565,6 +4734,17 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared0-storagetwosamcomputedev1-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagetwosamcomputedev1-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagetwosamcomputedev1-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-samminiontardis1-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -4873,6 +5053,17 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared0-slbminion1-10-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-slbminion1-10-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-slbminion1-10-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-slbminion1-2-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -4906,6 +5097,61 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared0-slbminion1-5-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-slbminion1-5-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-slbminion1-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-slbminion1-6-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-slbminion1-6-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-slbminion1-6-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-slbminion1-7-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-slbminion1-7-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-slbminion1-7-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-slbminion1-8-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-slbminion1-8-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-slbminion1-8-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-slbminion1-9-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-slbminion1-9-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-slbminion1-9-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:shared0-slbminion2-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -4914,6 +5160,17 @@ items:
   subjects:
   - kind: User
     name: shared0-slbminion2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-slbminion2-10-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-slbminion2-10-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-slbminion2-10-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
@@ -4947,6 +5204,61 @@ items:
   subjects:
   - kind: User
     name: shared0-slbminion2-4-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-slbminion2-5-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-slbminion2-5-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-slbminion2-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-slbminion2-6-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-slbminion2-6-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-slbminion2-6-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-slbminion2-7-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-slbminion2-7-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-slbminion2-7-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-slbminion2-8-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-slbminion2-8-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-slbminion2-8-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-slbminion2-9-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-slbminion2-9-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-slbminion2-9-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
