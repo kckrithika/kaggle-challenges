@@ -151,21 +151,9 @@ items:
   - kind: User
     name: shared0-storagesamcompute1-1-prd.eng.sfdc.net
   - kind: User
-    name: shared0-storagesamcompute1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-storagesamcompute1-3-prd.eng.sfdc.net
-  - kind: User
     name: shared0-storagesamcompute2-1-prd.eng.sfdc.net
   - kind: User
-    name: shared0-storagesamcompute2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-storagesamcompute2-3-prd.eng.sfdc.net
-  - kind: User
     name: shared0-storagesamcompute3-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-storagesamcompute3-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-storagesamcompute3-3-prd.eng.sfdc.net
   - kind: User
     name: shared0-storagetwosamcompute1-1-prd.eng.sfdc.net
 kind: List
