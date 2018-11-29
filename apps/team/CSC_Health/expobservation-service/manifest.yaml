@@ -17,7 +17,7 @@ system:
           name: client-cert
       env:
       - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
-        value: 1
+        value: 2
       - name: OBS_AJNA_ENABLED
         value: true
       - name: OBS_REPORTCOLLECTOR_WHITELIST
