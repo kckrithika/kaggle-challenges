@@ -10,7 +10,7 @@ local configs = import "config.jsonnet";
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     ipvsTurnDownOnSIGTERM: (slbimages.phaseNum <= 1),
     ifaceProcessorAddIfaceIfIPVSHost: (slbimages.phaseNum <= 1),
-    antiDDOS: (slbimages.phaseNum <= 1),
+    antiDDOS: (slbimages.phaseNum <= 2),
     fredEnabled: (configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1380),
     useMaddogCertsForCanaries: (slbimages.phaseNum <= 3),
 }
