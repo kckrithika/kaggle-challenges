@@ -1,5 +1,4 @@
 local hosts = import "hosts.jsonnet";
-local configs = import "config.jsonnet";
 
 {
     global: {
@@ -139,17 +138,5 @@ local configs = import "config.jsonnet";
             ],
         },
 */
-    ] + if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [{
-                job_name: "kube-state-metrics",
-                scheme: "http",
-                scrape_interval: "60s",
-                scrape_timeout: "30s",
-                static_configs: [
-                {
-                   targets: [
-                      "kube-state-metrics.kube-system:8080",
-                   ],
-                },
-                ],
-        }] else [],
+    ],
 }
