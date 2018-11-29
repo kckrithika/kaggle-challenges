@@ -9,33 +9,35 @@ system:
     hostnetwork: true
     containers:
     - name: gater-client-demo-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/gater-client-demo:dmachak-20181010-bcea6f7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/gater-client-demo:dmachak-20181129-dfd22a2
       args:
-      - --grpc.gater.queryrate=1000
+      - --grpc.gater.queryrate=5000
       - --grpc.gater.request.deadline=200
-      - --client.test.gates=com.salesforce.gater.alwaysEnabled
-      - --grpc.gater.endpoint=gater.gater.localhost.mesh.force.com
-      - --grpc.gater.port=5443
+      - --client.test.gates=com.salesforce.gater.X
+      - --gater.grpc.endpoint=gater.gater.localhost.mesh.force.com
+      - --gater.grpc.port=5443
+      - --management.server.port=15374
+      - --gater.client-mode=CONDITIONAL
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8181
         name: scone-http
       - containerPort: 7020
         name: grpc-svc
-      - containerPort: 15372
+      - containerPort: 15374
         name: scone-mgmt
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15374
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
 
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
-      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       # This announces your gRPC endpoint for HTTP2 traffic with mTLS
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       # The following are system defined variables injected by SAM:
@@ -60,7 +62,7 @@ system:
 
     - name: sherpa
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/75
-      image: sfci/servicelibs/sherpa-envoy:7e40ce8be635a6ef46fbc64657af42ab9c39ea65
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
       ports:
       - name: http2-in
         containerPort: 7012
