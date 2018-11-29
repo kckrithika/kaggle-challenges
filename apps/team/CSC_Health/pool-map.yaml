@@ -63,7 +63,6 @@ apps:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
   expobservation-service:
-    - prd/prd-sam_report_collector
   observation-service:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
@@ -89,7 +88,6 @@ apps:
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
   expcandidate-service:
-    - prd/prd-sam_report_collector
   candidate-service:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
@@ -103,7 +101,6 @@ apps:
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
   expcandidate-service-watchdog:
-    - prd/prd-sam_report_collector
   candidate-service-watchdog:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
@@ -117,9 +114,7 @@ apps:
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
   expreportcollectorha:
-    - prd/prd-sam_report_collector
   exprepcollavailwd:
-    - prd/prd-sam_report_collector
   expcname-repcollavailwd:
   cname-repcollavailwd:
     - prd/prd-sam_report_collector
@@ -138,4 +133,3 @@ apps:
     - yul/yul-sam_report_collector
   service-event-recorder:
   exptemp-store:
-    - prd/prd-sam_report_collector
