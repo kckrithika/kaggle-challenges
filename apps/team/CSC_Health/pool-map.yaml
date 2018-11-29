@@ -1,4 +1,4 @@
-  apps:
+apps:
   reportcollector-perf:
   redis-inspector:
     - prd/prd-sam_report_collector
