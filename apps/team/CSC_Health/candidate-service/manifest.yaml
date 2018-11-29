@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-logrotator
-      image: tnrp/csc-health/candidate-service:candidate-service-0000027-2c1e246e
+      image: docker-all/dva/csc-health/candidate-service:1
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol

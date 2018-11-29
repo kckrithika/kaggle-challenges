@@ -13,7 +13,7 @@ system:
         type: client
     containers:
     - name: observation-service-watchdog
-      image: tnrp/csc-health/health-endpoint-watchdog:health-endpoint-watchdog-0000014-d8aadcef
+      image: docker-all/dva/csc-health/health-endpoint-watchdog:1
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
