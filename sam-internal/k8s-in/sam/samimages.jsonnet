@@ -22,11 +22,10 @@ local samreleases = import "samreleases.json";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        #[xiao] Fix synthetic in prd
-        "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0002380-bfc62a8b",
-        "prd,prd-samdev,temp-crd-watcher,hypersam": "sam-0002380-bfc62a8b",
+        #[xiao] Fix synthetic in prd, also pushing metrics, setting annotations
+        "prd,prd-samdev,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181129_142039.cf62ee45e.dirty.xiaozhou-ltm2",
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0002380-bfc62a8b",
-        "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0002380-bfc62a8b",
+        "prd,prd-sam,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181129_142039.cf62ee45e.dirty.xiaozhou-ltm2",
         "xrd,xrd-sam,samcontrol-deployer,hypersam": "sam-0002385-4b9fc0dd",
 
         #[jiayi] Handle stale sql data
