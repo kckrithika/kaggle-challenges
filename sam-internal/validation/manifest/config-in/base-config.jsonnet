@@ -163,6 +163,8 @@ local schemaID = "manifestConfigs";
                 }
             },
         },
+        # additionalProperties disallow any properties that are not defined in the schema to exist
+        # In this case, only 'name' and 'secret' can exist for secret volume
         additionalProperties: false
     },
 

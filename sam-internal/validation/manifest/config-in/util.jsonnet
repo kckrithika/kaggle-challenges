@@ -41,16 +41,6 @@
     Required(reqList):: {
         required: reqList
     },
-
-    # Commented out for now as it might be needed to deal with 
-    // NotAllowed(notAllowed):: {
-    //     not: {
-    //         anyOf: [
-    //             { required: [ notAllowedElement ] }
-    //             for notAllowedElement in notAllowed
-    //         ]
-    //     }
-    // },
     
     # Receives an array of UNSUPPORTED elements that CANNOT exist
     NotAllowed(notAllowed):: {
