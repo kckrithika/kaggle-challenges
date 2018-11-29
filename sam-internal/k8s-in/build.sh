@@ -51,7 +51,8 @@ fi
 
 # Format input jsonnet files.  TODO: Auto-compute these directories
 for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates slb slb/templates storage/templates flowsnake flowsnake/templates tnrp tnrp/templates service-mesh service-mesh/templates; do
-  jsonnet/jsonnet fmt -i $jdir/*.jsonnet
+  # We want to format both *.jsonnet and *.libsonnet.  Doing this with a wildcard is a little ugly, but we cant do it with 2 commands because the command will fail if any directory has one type of file but not the other
+  jsonnet/jsonnet fmt -i $jdir/*.*sonnet
 done
 
 if [ -z "$GO_PIPELINE_LABEL" ]; then

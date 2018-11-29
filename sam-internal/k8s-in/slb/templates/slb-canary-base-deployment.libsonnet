@@ -80,15 +80,15 @@ local getCanaryLivenessProbe(port) = (
     else {}
 );
 
-local getVolumes(tlsPorts)= ({
+local getVolumes(tlsPorts) = ({
     volumes: std.prune([
         slbconfigs.logs_volume,
     ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
-            madkub.madkubSlbCertVolumes(madkubCertDirs) + madkub.madkubSlbMadkubVolumes() + [ configs.maddog_cert_volume ]
+            madkub.madkubSlbCertVolumes(madkubCertDirs) + madkub.madkubSlbMadkubVolumes() + [configs.maddog_cert_volume]
          else []),),
 });
 
-local getVolumeMounts(tlsPorts)= ({
+local getVolumeMounts(tlsPorts) = ({
     volumeMounts: std.prune([
         slbconfigs.logs_volume_mount,
     ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
@@ -96,19 +96,19 @@ local getVolumeMounts(tlsPorts)= ({
          else [])),
 });
 
-local getInitContainers(tlsPorts)= (
+local getInitContainers(tlsPorts) = (
     if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
-        [ madkub.madkubInitContainer(madkubCertDirs) ]
+        [madkub.madkubInitContainer(madkubCertDirs)]
     else []
 );
 
-local getMadkubRefreshContainer(tlsPorts)= (
+local getMadkubRefreshContainer(tlsPorts) = (
     if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
         madkub.madkubRefreshContainer(madkubCertDirs)
     else {}
 );
 
-local getMadkubAnnotations(tlsPorts)= (
+local getMadkubAnnotations(tlsPorts) = (
     if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then {
         "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(madkubCertDirs), " "),
     } else {}
@@ -118,11 +118,11 @@ local getMadkubAnnotations(tlsPorts)= (
     slbCanaryBaseDeployment(
         canaryName,
         ports,
-        tlsPorts = null,
-        proxyProtocolPorts = null,
-        replicas = 2,
-        hostNetwork = false,
-        verbose = true,
+        tlsPorts=null,
+        proxyProtocolPorts=null,
+        replicas=2,
+        hostNetwork=false,
+        verbose=true,
     ):: configs.deploymentBase("slb") {
 
       metadata: {
@@ -154,7 +154,7 @@ local getMadkubAnnotations(tlsPorts)= (
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--ports=" + std.join(",", [std.toString(port) for port in ports]),
                                  ]
-                                 + ( // mix in tls config (if specified).
+                                 + (  // mix in tls config (if specified).
                                      if tlsRequired(tlsPorts) then std.prune([
                                          "--tlsPorts=" + std.join(",", [std.toString(port) for port in tlsPorts]),
                                      ] + (if slbflights.useMaddogCertsForCanaries then [
@@ -169,7 +169,7 @@ local getMadkubAnnotations(tlsPorts)= (
                                          "--publicKey=" + slbCanaryTlsPublicKeyPath,
                                      ])) else []
                                  )
-                                 + ( // mix in proxy protocol ports (if specified).
+                                 + (  // mix in proxy protocol ports (if specified).
                                     if proxyProtocolPorts != null && std.length(proxyProtocolPorts) > 0 then [
                                         "--proxyProtocolPorts=" + std.join(",", [std.toString(port) for port in proxyProtocolPorts]),
                                     ] else []
@@ -197,5 +197,5 @@ local getMadkubAnnotations(tlsPorts)= (
         },
         minReadySeconds: 30,
       },
-    }
+    },
 }
