@@ -375,7 +375,7 @@ spec:
           name: proxyconfig
       - command:
         - /bin/bash
-        - /sdn/slb-cleanup-logs.sh
+        - /sdn/slb-cleanup-log.sh
         - /var/log/kern.*
         - "3600"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001388-0bffa377
