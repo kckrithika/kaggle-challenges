@@ -13,7 +13,6 @@ apps:
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
   locust:
-    - prd/prd-sam_report_collector
   reportcollectorha:
   reportcollector:
     - prd/prd-sdc
