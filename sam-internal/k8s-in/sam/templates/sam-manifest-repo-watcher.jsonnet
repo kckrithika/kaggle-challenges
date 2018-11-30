@@ -62,7 +62,7 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                         configs.config_volume("sam-manifest-repo-watcher"),
                         {
                             secret: {
-                                secretName: "mysql",
+                                secretName: "mysql-passwords",
                             },
                             name: "mysql",
                         },

@@ -19,7 +19,7 @@ if configs.estate == "prd-sam" then {
                                     "/sam/watchdog",
                                     "--role=GLOBAL",
                                     "--sqlDbUsername=watchdog",
-                                    "--sqlDbPasswordFile=/var/secrets/mysql.txt",
+                                    "--sqlDbPasswordFile=/var/secrets/watchdog",
                                     "--sqlDbHostname=" + mysql.readOnlyHostName,
                                     "--sqlK8sResourceDbName=" + mysql.visibilityDBName,
                                     "--sqlDbPort=3306",
@@ -53,7 +53,7 @@ if configs.estate == "prd-sam" then {
                     {
                         name: "mysql",
                         secret: {
-                            secretName: "mysql",
+                            secretName: "mysql-passwords",
                         },
                     },
                     {

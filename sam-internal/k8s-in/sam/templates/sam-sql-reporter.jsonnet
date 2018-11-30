@@ -31,7 +31,7 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                 containers: [
                     {
                         args: [
-                            "--dbPasswordFile=/var/secrets/mysql.txt",
+                            "--dbPasswordFile=/var/secrets/reporter",
                             "-v=5",
                             "--alsologtostderr",
                             "--port=64212",
@@ -75,7 +75,7 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                     {
                         name: "mysql",
                         secret: {
-                            secretName: "mysql",
+                            secretName: "mysql-passwords",
                         },
                     },
                     {

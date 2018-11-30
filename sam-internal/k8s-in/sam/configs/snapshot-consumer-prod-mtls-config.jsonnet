@@ -6,7 +6,7 @@ std.prune({
   caFile: configs.caFile,
   dbHostname: mysql.readWriteHostName,
   dbUsername: "ssc-prod",
-  dbPasswordFile: "/var/mysqlPwd/pass.txt",
+  dbPasswordFile: "/var/mysqlPwd/ssc-prod",
   k8sResourceDbName: mysql.visibilityDBName,
   k8sResourceTableName: "k8s_resource",
   consumeTableName: "consume",

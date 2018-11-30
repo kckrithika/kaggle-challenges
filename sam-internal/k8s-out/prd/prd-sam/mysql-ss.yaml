@@ -85,7 +85,7 @@ spec:
         - name: SETTINGS_SUPERPOD
           value: '-'
         - name: MYSQL_ROOT_PASSWORD_FILE
-          value: /var/mysqlPwd/pass.txt
+          value: /var/mysqlPwd/root
         - name: MYSQL_USER
           value: liveness_user
         - name: MYSQL_PASSWORD
@@ -180,8 +180,8 @@ spec:
         - name: MYSQL_ROOT_PASS
           valueFrom:
             secretKeyRef:
-              key: pass.txt
-              name: mysql-pwd
+              key: root
+              name: mysql-passwords
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/xtrabackup:1.0
         imagePullPolicy: IfNotPresent
         name: xtrabackup
@@ -211,8 +211,8 @@ spec:
         - name: MYSQL_ROOT_PASS
           valueFrom:
             secretKeyRef:
-              key: pass.txt
-              name: mysql-pwd
+              key: root
+              name: mysql-passwords
         - name: BACKUP_INTERVAL_SECONDS
           value: "6000"
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/mysql:20180917_111738.0b5255d9.dirty.duncsmith-ltm
@@ -336,7 +336,7 @@ spec:
       - name: mysql
         secret:
           defaultMode: 420
-          secretName: mysql-pwd
+          secretName: mysql-passwords
   updateStrategy:
     rollingUpdate:
       partition: 0

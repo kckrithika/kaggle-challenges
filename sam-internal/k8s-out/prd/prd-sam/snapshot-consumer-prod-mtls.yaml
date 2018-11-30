@@ -54,7 +54,7 @@ spec:
         - mountPath: /data/certs
           name: certs
         - mountPath: /var/mysqlPwd
-          name: mysql-ssc-prod
+          name: mysql-passwords
           readOnly: true
         - mountPath: /cert1
           name: cert1
@@ -176,10 +176,10 @@ spec:
       - configMap:
           name: snapshot-consumer-prod-mtls
         name: config
-      - name: mysql-ssc-prod
+      - name: mysql-passwords
         secret:
           defaultMode: 420
-          secretName: mysql-ssc-prod
+          secretName: mysql-passwords
       - emptyDir:
           medium: Memory
         name: cert1

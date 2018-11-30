@@ -41,7 +41,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
                         configs.cert_volume_mount,
                         {
                             mountPath: "/var/mysqlPwd",
-                            name: "mysql-ssc-prd",
+                            name: "mysql",
                             readOnly: true,
                         },
                     ],
@@ -51,10 +51,10 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
                     configs.config_volume("host-repair-aggregator"),
                     configs.cert_volume,
                     {
-                        name: "mysql-ssc-prd",
+                        name: "mysql",
                         secret: {
                             defaultMode: 420,
-                            secretName: "mysql-ssc-prd",
+                            secretName: "mysql-passwords",
                         },
                     },
                 ],
