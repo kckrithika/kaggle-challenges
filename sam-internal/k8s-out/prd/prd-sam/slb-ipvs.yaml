@@ -371,14 +371,12 @@ spec:
           name: proxyconfig
       - command:
         - /bin/bash
-        - /config/slb-cleanup-logs.sh
+        - /sdn/slb-cleanup-log.sh
         - /var/log/kern.*
         - "3600"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001390-495c353d
         name: slb-cleanup-kern-logs
         volumeMounts:
-        - mountPath: /config
-          name: config
         - mountPath: /var/log
           name: var-kern-log-volume
       dnsPolicy: Default
@@ -432,6 +430,3 @@ spec:
       - hostPath:
           path: /var/log
         name: var-kern-log-volume
-      - configMap:
-          name: slb-cleanup-logs
-        name: config
