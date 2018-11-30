@@ -83,7 +83,7 @@ local getCanaryLivenessProbe(port) = (
 local getVolumes(tlsPorts) = ({
     volumes: std.prune([
         slbconfigs.logs_volume,
-    ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
+    ] + (if tlsRequired(tlsPorts) then
             madkub.madkubSlbCertVolumes(madkubCertDirs) + madkub.madkubSlbMadkubVolumes() + [configs.maddog_cert_volume]
          else []),),
 });
@@ -91,25 +91,25 @@ local getVolumes(tlsPorts) = ({
 local getVolumeMounts(tlsPorts) = ({
     volumeMounts: std.prune([
         slbconfigs.logs_volume_mount,
-    ] + (if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
+    ] + (if tlsRequired(tlsPorts) then
             madkub.madkubSlbCertVolumeMounts(madkubCertDirs)
          else [])),
 });
 
 local getInitContainers(tlsPorts) = (
-    if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
+    if tlsRequired(tlsPorts) then
         [madkub.madkubInitContainer(madkubCertDirs)]
     else []
 );
 
 local getMadkubRefreshContainer(tlsPorts) = (
-    if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then
+    if tlsRequired(tlsPorts) then
         madkub.madkubRefreshContainer(madkubCertDirs)
     else {}
 );
 
 local getMadkubAnnotations(tlsPorts) = (
-    if slbflights.useMaddogCertsForCanaries && tlsRequired(tlsPorts) then {
+    if tlsRequired(tlsPorts) then {
         "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(madkubCertDirs), " "),
     } else {}
 );
@@ -157,17 +157,10 @@ local getMadkubAnnotations(tlsPorts) = (
                                  + (  // mix in tls config (if specified).
                                      if tlsRequired(tlsPorts) then std.prune([
                                          "--tlsPorts=" + std.join(",", [std.toString(port) for port in tlsPorts]),
-                                     ] + (if slbflights.useMaddogCertsForCanaries then [
-                                         // Add the maddog paths here
                                          "--privateKey=/" + certDir + "/server/keys/server-key.pem",
                                          "--publicKey=/" + certDir + "/server/certificates/server.pem",
                                          if !verbose then "--verbose=false",
-                                     ] else [
-                                         "--privateKey=" + slbCanaryTlsPrivateKeyPath,
-                                         // verbose is mixed in here because that's the way slb-canary-proxy-http currently orders it. *shrug*.
-                                         if !verbose then "--verbose=false",
-                                         "--publicKey=" + slbCanaryTlsPublicKeyPath,
-                                     ])) else []
+                                     ]) else []
                                  )
                                  + (  // mix in proxy protocol ports (if specified).
                                     if proxyProtocolPorts != null && std.length(proxyProtocolPorts) > 0 then [
