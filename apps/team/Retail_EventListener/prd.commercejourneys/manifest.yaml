@@ -26,10 +26,10 @@ system:
         path: /home/sfdc-cj/logs
     containers:
     - name: commercejourneys
-      image: sfci/mc-retail/commerce-journeys:1.5.23
+      image: sfci/mc-retail/commerce-journeys:1.5.24
       ports:
         - containerPort: 8080
-        - containerPort: 15372
+        - containerPort: 15382
       resources:
         limits: { cpu: "2", memory: "5Gi" }
         requests: { cpu: "2", memory: "5Gi" }
@@ -39,7 +39,7 @@ system:
         - name: SERVER_PORT
           value: 8080
         - name: MANAGEMENT_PORT
-          value: 15372
+          value: 15382
         - name: JVM_ARGS
           value: "-Xmx3G -Xms512m"
       livenessProbe:
@@ -48,7 +48,7 @@ system:
         timeoutSeconds: 90
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15382
       volumeMounts:
       - name: cccjclientcert
         mountPath: /clientcert
