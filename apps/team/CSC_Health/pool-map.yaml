@@ -28,6 +28,7 @@ apps:
     - ord/ord-sam_report_collector
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
+    - ia2/ia2-sam_report_collector
   temp-store:
     - prd/prd-sdc
     - prd/prd-sam_report_collector
@@ -41,6 +42,7 @@ apps:
     - ord/ord-sam_report_collector
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
+    - ia2/ia2-sam_report_collector
   reportcollector-pc:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
