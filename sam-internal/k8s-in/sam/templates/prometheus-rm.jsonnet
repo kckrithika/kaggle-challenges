@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local hosts = import "configs/hosts.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -15,7 +15,7 @@ if configs.estate == "prd-samtest" then {
                 containers: [
                     {
                         name: "prometheus-rm",
-                        image: samimages.prometheus,
+                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lizhang/prometheus:11212018",
                         [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         args: [
                             "--config.file",

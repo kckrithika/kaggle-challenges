@@ -32,6 +32,11 @@ spec:
         ports:
         - containerPort: 9090
           name: prometheus-rm
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
         volumeMounts:
         - mountPath: /etc/pki_service
           name: certs-volume
@@ -40,7 +45,7 @@ spec:
         - mountPath: /prometheusconfig
           name: prometheusconfig-rm
       nodeSelector:
-        kubernetes.io/hostname: shared0-samtestkubeapi3-1-prd.eng.sfdc.net
+        kubernetes.io/hostname: shared0-samdevkubeapi3-1-prd.eng.sfdc.net
       securityContext:
         fsGroup: 0
         runAsUser: 0
