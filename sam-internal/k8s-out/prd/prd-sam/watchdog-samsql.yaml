@@ -23,7 +23,7 @@ spec:
         - /sam/watchdog
         - --role=GLOBAL
         - --sqlDbUsername=watchdog
-        - --sqlDbPasswordFile=/var/secrets/mysql.txt
+        - --sqlDbPasswordFile=/var/secrets/watchdog
         - --sqlDbHostname=mysql-read.sam-system.prd-sam.prd.slb.sfdc.net
         - --sqlK8sResourceDbName=sam_kube_resource
         - --sqlDbPort=3306
@@ -73,7 +73,7 @@ spec:
         name: kubeconfig
       - name: mysql
         secret:
-          secretName: mysql
+          secretName: mysql-passwords
       - configMap:
           name: watchdogsamsqlqueries
         name: queries

@@ -8,7 +8,7 @@ data:
       "clientKeyFile": "/cert1/client/keys/client-key.pem",
       "consumeTableName": "consume",
       "dbHostname": "mysql-ss-0.mysql-service.sam-system",
-      "dbPasswordFile": "/var/mysqlPwd/pass.txt",
+      "dbPasswordFile": "/var/mysqlPwd/ssc-prod",
       "dbUsername": "ssc-prod",
       "enableKafkaClientAuth": true,
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",

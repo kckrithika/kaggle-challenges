@@ -57,7 +57,7 @@ spec:
         name: config
       - name: mysql
         secret:
-          secretName: mysql
+          secretName: mysql-passwords
       - name: token
         secret:
           secretName: git-token

@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - args:
-        - --dbPasswordFile=/var/secrets/mysql.txt
+        - --dbPasswordFile=/var/secrets/reporter
         - -v=5
         - --alsologtostderr
         - --port=64212
@@ -55,7 +55,7 @@ spec:
       volumes:
       - name: mysql
         secret:
-          secretName: mysql
+          secretName: mysql-passwords
       - configMap:
           name: samsqlqueries
         name: queries

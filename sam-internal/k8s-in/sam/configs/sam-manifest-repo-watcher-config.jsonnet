@@ -8,7 +8,7 @@ std.prune({
         "tnrp-bot-scan-frequency": "30s",
         "db-hostname": mysql.readWriteHostName,
         "db-username": "mani-repo-watch",
-        "db-password-file": "/var/mysqlPwd/mysql.txt",
+        "db-password-file": "/var/mysqlPwd/mani-repo-watch",
         "db-name": mysql.visibilityDBName,
         "git-url": "https://git.soma.salesforce.com/api/v3/",
         "ghe-tokenfile": "/var/token/token",

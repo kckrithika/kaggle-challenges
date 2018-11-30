@@ -41,7 +41,7 @@ spec:
         - mountPath: /data/certs
           name: certs
         - mountPath: /var/mysqlPwd
-          name: mysql-ssc-prd
+          name: mysql
           readOnly: true
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
@@ -63,7 +63,7 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
-      - name: mysql-ssc-prd
+      - name: mysql
         secret:
           defaultMode: 420
-          secretName: mysql-ssc-prd
+          secretName: mysql-passwords

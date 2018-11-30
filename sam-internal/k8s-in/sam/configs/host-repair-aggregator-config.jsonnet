@@ -17,8 +17,8 @@ std.prune({
           "frf-sam",
   ],
   dbHostname: mysql.readWriteHostName,
-  dbUsername: "ssc-prd",
-  dbPasswordFile: "/var/mysqlPwd/pass.txt",
+  dbUsername: "host-repair-agg",
+  dbPasswordFile: "/var/mysqlPwd/host-repair-agg",
   signals: [
     "filesystemChecker",
     "maddogCertChecker",

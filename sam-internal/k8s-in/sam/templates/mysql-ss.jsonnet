@@ -145,7 +145,7 @@ if configs.estate == "prd-sam" then {
                                     },
                                     {
                                       name: "MYSQL_ROOT_PASSWORD_FILE",
-                                      value: "/var/mysqlPwd/pass.txt",
+                                      value: "/var/mysqlPwd/root",
                                     },
                                     {
                                       name: "MYSQL_USER",
@@ -272,8 +272,8 @@ if configs.estate == "prd-sam" then {
                                       name: "MYSQL_ROOT_PASS",
                                       valueFrom: {
                                           secretKeyRef: {
-                                              key: "pass.txt",
-                                              name: "mysql-pwd",
+                                              key: "root",
+                                              name: "mysql-passwords",
                                             },
                                         },
                                     },
@@ -329,8 +329,8 @@ if configs.estate == "prd-sam" then {
                                       name: "MYSQL_ROOT_PASS",
                                       valueFrom: {
                                           secretKeyRef: {
-                                              key: "pass.txt",
-                                              name: "mysql-pwd",
+                                              key: "root",
+                                              name: "mysql-passwords",
                                             },
                                         },
                                     },
@@ -523,7 +523,7 @@ if configs.estate == "prd-sam" then {
                               name: "mysql",
                               secret: {
                                   defaultMode: 420,
-                                  secretName: "mysql-pwd",
+                                  secretName: "mysql-passwords",
                                 },
                             },
                         ],

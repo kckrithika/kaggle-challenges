@@ -104,7 +104,7 @@ if samfeatureflags.kafkaConsumer then {
                             configs.cert_volume_mount,
                             {
                                 mountPath: "/var/mysqlPwd",
-                                name: "mysql-ssc-prd",
+                                name: "mysql-passwords",
                                 readOnly: true,
                             },
                         ] + madkub.madkubSamCertVolumeMounts(certDirs),
