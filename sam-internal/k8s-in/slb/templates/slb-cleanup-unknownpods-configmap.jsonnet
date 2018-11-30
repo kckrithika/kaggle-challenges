@@ -5,7 +5,7 @@ local slbflights = import "slbflights.jsonnet";
 local script =
     std.toString(importstr "scripts/slb-cleanup-stuckpods.sh");
 
-if slbconfigs.isSlbEstate then {
+if slbconfigs.isSlbEstate && !slbflights.useSlbScriptsInImage then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
