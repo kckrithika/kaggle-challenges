@@ -57,9 +57,9 @@ spec:
                 - s390x
       containers:
       - args:
-        - --caCertFile=/etc/pki_service/ca/cabundle.pem
-        - --tlsCertFile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
-        - --tlsKeyFile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --caCertFile=/etc/pki_service/ca/cacerts.pem
+        - --tlsCertFile=/etc/pki_service/kubernetes/k8s-server/certificates/k8s-server.pem
+        - --tlsKeyFile=/etc/pki_service/kubernetes/k8s-server/keys/k8s-server-key.pem
         - --injectConfig=/etc/istio/inject/config
         - --meshConfig=/etc/istio/config/mesh
         - --healthCheckInterval=2s

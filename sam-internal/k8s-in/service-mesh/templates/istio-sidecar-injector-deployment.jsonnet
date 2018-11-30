@@ -1,6 +1,12 @@
 local configs = import "config.jsonnet";
-local istioUtils = import "istio-utils.jsonnet";
 local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
+
+// Using host certificates for now.
+local webhookCerts = {
+  caFile: "/etc/pki_service/ca/cacerts.pem",
+  certFile: "/etc/pki_service/kubernetes/k8s-server/certificates/k8s-server.pem",
+  keyFile: "/etc/pki_service/kubernetes/k8s-server/keys/k8s-server-key.pem",
+};
 
 configs.deploymentBase("service-mesh") {
   metadata+: {
@@ -34,9 +40,9 @@ configs.deploymentBase("service-mesh") {
             image: istioImages.sidecarinjector,
             imagePullPolicy: "IfNotPresent",
             args: [
-              "--caCertFile=%s" % configs.caFile,
-              "--tlsCertFile=%s" % configs.certFile,
-              "--tlsKeyFile=%s" % configs.keyFile,
+              "--caCertFile=%s" % webhookCerts.caFile,
+              "--tlsCertFile=%s" % webhookCerts.certFile,
+              "--tlsKeyFile=%s" % webhookCerts.keyFile,
               "--injectConfig=/etc/istio/inject/config",
               "--meshConfig=/etc/istio/config/mesh",
               "--healthCheckInterval=2s",
