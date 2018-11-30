@@ -536,37 +536,37 @@ system:
     ports:
       - port: 80
         targetport: 9109
-  - lbname: dashboard-cdg
+  - lbname: dashboard-cdg-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9110
-  - lbname: dashboard-fra
+  - lbname: dashboard-fra-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9111
-  - lbname: dashboard-ia2
+  - lbname: dashboard-ia2-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9112
-  - lbname: dashboard-lo2
+  - lbname: dashboard-lo2-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9113
-  - lbname: dashboard-lo3
+  - lbname: dashboard-lo3-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9114
-  - lbname: dashboard-cph2
+  - lbname: dashboard-ph2-sam
     function: dashboard
     slbEnabled: true
     ports:
