@@ -16,7 +16,7 @@ set -o pipefail
 # Argument $3: slackChannelToNotify -- the name of the slack channel which will be notified of the newly-published PR.
 # Argument $4: prTitle -- the title to use for the generated PR. Can be empty, in which case a default title is used.
 function build_buddypr_yaml_request() {
-    fileName=$(mktemp --tmpdir "buddyPR-$1-$2-XXXXX.yaml")
+    fileName=$(mktemp)
     cat <<EOF > "${fileName}"
 forkOrg: $1
 branchName: $2
@@ -30,7 +30,7 @@ EOF
 # It assumes that the name follows a pattern like:
 #    git@git.soma.salesforce.com:mgrass/manifests.git
 function get_fork_org() {
-    git remote get-url origin | sed 's/git@git.soma.salesforce.com:\([^/]\+\)\/manifests.git/\1/'
+    git remote get-url origin | cut -d: -f2 | cut -d/ -f1
 }
 
 # get_current_branch_name attempts to determine the name of the current branch.
