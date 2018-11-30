@@ -69,6 +69,8 @@ system:
           value: /keys-kube/cre-aes.key
         - name: SCONE_SERVER_SECURITY_MUTUALAUTH
           value: false
+        - name: SPRING_PROFILES_ACTIVE
+          value: integration
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
