@@ -230,7 +230,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         ] + (if !slbflights.useSlbScriptsInImage then [
                             "/config/slb-cleanup-logs.sh",
                         ] else [
-                            "/sdn/slb-cleanup-logs.sh",
+                            "/sdn/slb-cleanup-log.sh",
                         ]) + [
                             "/var/log/kern.*",
                             "3600",
