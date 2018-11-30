@@ -32,6 +32,7 @@ if slbflights.hsmCanaryEnabled then
       slbconfigs.hsmNginxProxyName,
       1,
       hsmNginxAffinity,
-      slbimages.hsmnginx
+      slbimages.hsmnginx,
+      proxyFlavor=(if slbimages.hsmnginx_build >= 56 then "hsm" else "")
 ) {}
 else "SKIP"

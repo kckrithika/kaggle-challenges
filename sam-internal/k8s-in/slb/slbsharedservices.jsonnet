@@ -342,7 +342,7 @@
             configs.kube_config_env,
         ],
     },
-    slbNginxProxy(proxyImage): {
+    slbNginxProxy(proxyImage, proxyFlavor=""): {
         name: "slb-nginx-proxy",
         image: proxyImage,
         env: [
@@ -350,7 +350,7 @@
                name: "KINGDOM",
                value: configs.kingdom,
             },
-        ],
+        ] + (if proxyFlavor != "" then [{ name: "PROXY_FLAVOR", value: proxyFlavor }] else []),
         command: ["/runner.sh"],
         livenessProbe: {
             httpGet: {

@@ -108,7 +108,9 @@ spec:
         env:
         - name: KINGDOM
           value: prd
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx-kms:v-0000054-f9b0050a
+        - name: PROXY_FLAVOR
+          value: hsm
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx-kms:v-0000056-929ed44d
         livenessProbe:
           httpGet:
             path: /
