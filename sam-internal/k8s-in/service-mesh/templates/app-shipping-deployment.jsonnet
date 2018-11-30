@@ -55,7 +55,7 @@ configs.deploymentBase("service-mesh") {
               "--parentShutdownDuration",
               "1m0s",
               "--discoveryAddress",
-              "istio-pilot.service-mesh:15005",
+              "istio-pilot.service-mesh:15010",
               "--discoveryRefreshDelay",
               "1s",
               "--zipkinAddress",

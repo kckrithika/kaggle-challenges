@@ -70,7 +70,7 @@ local meshConfig = |||
     controlPlaneAuthPolicy: NONE
     #
     # Address where istio Pilot service is running
-    discoveryAddress: istio-pilot.service-mesh:15007
+    discoveryAddress: istio-pilot.service-mesh:15010
 |||;
 
 {

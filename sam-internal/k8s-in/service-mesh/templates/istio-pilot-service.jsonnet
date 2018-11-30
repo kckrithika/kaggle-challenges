@@ -12,7 +12,7 @@ local istioUtils = import "istio-utils.jsonnet";
   spec: {
     ports: [
       {
-        port: 15005,
+        port: 15010,
         name: "grpc-xds",
       },
       {
