@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-cre-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.5.0.0.develop-1.5.7defb7f.59
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.5.0.0.pk-profiles-take2.6da48fe.2
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
@@ -83,7 +83,8 @@ system:
                   -Dcom.sun.management.jmxremote.rmi.port=8898
                   -Dcom.sun.management.jmxremote.ssl=false
                   -Dcom.sun.management.jmxremote.authenticate=false
-                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
+                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8
+                  -agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n"
       resources:
         limits: { cpu: "2", memory: "6Gi" }
         requests: { cpu: "2", memory: "5Gi" }
@@ -91,6 +92,7 @@ system:
       - containerPort: 8080
       - containerPort: 7020
       - containerPort: 15372
+      - containerPort: 8000
       livenessProbe:
         exec:
             command:
