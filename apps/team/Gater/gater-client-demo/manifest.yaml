@@ -9,7 +9,7 @@ system:
     hostnetwork: true
     containers:
     - name: gater-client-demo-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/gater-client-demo:dmachak-20181129-d01adff
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/gater-client-demo:dmachak-20181129-3439274
       args:
       - --grpc.gater.queryrate=5000
       - --grpc.gater.request.deadline=200
