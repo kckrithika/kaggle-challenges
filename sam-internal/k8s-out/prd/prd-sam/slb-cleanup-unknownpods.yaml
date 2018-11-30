@@ -24,8 +24,7 @@ spec:
       containers:
       - command:
         - /bin/bash
-        - -xe
-        - /config/slb-cleanup-unknownpods.sh
+        - /sdn/slb-cleanup-stuckpods.sh
         env:
         - name: NODE_NAME
           valueFrom:
@@ -48,8 +47,6 @@ spec:
           name: certs
         - mountPath: /slb
           name: slblogs
-        - mountPath: /config
-          name: config
         - mountPath: /kubeconfig
           name: kubeconfig
         - mountPath: /usr/bin/kubectl
@@ -80,9 +77,6 @@ spec:
       - hostPath:
           path: /var/slb/logs
         name: slblogs
-      - configMap:
-          name: slb-cleanup-unknownpods
-        name: config
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
