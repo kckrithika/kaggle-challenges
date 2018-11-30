@@ -11,9 +11,9 @@
   local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: $.dirSuffix },
   local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: $.dirSuffix },
 
-  local beforeSharedContainers(proxyImage, deleteLimitOverride=0) = [
+  local beforeSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="") = [
                         slbshared.slbNginxConfig(deleteLimitOverride),
-                        slbshared.slbNginxProxy(proxyImage),
+                        slbshared.slbNginxProxy(proxyImage, proxyFlavor),
                         {
                           name: "slb-nginx-data",
                           image: slbimages.hypersdn,
@@ -99,11 +99,12 @@ local afterSharedContainers = [
     affinity,
     proxyImage,
     deleteLimitOverride=0,
+    proxyFlavor="",
   ):: slbbasedeployment.slbBaseDeployment(
     proxyName,
     replicas,
     affinity,
-    beforeSharedContainers(proxyImage, deleteLimitOverride),
+    beforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor),
     afterSharedContainers,
     supportedProxies=[proxyName],
     deleteLimitOverride=deleteLimitOverride
