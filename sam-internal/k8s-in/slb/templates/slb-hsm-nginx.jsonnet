@@ -33,7 +33,6 @@ if slbflights.hsmCanaryEnabled then
       1,
       hsmNginxAffinity,
       slbimages.hsmnginx,
-      0,  # default deleteoverridelimit value
-      (if slbimages.hsmnginx_build >= 56 then "hsm" else "")
+      proxyFlavor=(if slbimages.hsmnginx_build >= 56 then "hsm" else "")
 ) {}
 else "SKIP"
