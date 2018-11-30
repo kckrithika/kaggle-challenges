@@ -71,6 +71,8 @@ system:
           value: false
         - name: SPRING_PROFILES_ACTIVE
           value: integration
+        - name: GDOT_BASE_PATH
+          value: http://localhost:8080/gdot
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
