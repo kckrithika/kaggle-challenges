@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-cre-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.5.0.0.develop-1.5.ccbea93.63
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.5.0.0.pk-e2e_manifest.4f15b05.2
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
@@ -53,6 +53,18 @@ system:
           value: <placeholder_super_tenant_id>
         - name: ENGINE_HBASE_NAMESPACE
           value: CRE_TEST
+          # Start - CRE TEST SPECIFIC Engine variables
+        - name: ENGINE_UPLOAD_ENABLED
+          value: false
+        - name: ENGINE_USE_LOCAL_FILES
+          value: true
+        - name: ENGINE_MAPPING_FILE_NAME
+          value: Org62_00D00000000062_Contact.conf
+        - name: ENGINE_IMPORT_DATA_FILE_NAME
+          value: cre_team_contact_data.csv
+        - name: ENGINE_CRE_TEST
+          value: true
+         # End
         - name: HBASE_NAMESPACE
           value: CRE_TEST
         - name: HBASE_ENVIRONMENT
