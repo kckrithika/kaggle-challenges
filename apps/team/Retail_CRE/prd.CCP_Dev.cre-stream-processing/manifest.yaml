@@ -38,7 +38,7 @@ system:
         - name: CONTROLPLANE_ENDPOINT
           value: http://cre-control-plane-ccp-dev-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8091/streamprocessing
         - name: DUMMY_RESTART_VAR
-          value: helloworld
+          value: helloworld1
         - name: JVM_ARGS
           value: "-verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
