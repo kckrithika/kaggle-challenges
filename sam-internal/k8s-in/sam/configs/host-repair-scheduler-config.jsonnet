@@ -7,8 +7,12 @@ std.prune({
   perEstateRepairPct: 0.001,
   perKingdomRepairPct: 0.01,
   conditionStableTime: "60m",
-  hostRegexWhitelist: [
+  hostRegexWhitelist: (if configs.estate == "prd-samtest" then [
+   ".*samtest.*",
+  ] else [
     ".*prd.*",
-  ],
+    ".*xrd.*",
+    ".*frf.*",
+  ]),
   actionConditions: { reboot: ["filesystemChecker", "kubeletChecker"] },
 }) else "SKIP"

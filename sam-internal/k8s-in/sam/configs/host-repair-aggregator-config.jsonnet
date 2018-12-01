@@ -10,13 +10,15 @@ std.prune({
   k8sFromDB: true,
   k8sResourceDbName: "sam_kube_resource",
   k8sResourceTableName: "k8s_resource",
-  k8sCeListFromDB: [
+  k8sCeListFromDB: (if configs.estate == "prd-samtest" then [
+          "prd-samtest",
+  ] else [
           "prd-sam",
           "xrd-sam",
           "prd-samtwo",
           "frf-sam",
-  ],
-  dbHostname: mysql.readWriteHostName,
+  ]),
+  dbHostname: (if configs.estate == "prd-samtest" then "mysql-read.sam-system.prd-sam.prd.slb.sfdc.net" else mysql.readWriteHostName),
   dbUsername: "host-repair-agg",
   dbPasswordFile: "/var/mysqlPwd/host-repair-agg",
   signals: [
