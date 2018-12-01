@@ -68,7 +68,7 @@ system:
         - name: SECRET_KEY_FILE
           value: /keys-kube/cre-aes.key
         - name: DUMMY_RETRY_VAR
-          value: helloworld
+          value: helloworld1
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
