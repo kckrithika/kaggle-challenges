@@ -5,15 +5,12 @@ data:
       "crdNamespace": "sam-system",
       "crdPollFrequency": "5m",
       "crdPushFrequency": "10m",
-      "dbHostname": "mysql-ss-0.mysql-service.sam-system",
+      "dbHostname": "mysql-read.sam-system.prd-sam.prd.slb.sfdc.net",
       "dbPasswordFile": "/var/mysqlPwd/host-repair-agg",
       "dbUsername": "host-repair-agg",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "k8sCeListFromDB": [
-        "prd-sam",
-        "xrd-sam",
-        "prd-samtwo",
-        "frf-sam"
+        "prd-samtest"
       ],
       "k8sFromDB": true,
       "k8sResourceDbName": "sam_kube_resource",

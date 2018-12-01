@@ -12,7 +12,9 @@ data:
       "crdNamespace": "sam-system",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "hostRegexWhitelist": [
-        ".*prd.*"
+        ".*prd.*",
+        ".*xrd.*",
+        ".*frf.*"
       ],
       "perEstateRepairPct": 0.001,
       "perKingdomRepairPct": 0.01
