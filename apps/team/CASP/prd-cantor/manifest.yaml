@@ -15,13 +15,13 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-cantor
-        image: tnrp/casp/cantor:0.1.1-0000016-fb2263c2
+        image: tnrp/casp/cantor:2.0.8-0000017-e68dc562
         ports:
         - name: cantor
           containerPort: 7443
           hostPort: 17443
         volumeMounts:
-        - mountPath: /home/sfdc-cantor/cantor-h2.db
+        - mountPath: /home/sfdc-cantor/
           name: cantor-vol
         livenessProbe:
           exec:
