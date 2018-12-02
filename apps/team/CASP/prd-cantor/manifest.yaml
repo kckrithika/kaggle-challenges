@@ -17,9 +17,12 @@ system:
       - name: prd-cantor
         image: tnrp/casp/cantor:2.0.8-0000017-e68dc562
         ports:
-        - name: cantor
+        - name: cantor-grpc
           containerPort: 7443
           hostPort: 17443
+        - name: cantor-grpc
+          containerPort: 8084
+          hostPort: 18084
         volumeMounts:
         - mountPath: /home/sfdc-cantor/
           name: cantor-vol
@@ -38,3 +41,5 @@ system:
       ports:
         - port: 11983
           targetport: 7443
+        - port: 80
+          targetport: 8084
