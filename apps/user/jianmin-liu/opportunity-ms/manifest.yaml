@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: default
+  - name: opportunity-ms
     count: 1
     containers:
     - name: opportunity-ms
@@ -14,7 +14,7 @@ system:
           port: 8080
   loadbalancers:
   - lbname: opportunitymslb
-    function: default
+    function: opportunity-ms
     slbenabled: true
     ports:
       - port: 8080
