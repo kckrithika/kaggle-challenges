@@ -23,7 +23,7 @@ system:
     containers:
     - name: dfs
       # Please update https://salesforce.quip.com/A9HVAFytGaqG with any changes.
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.14.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.15.0
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -35,8 +35,6 @@ system:
         value: mist
       - name: LOAD_CC_CERT
         value: false
-      - name: MDS_CANONICALMETADATA_SOURCETENANTKEY
-        value: mds/mist/ST0000000000001
       - name: MDS_DESTINATION
         value: metadata-service.retail-mds.localhost.mesh.force.com:5443
       - name: GDOT_USER
@@ -89,7 +87,6 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
         - containerPort: 7442
-        - containerPort: 7014
         - containerPort: 15373
       livenessProbe:
         exec:
@@ -112,8 +109,6 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       args:
-      - -endpoint
-      - dfs:DATACENTER:7014
       - -endpoint
       - retail-dfs/dfs:DATACENTER:7442
       livenessProbe:
