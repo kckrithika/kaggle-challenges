@@ -1,5 +1,7 @@
 apps:
  echo32:
    - prd/prd-sdc
+   - prd/prd-sam
  echo32-no:
    - prd/prd-sdc
+   - prd/prd-sam
