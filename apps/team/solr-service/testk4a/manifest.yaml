@@ -17,6 +17,12 @@ system:
           - mountPath: /secrets/
             name: secretvol
             readOnly: true
+        livenessProbe:
+          exec:
+            command:
+            - echo 1
+          initialDelaySeconds: 5
+          periodSeconds: 5
       lbname: searchservers
       volumes:
         - name: secretvol
