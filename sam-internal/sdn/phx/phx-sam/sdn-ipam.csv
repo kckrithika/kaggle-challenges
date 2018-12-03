@@ -248,6 +248,10 @@ shared0-samminiongater1-2-phx.ops.sfdc.net,10.246.111.10/29,10.214.194.32/27,w36
 shared0-samminiongater1-3-phx.ops.sfdc.net,10.246.111.26/29,10.214.194.0/27,v50-01,phx-sam_gater,65009
 shared0-samminiongater2-1-phx.ops.sfdc.net,10.246.111.2/29,10.214.194.128/27,y06-01,phx-sam_gater,65009
 shared0-samminiongater2-2-phx.ops.sfdc.net,10.246.111.18/29,10.214.194.64/27,w42-01,phx-sam_gater,65009
+shared0-samminiongwc1-1-phx.ops.sfdc.net,10.220.96.178/29,10.214.224.96/27,w12-02,phx-sam_gatewayconfig,65009
+shared0-samminiongwc1-2-phx.ops.sfdc.net,10.220.96.186/29,10.214.224.64/27,w04-01,phx-sam_gatewayconfig,65009
+shared0-samminiongwc2-1-phx.ops.sfdc.net,10.220.96.170/29,10.214.224.0/27,r07-01,phx-sam_gatewayconfig,65009
+shared0-samminiongwc2-2-phx.ops.sfdc.net,10.220.96.162/29,10.214.224.32/27,s24-01,phx-sam_gatewayconfig,65009
 shared0-samminionmoderationeinstein1-1-phx.ops.sfdc.net,10.220.1.210/29,10.214.218.64/27,d32-01,phx-sam_moderation_einstein,65009
 shared0-samminionmoderationeinstein1-2-phx.ops.sfdc.net,10.220.1.194/29,10.214.218.0/27,aa41-02,phx-sam_moderation_einstein,65009
 shared0-samminionmoderationeinstein2-1-phx.ops.sfdc.net,10.220.1.202/29,10.214.218.32/27,d30-01,phx-sam_moderation_einstein,65009
@@ -267,6 +271,9 @@ shared0-samminionsme2-5-phx.ops.sfdc.net,10.246.107.206/29,10.214.226.128/27,e35
 shared0-samminionwarden1-1-phx.ops.sfdc.net,10.246.116.74/29,10.214.214.32/27,w34-01,phx-sam_warden,65009
 shared0-samminionwarden1-2-phx.ops.sfdc.net,10.246.116.66/29,10.214.214.64/27,w42-01,phx-sam_warden,65009
 shared0-samminionwarden2-1-phx.ops.sfdc.net,10.246.116.82/29,10.214.214.0/27,e27-01,phx-sam_warden,65009
+shared0-sammminionmgmthub1-1-phx.ops.sfdc.net,10.220.1.66/29,10.214.225.64/27,v52-01,phx-sam_mgmt_hub,65009
+shared0-sammminionmgmthub2-1-phx.ops.sfdc.net,10.220.1.82/29,10.214.225.0/27,h50-01,phx-sam_mgmt_hub,65009
+shared0-sammminionmgmthub3-1-phx.ops.sfdc.net,10.220.1.74/29,10.214.225.32/27,s14-01,phx-sam_mgmt_hub,65009
 shared0-slbminion1-1-phx.ops.sfdc.net,10.220.44.234/29,10.214.229.224/27,w02-01,phx-slb,65009
 shared0-slbminion1-10-phx.ops.sfdc.net,10.220.44.210/29,10.214.228.160/27,n43-02,phx-slb,65009
 shared0-slbminion1-2-phx.ops.sfdc.net,10.220.44.242/29,10.214.228.0/27,d45-01,phx-slb,65009
