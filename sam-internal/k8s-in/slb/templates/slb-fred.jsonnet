@@ -31,7 +31,6 @@ if slbconfigs.isSlbEstate && slbflights.fredEnabled then configs.deploymentBase(
                         image: slbimages.hypersdn,
                         command: [
                                      "/sdn/slb-fred",
-                                     "--serviceName=" + "slb-fred",
                                      "--log_dir=" + slbconfigs.logsDir,
                                  ],
 
