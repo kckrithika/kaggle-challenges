@@ -19,7 +19,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         # Apply this config only on the master.
         [mysqld]
         # Configs specific to master
-        # log-bin
+        log-bin
         binlog_stmt_cache_size=1G
         expire_logs_days=1
         sync_binlog=0
