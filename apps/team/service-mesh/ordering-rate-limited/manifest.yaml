@@ -7,8 +7,7 @@ system:
     containers:
 
     - name: ordering
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/2/
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-ordering:5ccad648fba8117c1724580f12fb3d50580e2fee
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo
       args:
       - --shipping.interval=5000
       env:
@@ -17,7 +16,7 @@ system:
       - name: SCONE_SHIPPING_DEST
         value: shipping-rate-limited.service-mesh.localhost.mesh.force.com:7011
       - name: JAVA_HEAP_OPTS
-        value: -Xmx64m
+        value: -Xmx256m
       - name: SCONE_DEPLOYMENT_JVM_OPTIONS
         value: "-Dscone.service.name=ordering-service-rate-limited -Dshipping.interval=5000"
       ports:
