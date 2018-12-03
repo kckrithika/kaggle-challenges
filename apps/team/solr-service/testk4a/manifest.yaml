@@ -10,7 +10,7 @@ system:
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iaas/iaas-buildbase:v1.0.0
         args:
           - -c
-          - while true; do ls -R /secrets/; echo contents for the serects folder; find /secrets/ -type f -exec cat {} \; sleep 100;done
+          - while true; do ls -R /secrets/; echo contents for the serects folder; find /secrets/ -type f -exec cat {} \; ; sleep 100;done
         command:
           - /bin/sh
         volumeMounts:
