@@ -129,7 +129,7 @@ spec:
         - bash
         - -c
         - |
-          set -ex
+          set -e
           cd /var/lib/mysql
           # Determine binlog position of cloned data, if any.
           if [[ -f xtrabackup_slave_info ]]; then
@@ -192,7 +192,7 @@ spec:
       - command:
         - bash
         - -c
-        - "set -ex\ncd /var/lib/mysql-backups\n[[ `hostname` =~ -([0-9]+)$ ]] || exit
+        - "set -e\ncd /var/lib/mysql-backups\n[[ `hostname` =~ -([0-9]+)$ ]] || exit
           1\nordinal=${BASH_REMATCH[1]}\nwhile :\ndo \n  echo \"Backing up mysql offline
           db\"    \n  mysqldump -h 127.0.0.1 --all-databases -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
           > mysql-backup-$(date +%d).bkup  \n  echo \"Backup successful\\n Purging
@@ -248,7 +248,7 @@ spec:
         - bash
         - -c
         - |
-          set -ex
+          set -e
           # Generate mysql server-id from pod ordinal index.
           [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
           ordinal=${BASH_REMATCH[1]}
@@ -275,7 +275,7 @@ spec:
       - command:
         - bash
         - -c
-        - "set -ex\n# Skip the clone if data already exists.\n[[ -d /var/lib/mysql/mysql
+        - "set -e\n# Skip the clone if data already exists.\n[[ -d /var/lib/mysql/mysql
           ]] && echo \"Mysql data already exists in /var/lib/mysql/mysql. Skipping
           auto-restore\" && exit 0\n[[ `hostname` =~ -([0-9]+)$ ]] || exit 1\nordinal=${BASH_REMATCH[1]}\nif
           [[ $ordinal -eq 0 ]]; then\n  echo \"This pod is ss index 0 therefore must

@@ -225,7 +225,7 @@ if configs.estate == "prd-sam" then {
                                   "bash",
                                   "-c",
 |||
-                                  set -ex
+                                  set -e
                                   cd /var/lib/mysql
                                   # Determine binlog position of cloned data, if any.
                                   if [[ -f xtrabackup_slave_info ]]; then
@@ -308,7 +308,7 @@ if configs.estate == "prd-sam" then {
                                   "bash",
                                   "-c",
 |||
-                                  set -ex
+                                  set -e
                                   cd /var/lib/mysql-backups
                                   [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
                                   ordinal=${BASH_REMATCH[1]}
@@ -403,7 +403,7 @@ if configs.estate == "prd-sam" then {
                                   "bash",
                                   "-c",
 |||
-                                  set -ex
+                                  set -e
                                   # Generate mysql server-id from pod ordinal index.
                                   [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
                                   ordinal=${BASH_REMATCH[1]}
@@ -440,7 +440,7 @@ if configs.estate == "prd-sam" then {
                                   "bash",
                                   "-c",
 |||
-                                  set -ex
+                                  set -e
                                   # Skip the clone if data already exists.
                                   [[ -d /var/lib/mysql/mysql ]] && echo "Mysql data already exists in /var/lib/mysql/mysql. Skipping auto-restore" && exit 0
                                   [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
@@ -455,7 +455,7 @@ if configs.estate == "prd-sam" then {
                                     fi
                                   else
                                     # Clone data from previous peer.
-                                    ncat --recv-only mysql-ss-$(($ordinal-1)).mysql-service 3307 | xbstream -x -C /var/lib/mysql
+                                    ncat --recv-only mysql-ss-0.mysql-service 3307 | xbstream -x -C /var/lib/mysql
                                     # Prepare the backup.
                                     xtrabackup --prepare --target-dir=/var/lib/mysql
                                   fi
