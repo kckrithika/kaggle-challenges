@@ -82,7 +82,6 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
         - containerPort: 7442
-        - containerPort: 7014
         - containerPort: 15373
       livenessProbe:
         exec:
