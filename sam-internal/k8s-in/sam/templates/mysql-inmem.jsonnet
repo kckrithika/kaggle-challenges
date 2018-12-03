@@ -50,25 +50,6 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                         },
                     },
                   spec: {
-                      affinity: {
-                          nodeAffinity: {
-                              requiredDuringSchedulingIgnoredDuringExecution: {
-                                  nodeSelectorTerms: [
-                                        {
-                                          matchExpressions: [
-                                                {
-                                                  key: "pool",
-                                                  operator: "In",
-                                                  values: [
-                                                      "prd-samdev",
-                                                    ],
-                                                },
-                                            ],
-                                        },
-                                    ],
-                                },
-                            },
-                        },
                       containers: [
                             {
                               env: [
