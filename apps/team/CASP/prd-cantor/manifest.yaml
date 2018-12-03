@@ -41,5 +41,3 @@ system:
       ports:
         - port: 11983
           targetport: 7443
-        - port: 80
-          targetport: 8084
