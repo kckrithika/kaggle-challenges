@@ -18,6 +18,13 @@ cd $DIR
 # Script to generate yaml files for all our apps in all estates
 # ./build.sh
 
+if [ -z "$FIREFLY" ]; then
+   SAMBINDIR=/opt/sam
+else
+   echo "*** EXECUTING IN $FIREFLY ENVIRONMENT"
+   SAMBINDIR=/sam
+fi
+
 # Make sure we are on the right version of jsonnet (0.9.5 needed for fmt)
 # If we use an older verion of jsonnet the script will fail.
 EXPECTED_JSONNET_VER="Jsonnet commandline interpreter v0.9.5"
@@ -58,7 +65,7 @@ done
 if [ -z "$GO_PIPELINE_LABEL" ]; then
   docker run -u 0 --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl generate-pool-list --in /repo/sam-internal/pools/ --out  /repo/sam-internal/k8s-in/sam/configs/generated-pools.jsonnet
 else
-  /opt/sam/manifestctl generate-pool-list --in ../pools/ --out  ../k8s-in/sam/configs/generated-pools.jsonnet
+  ${SAMBINDIR}/manifestctl generate-pool-list --in ../pools/ --out  ../k8s-in/sam/configs/generated-pools.jsonnet
 fi
 
 ./parallel_build.py --src=sam/templates/,sdn/templates/,slb/templates/,storage/templates/,tnrp/templates --out=../k8s-out/ --pools=../pools/ --estatefilter=$1
@@ -86,7 +93,7 @@ fi
 if [ -z "$GO_PIPELINE_LABEL" ]; then
   docker run -u 0 --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl kube-json-to-yaml --in /repo/sam-internal/k8s-out/ --rm
 else
-  /opt/sam/manifestctl kube-json-to-yaml --in ../k8s-out/ --rm
+  ${SAMBINDIR}/manifestctl kube-json-to-yaml --in ../k8s-out/ --rm
 fi
 
 # Validate configMaps
@@ -94,7 +101,7 @@ fi
 if [ -z "$GO_PIPELINE_LABEL" ]; then
   docker run -u 0 --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl validate-k8s -per-kingdom-dir-list /repo/sam-internal/k8s-out/ -verbose
 else
-  /opt/sam/manifestctl validate-k8s -per-kingdom-dir-list ../k8s-out/ -verbose
+  ${SAMBINDIR}/manifestctl validate-k8s -per-kingdom-dir-list ../k8s-out/ -verbose
 fi
 
 # evaluate_pr2 has a check that all files in k8s-in/k8s-out match, and it does not read .gitignore
