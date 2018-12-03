@@ -20,7 +20,7 @@ system:
         - name: cantor-grpc
           containerPort: 7443
           hostPort: 17443
-        - name: cantor-grpc
+        - name: cantor-http
           containerPort: 8084
           hostPort: 18084
         volumeMounts:
