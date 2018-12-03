@@ -44,10 +44,7 @@
     
     # Receives an array of UNSUPPORTED elements that CANNOT exist
     NotAllowed(notAllowed):: {
-        properties: {
-            [ notAllowedElement ]: { not: {} }
-            for notAllowedElement in notAllowed
-        },
+        propertyNames: $.ValuesNotAllowed(notAllowed)
     },
 
     # Receives an array of 2 values 

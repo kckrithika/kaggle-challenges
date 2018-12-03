@@ -60,12 +60,12 @@
          }
       },
       "NotAllowed": {
-         "properties": {
-            "lifecycle": {
-               "not": { }
-            },
-            "securitycontext": {
-               "not": { }
+         "propertyNames": {
+            "not": {
+               "enum": [
+                  "securitycontext",
+                  "lifecycle"
+               ]
             }
          }
       }
@@ -126,9 +126,11 @@
                   ]
                },
                {
-                  "properties": {
-                     "strategy": {
-                        "not": { }
+                  "propertyNames": {
+                     "not": {
+                        "enum": [
+                           "strategy"
+                        ]
                      }
                   }
                }
@@ -144,12 +146,12 @@
             }
          },
          "then": {
-            "properties": {
-               "lbname": {
-                  "not": { }
-               },
-               "volumeClaimTemplates": {
-                  "not": { }
+            "propertyNames": {
+               "not": {
+                  "enum": [
+                     "lbname",
+                     "volumeClaimTemplates"
+                  ]
                }
             }
          }
@@ -274,9 +276,11 @@
                   ]
                },
                {
-                  "properties": {
-                     "selector": {
-                        "not": { }
+                  "propertyNames": {
+                     "not": {
+                        "enum": [
+                           "selector"
+                        ]
                      }
                   }
                }
@@ -290,9 +294,11 @@
                   ]
                },
                {
-                  "properties": {
-                     "function": {
-                        "not": { }
+                  "propertyNames": {
+                     "not": {
+                        "enum": [
+                           "function"
+                        ]
                      }
                   }
                }
@@ -365,12 +371,12 @@
             }
          },
          "then": {
-            "properties": {
-               "reencrypt": {
-                  "not": { }
-               },
-               "sticky": {
-                  "not": { }
+            "propertyNames": {
+               "not": {
+                  "enum": [
+                     "reencrypt",
+                     "sticky"
+                  ]
                }
             }
          }
@@ -540,9 +546,11 @@
          ]
       },
       "NotAllowed": {
-         "properties": {
-            "subPath": {
-               "not": { }
+         "propertyNames": {
+            "not": {
+               "enum": [
+                  "subPath"
+               ]
             }
          }
       }

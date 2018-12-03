@@ -247,7 +247,7 @@ local schemaID = "manifestConfigs";
             maxLength: 15,
             allOf: [
                 { pattern: "^[-a-z0-9]+$" },
-                { pattern: "[a-z]" },
+                { pattern: "[a-z0-9]" },
                 # Must not contain consecutive '-' and cannot start/end with '-'
                 util.ListNotAllowed([
                     { pattern: "^.*--.*$" },

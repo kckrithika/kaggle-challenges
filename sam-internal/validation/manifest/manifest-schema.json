@@ -64,7 +64,6 @@
                                             { "$ref": "manifestConfigs#/Rule_ContainerRequirements/NotAllowed" }
                                         ],
                                         "properties": {
-
                                             "name": {
                                                 "type": "string",
                                                 "$ref": "manifestConfigs#/Rule_IsDNSValidation"

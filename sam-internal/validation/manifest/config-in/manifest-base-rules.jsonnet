@@ -17,6 +17,8 @@ local schemaID = "manifestConfigs";
         pattern: "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
     },
 
+    # Note: IsDNS1035 and IsDNS1123 are both need
+    # DNS1035 for LBNames and DNS1123 for everything else
     Rule_IsDNS1035Validation: {
         maxLength: 63,
         pattern: "^[a-z]([-a-z0-9]*[a-z0-9])?$"
