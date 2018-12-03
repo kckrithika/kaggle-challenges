@@ -13,4 +13,5 @@ local configs = import "config.jsonnet";
     ifaceProcessorAddIfaceIfIPVSHost: (slbimages.phaseNum <= 1),
     antiDDOS: (slbimages.phaseNum <= 2),
     fredEnabled: (configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1380),
+    nginxConfigSentinelPerPipeline: (slbimages.phaseNum <= 1),
 }

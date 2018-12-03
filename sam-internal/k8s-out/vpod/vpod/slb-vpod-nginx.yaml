@@ -44,6 +44,7 @@ spec:
         - --commonconfig.fallCount=2
         - --commonconfig.healthTimeout=3000
         - --vipInterfaceName=eth0
+        - --control.nginxSentinel=/host/data/slb/slb-vpod-nginx/config/nginx.sentinel
         env:
         - name: NODE_NAME
           valueFrom:
@@ -69,6 +70,8 @@ spec:
           name: sfdchosts
       - command:
         - /runner.sh
+        - /host/data/slb/logs/slb-vpod-nginx
+        - /host/data/slb/slb-vpod-nginx/config/nginx.sentinel
         env:
         - name: KINGDOM
           value: vpod
@@ -90,7 +93,7 @@ spec:
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/slb-vpod-nginx
           name: var-logs-volume
         - mountPath: /customerCerts
           name: customer-certs

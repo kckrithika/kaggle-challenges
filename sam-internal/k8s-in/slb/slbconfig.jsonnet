@@ -378,7 +378,7 @@
           containerTargetDir: $.slb_volume_mount.mountPath + "/" + $.dirSuffix + "/config",
           configUpdateSentinelPath: $.nginx.containerTargetDir + "/nginx.sentinel",
           reloadSentinelParam: "--control.nginxReloadSentinel=" + $.nginx.containerTargetDir + "/nginx.marker",
-          configUpdateSentinelParam: "--control.nginxSentinel=" + $.configUpdateSentinelPath,
+          configUpdateSentinelParam: "--control.nginxSentinel=" + $.nginx.configUpdateSentinelPath,
 
           customer_certs_volume: {
             emptyDir: {
