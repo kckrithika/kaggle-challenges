@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.kingdom == "prd" || configs.kingdom == "xrd" || configs.kingdom == "frf" then configs.daemonSetBase("sam") {
+configs.daemonSetBase("sam") {
     spec+: {
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
@@ -72,4 +72,4 @@ if configs.kingdom == "prd" || configs.kingdom == "xrd" || configs.kingdom == "f
         } + configs.ownerLabel.sam,
         name: "sam-network-reporter",
     },
-} else "SKIP"
+}
