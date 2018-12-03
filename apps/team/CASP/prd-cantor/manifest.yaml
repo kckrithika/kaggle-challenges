@@ -24,7 +24,7 @@ system:
           containerPort: 8084
           hostPort: 18084
         volumeMounts:
-        - mountPath: /home/sfdc-cantor/
+        - mountPath: /home/sfdc-cantor/mysql/
           name: cantor-vol
         livenessProbe:
           exec:
