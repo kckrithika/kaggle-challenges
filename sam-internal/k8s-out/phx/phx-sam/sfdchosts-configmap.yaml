@@ -1577,6 +1577,50 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc1-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "w12-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc1-2-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "w04-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc2-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "r07-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc2-2-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "s24-40",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_kingdom_caas",
           "controlestate": "phx-sam",
           "devicerole": "samcompute",
@@ -1662,6 +1706,39 @@ data:
           "kingdom": "phx",
           "pod": "none",
           "rack": "v01-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mgmt_hub",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_mgmt_hub",
+          "hostname": "shared0-sammminionmgmthub1-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "v52-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mgmt_hub",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_mgmt_hub",
+          "hostname": "shared0-sammminionmgmthub2-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "h50-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mgmt_hub",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_mgmt_hub",
+          "hostname": "shared0-sammminionmgmthub3-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "s14-40",
           "superpod": "none"
         },
         {

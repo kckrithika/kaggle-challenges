@@ -1665,6 +1665,50 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc1-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "v32-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc1-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "c20-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc2-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "c20-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc2-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "p32-dh2",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_kingdom_caas",
           "controlestate": "dfw-sam",
           "devicerole": "samcompute",
@@ -1750,6 +1794,39 @@ data:
           "kingdom": "dfw",
           "pod": "none",
           "rack": "c02-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mgmt_hub",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_mgmt_hub",
+          "hostname": "shared0-sammminionmgmthub1-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "a01-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mgmt_hub",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_mgmt_hub",
+          "hostname": "shared0-sammminionmgmthub2-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "g35-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mgmt_hub",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_mgmt_hub",
+          "hostname": "shared0-sammminionmgmthub3-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "d03-dh2",
           "superpod": "none"
         },
         {
