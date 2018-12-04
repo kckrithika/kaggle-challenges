@@ -107,5 +107,45 @@ items:
     name: shared0-samminionreportcollector2-1-yhu.ops.sfdc.net
   - kind: User
     name: shared0-samminionreportcollector3-1-yhu.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: solr-service:yhu-sam_search:rolebinding
+    namespace: solr-service
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionsearch1-1-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch1-2-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch1-3-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch1-4-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch1-5-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch2-1-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch2-2-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch2-3-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch2-4-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch2-5-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch3-1-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch3-2-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch3-3-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch3-4-yhu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsearch3-5-yhu.ops.sfdc.net
 kind: List
 metadata: {}
