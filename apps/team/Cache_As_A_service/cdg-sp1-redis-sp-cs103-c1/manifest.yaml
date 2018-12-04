@@ -3,23 +3,22 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - rpragada@salesforce.com
+      - caas-dev@salesforce.com
   functions:
-  - name: redis-sp-cs104-pc
-    count: 8
+  - name: redis-sp-cs103-c1
+    count: 10
     containers:
     - name: caas-redis
       image: docker-all/dva/caas/release/caas-redis-4.0.10:7
       resources:
-        limits: { memory: "500M" }
-        requests: { memory: "500M" }
+        limits: { memory: "7G" }
+        requests: { memory: "7G" }
       volumeMounts:
         - mountPath: /home/sfdc-caas/logs
           name: logvol
       args:
         - --port=12000
-        - --maxMemoryMB=256
-        - --maxMemoryPolicy=noeviction
+        - --maxMemoryMB=4096
         - --logDir=/home/sfdc-caas/logs/redis-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         exec:
@@ -50,9 +49,7 @@ system:
          value: prod
        # SFDC_POD is used for cluster name
        - name: SFDC_POD
-         value: sp-cs104-pc
-       - name: CAAS_DUMMY_FOR_RESTART
-         value: 1
+         value: sp-cs103-c1
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }

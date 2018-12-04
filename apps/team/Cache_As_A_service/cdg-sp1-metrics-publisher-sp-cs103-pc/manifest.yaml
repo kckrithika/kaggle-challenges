@@ -5,7 +5,7 @@ system:
     email:
       - rpragada@salesforce.com
   functions:
-  - name: metrics-publisher-sp-cs103-c1
+  - name: metrics-publisher-sp-cs103-pc
     count: 1
     containers:
     - name: metrics-publisher
@@ -35,11 +35,9 @@ system:
          value: prod
        # SFDC_POD is used for cluster name
        - name: SFDC_POD
-         value: sp-cs103-c1
+         value: sp-cs103-pc
        - name: CAAS_ENVIRONMENT
          value: none
-       - name: CAAS_DUMMY_FOR_RESTART
-         value: 1
     volumes:
     - name: logvol
       hostPath:
