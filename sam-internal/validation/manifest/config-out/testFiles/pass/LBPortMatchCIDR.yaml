@@ -1,0 +1,67 @@
+{
+   "$expected": "pass",
+   "apiVersion": "v1",
+   "system": {
+      "functions": [
+         {
+            "containers": [
+               {
+                  "env": [
+                     {
+                        "name": "FOO_ENV_NAME",
+                        "value": "bar"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foo/bar:1.1-sfdc",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "port": 5432
+                     }
+                  },
+                  "name": "foo-container",
+                  "port": [
+                     {
+                        "containerPort": 5432
+                     }
+                  ],
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/foo-mount-path/",
+                        "name": "foo-volume-mounts"
+                     }
+                  ]
+               }
+            ],
+            "count": 1,
+            "name": "foo-function"
+         }
+      ],
+      "loadbalancers": [
+         {
+            "function": "foo-function",
+            "lbname": "foo-lb",
+            "ports": [
+               {
+                  "allow": [
+                     "10.213.128.128/26",
+                     "10.214.129.128/26",
+                     "10.215.133.0/24"
+                  ],
+                  "deny": [
+                     "10.2.128.128/26",
+                     "10.3.129.128/26",
+                     "10.4.133.0/24"
+                  ],
+                  "port": 5432,
+                  "targetport": 5432,
+                  "throttleswhitelist": [
+                     "10.210.128.128/26",
+                     "10.210.129.128/26",
+                     "10.210.133.0/24"
+                  ]
+               }
+            ]
+         }
+      ]
+   }
+}
