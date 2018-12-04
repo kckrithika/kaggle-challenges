@@ -35,17 +35,6 @@ local samreleases = import "samreleases.json";
          #[min.wang] Test Watchdog InitMetricsClient
          "prd, prd-samtest, node-controller, hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/min.wang/hypersam:20181029_160337.c61213b4.clean.minwang-ltm0",
          "prd,prd-sam,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rbhat/hypersam:20181115_172734.fc8dd4e3.dirty.rbhat-ltm1",
-        }
-        #[karim] Network reporter with port and high api server query fixes
-        + {
-            [std.substr(cl, 0, 3) + "," + cl + "," + "sam-network-reporter" + ",hypersam"]: "sam-0002364-0a657f10"
-            for cl in [
-                "frf-sam",
-                "prd-sam_storage",
-                "prd-sam_storagedev",
-                "prd-samtwo",
-                "prd-sdc",
-            ]
         },
 
     ### Per-phase image tags have been moved to samreleases.json
