@@ -108,7 +108,9 @@ spec:
         env:
         - name: KINGDOM
           value: xrd
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/slb-nginx-kms:v-0000054-f9b0050a
+        - name: PROXY_FLAVOR
+          value: hsm
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/slb-nginx-kms:v-0000056-929ed44d
         livenessProbe:
           httpGet:
             path: /
