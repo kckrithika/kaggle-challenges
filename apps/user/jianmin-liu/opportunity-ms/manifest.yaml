@@ -6,12 +6,86 @@ system:
     containers:
     - name: opportunity-ms
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/opportunity-ms:jianmin-20181203-6c9c812 # golang app
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx256m
+      - name: SCONE_DEPLOYMENT_JVM_OPTIONS
+        value: "-Dscone.service.name=opportunity-ms -Dmanagement.server.port=15372"
       ports:
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
       - containerPort: 8080
+        name: scone-http
       livenessProbe:
+        initialDelaySeconds: 15
         httpGet:
-          path: /
-          port: 8080
+          path: /manage/health
+          port: 15372
+
+    - name: beacon
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      args:
+      - -endpoint
+      - service-mesh/opportunity-ms:DATACENTER:7443     
+      - -logging.dir
+      - /log
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
+      - containerPort: 7443
+        name: h2-tls-in
+      - containerPort: 7012
+        name: grpc-in
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+      volumeMounts:
+        - name: logvol
+          mountPath: /log
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+
+  volumes:
+    - name: logvol
+      hostPath:
+        path: /home/opportunity-ms/logs
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - lbname: opportunitymslb
     function: opportunity-ms
