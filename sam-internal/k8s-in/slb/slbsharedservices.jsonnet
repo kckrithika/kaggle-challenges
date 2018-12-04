@@ -327,6 +327,9 @@
         ] + (if std.length(vipInterfaceName) > 0 then [
             # The default vip interface name is tunl0
             "--vipInterfaceName=" + vipInterfaceName,
+        ] else [])
+        + (if slbflights.nginxConfigSentinelPerPipeline then [
+            slbconfigs.nginx.configUpdateSentinelParam,
         ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.nginx.target_config_volume_mount,
@@ -351,7 +354,12 @@
                value: configs.kingdom,
             },
         ] + (if proxyFlavor != "" then [{ name: "PROXY_FLAVOR", value: proxyFlavor }] else []),
-        command: ["/runner.sh"],
+        command: [
+            "/runner.sh",
+        ] + (if slbflights.nginxConfigSentinelPerPipeline then [
+            slbconfigs.logsDir,
+            slbconfigs.nginx.configUpdateSentinelPath,
+        ] else []),
         livenessProbe: {
             httpGet: {
               path: "/",
@@ -362,7 +370,7 @@
         },
         volumeMounts: std.prune([
             slbconfigs.nginx.nginx_config_volume_mount,
-            slbconfigs.nginx_logs_volume_mount,
+            if slbflights.nginxConfigSentinelPerPipeline then slbconfigs.logs_volume_mount else slbconfigs.nginx_logs_volume_mount,
             slbconfigs.nginx.customer_certs_volume_mount,
         ]
         + madkub.madkubSlbCertVolumeMounts(slbconfigs.nginx.certDirs)
