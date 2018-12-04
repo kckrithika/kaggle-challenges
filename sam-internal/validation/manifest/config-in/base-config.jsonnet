@@ -273,10 +273,17 @@ local schemaID = "manifestConfigs";
             },
             "then": util.NotAllowed( [ "lbname", "volumeClaimTemplates" ] ),
             "else": {
-                allOf: [
-                    util.Required( [ "lbname" ] ),
-                    util.NotAllowed( [ "strategy" ] )
-                ]
+                "if": {
+                    properties: { 
+                        type: util.AllowedValues([ "stateful-set" ])
+                    }
+                },
+                "then": {
+                    allOf: [
+                        util.Required( [ "lbname" ] ),
+                        util.NotAllowed( [ "strategy" ] )
+                    ]
+                },
             },
         }
     },

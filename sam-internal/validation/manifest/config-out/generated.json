@@ -119,22 +119,33 @@
       },
       "TypesRequirements": {
          "else": {
-            "allOf": [
-               {
-                  "required": [
-                     "lbname"
-                  ]
-               },
-               {
-                  "propertyNames": {
-                     "not": {
-                        "enum": [
-                           "strategy"
-                        ]
-                     }
+            "if": {
+               "properties": {
+                  "type": {
+                     "enum": [
+                        "stateful-set"
+                     ]
                   }
                }
-            ]
+            },
+            "then": {
+               "allOf": [
+                  {
+                     "required": [
+                        "lbname"
+                     ]
+                  },
+                  {
+                     "propertyNames": {
+                        "not": {
+                           "enum": [
+                              "strategy"
+                           ]
+                        }
+                     }
+                  }
+               ]
+            }
          },
          "if": {
             "properties": {
@@ -513,7 +524,7 @@
                "pattern": "^[-a-z0-9]+$"
             },
             {
-               "pattern": "[a-z]"
+               "pattern": "[a-z0-9]"
             },
             {
                "not": {
