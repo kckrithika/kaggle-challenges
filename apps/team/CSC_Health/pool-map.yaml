@@ -78,6 +78,7 @@ apps:
     - hnd/hnd-sam_report_collector
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
+    - ia2/ia2-sam_report_collector
   observation-service-watchdog:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
@@ -103,6 +104,7 @@ apps:
     - hnd/hnd-sam_report_collector
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
+    - ia2/ia2-sam_report_collector
   expcandidate-service-watchdog:
   candidate-service-watchdog:
     - prd/prd-sam_report_collector
