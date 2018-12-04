@@ -42,9 +42,6 @@ system:
         exec:
           command:
           - "/home/scone/is-alive.sh"
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
 
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
@@ -68,24 +65,6 @@ system:
           command:
           - ./bin/is-ready
         initialDelaySeconds: 15
-      volumeMounts:
-        - name: logvol
-          mountPath: /log
-        - name: tls-client-cert
-          mountPath: /client-certs
-        - name: tls-server-cert
-          mountPath: /server-certs
-
-  volumes:
-    - name: logvol
-      hostPath:
-        path: /home/opportunity-ms/logs
-    - name: tls-client-cert
-      maddogCert:
-        type: client
-    - name: tls-server-cert
-      maddogCert:
-        type: server
   loadbalancers:
   - lbname: opportunitymslb
     function: opportunity-ms
