@@ -3,13 +3,13 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - iceplatformdev@salesforce.com 
+      - gk-support@salesforce.com
   functions:
   - name: gatekeeper-dashboard
     count: 3
     containers:
     - name: gatekeeper-dashboard
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ice-pd/gatekeeper-dashboard:1.1.0-22
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ice-pd/gateway:1.1.0-18
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -20,6 +20,7 @@ system:
       - containerPort: 8080
       - containerPort: 15372
       - containerPort: 7020
+      - containerPort: 8081
       volumeMounts:
       - mountPath: /secrets/
         name: secretvol
@@ -49,4 +50,7 @@ system:
         lbtype: tcp
       - port: 7020
         targetport: 7020
+        lbtype: tcp
+      - port: 81
+        targetport: 8081
         lbtype: tcp
