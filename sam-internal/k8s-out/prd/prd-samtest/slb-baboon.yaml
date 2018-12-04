@@ -52,8 +52,8 @@ spec:
         - --deleteBackendPodFlag=true
         - --client.serverInterface=lo
         - --chaosDeletePodFlag=true
-        - --chaosPodLabel="chaos.sfdc.net/podDelete=true"
-        - --chaosPodNamespace="user-jhankins"
+        - --chaosPodLabel=chaos.sfdc.net/podDelete=true
+        - --chaosPodNamespace=user-jhankins
         - --client.socketDir=/host/data/slb/config/slb-baboon
         - --client.dialSocket=true
         env:
