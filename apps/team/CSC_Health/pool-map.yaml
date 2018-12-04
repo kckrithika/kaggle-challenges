@@ -91,6 +91,7 @@ apps:
     - hnd/hnd-sam_report_collector
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
+    - ia2/ia2-sam_report_collector
   expcandidate-service:
   candidate-service:
     - prd/prd-sam_report_collector
@@ -118,6 +119,7 @@ apps:
     - hnd/hnd-sam_report_collector
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
+    - ia2/ia2-sam_report_collector
   expreportcollectorha:
   exprepcollavailwd:
   expcname-repcollavailwd:
