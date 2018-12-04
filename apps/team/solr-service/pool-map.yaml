@@ -3,3 +3,5 @@ apps:
   - ord/ord-sam_search
  search-prd:
   - prd/prd-sam_search
+ testk4a:
+  - prd/prd-sam_search
