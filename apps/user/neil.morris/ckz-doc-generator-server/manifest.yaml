@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: default
+  - name: ckz-doc-generator-server
     count: 2
     containers:
     - name: ckz-doc-generator-server
@@ -14,7 +14,7 @@ system:
           port: 9090
   loadbalancers:
   - lbname: ckz-doc-generator-server
-    function: default
+    function: ckz-doc-generator-server
     slbenabled: true
     ports:
       - port: 9090
