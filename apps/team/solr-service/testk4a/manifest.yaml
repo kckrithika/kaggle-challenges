@@ -23,7 +23,6 @@ system:
             - echo 1
           initialDelaySeconds: 5
           periodSeconds: 5
-      lbname: searchservers
       volumes:
         - name: secretvol
           k4aSecret:
