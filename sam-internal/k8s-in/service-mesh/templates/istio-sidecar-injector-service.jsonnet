@@ -12,7 +12,7 @@
     ports: [
       {
         name: "sidecar-injector-port",
-        port: 15009,
+        port: 443,
         targetPort: 15009,
       },
     ],

@@ -5,7 +5,7 @@ local madkub = (import "istio-madkub.jsonnet") + { templateFilename:: std.thisFi
 local certDirs = ["cert1"];
 
 local webhookCerts = {
-  caFile: "/cert1/ca/cacerts.pem",
+  caFile: "/cert1/ca.pem",
   certFile: "/cert1/server/certificates/server.pem",
   keyFile: "/cert1/server/keys/server-key.pem",
 };
