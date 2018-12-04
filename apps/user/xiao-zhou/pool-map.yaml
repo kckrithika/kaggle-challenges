@@ -2,7 +2,7 @@ apps:
 # deployment-reporter-test:
 #  - prd/prd-samdev
  no-image-test:
-  - prd/prd-samtest
+#  - prd/prd-samtest
 #  - prd/prd-sam
  deployment-latency-reporter:
   - prd/prd-samdev
