@@ -5,7 +5,7 @@ system:
     email:
       - rpragada@salesforce.com
   functions:
-  - name: redis-sp-cs104-pc
+  - name: redis-sp-cs103-pc
     count: 8
     containers:
     - name: caas-redis
@@ -50,9 +50,7 @@ system:
          value: prod
        # SFDC_POD is used for cluster name
        - name: SFDC_POD
-         value: sp-cs104-pc
-       - name: CAAS_DUMMY_FOR_RESTART
-         value: 1
+         value: sp-cs103-pc
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }

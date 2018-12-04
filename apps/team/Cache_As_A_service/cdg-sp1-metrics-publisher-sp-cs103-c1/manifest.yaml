@@ -38,8 +38,6 @@ system:
          value: sp-cs103-c1
        - name: CAAS_ENVIRONMENT
          value: none
-       - name: CAAS_DUMMY_FOR_RESTART
-         value: 1
     volumes:
     - name: logvol
       hostPath:
