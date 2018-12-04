@@ -4,3 +4,6 @@ apps:
                  # you can also specify other pools
  opportunity-ms:
   - prd/prd-sam
+
+ product-ms:
+  - prd/prd-sam
