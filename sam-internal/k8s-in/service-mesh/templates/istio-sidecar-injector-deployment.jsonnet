@@ -1,11 +1,13 @@
 local configs = import "config.jsonnet";
 local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
+local madkub = (import "istio-madkub.jsonnet") + { templateFilename:: std.thisFile };
 
-// Using host certificates for now.
+local certDirs = ["cert1"];
+
 local webhookCerts = {
-  caFile: "/etc/pki_service/ca/cacerts.pem",
-  certFile: "/etc/pki_service/kubernetes/k8s-server/certificates/k8s-server.pem",
-  keyFile: "/etc/pki_service/kubernetes/k8s-server/keys/k8s-server-key.pem",
+  caFile: "/cert1/ca/cacerts.pem",
+  certFile: "/cert1/server/certificates/server.pem",
+  keyFile: "/cert1/server/keys/server-key.pem",
 };
 
 configs.deploymentBase("service-mesh") {
@@ -30,6 +32,16 @@ configs.deploymentBase("service-mesh") {
         annotations: {
           "sidecar.istio.io/inject": "false",
           "scheduler.alpha.kubernetes.io/critical-pod": "",
+          "madkub.sam.sfdc.net/allcerts":
+          std.manifestJsonEx(
+            {
+              certreqs:
+                [
+                  certReq
+                  for certReq in madkub.madkubIstioCertsAnnotation(certDirs).certreqs
+                ],
+            }, " "
+          ),
         },
       },
       spec: configs.specWithKubeConfigAndMadDog {
@@ -47,6 +59,8 @@ configs.deploymentBase("service-mesh") {
               "--meshConfig=/etc/istio/config/mesh",
               "--healthCheckInterval=2s",
               "--healthCheckFile=/health",
+              "--port=15009",
+              "--log_output_level=default:debug",
             ],
             volumeMounts+: [
               {
@@ -63,6 +77,12 @@ configs.deploymentBase("service-mesh") {
                 name: "inject-config",
                 mountPath: "/etc/istio/inject",
                 readOnly: true,
+              },
+            ] + madkub.madkubIstioCertVolumeMounts(certDirs),
+            ports: [
+              {
+                containerPort: 15009,
+                hostPort: 15009,
               },
             ],
             livenessProbe: {
@@ -95,7 +115,7 @@ configs.deploymentBase("service-mesh") {
               },
             },
           },
-        ],
+        ] + [madkub.madkubRefreshContainer(certDirs)],
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
@@ -129,6 +149,10 @@ configs.deploymentBase("service-mesh") {
               ],
             },
           },
+        ] + madkub.madkubIstioCertVolumes(certDirs)
+          + madkub.madkubIstioMadkubVolumes(),
+        initContainers+: [
+          madkub.madkubInitContainer(certDirs),
         ],
         affinity: {
           nodeAffinity: {
