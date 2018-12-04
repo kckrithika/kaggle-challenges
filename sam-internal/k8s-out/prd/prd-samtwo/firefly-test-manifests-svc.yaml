@@ -313,7 +313,7 @@ items:
           - name: CONFIG_VERSION
             value: "16"
           - name: DARKLAUNCH
-            value: "false"
+            value: "true"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: PACKAGE_QUEUE
@@ -744,7 +744,7 @@ items:
           - name: CONFIG_VERSION
             value: "14"
           - name: DARKLAUNCH
-            value: "false"
+            value: "true"
           - name: INSTANCE_TYPE
             value: test-manifests
           - name: PACKAGE_QUEUE
