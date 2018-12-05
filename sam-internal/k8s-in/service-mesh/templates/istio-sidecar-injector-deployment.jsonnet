@@ -60,7 +60,6 @@ configs.deploymentBase("service-mesh") {
               "--healthCheckInterval=2s",
               "--healthCheckFile=/health",
               "--port=15009",
-              "--log_output_level=default:debug",
             ],
             volumeMounts+: [
               {

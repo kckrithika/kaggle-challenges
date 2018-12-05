@@ -8,7 +8,7 @@
   local istioSans = [
     "istio-sidecar-injector",
     "istio-sidecar-injector.service-mesh",
-    "istio-sidecar-injector.service-mesh.svc",
+    "istio-sidecar-injector.service-mesh.svc",  // This is the one that works with webhook's clientConfig.service
     "istio-sidecar-injector.service-mesh.svc.%s" % configs.dnsdomain,
   ],
 

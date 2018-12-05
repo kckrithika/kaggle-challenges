@@ -15,9 +15,8 @@ configs.deploymentBase("service-mesh") {
     template: {
       metadata: {
         annotations: {
-          "sidecar.istio.io/status": "{\"version\":\"72c62d4fd573294d59a05ccbf9b25cd5627245f130b078c00d2b1f213d98da51\",\"initContainers\":[\"istio-init\"],\"containers\":[\"istio-proxy\"],\"volumes\":[\"istio-envoy\",\"istio-certs\"],\"imagePullSecrets\":null}",
+          "sidecar.istio.io/inject": "true",
         },
-        creationTimestamp: null,
         labels: {
           app: "shipping-istio",
           version: "v1",
@@ -37,144 +36,6 @@ configs.deploymentBase("service-mesh") {
                 containerPort: 7020,
               },
             ],
-            resources: {
-            },
-          },
-          {
-            args: [
-              "proxy",
-              "sidecar",
-              "--configPath",
-              "/etc/istio/proxy",
-              "--binaryPath",
-              "/usr/local/bin/envoy",
-              "--serviceCluster",
-              "shipping-istio",
-              "--drainDuration",
-              "45s",
-              "--parentShutdownDuration",
-              "1m0s",
-              "--discoveryAddress",
-              "istio-pilot.service-mesh:15010",
-              "--discoveryRefreshDelay",
-              "1s",
-              "--zipkinAddress",
-              "zipkin.istio-system:9411",
-              "--connectTimeout",
-              "10s",
-              "--proxyAdminPort",
-              "15000",
-              "--controlPlaneAuthPolicy",
-              "NONE",
-            ],
-            env: [
-              {
-                name: "POD_NAME",
-                valueFrom: {
-                  fieldRef: {
-                    fieldPath: "metadata.name",
-                  },
-                },
-              },
-              {
-                name: "POD_NAMESPACE",
-                valueFrom: {
-                  fieldRef: {
-                    fieldPath: "metadata.namespace",
-                  },
-                },
-              },
-              {
-                name: "INSTANCE_IP",
-                valueFrom: {
-                  fieldRef: {
-                    fieldPath: "status.podIP",
-                  },
-                },
-              },
-              {
-                name: "ISTIO_META_POD_NAME",
-                valueFrom: {
-                  fieldRef: {
-                    fieldPath: "metadata.name",
-                  },
-                },
-              },
-              {
-                name: "ISTIO_META_INTERCEPTION_MODE",
-                value: "REDIRECT",
-              },
-            ],
-            image: istioImages.proxy,
-            imagePullPolicy: "IfNotPresent",
-            name: "istio-proxy",
-            resources: {
-              requests: {
-                cpu: "10m",
-              },
-            },
-            securityContext: {
-              readOnlyRootFilesystem: true,
-              runAsUser: 1337,
-            },
-            volumeMounts: [
-              {
-                mountPath: "/etc/istio/proxy",
-                name: "istio-envoy",
-              },
-              {
-                mountPath: "/etc/certs/",
-                name: "istio-certs",
-                readOnly: true,
-              },
-            ],
-          },
-        ],
-        initContainers: [
-          {
-            args: [
-              "-p",
-              "15001",
-              "-u",
-              "1337",
-              "-m",
-              "REDIRECT",
-              "-i",
-              "*",
-              "-x",
-              "",
-              "-b",
-              "7020",
-              "-d",
-              "",
-            ],
-            image: istioImages.proxyinit,
-            imagePullPolicy: "IfNotPresent",
-            name: "istio-init",
-            resources: {
-            },
-            securityContext: {
-              capabilities: {
-                add: [
-                  "NET_ADMIN",
-                ],
-              },
-            },
-          },
-        ],
-        volumes: [
-          {
-            emptyDir: {
-              medium: "Memory",
-            },
-            name: "istio-envoy",
-          },
-          {
-            name: "istio-certs",
-            secret: {
-              optional: true,
-              secretName: "istio.default",
-            },
           },
         ],
       },
