@@ -9,7 +9,7 @@ system:
     - name: ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo
       args:
-      - --shipping.interval=5000
+      - --shipping.interval=2000
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
