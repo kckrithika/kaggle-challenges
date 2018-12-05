@@ -11,7 +11,9 @@
   spec: {
     ports: [
       {
+        name: "sidecar-injector-port",
         port: 443,
+        targetPort: 15009,
       },
     ],
     selector: {

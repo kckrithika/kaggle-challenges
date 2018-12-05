@@ -7,6 +7,8 @@ metadata:
   namespace: service-mesh
 spec:
   ports:
-  - port: 443
+  - name: sidecar-injector-port
+    port: 443
+    targetPort: 15009
   selector:
     istio: sidecar-injector
