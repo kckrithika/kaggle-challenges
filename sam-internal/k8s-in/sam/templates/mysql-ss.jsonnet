@@ -539,7 +539,7 @@ if configs.estate == "prd-sam" then {
                     {
                       metadata: {
                           annotations: {
-                              "volume.beta.kubernetes.io/storage-class": "standard-rdi-hdd-pool",
+                              "volume.beta.kubernetes.io/storage-class": "standard-ceph0-hdd-pool",
                             },
                           creationTimestamp: null,
                           name: "mysql-persistent-storage-replicated",
