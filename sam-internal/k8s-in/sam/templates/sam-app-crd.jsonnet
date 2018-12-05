@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "vpod" then {
+if configs.kingdom == "prd" || configs.kingdom == "vpod" || configs.kingdom == "frf" then {
    apiVersion: "apiextensions.k8s.io/v1beta1",
     kind: "CustomResourceDefinition",
     metadata: {
