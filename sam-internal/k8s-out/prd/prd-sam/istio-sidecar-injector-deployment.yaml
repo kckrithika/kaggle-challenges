@@ -100,7 +100,6 @@ spec:
         name: sidecar-injector-webhook
         ports:
         - containerPort: 15009
-          hostPort: 15009
         readinessProbe:
           exec:
             command:
