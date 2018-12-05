@@ -82,7 +82,6 @@ configs.deploymentBase("service-mesh") {
             ports: [
               {
                 containerPort: 15009,
-                hostPort: 15009,
               },
             ],
             livenessProbe: {
