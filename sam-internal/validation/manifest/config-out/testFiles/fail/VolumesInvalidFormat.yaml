@@ -1,5 +1,5 @@
 {
-   "$expected": {
+   "$expectedError": {
       "additional_property_not_allowed": 3
    },
    "apiVersion": "v1",

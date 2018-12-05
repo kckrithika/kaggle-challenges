@@ -1,5 +1,5 @@
 {
-   "$expected": {
+   "$expectedError": {
       "number_not": 3,
       "string_lte": 1
    },

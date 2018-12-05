@@ -1,5 +1,5 @@
 {
-   "$expected": "string_lte",
+   "$expectedError": "string_lte",
    "apiVersion": "v1",
    "system": {
       "functions": [

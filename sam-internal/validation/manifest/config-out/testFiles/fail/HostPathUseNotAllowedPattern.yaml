@@ -1,5 +1,5 @@
 {
-   "$expected": "number_not",
+   "$expectedError": "number_not",
    "apiVersion": "v1",
    "system": {
       "functions": [

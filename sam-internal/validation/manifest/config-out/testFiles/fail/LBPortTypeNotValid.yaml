@@ -1,5 +1,5 @@
 {
-   "$expected": "enum",
+   "$expectedError": "enum",
    "apiVersion": "v1",
    "system": {
       "functions": [

@@ -1,5 +1,5 @@
 {
-   "$expected": "required",
+   "$expectedError": "required",
    "apiVersion": "v1",
    "system": {
       "functions": [

@@ -12,7 +12,7 @@
                         "value": "bar"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foo/bar:1.1-sfdc",
+                  "image": "tnrp/caas/caas-redis:0.1-13175027-16",
                   "livenessProbe": {
                      "httpGet": {
                         "port": 5432
@@ -42,7 +42,6 @@
             "lbname": "foo-lb",
             "ports": [
                {
-                  "lbalgorithm": "leastconn",
                   "port": 5432,
                   "targetport": 5432
                }

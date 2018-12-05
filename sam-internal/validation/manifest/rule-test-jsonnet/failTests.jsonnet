@@ -4,7 +4,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 {
     "HostPathUseNotAllowedPattern.yaml": base {
         override+:: {
-            expected: expectedError.notAllowedValuesUsed,
+            expectedError: expectedError.notAllowedValuesUsed,
             functions: {
                 volumes: [
                     {
@@ -21,7 +21,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "HostPathDoesNotMatchPattern.yaml": base {
         override+:: {
-            expected: expectedError.doesNotMatchPattern,
+            expectedError: expectedError.doesNotMatchPattern,
             functions: {
                 volumes: [
                     {
@@ -38,7 +38,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "MaddogClientUsesLBNames.yaml": base {
         override+:: {
-            expected: expectedError.allowedValuesNotUsed,
+            expectedError: expectedError.allowedValuesNotUsed,
             functions: {
                 volumes: [
                     {
@@ -56,7 +56,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "EnvUseReservedName.yaml": base {
         override+:: {
-            expected: expectedError.notAllowedValuesUsed,
+            expectedError: expectedError.notAllowedValuesUsed,
             containers: {
                 env: [
                     { 
@@ -71,7 +71,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "EnvNameDoesNotMatchPattern.yaml": base {
         override+:: {
-            expected: expectedError.doesNotMatchPattern,
+            expectedError: expectedError.doesNotMatchPattern,
             containers: {
                 env: [ 
                     { 
@@ -86,7 +86,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "ImageFormShouldFail.yaml": base {
         override+:: {
-            expected: expectedError.doesNotMatchPattern,
+            expectedError: expectedError.doesNotMatchPattern,
             containers: {
                 image: "somerandomhost.net/docker/retail/fail:123"
             },
@@ -96,7 +96,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "ImageFormNotAllowed.yaml": base {
         override+:: {
-            expected: expectedError.notAllowedValuesUsed,
+            expectedError: expectedError.notAllowedValuesUsed,
             containers: {
                 image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foo/bar:latest"
             },
@@ -106,7 +106,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "ContainerUsesSecurityContext.yaml": base {
         override+:: {
-            expected: expectedError.notAllowedValuesUsed,
+            expectedError: expectedError.notAllowedValuesUsed,
             containers: {
                 securitycontext: "securityContextExistsShouldFail"
             },
@@ -116,7 +116,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "ContainerUsesLifeCycle.yaml": base {
         override+:: {
-            expected: expectedError.notAllowedValuesUsed,
+            expectedError: expectedError.notAllowedValuesUsed,
             containers: {
                 lifecycle: "lifeCycleExistsShouldFail"
             },
@@ -126,7 +126,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "VolumeMountUsesSubPath.yaml": base {
         override+:: {
-            expected: expectedError.notAllowedValuesUsed,
+            expectedError: expectedError.notAllowedValuesUsed,
             containers: {
                 volumeMounts: [
                     { 
@@ -142,7 +142,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "VolumesSecretDoesNotHaveSecretName.yaml": base {
         override+:: {
-            expected: expectedError.requiredPropertyDoesntExist,
+            expectedError: expectedError.requiredPropertyDoesntExist,
             functions: {
                 volumes: [
                     {
@@ -159,7 +159,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "VolumeMountInvalidMountPathPattern.yaml": base {
         override+:: {
-            expected: expectedError.doesNotMatchPattern,
+            expectedError: expectedError.doesNotMatchPattern,
             containers: {
                 volumeMounts: [
                     {              
@@ -174,7 +174,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "VolumeMountUseSecretWithNoReadOnly.yaml": base {
         override+:: {
-            expected: expectedError.requiredPropertyDoesntExist,
+            expectedError: expectedError.requiredPropertyDoesntExist,
             containers: {
                 volumeMounts: [
                     {
@@ -189,7 +189,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "VolumeMountUseSecretWithFalseReadyOnly.yaml": base {
         override+:: {
-            expected: expectedError.allowedValuesNotUsed,
+            expectedError: expectedError.allowedValuesNotUsed,
             containers: {
                 volumeMounts: [
                     {
@@ -205,7 +205,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "VolumesInvalidFormat.yaml": base {
         override+:: {
-            expected: {
+            expectedError: {
                 [ expectedError.additionalPropertyNotAllowed ]: 3
             },
             functions: {
@@ -233,7 +233,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "VolumesEmptyDirNotEmpty.yaml": base {
         override+:: {
-            expected: expectedError.additionalPropertyNotAllowed,
+            expectedError: expectedError.additionalPropertyNotAllowed,
             functions: {
                 volumes: [
                     {
@@ -250,7 +250,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "LivenessProbeHttpGetPortDoesntExist.yaml": base {
         override+:: {
-            expected: expectedError.requiredPropertyDoesntExist,
+            expectedError: expectedError.requiredPropertyDoesntExist,
             containers: {
                 livenessProbe: {
                     httpGet: {
@@ -264,7 +264,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "SystemDoesNotExist.yaml": base {
         override+:: {
-            expected: expectedError.requiredPropertyDoesntExist,
+            expectedError: expectedError.requiredPropertyDoesntExist,
         },
         system:: "hidden"
     },
@@ -272,7 +272,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "FunctionDoesNotExist.yaml": base {
         override+:: {
-            expected: expectedError.requiredPropertyDoesntExist,
+            expectedError: expectedError.requiredPropertyDoesntExist,
             system: {
                 functions:: "hidden"
             },
@@ -282,7 +282,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "ContainersDoesNotExist.yaml": base {
         override+:: {
-            expected: expectedError.requiredPropertyDoesntExist,
+            expectedError: expectedError.requiredPropertyDoesntExist,
             functions: { 
                 containers:: "hidden" 
             },
@@ -292,7 +292,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "EnvValueDoesNotExist.yaml": base {
         override+:: {
-            expected: expectedError.requiredPropertyDoesntExist,
+            expectedError: expectedError.requiredPropertyDoesntExist,
             containers: {
                 env: [ 
                     { name: "SOME_ENV_NAME" } 
@@ -304,7 +304,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "ContainerImageDoesNotExist.yaml": base {
         override+:: {
-            expected: expectedError.requiredPropertyDoesntExist,
+            expectedError: expectedError.requiredPropertyDoesntExist,
             containers: {
                 image:: "hidden"
             },
@@ -314,7 +314,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "ContainerLivenessProbeDoesntExist.yaml": base {
         override+:: {
-            expected: expectedError.requiredPropertyDoesntExist,
+            expectedError: expectedError.requiredPropertyDoesntExist,
             containers: {
                 livenessProbe:: "hidden"
             },
@@ -324,7 +324,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "VolumeMountMountPathDoesNotExist.yaml": base {
         override+:: {
-            expected: expectedError.requiredPropertyDoesntExist,
+            expectedError: expectedError.requiredPropertyDoesntExist,
             containers: {
                 volumeMounts: [ 
                     { name: "no-mount-path" } 
@@ -335,7 +335,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "FunctionNameDoesNotMatchDNSPattern.yaml": base {
         override+:: {
-            expected: expectedError.doesNotMatchPattern,
+            expectedError: expectedError.doesNotMatchPattern,
             functions: {
                 name: "not:valid:dns:pattern"
             },
@@ -345,7 +345,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "ContainerNameMorethan63Characters.yaml": base {
         override+:: {
-            expected: expectedError.stringExceedsMax,
+            expectedError: expectedError.stringExceedsMax,
             containers: {
                 name: "this-should-be-valid-dns-pattern-but-is-longer-than-63-characters"
             },
@@ -354,7 +354,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "IdentityServiceNameIsNotDNS.yaml": base {
         override+:: {
-            expected: expectedError.doesNotMatchPattern,
+            expectedError: expectedError.doesNotMatchPattern,
             functions: {
                 identity: {
                     serviceName: "not_DNS_ValiD",
@@ -365,7 +365,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "BothFunctionAndSelectorExists.yaml": base {
         override+:: {
-            expected: expectedError.notAllowedValuesUsed,
+            expectedError: expectedError.notAllowedValuesUsed,
             loadbalancers: {
                 "function": "foo-function",
                 selector: "foo-selector"
@@ -375,7 +375,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "NeitherFunctionNorSelectorExists.yaml": base {
         override+:: {
-            expected: expectedError.requiredPropertyDoesntExist,
+            expectedError: expectedError.requiredPropertyDoesntExist,
             loadbalancers: {
                 "function":: "no function here",
                 selector:: "no selector neither"
@@ -385,7 +385,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "ContainerPortNameIsNotValid.yaml": base {
         override+:: {
-            expected: {
+            expectedError: {
                 [ expectedError.notAllowedValuesUsed ]: 3,
                 [ expectedError.stringExceedsMax ]: 1
             },
@@ -402,7 +402,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "FunctionTypeIsNeitherStatefulNorDeployment.yaml": base {
         override+:: {
-            expected: expectedError.allowedValuesNotUsed,
+            expectedError: expectedError.allowedValuesNotUsed,
             functions: {
                 type: "stateless"
             },
@@ -411,7 +411,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "StatefulFunctionTypeLBNameIsEmpty.yaml": base {
         override+:: {
-            expected: expectedError.requiredPropertyDoesntExist,
+            expectedError: expectedError.requiredPropertyDoesntExist,
             functions: {
                 type: "stateful-set"
             },
@@ -420,7 +420,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "StatefulFunctionTypeStrategyExists.yaml": base {
         override+:: {
-            expected: expectedError.notAllowedValuesUsed,
+            expectedError: expectedError.notAllowedValuesUsed,
             functions: {
                 type: "stateful-set",
                 lbname: "foo-lbname",
@@ -433,7 +433,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "StatelessFunctionTypeLBNameExists.yaml": base {
         override+:: {
-            expected: expectedError.notAllowedValuesUsed,
+            expectedError: expectedError.notAllowedValuesUsed,
             functions: {
                 lbname: "foo-lbname"
             },
@@ -442,7 +442,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "StatelessFunctionTypeVolumeClaimTemplateExists.yaml": base {
         override+:: {
-            expected: expectedError.notAllowedValuesUsed,
+            expectedError: expectedError.notAllowedValuesUsed,
             functions: {
                 volumeClaimTemplates: [
                     {
@@ -455,7 +455,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "LBPortTypeNotValid.yaml": base {
         override+:: {
-            expected: expectedError.allowedValuesNotUsed,
+            expectedError: expectedError.allowedValuesNotUsed,
             lbports: {
                 lbtype: "invalidType"
             },
@@ -464,7 +464,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "LBPortStickyExistsForTCP.yaml": base {
        override+:: {
-            expected: expectedError.notAllowedValuesUsed,
+            expectedError: expectedError.notAllowedValuesUsed,
             lbports: {
                 lbtype: "tcp",
                 sticky: 100
@@ -474,7 +474,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "LBPortAlgorithmNotValid.yaml": base {
        override+:: {
-            expected: expectedError.allowedValuesNotUsed,
+            expectedError: expectedError.allowedValuesNotUsed,
             lbports: {
                 lbalgorithm: "sdn"
             },
@@ -483,7 +483,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "LBPortRRAlgorithmHasDSRType.yaml": base {
        override+:: {
-            expected: expectedError.notAllowedValuesUsed,
+            expectedError: expectedError.notAllowedValuesUsed,
             lbports: {
                 lbalgorithm: "roundrobin",
                 lbtype: "dsr"
@@ -493,7 +493,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "LBThrottlesWhitelistNotValidCIDR.yaml": base {
        override+:: {
-            expected: expectedError.doesNotMatchPattern,
+            expectedError: expectedError.doesNotMatchPattern,
             lbports: {
                 throttleswhitelist: [ "10.213.128.128/34", "1023.213.128.128/31", "123.2133.1284.1218/31" ],
             },
@@ -502,7 +502,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "LBTlsCertificateIsInvalidTLS.yaml": base {
        override+:: {
-            expected: expectedError.doesNotMatchPattern,
+            expectedError: expectedError.doesNotMatchPattern,
             lbports: {
                 tlscertificate: "some:invalid:format",
                 tls: false

@@ -12,7 +12,7 @@
                         "value": "bar"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foo/bar:1.1-sfdc",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/foo/bar:123",
                   "livenessProbe": {
                      "httpGet": {
                         "port": 5432
@@ -42,7 +42,6 @@
             "lbname": "foo-lb",
             "ports": [
                {
-                  "lbalgorithm": "leastconn",
                   "port": 5432,
                   "targetport": 5432
                }

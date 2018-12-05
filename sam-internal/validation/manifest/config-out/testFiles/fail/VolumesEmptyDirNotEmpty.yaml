@@ -1,5 +1,5 @@
 {
-   "$expected": "additional_property_not_allowed",
+   "$expectedError": "additional_property_not_allowed",
    "apiVersion": "v1",
    "system": {
       "functions": [
