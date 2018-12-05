@@ -18,7 +18,7 @@ system:
       - name: JAVA_HEAP_OPTS
         value: -Xmx256m
       - name: SCONE_DEPLOYMENT_JVM_OPTIONS
-        value: "-Dscone.service.name=ordering-service-envoy-tls -Dmanagement.server.port=15372"
+        value: "-Dscone.service.name=ordering-service-envoy-tls -Dshipping.interval=5000 -Dmanagement.server.port=15372"
       ports:
       - containerPort: 7020
         name: grpc-svc
