@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.5.0.0.develop-1.5.bba8ec3.71
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.5.0.0.fr-mtls3.18dff1c.2
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Shared_Dev
@@ -36,7 +36,7 @@ system:
         - name: METRICS_FUNNEL_URI
           value: http://ajna0-funnel1-0-prd.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
-          value: http://cre-control-plane-ccp-dev-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8091/streamprocessing
+          value: cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:5443
         - name: DUMMY_RESTART_VAR
           value: helloworld1
         - name: JVM_ARGS
@@ -109,7 +109,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - retail-cre/cre-sp-ccp-dev:DATACENTER_ALLENV:7442
+      - retail-cre/cre-sp-ccp-dev:DATACENTER_ALLENV:7443
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
