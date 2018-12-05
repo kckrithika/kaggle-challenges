@@ -24,7 +24,7 @@ system:
         secretName: dev-eventbusajna-ens-v1
     containers:
     - name: dev-event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.5
+      image: sfci/mc-eventing/event-notification:1.0.6
       ports:
       - containerPort: 15372
       env:
