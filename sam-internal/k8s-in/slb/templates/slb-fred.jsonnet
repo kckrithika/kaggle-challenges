@@ -32,6 +32,8 @@ if slbconfigs.isSlbEstate && slbflights.fredEnabled then configs.deploymentBase(
                         command: [
                                      "/sdn/slb-fred",
                                      "--log_dir=" + slbconfigs.logsDir,
+                                     "--commonoptions.metricsendpoint=" + configs.funnelVIP,
+                                     "--commonoptions.hostname=$(NODE_NAME)",
                                  ],
 
                         volumeMounts: std.prune([
