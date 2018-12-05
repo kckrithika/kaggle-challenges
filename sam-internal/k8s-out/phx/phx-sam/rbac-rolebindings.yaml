@@ -678,6 +678,24 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: gateway:phx-sam_gatewayconfig:rolebinding
+    namespace: gateway
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongwc1-1-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongwc1-2-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongwc2-1-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongwc2-2-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: cache-as-a-service:phx-sam_kingdom_caas:rolebinding
     namespace: cache-as-a-service
   roleRef:

@@ -239,6 +239,18 @@
     },
     {
       "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "dfw-sam",
+      "estate": "dfw-sam_gatewayconfig",
+      "kingdom": "dfw",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service"
       ],
       "access": [
@@ -1814,6 +1826,18 @@
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_gater",
+      "kingdom": "phx",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "phx-sam",
+      "estate": "phx-sam_gatewayconfig",
       "kingdom": "phx",
       "superPod": "None"
     },
