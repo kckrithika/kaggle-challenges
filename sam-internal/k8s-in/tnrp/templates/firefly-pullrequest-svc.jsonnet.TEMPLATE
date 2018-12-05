@@ -45,6 +45,10 @@ serviceDeployment {
             name: "docker-build-dir",
             mountPath: "/tmp",
         },
+        {
+            name: "firefly-root-dir",
+            mountPath: "/firefly",
+        },
     ],
     data:: {
         "application.yml": std.manifestJson(prConfig.config("firefly-pullrequest")),

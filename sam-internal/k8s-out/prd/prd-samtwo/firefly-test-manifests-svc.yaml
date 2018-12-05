@@ -358,6 +358,8 @@ items:
             name: docker-build-dir
           - mountPath: /root/.ssh/
             name: git-ssh-keys
+          - mountPath: /firefly
+            name: firefly-root-dir
         initContainers:
         - args:
           - /sam/madkub-client
@@ -419,6 +421,8 @@ items:
           name: docker-graph-storage
         - emptyDir: {}
           name: docker-build-dir
+        - emptyDir: {}
+          name: firefly-root-dir
         - emptyDir:
             medium: Memory
           name: tokens
@@ -837,6 +841,8 @@ items:
           name: docker-graph-storage
         - emptyDir: {}
           name: docker-build-dir
+        - emptyDir: {}
+          name: firefly-root-dir
         - emptyDir:
             medium: Memory
           name: tokens
@@ -874,7 +880,7 @@ items:
               },
               "instance-type": "${INSTANCE_TYPE}",
               "workspace-config": {
-                  "root-dir": "/tmp/firefly"
+                  "root-dir": "/firefly"
               }
           },
           "firefly": {
@@ -1167,6 +1173,8 @@ items:
             name: app-config-volume
           - mountPath: /tmp
             name: docker-build-dir
+          - mountPath: /firefly
+            name: firefly-root-dir
         - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:224
           name: dind-daemon
           securityContext:
@@ -1178,6 +1186,8 @@ items:
             name: docker-build-dir
           - mountPath: /root/.ssh/
             name: git-ssh-keys
+          - mountPath: /firefly
+            name: firefly-root-dir
         initContainers:
         - args:
           - /sam/madkub-client
@@ -1239,6 +1249,8 @@ items:
           name: docker-graph-storage
         - emptyDir: {}
           name: docker-build-dir
+        - emptyDir: {}
+          name: firefly-root-dir
         - emptyDir:
             medium: Memory
           name: tokens
@@ -1618,6 +1630,8 @@ items:
           name: docker-graph-storage
         - emptyDir: {}
           name: docker-build-dir
+        - emptyDir: {}
+          name: firefly-root-dir
         - emptyDir:
             medium: Memory
           name: tokens

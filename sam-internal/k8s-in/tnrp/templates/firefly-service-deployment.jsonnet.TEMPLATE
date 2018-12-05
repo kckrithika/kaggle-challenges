@@ -202,16 +202,20 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
              },
              volumeMounts: [
               {
-               name: "docker-graph-storage",
-               mountPath: "/var/lib/docker",
+                name: "docker-graph-storage",
+                mountPath: "/var/lib/docker",
               },
               {
-               name: "docker-build-dir",
-               mountPath: "/tmp",
+                name: "docker-build-dir",
+                mountPath: "/tmp",
               },
               {
-               name: "git-ssh-keys",
-               mountPath: "/root/.ssh/",
+                name: "git-ssh-keys",
+                mountPath: "/root/.ssh/",
+              },
+              {
+                name: "firefly-root-dir",
+                mountPath: "/firefly",
               },
              ],
           },
@@ -240,26 +244,30 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
             emptyDir: {},
           },
           {
-             name: "docker-build-dir",
-             emptyDir: {},
+            name: "docker-build-dir",
+            emptyDir: {},
           },
           {
-             name: "tokens",
-             emptyDir: {
-               medium: "Memory",
-             },
+            name: "firefly-root-dir",
+            emptyDir: {},
           },
           {
-             name: "certs",
-             emptyDir: {
-               medium: "Memory",
-             },
+            name: "tokens",
+            emptyDir: {
+              medium: "Memory",
+            },
           },
           {
-             name: "git-ssh-keys",
-             emptyDir: {
-               medium: "Memory",
-             },
+            name: "certs",
+            emptyDir: {
+              medium: "Memory",
+            },
+          },
+          {
+            name: "git-ssh-keys",
+            emptyDir: {
+              medium: "Memory",
+            },
           },
           configs.maddog_cert_volume,
           ],
@@ -267,7 +275,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
           nodeSelector: {
             pool: $.serviceConf.pool,
           },
-         },
+        },
       },
       strategy: {
         type: "RollingUpdate",
