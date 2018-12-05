@@ -43,7 +43,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --subnet=10.251.129.241-242,
+        - --subnet=10.254.250.0/25,
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001394-0738b28f
         name: slb-iface-processor
         securityContext:
@@ -67,7 +67,7 @@ spec:
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
-        - --subnet=10.251.129.241-242
+        - --subnet=10.254.250.0/25
         - --k8sapiserver=
         - --serviceList=
         - --useVipLabelToSelectSvcs=true
