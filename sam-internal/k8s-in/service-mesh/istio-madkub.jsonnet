@@ -8,7 +8,8 @@
   local istioSans = [
     "istio-sidecar-injector",
     "istio-sidecar-injector.service-mesh",
-    "istio-sidecar-injector.service-mesh.svc.%s.%s.sam.sfdc.net" % [configs.estate, configs.kingdom],
+    "istio-sidecar-injector.service-mesh.svc",
+    "istio-sidecar-injector.service-mesh.svc.%s" % configs.dnsdomain,
   ],
 
   local certRole = "istio.service-mesh",

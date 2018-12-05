@@ -28,6 +28,7 @@ spec:
              "san": [
               "istio-sidecar-injector",
               "istio-sidecar-injector.service-mesh",
+              "istio-sidecar-injector.service-mesh.svc",
               "istio-sidecar-injector.service-mesh.svc.prd-samtest.prd.sam.sfdc.net"
              ]
             }
