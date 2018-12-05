@@ -20,7 +20,7 @@ if configs.estate == "prd-sam" then {
             },
             spec: {
               podManagementPolicy: "OrderedReady",
-              replicas: 3,
+              replicas: 1,
               revisionHistoryLimit: 3,
               selector: {
                   matchLabels: {
