@@ -37,7 +37,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.5.35
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.5.43
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -90,7 +90,7 @@ system:
       - name: C2C_PATH
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL
-        value: https://na44.stmfa.stm.salesforce.com
+        value: https://login.stmfa.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
       - name: OAUTH_CONSUMER_KEY_FILE_PATH
