@@ -49,9 +49,9 @@
 
         subnet: {
             "prd-sdc": "10.254.247.0/24",
-            "prd-samtest": "10.251.129.241-242",
-            "prd-samdev": "10.251.129.243-248",
-            "prd-sam_storage": "10.251.129.249-254,10.251.199.240-247",
+            "prd-samtest": "10.254.250.0/25",
+            "prd-samdev": "10.254.250.128/25",
+            "prd-sam_storage": "10.254.251.0/25",
             "prd-sam_storagedev": "",  # TODO: find a real subnet for this new estate.
             "prd-sam": "10.251.196.0/22",
             "frf-sam": "10.214.36.0/22",

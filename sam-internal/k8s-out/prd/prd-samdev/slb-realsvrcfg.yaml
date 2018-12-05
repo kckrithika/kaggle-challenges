@@ -68,7 +68,7 @@ spec:
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
-        - --subnet=10.251.129.243-248
+        - --subnet=10.254.250.128/25
         - --k8sapiserver=
         - --serviceList=
         - --useVipLabelToSelectSvcs=true
