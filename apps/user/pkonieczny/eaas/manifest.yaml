@@ -69,7 +69,7 @@ system:
       image: sfci/servicelibs/sherpa-envoy:1.0.3
       ports:
       # plain-text HTTP2 GRPC port
-      - name: sherpa-eaas-in
+      - name: sherpa-eaas-grp
         containerPort: 7012
       # plain-text HTTP1 Jetty port
       - name: sherpa-eaas-jet
