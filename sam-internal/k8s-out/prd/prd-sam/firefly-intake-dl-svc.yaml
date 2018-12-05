@@ -399,6 +399,8 @@ items:
           name: docker-graph-storage
         - emptyDir: {}
           name: docker-build-dir
+        - emptyDir: {}
+          name: firefly-root-dir
         - emptyDir:
             medium: Memory
           name: tokens
