@@ -6,7 +6,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
   kind: "Service",
   metadata: {
     name: "shipping-istio",
-    namespace: "service-mesh",
+    namespace: "mesh-control-plane",
   },
   spec: {
     ports: [
