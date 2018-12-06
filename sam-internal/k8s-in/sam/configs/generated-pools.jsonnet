@@ -263,6 +263,18 @@
     },
     {
       "namespaces": [
+        "hubs"
+      ],
+      "access": [
+        "team/hubs"
+      ],
+      "controlEstate": "dfw-sam",
+      "estate": "dfw-sam_mgmt_hub",
+      "kingdom": "dfw",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "communities"
       ],
       "access": [
@@ -1855,6 +1867,18 @@
     },
     {
       "namespaces": [
+        "hubs"
+      ],
+      "access": [
+        "team/hubs"
+      ],
+      "controlEstate": "phx-sam",
+      "estate": "phx-sam_mgmt_hub",
+      "kingdom": "phx",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "communities"
       ],
       "access": [
@@ -2901,10 +2925,10 @@
     },
     {
       "namespaces": [
-        "user-jsg"
+        "hubs"
       ],
       "access": [
-        "user/jsg"
+        "team/hubs"
       ],
       "controlEstate": "xrd-sam",
       "estate": "xrd-sam_mgmt_hub",
