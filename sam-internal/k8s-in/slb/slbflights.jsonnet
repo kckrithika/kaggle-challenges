@@ -8,6 +8,7 @@ local configs = import "config.jsonnet";
     envoyProxyEnabled: (slbimages.phaseNum <= 1 || configs.estate == "prd-sam"),
     roleEnabled: (slbimages.phaseNum <= 1),
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
+    hsmFloat: (slbimages.phaseNum <= 2),
     useSlbScriptsInImage: (slbimages.hypersdn_build >= 1390),
     ipvsTurnDownOnSIGTERM: (slbimages.phaseNum <= 1),
     ifaceProcessorAddIfaceIfIPVSHost: (slbimages.phaseNum <= 1),
