@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
+local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.kingdom == "frf" then
+if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.kingdom == "frf" || utils.is_pcn(configs.kingdom) then
     {
         kind: "Deployment",
         spec: {
@@ -34,7 +35,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                                 configs.config_volume_mount,
                                 configs.cert_volume_mount,
                             ],
-                        },
+                        } + configs.containerInPCN,
                     ],
                     volumes+: [
                         configs.cert_volume,
@@ -73,7 +74,8 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
         metadata: {
             labels: {
                 name: "temp-crd-watcher",
-            } + configs.ownerLabel.sam,
+            } + configs.ownerLabel.sam
+            + configs.pcnEnableLabel,
             name: "temp-crd-watcher",
         },
     } else "SKIP"

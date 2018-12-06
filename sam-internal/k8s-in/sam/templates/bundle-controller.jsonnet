@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "vpod" || configs.kingdom == "frf" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "vpod" || configs.kingdom == "frf" || utils.is_pcn(configs.kingdom) then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -23,6 +23,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                             configs.config_volume_mount,
                         ],
                     }
+                    + configs.containerInPCN
                     + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                         livenessProbe: {
                              httpGet: {
@@ -64,7 +65,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
     metadata: {
         labels: {
             name: "bundlecontroller",
-        } + configs.ownerLabel.sam,
+        } + configs.ownerLabel.sam
+        + configs.pcnEnableLabel,
         name: "bundlecontroller",
         [if configs.kingdom == "vpod" then "namespace"]: "sam-system",
     },

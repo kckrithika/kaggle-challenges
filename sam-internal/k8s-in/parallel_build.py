@@ -18,12 +18,13 @@ MULTI_TEMP_DIR = "./multifile-temp/"
 
 # Info needed to process a set of jsonnet file for one estate for one team
 class jsonnet_workitem:
-    def __init__(self, kingdom, estate, jsonnet_files, output_dir, team_dir):
+    def __init__(self, kingdom, estate, jsonnet_files, output_dir, team_dir, label_filter):
         self.kingdom = kingdom
         self.estate = estate
         self.jsonnet_files = jsonnet_files
         self.output_dir = output_dir
         self.team_dir = team_dir
+        self.label_filter = label_filter
 
 # Simple run command wrapper
 # First return is true for success, second return is cmd+stdout+stderr
@@ -44,15 +45,34 @@ def run_cmd(cmd):
     except Exception as e:
         return False, combined + "\nException: " + str(e)
 
+def matchAnyLabel(labels, matchLabels):
+    for key in labels:
+        if key in matchLabels and labels[key] == matchLabels[key]:
+            return True
+    return False
+
 # For some apps we SKIP in template by writing "SKIP" to output file
-# Remove the output file when this happenes
+# For some apps we SKIP in template when metadata label not matching any of the given labels if given label is not empty
+# Remove the output file when this happens
 # Returns true if file is deleted
-def delete_if_skip(filename):
+def delete_if_skip(filename, matchLabels):
     with open(filename) as f:
-      lines = f.readlines()
-      if lines[0].strip() == "\"SKIP\"":
-          os.remove(filename)
-          return True
+        lines = f.readlines()
+        if lines[0].strip() == "\"SKIP\"":
+            os.remove(filename)
+            return True
+
+        f.seek(0)
+        if len(matchLabels) > 0:
+            fj = json.load(f)
+            try:
+                labels = fj["metadata"]["labels"]
+                if not matchAnyLabel(labels, matchLabels):
+                    os.remove(filename)
+                    return True
+            except KeyError:
+                os.remove(filename)
+                return True
     return False
 
 def make_multifile(item):
@@ -95,7 +115,7 @@ def run_jsonnet(item):
 
     if passed:
         for outfile in computed_out_files:
-            delete_if_skip(outfile)
+            delete_if_skip(outfile, item.label_filter)
     return (passed, msg)
 
 # Thread safe queues
@@ -157,7 +177,7 @@ def run_all_work_items(work_item_list):
     return ret
 
 # Returns a list of jsonnet_workitem
-def make_work_items(templates_args, output_root_dir, control_estates):
+def make_work_items(templates_args, output_root_dir, control_estates, label_filter):
     ret = []
     for template_arg in templates_args:
       if os.path.isdir(template_arg):
@@ -184,7 +204,7 @@ def make_work_items(templates_args, output_root_dir, control_estates):
                 mapTeamToFiles[teamDir].append(thisTemplate)
 
             for (team, files) in mapTeamToFiles.items():
-                ret.append(jsonnet_workitem(kingdom, estate, files, full_out_dir, team))
+                ret.append(jsonnet_workitem(kingdom, estate, files, full_out_dir, team, label_filter))
     return ret
 
 # Python does not ship with the yaml library by default, and we dont want to deal with dependencies in TNRP
@@ -227,6 +247,7 @@ def main():
     parser.add_argument('--out', help='Single output directory', required=True)
     parser.add_argument('--pools', help='Directory with structure of sam-internals/pools/ or a filename with json content', required=True)
     parser.add_argument('--estatefilter', help='Filter estates for local purposes only.  Supports a comma-seperated list of kingdom/estate.  Example: "prd/prd-samtest,prd-samdev"')
+    parser.add_argument('--labelfilter', help='Filter labels for jsonnet templates. Supports a comma-seperated list of key value pair.  Example: "pcn:deploy,author:jy"')
     args = parser.parse_args()
 
     template_dirs = args.src
@@ -239,6 +260,15 @@ def main():
         if len(this_filter.split("/")) > 2:
           print("Estate filter expected to be in format 'kingdom/estate' or '*somesubstring*' but got " + this_filter)
           sys.exit(1)
+    label_filter = {}
+    if args.labelfilter != None and len(args.labelfilter)>0:
+        filter = args.labelfilter.split(",")
+        for this_filter in filter:
+            kv = this_filter.split(":")
+            if len(kv) <> 2:
+                print("Label filter expected to be in format 'key:value' but got " + this_filter)
+                sys.exit(1)
+            label_filter[kv[0]] = kv[1]
 
     # Write temp files in CWD because they can be useful for debugging (we use gitignore)
     # We do this here because we dont want to do it in the multi-threaded code and have conflicts
@@ -259,7 +289,7 @@ def main():
         print("Filter matched the following estates: " + str(control_estates))
 
     # Do the work
-    work_items = make_work_items(template_dirs.split(","), output_dir, control_estates)
+    work_items = make_work_items(template_dirs.split(","), output_dir, control_estates, label_filter)
     failures = run_all_work_items(work_items)
 
     # Report results

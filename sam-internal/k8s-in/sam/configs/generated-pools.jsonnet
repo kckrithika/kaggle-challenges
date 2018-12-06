@@ -1678,6 +1678,18 @@
       "access": [
         "team/CSC_Sam"
       ],
+      "controlEstate": "pcn-sam",
+      "estate": "pcn-sam",
+      "kingdom": "pcn",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
       "controlEstate": "ph2-sam",
       "estate": "ph2-sam",
       "kingdom": "ph2",

@@ -3,7 +3,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local utils = import "util_functions.jsonnet";
 
 // Only for testing purpose
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "vpod" || configs.kingdom == "frf" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "vpod" || configs.kingdom == "frf" || utils.is_pcn(configs.kingdom) then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -33,6 +33,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                             configs.cert_volume_mount,
                         ],
                     }
+                    + configs.containerInPCN
                     + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
                         livenessProbe: {
                              httpGet: {
@@ -76,7 +77,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     metadata: {
         labels: {
             name: "samappcontroller",
-        } + configs.ownerLabel.sam,
+        } + configs.ownerLabel.sam
+        + configs.pcnEnableLabel,
         name: "samappcontroller",
         [if configs.kingdom == "vpod" then "namespace"]: "sam-system",
     },
