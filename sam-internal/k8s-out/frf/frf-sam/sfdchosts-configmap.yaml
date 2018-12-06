@@ -917,6 +917,39 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_datapool",
+          "hostname": "shared0-samminiondatapool1-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "j11-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_datapool",
+          "hostname": "shared0-samminiondatapool1-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "d17-m306",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_datapool",
+          "hostname": "shared0-samminiondatapool2-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "d17-m306",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_gater",
           "controlestate": "frf-sam",
           "devicerole": "samcompute",

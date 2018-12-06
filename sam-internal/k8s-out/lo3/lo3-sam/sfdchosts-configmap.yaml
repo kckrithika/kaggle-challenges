@@ -103,6 +103,39 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "lo3-sam",
+          "devicerole": "samcompute",
+          "estate": "lo3-sam_datapool",
+          "hostname": "shared0-samminiondatapool1-1-lo3.ops.sfdc.net",
+          "kingdom": "lo3",
+          "pod": "none",
+          "rack": "h05-dh22",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "lo3-sam",
+          "devicerole": "samcompute",
+          "estate": "lo3-sam_datapool",
+          "hostname": "shared0-samminiondatapool1-2-lo3.ops.sfdc.net",
+          "kingdom": "lo3",
+          "pod": "none",
+          "rack": "g04-dh22",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "lo3-sam",
+          "devicerole": "samcompute",
+          "estate": "lo3-sam_datapool",
+          "hostname": "shared0-samminiondatapool2-1-lo3.ops.sfdc.net",
+          "kingdom": "lo3",
+          "pod": "none",
+          "rack": "h05-dh22",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_gater",
           "controlestate": "lo3-sam",
           "devicerole": "samcompute",
@@ -155,6 +188,50 @@ data:
           "kingdom": "lo3",
           "pod": "none",
           "rack": "h09-dh22",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "lo3-sam",
+          "devicerole": "samcompute",
+          "estate": "lo3-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc1-1-lo3.ops.sfdc.net",
+          "kingdom": "lo3",
+          "pod": "none",
+          "rack": "h06-dh22",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "lo3-sam",
+          "devicerole": "samcompute",
+          "estate": "lo3-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc1-2-lo3.ops.sfdc.net",
+          "kingdom": "lo3",
+          "pod": "none",
+          "rack": "h03-dh22",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "lo3-sam",
+          "devicerole": "samcompute",
+          "estate": "lo3-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc2-1-lo3.ops.sfdc.net",
+          "kingdom": "lo3",
+          "pod": "none",
+          "rack": "h06-dh22",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "lo3-sam",
+          "devicerole": "samcompute",
+          "estate": "lo3-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc2-2-lo3.ops.sfdc.net",
+          "kingdom": "lo3",
+          "pod": "none",
+          "rack": "b15-dh22",
           "superpod": "none"
         }
       ]
