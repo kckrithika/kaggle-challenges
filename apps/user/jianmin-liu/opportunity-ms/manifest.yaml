@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: opportunity-ms
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/opportunity-ms:jianmin-20181205-6c9c812-6 # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/opportunity-ms:jianmin-20181206-6c9c812 # golang app
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
