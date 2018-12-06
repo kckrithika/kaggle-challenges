@@ -1467,6 +1467,39 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_datapool",
+          "hostname": "shared0-samminiondatapool1-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "v52-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_datapool",
+          "hostname": "shared0-samminiondatapool1-2-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "r05-40",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "phx-sam",
+          "devicerole": "samcompute",
+          "estate": "phx-sam_datapool",
+          "hostname": "shared0-samminiondatapool2-1-phx.ops.sfdc.net",
+          "kingdom": "phx",
+          "pod": "none",
+          "rack": "s05-40",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_eaas",
           "controlestate": "phx-sam",
           "devicerole": "samcompute",

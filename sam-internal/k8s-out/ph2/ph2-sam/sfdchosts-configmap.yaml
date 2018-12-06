@@ -103,6 +103,39 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "ph2-sam",
+          "devicerole": "samcompute",
+          "estate": "ph2-sam_datapool",
+          "hostname": "shared0-samminiondatapool1-1-ph2.ops.sfdc.net",
+          "kingdom": "ph2",
+          "pod": "none",
+          "rack": "b42-dh10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "ph2-sam",
+          "devicerole": "samcompute",
+          "estate": "ph2-sam_datapool",
+          "hostname": "shared0-samminiondatapool1-2-ph2.ops.sfdc.net",
+          "kingdom": "ph2",
+          "pod": "none",
+          "rack": "a49-dh10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_datapool",
+          "controlestate": "ph2-sam",
+          "devicerole": "samcompute",
+          "estate": "ph2-sam_datapool",
+          "hostname": "shared0-samminiondatapool2-1-ph2.ops.sfdc.net",
+          "kingdom": "ph2",
+          "pod": "none",
+          "rack": "b42-dh10",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_gater",
           "controlestate": "ph2-sam",
           "devicerole": "samcompute",
@@ -155,6 +188,50 @@ data:
           "kingdom": "ph2",
           "pod": "none",
           "rack": "d25-dh10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "ph2-sam",
+          "devicerole": "samcompute",
+          "estate": "ph2-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc1-1-ph2.ops.sfdc.net",
+          "kingdom": "ph2",
+          "pod": "none",
+          "rack": "e64-dh10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "ph2-sam",
+          "devicerole": "samcompute",
+          "estate": "ph2-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc1-2-ph2.ops.sfdc.net",
+          "kingdom": "ph2",
+          "pod": "none",
+          "rack": "f42-dh10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "ph2-sam",
+          "devicerole": "samcompute",
+          "estate": "ph2-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc2-1-ph2.ops.sfdc.net",
+          "kingdom": "ph2",
+          "pod": "none",
+          "rack": "e64-dh10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "ph2-sam",
+          "devicerole": "samcompute",
+          "estate": "ph2-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc2-2-ph2.ops.sfdc.net",
+          "kingdom": "ph2",
+          "pod": "none",
+          "rack": "f42-dh10",
           "superpod": "none"
         },
         {

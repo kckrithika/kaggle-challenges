@@ -8,8 +8,15 @@ shared0-samkubeapi2-1-lo2.ops.sfdc.net,10.161.150.234/29,10.177.2.224/27,f03-01,
 shared0-samkubeapi2-2-lo2.ops.sfdc.net,10.161.150.235/29,10.177.3.0/27,f03-01,lo2-sam,4203061205
 shared0-samkubeapi3-1-lo2.ops.sfdc.net,10.161.150.242/29,10.177.2.128/27,b15-01,lo2-sam,4203041227
 shared0-samkubeapi3-2-lo2.ops.sfdc.net,10.161.150.243/29,10.177.2.160/27,b15-01,lo2-sam,4203041227
+shared0-samminiondatapool1-1-lo2.ops.sfdc.net,10.161.224.34/29,10.177.1.32/27,e04-01,lo2-sam_datapool,4203061208
+shared0-samminiondatapool1-2-lo2.ops.sfdc.net,10.161.224.42/29,10.177.1.0/27,b44-01,lo2-sam_datapool,4203031207
+shared0-samminiondatapool2-1-lo2.ops.sfdc.net,10.161.224.35/29,10.177.1.64/27,e04-01,lo2-sam_datapool,4203061208
 shared0-samminiongater1-1-lo2.ops.sfdc.net,10.161.150.210/29,10.177.0.0/27,a05-01,lo2-sam_gater,4203041210
 shared0-samminiongater1-2-lo2.ops.sfdc.net,10.161.150.211/29,10.177.0.32/27,a05-01,lo2-sam_gater,4203041210
 shared0-samminiongater1-3-lo2.ops.sfdc.net,10.161.150.212/29,10.177.0.64/27,a05-01,lo2-sam_gater,4203041210
 shared0-samminiongater2-1-lo2.ops.sfdc.net,10.161.150.219/29,10.177.0.96/27,b15-01,lo2-sam_gater,4203041227
 shared0-samminiongater2-2-lo2.ops.sfdc.net,10.161.150.218/29,10.177.0.128/27,b15-01,lo2-sam_gater,4203041227
+shared0-samminiongwc1-1-lo2.ops.sfdc.net,10.161.192.82/29,10.177.4.64/27,f03-01,lo2-sam_gatewayconfig,4203061205
+shared0-samminiongwc1-2-lo2.ops.sfdc.net,10.161.192.90/29,10.177.4.0/27,b04-01,lo2-sam_gatewayconfig,4203041207
+shared0-samminiongwc2-1-lo2.ops.sfdc.net,10.161.192.91/29,10.177.4.32/27,b04-01,lo2-sam_gatewayconfig,4203041207
+shared0-samminiongwc2-2-lo2.ops.sfdc.net,10.161.192.83/29,10.177.4.96/27,f03-01,lo2-sam_gatewayconfig,4203061205
