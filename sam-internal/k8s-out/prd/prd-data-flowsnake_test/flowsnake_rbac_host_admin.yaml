@@ -1,0 +1,41 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  name: hosts-are-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: User
+  name: fs1shared0-flowsnakemastertest1-1-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakemastertest1-2-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakemastertest1-3-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakemastertest2-1-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakemastertest2-2-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakeworkertest1-1-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakeworkertest1-2-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakeworkertest1-3-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakeworkertest1-5-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakeworkertest2-2-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakeworkertest2-3-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakeworkertest2-4-prd.eng.sfdc.net
+- kind: User
+  name: fs1shared0-flowsnakeworkertest2-5-prd.eng.sfdc.net
