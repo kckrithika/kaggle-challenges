@@ -2901,6 +2901,18 @@
     },
     {
       "namespaces": [
+        "user-jsg"
+      ],
+      "access": [
+        "user/jsg"
+      ],
+      "controlEstate": "xrd-sam",
+      "estate": "xrd-sam_mgmt_hub",
+      "kingdom": "xrd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "*"
       ],
       "access": [
