@@ -7,7 +7,7 @@ metadata:
   namespace: sam-system
 spec:
   minReadySeconds: 60
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -56,9 +56,19 @@ spec:
             nodeSelectorTerms:
             - matchExpressions:
               - key: slb-service
+                operator: NotIn
+                values:
+                - slb-ipvs
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: name
                 operator: In
                 values:
+                - slb-ipvs
                 - slb-hsm-nginx
+            topologyKey: kubernetes.io/hostname
       containers:
       - command:
         - /sdn/slb-nginx-config

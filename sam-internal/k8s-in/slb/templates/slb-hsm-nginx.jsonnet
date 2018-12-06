@@ -9,9 +9,7 @@ local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile,
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: slbconfigs.hsmNginxProxyName };
 local slbbasenginxproxy = (import "slb-base-nginx-proxy.libsonnet") + { dirSuffix:: slbconfigs.hsmNginxProxyName };
 
-local hsmNginxAffinity = {
-    // Currently, hsm-enabled nginx always lands on a labelled host
-    // When we enable nginx floating everywhere, we should make hsm nginx float as well
+local hsmNginxAffinity = if !slbflights.hsmFloat then {
     nodeAffinity: {
         requiredDuringSchedulingIgnoredDuringExecution: {
             nodeSelectorTerms: [{
@@ -23,16 +21,47 @@ local hsmNginxAffinity = {
             }],
         },
     },
+} else {
+    podAntiAffinity: {
+        requiredDuringSchedulingIgnoredDuringExecution: [{
+            labelSelector: {
+                matchExpressions: [{
+                    key: "name",
+                    operator: "In",
+                    values: [
+                        "slb-ipvs",
+                        slbconfigs.hsmNginxProxyName,
+                    ],
+                }],
+            },
+            topologyKey: "kubernetes.io/hostname",
+        }],
+    },
+    // Ensure that the floating nginx pods don't land on nodes allocated to ipvs.
+    nodeAffinity: {
+        requiredDuringSchedulingIgnoredDuringExecution: {
+            nodeSelectorTerms: [{
+                matchExpressions: [{
+                    key: "slb-service",
+                    operator: "NotIn",
+                    values: ["slb-ipvs"],
+                }],
+            }],
+        },
+    },
 };
+
+// The number of replicas to run in the cluster.
+local replicas = if !slbflights.hsmFloat then 1 else 2;
 
 local certDirs = ["cert1", "cert2"];
 
 if slbflights.hsmCanaryEnabled then
     slbbasenginxproxy.slbBaseNginxProxyDeployment(
       slbconfigs.hsmNginxProxyName,
-      1,
+      replicas,
       hsmNginxAffinity,
       slbimages.hsmnginx,
-      proxyFlavor=(if slbimages.hsmnginx_build >= 56 then "hsm" else "")
+      proxyFlavor="hsm",
 ) {}
 else "SKIP"
