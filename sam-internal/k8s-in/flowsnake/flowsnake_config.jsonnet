@@ -94,4 +94,24 @@ local util = import "util_functions.jsonnet";
     kubedns_synthetic_requests_config: if std.objectHas(self.kubedns_synthetic_requests_estates, estate) then
         self.kubedns_synthetic_requests_estates[estate] else {},
     node_controller_enabled: !self.is_minikube,
+
+    # State of RBAC in kubernetes
+    #   disabled          no RBAC anything.
+    #   host_only         host certs have cluster-admin rights
+    #   host_and_user     host certs have cluster-admin rights; Flowsnake (cluster)roles are created and bound to service accounts and client user IDs
+    #   user_only         Flowsnake (cluster)roles are created and bound to service accounts and client user IDs
+    # It is expected that legacy clusters will start at the top of this list and proceed downward one step at a time; host_only is necessary
+    # before changing the api server to use RBAC to bootstrap existing clusters. New clusters will be bootstrapped by starting the api server
+    # with AllowAny
+
+    kubernetes_rbac_stage: if self.is_minikube then
+            "user_only"
+        else if estate == "prd-data-flowsnake_test" then
+            "host_only"
+        else
+            "disabled",
+
+    kubernetes_hosts_are_admin: self.kubernetes_rbac_stage == "host_only" || self.kubernetes_rbac_stage == "host_and_user",
+    kubernetes_create_user_auth: self.kubernetes_rbac_stage == "host_and_user" || self.kubernetes_rbac_stage == "user_only",
+
 }
