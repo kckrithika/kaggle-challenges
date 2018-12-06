@@ -6,7 +6,7 @@ configs.deploymentBase("service-mesh") {
   metadata: {
     creationTimestamp: null,
     name: "ordering-istio",
-    namespace: "service-mesh",
+    namespace: "mesh-control-plane",
   },
   spec+: {
     replicas: 1,

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   name: shipping-istio
-  namespace: service-mesh
+  namespace: mesh-control-plane
 spec:
   replicas: 1
   selector:
