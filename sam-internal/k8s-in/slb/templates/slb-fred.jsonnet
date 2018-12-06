@@ -39,6 +39,9 @@ if slbconfigs.isSlbEstate && slbflights.fredEnabled then configs.deploymentBase(
                         volumeMounts: std.prune([
                             slbconfigs.logs_volume_mount,
                         ]),
+                        env: [
+                            slbconfigs.node_name_env,
+                        ],
                     },
                 ],
                 nodeSelector: {
