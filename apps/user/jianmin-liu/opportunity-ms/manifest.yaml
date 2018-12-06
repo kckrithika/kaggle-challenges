@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: opportunity-ms
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/opportunity-ms:jianmin-20181205-6c9c812-3 # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/opportunity-ms:jianmin-20181205-6c9c812-4 # golang app
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -25,6 +25,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
@@ -33,7 +34,7 @@ system:
         value: mesh
       args:
       - -endpoint
-      - service-mesh/opportunity-ms:DATACENTER:7443
+      - service-mesh/opportunity-ms:DATACENTER:7443     
       - -logging.dir
       - /log
       livenessProbe:
@@ -41,6 +42,29 @@ system:
         exec:
           command:
           - "/home/scone/is-alive.sh"
+
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
+      - containerPort: 7443
+        name: h2-tls-in
+      - containerPort: 7012
+        name: grpc-in
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
   loadbalancers:
   - lbname: opportunitymslb
     function: opportunity-ms
