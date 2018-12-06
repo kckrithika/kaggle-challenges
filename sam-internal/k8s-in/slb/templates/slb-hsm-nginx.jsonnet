@@ -9,19 +9,7 @@ local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile,
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: slbconfigs.hsmNginxProxyName };
 local slbbasenginxproxy = (import "slb-base-nginx-proxy.libsonnet") + { dirSuffix:: slbconfigs.hsmNginxProxyName };
 
-local hsmNginxAffinity = if !slbflights.hsmFloat then {
-    nodeAffinity: {
-        requiredDuringSchedulingIgnoredDuringExecution: {
-            nodeSelectorTerms: [{
-                matchExpressions: [{
-                    key: "slb-service",
-                    operator: "In",
-                    values: [slbconfigs.hsmNginxProxyName],
-                }],
-            }],
-        },
-    },
-} else {
+local hsmNginxAffinity = {
     podAntiAffinity: {
         requiredDuringSchedulingIgnoredDuringExecution: [{
             labelSelector: {
@@ -52,7 +40,7 @@ local hsmNginxAffinity = if !slbflights.hsmFloat then {
 };
 
 // The number of replicas to run in the cluster.
-local replicas = if !slbflights.hsmFloat then 1 else 2;
+local replicas = 2;
 
 local certDirs = ["cert1", "cert2"];
 
