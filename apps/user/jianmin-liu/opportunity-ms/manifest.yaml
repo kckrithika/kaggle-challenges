@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: opportunity-ms
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/opportunity-ms:jianmin-20181205-6c9c812-1 # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/opportunity-ms:jianmin-20181205-6c9c812-2 # golang app
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -25,29 +25,6 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
-      ports:
-      - containerPort: 15373
-        name: sherpa-adm
-      - containerPort: 7443
-        name: h2-tls-in
-      - containerPort: 7012
-        name: grpc-in
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
   loadbalancers:
   - lbname: opportunitymslb
     function: opportunity-ms
