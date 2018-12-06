@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: product-ms
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/product-ms:jianmin-20181204-b14c66b # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/product-ms:jianmin-20181206-b14c66b # golang app
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
