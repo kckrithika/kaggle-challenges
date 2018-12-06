@@ -41,8 +41,16 @@ exitIfMergeCommitFound() {
 
 exitIfMergeCommitFound
 
+# If running in Firefly, we need to remove everything from /tmp in order to make sure
+# any stale generated files don't interfere with the current run.
+# This is only needed for Firefly since execution environments are recycled accross runs
+if [ -z "$FIREFLY" ]; then
+    rm -rf /tmp/manifests || true
+else
+    rm -rf /tmp/* || true
+fi
+
 cd /tmp
-rm -rf manifests || true
 git clone git@git.soma.salesforce.com:sam/${TNRP_PRODUCT}.git manifests
 
 cd -
