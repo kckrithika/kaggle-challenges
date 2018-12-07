@@ -6,17 +6,17 @@ system:
       count: 1
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/emp/aqueduct:aqueduct # Use the latest version, see below
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/emp/aqueduct:aqueduct # Use the latest version, see below
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam" # Use whatever environment your kpod uses
         ports:
         - containerPort: 8080
-          name: externalEndpoint-aqueduct
+          name: ext-port
         - containerPort: 8082
-          name: internalEndpoint-aqueduct
+          name: inter-port
         - containerPort: 15372
-          name: managementPort
+          name: manage-port
         livenessProbe:
           initialDelaySeconds: 500
           periodSeconds: 30
@@ -25,6 +25,6 @@ system:
             path: /manage/health
             port: 15372
             scheme: HTTP
-        volumeMounts:
-          - mountPath: /home/sfdc-aqueduct/logs/
-            name: aqueduct-log-volume
+        # volumeMounts:
+        #   - mountPath: /home/sfdc-aqueduct/logs/
+        #     name: aqueduct-log-volume
