@@ -198,8 +198,10 @@ system:
       - name: PGDATA
         value: /var/lib/postgresql/data/pgdata
       volumeMounts:
-      - name: appcatalog-datavol
+      - name: appcatalog-datavol # OLD
         mountPath: /var/lib/postgresql/data
+      - name: appcatalog-datavol-rdi # NEW
+        mountPath: /var/lib/postgresql/data-rdi
       ports:
       - containerPort: 5432
 
@@ -225,8 +227,11 @@ system:
     terminationGracePeriodSeconds: 30
 
     volumeClaimTemplates:
-    - name: appcatalog-datavol
-      storageClassName: mobile-monitoring-postgres-storage-hdd-pool
+    - name: appcatalog-datavol # this is the old one
+      storageClassName: mobile-monitoring-postgres-storage-hdd-pool # this is the old one
+      storageSizeRequest: 1Gi
+    - name: appcatalog-datavol-rdi # NEW
+      storageClassName: standard-ceph0-hdd-pool # NEW
       storageSizeRequest: 1Gi
 
   loadbalancers:
