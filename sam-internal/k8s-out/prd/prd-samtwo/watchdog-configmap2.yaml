@@ -71,13 +71,12 @@ data:
           "until": "2018/06/12"
         },
         {
-          "checker": "etcdQuorumChecker",
+          "checker": "syntheticChecker",
           "estates": [
-            "phx-sam",
-            "ukb-sam",
-            "par-sam"
+            "lo2-sam",
+            "lo3-sam"
           ],
-          "until": "2018/11/12"
+          "until": "2019/01/07"
         }
       ],
       "tlsEnabled": true,
