@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # This script periodically deletes log files at the given path
-# Example usage: ./slb-cleanup-log /var/log/kern.*
-#                ./slb-cleanup-log /data/slb/log/slb-iface-processor
+# Example usage: ./slb-cleanup-logs /var/log/kern.*
+#                ./slb-cleanup-logs /data/slb/log/slb-iface-processor
 
 set -o errexit
 set -o nounset

@@ -14,4 +14,8 @@ local configs = import "config.jsonnet";
     antiDDOS: (slbimages.phaseNum <= 2),
     fredEnabled: (configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1380),
     nginxConfigSentinelPerPipeline: (slbimages.phaseNum <= 3),
+
+    // Gigantor celery logs are spamming the root disk partition (`/`) in fra. The root partition only has 100 GB, and is critical for
+    // services to function. Enabling this script in fra to clean those logs.
+    cleanupGigantorLogs: (configs.estate == "fra-sam"),
 }
