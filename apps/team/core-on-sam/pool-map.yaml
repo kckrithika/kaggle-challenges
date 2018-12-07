@@ -72,14 +72,6 @@ apps:
     - shared2-samminioncoreapp3-3-prd.eng.sfdc.net
 
  # CASAM team's coreapp deployments. Put the odd number ones in group 1 and even to group 2
- mist61-na3:
-  - name: prd/prd-sp2-sam_coreapp
-    hostSubList:
-    - shared2-samminioncoreapp1-1-prd.eng.sfdc.net
-    - shared2-samminioncoreapp1-2-prd.eng.sfdc.net
-    - shared2-samminioncoreapp1-3-prd.eng.sfdc.net
-    - shared2-samminioncoreapp1-4-prd.eng.sfdc.net
-    - shared2-samminioncoreapp1-5-prd.eng.sfdc.net
  mist61-na4:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
