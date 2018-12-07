@@ -21,7 +21,7 @@ std.prune({
   deletionEnabled: true,
 
   # Stateful
-  statefulAppEnabled: (if configs.kingdom == "prd" || configs.kingdom == "phx" then true else false),
+  statefulAppEnabled: true,
 
   # Image check
   imageCheckV2: true,
