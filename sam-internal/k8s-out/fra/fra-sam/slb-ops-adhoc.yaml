@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: slb-ops-adhoc
+  name: slb-ops-adhoc
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      app: slb-ops-adhoc
+      daemonset: "true"
+      sam.data.sfdc.net/owner: sam
+  template:
+    metadata:
+      labels:
+        app: slb-ops-adhoc
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+    spec:
+      containers:
+      - command:
+        - /bin/bash
+        - /config/slb-cleanup-logs.sh
+        - /var/log/celery-gigantor
+        - "3600"
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001398-01151104
+        name: slb-ops-adhoc
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /var/log
+          name: var-kern-log-volume
+        - mountPath: /config
+          name: config
+      dnsPolicy: Default
+      hostNetwork: true
+      nodeSelector:
+        pool: fra-slb
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - hostPath:
+          path: /var/log
+        name: var-kern-log-volume
+      - configMap:
+          name: slb-ops-adhoc
+        name: config
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate
