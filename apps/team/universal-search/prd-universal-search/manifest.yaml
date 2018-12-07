@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.9.6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.9.7
       ports:
       - name: service-port
         containerPort: 7020
@@ -203,13 +203,20 @@ system:
         path: /home/sfdc-scone-universal-search-mock-index-workflow/logs
     containers:
     - name: universal-search-mock-index-workflow-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-mock-index-workflow:0.0.13
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-mock-index-workflow:0.0.15
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
         name: scone-http
       - containerPort: 15372
         name: scone-mgmt
+      env:
+      - name: GRPC_HOST
+        value: universal-search-slb.universal-search.prd-sam.prd.slb.sfdc.net:7020
+      - name: SOLR_CHROOT
+        value: /search/universal/solr-cloud/shared
+      - name: INDEX_TENANTS
+        value: a,b,c
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
@@ -228,13 +235,24 @@ system:
         path: /home/sfdc-scone-universal-search-mock-streaming-index/logs
     containers:
     - name: universal-search-mock-streaming-index-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-mock-streaming-index:0.0.13
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-mock-streaming-index:0.0.15
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
         name: scone-http
       - containerPort: 15372
         name: scone-mgmt
+      env:
+      - name: GRPC_HOST
+        value: universal-search-slb.universal-search.prd-sam.prd.slb.sfdc.net:7020
+      - name: SOLR_CHROOT
+        value: /search/universal/solr-cloud/shared
+      - name: SOLR_ZKHOSTS
+        value: zoo1:2181,zoo2:2181,zoo3:2181
+      - name: STREAMING_TENANTS
+        value: a,b
+      - name: STREAMING_FIXEDDELAYMS
+        value: 5000
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
