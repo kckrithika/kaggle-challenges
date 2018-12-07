@@ -15,7 +15,7 @@ std.prune({
     #[a.mitra] rbac is disabled in prd-sam for k8s upgrade. snoozing alerts for now
     { instanceRegex: "-frf.ops.sfdc.net$", checker: "rbacChecker", until: "2018/06/12" },
     #[karim] maddog isn't up in lo2/l03 yet so synthetic always fails,
-    { estates: ["lo2-sam", "lo3-sam"], checker: "syntheticChecker", until: "2018/12/12" },
+    { estates: ["lo2-sam", "lo3-sam"], checker: "syntheticChecker", until: "2019/01/07" },
     ],
 
   # Shared
