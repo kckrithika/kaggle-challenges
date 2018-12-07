@@ -49,7 +49,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                 ],
                 nodeSelector: {
                               } +
-                              if configs.kingdom == "prd" then {
+                              if configs.kingdom == "prd" || configs.kingdom == "xrd" then {
                                   master: "true",
                               } else {
                                   pool: configs.estate,
