@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: product-ms
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/product-ms:jianmin-20181206-b14c66b # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/product-ms:jianmin-20181206-b14c66b-1 # golang app
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -35,7 +35,7 @@ system:
       # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER:7443
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
       - -logging.dir
       - /log
       livenessProbe:
