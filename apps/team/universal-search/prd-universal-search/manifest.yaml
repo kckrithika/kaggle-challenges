@@ -41,6 +41,13 @@ system:
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
       - name: JAAS_CONF
         value: /home/sfdc-usmt/krb-config/jaas-prd.conf
+      # DO NOT COPY THIS TO PRODUCTION - FOR TESTING ONLY
+      # Enable monitoring to test reindexing and schema deployment
+      - name: CONTROLPLANE_MONITORING_ENABLE
+        value: 'true'
+      # Monitor for schema changes every 1 minute
+      - name: CONTROLPLANE_MONITORING_FIXEDDELAYMS
+        value: '60000'
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
