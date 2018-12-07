@@ -37,9 +37,10 @@
               ) ss2
               WHERE "
               # cdebains is responsible for changing this back
-              + "(TotalCount < 10 AND NotReadyCount >=2 AND minionpool like 'par-sam' AND NotReadyPerc >=0.5) 
-              OR (TotalCount < 10 AND NotReadyCount >=2 AND minionpool not like 'par-sam')
-              AND (TotalCount < 6 AND NotReadyCount > 2 AND minionpool like 'ph2-sam_gater' AND now() > STR_TO_DATE('2019-01-30', '%Y-%m-%d'))
+              + "
+              (TotalCount < 10 AND NotReadyCount >=2 AND minionpool like 'par-sam' AND NotReadyPerc >=0.5) 
+              OR (TotalCount < 10 AND NotReadyCount > 2 AND minionpool like 'ph2-sam_gater' AND NotReadyPerc > 0.4 AND now() > STR_TO_DATE('2019-01-30', '%Y-%m-%d'))
+              OR (TotalCount < 10 AND NotReadyCount >=2 AND minionpool not like 'par-sam' AND minionpool not like 'ph2-sam_gater')
 
               OR (TotalCount >= 10 AND NotReadyPerc >=0.2)",
         }
