@@ -1,0 +1,52 @@
+{
+   "$expectedError": "pass",
+   "apiVersion": "v1",
+   "system": {
+      "functions": [
+         {
+            "containers": [
+               {
+                  "env": [
+                     {
+                        "name": "FOO_ENV_NAME",
+                        "value": "bar"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/foo/bar:123",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "port": 5432
+                     }
+                  },
+                  "name": "foo-container",
+                  "port": [
+                     {
+                        "containerPort": 5432
+                     }
+                  ],
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/foo-mount-path/",
+                        "name": "foo-volume-mounts"
+                     }
+                  ]
+               }
+            ],
+            "count": 1,
+            "name": "foo-function"
+         }
+      ],
+      "loadbalancers": [
+         {
+            "function": "foo-function",
+            "lbname": "foo-lb",
+            "ports": [
+               {
+                  "port": 5432,
+                  "targetport": 5432
+               }
+            ]
+         }
+      ]
+   }
+}

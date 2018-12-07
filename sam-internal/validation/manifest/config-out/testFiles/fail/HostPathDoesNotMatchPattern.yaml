@@ -1,0 +1,60 @@
+{
+   "$expectedError": "pattern",
+   "apiVersion": "v1",
+   "system": {
+      "functions": [
+         {
+            "containers": [
+               {
+                  "env": [
+                     {
+                        "name": "FOO_ENV_NAME",
+                        "value": "bar"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foo/bar:1.1-sfdc",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "port": 5432
+                     }
+                  },
+                  "name": "foo-container",
+                  "port": [
+                     {
+                        "containerPort": 5432
+                     }
+                  ],
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/foo-mount-path/",
+                        "name": "foo-volume-mounts"
+                     }
+                  ]
+               }
+            ],
+            "count": 1,
+            "name": "foo-function",
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/does/not/match/any/patterns"
+                  },
+                  "name": "bad-host-path"
+               }
+            ]
+         }
+      ],
+      "loadbalancers": [
+         {
+            "function": "foo-function",
+            "lbname": "foo-lb",
+            "ports": [
+               {
+                  "port": 5432,
+                  "targetport": 5432
+               }
+            ]
+         }
+      ]
+   }
+}

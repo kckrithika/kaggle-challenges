@@ -1,0 +1,18 @@
+{
+   "$expectedError": "required",
+   "apiVersion": "v1",
+   "system": {
+      "loadbalancers": [
+         {
+            "function": "foo-function",
+            "lbname": "foo-lb",
+            "ports": [
+               {
+                  "port": 5432,
+                  "targetport": 5432
+               }
+            ]
+         }
+      ]
+   }
+}
