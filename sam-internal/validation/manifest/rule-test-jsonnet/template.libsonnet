@@ -2,7 +2,7 @@ local sampleGoodPort = 5432;
 
 {
     override:: {
-        expectedError: error "'$expected' must be overridden as a string or array of strings. Accepted values are available in expectedTypes.libsonnet",
+        expectedError: "pass",
         system: {},
         functions: {},
         containers: {},

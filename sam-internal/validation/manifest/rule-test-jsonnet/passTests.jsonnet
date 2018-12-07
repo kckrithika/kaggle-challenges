@@ -1,14 +1,9 @@
 local base = import 'template.libsonnet';
-local expectedError = import 'expectedErrorTypes.libsonnet';
 
 {
     # Makes sure that the base fields are good
     # also checks DNS Validation as a bonus
-    "BaseManifestTest.yaml": base {
-        override+:: {
-            expectedError: expectedError.none
-        },
-    },
+    "BaseManifestTest.yaml": base,
 
     "GoodHostPath.yaml": base {
         local patterns = [
@@ -21,7 +16,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
         ],
 
         override+:: {
-            expectedError: expectedError.none,
             functions: {
                 volumes: [
                     {
@@ -39,7 +33,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "GoodCorpNetImageForm.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             containers: {
                 image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:dca7fd4"
             },
@@ -49,7 +42,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "GoodPrdPrefixImageForm.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             containers: {
                 image: "ops0-artifactrepo2-0-prd.data.sfdc.net/foo/bar:123"
             },
@@ -59,7 +51,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "GoodShortImageForm.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             containers: {
                 image: "tnrp/caas/caas-redis:0.1-13175027-16"
             },
@@ -69,7 +60,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "GoodMaddogValidation.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             functions: {
                 volumes: [
                     {
@@ -93,7 +83,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "GoodVolumeFormats.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             functions: {
                 volumes: [
                     {
@@ -120,7 +109,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "SecretVolumeUseSecretName.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             functions: {
                 volumes: [
                     {
@@ -143,7 +131,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "SecretVolumeMountReadOnlyIsTrue.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             containers: {
                 volumeMounts: [
                     {
@@ -159,7 +146,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "ContainerValidPortRange.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             containers: {
                 ports: [
                     { containerPort: 8012 },
@@ -174,7 +160,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
     // If imaged is on the excepted list, then livenessProbe doesn't have to exist
     "ValidExceptedLivenessProbe.yaml": base {
         override+::{
-            expectedError: expectedError.none,
             containers: {
                 livenessProbe:: "livenessprobe not needed",
                 image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/aqueduct-test-deploy:20170418"
@@ -184,7 +169,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "IdentityServiceAndPodNameAreDNS.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             functions: {
                 identity: {
                     serviceName: "good-service-name",
@@ -196,7 +180,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "ContainerPortNameAndNumAreValid.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             containers: {
                 ports: [
                     {
@@ -214,7 +197,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "FunctionTypeStateful.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             functions: {
                 type: "stateful-set",
                 lbname: "some-lb-name"
@@ -224,7 +206,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "FunctionTypeStateless.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             functions: {
                 type: "deployment"
             },
@@ -233,7 +214,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "LBPortValidType.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             lbports: {   
                 lbtype: "http",
                 reencrypt: true,
@@ -244,7 +224,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "LBPortValidAlgorithm.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             lbports: {
                 lbalgorithm: "leastconn"
             },
@@ -253,7 +232,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "LBPortMatchCIDR.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             lbports: {
                 allow: [ "10.213.128.128/26", "10.214.129.128/26", "10.215.133.0/24" ],
                 deny: [ "10.2.128.128/26", "10.3.129.128/26", "10.4.133.0/24" ],
@@ -264,7 +242,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
 
     "LBPortCertificateAndKeyMatchesTLS.yaml": base {
         override+:: {
-            expectedError: expectedError.none,
             lbports: {
                 tlscertificate: "secret_service:certificate:secret123",
                 tlskey: "secret_service:key123:secret",
