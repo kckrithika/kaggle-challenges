@@ -16,6 +16,6 @@ local configs = import "config.jsonnet";
     // Gigantor celery logs are spamming the root disk partition (`/`) in fra. The root partition only has 100 GB, and is critical for
     // services to function. Enabling this script in fra to clean those logs.
     cleanupGigantorLogs: (configs.estate == "fra-sam"),
-    dhParamsConfigMapEnabled: (slbimages.phaseNum <= 1),
-    nginxTlsConfigEnabled: (slbimages.phaseNum <= 1),
+    dhParamsConfigMapEnabled: (slbimages.phaseNum <= 2),
+    nginxTlsConfigEnabled: (slbimages.phaseNum <= 2),
 }
