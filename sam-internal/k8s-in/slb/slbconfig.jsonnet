@@ -408,6 +408,18 @@
             name: "customer-certs",
             mountPath: $.nginx.customerCertsPath,
           },
+
+          tlsparams_volume: {
+            name: "tlsparams-volume",
+            configMap: {
+              name: "slb-tlsparams",
+            },
+          },
+
+          tlsparams_volume_mount: {
+            name: "tlsparams-volume",
+            mountPath: "/tlsparams",
+          },
     },
 
     # Frequently used env variable: NODE_NAME
