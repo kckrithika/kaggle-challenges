@@ -28,3 +28,9 @@ system:
         httpGet:
           path: /manage/health
           port: 15375
+  loadbalancers:
+  - lbname: shipping-istio
+    function: shipping-istio
+    ports:
+    - port: 7020
+      targetport: 7020
