@@ -1,1 +1,5 @@
 apps:
+  shipping-istio:
+    - prd/prd-sam
+  ordering-istio:
+    - prd/prd-sam
