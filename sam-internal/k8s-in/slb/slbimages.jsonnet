@@ -25,9 +25,9 @@ local slbreleases = import "slbreleases.json";
     # SLB testEstates: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
 
     phase: (
-        if (estate == "prd-sdc") || (estate == "vpod") then
+        if (estate == "prd-sdc") then
             "1"
-        else if slbconfigs.isTestEstate || (estate == "prd-sam") then
+        else if slbconfigs.isTestEstate || (estate == "prd-sam") || (estate == "vpod") then
             "2"
         else if (estate == "prd-samtwo" || kingdom in { [k]: 1 for k in ['prd', 'xrd'] }) then
             "3"
