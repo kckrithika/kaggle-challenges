@@ -91,6 +91,10 @@ spec:
         - --commonconfig.fallCount=2
         - --commonconfig.healthTimeout=3000
         - --control.nginxSentinel=/host/data/slb/slb-hsm-nginx/config/nginx.sentinel
+        - --httpconfig.tlsConfigEnabled=true
+        - --httpconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA
+        - --httpconfig.allowedEcdhCurves=secp521r1:secp384r1:prime256v1
+        - --httpconfig.dhParamsFile=/tlsparams/dhparams.pem
         env:
         - name: NODE_NAME
           valueFrom:
@@ -114,6 +118,8 @@ spec:
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /tlsparams
+          name: tlsparams-volume
       - command:
         - /runner.sh
         - /host/data/slb/logs/slb-hsm-nginx
@@ -151,6 +157,8 @@ spec:
           name: cert2
         - mountPath: /host/data/slb
           name: var-slb-volume
+        - mountPath: /tlsparams
+          name: tlsparams-volume
       - command:
         - /sdn/slb-nginx-data
         - --target=/host/data/slb/slb-hsm-nginx/config
@@ -574,3 +582,6 @@ spec:
       - emptyDir:
           medium: Memory
         name: customer-certs
+      - configMap:
+          name: slb-tlsparams
+        name: tlsparams-volume
