@@ -43,7 +43,7 @@ local sidecarConfig = |||
           runAsNonRoot: false
           runAsUser: 0
           capabilities:
-            add:i
+            add:
             - NET_ADMIN
           restartPolicy: Always
 
