@@ -10,6 +10,8 @@ system:
     volumes:
     - name: envoy-config-volume
       emptyDir: {}
+    - name: coreapp-config-volume
+      emptyDir: {}
     - name: tls-client-cert
       maddogCert:
         type: client
@@ -83,6 +85,16 @@ system:
         - name: DEPLOYMENT
           value: B
 
+        # Wait for config override side car container to come up
+        - name: USE_CONFIG_SIDECAR
+          value: 1
+
+        # SAM host name - used in metrics publishing lib
+        - name: CASAM_HOST_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+
       livenessProbe:
         exec:
           command:
@@ -114,9 +126,11 @@ system:
           mountPath: /home/sfdc/logs/jvm
         - name: tls-client-cert
           mountPath: /etc/pki_service
+        - name: coreapp-config-volume
+          mountPath: /home/sfdc/config_override
 
     - name: envoy-sidecar-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180726-131741
+      image: sfci/casam/cyan-config:208cc2
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
@@ -168,6 +182,29 @@ system:
         mountPath: /certs/cert-client
       - name: tls-server-cert
         mountPath: /certs/cert-server
+
+    - name: config-sidecar
+      image: sfci/casam/coreapp_config_overrides:59cc18
+      env:
+      - name: CASAM_SETTINGS_PATH
+        value: prod.-.fra.cs103.app
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/live
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      volumeMounts:
+      - name: coreapp-config-volume
+        mountPath: /home/sfdc/config_override
 
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
