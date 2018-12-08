@@ -40,8 +40,10 @@ local sidecarConfig = |||
         [[ end -]]
         imagePullPolicy: IfNotPresent
         securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
           capabilities:
-            add:
+            add:i
             - NET_ADMIN
           restartPolicy: Always
 
