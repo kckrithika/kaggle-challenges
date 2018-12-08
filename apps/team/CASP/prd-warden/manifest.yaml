@@ -4,7 +4,6 @@ system:
     notifications:
       email:
         - paul.howden@salesforce.com
-        - pteyer@salesforce.com
         - akouthoofd@salesforce.com
     functions:
     - name: warden-func
