@@ -18,4 +18,5 @@ local configs = import "config.jsonnet";
     // services to function. Enabling this script in fra to clean those logs.
     cleanupGigantorLogs: (configs.estate == "fra-sam"),
     dhParamsConfigMapEnabled: (slbimages.phaseNum <= 1),
+    nginxTlsConfigEnabled: (slbimages.phaseNum <= 1),
 }

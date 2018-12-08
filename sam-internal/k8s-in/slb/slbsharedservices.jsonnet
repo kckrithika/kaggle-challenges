@@ -293,7 +293,7 @@
         }
         else {}
     ),
-    slbNginxConfig(deleteLimitOverride=0, vipInterfaceName=""): {
+    slbNginxConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false): {
         ports: [
             {
                 name: "slb-nginx-port",
@@ -330,12 +330,18 @@
         ] else [])
         + (if slbflights.nginxConfigSentinelPerPipeline then [
             slbconfigs.nginx.configUpdateSentinelParam,
+        ] else [])
+        + (if tlsConfigEnabled then [
+            "--httpconfig.tlsConfigEnabled=true",
+            "--httpconfig.allowedEcdhCurves=secp521r1:secp384r1:prime256v1",
+            "--httpconfig.dhParamsFile=/tlsparams/dhparams.pem",
         ] else []),
-        volumeMounts: configs.filter_empty([
+        volumeMounts: std.prune([
             slbconfigs.nginx.target_config_volume_mount,
             slbconfigs.slb_volume_mount,
             slbconfigs.logs_volume_mount,
             configs.sfdchosts_volume_mount,
+            if tlsConfigEnabled then slbconfigs.nginx.tlsparams_volume_mount else {},
         ]),
         securityContext: {
             privileged: true,
@@ -345,7 +351,7 @@
             configs.kube_config_env,
         ],
     },
-    slbNginxProxy(proxyImage, proxyFlavor=""): {
+    slbNginxProxy(proxyImage, proxyFlavor="", tlsConfigEnabled=false): {
         name: "slb-nginx-proxy",
         image: proxyImage,
         env: [
@@ -376,6 +382,7 @@
         + madkub.madkubSlbCertVolumeMounts(slbconfigs.nginx.certDirs)
         + [
             slbconfigs.slb_volume_mount,
+            if tlsConfigEnabled then slbconfigs.nginx.tlsparams_volume_mount else {},
         ]),
         readinessProbe: {
             httpGet: {
