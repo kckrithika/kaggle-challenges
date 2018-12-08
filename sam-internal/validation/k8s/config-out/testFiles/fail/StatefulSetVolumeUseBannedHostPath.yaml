@@ -1,0 +1,43 @@
+{
+   "$expectedError": "number_not",
+   "apiVersion": "extensions/v1beta1",
+   "kind": "StatefulSet",
+   "metadata": {
+      "labels": {
+         "name": "foo-label-name"
+      },
+      "name": "foo-metadata-name"
+   },
+   "spec": {
+      "serviceName": "foo-serviceName",
+      "template": {
+         "metadata": {
+            "labels": {
+               "name": "foo-label-name"
+            },
+            "name": "foo-metadata-name"
+         },
+         "spec": {
+            "containers": [
+               {
+                  "image": "foo:1.1.4",
+                  "name": "foo",
+                  "ports": [
+                     {
+                        "containerPort": 5432
+                     }
+                  ]
+               }
+            ],
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/usr"
+                  },
+                  "name": "good-name"
+               }
+            ]
+         }
+      }
+   }
+}

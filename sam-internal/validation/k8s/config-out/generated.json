@@ -1,0 +1,94 @@
+{
+   "$id": "k8sConfigs",
+   "Rule_AffinityValidation": {
+      "if": {
+         "allOf": [
+            {
+               "properties": {
+                  "key": {
+                     "enum": [
+                        "pool"
+                     ]
+                  }
+               }
+            },
+            {
+               "properties": {
+                  "operator": {
+                     "enum": [
+                        "In"
+                     ]
+                  }
+               }
+            }
+         ]
+      },
+      "then": {
+         "properties": {
+            "values": {
+               "maxItems": 1,
+               "minItems": 1
+            }
+         }
+      }
+   },
+   "Rule_IsDNSValidation": {
+      "maxLength": 63,
+      "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+   },
+   "Rule_StatefulSetSpecRequirements": {
+      "MustExist": {
+         "required": [
+            "serviceName"
+         ]
+      }
+   },
+   "Rule_ValidateNameInContainer": {
+      "IsEnvVarName": {
+         "allOf": [
+            {
+               "anyOf": [
+                  {
+                     "pattern": "^[-._a-zA-Z][-._a-zA-Z0-9]*$"
+                  }
+               ]
+            },
+            { }
+         ]
+      },
+      "IsQualifiedName": {
+         "oneOf": [
+            {
+               "maxLength": 63,
+               "pattern": "^([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$"
+            },
+            {
+               "allOf": [
+                  {
+                     "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)/([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$"
+                  },
+                  {
+                     "pattern": "^.{1,253}/.{1,63}$"
+                  }
+               ]
+            }
+         ]
+      }
+   },
+   "Rule_ValidateVolumes": {
+      "BannedHostPaths": {
+         "not": {
+            "enum": [
+               "/",
+               "/var",
+               "/usr",
+               "/bin",
+               "/lib",
+               "/sys",
+               "/opt",
+               "/boot"
+            ]
+         }
+      }
+   }
+}

@@ -1,7 +1,7 @@
 # NOTE: Do NOT override base OR modify base for team specific/whitelist rules
 
 local config = import "../manifest-overwrite.jsonnet";
-local util = import "util.jsonnet";
+local util = import "../../util.jsonnet";
 
 local schemaID = "manifestConfigs";
 

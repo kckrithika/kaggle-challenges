@@ -1,0 +1,60 @@
+{
+   "$expectedError": "pass",
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "foo-label-name"
+      },
+      "name": "foo-metadata-name"
+   },
+   "spec": {
+      "selector": {
+         "matchLabels": {
+            "name": "foo-selector-matchLabels-name"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "name": "foo-label-name"
+            },
+            "name": "foo-metadata-name"
+         },
+         "spec": {
+            "containers": [
+               {
+                  "image": "foo:1.1.4",
+                  "name": "foo",
+                  "ports": [
+                     {
+                        "containerPort": 5432
+                     }
+                  ]
+               },
+               {
+                  "env": [
+                     {
+                        "name": "GOOD_ENV_NAME"
+                     }
+                  ],
+                  "name": "valid-container-name",
+                  "volumeMounts": [
+                     {
+                        "name": "good-one-part-name"
+                     }
+                  ]
+               }
+            ],
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/notBanned"
+                  },
+                  "name": "good-name"
+               }
+            ]
+         }
+      }
+   }
+}

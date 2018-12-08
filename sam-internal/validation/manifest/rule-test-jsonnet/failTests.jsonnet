@@ -1,5 +1,5 @@
 local base = import 'template.libsonnet';
-local expectedError = import 'expectedErrorTypes.libsonnet';
+local expectedError = import '../../expectedErrorTypes.libsonnet';
 
 {
     "HostPathUseNotAllowedPattern.yaml": base {

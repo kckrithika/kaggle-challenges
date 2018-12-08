@@ -1,4 +1,4 @@
-local util = import "config-in/util.jsonnet";
+local util = import "../util.jsonnet";
 
 {
     # Exception for liveness probe, if container image matches any of the below, then livenessprobe is not a required field

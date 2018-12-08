@@ -1,5 +1,5 @@
 local base = import "base-config.jsonnet";
-local util = import "util.jsonnet";
+local util = import "../../util.jsonnet";
 local config = import "../manifest-overwrite.jsonnet";
 
 local schemaID = "manifestConfigs";
