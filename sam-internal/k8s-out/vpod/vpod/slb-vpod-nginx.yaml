@@ -178,8 +178,6 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-vpod-nginx
           name: var-logs-volume
-        - mountPath: /host/data/slb/config/slb-vpod-nginx
-          name: var-config-volume
       hostNetwork: true
       nodeSelector:
         master: "true"
