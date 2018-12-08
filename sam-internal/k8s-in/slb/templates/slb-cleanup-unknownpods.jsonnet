@@ -27,9 +27,6 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbconfigs.logs_volume,
                     configs.cert_volume,
                     configs.opsadhoc_volume,
-                ] + (if !slbflights.useSlbScriptsInImage then [
-                    configs.config_volume("slb-cleanup-unknownpods"),
-                ] else []) + [
                     configs.kube_config_volume,
                     {
                        hostPath: {
@@ -44,12 +41,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         image: slbimages.hypersdn,
                         command: [
                             "/bin/bash",
-                        ] + (if !slbflights.useSlbScriptsInImage then [
-                            "-xe",
-                            "/config/slb-cleanup-unknownpods.sh",
-                        ] else [
                             "/sdn/slb-cleanup-stuckpods.sh",
-                        ]),
+                        ],
                         volumeMounts: std.prune([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
@@ -57,9 +50,6 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             slbconfigs.logs_volume_mount,
                             configs.cert_volume_mount,
                             configs.opsadhoc_volume_mount,
-                        ] + (if !slbflights.useSlbScriptsInImage then [
-                            configs.config_volume_mount,
-                        ] else []) + [
                             configs.kube_config_volume_mount,
                             {
                                 name: "kubectl",

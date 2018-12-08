@@ -56,10 +56,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbconfigs.cleanup_logs_volume,
                     slbconfigs.proxyconfig_volume,
                     slbconfigs.slb_kern_log_volume,
-                ] + (if !slbflights.useSlbScriptsInImage then [
-                    configs.config_volume("slb-cleanup-logs"),
-                ] else [
-                ])),
+                ]),
                 containers: [
                     {
                         name: "slb-ipvs-installer",
@@ -227,18 +224,11 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         image: slbimages.hypersdn,
                         command: [
                             "/bin/bash",
-                        ] + (if !slbflights.useSlbScriptsInImage then [
-                            "/config/slb-cleanup-logs.sh",
-                        ] else [
                             "/sdn/slb-cleanup-log.sh",
-                        ]) + [
                             "/var/log/kern.*",
                             "3600",
                         ],
                         volumeMounts: std.prune([
-                        ] + (if !slbflights.useSlbScriptsInImage then [
-                            configs.config_volume_mount,
-                        ] else []) + [
                             slbconfigs.slb_kern_log_volume_mount,
                         ]),
                     },
