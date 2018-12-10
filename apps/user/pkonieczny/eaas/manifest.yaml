@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: eaas
-      image: docker-sfci-dev/sfci/pkonieczny/emailservice:2.0.21-fbd1054566ae916d8f286b56b78500a6d0888eab
+      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.21-852c87adab3a8340f9142404be5fe068a9363539
       ports:
       - name: grpc
         containerPort: 7020
@@ -24,10 +24,10 @@ system:
       resources:
         requests:
           memory: "12G"
-          cpu: "800m"
+          cpu: "1"
         limits:
           memory: "12G"
-          cpu: "800m"
+          cpu: "2"
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
@@ -35,12 +35,12 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 330
+        initialDelaySeconds: 160
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 300
+        initialDelaySeconds: 150
     - name: beacon-eaas
       image: docker-sfci-dev/sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
