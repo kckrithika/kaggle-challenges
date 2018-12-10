@@ -40,7 +40,7 @@
           ],
         },
       ],
-      failurePolicy: "Ignore",
+      failurePolicy: "Fail",
       namespaceSelector: {
         matchLabels: {
           "istio-injection": "enabled",
