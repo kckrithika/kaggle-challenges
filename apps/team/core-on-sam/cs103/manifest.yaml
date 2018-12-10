@@ -36,7 +36,7 @@ system:
 
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
-          value: 13065
+          value: 443
 
         # Set to true it PUBLIC_PORT is an https endpoint
         - name: PUBLIC_PORT_IS_SECURE
@@ -184,7 +184,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: sfci/casam/coreapp_config_overrides:59cc18
+      image: sfci/casam/coreapp_config_overrides:b81738
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.fra.cs103.app
@@ -219,16 +219,13 @@ system:
   loadbalancers:
   - lbname: cs103app-lb
     function: cs103app-fra
-    nodeExposed: true
+    slbEnabled: true
     ports:
-# JMX port of coreapp - used by Sequencer
-    - port: 8998
-      targetport: 8998
 # HTTP listen port of coreapp - Exposed only for debugging.
     - port: 8085
       targetport: 8085
 # side car Envoy's HTTPS listen port
-    - port: 13065
+    - port: 443
       targetport: 13065
 # side car Envoy's admin port - Exposed only for debugging purpose
     - port: 15373
