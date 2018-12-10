@@ -32,11 +32,20 @@ if slbconfigs.isSlbEstate && slbflights.georgeEnabled then configs.deploymentBas
                         command: [
                                      "/sdn/slb-fred",
                                      "--log_dir=" + slbconfigs.logsDir,
+                                     "--commonoptions.metricsendpoint=" + configs.funnelVIP,
+                                     "--commonoptions.hostname=$(NODE_NAME)",
+                                     "--vipName=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net",
+                                     "--port=9116",
+                                     "--downloadSize=1",
+                                     "--uploadSize=1",
                                  ],
 
                         volumeMounts: std.prune([
                             slbconfigs.logs_volume_mount,
                         ]),
+                        env: [
+                            slbconfigs.node_name_env,
+                        ],
                     },
                 ],
                 nodeSelector: {
