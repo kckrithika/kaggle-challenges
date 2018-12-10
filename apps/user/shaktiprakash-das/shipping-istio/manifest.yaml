@@ -29,8 +29,9 @@ system:
           path: /manage/health
           port: 15375
   loadbalancers:
-  - lbname: shipping-istio-lb
+  - lbname: shipping-istio
     function: shipping-istio
+    nodeExposed: true # All SAM services created from manifest are by default NodePort.
     ports:
-    - port: 7020
+    - port: 7030
       targetport: 7020
