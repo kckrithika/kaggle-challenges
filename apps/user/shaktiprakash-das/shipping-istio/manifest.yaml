@@ -31,7 +31,7 @@ system:
   loadbalancers:
   - lbname: shipping-istio
     function: shipping-istio
-    nodeExposed: true
+    nodeExposed: true # All SAM services created from manifest are by default NodePort.
     ports:
-    - port: 7020
+    - port: 7030
       targetport: 7020
