@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-logrotator
-      image: docker-all/dva/csc-health/candidate-service:1
+      image: docker-all/dva/csc-health/candidate-service:3
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: candidate-service
-      image: docker-all/dva/csc-health/candidate-service:1
+      image: docker-all/dva/csc-health/candidate-service:3
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -84,27 +84,20 @@ system:
         export CHS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
         export CHS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
         export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
-        export CHS_REPORTCOLLECTOR_WHITELIST=network-nvt,grok.server_watchdog,sandman,netmgt.sandman,mom ;
 
-        case ${KINGDOM} in
-          prd)
-            providers=network-nvt ;
-            providers+=,grok.server_watchdog ;
-            providers+=,sandman ;
-            providers+=,netmgt.sandman ;
-            providers+=,mom ;
-            providers+=,app.infrastructure-watchdog-cpt ;
-            providers+=,cbatch.infrastructure-watchdog-cpt ;
-            providers+=,dapp.infrastructure-watchdog-cpt ;
-            providers+=,ffx.infrastructure-watchdog-cpt ;
-            providers+=,health.infrastructure-watchdog-cpt ;
-            providers+=,search.infrastructure-watchdog-cpt ;
+        providers=grok.server_watchdog ;
+        providers+=,sandman ;
+        providers+=,netmgt.sandman ;
+        providers+=,mom ;
+        providers+=,app.infrastructure-watchdog-cpt ;
+        providers+=,cbatch.infrastructure-watchdog-cpt ;
+        providers+=,dapp.infrastructure-watchdog-cpt ;
+        providers+=,ffx.infrastructure-watchdog-cpt ;
+        providers+=,health.infrastructure-watchdog-cpt ;
+        providers+=,search.infrastructure-watchdog-cpt ;
 
-            export CHS_REPORTCOLLECTOR_WHITELIST=${providers} ;
-            export CHS_REPORTCOLLECTOR_POLLPERIOD=60s ;
-            ;;
-          *)
-        esac;
+        export CHS_REPORTCOLLECTOR_WHITELIST=${providers} ;
+        export CHS_REPORTCOLLECTOR_POLLPERIOD=60s ;
 
         /candidateservice
       "]
