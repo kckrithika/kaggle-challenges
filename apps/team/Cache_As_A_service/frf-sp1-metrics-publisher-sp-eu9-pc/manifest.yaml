@@ -40,7 +40,7 @@ system:
        - name: SFDC_POD
          value: sp-eu9-pc
        - name: CAAS_ENVIRONMENT
-         value: none
+         value: 1
     volumes:
     - name: logvol
       hostPath:
