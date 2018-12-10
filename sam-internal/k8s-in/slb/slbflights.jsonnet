@@ -18,4 +18,5 @@ local configs = import "config.jsonnet";
     cleanupGigantorLogs: (configs.estate == "fra-sam"),
     dhParamsConfigMapEnabled: (slbimages.hypersdn_build >= 1401),
     nginxTlsConfigEnabled: (slbimages.phaseNum <= 3),
+    georgeEnabled: (configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1380),
 }
