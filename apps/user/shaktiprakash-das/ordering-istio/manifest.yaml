@@ -15,7 +15,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: istio
       - name: SCONE_SHIPPING_DEST
-        value: shipping-istio:7020
+        value: shipping-istio:7030
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
