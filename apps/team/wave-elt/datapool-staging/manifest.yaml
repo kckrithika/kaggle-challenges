@@ -37,10 +37,10 @@ system:
         value: /home/datapool/client-certs/client
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
-        value: dva/flowsnake-job-datapool-engine:333
+        value: dva/datapool-engine:301
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_NEXT
-        value: dva/datapool-engine:jenkins-insights-WaveDataPool-master-267-itest
+        value: dva/datapool-engine:jenkins-insights-WaveDataPool-master-269-itest
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
         value: mist40,stmfa
