@@ -34,6 +34,8 @@ if slbconfigs.isSlbEstate && slbflights.fredEnabled then configs.deploymentBase(
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--commonoptions.metricsendpoint=" + configs.funnelVIP,
                                      "--commonoptions.hostname=$(NODE_NAME)",
+                                     "--vipName=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net",
+                                     "--port=9116",
                                  ],
 
                         volumeMounts: std.prune([
