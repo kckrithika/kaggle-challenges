@@ -74,7 +74,7 @@ system:
       - name: SECURITY_SERVER_DYNAMICKEYSTORE_CAFILE
         value: /servercerts/ca/cacerts.pem
       - name: SFDC_ENVIRONMENT
-        value: mist60
+        value: mist
       - name: TENANT_SOURCE_KEYS
         value: core/mist60ice1/00Dx00000005SubEAE,commercecloud/production/bbkhprd,cre/mist60ice1/00Dx00000005SuREAU
       - name: TENANT_SOURCE_NAMES
@@ -155,7 +155,7 @@ system:
       image: sfci/servicelibs/sherpa-envoy:1.0.1
       env:
       - name: SFDC_ENVIRONMENT
-        value: mist60
+        value: mist
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -192,7 +192,7 @@ system:
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       env:
       - name: SFDC_ENVIRONMENT
-        value: mist60
+        value: mist
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
