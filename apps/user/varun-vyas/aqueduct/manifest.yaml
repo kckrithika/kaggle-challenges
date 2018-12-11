@@ -10,6 +10,8 @@ system:
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam" # Use whatever environment your kpod uses
+        - name: SETTINGS_PATH
+          value: "prod.-.prd.aqueduct_SAM.aqueduct"
         ports:
         - containerPort: 8080
           name: ext-port
