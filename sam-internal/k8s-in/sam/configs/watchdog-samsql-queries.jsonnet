@@ -28,6 +28,7 @@
     (import "watchdog-samsql-alerts/sqlprfailedtoproducemanifestzip.libsonnet"),
     (import "watchdog-samsql-alerts/sqlprimageunavailable.libsonnet"),
     (import "watchdog-samsql-alerts/kubednspodcount.libsonnet"),
+    (import "watchdog-samsql-alerts/kubednspodcount-prod.libsonnet"),
   ],
 
 
