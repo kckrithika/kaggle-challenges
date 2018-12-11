@@ -107,6 +107,8 @@ local util = import "util_functions.jsonnet";
     kubernetes_rbac_stage: if self.is_minikube then
             "user_only"
         else if estate == "prd-data-flowsnake_test" then
+            "host_and_user"
+        else if std.startsWith(estate, "prd") then
             "host_only"
         else
             "disabled",
