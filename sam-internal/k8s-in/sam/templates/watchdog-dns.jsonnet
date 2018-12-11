@@ -3,7 +3,7 @@ local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if !utils.is_flowsnake_cluster(configs.estate) && !utils.is_gia(configs.kingdom) then
+if !utils.is_flowsnake_cluster(configs.estate) && !utils.is_gia(configs.kingdom) && configs.kingdom != "lo2" && configs.kingdom != "lo3" then
 configs.deploymentBase("sam") {
     spec+: {
         template: {
@@ -18,10 +18,10 @@ configs.deploymentBase("sam") {
                                      "-watchdogFrequency=5s",
                                      "-alertThreshold=3m",
                                      "-watchDogKind=" + $.kind,
+                                     "-emailFrequency=24h",
                                  ]
                                  + samwdconfig.shared_args
-                                 + (if configs.estate == "prd-sam" then samwdconfig.low_urgency_pagerduty_args else ["-recipient=rgade@salesforce.com"])
-                                 + (if configs.estate == "prd-sam" then ["-emailFrequency=24h"] else ["-emailFrequency=48h"]),
+                                 + (if configs.estate == "prd-sam" then samwdconfig.low_urgency_pagerduty_args else if configs.kingdom != "prd" && configs.kingdom != "xrd" then samwdconfig.pagerduty_args else []),
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
