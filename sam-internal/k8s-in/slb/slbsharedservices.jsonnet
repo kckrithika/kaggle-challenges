@@ -328,9 +328,7 @@
             # The default vip interface name is tunl0
             "--vipInterfaceName=" + vipInterfaceName,
         ] else [])
-        + (if slbflights.nginxConfigSentinelPerPipeline then [
-            slbconfigs.nginx.configUpdateSentinelParam,
-        ] else [])
+        + [slbconfigs.nginx.configUpdateSentinelParam]
         + (if tlsConfigEnabled then [
             "--httpconfig.tlsConfigEnabled=true",
             "--httpconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA",
@@ -363,10 +361,9 @@
         ] + (if proxyFlavor != "" then [{ name: "PROXY_FLAVOR", value: proxyFlavor }] else []),
         command: [
             "/runner.sh",
-        ] + (if slbflights.nginxConfigSentinelPerPipeline then [
             slbconfigs.logsDir,
             slbconfigs.nginx.configUpdateSentinelPath,
-        ] else []),
+        ],
         livenessProbe: {
             httpGet: {
               path: "/",
@@ -377,7 +374,7 @@
         },
         volumeMounts: std.prune([
             slbconfigs.nginx.nginx_config_volume_mount,
-            if slbflights.nginxConfigSentinelPerPipeline then slbconfigs.logs_volume_mount else slbconfigs.nginx_logs_volume_mount,
+            slbconfigs.logs_volume_mount,
             slbconfigs.nginx.customer_certs_volume_mount,
         ]
         + madkub.madkubSlbCertVolumeMounts(slbconfigs.nginx.certDirs)
