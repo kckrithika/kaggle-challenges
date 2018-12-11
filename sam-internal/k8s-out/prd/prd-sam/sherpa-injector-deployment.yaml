@@ -44,9 +44,6 @@ spec:
         - --template=test-container.yaml.template
         - --image=sfci/servicelibs/sherpa-envoy:1.0.4
         - --log-level=debug
-        env:
-        - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig-platform
         image: sfci/servicelibs/sherpa-injector:b61859372336343d3f26fabe0f35af5faa7b6225
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -66,11 +63,7 @@ spec:
           periodSeconds: 4
         resources: {}
         volumeMounts:
-        - mountPath: /etc/pki_service
-          name: maddog-certs
-        - mountPath: /kubeconfig
-          name: kubeconfig
-        - mountPath: /cert1
+        - mountPath: /server-certificates
           name: cert1
       - args:
         - /sam/madkub-client

@@ -38,7 +38,7 @@
           ],
         },
       ],
-      failurePolicy: "Ignore", //TODO: Set to "Fail", when the code/configs are stable
+      failurePolicy: "Ignore",  //TODO: Set to "Fail", when the code/configs are stable
       namespaceSelector: {
         matchExpressions: [
           {

@@ -43,7 +43,7 @@ configs.deploymentBase("service-mesh") {
       },
       spec: configs.specWithKubeConfigAndMadDog {
         containers: [
-          configs.containerWithKubeConfigAndMadDog {
+          {
             name: "sherpa-injector",
             image: "sfci/servicelibs/sherpa-injector:b61859372336343d3f26fabe0f35af5faa7b6225",
             imagePullPolicy: "IfNotPresent",
@@ -58,7 +58,7 @@ configs.deploymentBase("service-mesh") {
             volumeMounts+: [
               {
                 name: "cert1",
-                mountPath: "/cert1",
+                mountPath: "/server-certificates",
               },
             ],
             ports: [
