@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local istioUtils = import "istio-utils.jsonnet";
 
-{
+if configs.estate == "prd-samtest" then {
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
   kind: "ClusterRole",
   metadata: {
@@ -126,4 +126,4 @@ local istioUtils = import "istio-utils.jsonnet";
       ],
     },
   ],
-}
+} else "SKIP"
