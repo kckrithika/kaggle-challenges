@@ -27,12 +27,12 @@ spec:
         - -watchdogFrequency=5s
         - -alertThreshold=3m
         - -watchDogKind=Deployment
+        - -emailFrequency=24h
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - -recipient=rgade@salesforce.com
-        - -emailFrequency=48h
+        - -recipient=sam-alerts@salesforce.com,sam-pagerduty@salesforce.com
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
