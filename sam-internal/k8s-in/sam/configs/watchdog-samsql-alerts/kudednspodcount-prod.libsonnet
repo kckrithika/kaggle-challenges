@@ -22,7 +22,7 @@
               (CASE WHEN Phase = 'Running' then 1 else 0 end) as Running,
               (CASE WHEN Phase <> 'Running' then 1 else 0 end) as NotRunning
             FROM podDetailView
-            WHERE namespace = 'kube-system' AND name LIKE 'kube-dns-%' AND ( Kingdom != 'PRD' AND Kingdom != 'XRD' AND Kingdom != 'lo2' AND Kingdom != 'lo3')
+            WHERE namespace = 'kube-system' AND name LIKE 'kube-dns-%' AND (upper(Kingdom) NOT IN ('PRD', 'XRD', 'LO2', 'LO3'))
             ) as ss
             GROUP BY controlEstate
             ORDER BY NotRunning desc
