@@ -4,6 +4,8 @@ system:
   functions:
   - name: ordering-istio
     count: 1
+    annotations:
+      sidecar.istio.io/inject: "true" 
     containers:
     - name: ordering
       # Ordering App
