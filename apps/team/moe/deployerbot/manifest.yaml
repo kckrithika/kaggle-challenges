@@ -94,7 +94,7 @@ system:
       - "-releaseFile=sam-internal/k8s-in/sam/samreleases.json"
       - "-promotion.image=hypersam"
       - "-promotion.intervalTime=1h"
-      - "-promotion.minBakeTime=24h"
+      - "-promotion.minBakeTime=12h"
       - "-promotion.singlephase=true"
       ports:
       - containerPort: 8080
