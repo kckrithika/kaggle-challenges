@@ -2,7 +2,7 @@
   apiVersion: "v1",
   kind: "Service",
   metadata: {
-    name: "sherpa-injector-svc",
+    name: "sherpa-injector",
     namespace: "service-mesh",
     labels: {
       app: "sherpa-injector",
@@ -14,7 +14,6 @@
         name: "in-port",
         port: 15010,
         targetPort: 15010,
-        nodePort: 33442,
       },
     ],
     selector: {

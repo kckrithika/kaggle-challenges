@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: sherpa-injector
-  name: sherpa-injector-deployment
+  name: sherpa-injector
   namespace: service-mesh
 spec:
   replicas: 1
@@ -21,13 +21,12 @@ spec:
              "cert-type": "server",
              "kingdom": "prd",
              "name": "cert1",
-             "role": "sherpa-injector.service-mesh",
+             "role": "sherpa-injector",
              "san": [
               "sherpa-injector",
               "sherpa-injector.service-mesh",
               "sherpa-injector.service-mesh.svc",
-              "sherpa-injector.service-mesh.svc.prd-samtest.prd.sam.sfdc.net",
-              "sherpa-injector-svc.service-mesh.svc.prd-samtest.prd.sam.sfdc.net"
+              "sherpa-injector.service-mesh.svc.prd-samtest.prd.sam.sfdc.net"
              ]
             }
            ]
