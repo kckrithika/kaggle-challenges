@@ -13,7 +13,7 @@
       {
         name: "in-port",
         port: 443,
-        targetPort: 443,
+        targetPort: 15010,
       },
     ],
     selector: {
