@@ -26,6 +26,19 @@ system:
         httpGet:
           path: /manage/health
           port: 15375
+      # Only to test if SPIFFE URIs are enabled. Will delete shortly
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+     volumes:
+     - name: tls-client-cert
+       maddogCert:
+         type: client
+     - name: tls-server-cert
+       maddogCert:
+         type: server
   loadbalancers:
   - lbname: shipping-istio
     function: shipping-istio
