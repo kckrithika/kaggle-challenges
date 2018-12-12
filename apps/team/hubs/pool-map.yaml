@@ -1,4 +1,3 @@
 apps:
   mgmt-hub:
-    - prd/prd-sam
     - xrd/xrd-sam_mgmt_hub
