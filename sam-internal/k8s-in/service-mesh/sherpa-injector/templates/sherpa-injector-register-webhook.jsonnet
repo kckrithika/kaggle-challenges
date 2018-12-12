@@ -14,7 +14,7 @@
     {
       name: "sherpa-injector.service-mesh.svc",
       clientConfig: {
-        url: "https://sherpa-injector.service-mesh.svc.prd-samtest.prd.sam.sfdc.net:15010/mutate",
+        url: "https://sherpa-injector-svc.service-mesh.svc.prd-samtest.prd.sam.sfdc.net:15010/mutate",
         //service: {
         //  name: "sherpa-injector-svc",
         //  namespace: "service-mesh",

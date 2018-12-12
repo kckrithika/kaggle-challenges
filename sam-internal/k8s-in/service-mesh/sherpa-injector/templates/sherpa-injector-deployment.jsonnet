@@ -34,6 +34,7 @@ configs.deploymentBase("service-mesh") {
                       "sherpa-injector.service-mesh",
                       "sherpa-injector.service-mesh.svc",
                       "sherpa-injector.service-mesh.svc.%s" % configs.dnsdomain,
+                      "sherpa-injector-svc.service-mesh.svc.%s" % configs.dnsdomain,
                     ],
                   },
                 ],
