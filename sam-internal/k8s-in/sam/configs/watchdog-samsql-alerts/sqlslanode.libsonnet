@@ -39,6 +39,9 @@
               # cdebains is responsible for changing this back
               + "
               (TotalCount < 10 AND NotReadyCount >=2 AND minionpool like 'par-sam' AND NotReadyPerc >=0.5) 
+
+              OR (TotalCount < 10 AND minionpool like 'phx-sam_mgmt_hub' AND NotReadyPerc > 0.5 AND now() > STR_TO_DATE('2018-12-22', '%Y-%m-%d'))
+
               OR (TotalCount < 10 AND NotReadyCount > 2 AND minionpool like 'ph2-sam_gater' AND NotReadyPerc > 0.4 AND now() > STR_TO_DATE('2019-01-30', '%Y-%m-%d'))
               OR (TotalCount < 10 AND NotReadyCount >=2 AND minionpool not like 'par-sam' AND minionpool not like 'ph2-sam_gater')
 
