@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet");
 local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbports = import "slbports.jsonnet";
 
 if slbconfigs.isSlbEstate && slbflights.georgeEnabled then configs.deploymentBase("slb") {
 
@@ -34,8 +35,8 @@ if slbconfigs.isSlbEstate && slbflights.georgeEnabled then configs.deploymentBas
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--commonoptions.metricsendpoint=" + configs.funnelVIP,
                                      "--commonoptions.hostname=$(NODE_NAME)",
-                                     "--vipName=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net",
-                                     "--port=9116",
+                                     "--vipName=slb-canary-proxy-http.sam-system.%(estate)s.%(kingdom)s.slb.sfdc.net" % configs,
+                                     "--port=%(canaryServiceProxyHttpPort)d" % slbports.slb,
                                      "--downloadSize=1",
                                      "--uploadSize=1",
                                  ],
