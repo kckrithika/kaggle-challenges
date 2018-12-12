@@ -323,6 +323,61 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer1-1-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "b47-dh14",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer1-2-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "f31-dh14",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer2-1-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "b47-dh14",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer2-2-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "f31-dh14",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "cdg-sam",
+          "devicerole": "samcompute",
+          "estate": "cdg-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer3-1-cdg.ops.sfdc.net",
+          "kingdom": "cdg",
+          "pod": "none",
+          "rack": "f31-dh14",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_report_collector",
           "controlestate": "cdg-sam",
           "devicerole": "samcompute",
