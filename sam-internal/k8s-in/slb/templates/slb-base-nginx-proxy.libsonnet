@@ -12,8 +12,8 @@
   local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: $.dirSuffix },
 
   local beforeSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="") = [
-                        slbshared.slbNginxConfig(deleteLimitOverride=deleteLimitOverride, tlsConfigEnabled=slbflights.nginxTlsConfigEnabled),
-                        slbshared.slbNginxProxy(proxyImage, proxyFlavor, slbflights.nginxTlsConfigEnabled),
+                        slbshared.slbNginxConfig(deleteLimitOverride=deleteLimitOverride, tlsConfigEnabled=true),
+                        slbshared.slbNginxProxy(proxyImage, proxyFlavor, true),
                         {
                           name: "slb-nginx-data",
                           image: slbimages.hypersdn,
@@ -123,7 +123,7 @@ local afterSharedContainers = [
                    + madkub.madkubSlbMadkubVolumes() + [
                    slbconfigs.nginx.target_config_volume,
                    slbconfigs.nginx.customer_certs_volume,
-                   if slbflights.nginxTlsConfigEnabled then slbconfigs.nginx.tlsparams_volume else {},
+                   slbconfigs.nginx.tlsparams_volume,
                  ]
 ),
                  initContainers: [
