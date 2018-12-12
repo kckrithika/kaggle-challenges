@@ -6,17 +6,17 @@ system:
     count: 0
     containers:
     - name: edge-api-server
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/api:47
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/api:56
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-api-stunnel
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/stunnel:47
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/stunnel:56
       livenessProbe:
         httpGet:
             path: /health
     - name: edge-api-rsyncd
-      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rsyncd:47
+      image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/edge/rsyncd:56
       livenessProbe:
         httpGet:
             path: /health
