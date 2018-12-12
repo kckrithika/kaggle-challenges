@@ -47,8 +47,10 @@ system:
         # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
           value: cs103app-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net
-        # This maps to http_port
-        - name: PORT
+
+        - name: SFPROXY_VIP
+          value: https://cs103app-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net
+        - name: HTTP_PORT
           value: 8085
         # This maps to https_port
         - name: SPORT
