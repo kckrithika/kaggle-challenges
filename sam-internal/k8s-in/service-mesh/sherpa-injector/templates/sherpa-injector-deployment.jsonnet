@@ -45,12 +45,13 @@ configs.deploymentBase("service-mesh") {
         containers: [
           {
             name: "sherpa-injector",
-            image: "sfci/servicelibs/sherpa-injector:b61859372336343d3f26fabe0f35af5faa7b6225",
+            // TODO:NIKO: this needs a full image path. relative doesn't work in prd-samtest
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:b61859372336343d3f26fabe0f35af5faa7b6225",
             imagePullPolicy: "IfNotPresent",
             args: [
-              "--port=443",
-              "--cert=/server-certificates/cert.pem",
-              "--key=/server-certificates/key.pem",
+              "--port=15010",  // can't use 443 here because of the permissions
+              "--cert=/server-certificates/server/certificates/server.pem",
+              "--key=/server-certificates/server/keys/server-key.pem",
               "--template=test-container.yaml.template",
               "--image=sfci/servicelibs/sherpa-envoy:1.0.4",
               "--log-level=debug",
@@ -63,7 +64,7 @@ configs.deploymentBase("service-mesh") {
             ],
             ports: [
               {
-                containerPort: 443,
+                containerPort: 15010,
               },
             ],
             livenessProbe: {
@@ -96,7 +97,7 @@ configs.deploymentBase("service-mesh") {
               "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
               "--cert-folders=cert1:/cert1/",
               "--token-folder=/tokens/",
-              "--requested-cert-type=client",
+              "--requested-cert-type=server",
               "--ca-folder=/maddog-certs/ca",
               "--refresher",
               "--run-init-for-refresher-mode",
@@ -175,7 +176,7 @@ configs.deploymentBase("service-mesh") {
               "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
               '--cert-folders=cert1:/cert1/',
               "--token-folder=/tokens/",
-              "--requested-cert-type=client",
+              "--requested-cert-type=server",
               "--ca-folder=/maddog-certs/ca",
             ],
             name: "madkub-init",
@@ -218,6 +219,29 @@ configs.deploymentBase("service-mesh") {
               },
             ],
           },
+{
+  command: [
+        "bash",
+        "-c",
+        "set -ex\nchmod 775 -R /cert1 && chown -R 7447:7447 /cert1\n",
+    ],
+        image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
+        imagePullPolicy: "IfNotPresent",
+        name: "permissionsetterinitcontainer",
+        securityContext: {
+            runAsNonRoot: false,
+            runAsUser: 0,
+          },
+        volumeMounts: [
+          {
+            mountPath: "/cert1",
+            name: "cert1",
+          },
+        ],
+
+},
+
+
         ],
       },
     },
