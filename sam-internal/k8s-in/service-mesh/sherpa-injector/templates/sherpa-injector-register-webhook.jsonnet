@@ -1,3 +1,5 @@
+local configs = import "config.jsonnet";
+
 {
   apiVersion: "admissionregistration.k8s.io/v1beta1",
   kind: "MutatingWebhookConfiguration",
@@ -14,7 +16,7 @@
     {
       name: "sherpa-injector.service-mesh.svc",
       clientConfig: {
-        url: "https://sherpa-injector.service-mesh.svc.prd-samtest.prd.sam.sfdc.net:7443/mutate",
+        url: "https://sherpa-injector.service-mesh.svc.%s:7443/mutate" % configs.dnsdomain,
         //service: {
         //  name: "sherpa-injector-svc",
         //  namespace: "service-mesh",
