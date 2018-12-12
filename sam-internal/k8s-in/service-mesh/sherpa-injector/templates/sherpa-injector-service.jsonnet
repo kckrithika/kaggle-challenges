@@ -12,12 +12,14 @@
     ports: [
       {
         name: "in-port",
-        port: 443,
+        port: 15010,
         targetPort: 15010,
+        nodePort: 33442,
       },
     ],
     selector: {
       app: "sherpa-injector",
     },
+    type: "NodePort",
   },
 }
