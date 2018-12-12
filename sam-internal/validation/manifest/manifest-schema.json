@@ -70,7 +70,6 @@
                                             },
 
                                             "env": {
-                                                "type": "array",
                                                 "items": {
                                                     "type": "object",
                                                     "allOf": [ { "$ref": "manifestConfigs#/Rule_EnvRequirements/MustExist" } ],
@@ -176,7 +175,6 @@
                                 },
 
                                 "volumes": {
-                                    "type": "array",
                                     "items": {
                                         "type": "object",
                                         "$ref": "manifestConfigs#/Rule_VolumesFormat"
@@ -216,11 +214,11 @@
                                 },
 
                                 "function": {
-                                    "type": "string"
+
                                 },
 
                                 "selector": {
-                                    "type": "string"
+
                                 },
 
                                 "slbEnabled": {

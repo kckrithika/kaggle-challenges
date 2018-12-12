@@ -18,7 +18,6 @@ local schemaID = "manifestConfigs";
 
     # List of manifest fields that must exist
     manifest_requirements:: [
-        "apiVersion",
         "system"
     ],
 
@@ -30,14 +29,12 @@ local schemaID = "manifestConfigs";
     # List of functions fields that must exist
     functions_requirements:: [
         "name",
-        "count",
         "containers"
     ],
 
     # List of env fields that must exist
     env_requirements:: [
         "name",
-        "value"
     ],
 
     # List of httpGet (livenessProbe) fields that must exist
@@ -56,7 +53,6 @@ local schemaID = "manifestConfigs";
 
     lbPort_requirements:: [
         "port",
-        "targetport"
     ],
 
     # List of container fields that must exist
@@ -95,6 +91,15 @@ local schemaID = "manifestConfigs";
 
 
 ###############################  More Complicated Logic  #####################################
+
+    imageValidation:: {
+        oneOf: [
+            {
+                pattern: "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+:.+$"
+            },
+            util.MatchRegex(config.imageForm.allowed, config.imageForm.notAllowed),
+        ],
+    },
 
     # Neither serviceName nor pod are required, but they must be DNS1123 valid if they exist
     identityValidation:: {
@@ -175,8 +180,10 @@ local schemaID = "manifestConfigs";
                 type: "string",
                 "$ref": "#/Rule_IsDNSValidation"
             },
+        },
 
-            k4aSecret: {
+        patternProperties: {
+            "k4asecret|k4aSecret": {
                 type: "object",
                 required: [ "secretName" ],
                 properties: {
@@ -186,6 +193,7 @@ local schemaID = "manifestConfigs";
                 }
             },
         },
+
         additionalProperties: false
     },
 
@@ -196,7 +204,10 @@ local schemaID = "manifestConfigs";
                 type: "string",
                 "$ref": "#/Rule_IsDNSValidation"
             },
-            hostPath: {
+        },
+
+        patternProperties: {
+            "hostpath|hostPath": {
                 type: "object",
                 properties: {
                     path: {
@@ -206,6 +217,7 @@ local schemaID = "manifestConfigs";
                 }
             }
         },
+
         additionalProperties: false
     },
 
@@ -318,8 +330,12 @@ local schemaID = "manifestConfigs";
         LBPortAllowedAlgorithm: [ "leastconn", "roundrobin", "hash" ],
 
         LBPortAlgorithm: {
-            "if": { properties: { lbalgorithm: util.AllowedValues([ "leastconn", "roundrobin", "hash" ]) } },
-            "then": { properties: { lbtype: util.ValuesNotAllowed([ "dsr" ]) } }
+            "if": { properties: { lbalgorithm: util.AllowedValues([]) } },
+            "then": {},
+            "else": {
+                "if": { properties: { lbalgorithm: util.AllowedValues([ "leastconn", "roundrobin", "hash" ]) } },
+                "then": { properties: { lbtype: util.ValuesNotAllowed([ "dsr" ]) } }
+            },
         },
 
         CIDRValidation: {

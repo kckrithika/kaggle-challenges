@@ -73,8 +73,7 @@
    "Rule_EnvRequirements": {
       "MustExist": {
          "required": [
-            "name",
-            "value"
+            "name"
          ]
       }
    },
@@ -172,7 +171,6 @@
       "MustExist": {
          "required": [
             "name",
-            "count",
             "containers"
          ]
       }
@@ -232,40 +230,35 @@
       }
    },
    "Rule_ImageForm": {
-      "allOf": [
+      "oneOf": [
          {
-            "anyOf": [
-               {
-                  "pattern": "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+/.+:.+$"
-               },
-               {
-                  "pattern": "^chatbots/.+/.+:.+$"
-               },
-               {
-                  "pattern": "^ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam/.+/.+:.+$"
-               },
-               {
-                  "pattern": "^tnrp/.+/.+:.+$"
-               },
-               {
-                  "pattern": "^sfci/.+/.+:.+$"
-               },
-               {
-                  "pattern": "^ops0-artifactrepo1-0-xrd.data.sfdc.net/docker-sam/.+/.+:.+$"
-               }
-            ]
+            "pattern": "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+:.+$"
          },
          {
-            "not": {
-               "anyOf": [
-                  {
-                     "pattern": "^.*(latest)$"
-                  },
-                  {
-                     "pattern": "^ops0-artifactrepo2-0-prd.data.sfdc.net/(docker-p2p|docker-sam)/.+:.+$"
+            "allOf": [
+               {
+                  "anyOf": [
+                     {
+                        "pattern": "^.+:.+$"
+                     }
+                  ]
+               },
+               {
+                  "not": {
+                     "anyOf": [
+                        {
+                           "pattern": "^ops0-artifactrepo1-0-prd.data.sfdc.net/.+/.+:.+$"
+                        },
+                        {
+                           "pattern": "^ops0-artifactrepo2-0-prd.data.sfdc.net/(docker-p2p|docker-sam)/.+:.+$"
+                        },
+                        {
+                           "pattern": "^.*(latest)$"
+                        }
+                     ]
                   }
-               ]
-            }
+               }
+            ]
          }
       ]
    },
@@ -320,8 +313,7 @@
    "Rule_LBPortRequirements": {
       "MustExist": {
          "required": [
-            "port",
-            "targetport"
+            "port"
          ]
       }
    },
@@ -333,28 +325,38 @@
          }
       },
       "LBPortAlgorithm": {
-         "if": {
-            "properties": {
-               "lbalgorithm": {
-                  "enum": [
-                     "leastconn",
-                     "roundrobin",
-                     "hash"
-                  ]
-               }
-            }
-         },
-         "then": {
-            "properties": {
-               "lbtype": {
-                  "not": {
+         "else": {
+            "if": {
+               "properties": {
+                  "lbalgorithm": {
                      "enum": [
-                        "dsr"
+                        "leastconn",
+                        "roundrobin",
+                        "hash"
                      ]
                   }
                }
+            },
+            "then": {
+               "properties": {
+                  "lbtype": {
+                     "not": {
+                        "enum": [
+                           "dsr"
+                        ]
+                     }
+                  }
+               }
             }
-         }
+         },
+         "if": {
+            "properties": {
+               "lbalgorithm": {
+                  "enum": [ ]
+               }
+            }
+         },
+         "then": { }
       },
       "LBPortAllowedAlgorithm": {
          "enum": [
@@ -474,7 +476,6 @@
    "Rule_ManifestRequirements": {
       "MustExist": {
          "required": [
-            "apiVersion",
             "system"
          ]
       }
@@ -662,8 +663,8 @@
          },
          {
             "additionalProperties": false,
-            "properties": {
-               "k4aSecret": {
+            "patternProperties": {
+               "k4asecret|k4aSecret": {
                   "properties": {
                      "secretName": {
                         "type": "string"
@@ -673,7 +674,9 @@
                      "secretName"
                   ],
                   "type": "object"
-               },
+               }
+            },
+            "properties": {
                "name": {
                   "$ref": "#/Rule_IsDNSValidation",
                   "type": "string"
@@ -682,8 +685,8 @@
          },
          {
             "additionalProperties": false,
-            "properties": {
-               "hostPath": {
+            "patternProperties": {
+               "hostpath|hostPath": {
                   "properties": {
                      "path": {
                         "$ref": "#/Rule_HostPathList",
@@ -691,7 +694,9 @@
                      }
                   },
                   "type": "object"
-               },
+               }
+            },
+            "properties": {
                "name": {
                   "$ref": "#/Rule_IsDNSValidation",
                   "type": "string"

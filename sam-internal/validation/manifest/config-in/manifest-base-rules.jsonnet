@@ -28,7 +28,7 @@ local schemaID = "manifestConfigs";
 
     Rule_HostPathList: util.MatchRegex(config.allowedHostPathList.allowed, config.allowedHostPathList.notAllowed),
 
-    Rule_ImageForm: util.MatchRegex(config.imageForm.allowed, config.imageForm.notAllowed),
+    Rule_ImageForm: base.imageValidation,
 
     Rule_EnvVariableName: {
         EnvNamePatterns: util.MatchRegex(base.envNamePattern),

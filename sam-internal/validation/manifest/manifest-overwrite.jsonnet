@@ -38,19 +38,13 @@ local util = import "../util.jsonnet";
     # Regex for allowed/disallowed image forms
     imageForm:: {
         allowed: [
-            "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+/.+:.+$",
-
-            # Allow these for Image Promotion
-            "^chatbots/.+/.+:.+$",
-            "^ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam/.+/.+:.+$",
-            "^tnrp/.+/.+:.+$",
-            "^sfci/.+/.+:.+$",
-            "^ops0-artifactrepo1-0-xrd.data.sfdc.net/docker-sam/.+/.+:.+$"
+            "^.+:.+$"
         ],
 
         notAllowed: [
+            "^ops0-artifactrepo1-0-prd.data.sfdc.net/.+/.+:.+$",
+            "^ops0-artifactrepo2-0-prd.data.sfdc.net/(docker-p2p|docker-sam)/.+:.+$",
             "^.*(latest)$",
-            "^ops0-artifactrepo2-0-prd.data.sfdc.net/(docker-p2p|docker-sam)/.+:.+$"
         ]
     },
 
