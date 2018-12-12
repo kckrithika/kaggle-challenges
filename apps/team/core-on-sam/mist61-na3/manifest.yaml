@@ -1,6 +1,6 @@
 # Warning: DO NOT EDIT this generated file
 # See here on how to generate this file https://git.soma.salesforce.com/casam/manifests
-# Git commit - 7b5a38f112ec6078f8055d4805e0f287eb303a9e
+# Git commit - 12454b192d1a3804b2e2fa129c78b1449786e572
 
 apiVersion: v1
 system:
@@ -276,7 +276,7 @@ system:
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
       - name: SFDC_ENVIRONMENT
-        value: mist
+        value: mist61
       image: sfci/frontend-gateway/sfproxy:659513c
       livenessProbe:
         exec:
