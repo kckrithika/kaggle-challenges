@@ -3,7 +3,7 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
 
 configs.deploymentBase("service-mesh") {
   metadata+: {
-    name: "sherpa-injector-deployment",
+    name: "sherpa-injector",
     namespace: "service-mesh",
     labels: {
       app: "sherpa-injector",
@@ -28,13 +28,12 @@ configs.deploymentBase("service-mesh") {
                     "cert-type": "server",
                     kingdom: configs.kingdom,
                     name: "cert1",
-                    role: "sherpa-injector.service-mesh",
+                    role: "sherpa-injector",
                     san: [
                       "sherpa-injector",
                       "sherpa-injector.service-mesh",
                       "sherpa-injector.service-mesh.svc",
                       "sherpa-injector.service-mesh.svc.%s" % configs.dnsdomain,
-                      "sherpa-injector-svc.service-mesh.svc.%s" % configs.dnsdomain,
                     ],
                   },
                 ],
