@@ -1,6 +1,6 @@
 # Warning: DO NOT EDIT this generated file
 # See here on how to generate this file https://git.soma.salesforce.com/casam/manifests
-# Git commit - 6792944949d305dcece3ac2d45d6941e68bf11c6
+# Git commit - 7b5a38f112ec6078f8055d4805e0f287eb303a9e
 
 apiVersion: v1
 system:
@@ -257,6 +257,9 @@ system:
       - mountPath: /certs
         name: cert
     count: 1
+    identity:
+      pod: na3
+      serviceName: sequencer
     name: sequencer-na3
     progressDeadlineSeconds: 300
     terminationGracePeriodSeconds: 500
