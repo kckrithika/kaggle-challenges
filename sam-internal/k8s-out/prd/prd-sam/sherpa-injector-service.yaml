@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: sherpa-injector
+  name: sherpa-injector
+  namespace: service-mesh
+spec:
+  ports:
+  - name: tls-in-port
+    port: 7443
+    targetPort: 7443
+  selector:
+    app: sherpa-injector
+  type: NodePort
