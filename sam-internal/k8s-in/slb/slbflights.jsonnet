@@ -10,7 +10,7 @@ local configs = import "config.jsonnet";
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     ipvsTurnDownOnSIGTERM: (slbimages.phaseNum <= 1),
     ifaceProcessorAddIfaceIfIPVSHost: (slbimages.phaseNum <= 1),
-    antiDDOS: (slbimages.phaseNum <= 3),
+    antiDDOS: (slbimages.phaseNum <= 4),
     fredEnabled: (configs.estate == "prd-sdc"),
     // Gigantor celery logs are spamming the root disk partition (`/`) in fra. The root partition only has 100 GB, and is critical for
     // services to function. Enabling this script in fra to clean those logs.
