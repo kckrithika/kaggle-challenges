@@ -227,7 +227,7 @@ system:
     count: 1
     containers:
     - name: sfproxy-switchboard-server
-      image: sfci/servicelibs/switchboard:5437b81b26cbb06c1579c4f603f495b925e52fc7
+      image: sfci/servicelibs/switchboard:68c2c0899b36a3ee8a037d00dccb391d9c827b3f
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -320,7 +320,7 @@ system:
     count: 3
     containers:
     - name: sfproxy-envoy
-      image: sfci/frontend-gateway/sfproxy:1f2c2db
+      image: sfci/frontend-gateway/sfproxy:079d806
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61

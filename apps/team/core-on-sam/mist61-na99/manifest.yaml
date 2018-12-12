@@ -694,7 +694,7 @@ system:
       tls: false
       reencrypt: true
 # HTTPS listen port of Envoy.
-# TODO: Manifest validation fails for port 443. Add 443 in production
+# TODO: Add 443 also in production
     - port: 8443
       targetport: 12060
       lbtype: http
