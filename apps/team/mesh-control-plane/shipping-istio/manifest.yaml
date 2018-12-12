@@ -32,13 +32,13 @@ system:
         name: tls-client-cert
       - mountPath: /server-certs
         name: tls-server-cert
-     volumes:
-     - name: tls-client-cert
-       maddogCert:
-         type: client
-     - name: tls-server-cert
-       maddogCert:
-         type: server
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - lbname: shipping-istio
     function: shipping-istio
