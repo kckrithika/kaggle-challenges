@@ -49,10 +49,10 @@ configs.deploymentBase("service-mesh") {
             image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:b61859372336343d3f26fabe0f35af5faa7b6225",
             imagePullPolicy: "IfNotPresent",
             args: [
-              "--port=15010",  // can't use 443 here because of the permissions
+              "--port=7443",  // can't use 443 here because of the permissions
               "--cert=/server-certificates/server/certificates/server.pem",
               "--key=/server-certificates/server/keys/server-key.pem",
-              "--template=test-container.yaml.template",
+              "--template=sherpa-container.yaml.template",
               "--image=sfci/servicelibs/sherpa-envoy:1.0.4",
               "--log-level=debug",
             ],
@@ -64,7 +64,7 @@ configs.deploymentBase("service-mesh") {
             ],
             ports: [
               {
-                containerPort: 15010,
+                containerPort: 7443,
               },
             ],
             livenessProbe: {
