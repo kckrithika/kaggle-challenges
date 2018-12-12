@@ -8,7 +8,9 @@ metadata:
 spec:
   ports:
   - name: in-port
-    port: 443
+    nodePort: 33442
+    port: 15010
     targetPort: 15010
   selector:
     app: sherpa-injector
+  type: NodePort
