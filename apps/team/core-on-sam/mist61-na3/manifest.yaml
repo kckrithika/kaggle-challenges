@@ -1,6 +1,6 @@
 # Warning: DO NOT EDIT this generated file
 # See here on how to generate this file https://git.soma.salesforce.com/casam/manifests
-# Git commit - 023f74082dfe2b6bafdfb2a447ba8e4ff754f99f
+# Git commit - 6792944949d305dcece3ac2d45d6941e68bf11c6
 
 apiVersion: v1
 system:
@@ -36,9 +36,9 @@ system:
       - name: PUBLIC_PORT_IS_SECURE
         value: true
       - name: PUBLIC_HOST_NAME
-        value: na3-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+        value: us3-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
       - name: SFPROXY_VIP
-        value: https://na3-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
+        value: https://us3-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: PORT
         value: 8085
       - name: SPORT
@@ -308,12 +308,12 @@ system:
       name: tls-client-cert
     - maddogCert:
         lbnames:
-        - na3-sfproxy-lb
+        - us3-sfproxy-lb
         type: server
       name: tls-server-cert
   loadbalancers:
   - function: sfproxy-na3
-    lbname: na3-sfproxy-lb
+    lbname: us3-sfproxy-lb
     nodeExposed: false
     ports:
     - port: 2525
