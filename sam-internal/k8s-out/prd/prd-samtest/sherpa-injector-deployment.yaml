@@ -44,7 +44,7 @@ spec:
         - --template=sherpa-container.yaml.template
         - --image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:1.0.4
         - --log-level=debug
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:b61859372336343d3f26fabe0f35af5faa7b6225
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:629f381f2b01c5fa6d90f0030efd247c13f72ccf
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
