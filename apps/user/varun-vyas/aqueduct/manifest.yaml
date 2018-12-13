@@ -6,12 +6,12 @@ system:
       count: 1
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun/aqueduct:aqueduct2 # Use the latest version, see below
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun/aqueduct:aqueduct_scone4.1.2 # Use the latest version, see below
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam" # Use whatever environment your kpod uses
-        - name: SETTINGS_PATH
-          value: "prod.-.prd.aqueduct_SAM.aqueduct"
+        # - name: SETTINGS_PATH
+        #   value: "prod.-.prd.aqueduct_SAM.aqueduct"
         ports:
         - containerPort: 8080
           name: ext-port
@@ -27,6 +27,16 @@ system:
             path: /manage/health
             port: 15372
             scheme: HTTP
+
+
         # volumeMounts:
         #   - mountPath: /home/sfdc-aqueduct/logs/
         #     name: aqueduct-log-volume
+# loadbalancers:
+#   - lbname: aqueduct
+#     function: default
+#     slbEnabled: true
+#     ports:
+#      - port : 8080
+#        targetport : 8080
+#        lbtype : <tcp|http|dsr>
