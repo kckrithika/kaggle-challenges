@@ -8,10 +8,12 @@ system:
     count: 3 
     containers:
     - name: eaas-test
-      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.4-6afc8ee3a25bdf81aa759e576c7ce43286f51a9f
+      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.19-5980e31a5d0d6504c5cf75ec0447f57fd61c6654
       ports:
       - name: grpc
         containerPort: 7020
+      - name: chaos
+        containerPort: 7022
       env:
       - name: SFDC_ENVIRONMENT
         value: prd
@@ -21,11 +23,11 @@ system:
         value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=2"
       resources:
         requests:
-          memory: "8G"
-          cpu: "800m"
+          memory: "6G"
+          cpu: "2"
         limits:
-          memory: "8G"
-          cpu: "800m"       
+          memory: "6G"
+          cpu: "2"
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
@@ -33,6 +35,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+        # Generally we have set this to ~10 seconds longer than the readiness initialDelaySeconds
         initialDelaySeconds: 120
         periodSeconds: 60
         timeoutSeconds: 30
@@ -40,16 +43,23 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+        # This needs to be longer than the time for scone to start. 
+        # Search the logs for 'Started EaasSconeApp' to get a sense of the startup time which is primary dependent on CPU resources.
         initialDelaySeconds: 110
         periodSeconds: 60
         timeoutSeconds: 30
     - name: beacon-eaas-test
       image: docker-sfci-dev/sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
+      # Namespaced, mTLS HTTP2 GRPC
       - -endpoint
       - emailinfra/eaas-test:DATACENTER_ALLENV:7443
+      # Non namespaced, plain-text HTTP2 GRPC
       - -endpoint
-      - eaas-test:DATACENTER:7012
+      - eaas-test:DATACENTER_ALLENV:7012
+      # Non namespaced, plain-text HTTP1 for Chaos endpoint
+      - -endpoint
+      - eaas-test-chaos:DATACENTER_ALLENV:7014
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -59,12 +69,19 @@ system:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
     - name: sherpa-eaas-test
-      image: sfci/servicelibs/sherpa-envoy:1.0.0
+      # updated based on https://gus.lightning.force.com/lightning/r/CollaborationGroup/0F9B0000000LejfKAC/view
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
       ports:
+      # plain-text HTTP2 GRPC port
       - name: sherpa-eaas-in
         containerPort: 7012
+      # plain-text HTTP1 Jetty port
+      - name: sherpa-eaas-jet
+        containerPort: 7014
+      # mTLS HTTP2 GRPC port
       - name: sherpa-eaas-tls
         containerPort: 7443
+      # management port (health, metrics, etc.)
       - name: sherpa-eaas-adm
         containerPort: 15373
       env:
@@ -78,6 +95,7 @@ system:
           cpu: "1"
           memory: 1Gi
       volumeMounts:
+      # mount the client certs even though we do not need them as sherpa will complain otherwise
       - mountPath: /client-certs
         name: eaas-client-cert
       - mountPath: /server-certs
@@ -111,6 +129,9 @@ system:
         path: /home/sfdc-sherpa/logs
     strategy:
       type: RollingUpdate
+  # Enable a load balancer in PRD so we have a stable FQDN to hit from the dev desktops or anywhere without Sherpa/Zookeeper
+  # Full FQDN template: {lbname}.{namespace}.{estate}.{kingdom}.slb.sfdc.net
+  # Actual FQDN: emailinfra-eaas-lb.emailinfra.prd-sam.prd.slb.sfdc.net
   loadbalancers:
   - lbname: emailinfra-eaas-test-lb
     function: eaas-test
@@ -119,3 +140,6 @@ system:
     - lbtype: tcp
       port: 7020
       targetport: 7020
+    - lbtype: tcp
+      port: 7022
+      targetport: 7022
