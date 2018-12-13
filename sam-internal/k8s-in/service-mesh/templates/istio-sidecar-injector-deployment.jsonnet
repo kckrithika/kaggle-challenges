@@ -17,8 +17,6 @@ configs.deploymentBase("service-mesh") {
     labels: {
       app: "sidecarInjectorWebhook",
       chart: "sidecarInjectorWebhook-1.0.1",
-      release: "RELEASE-NAME",
-      heritage: "Tiller",
       istio: "sidecar-injector",
     },
   },
