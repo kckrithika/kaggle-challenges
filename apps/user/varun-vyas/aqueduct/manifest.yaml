@@ -23,8 +23,8 @@ system:
           periodSeconds: 30
           timeoutSeconds: 3600
           httpGet:
-            path: /manage/health
-            port: 45699
+            path: /available
+            port: 25674
             scheme: HTTP
 
 # loadbalancers:
