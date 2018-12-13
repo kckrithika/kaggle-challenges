@@ -53,7 +53,7 @@ configs.deploymentBase("service-mesh") {
               "--cert=/server-certificates/server/certificates/server.pem",
               "--key=/server-certificates/server/keys/server-key.pem",
               "--template=sherpa-container.yaml.template",
-              "--image=sfci/servicelibs/sherpa-envoy:1.0.4",
+              "--image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:1.0.4",
               "--log-level=debug",
             ],
             volumeMounts+: [
