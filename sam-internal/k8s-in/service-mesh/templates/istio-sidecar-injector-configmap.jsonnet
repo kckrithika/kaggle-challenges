@@ -148,8 +148,6 @@ local sidecarConfig = |||
     labels: {
       app: "istio",
       chart: "istio-1.0.1",
-      release: "RELEASE-NAME",
-      heritage: "Tiller",
       istio: "sidecar-injector",
     },
   },

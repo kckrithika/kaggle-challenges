@@ -27,8 +27,6 @@ configs.deploymentBase("service-mesh") {
         },
       },
       spec: configs.specWithKubeConfigAndMadDog {
-//        serviceAccount: "istio-pilot-service-account",
-//        serviceAccountName: "istio-pilot-service-account",
         containers: [
           configs.containerWithKubeConfigAndMadDog {
             name: "discovery",
@@ -204,7 +202,10 @@ configs.deploymentBase("service-mesh") {
             ],
           },
         },
-      },
+      } + if configs.estate == "prd-samtest" then {
+        serviceAccount: "istio-pilot-service-account",
+        serviceAccountName: "istio-pilot-service-account",
+      } else {},
     },
   },
 }

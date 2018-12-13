@@ -6,8 +6,6 @@
     labels: {
       app: "istio-sidecar-injector",
       chart: "sidecarInjectorWebhook-1.0.1",
-      release: "RELEASE-NAME",
-      heritage: "Tiller",
     },
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",

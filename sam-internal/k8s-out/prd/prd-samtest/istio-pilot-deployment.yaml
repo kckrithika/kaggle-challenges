@@ -116,6 +116,8 @@ spec:
           name: config-volume
       nodeSelector:
         master: "true"
+      serviceAccount: istio-pilot-service-account
+      serviceAccountName: istio-pilot-service-account
       volumes:
       - hostPath:
           path: /etc/pki_service
