@@ -93,6 +93,22 @@ local afterSharedContainers = [
                       },
 ],
 
+  // The nginx config wipe init container runs when a new nginx pod is first scheduled to a node.
+  // It erases any files in the config directory, ensuring that any stale service config / block files
+  // are
+  local nginxConfigWipeInitContainer = if slbflights.wipeNginxConfigDirAtPodInit then {
+    name: "slb-nginx-config-wipe",
+    image: slbimages.hypersdn,
+    command: [
+      "/bin/bash",
+      "-xec",
+      "rm -rf %s/*" % [slbconfigs.nginx.containerTargetDir],
+    ],
+    volumeMounts: [
+      slbconfigs.nginx.target_config_volume_mount,
+    ],
+  } else {},
+
   slbBaseNginxProxyDeployment(
     proxyName,
     replicas=2,
@@ -126,9 +142,10 @@ local afterSharedContainers = [
                    slbconfigs.nginx.tlsparams_volume,
                  ]
 ),
-                 initContainers: [
+                 initContainers: std.prune([
                    madkub.madkubInitContainer(slbconfigs.nginx.certDirs),
-                 ],
+                   nginxConfigWipeInitContainer,
+                 ]),
                  nodeSelector: { pool: slbconfigs.slbEstate },
                },
       },
