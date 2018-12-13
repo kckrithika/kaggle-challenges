@@ -82,6 +82,7 @@ local utils = import "util_functions.jsonnet";
 
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
+            deployer_image_tag: "sam-0002376-c267a6c7",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
