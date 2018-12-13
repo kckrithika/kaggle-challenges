@@ -4,8 +4,9 @@ system:
   functions:
   - name: tictactoe-client-service-envoy
     count: 2
+    labels:
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
-
     - name: tictactoe-client-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-client-service:latest
       env:
@@ -31,26 +32,11 @@ system:
           path: /manage/health
           port: 15372
 
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-      volumeMounts:
-        - name: tls-client-cert
-          mountPath: /client-certs
     volumes:
     - name: tls-client-cert
       maddogCert:
         type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
 
