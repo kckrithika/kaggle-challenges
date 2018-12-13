@@ -37,6 +37,8 @@ system:
       env:
       - name: REQUESTS_SOCKETTIMEOUT
         value: "60000"
+      - name: SERVICE_THREADCOUNT
+        value: 50
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
       - name: KRB5_CONF
