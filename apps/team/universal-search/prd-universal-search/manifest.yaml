@@ -129,7 +129,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search-synthetics
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.7
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
@@ -153,7 +153,7 @@ system:
         periodSeconds: 900
         failureThreshold: 1
     - name: universal-search-synthetics-cre
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.7
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
