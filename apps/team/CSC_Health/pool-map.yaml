@@ -110,6 +110,7 @@ apps:
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
     - ia2/ia2-sam_report_collector
+    - ph2/ph2-sam_report_collector
   expcandidate-service-watchdog:
   candidate-service-watchdog:
     - prd/prd-sam_report_collector
@@ -124,6 +125,7 @@ apps:
     - fra/fra-sam_report_collector
     - cdg/cdg-sam_report_collector
     - ia2/ia2-sam_report_collector
+    - ph2/ph2-sam_report_collector
   expreportcollectorha:
   exprepcollavailwd:
   expcname-repcollavailwd:
