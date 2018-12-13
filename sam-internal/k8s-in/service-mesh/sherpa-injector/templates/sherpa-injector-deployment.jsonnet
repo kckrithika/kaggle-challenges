@@ -45,8 +45,8 @@ configs.deploymentBase("service-mesh") {
         containers: [
           {
             name: "sherpa-injector",
-            // TODO:NIKO: this needs a full image path. relative doesn't work in prd-samtest
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:b61859372336343d3f26fabe0f35af5faa7b6225",
+            // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:629f381f2b01c5fa6d90f0030efd247c13f72ccf",
             imagePullPolicy: "IfNotPresent",
             args: [
               "--port=7443",  // can't use 443 here because of the permissions
