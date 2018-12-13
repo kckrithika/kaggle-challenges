@@ -35,6 +35,8 @@ system:
         limits: { cpu: "2", memory: "8Gi" }
         requests: { cpu: "2", memory: "8Gi" }
       env:
+      - name: REQUESTS_SOCKETTIMEOUT
+        value: "60000"
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
       - name: KRB5_CONF
