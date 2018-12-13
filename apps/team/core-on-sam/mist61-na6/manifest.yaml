@@ -238,7 +238,7 @@ system:
 
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:f0fc8c
+      image: sfci/casam/sequencer:db9c41
 
       env:
         - name: USE_SWITCHBOARD
