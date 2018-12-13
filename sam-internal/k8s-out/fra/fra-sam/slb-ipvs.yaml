@@ -159,6 +159,9 @@ spec:
         - --client.serverInterface=lo
         - --enableAcl=true
         - --enableConntrack=false
+        - --enableCheckAntiDdos=true
+        - --dropEntry=1
+        - --dropPacket=1
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
         image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sdn/hypersdn:v-0001401-bace2851
@@ -176,6 +179,8 @@ spec:
           name: usr-sbin-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /host/sbin
+          name: sbin-volume
       - command:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-ipvs
