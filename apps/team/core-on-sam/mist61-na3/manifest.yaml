@@ -1,6 +1,6 @@
 # Warning: DO NOT EDIT this generated file
 # See here on how to generate this file https://git.soma.salesforce.com/casam/manifests
-# Git commit - f361f5f6119af44dd004bb01fdbff1a93a47e54f
+# Git commit - 80400c5f4e98626bc54986f4ce18d8ccf240d36f
 
 apiVersion: v1
 system:
@@ -202,7 +202,7 @@ system:
       - name: DEPLOY_ENV
         value: alpha
       - name: CYAN
-        value: https://na3-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
+        value: https://us3-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
       - name: CURL_GLOBAL_OPTS
         value: -k
       - name: K4A
