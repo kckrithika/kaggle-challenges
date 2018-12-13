@@ -17,4 +17,5 @@ local configs = import "config.jsonnet";
     cleanupGigantorLogs: (configs.estate == "fra-sam"),
     dhParamsConfigMapEnabled: (slbimages.hypersdn_build >= 1401),
     georgeEnabled: (configs.estate == "prd-sdc"),
+    wipeNginxConfigDirAtPodInit: (slbimages.phaseNum <= 1),
 }
