@@ -25,6 +25,10 @@ apps:
     - shared2-samminioncoreapp1-4-prd.eng.sfdc.net
     - shared2-samminioncoreapp1-5-prd.eng.sfdc.net
 
+# Production Alpha
+ cs103:
+  - name: fra/fra-sp1-sam_coreappalpha
+
  # CASAM team's non-coreapp deployments. Switchboard & Kaiju in group 1. Redis & jmeter in group 2.
  kaiju:
   - name: prd/prd-sp2-sam_coreapp
