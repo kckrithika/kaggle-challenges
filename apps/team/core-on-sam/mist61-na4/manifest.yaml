@@ -245,6 +245,9 @@ system:
   - name: na4-mist61seq-prd
 
     count: 1
+    identity:
+      pod: na4
+      serviceName: sequencer
 
     volumes:
     - name: cert
