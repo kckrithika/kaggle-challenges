@@ -27,7 +27,7 @@ system:
 
     containers:
     - name: coreapp
-      image: sfci/casam/coreapp:release_patch-216_17119468
+      image: sfci/casam/coreapp:release_216-patch_17161582
 
       env:
         # Other db info takes from core configs 
