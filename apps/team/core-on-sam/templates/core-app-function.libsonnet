@@ -9,7 +9,7 @@ local coreAppVolumes = import "core-app-volumes.libsonnet";
   count: $.env.coreAppReplicaCount,
   volumes: coreAppVolumes,
   identity: {
-    serviceName: "coreapp",
+    serviceName: "app",
     pod: $.env.instanceName,
   },
   terminationGracePeriodSeconds: 500,

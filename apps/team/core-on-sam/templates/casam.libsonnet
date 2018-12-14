@@ -27,7 +27,7 @@ local getPublicHostName(env) =
   if env.enableSFProxy then
     getSfProxyHostName(env.instanceName) + "." + env.publicDNSSuffix
   else if env.enableCoreAppDebugLB then
-    env.instanceName + "-coreapp-lb." + env.publicDNSSuffix
+    env.instanceName + "-app-lb." + env.publicDNSSuffix
   else env.publicHost;
 
 local getSFProxyCoreappVIP(env) =
@@ -67,12 +67,12 @@ local newCasam(region, instanceName, env) = {
   },
 
   local coreAppFn = coreAppFunction {
-    functionName:: getFunctionName(mergedEnv, "coreapp"),
+    functionName:: getFunctionName(mergedEnv, "app"),
     env:: mergedEnv,
   },
 
   local sequencerFn = sequencerFunction {
-    functionName:: getFunctionName(mergedEnv, "sequencer"),
+    functionName:: getFunctionName(mergedEnv, "seq"),
     env:: mergedEnv,
   },
 
@@ -99,8 +99,8 @@ local newCasam(region, instanceName, env) = {
   },
 
   local coreAppLBForDebug = coreAppLB {
-    functionName:: getFunctionName(mergedEnv, "coreapp"),
-    lbName:: instanceName + "-coreapp-lb",
+    functionName:: getFunctionName(mergedEnv, "app"),
+    lbName:: instanceName + "-app-lb",
     env:: mergedEnv,
   },
 

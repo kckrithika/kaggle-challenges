@@ -1,6 +1,6 @@
 # Warning: DO NOT EDIT this generated file
 # See here on how to generate this file https://git.soma.salesforce.com/casam/manifests
-# Git commit - 67e3e025de188b5cb319cdbb6b5710c459a0706f
+# Git commit - 88b08bda88ac900e1d85758bef6d63218b434676
 
 apiVersion: v1
 system:
@@ -171,8 +171,8 @@ system:
     count: 1
     identity:
       pod: na3
-      serviceName: coreapp
-    name: na3-mist61coreapp-prd
+      serviceName: app
+    name: na3-mist61app-prd
     progressDeadlineSeconds: 300
     strategy:
       rollingUpdate:
@@ -266,7 +266,7 @@ system:
     identity:
       pod: na3
       serviceName: sequencer
-    name: na3-mist61sequencer-prd
+    name: na3-mist61seq-prd
     progressDeadlineSeconds: 300
     terminationGracePeriodSeconds: 500
     volumes:
