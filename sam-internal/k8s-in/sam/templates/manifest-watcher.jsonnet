@@ -21,14 +21,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                             "--config=/config/manifestwatcher.json",
                             "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
                             configs.sfdchosts_arg,
-                        ] + (
-                            if configs.estate == "prd-samtest" then [
-                                 "--etcdSetDisabled=true",
-                                 "--etcdGetDisabled=true",
-                                 "--crdSetEnabled=true",
-                                 "--crdGetEnabled=true",
-                            ] else []
-                        )),
+                        ]),
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
