@@ -3,6 +3,6 @@ local casamTmptl = import "../../casam.libsonnet";
 local prdEnv = import "../env.json";
 local env = import "env.json";
 
-local mist61B = prdEnv + env;
+local na6 = prdEnv + env;
 
-casamTmptl.newCasam(region='prd', instanceName='mist61-b', env=mist61B)
+casamTmptl.newCasam(region='prd', instanceName='na6', env=na6)
