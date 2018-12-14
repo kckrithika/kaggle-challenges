@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.5.0.0.develop-1.5.db79605.75
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.5.0-freeze-001.0.release-1.5.94366c9.1
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,admin@bt.salesforce.com"
@@ -58,7 +58,7 @@ system:
         - name: MAX_FLOWSNAKE_ENVIRONMENTS
           value: 25
         - name: STREAM_PROCESSING_ENDPOINT
-          value: http://cre-sp-ccp-perf.retail-cre.localhost.mesh.force.com:5442
+          value: cre-sp-ccp-perf.retail-cre.localhost.mesh.force.com:5443
         - name: GDOT_FORCE_PROVISIONING
           value: false
         - name: SECRET_KEY_FILE
