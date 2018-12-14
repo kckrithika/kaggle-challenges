@@ -120,7 +120,7 @@ apps:
     - shared2-samminioncoreapp2-1-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-2-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-3-prd.eng.sfdc.net
- mist61-na10:
+ prd-mist61-na10:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
     - shared2-samminioncoreapp2-1-prd.eng.sfdc.net
