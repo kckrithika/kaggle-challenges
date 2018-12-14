@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+
+import argparse
+import json
+import yaml
+import subprocess
+
+git_hash = subprocess.check_output(['git', 'rev-parse', 'HEAD'])
+
+HEADER_WARNING = [
+    '# Warning: DO NOT EDIT this generated file\n',
+    '# See here on how to generate this file https://git.soma.salesforce.com/casam/manifests\n',
+    '# Git commit - %s' % git_hash,
+    '\n']
+
+def convert_to_yaml(json_file, yaml_file, dump, write_header):
+    """
+    converts the given json file in to yaml
+    optionaly dumps the output to screen
+    """
+    jsonManifest = json.load(open(json_file, "r"))
+    with open(yaml_file, "w") as yamlManifest:
+        if write_header:
+            yamlManifest.writelines(HEADER_WARNING)
+
+        yaml.safe_dump(jsonManifest, yamlManifest, default_flow_style=False)
+
+        if dump:
+            print yaml.safe_dump(jsonManifest, default_flow_style=False)
+
+
+def main():
+    """
+    command line tool to convert json file in to Yaml file and save to the destination
+
+    :rtype: exit code
+    """
+    parser = argparse.ArgumentParser()
+
+    requiredNamed = parser.add_argument_group('required named arguments')
+    requiredNamed.add_argument('--json', dest='json_file', required=True,
+                               help='Json File Name')
+    requiredNamed.add_argument('--yaml', dest='yaml_file', required=True,
+                               help='Destination Yaml file')
+    parser.add_argument('--no-header', action='store_false', default=True, dest='write_header',
+                        help='Omit the header comment when writing to destination file warning the user not to edit directly')
+    parser.add_argument('--dump', help='Dump yaml to the console', action='store_true', default=False)
+
+    args = parser.parse_args()
+
+    convert_to_yaml(args.json_file, args.yaml_file, args.dump, args.write_header)
+
+if __name__ == "__main__":
+    main()
