@@ -4,7 +4,6 @@ system:
   functions:
     - name: aqueduct
       count: 1
-      hostnetwork: true
       containers:
       - name: aqueduct
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun/aqueduct:aqueduct_scone4.1.2 # Use the latest version, see below
@@ -12,19 +11,21 @@ system:
         - name: SFDC_ENVIRONMENT
           value: "sam" # Use whatever environment your kpod uses
         ports:
-        - containerPort: 25674
+        - containerPort: 8080
           name: ext-port
-        - containerPort: 25675
+        - containerPort: 8082
           name: inter-port
-        - containerPort: 45699
+        - containerPort: 15372
           name: manage-port
         livenessProbe:
           initialDelaySeconds: 500
           periodSeconds: 30
-          timeoutSeconds: 3600
+          timeoutSeconds: 30
           httpGet:
-            path: /available
-            port: 25674
+            path: /manage/health
+            port: 15372
+            scheme: HTTP
+
 # loadbalancers:
 #   - lbname: aqueduct
 #     function: default
