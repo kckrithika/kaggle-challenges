@@ -9,7 +9,7 @@ git_hash = subprocess.check_output(['git', 'rev-parse', 'HEAD'])
 
 HEADER_WARNING = [
     '# Warning: DO NOT EDIT this generated file\n',
-    '# See here on how to generate this file https://git.soma.salesforce.com/casam/manifests\n',
+    '# See here on how to generate this file https://git.soma.salesforce.com/casam/manifests//apps/team/core-on-sam/README.md\n',
     '# Git commit - %s' % git_hash,
     '\n']
 
