@@ -75,6 +75,11 @@
         name: "CASAM_SUPERPOD",
         value: "sp2",
       },
+      {
+        // This is the proxy server url, incase you want to reach outside of the network
+        name: "HTTP_PROXY",
+        value: env.httpProxy,
+      },
     ],
     livenessProbe: {
       httpGet: {

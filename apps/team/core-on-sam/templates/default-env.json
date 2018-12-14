@@ -30,5 +30,7 @@
     "publicHost": "<< Missing Public Host >>",
     "switchboard": "<< Missing switchboard end point >>",
     "sfProxyVIP": "<< Missing SFProxy Coreapp VIP >>",
-    "sfProxyEndpoint": "<< Missing Cyan End point >>"
+    "sfProxyEndpoint": "<< Missing Cyan End point >>",
+
+    "httpProxy": "<< Missing Http Proxy >>"
 }
