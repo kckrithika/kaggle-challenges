@@ -6,12 +6,15 @@ system:
   functions:
   - name: eaas
     count: 3
+    terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
       image: docker-sfci-dev/sfci/eaas/emailservice:2.0.21-852c87adab3a8340f9142404be5fe068a9363539
       ports:
       - name: grpc
         containerPort: 7020
+      - name: chaos
+        containerPort: 7022
       env:
       - name: SFDC_ENVIRONMENT
         value: prd
@@ -23,10 +26,10 @@ system:
         value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=3"
       resources:
         requests:
-          memory: "12G"
-          cpu: "1"
+          memory: "6G"
+          cpu: "2"
         limits:
-          memory: "12G"
+          memory: "6G"
           cpu: "2"
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
@@ -35,12 +38,19 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 160
+        # Generally we have set this to ~10 seconds longer than the readinessProbe initialDelaySeconds
+        initialDelaySeconds: 120
+        periodSeconds: 60
+        timeoutSeconds: 30
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 150
+        # This needs to be longer than the time for scone to start. 
+        # Search the logs for 'Started EaasSconeApp' to get a sense of the startup time which is primary dependent on CPU resources.
+        initialDelaySeconds: 110
+        periodSeconds: 60
+        timeoutSeconds: 30
     - name: beacon-eaas
       image: docker-sfci-dev/sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
@@ -133,3 +143,6 @@ system:
     - lbtype: tcp
       port: 7020
       targetport: 7020
+    - lbtype: tcp
+      port: 7022
+      targetport: 7022
