@@ -65,12 +65,12 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             fireflyintake: "266",
-             fireflycrawler: "259",
-             fireflypackage: "274",
-             fireflypromotion: "259",
-             fireflypullrequest: "269",
-             fireflyevalresultmonitor: "268",
+             fireflyintake: "279",
+             fireflycrawler: "279",
+             fireflypackage: "279",
+             fireflypromotion: "279",
+             fireflypullrequest: "279",
+             fireflyevalresultmonitor: "278",
              fireflydind: "224",
              rabbitmq: "140",
              rabbitmqmonitord: "259",
