@@ -25,12 +25,14 @@ system:
             path: /manage/health
             port: 15372
             scheme: HTTP
-
-# loadbalancers:
-#   - lbname: aqueduct
-#     function: default
-#     slbEnabled: true
-#     ports:
-#      - port : 8080
-#        targetport : 8080
-#        lbtype : <tcp|http|dsr>
+  loadbalancers:
+    - lbname: aqueduct
+      function: aqueduct
+      slbEnabled: true
+      ports:
+        - port: 443
+          targetport: 8082
+          lbtype: http
+        - port: 15372
+          targetport: 15372
+          lbtype: http
