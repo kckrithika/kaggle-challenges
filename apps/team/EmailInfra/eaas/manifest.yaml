@@ -9,7 +9,7 @@ system:
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.19-5980e31a5d0d6504c5cf75ec0447f57fd61c6654
+      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.22-c7bd6b127a0b4719b8084938655aa1b6e8b69be8
       ports:
       - name: grpc
         containerPort: 7020
@@ -21,14 +21,14 @@ system:
       - name: SCONE_SERVICE_NAME
         value: eaas
       - name: JAVA_OPTIONS
-        value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=3"
+        value: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=3
       resources:
-        requests:
-          memory: "12G"
-          cpu: "800m"
         limits:
-          memory: "12G"
-          cpu: "800m"
+          memory: 12G
+          cpu: 800m
+        requests:
+          memory: 12G
+          cpu: 800m
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
