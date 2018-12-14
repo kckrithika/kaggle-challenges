@@ -18,9 +18,10 @@ system:
         - containerPort: 15372
           name: manage-port
         livenessProbe:
-          initialDelaySeconds: 500
-          periodSeconds: 30
-          timeoutSeconds: 30
+          initialDelaySeconds: 600 
+          periodSeconds: 60
+          timeoutSeconds: 10
+          failureThreshold: 5 #perhaps should change this for production.
           httpGet:
             path: /manage/health
             port: 15372
