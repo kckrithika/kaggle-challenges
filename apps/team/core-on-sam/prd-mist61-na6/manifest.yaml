@@ -1,6 +1,6 @@
 # Warning: DO NOT EDIT this generated file
 # See here on how to generate this file https://git.soma.salesforce.com/casam/manifests//apps/team/core-on-sam/README.md
-# Git commit - 662cd01519280d56db660915086b18cdbef97188
+# Git commit - cdf63a22c70dc5f59376845d1ff5be25394fff11
 
 apiVersion: v1
 system:
@@ -235,6 +235,8 @@ system:
         value: mist.mist61.prd.na6.sequencer
       - name: CASAM_SUPERPOD
         value: sp2
+      - name: HTTP_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
       image: sfci/casam/sequencer:db9c41
       livenessProbe:
         failureThreshold: 10
