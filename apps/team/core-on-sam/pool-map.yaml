@@ -72,7 +72,7 @@ apps:
     - shared2-samminioncoreapp3-3-prd.eng.sfdc.net
 
  # NA3 is generated from casam/manifests using templates
- mist61-na3:
+ prd-mist61-na3:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
     - shared2-samminioncoreapp1-1-prd.eng.sfdc.net
