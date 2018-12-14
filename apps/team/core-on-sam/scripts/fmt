@@ -1,0 +1,11 @@
+#!/bin/bash
+# Runs jsonnet formatting on each manifest file.
+# set -ex
+
+DIR="`dirname \"$0\"`" 
+ROOTDIR="`( cd \"$DIR/..\" && pwd )`"  # absolutized and normalized
+
+for i in `find ${ROOTDIR}/templates -name "*.*sonnet"` ;
+do
+  jsonnet fmt --string-style l --comment-style l  -i -n 2 "${i}" >> /dev/null
+done;

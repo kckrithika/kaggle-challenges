@@ -1,6 +1,10 @@
 # Warning: DO NOT EDIT this generated file
 # See here on how to generate this file https://git.soma.salesforce.com/casam/manifests
+<<<<<<< HEAD:apps/team/core-on-sam/prd-mist61-na3/manifest.yaml
 # Git commit - c556c71a4a78e116150197cc2a12948a1bf7e280
+=======
+# Git commit - 850fa567289c5c9a4dc2695dc935db3c82f66b96
+>>>>>>> templates for core-on-sam:apps/team/core-on-sam/prd-mist61-na3/manifest.yaml
 
 apiVersion: v1
 system:
@@ -8,9 +12,9 @@ system:
   - containers:
     - env:
       - name: DB_SID
-        value: mist61b218utf
+        value: mist61a216utf
       - name: DB_INSTANCE_NAME
-        value: mist61b218utf-1
+        value: mist61a216utf-1
       - name: DB_USER
         value: sleepy
       - name: DB_PASSWORD
@@ -63,7 +67,11 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
+<<<<<<< HEAD:apps/team/core-on-sam/prd-mist61-na3/manifest.yaml
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17164492
+=======
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_216-patch_17163313
+>>>>>>> templates for core-on-sam:apps/team/core-on-sam/prd-mist61-na3/manifest.yaml
       livenessProbe:
         exec:
           command:
@@ -220,7 +228,7 @@ system:
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
-        value: mist61b218utf
+        value: mist61a216utf
       - name: LOCK_DWARF
         value: 1
       - name: TRIGGER_CAFFEINE
@@ -256,6 +264,12 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: cert
+      - mountPath: /secrets/
+        name: secretvol
+        readOnly: true
+      - mountPath: /kaiju-secrets/
+        name: kaiju-secret-vol
+        readOnly: true
     count: 1
     identity:
       pod: na3
@@ -267,6 +281,12 @@ system:
     - maddogCert:
         type: client
       name: cert
+    - k4aSecret:
+        secretName: sequencer-gus
+      name: secretvol
+    - k4aSecret:
+        secretName: sequencer-kaiju
+      name: kaiju-secret-vol
   - containers:
     - args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
