@@ -59,6 +59,8 @@
                     "*.internal.salesforce.com",
                 ] + (if configs.estate == "prd-sam" then (steamVipSans + [
                     "*.retail-rsui." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+                    "stfma.stm.salesforce-hub.com",
+                    "my.stmfa.stm.salesforce-hub.com",
                 ]) else []),
             },
         },
