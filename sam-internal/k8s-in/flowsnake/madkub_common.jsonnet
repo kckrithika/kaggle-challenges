@@ -4,16 +4,26 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
  local estate = std.extVar("estate");
  local kingdom = std.extVar("kingdom");
 
- local certs_mount = {
-     mountPath: "/certs",
-     name: "datacerts",
- };
- local certs_volume = {
-     name: "datacerts",
+ ### cert_name_folder_map associates named certs with their directory on disk.
+ local certs_mounts(cert_name_folder_map) = [{
+     mountPath: '/%s' % cert_name_folder_map[cert_name],
+     name: cert_name,
+ } for cert_name in std.objectFields(cert_name_folder_map)];
+
+ # Simple case: single cert, stored in /certs
+ local certs_mount = certs_mounts({ datacerts: "certs" })[0];
+
+
+ ### cert_name_folder_map associates named certs with their directory on disk.
+ local certs_volumes(cert_name_folder_map) = [{
+     name: cert_name,
      emptyDir: {
          medium: "Memory",
      },
- };
+ } for cert_name in std.objectFields(cert_name_folder_map)];
+
+ # Simple case: single cert, stored in /certs
+ local certs_volume = certs_volumes({ datacerts: "certs" })[0];
 
  local tokens_mount = {
      mountPath: "/tokens",
@@ -26,9 +36,9 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
      },
  };
 
-
  ### Refresh container for Madkub - Reloads tokens at regular intervals, required for cert rotation
- local refresher_container(cert_name) = {
+ ### cert_name_folder_map associates named certs with their directory on disk.
+ local refresher_container_multi_cert(cert_name_folder_map) = {
      name: "sam-madkub-integration-refresher",
      args: [
          "/sam/madkub-client",
@@ -51,8 +61,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
          "--refresher",
          "--run-init-for-refresher-mode",
          "--cert-folders",
-         cert_name + ":/certs",
-     ] +
+] + ['%s:/%s' % [name, cert_name_folder_map[name]] for name in std.objectFields(cert_name_folder_map)] +
      (if !flowsnakeconfig.is_minikube then [
          "--funnel-endpoint",
          flowsnakeconfig.funnel_endpoint,
@@ -106,8 +115,11 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
      ],
  };
 
+ # Simple case: single cert, stored in /certs directory
+ local refresher_container(cert_name) = refresher_container_multi_cert({ [cert_name]: "certs" });
+
  ### Init container for madkub - initializes connection to Madkub and loads initial certs.  Required for madkub integration
- local init_container(cert_name) = {
+ local init_container_multi_cert(cert_name_folder_map) = {
      name: "sam-madkub-integration-init",
      args: [
          "/sam/madkub-client",
@@ -128,8 +140,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
          "--estate",
          estate,
          "--cert-folders",
-         cert_name + ":/certs",
-     ] +
+] + ['%s:/%s' % [name, cert_name_folder_map[name]] for name in std.objectFields(cert_name_folder_map)] +
      (if !flowsnakeconfig.is_minikube then [
          "--funnel-endpoint",
          flowsnakeconfig.funnel_endpoint,
@@ -183,10 +194,15 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
      ],
  };
 
+ # Simple case: single cert, stored in /certs directory
+ local init_container(cert_name) = init_container_multi_cert({ [cert_name]: "certs" });
+
  ## Expose common bits for external use / consumption
  {
      certs_mount: certs_mount,
+     certs_mounts:: certs_mounts,
      certs_volume: certs_volume,
+     certs_volumes:: certs_volumes,
      tokens_volume: tokens_volume,
 
      refresher_container:: refresher_container,

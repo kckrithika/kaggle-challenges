@@ -27,6 +27,7 @@ configs.deploymentBase("flowsnake") {
                             {
                                 name: cert_name,
                                 role: "flowsnake_test",
+                                # Why do we have SANs here? Can we remove them?
                                 san: [
                                     flowsnakeconfig.fleet_vips[estate],
                                     flowsnakeconfig.fleet_api_roles[estate] + ".flowsnake.localhost.mesh.force.com"
