@@ -3,6 +3,11 @@ local kingdom = std.extVar("kingdom");
 
 # Public functions
 {
+    # This is temp hack for PCN
+    is_pcn(kingdom):: (
+        kingdom == "pcn"
+    ),
+
     # This is for filtering Public Clouds from Private Clouds
     is_public_cloud(kingdom):: (
         kingdom == "cdu" || kingdom == "syd" || kingdom == "yhu" || kingdom == "yul"

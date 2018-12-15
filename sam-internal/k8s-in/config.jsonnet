@@ -43,6 +43,7 @@ local utils = import "util_functions.jsonnet",
             ph2: "ops0-mta2-1-ph2.ops.sfdc.net:25",
             lo2: "ops0-mta2-1-lo2.ops.sfdc.net:25",
             lo3: "ops0-mta2-1-lo3.ops.sfdc.net:25",
+            pcn: "fakeSmtpServer",
         },
 
         # TODO: remove mom and charon endpoint to sdn-config
@@ -336,6 +337,28 @@ local utils = import "util_functions.jsonnet",
         },
         name: "maddog-certs",
     },
+
+    # For use by PCN sfdclocation
+    pcn_kingdom_env: {
+        name: "SFDCLOC_PCN_KINGDOM",
+        value: kingdom,
+    },
+
+    pcn_estate_env: {
+        name: "SFDCLOC_PCN_ESTATE",
+        value: estate,
+    },
+
+    containerInPCN: (if utils.is_pcn(kingdom) then {
+        env: [
+            $.pcn_kingdom_env,
+            $.pcn_estate_env,
+        ],
+    } else {}),
+
+    pcnEnableLabel: (if utils.is_pcn(kingdom) then {
+        pcn: "deploy",
+    } else {}),
 
     # For apps that use liveConfig + configMap for configuration
     config_volume_mount: {

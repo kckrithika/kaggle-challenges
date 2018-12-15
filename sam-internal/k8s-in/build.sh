@@ -69,6 +69,11 @@ else
 fi
 
 ./parallel_build.py --src=sam/templates/,sdn/templates/,slb/templates/,storage/templates/,tnrp/templates --out=../k8s-out/ --pools=../pools/ --estatefilter=$1
+
+# PCN
+rm -rf ../k8s-out/pcn/pcn-sam/*
+./parallel_build.py --src=sam/templates/ --out=../k8s-out/ --pools=../pools/ --estatefilter=pcn/pcn-sam --labelfilter=pcn:deploy
+
 ./parallel_build.py --src=flowsnake/templates,sdn/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeEstates.json --estatefilter=$1
 # Skip SDN templates for Minikube
 ./parallel_build.py --src=flowsnake/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeMinikubeEstates.json --estatefilter=$1
