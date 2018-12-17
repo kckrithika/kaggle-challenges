@@ -16,13 +16,13 @@ system:
         value: istio
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
+      - name: GRPC_PORT
+        value: 7035
       ports:
-      - containerPort: 7020
+      - containerPort: 7035
         name: grpc-svc
       - containerPort: 15375
         name: scone-mgmt
-      - containerPort: 15000
-        name: envoy-admin
       livenessProbe:
         initialDelaySeconds: 15
         httpGet:
@@ -47,4 +47,4 @@ system:
     nodeExposed: true # All SAM services created from manifest are by default NodePort.
     ports:
     - port: 7035
-      targetport: 7020
+      targetport: 7035
