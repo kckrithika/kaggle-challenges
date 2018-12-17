@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
     - name: aqueduct
-      count: 1
+      count: 3
       containers:
       - name: aqueduct
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun/aqueduct:aqueduct_scone4.1.2 # Use the latest version, see below
@@ -18,7 +18,7 @@ system:
         - containerPort: 15372
           name: manage-port
         livenessProbe:
-          initialDelaySeconds: 600 
+          initialDelaySeconds: 600
           periodSeconds: 60
           timeoutSeconds: 10
           failureThreshold: 5 #perhaps should change this for production.
