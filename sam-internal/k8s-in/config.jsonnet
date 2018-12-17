@@ -145,19 +145,19 @@ local utils = import "util_functions.jsonnet",
     #    }
     #  }
     containerWithKubeConfigAndMadDog: $.containerWithMadDog {
-        volumeMounts+: [$.kube_config_volume_mount],
-        env+: [$.kube_config_env],
+        [if !utils.is_pcn(kingdom) then "volumeMounts"]+: [$.kube_config_volume_mount],
+        [if !utils.is_pcn(kingdom) then "env"]+: [$.kube_config_env],
     },
     specWithKubeConfigAndMadDog: $.specWithMadDog {
-        volumes+: [$.kube_config_volume],
+        [if !utils.is_pcn(kingdom) then "volumes"]+: [$.kube_config_volume],
     },
 
     # Adds MadDog.  Use the same way you would use KubeConfig above
     containerWithMadDog: {
-        volumeMounts+: [$.maddog_cert_volume_mount],
+        [if !utils.is_pcn(kingdom) then "volumeMounts"]+: [$.maddog_cert_volume_mount],
     },
     specWithMadDog: {
-        volumes+: [$.maddog_cert_volume],
+        [if !utils.is_pcn(kingdom) then "volumes"]+: [$.maddog_cert_volume],
     },
 
     # TODO: We should probably phase these out.
