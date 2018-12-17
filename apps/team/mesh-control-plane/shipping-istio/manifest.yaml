@@ -28,7 +28,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15375
-      # Only to test if SPIFFE URIs are enabled. Will delete shortly
+      # Volume mounts used by Istio CRDs
       volumeMounts:
       - mountPath: /client-certs
         name: tls-client-cert
