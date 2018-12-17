@@ -25,6 +25,8 @@ system:
         name: grpc-svc
       - containerPort: 15374
         name: scone-mgmt
+      - containerPort: 15000
+        name: envoy-admin
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
