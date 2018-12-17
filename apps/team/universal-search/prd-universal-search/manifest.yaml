@@ -36,7 +36,7 @@ system:
         requests: { cpu: "2", memory: "8Gi" }
       env:
       - name: REQUESTS_SOCKETTIMEOUT
-        value: "60000"
+        value: "5000"
       - name: SERVICE_THREADCOUNT
         value: 50
       - name: SFDC_ENVIRONMENT
