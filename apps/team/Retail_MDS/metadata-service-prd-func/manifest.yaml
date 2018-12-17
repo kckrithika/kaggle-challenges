@@ -42,7 +42,8 @@ system:
       - name: MANAGEMENT_PORT
         value: 15523
       - name: JVM_ARGS
-        value: "-Dgdot.server-url=https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim"
+        value: "-Dgdot.server-url=https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+                -Xmx2G -Xms2G"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
