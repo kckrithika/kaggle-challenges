@@ -9,7 +9,7 @@ system:
     hostnetwork: true
     containers:
     - name: gater1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.13.0
+      image: sfci/gater/gate-manager:1.13.0
       args:
       - --server.port=9090
       - --scone.srpc.announcing-enabled=false
