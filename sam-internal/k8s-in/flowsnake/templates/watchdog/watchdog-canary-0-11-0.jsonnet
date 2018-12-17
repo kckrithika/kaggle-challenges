@@ -34,7 +34,7 @@ configs.deploymentBase("flowsnake") {
                                 # Why do we have SANs here? Can we remove them?
                                 san: [
                                     flowsnakeconfig.fleet_vips[estate],
-                                    flowsnakeconfig.fleet_api_roles[estate] + ".flowsnake.localhost.mesh.force.com"
+                                    flowsnakeconfig.service_mesh_fqdn("api"),
                                 ],
                             }
                         ]

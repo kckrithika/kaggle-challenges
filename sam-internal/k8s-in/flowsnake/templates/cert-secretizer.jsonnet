@@ -29,10 +29,10 @@ configs.deploymentBase("flowsnake") {
               certreqs: [
                 {
                   name: cert_name,
-                  role: "flowsnake." + flowsnakeconfig.fleet_api_roles[estate],
+                  role: "flowsnake." + flowsnakeconfig.role_munge_for_estate("api"),
                   san: [
                     flowsnakeconfig.fleet_vips[estate],
-                    flowsnakeconfig.fleet_api_roles[estate] + ".flowsnake.localhost.mesh.force.com",
+                    flowsnakeconfig.service_mesh_fqdn("api"),
                   ],
                   "cert-type": "server",
                   kingdom: kingdom,
