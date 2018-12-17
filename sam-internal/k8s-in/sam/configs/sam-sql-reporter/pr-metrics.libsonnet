@@ -112,11 +112,11 @@
                     {
                         name: "Sam latency",
                         sql: "SELECT pr_num, 
-       totallatencymin - (imagelatencymin + tnrplatency) samlatencymin,
+       totallatencymin - (imagelatencymin + tnrplatency + evalPrLatency) samlatencymin,
        Imagelatencymin artifactoryLatency,
        tnrplatency,
-       totallatencymin e2eLatency
-       
+       totallatencymin e2eLatency,
+       evalPrLatency
 FROM   ( 
                        SELECT          pr_num, 
                                        imagelatencymin, 
@@ -125,7 +125,8 @@ FROM   (
                                        CASE 
                                                        WHEN t.manifest_zip_time IS NULL THEN Now()
                                                        ELSE t.manifest_zip_time 
-                                       END) AS tnrplatency 
+                                       END) AS tnrplatency,
+                                       evalPrLatency
                        FROM            ( 
                                                  SELECT    prs.pr_num, 
                                                            prs.git_hash, 
@@ -139,8 +140,10 @@ FROM   (
                                                            CASE 
                                                                      WHEN payload -> '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
                                                                      ELSE Json_unquote(payload -> '$.status.endTime') 
-                                                           END, '%Y-%m-%dT%H:%i:%s'))) totallatencymin 
+                                                           END, '%Y-%m-%dT%H:%i:%s'))) totallatencymin,
+                                                           Timestampdiff(minute, prs.`most_recent_authorized_time`, prs.`most_recent_evaluate_pr_completion_time`) evalPrLatency
                                                  FROM      PullRequests prs 
+                                                 INNER JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num` = pApp.`pr_num`
                                                  LEFT JOIN 
                                                            ( 
                                                                   SELECT * 
