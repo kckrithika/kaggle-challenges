@@ -31,6 +31,9 @@ system:
       # 9091 is for REST which is disabled in prod
       - containerPort: 9091
       - containerPort: 15523
+      resources:
+        limits: { cpu: "4", memory: "3Gi" }
+        requests: { cpu: "4", memory: "3Gi" }
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
@@ -39,7 +42,8 @@ system:
       - name: MANAGEMENT_PORT
         value: 15523
       - name: JVM_ARGS
-        value: "-Dgdot.server-url=https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim"
+        value: "-Dgdot.server-url=https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+                -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
@@ -61,6 +65,9 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: stmfa
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
         - containerPort: 7443
           name: sherpa-h2-tls
