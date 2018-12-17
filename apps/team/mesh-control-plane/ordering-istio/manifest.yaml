@@ -17,7 +17,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: istio
       - name: SCONE_SHIPPING_DEST
-        value: shipping-istio.mesh-control-plane:7035
+        value: shipping.internal.mesh.com:7020
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: GRPC_PORT
@@ -32,6 +32,19 @@ system:
         httpGet:
           path: /manage/health
           port: 15374
+      # Volume mounts used by Istio CRDs
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - lbname: ordering-istio
     function: ordering-istio
