@@ -58,8 +58,8 @@ spec:
               "*.a.stmda.stm.forceusercontent.com",
               "*.d.stmda.stm.forceusercontent.com",
               "*.retail-rsui.prd-sam.prd.slb.sfdc.net",
-              "stfma.stm.salesforce-hub.com",
-              "my.stmfa.stm.salesforce-hub.com"
+              "*.stmfa.stm.salesforce-hub.com",
+              "*.my.stmfa.stm.salesforce-hub.com"
              ]
             },
             {
