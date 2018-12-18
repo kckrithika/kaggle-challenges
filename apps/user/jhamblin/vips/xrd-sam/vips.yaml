@@ -1,0 +1,22 @@
+- lbname: infrasec1test-secrets1-0-xrd
+  servers:
+  - infrasec1test-secrets1-1-xrd.eng.sfdc.net
+  - infrasec1test-secrets1-2-xrd.eng.sfdc.net
+  - infrasec1test-secrets2-1-xrd.eng.sfdc.net
+  - infrasec1test-secrets2-2-xrd.eng.sfdc.net
+  ports:
+  - port: 443
+    targetport: 8443
+    lbtype: http
+    sticky: 600
+    tls: true
+    reencrypt: true
+  - port: 8272
+    targetport: 8271
+    lbtype: http
+    sticky: 600
+    tls: true
+    reencrypt: true
+  - port: 80
+    httpsredirectport: 443
+    lbtype: http
