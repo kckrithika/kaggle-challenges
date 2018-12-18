@@ -41,10 +41,3 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-  loadbalancers:
-  - lbname: shipping-istio
-    function: shipping-istio
-    nodeExposed: true # All SAM services created from manifest are by default NodePort.
-    ports:
-    - port: 7035
-      targetport: 7035
