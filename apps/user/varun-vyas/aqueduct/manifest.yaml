@@ -5,7 +5,7 @@ system:
     - name: aqueduct
       count: 3
       volumes:
-      - name: kafkaClientCerts
+      - name: kafkaclientcerts
         maddogCert:
           type: client
       containers:
@@ -31,7 +31,7 @@ system:
             port: 15372
             scheme: HTTP
         volumeMounts:
-          - name: kafkaClientCerts
+          - name: kafkaclientcerts
             mountPath: /etc/pki_service/sfdc-aqueduct
   loadbalancers:
     - lbname: aqueduct
