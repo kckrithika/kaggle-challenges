@@ -1148,7 +1148,7 @@ items:
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: sam-test-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:279
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:281
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
