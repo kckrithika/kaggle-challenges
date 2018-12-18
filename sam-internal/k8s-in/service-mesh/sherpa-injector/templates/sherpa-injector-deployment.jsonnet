@@ -46,14 +46,14 @@ configs.deploymentBase("service-mesh") {
           {
             name: "sherpa-injector",
             // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:629f381f2b01c5fa6d90f0030efd247c13f72ccf",
+            image: "%s/sfci/servicelibs/sherpa-injector:45c763e04aab65db4429c49fc57f60ab835094d3" % configs.registry,
             imagePullPolicy: "IfNotPresent",
             args: [
               "--port=7443",  // can't use 443 here because of the permissions
               "--cert=/server-certificates/server/certificates/server.pem",
               "--key=/server-certificates/server/keys/server-key.pem",
               "--template=sherpa-container.yaml.template",
-              "--image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:1.0.4",
+              "--image=%s/sfci/servicelibs/sherpa-envoy:1.0.4" % configs.registry,
               "--log-level=debug",
             ],
             volumeMounts+: [
@@ -70,20 +70,20 @@ configs.deploymentBase("service-mesh") {
             livenessProbe: {
               exec: {
                 command: [
-                  "/bin/true",
+                  "./is-alive.sh",
                 ],
               },
-              initialDelaySeconds: 4,
-              periodSeconds: 4,
+              initialDelaySeconds: 2,
+              periodSeconds: 3,
             },
             readinessProbe: {
               exec: {
                 command: [
-                  "/bin/true",
+                  "./is-ready.sh",
                 ],
               },
               initialDelaySeconds: 4,
-              periodSeconds: 4,
+              periodSeconds: 3,
             },
             resources: {},
           },
@@ -225,7 +225,7 @@ configs.deploymentBase("service-mesh") {
         "-c",
         "set -ex\nchmod 775 -R /cert1 && chown -R 7447:7447 /cert1\n",
     ],
-        image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
+        image: "%s/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673" % configs.registry,
         imagePullPolicy: "IfNotPresent",
         name: "permissionsetterinitcontainer",
         securityContext: {

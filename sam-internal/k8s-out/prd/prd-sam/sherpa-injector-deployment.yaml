@@ -44,23 +44,23 @@ spec:
         - --template=sherpa-container.yaml.template
         - --image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:1.0.4
         - --log-level=debug
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:629f381f2b01c5fa6d90f0030efd247c13f72ccf
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:45c763e04aab65db4429c49fc57f60ab835094d3
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
             command:
-            - /bin/true
-          initialDelaySeconds: 4
-          periodSeconds: 4
+            - ./is-alive.sh
+          initialDelaySeconds: 2
+          periodSeconds: 3
         name: sherpa-injector
         ports:
         - containerPort: 7443
         readinessProbe:
           exec:
             command:
-            - /bin/true
+            - ./is-ready.sh
           initialDelaySeconds: 4
-          periodSeconds: 4
+          periodSeconds: 3
         resources: {}
         volumeMounts:
         - mountPath: /server-certificates
