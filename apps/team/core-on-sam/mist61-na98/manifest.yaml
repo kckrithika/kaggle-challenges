@@ -98,9 +98,9 @@ system:
         periodSeconds: 5
     - name: sfproxy-switchboard-sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.3
+      command: ["/bin/sleep"]
       args:
-      - --template
-      - /switchboard-config/switchboard-sidecar.config.yaml.template
+      - 701000
       ports:
       - containerPort: 15001
       env:
@@ -123,13 +123,13 @@ system:
       livenessProbe:
         exec:
           command:
-          - ./bin/is-alive
+          - /bin/pwd
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - ./bin/is-ready
+          - /bin/pwd
         initialDelaySeconds: 15
         periodSeconds: 5
 
