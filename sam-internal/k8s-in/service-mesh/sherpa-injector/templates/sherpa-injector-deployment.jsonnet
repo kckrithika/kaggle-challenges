@@ -10,7 +10,7 @@ configs.deploymentBase("service-mesh") {
     },
   },
   spec+: {
-    replicas: 1,
+    replicas: 3,
     template: {
       metadata: {
         labels: {
