@@ -4,6 +4,10 @@ system:
   functions:
     - name: aqueduct
       count: 3
+      volumes:
+      - name: kafkaClientCerts
+        maddogCert:
+          type: client
       containers:
       - name: aqueduct
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun/aqueduct:aqueduct_scone4.1.2 # Use the latest version, see below
@@ -26,6 +30,9 @@ system:
             path: /manage/health
             port: 15372
             scheme: HTTP
+        volumeMounts:
+          - name: kafkaClientCerts
+            mountPath: /etc/pki_service/sfdc-aqueduct
   loadbalancers:
     - lbname: aqueduct
       function: aqueduct
