@@ -11,11 +11,47 @@
                 "enum": [ "DaemonSet" ]
             },
 
+            "metadata": {
+                "properties": {
+
+                    "labels": {
+                        "$ref": "k8sConfigs#/Rule_LabelsValidation"
+                    },
+
+                    "annotations": {
+                        "$ref": "k8sConfigs#/Rule_AnnotationValidation"
+                    },
+
+                    "namespace": {
+
+                    }
+
+                }
+            },
+
             "spec": {
                 "properties": {
         
                     "template": {
                         "properties": {
+
+                            "metadata": {
+                                "properties": {
+
+                                    "labels": {
+                                        "$ref": "k8sConfigs#/Rule_LabelsValidation"
+                                    },
+                
+                                    "annotations": {
+                                        "$ref": "k8sConfigs#/Rule_AnnotationValidation"
+                                    },
+                
+                                    "namespace": {
+                
+                                    }
+
+                                }
+                            },
 
                             "spec": {
                                 "properties": {

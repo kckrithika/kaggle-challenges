@@ -12,7 +12,7 @@
                         "value": "bar"
                      }
                   ],
-                  "image": "somerandomhost.net/docker/retail/fail:123",
+                  "image": "somerandomhost.net",
                   "livenessProbe": {
                      "httpGet": {
                         "port": 5432

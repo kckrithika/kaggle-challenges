@@ -57,4 +57,64 @@ local schemaID = "k8sConfigs";
             },
         },
     },
+
+    // Make sure the SAM/K8s reserved labels are not used
+    AnnotationValidation:: {
+        // PropertyNames is a JSON Schema keyboard that enforces the property/key value
+        propertyNames: util.DoNotMatchRegex(config.ReservedLabelsRegex),
+    },
+
+    // Make sure the SAM/K8s reserved labels are not used
+    LabelsValidation:: {
+        // PropertyNames is a JSON Schema keyboard that enforces the property/key value
+        propertyNames: util.DoNotMatchRegex(config.ReservedLabelsRegex),
+    },
+
+    SLBAnnotationValidation:: {
+        properties: {
+            "slb.sfdc.net/name": {
+                "$ref": "#/Rule_IsDNS1035Validation"
+            },
+            "slb.sfdc.net/portconfigurations": {
+                
+            },
+        },
+    },
+
+
+    BannedVolumeHostPaths:: util.ValuesNotAllowed(config.bannedHostPaths),
+
+    // privilegedNamespaces(thenCase={},elseCase):: {
+    //     "if": {
+    //         anyOf: [
+    //             {
+    //                 properties: { metadata: {
+    //                         properties: {
+    //                             namespace: util.AllowedValues(config.privilegedNamespaces),
+    //                         }, 
+    //                     },
+    //                 },
+    //             },
+    //             {
+    //                 properties: { 
+    //                     spec: {
+    //                         properties: { 
+    //                             template: {
+    //                                 properties: { 
+    //                                     metadata: {
+    //                                         properties: {
+    //                                             namespace: util.AllowedValues(config.privilegedNamespaces),
+    //                                         },
+    //                                     } 
+    //                                 }
+    //                             } 
+    //                         }
+    //                     }
+    //                 }
+    //             },
+    //         ]
+    //     },
+    //     "then": thenCase,
+    //     "else": elseCase
+    // },
 }

@@ -19,9 +19,22 @@ local schemaID = "k8sConfigs";
     },
 
 
-    Rule_ValidateVolumes: {
-        BannedHostPaths: util.ValuesNotAllowed(config.bannedHostPaths)
+    Rule_IsDNS1035Validation: {
+        maxLength: 63,
+        pattern: "^[a-z]([-a-z0-9]*[a-z0-9])?$"
     },
+
+
+    Rule_ValidateVolumes: {
+        // BannedHostPaths: util.ValuesNotAllowed(config.bannedHostPaths)
+        BannedHostPaths: base.BannedVolumeHostPaths
+    },
+
+
+    Rule_AnnotationValidation: base.AnnotationValidation,
+
+
+    Rule_LabelsValidation: base.LabelsValidation,
 
 
     Rule_ValidateNameInContainer: {
@@ -31,6 +44,9 @@ local schemaID = "k8sConfigs";
 
 
     Rule_AffinityValidation: base.affinityValidation,
+
+
+    Rule_SLBAnnotationValidation: base.SLBAnnotationValidation,
 
 
     Rule_StatefulSetSpecRequirements: {

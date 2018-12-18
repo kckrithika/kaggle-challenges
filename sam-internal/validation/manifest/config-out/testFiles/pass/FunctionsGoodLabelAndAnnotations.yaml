@@ -4,6 +4,12 @@
    "system": {
       "functions": [
          {
+            "annotations": {
+               "sfdc.co/sam": "good-label",
+               "sfdc.co/test123": "wow-good_label",
+               "test.1.com/2": "good_label",
+               "testing/one": "goodlabel1"
+            },
             "containers": [
                {
                   "env": [
@@ -33,39 +39,13 @@
                }
             ],
             "count": 1,
-            "name": "foo-function",
-            "volumes": [
-               {
-                  "hostPath": {
-                     "path": "/data/ca-cluster-a"
-                  },
-                  "name": "foo-data-ca-cluster-a"
-               },
-               {
-                  "hostPath": {
-                     "path": "/fastdata/gater"
-                  },
-                  "name": "foo-fastdata-gater"
-               },
-               {
-                  "hostPath": {
-                     "path": "/var/log/scheduler-db"
-                  },
-                  "name": "foo-var-log-scheduler-db"
-               },
-               {
-                  "hostPath": {
-                     "path": "/home/caas/logs/caas"
-                  },
-                  "name": "foo-home-caas-logs-caas"
-               },
-               {
-                  "hostPath": {
-                     "path": "/home/sfdc-retail/logs"
-                  },
-                  "name": "foo-home-sfdc-retail-logs"
-               }
-            ]
+            "labels": {
+               "sfdc.co/sam": "good-label",
+               "sfdc.co/test123": "wow-good_label",
+               "test.1.com/2": "good_label",
+               "testing/one": "goodlabel1"
+            },
+            "name": "foo-function"
          }
       ],
       "loadbalancers": [

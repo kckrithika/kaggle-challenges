@@ -29,6 +29,7 @@ local schemaID = "manifestConfigs";
     # List of functions fields that must exist
     functions_requirements:: [
         "name",
+        "count",
         "containers"
     ],
 
@@ -47,12 +48,12 @@ local schemaID = "manifestConfigs";
     ],
 
     loadbalancers_requirements:: [
-        "lbname",
-        "ports"
+        "lbname"
     ],
 
     lbPort_requirements:: [
         "port",
+        "targetport",
     ],
 
     # List of container fields that must exist
@@ -93,12 +94,41 @@ local schemaID = "manifestConfigs";
 ###############################  More Complicated Logic  #####################################
 
     imageValidation:: {
+        local imageNameNTag = "^.+:.+$",
+        local dockerSamImage = "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+/.+:.+$",
+        local invalidPatterns = [
+            "^ops0-artifactrepo1-0-prd.data.sfdc.net/.+/.+:.+$",
+            "^ops0-artifactrepo2-0-prd.data.sfdc.net/(docker-p2p|docker-sam)/.+:.+$",
+            "^.*(latest)$",
+        ],
+
         oneOf: [
             {
-                pattern: "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+:.+$"
+                pattern: dockerSamImage
             },
-            util.MatchRegex(config.imageForm.allowed, config.imageForm.notAllowed),
+            util.MatchRegex([ imageNameNTag ], invalidPatterns),
         ],
+    },
+
+    # IsQualifiedName Rule from Kubernetes apimachinery (Used for Label and Annotation Keys)
+    isQualifiedName:: {
+        oneOf: [            
+            # For one part names without '/'
+            {
+                pattern: "^([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$",
+                maxLength: 63
+            },
+
+            # For two parts with a '/'
+            {
+                allOf: [
+                    # Make sure the 1st part matches DNS1123Subdomain regex and 2nd part match qualifiedName regex
+                    { pattern: "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)/([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$" },
+                    # Make sure the max length for the 1st part is 253 and 2nd part is 63
+                    { pattern: "^.{1,253}/.{1,63}$" },
+                ],
+            },
+        ]
     },
 
     # Neither serviceName nor pod are required, but they must be DNS1123 valid if they exist
@@ -114,6 +144,21 @@ local schemaID = "manifestConfigs";
                 "$ref": "#/Rule_IsDNSValidation"
             }
         }
+    },
+
+    # Validate labels/annotations are k8s valid
+    validateLabels:: {
+        propertyNames: $.isQualifiedName,
+        additionalProperties: {
+            maxLength: 63,
+            pattern: "^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$"
+        },
+    },
+
+    # Make sure SAM/Kubernetes reserved labels are not being used
+    reservedLabels:: {
+        // PropertyNames is a JSON Schema keyboard that enforces the property/key value
+        propertyNames: util.DoNotMatchRegex(config.ReservedLabelsRegex),
     },
 
     # Only type Server can have lbnames property
@@ -301,36 +346,35 @@ local schemaID = "manifestConfigs";
     },
 
     # One and only one of function or selector must exist in loadbalancer
-    LBFunctionOrSelector:: {
-        anyOf: [
-            {
-                allOf: [
-                    util.Required([ "function" ]), 
-                    util.NotAllowed([ "selector" ])
-                ]
-            },
-            { 
-                allOf: [
-                    util.Required([ "selector" ]), 
-                    util.NotAllowed([ "function" ])
-                ]
-            }
-        ]
-    },
+    LBFunctionOrSelector:: util.ExactlyOneExists("function", "selector"),
 
     # LoadBalancer Port allowed types and validation
     LBPortsValidation:: {
         LBPortAllowedTypes: [ "dsr", "tcp", "http" ],
-        
-        LBPortType: {
-            "if": { properties: { lbtype: util.AllowedValues([ "dsr", "tcp" ]) } },
-            "then": util.NotAllowed([ "reencrypt", "sticky" ])
+
+        LBDestinationPort: util.ExactlyOneExists("targetport", "httpsredirectport"),
+
+        LBTypeSpecificParameters: {
+            local HttpOnly = [ "sticky", "reencrypt", "tls", "mtls", "addheaders", "removeheaders", "httpsredirectport" ],
+            local TlsOnly = [ "proxyprotocol" ],
+
+            allOf: [
+                {
+                    "if": { properties: { lbtype: util.ValuesNotAllowed([ "tls" ]) } },
+                    "then": util.NotAllowed( TlsOnly ),
+                },
+                {
+                    "if": { properties: { lbtype: util.ValuesNotAllowed([ "http" ]) } },
+                    "then": util.NotAllowed( HttpOnly ),
+                },
+            ],
         },
 
         LBPortAllowedAlgorithm: [ "leastconn", "roundrobin", "hash" ],
 
         LBPortAlgorithm: {
-            "if": { properties: { lbalgorithm: util.AllowedValues([]) } },
+            // Since if for value that doesn't exist defaults to true, if lbalgorithm isn't defined do nothing
+            "if": { properties: { lbalgorithm: util.AllowedValues([ "" ]) } },
             "then": {},
             "else": {
                 "if": { properties: { lbalgorithm: util.AllowedValues([ "leastconn", "roundrobin", "hash" ]) } },

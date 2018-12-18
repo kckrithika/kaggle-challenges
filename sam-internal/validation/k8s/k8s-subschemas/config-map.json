@@ -1,0 +1,9 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Validation Schema for k8s Config-Map",
+    "$id": "ConfigMapSchema",
+    "$ref": "#/allProperties",
+
+    "allProperties": {
+    }
+}

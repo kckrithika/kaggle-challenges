@@ -1,5 +1,7 @@
 {
-   "$expectedError": "pass",
+   "$expectedError": {
+      "number_not": 3
+   },
    "apiVersion": "v1",
    "system": {
       "functions": [
@@ -33,44 +35,17 @@
                }
             ],
             "count": 1,
-            "name": "foo-function",
-            "volumes": [
-               {
-                  "hostPath": {
-                     "path": "/data/ca-cluster-a"
-                  },
-                  "name": "foo-data-ca-cluster-a"
-               },
-               {
-                  "hostPath": {
-                     "path": "/fastdata/gater"
-                  },
-                  "name": "foo-fastdata-gater"
-               },
-               {
-                  "hostPath": {
-                     "path": "/var/log/scheduler-db"
-                  },
-                  "name": "foo-var-log-scheduler-db"
-               },
-               {
-                  "hostPath": {
-                     "path": "/home/caas/logs/caas"
-                  },
-                  "name": "foo-home-caas-logs-caas"
-               },
-               {
-                  "hostPath": {
-                     "path": "/home/sfdc-retail/logs"
-                  },
-                  "name": "foo-home-sfdc-retail-logs"
-               }
-            ]
+            "name": "foo-function"
          }
       ],
       "loadbalancers": [
          {
             "function": "foo-function",
+            "labels": {
+               "bundleName": "someLabel2",
+               "sam_test": "someLabel",
+               "test.kubernetes.io/test": "somelabel3"
+            },
             "lbname": "foo-lb",
             "ports": [
                {

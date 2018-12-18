@@ -138,4 +138,26 @@ local statefulSet = import 'statefulSetTemplate.libsonnet';
             ],
         },
     },
+
+    "ServiceGoodSLBAnnotation.yaml": service {
+        override+:: {
+            metadata: {
+                annotations: {
+                    "slb.sfdc.net/name": "valid-value"
+                },
+            },
+        },
+    },
+
+    "DeploymentGoodLabelsAndAnnotations.yaml": deployment {
+        override+:: {
+            metadata: {
+                annotations: {
+                    "test.labels.1": "goodLabel",
+                    "test.bundleName": "goodLabel",
+                    "test/deployed_by/test": "goodLabel",
+                },
+            },
+        },
+    },
 }

@@ -171,6 +171,7 @@
       "MustExist": {
          "required": [
             "name",
+            "count",
             "containers"
          ]
       }
@@ -232,7 +233,7 @@
    "Rule_ImageForm": {
       "oneOf": [
          {
-            "pattern": "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+:.+$"
+            "pattern": "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+/.+:.+$"
          },
          {
             "allOf": [
@@ -313,7 +314,8 @@
    "Rule_LBPortRequirements": {
       "MustExist": {
          "required": [
-            "port"
+            "port",
+            "targetport"
          ]
       }
    },
@@ -323,6 +325,46 @@
             "pattern": "^([0-9]{1,3}.){3}[0-9]{1,3}(/([0-9]|[1-2][0-9]|3[0-2]))?$",
             "type": "string"
          }
+      },
+      "LBDestinationPort": {
+         "anyOf": [
+            {
+               "allOf": [
+                  {
+                     "required": [
+                        "targetport"
+                     ]
+                  },
+                  {
+                     "propertyNames": {
+                        "not": {
+                           "enum": [
+                              "httpsredirectport"
+                           ]
+                        }
+                     }
+                  }
+               ]
+            },
+            {
+               "allOf": [
+                  {
+                     "required": [
+                        "httpsredirectport"
+                     ]
+                  },
+                  {
+                     "propertyNames": {
+                        "not": {
+                           "enum": [
+                              "targetport"
+                           ]
+                        }
+                     }
+                  }
+               ]
+            }
+         ]
       },
       "LBPortAlgorithm": {
          "else": {
@@ -352,7 +394,9 @@
          "if": {
             "properties": {
                "lbalgorithm": {
-                  "enum": [ ]
+                  "enum": [
+                     ""
+                  ]
                }
             }
          },
@@ -372,27 +416,59 @@
             "http"
          ]
       },
-      "LBPortType": {
-         "if": {
-            "properties": {
-               "lbtype": {
-                  "enum": [
-                     "dsr",
-                     "tcp"
-                  ]
+      "LBTypeSpecificParameters": {
+         "allOf": [
+            {
+               "if": {
+                  "properties": {
+                     "lbtype": {
+                        "not": {
+                           "enum": [
+                              "tls"
+                           ]
+                        }
+                     }
+                  }
+               },
+               "then": {
+                  "propertyNames": {
+                     "not": {
+                        "enum": [
+                           "proxyprotocol"
+                        ]
+                     }
+                  }
+               }
+            },
+            {
+               "if": {
+                  "properties": {
+                     "lbtype": {
+                        "not": {
+                           "enum": [
+                              "http"
+                           ]
+                        }
+                     }
+                  }
+               },
+               "then": {
+                  "propertyNames": {
+                     "not": {
+                        "enum": [
+                           "sticky",
+                           "reencrypt",
+                           "tls",
+                           "mtls",
+                           "addheaders",
+                           "removeheaders",
+                           "httpsredirectport"
+                        ]
+                     }
+                  }
                }
             }
-         },
-         "then": {
-            "propertyNames": {
-               "not": {
-                  "enum": [
-                     "reencrypt",
-                     "sticky"
-                  ]
-               }
-            }
-         }
+         ]
       },
       "TLSPattern": {
          "pattern": "^secret_service:[a-zA-Z0-9]+:[-a-zA-Z0-9]*$"
@@ -441,8 +517,7 @@
    "Rule_LBRequirements": {
       "MustExist": {
          "required": [
-            "lbname",
-            "ports"
+            "lbname"
          ]
       }
    },
@@ -480,6 +555,32 @@
          ]
       }
    },
+   "Rule_ReservedLabels": {
+      "propertyNames": {
+         "not": {
+            "anyOf": [
+               {
+                  "pattern": "^bundleName$"
+               },
+               {
+                  "pattern": "^deployed_by$"
+               },
+               {
+                  "pattern": "^pod-template-hash$"
+               },
+               {
+                  "pattern": "^controller-revision-hash$"
+               },
+               {
+                  "pattern": "^sam_.*$"
+               },
+               {
+                  "pattern": "^.*kubernetes.io/.*$"
+               }
+            ]
+         }
+      }
+   },
    "Rule_ReservedPorts": {
       "not": {
          "anyOf": [
@@ -497,7 +598,7 @@
                   10251,
                   10252,
                   10255,
-                  64121
+                  6412
                ]
             },
             {
@@ -548,6 +649,30 @@
       "IsValidPortNumber": {
          "maximum": 65535,
          "minimum": 1
+      }
+   },
+   "Rule_ValidateLabels": {
+      "additionalProperties": {
+         "maxLength": 63,
+         "pattern": "^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$"
+      },
+      "propertyNames": {
+         "oneOf": [
+            {
+               "maxLength": 63,
+               "pattern": "^([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$"
+            },
+            {
+               "allOf": [
+                  {
+                     "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)/([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$"
+                  },
+                  {
+                     "pattern": "^.{1,253}/.{1,63}$"
+                  }
+               ]
+            }
+         ]
       }
    },
    "Rule_VolumeMountRequirements": {

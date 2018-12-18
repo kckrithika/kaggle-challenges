@@ -128,4 +128,49 @@ local expectedError = import '../../expectedErrorTypes.libsonnet';
             ],
         },
     },
+
+    "ServiceSLBAnnotationNotValid.yaml": service {
+        override+:: {
+            expectedError: expectedError.doesNotMatchPattern,
+            metadata: {
+                annotations: {
+                    "slb.sfdc.net/name": "NOT_VALID_DNS"
+                },
+            },
+        },
+    },
+
+    "DeploymentUseSAMReservedLabels.yaml": deployment {
+        override+:: {
+            expectedError: {
+                [ expectedError.notAllowedValuesUsed ]: 4,
+            },
+            metadata: {
+                labels: {
+                    "sam_test": "badLabel",
+                    "bundleName": "badLabel",
+                    "test/deployed_by/test": "goodLabel",
+                    "kubernetes.io/": "badLabel",
+                    "test.kubernetes.io/test": "badLabel",
+                },
+            },
+        },
+    },
+
+    "StatefulSetUseK8sReservedLabels.yaml": statefulSet {
+        override+:: {
+            expectedError: {
+                [ expectedError.notAllowedValuesUsed ]: 4,
+            },
+            metadata: {
+                annotations: {
+                    "sam_test": "badLabel",
+                    "bundleName": "badLabel",
+                    "test/deployed_by/test": "goodLabel",
+                    "kubernetes.io/": "badLabel",
+                    "test.kubernetes.io/test": "badLabel",
+                },
+            },
+        },
+    }
 }

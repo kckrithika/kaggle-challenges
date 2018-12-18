@@ -1,9 +1,16 @@
 {
-   "$expectedError": "pass",
+   "$expectedError": {
+      "pattern": 7
+   },
    "apiVersion": "v1",
    "system": {
       "functions": [
          {
+            "annotations": {
+               "$invalid/%char": "_bad-value_",
+               "/nothingInPart1": "_b@d_",
+               "more/than/one/part": "b@dV@lue"
+            },
             "containers": [
                {
                   "env": [
@@ -12,7 +19,7 @@
                         "value": "bar"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:dca7fd4",
+                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foo/bar:1.1-sfdc",
                   "livenessProbe": {
                      "httpGet": {
                         "port": 5432

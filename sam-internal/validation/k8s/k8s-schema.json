@@ -6,14 +6,15 @@
     "allProperties": {
 
         "if": {
-            "properties": { "kind": { "enum": [ "Deployment", "DaemonSet", "Service", "StatefulSet" ] } }
+            "properties": { "kind": { "enum": [ "Deployment", "DaemonSet", "Service", "StatefulSet", "ConfigMap" ] } }
         }, 
         "then": {
             "anyOf": [
                 { "$ref": "DeploymentSchema#/allProperties" },
                 { "$ref": "DaemonSetSchema#/allProperties" },
                 { "$ref": "ServicesSchema#/allProperties" },
-                { "$ref": "StatefulSetSchema#/allProperties" }
+                { "$ref": "StatefulSetSchema#/allProperties" },
+                { "$ref": "ConfigMapSchema#/allProperties" }
             ]
         },
 

@@ -35,22 +35,9 @@ local util = import "../util.jsonnet";
         "tnrp/gater/gater:1.1.1-0000028-13622462"
     ]),
 
-    # Regex for allowed/disallowed image forms
-    imageForm:: {
-        allowed: [
-            "^.+:.+$"
-        ],
-
-        notAllowed: [
-            "^ops0-artifactrepo1-0-prd.data.sfdc.net/.+/.+:.+$",
-            "^ops0-artifactrepo2-0-prd.data.sfdc.net/(docker-p2p|docker-sam)/.+:.+$",
-            "^.*(latest)$",
-        ]
-    },
-
     # List and Range of reserved ports that should not be accessed (Range is inclusive)
     reservedPorts:: [
-        util.AllowedValues( [ 2379, 2380, 4194, 8000, 8002, 8080, 9099, 9100, 10250, 10251, 10252, 10255, 64121 ] ), 
+        util.AllowedValues( [ 2379, 2380, 4194, 8000, 8002, 8080, 9099, 9100, 10250, 10251, 10252, 10255, 6412 ] ), 
         util.Range( [ 0, 1024 ] ),
         util.Range( [ 32000, 40000 ] )
     ],
@@ -88,6 +75,16 @@ local util = import "../util.jsonnet";
         "ESTATE",
         "SUPERPOD",
         "FUNCTION"
+    ],
+
+    // List of SAM and K8s reserved Labels
+    ReservedLabelsRegex:: [
+        "^" + "bundleName" + "$",
+        "^" + "deployed_by" + "$",
+        "^" + "pod-template-hash" + "$",
+        "^" + "controller-revision-hash" + "$",
+        "^" + "sam_.*" + "$",
+        "^" + ".*kubernetes.io/.*" + "$",
     ],
 
 

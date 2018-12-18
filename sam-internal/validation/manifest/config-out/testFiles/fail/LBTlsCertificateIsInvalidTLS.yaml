@@ -44,7 +44,6 @@
                {
                   "port": 5432,
                   "targetport": 5432,
-                  "tls": false,
                   "tlscertificate": "some:invalid:format"
                }
             ]

@@ -12,7 +12,7 @@
                         "value": "bar"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foo/bar:latest",
+                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker/foo/bar:latest",
                   "livenessProbe": {
                      "httpGet": {
                         "port": 5432

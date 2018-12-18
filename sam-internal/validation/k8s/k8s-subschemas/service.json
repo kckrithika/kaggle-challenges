@@ -9,6 +9,27 @@
 
             "kind": {
                 "enum": [ "Service" ]
+            },
+
+            "metadata": {
+                "properties": {
+
+                    "annotations": {
+                        "allOf": [
+                            { "$ref": "k8sConfigs#/Rule_SLBAnnotationValidation" },
+                            { "$ref": "k8sConfigs#/Rule_AnnotationValidation" }
+                        ]
+                    },
+
+                    "labels": {
+                        "$ref": "k8sConfigs#/Rule_LabelsValidation"
+                    },
+
+                    "namespace": {
+                        
+                    }
+
+                }
             }
 
         }

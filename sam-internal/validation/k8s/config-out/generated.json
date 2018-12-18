@@ -32,9 +32,73 @@
          }
       }
    },
+   "Rule_AnnotationValidation": {
+      "propertyNames": {
+         "not": {
+            "anyOf": [
+               {
+                  "pattern": "^bundleName$"
+               },
+               {
+                  "pattern": "^deployed_by$"
+               },
+               {
+                  "pattern": "^pod-template-hash$"
+               },
+               {
+                  "pattern": "^controller-revision-hash$"
+               },
+               {
+                  "pattern": "^sam_.*$"
+               },
+               {
+                  "pattern": "^.*kubernetes.io/.*$"
+               }
+            ]
+         }
+      }
+   },
+   "Rule_IsDNS1035Validation": {
+      "maxLength": 63,
+      "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$"
+   },
    "Rule_IsDNSValidation": {
       "maxLength": 63,
       "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+   },
+   "Rule_LabelsValidation": {
+      "propertyNames": {
+         "not": {
+            "anyOf": [
+               {
+                  "pattern": "^bundleName$"
+               },
+               {
+                  "pattern": "^deployed_by$"
+               },
+               {
+                  "pattern": "^pod-template-hash$"
+               },
+               {
+                  "pattern": "^controller-revision-hash$"
+               },
+               {
+                  "pattern": "^sam_.*$"
+               },
+               {
+                  "pattern": "^.*kubernetes.io/.*$"
+               }
+            ]
+         }
+      }
+   },
+   "Rule_SLBAnnotationValidation": {
+      "properties": {
+         "slb.sfdc.net/name": {
+            "$ref": "#/Rule_IsDNS1035Validation"
+         },
+         "slb.sfdc.net/portconfigurations": { }
+      }
    },
    "Rule_StatefulSetSpecRequirements": {
       "MustExist": {

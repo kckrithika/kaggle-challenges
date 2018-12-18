@@ -44,6 +44,26 @@
                                     "type": "string",
                                     "$ref": "manifestConfigs#/Rule_FunctionTypeValidation/TypesAllowed"
                                 },
+
+                                "hostnetwork": {
+                                    "type": "boolean"
+                                },
+
+                                "annotations": {
+                                    "type": "object",
+                                    "allOf": [
+                                        { "$ref": "manifestConfigs#/Rule_ReservedLabels" },
+                                        { "$ref": "manifestConfigs#/Rule_ValidateLabels" }
+                                    ]
+                                },
+
+                                "labels": {
+                                    "type": "object",
+                                    "allOf": [
+                                        { "$ref": "manifestConfigs#/Rule_ReservedLabels" },
+                                        { "$ref": "manifestConfigs#/Rule_ValidateLabels" }
+                                    ]
+                                },
                         
                                 "identity": {
                                     "type": "object",
@@ -213,6 +233,14 @@
                                     "$ref":  "manifestConfigs#/Rule_IsDNS1035Validation"
                                 },
 
+                                "labels": {
+                                    "type": "object",
+                                    "allOf": [
+                                        { "$ref": "manifestConfigs#/Rule_ReservedLabels" },
+                                        { "$ref": "manifestConfigs#/Rule_ValidateLabels" }
+                                    ]
+                                },
+
                                 "function": {
 
                                 },
@@ -235,14 +263,14 @@
                                         "type": "object",
                                         "allOf": [
                                             { "$ref": "manifestConfigs#/Rule_LBPortRequirements/MustExist" },
-                                            { "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBPortType" },
+                                            { "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBDestinationPort" },
+                                            { "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBTypeSpecificParameters" },
                                             { "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBPortAlgorithm" },
                                             { "$ref": "manifestConfigs#/Rule_LBPortsValidation/TLSValidation" }
                                         ],
                                         "properties": {
 
                                             "lbtype": {
-                                                "type": "string",
                                                 "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBPortAllowedTypes"
                                             },
 
