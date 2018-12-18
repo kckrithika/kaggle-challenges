@@ -6,6 +6,24 @@ local kingdom = std.extVar("kingdom");
 
 local default_cert_folder_map = { datacerts: "/certs" };
 
+local strip_trailing_slash(path) = if std.endsWith(path, "/") then std.substr(path, 0, std.length(path) - 1) else path;
+
+# Generate full path to certificate
+# cert_type: client, server, etc.
+# base_path: base directory provided to init/refresh containers to store certs.
+# E.g. cert_path("/certs", "client") -> "/certs/client/certificates/client.pem"
+local cert_path(cert_type, base_path="/certs") = std.join("/", [strip_trailing_slash(base_path), cert_type, "certificates", cert_type + ".pem"]);
+
+# Generate full path to key
+# cert_type: client, server, etc.
+# base_path: base directory provided to init/refresh containers to store certs.
+# E.g. key_path("/certs", "client") -> "/certs/client/keys/client-key.pem"
+local key_path(cert_type, base_path="/certs") = std.join("/", [strip_trailing_slash(base_path), cert_type, "keys", cert_type + "-key.pem"]);
+
+# Generate full path to CA cert
+# base_path: base directory provided to init/refresh containers to store certs.
+local ca_path(base_path="/certs") = std.join("/", [strip_trailing_slash(base_path), "ca.pem"]);
+
 # Generate Volume Mounts for all MadDog certificates
 # cert_name_folder_map associates named certs with their directory on disk.
 # default: "datacerts" cert is mounted at /certs
@@ -207,6 +225,10 @@ local init_container(cert_name_folder_map) = {
 
 ## Expose common bits for external use / consumption
 {
+    cert_path:: cert_path,
+    key_path:: key_path,
+    ca_path:: ca_path,
+
     cert_mounts:: cert_mounts,
     cert_volumes:: cert_volumes,
 
