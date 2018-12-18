@@ -76,11 +76,10 @@ configs.deploymentBase("flowsnake") {
                                 memory: "500Mi",
                             },
                         },
-                        volumeMounts: [
-                            configs.config_volume_mount,
-                            madkub_common.certs_mount,
-                        ] + certs_and_kubeconfig.platform_cert_volumeMounts
-                         + [ watchdog.sfdchosts_volume_mount ],
+                        volumeMounts: [ configs.config_volume_mount, ]
+                          + madkub_common.cert_mounts()
+                          + certs_and_kubeconfig.platform_cert_volumeMounts
+                          + [ watchdog.sfdchosts_volume_mount ],
                     },
                     madkub_common.refresher_container(cert_name)
                 ],
@@ -94,11 +93,9 @@ configs.deploymentBase("flowsnake") {
                     },
                     name: "config",
                   },
-                  madkub_common.certs_volume,
-                  madkub_common.tokens_volume,
-                ] +
-               certs_and_kubeconfig.platform_cert_volume
-               + [ watchdog.sfdchosts_volume ],
+                ]
+                  + madkub_common.cert_volumes()
+                  + [ watchdog.sfdchosts_volume ],
             },
         },
     }

@@ -29,7 +29,7 @@ local util = import "util_functions.jsonnet";
         "prd-minikube-big-flowsnake": "prd-minikube-big-flowsnake.data.sfdc.net",
     },
 
-    role_estate_suffixes :: {
+    role_estate_suffixes:: {
         "prd-dev-flowsnake_iot_test": "-dev",
         "prd-data-flowsnake_test": "-test",
         "prd-minikube-small-flowsnake": "-minikube",
