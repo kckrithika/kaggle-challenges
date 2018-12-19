@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
 
+# This app is now deployed through SAM Manifest pipeline.
 if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
 configs.deploymentBase("service-mesh") {
   metadata: {

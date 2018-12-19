@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping-istio
+  namespace: mesh-control-plane
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: grpc-service
+    port: 7035
+    protocol: TCP
+    targetPort: 7035
+  selector:
+    sam_app: shipping-istio
+    sam_function: shipping-istio
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

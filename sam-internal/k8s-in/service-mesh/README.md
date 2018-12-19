@@ -1,7 +1,8 @@
 ## Service Mesh - Istio Pilot Deployment
-The [templates](./templates) contains the K8s resources derived from [Istio minimal install](https://istio.io/docs/setup/kubernetes/minimal-install/). There are certain modifications to the yaml.
-1. The sidecar injection config is currently not present.
-1. The ServiceAccount, ClusterRole and ClusterRoleBinding are not used. istio-pilot is expected to run on the pool that has `cluster-admin` privilege till SAM supports ServiceAccount.
+The [templates](./templates) contains the K8s resources derived from [Istio minimal install](https://istio.io/docs/setup/kubernetes/minimal-install/). 
+There are certain modifications to the yaml. When upgrading manually make sure you compare the yaml you are upgrading. We need to build a tool to automate this.  
+
+Till ServiceAccount support is functional, istio-pilot is expected to run on the pool that has `cluster-admin` privilege, i.e., kubeapi nodes.
 
 Files that end with **.TEMPLATE** suffix are not processed by the build script.
 
@@ -13,3 +14,13 @@ Files that end with **.TEMPLATE** suffix are not processed by the build script.
 1. Create PR for review.
 1. Once the PR is authorized, the SAM TNRP pipeline should take care of the deployment. Use the links mentioned in [SAM Auto Deployer](https://git.soma.salesforce.com/sam/sam/wiki/Debugging-SAM-Auto-Deployer) to check the deployment progress and errors.
 
+# Verification
+Shipping-Ordering Istio apps are deployed in both prd-sam and prd-samtest in `mesh-control-plane` namespace for verification purposes. Please ensure the apps are running as expected after any modifications. Once metrics support is added, we will add alerts for the same.
+```
+$ kubectl -n mesh-control-plane get deployments
+NAME                 DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+ordering-istio       1         1         1            0           19h
+shipping-istio       1         1         1            0           19h
+```
+
+The app definitions can be found in the [mesh-control-plane](https://git.soma.salesforce.com/sam/manifests/tree/master/apps/team/mesh-control-plane) team manifests.
