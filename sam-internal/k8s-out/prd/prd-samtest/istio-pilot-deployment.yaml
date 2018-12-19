@@ -108,8 +108,6 @@ spec:
             cpu: 500m
             memory: 2048Mi
         volumeMounts:
-        - mountPath: /etc/pki_service
-          name: maddog-certs
         - mountPath: /etc/istio/config
           name: config-volume
       nodeSelector:
@@ -118,9 +116,6 @@ spec:
       serviceAccount: istio-pilot-service-account
       serviceAccountName: istio-pilot-service-account
       volumes:
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
       - configMap:
           name: istio
         name: config-volume

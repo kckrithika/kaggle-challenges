@@ -27,11 +27,11 @@ configs.deploymentBase("service-mesh") {
           "scheduler.alpha.kubernetes.io/critical-pod": "",
         },
       },
-      spec: configs.specWithMadDog {
+      spec: {
         serviceAccount: "istio-pilot-service-account",
         serviceAccountName: "istio-pilot-service-account",
         containers: [
-          configs.containerWithMadDog {
+          {
             name: "discovery",
             image: istioImages.pilot,
             imagePullPolicy: "IfNotPresent",
