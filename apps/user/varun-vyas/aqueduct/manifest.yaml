@@ -10,7 +10,7 @@ system:
           type: client
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun/aqueduct:aqueduct_scone4.1.2 # Use the latest version, see below
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun/aqueduct:aqueduct0.1_scone4.1.2 # Use the latest version, see below
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam" # Use whatever environment your kpod uses
