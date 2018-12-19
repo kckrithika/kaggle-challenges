@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   config: |
-    policy: enabled
+    policy: disabled
     template: |-
       initContainers:
       - name: istio-init

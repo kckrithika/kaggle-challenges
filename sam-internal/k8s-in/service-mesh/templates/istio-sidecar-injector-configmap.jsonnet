@@ -3,7 +3,7 @@ local istioUtils = import "istio-utils.jsonnet";
 local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
 
 local sidecarConfig = |||
-    policy: enabled
+    policy: disabled
     template: |-
       initContainers:
       - name: istio-init
