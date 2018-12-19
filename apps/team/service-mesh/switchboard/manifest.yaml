@@ -22,7 +22,9 @@ system:
       - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_remote-address=true
       - --metrics.maxNumberOfCollectedMetrics=150000
       - --metrics.funnelTimeOut=100000
-      - --request.limit.per.minute=1000
+      - --eventbus.threadpool.queue.size=50000
+      - --eventbus.threadpool.blockTimeMs=20
+      - --eventbus.threadpool.max.size=100
       ports:
       - containerPort: 15372
       env:
