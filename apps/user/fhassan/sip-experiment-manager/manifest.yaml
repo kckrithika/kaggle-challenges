@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: sip-experiment-manager
-      image: sip-em-sam ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/fhassan/sip-em-sam:fhassan-20181218-1 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/fhassan/sip-em-sam:fhassan-20181218-1 
       ports:
       - containerPort: 8181
       livenessProbe:
