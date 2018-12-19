@@ -3,7 +3,7 @@
   apiVersion: "authentication.istio.io/v1alpha1",
   kind: "Policy",
   metadata: {
-    name: "mTLS-enable",
+    name: "istio-mtls-enable",
     namespace: "mesh-control-plane",
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
