@@ -3,7 +3,7 @@ kind: Policy
 metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
-  name: mTLS_enable
+  name: mTLS-enable
   namespace: mesh-control-plane
 spec:
   peers:
