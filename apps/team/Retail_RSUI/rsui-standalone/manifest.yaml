@@ -227,9 +227,12 @@ system:
     function: rsui-standalone
     slbEnabled: true
     ports:
+      - port: 8080
+        targetport: 7023
       - port: 443
         targetport: 7023
-        tls: true
-        lbtype: http
-        reencrypt: true
+      - port: 15372
+        targetport: 15372
+      - port: 7020
+        targetport: 7020
 
