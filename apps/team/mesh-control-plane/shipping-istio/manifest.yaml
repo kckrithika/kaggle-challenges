@@ -4,6 +4,8 @@ system:
   functions:
   - name: shipping-istio
     count: 1
+    annotations:
+      sidecar.istio.io/inject: "true"
     containers:
     - name: shipping
       # Shipping App
@@ -28,12 +30,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15375
-      # Volume mounts used by Istio CRDs
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
+    # Volumes used by auto-injected isti-proxy.
     volumes:
     - name: tls-client-cert
       maddogCert:

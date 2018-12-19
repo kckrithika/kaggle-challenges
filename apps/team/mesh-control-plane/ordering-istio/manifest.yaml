@@ -16,12 +16,12 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
-      - name: SCONE_SHIPPING_DEST
-        value: shipping-istio:7035 # shipping.internal.mesh.com:7020
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: GRPC_PORT
         value: 7036
+      - name: SCONE_SHIPPING_DEST
+        value: shipping-istio:7035
       ports:
       - containerPort: 7036
         name: grpc-svc
@@ -32,12 +32,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15374
-      # Volume mounts used by Istio CRDs
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
+    # Volumes used by auto-injected isti-proxy.
     volumes:
     - name: tls-client-cert
       maddogCert:
