@@ -15,6 +15,7 @@ system:
         type: server
         lbnames:
         - rsui-standalone-lb
+        - rsui-standalone-test-lb
     - name: retailclientcert
       maddogCert:
         type: client
@@ -228,4 +229,7 @@ system:
     ports:
       - port: 443
         targetport: 7023
+        tls: true
+        lbtype: http
+        reencrypt: true
 
