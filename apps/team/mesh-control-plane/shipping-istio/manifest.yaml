@@ -30,7 +30,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15375
-    # Volumes used by auto-injected isti-proxy.
+    # Volumes used by auto-injected istio-proxy.
     volumes:
     - name: tls-client-cert
       maddogCert:
