@@ -2,6 +2,33 @@ apiVersion: v1
  
 system:
   functions:   
+  - name: na98-mist61testapp-prd
+    identity:
+      serviceName: testapp
+      pod: na98
+    count: 2
+    containers:
+    - name: testapp
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mist61
+      command: ["/bin/sleep"]
+      args:
+      - 701000
+      livenessProbe:
+        exec:
+          command:
+          - /bin/pwd
+        initialDelaySeconds: 20
+        periodSeconds: 300
+      readinessProbe:
+        exec:
+          command:
+          - /bin/pwd
+        initialDelaySeconds: 15
+        periodSeconds: 300
+
   - name: na98-mist61sfproxy-prd
     identity:
       serviceName: sfproxy
@@ -60,11 +87,9 @@ system:
     containers:
     - name: sfproxy-switchboard-server
       image: sfci/servicelibs/switchboard:68c2c0899b36a3ee8a037d00dccb391d9c827b3f
+      command: ["/bin/sleep"]
       args:
-      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
-      - --clusters.external-clusters[1]=spaasmesh:HTTP2
-      - --metrics.maxNumberOfCollectedMetrics=100000
-      - --metrics.funnelTimeOut=90000
+      - 701000
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
@@ -85,19 +110,19 @@ system:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
       livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
+        exec:
+          command:
+          - /bin/pwd
         initialDelaySeconds: 20
-        periodSeconds: 5
+        periodSeconds: 300
       readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
+        exec:
+          command:
+          - /bin/pwd
         initialDelaySeconds: 15
-        periodSeconds: 5
+        periodSeconds: 300
     - name: sfproxy-switchboard-sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      image: sfci/frontend-gateway/sfproxy:026c5bb
       command: ["/bin/sleep"]
       args:
       - 701000
@@ -125,13 +150,13 @@ system:
           command:
           - /bin/pwd
         initialDelaySeconds: 20
-        periodSeconds: 5
+        periodSeconds: 300
       readinessProbe:
         exec:
           command:
           - /bin/pwd
         initialDelaySeconds: 15
-        periodSeconds: 5
+        periodSeconds: 300
 
     volumes:
     - name: envoy-config-volume
