@@ -37,7 +37,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.6.W-5688176.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.6.W-5688176.2
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -218,9 +218,6 @@ system:
         targetport: 7022
       - port: 443
         targetport: 7022
-        tls: true
-        lbtype: http
-        reencrypt: true
       - port: 15372
         targetport: 15372
       - port: 7020
