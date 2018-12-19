@@ -66,11 +66,7 @@ spec:
         - discovery
         - --secureGrpcAddr
         - :15011
-        - --kubeconfig
-        - /kubeconfig/kubeconfig-platform
         env:
-        - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig-platform
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -89,6 +85,10 @@ spec:
           value: "100"
         - name: PILOT_TRACE_SAMPLING
           value: "100"
+        - name: KUBERNETES_SERVICE_HOST
+          value: shared0-samkubeapi2-1-prd.eng.sfdc.net
+        - name: KUBERNETES_SERVICE_PORT
+          value: "6443"
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/pilot:1.0.2
         imagePullPolicy: IfNotPresent
         name: discovery
@@ -110,19 +110,16 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
-        - mountPath: /kubeconfig
-          name: kubeconfig
         - mountPath: /etc/istio/config
           name: config-volume
       nodeSelector:
-        master: "true"
+        pool: prd-sam
+      serviceAccount: istio-pilot-service-account
+      serviceAccountName: istio-pilot-service-account
       volumes:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
       - configMap:
           name: istio
         name: config-volume

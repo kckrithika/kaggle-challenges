@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local istioUtils = import "istio-utils.jsonnet";
 local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
+local hosts = import "sam/configs/hosts.jsonnet";
 
 configs.deploymentBase("service-mesh") {
   metadata+: {
@@ -26,9 +27,11 @@ configs.deploymentBase("service-mesh") {
           "scheduler.alpha.kubernetes.io/critical-pod": "",
         },
       },
-      spec: configs.specWithKubeConfigAndMadDog {
+      spec: configs.specWithMadDog {
+        serviceAccount: "istio-pilot-service-account",
+        serviceAccountName: "istio-pilot-service-account",
         containers: [
-          configs.containerWithKubeConfigAndMadDog {
+          configs.containerWithMadDog {
             name: "discovery",
             image: istioImages.pilot,
             imagePullPolicy: "IfNotPresent",
@@ -36,8 +39,6 @@ configs.deploymentBase("service-mesh") {
               "discovery",
               "--secureGrpcAddr",
               ":15011",
-              "--kubeconfig",
-              "/kubeconfig/kubeconfig-platform",
             ],
             ports: [
               {
@@ -94,6 +95,14 @@ configs.deploymentBase("service-mesh") {
                 name: "PILOT_TRACE_SAMPLING",
                 value: "100",
               },
+              {
+                name: "KUBERNETES_SERVICE_HOST",  # Temporary override to select 2nd kubeapi host
+                value: [h.hostname for h in hosts.hosts if h.controlestate == std.extVar("estate") && h.kingdom == std.extVar("kingdom") && std.endsWith(std.split(h.hostname, "-")[1], "kubeapi2")][0],
+              },
+              {
+                name: "KUBERNETES_SERVICE_PORT",
+                value: "6443",
+              },
             ],
             resources: {
               requests: {
@@ -106,19 +115,15 @@ configs.deploymentBase("service-mesh") {
                 name: "config-volume",
                 mountPath: "/etc/istio/config",
               },
-//              {
-//                name: "istio-certs",
-//                mountPath: "/etc/certs",
-//                readOnly: true,
-//              },
             ],
           },
         ],
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
-          if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
-              master: "true",
+          if configs.estate == "prd-samtest" then {
+              master: "false",
+              pool: configs.estate,
           } else {
               pool: configs.estate,
           },
@@ -129,13 +134,6 @@ configs.deploymentBase("service-mesh") {
               name: "istio",
             },
           },
-//          {
-//            name: "istio-certs",
-//            secret: {
-//              secretName: "istio.istio-pilot-service-account",
-//              optional: true,
-//            },
-//          },
         ],
         affinity: {
           nodeAffinity: {
@@ -202,10 +200,7 @@ configs.deploymentBase("service-mesh") {
             ],
           },
         },
-      } + if configs.estate == "prd-samtest" then {
-        serviceAccount: "istio-pilot-service-account",
-        serviceAccountName: "istio-pilot-service-account",
-      } else {},
+      },
     },
   },
 }
