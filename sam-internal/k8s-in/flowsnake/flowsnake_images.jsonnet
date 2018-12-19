@@ -120,7 +120,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
 
-            fleetService_image_tag: "696",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
 
             feature_flags: {
