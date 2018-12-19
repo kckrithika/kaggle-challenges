@@ -33,28 +33,85 @@
       }
    },
    "Rule_AnnotationValidation": {
-      "propertyNames": {
-         "not": {
-            "anyOf": [
-               {
-                  "pattern": "^bundleName$"
-               },
-               {
-                  "pattern": "^deployed_by$"
-               },
-               {
-                  "pattern": "^pod-template-hash$"
-               },
-               {
-                  "pattern": "^controller-revision-hash$"
-               },
-               {
-                  "pattern": "^sam_.*$"
-               },
-               {
-                  "pattern": "^.*kubernetes.io/.*$"
+      "else": {
+         "else": {
+            "properties": {
+               "annotations": {
+                  "propertyNames": {
+                     "not": {
+                        "anyOf": [
+                           {
+                              "pattern": "^bundleName$"
+                           },
+                           {
+                              "pattern": "^deployed_by$"
+                           },
+                           {
+                              "pattern": "^pod-template-hash$"
+                           },
+                           {
+                              "pattern": "^controller-revision-hash$"
+                           },
+                           {
+                              "pattern": "^sam_.*$"
+                           },
+                           {
+                              "pattern": "^.*kubernetes.io/.*$"
+                           }
+                        ]
+                     }
+                  }
                }
-            ]
+            }
+         },
+         "if": {
+            "properties": {
+               "namespace": {
+                  "enum": [
+                     "sam-system"
+                  ]
+               }
+            }
+         },
+         "then": { }
+      },
+      "if": {
+         "properties": {
+            "namespace": {
+               "enum": [
+                  ""
+               ]
+            }
+         }
+      },
+      "then": {
+         "properties": {
+            "annotations": {
+               "propertyNames": {
+                  "not": {
+                     "anyOf": [
+                        {
+                           "pattern": "^bundleName$"
+                        },
+                        {
+                           "pattern": "^deployed_by$"
+                        },
+                        {
+                           "pattern": "^pod-template-hash$"
+                        },
+                        {
+                           "pattern": "^controller-revision-hash$"
+                        },
+                        {
+                           "pattern": "^sam_.*$"
+                        },
+                        {
+                           "pattern": "^.*kubernetes.io/.*$"
+                        }
+                     ]
+                  }
+               }
+            }
          }
       }
    },
@@ -67,28 +124,85 @@
       "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
    },
    "Rule_LabelsValidation": {
-      "propertyNames": {
-         "not": {
-            "anyOf": [
-               {
-                  "pattern": "^bundleName$"
-               },
-               {
-                  "pattern": "^deployed_by$"
-               },
-               {
-                  "pattern": "^pod-template-hash$"
-               },
-               {
-                  "pattern": "^controller-revision-hash$"
-               },
-               {
-                  "pattern": "^sam_.*$"
-               },
-               {
-                  "pattern": "^.*kubernetes.io/.*$"
+      "else": {
+         "else": {
+            "properties": {
+               "labels": {
+                  "propertyNames": {
+                     "not": {
+                        "anyOf": [
+                           {
+                              "pattern": "^bundleName$"
+                           },
+                           {
+                              "pattern": "^deployed_by$"
+                           },
+                           {
+                              "pattern": "^pod-template-hash$"
+                           },
+                           {
+                              "pattern": "^controller-revision-hash$"
+                           },
+                           {
+                              "pattern": "^sam_.*$"
+                           },
+                           {
+                              "pattern": "^.*kubernetes.io/.*$"
+                           }
+                        ]
+                     }
+                  }
                }
-            ]
+            }
+         },
+         "if": {
+            "properties": {
+               "namespace": {
+                  "enum": [
+                     "sam-system"
+                  ]
+               }
+            }
+         },
+         "then": { }
+      },
+      "if": {
+         "properties": {
+            "namespace": {
+               "enum": [
+                  ""
+               ]
+            }
+         }
+      },
+      "then": {
+         "properties": {
+            "labels": {
+               "propertyNames": {
+                  "not": {
+                     "anyOf": [
+                        {
+                           "pattern": "^bundleName$"
+                        },
+                        {
+                           "pattern": "^deployed_by$"
+                        },
+                        {
+                           "pattern": "^pod-template-hash$"
+                        },
+                        {
+                           "pattern": "^controller-revision-hash$"
+                        },
+                        {
+                           "pattern": "^sam_.*$"
+                        },
+                        {
+                           "pattern": "^.*kubernetes.io/.*$"
+                        }
+                     ]
+                  }
+               }
+            }
          }
       }
    },

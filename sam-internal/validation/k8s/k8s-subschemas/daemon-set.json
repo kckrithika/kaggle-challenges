@@ -6,20 +6,24 @@
 
     "allProperties": {
         "properties": {
-
             "kind": {
                 "enum": [ "DaemonSet" ]
             },
 
             "metadata": {
+                "allOf": [
+                    { "$ref": "k8sConfigs#/Rule_LabelsValidation" },
+                    { "$ref": "k8sConfigs#/Rule_AnnotationValidation" }
+                ],
+
                 "properties": {
 
                     "labels": {
-                        "$ref": "k8sConfigs#/Rule_LabelsValidation"
+
                     },
 
                     "annotations": {
-                        "$ref": "k8sConfigs#/Rule_AnnotationValidation"
+
                     },
 
                     "namespace": {

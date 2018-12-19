@@ -6,23 +6,24 @@
 
     "allProperties": {
         "properties": {
-
             "kind": {
                 "enum": [ "Service" ]
             },
 
             "metadata": {
+                "allOf": [
+                    { "$ref": "k8sConfigs#/Rule_LabelsValidation" },
+                    { "$ref": "k8sConfigs#/Rule_AnnotationValidation" }
+                ],
+                
                 "properties": {
 
                     "annotations": {
-                        "allOf": [
-                            { "$ref": "k8sConfigs#/Rule_SLBAnnotationValidation" },
-                            { "$ref": "k8sConfigs#/Rule_AnnotationValidation" }
-                        ]
+                        "$ref": "k8sConfigs#/Rule_SLBAnnotationValidation"
                     },
 
                     "labels": {
-                        "$ref": "k8sConfigs#/Rule_LabelsValidation"
+
                     },
 
                     "namespace": {

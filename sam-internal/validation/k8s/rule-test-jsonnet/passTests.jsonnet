@@ -160,4 +160,18 @@ local statefulSet = import 'statefulSetTemplate.libsonnet';
             },
         },
     },
+
+    "PrivilegedNamespaceUsesReservedLabels.yaml": deployment {
+        override+:: {
+            metadata: {
+                namespace: "sam-system",
+                labels: {
+                    "sam_only": "goodLabel",
+                    "bundleName": "goodLabel",
+                    "kubernetes.io/": "goodLabel",
+                    "test.kubernetes.io/test": "goodLabel",
+                },
+            },
+        },
+    },
 }

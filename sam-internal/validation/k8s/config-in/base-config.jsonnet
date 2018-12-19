@@ -59,16 +59,24 @@ local schemaID = "k8sConfigs";
     },
 
     // Make sure the SAM/K8s reserved labels are not used
-    AnnotationValidation:: {
+    AnnotationValidation:: $.privilegedNamespaces(config.privilegedNamespaces, {
         // PropertyNames is a JSON Schema keyboard that enforces the property/key value
-        propertyNames: util.DoNotMatchRegex(config.ReservedLabelsRegex),
-    },
+        properties: {
+            annotations: {
+                propertyNames: util.DoNotMatchRegex(config.ReservedLabelsRegex),
+            },
+        },
+    }),
 
     // Make sure the SAM/K8s reserved labels are not used
-    LabelsValidation:: {
+    LabelsValidation:: $.privilegedNamespaces(config.privilegedNamespaces, {
         // PropertyNames is a JSON Schema keyboard that enforces the property/key value
-        propertyNames: util.DoNotMatchRegex(config.ReservedLabelsRegex),
-    },
+        properties: {
+            labels: {
+                propertyNames: util.DoNotMatchRegex(config.ReservedLabelsRegex),
+            },
+        },
+    }),
 
     SLBAnnotationValidation:: {
         properties: {
@@ -84,37 +92,28 @@ local schemaID = "k8sConfigs";
 
     BannedVolumeHostPaths:: util.ValuesNotAllowed(config.bannedHostPaths),
 
-    // privilegedNamespaces(thenCase={},elseCase):: {
-    //     "if": {
-    //         anyOf: [
-    //             {
-    //                 properties: { metadata: {
-    //                         properties: {
-    //                             namespace: util.AllowedValues(config.privilegedNamespaces),
-    //                         }, 
-    //                     },
-    //                 },
-    //             },
-    //             {
-    //                 properties: { 
-    //                     spec: {
-    //                         properties: { 
-    //                             template: {
-    //                                 properties: { 
-    //                                     metadata: {
-    //                                         properties: {
-    //                                             namespace: util.AllowedValues(config.privilegedNamespaces),
-    //                                         },
-    //                                     } 
-    //                                 }
-    //                             } 
-    //                         }
-    //                     }
-    //                 }
-    //             },
-    //         ]
-    //     },
-    //     "then": thenCase,
-    //     "else": elseCase
-    // },
+
+    /*
+       namespace - Takes in an array of namespaces that can ignore the rules (REQUIRED)
+       regularCase - The base rule that the namespaces defined can ignore (REQUIRED)
+       privilegedCase - A different rule that namespaces defined will follow if defined, defaults to false 
+    */
+    privilegedNamespaces(namespace=[],regularCase={},privilegedCase={}):: {
+        "if": {
+            properties: {
+                // For values that isn't defined, namespace defaults to true, so we need to check if namespace exists first
+                namespace: util.AllowedValues([ "" ]),
+            }, 
+        },
+        "then": regularCase,
+        "else": {
+            "if": {
+                properties: {
+                    namespace: util.AllowedValues(namespace),
+                }, 
+            },
+            "then": privilegedCase, 
+            "else": regularCase,
+        },
+    },
 }
