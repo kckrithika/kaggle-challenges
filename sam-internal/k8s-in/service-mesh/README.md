@@ -23,3 +23,4 @@ ordering-istio       1         1         1            0           19h
 shipping-istio       1         1         1            0           19h
 ```
 
+The app definitions can be found in the [mesh-control-plane](https://git.soma.salesforce.com/sam/manifests/tree/master/apps/team/mesh-control-plane) team manifests.
