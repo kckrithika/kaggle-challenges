@@ -80,7 +80,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
 
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
             deployer_image_tag: "sam-0002376-c267a6c7",
 
