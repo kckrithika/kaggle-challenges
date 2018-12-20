@@ -14,7 +14,7 @@ system:
       - --grpc.gater.queryrate=100
       - --grpc.gater.request.deadline=200
       - --client.test.gates=com.salesforce.gater.alwaysEnabled
-      - --gater.grpc.endpoint=gater.gater-mesh.localhost.mesh.force.com
+      - --gater.grpc.endpoint=gater-mesh.gater.localhost.mesh.force.com
       - --gater.grpc.port=5443
       - --management.server.port=15375
       - --gater.client-mode=GRPC
