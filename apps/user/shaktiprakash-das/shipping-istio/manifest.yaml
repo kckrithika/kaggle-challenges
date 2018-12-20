@@ -30,6 +30,11 @@ system:
         httpGet:
           path: /manage/health
           port: 15375
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
     # Volumes used by auto-injected istio-proxy.
     volumes:
     - name: tls-client-cert
