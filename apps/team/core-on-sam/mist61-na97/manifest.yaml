@@ -227,7 +227,7 @@ system:
     count: 1
     containers:
     - name: sfproxy-switchboard-server
-      image: sfci/servicelibs/switchboard:68c2c0899b36a3ee8a037d00dccb391d9c827b3f
+      image: sfci/servicelibs/switchboard:a6729b3a765d262943bb20f9921b4343784dccef
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -265,10 +265,10 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sfproxy-switchboard-sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      image: sfci/frontend-gateway/sfproxy:2784a0a
       args:
       - --template
-      - /switchboard-config/switchboard-sidecar.config.yaml.template
+      - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
       ports:
       - containerPort: 15001
       env:
@@ -320,7 +320,7 @@ system:
     count: 3
     containers:
     - name: sfproxy-envoy
-      image: sfci/frontend-gateway/sfproxy:079d806
+      image: sfci/frontend-gateway/sfproxy:2784a0a
       env:
       - name: SFDC_ENVIRONMENT
         value: mist61
