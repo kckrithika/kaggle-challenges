@@ -29,10 +29,10 @@ configs.deploymentBase("flowsnake") {
               certreqs: [
                 {
                   name: cert_name,
-                  role: "flowsnake." + flowsnakeconfig.fleet_api_roles[estate],
+                  role: "flowsnake." + flowsnakeconfig.role_munge_for_estate("api"),
                   san: [
                     flowsnakeconfig.fleet_vips[estate],
-                    flowsnakeconfig.fleet_api_roles[estate] + ".flowsnake.localhost.mesh.force.com",
+                    flowsnakeconfig.service_mesh_fqdn("api"),
                   ],
                   "cert-type": "server",
                   kingdom: kingdom,
@@ -62,8 +62,7 @@ configs.deploymentBase("flowsnake") {
                 name: "auth-namespaces",
                 readOnly: true,
               },
-              madkub_common.certs_mount,
-            ] +
+            ] + madkub_common.cert_mounts() +
             (if !flowsnakeconfig.is_minikube then
                 certs_and_kubeconfig.kubeconfig_volumeMounts +
                 certs_and_kubeconfig.platform_cert_volumeMounts
@@ -108,20 +107,18 @@ configs.deploymentBase("flowsnake") {
               name: "auth-namespaces",
             },
           },
-          madkub_common.certs_volume,
-          madkub_common.tokens_volume,
-        ] +
-        (if !flowsnakeconfig.is_minikube then
-            certs_and_kubeconfig.platform_cert_volume +
-            certs_and_kubeconfig.kubeconfig_platform_volume
-        else [
+        ]
+          + madkub_common.cert_volumes()
+          + (if !flowsnakeconfig.is_minikube then
+              certs_and_kubeconfig.kubeconfig_platform_volume
+            else [
             {
               hostPath: {
                   path: "/tmp/sc_repo",
               },
               name: "maddog-onebox-certs",
             },
-        ]),
+            ]),
       },
     },
   },

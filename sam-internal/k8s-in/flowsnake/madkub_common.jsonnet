@@ -1,194 +1,237 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
- local flowsnakeconfig = import "flowsnake_config.jsonnet";
- local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
- local estate = std.extVar("estate");
- local kingdom = std.extVar("kingdom");
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
+local estate = std.extVar("estate");
+local kingdom = std.extVar("kingdom");
 
- local certs_mount = {
-     mountPath: "/certs",
-     name: "datacerts",
- };
- local certs_volume = {
-     name: "datacerts",
-     emptyDir: {
-         medium: "Memory",
-     },
- };
+local default_cert_folder_map = { datacerts: "/certs" };
 
- local tokens_mount = {
-     mountPath: "/tokens",
-     name: "tokens",
- };
- local tokens_volume = {
-     name: "tokens",
-     emptyDir: {
-         medium: "Memory",
-     },
- };
+local strip_trailing_slash(path) = if std.endsWith(path, "/") then std.substr(path, 0, std.length(path) - 1) else path;
+
+# Generate full path to certificate
+# cert_type: client, server, etc.
+# base_path: base directory provided to init/refresh containers to store certs.
+# E.g. cert_path("/certs", "client") -> "/certs/client/certificates/client.pem"
+local cert_path(cert_type, base_path="/certs") = std.join("/", [strip_trailing_slash(base_path), cert_type, "certificates", cert_type + ".pem"]);
+
+# Generate full path to key
+# cert_type: client, server, etc.
+# base_path: base directory provided to init/refresh containers to store certs.
+# E.g. key_path("/certs", "client") -> "/certs/client/keys/client-key.pem"
+local key_path(cert_type, base_path="/certs") = std.join("/", [strip_trailing_slash(base_path), cert_type, "keys", cert_type + "-key.pem"]);
+
+# Generate full path to CA cert
+# base_path: base directory provided to init/refresh containers to store certs.
+local ca_path(base_path="/certs") = std.join("/", [strip_trailing_slash(base_path), "ca.pem"]);
+
+# Generate Volume Mounts for all MadDog certificates
+# cert_name_folder_map associates named certs with their directory on disk.
+# default: "datacerts" cert is mounted at /certs
+#
+# The volumeMounts do NOT include the PKI host-cert directories because, even though (for now, at least)
+# the MadKub init/refresh side-cars need to mount those, the primary MadKub-cert-using container does not
+# need to mount them.
+local cert_mounts(cert_name_folder_map=default_cert_folder_map) = [{
+    mountPath: '%s' % cert_name_folder_map[cert_name],
+    name: cert_name,
+} for cert_name in std.objectFields(cert_name_folder_map)];
+
+# Generate Volumes for all MadDog certificates
+# cert_name_folder_map associates named certs with their directory on disk.
+# default: "datacerts" cert and tokens in Memory volume
+#
+# The volumes include the PKI host-cert directories because (for now, at least)
+# the MadKub init/refresh side-cars need to mount those.
+local cert_volumes(cert_name_folder_map=default_cert_folder_map) = [{
+    name: cert_name,
+    emptyDir: {
+        medium: "Memory",
+    },
+} for cert_name in std.objectFields(cert_name_folder_map) + ["tokens"]] +
+    certs_and_kubeconfig.platform_cert_volume;
 
 
- ### Refresh container for Madkub - Reloads tokens at regular intervals, required for cert rotation
- local refresher_container(cert_name) = {
-     name: "sam-madkub-integration-refresher",
-     args: [
-         "/sam/madkub-client",
-         "--madkub-endpoint",
-         flowsnakeconfig.madkub_endpoint,
-         "--maddog-endpoint",
-         flowsnakeconfig.maddog_endpoint,
-         "--maddog-server-ca",
-         if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
-         "--madkub-server-ca",
-         if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
-         "--token-folder",
-         "/tokens",
-         "--kingdom",
-         kingdom,
-         "--superpod",
-         "None",
-         "--estate",
-         estate,
-         "--refresher",
-         "--run-init-for-refresher-mode",
-         "--cert-folders",
-         cert_name + ":/certs",
-     ] +
-     (if !flowsnakeconfig.is_minikube then [
-         "--funnel-endpoint",
-         flowsnakeconfig.funnel_endpoint,
-     ] else [
-         "--log-level",
-         "7",
-     ]),
-     image: flowsnake_images.madkub,
-     resources: {
-     },
-     volumeMounts: [
-         certs_mount,
-         tokens_mount,
-     ] +
-     (if !flowsnakeconfig.is_minikube then
-         certs_and_kubeconfig.platform_cert_volumeMounts
-     else [
-         {
-             mountPath: "/maddog-onebox",
-             name: "maddog-onebox-certs",
-         },
-     ]),
-     env: [
-         {
-             name: "MADKUB_NODENAME",
-                 valueFrom: {
-                     fieldRef: {
-                         apiVersion: "v1",
-                         fieldPath: "spec.nodeName",
-                     },
-             },
-         },
-         {
-             name: "MADKUB_NAME",
-                 valueFrom: {
-                     fieldRef: {
-                         apiVersion: "v1",
-                         fieldPath: "metadata.name",
-                 },
-             },
-         },
-         {
-             name: "MADKUB_NAMESPACE",
-                 valueFrom: {
-                     fieldRef: {
-                         apiVersion: "v1",
-                         fieldPath: "metadata.namespace",
-                 },
-             },
-         },
-     ],
- };
+# Generate Volume Mount for MadDog token
+local tokens_mount = {
+    mountPath: "/tokens",
+    name: "tokens",
+};
 
- ### Init container for madkub - initializes connection to Madkub and loads initial certs.  Required for madkub integration
- local init_container(cert_name) = {
-     name: "sam-madkub-integration-init",
-     args: [
-         "/sam/madkub-client",
-         "--madkub-endpoint",
-         flowsnakeconfig.madkub_endpoint,
-         "--maddog-endpoint",
-         flowsnakeconfig.maddog_endpoint,
-         "--maddog-server-ca",
-         if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
-         "--madkub-server-ca",
-         if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
-         "--token-folder",
-         "/tokens",
-         "--kingdom",
-         kingdom,
-         "--superpod",
-         "None",
-         "--estate",
-         estate,
-         "--cert-folders",
-         cert_name + ":/certs",
-     ] +
-     (if !flowsnakeconfig.is_minikube then [
-         "--funnel-endpoint",
-         flowsnakeconfig.funnel_endpoint,
-     ] else [
-         "--log-level",
-         "7",
-     ]),
-     image: flowsnake_images.madkub,
-     resources: {
-     },
-     volumeMounts: [
-         certs_mount,
-         tokens_mount,
-     ] +
-     (if !flowsnakeconfig.is_minikube then
-         certs_and_kubeconfig.platform_cert_volumeMounts
-     else [
-         {
-             mountPath: "/maddog-onebox",
-             name: "maddog-onebox-certs",
-         },
-     ]),
-     env: [
-         {
-         name: "MADKUB_NODENAME",
-             valueFrom: {
-                 fieldRef: {
-                     apiVersion: "v1",
-                     fieldPath: "spec.nodeName",
-                 },
-             },
-         },
-         {
-         name: "MADKUB_NAME",
-             valueFrom: {
-                 fieldRef: {
-                     apiVersion: "v1",
-                     fieldPath: "metadata.name",
-                 },
-             },
-         },
-         {
-         name: "MADKUB_NAMESPACE",
-             valueFrom: {
-                 fieldRef: {
-                     apiVersion: "v1",
-                     fieldPath: "metadata.namespace",
-                 },
-             },
-         },
-     ],
- };
+### Refresh container for Madkub - Reloads tokens at regular intervals, required for cert rotation
+# cert_name_folder_map: names of certs to initialize and their associated directory locations.
+# Note: cert_name_folder_map may be a simple cert_name string, in which case it is assumed that the certs are
+# stored in /certs. This is equivalent to providing the argument { [cert_name]: "/certs" }
+#
+### cert_name_folder_map associates named certs with their directory on disk.
+local refresher_container(cert_name_folder_map) = {
+    certs:: if std.type(cert_name_folder_map) == "string" then
+        { [cert_name_folder_map]: "/certs" }
+        else cert_name_folder_map,
+    name: "sam-madkub-integration-refresher",
+    args: [
+        "/sam/madkub-client",
+        "--madkub-endpoint",
+        flowsnakeconfig.madkub_endpoint,
+        "--maddog-endpoint",
+        flowsnakeconfig.maddog_endpoint,
+        "--maddog-server-ca",
+        if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
+        "--madkub-server-ca",
+        if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
+        "--token-folder",
+        "/tokens",
+        "--kingdom",
+        kingdom,
+        "--superpod",
+        "None",
+        "--estate",
+        estate,
+        "--refresher",
+        "--run-init-for-refresher-mode",
+        "--cert-folders",
+    ] + ['%s:%s' % [name, $.certs[name]] for name in std.objectFields($.certs)] +
+    (if !flowsnakeconfig.is_minikube then [
+        "--funnel-endpoint",
+        flowsnakeconfig.funnel_endpoint,
+    ] else [
+        "--log-level",
+        "7",
+    ]),
+    image: flowsnake_images.madkub,
+    resources: {
+    },
+    volumeMounts: cert_mounts($.certs)
+      + [tokens_mount]
+      +
+    (if !flowsnakeconfig.is_minikube then
+        certs_and_kubeconfig.platform_cert_volumeMounts
+    else [
+        {
+            mountPath: "/maddog-onebox",
+            name: "maddog-onebox-certs",
+        },
+    ]),
+    env: [
+        {
+            name: "MADKUB_NODENAME",
+                valueFrom: {
+                    fieldRef: {
+                        apiVersion: "v1",
+                        fieldPath: "spec.nodeName",
+                    },
+            },
+        },
+        {
+            name: "MADKUB_NAME",
+                valueFrom: {
+                    fieldRef: {
+                        apiVersion: "v1",
+                        fieldPath: "metadata.name",
+                },
+            },
+        },
+        {
+            name: "MADKUB_NAMESPACE",
+                valueFrom: {
+                    fieldRef: {
+                        apiVersion: "v1",
+                        fieldPath: "metadata.namespace",
+                },
+            },
+        },
+    ],
+};
 
- ## Expose common bits for external use / consumption
- {
-     certs_mount: certs_mount,
-     certs_volume: certs_volume,
-     tokens_volume: tokens_volume,
+### Init container for madkub - initializes connection to Madkub and loads initial certs.  Required for madkub integration
+# cert_name_folder_map: names of certs to initialize and their associated directory locations.
+# Note: cert_name_folder_map may be a simple cert_name string, in which case it is assumed that the certs are
+# stored in /certs. This is equivalent to providing the argument { [cert_name]: "/certs" }
+#
+local init_container(cert_name_folder_map) = {
+    certs:: if std.type(cert_name_folder_map) == "string" then
+        { [cert_name_folder_map]: "/certs" }
+        else cert_name_folder_map,
+    name: "sam-madkub-integration-init",
+    args: [
+        "/sam/madkub-client",
+        "--madkub-endpoint",
+        flowsnakeconfig.madkub_endpoint,
+        "--maddog-endpoint",
+        flowsnakeconfig.maddog_endpoint,
+        "--maddog-server-ca",
+        if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
+        "--madkub-server-ca",
+        if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
+        "--token-folder",
+        "/tokens",
+        "--kingdom",
+        kingdom,
+        "--superpod",
+        "None",
+        "--estate",
+        estate,
+        "--cert-folders",
+    ] + ['%s:%s' % [name, $.certs[name]] for name in std.objectFields($.certs)] +
+    (if !flowsnakeconfig.is_minikube then [
+        "--funnel-endpoint",
+        flowsnakeconfig.funnel_endpoint,
+    ] else [
+        "--log-level",
+        "7",
+    ]),
+    image: flowsnake_images.madkub,
+    resources: {
+    },
+    volumeMounts: cert_mounts($.certs)
+        + [tokens_mount]
+    + (if !flowsnakeconfig.is_minikube then
+        certs_and_kubeconfig.platform_cert_volumeMounts
+    else [
+        {
+            mountPath: "/maddog-onebox",
+            name: "maddog-onebox-certs",
+        },
+    ]),
+    env: [
+        {
+        name: "MADKUB_NODENAME",
+            valueFrom: {
+                fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "spec.nodeName",
+                },
+            },
+        },
+        {
+        name: "MADKUB_NAME",
+            valueFrom: {
+                fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.name",
+                },
+            },
+        },
+        {
+        name: "MADKUB_NAMESPACE",
+            valueFrom: {
+                fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.namespace",
+                },
+            },
+        },
+    ],
+};
 
-     refresher_container:: refresher_container,
-     init_container:: init_container,
- }
+## Expose common bits for external use / consumption
+{
+    cert_path:: cert_path,
+    key_path:: key_path,
+    ca_path:: ca_path,
+
+    cert_mounts:: cert_mounts,
+    cert_volumes:: cert_volumes,
+
+    refresher_container:: refresher_container,
+    init_container:: init_container,
+}

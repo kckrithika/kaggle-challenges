@@ -28,18 +28,28 @@ local util = import "util_functions.jsonnet";
         "prd-minikube-small-flowsnake": "prd-minikube-small-flowsnake.data.sfdc.net",
         "prd-minikube-big-flowsnake": "prd-minikube-big-flowsnake.data.sfdc.net",
     },
-    fleet_api_roles: {
-        "prd-data-flowsnake": "api",
-        "prd-dev-flowsnake_iot_test": "api-dev",
-        "prd-data-flowsnake_test": "api-test",
-        "iad-flowsnake_prod": "api",
-        "ord-flowsnake_prod": "api",
-        "phx-flowsnake_prod": "api",
-        "frf-flowsnake_prod": "api",
-        "par-flowsnake_prod": "api",
-        "prd-minikube-small-flowsnake": "api-minikube",
-        "prd-minikube-big-flowsnake": "api-minikube",
+
+    role_estate_suffixes:: {
+        "prd-dev-flowsnake_iot_test": "-dev",
+        "prd-data-flowsnake_test": "-test",
+        "prd-minikube-small-flowsnake": "-minikube",
+        "prd-minikube-big-flowsnake": "-minikube",
     },
+
+    # The ServiceMesh-visible hostname of components varies between test and production fleets.
+    # E.g. api-dev.flowsnake.localhost.mesh.force.com for the Ingress Controller hosted in prd-dev vs.
+    # api.flowsnake.localhost.mesh.force.com for one hosted in production.
+    # (The Kingdom is not included; so e.g. whether api.flowsnake.localhost.mesh.force.com resolves to prd-data, IAD,
+    # ORD, etc. depends on where you're calling from!)
+    role_munge_for_estate(role)::
+        local role_suffix = if std.objectHas($.role_estate_suffixes, estate) then
+            $.role_estate_suffixes[estate]
+            else "";
+        role + role_suffix,
+
+    service_mesh_fqdn(role):: $.role_munge_for_estate(role) + ".flowsnake.localhost.mesh.force.com",
+
+
     default_image_pull_policy: if self.is_minikube then "Never" else "IfNotPresent",
     deepsea_enabled_estates: [
         "prd-data-flowsnake",

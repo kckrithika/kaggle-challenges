@@ -1,3 +1,7 @@
+# For use by pods that need to use host certs (as opposed to MadKub container certs or ServiceAccount tokens)
+# As of 2018-12, the MadKub init and refresh sidecar containers themselves use host certs to access the Kubernetes
+# API. (Some day we should move them to Service Account tokens.)
+
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local k8s_prepend = "k8s-";
 {
