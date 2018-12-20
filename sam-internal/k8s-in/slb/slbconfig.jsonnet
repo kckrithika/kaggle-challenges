@@ -3,6 +3,7 @@
     local kingdom = std.extVar("kingdom"),
     local slbimages = import "slbimages.jsonnet",
     local configs = import "config.jsonnet",
+    local slboptoutvips = import "slb-opt-out-vips.libsonnet",
     local set_value_to_all_in_list(value, list) = { [item]: value for item in list },
     local set_value_to_all_in_list_skip(value, list, skip) = { [item]: value for item in list if item != skip },
 
@@ -194,11 +195,6 @@
         + {
             "fra-sam": 4,
             "cdg-sam": 4,
-        },
-
-        vipwdOptOutOptions: {
-            "prd-sam": ["--optOutServiceList=pra-sfc-prd,pra-dsm-prd", "--optOutNamespace=podgroup-prebuild"],
-            "xrd-sam": ["--optOutServiceList=slb-canary-service-ext"],
         },
 
         ipvsReplicaCount:
@@ -496,6 +492,7 @@
     envoyVip: self.perCluster.envoyVip[estate],
     envoyVipCIDR: if std.length(self.envoyVip) != 0 then ([self.envoyVip + "/32"]) else [],
     vipsToAcl: self.perCluster.vipsToAcl[estate],
+    vipwdOptOutOptions: slboptoutvips.getVipWdOptOutOptions(estate),
 
     sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
     sdn_watchdog_emailrec: "slb@salesforce.com",

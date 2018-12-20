@@ -103,16 +103,12 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                            "--client.serverInterface=lo",
                                            "--healthPathCheck=true",
                                            "--metricsBatchTimeout=30s",
-                                       ] + (
-                                           if std.objectHas(slbconfigs.perCluster.vipwdOptOutOptions, configs.estate) then
-                                               slbconfigs.perCluster.vipwdOptOutOptions[configs.estate]
-                                           else []
-                                       )
+                                       ] + slbconfigs.vipwdOptOutOptions
                                        + slbconfigs.getNodeApiClientSocketSettings()
-                                       + ([
+                                       + [
                                               "--followRedirect=false",
                                               "--slaRequiresHealthProbes=true",
-                                          ]),
+                                        ],
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
