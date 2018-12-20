@@ -109,7 +109,7 @@ spec:
         resources: {}
         volumeMounts:
         - mountPath: /certs
-          name: watchdogcanarycerts
+          name: datacerts
         - mountPath: /tokens
           name: tokens
         - mountPath: /etc/pki_service/ca
@@ -169,7 +169,7 @@ spec:
         resources: {}
         volumeMounts:
         - mountPath: /certs
-          name: watchdogcanarycerts
+          name: datacerts
         - mountPath: /tokens
           name: tokens
         - mountPath: /etc/pki_service/ca
