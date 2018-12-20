@@ -17,10 +17,17 @@ system:
       - mountPath: /secrets/
         name: secretvol
         readOnly: true
+      - mountPath: /certs/server
+        name: sipapicert
     volumes:
     - name: secretvol
       k4aSecret:
         secretName: super-duper-secret
+    - name: sipapicert
+      maddogCert:
+        type: server
+        lbnames:
+        - sipemlb
   loadbalancers:
   - lbname: sipemlb
     function: default
