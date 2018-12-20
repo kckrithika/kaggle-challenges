@@ -4,11 +4,11 @@ system:
       - distributedtracing@salesforce.com
   functions: 
   - name: elasticsearch
-    count: 3
+    count: 1
     type: stateful-set
     containers:
     - name: elasticsearch
-      image: docker-dva-rc/dva/elasticsearch-server:20
+      image: docker-dva-rc/dva/elasticsearch-server:23
       env:
       - name: ES_JAVA_OPTS
         value: '-Xms30g -Xmx30g'
