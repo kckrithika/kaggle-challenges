@@ -36,10 +36,10 @@ configs.deploymentBase("service-mesh") {
           app: "istio-mesh-webhook",
         }
       },
-      spec: configs.specWithKubeConfigAndMadDog {
+      spec: configs.specWithMadDog {
         serviceAccountName: "istio-mesh-webhook-service-account",
         containers: [
-          configs.containerWithKubeConfigAndMadDog {
+          configs.containerWithMadDog {
             name: "istio-mesh-webhook",
             image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-mesh-webhook:d2946c085f85cff06bb8a8c0ed8075145b5c4092",
             imagePullPolicy: "IfNotPresent",
@@ -105,7 +105,7 @@ configs.deploymentBase("service-mesh") {
     if configs.estate == "prd-samtest" then [
       {
         name: "KUBERNETES_SERVICE_HOST",
-        value: "10.231.100.10",
+        value: "shared0-samtestkubeapi2-1-prd.eng.sfdc.net",
       },
       {
         name: "KUBERNETES_SERVICE_PORT",
@@ -114,7 +114,7 @@ configs.deploymentBase("service-mesh") {
     ] else if configs.estate == "prd-sam" then [
       {
         name: "KUBERNETES_SERVICE_HOST",
-        value: "10.253.213.46",
+        value: "shared0-samkubeapi1-1-prd.eng.sfdc.net",
       },
       {
         name: "KUBERNETES_SERVICE_PORT",

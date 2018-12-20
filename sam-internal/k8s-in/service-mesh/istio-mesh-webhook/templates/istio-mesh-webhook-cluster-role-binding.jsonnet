@@ -6,6 +6,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
   kind: "ClusterRoleBinding",
   metadata: {
     name: "istio-mesh-webhook",
+    namespace: "mesh-control-plane",
     labels: {
       app: "istio-mesh-webhook",
     },

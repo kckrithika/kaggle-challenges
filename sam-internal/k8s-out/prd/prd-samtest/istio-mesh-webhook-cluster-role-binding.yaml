@@ -4,6 +4,7 @@ metadata:
   labels:
     app: istio-mesh-webhook
   name: istio-mesh-webhook
+  namespace: mesh-control-plane
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
