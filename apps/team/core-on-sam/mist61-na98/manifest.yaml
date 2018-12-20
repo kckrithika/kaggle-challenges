@@ -122,7 +122,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 300
     - name: sfproxy-switchboard-sherpa
-      image: sfci/frontend-gateway/sfproxy:026c5bb
+      image: sfci/frontend-gateway/sfproxy:2784a0a
       command: ["/bin/sleep"]
       args:
       - 701000
@@ -148,7 +148,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - ./sfproxy/scripts/check-switchboard.sh
+          - /bin/pwd
         initialDelaySeconds: 20
         periodSeconds: 300
       readinessProbe:
