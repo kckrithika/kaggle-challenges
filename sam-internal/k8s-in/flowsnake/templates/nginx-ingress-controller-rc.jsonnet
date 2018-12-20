@@ -137,7 +137,7 @@ local kingdom = std.extVar("kingdom");
                     {
                         name: "beacon",
                         image: flowsnake_images.beacon,
-                        args: ["-endpoint", "flowsnake/" + flowsnakeconfig.role_munge_for_estate("api") + ":DATACENTER_ALLENV:443:" + flowsnakeconfig.fleet_vips[estate], "-path", "-.-." + kingdom + ".-.flowsnake", "-spod", "NONE"],
+                        args: ["-endpoint", "flowsnake/" + flowsnakeconfig.fleet_api_roles[estate] + ":DATACENTER_ALLENV:443:" + flowsnakeconfig.fleet_vips[estate], "-path", "-.-." + kingdom + ".-.flowsnake", "-spod", "NONE"],
                     },
                 ],
                 volumes: (
