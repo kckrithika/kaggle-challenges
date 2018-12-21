@@ -78,7 +78,7 @@ local util = import "../util.jsonnet";
     ],
 
     // List of SAM and K8s reserved Labels
-    ReservedLabelsRegex:: [
+    reservedLabelsRegex:: [
         "^" + "bundleName" + "$",
         "^" + "deployed_by" + "$",
         "^" + "pod-template-hash" + "$",
@@ -87,9 +87,20 @@ local util = import "../util.jsonnet";
         "^" + ".*kubernetes.io/.*" + "$",
     ],
 
+    // secure registry patterns indicating secure images
+    secureRegistry:: [
+        "^.*artifactrepo.*$"
+    ],
+
+    // Exceptions for insecure images
+    insecureImageExceptionSet:: [
+        "dummyToEnsureNotEverythingPass"
+    ],
+
 
 ###################################### Enable Exceptions #############################################
 
 
     Enable_LivenessProbeWhitelist: true,
+    Enable_InsecureImageExceptions: true,
 }

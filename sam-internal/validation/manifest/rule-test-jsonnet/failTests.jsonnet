@@ -565,4 +565,13 @@ local expectedError = import '../../expectedErrorTypes.libsonnet';
             },
         },
     },
+
+    "FunctionContainerInsecureImage.yaml": base {
+        override+:: {
+            expectedError: expectedError.notAllowedValuesUsed,
+            containers: {
+                image: "sam.test/test:tag"
+            },
+        },
+    },
 }

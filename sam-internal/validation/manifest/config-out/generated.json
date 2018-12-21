@@ -263,6 +263,31 @@
          }
       ]
    },
+   "Rule_InsecureImageValidation": {
+      "not": {
+         "allOf": [
+            {
+               "pattern": "^.+\\..+\\/.+$"
+            },
+            {
+               "not": {
+                  "enum": [
+                     "dummyToEnsureNotEverythingPass"
+                  ]
+               }
+            },
+            {
+               "not": {
+                  "anyOf": [
+                     {
+                        "pattern": "^.*artifactrepo.*$"
+                     }
+                  ]
+               }
+            }
+         ]
+      }
+   },
    "Rule_IsDNS1035Validation": {
       "maxLength": 63,
       "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$"

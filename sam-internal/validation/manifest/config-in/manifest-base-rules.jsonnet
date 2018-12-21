@@ -81,6 +81,7 @@ local schemaID = "manifestConfigs";
         CIDRValidation: base.LBPortsValidation.CIDRValidation
     },
 
+    Rule_InsecureImageValidation: base.insecureImageValidation,
 
 
     Rule_ManifestRequirements: {

@@ -111,7 +111,10 @@
 
                                             "image": {
                                                 "type": "string",
-                                                "$ref": "manifestConfigs#/Rule_ImageForm"
+                                                "allOf": [
+                                                    { "$ref": "manifestConfigs#/Rule_InsecureImageValidation" },
+                                                    { "$ref": "manifestConfigs#/Rule_ImageForm" }
+                                                ]
                                             },
 
                                             "livenessProbe": {

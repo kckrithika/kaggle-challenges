@@ -110,6 +110,17 @@ local schemaID = "manifestConfigs";
         ],
     },
 
+    insecureImageValidation:: 
+        if config.Enable_InsecureImageExceptions then {
+            not: {
+                allOf: [
+                    { pattern: "^.+\\..+\\/.+$" },
+                    util.ValuesNotAllowed(config.insecureImageExceptionSet),
+                    util.DoNotMatchRegex(config.secureRegistry),
+                ],
+            }
+        } else {},
+
     # IsQualifiedName Rule from Kubernetes apimachinery (Used for Label and Annotation Keys)
     isQualifiedName:: {
         oneOf: [            
@@ -158,7 +169,7 @@ local schemaID = "manifestConfigs";
     # Make sure SAM/Kubernetes reserved labels are not being used
     reservedLabels:: {
         // PropertyNames is a JSON Schema keyboard that enforces the property/key value
-        propertyNames: util.DoNotMatchRegex(config.ReservedLabelsRegex),
+        propertyNames: util.DoNotMatchRegex(config.reservedLabelsRegex),
     },
 
     # Only type Server can have lbnames property

@@ -287,4 +287,12 @@ local base = import 'template.libsonnet';
             },
         },
     },
+
+    "FunctionContainersInsecureImageNotUse.yaml": base {
+        override+:: {
+            containers: {
+                image: "artifactrepo.test/test:tag"
+            },
+        },
+    },
 }
