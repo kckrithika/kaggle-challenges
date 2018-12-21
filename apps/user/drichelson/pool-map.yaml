@@ -3,3 +3,7 @@ apps:
         - prd/prd-sam
     dlr-metrics-emitter:
         - prd/prd-sam
+    shipping-server-go-big:
+        - prd/prd-sam
+    shipping-client-go-big:
+        - prd/prd-sam
