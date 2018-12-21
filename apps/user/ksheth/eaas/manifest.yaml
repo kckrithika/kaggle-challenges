@@ -17,7 +17,7 @@ system:
         containerPort: 7022
       env:
       - name: SFDC_ENVIRONMENT
-        value: sam
+        value: prd
       - name: SCONE_SERVICE_NAME
         value: eaas
       - name: SFDC_POD
@@ -59,7 +59,7 @@ system:
       - eaas-chaos:DATACENTER_ALLENV:7014
       env:
       - name: SFDC_ENVIRONMENT
-        value: sam
+        value: prd
       livenessProbe:
         exec:
           command:
@@ -83,7 +83,7 @@ system:
         containerPort: 15373
       env:
       - name: SFDC_ENVIRONMENT
-        value: sam
+        value: prd
       resources:
         limits:
           cpu: "1"
