@@ -30,6 +30,7 @@ local utils = import "util_functions.jsonnet";
                 ingressDefaultBackend_image_tag: 662,
                 beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
                 kibana_image_tag: "345",
+                impersonation_proxy_image_tag: "jenkins-dva-transformation-kubernetes-impersonation-proxy-liveness-1-itest",
                 logloader_image_tag: "468",
                 logstash_image_tag: "468",
                 madkub_image_tag: "1.0.0-0000062-dca2d8d1",
@@ -92,6 +93,7 @@ local utils = import "util_functions.jsonnet";
                 madkub_077_upgrade: "deploy-hand-in-hand-with-madkub_image_tag-change",
                 kube_dns_no_service_account: "verified-in-prd-test",
                 remove_suspect_sans: "unverified",
+                impersonation_proxy: "unverified",
             },
             version_mapping: {
                 main: {
@@ -223,6 +225,7 @@ local utils = import "util_functions.jsonnet";
     event_exporter: flowsnakeconfig.strata_registry + "/flowsnake-event-exporter:" + $.per_phase[$.phase].eventExporter_image_tag,
     test_data: flowsnakeconfig.strata_registry + "/flowsnake-test-data:" + $.per_phase[$.phase].testData_image_tag,
     glok: flowsnakeconfig.strata_registry + "/flowsnake-kafka:" + $.per_phase[$.phase].glok_image_tag,
+    impersonation_proxy: flowsnakeconfig.strata_registry + "/flowsnake-kubernetes-impersonation-proxy:" + $.per_phase[$.phase].impersonation_proxy_image_tag,
     ingress_controller_nginx: flowsnakeconfig.strata_registry + "/flowsnake-ingress-controller-nginx:" + $.per_phase[$.phase].ingressControllerNginx_image_tag,
     ingress_default_backend: flowsnakeconfig.strata_registry + "/flowsnake-ingress-default-backend:" + $.per_phase[$.phase].ingressDefaultBackend_image_tag,
     kibana: flowsnakeconfig.strata_registry + "/flowsnake-kibana:" + $.per_phase[$.phase].kibana_image_tag,
