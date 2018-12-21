@@ -13,6 +13,7 @@ system:
       args:
       - --grpc.gater.queryrate=100
       - --grpc.gater.request.deadline=200
+      - --gater.grpc.deadline-ms=200
       - --client.test.gates=com.salesforce.gater.alwaysEnabled
       - --gater.grpc.endpoint=gater-mesh.gater.localhost.mesh.force.com
       - --gater.grpc.port=5443
