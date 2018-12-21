@@ -91,6 +91,7 @@ local utils = import "util_functions.jsonnet";
                 image_renames_and_canary_build_tags: "unverified",
                 madkub_077_upgrade: "deploy-hand-in-hand-with-madkub_image_tag-change",
                 kube_dns_no_service_account: "verified-in-prd-test",
+                remove_suspect_sans: "unverified",
             },
             version_mapping: {
                 main: {

@@ -1,6 +1,7 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
+local cert_name = "madkubinjector";
 
 if flowsnakeconfig.is_test then
 {
@@ -12,12 +13,9 @@ if flowsnakeconfig.is_test then
     },
     data: {
 		// TODO: fix sam/manifests validator bug
-        "volumes.jaysawn": std.toString([
-            madkub_common.certs_volume,
-            madkub_common.tokens_volume,
-        ] +
-        (if !flowsnakeconfig.is_minikube then
-            certs_and_kubeconfig.platform_cert_volume
+        "volumes.jaysawn": std.toString(
+            madkub_common.cert_volumes(cert_name)+
+        (if !flowsnakeconfig.is_minikube then []
         else [
             {
               hostPath: {

@@ -29,19 +29,62 @@ local util = import "util_functions.jsonnet";
         "prd-minikube-small-flowsnake": "prd-minikube-small-flowsnake.data.sfdc.net",
         "prd-minikube-big-flowsnake": "prd-minikube-big-flowsnake.data.sfdc.net",
     },
-    fleet_api_roles: {
-        "prd-data-flowsnake": "api",
-        "prd-dev-flowsnake_iot_test": "api-dev",
-        "prd-data-flowsnake_test": "api-test",
-        "iad-flowsnake_prod": "api",
-        "ord-flowsnake_prod": "api",
-        "phx-flowsnake_prod": "api",
-        "frf-flowsnake_prod": "api",
-        "par-flowsnake_prod": "api",
-        "dfw-flowsnake_prod": "api",
-        "prd-minikube-small-flowsnake": "api-minikube",
-        "prd-minikube-big-flowsnake": "api-minikube",
+
+    # Standard SLB vip name is: <lbname>-<team-<kingdom>.slb.sfdc.net
+    # Presume lbname is derived from role munged the same way as for ServiceMesh.
+    # (Some munging required to distinguish between multiple instances in a single kingdom)
+    slb_fqdn(role):: $.role_munge_for_estate(role) + "-flowsnake-" + kingdom + ".slb.sfdc.net",
+
+    # The suffix applied to the PKI role for each estate. PKI role is yet another "role" concept at Salesforce. It is
+    # more commonly referred to as the application name (based on its use in SAM). It is what is in the OU 0 field of
+    # MadDog certficate.
+    role_estate_suffixes:: {
+        "prd-dev-flowsnake_iot_test": "-dev",
+        "prd-data-flowsnake_test": "-test",
+        "prd-minikube-small-flowsnake": "-minikube",
+        "prd-minikube-big-flowsnake": "-minikube",
     },
+
+    # The ServiceMesh-visible hostname of components varies between test and production fleets.
+    # E.g. api-dev.flowsnake.localhost.mesh.force.com for the Ingress Controller hosted in prd-dev vs.
+    # api.flowsnake.localhost.mesh.force.com for one hosted in production.
+    # (The Kingdom is not included; so e.g. whether api.flowsnake.localhost.mesh.force.com resolves to prd-data, IAD,
+    # ORD, etc. depends on where you're calling from!)
+    role_munge_for_estate(role):: role +
+        if std.objectHas($.role_estate_suffixes, estate) then $.role_estate_suffixes[estate]
+        else "",
+
+    service_mesh_fqdn(role):: $.role_munge_for_estate(role) + ".flowsnake.localhost.mesh.force.com",
+
+    # Maps an estate to the estate-role (see https://git.soma.salesforce.com/estates/estates/blob/master/conf/roles.yaml)
+    # of the master nodes in that fleet. Estate role is not to be confused with deviceRole (aka GUS role aka Puppet role).
+    # We care about the estate roles because they flow into the MadDog host certs' SAN as <estate-role>.sfdc-role.
+    # This is our current work-around (along with host aliases) to open TLS connections to KubeAPI until we can get the
+    # kubernetes.default.svc.cluster.local name added directly to the cert.
+    #
+    # The actual role names use underscores, but the PKI cert names use hyphens. std.strReplace is only available in
+    # jsonnet 0.10.0 and up, so just put the munged values in here.
+    estate_master_role_per_estate:: {
+        "prd-data-flowsnake": "flowsnake-master",
+        "prd-dev-flowsnake_iot_test": "flowsnake-master-iot-test",
+        "prd-data-flowsnake_test": "flowsnake-master-test",
+        # minikube values are just invented; need to reconcile with reality once MadKub working in minikube
+        "prd-minikube-small-flowsnake": "flowsnake-master-minikube",
+        "prd-minikube-big-flowsnake": "flowsnake-master-minikube",
+    },  # default: flowsnake_master_prod
+
+    # The estate role names use underscores, but the value here contain hyphens to match what is found in the MadDog
+    # cert SANs.
+    # std.strReplace is only available in Jsonnet v0.10.0 and higher. https://github.com/google/jsonnet/releases/tag/v0.10.0
+    estate_master_role::
+        local hyphenize(s) = std.join("", std.map(function(c) if c == '_' then '-' else c, std.stringChars(s)));
+        hyphenize(
+            (if std.objectHas(self.estate_master_role_per_estate, estate) then
+                self.estate_master_role_per_estate[estate]
+            else "flowsnake_master_prod")
+            + ".sfdc-role"
+        ),
+
     default_image_pull_policy: if self.is_minikube then "Never" else "IfNotPresent",
     deepsea_enabled_estates: [
         "prd-data-flowsnake",

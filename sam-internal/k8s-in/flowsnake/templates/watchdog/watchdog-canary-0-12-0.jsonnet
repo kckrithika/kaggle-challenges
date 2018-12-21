@@ -6,7 +6,7 @@ local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
-
+local remove_suspect_sans = std.objectHas(flowsnake_images.feature_flags, "remove_suspect_sans");
 if !watchdog.watchdog_enabled then
 "SKIP"
 else
@@ -35,12 +35,14 @@ configs.deploymentBase("flowsnake") {
                             {
                                 name: cert_name,
                                 role: "flowsnake_test",
+                                "cert-type": "client",
+                                kingdom: kingdom,
+                            } + if remove_suspect_sans then {} else {
+                                # Why do we have SANs here? Can we remove them?
                                 san: [
                                     flowsnakeconfig.fleet_vips[estate],
-                                    flowsnakeconfig.fleet_api_roles[estate] + ".flowsnake.localhost.mesh.force.com"
+                                    flowsnakeconfig.service_mesh_fqdn("api"),
                                 ],
-                                "cert-type": "client",
-                                kingdom: kingdom
                             }
                         ]
                     }),
@@ -83,17 +85,13 @@ configs.deploymentBase("flowsnake") {
                                 memory: "500Mi",
                             },
                         },
-                        volumeMounts: [
-                            configs.config_volume_mount,
-                            madkub_common.certs_mount,
-                        ] + certs_and_kubeconfig.platform_cert_volumeMounts
-                         + [ watchdog.sfdchosts_volume_mount ],
+                        volumeMounts: [ configs.config_volume_mount, ]
+                          + madkub_common.cert_mounts(cert_name)
+                          + certs_and_kubeconfig.platform_cert_volumeMounts
+                          + [ watchdog.sfdchosts_volume_mount ],
                     },
-                    madkub_common.refresher_container(cert_name)
-                ],
-                initContainers: [
-                    madkub_common.init_container(cert_name)
-                ],
+                    ] + [ madkub_common.refresher_container(cert_name) ],
+                initContainers: [ madkub_common.init_container(cert_name), ],
                 volumes: [
                   {
                     configMap: {
@@ -101,11 +99,9 @@ configs.deploymentBase("flowsnake") {
                     },
                     name: "config",
                   },
-                  madkub_common.certs_volume,
-                  madkub_common.tokens_volume,
-                ] +
-               certs_and_kubeconfig.platform_cert_volume
-               + [ watchdog.sfdchosts_volume ],
+                ]
+                  + madkub_common.cert_volumes(cert_name)
+                  + [ watchdog.sfdchosts_volume ],
             },
         },
     }
