@@ -64,9 +64,9 @@ system:
         periodSeconds: 5
       volumeMounts:
       - name: tls-client-cert
-        mountPath: /cert-client
+        mountPath: /client-certs
       - name: tls-server-cert
-        mountPath: /cert-server
+        mountPath: /server-certs
 
     volumes:
     - name: tls-client-cert
