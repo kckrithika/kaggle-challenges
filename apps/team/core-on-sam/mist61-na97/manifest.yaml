@@ -291,7 +291,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - ./bin/is-alive
+          - ./sfproxy/scripts/check-switchboard.sh
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
