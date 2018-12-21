@@ -4,7 +4,7 @@ apiVersion: v1
 system:
   functions:
   - name: shipping-client-go-big
-    count: 5
+    count: 0
     containers:
 
     - name: shipping-client
