@@ -20,7 +20,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: hubs-basic
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/hubs-basic:hubs-basic-2018-12-22-15-58-16
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/hubs-basic:hubs-basic-2018-12-22-16-21-34
       env:
       - name: PKI_CA_DIR
         value: /certs
