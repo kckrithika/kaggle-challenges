@@ -20,7 +20,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-hub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2018-12-21-14-38-54
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2018-12-22-18-03-39
       env:
       - name: PKI_CA_DIR
         value: /certs
@@ -45,7 +45,7 @@ system:
         #  path: /ping.jsp
         #  port: 8080
         httpGet:
-          scheme: HTTPS
+          scheme: HTTP
           path: /manage/health
           port: 15372
     #lbName: mgmtserviceslb
