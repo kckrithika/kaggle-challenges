@@ -5,10 +5,7 @@ system:
          email:
             - jsanzgonzalez@salesforce.com
   functions:
-  # service name
   - name: hubs-basic
-    #type: stateful-set
-    # number of instances ("kpods") to deploy and run
     count: 1
     volumes:
     - name: cert
@@ -17,7 +14,9 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: coreappjmx
-    # Docker image(s) that make up one instance of the service
+    - name: logvolservice
+      hostPath:
+        path: /home/sfdc-scone-hubs/logs
     containers:
     - name: hubs-basic
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hubs/hubs-basic:hubs-basic-2018-12-22-16-21-34
@@ -34,30 +33,25 @@ system:
       - name: secretvol
         mountPath: /secrets/service-config/secure/
         readOnly: true
+      - mountPath: /home/scone/logs
+        name: logvolservice
       ports:
         - containerPort: 8080
+          name: scone-http
         - containerPort: 15372
-      # SAM will bounce the container if this returns an HTTP response code other than 200-399
+          name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 3600
-        #httpGet:
-        #  scheme: HTTPS
-        #  path: /ping.jsp
-        #  port: 8080
+        initialDelaySeconds: 60
         httpGet:
-          scheme: HTTP
           path: /manage/health
           port: 15372
-    #lbName: mgmtserviceslb
-
-    #terminationGracePeriodSeconds: 33
   loadbalancers:
   - lbname: hubs-basic
     function: hubs-basic
     nodeExposed: false
     slbenabled: true
     ports:
-      - port: 443
+      - port: 8080
         targetport: 8080
         lbtype: http
         tls: true
