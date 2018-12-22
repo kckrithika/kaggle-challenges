@@ -17,7 +17,6 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: coreappjmx
-    # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-hub
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2018-12-22-18-03-39
@@ -36,28 +35,21 @@ system:
         readOnly: true
       ports:
         - containerPort: 8080
+          name: scone-http
         - containerPort: 15372
-      # SAM will bounce the container if this returns an HTTP response code other than 200-399
+          name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 3600
-        #httpGet:
-        #  scheme: HTTPS
-        #  path: /ping.jsp
-        #  port: 8080
+        initialDelaySeconds: 60
         httpGet:
-          scheme: HTTP
           path: /manage/health
           port: 15372
-    #lbName: mgmtserviceslb
-
-    #terminationGracePeriodSeconds: 33
   loadbalancers:
   - lbname: mgmt-hub
     function: mgmt-hub
     nodeExposed: false
     slbenabled: true
     ports:
-      - port: 443
+      - port: 8080
         targetport: 8080
         lbtype: http
         tls: true
