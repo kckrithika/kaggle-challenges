@@ -10,7 +10,7 @@ system:
     count: 1
     containers:
     - name: datapool-service
-      image: sfci/insights/datapoolservice:0796b4f
+      image: sfci/insights/datapoolservice:ead3e5d
       ports:
       - containerPort: 7020
         name: grpc
