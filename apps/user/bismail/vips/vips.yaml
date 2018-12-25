@@ -1,5 +1,5 @@
-- lbname: pra-mariadb-prd
-  customlbname: pra-mariadb-prd
+- lbname: pra-mariadb-test-prd
+  customlbname: pra-mariadb-test-prd
   servers:
   - ops0-praccn1-1-prd.eng.sfdc.net
   ports:
