@@ -147,7 +147,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
         "3": self.default_image_tags {
 
-            fleetService_image_tag: "696",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
 
             feature_flags: {
