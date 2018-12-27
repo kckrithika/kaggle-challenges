@@ -9,10 +9,9 @@ system:
       ports:
       - containerPort: 8181
       livenessProbe:
-        tcpSocket:
-          port: 8181 
-        initialDelaySeconds: 15
-        periodSeconds: 20
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 20
       volumeMounts:
       - mountPath: /secrets/
         name: secretvol
@@ -33,6 +32,23 @@ system:
     function: default
     slbenabled: true
     ports:
-      - port: 8181 
+      - port: 8181
         targetport: 8181
-        lbtype: tcp
+        lbtype: http
+      - port: 8080
+        targetport: 8181
+        lbtype: http
+        tls: true
+        reencrypt: true
+      - port: 8081
+        targetport: 8181
+        lbtype: http
+        tls: true
+        reencrypt: false
+      - port: 8082
+        targetport: 8181
+        lbtype: http
+        tls: false
+        reencrypt: true
+
+
