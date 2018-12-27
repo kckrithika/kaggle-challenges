@@ -64,6 +64,21 @@ local vipwdOptOutConfig = {
       // It is unclear why that VIP was excluded from monitoring, but in any case, the  "slb-canary-service-ext" service was deleted
       // in https://git.soma.salesforce.com/sam/manifests/pull/14314, so this exclusion can be removed.
       "slb-canary-service-ext",
+      // 2018/12/27 - mgrass: A known issue in our monitoring is causing these RDI VIPs in XRD to generate false alarms.
+      // These should be removed when the underlying issues discussed in https://gus.lightning.force.com/a07B0000004j96jIAA
+      // are resolved.
+      "vir501-1-0-xrd",
+      "vir502-1-0-xrd",
+      "vir503-1-0-xrd",
+      "vir504-1-0-xrd",
+      "vir505-1-0-xrd",
+      "vir506-1-0-xrd",
+      "vir507-1-0-xrd",
+      "vir508-1-0-xrd",
+      "vir509-1-0-xrd",
+      "vir510-1-0-xrd",
+      "vir511-1-0-xrd",
+      "vir512-1-0-xrd",
     ],
   },
 };
