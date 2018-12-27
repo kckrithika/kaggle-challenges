@@ -32,8 +32,8 @@ system:
       - name: admin-port
         containerPort: 15372
       resources:
-        limits: { cpu: "2", memory: "8Gi" }
-        requests: { cpu: "2", memory: "8Gi" }
+        limits: { cpu: "12", memory: "8Gi" }
+        requests: { cpu: "12", memory: "8Gi" }
       env:
       - name: REQUESTS_SOCKETTIMEOUT
         value: "5000"
@@ -134,8 +134,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: { cpu: "100m", memory: "1Gi" }
+        requests: { cpu: "100m", memory: "1Gi" }
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
@@ -158,8 +158,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: { cpu: "100m", memory: "1Gi" }
+        requests: { cpu: "100m", memory: "1Gi" }
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
