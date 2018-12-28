@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam
  redis-switchboard:
   - prd/prd-sam
+ redis:
+  - prd/prd-sam
