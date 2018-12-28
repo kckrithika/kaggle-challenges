@@ -1,3 +1,5 @@
 apps:
  jayant-test:
   - prd/prd-sam
+ redis-switchboard:
+  - prd/prd-sam
