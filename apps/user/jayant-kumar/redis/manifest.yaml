@@ -33,8 +33,6 @@ system:
       args:
       - -endpoint
       - caas/caas-cluster1:SUPERPOD:12000
-      - -logservdir
-      - /home/sfdc-caas/logs/beacon-caas-cluster-1-$(FUNCTION_INSTANCE_IP)
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -43,6 +41,8 @@ system:
       env:
        - name: SFDC_ENVIRONMENT
          value: redis
+       - name: NO_ENV_FOR_RESTART
+         value: abc
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
@@ -52,7 +52,7 @@ system:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
       - --switchboard
-      - switchboard-lb:7021
+      - switchboardredis-lb:7021
       ports:
       - containerPort: 15001
       - containerPort: 15373
