@@ -70,7 +70,7 @@ local meshConfig = |||
     controlPlaneAuthPolicy: NONE
     #
     # Address where istio Pilot service is running
-    discoveryAddress: istio-pilot.service-mesh:15010
+    discoveryAddress: istio-pilot.mesh-control-plane:15010
 |||;
 
 {
@@ -78,7 +78,7 @@ local meshConfig = |||
   kind: "ConfigMap",
   metadata: {
     name: "istio",
-    namespace: "service-mesh",
+    namespace: "mesh-control-plane",
     labels: istioUtils.istioLabels,
   },
   data: {

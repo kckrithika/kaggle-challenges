@@ -8,7 +8,7 @@ metadata:
     istio: pilot
     version: istio-1.0.1
   name: istio-pilot
-  namespace: service-mesh
+  namespace: mesh-control-plane
 spec:
   replicas: 1
   selector:

@@ -3,10 +3,10 @@ local istioUtils = import "istio-utils.jsonnet";
 local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
 local hosts = import "sam/configs/hosts.jsonnet";
 
-configs.deploymentBase("service-mesh") {
+configs.deploymentBase("mesh-control-plane") {
   metadata+: {
     name: "istio-pilot",
-    namespace: "service-mesh",
+    namespace: "mesh-control-plane",
     labels: {
       istio: "pilot",
     } + istioUtils.istioLabels,

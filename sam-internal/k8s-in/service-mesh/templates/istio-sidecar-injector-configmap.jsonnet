@@ -172,7 +172,7 @@ local sidecarConfig = |||
   kind: "ConfigMap",
   metadata: {
     name: "istio-sidecar-injector",
-    namespace: "service-mesh",
+    namespace: "mesh-control-plane",
     labels: {
       app: "istio",
       chart: "istio-1.0.1",
