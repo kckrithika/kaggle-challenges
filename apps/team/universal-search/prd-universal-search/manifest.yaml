@@ -32,11 +32,11 @@ system:
       - name: admin-port
         containerPort: 15372
       resources:
-        limits: { cpu: "20", memory: "16Gi" }
-        requests: { cpu: "20", memory: "16Gi" }
+        limits: { cpu: "24", memory: "16Gi" }
+        requests: { cpu: "24", memory: "16Gi" }
       env:
       - name: REQUESTS_SOCKETTIMEOUT
-        value: "5000"
+        value: "10000"
       - name: SERVICE_THREADCOUNT
         value: 100
       - name: SFDC_ENVIRONMENT
