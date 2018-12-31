@@ -265,7 +265,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sfproxy-switchboard-sherpa
-      image: sfci/frontend-gateway/sfproxy:2784a0a
+      image: sfci/frontend-gateway/sfproxy:bc7e1fa
       args:
       - --template
       - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
