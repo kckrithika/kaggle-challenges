@@ -262,51 +262,42 @@ system:
 
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:4905b0
+      image: sfci/casam/sequencer:6d2e7f
 
       env:
-        - name: USE_SWITCHBOARD
-          value: 1
+        - name: CASAM_SETTINGS_PATH
+          value: mist.mist61.prd.na4.cyan
+        - name: CASAM_SUPERPOD
+          value: sp2
         - name: CYAN
           value: https://us4-mist61cyan-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
-        - name: CURL_GLOBAL_OPTS
-          value: -k
-        - name: K4A
-          value: have_to_get_this
-        - name: WAITTIME_PD
-          value: 60
-        - name: JMX_HOST
-          value: shared2-samminioncoreapp1-1-prd.eng.sfdc.net
-        - name: JMX_PORT
-          value: 6040
-        - name: OLD_DWARF
-          value: sneezy
-#          value: happy
+        - name: SWITCH_BOARD_HOST
+          value: us99-mist61switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+        - name: SWITCH_BOARD_PORT
+          value: 8088
+        # Min number of ready servers for cyan to indicate the new pod is ready
+        - name: READY_SERVER_COUNT
+          value: 1
         - name: CURRENT_RELEASE_VERSION
           value: blue
         - name: NEW_RELEASE_VERSION
           value: green
-        # Min number of ready servers for cyan to indicate the new pod is ready
-        - name: READY_SERVER_COUNT
-          value: 1
+        - name: MAJOR_RELEASE_NUMBER
+          value: 216
         - name: DB_SID
           value: mist61a216utf
+        - name: OLD_DWARF
+          value: sneezy
+        - name: SNOWWHITE_PWD
+          value: rotate
         - name: LOCK_DWARF
           value: 0
         - name: TRIGGER_CAFFEINE
           value: 0
         - name: UNLOCK_DWARF
           value: 0
-#        - name: K4A_OUTPUT
-#          value: /tmp/files/repo/user.properties
-        - name: SNOWWHITE_PWD
-          value: rotate
-        - name: MADDOG_CLIENT
-          value: /certs
-        - name: CASAM_SETTINGS_PATH
-          value: mist.mist61.prd.na4.cyan
-        - name: CASAM_SUPERPOD
-          value: sp2
+        - name: KILL_DWARF
+          value: 0
         - name: ENABLE_DB_SCHEMA_UPGRADE
           value: 0
         - name: SET_DEFAULT_ORACLE_EDITION
@@ -314,6 +305,9 @@ system:
         # set http proxy required for gus chatter binary to reach to login.salesforce.com
         - name: HTTP_PROXY
           value: public0-proxy1-0-prd.data.sfdc.net:8080
+        - name: DRY_RUN
+          value: 0
+
 
       livenessProbe:
         httpGet:
