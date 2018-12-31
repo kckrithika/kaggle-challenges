@@ -500,7 +500,7 @@ system:
     count: 1
     containers:
     - name: sfproxy-switchboard-server
-      image: sfci/servicelibs/switchboard:5241d1abda6f58818172b32829283ff3d91aef34
+      image: sfci/servicelibs/switchboard:a6729b3a765d262943bb20f9921b4343784dccef
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -540,10 +540,10 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sfproxy-switchboard-sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.1
+      image: sfci/frontend-gateway/sfproxy:bc7e1fa
       args:
       - --template
-      - /switchboard-config/switchboard-sidecar.config.yaml.template
+      - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
       ports:
       - containerPort: 15001
       - containerPort: 15373
@@ -570,7 +570,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - ./bin/is-alive
+          - ./sfproxy/scripts/check-switchboard.sh
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
@@ -600,7 +600,7 @@ system:
     count: 2
     containers:
     - name: sfproxy-envoy
-      image: sfci/frontend-gateway/sfproxy:079d806
+      image: sfci/frontend-gateway/sfproxy:bc7e1fa
       env:
 #TODO: Write envoy logs to stdout instead of file
       - name: ENVOY_DEBUG_OPTIONS
