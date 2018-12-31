@@ -122,14 +122,17 @@ system:
         periodSeconds: 300
     - name: sfproxy-switchboard-sherpa
       image: sfci/frontend-gateway/sfproxy:2784a0a
-      command: ["/bin/sleep"]
-      args:
-      - 701000
-      ports:
-      - containerPort: 15001
       env:
+      - name: ENVOY_DEBUG_OPTIONS
+        value: --log-path /home/sfdc-sherpa/envoy.log
       - name: SFDC_ENVIRONMENT
         value: mist61
+      args:
+      - --template=/home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
+      - --switchboard=switchboard:15001
+      - --log-level=trace
+      ports:
+      - containerPort: 15001
       resources:
         limits:
           cpu: 1
@@ -147,7 +150,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - /bin/pwd
+          - ./bin/is-alive
         initialDelaySeconds: 20
         periodSeconds: 300
       readinessProbe:
