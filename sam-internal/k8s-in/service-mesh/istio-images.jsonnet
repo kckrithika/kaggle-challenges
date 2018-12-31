@@ -60,7 +60,7 @@ local kingdom = std.extVar("kingdom");
 
   ### Phase kingdom/estate mapping
   phase: (
-    if estate == "prd-samtest" || estate == "prd-sam" || estate == "prd-sam_gater" then
+    if kingdom == "prd" then
       "0"
     else if (1 == 2) then
       "1"

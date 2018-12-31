@@ -7,7 +7,7 @@ local configs = import "config.jsonnet";
 
 # This is almost exactly how a Service spec looks like when created by SAM Manifest 'loadBalancers' section.
 # Skipped the 'externalIps', but it's manually verified in prd-sam that doesn't affect Istio flows.
-if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
+if configs.kingdom == "prd" then
 {
   apiVersion: "v1",
   kind: "Service",

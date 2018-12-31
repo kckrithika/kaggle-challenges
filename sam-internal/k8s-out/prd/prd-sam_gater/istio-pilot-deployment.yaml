@@ -111,7 +111,7 @@ spec:
         - mountPath: /etc/istio/config
           name: config-volume
       nodeSelector:
-        pool: prd-sam
+        pool: prd-sam_gater
       serviceAccount: istio-pilot-service-account
       serviceAccountName: istio-pilot-service-account
       volumes:

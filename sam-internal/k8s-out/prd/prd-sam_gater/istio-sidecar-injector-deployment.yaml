@@ -27,7 +27,7 @@ spec:
               "istio-sidecar-injector",
               "istio-sidecar-injector.mesh-control-plane",
               "istio-sidecar-injector.mesh-control-plane.svc",
-              "istio-sidecar-injector.mesh-control-plane.svc.prd-sam.prd.sam.sfdc.net"
+              "istio-sidecar-injector.mesh-control-plane.svc.prd-sam_gater.prd.sam.sfdc.net"
              ]
             }
            ]
