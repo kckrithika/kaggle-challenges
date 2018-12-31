@@ -10,10 +10,10 @@ local webhookCerts = {
   keyFile: "/cert1/server/keys/server-key.pem",
 };
 
-configs.deploymentBase("service-mesh") {
+configs.deploymentBase("mesh-control-plane") {
   metadata+: {
     name: "istio-sidecar-injector",
-    namespace: "service-mesh",
+    namespace: "mesh-control-plane",
     labels: {
       app: "sidecarInjectorWebhook",
       chart: "sidecarInjectorWebhook-1.0.1",

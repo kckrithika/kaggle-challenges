@@ -5,7 +5,7 @@ metadata:
     app: istio-pilot
     version: istio-1.0.1
   name: istio-pilot
-  namespace: service-mesh
+  namespace: mesh-control-plane
 spec:
   ports:
   - name: grpc-xds

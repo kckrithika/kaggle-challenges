@@ -5,19 +5,19 @@ if configs.estate == "prd-samtest" then {
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
   kind: "ClusterRoleBinding",
   metadata: {
-    name: "istio-pilot-service-mesh",
+    name: "istio-pilot-mesh-control-plane",
     labels: istioUtils.istioLabels,
   },
   roleRef: {
     apiGroup: "rbac.authorization.k8s.io",
     kind: "ClusterRole",
-    name: "istio-pilot-service-mesh",
+    name: "istio-pilot-mesh-control-plane",
   },
   subjects: [
     {
       kind: "ServiceAccount",
       name: "istio-pilot-service-account",
-      namespace: "service-mesh",
+      namespace: "mesh-control-plane",
     },
   ],
 } else "SKIP"

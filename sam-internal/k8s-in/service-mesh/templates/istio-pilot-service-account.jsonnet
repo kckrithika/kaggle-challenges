@@ -6,7 +6,7 @@ local istioUtils = import "istio-utils.jsonnet";
   kind: "ServiceAccount",
   metadata: {
     name: "istio-pilot-service-account",
-    namespace: "service-mesh",
+    namespace: "mesh-control-plane",
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
     },

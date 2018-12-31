@@ -5,7 +5,7 @@ if configs.estate == "prd-samtest" then {
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
   kind: "ClusterRole",
   metadata: {
-    name: "istio-pilot-service-mesh",
+    name: "istio-pilot-mesh-control-plane",
     labels: istioUtils.istioLabels,
   },
   rules: [

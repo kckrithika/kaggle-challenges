@@ -158,4 +158,4 @@ metadata:
     chart: istio-1.0.1
     istio: sidecar-injector
   name: istio-sidecar-injector
-  namespace: service-mesh
+  namespace: mesh-control-plane

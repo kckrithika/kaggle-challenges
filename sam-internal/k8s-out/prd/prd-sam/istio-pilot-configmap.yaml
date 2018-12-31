@@ -69,7 +69,7 @@ data:
       controlPlaneAuthPolicy: NONE
       #
       # Address where istio Pilot service is running
-      discoveryAddress: istio-pilot.service-mesh:15010
+      discoveryAddress: istio-pilot.mesh-control-plane:15010
 kind: ConfigMap
 metadata:
   creationTimestamp: null
@@ -77,4 +77,4 @@ metadata:
     app: istio-pilot
     version: istio-1.0.1
   name: istio
-  namespace: service-mesh
+  namespace: mesh-control-plane

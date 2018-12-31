@@ -4,7 +4,7 @@ metadata:
   labels:
     app: istio-pilot
     version: istio-1.0.1
-  name: istio-pilot-service-mesh
+  name: istio-pilot-mesh-control-plane
 rules:
 - apiGroups:
   - config.istio.io

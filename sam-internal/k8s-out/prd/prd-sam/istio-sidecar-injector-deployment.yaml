@@ -6,7 +6,7 @@ metadata:
     chart: sidecarInjectorWebhook-1.0.1
     istio: sidecar-injector
   name: istio-sidecar-injector
-  namespace: service-mesh
+  namespace: mesh-control-plane
 spec:
   replicas: 1
   selector:
@@ -22,12 +22,12 @@ spec:
              "cert-type": "server",
              "kingdom": "prd",
              "name": "cert1",
-             "role": "istio.service-mesh",
+             "role": "istio.mesh-control-plane",
              "san": [
               "istio-sidecar-injector",
-              "istio-sidecar-injector.service-mesh",
-              "istio-sidecar-injector.service-mesh.svc",
-              "istio-sidecar-injector.service-mesh.svc.prd-sam.prd.sam.sfdc.net"
+              "istio-sidecar-injector.mesh-control-plane",
+              "istio-sidecar-injector.mesh-control-plane.svc",
+              "istio-sidecar-injector.mesh-control-plane.svc.prd-sam.prd.sam.sfdc.net"
              ]
             }
            ]

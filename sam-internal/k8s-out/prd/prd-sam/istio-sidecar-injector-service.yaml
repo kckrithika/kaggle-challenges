@@ -4,7 +4,7 @@ metadata:
   labels:
     istio: sidecar-injector
   name: istio-sidecar-injector
-  namespace: service-mesh
+  namespace: mesh-control-plane
 spec:
   ports:
   - name: sidecar-injector-port

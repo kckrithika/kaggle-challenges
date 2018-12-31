@@ -3,7 +3,7 @@
   kind: "Service",
   metadata: {
     name: "istio-sidecar-injector",
-    namespace: "service-mesh",
+    namespace: "mesh-control-plane",
     labels: {
       istio: "sidecar-injector",
     },

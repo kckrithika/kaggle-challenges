@@ -17,7 +17,7 @@
       clientConfig: {
         service: {
           name: "istio-sidecar-injector",
-          namespace: "service-mesh",
+          namespace: "mesh-control-plane",
           path: "/inject",
         },
         caBundle: "",

@@ -6,7 +6,7 @@ local istioUtils = import "istio-utils.jsonnet";
   kind: "Service",
   metadata: {
     name: "istio-pilot",
-    namespace: "service-mesh",
+    namespace: "mesh-control-plane",
     labels: istioUtils.istioLabels,
   },
   spec: {

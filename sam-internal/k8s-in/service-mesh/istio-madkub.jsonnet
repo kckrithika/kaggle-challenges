@@ -7,12 +7,12 @@
 
   local istioSans = [
     "istio-sidecar-injector",
-    "istio-sidecar-injector.service-mesh",
-    "istio-sidecar-injector.service-mesh.svc",  // This is the one that works with webhook's clientConfig.service
-    "istio-sidecar-injector.service-mesh.svc.%s" % configs.dnsdomain,
+    "istio-sidecar-injector.mesh-control-plane",
+    "istio-sidecar-injector.mesh-control-plane.svc",  // This is the one that works with webhook's clientConfig.service
+    "istio-sidecar-injector.mesh-control-plane.svc.%s" % configs.dnsdomain,
   ],
 
-  local certRole = "istio.service-mesh",
+  local certRole = "istio.mesh-control-plane",
 
   local certDirLookup = {
     cert1: {  // server certificate

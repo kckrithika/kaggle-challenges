@@ -4,12 +4,12 @@ metadata:
   labels:
     app: istio-pilot
     version: istio-1.0.1
-  name: istio-pilot-service-mesh
+  name: istio-pilot-mesh-control-plane
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: istio-pilot-service-mesh
+  name: istio-pilot-mesh-control-plane
 subjects:
 - kind: ServiceAccount
   name: istio-pilot-service-account
-  namespace: service-mesh
+  namespace: mesh-control-plane
