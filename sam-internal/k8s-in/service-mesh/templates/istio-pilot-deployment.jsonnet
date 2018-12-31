@@ -3,6 +3,8 @@ local istioUtils = import "istio-utils.jsonnet";
 local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
 local hosts = import "sam/configs/hosts.jsonnet";
 
+local controlEstate = (if configs.estate == "prd-sam_gater" then "prd-sam" else configs.estate);
+
 configs.deploymentBase("mesh-control-plane") {
   metadata+: {
     name: "istio-pilot",
@@ -97,7 +99,7 @@ configs.deploymentBase("mesh-control-plane") {
               },
               {
                 name: "KUBERNETES_SERVICE_HOST",  # Temporary override to select 2nd kubeapi host
-                value: [h.hostname for h in hosts.hosts if h.controlestate == std.extVar("estate") && h.kingdom == std.extVar("kingdom") && std.endsWith(std.split(h.hostname, "-")[1], "kubeapi2")][0],
+                value: [h.hostname for h in hosts.hosts if h.controlestate == controlEstate && h.kingdom == configs.kingdom && std.endsWith(std.split(h.hostname, "-")[1], "kubeapi2")][0],
               },
               {
                 name: "KUBERNETES_SERVICE_PORT",
