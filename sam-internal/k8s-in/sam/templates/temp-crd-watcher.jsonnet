@@ -35,7 +35,17 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                                 configs.config_volume_mount,
                                 configs.cert_volume_mount,
                             ],
-                        } + configs.containerInPCN,
+                        } + configs.containerInPCN
+                        + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+                             livenessProbe: {
+                                  httpGet: {
+                                      path: "/healthz",
+                                      port: 21553,
+                                  },
+                                  initialDelaySeconds: 60,
+                                  periodSeconds: 30,
+                              },
+                          } else {}),
                     ],
                     volumes+: [
                         configs.cert_volume,
