@@ -17,4 +17,5 @@ local configs = import "config.jsonnet";
     dhParamsConfigMapEnabled: (slbimages.hypersdn_build >= 1401),
     georgeEnabled: (configs.estate == "prd-sdc"),
     wipeNginxConfigDirAtPodInit: (slbimages.phaseNum <= 1),
+    removeDeprecatedVipWdParams: (slbimages.hypersdn_build >= 1413),
 }
