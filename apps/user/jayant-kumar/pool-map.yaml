@@ -5,3 +5,5 @@ apps:
   - prd/prd-sam
  redis:
   - prd/prd-sam
+ caas-load-test:
+  - prd/prd-sam
