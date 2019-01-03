@@ -38,7 +38,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.6.15
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.6.16
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -83,7 +83,7 @@ system:
       - name: TENANT_SOURCE_KEYS
         value: core/stmfana48ice1/00DC20000000MOqMAM,commerce
       - name: TENANT_SOURCE_NAMES
-        value: Service Cloud,Commerce cloud tenant,CRE tenant 
+        value: Service Cloud,Commerce cloud tenant,CRE tenant
       - name: TENANT_CANONICAL
         value: mds/stmfa/ST0000000000001
       - name: TENANT_SUPER
