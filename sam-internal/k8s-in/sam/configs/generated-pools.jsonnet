@@ -2163,14 +2163,16 @@
         "ccait",
         "service-mesh",
         "scone",
-        "service-protection"
+        "service-protection",
+        "mesh-control-plane"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
         "team/service-mesh",
         "team/Scone",
-        "team/Service_Protection"
+        "team/Service_Protection",
+        "team/mesh-control-plane"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_gater",
