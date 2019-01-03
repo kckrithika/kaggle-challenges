@@ -16,7 +16,7 @@ system:
       - mountPath: /secrets/
         name: secretvol
         readOnly: true
-      - mountPath: /certs/server
+      - mountPath: /certs
         name: sipapicert
     volumes:
     - name: secretvol
@@ -34,21 +34,11 @@ system:
     ports:
       - port: 8181
         targetport: 8181
-        lbtype: http
-      - port: 8080
-        targetport: 8181
-        lbtype: http
-        tls: true
-        reencrypt: true
+        lbtype: tcp 
       - port: 8081
         targetport: 8181
-        lbtype: http
+        lbtype: tcp
         tls: true
         reencrypt: false
-      - port: 8082
-        targetport: 8181
-        lbtype: http
-        tls: false
-        reencrypt: true
 
 
