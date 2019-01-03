@@ -24,7 +24,8 @@
 // },
 //
 // A "service list" is an internal SLB concept. It has a mapping for both k8s services and self-service vips.
-// * For VIPs bound to a k8s service, the "service list" name is the name of the k8s service declaring the VIP.
+// * For VIPs bound to a raw k8s service, the "service list" name is the name of the k8s service declaring the VIP.
+// * For SAM apps, the "service list" name corresponds to the "lbname" field in the SAM manifest.
 // * For self-service VIPs, the "service list" name corresponds to the "lbname" field in the VIP declaration.
 //
 // Similarly, the "namespace" used here depends on whether the VIP is bound to a k8s service or self-service:
@@ -44,6 +45,139 @@ local vipwdOptOutConfig = {
       // TODO: follow up with @vyjayanthi-raja and customer to figure out next steps for these VIPs.
       "pra-sfc-prd",
       "pra-dsm-prd",
+      // 2019/01/02 - mgrass: This VIP is using a rather interesting construct -- it's a VIP that points to a backend that is . . . a VIP:
+      //  https://git.soma.salesforce.com/sam/manifests/blob/befcf4a6d97a0a4cb8904293aed5f9f78c571cb9/apps/user/vijay-kota/vips/vips.yaml#L3
+      //  Vijay's reasoning for doing this:
+      //    This is not a real scenario :slightly_smiling_face: I have defined a HTTP VIP with tls:true to enforce HTTPS. But I want to use
+      //    the browser and just send HTTP requests. So I defined another VIP with tls:false and reencrypt:true to force an HTTPS request to
+      //    the actual VIP. I will be removing the vips.yaml under apps/user after my debugging is over.
+      //
+      //  TODO: follow up with Vijay to see if this VIP is still needed. Now that https VIPs don't demand a client certificate, it shouldn't be
+      //        necessary.
+      "us99-sfproxytest-vip",
+      // 2019/01/02 - mgrass: This VIP has a single backend, and that backend is sending unreliable health signals. See
+      // https://computecloud.slack.com/archives/G340CE86R/p1545408207001700?thread_ts=1545402611.001100&cid=G340CE86R. This should be removed
+      // when the underlying issues discussed in https://gus.lightning.force.com/a07B0000004j96jIAA are resolved.
+      "us98-mist61sfproxy-lb",
+      // 2019/01/02 - mgrass: Issues with our monitoring cause some of the steam VIPs to be incorrectly marked as SLA eligible even with flappy
+      // backends. See https://computecloud.slack.com/archives/G340CE86R/p1541565429973500?thread_ts=1541565331.973300&cid=G340CE86R and
+      // https://computecloud.slack.com/archives/G340CE86R/p1541550564943000?thread_ts=1541542511.932500&cid=G340CE86R. It appears that
+      // frequent nginx reloads in prd-sam (because, e.g., backends are changing frequently) is resetting nginx's opinion of backend health,
+      // so the rise/fall counts maintained by the health module aren't stable.
+      // It looks like in prd-sam, we currently reload nginx approximately every 20 seconds on average, though there have been periods of time
+      // where we reloaded much more frequently:
+      //   https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=DOWNSAMPLE(-90d:slb.slb-nginx-config.PRD.NONE.prd-slb:nginx-serviceChangeCount%7Bdevice%3D*%7D:avg,%231h-sum%23)
+      // TODO: it's possible that the steam VIPs are no longer symptomatic, and these exclusions can be removed. If after removing, we still get
+      //       VIP availability alerts, one or more of these should help resolve:
+      //       * remove these steam VIP definitions (as I don't think anybody is depending on them), or
+      //       * investigate whether addressing https://gus.lightning.force.com/a07B0000004j96jIAA resolves, or
+      //       * explore options to reload nginx config less frequently, possibly modeling after the k8s nginx ingress controller's use of lua
+      //         (https://github.com/kubernetes/ingress-nginx/blob/master/docs/how-it-works.md#avoiding-reloads-on-endpoints-changes), or
+      //       * switch to envoy, which doesn't require reloads to deal with dynamic endpoint changes :)
+      // List generated with: grep -- '- lbname' apps/team/steam/vips/prd/vips.yaml | awk '{printf "\""$3"\",\n"}' | sort
+      "cs1-stmfa1-0-prd",
+      "cs1-stmfb1-0-prd",
+      "cs2-stmfa1-0-prd",
+      "cs2-stmfb1-0-prd",
+      "cs2-stmfc1-0-prd",
+      "cs2-stmsa1-0-prd",
+      "cs2-stmua1-0-prd",
+      "cs2-stmub1-0-prd",
+      "cs3-stmfa1-0-prd",
+      "cs3-stmfb1-0-prd",
+      "cs3-stmfc1-0-prd",
+      "cs3-stmua1-0-prd",
+      "cs3-stmub1-0-prd",
+      "cs4-stmda1-0-prd",
+      "eu1-stmda1-0-prd",
+      "eu1-stmda1-0-prd",
+      "eu2-stmda1-0-prd",
+      "la2-stmda1-0-prd",
+      "la2-stmda1-0-prd",
+      "la2-stmfa1-0-prd",
+      "la2-stmfb1-0-prd",
+      "la2-stmfc1-0-prd",
+      "la2-stmfd1-0-prd",
+      "la2-stmra1-0-prd",
+      "la2-stmsa1-0-prd",
+      "la2-stmua1-0-prd",
+      "la2-stmub1-0-prd",
+      "login-stmda1-0-prd",
+      "login-stmda-stm",
+      "login-stmfa1-0-prd",
+      "login-stmfb1-0-prd",
+      "login-stmfc1-0-prd",
+      "login-stmfd1-0-prd",
+      "login-stmra1-0-prd",
+      "login-stmsa1-0-prd",
+      "login-stmua1-0-prd",
+      "login-stmub1-0-prd",
+      "na20-stmra1-0-prd",
+      "na21-stmra1-0-prd",
+      "na22-stmra1-0-prd",
+      "na23-stmra1-0-prd",
+      "na24-stmra1-0-prd",
+      "na25-stmra1-0-prd",
+      "na26-stmra1-0-prd",
+      "na40-stmfa1-0-prd",
+      "na40-stmfb1-0-prd",
+      "na41-stmfa1-0-prd",
+      "na41-stmfb1-0-prd",
+      "na41-stmfc1-0-prd",
+      "na41-stmua1-0-prd",
+      "na41-stmub1-0-prd",
+      "na42-stmfa1-0-prd",
+      "na42-stmfb1-0-prd",
+      "na42-stmfc1-0-prd",
+      "na42-stmua1-0-prd",
+      "na42-stmub1-0-prd",
+      "na43-stmfa1-0-prd",
+      "na43-stmfb1-0-prd",
+      "na43-stmfc1-0-prd",
+      "na44-sitestmfc1-0-prd",
+      "na44-sitestmfd1-0-prd",
+      "na44-stmfa1-0-prd",
+      "na44-stmfb1-0-prd",
+      "na44-stmfc1-0-prd",
+      "na44-stmfd1-0-prd",
+      "na44-stmsa1-0-prd",
+      "na44-stmua1-0-prd",
+      "na44-stmub1-0-prd",
+      "na45-stmfa1-0-prd",
+      "na45-stmfb1-0-prd",
+      "na45-stmfc1-0-prd",
+      "na45-stmua1-0-prd",
+      "na45-stmub1-0-prd",
+      "na46-stmfb1-0-prd",
+      "na46-stmfc1-0-prd",
+      "na47-stmfa1-0-prd",
+      "na6-stmsa1-0-prd",
+      "na7-stmsa1-0-prd",
+      "na8-stmsa1-0-prd",
+      "na9-stmsa1-0-prd",
+      "stmda1hbase2a-hbasemon1-0-prd",
+      "stmdaeu1-cmp1-0-prd",
+      "stmdaeu2-cmp1-0-prd",
+      "stmda-insights2-redis1-0-prd",
+      "stmdashared2-pbsmatch1-0-prd",
+      "stmdashared2-pbsmatch1-0-prd",
+      "stm-edge1-0-prd",
+      "stmfashared2-pbsmatch1-0-prd",
+      "stmfbshared2-pbsmatch1-0-prd",
+      "stmfcshared2-pbsmatch1-0-prd",
+      "stmfdshared2-pbsmatch1-0-prd",
+      "stmrashared2-pbsmatch1-0-prd",
+      "stmsashared2-pbsmatch1-0-prd",
+      "stmshared2-pbsgeo2-0-prd",
+      "stmuashared2-pbsmatch1-0-prd",
+      "stmubshared2-pbsmatch1-0-prd",
+      "test-stmda1-0-prd",
+      "test-stmfa1-0-prd",
+      "test-stmfb1-0-prd",
+      "test-stmfc1-0-prd",
+      "test-stmsa1-0-prd",
+      "test-stmua1-0-prd",
+      "test-stmub1-0-prd",
     ],
     namespaces:
     [
@@ -79,6 +213,10 @@ local vipwdOptOutConfig = {
       "vir510-1-0-xrd",
       "vir511-1-0-xrd",
       "vir512-1-0-xrd",
+      // 2019/01/02 - mgrass: This self-serve DSR VIP doesn't have the associated puppet changes to allow it to work.
+      // We need to either delete the definition (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/cpt/vips/xrd/vips.yaml#L17)
+      // or work with the customer to enable our realsvrcfg puppet module on their nodes.
+      "cpt-dsr-validation",
     ],
   },
 };
