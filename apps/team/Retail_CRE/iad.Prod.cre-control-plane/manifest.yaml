@@ -26,7 +26,7 @@ system:
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
-          value: /secrets-kube/creprodprovisioner-1522797946805-pri-DO_NOT_SHARE.json
+          value: /secrets-kube/cre-prod-gdot-private-key.json
         - name: GDOT_ENVIRONMENT
           value: production
         - name: GDOT_PRODUCTION
@@ -152,7 +152,7 @@ system:
     volumes:
     - name: secretvol
       secret:
-        secretName: prod-gdot-private-key-k8s
+        secretName: cre-prod-gdot-private-key
     - name: aeskey
       secret:
         secretName: cre-aes-key-kube
