@@ -7,7 +7,7 @@ system:
       count: 3
       containers:  
       - name: searchserver 
-        image: sfci/search-teams/sfci:17044869.342
+        image: sfci/search-teams/sfci:17221302.371
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
