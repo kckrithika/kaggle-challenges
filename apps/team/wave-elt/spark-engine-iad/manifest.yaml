@@ -2,11 +2,11 @@ apiVersion: v1
 
 system:
   functions:
-  - name: flowsnake-job-datapool-engine
+  - name: datapool-engine
     count: 0
     containers:
-    - name: flowsnake-job-datapool-engine
-      image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-datapool-engine:333
+    - name: datapool-engine
+      image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/datapool-engine:302
       livenessProbe:
         exec:
             command:
