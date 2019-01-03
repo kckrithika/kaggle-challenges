@@ -26,7 +26,7 @@ system:
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
-          value: /secrets/cre-prod-gdot-private-key.json
+          value: /secrets-kube/cre-prod-gdot-private-key.json
         - name: GDOT_ENVIRONMENT
           value: production
         - name: GDOT_PRODUCTION
@@ -90,11 +90,8 @@ system:
             - ls
         initialDelaySeconds: 30
       volumeMounts:
-      - mountPath: /secrets/
-        name: secretvol
-        readOnly: true
       - mountPath: /secrets-kube/
-        name: secretvolk8
+        name: secretvol
         readOnly: true
       - mountPath: /keys-kube/
         name: aeskey
@@ -143,7 +140,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-
+      - retail-cre/cre-control-plane:DATACENTER_ALLENV:7443
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -154,9 +151,6 @@ system:
           - "/home/scone/is-alive.sh"
     volumes:
     - name: secretvol
-      k4aSecret:
-        secretName: prod-gdot-private-key
-    - name: secretvolk8
       secret:
         secretName: cre-prod-gdot-private-key
     - name: aeskey
