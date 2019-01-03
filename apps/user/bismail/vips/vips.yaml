@@ -8,3 +8,43 @@
     lbtype: tcp
     healthport: 80
     healthprotocol: tcp
+- lbname: pra-neutron-test-prd
+  customlbname: pra-neutron-test-prd
+  servers:
+  - ops0-praccn1-1-prd.eng.sfdc.net
+  ports:
+  - port: 9696
+    targetport: 9696
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-keystone-auth-uri-test-prd
+  customlbname: pra-keystone-auth-uri-test-prd
+  servers:
+  - ops0-praccn1-1-prd.eng.sfdc.net
+  ports:
+  - port: 5000
+    targetport: 5000
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-keystone-auth-url-test-prd
+  customlbname: pra-keystone-auth-url-test-prd
+  servers:
+  - ops0-praccn1-1-prd.eng.sfdc.net
+  ports:
+  - port: 35357
+    targetport: 35357
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-glance-api-test-prd
+  customlbname: pra-glance-api-test-prd
+  servers:
+  - ops0-praccn1-1-prd.eng.sfdc.net
+  ports:
+  - port: 9292
+    targetport: 9292
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
