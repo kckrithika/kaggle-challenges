@@ -152,7 +152,7 @@ system:
     volumes:
     - name: secretvol
       secret:
-        secretName: prod-gdot-private-key
+        secretName: prod-gdot-private-key-k8s
     - name: aeskey
       secret:
         secretName: cre-aes-key-kube
