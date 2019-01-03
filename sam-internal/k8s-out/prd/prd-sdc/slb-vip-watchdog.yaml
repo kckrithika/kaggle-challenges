@@ -64,12 +64,9 @@ spec:
         - --vipLoop=1
         - --monitorFrequency=10s
         - --client.serverInterface=lo
-        - --healthPathCheck=true
         - --metricsBatchTimeout=30s
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
-        - --followRedirect=false
-        - --slaRequiresHealthProbes=true
         env:
         - name: NODE_NAME
           valueFrom:

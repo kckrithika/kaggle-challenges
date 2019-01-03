@@ -101,14 +101,15 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                            "--vipLoop=1",
                                            "--monitorFrequency=10s",
                                            "--client.serverInterface=lo",
-                                           "--healthPathCheck=true",
+                                       ] + (if !slbflights.removeDeprecatedVipWdParams then ["--healthPathCheck=true"] else [])
+                                       + [
                                            "--metricsBatchTimeout=30s",
                                        ] + slbconfigs.vipwdOptOutOptions
                                        + slbconfigs.getNodeApiClientSocketSettings()
-                                       + [
+                                       + (if !slbflights.removeDeprecatedVipWdParams then [
                                               "--followRedirect=false",
                                               "--slaRequiresHealthProbes=true",
-                                        ],
+                                        ] else []),
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
