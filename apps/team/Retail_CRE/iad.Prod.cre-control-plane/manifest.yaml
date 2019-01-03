@@ -26,7 +26,7 @@ system:
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
-          value: /secrets-kube/cre-prod-gdot-private-key.json
+          value: /secrets-kube/cre-prod-gdot-private-key
         - name: GDOT_ENVIRONMENT
           value: production
         - name: GDOT_PRODUCTION
