@@ -1,6 +1,5 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-samtest" then
 {
   apiVersion: "v1",
   kind: "ServiceAccount",
@@ -11,4 +10,4 @@ if configs.estate == "prd-samtest" then
       app: "istio-mesh-webhook",
     },
   },
-} else "SKIP"
+}

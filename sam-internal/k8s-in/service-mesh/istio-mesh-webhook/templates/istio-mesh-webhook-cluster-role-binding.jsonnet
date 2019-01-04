@@ -1,6 +1,5 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-samtest" then
 {
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
   kind: "ClusterRoleBinding",
@@ -23,4 +22,4 @@ if configs.estate == "prd-samtest" then
       namespace: "mesh-control-plane",
     },
   ],
-} else "SKIP"
+}
