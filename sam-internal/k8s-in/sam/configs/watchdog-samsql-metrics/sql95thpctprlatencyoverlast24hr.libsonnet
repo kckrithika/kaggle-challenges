@@ -16,6 +16,7 @@
                     ELSE JSON_UNQUOTE(payload -> '$.status.endTime') 
           END,'%Y-%m-%dT%H:%i:%s' ))) latency 
         FROM PullRequests prs 
+        INNER JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num` = pApp.`pr_num`
         LEFT JOIN 
           (   
                  SELECT * 
