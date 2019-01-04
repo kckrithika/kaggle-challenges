@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp
-      image: sfci/cre/cre-stream-processing:1.4.2.0.master.1369c18.167
+      image: sfci/cre/cre-stream-processing:1.5.0.0.master.529c936.168
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__iad.ajna_local__cre_outbound
@@ -36,16 +36,25 @@ system:
         - name: METRICS_FUNNEL_URI
           value: http://ajna0-funnel1-0-iad.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
-          value: http://cre-control-plane-lb.retail-cre.iad-sam.iad.slb.sfdc.net:8094/streamprocessing
+          value: cre-control-plane.retail-cre.localhost.mesh.force.com:5443
+        - name: OU_NAME
+          value: retail-cre.cre-control-plane
         - name: JVM_ARGS
-          value: "-Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+          value: "-verbose:gc -XX:+PrintHeapAtGC
+                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                  -Xloggc:/opt/cre/cre-sp-prod/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                  -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
+                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-sp-prod
+                  -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 8080
-      - containerPort: 7022
+      - containerPort: 7020
       - containerPort: 15372
       resources:
-        limits: { cpu: "2", memory: "10Gi" }
-        requests: { cpu: "2", memory: "10Gi" }      
+        limits: { cpu: "2", memory: "4Gi" }
+        requests: { cpu: "2", memory: "3Gi" }
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
@@ -62,8 +71,8 @@ system:
       - mountPath: /opt/cre/cre-sp-prod
         name: logvol
     - name: sherpa-cre-stream-processing
-       # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
-       # Use the full git SHA as the docker image tag.
+      # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
+      # Use the full git SHA as the docker image tag.
       image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       volumeMounts:
       - mountPath: /log
@@ -79,7 +88,7 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7442
+      - containerPort: 7443
         name: sh-in-http1-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
@@ -99,7 +108,10 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - retail-cre/cre-sp:DATACENTER_ALLENV:7442
+      - retail-cre/cre-sp:DATACENTER_ALLENV:7443
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         initialDelaySeconds: 5
         exec:
