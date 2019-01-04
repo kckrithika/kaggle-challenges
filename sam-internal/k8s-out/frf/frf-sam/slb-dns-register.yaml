@@ -48,7 +48,7 @@ spec:
         - --subnet=10.214.36.0/22
         - --client.serverPort=12088
         - --client.serverInterface=lo
-        - --restrictedSubnets=185.79.140.0/23,
+        - --restrictedSubnets=185.79.140.0/23,10.214.36.129/32
         - --maxDeleteEntries=10
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
