@@ -6,7 +6,7 @@ system:
     - irahim@salesforce.com
   functions:
   - name: xlt-agent
-    count: 1
+    count: 6
     volumes:
     - name: client-cert-vol
       maddogCert:
