@@ -62,14 +62,11 @@ spec:
         - --vipLoop=1
         - --monitorFrequency=10s
         - --client.serverInterface=lo
-        - --healthPathCheck=true
         - --metricsBatchTimeout=30s
         - --optOutServiceList=pra-sfc-prd,pra-dsm-prd,us99-sfproxytest-vip,us98-mist61sfproxy-lb,cs1-stmfa1-0-prd,cs1-stmfb1-0-prd,cs2-stmfa1-0-prd,cs2-stmfb1-0-prd,cs2-stmfc1-0-prd,cs2-stmsa1-0-prd,cs2-stmua1-0-prd,cs2-stmub1-0-prd,cs3-stmfa1-0-prd,cs3-stmfb1-0-prd,cs3-stmfc1-0-prd,cs3-stmua1-0-prd,cs3-stmub1-0-prd,cs4-stmda1-0-prd,eu1-stmda1-0-prd,eu1-stmda1-0-prd,eu2-stmda1-0-prd,la2-stmda1-0-prd,la2-stmda1-0-prd,la2-stmfa1-0-prd,la2-stmfb1-0-prd,la2-stmfc1-0-prd,la2-stmfd1-0-prd,la2-stmra1-0-prd,la2-stmsa1-0-prd,la2-stmua1-0-prd,la2-stmub1-0-prd,login-stmda1-0-prd,login-stmda-stm,login-stmfa1-0-prd,login-stmfb1-0-prd,login-stmfc1-0-prd,login-stmfd1-0-prd,login-stmra1-0-prd,login-stmsa1-0-prd,login-stmua1-0-prd,login-stmub1-0-prd,na20-stmra1-0-prd,na21-stmra1-0-prd,na22-stmra1-0-prd,na23-stmra1-0-prd,na24-stmra1-0-prd,na25-stmra1-0-prd,na26-stmra1-0-prd,na40-stmfa1-0-prd,na40-stmfb1-0-prd,na41-stmfa1-0-prd,na41-stmfb1-0-prd,na41-stmfc1-0-prd,na41-stmua1-0-prd,na41-stmub1-0-prd,na42-stmfa1-0-prd,na42-stmfb1-0-prd,na42-stmfc1-0-prd,na42-stmua1-0-prd,na42-stmub1-0-prd,na43-stmfa1-0-prd,na43-stmfb1-0-prd,na43-stmfc1-0-prd,na44-sitestmfc1-0-prd,na44-sitestmfd1-0-prd,na44-stmfa1-0-prd,na44-stmfb1-0-prd,na44-stmfc1-0-prd,na44-stmfd1-0-prd,na44-stmsa1-0-prd,na44-stmua1-0-prd,na44-stmub1-0-prd,na45-stmfa1-0-prd,na45-stmfb1-0-prd,na45-stmfc1-0-prd,na45-stmua1-0-prd,na45-stmub1-0-prd,na46-stmfb1-0-prd,na46-stmfc1-0-prd,na47-stmfa1-0-prd,na6-stmsa1-0-prd,na7-stmsa1-0-prd,na8-stmsa1-0-prd,na9-stmsa1-0-prd,stmda1hbase2a-hbasemon1-0-prd,stmdaeu1-cmp1-0-prd,stmdaeu2-cmp1-0-prd,stmda-insights2-redis1-0-prd,stmdashared2-pbsmatch1-0-prd,stmdashared2-pbsmatch1-0-prd,stm-edge1-0-prd,stmfashared2-pbsmatch1-0-prd,stmfbshared2-pbsmatch1-0-prd,stmfcshared2-pbsmatch1-0-prd,stmfdshared2-pbsmatch1-0-prd,stmrashared2-pbsmatch1-0-prd,stmsashared2-pbsmatch1-0-prd,stmshared2-pbsgeo2-0-prd,stmuashared2-pbsmatch1-0-prd,stmubshared2-pbsmatch1-0-prd,test-stmda1-0-prd,test-stmfa1-0-prd,test-stmfb1-0-prd,test-stmfc1-0-prd,test-stmsa1-0-prd,test-stmua1-0-prd,test-stmub1-0-prd
         - --optOutNamespace=podgroup-prebuild
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
-        - --followRedirect=false
-        - --slaRequiresHealthProbes=true
         env:
         - name: NODE_NAME
           valueFrom:
@@ -85,7 +82,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.name
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001405-3ba23f61
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001415-77aeee41
         name: slb-vip-watchdog
         resources:
           limits:
@@ -129,7 +126,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001405-3ba23f61
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001415-77aeee41
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -168,7 +165,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001405-3ba23f61
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001415-77aeee41
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -192,7 +189,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-vip-watchdog/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001405-3ba23f61
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001415-77aeee41
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -210,7 +207,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001405-3ba23f61
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001415-77aeee41
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -245,7 +242,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001405-3ba23f61
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001415-77aeee41
         name: slb-manifest-watcher
         securityContext:
           privileged: true
