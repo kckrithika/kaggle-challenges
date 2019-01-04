@@ -44,9 +44,9 @@ system:
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                   -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
                   -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
-                  -Xloggc:/opt/cre/cre-sp/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                  -Xloggc:/opt/cre/cre-sp-prod/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
-                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-sp
+                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-sp-prod
                   -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 8080
