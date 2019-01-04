@@ -269,6 +269,8 @@ system:
       args:
       - --template
       - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
+      - --log-level
+      - trace
       ports:
       - containerPort: 15001
       env:
