@@ -157,5 +157,54 @@ FROM   (
                        ON              sam.git_hash = t.git_hash )sam
                        LIMIT 10",
                     },
+                    {
+                        name: "Sam latency Non-null",
+                        sql: "SELECT pr_num, 
+       totallatencymin - (imagelatencymin + tnrplatency + evalPrLatency) samlatencymin,
+       Imagelatencymin artifactoryLatency,
+       tnrplatency,
+       totallatencymin e2eLatency,
+       evalPrLatency
+FROM   ( 
+                       SELECT          pr_num, 
+                                       imagelatencymin, 
+                                       totallatencymin, 
+                                       Timestampdiff(minute, merged_time, 
+                                       CASE 
+                                                       WHEN t.manifest_zip_time IS NULL THEN Now()
+                                                       ELSE t.manifest_zip_time 
+                                       END) AS tnrplatency,
+                                       evalPrLatency
+                       FROM            ( 
+                                                 SELECT    prs.pr_num, 
+                                                           prs.git_hash, 
+                                                           prs.merged_time, 
+                                                           Max(Timestampdiff(minute, Str_to_date(Json_unquote(payload -> '$.status.startTime'),'%Y-%m-%dT%H:%i:%s'), Str_to_date( 
+                                                           CASE 
+                                                                     WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
+                                                                     ELSE Json_unquote(payload -> '$.status.maxImageEndTime') 
+                                                           END,'%Y-%m-%dT%H:%i:%s'))) imagelatencymin, 
+                                                           Max(Timestampdiff(minute, prs.most_recent_authorized_time, Str_to_date(
+                                                           CASE 
+                                                                     WHEN payload -> '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
+                                                                     ELSE Json_unquote(payload -> '$.status.endTime') 
+                                                           END, '%Y-%m-%dT%H:%i:%s'))) totallatencymin,
+                                                           Timestampdiff(minute, prs.`most_recent_authorized_time`, prs.`most_recent_evaluate_pr_completion_time`) evalPrLatency
+                                                 FROM      PullRequests prs 
+                                                 INNER JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num` = pApp.`pr_num`
+                                                 LEFT JOIN 
+                                                           ( 
+                                                                  SELECT * 
+                                                                  FROM   crd_history 
+                                                                  WHERE  apikind = 'Bundle') crds
+                                                 ON        crds.prnum = prs.pr_num 
+                                                 WHERE     prs.state = 'merged' 
+                                                 AND       prs.merged_time > Now() - interval 10 DAY
+                                                 GROUP BY  prs.pr_num) sam 
+                       LEFT OUTER JOIN TNRPManifestData t 
+                       ON              sam.git_hash = t.git_hash )sam
+                       WHERE totallatencymin IS NOT NULL
+                       LIMIT 10",
+                    },
             ],
     }
