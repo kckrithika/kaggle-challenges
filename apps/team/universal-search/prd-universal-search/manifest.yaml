@@ -36,7 +36,7 @@ system:
         requests: { cpu: "24", memory: "16Gi" }
       env:
       - name: REQUESTS_SOCKETTIMEOUT
-        value: "10000"
+        value: "12000"
       - name: SERVICE_THREADCOUNT
         value: 100
       - name: SFDC_ENVIRONMENT
@@ -277,7 +277,7 @@ system:
     lbname: universal-search-slb
     ports:
     - port: 7020
-      targetport: 7012
+      targetport: 7020
     - lbtype: http
       port: 15372
       targetport: 15372
