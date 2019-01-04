@@ -5,7 +5,7 @@ local slbflights = import "slbflights.jsonnet";
 local dhparams =
     std.toString(importstr "config/dhparams.pem");
 
-if slbconfigs.isSlbEstate && slbflights.dhParamsConfigMapEnabled then {
+if slbconfigs.isSlbEstate then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

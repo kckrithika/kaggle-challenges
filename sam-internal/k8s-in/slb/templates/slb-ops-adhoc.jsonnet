@@ -4,10 +4,7 @@ local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
 // Turned off by default. Enable only when needed for a prod issue.
-
-// Gigantor celery logs are spamming the root disk partition (`/`) in fra. The root partition only has 100 GB, and is critical for
-// services to function. Enabling this script in fra to clean those logs.
-if slbflights.cleanupGigantorLogs then configs.daemonSetBase("slb") {
+if false then configs.daemonSetBase("slb") {
     spec+: {
         template: {
             spec: {
@@ -17,9 +14,7 @@ if slbflights.cleanupGigantorLogs then configs.daemonSetBase("slb") {
                         image: slbimages.hypersdn,
                         command: [
                             "/bin/bash",
-                            "/config/slb-cleanup-logs.sh",
-                            "/var/log/celery-gigantor",
-                            "3600",
+                            # Add commands here.
                         ],
                         name: "slb-ops-adhoc",
                         resources: {
