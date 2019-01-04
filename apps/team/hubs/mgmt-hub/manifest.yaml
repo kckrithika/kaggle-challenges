@@ -20,7 +20,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-hub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2018-12-22-18-03-39
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-01-04-09-42-26
       env:
       - name: PKI_CA_DIR
         value: /certs
@@ -53,13 +53,13 @@ system:
       - port: 8080
         targetport: 8080
         lbtype: http
-        tls: true
-        reencrypt: true
+        #tls: true
+        #reencrypt: true
       - port: 15372 
         targetport: 15372
         lbtype: http
-        tls: true
-        reencrypt: true
+        #tls: true
+        #reencrypt: true
 
 
  
