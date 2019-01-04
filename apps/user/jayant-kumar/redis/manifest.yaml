@@ -20,11 +20,11 @@ system:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=5000
+           - --port=12001
         initialDelaySeconds: 15
         timeoutSeconds: 10
       ports:
-      - containerPort: 5000
+      - containerPort: 12001
     - name: caas-redis-announcer
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
