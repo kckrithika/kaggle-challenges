@@ -81,7 +81,7 @@ local vipwdOptOutConfig = {
       //         (https://github.com/kubernetes/ingress-nginx/blob/master/docs/how-it-works.md#avoiding-reloads-on-endpoints-changes), or
       //       * switch to envoy, which doesn't require reloads to deal with dynamic endpoint changes :)
       // List generated with:
-      //         grep -- '- lbname' apps/team/steam/vips/prd/vips.yaml | awk '{printf "\""$3"-steam-prd\",\n"}' | sort -u
+      //         grep -- '- lbname' apps/team/steam/vips/prd/vips.yaml | awk '{printf "\""$3"-steam-prd\",\n"}' | sort
       // Followed by manually fixing up the 8 VIPs that have a customlbname.
       "cs1-stmfa1-0-prd-steam-prd",
       "cs1-stmfb1-0-prd-steam-prd",
@@ -98,8 +98,10 @@ local vipwdOptOutConfig = {
       "cs3-stmub1-0-prd-steam-prd",
       "cs4-stmda1-0-prd-steam-prd",
       "eu1-stmda1-0-prd",
+      "eu1-stmda1-0-prd-steam-prd",
       "eu2-stmda1-0-prd-steam-prd",
       "la2-stmda1-0-prd",
+      "la2-stmda1-0-prd-steam-prd",
       "la2-stmfa1-0-prd-steam-prd",
       "la2-stmfb1-0-prd-steam-prd",
       "la2-stmfc1-0-prd-steam-prd",
@@ -166,6 +168,7 @@ local vipwdOptOutConfig = {
       "stmdaeu2-cmp1-0-prd",
       "stmda-insights2-redis1-0-prd",
       "stmdashared2-pbsmatch1-0-prd",
+      "stmdashared2-pbsmatch1-0-prd-steam-prd",
       "stm-edge1-0-prd-steam-prd",
       "stmfashared2-pbsmatch1-0-prd-steam-prd",
       "stmfbshared2-pbsmatch1-0-prd-steam-prd",
