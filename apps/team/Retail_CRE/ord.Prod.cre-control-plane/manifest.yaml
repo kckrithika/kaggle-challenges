@@ -26,7 +26,7 @@ system:
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
-          value: /secrets-kube/cre-prod-gdot-private-key.json
+          value: /secrets-kube/cre-prod-gdot-private-key
         - name: GDOT_ENVIRONMENT
           value: production
         - name: GDOT_PRODUCTION
@@ -73,9 +73,9 @@ system:
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                   -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
                   -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
-                  -Xloggc:/opt/cre/cre-control-plane/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                  -Xloggc:/opt/cre/cre-control-plane-prod/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
-                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-control-plane
+                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-control-plane-prod
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
       resources:
         limits: { cpu: "2", memory: "6Gi" }
@@ -151,8 +151,8 @@ system:
           - "/home/scone/is-alive.sh"
     volumes:
     - name: secretvol
-      k4aSecret:
-        secretName: gdot-private-key
+      secret:
+        secretName: cre-prod-gdot-private-key
     - name: aeskey
       secret:
         secretName: cre-aes-key-kube
