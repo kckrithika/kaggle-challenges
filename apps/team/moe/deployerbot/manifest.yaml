@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/moe/deployerbot:v-0001399-685c0f5a
+      image: tnrp/moe/deployerbot:v-0001415-77aeee41
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -36,7 +36,7 @@ system:
         name: moe-gpg-signing-key
         readOnly: true
     - name: tnrpdeployer-hypersdn
-      image: tnrp/moe/deployerbot:v-0001399-685c0f5a
+      image: tnrp/moe/deployerbot:v-0001415-77aeee41
       command: ["/moe/tnrpdeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -53,7 +53,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 60
     - name: tnrpdeployer-nginx
-      image: tnrp/moe/deployerbot:v-0001399-685c0f5a
+      image: tnrp/moe/deployerbot:v-0001415-77aeee41
       command: ["/moe/tnrpdeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -61,6 +61,23 @@ system:
       - "-image=slb-nginx" # The name of the image in artifactory.
       - "-owner=sdn"
       - "-imageKey=slbnginx" # The name of the object to update in slbreleases.json.
+      - "-samInternalTeamName=SLB"
+      - "-targetPhaseNumber=1"
+      livenessProbe:
+        exec:
+          command: ["ls", "/"]
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60
+    - name: tnrpdeployer-nginx-kms
+      image: tnrp/moe/deployerbot:v-0001415-77aeee41
+      command: ["/moe/tnrpdeployer"]
+      args:
+      - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
+      - "-interval=10m"
+      - "-image=slb-nginx-kms" # The name of the image in artifactory.
+      - "-owner=sdn"
+      - "-imageKey=kmsnginx" # The name of the object to update in slbreleases.json.
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
       livenessProbe:
@@ -80,7 +97,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: tnrp/moe/deployerbot:v-0001399-685c0f5a
+      image: tnrp/moe/deployerbot:v-0001415-77aeee41
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -111,7 +128,7 @@ system:
         name: moe-gpg-signing-key
         readOnly: true
     - name: tnrpdeployer-hypersam
-      image: tnrp/moe/deployerbot:v-0001399-685c0f5a
+      image: tnrp/moe/deployerbot:v-0001415-77aeee41
       command: ["/moe/tnrpdeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
