@@ -27,7 +27,7 @@ system:
 
     containers:
     - name: coreapp
-      image: sfci/casam/coreapp:release_216-patch_17161582
+      image: sfci/casam/coreapp:release_216-patch_17232453
 
       env:
         # Other db info takes from core configs 
@@ -186,7 +186,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: sfci/casam/coreapp_config_overrides:b81738
+      image: sfci/casam/coreapp_config_overrides:e2171a
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.fra.cs103.app
