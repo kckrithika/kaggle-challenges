@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
+if configs.estate == "prd-samtest" then
 {
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
   kind: "ClusterRoleBinding",
