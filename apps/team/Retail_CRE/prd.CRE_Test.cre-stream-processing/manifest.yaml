@@ -36,7 +36,7 @@ system:
         - name: METRICS_FUNNEL_URI
           value: http://ajna0-funnel1-0-prd.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
-          value: http://cre-control-plane-cre-test-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8072/streamprocessing
+          value: cre-control-plane-cre-test-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8072/streamprocessing
         - name: JVM_ARGS
           value: "-verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
