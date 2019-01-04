@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp-ccp-stage
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.5.0-freeze-001.0.release-1.5.7a32548.2
+      image: sfci/cre/cre-stream-processing:1.5.0.0.master.529c936.168
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Stage
@@ -36,7 +36,7 @@ system:
         - name: METRICS_FUNNEL_URI
           value: http://ajna0-funnel1-0-prd.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
-          value: http://cre-control-plane-ccp-stage-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8094/streamprocessing
+          value: cre-control-plane-ccp-stage-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8094/streamprocessing
         - name: JVM_ARGS
           value: "-verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
                   -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
