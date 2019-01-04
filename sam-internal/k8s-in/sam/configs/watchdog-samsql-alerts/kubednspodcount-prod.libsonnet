@@ -4,7 +4,7 @@
       alertFrequency: "24h",
       watchdogFrequency: "1m",
       alertProfile: "sam",
-      alertAction: "businesshours_pagerduty",
+      alertAction: "email",
       sql: "SELECT
               controlEstate,
               Running,
