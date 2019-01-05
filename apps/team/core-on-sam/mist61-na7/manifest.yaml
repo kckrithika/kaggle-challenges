@@ -304,6 +304,7 @@ system:
 
       livenessProbe:
         httpGet:
+          host: 127.0.0.1
           path: /login
           port: 12062
         initialDelaySeconds: 60
@@ -312,6 +313,7 @@ system:
 
       readinessProbe:
         httpGet:
+          host: 127.0.0.1
           path: /login
           port: 12062
         initialDelaySeconds: 60
