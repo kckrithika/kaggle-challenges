@@ -256,7 +256,7 @@ system:
 
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:51898c
+      image: sfci/casam/sequencer:957afc
 
       env:
         - name: CASAM_SETTINGS_PATH
@@ -303,21 +303,19 @@ system:
           value: 0
 
       livenessProbe:
-        httpGet:
-          host: 127.0.0.1
-          path: /login
-          port: 12062
-        initialDelaySeconds: 60
-        periodSeconds: 1
+        exec:
+          command:
+           - /usr/local/bin/ready_probe.sh
+        initialDelaySeconds: 120
+        periodSeconds: 10
         failureThreshold: 10
 
       readinessProbe:
-        httpGet:
-          host: 127.0.0.1
-          path: /login
-          port: 12062
+        exec:
+          command:
+           - /usr/local/bin/ready_probe.sh
         initialDelaySeconds: 60
-        periodSeconds: 1
+        periodSeconds: 10
         failureThreshold: 10
 
       volumeMounts:
