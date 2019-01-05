@@ -24,6 +24,12 @@ system:
     - name: log-volume-jvm
       hostPath:
         path: /data/logs/jvm
+    - name: secretvol-c1
+      k4aSecret:
+        secretName: caas-k4a-secret-sp-cs103-c1
+    - name: secretvol-pc
+      k4aSecret:
+        secretName: caas-k4a-secret-sp-cs103-pc
 
     containers:
     - name: coreapp
@@ -130,6 +136,12 @@ system:
           mountPath: /etc/pki_service
         - name: coreapp-config-volume
           mountPath: /home/sfdc/config_override
+        - mountPath: /home/sfdc/salesforce/config/settings/overrides/sp-cs103-c1
+          name: secretvol-c1
+          readOnly: true
+        - mountPath: /home/sfdc/salesforce/config/settings/overrides/sp-cs103-pc
+          name: secretvol-pc
+          readOnly: true
 
     - name: envoy-sidecar-config
       image: sfci/casam/cyan-config:208cc2
