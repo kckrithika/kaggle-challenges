@@ -97,7 +97,7 @@ system:
       - name: CORE_OAUTH_URL
         value: https://na44.stmfa.stm.salesforce.com
       - name: CORE_OAUTH_SANDBOXURL
-        value: https://test.na44.stmfa.stm.salesforce.com
+        value: https://test.stmfa.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
       - name: OAUTH_CONSUMER_KEY_FILE_PATH
