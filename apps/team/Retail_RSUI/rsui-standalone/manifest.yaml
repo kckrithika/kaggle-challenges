@@ -38,7 +38,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.6.16
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.6.W-5688176.4.0
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -60,10 +60,10 @@ system:
         value: http://metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net:9091/metadata-service/mds
       - name: SERVER_PORT
         value: 7022
-      - name: ADDITIONAL_PORTS
-        value: 7023
       - name: GRPC_SERVICE_PORT
         value: 7020
+      - name: SERVER_ADDITIONALPORTS_SANDBOXLOGIN
+        value: 7023
       - name: SECURITY_CLIENT_DYNAMICKEYSTORE_MONITOREDDIRECTORY
         value: /clientcerts/client
       - name: SECURITY_CLIENT_DYNAMICKEYSTORE_CADIR
@@ -96,6 +96,8 @@ system:
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL
         value: https://na44.stmfa.stm.salesforce.com
+      - name: CORE_OAUTH_SANDBOXURL
+        value: https://test.na44.stmfa.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-standalone-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
       - name: OAUTH_CONSUMER_KEY_FILE_PATH
