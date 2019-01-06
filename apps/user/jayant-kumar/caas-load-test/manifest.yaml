@@ -21,11 +21,17 @@ system:
       env:
        - name: NOT_REQUIRED
          value: some
+      volumeMounts:
+      - mountPath: /home/caas-client/envoy-config-volume
+        name: envoy-config-volume 
+
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
       args:
       - --switchboard
       - switchboardredis-lb:7021
+      - --template
+      - /envoy-config/load-test.config.yaml.template
       ports:
       - containerPort: 15001
       - containerPort: 15373
@@ -56,6 +62,8 @@ system:
           mountPath: /server-certs
         - name: load-client-cert
           mountPath: /client-certs
+        - name: envoy-config-volume
+          mountPath: /envoy-config
 
     volumes:
     - name: load-server-cert
