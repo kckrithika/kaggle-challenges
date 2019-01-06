@@ -51,3 +51,16 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
+      volumeMounts:
+        - name: load-server-cert
+          mountPath: /server-certs
+        - name: load-client-cert
+          mountPath: /client-certs
+
+    volumes:
+    - name: load-server-cert
+      maddogCert:
+        type: server
+    - name: load-client-cert
+      maddogCert:
+        type: client
