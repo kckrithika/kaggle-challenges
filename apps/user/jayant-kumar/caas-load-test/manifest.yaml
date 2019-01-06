@@ -72,3 +72,5 @@ system:
     - name: load-client-cert
       maddogCert:
         type: client
+    - name: envoy-config-volume
+      emptyDir: {}
