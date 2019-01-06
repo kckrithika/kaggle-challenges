@@ -32,7 +32,7 @@ system:
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
       - -endpoint
-      - caas/caas-cluster-1:SUPERPOD:12000
+      - caas/caas-cluster-1:SUPERPOD:12050
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -76,3 +76,11 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
+      volumeMounts:
+        - name: redis-server-cert
+          mountPath: /server-certs
+
+    volumes:
+    - name: redis-server-cert
+      maddogCert:
+        type: server
