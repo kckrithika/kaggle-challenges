@@ -30,8 +30,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
-      - name: GRPC_SERVER_BIND_ENDPOINT
-        value: "tcp://127.0.0.1:7020"
+      - name: GRPC_SERVER_PORT
+        value: "7020"
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
