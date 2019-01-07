@@ -1,10 +1,10 @@
 apiVersion: v1
 system:
   functions:
-  - name: echo32-no
+  - name: no-victim
     count: 2
     containers:
-    - name: echo32-no
+    - name: no-victim
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhankins/echo32-no:20180828 # golang app
       ports:
       - containerPort: 9900
@@ -13,10 +13,10 @@ system:
           path: /
           port: 9900
   loadbalancers:
-  - lbname: echo32-no-lb
-    function: echo32-no
-    slbenabled: false
-    nodeExposed: true
+  - lbname: no-victim-lb
+    function: no-victim
+    slbenabled: true
     ports:
       - port: 9901
         targetport: 9900
+        lbtype: tcp
