@@ -12,5 +12,5 @@ local configs = import "config.jsonnet";
     ifaceProcessorAddIfaceIfIPVSHost: (slbimages.phaseNum <= 1),
     fredEnabled: (configs.estate == "prd-sdc"),
     georgeEnabled: (configs.estate == "prd-sdc"),
-    wipeNginxConfigDirAtPodInit: (slbimages.phaseNum <= 2),
+    wipeNginxConfigDirAtPodInit: (slbimages.hypersdn_build >= 1416),
 }
