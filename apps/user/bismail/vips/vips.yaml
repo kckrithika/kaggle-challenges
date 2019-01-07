@@ -48,3 +48,13 @@
     lbtype: tcp
     healthport: 80
     healthprotocol: tcp
+- lbname: pra-nova-test-prd
+  customlbname: pra-nova-test-prd
+  servers:
+  - ops0-praccn1-1-prd.eng.sfdc.net
+  ports:
+  - port: 8774
+    targetport: 8774
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
