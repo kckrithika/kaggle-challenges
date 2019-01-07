@@ -3,11 +3,9 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - tvlaming@salesforce.com
     - gogden@salesforce.com
     - afranken@salesforce.com
     - gmercer@salesforce.com
-    - xjayaseelan@salesforce.com
     - mhowald@salesforce.com
     - bryan.barnard@salesforce.com
   functions:
@@ -19,9 +17,12 @@ system:
     - name: cert
       maddogCert:
         type: client
+    - name: eventbusajna-ens-v1
+      k4aSecret:
+        secretName: eventbusajna-ens-v1
     containers:
     - name: event-notification-service
-      image: sfci/mc-eventing/event-notification:215.0.10
+      image: sfci/mc-eventing/event-notification:1.0.6
       ports:
       - containerPort: 15372
       env:
@@ -53,6 +54,9 @@ system:
       volumeMounts:
       - name: cert
         mountPath: /certs
+      - name: eventbusajna-ens-v1
+        mountPath: /secrets/eventbusajna-ens-v1
+        readOnly: true
   loadbalancers:
   - lbname: event-notification-service-lb
     function: event-notification-service
