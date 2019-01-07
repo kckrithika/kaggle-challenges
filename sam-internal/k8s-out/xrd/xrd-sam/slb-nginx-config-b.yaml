@@ -533,6 +533,15 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      - command:
+        - /bin/bash
+        - -xec
+        - rm -rf /host/data/slb/slb-nginx-config-b/config/*
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001416-9ecc4702
+        name: slb-nginx-config-wipe
+        volumeMounts:
+        - mountPath: /host/data/slb/slb-nginx-config-b/config
+          name: var-target-config-volume
       nodeSelector:
         pool: xrd-slb
       volumes:
