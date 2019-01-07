@@ -54,8 +54,6 @@ system:
        # SFDC_POD is used for cluster name
        - name: SFDC_POD
          value: sp-na64-pc
-       - name: CAAS_DUMMY_FOR_RESTART
-         value: 1
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
