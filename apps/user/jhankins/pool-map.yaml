@@ -1,5 +1,5 @@
 apps:
- echo32:
+ victim:
    - prd/prd-samtest
- echo32-no:
+ no-victim:
    - prd/prd-samtest
