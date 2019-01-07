@@ -644,6 +644,18 @@
       "access": [
         "team/CSC_Sam"
       ],
+      "controlEstate": "pcn-sam",
+      "estate": "private-cluster",
+      "kingdom": "pcn",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam",
       "kingdom": "hnd",
@@ -1669,18 +1681,6 @@
       "controlEstate": "par-sam",
       "estate": "par-universalsearch_svc",
       "kingdom": "par",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "csc-sam"
-      ],
-      "access": [
-        "team/CSC_Sam"
-      ],
-      "controlEstate": "pcn-sam",
-      "estate": "pcn-sam",
-      "kingdom": "pcn",
       "superPod": "None"
     },
     {

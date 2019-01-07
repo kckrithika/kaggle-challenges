@@ -72,7 +72,7 @@ fi
 
 # PCN
 rm -rf ../k8s-out/pcn/pcn-sam/*
-./parallel_build.py --src=sam/templates/ --out=../k8s-out/ --pools=../pools/ --estatefilter=pcn/pcn-sam --labelfilter=pcn:deploy
+./parallel_build.py --src=sam/templates/ --out=../k8s-out/ --pools=../pools/ --estatefilter=gsf-core-devmvp-sam2-us-central1-a/private-cluster --labelfilter=pcn:deploy
 
 ./parallel_build.py --src=flowsnake/templates,sdn/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeEstates.json --estatefilter=$1
 # Skip SDN templates for Minikube
