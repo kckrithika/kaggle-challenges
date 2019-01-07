@@ -16,7 +16,7 @@
     cleanupLogsDir: self.logsDir + (if std.length($.dirSuffix) == 0 then "cleanup" else "/cleanup"),
     ipvsMarkerFile: self.slbDir + "/ipvs.marker",
     slbPortalTemplatePath: "/sdn/webfiles",
-    prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd', 'cdg', 'fra'],
+    prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd', 'cdg', 'fra', 'ia2', 'ph2'],
     slbKingdoms: $.prodKingdoms + ["prd"],
     prodEstates: [k + "-sam" for k in $.slbKingdoms] + ['prd-samtwo'],
     testEstates: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
@@ -119,6 +119,8 @@
             "par-sam": ["10.214.112.129/32"],
             "ukb-sam": [],
             "prd-samtwo": [],
+            "ia2-sam": [],
+            "ph2-sam": [],
         },
 
         trustedProxies: {
@@ -137,6 +139,8 @@
             "hnd-sam": "0.0.0.0/0",
             "ord-sam": "0.0.0.0/0",
             "cdg-sam": "0.0.0.0/0",
+            "ia2-sam": "0.0.0.0/0",
+            "ph2-sam": "0.0.0.0/0",
             vpod: "0.0.0.0/0",
         },
 
@@ -244,6 +248,8 @@
             "cdg-sam": $.maxDeleteDefault,
             "fra-sam": $.maxDeleteDefault,
             "prd-samtwo": $.maxDeleteDefault,
+            "ia2-sam": $.maxDeleteDefault,
+            "ph2-sam": $.maxDeleteDefault,
             vpod: $.maxDeleteDefault,
         },
 
