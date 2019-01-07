@@ -270,9 +270,27 @@ data:
     samApp.controlEstate = bundle.controlEstate and samApp.name = bundle.name and
     samApp.namespace = bundle.namespace\n                      WHERE bundle.controlEstate
     is NULL AND bundle.name is NUll AND bundle.namespace is NULL", "watchdogFrequency":
-    "5m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
-    "alertThreshold": "10m", "instructions": "Following PRs have failed to get deployed
-    within 45 minutes of getting authorized.", "name": "SqlPRLatency", "sql": "SELECT\n   *   \nFROM\n    (   \n    SELECT\n        prs.pr_num,\n        crds.PoolName,\n        crds.ControlEstate,\n        TIMESTAMPDIFF(MINUTE,prs.most_recent_authorized_time,
+    "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
+    "sam", "alertThreshold": "20m", "instructions": "This alert is for Bundle CRDs
+    that do not have a corresponding deployment", "name": "SqlBundleWithoutDeployment",
+    "sql": "\n        SELECT\n            bundle.controlEstate,\n            bundle.namespace,\n            bundle.name,\n            bundleCreationTimestamp,\n            bundle.bundleDeploymentName,\n            bundleKind,\n            bundleState,\n            bundleStatus,\n            bundle.UID\n        FROM\n            (\n                SELECT\n                    controlEstate,\n                    name,\n                    namespace,\n                    Payload->>''$.status.state''
+    as bundleState,\n                    Payload->>''$.status'' as bundleStatus,\n                    Payload->>''$.metadata.creationTimestamp''
+    as bundleCreationTimestamp,\n                    Payload->>''$.spec.K8sResourceList[*].kind''
+    as bundleKind,\n                    Payload->>''$.spec.K8sResourceList[*].metadata.name''
+    as bundleDeploymentName,\n                    Payload->>''$.metadata.uid'' as
+    UID\n                FROM k8s_resource\n                WHERE ApiKind = ''Bundle''\n                AND
+    Payload->>''$.spec.K8sResourceList[*].kind'' like ''%Deployment%''\n                AND
+    controlEstate = ''prd-sam'' \n            ) bundle\n            \n        LEFT
+    JOIN\n            \n            (\n                SELECT\n                    controlEstate,\n                    name,\n                    namespace,\n                    Payload->>''$.metadata.ownerReferences[0].uid''
+    as ownerRef\n                FROM k8s_resource\n                WHERE ApiKind
+    = ''Deployment''\n                AND namespace NOT LIKE ''%sam-system%''\n            )
+    deployment\n            \n        ON bundle.controlEstate = deployment.controlEstate\n        AND
+    bundle.namespace = deployment.namespace\n        AND bundle.UID = deployment.ownerRef\n            \n        WHERE
+    deployment.ownerRef IS NULL AND deployment.name IS NULL AND deployment.namespace
+    IS NULL\n    ", "watchdogFrequency": "5m"}, {"alertAction": "email", "alertFrequency":
+    "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "Following
+    PRs have failed to get deployed within 45 minutes of getting authorized.", "name":
+    "SqlPRLatency", "sql": "SELECT\n   *   \nFROM\n    (   \n    SELECT\n        prs.pr_num,\n        crds.PoolName,\n        crds.ControlEstate,\n        TIMESTAMPDIFF(MINUTE,prs.most_recent_authorized_time,
     STR_TO_DATE( \n            JSON_UNQUOTE(payload -> ''$.status.endTime''),''%Y-%m-%dT%H:%i:%s''
     )) latency\nFROM\n    PullRequests prs \nLEFT  JOIN\n        (   \n        SELECT
     *\n        FROM\n        crd_history\n        WHERE ApiKind = ''Bundle'') crds\n    ON
