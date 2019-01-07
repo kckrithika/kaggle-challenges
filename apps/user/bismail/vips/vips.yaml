@@ -18,8 +18,8 @@
     lbtype: tcp
     healthport: 80
     healthprotocol: tcp
-- lbname: pra-keystone-auth-uri-test-prd
-  customlbname: pra-keystone-auth-uri-test-prd
+- lbname: pra-keystone-apache-test-prd
+  customlbname: pra-keystone-apache-test-prd
   servers:
   - ops0-praccn1-1-prd.eng.sfdc.net
   ports:
@@ -28,8 +28,8 @@
     lbtype: tcp
     healthport: 80
     healthprotocol: tcp
-- lbname: pra-keystone-auth-url-test-prd
-  customlbname: pra-keystone-auth-url-test-prd
+- lbname: pra-keystone-admin-test-prd
+  customlbname: pra-keystone-admin-test-prd
   servers:
   - ops0-praccn1-1-prd.eng.sfdc.net
   ports:
