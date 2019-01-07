@@ -644,9 +644,9 @@
       "access": [
         "team/CSC_Sam"
       ],
-      "controlEstate": "pcn-sam",
+      "controlEstate": "private-cluster",
       "estate": "private-cluster",
-      "kingdom": "pcn",
+      "kingdom": "gsf-core-devmvp-sam2-us-central1-a",
       "superPod": "None"
     },
     {
