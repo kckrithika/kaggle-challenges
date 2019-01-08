@@ -35,7 +35,7 @@ system:
       # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
       args:
       - -endpoint
-      - ladybug:DATACENTER_ALLENV:7012
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
       - -logging.dir
       - /log
       livenessProbe:
