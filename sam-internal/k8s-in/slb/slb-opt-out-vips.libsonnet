@@ -186,6 +186,10 @@ local vipwdOptOutConfig = {
       "test-stmsa1-0-prd-steam-prd",
       "test-stmua1-0-prd-steam-prd",
       "test-stmub1-0-prd-steam-prd",
+      "eu1-stmda-stm",  // Added by Pablo 1/8/2019 for incident #382856
+      "eu2-stmda-stm",  // Added by Pablo 1/8/2019 for incident #383013
+      "cs4-stmda1-0-prd",  // Added by Pablo 1/8/2019 for incident #383013
+      "login-stmfa1-0-prd",  // Added by Pablo 1/8/2019 for incident #383013
     ],
     namespaces:
     [
