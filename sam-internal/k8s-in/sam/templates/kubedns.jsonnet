@@ -225,8 +225,6 @@ if !utils.is_flowsnake_cluster(configs.estate) && !utils.is_gia(configs.kingdom)
                 restartPolicy: "Always",
                 schedulerName: "default-scheduler",
                 securityContext: {},
-                serviceAccount: "kube-dns",
-                serviceAccountName: "kube-dns",
                 terminationGracePeriodSeconds: 30,
                 tolerations: [
                     {
@@ -255,7 +253,11 @@ if !utils.is_flowsnake_cluster(configs.estate) && !utils.is_gia(configs.kingdom)
                         name: "cert-age",
                     },
                 ],
-            },
+            }
+            + (if configs.estate != "prd-samdev" && configs.estate != "prd-samtest" then {
+                    serviceAccount: "kube-dns",
+                    serviceAccountName: "kube-dns",
+            } else {}),
         },
     },
 } else "SKIP"
