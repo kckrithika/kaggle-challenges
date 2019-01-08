@@ -10,7 +10,7 @@ local configs = import "config.jsonnet";
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     ipvsTurnDownOnSIGTERM: (slbimages.phaseNum <= 1),
     ifaceProcessorAddIfaceIfIPVSHost: (slbimages.phaseNum <= 1),
-    fredEnabled: (configs.estate == "prd-sdc"),
-    georgeEnabled: (configs.estate == "prd-sdc"),
+    fredEnabled: (slbimages.phaseNum <= 2),
+    georgeEnabled: (slbimages.phaseNum <= 2),
     wipeNginxConfigDirAtPodInit: (slbimages.hypersdn_build >= 1416),
 }
