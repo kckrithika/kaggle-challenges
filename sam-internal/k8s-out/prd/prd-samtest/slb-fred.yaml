@@ -1,0 +1,62 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-fred
+    sam.data.sfdc.net/owner: slb
+  name: slb-fred
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  selector:
+    matchLabels:
+      name: slb-fred
+      sam.data.sfdc.net/owner: slb
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: slb-fred
+        sam.data.sfdc.net/owner: slb
+      namespace: sam-system
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: slb-service
+                operator: NotIn
+                values:
+                - slb-ipvs
+      containers:
+      - command:
+        - /sdn/slb-fred
+        - --log_dir=/host/data/slb/logs/
+        - --commonoptions.metricsendpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --commonoptions.hostname=$(NODE_NAME)
+        - --vipName=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net
+        - --port=9116
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001416-9ecc4702
+        name: slb-fred
+        volumeMounts:
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+      dnsPolicy: Default
+      nodeSelector:
+        pool: prd-samtest
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - hostPath:
+          path: /data/slb/logs/
+        name: var-logs-volume
