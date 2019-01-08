@@ -65,8 +65,6 @@ apps:
   - prd/prd-sam
  pseudo-api:
   - prd/prd-sam
- pseudo-api-prd-sam:
-  - prd/prd-sam
  kubernetes-dashboard:
   - prd/prd-sam
  kubernetes-dashboard-test:
