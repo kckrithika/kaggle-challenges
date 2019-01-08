@@ -95,6 +95,7 @@ configs.containerWithKubeConfigAndMadDog {
                                   set -ex
                                   chmod 775 -R /data/certs && chown -R 7447:7447 /data/certs 
                                   chmod 775 -R /cert1 && chown -R 7447:7447 /cert1
+                                  echo "dummy"
 |||,
                         ],
                         securityContext: {
