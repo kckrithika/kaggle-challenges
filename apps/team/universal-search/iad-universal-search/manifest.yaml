@@ -6,7 +6,7 @@ system:
     - universalsearch@salesforce.com
   functions:
   - name: universal-search
-    count: 3
+    count: 5
     volumes:
     - name: client-cert-vol
       maddogCert:
@@ -25,15 +25,15 @@ system:
         secretName: solrcloudcli-keytab-private
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:0.7.5
+      image: sfci/searchdev/universal-search:0.10.3
       ports:
       - name: service-port
         containerPort: 7020
       - name: admin-port
         containerPort: 15372
       resources:
-        limits: { cpu: "8", memory: "20Gi" }
-        requests: { cpu: "8", memory: "20Gi" }
+        limits: { cpu: "20", memory: "16Gi" }
+        requests: { cpu: "20", memory: "16Gi" }
       env:
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_iad.conf
@@ -56,7 +56,7 @@ system:
         periodSeconds: 120
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.1
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
       ports:
       - containerPort: 7443
         name: sherpa-tls  
@@ -113,8 +113,8 @@ system:
     - name: universal-search-synthetics
       image: sfci/searchdev/universal-search-synthetics:0.0.3
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: { cpu: "100m", memory: "1Gi" }
+        requests: { cpu: "100m", memory: "1Gi" }
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
@@ -130,7 +130,7 @@ system:
         periodSeconds: 900
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.1
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
       ports:
       - containerPort: 15373
         name: sherpa-adm
