@@ -43,7 +43,6 @@ local utils = import "util_functions.jsonnet",
             ph2: "ops0-mta2-1-ph2.ops.sfdc.net:25",
             lo2: "ops0-mta2-1-lo2.ops.sfdc.net:25",
             lo3: "ops0-mta2-1-lo3.ops.sfdc.net:25",
-            "gsf-core-devmvp-sam2-us-central1-a": "fakeSmtpServer",
         },
 
         # TODO: remove mom and charon endpoint to sdn-config
@@ -59,7 +58,7 @@ local utils = import "util_functions.jsonnet",
 
     # Pass-through for the kingdom specific stuff above
 
-    smtpServer: self.perKingdom.smtpServer[kingdom],
+    smtpServer: (if utils.is_pcn(kingdom) then "fakeSmtpServer" else self.perKingdom.smtpServer[kingdom]),
     momCollectorEndpoint: self.perKingdom.momCollectorEndpoint[kingdom],
     charonEndpoint: self.perKingdom.charonEndpoint[kingdom],
     zookeeperip: self.perKingdom.zookeeperip[kingdom],
