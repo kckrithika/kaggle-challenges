@@ -62,13 +62,10 @@ if slbconfigs.isTestEstate || configs.estate == "prd-sam" then configs.deploymen
                                 "--deleteIpvsIntfFlag=true",
                                 "--deleteBackendPodFlag=true",
                                 "--client.serverInterface=lo",
-                        ] + (
-                            if configs.estate == "prd-samtest" then [
                                 "--chaosDeletePodFlag=true",
                                 "--chaosPodLabel=chaos.sfdc.net/podDelete=true",
                                 "--chaosPodNamespace=user-jhankins",
-                                ] else []
-                         ) + slbconfigs.getNodeApiClientSocketSettings(),
+                        ] + slbconfigs.getNodeApiClientSocketSettings(),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
