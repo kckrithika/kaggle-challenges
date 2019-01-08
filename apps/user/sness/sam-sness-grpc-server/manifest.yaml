@@ -1,0 +1,23 @@
+apiVersion: v1
+system:
+  functions:
+  - name: sam-sness-grpc-server-default
+    count: 1
+    containers:
+    - name: sam-sness-grpc-server
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sness/sam-sness-grpc-server:sness-jan1119 
+      ports:
+      - containerPort: 7020
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 7020
+  loadbalancers:
+  - lbname: sam-sness-grpc-server-lb
+    function: sam-sness-grpc-server-default
+    slbenabled: true
+    ports:
+      - port: 7020
+        targetport: 7020
+        lbtype: tcp
+
