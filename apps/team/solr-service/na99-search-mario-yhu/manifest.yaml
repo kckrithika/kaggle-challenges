@@ -16,8 +16,8 @@ system:
         - name: LBNAME
           value: "searchservers"
         resources:
-          requests: { cpu: "10", memory: "30Gi" }
           limits: { cpu: "13", memory: "55Gi" }
+          requests: { cpu: "10", memory: "30Gi" }
         ports:
         - containerPort: 8983
           name: solr-port
