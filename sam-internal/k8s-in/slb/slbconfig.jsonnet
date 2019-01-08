@@ -231,27 +231,14 @@
                 "prd-samtwo": 3,
             },
 
-        maxDeleteCount: {
-            "prd-sdc": $.maxDeleteDefault,
-            "prd-samtest": $.maxDeleteDefault,
-            "prd-samdev": $.maxDeleteDefault,
-            "prd-sam_storage": $.maxDeleteDefault,
-            "prd-sam_storagedev": $.maxDeleteDefault,
-            "prd-sam": 50,
-            "frf-sam": $.maxDeleteDefault,
-            "phx-sam": $.maxDeleteDefault,
-            "iad-sam": $.maxDeleteDefault,
-            "ord-sam": $.maxDeleteDefault,
-            "dfw-sam": $.maxDeleteDefault,
-            "hnd-sam": $.maxDeleteDefault,
-            "xrd-sam": 20,
-            "cdg-sam": $.maxDeleteDefault,
-            "fra-sam": $.maxDeleteDefault,
-            "prd-samtwo": $.maxDeleteDefault,
-            "ia2-sam": $.maxDeleteDefault,
-            "ph2-sam": $.maxDeleteDefault,
-            vpod: $.maxDeleteDefault,
-        },
+        maxDeleteCount:
+            set_value_to_all_in_list($.maxDeleteDefault, $.testEstates)
+            + set_value_to_all_in_list($.maxDeleteDefault, $.prodEstates)
+            + {
+                "prd-sam": 50,
+                "xrd-sam": 20,
+                vpod: $.maxDeleteDefault,
+            },
 
         hsmEnabledVips:
             set_value_to_all_in_list([], $.testEstates)
