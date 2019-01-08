@@ -1,4 +1,5 @@
 apps:
  my-sam-test:    
   - prd/prd-sam 
-               
+ sam-sness-grpc-server:
+  - prd/prd-sam
