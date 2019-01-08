@@ -254,7 +254,7 @@ if !utils.is_flowsnake_cluster(configs.estate) && !utils.is_gia(configs.kingdom)
                     },
                 ],
             }
-            + (if configs.estate != "prd-samdev" && configs.estate != "prd-samtest" then {
+            + (if configs.kingdom != "prd" then {
                     serviceAccount: "kube-dns",
                     serviceAccountName: "kube-dns",
             } else {}),
