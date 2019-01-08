@@ -5,7 +5,7 @@ local kingdom = std.extVar("kingdom");
 {
     # This is temp hack for PCN
     is_pcn(kingdom):: (
-        kingdom == "pcn"
+        kingdom == "gsf-core-devmvp-sam2-us-central1-a"
     ),
 
     # This is for filtering Public Clouds from Private Clouds

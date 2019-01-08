@@ -2,59 +2,61 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: temp-crd-watcher
+    name: samappcontroller
     pcn: deploy
     sam.data.sfdc.net/owner: sam
-  name: temp-crd-watcher
+  name: samappcontroller
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: temp-crd-watcher
+      name: samappcontroller
   template:
     metadata:
       labels:
         apptype: control
-        name: temp-crd-watcher
+        name: samappcontroller
         sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sam/manifest-watcher
-        - --funnelEndpoint=ajna0-funnel1-0-pcn.data.sfdc.net:80
-        - --v=2
+        - /sam/samapp-controller
+        - --v=3
         - --logtostderr=true
-        - --config=/config/tempmanifestwatcher.json
-        - --syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive
+        - --ciNamespaceConfigFile=/ci/ci-namespaces.json
+        - --config=/config/samapp-controller-config.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --madkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
         env:
         - name: SFDCLOC_PCN_KINGDOM
-          value: pcn
+          value: gsf-core-devmvp-sam2-us-central1-a
         - name: SFDCLOC_PCN_ESTATE
-          value: pcn-sam
-        image: ops0-artifactrepo1-0-pcn.data.sfdc.net/tnrp/sam/hypersam:sam-0002417-c81b1d32
-        name: temp-crd-watcher
+          value: private-cluster
+        image: ops0-artifactrepo1-0-gsf-core-devmvp-sam2-us-central1-a.data.sfdc.net/tnrp/sam/hypersam:sam-0002417-c81b1d32
+        name: samapp-controller
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
         - mountPath: /config
           name: config
+        - mountPath: /ci
+          name: ci-namespaces
         - mountPath: /data/certs
           name: certs
       hostNetwork: true
       nodeSelector:
-        pool: pcn-sam
+        pool: private-cluster
       volumes:
-      - hostPath:
-          path: /data/certs
-        name: certs
       - configMap:
           name: sfdchosts
         name: sfdchosts
       - hostPath:
-          path: /manifests
-        name: sfdc-volume
+          path: /data/certs
+        name: certs
       - configMap:
-          name: temp-crd-watcher
+          name: ci-namespaces
+        name: ci-namespaces
+      - configMap:
+          name: samapp-controller
         name: config

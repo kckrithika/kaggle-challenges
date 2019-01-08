@@ -43,7 +43,7 @@ local utils = import "util_functions.jsonnet",
             ph2: "ops0-mta2-1-ph2.ops.sfdc.net:25",
             lo2: "ops0-mta2-1-lo2.ops.sfdc.net:25",
             lo3: "ops0-mta2-1-lo3.ops.sfdc.net:25",
-            pcn: "fakeSmtpServer",
+            "gsf-core-devmvp-sam2-us-central1-a": "fakeSmtpServer",
         },
 
         # TODO: remove mom and charon endpoint to sdn-config

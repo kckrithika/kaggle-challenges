@@ -23,13 +23,13 @@ spec:
       - command:
         - /sam/bundlecontroller
         - --config=/config/bundle-controller-config.json
-        - --funnelEndpoint=ajna0-funnel1-0-pcn.data.sfdc.net:80
+        - --funnelEndpoint=ajna0-funnel1-0-gsf-core-devmvp-sam2-us-central1-a.data.sfdc.net:80
         env:
         - name: SFDCLOC_PCN_KINGDOM
-          value: pcn
+          value: gsf-core-devmvp-sam2-us-central1-a
         - name: SFDCLOC_PCN_ESTATE
-          value: pcn-sam
-        image: ops0-artifactrepo1-0-pcn.data.sfdc.net/tnrp/sam/hypersam:sam-0002417-c81b1d32
+          value: private-cluster
+        image: ops0-artifactrepo1-0-gsf-core-devmvp-sam2-us-central1-a.data.sfdc.net/tnrp/sam/hypersam:sam-0002417-c81b1d32
         name: bundle-controller
         volumeMounts:
         - mountPath: /data/certs
@@ -38,7 +38,7 @@ spec:
           name: config
       hostNetwork: true
       nodeSelector:
-        pool: pcn-sam
+        pool: private-cluster
       volumes:
       - hostPath:
           path: /data/certs
