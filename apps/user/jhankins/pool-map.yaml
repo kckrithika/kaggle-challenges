@@ -1,5 +1,7 @@
 apps:
- victim:
-   - prd/prd-samtest
- no-victim:
-   - prd/prd-samtest
+  victim:
+    - prd/prd-samtest
+    - prd/prd-sam
+  no-victim:
+    - prd/prd-samtest
+    - prd/prd-sam
