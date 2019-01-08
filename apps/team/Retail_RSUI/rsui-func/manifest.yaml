@@ -47,7 +47,7 @@ system:
       - containerPort: 7020
         name: rsui-in-http2
       - containerPort: 7023
-        name: rsui-sandbox-http
+        name: rsui-test-http
       resources:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
