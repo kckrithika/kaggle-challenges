@@ -223,11 +223,11 @@ data:
     10 AND NotReadyCount > 2 AND minionpool like ''ph2-sam_gater'' AND NotReadyPerc
     > 0.4 AND now() > STR_TO_DATE(''2019-01-30'', ''%Y-%m-%d''))\n              OR
     (TotalCount < 10 AND NotReadyCount >=2 AND minionpool not like ''par-sam'' AND
-    minionpool not like ''ph2-sam_gater'')\n\n              OR (TotalCount >= 10 AND
-    NotReadyPerc >=0.2)", "watchdogFrequency": "5m"}, {"alertAction": "pagerduty",
-    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
-    "The following minion pools have kubeApi nodes down requiring immediate attention.
-    Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
+    minionpool not like ''ph2-sam_gater'' AND minionpool not like ''phx-sam_mgmt_hub'')\n\n              OR
+    (TotalCount >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency": "5m"}, {"alertAction":
+    "pagerduty", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
+    "20m", "instructions": "The following minion pools have kubeApi nodes down requiring
+    immediate attention. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
     "name": "SqlKubeApiNode", "sql": "SELECT Name,\n                ControlEstate,\n                MinionPool,\n                Ready\n              FROM
     nodeDetailView\n              WHERE Name LIKE ''%kubeapi%'' AND Ready !=''True''
     AND\n                 ControlEstate NOT LIKE ''%sdc%'' AND\n                 ControlEstate
