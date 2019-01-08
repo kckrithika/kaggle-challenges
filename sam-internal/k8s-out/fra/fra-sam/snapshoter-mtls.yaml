@@ -145,7 +145,7 @@ spec:
         - bash
         - -c
         - "set -ex\nchmod 775 -R /data/certs && chown -R 7447:7447 /data/certs \nchmod
-          775 -R /cert1 && chown -R 7447:7447 /cert1\n"
+          775 -R /cert1 && chown -R 7447:7447 /cert1\necho \"dummy\"\n"
         image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657
         imagePullPolicy: Always
         name: permissionsetterinitcontainer
