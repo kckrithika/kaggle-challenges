@@ -1141,9 +1141,9 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "15"
+            value: "16"
           - name: DARKLAUNCH
-            value: "true"
+            value: "false"
           - name: INSTANCE_TYPE
             value: manifests
           - name: RABBIT_MQ_QUEUE_NAME
@@ -1439,7 +1439,7 @@ items:
     name: firefly-evalresultmonitor-manifests-deployment
     namespace: firefly
   spec:
-    replicas: 1
+    replicas: 0
     selector:
       matchLabels:
         name: firefly-evalresultmonitor
@@ -1537,9 +1537,9 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "7"
+            value: "8"
           - name: DARKLAUNCH
-            value: "true"
+            value: "false"
           - name: INSTANCE_TYPE
             value: manifests
           - name: RABBIT_MQ_QUEUE_NAME

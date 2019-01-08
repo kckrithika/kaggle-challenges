@@ -96,9 +96,8 @@ if configs.estate == "prd-samtwo" then
     local evrmonitor = evalresultmonitor {
         serviceConf:: super.serviceConf {
             repoName: "test-manifests",
-            darkLaunch: "true",
         },
-        replicas:: 1,
+        replicas:: 0,
         env:: super.env + [
             {
                 name: "INSTANCE_TYPE",
