@@ -13,4 +13,5 @@ local configs = import "config.jsonnet";
     fredEnabled: (slbimages.phaseNum <= 2),
     georgeEnabled: (slbimages.phaseNum <= 2),
     wipeNginxConfigDirAtPodInit: (slbimages.hypersdn_build >= 1416),
+    ipvsConnTabBits: (if slbimages.phaseNum <= 1 then 20 else 0),
 }
