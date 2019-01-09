@@ -39,7 +39,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001416-9ecc4702
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0001417-b1eef7af
         name: slb-redundancy-checker
         securityContext:
           privileged: true
