@@ -52,7 +52,7 @@ local portConfig = import "portconfig.jsonnet";
     prdsamtwo:: $.prod {
         rabbitMqEndpoint:: 'firefly-rabbitmq.firefly.prd-samtwo.prd.slb.sfdc.net',
         rabbitMqPort:: '5672',
-        repositories:: 'sam/test-manifests',
+        repositories:: 'sam/test-manifests,sam/manifests',
     },
     environmentMapping:: {
         "prd-sam": $.prdsam,
