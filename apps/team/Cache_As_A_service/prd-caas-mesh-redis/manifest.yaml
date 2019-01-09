@@ -77,11 +77,3 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
-      volumeMounts:
-        - name: redis-server-cert
-          mountPath: /server-certs
-
-    volumes:
-    - name: redis-server-cert
-      maddogCert:
-        type: server
