@@ -1,0 +1,50 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - jayant.kumar@salesforce.com
+  functions:
+  - name: redis-switchboard
+    count: 1
+    containers:
+    - name: switchboard
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jayantk/switchboard-redis:0.1
+      ports:
+      - containerPort: 15372
+      - containerPort: 7020
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: redis
+      - name: GRPC_SERVER_PORT
+        value: "7020"
+      - name: JVM_HEAP_MAX
+        value: 4G
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "0"
+      resources:
+        limits:
+          cpu: "8"
+          memory: 6Gi
+        requests:
+          cpu: "8"
+          memory: 6Gi
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+        periodSeconds: 5
+  loadbalancers:
+  - lbname: switchboardredis-lb
+    nodeExposed: true
+    function: redis-switchboard
+    ports:
+    - lbtype: dsr
+      port: 7021
+      targetport: 7020
