@@ -62,8 +62,8 @@ system:
         name: logvolbeacon
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/75
-      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      # latest release:  https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
       ports:
       - name: http2-in
         containerPort: 7012
