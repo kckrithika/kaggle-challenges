@@ -36,17 +36,17 @@
               ) ss
               ) ss2
               WHERE
-              (TotalCount >= 10 AND NotReadyPerc >=0.2)
+              ((TotalCount >= 10 AND NotReadyPerc >=0.2)
               OR
-              (TotalCount < 10 AND NotReadyCount >=2)
+              (TotalCount < 10 AND NotReadyCount >=2))
               "
               # add snooze conditions with expiration time
               + "
               AND NOT
-              (TotalCount < 10 AND NotReadyCount >=2 AND minionpool like 'par-sam' AND NotReadyPerc < 0.5)
+              (minionpool like 'par-sam' AND NotReadyPerc < 0.5 AND now() < STR_TO_DATE('2019-02-01', '%Y-%m-%d'))
               AND NOT
-              (TotalCount < 10 AND minionpool like 'phx-sam_mgmt_hub' AND NotReadyPerc > 0.5 AND now() < STR_TO_DATE('2019-01-22', '%Y-%m-%d'))
+              (minionpool like 'phx-sam_mgmt_hub' AND now() < STR_TO_DATE('2019-01-22', '%Y-%m-%d'))
               AND NOT
-              (TotalCount < 10 AND NotReadyCount > 2 AND minionpool like 'ph2-sam_gater' AND NotReadyPerc > 0.4 AND now() < STR_TO_DATE('2019-01-30', '%Y-%m-%d'))",
+              (minionpool like 'ph2-sam_gater' AND NotReadyPerc < 0.5 AND now() < STR_TO_DATE('2019-01-30', '%Y-%m-%d'))",
         }
 
