@@ -42,16 +42,9 @@ local kingdom = std.extVar("kingdom");
         estate == "prd-skipper"
     ),
 
-    # This is for filtering flowsnake clusters.
+    # This is for filtering flowsnake clusters. Detects any name parts starting with "flowsnake".
     is_flowsnake_cluster(estate):: (
-        estate == "prd-data-flowsnake" ||
-        estate == "prd-data-flowsnake_test" ||
-        estate == "prd-dev-flowsnake_iot_test" ||
-        estate == "iad-flowsnake_prod" ||
-        estate == "ord-flowsnake_prod" ||
-        estate == "phx-flowsnake_prod" ||
-        estate == "frf-flowsnake_prod" ||
-        estate == "par-flowsnake_prod"
+        std.length([tok for tok in std.split(estate, "-") if std.startsWith(tok, "flowsnake")]) > 0
     ),
 
     # This is for filtering Kingdoms which support Ceph Clusters
