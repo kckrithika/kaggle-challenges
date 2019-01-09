@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam 
  sam-sness-grpc-server:
   - prd/prd-sam
+ sness-switchboard:
+  - prd/prd-sam
