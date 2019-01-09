@@ -22,7 +22,7 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: geoip
-      image: sfci/ccait/geoip:066d9d5643b0ecdf4a10d79436f14401720de3f1
+      image: sfci/ccait/geoip:066d9d5643b0ecdf4a10d79436f14401720de3f1 # non monorepo build
       env:
       - name: JAVA_OPTS
         value: -Xms1g -Xmx1g
