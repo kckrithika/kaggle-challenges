@@ -3,6 +3,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local configs = import "config.jsonnet";
+local old_062_image = !std.objectHas(flowsnake_images.feature_flags, "madkub_077_upgrade");
 
 configs.deploymentBase("flowsnake") {
   local label_node = self.spec.template.metadata.labels,
@@ -64,7 +65,8 @@ configs.deploymentBase("flowsnake") {
             ] else [
               "--log-level",
               "7",
-            ]),
+            ]) +
+            (if old_062_image then [] else ["--retry-max-elapsed-time", "20s"]),
             image: flowsnake_images.madkub,
             name: "madkubserver",
             ports: [
@@ -129,9 +131,16 @@ configs.deploymentBase("flowsnake") {
               "30s",
               "--kingdom",
               kingdom,
+            ] +
+            (if old_062_image then [
               "--cert-folders",
               "madkubInternalCert:/certs/",
-            ] +
+            ] else [
+              "--ca-folder",
+              if flowsnakeconfig.is_minikube then "/maddog-onebox/ca" else "/maddog-certs/ca",
+              "--run-init-for-refresher-mode",
+              "false",
+            ]) +
             (if !flowsnakeconfig.is_minikube then [
               "--funnel-endpoint",
               flowsnakeconfig.funnel_endpoint,
