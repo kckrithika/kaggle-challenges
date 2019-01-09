@@ -1761,6 +1761,8 @@
     lbtype: http
     healthprotocol: http
     healthpath: /ping.jsp?allBusy 
+    tlscertificate: secret_service:slb-migration:na47.stmfa.stm.salesforce.com.03282020.crt
+    tlskey: secret_service:slb-migration:na47.stmfa.stm.salesforce.com.03282020.key
 
 - lbname: na6-stmsa1-0-prd
   servers:
