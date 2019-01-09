@@ -14,7 +14,7 @@ system:
       - containerPort: 7020
       env:
       - name: SFDC_ENVIRONMENT
-        value: redis
+        value: meshredis
       - name: GRPC_SERVER_PORT
         value: "7020"
       - name: JVM_HEAP_MAX
