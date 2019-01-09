@@ -61,7 +61,6 @@ if configs.estate == "prd-samtwo" then
     local pullrequest = pullrequestsvc {
         serviceConf:: super.serviceConf {
             repoName: "manifests",
-            darkLaunch: "true",
         },
         replicas:: 2,
         env:: super.env + [
@@ -97,9 +96,8 @@ if configs.estate == "prd-samtwo" then
     local evrmonitor = evalresultmonitor {
         serviceConf:: super.serviceConf {
             repoName: "manifests",
-            darkLaunch: "true",
         },
-        replicas:: 1,
+        replicas:: 0,
         env:: super.env + [
             {
                 name: "INSTANCE_TYPE",

@@ -11,7 +11,7 @@ serviceDeployment {
         healthPort: portConfig.firefly.evalresultmonitor_mgmt,
         pool: if configs.estate == "prd-samtwo" then 'prd-sam_tnrp_merger' else configs.estate,
         port: [],
-        darkLaunch: "true",
+        darkLaunch: "false",
     },
     serviceName:: "firefly-evalresultmonitor",
     role:: "firefly",
