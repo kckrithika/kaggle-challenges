@@ -38,7 +38,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.6.20
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.6.28
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -90,6 +90,8 @@ system:
         value: core/stmfana48ice1/00DC20000000MOgMAM
       - name: TENANT_SERVICE
         value: core/stmfana48ice1/00DC20000000MOqMAM
+      - name: TENANT_SERVICE_ALLOWDATASOURCEADD
+        value: true
       - name: CRE_SERVER_TARGET
         value: http://cre-api-ccp-func.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
