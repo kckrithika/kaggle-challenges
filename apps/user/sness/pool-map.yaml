@@ -5,3 +5,5 @@ apps:
   - prd/prd-sam
  sness-switchboard:
   - prd/prd-sam
+ sness-switchboard-no-wildcard:
+  - prd/prd-sam
