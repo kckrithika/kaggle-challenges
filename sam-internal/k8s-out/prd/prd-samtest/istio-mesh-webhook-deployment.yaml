@@ -64,7 +64,7 @@ spec:
           name: server-cert
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --madkub-endpoint=https://10.254.208.254:32007
         - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
@@ -104,7 +104,7 @@ spec:
       initContainers:
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --madkub-endpoint=https://10.254.208.254:32007
         - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem

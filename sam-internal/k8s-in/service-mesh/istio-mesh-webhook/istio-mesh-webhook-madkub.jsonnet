@@ -87,7 +87,9 @@
     image: "" + samimages.madkub + "",
     args: [
       "/sam/madkub-client",
-      "--madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007",
+      # The IP address for the madkub service is hardcoded here:
+      # https://git.soma.salesforce.com/sam/manifests/blob/master/sam-internal/k8s-in/sam/templates/madkubserver-service.jsonnet#L18
+      "--madkub-endpoint=https://10.254.208.254:32007",
       "--maddog-endpoint=" + configs.maddogEndpoint + "",
       "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
       "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
