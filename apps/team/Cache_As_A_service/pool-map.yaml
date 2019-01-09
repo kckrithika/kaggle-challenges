@@ -372,6 +372,10 @@ apps:
   - name: ord/ord-sp2-sam_caas
  ord-sp2-redis-sp-cs78-pc1-12003:
   - name: ord/ord-sp2-sam_caas
+ prd-caas-mesh-redis-switchboard:
+  - name: prd/prd-sp2-sam_caas
+    hostSubList:
+    - samcaas2-caasminion1-1-prd.eng.sfdc.net      
  prd-caas-redis-12078:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
