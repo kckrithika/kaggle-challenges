@@ -5,7 +5,7 @@ system:
     - sness@salesforce.com
   functions:
   - name: sness-switchboard
-    count: 3
+    count: 1
     containers:
     - name: sness-switchboard
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sness/sness-switchboard:sness-switchboard-jan1119
