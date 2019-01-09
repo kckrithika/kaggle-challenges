@@ -61,13 +61,13 @@ system:
         exec:
           command:
           - ./bin/is-alive
-        initialDelaySeconds: 20
+        initialDelaySeconds: 60
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - ./bin/is-ready
-        initialDelaySeconds: 15
+        initialDelaySeconds: 50
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
 
