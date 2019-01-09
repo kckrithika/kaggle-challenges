@@ -15,6 +15,18 @@
     },
     {
       "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_datapool",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh",
@@ -90,6 +102,18 @@
       ],
       "controlEstate": "cdu-sam",
       "estate": "cdu-sam",
+      "kingdom": "cdu",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "cdu-sam",
+      "estate": "cdu-sam_datapool",
       "kingdom": "cdu",
       "superPod": "None"
     },
@@ -204,6 +228,18 @@
       ],
       "controlEstate": "dfw-sam",
       "estate": "dfw-sam_cloudatlas_dir",
+      "kingdom": "dfw",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "dfw-sam",
+      "estate": "dfw-sam_datapool",
       "kingdom": "dfw",
       "superPod": "None"
     },
@@ -397,6 +433,18 @@
     },
     {
       "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-sam_datapool",
+      "kingdom": "fra",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh",
         "service-protection"
@@ -520,6 +568,18 @@
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-sam_cloudatlas_dir",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-sam_datapool",
       "kingdom": "frf",
       "superPod": "None"
     },
@@ -713,6 +773,18 @@
     },
     {
       "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "hnd-sam",
+      "estate": "hnd-sam_datapool",
+      "kingdom": "hnd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh",
         "service-protection"
@@ -810,6 +882,18 @@
       ],
       "controlEstate": "ia2-sam",
       "estate": "ia2-sam",
+      "kingdom": "ia2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-sam_datapool",
       "kingdom": "ia2",
       "superPod": "None"
     },
@@ -1165,6 +1249,18 @@
     },
     {
       "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "lo2-sam",
+      "estate": "lo2-sam_datapool",
+      "kingdom": "lo2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh",
@@ -1190,6 +1286,18 @@
       ],
       "controlEstate": "lo3-sam",
       "estate": "lo3-sam",
+      "kingdom": "lo3",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "lo3-sam",
+      "estate": "lo3-sam_datapool",
       "kingdom": "lo3",
       "superPod": "None"
     },
@@ -1571,6 +1679,18 @@
     },
     {
       "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-sam_datapool",
+      "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh"
@@ -1692,6 +1812,18 @@
       ],
       "controlEstate": "ph2-sam",
       "estate": "ph2-sam",
+      "kingdom": "ph2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-sam_datapool",
       "kingdom": "ph2",
       "superPod": "None"
     },
@@ -1820,6 +1952,18 @@
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_cloudatlas_dir",
+      "kingdom": "phx",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "phx-sam",
+      "estate": "phx-sam_datapool",
       "kingdom": "phx",
       "superPod": "None"
     },
@@ -2669,6 +2813,18 @@
     },
     {
       "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "syd-sam",
+      "estate": "syd-sam_datapool",
+      "kingdom": "syd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh"
       ],
@@ -2752,6 +2908,18 @@
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_cloudatlas_dir",
+      "kingdom": "ukb",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "ukb-sam",
+      "estate": "ukb-sam_datapool",
       "kingdom": "ukb",
       "superPod": "None"
     },
@@ -2975,6 +3143,18 @@
     },
     {
       "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "yhu-sam",
+      "estate": "yhu-sam_datapool",
+      "kingdom": "yhu",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh"
       ],
@@ -3020,6 +3200,18 @@
       ],
       "controlEstate": "yul-sam",
       "estate": "yul-sam",
+      "kingdom": "yul",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "yul-sam",
+      "estate": "yul-sam_datapool",
       "kingdom": "yul",
       "superPod": "None"
     },
