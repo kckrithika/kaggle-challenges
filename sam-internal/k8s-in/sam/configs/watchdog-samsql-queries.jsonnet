@@ -22,6 +22,7 @@
     (import "watchdog-samsql-alerts/sqlkubeapinode.libsonnet"),
     (import "watchdog-samsql-alerts/sqlsamcontrol.libsonnet"),
     (import "watchdog-samsql-alerts/sqlsamappwithoutbundle.libsonnet"),
+    (import "watchdog-samsql-alerts/sqlbundlewithoutdeployment.libsonnet"),
     (import "watchdog-samsql-alerts/sqlprlatency.libsonnet"),
     (import "watchdog-samsql-alerts/sqlprauthroizationlinkposttimelatency.libsonnet"),
     (import "watchdog-samsql-alerts/sqlprfailedtorunevalpr.libsonnet"),
