@@ -1,0 +1,31 @@
+apiVersion: v1
+system:
+  functions:
+  - name: depaut-runlistapi
+    count: 1
+    containers:
+    - name: depaut-runlistapi
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vpandian/runlistapi:v0-20190110
+      ports:
+      - containerPort: 8009
+      - containerPort: 8000
+      - containerPort: 8080
+      - containerPort: 22
+      livenessProbe:
+        httpGet:
+          path: /runlist
+          port: 8000
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
+  loadbalancers:
+  - lbname: depaut-runlistapi-lb
+    nodeExposed: true
+    function: default
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: tcp
+      - port: 8000
+        targetport: 8000
+        lbtype: tcp       
