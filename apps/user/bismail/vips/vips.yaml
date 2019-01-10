@@ -35,7 +35,9 @@
   ports:
   - port: 35357
     targetport: 35357
-    lbtype: tcp
+    lbtype: http
+    tls: true
+    reencrypt: true
     healthport: 80
     healthprotocol: tcp
 - lbname: pra-glance-api-test-prd
