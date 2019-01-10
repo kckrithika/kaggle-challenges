@@ -8,8 +8,6 @@ local configs = import "config.jsonnet";
     envoyProxyEnabled: (slbimages.phaseNum <= 1 || configs.estate == "prd-sam"),
     roleEnabled: (slbimages.phaseNum <= 1),
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
-    ipvsTurnDownOnSIGTERM: (slbimages.phaseNum <= 1),
-    ifaceProcessorAddIfaceIfIPVSHost: (slbimages.phaseNum <= 1),
     fredEnabled: (slbimages.phaseNum <= 2),
     georgeEnabled: (slbimages.phaseNum <= 2),
     wipeNginxConfigDirAtPodInit: (slbimages.hypersdn_build >= 1416),
