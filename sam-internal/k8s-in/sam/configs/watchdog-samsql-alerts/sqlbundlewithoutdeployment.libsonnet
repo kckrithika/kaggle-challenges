@@ -15,7 +15,7 @@
             bundle.bundleDeploymentName,
             bundleKind,
             bundleState,
-            bundleStatus,
+            overallStatus,
             bundle.UID
         FROM
             (
@@ -24,7 +24,7 @@
                     name,
                     namespace,
                     Payload->>'$.status.state' as bundleState,
-                    Payload->>'$.status' as bundleStatus,
+                    Payload->>'$.status' as overallStatus,
                     Payload->>'$.metadata.creationTimestamp' as bundleCreationTimestamp,
                     Payload->>'$.spec.K8sResourceList[*].kind' as bundleKind,
                     Payload->>'$.spec.K8sResourceList[*].metadata.name' as bundleDeploymentName,
@@ -32,7 +32,8 @@
                 FROM k8s_resource
                 WHERE ApiKind = 'Bundle'
                 AND Payload->>'$.spec.K8sResourceList[*].kind' like '%Deployment%'
-                AND controlEstate = 'prd-sam' 
+                AND controlEstate != 'prd-samdev'
+                AND controlEstate != 'prd-samtest' 
             ) bundle
             
         LEFT JOIN
