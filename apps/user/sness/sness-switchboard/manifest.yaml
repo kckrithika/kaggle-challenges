@@ -5,7 +5,7 @@ system:
     - sness@salesforce.com
   functions:
   - name: sness-switchboard
-    count: 3
+    count: 1
     containers:
     - name: sness-switchboard
       image: sfci/servicelibs/switchboard:af1f9c5c1d5527ff642a0be3a876355bf2a91899
@@ -30,8 +30,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
-      - name: GRPC_SERVER_PORT
-        value: "7020"
+      - name: GRPC_SERVER_BIND_ENDPOINT
+        value: "tcp://127.0.0.1:7020"
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
