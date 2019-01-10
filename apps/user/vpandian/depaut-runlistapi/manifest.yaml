@@ -17,16 +17,3 @@ system:
           port: 8000
         initialDelaySeconds: 60 
         timeoutSeconds: 10
-  loadbalancers:
-  - lbname: depaut-runlistapi-lb
-    function: depaut-runlistapi
-    nodeExposed: true
-    function: default
-    slbenabled: true
-    ports:
-      - port: 8080
-        targetport: 8080
-        lbtype: tcp
-      - port: 8000
-        targetport: 8000
-        lbtype: tcp       
