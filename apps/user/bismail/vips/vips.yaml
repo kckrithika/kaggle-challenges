@@ -25,7 +25,9 @@
   ports:
   - port: 5000
     targetport: 5000
-    lbtype: tcp
+    lbtype: http
+    tls: true
+    reencrypt: true
     healthport: 80
     healthprotocol: tcp
 - lbname: pra-keystone-admin-test-prd
