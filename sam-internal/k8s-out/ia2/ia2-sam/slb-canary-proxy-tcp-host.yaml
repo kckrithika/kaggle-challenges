@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-canary-proxy-tcp-host
+  name: slb-canary-proxy-tcp-host
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 2
+  selector:
+    matchLabels:
+      name: slb-canary-proxy-tcp-host
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: slb-canary-proxy-tcp-host
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-canary-service
+        - --serviceName=slb-canary-proxy-tcp-host
+        - --log_dir=/host/data/slb/logs/
+        - --ports=9120
+        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/tnrp/sdn/hypersdn:v-0001416-9ecc4702
+        name: slb-canary-proxy-tcp-host
+        volumeMounts:
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+      dnsPolicy: Default
+      hostNetwork: true
+      nodeSelector:
+        pool: ia2-sam
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - hostPath:
+          path: /data/slb/logs/
+        name: var-logs-volume
