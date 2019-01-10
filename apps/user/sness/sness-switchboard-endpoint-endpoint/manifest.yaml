@@ -4,11 +4,11 @@ system:
     email:
     - sness@salesforce.com
   functions:
-  - name: sness-switchboard
+  - name: sness-switchboard-endpoint-endpoint
     count: 1
     containers:
     - name: sness-switchboard
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sness/sness-switchboard:sness-switchboard-jan1119
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sness/sness-switchboard:sness-switchboard-server-bind-endpoint
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -30,8 +30,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
-      - name: GRPC_SERVER_PORT
-        value: "7020"
+      - name: GRPC_SERVER_BIND_ENDPOINT
+        value: "tcp://127.0.0.1:7020"
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
@@ -105,16 +105,16 @@ system:
       maddogCert:
         type: server
   loadbalancers:
-  - lbname: sness-switchboard-lb
+  - lbname: sness-switchboard-endpoint-endpoint-lb
     nodeExposed: true
-    function: sness-switchboard
+    function: sness-switchboard-endpoint-endpoint
     ports:
     - lbtype: dsr
-      port: 15001
+      port: 15003
       targetport: 15001
     - lbtype: dsr
-      port: 15370
+      port: 15574
       targetport: 15372
     - lbtype: dsr
-      port: 15374
+      port: 15575
       targetport: 15373
