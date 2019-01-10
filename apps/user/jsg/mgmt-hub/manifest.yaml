@@ -17,6 +17,9 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: coreappjmx
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-mgmt/logs
     containers:
     - name: mgmt-hub
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-01-10-12-34-31
@@ -33,6 +36,8 @@ system:
       - name: secretvol
         mountPath: /secrets/service-config/secure/
         readOnly: true
+      - mountPath: /log   # Write your logs to /log/<servicename>/json (Scone logging.dir=/log)
+        name: logvol
       ports:
         - containerPort: 8080
           name: scone-http
