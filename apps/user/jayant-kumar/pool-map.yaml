@@ -1,5 +1,7 @@
 apps:
  redis-switchboard:
   - prd/prd-sam
+ redis:
+  - prd/prd-sam
  caas-load-test:
   - prd/prd-sam
