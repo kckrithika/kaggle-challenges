@@ -131,10 +131,10 @@ configs.deploymentBase("flowsnake") {
               "30s",
               "--kingdom",
               kingdom,
-            ] +
-            (if old_062_image then [
               "--cert-folders",
               "madkubInternalCert:/certs/",
+            ] +
+            (if old_062_image then [
             ] else [
               "--ca-folder",
               if flowsnakeconfig.is_minikube then "/maddog-onebox/ca" else "/maddog-certs/ca",

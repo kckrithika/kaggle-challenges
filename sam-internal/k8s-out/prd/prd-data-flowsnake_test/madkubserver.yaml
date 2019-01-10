@@ -85,6 +85,8 @@ spec:
         - 30s
         - --kingdom
         - prd
+        - --cert-folders
+        - madkubInternalCert:/certs/
         - --ca-folder
         - /maddog-certs/ca
         - --run-init-for-refresher-mode
