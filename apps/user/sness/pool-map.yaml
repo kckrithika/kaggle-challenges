@@ -5,9 +5,3 @@ apps:
   - prd/prd-sam
  sness-switchboard:
   - prd/prd-sam
- sness-switchboard-7020-7020:
-  - prd/prd-sam
- sness-switchboard-7020-endpoint:
-  - prd/prd-sam
- sness-switchboard-endpoint-endpoint:
-  - prd/prd-sam
