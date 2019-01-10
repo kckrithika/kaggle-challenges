@@ -216,7 +216,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort),
                     slbshared.slbCleanupConfig,
                     slbshared.slbNodeApi(slbports.slb.slbNodeApiIpvsOverridePort, true),
-                    slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIpvsOverridePort, true),
+                    slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIpvsOverridePort),
                     slbshared.slbLogCleanup,
                     slbshared.slbManifestWatcher(),
                     {

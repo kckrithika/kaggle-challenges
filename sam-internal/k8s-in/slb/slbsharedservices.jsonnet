@@ -189,7 +189,7 @@
             configs.sfdchosts_volume_mount,
         ]),
     },
-    slbIfaceProcessor(nodeApiPort, addIfaceIfIPVSHost, deleteLimitOverride=0): {
+    slbIfaceProcessor(nodeApiPort, deleteLimitOverride=0): {
         name: "slb-iface-processor",
         image: slbimages.hypersdn,
         command: [
@@ -200,11 +200,8 @@
                      "--metricsEndpoint=" + configs.funnelVIP,
                      "--log_dir=" + slbconfigs.logsDir,
                      configs.sfdchosts_arg,
-                ] + (if slbflights.ipvsTurnDownOnSIGTERM then [
-                     "--turnDownOnSIGTERM=true",
-                     ] else [])
-                 + ["--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet]
-                 + (if slbflights.ifaceProcessorAddIfaceIfIPVSHost then ["--addIfaceIfIPVSHost=" + addIfaceIfIPVSHost] else []),
+                     "--subnet=" + slbconfigs.subnet + "," + slbconfigs.publicSubnet,
+                   ],
         volumeMounts: std.prune([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
