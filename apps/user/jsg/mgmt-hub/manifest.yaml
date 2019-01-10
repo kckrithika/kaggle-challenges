@@ -19,7 +19,7 @@ system:
         secretName: coreappjmx
     containers:
     - name: mgmt-hub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-01-04-09-42-26
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-01-10-12-23-54
       env:
       - name: PKI_CA_DIR
         value: /certs
