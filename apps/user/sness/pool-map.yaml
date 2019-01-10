@@ -3,7 +3,9 @@ apps:
   - prd/prd-sam 
  sam-sness-grpc-server:
   - prd/prd-sam
- sness-switchboard:
+ sness-switchboard-7020-7020:
   - prd/prd-sam
- sness-switchboard-no-wildcard:
+ sness-switchboard-7020-endpoint:
+  - prd/prd-sam
+ sness-switchboard-endpoint-endpoint:
   - prd/prd-sam
