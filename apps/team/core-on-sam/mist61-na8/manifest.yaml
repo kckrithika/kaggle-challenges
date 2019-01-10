@@ -256,7 +256,7 @@ system:
 
     containers:
     - name: sequencer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/casam/sequencer:fecc30
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/casam/sequencer:fecc30
 
       env:
         - name: CASAM_SETTINGS_PATH
