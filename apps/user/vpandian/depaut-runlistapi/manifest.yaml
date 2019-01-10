@@ -19,6 +19,7 @@ system:
         timeoutSeconds: 10
   loadbalancers:
   - lbname: depaut-runlistapi-lb
+    function: depaut-runlistapi
     nodeExposed: true
     function: default
     slbenabled: true
