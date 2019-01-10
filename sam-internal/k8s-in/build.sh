@@ -42,6 +42,8 @@ if [ ! -f jsonnet/jsonnet ]; then
     echo "Getting jsonnet..."
     git clone git@git.soma.salesforce.com:sam/jsonnet.git
     pushd jsonnet
+    # Pin to version 0.95 so we can update the repo and have stable build while we test the new version
+    git checkout 6b7f64c136156ca67371be6089d2b89d5f0dab9e
     make
     popd
 fi
