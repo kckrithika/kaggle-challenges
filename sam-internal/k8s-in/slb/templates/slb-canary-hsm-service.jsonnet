@@ -30,7 +30,7 @@ local canaryPortConfig = [
         } else {}),
 ];
 
-local cnames = [{ cname: "kms-" + configs.kingdom + ".slb.sfdc.net" }];
+local cnames = if configs.estate == "prd-sam" then [] else [{ cname: "kms-" + configs.kingdom + ".slb.sfdc.net" }];
 
 if slbflights.hsmCanaryEnabled then
     slbbaseservice.slbCanaryBaseService("slb-canary-proxy-http", canaryPortConfig, serviceName, vipName, cnames) {
