@@ -59,6 +59,8 @@
   ports:
   - port: 8774
     targetport: 8774
-    lbtype: tcp
+    lbtype: http
+    tls: true
+    reencrypt: true
     healthport: 80
     healthprotocol: tcp
