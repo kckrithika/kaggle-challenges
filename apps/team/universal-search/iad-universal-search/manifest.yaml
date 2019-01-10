@@ -6,7 +6,7 @@ system:
     - universalsearch@salesforce.com
   functions:
   - name: universal-search
-    count: 6
+    count: 10
     volumes:
     - name: client-cert-vol
       maddogCert:
@@ -111,7 +111,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search-synthetics
-      image: sfci/searchdev/universal-search-synthetics:0.0.3
+      image: sfci/searchdev/universal-search-synthetics:0.0.7
       resources:
         limits: { cpu: "100m", memory: "1Gi" }
         requests: { cpu: "100m", memory: "1Gi" }
@@ -149,11 +149,11 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-        initialDelaySeconds: 120
+        initialDelaySeconds: 60
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 110
+        initialDelaySeconds: 50
         periodSeconds: 5
