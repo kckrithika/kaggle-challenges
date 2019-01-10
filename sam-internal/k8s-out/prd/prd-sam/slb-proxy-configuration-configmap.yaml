@@ -25,7 +25,9 @@ data:
       "proxyvipmappings": [
         {
           "proxyname": "slb-hsm-nginx",
-          "vips": []
+          "vips": [
+            "slb-canary-hsm.sam-system.prd-sam.prd.slb.sfdc.net"
+          ]
         },
         {
           "proxyname": "slb-envoy",
