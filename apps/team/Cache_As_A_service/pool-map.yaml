@@ -8,15 +8,6 @@ apps:
   - name: frf/frf-sp1-sam_caas
  frf-sp1-redis-dc-c1-12041:
   - name: frf/frf-sp1-sam_caas
- prd-caas-mesh-redis:
-  - name: prd/prd-sp2-sam_caas
-    hostSubList:
-    - samcaas2-caasminion1-2-prd.eng.sfdc.net
-    - samcaas2-caasminion1-4-prd.eng.sfdc.net
-    - samcaas2-caasminion2-1-prd.eng.sfdc.net
-    - samcaas2-caasminion2-3-prd.eng.sfdc.net
-    - samcaas2-caasminion2-4-prd.eng.sfdc.net
-    - samcaas2-caasminion2-6-prd.eng.sfdc.net
  prd-caas-mesh-redis-switchboard:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
