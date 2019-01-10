@@ -13,7 +13,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'prd-samdev'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'prd-samdev'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -47,7 +47,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'prd-samtest'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'prd-samtest'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -81,7 +81,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'prd-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'prd-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -115,7 +115,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'prd-samtwo'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'prd-samtwo'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -149,7 +149,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'xrd-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'xrd-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -183,7 +183,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'cdg-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'cdg-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -217,7 +217,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'cdu-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'cdu-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -251,7 +251,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'chx-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'chx-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -285,7 +285,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'dfw-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'dfw-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -319,7 +319,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'frf-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'frf-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -353,7 +353,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'hnd-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'hnd-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -387,7 +387,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'ia2-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'ia2-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -421,7 +421,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'iad-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'iad-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -455,7 +455,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'ord-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'ord-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -489,7 +489,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'par-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'par-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -523,7 +523,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'ph2-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'ph2-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -557,7 +557,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'phx-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'phx-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -591,7 +591,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'syd-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'syd-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -625,7 +625,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'ukb-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'ukb-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -659,7 +659,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'wax-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'wax-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -693,7 +693,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'yhu-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'yhu-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",
@@ -727,7 +727,7 @@ data:
             {
               "name": "Unhealthy Pods in Sam-System",
               "note": "Problems with our control stack should be investigated.  DaemonSets on down machines are not blocking, but we should try to get the machines back online.",
-              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'yul-sam'\n        and Phase \u003c\u003e 'Running'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
+              "sql": "select\n        case when (Message like 'Node % which was running pod % is unresponsive') then 'YELLOW' else 'RED' end as Status,\n        ControlEstate,\n        Namespace,\n        Name,\n        NodeName,\n        Phase,\n        Message,\n       Payload-\u003e\u003e'$.status.conditions' as Conditions\n      from podDetailView\n      where\n        namespace = 'sam-system'\n        and ControlEstate = 'yul-sam'\n        and Phase \u003c\u003e 'Running'\n        and Phase \u003c\u003e 'Failed'\n        and Name not like '%slb%'\n        and Name not like '%sdn%'"
             },
             {
               "name": "Watchdog failures",

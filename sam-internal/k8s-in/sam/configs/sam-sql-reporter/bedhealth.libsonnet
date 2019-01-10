@@ -70,6 +70,7 @@
         namespace = 'sam-system'
         and ControlEstate = '" + bed + "'
         and Phase <> 'Running'
+        and Phase <> 'Failed'
         and Name not like '%slb%'
         and Name not like '%sdn%'",
               },
