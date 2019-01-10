@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: docker-all/dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
+      image: dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -36,7 +36,7 @@ system:
         name: moe-gpg-signing-key
         readOnly: true
     - name: tnrpdeployer-hypersdn
-      image: docker-all/dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
+      image: dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
       command: ["/moe/tnrpdeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -53,7 +53,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 60
     - name: tnrpdeployer-nginx
-      image: docker-all/dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
+      image: dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
       command: ["/moe/tnrpdeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -70,7 +70,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 60
     - name: tnrpdeployer-nginx-kms
-      image: docker-all/dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
+      image: dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
       command: ["/moe/tnrpdeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -97,7 +97,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: docker-all/dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
+      image: dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -128,7 +128,7 @@ system:
         name: moe-gpg-signing-key
         readOnly: true
     - name: tnrpdeployer-hypersam
-      image: docker-all/dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
+      image: dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
       command: ["/moe/tnrpdeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
