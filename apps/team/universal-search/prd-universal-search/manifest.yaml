@@ -38,9 +38,7 @@ system:
       - name: REQUESTS_SOCKETTIMEOUT
         value: 12500
       - name: SERVICE_THREADCOUNT
-        value: 50
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
+        value: 100
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
       - name: JAAS_CONF
@@ -78,9 +76,6 @@ system:
         name: sherpa-tls
       - containerPort: 15373
         name: sherpa-adm
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -130,9 +125,6 @@ system:
     containers:
     - name: universal-search-synthetics
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.7
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
       resources:
         limits: { cpu: "100m", memory: "1Gi" }
         requests: { cpu: "100m", memory: "1Gi" }
@@ -154,9 +146,6 @@ system:
         failureThreshold: 1
     - name: universal-search-synthetics-cre
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.7
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
       resources:
         limits: { cpu: "100m", memory: "1Gi" }
         requests: { cpu: "100m", memory: "1Gi" }
@@ -181,9 +170,6 @@ system:
       ports:
       - containerPort: 15373
         name: sherpa-adm
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
