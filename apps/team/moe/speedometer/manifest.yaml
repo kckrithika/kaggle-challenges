@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: speedometer
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/speedometer:v-0000692-40408844
+      image: docker-all/dva/moe/speedometer:2018-78c8fcad593063311450cbb0f1673bbc9107524d
       command: ["/speedometer/speedometer"]
       args:
       - "-gheTokenPath"
