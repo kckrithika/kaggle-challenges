@@ -6,8 +6,8 @@ system:
     count: 1
     containers:
     - name: speedometer
-      image: docker-all/dva/moe/speedometer:2018-78c8fcad593063311450cbb0f1673bbc9107524d
-      command: ["/speedometer/speedometer"]
+      image: dva/moe/speedometer:2018-78c8fcad593063311450cbb0f1673bbc9107524d
+      command: ["/moe/speedometer"]
       args:
       - "-gheTokenPath"
       - "/secrets/ghe_pat"
@@ -18,7 +18,7 @@ system:
       - "-tnrpImagePrefixMapPath"
       - "image_prefixes.yaml"
       - "-webfilesPath"
-      - "/speedometer/webfiles"
+      - "/moe/webfiles"
       ports:
       - containerPort: 8080
       livenessProbe:
