@@ -23,7 +23,7 @@ local utils = import "util_functions.jsonnet";
         default_image_tags: {
                 cert_secretizer_image_tag: "716",
                 es_image_tag: "503",
-                fleetService_image_tag: "662",
+                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",
                 testData_image_tag: "681",
                 glok_image_tag: "472",  # NOTE: THIS MUST NOT CHANGE. As of Aug 2018, this image is no longer built by the flowsnake-platform project.
                 ingressControllerNginx_image_tag: 662,
@@ -35,7 +35,7 @@ local utils = import "util_functions.jsonnet";
                 madkub_image_tag: "1.0.0-0000062-dca2d8d1",
                 nodeMonitor_image_tag: 662,
                 watchdog_image_tag: "sam-0002015-fdb18963",
-                watchdog_canary_image_tag: "681",
+                watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
                 docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-706-itest",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
@@ -80,8 +80,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
 
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",
-            watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
+            // image tag overrides go here
             deployer_image_tag: "sam-0002376-c267a6c7",
             madkub_image_tag: "1.0.0-0000077-b1d3a629",
 
@@ -122,8 +121,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
 
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",
-            watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
+            // image tag overrides go here
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -149,8 +147,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
         "3": self.default_image_tags {
 
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",
-            watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
+            // image tag overrides go here
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -177,9 +174,6 @@ local utils = import "util_functions.jsonnet";
             ### DO NOT SET TAG OVERRIDES HERE
             ### Instead, update default_image_tags definition at top of this file and delete
             ### any overrides in other phases that are equal to the new defaults.
-
-            fleetService_image_tag: "696",
-            watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
 
             feature_flags: {
                 ### AFTER SETTING FEATURE FLAGS HERE:
