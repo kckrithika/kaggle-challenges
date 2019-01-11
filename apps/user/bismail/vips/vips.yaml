@@ -12,6 +12,7 @@
   customlbname: pra-neutron-test-prd
   servers:
   - ops0-praccn1-1-prd.eng.sfdc.net
+  - ops0-praccn2-1-prd.eng.sfdc.net
   ports:
   - port: 9696
     targetport: 9696
@@ -22,6 +23,7 @@
   customlbname: pra-keystone-apache-test-prd
   servers:
   - ops0-praccn1-1-prd.eng.sfdc.net
+  - ops0-praccn2-1-prd.eng.sfdc.net
   ports:
   - port: 5000
     targetport: 5000
@@ -34,6 +36,7 @@
   customlbname: pra-ccn-1-0-test-prd
   servers:
   - ops0-praccn1-1-prd.eng.sfdc.net
+  - ops0-praccn2-1-prd.eng.sfdc.net
   ports:
   - port: 5000
     targetport: 5000
@@ -44,6 +47,7 @@
   customlbname: pra-keystone-admin-test-prd
   servers:
   - ops0-praccn1-1-prd.eng.sfdc.net
+  - ops0-praccn2-1-prd.eng.sfdc.net
   ports:
   - port: 35357
     targetport: 35357
@@ -56,6 +60,7 @@
   customlbname: pra-glance-api-test-prd
   servers:
   - ops0-praccn1-1-prd.eng.sfdc.net
+  - ops0-praccn2-1-prd.eng.sfdc.net
   ports:
   - port: 9292
     targetport: 9292
@@ -66,6 +71,7 @@
   customlbname: pra-nova-test-prd
   servers:
   - ops0-praccn1-1-prd.eng.sfdc.net
+  - ops0-praccn2-1-prd.eng.sfdc.net
   ports:
   - port: 8774
     targetport: 8774
