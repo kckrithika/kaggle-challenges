@@ -17,7 +17,7 @@ std.prune({
   ipAddressCapacityRequest: (if samfeatureflags.ipAddressCapacityRequest then true),
 
   # Delete
-  deletionPercentageThreshold: (if configs.estate == "phx-sam" || configs.estate == "iad-sam" || configs.estate == "ord-sam" || configs.estate == "hnd-sam" || configs.estate == "ukb-sam" then 90 else 20),
+  deletionPercentageThreshold: 20,
   deletionEnabled: true,
 
   # Stateful
