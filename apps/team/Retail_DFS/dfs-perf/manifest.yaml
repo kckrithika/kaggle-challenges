@@ -43,8 +43,12 @@ system:
         value: false
       - name: GDOT_BASEPATHOVERRIDE
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+      - name: DFS_MAXCONNECTIONPERROUTE
+        value: 50
+      - name: DFS_MAXCONNECTIONTOTAL
+        value: 100
       - name: JVM_ARGS
-        value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
+        value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=100
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
                 -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
                 -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
