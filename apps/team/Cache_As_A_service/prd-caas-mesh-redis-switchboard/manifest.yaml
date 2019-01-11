@@ -41,7 +41,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
   loadbalancers:
-  - lbname: switchboardredis-lb
+  - lbname: switchboardredismesh-lb
     nodeExposed: true
     function: redis-switchboard
     ports:
