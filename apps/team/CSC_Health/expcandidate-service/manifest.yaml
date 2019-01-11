@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: expcandidate-service
-      image: docker-all/dva/csc-health/candidate-service:1
+      image: docker-all/dva/csc-health/candidate-service:5
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -25,7 +25,7 @@ system:
       - name: CHS_AJNA_CACERTPATH
         value: /certs/ca.pem
       - name: CHS_REPORTCOLLECTOR_WHITELIST
-        value: network-nvt,grok.server_watchdog,sandman,netmgt.sandman
+        value: network-nvt,grok.server_watchdog,sandman,netmgt.sandman,mom,app.infrastructure-watchdog-cpt
       - name: CHS_REPORTCOLLECTOR_MTLSENABLED
         value: true
       - name: CHS_REPORTCOLLECTOR_CERTPATH
@@ -44,6 +44,20 @@ system:
         value: /certs/ca.pem
       - name: CHS_HEALTH_PORT
         value: 8888
+      - name: CHS_SMOOTHINGCONFIG_ENABLED
+        value: true
+      - name: CHS_SMOOTHINGCONFIG_SIZE
+        value: 10
+      - name: CHS_SMOOTHINGCONFIG_OPINIONLOOKBACK
+        value: 10
+      - name: CHS_SMOOTHINGCONFIG_FLAPLOOKBACK
+        value: 10
+      - name: CHS_SMOOTHINGCONFIG_FLAPTHRESHHOLD
+        value: 7
+      - name: CHS_SMOOTHINGCONFIG_HEALTHYOPTHRESHOLD
+        value: 80.0
+      - name: CHS_SMOOTHINGCONFIG_PROBEXITLOOKBACK
+        value: 10
       livenessProbe:
         httpGet:
           path: /healthz
