@@ -90,6 +90,7 @@ local utils = import "util_functions.jsonnet";
                 image_renames_and_canary_build_tags: "unverified",
                 synthetic_dns_checks_yum_repo_fix: "verified-in-prd-test",
                 madkub_077_upgrade: "unverified",
+                kube_dns_no_service_account: "unverified",
             },
             version_mapping: {
                 main: {
