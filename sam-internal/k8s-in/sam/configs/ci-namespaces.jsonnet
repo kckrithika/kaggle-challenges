@@ -12,6 +12,18 @@ local ci = {
     team: "atf",
     namespace: "ci-atf-mirror",
   },
+  {
+      team: "atf",
+      namespace: "ci-atf-mit-dev",
+  },
+  {
+      team: "atf",
+      namespace: "ci-atf-mit-mirror",
+  },
+  {
+        team: "atf",
+        namespace: "ci-atf-mit",
+    },
   ]
   + (if configs.estate == "prd-samdev" then [{
     team: "csc-sam",
