@@ -122,11 +122,11 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                                   "--ca-folder",
                                   "/maddog-certs/ca",
                               ] +
-                              if configs.estate == "prd-samtest" then [
+                              (if configs.estate == "prd-samtest" then [
                                   "--run-init-for-refresher-mode",
                                   "false",
-                              ] else [] +
-                              if samimages.madkub == "1.0.0-0000035-9241ed31" then [
+                              ] else []) +
+                              (if samimages.madkub == "1.0.0-0000035-9241ed31" then [
                                   "--cert-folder",
                                   "/certs/",
                                   "--requested-cert-type",
@@ -134,7 +134,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                               ] else [
                                   "--cert-folders",
                                   "madkubInternalCert:/certs/",
-                              ],
+                              ]),
                         image: samimages.madkub,
                         resources: {
                         },
