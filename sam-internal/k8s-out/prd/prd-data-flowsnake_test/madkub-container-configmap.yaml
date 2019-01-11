@@ -21,3 +21,4 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: madkub-container-spec
+  namespace: flowsnake

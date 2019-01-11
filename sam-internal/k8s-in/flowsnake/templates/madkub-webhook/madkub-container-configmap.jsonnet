@@ -6,7 +6,8 @@ if flowsnakeconfig.is_test then
     apiVersion: "v1",
     kind: "ConfigMap",
     metadata: {
-        name: "madkub-container-spec"
+        name: "madkub-container-spec",
+        namespace: "flowsnake",
     },
     data: {
         // TODO: fix sam/manifests validator bug
