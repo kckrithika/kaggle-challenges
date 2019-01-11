@@ -256,6 +256,10 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: sequencer-gus
+    - name: kaiju-secret-vol
+      k4aSecret:
+        secretName: sequencer-kaiju
+
 
     containers:
     - name: sequencer
@@ -334,7 +338,9 @@ system:
         - name: secretvol
           mountPath: /secrets/
           readOnly: true
-
+        - mountPath: /kaiju-secrets/
+          name: kaiju-secret-vol
+          readOnly: true
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
 
