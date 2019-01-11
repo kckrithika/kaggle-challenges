@@ -256,7 +256,9 @@ system:
 
     containers:
     - name: sequencer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_jenkins:1-10-19-2
+      image: sfci/casam/sequencer:81aa43
+      command: ["/bin/bash"]
+      args: ["-c", "while true; do echo hello; sleep 10;done"]
 
       env:
         - name: CASAM_SETTINGS_PATH
