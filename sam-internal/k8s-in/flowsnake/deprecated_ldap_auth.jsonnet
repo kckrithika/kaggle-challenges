@@ -1,7 +1,7 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 {
-    auth_groups: (if std.objectHas(self.auth_groups_map, kingdom + "/" + estate) then $.auth_groups_map[kingdom + "/" + estate] else error "No matching auth_groups entry: " + kingdom + "/" + estate),
+    auth_groups: (if std.objectHas(self.auth_groups_map, kingdom + "/" + estate) then $.auth_groups_map[kingdom + "/" + estate] else []),
 
     // DEPRECATED: Used for deploying Flowsnake versions <= 0.9.6.
     // Map from fleet (kingdom/estate) to list of auth groups authorized to access it.
@@ -23,9 +23,6 @@ local kingdom = std.extVar("kingdom");
             "collection_flowsnake",
             "key_infrastructure",
         ],
-        "prd/prd-data-flowsnake_test": [
-            "Flowsnake_Ops_Platform",
-        ],
         "prd/prd-dev-flowsnake_iot_test": [
             "Flowsnake_Ops_Platform",
             "IoT-RM-Flowsnake",
@@ -37,16 +34,6 @@ local kingdom = std.extVar("kingdom");
         ],
         "prd/prd-minikube-big-flowsnake": [
             "Flowsnake_Ops_Platform",
-        ],
-        "iad/iad-flowsnake_prod": [
-        ],
-        "ord/ord-flowsnake_prod": [
-        ],
-        "phx/phx-flowsnake_prod": [
-        ],
-        "frf/frf-flowsnake_prod": [
-        ],
-        "par/par-flowsnake_prod": [
         ],
     },
 }
