@@ -28,8 +28,6 @@ system:
     - name: metadata-service
       image: sfci/metadata-cannon/metadata-service:0.6.33
       ports:
-      # 7020 is for direct gRPC testing only. Not exposed in prod.
-      - containerPort: 7020
       # 9091 is for REST which is disabled in prod
       - containerPort: 9091
       - containerPort: 15523
@@ -74,6 +72,10 @@ system:
         - containerPort: 7443
           name: sherpa-h2-tls
         - containerPort: 15373
+
+        # plain-text gRPC port, enabled for testing. Must not be open in production.
+        - containerPort: 7012
+          name: sherpa-h2-plain
       volumeMounts:
         - name: sherpa-log-volume
           mountPath: /log
@@ -128,6 +130,6 @@ system:
     - port: 7443
       targetport: 7443
 
-    # gRPC port, served directly by MDS. Used for testing only.
-    - port: 7020
-      targetport: 7020
+    # Plain text gRPC port, served by sherpa. Used for testing only.
+    - port: 7012
+      targetport: 7012
