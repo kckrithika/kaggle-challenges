@@ -115,10 +115,6 @@ spec:
           name: tokens
         - mountPath: /maddog-certs/
           name: pki
-      hostAliases:
-      - hostnames:
-        - all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net
-        ip: 10.253.111.50
       restartPolicy: Always
       volumes:
       - emptyDir:

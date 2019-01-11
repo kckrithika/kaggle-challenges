@@ -242,10 +242,6 @@ configs.deploymentBase("flowsnake") {
             },
           ]
         ),
-      } +
-      if old_062_image then {} else {
-        # Work around failure to handle downed PKI server https://gus.lightning.force.com/lightning/r/0D5B000000nWuj7/view
-        hostAliases: [{ hostnames: ["all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net"], ip: "10.253.111.50" }],
       },
     },
   },
