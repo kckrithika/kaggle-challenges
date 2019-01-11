@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: kh-test-user
-  labels:
-    madkub-injector: enabled
-  annotations:
-    sfdc.net/pki-namespace: khogeland
