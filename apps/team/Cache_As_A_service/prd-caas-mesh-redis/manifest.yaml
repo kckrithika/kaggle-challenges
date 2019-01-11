@@ -32,7 +32,7 @@ system:
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
       - -endpoint
-      - caas/cluster/caas-cluster-1:SUPERPOD:12000
+      - caas/caas-cluster-1:SUPERPOD:12000
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -50,7 +50,7 @@ system:
       image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
       args:
       - --switchboard
-      - switchboardredis-lb:7021
+      - switchboardredismesh-lb:7021
       ports:
       - containerPort: 15001
       - containerPort: 15373
