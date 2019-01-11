@@ -125,6 +125,8 @@ system:
         exec:
           command:
           - "/home/sfdc-usmt/run.sh"
+          - "--domain"
+          - "synthetics-cre"          
         initialDelaySeconds: 120
         timeoutSeconds: 30
         periodSeconds: 900
