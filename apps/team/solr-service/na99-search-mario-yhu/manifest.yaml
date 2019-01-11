@@ -5,6 +5,8 @@ system:
     - name: na99-search-mario-yhu
       type: stateful-set
       count: 15
+      # Public cloud specific because SDN is not avaliable, by passing Flannel networking (Public could specific)
+      hostnetwork: true
       containers:  
       - name: searchserver 
         image: sfci/search-teams/sfci:17253523.374
