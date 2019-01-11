@@ -269,15 +269,15 @@ data:
     "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
     "sam", "alertThreshold": "20m", "instructions": "This alert is for Bundle CRDs
     that do not have a corresponding deployment", "name": "SqlBundleWithoutDeployment",
-    "sql": "\n        SELECT\n            bundle.controlEstate,\n            bundle.namespace,\n            bundle.name,\n            bundleCreationTimestamp,\n            bundle.bundleDeploymentName,\n            bundleKind,\n            bundleState,\n            bundleStatus,\n            bundle.UID\n        FROM\n            (\n                SELECT\n                    controlEstate,\n                    name,\n                    namespace,\n                    Payload->>''$.status.state''
-    as bundleState,\n                    Payload->>''$.status'' as bundleStatus,\n                    Payload->>''$.metadata.creationTimestamp''
+    "sql": "\n        SELECT\n            bundle.controlEstate,\n            bundle.namespace,\n            bundle.name,\n            bundleCreationTimestamp,\n            bundle.bundleDeploymentName,\n            bundleKind,\n            bundleState,\n            overallStatus,\n            bundle.UID\n        FROM\n            (\n                SELECT\n                    controlEstate,\n                    name,\n                    namespace,\n                    Payload->>''$.status.state''
+    as bundleState,\n                    Payload->>''$.status'' as overallStatus,\n                    Payload->>''$.metadata.creationTimestamp''
     as bundleCreationTimestamp,\n                    Payload->>''$.spec.K8sResourceList[*].kind''
     as bundleKind,\n                    Payload->>''$.spec.K8sResourceList[*].metadata.name''
     as bundleDeploymentName,\n                    Payload->>''$.metadata.uid'' as
     UID\n                FROM k8s_resource\n                WHERE ApiKind = ''Bundle''\n                AND
     Payload->>''$.spec.K8sResourceList[*].kind'' like ''%Deployment%''\n                AND
-    controlEstate = ''prd-sam'' \n            ) bundle\n            \n        LEFT
-    JOIN\n            \n            (\n                SELECT\n                    controlEstate,\n                    name,\n                    namespace,\n                    Payload->>''$.metadata.ownerReferences[0].uid''
+    controlEstate != ''prd-samdev''\n                AND controlEstate != ''prd-samtest''
+    \n            ) bundle\n            \n        LEFT JOIN\n            \n            (\n                SELECT\n                    controlEstate,\n                    name,\n                    namespace,\n                    Payload->>''$.metadata.ownerReferences[0].uid''
     as ownerRef\n                FROM k8s_resource\n                WHERE ApiKind
     = ''Deployment''\n                AND namespace NOT LIKE ''%sam-system%''\n            )
     deployment\n            \n        ON bundle.controlEstate = deployment.controlEstate\n        AND
