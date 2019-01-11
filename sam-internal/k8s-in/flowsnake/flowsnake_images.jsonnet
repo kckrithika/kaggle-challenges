@@ -45,6 +45,7 @@ local utils = import "util_functions.jsonnet";
                 kubedns_image_tag: "1.14.9",
                 eventExporter_image_tag: "726",
                 jdk8_base_tag: "33",
+                madkub_injector_image_tag: "jenkins-dva-transformation-madkub-injector-webhook-PR-1-21-itest",
         },
 
         ### Release Phase minikube
@@ -229,6 +230,7 @@ local utils = import "util_functions.jsonnet";
     watchdog_canary: flowsnakeconfig.strata_registry + "/watchdog-canary:" + $.per_phase[$.phase].watchdog_canary_image_tag,
     docker_daemon_watchdog: flowsnakeconfig.strata_registry + "/docker-daemon-watchdog:" + $.per_phase[$.phase].docker_daemon_watchdog_image_tag,
     zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
+    madkub_injector: flowsnakeconfig.strata_registry + "/flowsnake-madkub-injector-webhook:" + $.per_phase[$.phase].madkub_injector_image_tag,
 
     feature_flags: $.per_phase[$.phase].feature_flags,
     version_mapping: $.per_phase[$.phase].version_mapping,
