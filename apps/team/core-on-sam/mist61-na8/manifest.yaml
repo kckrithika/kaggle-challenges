@@ -245,6 +245,9 @@ system:
   - name: na8-mist61seq-prd
 
     count: 1
+    identity:
+      pod: na8
+      serviceName: sequencer
 
     volumes:
     - name: cert
@@ -262,7 +265,7 @@ system:
 
       env:
         - name: CASAM_SETTINGS_PATH
-          value: mist.mist61.prd.na8.cyan
+          value: mist61.-.prd.na8.sequencer
         - name: CASAM_SUPERPOD
           value: sp2
         - name: CYAN
