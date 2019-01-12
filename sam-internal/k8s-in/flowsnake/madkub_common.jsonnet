@@ -136,6 +136,11 @@ local old_062_image = !std.objectHas(flowsnake_images.feature_flags, "madkub_077
          "--cert-folders",
          cert_name + ":/certs",
      ] +
+     (if old_062_image then [
+     ] else [
+       "--ca-folder",
+       if flowsnakeconfig.is_minikube then "/maddog-onebox/ca" else "/etc/pki_service/ca",
+     ]) +
      (if !flowsnakeconfig.is_minikube then [
          "--funnel-endpoint",
          flowsnakeconfig.funnel_endpoint,
