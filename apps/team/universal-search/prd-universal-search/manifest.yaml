@@ -39,6 +39,8 @@ system:
         value: 12500
       - name: SERVICE_THREADCOUNT
         value: 100
+      - name: JVM_OPTS
+        value: "-XX:+UseG1GC -Xms14g -Xmx14g -XX:+UseStringDeduplication -XX:+ParallelRefProcEnabled -XX:+UseCompressedOops"
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
       - name: JAAS_CONF
@@ -62,7 +64,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 100
+        initialDelaySeconds: 90
         timeoutSeconds: 10
         periodSeconds: 120
         failureThreshold: 1
