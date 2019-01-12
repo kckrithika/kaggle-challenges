@@ -16,6 +16,11 @@ if flowsnakeconfig.is_test then
     },
     spec: {
         replicas: 2,
+		selector: {
+			matchLabels: {
+				app: "madkub-injector"
+			}
+		},
         template: {
             metadata: {
                 labels: {
