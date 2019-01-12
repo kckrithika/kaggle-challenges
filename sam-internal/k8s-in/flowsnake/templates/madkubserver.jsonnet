@@ -138,8 +138,6 @@ configs.deploymentBase("flowsnake") {
             ] else [
               "--ca-folder",
               if flowsnakeconfig.is_minikube then "/maddog-onebox/ca" else "/maddog-certs/ca",
-              "--run-init-for-refresher-mode",
-              "false",
             ]) +
             (if !flowsnakeconfig.is_minikube then [
               "--funnel-endpoint",

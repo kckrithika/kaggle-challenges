@@ -89,8 +89,6 @@ spec:
         - madkubInternalCert:/certs/
         - --ca-folder
         - /maddog-certs/ca
-        - --run-init-for-refresher-mode
-        - "false"
         - --funnel-endpoint
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
