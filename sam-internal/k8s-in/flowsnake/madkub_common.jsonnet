@@ -1,8 +1,9 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
- local flowsnakeconfig = import "flowsnake_config.jsonnet";
- local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
- local estate = std.extVar("estate");
- local kingdom = std.extVar("kingdom");
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
+local estate = std.extVar("estate");
+local kingdom = std.extVar("kingdom");
+local old_062_image = !std.objectHas(flowsnake_images.feature_flags, "madkub_077_upgrade");
 
  local certs_mount = {
      mountPath: "/certs",
@@ -53,6 +54,11 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
          "--cert-folders",
          cert_name + ":/certs",
      ] +
+    (if old_062_image then [
+    ] else [
+      "--ca-folder",
+      if flowsnakeconfig.is_minikube then "/maddog-onebox/ca" else "/etc/pki_service/ca",
+    ]) +
      (if !flowsnakeconfig.is_minikube then [
          "--funnel-endpoint",
          flowsnakeconfig.funnel_endpoint,
