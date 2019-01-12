@@ -273,7 +273,7 @@ system:
         - name: CASAM_SUPERPOD
           value: sp2
         - name: CYAN
-          value: https://us8-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
+          value: https://us8-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
         - name: SWITCH_BOARD_HOST
           value: us99-mist61switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
         - name: SWITCH_BOARD_PORT
