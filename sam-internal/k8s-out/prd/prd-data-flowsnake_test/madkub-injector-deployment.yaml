@@ -5,6 +5,9 @@ metadata:
   namespace: flowsnake
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: madkub-injector
   template:
     metadata:
       annotations:
