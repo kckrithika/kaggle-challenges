@@ -50,7 +50,7 @@ system:
       image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
       args:
       - --switchboard
-      - switchboardredismesh-lb:7021
+      - 10.254.211.221:7021
       ports:
       - containerPort: 15001
       - containerPort: 15373
