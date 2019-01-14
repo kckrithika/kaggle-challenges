@@ -29,6 +29,12 @@ spec:
         ports:
         - containerPort: 8443
         volumeMounts:
+        - mountPath: /etc/madkub-container-spec
+          name: spec
+          readOnly: true
+        - mountPath: /etc/madkub-required-volumes
+          name: volumes
+          readOnly: true
         - mountPath: /certs
           name: datacerts
         - mountPath: /etc/kubernetes/kubeconfig
@@ -159,6 +165,12 @@ spec:
           name: client-key
           readOnly: true
       volumes:
+      - configMap:
+          name: madkub-container-spec
+        name: spec
+      - configMap:
+          name: madkub-required-volumes
+        name: volumes
       - emptyDir:
           medium: Memory
         name: datacerts

@@ -16,11 +16,11 @@ if flowsnakeconfig.is_test then
     },
     spec: {
         replicas: 2,
-		selector: {
-			matchLabels: {
-				app: "madkub-injector"
-			}
-		},
+        selector: {
+            matchLabels: {
+                app: "madkub-injector"
+            }
+        },
         template: {
             metadata: {
                 labels: {
@@ -45,11 +45,22 @@ if flowsnakeconfig.is_test then
                         ports: [{
                             containerPort: 8443
                         }],
-                        volumeMounts: [madkub_common.certs_mount] 
-                            + (if !flowsnakeconfig.is_minikube then
-                                certs_and_kubeconfig.kubeconfig_volumeMounts +
-                                certs_and_kubeconfig.platform_cert_volumeMounts
-                            else []),
+                        volumeMounts: [
+                            {
+                                name: "spec",
+                                mountPath: "/etc/madkub-container-spec",
+                                readOnly: true
+                            },
+                            {
+                                name: "volumes",
+                                mountPath: "/etc/madkub-required-volumes",
+                                readOnly: true
+                            },
+                            madkub_common.certs_mount
+                        ] + (if !flowsnakeconfig.is_minikube then
+                            certs_and_kubeconfig.kubeconfig_volumeMounts +
+                            certs_and_kubeconfig.platform_cert_volumeMounts
+                        else []),
                         args: [
                             "-madkubVolumesFile",
                             "/etc/madkub-required-volumes/volumes.jaysawn",
@@ -61,12 +72,24 @@ if flowsnakeconfig.is_test then
                 ],
                 initContainers: [ madkub_common.init_container(cert_name) ],
                 volumes: [
+                    {
+                        name: "spec",
+                        configMap: {
+                            name: "madkub-container-spec"
+                        }
+                    },
+                    {
+                        name: "volumes",
+                        configMap: {
+                            name: "madkub-required-volumes"
+                        }
+                    },
                     madkub_common.certs_volume,
                     madkub_common.tokens_volume,
                 ] + (if !flowsnakeconfig.is_minikube then
-                        certs_and_kubeconfig.kubeconfig_volume +
-                        certs_and_kubeconfig.platform_cert_volume
-                    else []),
+                    certs_and_kubeconfig.kubeconfig_volume +
+                    certs_and_kubeconfig.platform_cert_volume
+                else []),
             }
         }
     }
