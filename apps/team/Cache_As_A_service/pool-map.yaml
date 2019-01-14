@@ -12,6 +12,10 @@ apps:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
     - samcaas2-caasminion1-1-prd.eng.sfdc.net
+ prd-caas-mesh-load-test:
+  - name: prd/prd-sp2-sam_caas
+    hostSubList:
+    - samcaas2-caasminion1-7-prd.eng.sfdc.net
  prd-caas-mesh-redis:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
