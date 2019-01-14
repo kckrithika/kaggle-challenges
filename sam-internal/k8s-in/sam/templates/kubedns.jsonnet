@@ -254,7 +254,7 @@ if !utils.is_flowsnake_cluster(configs.estate) then {
                     },
                 ],
             }
-            + (if configs.kingdom != "prd" then {
+            + (if configs.kingdom != "prd" && configs.kingdom != "fra" && configs.kingdom != "yhu" then {
                     serviceAccount: "kube-dns",
                     serviceAccountName: "kube-dns",
             } else {}),
