@@ -7,7 +7,7 @@ if flowsnakeconfig.is_test then
     apiVersion: "v1",
     kind: "ConfigMap",
     metadata: {
-        name: "madkub-required-containers",
+        name: "madkub-required-volumes",
         namespace: "flowsnake",
     },
     data: {
