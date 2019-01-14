@@ -6,7 +6,7 @@ system:
     - universalsearch@salesforce.com
   functions:
   - name: universal-search
-    count: 10
+    count: 12
     volumes:
     - name: client-cert-vol
       maddogCert:
@@ -139,8 +139,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
-      - name: foo
-        value: bar
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
