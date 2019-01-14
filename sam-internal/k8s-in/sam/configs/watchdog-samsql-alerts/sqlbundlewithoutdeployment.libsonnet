@@ -54,5 +54,9 @@
         AND bundle.UID = deployment.ownerRef
             
         WHERE deployment.ownerRef IS NULL AND deployment.name IS NULL AND deployment.namespace IS NULL
-    ",
+              "
+              # add snooze conditions with expiration time
+              + "
+              AND NOT
+              (bundle.controlEstate like 'frf-sam' AND now() < STR_TO_DATE('2019-01-21', '%Y-%m-%d'))"
 }

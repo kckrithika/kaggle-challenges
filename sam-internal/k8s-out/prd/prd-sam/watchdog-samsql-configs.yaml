@@ -283,10 +283,11 @@ data:
     deployment\n            \n        ON bundle.controlEstate = deployment.controlEstate\n        AND
     bundle.namespace = deployment.namespace\n        AND bundle.UID = deployment.ownerRef\n            \n        WHERE
     deployment.ownerRef IS NULL AND deployment.name IS NULL AND deployment.namespace
-    IS NULL\n    ", "watchdogFrequency": "5m"}, {"alertAction": "email", "alertFrequency":
-    "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "Following
-    PRs have failed to get deployed within 45 minutes of getting authorized.", "name":
-    "SqlPRLatency", "sql": "SELECT\n   *   \nFROM\n    (   \n    SELECT\n        prs.pr_num,\n        crds.PoolName,\n        crds.ControlEstate,\n        TIMESTAMPDIFF(MINUTE,prs.most_recent_authorized_time,
+    IS NULL\n              \n              AND NOT\n              (bundle.controlEstate
+    like ''frf-sam'' AND now() < STR_TO_DATE(''2019-01-21'', ''%Y-%m-%d''))", "watchdogFrequency":
+    "5m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
+    "alertThreshold": "10m", "instructions": "Following PRs have failed to get deployed
+    within 45 minutes of getting authorized.", "name": "SqlPRLatency", "sql": "SELECT\n   *   \nFROM\n    (   \n    SELECT\n        prs.pr_num,\n        crds.PoolName,\n        crds.ControlEstate,\n        TIMESTAMPDIFF(MINUTE,prs.most_recent_authorized_time,
     STR_TO_DATE( \n            JSON_UNQUOTE(payload -> ''$.status.endTime''),''%Y-%m-%dT%H:%i:%s''
     )) latency\nFROM\n    PullRequests prs \nLEFT  JOIN\n        (   \n        SELECT
     *\n        FROM\n        crd_history\n        WHERE ApiKind = ''Bundle'') crds\n    ON
