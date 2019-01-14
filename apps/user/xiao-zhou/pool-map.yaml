@@ -12,4 +12,7 @@ apps:
  test-secret-app:
   - prd/prd-samdev
   - prd/prd-sam
+ stateful-no-ceph:
+  - prd/prd-samdev
+
 
