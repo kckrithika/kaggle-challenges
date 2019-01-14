@@ -6,7 +6,7 @@ system:
       - jayant.kumar@salesforce.com
   functions:
   - name: redis-mesh
-    count: 6
+    count: 1
     containers:
     - name: caas-redis
       image: docker-all/dva/caas/release/caas-redis-4.0.10:10
@@ -14,22 +14,25 @@ system:
         limits: { memory: "8G" }
         requests: { memory: "8G" }
       args:
-        - --port=12001
+        - --port=5000
         - --maxMemoryMB=4096
+        - --noauth
+        - --disableProtectedMode
+        - --bindToLoopback
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12001
+           - --port=5000
         initialDelaySeconds: 15
         timeoutSeconds: 10
       ports:
-      - containerPort: 12001
+      - containerPort: 5000
     - name: caas-redis-announcer
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
       - -endpoint
-      - caas/cluster/caas-cluster-1:SUPERPOD:12001
+      - caas/caas-cluster-1:SUPERPOD:12000
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -43,3 +46,32 @@ system:
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
+      args:
+      - --switchboard
+      - switchboardredis-lb:15001
+      ports:
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: redis
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
