@@ -22,7 +22,7 @@ system:
         path: /home/sfdc-mgmt/logs
     containers:
     - name: mgmt-hub
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-01-14-17-28-34
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-hub:mgmt-2019-01-14-18-34-46
       env:
       - name: PKI_CA_DIR
         value: /certs
