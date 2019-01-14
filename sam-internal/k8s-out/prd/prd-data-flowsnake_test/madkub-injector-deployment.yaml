@@ -23,7 +23,7 @@ spec:
         - /etc/madkub-required-volumes/volumes.jaysawn
         - -madkubContainerSpecFile
         - /etc/madkub-container-spec/spec.jaysawn
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:jenkins-dva-transformation-madkub-injector-webhook-PR-1-21-itest
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:jenkins-dva-transformation-madkub-injector-webhook-PR-1-23-itest
         imagePullPolicy: Always
         name: injector
         ports:
@@ -37,18 +37,6 @@ spec:
           readOnly: true
         - mountPath: /certs
           name: datacerts
-        - mountPath: /etc/kubernetes/kubeconfig
-          name: kubeconfig
-          readOnly: true
-        - mountPath: /etc/pki_service/ca
-          name: certificate-authority
-          readOnly: true
-        - mountPath: /etc/pki_service/platform/platform-client/certificates
-          name: client-certificate
-          readOnly: true
-        - mountPath: /etc/pki_service/platform/platform-client/keys
-          name: client-key
-          readOnly: true
       - args:
         - /sam/madkub-client
         - --madkub-endpoint
@@ -166,6 +154,7 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
+      serviceAccountName: madkub-injector
       volumes:
       - configMap:
           name: madkub-container-spec
@@ -179,15 +168,3 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
-      - hostPath:
-          path: /etc/kubernetes/kubeconfig
-        name: kubeconfig
-      - hostPath:
-          path: /etc/pki_service/ca
-        name: certificate-authority
-      - hostPath:
-          path: /etc/pki_service/platform/platform-client/certificates
-        name: client-certificate
-      - hostPath:
-          path: /etc/pki_service/platform/platform-client/keys
-        name: client-key
