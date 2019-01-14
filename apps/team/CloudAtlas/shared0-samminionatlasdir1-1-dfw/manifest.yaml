@@ -80,6 +80,8 @@ system:
       env:
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
+      - name: DUMMY_VAR_REDEPLOY_PLEASE
+        value: YES
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
