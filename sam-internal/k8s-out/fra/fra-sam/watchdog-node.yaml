@@ -33,7 +33,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sam/hypersam:sam-0002417-c81b1d32
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sam/hypersam:sam-0002440-9f537d20
         name: watchdog-node
         volumeMounts:
         - mountPath: /etc/pki_service
