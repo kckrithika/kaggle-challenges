@@ -32,7 +32,7 @@ if flowsnakeconfig.is_test then
                         "kingdom": kingdom,
                         "name": cert_name,
                         "role": "flowsnake.madkub-injector",
-                        "san": ["madkub-injector.default", "madkub-injector.default.svc", "madkub-injector.default.svc.cluster.local"]
+                        "san": ["madkub-injector.flowsnake", "madkub-injector.flowsnake.svc", "madkub-injector.flowsnake.svc.cluster.local"]
                     }]})
                 }
             },

@@ -13,7 +13,7 @@ spec:
       annotations:
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
           "prd", "name": "madkubinjector", "role": "flowsnake.madkub-injector", "san":
-          ["madkub-injector.default", "madkub-injector.default.svc", "madkub-injector.default.svc.cluster.local"]}]}'
+          ["madkub-injector.flowsnake", "madkub-injector.flowsnake.svc", "madkub-injector.flowsnake.svc.cluster.local"]}]}'
       labels:
         app: madkub-injector
     spec:
