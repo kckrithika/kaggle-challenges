@@ -14,13 +14,13 @@ system:
       - containerPort: 7020
       env:
       - name: SFDC_ENVIRONMENT
-        value: redis
+        value: stm
       - name: GRPC_SERVER_PORT
         value: "7020"
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-        value: "1"
+        value: "0"
       resources:
         limits:
           cpu: "8"
@@ -28,6 +28,9 @@ system:
         requests:
           cpu: "8"
           memory: 6Gi
+      volumeMounts:
+      - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
+        name: envoy-config-volume
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -40,11 +43,53 @@ system:
           port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
+      args:
+      - --template
+      - /switchboard-config/switchboard-sidecar.config.yaml.template
+      ports:
+      - containerPort: 15001
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /switchboard-config
+        name: envoy-config-volume
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    volumes:
+    - name: envoy-config-volume
+      emptyDir: {}
   loadbalancers:
   - lbname: switchboardredis-lb
     nodeExposed: true
     function: redis-switchboard
     ports:
     - lbtype: dsr
-      port: 7021
-      targetport: 7020
+      port: 15001
+      targetport: 15001
+    - lbtype: dsr
+      port: 15370
+      targetport: 15372
+    - lbtype: dsr
+      port: 15374
+      targetport: 15373
