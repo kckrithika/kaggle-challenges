@@ -28,4 +28,6 @@ std.prune({
         "sdp-root-url": "http://sdp2.csc-sam.prd-sam.prd.slb.sfdc.net",
         "commenter-test-mode": true,
         "commenter-test-mode-authors": ["benjamin-caldwell"],
+        "pr-evaluate-passed-regex": "SUCCESSFUL RUN.",
+        "pr-approval-link-regex": "Good news! Authorizing Pull Requests is now done through native GHE Approvals instead of clicking on an Authorization link in the PR",
 }) else "SKIP"
