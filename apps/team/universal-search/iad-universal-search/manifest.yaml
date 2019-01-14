@@ -139,6 +139,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      - name: foo
+        value: bar
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
