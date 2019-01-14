@@ -4,7 +4,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 if false then
 {
     apiVersion: "admissionregistration.k8s.io/v1beta1",
-    wind: "MutatingWebhookConfiguration",
+    kind: "MutatingWebhookConfiguration",
     metadata: {
         name: "madkub-container-spec",
         namespace: "flowsnake",
@@ -13,9 +13,10 @@ if false then
         name: "madkub-injector.flowsnake.sfdc.net",
         failurePolicy: "Fail",
         clientConfig: {
+            caBundle: "", # Optional, but a k8s bug requires this to be set in 1.9.7
             service: {
                 name: "madkub-injector",
-                namespace: "default",
+                namespace: "flowsnake",
                 path: "/"
             }
         },

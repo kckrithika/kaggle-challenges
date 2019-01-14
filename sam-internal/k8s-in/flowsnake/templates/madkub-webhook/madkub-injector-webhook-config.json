@@ -1,6 +1,6 @@
 {
     "apiVersion": "admissionregistration.k8s.io/v1beta1",
-    "wind": "MutatingWebhookConfiguration",
+    "kind": "MutatingWebhookConfiguration",
     "metadata": {
         "name": "madkub-container-spec",
         "namespace": "flowsnake"
@@ -9,9 +9,10 @@
         "name": "madkub-injector.flowsnake.sfdc.net",
         "failurePolicy": "Fail",
         "clientConfig": {
+            "caBundle": "",
             "service": {
                 "name": "madkub-injector",
-                "namespace": "default",
+                "namespace": "flowsnake",
                 "path": "/"
             }
         },
