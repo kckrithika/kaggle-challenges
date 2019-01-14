@@ -39,8 +39,6 @@ system:
         value: 12500
       - name: SERVICE_THREADCOUNT
         value: 100
-      - name: JVM_OPTS
-        value: "-XX:+UseG1GC -Xms14g -Xmx14g -XX:+UseStringDeduplication -XX:+ParallelRefProcEnabled -XX:+UseCompressedOops"
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
       - name: JAAS_CONF
@@ -64,7 +62,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 90
+        initialDelaySeconds: 70
         timeoutSeconds: 10
         periodSeconds: 120
         failureThreshold: 1
@@ -173,8 +171,8 @@ system:
       - containerPort: 15373
         name: sherpa-adm
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: { cpu: "100m", memory: "1Gi" }
+        requests: { cpu: "100m", memory: "1Gi" }
       volumeMounts:
       - name: client-cert-vol
         mountPath: /client-certs
