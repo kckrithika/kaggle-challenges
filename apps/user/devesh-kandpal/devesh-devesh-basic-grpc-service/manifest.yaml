@@ -20,7 +20,7 @@ system:
       livenessProbe:
         exec:
           command: ["/bin/true"]
-        initialDelaySeconds: 30
+        initialDelaySeconds: 40
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
