@@ -13,6 +13,14 @@ system:
       resources:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
+      args:
+        - -t 1,5,10,20
+        - -v 256,1024,10240,102400
+        - -o 0,1
+        - -p redis
+        - -s "-"
+        - -d prd
+        - -x 120
       livenessProbe:
         exec:
           command: ["true"]
@@ -21,56 +29,5 @@ system:
       env:
        - name: NOT_REQUIRED
          value: archimedes
-      volumeMounts:
-      - mountPath: /home/caas-client/envoy-config-volume
-        name: envoy-config-volume 
-
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
-      args:
-      - --switchboard
-      - switchboardredis-lb:7021
-      - --template
-      - /envoy-config/load-test.config.yaml.template
-      ports:
-      - containerPort: 15001
-      - containerPort: 15373
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: redis
-      resources:
-        limits:
-          cpu: "1"
-          memory: 1Gi
-        requests:
-          cpu: "1"
-          memory: 1Gi
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      volumeMounts:
-        - name: load-server-cert
-          mountPath: /server-certs
-        - name: load-client-cert
-          mountPath: /client-certs
-        - name: envoy-config-volume
-          mountPath: /envoy-config
-
-    volumes:
-    - name: load-server-cert
-      maddogCert:
-        type: server
-    - name: load-client-cert
-      maddogCert:
-        type: client
-    - name: envoy-config-volume
-      emptyDir: {}
+       - name: PYTHONUNBUFFERED
+         value: 1
