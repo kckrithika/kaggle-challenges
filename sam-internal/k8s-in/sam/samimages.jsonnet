@@ -23,8 +23,9 @@ local samreleases = import "samreleases.json";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         #[xiao] Fix synthetic in prd, also pushing metrics, setting annotations
-        "prd,prd-samdev,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181129_142039.cf62ee45e.dirty.xiaozhou-ltm2",
         "prd,prd-sam,temp-crd-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20181129_142039.cf62ee45e.dirty.xiaozhou-ltm2",
+        "prd,prd-samdev,temp-crd-watcher,hypersam": "sam-0002446-d9a84a95",
+        "prd,prd-samdev,samapp-controller,hypersam": "sam-0002446-d9a84a95",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
