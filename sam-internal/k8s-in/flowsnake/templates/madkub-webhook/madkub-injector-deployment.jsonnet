@@ -2,6 +2,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local madkub_common = import "madkub_common.jsonnet";
 local kingdom = std.extVar("kingdom");
+local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 
 local cert_name = "madkubinjector";
 
@@ -83,7 +84,10 @@ if flowsnakeconfig.is_test then
                     },
                     madkub_common.certs_volume,
                     madkub_common.tokens_volume,
-                ],
+                ] + (if !flowsnakeconfig.is_minikube then
+                    certs_and_kubeconfig.kubeconfig_volume +
+                    certs_and_kubeconfig.platform_cert_volume
+                else []),
             }
         }
     }
