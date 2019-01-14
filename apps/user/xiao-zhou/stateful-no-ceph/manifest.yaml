@@ -26,9 +26,16 @@ system:
         httpGet:
           path: /
           port: 8000
+    lbname: teststatefulfunclb-headless-lb
     volumes:
     - name: www
       hostPath:
         path: /data/rbd
     lbname: stateful-noceph
     terminationGracePeriodSeconds: 33
+  loadbalancers:
+  - lbname: teststatefulfunclb
+    function: stateful-func-noceph
+    ports:
+      - port: 9086
+        targetport: 8000
