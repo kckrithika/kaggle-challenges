@@ -20,7 +20,7 @@ system:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=5000
+           - --port=12001
         initialDelaySeconds: 15
         timeoutSeconds: 10
       ports:
