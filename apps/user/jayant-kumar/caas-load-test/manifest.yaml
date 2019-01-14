@@ -18,7 +18,6 @@ system:
         - -v 256,1024,10240,102400
         - -o 0,1
         - -p redis
-        - -s "-"
         - -d prd
         - -x 120
       livenessProbe:
