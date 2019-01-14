@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: sness-switchboard
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sness/sness-switchboard:sness-switchboard-server-port-7020
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sness/sness-switchboard-7020:sness-switchboard-7020-jan1419
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
