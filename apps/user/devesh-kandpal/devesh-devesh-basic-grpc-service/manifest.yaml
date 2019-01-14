@@ -17,7 +17,10 @@ system:
         name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
-      
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 30
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
@@ -53,7 +56,7 @@ system:
       - containerPort: 7443
         name: grpc-tls-in
       - containerPort: 7012
-        name: grpc-in
+        name: http2-in
       livenessProbe:
         exec:
           command:
