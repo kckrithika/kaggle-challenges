@@ -1075,6 +1075,96 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: ci-atf-mit-dev:prd-sam_mit:rolebinding
+    namespace: ci-atf-mit-dev
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionmit1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit1-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit3-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit3-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit3-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: ci-atf-mit-mirror:prd-sam_mit:rolebinding
+    namespace: ci-atf-mit-mirror
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionmit1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit1-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit3-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit3-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit3-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: ci-atf-mit:prd-sam_mit:rolebinding
+    namespace: ci-atf-mit
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionmit1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit1-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit3-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit3-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmit3-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: communities:prd-sam_moderation_einstein:rolebinding
     namespace: communities
   roleRef:
