@@ -16,7 +16,7 @@ system:
       args:
         - --port=5000
         - --maxMemoryMB=4096
-        - --noauth
+        - --noAuth
         - --disableProtectedMode
         - --bindToLoopback
       livenessProbe:
