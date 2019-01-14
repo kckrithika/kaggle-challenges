@@ -1,3 +1,5 @@
 apps:
     devesh-devesh-basic-grpc-service:
         - prd/prd-sam
+    geoip-envoy-tls-sandbox:
+        - prd/prd-sam
