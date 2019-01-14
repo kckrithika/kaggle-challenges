@@ -4,6 +4,13 @@ system:
   functions:
   - name: ordering-istio
     count: 1
+    labels:
+      disco_dc: prd
+      disco_env: ""
+      disco_subenv: ""
+      disco_pod: ""
+      disco_sp: ""
+      disco_role: ordering-istio
     annotations:
       sidecar.istio.io/inject: "true"
     containers:
@@ -21,7 +28,7 @@ system:
       - name: GRPC_PORT
         value: 7036
       - name: SCONE_SHIPPING_DEST
-        value: shipping-istio:7035
+        value: shipping-istio.mesh-control-plane.svc.cluster.local:7035
       ports:
       - containerPort: 7036
         name: grpc-svc
