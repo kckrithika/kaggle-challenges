@@ -39,6 +39,8 @@ system:
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_iad.conf
       - name: JAAS_CONF
         value: /home/sfdc-usmt/krb-config/jaas-private.conf
+      - name: foo
+        value: bar        
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
