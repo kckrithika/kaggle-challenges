@@ -17,11 +17,7 @@ system:
         name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
-      livenessProbe:
-        initialDelaySeconds: 30
-        httpGet:
-          path: /manage/health
-          port: 15372
+      
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
