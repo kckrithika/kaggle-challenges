@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-logrotator
-      image: docker-all/dva/csc-health/candidate-service:3
+      image: docker-all/dva/csc-health/candidate-service:5
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: candidate-service
-      image: docker-all/dva/csc-health/candidate-service:3
+      image: docker-all/dva/csc-health/candidate-service:5
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -98,6 +98,20 @@ system:
 
         export CHS_REPORTCOLLECTOR_WHITELIST=${providers} ;
         export CHS_REPORTCOLLECTOR_POLLPERIOD=60s ;
+
+        case ${KINGDOM} in
+          prd)
+            export CHS_SMOOTHINGCONFIG_ENABLED=true ;
+            export CHS_SMOOTHINGCONFIG_SIZE=10 ;
+            export CHS_SMOOTHINGCONFIG_OPINIONLOOKBACK=10 ;
+            export CHS_SMOOTHINGCONFIG_FLAPLOOKBACK=10 ;
+            export CHS_SMOOTHINGCONFIG_FLAPTHRESHHOLD=7 ;
+            export CHS_SMOOTHINGCONFIG_HEALTHYOPTHRESHOLD=80.0 ;
+            export CHS_SMOOTHINGCONFIG_PROBEXITLOOKBACK=10 ;
+
+            ;;
+          *)
+        esac;
 
         /candidateservice
       "]
