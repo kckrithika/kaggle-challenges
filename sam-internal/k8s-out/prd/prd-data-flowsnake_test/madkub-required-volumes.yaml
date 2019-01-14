@@ -8,5 +8,5 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  name: madkub-required-containers
+  name: madkub-required-volumes
   namespace: flowsnake
