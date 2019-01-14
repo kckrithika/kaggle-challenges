@@ -127,7 +127,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
-                kube_dns_no_service_account: "verified-in-prd-test",
+                kube_dns_no_service_account: "verified-in-prd-dev",
             },
             version_mapping: {
                 main: {
@@ -153,6 +153,7 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                kube_dns_no_service_account: "verified-in-prd-dev",
             },
             version_mapping: {
                 main: {
