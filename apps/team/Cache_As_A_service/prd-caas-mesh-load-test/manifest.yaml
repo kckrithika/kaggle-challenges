@@ -28,6 +28,6 @@ system:
         periodSeconds: 5
       env:
        - name: NOT_REQUIRED
-         value: archimedes
+         value: pythogoras
        - name: PYTHONUNBUFFERED
          value: 1
