@@ -88,7 +88,6 @@ local internal = {
     #
     do_override_based_on_tag(overrides, tnrp_repo, image_name, tag):: (
         local tagAfterOverride = internal.do_override(overrides, image_name, tag, $.templateFilename);
-        local splitOnSlash = std.split(tagAfterOverride, "/");
         if (std.startsWith(tagAfterOverride, "ops0-artifactrepo") || (std.startsWith(tagAfterOverride, "ops-artifactrepo"))) then
           tagAfterOverride
         else
