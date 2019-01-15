@@ -46,6 +46,11 @@ else
                             {
                                 name: cert.name,
                                 role: "flowsnake." + flowsnake_config.role_munge_for_estate(app_name),
+                                # SLB SAN matches lbname in sam-manifests/apps/team/flowsnake/vips/prd/vips.yaml
+                                san: [
+                                    flowsnake_config.slb_fqdn(app_name),
+                                    flowsnake_config.service_mesh_fqdn(app_name),
+                                ],
                                 "cert-type": cert.type,
                                 kingdom: kingdom,
                             },

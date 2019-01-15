@@ -17,7 +17,8 @@ spec:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
-          "prd", "name": "impersonation-server", "role": "flowsnake.impersonation-proxy-test"}]}'
+          "prd", "name": "impersonation-server", "role": "flowsnake.impersonation-proxy-test",
+          "san": ["impersonation-proxy-test-flowsnake-prd.slb.sfdc.net", "impersonation-proxy-test.flowsnake.localhost.mesh.force.com"]}]}'
       labels:
         apptype: control
         flowsnakeOwner: dva-transform

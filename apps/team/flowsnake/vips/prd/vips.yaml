@@ -223,3 +223,22 @@
      healthport: 80
      healthpath: "/ping.jsp"
      healthprotocol: "http"
+- lbname: impersonation-proxy-test
+  servers:
+      - fs1shared0-flowsnakeworkertest1-1-prd.eng.sfdc.net
+      - fs1shared0-flowsnakeworkertest2-3-prd.eng.sfdc.net
+      - fs1shared0-flowsnakeworkertest2-2-prd.eng.sfdc.net
+      - fs1shared0-flowsnakeworkertest1-3-prd.eng.sfdc.net
+      - fs1shared0-flowsnakeworkertest1-5-prd.eng.sfdc.net
+      - fs1shared0-flowsnakeworkertest2-5-prd.eng.sfdc.net
+      - fs1shared0-flowsnakeworkertest1-2-prd.eng.sfdc.net
+      - fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net
+      - fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net
+      - fs1shared0-flowsnakeworkertest2-4-prd.eng.sfdc.net
+  ports:
+      - port: 444
+        targetport: 443
+        lbtype: tcp
+        healthport: 443
+        healthpath: "/healthz"
+        healthprotocol: "https"
