@@ -20,9 +20,10 @@ data:
       "resource-cooldown": 15000000000,
       "resource-progression-timeout": 120000000000,
       "resources-to-skip": [
-        "image-promotion.yaml",
         "_flowsnake-sdn-secret.yaml",
-        "deepsea-kdc-endpoints.yaml"
+        "deepsea-kdc-endpoints.yaml",
+        "image-promotion.yaml",
+        "sdn-secret.yaml"
       ],
       "sender": "flowsnake@salesforce.com",
       "smtp-server": "smtpops-prd-sp1.data.sfdc.net:25",

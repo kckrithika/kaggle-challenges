@@ -172,5 +172,7 @@ local kingdom = std.extVar("kingdom");
         },
         "par/par-flowsnake_prod": {
         },
+        "dfw/dfw-flowsnake_prod": {
+        },
     },
 }
