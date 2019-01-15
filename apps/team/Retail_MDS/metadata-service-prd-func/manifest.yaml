@@ -126,6 +126,3 @@ system:
     - port: 7443
       targetport: 7443
 
-    # Plain text gRPC port, served by sherpa. Used for testing only.
-    - port: 7020
-      targetport: 7020
