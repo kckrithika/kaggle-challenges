@@ -43,6 +43,7 @@ system:
         value: 15523
       - name: JVM_ARGS
         value: "-Dgdot.server-url=https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+                -Djwt-validation.enablement-per-role.app=false
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       livenessProbe:
         initialDelaySeconds: 60
