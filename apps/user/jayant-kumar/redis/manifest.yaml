@@ -64,8 +64,6 @@ system:
           cpu: "1"
           memory: 1Gi
       volumeMounts:
-      - mountPath: /switchboard-config
-        name: envoy-config-volume
       - mountPath: /client-certs
         name: tls-client-cert
       - mountPath: /server-certs
