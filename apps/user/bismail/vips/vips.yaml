@@ -66,8 +66,6 @@
   - port: 9292
     targetport: 9292
     lbtype: http
-    tls: true
-    reencrypt: true
     healthport: 80
     healthprotocol: tcp
 - lbname: pra-nova-test-prd
