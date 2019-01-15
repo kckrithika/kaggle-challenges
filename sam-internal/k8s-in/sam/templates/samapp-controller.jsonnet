@@ -3,7 +3,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local utils = import "util_functions.jsonnet";
 
 // Only for testing purpose
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "vpod" || configs.kingdom == "frf" || utils.is_pcn(configs.kingdom) then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "vpod" || configs.kingdom == "frf" || utils.is_pcn(configs.kingdom) then std.prune({
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -18,7 +18,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                             "/sam/samapp-controller",
                             "--v=3",
                             "--logtostderr=true",
-                            "--ciNamespaceConfigFile=/ci/ci-namespaces.json",
+                            (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "vpod" then "--ciNamespaceConfigFile=/ci/ci-namespaces.json" else {}),
                             "--config=/config/samapp-controller-config.json",
                             (if configs.kingdom == "vpod" then "--resyncPeriod=2m" else {}),
                             configs.sfdchosts_arg,
@@ -29,7 +29,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                         volumeMounts+: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
-                            configs.ci_namespaces_volume_mount,
+                            (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "vpod" then configs.ci_namespaces_volume_mount else {}),
                             configs.cert_volume_mount,
                         ]),
                     }
@@ -48,7 +48,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                 volumes+: configs.filter_empty([
                     configs.sfdchosts_volume,
                     configs.cert_volume,
-                    configs.ci_namespaces_volume,
+                    (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "vpod" then configs.ci_namespaces_volume else {}),
                     configs.config_volume("samapp-controller"),
                 ]),
                 nodeSelector: {
@@ -87,4 +87,4 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         name: "samappcontroller",
         [if configs.kingdom == "vpod" then "namespace"]: "sam-system",
     },
-} else "SKIP"
+}) else "SKIP"

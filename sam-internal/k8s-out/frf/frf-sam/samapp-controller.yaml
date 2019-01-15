@@ -23,7 +23,6 @@ spec:
         - /sam/samapp-controller
         - --v=3
         - --logtostderr=true
-        - --ciNamespaceConfigFile=/ci/ci-namespaces.json
         - --config=/config/samapp-controller-config.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --madkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
@@ -41,8 +40,6 @@ spec:
           name: sfdchosts
         - mountPath: /config
           name: config
-        - mountPath: /ci
-          name: ci-namespaces
         - mountPath: /data/certs
           name: certs
       hostNetwork: true
@@ -61,9 +58,6 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
-      - configMap:
-          name: ci-namespaces
-        name: ci-namespaces
       - configMap:
           name: samapp-controller
         name: config
