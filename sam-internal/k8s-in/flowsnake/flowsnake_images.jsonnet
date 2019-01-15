@@ -123,6 +123,7 @@ local utils = import "util_functions.jsonnet";
         "2": self.default_image_tags {
 
             // image tag overrides go here
+            deployer_image_tag: "sam-0002376-c267a6c7",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
