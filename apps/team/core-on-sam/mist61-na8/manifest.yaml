@@ -263,7 +263,7 @@ system:
 
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:5decee
+      image: sfci/casam/sequencer:59b70f
 
       env:
         - name: CASAM_SETTINGS_PATH
