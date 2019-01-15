@@ -65,7 +65,12 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                                   } else {
                                       pool: configs.estate,
                                   },
-                },
+                } + (
+                     if utils.is_pcn(configs.kingdom) then {
+                         serviceAccount: "sam-stack-edit",
+                         serviceAccountName: "sam-stack-edit",
+                     } else {}
+                ),
                 metadata: {
                     labels: {
                         name: "temp-crd-watcher",

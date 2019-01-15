@@ -39,6 +39,8 @@ spec:
       hostNetwork: true
       nodeSelector:
         pool: private-cluster
+      serviceAccount: sam-stack-edit
+      serviceAccountName: sam-stack-edit
       volumes:
       - hostPath:
           path: /data/certs

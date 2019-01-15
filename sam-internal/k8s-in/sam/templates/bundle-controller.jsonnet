@@ -46,7 +46,12 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                               } else {
                                   pool: configs.estate,
                               },
-            },
+            } + (
+                  if utils.is_pcn(configs.kingdom) then {
+                      serviceAccount: "sam-stack-edit",
+                      serviceAccountName: "sam-stack-edit",
+                  } else {}
+            ),
             metadata: {
                 labels: {
                     name: "bundlecontroller",
