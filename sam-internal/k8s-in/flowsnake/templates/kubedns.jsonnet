@@ -238,13 +238,6 @@ else
                 hostNetwork: true,
                 schedulerName: "default-scheduler",
                 securityContext: {},
-            } + (
-                if !std.objectHas(flowsnake_images.feature_flags, "kube_dns_no_service_account") then {
-                    serviceAccount: "kube-dns",
-                    serviceAccountName: "kube-dns",
-                } else {}
-) +
-            {
                 terminationGracePeriodSeconds: 30,
                 tolerations: [
                     {
