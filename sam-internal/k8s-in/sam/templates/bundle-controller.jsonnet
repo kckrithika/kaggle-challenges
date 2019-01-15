@@ -18,10 +18,10 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                             "--config=/config/bundle-controller-config.json",
                             "--funnelEndpoint=" + configs.funnelVIP,
                         ]),
-                        volumeMounts+: [
+                        volumeMounts+: configs.filter_empty([
                             configs.cert_volume_mount,
                             configs.config_volume_mount,
-                        ],
+                        ]),
                     }
                     + configs.containerInPCN
                     + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
@@ -35,10 +35,10 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                          },
                      } else {}),
                 ],
-                volumes+: [
+                volumes+: configs.filter_empty([
                     configs.cert_volume,
                     configs.config_volume("bundle-controller"),
-                ],
+                ]),
                 nodeSelector: {
                               } +
                               if configs.kingdom == "prd" then {

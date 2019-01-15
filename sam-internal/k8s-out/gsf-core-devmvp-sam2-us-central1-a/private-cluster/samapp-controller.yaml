@@ -42,8 +42,6 @@ spec:
           name: config
         - mountPath: /ci
           name: ci-namespaces
-        - mountPath: /data/certs
-          name: certs
       hostNetwork: true
       nodeSelector:
         pool: private-cluster
@@ -53,9 +51,6 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
-      - hostPath:
-          path: /data/certs
-        name: certs
       - configMap:
           name: ci-namespaces
         name: ci-namespaces

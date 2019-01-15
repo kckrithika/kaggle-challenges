@@ -40,17 +40,12 @@ spec:
           name: sfdchosts
         - mountPath: /config
           name: config
-        - mountPath: /data/certs
-          name: certs
       hostNetwork: true
       nodeSelector:
         pool: private-cluster
       serviceAccount: sam-stack-edit
       serviceAccountName: sam-stack-edit
       volumes:
-      - hostPath:
-          path: /data/certs
-        name: certs
       - configMap:
           name: sfdchosts
         name: sfdchosts
