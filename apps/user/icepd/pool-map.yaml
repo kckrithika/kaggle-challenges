@@ -1,3 +1,5 @@
 apps:
  gatekeeper-dashboard:
   - prd/prd-sam
+ gateway:
+  - prd/prd-sam
