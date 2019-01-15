@@ -58,12 +58,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                               } else {
                                   pool: configs.estate,
                               },
-            } + (
-                 if utils.is_pcn(configs.kingdom) then {
-                      serviceAccount: "sam-stack-edit",
-                      serviceAccountName: "sam-stack-edit",
-                 } else {}
-            ),
+            } + configs.serviceAccount,
             metadata: {
                 labels: {
                     name: "samappcontroller",
