@@ -6,10 +6,10 @@ system:
     count: 1
     labels:
       disco_dc: prd
-      disco_env: ""
+      disco_env: "stm"
       disco_subenv: ""
-      disco_pod: ""
-      disco_sp: ""
+      disco_pod: "na45"
+      disco_sp: "SP2"
       disco_role: ordering-istio
     annotations:
       sidecar.istio.io/inject: "true"
