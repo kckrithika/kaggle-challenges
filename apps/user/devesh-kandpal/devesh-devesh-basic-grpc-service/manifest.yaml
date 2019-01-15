@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: devesh-devesh-basic-grpc-service-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/devesh.kandpal/devesh-devesh-basic-grpc-service:4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/devesh.kandpal/devesh-devesh-basic-grpc-service:6
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -34,7 +34,7 @@ system:
       # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
       args:
       - -endpoint
-      - samapp/user-devesh-kandpal/devesh-devesh-basic-grpc-service-service:DATACENTER:7443
+      - samapp/user-devesh-kandpal/devesh-devesh-basic-grpc-service:DATACENTER:7443
       - -logging.dir
       - /log
       livenessProbe:
