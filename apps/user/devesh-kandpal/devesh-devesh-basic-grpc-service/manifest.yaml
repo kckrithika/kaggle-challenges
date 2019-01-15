@@ -8,7 +8,12 @@ system:
     count: 1
     containers:
     - name: devesh-devesh-basic-grpc-service-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/devesh.kandpal/devesh-devesh-basic-grpc-service:6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/devesh.kandpal/devesh-devesh-basic-grpc-service:7
+      env:
+      - name: SCONE_SERVICE_NAME
+        value: "devesh-devesh-basic-grpc-service"
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -27,6 +32,9 @@ system:
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
       # This announces your gRPC endpoint for HTTP2 traffic with mTLS
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       # The following are system defined variables injected by SAM:
@@ -34,7 +42,7 @@ system:
       # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
       args:
       - -endpoint
-      - samapp/user-devesh-kandpal/devesh-devesh-basic-grpc-service:DATACENTER:7443
+      - samapp/user-devesh-kandpal/devesh-devesh-basic-grpc-service:DATACENTER_ALLENV:7443
       - -logging.dir
       - /log
       livenessProbe:
@@ -49,6 +57,8 @@ system:
     - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
       image: sfci/servicelibs/sherpa-envoy:1.0.4
+      - name: SFDC_ENVIRONMENT
+        value: mesh
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       ports:
       - containerPort: 15373
