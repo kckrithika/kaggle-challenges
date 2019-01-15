@@ -10,5 +10,5 @@ local configs = import "config.jsonnet";
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     fredEnabled: (slbimages.phaseNum <= 2),
     georgeEnabled: (slbimages.phaseNum <= 2),
-    ipvsConnTabBits: (if slbimages.phaseNum <= 2 then 20 else 0),
+    ipvsConnTabBits: (if slbimages.hypersdn_build >= 1423 then 20 else 0),
 }
