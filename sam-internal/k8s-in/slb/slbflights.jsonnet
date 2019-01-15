@@ -12,4 +12,5 @@ local configs = import "config.jsonnet";
     georgeEnabled: (slbimages.phaseNum <= 2),
     ipvsConnTabBits: (if slbimages.hypersdn_build >= 1423 then 20 else 0),
     ipvsInstallerPackage: (if slbimages.phaseNum <= 1 then "20190114" else "20180910"),
+    nginxAccesslogsEnabled: (configs.estate == "prd-sdc" && slbimages.hypersdn_build >= 1425),
 }
