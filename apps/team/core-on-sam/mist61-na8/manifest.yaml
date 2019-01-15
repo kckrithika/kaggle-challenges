@@ -263,7 +263,7 @@ system:
 
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:70f512
+      image: sfci/casam/sequencer:5decee
 
       env:
         - name: CASAM_SETTINGS_PATH
@@ -284,7 +284,7 @@ system:
         - name: NEW_RELEASE_VERSION
           value: green
         - name: MAJOR_RELEASE_NUMBER
-          value: 216
+          value: 218
         - name: DB_SID
           value: mist61b218utf
         - name: OLD_DWARF
