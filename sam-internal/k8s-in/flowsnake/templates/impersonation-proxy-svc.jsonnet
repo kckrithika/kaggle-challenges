@@ -1,6 +1,6 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-if flowsnake_config.is_minikube || std.objectHas(flowsnake_images.feature_flags, "impersonation_proxy") then
+if flowsnake_config.impersonation_proxy_enabled then
 {
     apiVersion: "v1",
     kind: "Service",
