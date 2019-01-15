@@ -42,8 +42,6 @@ system:
         value: "geoip-envoy-tls"
       - name: JAVA_OPTS
         value: "-Xms512m -Xmx512m"
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
       - name: COM_MAXMIND_DATABASE_FILE
         value: "/dw/data/GeoIP2-City.mmdb"
       - name: LOGGING_DIR
@@ -74,9 +72,7 @@ system:
     # incoming http2+TLS port.
     - name: beacon
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
+      
       args:
       - -endpoint
       - samapp/user-devesh-kandpal/geoip-envoy-tls:DATACENTER_ALLENV:7443
@@ -89,9 +85,7 @@ system:
     - name: sherpa
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
       image: sfci/servicelibs/sherpa-envoy:4e6626dc397261d4a3b10c430d2914cff741805b
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
+      
       livenessProbe:
         httpGet:
           path: /listeners
@@ -107,6 +101,8 @@ system:
         name: geoip-in
       - containerPort: 15373
         name: sherpa-admin
+      - containerPort: 7012
+        name: http2-in
       volumeMounts:
         - name: geoip-tls-client-cert
           mountPath: /client-certs
