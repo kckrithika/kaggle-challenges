@@ -64,6 +64,10 @@ system:
       volumeMounts:
       - mountPath: /switchboard-config
         name: envoy-config-volume
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
       livenessProbe:
         exec:
           command:
@@ -79,6 +83,12 @@ system:
     volumes:
     - name: envoy-config-volume
       emptyDir: {}
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - lbname: switchboardredis-lb
     nodeExposed: true
