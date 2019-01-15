@@ -240,5 +240,4 @@
         targetport: 443
         lbtype: tcp
         healthport: 443
-        healthpath: "/healthz"
-        healthprotocol: "https"
+        healthprotocol: "tcp"
