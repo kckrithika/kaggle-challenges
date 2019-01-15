@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: sness-switchboard
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sness/sness-switchboard-7020:sness-switchboard-7020-jan1419
+      image: sfci/servicelibs/switchboard:64d424229cc650ce38e61cee8c808852d0ed7a29
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -28,6 +28,8 @@ system:
       ports:
       - containerPort: 15372
       env:
+      - name: SCONE_SERVICE_NAME
+        value: "sness-switchboard"
       - name: SFDC_ENVIRONMENT
         value: stm
       - name: GRPC_SERVER_BIND_ENDPOINT
