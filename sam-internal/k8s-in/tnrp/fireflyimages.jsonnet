@@ -69,7 +69,7 @@ local configs = import "config.jsonnet";
              fireflycrawler: "279",
              fireflypackage: "279",
              fireflypromotion: "279",
-             fireflypullrequest: "281",
+             fireflypullrequest: "284",
              fireflyevalresultmonitor: "278",
              fireflydind: "224",
              rabbitmq: "140",
