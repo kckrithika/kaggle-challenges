@@ -43,6 +43,8 @@ system:
         value: false
       - name: GDOT_BASEPATHOVERRIDE
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+      - name: DFS_THREADPOOLSIZE
+        value: 100
       - name: DFS_MAXCONNECTIONPERROUTE
         value: 50
       - name: DFS_MAXCONNECTIONTOTAL
