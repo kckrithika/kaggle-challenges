@@ -57,8 +57,8 @@ if flowsnakeconfig.is_test then
                                 mountPath: "/etc/madkub-required-volumes",
                                 readOnly: true
                             },
-                            madkub_common.certs_mount
-                        ],
+                        ] +
+                        madkub_common.cert_mounts(cert_name),
                         args: [
                             "-madkubVolumesFile",
                             "/etc/madkub-required-volumes/volumes.jaysawn",
@@ -82,11 +82,10 @@ if flowsnakeconfig.is_test then
                             name: "madkub-required-volumes"
                         }
                     },
-                    madkub_common.certs_volume,
-                    madkub_common.tokens_volume,
-                ] + (if !flowsnakeconfig.is_minikube then
-                    certs_and_kubeconfig.kubeconfig_volume +
-                    certs_and_kubeconfig.platform_cert_volume
+                ] +
+                madkub_common.cert_volumes(cert_name) +
+                (if !flowsnakeconfig.is_minikube then
+                    certs_and_kubeconfig.kubeconfig_volume
                 else []),
             }
         }

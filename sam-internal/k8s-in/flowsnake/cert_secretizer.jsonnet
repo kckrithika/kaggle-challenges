@@ -1,16 +1,18 @@
+local madkub_common = import "madkub_common.jsonnet";
 {
+    local cert_config = madkub_common.make_cert_config([{ name: "ingresscerts", type: "server" }])[0],
     cert_secretizer_config: {
         certToSecretConfigs: [
             {
                 type: "TLSSecret",
                 secretName: "flowsnake-tls",
-                certFileLocation: "/certs/server/certificates/server.pem",
-                keyFileLocation: "/certs/server/keys/server-key.pem",
+                certFileLocation: cert_config.cert_path,
+                keyFileLocation: cert_config.key_path,
             },
             {
                 type: "CASecret",
                 secretName: "sfdc-ca",
-                certFileLocation: "/certs/ca.pem",
+                certFileLocation: cert_config.ca_path,
             },
         ],
     },

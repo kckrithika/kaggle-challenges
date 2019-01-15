@@ -169,9 +169,6 @@ spec:
           medium: Memory
         name: tokens
       - hostPath:
-          path: /etc/kubernetes/kubeconfig
-        name: kubeconfig
-      - hostPath:
           path: /etc/pki_service/ca
         name: certificate-authority
       - hostPath:
@@ -180,3 +177,6 @@ spec:
       - hostPath:
           path: /etc/pki_service/platform/platform-client/keys
         name: client-key
+      - hostPath:
+          path: /etc/kubernetes/kubeconfig
+        name: kubeconfig
