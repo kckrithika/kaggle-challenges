@@ -43,7 +43,7 @@ spec:
         - --tlsPorts=9443
         - --privateKey=/canarycert/server/keys/server-key.pem
         - --publicKey=/canarycert/server/certificates/server.pem
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001419-7536d158
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001422-66069a2c
         name: slb-bravo
         volumeMounts:
         - mountPath: /host/data/slb/logs/
