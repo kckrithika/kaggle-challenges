@@ -355,6 +355,12 @@ local utils = import "util_functions.jsonnet",
         ],
     } else {}),
 
+    serviceAccount: (if utils.is_pcn(kingdom) then {
+         serviceAccount: "sam-stack-edit",
+         serviceAccountName: "sam-stack-edit",
+
+    } else {}),
+
     pcnEnableLabel: (if utils.is_pcn(kingdom) then {
         pcn: "deploy",
     } else {}),
