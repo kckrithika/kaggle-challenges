@@ -68,7 +68,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
-                            "--IpvsPath=20180910",
+                            "--IpvsPath=%s" % [slbflights.ipvsInstallerPackage],
                             configs.sfdchosts_arg,
                         ] + (if slbflights.ipvsConnTabBits != 0 then [
                             "--ipvsConnTabBits=%d" % [slbflights.ipvsConnTabBits],
