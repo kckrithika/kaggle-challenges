@@ -63,6 +63,13 @@ system:
         requests:
           cpu: "1"
           memory: 1Gi
+      volumeMounts:
+      - mountPath: /switchboard-config
+        name: envoy-config-volume
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
       livenessProbe:
         exec:
           command:
@@ -75,3 +82,10 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
