@@ -298,16 +298,16 @@ local utils = import "util_functions.jsonnet",
     },
 
     # For use by apps that read the host's certs from Certificate Services
-    cert_volume_mount: {
+    cert_volume_mount: (if !utils.is_pcn(kingdom) then {
         mountPath: "/data/certs",
         name: "certs",
-    },
-    cert_volume: {
+    } else {}),
+    cert_volume: (if !utils.is_pcn(kingdom) then {
         hostPath: {
             path: "/data/certs",
         },
         name: "certs",
-    },
+    } else {}),
     caFile: (
         "/etc/pki_service/ca/cabundle.pem"
     ),

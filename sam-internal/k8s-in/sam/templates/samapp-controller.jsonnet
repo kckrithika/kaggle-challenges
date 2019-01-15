@@ -26,12 +26,12 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                                   # Kept here because of the use of the envvar. Keep in sync with the config.
                                   "--madkubEndpoint=" + "https://$(MADKUBSERVER_SERVICE_HOST):32007",
                               ] else []),
-                        volumeMounts+: [
+                        volumeMounts+: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
                             configs.ci_namespaces_volume_mount,
                             configs.cert_volume_mount,
-                        ],
+                        ]),
                     }
                     + configs.containerInPCN
                     + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
@@ -45,12 +45,12 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                          },
                      } else {}),
                 ],
-                volumes+: [
+                volumes+: configs.filter_empty([
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     configs.ci_namespaces_volume,
                     configs.config_volume("samapp-controller"),
-                ],
+                ]),
                 nodeSelector: {
                               } +
                               if configs.kingdom == "prd" then {

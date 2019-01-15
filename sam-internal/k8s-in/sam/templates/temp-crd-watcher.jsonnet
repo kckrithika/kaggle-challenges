@@ -30,11 +30,11 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                                       "--crdGetEnabled=true",
                                   ] else []
                               )),
-                            volumeMounts+: [
+                            volumeMounts+: configs.filter_empty([
                                 configs.sfdchosts_volume_mount,
                                 configs.config_volume_mount,
                                 configs.cert_volume_mount,
-                            ],
+                            ]),
                         } + configs.containerInPCN
                         + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                              livenessProbe: {
@@ -47,7 +47,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                               },
                           } else {}),
                     ],
-                    volumes+: [
+                    volumes+: configs.filter_empty([
                         configs.cert_volume,
                         configs.sfdchosts_volume,
                         {
@@ -57,7 +57,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                             name: "sfdc-volume",
                         },
                         configs.config_volume("temp-crd-watcher"),
-                    ],
+                    ]),
                     nodeSelector: {
                                   } +
                                   if configs.kingdom == "prd" then {
