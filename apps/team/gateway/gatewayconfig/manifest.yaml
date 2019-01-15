@@ -1,0 +1,112 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - kbotha@salesforce.com
+      - gateway@salesforce.com
+      - yangyangliu@salesforce.com
+  functions:
+  - name: gateway-service
+    count: 3
+    volumes: 
+    - name: client-cert
+      maddogCert:
+        type: client
+    - name: server-cert
+      maddogCert:
+        type: server
+        lbnames:
+        - gatewayconfiglb
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-gatewayconfig/logs
+    - name: logvolsherpa
+      hostPath:
+        path: /home/sfdc-gatewayconfig/logs
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-gatewayconfig/logs
+    - name: repo
+      emptyDir:
+        medium: Memory
+    containers:
+    - name: gatewayconfig
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gateway/gatewayconfig:2019-01-09b
+      env:
+      - name: PKI_CA_DIR
+        value: /server-certs
+      - name: PKI_MONITORDIR
+        value: /server-certs/server
+      - name: LOGGING_JSON_STDOUT_LEVEL
+        value: all
+      - name: LOGGING_STDERR_LEVEL
+        value: all
+      volumeMounts:
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
+      - name: logvol
+        mountPath: /log
+      - name: repo
+        mountPath: /repo
+      args:
+        - start
+      ports:
+      - containerPort: 7022
+      - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 21
+        periodSeconds: 15
+        #exec:
+        #  command:
+        #  - "/bin/true"
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTPS
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      ports:
+      - containerPort: 7442
+        name: http1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      volumeMounts:
+      - name: logvolsherpa
+        mountPath: /log
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
+      livenessProbe:
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        exec:
+          command:
+          - ./bin/is-alive
+      readinessProbe:
+        initialDelaySeconds: 100
+        periodSeconds: 5
+        exec:
+          command:
+          - ./bin/is-ready
+    - name: beacon
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - gateway/gateway-service:DATACENTER_ALLENV:7442
+      volumeMounts:
+      - name: logvolbeacon
+        mountPath: /log
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+  loadbalancers:
+  - lbname: gatewayconfiglb
+    function: gateway-service
+    ports:
+    - port: 7022
+      targetport: 7022
