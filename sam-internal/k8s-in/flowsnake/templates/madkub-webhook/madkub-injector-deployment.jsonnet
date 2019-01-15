@@ -48,6 +48,11 @@ if flowsnakeconfig.is_test then
                         }],
                         volumeMounts: [
                             {
+                                name: "kubeconfig",
+                                mountPath: "/etc/kubeconfig",
+                                readOnly: true
+                            },
+                            {
                                 name: "spec",
                                 mountPath: "/etc/madkub-container-spec",
                                 readOnly: true
@@ -64,12 +69,20 @@ if flowsnakeconfig.is_test then
                             "/etc/madkub-required-volumes/volumes.jaysawn",
                             "-madkubContainerSpecFile",
                             "/etc/madkub-container-spec/spec.jaysawn",
+                            "-kubeconfig",
+                            "/etc/kubeconfig/kubeconfig.json",
                         ]
                     },
                     madkub_common.refresher_container(cert_name),
                 ],
                 initContainers: [ madkub_common.init_container(cert_name) ],
                 volumes: [
+                    {
+                        name: "kubeconfig",
+                        configMap: {
+                            name: "insecure-injector-kubeconfig"
+                        }
+                    },
                     {
                         name: "spec",
                         configMap: {
