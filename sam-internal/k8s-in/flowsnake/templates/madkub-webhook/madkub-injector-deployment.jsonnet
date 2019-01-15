@@ -58,11 +58,7 @@ if flowsnakeconfig.is_test then
                                 readOnly: true
                             },
                         ] +
-                        madkub_common.cert_mounts(cert_name) +
-                        (if !flowsnakeconfig.is_minikube then
-                            certs_and_kubeconfig.kubeconfig_volumeMounts +
-                            certs_and_kubeconfig.platform_cert_volumeMounts
-                        else []),
+                        madkub_common.cert_mounts(cert_name),
                         args: [
                             "-madkubVolumesFile",
                             "/etc/madkub-required-volumes/volumes.jaysawn",
