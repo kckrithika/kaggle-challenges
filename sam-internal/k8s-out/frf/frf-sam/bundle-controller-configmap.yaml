@@ -8,7 +8,7 @@ data:
       "resyncinterval": "60m",
       "threadcount": 15,
       "whiteListNamespaceRegexp": [
-        "^ci-*"
+        "csc-sam"
       ]
     }
 kind: ConfigMap
