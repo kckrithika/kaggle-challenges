@@ -296,17 +296,17 @@ system:
         - name: SNOWWHITE_PWD
           value: rotate
         - name: LOCK_DWARF
-          value: 1
+          value: 0
         - name: TRIGGER_CAFFEINE
           value: 1
         - name: UNLOCK_DWARF
-          value: 1
+          value: 0
         - name: KILL_DWARF
-          value: 1
+          value: 0
         - name: ENABLE_DB_SCHEMA_UPGRADE
           value: 0
         - name: SET_DEFAULT_ORACLE_EDITION
-          value: 1
+          value: 0
         # set http proxy required for gus chatter binary to reach to login.salesforce.com
         - name: HTTP_PROXY
           value: public0-proxy1-0-prd.data.sfdc.net:8080
