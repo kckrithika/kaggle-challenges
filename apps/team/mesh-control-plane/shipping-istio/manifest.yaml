@@ -45,4 +45,8 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-
+  loadbalancers:
+  - lbname: shipping-istio
+    ports:
+    - port: 7035
+      targetPort: 7035
