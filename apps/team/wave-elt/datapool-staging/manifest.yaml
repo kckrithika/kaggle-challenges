@@ -37,7 +37,7 @@ system:
         value: /home/datapool/client-certs/client
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
-        value: dva/datapool-engine:401
+        value: dva/datapool-engine:404-251cfbe367f37889279f6ad97464e811aa16b6eb
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_NEXT
         value: dva/datapool-engine:jenkins-insights-WaveDataPool-master-283-itest
