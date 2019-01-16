@@ -8,12 +8,6 @@ system:
     - name: qpid-broker
       type: stateful-set
       count: 3
-      hostnetwork: true
-      strategy:
-        type: RollingUpdate
-        rollingUpdate:
-          maxSurge: 0
-          maxUnavailable: 1
       containers:
         - name: qpid-broker-runtime
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/appscale/qpid-broker-runtime:267fdc6.4
@@ -44,7 +38,19 @@ system:
           volumeMounts:
             - mountPath: /var/log/qpid
               name: logvol
+      lbname: qpid-lb-prd-jason-woods
       volumes:
         - name: logvol
           hostpath:
             path: /var/log/qpid
+  loadbalancers:
+    - lbname: qpid-lb
+      function: qpid-broker
+      slbEnabled: true
+      ports:
+        - port: 7020
+          targetport: 7020
+          lbtype: http
+        - port: 5672
+          targetport: 5672
+          lbtype: tcp
