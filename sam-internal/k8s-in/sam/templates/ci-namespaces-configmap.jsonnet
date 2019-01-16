@@ -6,7 +6,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     metadata: {
         name: "ci-namespaces",
         namespace: "sam-system",
-        labels: {} + configs.ownerLabel.sam,
+        labels: {} + configs.ownerLabel.sam + configs.pcnEnableLabel,
     },
     data: {
         "ci-namespaces.json": std.toString(import "configs/ci-namespaces.jsonnet"),

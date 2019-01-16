@@ -6,7 +6,7 @@ local configs = import "config.jsonnet";
     metadata: {
         name: "watchdog",
         namespace: "sam-watchdog",  # This is a copy of the same configMap for the other sam-watchdog namespace
-        labels: {} + configs.ownerLabel.sam,
+        labels: {} + configs.ownerLabel.sam + configs.pcnEnableLabel,
     },
     data: {
         "watchdog.json": std.toString(import "configs/watchdog-config.jsonnet"),
