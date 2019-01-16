@@ -47,6 +47,7 @@ system:
         type: server
   loadbalancers:
   - lbname: shipping-istio
+    function: shipping-istio
     ports:
     - port: 7035
       targetPort: 7035
