@@ -25,7 +25,7 @@ spec:
         - /etc/madkub-container-spec/spec.jaysawn
         - -kubeconfig
         - /etc/kubeconfig/kubeconfig.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:jenkins-dva-transformation-madkub-injector-webhook-PR-1-23-itest
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:jenkins-dva-transformation-madkub-injector-webhook-PR-1-25-itest
         imagePullPolicy: Always
         name: injector
         ports:
