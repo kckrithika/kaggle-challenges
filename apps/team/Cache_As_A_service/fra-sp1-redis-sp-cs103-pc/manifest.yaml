@@ -16,6 +16,9 @@ system:
       volumeMounts:
         - mountPath: /home/sfdc-caas/logs
           name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       args:
         - --port=12000
         - --maxMemoryMB=256
@@ -60,3 +63,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-caas/logs
+    - name: secretvol
+      secret:
+        secretName: caas-k4a-secret-sp-cs103-pc
