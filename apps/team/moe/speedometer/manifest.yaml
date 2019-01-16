@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: speedometer
-      image: dva/moe/speedometer:2018-78c8fcad593063311450cbb0f1673bbc9107524d
+      image: dva/moe/speedometer:2029-aae325f2443bd463e14aa397677f27a91ace96cf
       command: ["/moe/speedometer"]
       args:
       - "-gheTokenPath"
