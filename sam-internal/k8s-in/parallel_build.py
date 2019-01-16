@@ -177,7 +177,7 @@ def run_all_work_items(work_item_list):
     return ret
 
 # Returns a list of jsonnet_workitem
-def make_work_items(templates_args, output_root_dir, control_estates, label_filter):
+def make_work_items(templates_args, output_root_dir, control_estates, label_filter_map):
     ret = []
     for template_arg in templates_args:
       if os.path.isdir(template_arg):
@@ -204,7 +204,10 @@ def make_work_items(templates_args, output_root_dir, control_estates, label_filt
                 mapTeamToFiles[teamDir].append(thisTemplate)
 
             for (team, files) in mapTeamToFiles.items():
-                ret.append(jsonnet_workitem(kingdom, estate, files, full_out_dir, team, label_filter))
+                required_labels = {}
+                if ce in label_filter_map:
+                    required_labels = label_filter_map[ce]
+                ret.append(jsonnet_workitem(kingdom, estate, files, full_out_dir, team, required_labels))
     return ret
 
 # Python does not ship with the yaml library by default, and we dont want to deal with dependencies in TNRP
@@ -247,7 +250,7 @@ def main():
     parser.add_argument('--out', help='Single output directory', required=True)
     parser.add_argument('--pools', help='Directory with structure of sam-internals/pools/ or a filename with json content', required=True)
     parser.add_argument('--estatefilter', help='Filter estates for local purposes only.  Supports a comma-seperated list of kingdom/estate.  Example: "prd/prd-samtest,prd-samdev"')
-    parser.add_argument('--labelfilter', help='Filter labels for jsonnet templates. Supports a comma-seperated list of key value pair.  Example: "pcn:deploy,author:jy"')
+    parser.add_argument('--labelfilterfile', help='File containing label filters per estate, used to limit the set of files built for a location.')
     args = parser.parse_args()
 
     template_dirs = args.src
@@ -260,15 +263,6 @@ def main():
         if len(this_filter.split("/")) > 2:
           print("Estate filter expected to be in format 'kingdom/estate' or '*somesubstring*' but got " + this_filter)
           sys.exit(1)
-    label_filter = {}
-    if args.labelfilter != None and len(args.labelfilter)>0:
-        filter = args.labelfilter.split(",")
-        for this_filter in filter:
-            kv = this_filter.split(":")
-            if len(kv) <> 2:
-                print("Label filter expected to be in format 'key:value' but got " + this_filter)
-                sys.exit(1)
-            label_filter[kv[0]] = kv[1]
 
     # Write temp files in CWD because they can be useful for debugging (we use gitignore)
     # We do this here because we dont want to do it in the multi-threaded code and have conflicts
@@ -288,8 +282,36 @@ def main():
         control_estates = list(filter_estates(control_estates, estate_filter))
         print("Filter matched the following estates: " + str(control_estates))
 
+    # In some locations we want only a few output files.  This can be done with "SKIP" but when you want 3 files out of 80 its
+    # a hassle to add if statements to all the ones you dont want.  This filter approach works on a config file that specifies
+    # required k8s labels for output files targeting a specific kingdon/estate.  File looks like this:
+    #
+    # [
+    #  {
+    #    "kingdomEstateMatch": "gcp-*/*",
+    #    "requiredLabelValues": { "pcn": "deploy" }
+    #  }
+    # ]
+    #
+    # In this example, any kingdom starting with "gcp-" will only produce output k8s files with kubernetes label "pcn" and value "deploy"
+
+    labelfilterlist = []
+    if args.labelfilterfile != None and len(args.labelfilterfile)>0:
+        labelfilterlist = json.load(open(args.labelfilterfile))
+        print("LFL=")
+        print(labelfilterlist)
+    labelfiltermap = {}
+    for ce in control_estates:
+        for filterentry in labelfilterlist:
+            print("DEBUG: ce="+ce+", filter="+filterentry["kingdomEstateMatch"])
+            if fnmatch.fnmatch(ce, filterentry["kingdomEstateMatch"]):
+                print("DEBUG: match")
+                labelfiltermap[ce] = filterentry["requiredLabelValues"]
+            else:
+                print("DEBUG: no match")
+
     # Do the work
-    work_items = make_work_items(template_dirs.split(","), output_dir, control_estates, label_filter)
+    work_items = make_work_items(template_dirs.split(","), output_dir, control_estates, labelfiltermap)
     failures = run_all_work_items(work_items)
 
     # Report results

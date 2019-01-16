@@ -76,7 +76,7 @@ fi
 # This is a bit of a hack for now.  We already compiled everything for all pools above, but we want to nuke the PCN ones and regenerate just the ones with the label
 # The estate filter here is just a speedup.  We need to come up with a better approach for this soon.
 rm -rf ../k8s-out/gcp-us-central1/gsf-core-devmvp-sam2-private-cluster/*
-./parallel_build.py --src=sam/templates/ --out=../k8s-out/ --pools=../pools/ --estatefilter=gcp-us-central1/gsf-core-devmvp-sam2-private-cluster --labelfilter=pcn:deploy
+./parallel_build.py --src=sam/templates/ --out=../k8s-out/ --pools=../pools/ --estatefilter=gsf-core-devmvp-sam2-us-central1-a/private-cluster --labelfilterfile=labelfilter.json
 
 ./parallel_build.py --src=flowsnake/templates,sdn/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeEstates.json --estatefilter=$1
 # Skip SDN templates for Minikube
