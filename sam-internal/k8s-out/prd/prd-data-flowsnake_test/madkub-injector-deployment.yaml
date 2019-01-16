@@ -24,15 +24,15 @@ spec:
         - -madkubContainerSpecFile
         - /etc/madkub-container-spec/spec.jaysawn
         - -kubeconfig
-        - /etc/kubeconfig/kubeconfig.json
+        - /etc/insecure-kubeconfig/kubeconfig.json
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:jenkins-dva-transformation-madkub-injector-webhook-PR-1-25-itest
         imagePullPolicy: Always
         name: injector
         ports:
         - containerPort: 8443
         volumeMounts:
-        - mountPath: /etc/kubeconfig
-          name: kubeconfig
+        - mountPath: /etc/insecure-kubeconfig
+          name: insecure-kubeconfig
           readOnly: true
         - mountPath: /etc/madkub-container-spec
           name: spec
@@ -163,7 +163,7 @@ spec:
       volumes:
       - configMap:
           name: insecure-injector-kubeconfig
-        name: kubeconfig
+        name: insecure-kubeconfig
       - configMap:
           name: madkub-container-spec
         name: spec

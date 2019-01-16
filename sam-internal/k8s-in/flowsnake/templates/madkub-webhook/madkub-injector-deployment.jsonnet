@@ -48,8 +48,8 @@ if flowsnakeconfig.is_test then
                         }],
                         volumeMounts: [
                             {
-                                name: "kubeconfig",
-                                mountPath: "/etc/kubeconfig",
+                                name: "insecure-kubeconfig",
+                                mountPath: "/etc/insecure-kubeconfig",
                                 readOnly: true
                             },
                             {
@@ -70,7 +70,7 @@ if flowsnakeconfig.is_test then
                             "-madkubContainerSpecFile",
                             "/etc/madkub-container-spec/spec.jaysawn",
                             "-kubeconfig",
-                            "/etc/kubeconfig/kubeconfig.json",
+                            "/etc/insecure-kubeconfig/kubeconfig.json",
                         ]
                     },
                     madkub_common.refresher_container(cert_name),
@@ -78,7 +78,7 @@ if flowsnakeconfig.is_test then
                 initContainers: [ madkub_common.init_container(cert_name) ],
                 volumes: [
                     {
-                        name: "kubeconfig",
+                        name: "insecure-kubeconfig",
                         configMap: {
                             name: "insecure-injector-kubeconfig"
                         }
