@@ -50,7 +50,7 @@ if flowsnakeconfig.is_test then
                             httpGet: {
                                 path: "/healthz",
                                 port: 8443,
-                                scheme: "https",
+                                scheme: "HTTPS",
                             },
                             initialDelaySeconds: 5,
                             periodSeconds: 5,
