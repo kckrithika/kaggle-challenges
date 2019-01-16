@@ -289,13 +289,13 @@ spec:
           script finds a db to start in /var/mysql or B. the INITIALIZE_EMPTY_MASTER
           flag is set to some value other than 0.\"\n    sleep 600\n    exit 1\n  else
           \n    echo \"Checking for most recent backup file written to durable storage\"\n
-          \   if [[ -z \"$(ls -A /var/lib/mysql-backups)\" ]]\n      echo \"No data in backup
-          dir\"\n    else \n      cd /var/lib/mysql-backups\n      fn=$(ls -t | head
-          -n1)\n      mv -f -- \"$fn\" ./restore-me\n    fi\n  fi\nelse\n  ## # Clone
-          data from previous peer.\n  # I don't believe this works for IDEMPOTENT
-          slaves. Trying to set master to 0 to see if that fixes this problem\n  #
-          ncat --recv-only mysql-inmem-$(($ordinal-1)).mysql-inmem-service 3307 |
-          xbstream -x -C /var/lib/mysql\n  ncat --recv-only mysql-inmem-0.mysql-inmem-service
+          \   if [[ -z \"$(ls -A /var/lib/mysql-backups)\" ]]\n      echo \"No data
+          in backup dir\"\n    else \n      cd /var/lib/mysql-backups\n      fn=$(ls
+          -t | head -n1)\n      mv -f -- \"$fn\" ./restore-me\n    fi\n  fi\nelse\n
+          \ ## # Clone data from previous peer.\n  # I don't believe this works for
+          IDEMPOTENT slaves. Trying to set master to 0 to see if that fixes this problem\n
+          \ # ncat --recv-only mysql-inmem-$(($ordinal-1)).mysql-inmem-service 3307
+          | xbstream -x -C /var/lib/mysql\n  ncat --recv-only mysql-inmem-0.mysql-inmem-service
           3307 | xbstream -x -C /var/lib/mysql\n  ### Prepare the backup.\n  xtrabackup
           --prepare --target-dir=/var/lib/mysql\nfi\n"
         env:
