@@ -121,6 +121,9 @@ system:
             fieldRef:
               fieldPath: spec.nodeName
 
+        - name: APP_READY_INDICATOR_FILE
+          value: /tmp/APP_READY_INDICATOR_FILE
+
       livenessProbe:
         exec:
           command:
@@ -135,7 +138,8 @@ system:
            - /home/sfdc/salesforce/build/ready_probe.sh
         initialDelaySeconds: 120
         periodSeconds: 5
-        failureThreshold: 10
+        timeoutSeconds: 5
+        failureThreshold: 99999
 
       ports:
         # Actually used by the container
