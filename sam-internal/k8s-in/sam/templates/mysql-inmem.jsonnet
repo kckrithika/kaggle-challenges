@@ -5,7 +5,7 @@ local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile 
 
 local certDirs = ["cert1"];
 
-if configs.estate == "prd-samdev" then {
+if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
             apiVersion: "apps/v1beta1",
             kind: "StatefulSet",
             metadata: {
@@ -291,10 +291,15 @@ if configs.estate == "prd-samdev" then {
 |||
                                   set -e
                                   cd /var/lib/mysql-backups
+
                                   [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
                                   ordinal=${BASH_REMATCH[1]}
                                   while :
                                   do 
+                                    if [[ -f ./restore-me ]]
+                                      mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS < ./restore-me || exit 24
+                                      rm ./restore-me
+                                    fi 
                                     echo "Backing up mysql offline db"    
                                     mysqldump -h 127.0.0.1 --all-databases -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS > mysql-backup-$(date +%d).bkup  
                                     echo "Backup successful\n Purging old logs"
@@ -432,6 +437,11 @@ if configs.estate == "prd-samdev" then {
                                       echo "No data found in /var/mysql but the initialize empty flag is not set. This is an invalid state. This pod will remain in crashloopbackoff until either A. This startup script finds a db to start in /var/mysql or B. the INITIALIZE_EMPTY_MASTER flag is set to some value other than 0."
                                       sleep 600
                                       exit 1
+                                    else 
+                                      echo "Checking for most recent backup file written to durable storage"
+                                      cd /var/lib/mysql-backups
+                                      fn=$(ls -t | head -n1)
+                                      mv -f -- "$fn" ./restore-me
                                     fi
                                   else
                                     ## # Clone data from previous peer.
@@ -464,6 +474,10 @@ if configs.estate == "prd-samdev" then {
                                     {
                                       mountPath: "/etc/mysql/conf.d",
                                       name: "conf",
+                                    },
+                                    {
+                                      mountPath: "/var/lib/mysql-backups",
+                                      name: "mysql-backup",
                                     },
                                 ],
                             },
