@@ -704,9 +704,9 @@
       "access": [
         "team/CSC_Sam"
       ],
-      "controlEstate": "private-cluster",
-      "estate": "private-cluster",
-      "kingdom": "gsf-core-devmvp-sam2-us-central1-a",
+      "controlEstate": "gsf-core-devmvp-sam2-private-cluster",
+      "estate": "gsf-core-devmvp-sam2-private-cluster",
+      "kingdom": "gcp-us-central1",
       "superPod": "None"
     },
     {

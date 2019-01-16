@@ -3,7 +3,7 @@ data:
   bundle-controller-config.json: |-
     {
       "checkImageExistsFlag": true,
-      "funnelEndpoint": "ajna0-funnel1-0-gsf-core-devmvp-sam2-us-central1-a.data.sfdc.net:80",
+      "funnelEndpoint": "ajna0-funnel1-0-gcp-us-central1.data.sfdc.net:80",
       "qps": 100,
       "resyncinterval": "60m",
       "threadcount": 15,
