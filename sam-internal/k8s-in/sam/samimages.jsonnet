@@ -22,6 +22,9 @@ local samreleases = import "samreleases.json";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        #[pjoshi] Fixing manifest-repo-watcher
+        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002448-fecfa58c",
+
         #[xiao] Fix synthetic in prd, also pushing metrics, setting annotations
         "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0002446-d9a84a95",
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002446-d9a84a95",
