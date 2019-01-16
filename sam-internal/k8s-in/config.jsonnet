@@ -270,10 +270,14 @@ local utils = import "util_functions.jsonnet",
     # Commonly used elements for kubernetes resources
 
     # For use by apps that talk to the Kube API server using the host's kubeConfig
-    kube_config_env: {
+    kube_config_env: (if utils.is_pcn(kingdom) then {
+        name: "KUBECONFIG",
+        value: "",
+    } else {
         name: "KUBECONFIG",
         value: "/kubeconfig/kubeconfig-platform",
-    },
+    }),
+
     kube_config_volume_mount: {
         mountPath: "/kubeconfig",
         name: "kubeconfig",
@@ -352,6 +356,7 @@ local utils = import "util_functions.jsonnet",
         env: [
             $.pcn_kingdom_env,
             $.pcn_estate_env,
+            $.kube_config_env,
         ],
     } else {}),
 
