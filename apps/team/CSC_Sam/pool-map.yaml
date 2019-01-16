@@ -20,6 +20,7 @@ apps:
   - wax/wax-sam
   - cdg/cdg-sam
   - fra/fra-sam
+  - frf/frf-sam
  SamTestAppMaddog:
   - prd/prd-sam
   - prd/prd-samtest

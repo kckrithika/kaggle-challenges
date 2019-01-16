@@ -2,8 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.kingdom == "frf" || utils.is_pcn(configs.kingdom) then
-    {
+{
         kind: "Deployment",
         spec: {
             replicas: 1,
@@ -88,4 +87,4 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
             + configs.pcnEnableLabel,
             name: "temp-crd-watcher",
         },
-    } else "SKIP"
+    }

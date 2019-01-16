@@ -7,9 +7,7 @@ data:
       "qps": 100,
       "resyncinterval": "60m",
       "threadcount": 15,
-      "whiteListNamespaceRegexp": [
-        "^ci-*"
-      ]
+      "whiteListNamespaceRegexp": []
     }
 kind: ConfigMap
 metadata:
