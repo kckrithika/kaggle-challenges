@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: sam-tunifai
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpothana/sam-tunifai:test_jan_16
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpothana/sam-tunifai:test_jan_16_2
       ports:
       - containerPort: 5000
       livenessProbe:
