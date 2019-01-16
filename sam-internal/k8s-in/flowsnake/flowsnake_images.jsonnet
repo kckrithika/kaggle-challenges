@@ -190,10 +190,6 @@ local utils = import "util_functions.jsonnet";
             },
             version_mapping: {
                 main: {
-                  "0.10.0": 662,
-                  "0.11.0": 681,
-                  "0.12.0": 696,
-                  "0.12.1": 10001,
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
                 },
                 # ignore this section, require by std.manifestIni
@@ -201,6 +197,25 @@ local utils = import "util_functions.jsonnet";
                 },
             },
         },
+
+
+        ### A very special phase 4 for IAD and ORD that preserves access to old versions used by CRE.
+        ### TODO:  Remove when CRE is migrated to 0.12.2+
+        "4-iad-ord": self["4"] {
+
+            version_mapping: {
+                main: {
+                  "0.10.0": 662,
+                  "0.11.0": 681,
+                  "0.12.0": 696,
+                  "0.12.1": 10001,
+                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
+                },
+                sections: {},
+            },
+
+        },
+
     },
 
     ### Phase kingdom/estate mapping
@@ -213,6 +228,8 @@ local utils = import "util_functions.jsonnet";
             "2"
         else if (estate == "prd-data-flowsnake") then
             "3"
+        else if (estate == "iad-flowsnake_prod" || estate == "ord-flowsnake_prod") then
+            "4-iad-ord"
         else
             "4"
         ),

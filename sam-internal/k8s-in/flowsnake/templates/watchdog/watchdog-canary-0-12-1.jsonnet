@@ -7,7 +7,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 local remove_suspect_sans = std.objectHas(flowsnake_images.feature_flags, "remove_suspect_sans");
-if !watchdog.watchdog_enabled then
+if !watchdog.watchdog_enabled || ! std.objectHas(flowsnake_images.version_mapping.main, "0.12.1") then
 "SKIP"
 else
 local cert_name = "watchdogcanarycerts";
