@@ -439,7 +439,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                                       exit 1
                                     else 
                                       echo "Checking for most recent backup file written to durable storage"
-                                      if [[ -z "$(ls -A /path/to/dir)" ]]
+                                      if [[ -z "$(ls -A /var/lib/mysql-backups)" ]]
                                         echo "No data in backup dir"
                                       else 
                                         cd /var/lib/mysql-backups

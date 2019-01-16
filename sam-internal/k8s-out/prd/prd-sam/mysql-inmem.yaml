@@ -289,7 +289,7 @@ spec:
           script finds a db to start in /var/mysql or B. the INITIALIZE_EMPTY_MASTER
           flag is set to some value other than 0.\"\n    sleep 600\n    exit 1\n  else
           \n    echo \"Checking for most recent backup file written to durable storage\"\n
-          \   if [[ -z \"$(ls -A /path/to/dir)\" ]]\n      echo \"No data in backup
+          \   if [[ -z \"$(ls -A /var/lib/mysql-backups)\" ]]\n      echo \"No data in backup
           dir\"\n    else \n      cd /var/lib/mysql-backups\n      fn=$(ls -t | head
           -n1)\n      mv -f -- \"$fn\" ./restore-me\n    fi\n  fi\nelse\n  ## # Clone
           data from previous peer.\n  # I don't believe this works for IDEMPOTENT
