@@ -1,6 +1,6 @@
 [
   {
-    "kingdomEstateMatch": "gsf-*/*",
+    "kingdomEstateMatch": "gcp-*/*",
     "requiredLabelValues": { "pcn": "deploy" }
   }
 ]
