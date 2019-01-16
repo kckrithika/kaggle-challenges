@@ -300,7 +300,7 @@ system:
         - name: KILL_DWARF
           value: 1
         - name: ENABLE_DB_SCHEMA_UPGRADE
-          value: 1
+          value: 0
         - name: SET_DEFAULT_ORACLE_EDITION
           value: 1
         # set http proxy required for gus chatter binary to reach to login.salesforce.com
