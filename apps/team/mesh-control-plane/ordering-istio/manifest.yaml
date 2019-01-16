@@ -47,3 +47,9 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+  loadbalancers:
+  - lbname: ordering-istio
+    function: ordering-istio
+    ports:
+    - port: 7036
+      targetPort: 7036
