@@ -46,22 +46,26 @@ if flowsnakeconfig.is_test then
                         ports: [{
                             containerPort: 8443
                         }],
+                        livenessProbe: {
+                            httpGet: {
+                                path: "/healthz",
+                                port: 8443,
+                                scheme: "https",
+                            },
+                            initialDelaySeconds: 5,
+                            periodSeconds: 5,
+                        },
                         volumeMounts: [
-                            {
-                                name: "insecure-kubeconfig",
-                                mountPath: "/etc/insecure-kubeconfig",
-                                readOnly: true
-                            },
-                            {
-                                name: "spec",
-                                mountPath: "/etc/madkub-container-spec",
-                                readOnly: true
-                            },
-                            {
-                                name: "volumes",
-                                mountPath: "/etc/madkub-required-volumes",
-                                readOnly: true
-                            },
+                          {
+                              name: "spec",
+                              mountPath: "/etc/madkub-container-spec",
+                              readOnly: true
+                          },
+                          {
+                              name: "volumes",
+                              mountPath: "/etc/madkub-required-volumes",
+                              readOnly: true
+                          },
                         ] +
                         madkub_common.cert_mounts(cert_name),
                         args: [
@@ -69,20 +73,12 @@ if flowsnakeconfig.is_test then
                             "/etc/madkub-required-volumes/volumes.jaysawn",
                             "-madkubContainerSpecFile",
                             "/etc/madkub-container-spec/spec.jaysawn",
-                            "-kubeconfig",
-                            "/etc/insecure-kubeconfig/kubeconfig.json",
                         ]
                     },
                     madkub_common.refresher_container(cert_name),
                 ],
                 initContainers: [ madkub_common.init_container(cert_name) ],
                 volumes: [
-                    {
-                        name: "insecure-kubeconfig",
-                        configMap: {
-                            name: "insecure-injector-kubeconfig"
-                        }
-                    },
                     {
                         name: "spec",
                         configMap: {
