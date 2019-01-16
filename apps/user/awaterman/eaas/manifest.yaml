@@ -1,5 +1,4 @@
 apiVersion: v1
- 
 system:
   notifications:
     email:
@@ -7,33 +6,34 @@ system:
   functions:
   - name: eaas
     count: 3 
-    strategy:
-      type: RollingUpdate
+    terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.6-b905a0e879eeadba26f6926f8e318a1a57318294
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/awaterman/eaas:2.0.26-6ff3fd05fba6
+      ports:
+      - name: grpc
+        containerPort: 7020
+      - name: chaos
+        containerPort: 7022
       env:
       - name: SFDC_ENVIRONMENT
-        value: "prd"
+        value: prd
       - name: SCONE_SERVICE_NAME
-        value: "eaas" 
+        value: eaas 
       # THIS IS REQUIRED ONLY FOR USER DIRECTORY DEPLOYMENTS
       # although we are a kingdom level service, this will differentiate argus metrics
       - name: SFDC_POD
-        value: "awaterman"
+        value: awaterman
       # This is required for JVM memory management in K8
       - name: JAVA_OPTIONS
-        value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
+        value: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1
       resources:
-        requests:
-          memory: "6G"
-          cpu: "500m"
         limits:
-          memory: "6G"
-          cpu: "500m"
-      ports:
-        - name: grpc
-          containerPort: 7020
+          memory: 6G
+          cpu: 1 
+        requests:
+          memory: 6G
+          cpu: 1
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
@@ -51,60 +51,72 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 60
         timeoutSeconds: 30
-
     - name: beacon-eaas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
+      image: docker-sfci-dev/sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
-      #Namespaced, TLS
+      # Namespaced, mTLS HTTP2 GRPC
       - -endpoint
       - samapp/user-awaterman/eaas:DATACENTER:7443
-      #Non-namespaced, plaintext
+      # Non namespaced, plain-text HTTP2 GRPC
       - -endpoint
-      - samapp/eaas-awaterman:DATACENTER:7012
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-
-    - name: sherpa-eaas
-      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      - eaas:DATACENTER_ALLENV:7012
+      # Non namespaced, plain-text HTTP1 for Chaos endpoint
+      - -endpoint
+      - eaas-chaos:DATACENTER_ALLENV:7014
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      ports:
-      - containerPort: 7012
-        name: sherpa-eaas-in
-      - containerPort: 7443
-        name: sherpa-eaas-tls
-      - containerPort: 15373
-        name: sherpa-eaas-adm
+        value: sam
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+    - name: sherpa-eaas
+      # updated based on https://gus.lightning.force.com/lightning/r/CollaborationGroup/0F9B0000000LejfKAC/view
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      ports:
+      # plain-text HTTP2 GRPC port
+      - name: sherpa-eaas-in
+        containerPort: 7012
+      # plain-text HTTP1 Jetty port
+      - name: sherpa-eaas-jet
+        containerPort: 7014
+      # mTLS HTTP2 GRPC port
+      - name: sherpa-eaas-tls
+        containerPort: 7443
+      # management port (health, metrics, etc.)
+      - name: sherpa-eaas-adm
+        containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      # mount the client certs even though we do not need them as sherpa will complain otherwise
+      - mountPath: /client-certs
+        name: eaas-client-cert
+      - mountPath: /server-certs
+        name: eaas-server-cert
+      - mountPath: /log
+        name: sherpa-log-volume
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
         initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
+          - ./bin/is-ready
         initialDelaySeconds: 110
         periodSeconds: 5
-      volumeMounts:
-      - name: eaas-server-cert
-        mountPath: /server-certs
-      - name: eaas-client-cert
-        mountPath: /client-certs
-      - name: sherpa-log-volume
-        mountPath: /log
-
     volumes:
     - name: logvol
       hostPath:
@@ -118,11 +130,19 @@ system:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
+    strategy:
+      type: RollingUpdate
+  # Enable a load balancer in PRD so we have a stable FQDN to hit from the dev desktops or anywhere without Sherpa/Zookeeper
+  # Full FQDN template: {lbname}.{namespace}.{estate}.{kingdom}.slb.sfdc.net
+  # Actual FQDN: emailinfra-eaas-awaterman-lb.emailinfra.prd-sam.prd.slb.sfdc.net
   loadbalancers:
   - lbname: emailinfra-eaas-awaterman-lb
     function: eaas
     slbEnabled: true
     ports:
-      - port: 7020
-        targetport: 7020
-        lbtype : tcp  
+    - lbtype: tcp
+      port: 7020
+      targetport: 7020
+    - lbtype: tcp
+      port: 7022
+      targetport: 7022
