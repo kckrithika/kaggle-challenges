@@ -1,6 +1,4 @@
 apps:
- prd-cantor:
-  - prd/prd-sam_warden
  prd-mysql:
   - prd/prd-sam_warden
  prd-warden:
