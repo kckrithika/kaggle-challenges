@@ -12,6 +12,8 @@ system:
         httpGet:
           path: /
           port: 5000
+    strategy:
+      type: Recreate
   loadbalancers:
   - lbname: samhellolb
     function: default
