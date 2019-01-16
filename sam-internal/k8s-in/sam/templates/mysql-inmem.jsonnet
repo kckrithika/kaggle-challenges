@@ -568,5 +568,26 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                   type: "RollingUpdate",
                 },
             },
+            volumeClaimTemplates: [
+                    {
+                      metadata: {
+                          annotations: {
+                              "volume.beta.kubernetes.io/storage-class": "standard-ceph0-hdd-pool",
+                            },
+                          creationTimestamp: null,
+                          name: "mysql-backup",
+                        },
+                      spec: {
+                          accessModes: [
+                              "ReadWriteOnce",
+                            ],
+                          resources: {
+                              requests: {
+                                  storage: "100Gi",
+                                },
+                            },
+                        },
+                    },
+                ],
 
 } else "SKIP"
