@@ -10,7 +10,6 @@ local configs = import "config.jsonnet";
   lockName: "/locks/tempmanifestwatcher",
   crdEnabled: true,
   crdDeletionEnabled: true,
-  [if configs.estate != "prd-samdev" && configs.estate != "prd-samtest" && configs.estate != "prd-sam" then "endpointRepoName"]: "test-manifests",
   manifestV1Enabled: false,
   etcdAppFolder: "temp-crd-watcher",
   livenessProbePort: "21553",
