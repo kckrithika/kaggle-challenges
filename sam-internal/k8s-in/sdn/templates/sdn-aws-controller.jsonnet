@@ -82,8 +82,7 @@ if configs.estate == "cdu-sam" then configs.deploymentBase("sdn") {
                     sdnconfigs.sdn_logs_volume,
                 ]),
                 nodeSelector: {
-                    pool: sdnconfigs.sdn_control_pool,
-                    master: sdnconfigs.sdn_master,
+                    pool: configs.estate,
                 },
             },
         },
