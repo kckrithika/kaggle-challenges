@@ -99,4 +99,11 @@ local kingdom = std.extVar("kingdom");
     string_replace(str, to_replace, replace_with):: (
             std.join("", std.map(function(x) if x == to_replace then replace_with else x, std.stringChars(str)))
     ),
+
+    # This will be configure all minion pools under the kingdom to use kube-dns as the default dns provider.
+    enableDnsForPoolNames(kingdom):: (
+                              kingdom == "prd" ||
+                              kingdom == "ord" ||
+                              kingdom == "yhu"
+                            ),
 }
