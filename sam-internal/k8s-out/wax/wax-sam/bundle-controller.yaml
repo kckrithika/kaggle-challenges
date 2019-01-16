@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: bundlecontroller
+    sam.data.sfdc.net/owner: sam
+  name: bundlecontroller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: bundlecontroller
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: bundlecontroller
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/bundlecontroller
+        - --config=/config/bundle-controller-config.json
+        - --funnelEndpoint=mandm-funnel-wax.data.sfdc.net:8080
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0002440-9f537d20
+        name: bundle-controller
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        pool: wax-sam
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: bundle-controller
+        name: config

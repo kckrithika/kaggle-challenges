@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "vpod" || configs.kingdom == "frf" || utils.is_pcn(configs.kingdom) then {
+{
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
@@ -12,4 +12,4 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     data: {
         "samapp-controller-config.json": std.toString(import "configs/samapp-controller-config.jsonnet"),
     },
-} else "SKIP"
+}

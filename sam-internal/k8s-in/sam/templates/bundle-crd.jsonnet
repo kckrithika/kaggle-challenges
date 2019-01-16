@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "vpod" || configs.kingdom == "frf" || utils.is_pcn(configs.kingdom) then {
+{
    apiVersion: "apiextensions.k8s.io/v1beta1",
     kind: "CustomResourceDefinition",
     metadata: {
@@ -21,4 +21,4 @@ if configs.kingdom == "prd" || configs.kingdom == "vpod" || configs.kingdom == "
         kind: "Bundle",
         },
       },
-} else "SKIP"
+}

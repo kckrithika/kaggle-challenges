@@ -2,8 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-// Only for testing purpose
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "vpod" || configs.kingdom == "frf" || utils.is_pcn(configs.kingdom) then std.prune({
+std.prune({
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -82,4 +81,4 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         name: "samappcontroller",
         [if configs.kingdom == "vpod" then "namespace"]: "sam-system",
     },
-}) else "SKIP"
+})

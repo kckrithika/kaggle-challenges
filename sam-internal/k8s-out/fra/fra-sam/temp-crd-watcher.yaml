@@ -1,0 +1,67 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: temp-crd-watcher
+    sam.data.sfdc.net/owner: sam
+  name: temp-crd-watcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: temp-crd-watcher
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: temp-crd-watcher
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/manifest-watcher
+        - --funnelEndpoint=ajna0-funnel1-0-fra.data.sfdc.net:80
+        - --v=2
+        - --logtostderr=true
+        - --config=/config/tempmanifestwatcher.json
+        - --syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sam/hypersam:sam-0002440-9f537d20
+        name: temp-crd-watcher
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /config
+          name: config
+        - mountPath: /data/certs
+          name: certs
+      hostNetwork: true
+      nodeSelector:
+        pool: fra-sam
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /manifests
+        name: sfdc-volume
+      - configMap:
+          name: temp-crd-watcher
+        name: config
