@@ -546,12 +546,6 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                               name: "certs",
                             },
                             {
-                              hostPath: {
-                                  path: "/data/mysql-backup",
-                                },
-                              name: "mysql-backup",
-                            },
-                            {
                               name: "mysql",
                               secret: {
                                   defaultMode: 420,
@@ -567,8 +561,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                     },
                   type: "RollingUpdate",
                 },
-            },
-            volumeClaimTemplates: [
+                volumeClaimTemplates: [
                     {
                       metadata: {
                           annotations: {
@@ -589,5 +582,6 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                         },
                     },
                 ],
+            },
 
 } else "SKIP"
