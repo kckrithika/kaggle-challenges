@@ -227,8 +227,13 @@ system:
     - port: 8085
       targetport: 8085
 # side car Envoy's HTTPS listen port
-    - port: 443
+    - lbtype: http
+      reencrypt: true
+      tls: true
+      port: 443
       targetport: 13065
+      tlscertificate: secret_service:cstoolkit_cs103.salesforce.com_20190115-000549:EndEntity 
+      tlskey: secret_service:cstoolkit_cs103.salesforce.com_20190115-000549:Key
 # side car Envoy's admin port - Exposed only for debugging purpose
     - port: 15373
       targetport: 15373
