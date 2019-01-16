@@ -19,7 +19,6 @@ system:
       resources:
         limits: { cpu: 2, memory: 10Gi }
         requests: { cpu: 2, memory: 10Gi }
-      env:
       livenessProbe:
         exec:
           command:
