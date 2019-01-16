@@ -69,8 +69,7 @@ spec:
           name: sdnlogs
       hostNetwork: true
       nodeSelector:
-        master: "false"
-        pool: cdu-sdn_control
+        pool: cdu-sam
       volumes:
       - configMap:
           name: sfdchosts
