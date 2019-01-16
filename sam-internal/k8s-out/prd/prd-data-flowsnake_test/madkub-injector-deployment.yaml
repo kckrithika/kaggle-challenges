@@ -29,7 +29,7 @@ spec:
           httpGet:
             path: /healthz
             port: 8443
-            scheme: https
+            scheme: HTTPS
           initialDelaySeconds: 5
           periodSeconds: 5
         name: injector
