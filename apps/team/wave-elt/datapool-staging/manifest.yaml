@@ -17,7 +17,7 @@ system:
       - containerPort: 15372
         name: mgmt
       livenessProbe:
-        initialDelaySeconds: 90
+        initialDelaySeconds: 91
         periodSeconds: 60
         timeoutSeconds: 30
         httpGet:
