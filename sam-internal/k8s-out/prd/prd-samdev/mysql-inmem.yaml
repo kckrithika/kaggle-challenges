@@ -36,6 +36,15 @@ spec:
         sam_function: mysql-inmem
         sam_loadbalancer: mysql-inmem
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: pool
+                operator: In
+                values:
+                - prd-sam
       containers:
       - env:
         - name: HOST_TYPE
