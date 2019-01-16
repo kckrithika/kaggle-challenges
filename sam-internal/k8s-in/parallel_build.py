@@ -298,17 +298,11 @@ def main():
     labelfilterlist = []
     if args.labelfilterfile != None and len(args.labelfilterfile)>0:
         labelfilterlist = json.load(open(args.labelfilterfile))
-        print("LFL=")
-        print(labelfilterlist)
     labelfiltermap = {}
     for ce in control_estates:
         for filterentry in labelfilterlist:
-            print("DEBUG: ce="+ce+", filter="+filterentry["kingdomEstateMatch"])
             if fnmatch.fnmatch(ce, filterentry["kingdomEstateMatch"]):
-                print("DEBUG: match")
                 labelfiltermap[ce] = filterentry["requiredLabelValues"]
-            else:
-                print("DEBUG: no match")
 
     # Do the work
     work_items = make_work_items(template_dirs.split(","), output_dir, control_estates, labelfiltermap)
