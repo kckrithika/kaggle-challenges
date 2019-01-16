@@ -1,0 +1,6 @@
+[
+  {
+    "kingdomEstateMatch": "gcp-*/*",
+    "requiredLabelValues": { "pcn": "deploy" }
+  }
+]
