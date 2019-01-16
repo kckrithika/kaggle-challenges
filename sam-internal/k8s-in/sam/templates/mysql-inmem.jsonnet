@@ -439,9 +439,13 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                                       exit 1
                                     else 
                                       echo "Checking for most recent backup file written to durable storage"
-                                      cd /var/lib/mysql-backups
-                                      fn=$(ls -t | head -n1)
-                                      mv -f -- "$fn" ./restore-me
+                                      if [[ -z "$(ls -A /path/to/dir)" ]]
+                                        echo "No data in backup dir"
+                                      else 
+                                        cd /var/lib/mysql-backups
+                                        fn=$(ls -t | head -n1)
+                                        mv -f -- "$fn" ./restore-me
+                                      fi
                                     fi
                                   else
                                     ## # Clone data from previous peer.
