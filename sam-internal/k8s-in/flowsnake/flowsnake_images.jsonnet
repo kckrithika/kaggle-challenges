@@ -162,13 +162,13 @@ local utils = import "util_functions.jsonnet";
             version_mapping: {
                 main: {
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
-                  "spark-2.3-test": 672,
                   "0.10.0": 662,
                   "0.11.0": 681,
                   "0.11.0.sluice_fix": 691,
                   "0.12.0": 696,
                   "0.12.1": 10001,
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
+                  "0.12.2.sluice_fix": "jenkins-dva-transformation-flowsnake-platform-PR-798-1-itest",  # for testing purposes
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {

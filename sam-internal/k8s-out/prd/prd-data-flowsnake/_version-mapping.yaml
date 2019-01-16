@@ -7,8 +7,8 @@ data:
     0.12.0 = 696
     0.12.1 = 10001
     0.12.2 = jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
+    0.12.2.sluice_fix = jenkins-dva-transformation-flowsnake-platform-PR-798-1-itest
     0.9.10 = 638
-    spark-2.3-test = 672
 kind: ConfigMap
 metadata:
   creationTimestamp: null
