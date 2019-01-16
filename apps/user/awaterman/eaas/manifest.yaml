@@ -134,7 +134,7 @@ system:
       type: RollingUpdate
   # Enable a load balancer in PRD so we have a stable FQDN to hit from the dev desktops or anywhere without Sherpa/Zookeeper
   # Full FQDN template: {lbname}.{namespace}.{estate}.{kingdom}.slb.sfdc.net
-  # Actual FQDN: emailinfra-eaas-awaterman-lb.emailinfra.prd-sam.prd.slb.sfdc.net
+  # Actual FQDN: emailinfra-eaas-awaterman-lb.user-awaterman.prd-sam.prd.slb.sfdc.net
   loadbalancers:
   - lbname: emailinfra-eaas-awaterman-lb
     function: eaas
