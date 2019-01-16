@@ -194,13 +194,14 @@ spec:
         - -c
         - "set -e\ncd /var/lib/mysql-backups\n\n[[ `hostname` =~ -([0-9]+)$ ]] ||
           exit 1\nordinal=${BASH_REMATCH[1]}\nwhile :\ndo \n  if [[ -f ./restore-me
-          ]]\n    mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS < ./restore-me
-          || exit 24\n    rm ./restore-me\n  fi \n  echo \"Backing up mysql offline
-          db\"    \n  mysqldump -h 127.0.0.1 --all-databases -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
-          > mysql-backup-$(date +%d).bkup  \n  echo \"Backup successful\\n Purging
-          old logs\"\n  mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS <<EOF\n
-          \ PURGE BINARY LOGS BEFORE NOW() - INTERVAL $BACKUP_INTERVAL_SECONDS SECOND;\nEOF\n
-          \ echo \"Purge successful. Current disk usage is\" \n  df -h\n  sleep $BACKUP_INTERVAL_SECONDS\ndone\n"
+          ]]; then\n    mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS <
+          ./restore-me || exit 24\n    rm ./restore-me\n  fi \n  echo \"Backing up
+          mysql offline db\"    \n  mysqldump -h 127.0.0.1 --all-databases -u$MYSQL_ROOT_USER
+          -p$MYSQL_ROOT_PASS > mysql-backup-$(date +%d).bkup  \n  echo \"Backup successful\\n
+          Purging old logs\"\n  mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
+          <<EOF\n  PURGE BINARY LOGS BEFORE NOW() - INTERVAL $BACKUP_INTERVAL_SECONDS
+          SECOND;\nEOF\n  echo \"Purge successful. Current disk usage is\" \n  df
+          -h\n  sleep $BACKUP_INTERVAL_SECONDS\ndone\n"
         env:
         - name: MYSQL_ROOT_USER
           value: root

@@ -296,7 +296,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                                   ordinal=${BASH_REMATCH[1]}
                                   while :
                                   do 
-                                    if [[ -f ./restore-me ]]
+                                    if [[ -f ./restore-me ]]; then
                                       mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS < ./restore-me || exit 24
                                       rm ./restore-me
                                     fi 
