@@ -237,7 +237,7 @@
       - fs1shared0-flowsnakeworkertest2-4-prd.eng.sfdc.net
   ports:
       - port: 444
-        targetport: 443
+        targetport: 8444
         lbtype: tcp
-        healthport: 443
+        healthport: 8444
         healthprotocol: "tcp"

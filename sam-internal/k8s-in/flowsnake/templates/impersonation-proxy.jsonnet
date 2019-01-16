@@ -137,6 +137,7 @@ else
                                 containerPort: 443,
                                 name: "https-proxy",
                                 protocol: "TCP",
+                                hostPort: 8444,
                             },
                         ],
                         readinessProbe: {
