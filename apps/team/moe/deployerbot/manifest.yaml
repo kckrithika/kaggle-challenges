@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
+      image: dva/moe/deployerbot:2029-aae325f2443bd463e14aa397677f27a91ace96cf
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -35,9 +35,9 @@ system:
       - mountPath: /gpgsecrets
         name: moe-gpg-signing-key
         readOnly: true
-    - name: tnrpdeployer-hypersdn
-      image: dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
-      command: ["/moe/tnrpdeployer"]
+    - name: imagedeployer-hypersdn
+      image: dva/moe/deployerbot:2029-aae325f2443bd463e14aa397677f27a91ace96cf
+      command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
       - "-interval=10m"
@@ -46,15 +46,16 @@ system:
       - "-owner=sdn"
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
+      - "-imageRegistryImageSource=tnrp"
       livenessProbe:
         exec:
           command: ["ls", "/"]
         failureThreshold: 3
         initialDelaySeconds: 5
         periodSeconds: 60
-    - name: tnrpdeployer-nginx
-      image: dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
-      command: ["/moe/tnrpdeployer"]
+    - name: imagedeployer-nginx
+      image: dva/moe/deployerbot:2029-aae325f2443bd463e14aa397677f27a91ace96cf
+      command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
       - "-interval=10m"
@@ -63,15 +64,16 @@ system:
       - "-imageKey=slbnginx" # The name of the object to update in slbreleases.json.
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
+      - "-imageRegistryImageSource=tnrp"
       livenessProbe:
         exec:
           command: ["ls", "/"]
         failureThreshold: 3
         initialDelaySeconds: 5
         periodSeconds: 60
-    - name: tnrpdeployer-nginx-kms
-      image: dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
-      command: ["/moe/tnrpdeployer"]
+    - name: imagedeployer-nginx-kms
+      image: dva/moe/deployerbot:2029-aae325f2443bd463e14aa397677f27a91ace96cf
+      command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
       - "-interval=10m"
@@ -80,6 +82,7 @@ system:
       - "-imageKey=kmsnginx" # The name of the object to update in slbreleases.json.
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
+      - "-imageRegistryImageSource=tnrp"
       livenessProbe:
         exec:
           command: ["ls", "/"]
@@ -97,7 +100,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
+      image: dva/moe/deployerbot:2029-aae325f2443bd463e14aa397677f27a91ace96cf
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -127,9 +130,9 @@ system:
       - mountPath: /gpgsecrets
         name: moe-gpg-signing-key
         readOnly: true
-    - name: tnrpdeployer-hypersam
-      image: dva/moe/deployerbot:2018-78c8fcad593063311450cbb0f1673bbc9107524d
-      command: ["/moe/tnrpdeployer"]
+    - name: imagedeployer-hypersam
+      image: dva/moe/deployerbot:2029-aae325f2443bd463e14aa397677f27a91ace96cf
+      command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
       - "-interval=10m"
@@ -138,6 +141,7 @@ system:
       - "-owner=sam"
       - "-samInternalTeamName=SAM"
       - "-targetPhaseNumber=1"
+      - "-imageRegistryImageSource=tnrp"
       livenessProbe:
         exec:
           command: ["ls", "/"]
