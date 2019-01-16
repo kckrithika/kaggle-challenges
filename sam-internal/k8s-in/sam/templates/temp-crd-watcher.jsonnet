@@ -23,7 +23,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                                 "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
                                 configs.sfdchosts_arg,
                             ] + (
-                                  if configs.estate == "prd-samtest" then [
+                                  if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || utils.is_pcn(configs.kingdom) then [
                                       "--etcdSetDisabled=true",
                                       "--etcdGetDisabled=true",
                                       "--crdSetEnabled=true",
