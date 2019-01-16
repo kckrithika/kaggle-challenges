@@ -37,6 +37,8 @@ spec:
           value: gcp-us-central1
         - name: SFDCLOC_PCN_ESTATE
           value: gsf-core-devmvp-sam2-private-cluster
+        - name: KUBECONFIG
+          value: ""
         image: ops0-artifactrepo1-0-gcp-us-central1.data.sfdc.net/tnrp/sam/hypersam:sam-0002440-9f537d20
         name: temp-crd-watcher
         volumeMounts:
