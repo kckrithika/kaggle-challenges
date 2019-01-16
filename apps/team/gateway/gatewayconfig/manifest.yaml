@@ -31,7 +31,7 @@ system:
         medium: Memory
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gateway/gatewayconfig:2019-01-09b
+      image: sfci/gateway/gateway-service:2019-01-16-141016
       env:
       - name: PKI_CA_DIR
         value: /server-certs
