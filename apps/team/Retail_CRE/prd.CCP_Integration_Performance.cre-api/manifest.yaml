@@ -43,9 +43,9 @@ system:
                   -Dcom.sun.management.jmxremote.rmi.port=8898
                   -Dcom.sun.management.jmxremote.ssl=false
                   -Dcom.sun.management.jmxremote.authenticate=false
-                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
+                  -Xmx10G -Xms10G -XX:ParallelGCThreads=8"
       resources:
-        limits: { cpu: "8", memory: "6Gi" }
+        limits: { cpu: "8", memory: "12Gi" }
         requests: { cpu: "8", memory: "5Gi" }
       ports:
       - containerPort: 8080
