@@ -66,7 +66,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                       configs.maddog_cert_volume_mount,
                                       configs.cert_volume_mount,
                                   ]
-                                  + (if slbflights.kubeconfigEnabled then [
+                                  + (if slbflights.portalKubeConfigEnabled then [
                                       configs.kube_config_volume_mount,
                                       ] else [])
                                   + madkub.madkubSlbCertVolumeMounts(certDirs)
@@ -90,7 +90,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                       },
                                   },
                               ]
-                              + (if slbflights.kubeconfigEnabled then [
+                              + (if slbflights.portalKubeConfigEnabled then [
                                     configs.kube_config_env,
                               ] else []),
                           },
