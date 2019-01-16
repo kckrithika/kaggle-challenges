@@ -13,7 +13,7 @@ std.prune({
 
   # DNS
     enableDNS: true,
-    dnsEnabledPoolNamesRegex: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then ".*" else if configs.estate == "ord-sam" then "^ord-sam_search$" else if configs.estate == "yhu-sam" then "^yhu-sam_search$"),
+    dnsEnabledPoolNamesRegex: (if util.enableDnsForPoolNames(configs.kingdom) then ".*"),
 
   #k4a
   [if configs.estate == "vpod" then "enableK4a"]: false,
