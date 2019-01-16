@@ -52,6 +52,7 @@ spec:
             path: /healthz
             port: 443
             scheme: HTTPS
+          timeoutSeconds: 10
         name: nginx
         ports:
         - containerPort: 443
@@ -62,6 +63,7 @@ spec:
             path: /healthz
             port: 443
             scheme: HTTPS
+          timeoutSeconds: 10
         resources:
           limits:
             memory: 270Mi

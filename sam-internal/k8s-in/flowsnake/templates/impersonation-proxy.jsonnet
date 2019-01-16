@@ -130,6 +130,7 @@ else
                                 port: 443,
                                 scheme: "HTTPS",
                             },
+                            timeoutSeconds: 10,
                         },
                         ports: [
                             {
@@ -145,6 +146,7 @@ else
                                 port: 443,
                                 scheme: "HTTPS",
                             },
+                            timeoutSeconds: 10,
                         },
                         resources: {
                             limits: {
