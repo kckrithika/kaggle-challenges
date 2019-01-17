@@ -73,6 +73,8 @@ if flowsnakeconfig.is_test then
                             "/etc/madkub-required-volumes/volumes.jaysawn",
                             "-madkubContainerSpecFile",
                             "/etc/madkub-container-spec/spec.jaysawn",
+                            "-kingdom",
+                            kingdom,
                         ]
                     },
                     madkub_common.refresher_container(cert_name),
