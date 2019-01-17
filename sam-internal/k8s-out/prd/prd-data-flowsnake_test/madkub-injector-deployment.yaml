@@ -23,7 +23,7 @@ spec:
         - /etc/madkub-required-volumes/volumes.jaysawn
         - -madkubContainerSpecFile
         - /etc/madkub-container-spec/spec.jaysawn
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:jenkins-dva-transformation-madkub-injector-webhook-PR-1-28-itest
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:jenkins-dva-transformation-madkub-injector-webhook-PR-1-29-itest
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
