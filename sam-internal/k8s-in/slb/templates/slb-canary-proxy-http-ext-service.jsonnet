@@ -10,6 +10,9 @@ local canaryName = "slb-canary-proxy-http";
 local serviceName = canaryName + "-ext-service";
 local vipName = canaryName + "-ext";
 
+local newKingdoms = ['ph2-sam', 'ia2-sam', 'par-sam', 'ukb-sam', 'lo2-sam', 'lo3-sam'];
+local notIsNewKingdom = configs.estate in { [e]: 1 for e in newKingdoms };
+
 local tlscertificate = if configs.estate == "prd-samtwo" then
     // Use chained cert for canary in prd-samtwo to improve ssllabs report.
     "secret_service:slb-prd:prd-cert-chain"
@@ -37,6 +40,6 @@ local canaryPortConfig = [
         },
 ];
 
-if slbconfigs.isProdEstate && configs.estate != "prd-sam" then
+if slbconfigs.isProdEstate && !notIsNewKingdom && configs.estate != "prd-sam" then
     slbbaseservice.slbCanaryBaseService(canaryName, canaryPortConfig, serviceName, vipName) {
 } else "SKIP"
