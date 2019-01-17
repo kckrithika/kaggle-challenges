@@ -41,6 +41,8 @@ system:
           name: wardenservercert
         - mountPath: /warden-secrets/
           name: splunk-credentials
+        - mountPath: /mysql-secrets/
+          name: mysql-credentials
           readOnly: true
         livenessProbe:
           httpGet:
