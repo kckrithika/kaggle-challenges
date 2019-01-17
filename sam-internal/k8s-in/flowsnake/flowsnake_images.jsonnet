@@ -46,7 +46,7 @@ local utils = import "util_functions.jsonnet";
                 kubedns_image_tag: "1.14.9",
                 eventExporter_image_tag: "726",
                 jdk8_base_tag: "33",
-                madkub_injector_image_tag: "3-5a57116efd32f360f897f5ee2d9e821137da475d",
+                madkub_injector_image_tag: "5-8d937e40919445b448ed606975fa28fc74571ba9",
         },
 
         ### Release Phase minikube
