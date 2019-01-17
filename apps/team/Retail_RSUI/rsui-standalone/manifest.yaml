@@ -203,8 +203,6 @@ system:
         name: sherpa-in-http2
       - containerPort: 7443 # http2 in port for grpc
         name: sher-in-htp2tls
-      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
-        name: sherpa-in-admin
       livenessProbe:
         exec:
           command:
