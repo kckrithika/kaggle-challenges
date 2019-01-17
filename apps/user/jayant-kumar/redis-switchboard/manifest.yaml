@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: switchboard
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jayantk/switchboard-redis:0.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jayantk/switchboard-redis:0.2
       ports:
       - containerPort: 15372
       - containerPort: 7020
@@ -20,7 +20,7 @@ system:
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-        value: "0"
+        value: "1"
       resources:
         limits:
           cpu: "8"
