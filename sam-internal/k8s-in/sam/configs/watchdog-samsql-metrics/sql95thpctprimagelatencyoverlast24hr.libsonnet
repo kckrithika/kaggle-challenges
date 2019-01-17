@@ -13,6 +13,7 @@
                     MAX(TIMESTAMPDIFF(MINUTE, STR_TO_DATE(JSON_UNQUOTE(payload -> '$.status.startTime'),'%Y-%m-%dT%H:%i:%s'), STR_TO_DATE( CASE WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() ELSE  JSON_UNQUOTE(payload -> '$.status.maxImageEndTime') END, '%Y-%m-%dT%H:%i:%s'))) latencyMin
             FROM 
                 PullRequests prs
+            INNER JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num` = pApp.`pr_num`
             LEFT  JOIN
                     (
                     SELECT *

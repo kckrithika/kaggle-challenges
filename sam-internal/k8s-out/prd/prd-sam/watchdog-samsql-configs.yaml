@@ -88,8 +88,9 @@ data:
     \n          CASE \n                    WHEN payload -> ''$.status.endTime'' =
     ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP() \n                    ELSE JSON_UNQUOTE(payload
     -> ''$.status.endTime'') \n          END,''%Y-%m-%dT%H:%i:%s'' ))) latency \n        FROM
-    PullRequests prs \n        LEFT JOIN \n          (   \n                 SELECT
-    * \n                 FROM   crd_history \n                 WHERE  apikind = ''Bundle'')
+    PullRequests prs \n        INNER JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num`
+    = pApp.`pr_num`\n        LEFT JOIN \n          (   \n                 SELECT *
+    \n                 FROM   crd_history \n                 WHERE  apikind = ''Bundle'')
     crds \n                 ON  crds.prnum = prs.pr_num WHERE state =''merged'' \n                 AND
     `merged_time` > now() - INTERVAL 24 hour\n                 GROUP BY prs.pr_num
     \n      ) prLatency ,\n     (SELECT @row_num:=0) counter ORDER BY prLatency.latency\n     )   \n    temp
@@ -102,7 +103,7 @@ data:
     STR_TO_DATE( CASE WHEN payload -> ''$.status.maxImageEndTime'' = ''0001-01-01T00:00:00Z''
     THEN CURRENT_TIMESTAMP() ELSE  JSON_UNQUOTE(payload -> ''$.status.maxImageEndTime'')
     END, ''%Y-%m-%dT%H:%i:%s''))) latencyMin\n            FROM \n                PullRequests
-    prs\n            LEFT  JOIN\n                    (\n                    SELECT
+    prs\n            INNER JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num` = pApp.`pr_num`\n            LEFT  JOIN\n                    (\n                    SELECT
     *\n                    FROM \n                    crd_history \n                    WHERE
     ApiKind = ''Bundle'') crds\n                ON crds.PRNum = prs.pr_num \n            WHERE
     prs.state =''merged'' AND prs.merged_time > NOW() - INTERVAL 24 HOUR\n            GROUP
@@ -113,7 +114,8 @@ data:
     as Metric, latency as Value, '''' as Tags FROM\n(\nSELECT\n         prLatency.*,\n         @row_num
     :=@row_num + 1 AS row_num\nFROM\n(\nSELECT\n              p.pr_num,\n              t.manifest_zip_time,\n              p.merged_time,\n              TIMESTAMPDIFF(MINUTE,  `merged_time`,CASE
     WHEN t.manifest_zip_time IS NULL THEN now() ELSE t.manifest_zip_time END) latency\n            FROM
-    PullRequests p\n            LEFT OUTER JOIN TNRPManifestData t\n            ON
+    PullRequests p\n            INNER JOIN PullRequestToTeamOrUser pApp ON p.`pr_num`
+    = pApp.`pr_num`\n            LEFT OUTER JOIN TNRPManifestData t\n            ON
     p.git_hash = t.git_hash\n            WHERE p.state =''merged''   AND p.`merged_time`
     > NOW() - INTERVAL 24 HOUR            \n)prLatency,\n (SELECT @row_num:=0) counter
     ORDER BY prLatency.latency\n     )\n    temp WHERE temp.row_num = ROUND (.95*
@@ -166,7 +168,8 @@ data:
     payload -> ''$.status.endTime'' = ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP()\n                                                                                                     ELSE
     JSON_UNQUOTE(payload -> ''$.status.endTime'')\n                                                                                           END,
     ''%Y-%m-%dT%H:%i:%s''))) totallatencymin\n                                                                                 FROM      PullRequests
-    prs\n                                                                                 LEFT
+    prs\n                                                                                 INNER
+    JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num` = pApp.`pr_num`\n                                                                                 LEFT
     JOIN\n                                                                                           (  \n                                                                                                  SELECT
     *\n                                                                                                  FROM   crd_history\n                                                                                                  WHERE  apikind
     = ''Bundle'') crds\n                                                                                 ON        crds.prnum

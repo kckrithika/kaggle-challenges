@@ -15,6 +15,7 @@ SELECT
               p.merged_time,
               TIMESTAMPDIFF(MINUTE,  `merged_time`,CASE WHEN t.manifest_zip_time IS NULL THEN now() ELSE t.manifest_zip_time END) latency
             FROM PullRequests p
+            INNER JOIN PullRequestToTeamOrUser pApp ON p.`pr_num` = pApp.`pr_num`
             LEFT OUTER JOIN TNRPManifestData t
             ON p.git_hash = t.git_hash
             WHERE p.state ='merged'   AND p.`merged_time` > NOW() - INTERVAL 24 HOUR            

@@ -33,6 +33,7 @@
                                                                                                      ELSE JSON_UNQUOTE(payload -> '$.status.endTime')
                                                                                            END, '%Y-%m-%dT%H:%i:%s'))) totallatencymin
                                                                                  FROM      PullRequests prs
+                                                                                 INNER JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num` = pApp.`pr_num`
                                                                                  LEFT JOIN
                                                                                            (  
                                                                                                   SELECT *
