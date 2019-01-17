@@ -331,6 +331,9 @@
             "--httpconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA",
             "--httpconfig.allowedEcdhCurves=secp521r1:secp384r1:prime256v1",
             "--httpconfig.dhParamsFile=/tlsparams/dhparams.pem",
+        ] else [])
+        + (if slbflights.nginxLogsRefactor then [
+          "--httpconfig.accessLogDirectory=" + slbconfigs.logsDir,
         ] else []),
         volumeMounts: std.prune([
             slbconfigs.nginx.target_config_volume_mount,
