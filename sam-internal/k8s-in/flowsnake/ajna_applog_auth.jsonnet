@@ -1,5 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local flowsnake_config = import "flowsnake_config.jsonnet";
 {
     ajna_applog_logrecordtype_grants: (
         if
@@ -13,7 +14,7 @@ local kingdom = std.extVar("kingdom");
     // Map from fleet (kingdom/estate) to map from PKI Namespace to list of Applog Log Record Types.
     // Flowsnake environments in that fleet using that PKI Namespace may access those Applog Log Record Types on Ajna
     // even if they are restricted. (Access to unrestricted Log Record Types does not require enumeration here.)
-    ajna_applog_logrecordtype_grants_data: {
+    ajna_applog_logrecordtype_grants_data: flowsnake_config.validate_kingdom_estate_fields({
         "prd/prd-data-flowsnake": {
             edge_intelligence: [
                 "augen",
@@ -81,7 +82,7 @@ local kingdom = std.extVar("kingdom");
         },
         "dfw/dfw-flowsnake_prod": {
         },
-    },
+    }),
 
     // List of unrestricted Ajna Applog Log Record Types that do not require special permission to access. (GDPR compliance)
     ajna_applog_logrecordtype_whitelist: [
@@ -1133,4 +1134,5 @@ local kingdom = std.extVar("kingdom");
         "zzpcm",
         "zzpub",
     ],
+
 }

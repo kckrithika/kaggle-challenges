@@ -3,6 +3,7 @@ local kingdom = std.extVar("kingdom");
 local flowsnake_images = import "flowsnake_images.jsonnet";
 local configs = import "config.jsonnet";
 local util = import "util_functions.jsonnet";
+local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["prd/prd-minikube-big-flowsnake", "prd/prd-minikube-small-flowsnake"];
 {
     is_minikube: std.startsWith(estate, "prd-minikube"),
     is_minikube_small: std.startsWith(estate, "prd-minikube-small"),
@@ -163,4 +164,20 @@ local util = import "util_functions.jsonnet";
 
     impersonation_proxy_enabled: std.objectHas(flowsnake_images.feature_flags, "impersonation_proxy") && !self.is_minikube,
     impersonation_proxy_replicas: if self.is_test then 1 else 2,
+
+    validate_estate_fields(emap):: (
+        local all_estates = [std.splitLimit(ke, "/", 1)[1] for ke in flowsnake_all_kes];
+        local bad_keys = [e for e in std.objectFields(emap) if std.count(all_estates, e) == 0];
+        if std.length(bad_keys) == 0
+            then emap
+            else error "Unknown fields in estate map: " + std.join(" ", bad_keys)
+    ),
+
+    validate_kingdom_estate_fields(kemap):: (
+        local bad_keys = [ke for ke in std.objectFields(kemap) if std.count(flowsnake_all_kes, ke) == 0];
+        if std.length(bad_keys) == 0
+        then kemap
+        else error "Unknown fields in kingdom/estate map: " + std.join(" ", bad_keys)
+    ),
+
 }
