@@ -28,8 +28,6 @@ local samreleases = import "samreleases.json";
         #[xiao] Fix synthetic in prd, also pushing metrics, setting annotations
         "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0002446-d9a84a95",
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002446-d9a84a95",
-        "prd,prd-samdev,temp-crd-watcher,hypersam": "sam-0002446-d9a84a95",
-        "prd,prd-samdev,samapp-controller,hypersam": "sam-0002446-d9a84a95",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
