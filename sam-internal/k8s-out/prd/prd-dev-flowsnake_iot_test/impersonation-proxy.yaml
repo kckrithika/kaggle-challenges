@@ -7,7 +7,7 @@ metadata:
   namespace: flowsnake
 spec:
   progressDeadlineSeconds: 600
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -17,8 +17,8 @@ spec:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
-          "prd", "name": "impersonation-proxy", "role": "flowsnake.impersonation-proxy-test",
-          "san": ["kubernetes-api-test-flowsnake-prd.slb.sfdc.net", "kubernetes-api-test.flowsnake.localhost.mesh.force.com"]}]}'
+          "prd", "name": "impersonation-proxy", "role": "flowsnake.impersonation-proxy-dev",
+          "san": ["kubernetes-api-dev-flowsnake-prd.slb.sfdc.net", "kubernetes-api-dev.flowsnake.localhost.mesh.force.com"]}]}'
       labels:
         apptype: control
         flowsnakeOwner: dva-transform
@@ -38,7 +38,7 @@ spec:
         - name: PROXY_KEY
           value: /certs-nginx-server/server/keys/server-key.pem
         - name: TARGET_HOST
-          value: flowsnake-master-test.sfdc-role
+          value: flowsnake-master-iot-test.sfdc-role
         - name: TARGET_PORT
           value: "443"
         - name: CA_CERT
@@ -91,13 +91,11 @@ spec:
         - --superpod
         - None
         - --estate
-        - prd-data-flowsnake_test
+        - prd-dev-flowsnake_iot_test
         - --refresher
         - --run-init-for-refresher-mode
         - --cert-folders
         - impersonation-proxy:/certs-nginx-server
-        - --ca-folder
-        - /etc/pki_service/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
@@ -116,7 +114,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dva/madkub:kh-5s-test
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
         name: sam-madkub-integration-refresher
         resources: {}
         volumeMounts:
@@ -133,9 +131,12 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
+        - mountPath: /data/certs
+          name: data-cert
+          readOnly: true
       hostAliases:
       - hostnames:
-        - flowsnake-master-test.sfdc-role
+        - flowsnake-master-iot-test.sfdc-role
         ip: 10.254.208.1
       initContainers:
       - args:
@@ -155,11 +156,9 @@ spec:
         - --superpod
         - None
         - --estate
-        - prd-data-flowsnake_test
+        - prd-dev-flowsnake_iot_test
         - --cert-folders
         - impersonation-proxy:/certs-nginx-server
-        - --ca-folder
-        - /etc/pki_service/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
@@ -178,7 +177,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dva/madkub:kh-5s-test
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
         name: sam-madkub-integration-init
         resources: {}
         volumeMounts:
@@ -194,6 +193,9 @@ spec:
           readOnly: true
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
+          readOnly: true
+        - mountPath: /data/certs
+          name: data-cert
           readOnly: true
       serviceAccountName: flowsnake-impersonation-proxy
       volumes:
@@ -212,3 +214,6 @@ spec:
       - hostPath:
           path: /etc/pki_service/platform/platform-client/keys
         name: client-key
+      - hostPath:
+          path: /data/certs
+        name: data-cert
