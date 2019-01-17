@@ -7458,7 +7458,7 @@ hosts:
   hostname: shared0-samminiondatapool1-1-frf.ops.sfdc.net
   kingdom: frf
   pod: none
-  rack: j11-m305
+  rack: b03-m305
   superpod: none
 - bomrolename: sam_minion_datapool
   controlestate: frf-sam
@@ -7476,7 +7476,7 @@ hosts:
   hostname: shared0-samminiondatapool2-1-frf.ops.sfdc.net
   kingdom: frf
   pod: none
-  rack: d17-m306
+  rack: d01-m316
   superpod: none
 - bomrolename: sam_minion_gater
   controlestate: frf-sam
@@ -9681,7 +9681,7 @@ hosts:
   hostname: shared0-samminiondatapool1-2-hnd.ops.sfdc.net
   kingdom: hnd
   pod: none
-  rack: b03-3g
+  rack: a02-3g
   superpod: none
 - bomrolename: sam_minion_datapool
   controlestate: hnd-sam
@@ -14280,7 +14280,7 @@ hosts:
   hostname: shared0-samkubeapi2-2-iad.ops.sfdc.net
   kingdom: iad
   pod: none
-  rack: d09-9a
+  rack: a09-9b
   superpod: none
 - bomrolename: sam_kube_api
   controlestate: iad-sam
@@ -29562,7 +29562,7 @@ hosts:
   hostname: shared0-samminiondatapool1-1-phx.ops.sfdc.net
   kingdom: phx
   pod: none
-  rack: v52-40
+  rack: q03-40
   superpod: none
 - bomrolename: sam_minion_datapool
   controlestate: phx-sam
@@ -29706,7 +29706,7 @@ hosts:
   hostname: shared0-samminiongwc2-2-phx.ops.sfdc.net
   kingdom: phx
   pod: none
-  rack: s24-40
+  rack: r29-40
   superpod: none
 - bomrolename: sam_minion_kingdom_caas
   controlestate: phx-sam
@@ -42541,6 +42541,78 @@ hosts:
   kingdom: xrd
   pod: none
   rack: s12-cr09
+  superpod: none
+- bomrolename: sam_minion_sdstools
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sdstools
+  hostname: sec-samminionsdstools1-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  rack: d03-cr08
+  superpod: none
+- bomrolename: sam_minion_sdstools
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sdstools
+  hostname: sec-samminionsdstools1-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  rack: q18-cr02
+  superpod: none
+- bomrolename: sam_minion_sdstools
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sdstools
+  hostname: sec-samminionsdstools2-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  rack: d03-cr08
+  superpod: none
+- bomrolename: sam_minion_sdstools
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sdstools
+  hostname: sec-samminionsdstools2-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  rack: q18-cr02
+  superpod: none
+- bomrolename: sam_minion_sdstoolsdev
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sdstoolsdev
+  hostname: sec-samminionsdstoolsdev1-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  rack: r11-cr08
+  superpod: none
+- bomrolename: sam_minion_sdstoolsdev
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sdstoolsdev
+  hostname: sec-samminionsdstoolsdev1-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  rack: p11-cr08
+  superpod: none
+- bomrolename: sam_minion_sdstoolsdev
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sdstoolsdev
+  hostname: sec-samminionsdstoolsdev2-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  rack: r11-cr08
+  superpod: none
+- bomrolename: sam_minion_sdstoolsdev
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sdstoolsdev
+  hostname: sec-samminionsdstoolsdev2-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  rack: p11-cr08
   superpod: none
 - bomrolename: slb_minion
   controlestate: xrd-sam
