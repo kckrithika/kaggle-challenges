@@ -7,10 +7,10 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
     // The resources deployed for each phase (and its subsequent phases) are defined below.
     // The estate not being in this map at all means that it is fully bootstrapped and running Flowsnake.
     // Note: keys in this map are estate name only, not kingdom/estate.
-    sdn_estate_phases: {
+    sdn_estate_phases: flowsnakeconfig.validate_estate_fields({
         "phx-flowsnake_prod": 0,
         "dfw-flowsnake_prod": 2,
-    },
+    }),
 
     sdn_deployment_phases: [
         # 0 Autodeployer only

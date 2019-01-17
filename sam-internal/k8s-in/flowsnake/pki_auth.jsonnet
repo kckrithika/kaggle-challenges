@@ -1,12 +1,13 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local flowsnake_config = import "flowsnake_config.jsonnet";
 {
     auth_namespaces: (if std.objectHas(self.auth_namespaces_data, kingdom + "/" + estate) then $.auth_namespaces_data[kingdom + "/" + estate] else error "No matching auth_namespaces entry: " + kingdom + "/" + estate),
 
     // Map from fleet (kingdom/estate) to list of PKI namespaces and who is permitted to create Flowsnake environments
     // with that namespace in that fleet.
     // (Where "who" is identified by client certs for mTLS or LDAP group membership for Basic Auth)
-    auth_namespaces_data: {
+    auth_namespaces_data: flowsnake_config.validate_kingdom_estate_fields({
       "prd/prd-data-flowsnake": [
         {
             namespace: "flowsnake",
@@ -223,5 +224,5 @@ local kingdom = std.extVar("kingdom");
             authorizedClientCerts: ["flowsnake_test"],
         },
       ],
-    },
+    }),
 }
