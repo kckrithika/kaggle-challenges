@@ -5,6 +5,7 @@ system:
   - name: ordering-envoy-tls
     count: 1
     labels:
+      "sherpa-injector.service-mesh/inject": "enabled"
       app: ordering-envoy-tls
       prat-test: true
     containers:
@@ -28,42 +29,14 @@ system:
           path: /manage/health
           port: 15372
 
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
-      ports:
-      - containerPort: 15373
-        name: sherpa-adm
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-      volumeMounts:
-        - name: logvol
-          mountPath: /log
-        - name: tls-client-cert
-          mountPath: /client-certs
-        - name: tls-server-cert
-          mountPath: /server-certs
-
     volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-ordering-linkerd-tls/logs
     - name: tls-client-cert
       maddogCert:
         type: client
     - name: tls-server-cert
       maddogCert:
         type: server
+
   loadbalancers:
   - lbname: ordering-envoy-tls-lb
     nodeExposed: true

@@ -4,6 +4,8 @@ system:
   functions:
   - name: h1-test-server-envoy-tls
     count: 1
+    labels:
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
 
     - name: h1-test-server
@@ -34,32 +36,6 @@ system:
           command:
             - "/home/scone/is-alive.sh"
 
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-      ports:
-      - containerPort: 15373
-        name: sherpa-admin
-      - containerPort: 7442
-        name: sherpa-http1
-      volumeMounts:
-        - name: h1-test-server-envoy-tls-server-cert
-          mountPath: /server-certs
-        - name: h1-test-server-envoy-tls-client-cert
-          mountPath: /client-certs
-
     - name: debug-tools
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug-tools:latest
       env:
@@ -71,9 +47,9 @@ system:
         initialDelaySeconds: 20          
 
     volumes:
-    - name: h1-test-server-envoy-tls-server-cert
-      maddogCert:
-        type: server
-    - name: h1-test-server-envoy-tls-client-cert
+    - name: tls-client-cert
       maddogCert:
         type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
