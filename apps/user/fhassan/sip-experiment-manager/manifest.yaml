@@ -38,7 +38,5 @@ system:
       - port: 8081
         targetport: 8181
         lbtype: tcp
-        tls: true
-        reencrypt: false
 
 
