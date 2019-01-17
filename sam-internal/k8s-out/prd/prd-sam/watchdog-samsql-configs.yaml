@@ -177,7 +177,22 @@ data:
     OUTER JOIN TNRPManifestData t\n                                                       ON              sam.git_hash
     = t.git_hash )sam2)sam,\n                                       ( SELECT @row_num
     := 0) counter ORDER BY samlatencymin ) temp\n              WHERE  temp.row_num
-    = Round (.95 * @row_num)", "watchdogFrequency": "15m"}], "sql_alerts": [{"alertAction":
+    = Round (.95 * @row_num)", "watchdogFrequency": "15m"}, {"name": "SqlResourceCounts",
+    "sql": "select\n  ''GLOBAL'' as Kingdom, \n  ''NONE'' as SuperPod,\n  ''global''
+    as Estate,\n  ''sql.dbResTotal'' as Metric,\n  '''' as Tags,\n  COUNT(*) as Value\nfrom
+    k8s_resource \nunion all\nselect \n  ''GLOBAL'' as Kingdom, \n  ''NONE'' as SuperPod,
+    \n  ''global'' as Estate, \n  ''sql.dbResPerCluster'' as Metric,\n  CONCAT(''controlEstate='',controlEstate)
+    as Tags,\n  COUNT(*) as Value\nfrom k8s_resource \ngroup by controlEstate", "watchdogFrequency":
+    "15m"}, {"name": "SqlResByProduceAge", "sql": "select\n  ''GLOBAL'' as Kingdom,\n  ''NONE''
+    as SuperPod,\n  ''global'' as Estate,\n  ''sql.dbResByProduceAge'' as Metric,\n  CONCAT(''produceAgeMin='',produceAgeMinutes)
+    as Tags,\n  COUNT(*) as Value\nfrom (\n  select \n    floor(time_to_sec(timediff(now(),FROM_UNIXTIME(ProduceTime
+    / 1000000000)))/60/5)*5 as produceAgeMinutes\n  from k8s_resource\n) as ss\ngroup
+    by produceAgeMinutes", "watchdogFrequency": "15m"}, {"name": "dbResProduceAgePerClusterInMin",
+    "sql": "select\n  ''GLOBAL'' as Kingdom,\n  ''NONE'' as SuperPod,\n  ''global''
+    as Estate,\n  ''sql.dbResProduceAgePerClusterInMin'' as Metric,\n  CONCAT(''controlEstate='',controlEstate)
+    as Tags,\n  AVG(produceAgeMinutes) as Value\nfrom (\n  select\n    controlEstate,\n    floor(time_to_sec(timediff(now(),FROM_UNIXTIME(ProduceTime
+    / 1000000000)))/60) as produceAgeMinutes\n  from k8s_resource\n) as ss\ngroup
+    by controlEstate", "watchdogFrequency": "15m"}], "sql_alerts": [{"alertAction":
     "pagerduty", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
     "10m", "instructions": "The following deployments are reported as bad customer
     deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
