@@ -40,14 +40,17 @@ system:
     - name: retail-setup
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.6.28
       ports:
+      # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
         name: rsui-in-http1
-      - containerPort: 15372
-        name: rsui-in-admin
-      - containerPort: 7020
-        name: rsui-in-http2
       - containerPort: 7023
         name: rsui-test-http3
+      # Inbound http2 port for incoming gRPC service mesh calls
+      - containerPort: 7020
+        name: rsui-in-http2
+      # Scone admin port used for SAM health check
+      - containerPort: 15372
+        name: rsui-in-admin
       resources:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
@@ -122,10 +125,6 @@ system:
                 -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
                 -Xloggc:/home/scone/logs/dfs/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                 -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/dfs
-                -Dcom.sun.management.jmxremote.port=8898
-                -Dcom.sun.management.jmxremote.rmi.port=8898
-                -Dcom.sun.management.jmxremote.ssl=false
-                -Dcom.sun.management.jmxremote.authenticate=false
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Daura.production=true"
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: ALL
@@ -219,14 +218,11 @@ system:
     function: rsui-standalone
     slbEnabled: true
     ports:
-      - port: 8080
-        targetport: 7022
       - port: 443
         targetport: 7022
-      - port: 15372
-        targetport: 15372
-      - port: 7020
-        targetport: 7020
+        tls: true
+        lbtype: http
+        reencrypt: true
   - lbname: rsui-standalone-test-lb
     function: rsui-standalone
     slbEnabled: true
