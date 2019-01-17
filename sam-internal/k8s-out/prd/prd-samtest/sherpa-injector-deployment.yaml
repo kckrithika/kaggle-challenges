@@ -42,7 +42,7 @@ spec:
         - --cert=/server-certificates/server/certificates/server.pem
         - --key=/server-certificates/server/keys/server-key.pem
         - --template=sherpa-container.yaml.template
-        - --image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:1.0.4
+        - --image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:478036ff96fe4c7b188fef57fd0437d0795252c5
         - --log-level=debug
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:45c763e04aab65db4429c49fc57f60ab835094d3
         imagePullPolicy: IfNotPresent

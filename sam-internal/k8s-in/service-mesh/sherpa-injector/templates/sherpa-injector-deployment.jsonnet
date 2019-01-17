@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
+local versions = import "service-mesh/sherpa-injector/versions.jsonnet";
 
 configs.deploymentBase("service-mesh") {
   metadata+: {
@@ -53,7 +54,7 @@ configs.deploymentBase("service-mesh") {
               "--cert=/server-certificates/server/certificates/server.pem",
               "--key=/server-certificates/server/keys/server-key.pem",
               "--template=sherpa-container.yaml.template",
-              "--image=%s/sfci/servicelibs/sherpa-envoy:1.0.4" % configs.registry,
+              "--image=%s" % versions.sherpaImage,
               "--log-level=debug",
             ],
             volumeMounts+: [
