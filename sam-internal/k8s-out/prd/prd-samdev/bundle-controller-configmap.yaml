@@ -6,6 +6,7 @@ data:
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "qps": 100,
       "resyncinterval": "60m",
+      "statefulAppEnabled": true,
       "threadcount": 15,
       "whiteListNamespaceRegexp": [
         "^[^.]+"
