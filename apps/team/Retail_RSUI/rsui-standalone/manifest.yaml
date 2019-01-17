@@ -125,6 +125,31 @@ system:
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Daura.production=true"
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: ALL
+      # Disable all management endpoints except for health
+      - name: ENDPOINTS_HEALTH_ENABLED
+        value: true
+      - name: ENDPOINTS_INFO_ENABLED
+        value: false
+      - name: ENDPOINTS_DUMP_ENABLED
+        value: false
+      - name: ENDPOINTS_APPMETRICS_ENABLED
+        value: false
+      - name: ENDPOINTS_LINT_ENABLED
+        value: false
+      - name: ENDPOINTS_CONFIGPROPS_ENABLED
+        value: false
+      - name: ENDPOINTS_ENV_ENABLED
+        value: false
+      - name: ENDPOINTS_SHUTDOWN_ENABLED
+        value: false
+      - name: ENDPOINTS_SHUTDOWN_SENSITIVE
+        value: false
+      - name: ENDPOINTS_BINDINGS_ENABLED
+        value: false
+      - name: ENDPOINTS_DTABS_ENABLED
+        value: false
+      - name: ENDPOINTS_JVM_ENABLED
+        value: false
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
