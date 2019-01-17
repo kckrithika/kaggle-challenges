@@ -7,7 +7,9 @@ data:
       "qps": 100,
       "resyncinterval": "60m",
       "threadcount": 15,
-      "whiteListNamespaceRegexp": []
+      "whiteListNamespaceRegexp": [
+        "csc-sam"
+      ]
     }
 kind: ConfigMap
 metadata:
