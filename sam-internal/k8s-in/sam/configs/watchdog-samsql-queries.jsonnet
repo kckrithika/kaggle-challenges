@@ -63,6 +63,9 @@
    (import "watchdog-samsql-metrics/samappsrestatedbysamglobal.libsonnet"),
    (import "watchdog-samsql-metrics/samappsrestatedbysam.libsonnet"),
    (import "watchdog-samsql-metrics/sql95thpctprsamlatencyoverlast24hr.libsonnet"),
+   (import "watchdog-samsql-metrics/sqlresourcecounts.libsonnet"),
+   (import "watchdog-samsql-metrics/sqlresbyproduceage.libsonnet"),
+   (import "watchdog-samsql-metrics/sqlresagebycluster.libsonnet"),
   ],
 
 }
