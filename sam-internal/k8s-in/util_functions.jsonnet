@@ -101,9 +101,13 @@ local kingdom = std.extVar("kingdom");
     ),
 
     # This will be configure all minion pools under the kingdom to use kube-dns as the default dns provider.
+    # Waiting on xrd and lo2/lo3 for dns team to enable forwarding.
+    # Waiting on puppet changes to be pushed out for gia kingdom
     enableDnsForPoolNames(kingdom):: (
-                              kingdom == "prd" ||
-                              kingdom == "ord" ||
-                              kingdom == "yhu"
+                              kingdom != "chx" &&
+                              kingdom != "wax" &&
+                              kingdom != "lo2" &&
+                              kingdom != "lo3" &&
+                              kingdom != "xrd"
                             ),
 }
