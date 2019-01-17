@@ -7,7 +7,7 @@ system:
       count: 3
       containers:
       - name: searchserver
-        image: <todo>
+        image: sfci/search-teams/sfci:17301715.378
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
@@ -15,6 +15,11 @@ system:
           value: "na44.stmfa.stm.salesforce.com"
         - name: LBNAME
           value: "searchservers"
+        - name: DNS_PODNAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
         resources:
           limits: { cpu: "48", memory: "90Gi" }
           requests: { cpu: "26", memory: "75Gi" }
