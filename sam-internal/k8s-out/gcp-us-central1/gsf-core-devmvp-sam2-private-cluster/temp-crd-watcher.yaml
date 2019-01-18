@@ -56,9 +56,6 @@ spec:
       serviceAccount: sam-stack-edit
       serviceAccountName: sam-stack-edit
       volumes:
-      - configMap:
-          name: sfdchosts
-        name: sfdchosts
       - hostPath:
           path: /manifests
         name: sfdc-volume

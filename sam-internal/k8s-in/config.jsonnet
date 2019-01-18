@@ -388,12 +388,14 @@ local utils = import "util_functions.jsonnet",
         mountPath: "/sfdchosts",
         name: "sfdchosts",
     } else {}),
-    sfdchosts_volume: {
+
+    sfdchosts_volume: (if !utils.is_pcn(kingdom) then {
         name: "sfdchosts",
         configMap: {
             name: "sfdchosts",
         },
-    },
+    } else {}),
+
     sfdchosts_arg: "--hostsConfigFile=/sfdchosts/hosts.json",
 
     # For apps that uses ci-namespace configmap

@@ -46,8 +46,5 @@ spec:
       serviceAccountName: sam-stack-edit
       volumes:
       - configMap:
-          name: sfdchosts
-        name: sfdchosts
-      - configMap:
           name: samapp-controller
         name: config
