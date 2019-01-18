@@ -107,6 +107,8 @@ local utils = import "util_functions.jsonnet";
                   # Due to a problem with the original push to Nexus we've been forced to not use that build
                   # We have opted to use the itest image built
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",
+                  # Using a master branch build to run integration tests in test fleet for 0.12.3
+                  "0.12.3-preview": "jenkins-dva-transformation-flowsnake-platform-master-768-itest",
                 }
                 +
                 # These are for developer testing only
