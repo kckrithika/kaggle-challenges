@@ -5,14 +5,9 @@ local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.t
 local params = {
   initContainerImage: istioImages.proxyinit,
   proxyContainerImage: istioImages.proxy,
-  # Picked from https://git.soma.salesforce.com/Infrastructure-Security/charon/blob/75bb57fd78abd3c7af6386dbd51616d2b97741b7/handlers/policyData/iplists.yaml#L7517
-  # Istio sidecar by default applies traffic redirection for all containers in the pod. i.e. includeOutboundIPRanges = *
-  # This setting affects madkub containers. Due to the redirection madkub containers are unable to connect to the maddog-endpoint (all.pkicontroller.pki.blank.<kingdom>.prod.non-estates.sfdcsd.net)
-  # This ip range will currently exclude the maddog addresses from redirection in PRD.
-  # Once we set the includedOutboundIPRanges = <meshMagicIP> explicitly, we shouldn't have this problem as it would exclude others by default then.
-  # Note: 127.0.0.1/32 - localhost is by default excluded.
-  includedOutboundIpRanges: "*",
-  excludedOutboundIpRanges: "10.253.111.0/26,10.252.170.64/28,10.254.208.254/32",
+  # Only include the "magic" mesh IP. All *.svc.mesh.sfdc.net subdomains will resolve to that address.
+  includedOutboundIpRanges: "127.1.2.3/32",
+  excludedOutboundIpRanges: "",
 };
 
 local sidecarConfig = |||
@@ -32,13 +27,13 @@ local sidecarConfig = |||
         [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeOutboundIPRanges") -]]
         - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeOutboundIPRanges"  ]]"
         [[ else -]]
-        - "%(includedOutboundIpRanges)s" # TODO change this to mesh magic IP address.
+        - "%(includedOutboundIpRanges)s"
         [[ end -]]
         - "-x"
         [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeOutboundIPRanges") -]]
         - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeOutboundIPRanges"  ]]"
         [[ else -]]
-        - %(excludedOutboundIpRanges)s   # TODO change this back to empty string once magic IP address is added.
+        - "%(excludedOutboundIpRanges)s"
         [[ end -]]
         - "-b"
         [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeInboundPorts") -]]
@@ -49,7 +44,7 @@ local sidecarConfig = |||
         [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeInboundPorts") -]]
         - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeInboundPorts" ]]"
         [[ else -]]
-        - ""
+        - [[ .ProxyConfig.ProxyAdminPort ]]
         [[ end -]]
         imagePullPolicy: IfNotPresent
         securityContext:
