@@ -384,10 +384,10 @@ local utils = import "util_functions.jsonnet",
     },
 
     # For apps that use sfdcLocation2
-    sfdchosts_volume_mount: {
+    sfdchosts_volume_mount: (if !utils.is_pcn(kingdom) then {
         mountPath: "/sfdchosts",
         name: "sfdchosts",
-    },
+    } else {}),
     sfdchosts_volume: {
         name: "sfdchosts",
         configMap: {

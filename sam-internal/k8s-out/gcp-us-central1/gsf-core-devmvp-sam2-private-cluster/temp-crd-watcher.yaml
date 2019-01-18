@@ -48,8 +48,6 @@ spec:
           periodSeconds: 30
         name: temp-crd-watcher
         volumeMounts:
-        - mountPath: /sfdchosts
-          name: sfdchosts
         - mountPath: /config
           name: config
       hostNetwork: true
