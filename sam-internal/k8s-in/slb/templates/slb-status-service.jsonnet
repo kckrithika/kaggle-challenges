@@ -19,6 +19,6 @@ local portConfig = [
     ) { healthpath: "/" },
 ];
 
-if slbconfigs.isSlbEstate && slbimages.phaseNum <= 3 then
+if slbconfigs.isSlbEstate && slbflights.statusVipEnabled then
     slbbaseservice.slbCanaryBaseService(labelSelector, portConfig, serviceName, vipName) {
 } else "SKIP"
