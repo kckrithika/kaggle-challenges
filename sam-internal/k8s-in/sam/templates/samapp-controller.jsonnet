@@ -17,6 +17,7 @@ std.prune({
                         command: configs.filter_empty([
                             "/sam/samapp-controller",
                             "--v=3",
+                            "--funnelEndpoint=" + configs.funnelVIP,
                             "--logtostderr=true",
                             (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "vpod" then "--ciNamespaceConfigFile=/ci/ci-namespaces.json" else {}),
                             "--config=/config/samapp-controller-config.json",
