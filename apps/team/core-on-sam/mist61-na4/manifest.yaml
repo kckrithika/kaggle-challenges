@@ -24,7 +24,7 @@ system:
 
     containers:
     - name: coreapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_216-patch_17161582
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_216-patch_17299679
 
       env:
         # DB info
@@ -210,7 +210,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: sfci/casam/coreapp_config_overrides:2b789e
+      image: sfci/casam/coreapp_config_overrides:cd3ccf
       env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na4.app
