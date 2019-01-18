@@ -28,6 +28,8 @@ spec:
             }
            ]
           }
+        scheduler.alpha.kubernetes.io/critical-pod: ""
+        sidecar.istio.io/inject: "false"
       labels:
         app: istio-mesh-webhook
     spec:
