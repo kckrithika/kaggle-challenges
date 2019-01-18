@@ -94,6 +94,7 @@ local utils = import "util_functions.jsonnet";
                 kube_dns_no_service_account: "verified-in-prd-test",
                 remove_suspect_sans: "unverified",
                 impersonation_proxy: "unverified",
+                dynamic_watchdogs: "testing",
             },
             version_mapping: {
                 main: {
