@@ -52,7 +52,6 @@ configs.deploymentBase("service-mesh") {
               "--port",
               "10443",
             ],
-            env+: $.kubernetesServiceOverride(),
             ports: [
               {
                 containerPort: 10443,
@@ -100,25 +99,4 @@ configs.deploymentBase("service-mesh") {
       }
     }
   },
-
-  kubernetesServiceOverride()::
-    if configs.estate == "prd-samtest" then [
-      {
-        name: "KUBERNETES_SERVICE_HOST",
-        value: "shared0-samtestkubeapi2-1-prd.eng.sfdc.net",
-      },
-      {
-        name: "KUBERNETES_SERVICE_PORT",
-        value: "6443",
-      },
-    ] else if configs.estate == "prd-sam" then [
-      {
-        name: "KUBERNETES_SERVICE_HOST",
-        value: "shared0-samkubeapi1-1-prd.eng.sfdc.net",
-      },
-      {
-        name: "KUBERNETES_SERVICE_PORT",
-        value: "6443",
-      },
-    ] else {},
 }
