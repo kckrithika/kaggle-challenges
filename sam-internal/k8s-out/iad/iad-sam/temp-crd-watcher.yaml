@@ -27,6 +27,10 @@ spec:
         - --config=/config/tempmanifestwatcher.json
         - --syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --etcdSetDisabled=true
+        - --etcdGetDisabled=true
+        - --crdSetEnabled=true
+        - --crdGetEnabled=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
