@@ -92,7 +92,7 @@ local skip_resources = std.uniq(std.sort(
     // If bootstrap resources are defined because the estate is process of
     // being set up, permit only those. Otherwise allow all.
     (if std.length(flowsnake_sdn.bootstrap_resources) > 0
-      then std.setDiff(all_resources, flowsnake_sdn.bootstrap_resources)
+      then std.setDiff(std.sort(all_resources), std.sort(flowsnake_sdn.bootstrap_resources))
       else [])
 ));
 
