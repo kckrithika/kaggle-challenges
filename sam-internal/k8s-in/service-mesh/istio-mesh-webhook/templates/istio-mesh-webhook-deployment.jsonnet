@@ -31,6 +31,8 @@ configs.deploymentBase("service-mesh") {
                 ],
             }, " "
           ),
+          "sidecar.istio.io/inject": "false",
+          "scheduler.alpha.kubernetes.io/critical-pod": "",
         },
         labels: {
           app: "istio-mesh-webhook",
