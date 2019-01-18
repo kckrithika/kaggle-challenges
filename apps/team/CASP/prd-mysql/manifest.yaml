@@ -22,12 +22,17 @@ system:
           hostPort: 7014
         volumeMounts:
         - mountPath: /home/sfdc/mysql/data
-          name: mysql-vol
+          name: mysql-data-vol
+        - mountPath: /home/sfdc/mysql/backups
+          name: mysql-backups-vol
         livenessProbe:
           exec:
             command:
             - /usr/bin/true
       volumes:
-      - name: mysql-vol
+      - name: mysql-data-vol
         hostPath:
           path: /data/mysql
+      - name: mysql-backups-vol
+        hostPath:
+          path: /data/mysql-backups
