@@ -40,6 +40,12 @@ spec:
         - name: KUBECONFIG
           value: ""
         image: ops0-artifactrepo1-0-gcp-us-central1.data.sfdc.net/tnrp/sam/hypersam:sam-0002440-9f537d20
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 21553
+          initialDelaySeconds: 60
+          periodSeconds: 30
         name: temp-crd-watcher
         volumeMounts:
         - mountPath: /sfdchosts
