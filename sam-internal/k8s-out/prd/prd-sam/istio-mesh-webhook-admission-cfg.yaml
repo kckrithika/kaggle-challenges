@@ -12,14 +12,11 @@ webhooks:
       name: istio-mesh-webhook
       namespace: mesh-control-plane
       path: /validate
-  failurePolicy: Ignore
+  failurePolicy: Fail
   name: istio-mesh-webhook.sfdc.internal
   namespaceSelector:
-    matchExpressions:
-    - key: istio-mesh-webhook
-      operator: In
-      values:
-      - enabled
+    matchLabels:
+      istio-injection: enabled
   rules:
   - apiGroups:
     - ""

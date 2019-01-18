@@ -29,16 +29,12 @@ local configs = import "config.jsonnet";
           resources: ["pods"],
         }
       ],
-      failurePolicy: "Ignore",
+      failurePolicy: "Fail",
       namespaceSelector: {
-        matchExpressions: [
-          {
-            key: "istio-mesh-webhook",
-            operator: "In",
-            values: ["enabled"],
-          }
-        ]
-      }
+        matchLabels: {
+          "istio-injection": "enabled",
+        },
+      },
     }
   ]
 }
