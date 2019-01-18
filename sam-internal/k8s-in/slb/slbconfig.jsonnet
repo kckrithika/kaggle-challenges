@@ -312,7 +312,7 @@
     },
     nginx_logs_volume_mount: {
         name: "var-logs-volume",
-        mountPath: "/host/data/slb/logs",
+        mountPath: "/nginx-logs",
     },
     cleanup_logs_volume: {
         name: "var-cleanup-logs-volume",
