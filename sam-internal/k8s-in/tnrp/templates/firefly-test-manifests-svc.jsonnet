@@ -10,7 +10,6 @@ if configs.estate == "prd-samtwo" then
     local package = packagesvc {
         serviceConf:: super.serviceConf {
             repoName: "test-manifests",
-            darkLaunch: "true",
         },
         replicas:: 2,
         env:: super.env + [
@@ -36,7 +35,6 @@ if configs.estate == "prd-samtwo" then
     local packagesingleton = packagesvcsingleton {
         serviceConf:: super.serviceConf {
             repoName: "test-manifests",
-            darkLaunch: "true",
         },
         replicas:: 2,
         env:: super.env + [
@@ -78,7 +76,6 @@ if configs.estate == "prd-samtwo" then
     local promotion = promotionsvc {
         serviceConf:: super.serviceConf {
             repoName: "test-manifests",
-            darkLaunch: "true",
         },
         replicas:: 2,
         env:: super.env + [
