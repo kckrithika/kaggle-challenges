@@ -40,11 +40,6 @@ spec:
         - /server-cert/server/keys/server-key.pem
         - --port
         - "10443"
-        env:
-        - name: KUBERNETES_SERVICE_HOST
-          value: shared0-samkubeapi1-1-prd.eng.sfdc.net
-        - name: KUBERNETES_SERVICE_PORT
-          value: "6443"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-mesh-webhook:fce9233aa712142f2875ee6a597a865bded08adb
         imagePullPolicy: IfNotPresent
         name: istio-mesh-webhook
