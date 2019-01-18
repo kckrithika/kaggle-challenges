@@ -6,4 +6,5 @@ local configs = import "config.jsonnet";
   qps: 100,
   threadcount: 15,
   funnelEndpoint: configs.funnelVIP,
+  [if configs.kingdom == "prd" then "statefulAppEnabled"]: true,
 }

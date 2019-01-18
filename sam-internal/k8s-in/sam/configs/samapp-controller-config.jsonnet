@@ -19,6 +19,9 @@ std.prune({
   [if configs.estate == "vpod" then "enableK4a"]: false,
   k4aInitContainerImage: samimages.k4aInitContainerImage,
 
+  #stateful
+  [if configs.kingdom == "prd" then "enableStatefulSet"]: true,
+
   # others
     volPermissionInitContainerImage: samimages.permissionInitContainer,
     dockerRegistry: configs.registry,
