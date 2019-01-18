@@ -4,7 +4,7 @@ system:
   functions:
     - name: search-prd
       type: stateful-set
-      count: 3
+      count: 2
       containers:
       - name: searchserver
         image: sfci/search-teams/sfci:17301715.378
@@ -35,6 +35,9 @@ system:
         volumeMounts:
           - mountPath: /home/sfdc-searchserver/logs/solr
             name: solr-log-volume
+          - name: secretvol
+              k4aSecret:
+                secretName: argus
       lbname: searchservers
       volumes:
         - name: solr-log-volume
@@ -43,3 +46,6 @@ system:
         - name: sherpa-log-volume
           hostPath:
             path: /home/sfdc-sherpa/logs
+        - name: secretvol
+            k4aSecret:
+              secretName: solrblob-yhu
