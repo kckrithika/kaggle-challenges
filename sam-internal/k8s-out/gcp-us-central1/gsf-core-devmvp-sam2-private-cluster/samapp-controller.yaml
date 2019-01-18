@@ -37,8 +37,6 @@ spec:
         image: ops0-artifactrepo1-0-gcp-us-central1.data.sfdc.net/tnrp/sam/hypersam:sam-0002440-9f537d20
         name: samapp-controller
         volumeMounts:
-        - mountPath: /sfdchosts
-          name: sfdchosts
         - mountPath: /config
           name: config
       hostNetwork: true
@@ -47,9 +45,6 @@ spec:
       serviceAccount: sam-stack-edit
       serviceAccountName: sam-stack-edit
       volumes:
-      - configMap:
-          name: sfdchosts
-        name: sfdchosts
       - configMap:
           name: samapp-controller
         name: config

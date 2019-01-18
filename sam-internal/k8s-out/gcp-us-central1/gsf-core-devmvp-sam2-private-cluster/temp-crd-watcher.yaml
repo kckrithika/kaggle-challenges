@@ -48,8 +48,6 @@ spec:
           periodSeconds: 30
         name: temp-crd-watcher
         volumeMounts:
-        - mountPath: /sfdchosts
-          name: sfdchosts
         - mountPath: /config
           name: config
       hostNetwork: true
@@ -58,9 +56,6 @@ spec:
       serviceAccount: sam-stack-edit
       serviceAccountName: sam-stack-edit
       volumes:
-      - configMap:
-          name: sfdchosts
-        name: sfdchosts
       - hostPath:
           path: /manifests
         name: sfdc-volume
