@@ -9,7 +9,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
     // Note: keys in this map are estate name only, not kingdom/estate.
     sdn_estate_phases: flowsnakeconfig.validate_estate_fields({
         "phx-flowsnake_prod": 0,
-        "dfw-flowsnake_prod": 2,
+        "dfw-flowsnake_prod": 4,
     }),
 
     sdn_deployment_phases: [
