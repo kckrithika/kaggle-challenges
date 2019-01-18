@@ -24,6 +24,10 @@ local samreleases = import "samreleases.json";
 
         #[pjoshi] Fixing manifest-repo-watcher
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002448-fecfa58c",
+
+        #[prabh.singh] Bundle Override , latency fix
+        "prd,prd-sam,bundle-controller,hypersam": "sam-0002455-fbe2cb61",
+        "prd,prd-samdev,bundle-controller,hypersam": "sam-0002455-fbe2cb61",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
