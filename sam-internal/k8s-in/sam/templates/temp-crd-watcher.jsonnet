@@ -35,7 +35,7 @@ local utils = import "util_functions.jsonnet";
                                 configs.cert_volume_mount,
                             ]),
                         } + configs.containerInPCN
-                        + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "frf" then {
+                        + {
                              livenessProbe: {
                                   httpGet: {
                                       path: "/healthz",
@@ -44,7 +44,7 @@ local utils = import "util_functions.jsonnet";
                                   initialDelaySeconds: 60,
                                   periodSeconds: 30,
                               },
-                          } else {}),
+                          },
                     ],
                     volumes+: configs.filter_empty([
                         configs.cert_volume,
