@@ -231,6 +231,18 @@ local vipwdOptOutConfig = {
       "cpt-dsr-validation-cpt-xrd",
     ],
   },
+  "iad-sam":
+  {
+    serviceLists:
+    [
+      // 2019/01/17 - vyjayanthi.raja: This exclusion was added a consequence of
+      // https://computecloud.slack.com/archives/G340CE86R/p1547774401918700?thread_ts=1547773808.918400&cid=G340CE86R
+      // where requests to portal's VIP were intermittently failing due to increased latency caused by talking to K8s
+      // on every request. This filter should be removed once https://git.soma.salesforce.com/sdn/sdn/pull/1655 is
+      // rolled out.
+      "slb-portal-service",
+    ],
+  },
 };
 
 local getOptOutServiceListParameter(estateConfig) =
