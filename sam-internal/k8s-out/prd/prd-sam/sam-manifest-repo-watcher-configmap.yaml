@@ -21,7 +21,7 @@ data:
       "num-worker-threads": 5,
       "pool-map-scan-frequency": "900s",
       "pool-map-scan-on": true,
-      "pr-approval-link-regex": "Good news! Authorizing Pull Requests is now done through native GHE Approvals instead of clicking on an Authorization link in the PR",
+      "pr-evaluate-completion-regex": "Regarding pull request authorization by.*on SHA [0-9a-f]+",
       "pr-evaluate-passed-regex": "SUCCESSFUL RUN.",
       "pr-scan-frequency": "1800s",
       "sdp-root-url": "http://sdp2.csc-sam.prd-sam.prd.slb.sfdc.net",
