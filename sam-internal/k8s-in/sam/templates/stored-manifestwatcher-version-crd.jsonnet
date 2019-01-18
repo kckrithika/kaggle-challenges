@@ -1,8 +1,7 @@
 local configs = import "config.jsonnet";
-
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+{
    apiVersion: "apiextensions.k8s.io/v1beta1",
-    kind: "CustomResourceDefinition",
+   kind: "CustomResourceDefinition",
     metadata: {
       name: "storedmanifestwatcherversions.samcrd.salesforce.com",
       annotations: {
@@ -20,4 +19,4 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
         kind: "StoredManifestWatcherVersion",
         },
       },
-} else "SKIP"
+}
