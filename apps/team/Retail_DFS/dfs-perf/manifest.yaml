@@ -44,7 +44,7 @@ system:
       - name: GDOT_BASEPATHOVERRIDE
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: QUERY_LIMIT
-        value: 2000
+        value: 200
       - name: DFS_THREADPOOLSIZE
         value: 100
       - name: DFS_MAXCONNECTIONPERROUTE
