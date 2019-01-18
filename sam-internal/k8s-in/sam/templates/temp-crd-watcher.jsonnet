@@ -21,14 +21,11 @@ local utils = import "util_functions.jsonnet";
                                 "--config=/config/tempmanifestwatcher.json",
                                 "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
                                 configs.sfdchosts_arg,
-                            ] + (
-                                  if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || utils.is_pcn(configs.kingdom) || configs.estate == "prd-sam" || configs.kingdom == "frf" then [
-                                      "--etcdSetDisabled=true",
-                                      "--etcdGetDisabled=true",
-                                      "--crdSetEnabled=true",
-                                      "--crdGetEnabled=true",
-                                  ] else []
-                              )),
+                                "--etcdSetDisabled=true",
+                                "--etcdGetDisabled=true",
+                                "--crdSetEnabled=true",
+                                "--crdGetEnabled=true",
+                            ]),
                             volumeMounts+: configs.filter_empty([
                                 configs.sfdchosts_volume_mount,
                                 configs.config_volume_mount,
