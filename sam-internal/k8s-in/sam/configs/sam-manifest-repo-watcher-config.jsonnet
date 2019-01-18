@@ -29,5 +29,5 @@ std.prune({
         "commenter-test-mode": true,
         "commenter-test-mode-authors": ["benjamin-caldwell"],
         "pr-evaluate-passed-regex": "SUCCESSFUL RUN.",
-        "pr-approval-link-regex": "Good news! Authorizing Pull Requests is now done through native GHE Approvals instead of clicking on an Authorization link in the PR",
+        "pr-evaluate-completion-regex": "Regarding pull request authorization by.*on SHA [0-9a-f]+",
 }) else "SKIP"
