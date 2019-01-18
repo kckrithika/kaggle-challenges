@@ -25,7 +25,9 @@ spec:
         - /etc/madkub-container-spec/spec.jaysawn
         - -kingdom
         - prd
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:6-5a5759d200788ad2c4d97d9605aa69f955a04a79
+        - -v
+        - "2"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:7
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
