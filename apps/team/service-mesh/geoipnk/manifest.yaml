@@ -9,6 +9,8 @@ system:
 
   - name: geoipnk
     count: 1
+    labels:
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: geoipnk
       image: sfci/servicelibs/geoip-nk:1.0.2
@@ -32,35 +34,6 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
-
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
-      ports:
-      - name: http2-in
-        containerPort: 7012
-      - name: http2-tls-in
-        containerPort: 7443
-      - name: sherpa-adm
-        containerPort: 15373
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
-      terminationMessagePolicy: FallbackToLogsOnError
-
     - name: beacon
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:

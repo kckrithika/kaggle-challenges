@@ -4,6 +4,8 @@ system:
   functions:
   - name: time
     count: 1
+    labels:
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
 
     - name: time
@@ -29,26 +31,10 @@ system:
           command:
             - "/home/scone/is-alive.sh"
 
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-      volumeMounts:
-        - name: tls-client-cert
-          mountPath: /client-certs
-
     volumes:
-      - name: tls-client-cert
-        maddogCert:
-          type: client
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server

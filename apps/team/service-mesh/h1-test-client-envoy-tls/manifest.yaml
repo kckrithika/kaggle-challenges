@@ -4,8 +4,9 @@ system:
   functions:
   - name: h1-test-client-envoy-tls
     count: 1
+    labels:
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
-
     - name: h1-test-client
       # Code lives here: https://git.soma.salesforce.com/npshenichnyy/sherpa-http1-test
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/h1-test-client:latest
@@ -19,28 +20,6 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 20
 
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-      ports:
-      - containerPort: 15373
-        name: sherpa-admin
-      volumeMounts:
-        - name: h1-test-client-envoy-tls-client-cert
-          mountPath: /client-certs
-
     - name: debug-tools
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug-tools:latest
       env:
@@ -52,6 +31,9 @@ system:
         initialDelaySeconds: 20          
 
     volumes:
-    - name: h1-test-client-envoy-tls-client-cert
+    - name: tls-client-cert
       maddogCert:
         type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server

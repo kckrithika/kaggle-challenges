@@ -4,6 +4,8 @@ system:
   functions:
   - name: shipping-rate-limited
     count: 1
+    labels:
+      "sherpa-injector.service-mesh/inject": "enabled"    
     containers:
 
     - name: shipping
@@ -35,55 +37,16 @@ system:
       args:
       - -endpoint
       - service-mesh/shipping-rate-limited:DATACENTER:7443     
-      - -logging.dir
-      - /log
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
           - "/home/scone/is-alive.sh"
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
-
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:478036ff96fe4c7b188fef57fd0437d0795252c5
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
-      ports:
-      - containerPort: 15373
-        name: sherpa-adm
-      - containerPort: 7443
-        name: h2-tls-in
-      - containerPort: 7012
-        name: grpc-in
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-      volumeMounts:
-        - name: logvol
-          mountPath: /log
-        - name: tls-client-cert
-          mountPath: /client-certs
-        - name: tls-server-cert
-          mountPath: /server-certs
 
     volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-shipping-rate-limited/logs
     - name: tls-client-cert
       maddogCert:
         type: client
     - name: tls-server-cert
       maddogCert:
         type: server
-
