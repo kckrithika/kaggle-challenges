@@ -85,10 +85,6 @@ spec:
           value: "100"
         - name: PILOT_TRACE_SAMPLING
           value: "100"
-        - name: KUBERNETES_SERVICE_HOST
-          value: shared0-samkubeapi2-1-prd.eng.sfdc.net
-        - name: KUBERNETES_SERVICE_PORT
-          value: "6443"
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/pilot:1.0.2
         imagePullPolicy: IfNotPresent
         name: discovery

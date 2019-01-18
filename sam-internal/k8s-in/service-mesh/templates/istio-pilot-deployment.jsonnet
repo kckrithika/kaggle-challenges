@@ -97,14 +97,6 @@ configs.deploymentBase("mesh-control-plane") {
                 name: "PILOT_TRACE_SAMPLING",
                 value: "100",
               },
-              {
-                name: "KUBERNETES_SERVICE_HOST",  # Temporary override to select 2nd kubeapi host
-                value: [h.hostname for h in hosts.hosts if h.controlestate == controlEstate && h.kingdom == configs.kingdom && std.endsWith(std.split(h.hostname, "-")[1], "kubeapi2")][0],
-              },
-              {
-                name: "KUBERNETES_SERVICE_PORT",
-                value: "6443",
-              },
             ],
             resources: {
               requests: {
