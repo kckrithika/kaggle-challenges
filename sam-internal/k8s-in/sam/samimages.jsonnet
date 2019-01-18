@@ -25,12 +25,6 @@ local samreleases = import "samreleases.json";
         #[pjoshi] Fixing manifest-repo-watcher
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002448-fecfa58c",
 
-        #[xiao] Fix synthetic in prd, also pushing metrics, setting annotations
-        "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0002446-d9a84a95",
-        "prd,prd-sam,samapp-controller,hypersam": "sam-0002446-d9a84a95",
-        "prd,prd-samdev,temp-crd-watcher,hypersam": "sam-0002446-d9a84a95",
-        "prd,prd-samdev,samapp-controller,hypersam": "sam-0002446-d9a84a95",
-
         #[prabh.singh] Bundle Override , latency fix
         "prd,prd-sam,bundle-controller,hypersam": "sam-0002455-fbe2cb61",
         "prd,prd-samdev,bundle-controller,hypersam": "sam-0002455-fbe2cb61",
