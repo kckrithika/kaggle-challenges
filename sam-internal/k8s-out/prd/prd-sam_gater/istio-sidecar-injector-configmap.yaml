@@ -17,13 +17,13 @@ data:
         [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeOutboundIPRanges") -]]
         - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeOutboundIPRanges"  ]]"
         [[ else -]]
-        - "*" # TODO change this to mesh magic IP address.
+        - "127.1.2.3/32"
         [[ end -]]
         - "-x"
         [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeOutboundIPRanges") -]]
         - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeOutboundIPRanges"  ]]"
         [[ else -]]
-        - 10.253.111.0/26,10.252.170.64/28,10.254.208.254/32   # TODO change this back to empty string once magic IP address is added.
+        - ""
         [[ end -]]
         - "-b"
         [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeInboundPorts") -]]
@@ -34,7 +34,7 @@ data:
         [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeInboundPorts") -]]
         - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeInboundPorts" ]]"
         [[ else -]]
-        - ""
+        - [[ .ProxyConfig.ProxyAdminPort ]]
         [[ end -]]
         imagePullPolicy: IfNotPresent
         securityContext:
