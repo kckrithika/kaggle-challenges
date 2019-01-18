@@ -77,6 +77,7 @@ if flowsnakeconfig.is_test then
                             kingdom,
                             "-v",
                             "2",
+                            "-alsologtostderr",
                         ]
                     },
                     madkub_common.refresher_container(cert_name),
