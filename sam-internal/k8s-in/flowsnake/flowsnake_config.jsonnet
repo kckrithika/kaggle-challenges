@@ -7,11 +7,11 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
 {
     is_minikube: std.startsWith(estate, "prd-minikube"),
     is_minikube_small: std.startsWith(estate, "prd-minikube-small"),
-    fleet_name_overrides: {
+    fleet_name_overrides: self.validate_estate_fields({
         "prd-data-flowsnake": "sfdc-prd",
         "prd-dev-flowsnake_iot_test": "sfdc-prd-iot-poc",
-    },
-    fleet_vips: {
+    }),
+    fleet_vips: self.validate_estate_fields({
         // These PRD VIPs are missing from vips.yaml but can be found in
         // https://git.soma.salesforce.com/estates/estates/blob/master/kingdoms/prd/vip-cnames.json
         // prd-data-flowsnake has a pretty/preferred CNAME that predates estate-based VIP configuration.
@@ -29,7 +29,7 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
         // minikube fake VIPs
         "prd-minikube-small-flowsnake": "prd-minikube-small-flowsnake.data.sfdc.net",
         "prd-minikube-big-flowsnake": "prd-minikube-big-flowsnake.data.sfdc.net",
-    },
+    }),
 
     # Standard SLB vip name is: <lbname>-<team-<kingdom>.slb.sfdc.net
     # Presume lbname is derived from role munged the same way as for ServiceMesh.
@@ -39,12 +39,12 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     # The suffix applied to the PKI role for each estate. PKI role is yet another "role" concept at Salesforce. It is
     # more commonly referred to as the application name (based on its use in SAM). It is what is in the OU 0 field of
     # MadDog certficate.
-    role_estate_suffixes:: {
+    role_estate_suffixes:: self.validate_estate_fields({
         "prd-dev-flowsnake_iot_test": "-dev",
         "prd-data-flowsnake_test": "-test",
         "prd-minikube-small-flowsnake": "-minikube",
         "prd-minikube-big-flowsnake": "-minikube",
-    },
+    }),
 
     # The ServiceMesh-visible hostname of components varies between test and production fleets.
     # E.g. api-dev.flowsnake.localhost.mesh.force.com for the Ingress Controller hosted in prd-dev vs.
@@ -65,14 +65,14 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     #
     # The actual role names use underscores, but the PKI cert names use hyphens. std.strReplace is only available in
     # jsonnet 0.10.0 and up, so just put the munged values in here.
-    estate_master_role_per_estate:: {
+    estate_master_role_per_estate:: self.validate_estate_fields({
         "prd-data-flowsnake": "flowsnake-master",
         "prd-dev-flowsnake_iot_test": "flowsnake-master-iot-test",
         "prd-data-flowsnake_test": "flowsnake-master-test",
         # minikube values are just invented; need to reconcile with reality once MadKub working in minikube
         "prd-minikube-small-flowsnake": "flowsnake-master-minikube",
         "prd-minikube-big-flowsnake": "flowsnake-master-minikube",
-    },  # default: flowsnake_master_prod
+    }),  # default: flowsnake_master_prod
 
     # The estate role names use underscores, but the value here contain hyphens to match what is found in the MadDog
     # cert SANs.
@@ -164,6 +164,9 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
 
     impersonation_proxy_enabled: std.objectHas(flowsnake_images.feature_flags, "impersonation_proxy") && !self.is_minikube,
     impersonation_proxy_replicas: if self.is_test then 1 else 2,
+
+
+    ## Some utility functions for internal consistency checking
 
     validate_estate_fields(emap):: (
         local all_estates = [std.splitLimit(ke, "/", 1)[1] for ke in flowsnake_all_kes];
