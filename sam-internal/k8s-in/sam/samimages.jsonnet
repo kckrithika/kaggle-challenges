@@ -24,10 +24,6 @@ local samreleases = import "samreleases.json";
 
         #[pjoshi] Fixing manifest-repo-watcher
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002448-fecfa58c",
-
-        #[xiao] Fix synthetic in prd, also pushing metrics, setting annotations
-        "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0002446-d9a84a95",
-        "prd,prd-sam,samapp-controller,hypersam": "sam-0002446-d9a84a95",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
