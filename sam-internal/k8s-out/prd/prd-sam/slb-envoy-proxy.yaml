@@ -110,7 +110,7 @@ spec:
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: slb-envoy-nginx-configuration
-        - mountPath: /host/data/slb/logs
+        - mountPath: /nginx-logs
           name: var-logs-volume
         - mountPath: /host/data/slb
           name: var-slb-volume
