@@ -9,7 +9,7 @@ system:
       hostnetwork: true
       containers:
       - name: searchserver
-        image: sfci/search-teams/sfci:17301715.378
+        image: sfci/search-teams/sfci:17315404.391
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
@@ -37,6 +37,9 @@ system:
         volumeMounts:
           - mountPath: /home/sfdc-searchserver/logs/solr
             name: solr-log-volume
+          - mountPath: /etc/search.conf/
+            name: secretvol
+            readOnly: true
       lbname: searchservers
       volumes:
         - name: solr-log-volume
@@ -45,3 +48,6 @@ system:
         - name: sherpa-log-volume
           hostPath:
             path: /home/sfdc-sherpa/logs
+        - name: secretvol
+          k4aSecret:
+            secretName: solrblob-yhu
