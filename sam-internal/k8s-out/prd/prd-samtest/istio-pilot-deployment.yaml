@@ -107,8 +107,7 @@ spec:
         - mountPath: /etc/istio/config
           name: config-volume
       nodeSelector:
-        master: "false"
-        pool: prd-samtest
+        master: "true"
       serviceAccount: istio-pilot-service-account
       serviceAccountName: istio-pilot-service-account
       volumes:

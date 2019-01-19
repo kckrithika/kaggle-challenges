@@ -200,7 +200,6 @@ spec:
           name: tokens
       nodeSelector:
         master: "true"
-        pool: prd-sam_gater
       volumes:
       - hostPath:
           path: /etc/pki_service

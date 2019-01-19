@@ -74,14 +74,9 @@ configs.deploymentBase("service-mesh") {
           },
           madkub.madkubRefreshContainer(certConfigs)
         ],
-        nodeSelector: {} +
-          (
-            if configs.estate == "prd-samtest" then {
-              master: "false",
-            } else {}
-          ) + {
-            pool: istioConfigs.istioEstate,
-          },
+        nodeSelector: {
+          pool: istioConfigs.istioEstate,
+        },
         initContainers: [
           madkub.madkubInitContainer(certConfigs),
           {
