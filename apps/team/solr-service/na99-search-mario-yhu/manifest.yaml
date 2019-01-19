@@ -9,7 +9,7 @@ system:
       hostnetwork: true
       containers:
       - name: searchserver
-        image: sfci/search-teams/sfci:17315404.391
+        image: sfci/search-teams/sfci:17315890.393
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
