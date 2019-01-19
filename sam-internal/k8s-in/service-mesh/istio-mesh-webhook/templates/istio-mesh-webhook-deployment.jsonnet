@@ -1,5 +1,4 @@
 local configs = import "config.jsonnet";
-local istioConfigs = (import "service-mesh/istio-config.jsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "service-mesh/istio-mesh-webhook/istio-mesh-webhook-madkub.jsonnet") + { templateFilename:: std.thisFile };
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 
@@ -75,7 +74,7 @@ configs.deploymentBase("service-mesh") {
           madkub.madkubRefreshContainer(certConfigs)
         ],
         nodeSelector: {
-          pool: istioConfigs.istioEstate,
+          master: "true",
         },
         initContainers: [
           madkub.madkubInitContainer(certConfigs),

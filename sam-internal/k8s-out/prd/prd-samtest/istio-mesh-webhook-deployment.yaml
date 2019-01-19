@@ -150,7 +150,7 @@ spec:
         - mountPath: /server-cert
           name: server-cert
       nodeSelector:
-        pool: prd-samtest
+        master: "true"
       serviceAccountName: istio-mesh-webhook-service-account
       volumes:
       - hostPath:

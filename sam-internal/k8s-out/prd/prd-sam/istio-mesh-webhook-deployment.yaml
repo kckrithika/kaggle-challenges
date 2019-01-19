@@ -149,7 +149,7 @@ spec:
         - mountPath: /server-cert
           name: server-cert
       nodeSelector:
-        pool: prd-sam_gater
+        master: "true"
       serviceAccountName: istio-mesh-webhook-service-account
       volumes:
       - hostPath:
