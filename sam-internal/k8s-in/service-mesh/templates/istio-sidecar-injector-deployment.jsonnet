@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
-local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
-local madkub = (import "istio-madkub.jsonnet") + { templateFilename:: std.thisFile };
+local istioConfigs = (import "service-mesh/istio-config.jsonnet") + { templateFilename:: std.thisFile };
+local istioImages = (import "service-mesh/istio-images.jsonnet") + { templateFilename:: std.thisFile };
+local madkub = (import "service-mesh/istio-madkub.jsonnet") + { templateFilename:: std.thisFile };
 
 local certDirs = ["cert1"];
 
@@ -115,10 +116,12 @@ configs.deploymentBase("mesh-control-plane") {
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
-          if configs.kingdom == "prd" then {
+          (
+            if configs.kingdom == "prd" then {
               master: "true",
-          } else {
-              pool: configs.estate,
+            } else {}
+          ) + {
+              pool: istioConfigs.istioEstate,
           },
         volumes+: [
           {

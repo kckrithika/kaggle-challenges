@@ -23,7 +23,7 @@ spec:
               "istio-mesh-webhook",
               "istio-mesh-webhook.mesh-control-plane",
               "istio-mesh-webhook.mesh-control-plane.svc",
-              "istio-mesh-webhook.mesh-control-plane.svc.prd-sam_gater.prd.sam.sfdc.net"
+              "istio-mesh-webhook.mesh-control-plane.svc.prd-sam.prd.sam.sfdc.net"
              ]
             }
            ]
