@@ -1,9 +1,8 @@
 local configs = import "config.jsonnet";
-local istioUtils = import "istio-utils.jsonnet";
-local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
 local hosts = import "sam/configs/hosts.jsonnet";
-
-local controlEstate = (if configs.estate == "prd-sam_gater" then "prd-sam" else configs.estate);
+local istioConfigs = (import "service-mesh/istio-config.jsonnet") + { templateFilename:: std.thisFile };
+local istioUtils = (import "service-mesh/istio-utils.jsonnet") + { templateFilename:: std.thisFile };
+local istioImages = (import "service-mesh/istio-images.jsonnet") + { templateFilename:: std.thisFile };
 
 configs.deploymentBase("mesh-control-plane") {
   metadata+: {
@@ -115,11 +114,12 @@ configs.deploymentBase("mesh-control-plane") {
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
-          if configs.estate == "prd-samtest" then {
+          (
+            if configs.estate == "prd-samtest" then {
               master: "false",
-              pool: configs.estate,
-          } else {
-              pool: configs.estate,
+            } else {}
+          ) + {
+            pool: istioConfigs.istioEstate,
           },
         volumes+: [
           {
