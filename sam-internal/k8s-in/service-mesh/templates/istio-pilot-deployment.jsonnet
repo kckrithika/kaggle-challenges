@@ -113,13 +113,12 @@ configs.deploymentBase("mesh-control-plane") {
         ],
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
-        nodeSelector: {} +
-          (
-            if configs.estate == "prd-samtest" then {
-              master: "false",
-            } else {}
-          ) + {
-            pool: istioConfigs.istioEstate,
+        # TODO: Migrate to Service Account with cluster-admin privilege and deploy to istioConfigs.istioEstate.
+        nodeSelector:
+          if configs.kingdom == "prd" then {
+            master: "true",
+          } else {
+            pool: configs.estate,
           },
         volumes+: [
           {
