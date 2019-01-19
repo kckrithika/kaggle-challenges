@@ -1,5 +1,4 @@
 local configs = import "config.jsonnet";
-local istioConfigs = (import "service-mesh/istio-config.jsonnet") + { templateFilename:: std.thisFile };
 local istioImages = (import "service-mesh/istio-images.jsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "service-mesh/istio-madkub.jsonnet") + { templateFilename:: std.thisFile };
 
@@ -113,15 +112,9 @@ configs.deploymentBase("mesh-control-plane") {
             },
           },
         ] + [madkub.madkubRefreshContainer(certDirs)],
-        # In PRD only kubeapi (master) nodes get cluster-admin permission
-        # In production, SAM control estate nodes get cluster-admin permission
-        # TODO: Migrate to Service Account with cluster-admin privilege and deploy to istioConfigs.istioEstate.
-        nodeSelector:
-          if configs.kingdom == "prd" then {
-            master: "true",
-          } else {
-            pool: configs.estate,
-          },
+        nodeSelector: {
+          master: "true",
+        },
         volumes+: [
           {
             name: "config-volume",
