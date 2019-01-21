@@ -1,0 +1,21 @@
+apiVersion: v1
+system:
+  functions:
+  - name: mysamcurrencyservice
+    count: 1
+    containers:
+    - name: samcurrencyservice
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samcurrencyservice:shassan-20190121
+      ports:
+      - containerPort: 8100
+      livenessProbe:
+        httpGet:
+          path: /currency/hello
+          port: 8110
+  loadbalancers:
+  - lbname: shassan-samcurrencylb
+    function: mysamcurrencyservice
+    slbenabled: true
+    ports:
+      - port: 8110
+        targetport: 8100

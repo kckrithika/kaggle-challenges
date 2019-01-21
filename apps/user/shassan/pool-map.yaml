@@ -4,3 +4,5 @@ apps:
                  # you can also specify other pools
  my-sam-forexservice:
   - prd/prd-sam
+ my-sam-currencyservice:
+  - prd/prd-sam
