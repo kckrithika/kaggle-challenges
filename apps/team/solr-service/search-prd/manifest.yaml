@@ -27,10 +27,10 @@ system:
         - containerPort: 8983
           name: solr-port
         livenessProbe:
-          httpGet:
-            path: /ping.jsp
-            port: 8983
-          initialDelaySeconds: 120
+          exec:
+            command:
+            - "true"
+          initialDelaySeconds: 120 
           periodSeconds: 5
         volumeMounts:
           - mountPath: /home/sfdc-searchserver/logs/solr
