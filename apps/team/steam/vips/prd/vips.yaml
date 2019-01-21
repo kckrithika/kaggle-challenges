@@ -1830,6 +1830,7 @@
     httpsredirectport: 443
     lbtype: http
     healthprotocol: http
+    healthpath: /ping.jsp?allBusy
 
 - lbname: stmfbshared2-pbsmatch1-0-prd
   servers:
