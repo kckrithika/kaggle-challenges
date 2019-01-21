@@ -56,7 +56,7 @@ if slbconfigs.isTestEstate || configs.estate == "prd-sam" then configs.deploymen
                                 "--slbPodLabel=" + slbconfigs.podLabelList,
                                 configs.sfdchosts_arg,
                                 "--deletePodFlag=true",
-                                "--deleteIpvsStateFlag=true",
+                                "--deleteIpvsStateFlag=false",
                                 "--deleteConfigFileFlag=true",
                                 "--deleteNginxTunnelIntfFlag=true",
                                 "--deleteIpvsIntfFlag=true",

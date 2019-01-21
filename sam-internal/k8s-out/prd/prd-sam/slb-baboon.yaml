@@ -50,7 +50,7 @@ spec:
           name=slb-canary, name=slb-bravo
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --deletePodFlag=true
-        - --deleteIpvsStateFlag=true
+        - --deleteIpvsStateFlag=false
         - --deleteConfigFileFlag=true
         - --deleteNginxTunnelIntfFlag=true
         - --deleteIpvsIntfFlag=true

@@ -45,7 +45,7 @@ spec:
         - --slbPodLabel=name=slb-vip-watchdog
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --deletePodFlag=true
-        - --deleteIpvsStateFlag=true
+        - --deleteIpvsStateFlag=false
         - --deleteConfigFileFlag=true
         - --deleteNginxTunnelIntfFlag=true
         - --deleteIpvsIntfFlag=true
