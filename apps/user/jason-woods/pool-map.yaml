@@ -1,3 +1,5 @@
 apps:
     qpid-broker-service-mesh:
         - prd/prd-sam
+    qpid-broker-slb:
+        -  prd/prd-sam
