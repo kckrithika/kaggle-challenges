@@ -253,7 +253,7 @@ data:
           "hostname": "shared0-slbminion1-10-lo2.ops.sfdc.net",
           "kingdom": "lo2",
           "pod": "none",
-          "rack": "e03-dh01",
+          "rack": "a44-dh01",
           "superpod": "none"
         },
         {
@@ -341,7 +341,7 @@ data:
           "hostname": "shared0-slbminion1-9-lo2.ops.sfdc.net",
           "kingdom": "lo2",
           "pod": "none",
-          "rack": "e03-dh01",
+          "rack": "a44-dh01",
           "superpod": "none"
         },
         {
@@ -363,7 +363,7 @@ data:
           "hostname": "shared0-slbminion2-10-lo2.ops.sfdc.net",
           "kingdom": "lo2",
           "pod": "none",
-          "rack": "a03-dh01",
+          "rack": "f15-dh01",
           "superpod": "none"
         },
         {
@@ -440,7 +440,7 @@ data:
           "hostname": "shared0-slbminion2-8-lo2.ops.sfdc.net",
           "kingdom": "lo2",
           "pod": "none",
-          "rack": "a03-dh01",
+          "rack": "f15-dh01",
           "superpod": "none"
         },
         {
@@ -451,7 +451,7 @@ data:
           "hostname": "shared0-slbminion2-9-lo2.ops.sfdc.net",
           "kingdom": "lo2",
           "pod": "none",
-          "rack": "a03-dh01",
+          "rack": "f15-dh01",
           "superpod": "none"
         }
       ]

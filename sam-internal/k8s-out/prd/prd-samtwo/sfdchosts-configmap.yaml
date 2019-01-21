@@ -30,10 +30,43 @@ data:
           "controlestate": "prd-samtwo",
           "devicerole": "samcompute",
           "estate": "prd-sam_tnrp_merger",
+          "hostname": "shared0-samminiontnrpmerger1-3-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "aa34-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_tnrp_merger",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_tnrp_merger",
           "hostname": "shared0-samminiontnrpmerger2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
           "rack": "u04-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_tnrp_merger",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_tnrp_merger",
+          "hostname": "shared0-samminiontnrpmerger2-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "b20-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_tnrp_merger",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_tnrp_merger",
+          "hostname": "shared0-samminiontnrpmerger2-3-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "n09-45",
           "superpod": "none"
         },
         {
