@@ -42,14 +42,7 @@ if util.is_production(kingdom) then
           ])
           for version in std.objectFields(flowsnake_images.version_mapping.main)
         ]
-        )
-         /* TODO: remove these after will is done testing spark s3 on prod */
-        + [
-{
-          image: "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net/dva/flowsnake-spark-s3:12",
-          name: "spark-s3",
-        },
-],
+        ),
       },
     },
   },
