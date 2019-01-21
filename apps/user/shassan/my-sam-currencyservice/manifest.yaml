@@ -7,7 +7,7 @@ system:
     - name: samcurrencyservice
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samcurrencyservice:shassan-20190121
       ports:
-      - containerPort: 8100
+      - containerPort: 8110
       livenessProbe:
         httpGet:
           path: /currency/hello
@@ -18,4 +18,4 @@ system:
     slbenabled: true
     ports:
       - port: 8110
-        targetport: 8100
+        targetport: 8110
