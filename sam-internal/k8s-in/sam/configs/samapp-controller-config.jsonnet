@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local samfeatureflags = import "sam-feature-flags.jsonnet";
-local util = import "util_functions.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 std.prune({
   # MadDog
@@ -13,7 +13,7 @@ std.prune({
 
   # DNS
     enableDNS: true,
-    dnsEnabledPoolNamesRegex: (if util.enableDnsForPoolNames(configs.kingdom) then ".*"),
+    dnsEnabledPoolNamesRegex: (if utils.enableDnsForPoolNames(configs.kingdom) then ".*"),
 
   #k4a
   [if configs.estate == "vpod" then "enableK4a"]: false,
@@ -24,10 +24,10 @@ std.prune({
 
   # others
     volPermissionInitContainerImage: samimages.permissionInitContainer,
-    dockerRegistry: configs.registry,
+    dockerRegistry: (if !utils.is_pcn(configs.kingdom) then configs.registry else ""),
 
   namespaceHostSubList: (
-     if util.is_production(configs.kingdom) then ["cloudatlas"]
+     if utils.is_production(configs.kingdom) then ["cloudatlas"]
      else [".*"]
    ),
    ipAddressCapacityRequest: (if samfeatureflags.ipAddressCapacityRequest then true),

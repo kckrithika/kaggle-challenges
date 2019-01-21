@@ -10,7 +10,8 @@ local samreleases = import "samreleases.json";
     metadata: {
         labels: {
             name: "watchdog-synthetic",
-        } + configs.ownerLabel.sam,
+        } + configs.ownerLabel.sam
+        + configs.pcnEnableLabel,
         name: "watchdog-synthetic",
         namespace: "sam-system",
     },
@@ -55,7 +56,7 @@ local samreleases = import "samreleases.json";
                         ],
                         image: samimages.hypersam,
                         name: "watchdog-synthetic",
-                        volumeMounts+: [
+                        volumeMounts+: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             {
                                 mountPath: "/test",
@@ -67,8 +68,9 @@ local samreleases = import "samreleases.json";
                             },
                             configs.cert_volume_mount,
                             configs.config_volume_mount,
-                        ],
-                    },
+                        ]),
+                    }
+                    + configs.containerInPCN,
                 ],
                 hostNetwork: true,
                 nodeSelector: {
@@ -78,7 +80,8 @@ local samreleases = import "samreleases.json";
                               } else {
                                   pool: configs.estate,
                               },
-                volumes+: [
+
+                volumes+: configs.filter_empty([
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     {
@@ -96,8 +99,8 @@ local samreleases = import "samreleases.json";
                         name: "output",
                     },
                     configs.config_volume("watchdog"),
-                ],
-            },
+                ]),
+            } + configs.serviceAccount,
         },
     },
 }
