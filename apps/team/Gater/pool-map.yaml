@@ -16,12 +16,12 @@ apps:
  gate-manager-public-cloud:
   - cdu/cdu-sam_gater
   - syd/syd-sam_gater
+  - yhu/yhu-sam_gater
   - yul/yul-sam_gater
  gate-manager-gia:
   - chx/chx-sam_gater
   - wax/wax-sam_gater
  gate-manager-2instances:
-  - yhu/yhu-sam_gater
  gate-manager-3instances:
   - ph2/ph2-sam_gater
  gate-manager-4instances:
