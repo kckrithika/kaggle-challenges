@@ -10,7 +10,7 @@ system:
       - containerPort: 8000
       livenessProbe:
         httpGet:
-          path: /
+          path: /forex/hello
           port: 8000
   loadbalancers:
   - lbname: shassan-samforexlb
