@@ -46,7 +46,7 @@ if util.is_production(kingdom) then
          /* TODO: remove these after will is done testing spark s3 on prod */
         + [
 {
-          image: "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net/dva/flowsnake-spark-s3:8",
+          image: "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net/dva/flowsnake-spark-s3:12",
           name: "spark-s3",
         },
 ],

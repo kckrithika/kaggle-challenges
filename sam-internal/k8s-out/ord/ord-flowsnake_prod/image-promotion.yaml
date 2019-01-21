@@ -344,5 +344,5 @@ spec:
         name: flowsnake-job-flowsnake-storm-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.2
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-s3:8
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-s3:12
         name: spark-s3
