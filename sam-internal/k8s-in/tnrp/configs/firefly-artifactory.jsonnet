@@ -8,6 +8,9 @@ local configs = import "config.jsonnet";
     'artifactory-user-name': envConfig.environmentMapping[configs.estate].artifactoryUserName,
     'artifactory-password': '${artifactoryPassword#FromSecretService}',
     'artifact-manifest-time-property-key':'snd_artifact_promotion_time',
+    'artifactory-content-repo-rc': 'content_repo_rc',
+    'artifactory-content-repo-prod': 'content_repo_prod',
+    'artifactory-content-repo-gcp': 'content_repo_gcp',
   },
 
   prod:: self.base + {
