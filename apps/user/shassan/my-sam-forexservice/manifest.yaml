@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: mysamforexservice
+    count: 1
+    containers:
+    - name: samforexservice
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samforexservice:shassan-20190122
+      ports:
+      - containerPort: 8000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
+  loadbalancers:
+  - lbname: samforexlb
+    function: mysamforexservice
+    slbenabled: true
+    ports:
+      - port: 8000
+        targetport: 8000
+        lbtype: tcp
