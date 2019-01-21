@@ -7,8 +7,11 @@ items:
           "appconfig": {
               "artifactory": {
                   "artifact-manifest-time-property-key": "snd_artifact_promotion_time",
+                  "artifactory-content-repo-gcp": "content_repo_gcp",
                   "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
                   "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
+                  "artifactory-content-repo-prod": "content_repo_prod",
+                  "artifactory-content-repo-rc": "content_repo_rc",
                   "artifactory-content-repo-user-name": "svc_tnrp_ci",
                   "artifactory-content-repo-user-name-prod": "svc_tnrp_cd",
                   "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
@@ -25,12 +28,14 @@ items:
               },
               "back-off-period": "2000ms",
               "context-prefix": "",
+              "deliver-to-gcp": "false",
               "docker": {
                   "connect-timeout": "480000ms",
                   "docker-cert-path": "/etc/docker/certs.d",
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
+              "image-promotion-yaml": "image-promotion.yaml",
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
               "max-latency": "600000ms",
@@ -442,8 +447,11 @@ items:
           "appconfig": {
               "artifactory": {
                   "artifact-manifest-time-property-key": "snd_artifact_promotion_time",
+                  "artifactory-content-repo-gcp": "content_repo_gcp",
                   "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
                   "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
+                  "artifactory-content-repo-prod": "content_repo_prod",
+                  "artifactory-content-repo-rc": "content_repo_rc",
                   "artifactory-content-repo-user-name": "svc_tnrp_ci",
                   "artifactory-content-repo-user-name-prod": "svc_tnrp_cd",
                   "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
@@ -460,12 +468,14 @@ items:
               },
               "back-off-period": "2000ms",
               "context-prefix": "",
+              "deliver-to-gcp": "false",
               "docker": {
                   "connect-timeout": "480000ms",
                   "docker-cert-path": "/etc/docker/certs.d",
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
+              "image-promotion-yaml": "image-promotion.yaml",
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
               "max-latency": "600000ms",
@@ -862,6 +872,9 @@ items:
           "appconfig": {
               "artifactory": {
                   "artifact-manifest-time-property-key": "snd_artifact_promotion_time",
+                  "artifactory-content-repo-gcp": "content_repo_gcp",
+                  "artifactory-content-repo-prod": "content_repo_prod",
+                  "artifactory-content-repo-rc": "content_repo_rc",
                   "artifactory-dev-host": "ops0-artifactrepo1-0-prd.data.sfdc.net",
                   "artifactory-p2p-host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
                   "artifactory-password": "${artifactoryPassword#FromSecretService}",
@@ -1651,8 +1664,11 @@ items:
           "appconfig": {
               "artifactory": {
                   "artifact-manifest-time-property-key": "snd_artifact_promotion_time",
+                  "artifactory-content-repo-gcp": "content_repo_gcp",
                   "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
                   "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
+                  "artifactory-content-repo-prod": "content_repo_prod",
+                  "artifactory-content-repo-rc": "content_repo_rc",
                   "artifactory-content-repo-user-name": "svc_tnrp_ci",
                   "artifactory-content-repo-user-name-prod": "svc_tnrp_cd",
                   "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
