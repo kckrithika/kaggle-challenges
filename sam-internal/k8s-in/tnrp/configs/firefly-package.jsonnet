@@ -59,7 +59,7 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       docker: dockerConfig,
       artifactory: artifactoryConfig.prod,
       'context-prefix': '',
-      'deliver-to-gcp': if configs.estate == "prd-samtwo" then 'false' else 'true',
+      'deliver-to-gcp': 'true',
       'image-promotion-yaml': 'image-promotion.yaml'
     },
     local custom_monitoring_configs = {
