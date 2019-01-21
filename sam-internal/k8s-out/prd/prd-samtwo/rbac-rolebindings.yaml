@@ -74,7 +74,13 @@ items:
   - kind: User
     name: shared0-samminiontnrpmerger1-2-prd.eng.sfdc.net
   - kind: User
+    name: shared0-samminiontnrpmerger1-3-prd.eng.sfdc.net
+  - kind: User
     name: shared0-samminiontnrpmerger2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiontnrpmerger2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiontnrpmerger2-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -90,7 +96,13 @@ items:
   - kind: User
     name: shared0-samminiontnrpmerger1-2-prd.eng.sfdc.net
   - kind: User
+    name: shared0-samminiontnrpmerger1-3-prd.eng.sfdc.net
+  - kind: User
     name: shared0-samminiontnrpmerger2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiontnrpmerger2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiontnrpmerger2-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:

@@ -110,7 +110,7 @@ data:
           "hostname": "shared0-samminiondatapool1-1-cdg.ops.sfdc.net",
           "kingdom": "cdg",
           "pod": "none",
-          "rack": "b30-dh14",
+          "rack": "a52-dh14",
           "superpod": "none"
         },
         {
@@ -132,7 +132,7 @@ data:
           "hostname": "shared0-samminiondatapool2-1-cdg.ops.sfdc.net",
           "kingdom": "cdg",
           "pod": "none",
-          "rack": "b30-dh14",
+          "rack": "b52-dh14",
           "superpod": "none"
         },
         {

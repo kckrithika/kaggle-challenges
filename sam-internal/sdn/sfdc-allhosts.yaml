@@ -87,7 +87,7 @@ hosts:
   hostname: shared0-samminiondatapool1-1-cdg.ops.sfdc.net
   kingdom: cdg
   pod: none
-  rack: b30-dh14
+  rack: a52-dh14
   superpod: none
 - bomrolename: sam_minion_datapool
   controlestate: cdg-sam
@@ -105,7 +105,7 @@ hosts:
   hostname: shared0-samminiondatapool2-1-cdg.ops.sfdc.net
   kingdom: cdg
   pod: none
-  rack: b30-dh14
+  rack: b52-dh14
   superpod: none
 - bomrolename: sam_minion_gater
   controlestate: cdg-sam
@@ -7458,7 +7458,7 @@ hosts:
   hostname: shared0-samminiondatapool1-1-frf.ops.sfdc.net
   kingdom: frf
   pod: none
-  rack: b03-m305
+  rack: l13-m305
   superpod: none
 - bomrolename: sam_minion_datapool
   controlestate: frf-sam
@@ -17412,7 +17412,7 @@ hosts:
   hostname: shared0-slbminion1-10-lo2.ops.sfdc.net
   kingdom: lo2
   pod: none
-  rack: e03-dh01
+  rack: a44-dh01
   superpod: none
 - bomrolename: slb_minion
   controlestate: lo2-sam
@@ -17484,7 +17484,7 @@ hosts:
   hostname: shared0-slbminion1-9-lo2.ops.sfdc.net
   kingdom: lo2
   pod: none
-  rack: e03-dh01
+  rack: a44-dh01
   superpod: none
 - bomrolename: slb_minion
   controlestate: lo2-sam
@@ -17502,7 +17502,7 @@ hosts:
   hostname: shared0-slbminion2-10-lo2.ops.sfdc.net
   kingdom: lo2
   pod: none
-  rack: a03-dh01
+  rack: f15-dh01
   superpod: none
 - bomrolename: slb_minion
   controlestate: lo2-sam
@@ -17565,7 +17565,7 @@ hosts:
   hostname: shared0-slbminion2-8-lo2.ops.sfdc.net
   kingdom: lo2
   pod: none
-  rack: a03-dh01
+  rack: f15-dh01
   superpod: none
 - bomrolename: slb_minion
   controlestate: lo2-sam
@@ -17574,7 +17574,7 @@ hosts:
   hostname: shared0-slbminion2-9-lo2.ops.sfdc.net
   kingdom: lo2
   pod: none
-  rack: a03-dh01
+  rack: f15-dh01
   superpod: none
 - bomrolename: sam_compute
   controlestate: lo3-sam
@@ -34869,10 +34869,37 @@ hosts:
   controlestate: prd-samtwo
   devicerole: samcompute
   estate: prd-sam_tnrp_merger
+  hostname: shared0-samminiontnrpmerger1-3-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  rack: aa34-45
+  superpod: none
+- bomrolename: sam_minion_tnrp_merger
+  controlestate: prd-samtwo
+  devicerole: samcompute
+  estate: prd-sam_tnrp_merger
   hostname: shared0-samminiontnrpmerger2-1-prd.eng.sfdc.net
   kingdom: prd
   pod: none
   rack: u04-45
+  superpod: none
+- bomrolename: sam_minion_tnrp_merger
+  controlestate: prd-samtwo
+  devicerole: samcompute
+  estate: prd-sam_tnrp_merger
+  hostname: shared0-samminiontnrpmerger2-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  rack: b20-45
+  superpod: none
+- bomrolename: sam_minion_tnrp_merger
+  controlestate: prd-samtwo
+  devicerole: samcompute
+  estate: prd-sam_tnrp_merger
+  hostname: shared0-samminiontnrpmerger2-3-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  rack: n09-45
   superpod: none
 - bomrolename: sam_minion_tnrp_promoter
   controlestate: prd-samtwo
@@ -39309,7 +39336,7 @@ hosts:
   hostname: shared0-slbminion1-10-ukb.ops.sfdc.net
   kingdom: ukb
   pod: none
-  rack: n03-ks31
+  rack: c08-ks31
   superpod: none
 - bomrolename: slb_minion
   controlestate: ukb-sam
@@ -39381,7 +39408,7 @@ hosts:
   hostname: shared0-slbminion1-9-ukb.ops.sfdc.net
   kingdom: ukb
   pod: none
-  rack: n03-ks31
+  rack: c08-ks31
   superpod: none
 - bomrolename: slb_minion
   controlestate: ukb-sam
@@ -39399,7 +39426,7 @@ hosts:
   hostname: shared0-slbminion2-10-ukb.ops.sfdc.net
   kingdom: ukb
   pod: none
-  rack: n01-ks31
+  rack: q02-ks31
   superpod: none
 - bomrolename: slb_minion
   controlestate: ukb-sam
@@ -39462,7 +39489,7 @@ hosts:
   hostname: shared0-slbminion2-8-ukb.ops.sfdc.net
   kingdom: ukb
   pod: none
-  rack: n01-ks31
+  rack: q02-ks31
   superpod: none
 - bomrolename: slb_minion
   controlestate: ukb-sam
@@ -39471,7 +39498,7 @@ hosts:
   hostname: shared0-slbminion2-9-ukb.ops.sfdc.net
   kingdom: ukb
   pod: none
-  rack: n01-ks31
+  rack: q02-ks31
   superpod: none
 - bomrolename: sam_minion_caas
   controlestate: ukb-sam

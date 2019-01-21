@@ -21,7 +21,7 @@ shared0-samminiongwc1-2-lo2.ops.sfdc.net,10.161.192.90/29,10.177.4.0/27,b04-01,l
 shared0-samminiongwc2-1-lo2.ops.sfdc.net,10.161.192.91/29,10.177.4.32/27,b04-01,lo2-sam_gatewayconfig,4203041207
 shared0-samminiongwc2-2-lo2.ops.sfdc.net,10.161.192.83/29,10.177.4.96/27,f03-01,lo2-sam_gatewayconfig,4203061205
 shared0-slbminion1-1-lo2.ops.sfdc.net,10.161.192.102/28,10.177.9.64/27,e03-01,lo2-slb,4203061206
-shared0-slbminion1-10-lo2.ops.sfdc.net,10.161.192.103/28,10.177.9.96/27,e03-01,lo2-slb,4203061206
+shared0-slbminion1-10-lo2.ops.sfdc.net,10.161.224.51/29,10.177.9.96/27,a44-01,lo2-slb,4203031208
 shared0-slbminion1-2-lo2.ops.sfdc.net,10.161.192.104/28,10.177.9.128/27,e03-01,lo2-slb,4203061206
 shared0-slbminion1-3-lo2.ops.sfdc.net,10.161.192.98/28,10.177.9.160/27,e03-01,lo2-slb,4203061206
 shared0-slbminion1-4-lo2.ops.sfdc.net,10.161.192.99/28,10.177.9.192/27,e03-01,lo2-slb,4203061206
@@ -29,14 +29,14 @@ shared0-slbminion1-5-lo2.ops.sfdc.net,10.161.192.105/28,10.177.9.224/27,e03-01,l
 shared0-slbminion1-6-lo2.ops.sfdc.net,10.161.192.106/28,10.177.10.0/27,e03-01,lo2-slb,4203061206
 shared0-slbminion1-7-lo2.ops.sfdc.net,10.161.192.107/28,10.177.10.32/27,e03-01,lo2-slb,4203061206
 shared0-slbminion1-8-lo2.ops.sfdc.net,10.161.192.101/28,10.177.10.64/27,e03-01,lo2-slb,4203061206
-shared0-slbminion1-9-lo2.ops.sfdc.net,10.161.192.100/28,10.177.10.96/27,e03-01,lo2-slb,4203061206
+shared0-slbminion1-9-lo2.ops.sfdc.net,10.161.224.50/29,10.177.10.96/27,a44-01,lo2-slb,4203031208
 shared0-slbminion2-1-lo2.ops.sfdc.net,10.161.192.120/28,10.177.8.0/27,a03-01,lo2-slb,4203041206
-shared0-slbminion2-10-lo2.ops.sfdc.net,10.161.192.115/28,10.177.8.32/27,a03-01,lo2-slb,4203041206
+shared0-slbminion2-10-lo2.ops.sfdc.net,10.161.192.76/29,10.177.8.32/27,f15-01,lo2-slb,4203061227
 shared0-slbminion2-2-lo2.ops.sfdc.net,10.161.192.116/28,10.177.8.64/27,a03-01,lo2-slb,4203041206
 shared0-slbminion2-3-lo2.ops.sfdc.net,10.161.192.121/28,10.177.8.96/27,a03-01,lo2-slb,4203041206
 shared0-slbminion2-4-lo2.ops.sfdc.net,10.161.192.122/28,10.177.8.128/27,a03-01,lo2-slb,4203041206
 shared0-slbminion2-5-lo2.ops.sfdc.net,10.161.192.123/28,10.177.8.160/27,a03-01,lo2-slb,4203041206
 shared0-slbminion2-6-lo2.ops.sfdc.net,10.161.192.117/28,10.177.8.192/27,a03-01,lo2-slb,4203041206
 shared0-slbminion2-7-lo2.ops.sfdc.net,10.161.192.119/28,10.177.8.224/27,a03-01,lo2-slb,4203041206
-shared0-slbminion2-8-lo2.ops.sfdc.net,10.161.192.118/28,10.177.9.0/27,a03-01,lo2-slb,4203041206
-shared0-slbminion2-9-lo2.ops.sfdc.net,10.161.192.114/28,10.177.9.32/27,a03-01,lo2-slb,4203041206
+shared0-slbminion2-8-lo2.ops.sfdc.net,10.161.192.74/29,10.177.9.0/27,f15-01,lo2-slb,4203061227
+shared0-slbminion2-9-lo2.ops.sfdc.net,10.161.192.75/29,10.177.9.32/27,f15-01,lo2-slb,4203061227
