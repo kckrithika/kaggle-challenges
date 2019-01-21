@@ -43,7 +43,7 @@ system:
         value: dva/datapool-engine:jenkins-insights-WaveDataPool-master-283-itest
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
-        value: mist40,stmfa
+        value: mist40,mist47,stmfa
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_KIND
         value: dockerDefaultRegistryImage
