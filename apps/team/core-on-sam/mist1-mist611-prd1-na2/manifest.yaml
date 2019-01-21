@@ -4,15 +4,15 @@ system:
   - containers:
     - env:
       - name: DB_SID
-        value: mist61b218utf
+        value: dbsid
       - name: DB_INSTANCE_NAME
-        value: mist61b218utf-1
+        value: dbinstance
       - name: DB_USER
-        value: sleepy
+        value: dbuser
       - name: DB_PASSWORD
         value: rotate
       - name: DB_STATS_USER
-        value: snowwhite
+        value: dbsuperuser
       - name: DB_STATS_PASSWORD
         value: rotate
       - name: DB_CONN_NUM
@@ -22,7 +22,7 @@ system:
       - name: SERVER_ID
         value: x
       - name: IP_DB
-        value: mist61ice1-db1-1-prd.eng.sfdc.net
+        value: dbhostname
       - name: IP_MNDS1
         value: 127.0.0.1
       - name: OFFLINE
@@ -32,9 +32,9 @@ system:
       - name: PUBLIC_PORT_IS_SECURE
         value: true
       - name: PUBLIC_HOST_NAME
-        value: us1-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+        value: us2-sfproxy-lb.publicdnssuffix
       - name: SFPROXY_VIP
-        value: https://us1-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
+        value: https://us2-sfproxy-lb.publicdnssuffix:8443
       - name: HTTP_PORT
         value: 8085
       - name: SPORT
@@ -44,13 +44,13 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na1.app
+        value: mist1.mist611.prd1.na2.app
       - name: CLUSTER_NAME
-        value: na1
+        value: na2
       - name: DEPLOYMENT
         value: B
       - name: USE_CONFIG_SIDECAR
@@ -59,7 +59,7 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17154868
+      image: coreAppImage
       livenessProbe:
         exec:
           command:
@@ -95,8 +95,8 @@ system:
         readOnly: true
     - env:
       - name: CASAM_SETTINGS_PATH
-        value: mist.mist61.prd.na1.app
-      image: sfci/casam/coreapp_config_overrides:2b789e
+        value: mist1.mist611.prd1.na2.app
+      image: configOverrideImage
       livenessProbe:
         exec:
           command:
@@ -121,7 +121,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: envoy-sidecar
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: envoyImage
       livenessProbe:
         exec:
           command:
@@ -148,7 +148,7 @@ system:
     - env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
-      image: sfci/casam/cyan-config:208cc2
+      image: envoyConfigImage
       livenessProbe:
         exec:
           command:
@@ -167,11 +167,11 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
         name: envoy-config-volume
-    count: 5
+    count: 15
     identity:
-      pod: na1
+      pod: na2
       serviceName: app
-    name: na1-mist61app-prd
+    name: na2-mist611app-prd1
     progressDeadlineSeconds: 300
     strategy:
       rollingUpdate:
@@ -206,7 +206,7 @@ system:
       - name: DEPLOY_ENV
         value: alpha
       - name: CYAN
-        value: https://us1-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
+        value: https://us2-sfproxy-lb.publicdnssuffix:8086
       - name: CURL_GLOBAL_OPTS
         value: -k
       - name: K4A
@@ -218,13 +218,13 @@ system:
       - name: OLD_DWARF
         value: sneezy
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
-        value: 5
+        value: 15
       - name: DB_SID
-        value: mist61b218utf
+        value: dbsid
       - name: LOCK_DWARF
         value: 1
       - name: TRIGGER_CAFFEINE
@@ -236,12 +236,12 @@ system:
       - name: MADDOG_CLIENT
         value: /certs
       - name: CASAM_SETTINGS_PATH
-        value: mist61.mist.prd.na1.sequencer
+        value: mist1.mist611.prd1.na2.sequencer
       - name: CASAM_SUPERPOD
         value: sp2
       - name: HTTP_PROXY
-        value: public0-proxy1-0-prd.data.sfdc.net:8080
-      image: sfci/casam/sequencer:4905b0
+        value: httpproxy
+      image: sequencerImage
       livenessProbe:
         failureThreshold: 10
         httpGet:
@@ -270,9 +270,9 @@ system:
         readOnly: true
     count: 1
     identity:
-      pod: na1
+      pod: na2
       serviceName: sequencer
-    name: na1-mist61sequencer-prd
+    name: na2-mist611sequencer-prd1
     progressDeadlineSeconds: 300
     terminationGracePeriodSeconds: 500
     volumes:
@@ -288,14 +288,14 @@ system:
   - containers:
     - args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
-      - --switchboard=us99-mist61switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
+      - --switchboard=switchboard
       - --log-level=trace
       env:
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
       - name: SFDC_ENVIRONMENT
-        value: mist61
-      image: sfci/frontend-gateway/sfproxy:659513c
+        value: mist611
+      image: sfProxy
       livenessProbe:
         exec:
           command:
@@ -320,21 +320,21 @@ system:
         name: tls-server-cert
     count: 1
     identity:
-      pod: na1
+      pod: na2
       serviceName: sfproxy
-    name: na1-mist61sfproxy-prd
+    name: na2-mist611sfproxy-prd1
     volumes:
     - maddogCert:
         type: client
       name: tls-client-cert
     - maddogCert:
         lbnames:
-        - us1-sfproxy-lb
+        - us2-sfproxy-lb
         type: server
       name: tls-server-cert
   loadbalancers:
-  - function: na1-mist61sfproxy-prd
-    lbname: us1-sfproxy-lb
+  - function: na2-mist611sfproxy-prd1
+    lbname: us2-sfproxy-lb
     nodeExposed: false
     ports:
     - port: 2525
