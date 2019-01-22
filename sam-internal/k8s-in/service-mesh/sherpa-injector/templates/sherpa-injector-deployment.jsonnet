@@ -47,8 +47,8 @@ configs.deploymentBase("service-mesh") {
           {
             name: "sherpa-injector",
             // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
-            // https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-injector/job/master/49
-            image: "%s/sfci/servicelibs/sherpa-injector:0f9b3d249cd15898f3d29ea4e148b1c249935cd7" % configs.registry,
+            // https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-injector/job/master/51
+            image: "%s/sfci/servicelibs/sherpa-injector:7b1e3bed9c774e41c8f3bbd6a003222825476c41" % configs.registry,
             imagePullPolicy: "IfNotPresent",
             args: [
               "--port=7443",  // can't use 443 here because of the permissions
