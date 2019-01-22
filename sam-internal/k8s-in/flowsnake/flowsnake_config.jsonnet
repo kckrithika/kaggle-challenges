@@ -152,9 +152,9 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
 
     kubernetes_rbac_stage: if self.is_minikube then
             "user_only"
-        else if estate == "prd-data-flowsnake_test" then
+        else if kingdom == "prd" then
             "host_and_user"
-        else if std.startsWith(estate, "prd") then
+        else if std.startsWith(estate, "N/A: currently_no_such_estates") then
             "host_only"
         else
             "disabled",
