@@ -10,11 +10,11 @@ data:
       "dry-run": false,
       "email": true,
       "email-delay": 0,
-      "funnelEndpoint": "ajna0-funnel1-0-ia2.data.sfdc.net:80",
+      "funnelEndpoint": "ajna0-funnel1-0-ph2.data.sfdc.net:80",
       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "max-resource-time": 300000000000,
       "orphan-namespaces": "flowsnake,default,kube-system",
-      "override-control-estate": "/ia2/ia2-sam",
+      "override-control-estate": "/ph2/ph2-sam",
       "poll-delay": 30000000000,
       "recipient": "flowsnake@salesforce.com",
       "resource-cooldown": 15000000000,
@@ -85,8 +85,8 @@ data:
         "watchdog-master.yaml"
       ],
       "sender": "flowsnake@salesforce.com",
-      "smtp-server": "ops0-mta2-1-ia2.ops.sfdc.net:25",
-      "tnrp-endpoint": "https://ops0-piperepo1-0-ia2.data.sfdc.net/tnrp/content_repo/0/archive"
+      "smtp-server": "ops0-mta2-1-ph2.ops.sfdc.net:25",
+      "tnrp-endpoint": "https://ops0-piperepo1-0-ph2.data.sfdc.net/tnrp/content_repo/0/archive"
     }
 kind: ConfigMap
 metadata:

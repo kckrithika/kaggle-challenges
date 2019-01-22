@@ -65,6 +65,7 @@ local all_resources = [
     "watchdog-canary-0-12-0.yaml",
     "watchdog-canary-0-12-1.yaml",
     "watchdog-canary-0-12-2.yaml",
+    "watchdog-canary-list.yaml",
     "watchdog-btrfs.yaml",
     "watchdog-common.yaml",
     "watchdog-docker-daemon.yaml",
