@@ -59,7 +59,7 @@ spec:
         - --monitorFrequency=10s
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
-        - --optOutServiceList=slb-canary-service-ext,vir501-1-0-xrd,vir502-1-0-xrd,vir503-1-0-xrd,vir504-1-0-xrd,vir505-1-0-xrd,vir506-1-0-xrd,vir507-1-0-xrd,vir508-1-0-xrd,vir509-1-0-xrd,vir510-1-0-xrd,vir511-1-0-xrd,vir512-1-0-xrd,cpt-dsr-validation-cpt-xrd
+        - --optOutServiceList=slb-canary-service-ext,vir501-1-0-xrd,vir502-1-0-xrd,vir503-1-0-xrd,vir504-1-0-xrd,vir505-1-0-xrd,vir506-1-0-xrd,vir507-1-0-xrd,vir508-1-0-xrd,vir509-1-0-xrd,vir510-1-0-xrd,vir511-1-0-xrd,vir512-1-0-xrd,cpt-dsr-validation-cpt-xrd,slb-portal-service
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         env:
