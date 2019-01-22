@@ -32,6 +32,7 @@
                         AND minionpool NOT LIKE '%ceph%'
                         AND minionpool NOT LIKE '%slb%'
                         AND minionpool NOT LIKE '%storage%'
+                        AND minionpool NOT LIKE '%chatbot%'
                   GROUP BY minionpool
               ) ss
               ) ss2
