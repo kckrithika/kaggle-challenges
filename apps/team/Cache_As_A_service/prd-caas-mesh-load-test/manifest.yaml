@@ -3,9 +3,9 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - jayant.kumar@salesforce.com
+      - rpragada@salesforce.com
   functions:
-  - name: caas-load-test
+  - name: prd-caas-load-test
     count: 1
     containers:
     - name: caas-load
@@ -17,9 +17,7 @@ system:
         - -t 1,5,10,20
         - -v 256,1024,10240,102400
         - -o 0,1
-        - -p meshredis
-        - -d prd
-        - -s sp2
+        - -m
         - -x 120
       livenessProbe:
         exec:
@@ -28,6 +26,47 @@ system:
         periodSeconds: 5
       env:
        - name: NOT_REQUIRED
-         value: pythogoras
+         value: newton
        - name: PYTHONUNBUFFERED
          value: 1
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
+      args:
+      - --switchboard
+      - switchboardredis-lb:15001
+      ports:
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: redis
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
