@@ -68,11 +68,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
-                            "--IpvsPath=%s" % [slbflights.ipvsInstallerPackage],
+                            "--IpvsPath=20190114",
                             configs.sfdchosts_arg,
-                        ] + (if slbflights.ipvsConnTabBits != 0 then [
-                            "--ipvsConnTabBits=%d" % [slbflights.ipvsConnTabBits],
-                        ] else []),
+                            "--ipvsConnTabBits=20",
+                        ],
                         volumeMounts: std.prune([
                             {
                                 name: "dev-volume",
