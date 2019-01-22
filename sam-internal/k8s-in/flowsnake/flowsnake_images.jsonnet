@@ -108,6 +108,7 @@ local utils = import "util_functions.jsonnet";
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",
                   # Using a master branch build to run integration tests in test fleet for 0.12.3
                   "0.12.3-preview": "jenkins-dva-transformation-flowsnake-platform-master-768-itest",
+                  "0.12.5": 10011,
                 }
                 +
                 # These are for developer testing only
