@@ -82,6 +82,8 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         },
         "dfw/dfw-flowsnake_prod": {
         },
+        "ia2/ia2-flowsnake_prod": {
+        },
     }),
 
     // List of unrestricted Ajna Applog Log Record Types that do not require special permission to access. (GDPR compliance)

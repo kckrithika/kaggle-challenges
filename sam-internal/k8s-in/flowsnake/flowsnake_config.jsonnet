@@ -26,6 +26,7 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
         "frf-flowsnake_prod": "flowsnake-frf.data.sfdc.net",
         "par-flowsnake_prod": "flowsnake-par.data.sfdc.net",
         "dfw-flowsnake_prod": "flowsnake-dfw.data.sfdc.net",
+        "ia2-flowsnake_prod": "flowsnake-ia2.data.sfdc.net",
         // minikube fake VIPs
         "prd-minikube-small-flowsnake": "prd-minikube-small-flowsnake.data.sfdc.net",
         "prd-minikube-big-flowsnake": "prd-minikube-big-flowsnake.data.sfdc.net",
