@@ -49,5 +49,5 @@ system:
           hostPath:
             path: /home/sfdc-sherpa/logs
         - name: secretvol
-          k4aSecret:
-            secretName: solrblob-yhu
+          hostPath:
+            path: /etc/search.conf/
