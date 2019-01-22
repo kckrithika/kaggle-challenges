@@ -23,12 +23,12 @@ system:
       - name: JAVA_OPTIONS
         value: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=3
       resources:
-        limits:
-          memory: 12G
-          cpu: 800m
         requests:
-          memory: 12G
-          cpu: 800m
+          memory: "6G"
+          cpu: "2"
+        limits:
+          memory: "6G"
+          cpu: "2"
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
@@ -36,6 +36,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+        # Generally we have set this to ~10 seconds longer than the readiness initialDelaySeconds
         initialDelaySeconds: 120
         periodSeconds: 60
         timeoutSeconds: 30
@@ -43,6 +44,8 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+        # This needs to be longer than the time for scone to start. 
+        # Search the logs for 'Started EaasSconeApp' to get a sense of the startup time which is primary dependent on CPU resources.
         initialDelaySeconds: 110
         periodSeconds: 60
         timeoutSeconds: 30

@@ -5,8 +5,8 @@ system:
     - emailinfrastructure@salesforce.com
   functions:
   - name: eaas
-    #See https://salesforce.quip.com/wbjKA0Z8kZk0 for a discussion of the number of pods (7) per node (5)
-    count: 35
+    # See https://salesforce.quip.com/wbjKA0Z8kZk0 for a discussion of the number of pods (8) per node (5)
+    count: 40
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
@@ -24,10 +24,10 @@ system:
       resources:
         requests:
           memory: "12G"
-          cpu: "800m"
+          cpu: "4"
         limits:
           memory: "12G"
-          cpu: "800m"
+          cpu: "4"
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
@@ -38,6 +38,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+        # Generally we have set this to ~10 seconds longer than the readinessProbe initialDelaySeconds
         initialDelaySeconds: 120
         periodSeconds: 60
         timeoutSeconds: 30
@@ -45,6 +46,8 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+        # This needs to be longer than the time for scone to start. 
+        # Search the logs for 'Started EaasSconeApp' to get a sense of the startup time which is primary dependent on CPU resources.
         initialDelaySeconds: 110
         periodSeconds: 60
         timeoutSeconds: 30
