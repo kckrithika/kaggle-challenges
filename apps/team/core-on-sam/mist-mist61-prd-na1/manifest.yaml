@@ -1,3 +1,6 @@
+# Warning: DO NOT EDIT this generated file
+# See here on how to generate this file https://git.soma.salesforce.com/casam/casamctl
+
 apiVersion: v1
 system:
   functions:
@@ -202,7 +205,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1548102042768705024
+        value: 1548193223098138880
       - name: DEPLOY_ENV
         value: alpha
       - name: CYAN
