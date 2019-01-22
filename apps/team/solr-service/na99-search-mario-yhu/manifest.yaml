@@ -50,4 +50,4 @@ system:
             path: /home/sfdc-sherpa/logs
         - name: secretvol
           hostPath:
-            path: /etc/search.conf/
+            path: /etc/search.conf
