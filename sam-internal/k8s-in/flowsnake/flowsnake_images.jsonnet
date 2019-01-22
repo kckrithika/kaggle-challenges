@@ -134,7 +134,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
-                dynamic_watchdogs: "verified in test",
+                dynamic_watchdogs: "verified in dev",
             },
             version_mapping: {
                 main: {
@@ -160,6 +160,7 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                dynamic_watchdogs: "verified in dev",
             },
             version_mapping: {
                 main: {
@@ -170,7 +171,6 @@ local utils = import "util_functions.jsonnet";
                   "0.12.0": 696,
                   "0.12.1": 10001,
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
-                  "0.12.2.sluice_fix": "jenkins-dva-transformation-flowsnake-platform-PR-798-1-itest",  # for testing purposes
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
