@@ -35,6 +35,7 @@ local build_test_command(test_name, version) = build_run_command(version) + set_
 local flag_btrfs_test = std.objectHas(flowsnake_images.feature_flags, "btrfs_watchdog_hard_reset");
 
 ## Flowsnake release -> Watchdog name -> jUnit Test class
+## make sure add watchdog_canary_versions
 local tests_for_each_version = {
     "0.11.0": {
         SparkStandalone: 'SparkStandaloneDemoJobIT',
@@ -51,6 +52,10 @@ local tests_for_each_version = {
     "0.12.2": {
         SparkStandalone: 'SparkStandaloneDemoJobIT',
         SparkLocal: 'SparkLocalDriverDemoJobIT',
+   },
+    "0.12.5": {
+       SparkStandalone: 'SparkStandaloneDemoJobIT',
+       SparkLocal: 'SparkLocalDriverDemoJobIT',
    },
 };
 
