@@ -9,7 +9,7 @@ samcaas1-caasminion1-7-ia2.ops.sfdc.net,10.227.151.199/28,10.163.27.96/27,m44-01
 samcaas1-caasminion1-8-ia2.ops.sfdc.net,10.227.151.200/28,10.163.27.128/27,m44-01,ia2-sp1-sam_caas,4203031207
 samcaas2-caasminion1-1-ia2.ops.sfdc.net,10.227.173.44/29,10.163.21.192/27,l44-01,ia2-sp2-sam_caas,4203031208
 samcaas2-caasminion1-2-ia2.ops.sfdc.net,10.227.173.42/29,10.163.22.0/27,l44-01,ia2-sp2-sam_caas,4203031208
-samcaas2-caasminion1-3-ia2.ops.sfdc.net,10.227.173.35/29,10.163.20.0/27,f15-01,ia2-sp2-sam_caas,4203091227
+samcaas2-caasminion1-3-ia2.ops.sfdc.net,10.227.173.2/29,10.163.20.0/27,l45-01,ia2-sp2-sam_caas,4203031210
 samcaas2-caasminion1-4-ia2.ops.sfdc.net,10.227.173.37/29,10.163.20.32/27,f15-01,ia2-sp2-sam_caas,4203091227
 samcaas2-caasminion1-5-ia2.ops.sfdc.net,10.227.173.36/29,10.163.20.64/27,f15-01,ia2-sp2-sam_caas,4203091227
 samcaas2-caasminion1-6-ia2.ops.sfdc.net,10.227.173.34/29,10.163.20.96/27,f15-01,ia2-sp2-sam_caas,4203091227
@@ -18,7 +18,7 @@ samcaas2-caasminion1-8-ia2.ops.sfdc.net,10.227.173.43/29,10.163.22.32/27,l44-01,
 samkingdomcaas0-caasminion1-1-ia2.ops.sfdc.net,10.227.151.34/29,10.163.16.0/27,g55-01,ia2-sam_kingdom_caas,4203071228
 samkingdomcaas0-caasminion1-2-ia2.ops.sfdc.net,10.227.151.35/29,10.163.16.32/27,g55-01,ia2-sam_kingdom_caas,4203071228
 samkingdomcaas0-caasminion1-3-ia2.ops.sfdc.net,10.227.151.36/29,10.163.16.64/27,g55-01,ia2-sam_kingdom_caas,4203071228
-samkingdomcaas0-caasminion2-1-ia2.ops.sfdc.net,10.227.151.42/29,10.163.16.160/27,j06-01,ia2-sam_kingdom_caas,4203051212
+samkingdomcaas0-caasminion2-1-ia2.ops.sfdc.net,10.227.151.42/29,10.163.16.160/27,g06-01,ia2-sam_kingdom_caas,4203081212
 shared0-samcompute1-1-ia2.ops.sfdc.net,10.227.135.2/29,10.163.0.0/27,k02-01,ia2-sam,4203051203
 shared0-samcompute1-2-ia2.ops.sfdc.net,10.227.135.3/29,10.163.0.32/27,k02-01,ia2-sam,4203051203
 shared0-samcompute2-1-ia2.ops.sfdc.net,10.227.135.10/29,10.163.0.192/27,l42-01,ia2-sam,4203031204
