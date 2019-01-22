@@ -57,6 +57,18 @@
     },
     {
       "namespaces": [
+        "mc-eventing"
+      ],
+      "access": [
+        "team/mc-eventing"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_mc_consumer",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-health",
         "distributed-tracing"
       ],
@@ -468,6 +480,18 @@
       ],
       "controlEstate": "fra-sam",
       "estate": "fra-sam_kingdom_caas",
+      "kingdom": "fra",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "mc-eventing"
+      ],
+      "access": [
+        "team/mc-eventing"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-sam_mc_consumer",
       "kingdom": "fra",
       "superPod": "None"
     },

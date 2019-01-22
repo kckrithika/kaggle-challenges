@@ -180,6 +180,26 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: mc-eventing:fra-sam_mc_consumer:rolebinding
+    namespace: mc-eventing
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionmcconsumer1-1-fra.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionmcconsumer1-2-fra.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionmcconsumer2-1-fra.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionmcconsumer2-2-fra.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionmcconsumer3-1-fra.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: csc-health:fra-sam_report_collector:rolebinding
     namespace: csc-health
   roleRef:
