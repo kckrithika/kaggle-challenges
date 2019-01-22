@@ -13,6 +13,7 @@ data:
       "debug": true,
       "deletionEnabled": true,
       "deletionPercentageThreshold": 20,
+      "dnsEnabledPoolNamesRegex": ".*",
       "dockerregistry": "ops-artifactrepo1-0-wax.data.sfdc.net",
       "enableDNS": true,
       "enableIdentityEnvVar": false,
