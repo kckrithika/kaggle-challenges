@@ -16,8 +16,7 @@ items:
       metadata:
         annotations:
           madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
-            "prd", "name": "watchdogcanarycerts", "role": "flowsnake_test", "san":
-            ["dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net", "api-dev.flowsnake.localhost.mesh.force.com"]}]}'
+            "prd", "name": "watchdogcanarycerts", "role": "flowsnake_test"}]}'
         labels:
           app: watchdog-canary-0-11-0
           apptype: monitoring
@@ -228,8 +227,7 @@ items:
       metadata:
         annotations:
           madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
-            "prd", "name": "watchdogcanarycerts", "role": "flowsnake_test", "san":
-            ["dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net", "api-dev.flowsnake.localhost.mesh.force.com"]}]}'
+            "prd", "name": "watchdogcanarycerts", "role": "flowsnake_test"}]}'
         labels:
           app: watchdog-canary-0-12-0
           apptype: monitoring
@@ -440,8 +438,7 @@ items:
       metadata:
         annotations:
           madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
-            "prd", "name": "watchdogcanarycerts", "role": "flowsnake_test", "san":
-            ["dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net", "api-dev.flowsnake.localhost.mesh.force.com"]}]}'
+            "prd", "name": "watchdogcanarycerts", "role": "flowsnake_test"}]}'
         labels:
           app: watchdog-canary-0-12-1
           apptype: monitoring
@@ -652,8 +649,7 @@ items:
       metadata:
         annotations:
           madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
-            "prd", "name": "watchdogcanarycerts", "role": "flowsnake_test", "san":
-            ["dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net", "api-dev.flowsnake.localhost.mesh.force.com"]}]}'
+            "prd", "name": "watchdogcanarycerts", "role": "flowsnake_test"}]}'
         labels:
           app: watchdog-canary-0-12-2
           apptype: monitoring

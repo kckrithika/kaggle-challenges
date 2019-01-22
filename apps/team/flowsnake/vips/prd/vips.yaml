@@ -1,5 +1,4 @@
-- lbname: dev0shared0-flowsnakeiottest1-0-prd
-  customlbname: dev0shared0-flowsnakeiottest1-0-prd
+- lbname: kubernetes-api-dev
   servers:
    - dev0shared0-flowsnakeworkeriottest1-1-prd.eng.sfdc.net
    - dev0shared0-flowsnakeworkeriottest1-2-prd.eng.sfdc.net
@@ -18,13 +17,11 @@
    - dev0shared0-flowsnakeworkeriottest1-15-prd.eng.sfdc.net
   ports:
    - port: 443
-     targetport: 8443
+     targetport: 8444
      lbtype: tcp
-     healthport: 80
-     healthpath: "/ping.jsp"
-     healthprotocol: "http"
-- lbname: flowsnake1-0-prd
-  customlbname: flowsnake1-0-prd
+     healthport: 8444
+     healthprotocol: "tcp"
+- lbname: kubernetes-api
   servers:
    - fs1shared0-flowsnakeworker1-10-prd.eng.sfdc.net
    - fs1shared0-flowsnakeworker1-31-prd.eng.sfdc.net
@@ -198,32 +195,11 @@
    - fs1shared0-flowsnakeworker1-42-prd.eng.sfdc.net
   ports:
    - port: 443
-     targetport: 8443
+     targetport: 8444
      lbtype: tcp
-     healthport: 80
-     healthpath: "/ping.jsp"
-     healthprotocol: "http"
-- lbname: flowsnake-test1-0-prd
-  customlbname: flowsnake-test1-0-prd
-  servers:
-   - fs1shared0-flowsnakeworkertest1-1-prd.eng.sfdc.net
-   - fs1shared0-flowsnakeworkertest2-3-prd.eng.sfdc.net
-   - fs1shared0-flowsnakeworkertest2-2-prd.eng.sfdc.net
-   - fs1shared0-flowsnakeworkertest1-3-prd.eng.sfdc.net
-   - fs1shared0-flowsnakeworkertest1-5-prd.eng.sfdc.net
-   - fs1shared0-flowsnakeworkertest2-5-prd.eng.sfdc.net
-   - fs1shared0-flowsnakeworkertest1-2-prd.eng.sfdc.net
-   - fs1shared0-flowsnakeworkertest1-4-prd.eng.sfdc.net
-   - fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net
-   - fs1shared0-flowsnakeworkertest2-4-prd.eng.sfdc.net
-  ports:
-   - port: 443
-     targetport: 8443
-     lbtype: tcp
-     healthport: 80
-     healthpath: "/ping.jsp"
-     healthprotocol: "http"
-- lbname: impersonation-proxy-test
+     healthport: 8444
+     healthprotocol: "tcp"
+- lbname: kubernetes-api-test
   servers:
       - fs1shared0-flowsnakeworkertest1-1-prd.eng.sfdc.net
       - fs1shared0-flowsnakeworkertest2-3-prd.eng.sfdc.net
@@ -236,7 +212,7 @@
       - fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net
       - fs1shared0-flowsnakeworkertest2-4-prd.eng.sfdc.net
   ports:
-      - port: 444
+      - port: 443
         targetport: 8444
         lbtype: tcp
         healthport: 8444
