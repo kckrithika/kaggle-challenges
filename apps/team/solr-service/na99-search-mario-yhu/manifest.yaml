@@ -37,7 +37,7 @@ system:
         volumeMounts:
           - mountPath: /home/sfdc-searchserver/logs/solr
             name: solr-log-volume
-          - mountPath: /etc/search.conf/
+          - mountPath: /etc/search.conf
             name: secretvol
             readOnly: true
       lbname: searchservers
@@ -49,5 +49,5 @@ system:
           hostPath:
             path: /home/sfdc-sherpa/logs
         - name: secretvol
-          k4aSecret:
-            secretName: solrblob-yhu
+          hostPath:
+            path: /home/sfdc-searchserver/config
