@@ -13847,7 +13847,7 @@
       hostname: "samkingdomcaas0-caasminion2-1-ia2.ops.sfdc.net",
       kingdom: "ia2",
       pod: "none",
-      rack: "j06-dh10",
+      rack: "g06-dh10",
       superpod: "none",
     },
     {
@@ -14276,7 +14276,7 @@
       hostname: "samcaas2-caasminion1-3-ia2.ops.sfdc.net",
       kingdom: "ia2",
       pod: "none",
-      rack: "f15-dh10",
+      rack: "l45-dh10",
       superpod: "sp2",
     },
     {
@@ -33163,7 +33163,7 @@
       hostname: "samcaas2-caasminion1-2-ph2.ops.sfdc.net",
       kingdom: "ph2",
       pod: "none",
-      rack: "e09-dh10",
+      rack: "b49-dh10",
       superpod: "sp2",
     },
     {
