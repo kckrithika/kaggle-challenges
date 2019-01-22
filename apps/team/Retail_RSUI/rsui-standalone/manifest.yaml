@@ -19,7 +19,7 @@ system:
     - name: retailclientcert
       maddogCert:
         type: client
-    # maps the retail  volumnMount to a directory on the host machine
+      # maps the retail  volume Mount to a directory on the host machine
     - name: logvol
       hostPath:
         path: /home/sfdc-retail/logs
