@@ -43,7 +43,7 @@ std.prune({
   # Technically enabling this without kubedns running only causes some misc events in the pod describe, but
   # we will enable kubedns soon and then we can enable it for prod as well.
   enableDNS: true,
-  dnsEnabledPoolNamesRegex: (if utils.enableDnsForPoolNames(configs.kingdom) then ".*"),
+  dnsEnabledPoolNamesRegex: ".*",
 
   #enableIdentityEnvVar
   enableIdentityEnvVar: (if samfeatureflags.enableIdentityEnvVar then true else false),

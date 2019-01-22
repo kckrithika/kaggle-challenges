@@ -3,7 +3,7 @@ local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if !utils.is_flowsnake_cluster(configs.estate) && configs.kingdom != "lo2" && configs.kingdom != "lo3" then
+if !utils.is_flowsnake_cluster(configs.estate) then
 configs.deploymentBase("sam") {
     spec+: {
         template: {
@@ -21,7 +21,7 @@ configs.deploymentBase("sam") {
                                      "-emailFrequency=24h",
                                  ]
                                  + samwdconfig.shared_args
-                                 + (if configs.estate == "prd-sam" then samwdconfig.low_urgency_pagerduty_args else if configs.kingdom != "prd" && configs.kingdom != "xrd" then samwdconfig.pagerduty_args else []),
+                                 + (if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "xrd-sam" then samwdconfig.low_urgency_pagerduty_args else if configs.kingdom != "prd" && configs.kingdom != "xrd" then samwdconfig.pagerduty_args else []),
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
