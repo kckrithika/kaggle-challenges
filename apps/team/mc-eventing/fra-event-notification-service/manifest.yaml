@@ -44,6 +44,8 @@ system:
         value: public0-proxy1-0-fra.data.sfdc.net
       - name: EMITTER_PROXY_PORT
         value: 8080
+      - name: DUMMY_KEY
+        value: DUMMY_VALUE
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
