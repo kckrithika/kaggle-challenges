@@ -14,7 +14,9 @@ data:
     {"authorizedClientCerts": [ ], "authorizedLdapGroups": ["dbvisibility"], "namespace":
     "database-heimdall"}, {"authorizedClientCerts": ["flowsnake_test"], "authorizedLdapGroups":
     ["Flowsnake_Platform"], "namespace": "flowsnake_test"}, {"authorizedClientCerts":
-    [ ], "authorizedLdapGroups": ["Analytics Service Ownership"], "namespace": "einstein_analytics_discovery_monitoring"}]'
+    [ ], "authorizedLdapGroups": ["Analytics Service Ownership"], "namespace": "einstein_analytics_discovery_monitoring"},
+    {"authorizedClientCerts": ["wave-elt.datapool"], "authorizedLdapGroups": ["Analytics-DataPool"],
+    "namespace": "wave-elt"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null

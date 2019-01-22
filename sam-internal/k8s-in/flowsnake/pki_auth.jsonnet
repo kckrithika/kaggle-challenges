@@ -64,6 +64,11 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
             authorizedLdapGroups: ["Analytics Service Ownership"],
             authorizedClientCerts: [],
         },
+        {
+            namespace: "wave-elt",
+            authorizedLdapGroups: ["Analytics-DataPool"],
+            authorizedClientCerts: ["wave-elt.datapool"],
+        },
       ],
       "prd/prd-data-flowsnake_test": [
         {
