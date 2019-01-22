@@ -5,7 +5,7 @@ system:
   - name: shipping-rate-limited
     count: 1
     labels:
-      "sherpa-injector.service-mesh/inject": "enabled"    
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
 
     - name: shipping
