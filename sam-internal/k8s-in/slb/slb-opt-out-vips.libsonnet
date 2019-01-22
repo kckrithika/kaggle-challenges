@@ -190,6 +190,7 @@ local vipwdOptOutConfig = {
       "eu2-stmda-stm",  // Added by Pablo 1/8/2019 for incident #383013
       "cs4-stmda1-0-prd",  // Added by Pablo 1/8/2019 for incident #383013
       "login-stmfa1-0-prd",  // Added by Pablo 1/8/2019 for incident #383013
+      "slb-portal-service",
     ],
     namespaces:
     [
@@ -229,6 +230,7 @@ local vipwdOptOutConfig = {
       // We need to either delete the definition (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/cpt/vips/xrd/vips.yaml#L17)
       // or work with the customer to enable our realsvrcfg puppet module on their nodes.
       "cpt-dsr-validation-cpt-xrd",
+      "slb-portal-service",
     ],
   },
   "iad-sam":
@@ -243,6 +245,15 @@ local vipwdOptOutConfig = {
       "slb-portal-service",
     ],
   },
+  "frf-sam": {serviceLists: ["slb-portal-service",]},
+  "phx-sam": {serviceLists: ["slb-portal-service",]},
+  "ord-sam": {serviceLists: ["slb-portal-service",]},
+  "dfw-sam": {serviceLists: ["slb-portal-service",]},
+  "hnd-sam": {serviceLists: ["slb-portal-service",]},
+  "cdg-sam": {serviceLists: ["slb-portal-service",]},
+  "fra-sam": {serviceLists: ["slb-portal-service",]},
+  "ia2-sam": {serviceLists: ["slb-portal-service",]},
+  "ph2-sam": {serviceLists: ["slb-portal-service",]},
 };
 
 local getOptOutServiceListParameter(estateConfig) =
