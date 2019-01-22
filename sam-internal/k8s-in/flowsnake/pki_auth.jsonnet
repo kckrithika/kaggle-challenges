@@ -239,5 +239,15 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
             authorizedClientCerts: ["flowsnake_test"],
         },
       ],
+      "ph2/ph2-flowsnake_prod": [
+        {
+            namespace: "flowsnake",
+            authorizedClientCerts: ["flowsnake_master_prod"],
+        },
+        {
+            namespace: "flowsnake_test",
+            authorizedClientCerts: ["flowsnake_test"],
+        },
+      ],
     }),
 }
