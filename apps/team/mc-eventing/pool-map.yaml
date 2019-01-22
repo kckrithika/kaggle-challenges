@@ -12,3 +12,7 @@ apps:
   - name: iad/iad-sam_mc_consumer
   ord-event-notification-service:
   - name: ord/ord-sam_mc_consumer
+  cdg-event-notification-service:
+  - name: cdg/cdg-sam_mc_consumer
+  fra-event-notification-service:
+  - name: fra/fra-sam_mc_consumer
