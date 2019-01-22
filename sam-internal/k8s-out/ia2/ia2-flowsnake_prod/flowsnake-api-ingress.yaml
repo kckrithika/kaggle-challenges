@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/auth-tls-secret: flowsnake/sfdc-ca
+    ingress.kubernetes.io/auth-tls-verify-client: optional
+    ingress.kubernetes.io/auth-tls-verify-depth: "50"
+    ingress.kubernetes.io/rewrite-target: /
+  name: fleet-service-ingress
+  namespace: flowsnake
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: flowsnake-fleet-service
+          servicePort: 8080
+        path: /flowsnake

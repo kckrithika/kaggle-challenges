@@ -175,5 +175,7 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         },
         "dfw/dfw-flowsnake_prod": {
         },
+        "ia2/ia2-flowsnake_prod": {
+        },
     }),
 }
