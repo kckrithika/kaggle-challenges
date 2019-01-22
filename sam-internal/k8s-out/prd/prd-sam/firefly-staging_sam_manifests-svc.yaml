@@ -327,7 +327,7 @@ items:
             value: tnrpfirefly-staging_sam_manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: tnrpfirefly-staging_sam_manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:286
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:287
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -772,7 +772,7 @@ items:
             value: tnrpfirefly-staging_sam_manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: tnrpfirefly-staging_sam_manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:286
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:287
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
