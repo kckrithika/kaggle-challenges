@@ -36,6 +36,8 @@ system:
         value: mc.test.mceventbusdev
       - name: EVENTCONSUMER_GROUP_ID
         value: eventing-notification
+      - name: DOES_K4A_WORK
+        value: WE_WILL_FOUND_OUT
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
