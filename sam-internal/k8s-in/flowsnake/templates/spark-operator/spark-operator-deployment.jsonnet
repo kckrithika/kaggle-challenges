@@ -8,7 +8,7 @@ if enabled then
     kind: "Deployment",
     metadata: {
       name: "spark-operator",
-      namespace: "spark-operator",
+      namespace: "flowsnake",
       labels: {
         "app.kubernetes.io/name": "spark-operator",
         "app.kubernetes.io/version": "v2.4.0-v1beta1",
