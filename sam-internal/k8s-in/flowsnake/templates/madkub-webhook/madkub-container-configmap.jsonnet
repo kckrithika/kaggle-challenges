@@ -1,7 +1,9 @@
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
+local flowsnake_config = import "flowsnake_config.jsonnet";
+local flowsnake_images = import "flowsnake_images.jsonnet";
+local enabled = std.objectHas(flowsnake_images.feature_flags, "madkub_injector");
 
-if flowsnakeconfig.is_test then
+if enabled then
 {
     apiVersion: "v1",
     kind: "ConfigMap",

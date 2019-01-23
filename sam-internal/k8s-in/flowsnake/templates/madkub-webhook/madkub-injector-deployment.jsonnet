@@ -1,12 +1,12 @@
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local madkub_common = import "madkub_common.jsonnet";
 local kingdom = std.extVar("kingdom");
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
-
 local cert_name = "madkubinjector";
+local flowsnake_config = import "flowsnake_config.jsonnet";
+local flowsnake_images = import "flowsnake_images.jsonnet";
+local enabled = std.objectHas(flowsnake_images.feature_flags, "madkub_injector");
 
-if flowsnakeconfig.is_test then
+if enabled then
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -98,7 +98,7 @@ if flowsnakeconfig.is_test then
                     },
                 ] +
                 madkub_common.cert_volumes(cert_name) +
-                (if !flowsnakeconfig.is_minikube then
+                (if !flowsnake_config.is_minikube then
                     certs_and_kubeconfig.kubeconfig_volume
                 else []),
             }
