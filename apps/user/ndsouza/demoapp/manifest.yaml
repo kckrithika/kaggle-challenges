@@ -18,10 +18,9 @@ system:
       - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 30
-        httpGet:
-          path: /manage/health
-          port: 15372
+        initialDelaySeconds: 60
+        exec:
+          command: ["/bin/true"]
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
