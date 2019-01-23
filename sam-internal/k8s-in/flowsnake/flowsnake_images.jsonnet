@@ -107,7 +107,6 @@ local utils = import "util_functions.jsonnet";
                   # We have opted to use the itest image built
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",
                   # Using a master branch build to run integration tests in test fleet for 0.12.3
-                  "0.12.3-preview": "jenkins-dva-transformation-flowsnake-platform-master-768-itest",
                   "0.12.5": 10011,
                 }
                 +
@@ -148,6 +147,7 @@ local utils = import "util_functions.jsonnet";
                   "0.12.0": 696,
                   "0.12.1": 10001,
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
+                  "0.12.5": 10011,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -175,6 +175,7 @@ local utils = import "util_functions.jsonnet";
                   "0.12.0": 696,
                   "0.12.1": 10001,
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
+                  "0.12.5": 10011,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
