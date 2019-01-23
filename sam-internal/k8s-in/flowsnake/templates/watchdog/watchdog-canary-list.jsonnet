@@ -6,7 +6,6 @@ local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
-local remove_suspect_sans = std.objectHas(flowsnake_images.feature_flags, "remove_suspect_sans");
 local enabled_canary_versions = [ ver for ver in watchdog.watchdog_canary_versions if std.objectHas(flowsnake_images.version_mapping.main, ver)];
 local cert_name = "watchdogcanarycerts";
 
@@ -45,12 +44,6 @@ else
                                         role: "flowsnake_test",
                                         "cert-type": "client",
                                         kingdom: kingdom,
-                                    } + if remove_suspect_sans then {} else {
-                                        # Why do we have SANs here? Can we remove them?
-                                        san: [
-                                            flowsnakeconfig.fleet_vips[estate],
-                                            flowsnakeconfig.service_mesh_fqdn("api"),
-                                        ],
                                     }
                                 ]
                             }),

@@ -14,8 +14,7 @@ spec:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
-          "dfw", "name": "watchdogcanarycerts", "role": "flowsnake_test", "san": ["flowsnake-dfw.data.sfdc.net",
-          "api.flowsnake.localhost.mesh.force.com"]}]}'
+          "dfw", "name": "watchdogcanarycerts", "role": "flowsnake_test"}]}'
       labels:
         app: watchdog-canary-0-12-2
         apptype: monitoring
