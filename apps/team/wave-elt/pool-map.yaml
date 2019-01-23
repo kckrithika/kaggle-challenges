@@ -13,4 +13,8 @@ apps:
   spark-engine-ord:
     - ord/ord-sam_datapool
 
+# AF: added temporarily for testing
+  datapool-test:
+    - prd/prd-sam
+
 
