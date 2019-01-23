@@ -9,7 +9,7 @@ system:
       serviceName: moana-driver
     count: 1
     containers:
-    - name: datapool-service
+    - name: moana-driver
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/moana-driver:master-9-2f70228
       ports:
       - containerPort: 8080
