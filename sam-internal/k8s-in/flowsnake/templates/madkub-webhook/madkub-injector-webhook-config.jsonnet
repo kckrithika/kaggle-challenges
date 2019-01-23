@@ -1,13 +1,18 @@
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local flowsnake_config = import "flowsnake_config.jsonnet";
+local flowsnake_images = import "flowsnake_images.jsonnet";
+local enabled = std.objectHas(flowsnake_images.feature_flags, "madkub_injector");
 
-# TODO: sam audodeployer needs to support this type
-if false then
+if enabled then
 {
     apiVersion: "admissionregistration.k8s.io/v1beta1",
     kind: "MutatingWebhookConfiguration",
     metadata: {
         name: "madkub-injector-webhook",
         namespace: "flowsnake",
+        annotations: {
+            # TODO: sam audodeployer needs to support this type
+            "manifestctl.sam.data.sfdc.net/swagger": "disable",
+        }
     },
     webhooks: [{
         name: "madkub-injector.flowsnake.sfdc.net",

@@ -1,9 +1,11 @@
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local flowsnake_config = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local cert_name = "madkubinjector";
+local flowsnake_images = import "flowsnake_images.jsonnet";
+local enabled = std.objectHas(flowsnake_images.feature_flags, "madkub_injector");
 
-if flowsnakeconfig.is_test then
+if enabled then
 {
     apiVersion: "v1",
     kind: "ConfigMap",
@@ -15,7 +17,7 @@ if flowsnakeconfig.is_test then
 		// TODO: fix sam/manifests validator bug
         "volumes.jaysawn": std.toString(
             madkub_common.cert_volumes(cert_name)+
-        (if !flowsnakeconfig.is_minikube then []
+        (if !flowsnake_config.is_minikube then []
         else [
             {
               hostPath: {

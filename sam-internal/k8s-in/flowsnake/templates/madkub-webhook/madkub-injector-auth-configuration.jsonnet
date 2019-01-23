@@ -1,6 +1,7 @@
-local flowsnake_config = import "flowsnake_config.jsonnet";
+local flowsnake_images = import "flowsnake_images.jsonnet";
+local enabled = std.objectHas(flowsnake_images.feature_flags, "madkub_injector");
 
-if flowsnake_config.kubernetes_create_user_auth && flowsnake_config.is_test then (
+if enabled then
 {
     apiVersion: "v1",
     kind: "List",
@@ -38,5 +39,4 @@ if flowsnake_config.kubernetes_create_user_auth && flowsnake_config.is_test then
             ]
         }
     ]
-}
-) else "SKIP"
+} else "SKIP"

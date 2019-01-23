@@ -47,6 +47,7 @@ local utils = import "util_functions.jsonnet";
                 eventExporter_image_tag: "726",
                 jdk8_base_tag: "33",
                 madkub_injector_image_tag: "9",
+                spark_operator_image_tag: "9",
         },
 
         ### Release Phase minikube
@@ -94,6 +95,8 @@ local utils = import "util_functions.jsonnet";
                 dynamic_watchdogs: "verified in test",
                 remove_suspect_sans: "verified-in-prd-dev",
                 impersonation_proxy: "verified-in-prd-dev",
+                madkub_injector: "enabled",
+                spark_operator: "enabled",
             },
             version_mapping: {
                 main: {
@@ -260,6 +263,7 @@ local utils = import "util_functions.jsonnet";
     docker_daemon_watchdog: flowsnakeconfig.strata_registry + "/docker-daemon-watchdog:" + $.per_phase[$.phase].docker_daemon_watchdog_image_tag,
     zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
     madkub_injector: flowsnakeconfig.strata_registry + "/flowsnake-madkub-injector-webhook:" + $.per_phase[$.phase].madkub_injector_image_tag,
+    spark_operator: flowsnakeconfig.strata_registry + "/flowsnake-madkub-injector-webhook:" + $.per_phase[$.phase].spark_operator_image_tag,
 
     feature_flags: $.per_phase[$.phase].feature_flags,
     version_mapping: $.per_phase[$.phase].version_mapping,
