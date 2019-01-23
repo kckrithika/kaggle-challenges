@@ -6,7 +6,7 @@ system:
     count: 0
     containers:
     - name: flowsnake-job-datapool-engine
-      image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/datapool-engine:404-251cfbe367f37889279f6ad97464e811aa16b6eb
+      image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/datapool-engine:405-fe87f1ef63a6297f4090a480d3585370b0f52083
       livenessProbe:
         exec:
             command:
