@@ -1,0 +1,617 @@
+apiVersion: v1
+data:
+  hosts.json: |-
+    {
+      "hosts": [
+        {
+          "bomrolename": "flowsnake_master_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samkubeapi",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakemasterprod1-1-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "c01-2g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_master_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samkubeapi",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakemasterprod2-1-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "d10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_master_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samkubeapi",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakemasterprod3-1-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "g04-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_master_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samkubeapi",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakemasterprod4-1-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "a13-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_master_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samkubeapi",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakemasterprod5-1-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-1-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-10-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "g04-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-11-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e12-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-12-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "c10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-13-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-14-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "b07-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-15-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-16-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-17-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e12-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-18-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "b07-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-19-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-2-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "g04-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-20-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e12-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-21-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "b15-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-22-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e07-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-23-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "a13-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-24-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e07-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-25-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e15-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-26-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "c01-2g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-27-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e15-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-28-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "b03-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-29-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-3-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "g04-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-30-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "g04-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-31-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f02-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-32-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f02-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-33-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e15-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-34-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "a08-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-35-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-36-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "d17-2g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-37-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f02-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-38-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f02-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-39-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e15-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-4-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e15-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-40-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-41-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-42-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "b03-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-43-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "a08-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-44-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "d01-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-45-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f10-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-46-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "f02-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-47-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "a08-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-48-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e15-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-49-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e15-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-5-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e15-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-50-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "a08-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-6-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "b15-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-7-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e15-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-8-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "g04-3g",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_prod",
+          "controlestate": "hnd-flowsnake_prod",
+          "devicerole": "samcompute",
+          "estate": "hnd-flowsnake_prod",
+          "hostname": "shared0-flowsnakeworkerprod1-9-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "e15-3g",
+          "superpod": "none"
+        }
+      ]
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: sfdchosts
+  namespace: sam-system

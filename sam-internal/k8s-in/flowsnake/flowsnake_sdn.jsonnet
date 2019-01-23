@@ -11,6 +11,8 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
         "phx-flowsnake_prod": 0,
         "ia2-flowsnake_prod": 1,
         "ph2-flowsnake_prod": 1,
+        "hnd-flowsnake_prod": 1,
+        "ukb-flowsnake_prod": 1,
     }),
 
     sdn_deployment_phases: [
