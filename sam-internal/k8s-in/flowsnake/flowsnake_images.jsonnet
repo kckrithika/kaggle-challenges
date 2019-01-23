@@ -220,6 +220,7 @@ local utils = import "util_functions.jsonnet";
                   "0.12.0": 696,
                   "0.12.1": 10001,
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
+                  "0.12.5": 10011,
                 },
                 sections: {},
             },
