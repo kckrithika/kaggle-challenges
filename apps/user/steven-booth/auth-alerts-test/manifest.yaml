@@ -29,7 +29,6 @@ system:
         value: "15523"
       - name: JVM_ARGS
         value:  -Dsettings.path=dev.mydev.landmark.-.metadata-service
-                -Dspring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL94Dialect
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 30
