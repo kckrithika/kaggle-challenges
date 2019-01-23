@@ -249,5 +249,25 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
             authorizedClientCerts: ["flowsnake_test"],
         },
       ],
+      "hnd/hnd-flowsnake_prod": [
+        {
+            namespace: "flowsnake",
+            authorizedClientCerts: ["flowsnake_master_prod"],
+        },
+        {
+            namespace: "flowsnake_test",
+            authorizedClientCerts: ["flowsnake_test"],
+        },
+      ],
+      "ukb/ukb-flowsnake_prod": [
+        {
+            namespace: "flowsnake",
+            authorizedClientCerts: ["flowsnake_master_prod"],
+        },
+        {
+            namespace: "flowsnake_test",
+            authorizedClientCerts: ["flowsnake_test"],
+        },
+      ],
     }),
 }

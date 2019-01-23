@@ -179,5 +179,9 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         },
         "ph2/ph2-flowsnake_prod": {
         },
+        "hnd/hnd-flowsnake_prod": {
+        },
+        "ukb/ukb-flowsnake_prod": {
+        },
     }),
 }
