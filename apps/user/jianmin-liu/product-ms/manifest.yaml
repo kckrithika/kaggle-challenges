@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: product-ms
-    count: 2
+    count: 1
     containers:
     - name: product-ms
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/product-ms:jianmin-20190122-b14c66b-1 # scone app
