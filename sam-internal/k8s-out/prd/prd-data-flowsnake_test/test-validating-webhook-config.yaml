@@ -1,0 +1,23 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: ValidatingWebhookConfiguration
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  name: validating-webhook-config
+  namespace: test-qcai
+namespaceSelector:
+  matchLabels:
+    webhook-test: enabled
+webhooks:
+- failurePolicy: Fail
+  name: validating-webhook-test.flowsnake.sfdc.net
+  rules:
+  - apiGroups:
+    - ""
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - pods
