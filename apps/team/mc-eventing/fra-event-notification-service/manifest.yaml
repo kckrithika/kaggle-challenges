@@ -17,9 +17,6 @@ system:
     - name: cert
       maddogCert:
         type: client
-    - name: eventbusajna-ens-v1
-      k4aSecret:
-        secretName: eventbusajna-ens-v1
     containers:
     - name: event-notification-service
       image: sfci/mc-eventing/event-notification:1.0.6
@@ -44,8 +41,6 @@ system:
         value: public0-proxy1-0-fra.data.sfdc.net
       - name: EMITTER_PROXY_PORT
         value: 8080
-      - name: DUMMY_KEY
-        value: DUMMY_VALUE
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
@@ -56,9 +51,6 @@ system:
       volumeMounts:
       - name: cert
         mountPath: /certs
-      - name: eventbusajna-ens-v1
-        mountPath: /secrets/eventbusajna-ens-v1
-        readOnly: true
   loadbalancers:
   - lbname: event-notification-service-lb
     function: event-notification-service
