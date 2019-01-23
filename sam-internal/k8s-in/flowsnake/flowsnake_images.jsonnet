@@ -198,7 +198,6 @@ local utils = import "util_functions.jsonnet";
             version_mapping: {
                 main: {
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
-                  "0.12.5": 10011,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
