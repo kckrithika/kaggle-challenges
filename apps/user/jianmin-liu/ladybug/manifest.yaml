@@ -68,13 +68,13 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
       # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
       volumeMounts:
       - name: sherpaclientcert
         mountPath: /client-certs
       - name: sherpaservercert
         mountPath: /server-certs
-    terminationMessagePolicy: FallbackToLogsOnError
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
