@@ -4,7 +4,6 @@ metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
   name: validating-webhook-config
-  namespace: test-qcai
 namespaceSelector:
   matchLabels:
     webhook-test: enabled
