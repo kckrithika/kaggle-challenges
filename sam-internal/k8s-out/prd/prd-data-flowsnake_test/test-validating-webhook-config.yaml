@@ -8,7 +8,9 @@ namespaceSelector:
   matchLabels:
     webhook-test: enabled
 webhooks:
-- failurePolicy: Fail
+- clientConfig:
+    url: http://blah
+  failurePolicy: Fail
   name: validating-webhook-test.flowsnake.sfdc.net
   rules:
   - apiGroups:
