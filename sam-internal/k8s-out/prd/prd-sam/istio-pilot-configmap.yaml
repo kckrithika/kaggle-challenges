@@ -52,11 +52,11 @@ data:
       #
       # Port where Envoy listens (on local host) for admin commands
       # You can exec into the istio-proxy container in a pod and
-      # curl the admin port (curl http://localhost:15373/) to obtain
+      # curl the admin port (curl http://localhost:15000/) to obtain
       # diagnostic information from Envoy. See
       # https://lyft.github.io/envoy/docs/operations/admin.html
       # for more details
-      proxyAdminPort: 15373
+      proxyAdminPort: 15000
       #
       # Set concurrency to a specific number to control the number of Proxy worker threads.
       # If set to 0 (default), then start worker thread for each CPU thread/core.
