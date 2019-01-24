@@ -33,7 +33,7 @@ local utils = import "util_functions.jsonnet";
                 impersonation_proxy_image_tag: "jenkins-dva-transformation-kubernetes-impersonation-proxy-liveness-1-itest",
                 logloader_image_tag: "468",
                 logstash_image_tag: "468",
-                madkub_image_tag: "1.0.0-0000062-dca2d8d1",
+                madkub_image_tag: "1.0.0-0000062-dca2d8d1",  # Don't forget to fix the cli params when this is changed
                 nodeMonitor_image_tag: 662,
                 watchdog_image_tag: "sam-0002015-fdb18963",
                 watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
@@ -140,6 +140,7 @@ local utils = import "util_functions.jsonnet";
                 impersonation_proxy: "verified-in-prd-dev",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
+                madkub_077_upgrade: "",
             },
             version_mapping: {
                 main: {
@@ -171,6 +172,7 @@ local utils = import "util_functions.jsonnet";
                 impersonation_proxy: "verified-in-prd-dev",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
+                madkub_077_upgrade: "",
             },
             version_mapping: {
                 main: {

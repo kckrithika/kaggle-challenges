@@ -46,6 +46,8 @@ spec:
         - prd-dev-flowsnake_iot_test
         - --funnel-endpoint
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --retry-max-elapsed-time
+        - 20s
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
         livenessProbe:
           httpGet:
@@ -85,6 +87,8 @@ spec:
         - prd
         - --cert-folders
         - madkubInternalCert:/certs/
+        - --ca-folder
+        - /maddog-certs/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
