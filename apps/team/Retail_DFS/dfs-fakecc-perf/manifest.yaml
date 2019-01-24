@@ -70,7 +70,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - retail-dfs/dfs-fakecc-perf:DATACENTER:9090
+      - retail-dfs/dfs-fakecc-perf:DATACENTER:7442
       livenessProbe:
         initialDelaySeconds: 5
         exec:
