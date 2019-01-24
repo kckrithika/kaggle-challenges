@@ -85,7 +85,7 @@ local utils = import "util_functions.jsonnet";
 
             // image tag overrides go here
             deployer_image_tag: "sam-0002376-c267a6c7",
-            madkub_image_tag: "1.0.0-0000077-b1d3a629",
+            madkub_image_tag: "1.0.0-0000081-ddcaa288",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -131,12 +131,15 @@ local utils = import "util_functions.jsonnet";
 
             // image tag overrides go here
             deployer_image_tag: "sam-0002376-c267a6c7",
+            madkub_image_tag: "1.0.0-0000081-ddcaa288",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
                 dynamic_watchdogs: "verified in dev",
                 impersonation_proxy: "verified-in-prd-dev",
+                madkub_injector: "enabled",
+                spark_operator: "enabled",
             },
             version_mapping: {
                 main: {
@@ -160,11 +163,14 @@ local utils = import "util_functions.jsonnet";
         "3": self.default_image_tags {
 
             // image tag overrides go here
+            madkub_image_tag: "1.0.0-0000081-ddcaa288",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 dynamic_watchdogs: "verified in dev",
                 impersonation_proxy: "verified-in-prd-dev",
+                madkub_injector: "enabled",
+                spark_operator: "enabled",
             },
             version_mapping: {
                 main: {
@@ -272,7 +278,7 @@ local utils = import "util_functions.jsonnet";
     deployer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].deployer_image_tag),
     watchdog: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].watchdog_image_tag),
     node_controller: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].node_controller_image_tag),
-    madkub: if flowsnakeconfig.is_minikube then flowsnakeconfig.strata_registry + "/madkub:" + $.per_phase[$.phase].madkub_image_tag else if flowsnakeconfig.is_test then "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dva/madkub:kh-5s-test" else imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub_image_tag),
+    madkub: if flowsnakeconfig.is_minikube then flowsnakeconfig.strata_registry + "/madkub:" + $.per_phase[$.phase].madkub_image_tag else imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub_image_tag),
     beacon: flowsnakeconfig.registry + "/sfci/servicelibs/beacon:" + $.per_phase[$.phase].beacon_image_tag,
     kubedns: flowsnakeconfig.strata_registry + "/k8s-dns-kube-dns:" + $.per_phase[$.phase].kubedns_image_tag,
     kubednsmasq: flowsnakeconfig.strata_registry + "/k8s-dns-dnsmasq-nanny:" + $.per_phase[$.phase].kubedns_image_tag,

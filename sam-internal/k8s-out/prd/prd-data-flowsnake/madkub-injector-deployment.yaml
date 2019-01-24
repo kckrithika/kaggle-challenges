@@ -66,13 +66,11 @@ spec:
         - --superpod
         - None
         - --estate
-        - prd-data-flowsnake_test
+        - prd-data-flowsnake
         - --refresher
         - --run-init-for-refresher-mode
         - --cert-folders
         - madkubinjector:/certs
-        - --ca-folder
-        - /etc/pki_service/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
@@ -108,6 +106,9 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
+        - mountPath: /data/certs
+          name: data-cert
+          readOnly: true
       initContainers:
       - args:
         - /sam/madkub-client
@@ -126,11 +127,9 @@ spec:
         - --superpod
         - None
         - --estate
-        - prd-data-flowsnake_test
+        - prd-data-flowsnake
         - --cert-folders
         - madkubinjector:/certs
-        - --ca-folder
-        - /etc/pki_service/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
@@ -166,6 +165,9 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
+        - mountPath: /data/certs
+          name: data-cert
+          readOnly: true
       serviceAccountName: madkub-injector
       volumes:
       - configMap:
@@ -189,6 +191,9 @@ spec:
       - hostPath:
           path: /etc/pki_service/platform/platform-client/keys
         name: client-key
+      - hostPath:
+          path: /data/certs
+        name: data-cert
       - hostPath:
           path: /etc/kubernetes/kubeconfig
         name: kubeconfig
