@@ -30,10 +30,7 @@ system:
        - name: PYTHONUNBUFFERED
          value: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
-      args:
-      - --switchboard
-      - prd-switchboardredis-lb:15001
+      image: sfci/servicelibs/sherpa-envoy:latest
       ports:
       - containerPort: 15373
       env:
