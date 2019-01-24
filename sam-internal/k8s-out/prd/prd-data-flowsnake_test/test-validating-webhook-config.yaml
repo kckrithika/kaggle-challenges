@@ -9,7 +9,7 @@ namespaceSelector:
     webhook-test: enabled
 webhooks:
 - clientConfig:
-    url: http://blah
+    url: https://localhost
   failurePolicy: Fail
   name: validating-webhook-test.flowsnake.sfdc.net
   rules:
