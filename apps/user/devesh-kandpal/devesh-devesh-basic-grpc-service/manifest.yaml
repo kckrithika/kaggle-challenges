@@ -8,9 +8,12 @@ system:
     count: 1
     containers:
     - name: devesh-devesh-basic-grpc-service-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/devesh.kandpal/devesh-devesh-basic-grpc-service:7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/devesh.kandpal/devesh-devesh-basic-grpc-service:8
       
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      env:
+        - name: SCONE_DEPLOYMENT_JVM_OPTIONS
+          value: "-Dspring.profiles.active=prd"
       ports:
       - containerPort: 8080
         name: scone-http
