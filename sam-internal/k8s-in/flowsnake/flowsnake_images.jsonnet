@@ -140,6 +140,7 @@ local utils = import "util_functions.jsonnet";
                 impersonation_proxy: "verified-in-prd-dev",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
+                madkub_077_upgrade: "",
             },
             version_mapping: {
                 main: {
@@ -171,6 +172,7 @@ local utils = import "util_functions.jsonnet";
                 impersonation_proxy: "verified-in-prd-dev",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
+                madkub_077_upgrade: "",
             },
             version_mapping: {
                 main: {

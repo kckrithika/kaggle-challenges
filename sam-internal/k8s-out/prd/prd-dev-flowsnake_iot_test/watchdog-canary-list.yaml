@@ -87,6 +87,8 @@ items:
           - --run-init-for-refresher-mode
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           env:
@@ -147,6 +149,8 @@ items:
           - prd-dev-flowsnake_iot_test
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           env:
@@ -298,6 +302,8 @@ items:
           - --run-init-for-refresher-mode
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           env:
@@ -358,6 +364,8 @@ items:
           - prd-dev-flowsnake_iot_test
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           env:
@@ -509,6 +517,8 @@ items:
           - --run-init-for-refresher-mode
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           env:
@@ -569,6 +579,8 @@ items:
           - prd-dev-flowsnake_iot_test
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           env:
@@ -720,6 +732,8 @@ items:
           - --run-init-for-refresher-mode
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           env:
@@ -780,6 +794,8 @@ items:
           - prd-dev-flowsnake_iot_test
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           env:
@@ -931,6 +947,8 @@ items:
           - --run-init-for-refresher-mode
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           env:
@@ -991,6 +1009,8 @@ items:
           - prd-dev-flowsnake_iot_test
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-prd.data.sfdc.net:80
           env:
