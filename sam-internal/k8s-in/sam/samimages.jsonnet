@@ -63,7 +63,12 @@ local samreleases = import "samreleases.json";
                 "sam-1ebeb0ac-657"
         ),
 
-        k4aInitContainerImage: "sam-0001948-03d9baca",
+        k4aInitContainerImage: (
+          if (kingdom == "fra") || (kingdom == "cdg") then
+              "sam-0002447-69fdc914"
+          else
+              "sam-0001948-03d9baca"
+        ),
         local kubedns_image_tag = "1.14.9",
         local strata_registry = configs.registry + "/dva",
         kubedns: strata_registry + "/k8s-dns-kube-dns:" + kubedns_image_tag,
