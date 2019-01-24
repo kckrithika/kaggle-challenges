@@ -6,7 +6,9 @@ metadata:
   name: mutating-webhook-config
   namespace: test-qcai
 webhooks:
-- failurePolicy: Fail
+- clientConfig:
+    url: https://localhost
+  failurePolicy: Fail
   name: webhook-test.flowsnake.sfdc.net
   namespaceSelector:
     matchLabels:

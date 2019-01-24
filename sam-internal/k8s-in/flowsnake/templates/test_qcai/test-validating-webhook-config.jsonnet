@@ -6,7 +6,6 @@ if flowsnakeconfig.is_test then
     kind: "ValidatingWebhookConfiguration",
     metadata: {
         name: "validating-webhook-config",
-        resourceVersion: "1667355798",
         annotations: {
             "manifestctl.sam.data.sfdc.net/swagger": "disable",
         },
