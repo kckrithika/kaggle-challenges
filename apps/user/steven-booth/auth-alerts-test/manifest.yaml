@@ -8,9 +8,6 @@ system:
   - name: metadata-service
     count: 1
     volumes:
-    - name: mds-client-cert
-      maddogCert:
-        type: client
     - name: logvol
       hostPath:
         path: /home/sfdc-mds/logs
@@ -18,7 +15,7 @@ system:
     - name: metadata-service
       image: sfci/metadata-cannon/metadata-service:0.6.45
       ports:
-      - containerPort: 9091
+      - containerPort: 9092
       - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
@@ -27,8 +24,6 @@ system:
         value: "9091"
       - name: MANAGEMENT_PORT
         value: "15523"
-      - name: JVM_ARGS
-        value:  -Dsettings.path=dev.mydev.landmark.-.metadata-service
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 30
@@ -37,8 +32,6 @@ system:
           path: /manage/health
           port: 15523
       volumeMounts:
-      - name: mds-client-cert
-        mountPath: /client-certs
       - name: logvol
         mountPath: /home/sfdc-mds/logs
   loadbalancers:
@@ -47,4 +40,4 @@ system:
     nodeExposed: true
     ports:
     - port: 9093
-      targetport: 9091
+      targetport: 9092
