@@ -137,6 +137,8 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 dynamic_watchdogs: "verified in dev",
                 impersonation_proxy: "verified-in-prd-dev",
+                madkub_injector: "enabled",
+                spark_operator: "enabled",
             },
             version_mapping: {
                 main: {
@@ -165,6 +167,8 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 dynamic_watchdogs: "verified in dev",
                 impersonation_proxy: "verified-in-prd-dev",
+                madkub_injector: "enabled",
+                spark_operator: "enabled",
             },
             version_mapping: {
                 main: {

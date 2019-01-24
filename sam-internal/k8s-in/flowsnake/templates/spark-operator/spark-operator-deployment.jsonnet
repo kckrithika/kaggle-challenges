@@ -1,6 +1,6 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
-local enabled = std.objectHas(flowsnake_images.feature_flags, "madkub_injector");
+local enabled = std.objectHas(flowsnake_images.feature_flags, "spark_operator");
 
 if enabled then
 {
