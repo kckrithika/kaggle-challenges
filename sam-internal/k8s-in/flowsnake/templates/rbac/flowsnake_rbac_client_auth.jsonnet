@@ -43,7 +43,6 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
             roleRef: {
                 kind: "Role",
                 name: "flowsnake-client",
-                namespace: client.namespace,
                 apiGroup: "rbac.authorization.k8s.io",
             },
             subjects: [
@@ -87,14 +86,12 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
             roleRef: {
                 kind: "Role",
                 name: "flowsnake-client",
-                namespace: client.namespace,
                 apiGroup: "rbac.authorization.k8s.io",
             },
             subjects: [
                 {
                     kind: "ServiceAccount",
                     name: "spark-driver",
-                    namespace: client.namespace,
                 }
             ]
         }

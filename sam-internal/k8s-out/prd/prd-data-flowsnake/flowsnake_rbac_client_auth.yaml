@@ -42,7 +42,6 @@ items:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
     name: flowsnake-client
-    namespace: wave-elt
   subjects:
   - kind: User
     name: wave-elt.datapool
@@ -73,10 +72,8 @@ items:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
     name: flowsnake-client
-    namespace: wave-elt
   subjects:
   - kind: ServiceAccount
     name: spark-driver
-    namespace: wave-elt
 kind: List
 metadata: {}
