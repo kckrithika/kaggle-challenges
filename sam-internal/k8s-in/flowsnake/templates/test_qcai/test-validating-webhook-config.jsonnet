@@ -13,6 +13,9 @@ if flowsnakeconfig.is_test then
     webhooks: [{
         name: "validating-webhook-test.flowsnake.sfdc.net",
         failurePolicy: "Fail",
+        clientConfig: {
+            url: "http://blah",
+        },
         rules: [{
             operations: [ "CREATE", "UPDATE" ],
             apiGroups: [""],
