@@ -211,7 +211,6 @@ local utils = import "util_functions.jsonnet";
             },
         },
 
-
         ### A very special phase 4 for IAD and ORD that preserves access to old versions used by CRE.
         ### TODO:  Remove when CRE is migrated to 0.12.2+
         "4-iad-ord": self["4"] {
@@ -230,6 +229,28 @@ local utils = import "util_functions.jsonnet";
 
         },
 
+        ### Phase 4 is undeployable due to image promotion volume - breaking it up further.
+        "4-frf-par": self["4"] {
+            ### DO NOT SET TAG OVERRIDES HERE
+            ### Instead, update default_image_tags definition at top of this file and delete
+            ### any overrides in other phases that are equal to the new defaults.
+
+            feature_flags: {
+                ### AFTER SETTING FEATURE FLAGS HERE:
+                ### issue PR to deploy your changes. Then create a follow-on PR
+                ### that deletes all the feature flags and conditional logic from
+                ### the templates. This PR should not result in any k8s-out diffs.
+            },
+            version_mapping: {
+                main: {
+                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
+                  "0.12.5": 10011,
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                },
+            },
+        },
     },
 
     ### Phase kingdom/estate mapping
@@ -244,6 +265,8 @@ local utils = import "util_functions.jsonnet";
             "3"
         else if (estate == "iad-flowsnake_prod" || estate == "ord-flowsnake_prod") then
             "4-iad-ord"
+        else if (estate == "frf-flowsnake_prod" || estate == "par-flowsnake_prod") then
+            "4-frf-par"
         else
             "4"
         ),
