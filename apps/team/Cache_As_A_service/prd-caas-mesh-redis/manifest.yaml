@@ -47,10 +47,7 @@ system:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:c7624f37bfdc1176f719be6caa06de08eb6c22fa
-      args:
-      - --switchboard
-      - prd-switchboardredis-lb:15001
+      image: sfci/servicelibs/sherpa-envoy:7c866de2c4f840082fac7f2d00aa2d93f7bee6be
       ports:
       - containerPort: 15373
       env:
