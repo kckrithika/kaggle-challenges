@@ -6,6 +6,8 @@ apps:
     - name: prd/prd-sam_crosscloudplatform
   dfs-perf:   # perf test env instance
     - name: prd/prd-sam_crosscloudplatform
+  dfs-fakecc-perf: # fake CC instance for perf testing
+    - name: prd/prd-sam_crosscloudplatform
   dfs-production:
     - name: iad/iad-sam_crosscloudplatform
     - name: ord/ord-sam_crosscloudplatform
