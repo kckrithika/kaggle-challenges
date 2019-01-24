@@ -12,7 +12,8 @@ if std.length(flowsnake_clients.clients) > 0 then (
             metadata: {
                 name: client.namespace,
                 annotations: {
-                    "com.salesforce.spark.owner_name": client.owner_name,
+                    "sfdc.net/flowsnake.owner_name": client.owner_name,
+                    "sfdc.net/pki-namespace": client.pki_namespace,
                  },
             },
         }
