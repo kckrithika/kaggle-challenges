@@ -1,6 +1,4 @@
 apps:
-  moana-driver-prd:
-    - prd/prd-sam_datapool
   datapool-staging:
     - prd/prd-sam_datapool
   datapool:
