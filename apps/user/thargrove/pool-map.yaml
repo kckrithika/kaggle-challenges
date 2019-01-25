@@ -1,7 +1,3 @@
 apps:
  TnrpWatchdog:
   - prd/prd-sam
- mysql:
-  - prd/prd-sam
- sdp2:
-  - prd/prd-sam
