@@ -25,6 +25,13 @@ system:
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
+      - mountPath: /home/datapool-test/client-certs
+        name: tls-client-certs
+      env:
+      - name: PKI_TRUSTSTORE_DIR
+        value: /home/datapool-test/client-certs
+      - name: PKI_KEYSTORE_DIR
+        value: /home/datapool-test/client-certs/client
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
@@ -32,3 +39,11 @@ system:
     - name: logvolservice
       hostPath:
         path: /home/sfdc-scone-datapool-test/logs
+
+    - name: tls-server-certs
+      maddogCert:
+        type: server
+
+    - name: tls-client-certs
+      maddogCert:
+        type: client
