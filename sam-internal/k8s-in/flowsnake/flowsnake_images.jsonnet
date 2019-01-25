@@ -253,6 +253,26 @@ local utils = import "util_functions.jsonnet";
                 },
             },
         },
+
+        "4-dfw": self["4"] {
+           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-11-itest",
+           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-11-itest",
+           watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-11-itest",
+           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-11-itest",
+
+           feature_flags: {
+               dynamic_watchdogs: "yes",
+           },
+
+           version_mapping: {
+                main: {
+                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-11-itest",
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                },
+            },
+        },
     },
 
     ### Phase kingdom/estate mapping
@@ -269,6 +289,8 @@ local utils = import "util_functions.jsonnet";
             "4-iad-ord"
         else if (estate == "frf-flowsnake_prod" || estate == "par-flowsnake_prod") then
             "4-frf-par"
+        else if (estate == "dfw-flowsnake_prod") then
+            "4-dfw"
         else
             "4"
         ),
