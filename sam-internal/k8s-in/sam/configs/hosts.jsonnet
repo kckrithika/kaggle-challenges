@@ -33240,7 +33240,7 @@
       hostname: "shared0-samminionuniversalsearchmt1-1-ph2.ops.sfdc.net",
       kingdom: "ph2",
       pod: "none",
-      rack: "e04-dh10",
+      rack: "d06-dh10",
       superpod: "none",
     },
     {
