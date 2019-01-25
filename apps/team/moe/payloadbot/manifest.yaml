@@ -11,7 +11,7 @@ system:
       args:
       - "-gheTokenPath"
       - "/secrets/ghe_pat"
-      - "-tnrpImagePrefixMapPath"
+      - "-imagePrefixMapPath"
       - "image_prefixes.yaml"
       - "-includedTeamsListPath"
       - "/moe/included_teams.yaml"
