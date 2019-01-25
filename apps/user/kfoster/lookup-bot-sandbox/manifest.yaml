@@ -4,8 +4,8 @@ system:
   - name: default
     count: 1
     containers:
-    - name: lookup-bot-sandbox-4
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/kfoster/lookup-bot-sandbox-4:20190124
+    - name: lookup-bot-sandbox
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/lookup-bot-sandbox:20190124
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -13,7 +13,7 @@ system:
           path: /
           port: 8080
   loadbalancers:
-  - lbname: lookup-bot-sandbox-4-lb
+  - lbname: lookup-bot-sandbox-lb
     function: default
     slbenabled: true
     ports:
