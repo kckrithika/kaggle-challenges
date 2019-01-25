@@ -1,0 +1,84 @@
+- lbname: pra-mariadb-hnd
+  customlbname: pra-mariadb-hnd
+  servers:
+  - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
+  ports:
+  - port: 3306
+    targetport: 3306
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-neutron-hnd
+  customlbname: pra-neutron-hnd
+  servers:
+  - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
+  ports:
+  - port: 9696
+    targetport: 9696
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-keystone-apache-hnd
+  customlbname: pra-keystone-apache-hnd
+  servers:
+  - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
+  ports:
+  - port: 5000
+    targetport: 5000
+    lbtype: http
+    tls: true
+    reencrypt: true
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-ccn-1-0-hnd
+  customlbname: pra-ccn-1-0-hnd
+  servers:
+  - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
+  ports:
+  - port: 5000
+    targetport: 5000
+    lbtype: http
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-keystone-admin-hnd
+  customlbname: pra-keystone-admin-hnd
+  servers:
+  - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
+  ports:
+  - port: 35357
+    targetport: 35357
+    lbtype: http
+    tls: true
+    reencrypt: true
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-glance-api-hnd
+  customlbname: pra-glance-api-hnd
+  servers:
+  - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
+  ports:
+  - port: 9292
+    targetport: 9292
+    lbtype: http
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-nova-hnd
+  customlbname: pra-nova-hnd
+  servers:
+  - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
+  ports:
+  - port: 8774
+    targetport: 8774
+    lbtype: http
+    tls: true
+    reencrypt: true
+    healthport: 80
+    healthprotocol: tcp
+
