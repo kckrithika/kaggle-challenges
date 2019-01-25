@@ -85,7 +85,7 @@ system:
           value: CS103
 
         - name: DEPLOYMENT
-          value: B
+          value: C
 
         # Wait for config override side car container to come up
         - name: USE_CONFIG_SIDECAR
