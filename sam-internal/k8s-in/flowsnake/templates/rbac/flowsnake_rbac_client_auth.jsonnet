@@ -92,6 +92,7 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
                 {
                     kind: "ServiceAccount",
                     name: "spark-driver",
+                    namespace: client.namespace,
                 }
             ]
         }
