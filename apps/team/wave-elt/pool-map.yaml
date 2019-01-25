@@ -1,18 +1,27 @@
 apps:
+  spark-engine-ph2:
+  - ph2/ph2-sam_datapool
+  spark-engine-ia2:
+  - ia2/ia2-sam_datapool
+  spark-engine-dfw:
+  - dfw/dfw-sam_datapool
   datapool-staging:
-    - prd/prd-sam_datapool
+  - prd/prd-sam_datapool
   datapool:
-    - iad/iad-sam_datapool
-    - ord/ord-sam_datapool
+  - iad/iad-sam_datapool
+  - ord/ord-sam_datapool
 
+  - dfw/dfw-sam_datapool
+  - ia2/ia2-sam_datapool
+  - ph2/ph2-sam_datapool
 # ======= Flowsnake Container ======== #
   spark-engine-iad:
-    - iad/iad-sam_datapool
+  - iad/iad-sam_datapool
   spark-engine-ord:
-    - ord/ord-sam_datapool
+  - ord/ord-sam_datapool
 
 # AF: added temporarily for testing
   datapool-test:
-    - prd/prd-sam
+  - prd/prd-sam
 
 
