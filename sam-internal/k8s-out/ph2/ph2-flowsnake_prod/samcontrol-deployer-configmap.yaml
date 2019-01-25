@@ -61,7 +61,6 @@ data:
         "nginx-ingress-controller-svc.yaml",
         "node-controller.yaml",
         "sdn-bird.yaml",
-        "sdn-cleanup.yaml",
         "sdn-hairpin-setter.yaml",
         "sdn-peering-agent.yaml",
         "sdn-ping-watchdog.yaml",
