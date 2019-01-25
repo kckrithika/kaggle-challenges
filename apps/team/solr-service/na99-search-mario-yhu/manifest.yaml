@@ -4,7 +4,7 @@ system:
   functions:
     - name: na99-search-mario-yhu
       type: stateful-set
-      count: 6
+      count: 5
       # Public cloud specific because SDN is not avaliable, by passing Flannel networking (Public could specific)
       hostnetwork: true
       containers:
