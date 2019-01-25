@@ -44,6 +44,8 @@ system:
         value: public0-proxy1-0-cdg.data.sfdc.net
       - name: EMITTER_PROXY_PORT
         value: 8080
+      - name: DECRYPTION_KEY_PATH
+        value: /secrets/eventbusajna-ens-v%d
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
