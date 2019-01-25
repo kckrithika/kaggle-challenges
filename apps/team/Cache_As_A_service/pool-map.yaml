@@ -155,6 +155,7 @@ apps:
     - samcaas2-caasminion3-2-prd.eng.sfdc.net
     - samcaas2-caasminion3-9-prd.eng.sfdc.net
     - samcaas2-caasminion3-8-prd.eng.sfdc.net
+    - samcaas2-caasminion3-1-prd.eng.sfdc.net
  dfw-sp3-metrics-publisher-sp-c1:
   - name: dfw/dfw-sp3-sam_caas
  dfw-sp3-redis-sp-c1-12050:
