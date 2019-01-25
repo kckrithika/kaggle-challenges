@@ -9,6 +9,6 @@ system:
       image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/datapool-engine:405-fe87f1ef63a6297f4090a480d3585370b0f52083
       livenessProbe:
         exec:
-            command:
-            - ls
+          command:
+          - ls
         initialDelaySeconds: 5

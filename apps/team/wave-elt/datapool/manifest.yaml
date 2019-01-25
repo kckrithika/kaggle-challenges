@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - moanaserviceseng@salesforce.com
+    - moanaserviceseng@salesforce.com
   functions:
   - name: datapool
     identity:
@@ -71,7 +71,8 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       livenessProbe:
         exec:
-          command: ["/home/scone/is-alive.sh"]
+          command:
+          - /home/scone/is-alive.sh
         initialDelaySeconds: 15
       args:
       - -endpoint
@@ -98,8 +99,8 @@ system:
         periodSeconds: 5
 
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: {cpu: '1', memory: 1Gi}
+        requests: {cpu: '1', memory: 1Gi}
 
       ports:
       - containerPort: 7012
