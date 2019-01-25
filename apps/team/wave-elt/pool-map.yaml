@@ -11,9 +11,6 @@ apps:
   - iad/iad-sam_datapool
   - ord/ord-sam_datapool
 
-  - dfw/dfw-sam_datapool
-  - ia2/ia2-sam_datapool
-  - ph2/ph2-sam_datapool
 # ======= Flowsnake Container ======== #
   spark-engine-iad:
   - iad/iad-sam_datapool
