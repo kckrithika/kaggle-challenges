@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -62,7 +62,7 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: with-minimum
+      image: test123
       livenessProbe:
         exec:
           command:
@@ -205,7 +205,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1548370661182029056
+        value: 1548450676428260096
       - name: DEPLOY_ENV
         value: alpha
       - name: CYAN
@@ -221,9 +221,9 @@ system:
       - name: OLD_DWARF
         value: sneezy
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 5
       - name: DB_SID
