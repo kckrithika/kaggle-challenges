@@ -46,9 +46,7 @@ configs.deploymentBase("service-mesh") {
         containers: [
           {
             name: "sherpa-injector",
-            // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
-            // https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-injector/job/master/53
-            image: "%s/sfci/servicelibs/sherpa-injector:87621973e8e9f59220349337268f395e75e50c9a" % configs.registry,
+            image: versions.injectorImage,
             imagePullPolicy: "IfNotPresent",
             args: [
               "--port=7443",  // can't use 443 here because of the permissions
@@ -73,6 +71,9 @@ configs.deploymentBase("service-mesh") {
               exec: {
                 command: [
                   "./is-alive.sh",
+                  "7443",
+                  "/server-certificates/server/certificates/server.pem",
+                  "/server-certificates/server/keys/server-key.pem",
                 ],
               },
               initialDelaySeconds: 2,
@@ -82,6 +83,9 @@ configs.deploymentBase("service-mesh") {
               exec: {
                 command: [
                   "./is-ready.sh",
+                  "7443",
+                  "/server-certificates/server/certificates/server.pem",
+                  "/server-certificates/server/keys/server-key.pem",
                 ],
               },
               initialDelaySeconds: 4,
