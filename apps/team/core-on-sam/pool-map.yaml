@@ -78,7 +78,7 @@ apps:
     - shared2-samminioncoreapp2-3-prd.eng.sfdc.net
 
  # Used for Statefarm workload (perf testing)
- mist61-na2:
+ mist_mist61_prd_na2:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
     - shared2-samminioncoreapp3-3-prd.eng.sfdc.net
