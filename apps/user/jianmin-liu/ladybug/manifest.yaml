@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: ladybug-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/ladybug:jianmin.liu-20190124-8e0da0b
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/ladybug:jianmin.liu-20190125-8e0da0b
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -18,10 +18,17 @@ system:
       - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 30
-        httpGet:
-          path: /manage/health
-          port: 15372
+        initialDelaySeconds: 10
+        timeoutSeconds: 10
+        periodSeconds: 60
+        exec:
+          command: ["/bin/true"]
+      readinessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 110
+        periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
