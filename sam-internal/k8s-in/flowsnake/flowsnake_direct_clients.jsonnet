@@ -22,7 +22,7 @@ local estate = std.extVar("estate");
               owner_name: "Wave ELT",
               namespace: "wave-elt",
               pki_namespace: "wave-elt",
-              users: ["wave-elt.datapool", "wave-elt.datapool-test", "flowsnake.lorrin-impersonation-test"],
+              users: ["wave-elt.datapool", "wave-elt.datapool-test", "flowsnake.lorrin-impersonation-test", "wave-elt.spark-engine"],
           },
       ],
   },
