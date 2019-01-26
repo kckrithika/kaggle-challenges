@@ -236,6 +236,8 @@ system:
       tlskey: secret_service:cstoolkit_cs103.salesforce.com_20190115-000549:Key
       # Only allow access from corp net NAT and Kaiju agents
       allow:
+      # slb estate for monitoring
+      - 10.160.4.0/22
       # Corp
       - 61.120.150.128/28
       - 62.17.146.128/26
