@@ -30,7 +30,7 @@ local utils = import "util_functions.jsonnet";
                 ingressDefaultBackend_image_tag: 662,
                 beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
                 kibana_image_tag: "345",
-                impersonation_proxy_image_tag: "jenkins-dva-transformation-kubernetes-impersonation-proxy-disable-impersonate-group-1-itest",
+                impersonation_proxy_image_tag: "6-9ac63c5dfed1d4683add1289f98025d3226febd4",
                 logloader_image_tag: "468",
                 logstash_image_tag: "468",
                 madkub_image_tag: "1.0.0-0000062-dca2d8d1",  # Don't forget to fix the cli params when this is changed
