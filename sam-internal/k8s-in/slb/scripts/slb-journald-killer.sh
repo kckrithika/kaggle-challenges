@@ -21,7 +21,8 @@ function is_2019_0116_patch() {
     [[ $(head -n 1 /hostetc/sfdc-release) == "VERSION sfdc-CE7.6-2019-0116" ]]
 }
 
-# kill_journald_loop is the core worker loop of this script. It periodically 
+# kill_journald_loop is the core worker loop of this script. It sleeps for a period of time before checking whether
+# this host is on the 2019.0116 patch. If so, it proceeds to kill the systemd-journald process.
 function kill_journald_loop() {
     while true
     do
