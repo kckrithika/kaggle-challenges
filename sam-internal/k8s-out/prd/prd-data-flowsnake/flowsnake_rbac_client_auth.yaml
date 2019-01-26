@@ -49,6 +49,8 @@ items:
     name: wave-elt.datapool-test
   - kind: User
     name: flowsnake.lorrin-impersonation-test
+  - kind: User
+    name: wave-elt.spark-engine
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount
