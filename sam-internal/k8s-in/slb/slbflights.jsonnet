@@ -15,5 +15,5 @@ local configs = import "config.jsonnet";
     nginxLogsRefactor: (if slbimages.slbnginx_build >= 61 then true else false),
     slaRequiresPreciseHealthProbesEnabled: slbimages.phaseNum <= 2,
     statusVipEnabled: (slbimages.phaseNum <= 3 || slbimages.hypersdn_build > 1431),
-    slbJournaldKillerEnabled: (slbimages.phaseNum <= 3),
+    slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
 }
