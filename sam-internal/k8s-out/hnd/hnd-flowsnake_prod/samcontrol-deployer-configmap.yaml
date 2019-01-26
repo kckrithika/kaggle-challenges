@@ -60,8 +60,6 @@ data:
         "nginx-ingress-controller-rc.yaml",
         "nginx-ingress-controller-svc.yaml",
         "node-controller.yaml",
-        "sdn-ping-watchdog.yaml",
-        "sdn-route-watchdog.yaml",
         "sdn-secret.yaml",
         "snapshoter-configmap.yaml",
         "snapshoter.yaml",
