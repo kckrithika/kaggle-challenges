@@ -3,18 +3,20 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-// Turned off by default. Enable only when needed for a prod issue.
-if false then configs.daemonSetBase("slb") {
+// mgrass: 2019-01-25: journald killer for issue discussed in https://computecloud.slack.com/archives/C4BM25SK0/p1548450935086900
+if slbflights.slbJournaldKillerEnabled then configs.daemonSetBase("slb") {
     spec+: {
         template: {
             spec: {
                 hostNetwork: true,
+                // Need host PID to be able to discover processes running on the host (e.g., systemd-journald).
+                hostPID: true,
                 containers: [
                     {
                         image: slbimages.hypersdn,
                         command: [
                             "/bin/bash",
-                            # Add commands here.
+                            "/config/slb-journald-killer.sh",
                         ],
                         name: "slb-ops-adhoc",
                         resources: {
