@@ -4,7 +4,7 @@ local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
 // mgrass: 2019-01-25: journald killer for issue discussed in https://computecloud.slack.com/archives/C4BM25SK0/p1548450935086900
-if slbflights.slbJournaldKillerEnabled then configs.daemonSetBase("slb") {
+if slbconfigs.isSlbEstate && slbflights.slbJournaldKillerEnabled then configs.daemonSetBase("slb") {
     spec+: {
         template: {
             spec: {
