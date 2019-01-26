@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
 local slbflights = import "slbflights.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
 
-if slbflights.slbJournaldKillerEnabled then {
+if slbconfigs.isSlbEstate && slbflights.slbJournaldKillerEnabled then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
