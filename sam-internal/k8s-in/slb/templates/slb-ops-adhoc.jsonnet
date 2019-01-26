@@ -30,13 +30,21 @@ if slbflights.slbJournaldKillerEnabled then configs.daemonSetBase("slb") {
                             },
                         },
                         volumeMounts: std.prune([
-                            slbconfigs.slb_kern_log_volume_mount,
+                            {
+                                name: "host-etc-volume",
+                                mountPath: "/hostetc",
+                            },
                             configs.config_volume_mount,
                         ]),
                     },
                 ],
                 volumes: std.prune([
-                    slbconfigs.slb_kern_log_volume,
+                    {
+                        name: "host-etc-volume",
+                        hostPath: {
+                            path: "/etc",
+                        },
+                    },
                     configs.config_volume("slb-ops-adhoc"),
                 ]),
             } + slbconfigs.getGracePeriod()

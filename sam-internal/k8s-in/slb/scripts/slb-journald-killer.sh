@@ -9,26 +9,38 @@ set -o pipefail
 set -o xtrace
 
 # Set the interval at which this script will check for stuck SLB pods.
-interval_in_seconds=14400 # 4 hours
+interval_in_seconds=60 # 4 hours
+
+# Define a splay window between .9 * interval_in_seconds and 1.1 * interval_in_seconds.
+# Don't want all nodes restarting systemd-journald at the same time.
+window_start=$(((interval_in_seconds*9)/10))
+window_width=$(((interval_in_seconds*2)/10))
 
 # Check whether we are currently on the impacted patch set.
 function is_2019_0116_patch() {
-    [[ $(rpm -q sfdc-release) == "sfdc-release-2019.0116-01.ce7.x86_64" ]]
+    [[ $(head -n 1 /hostetc/sfdc-release) == "VERSION sfdc-CE7.6-2019-0116" ]]
 }
 
 # kill_journald_loop is the core worker loop of this script. It periodically 
 function kill_journald_loop() {
     while true
     do
-        sleep "$interval_in_seconds"
+        sleep_period=$(((RANDOM%window_width)+window_start))
+        echo "Sleeping for $sleep_period seconds"
+        sleep "$sleep_period"
 
-        if [[ !is_2019_0116_patch ]]; then
+        # Skip if this host is not running the 2019.0116 patch.
+        if ! is_2019_0116_patch; then
             echo "Host is not on the impacted patch set. Skipping."
             continue
         fi
 
+        journald_pid=$(ps -ef | grep -v grep | grep systemd-journald | awk '{print $2}')
+
+        [[ -z $journald_pid ]] && continue
+
         echo "Killing journald"
-        kill -9 $(pidof systemd-journald)
+        kill -9 "$journald_pid"
     done
 }
 
