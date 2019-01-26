@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local slbflights = import "slbflights.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
 
 if slbconfigs.isSlbEstate && slbflights.slbJournaldKillerEnabled then {
     kind: "ConfigMap",
