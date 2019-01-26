@@ -9,7 +9,7 @@ set -o pipefail
 set -o xtrace
 
 # Set the interval at which this script will check for stuck SLB pods.
-interval_in_seconds=60 # 4 hours
+interval_in_seconds=14400 # 4 hours
 
 # Define a splay window between .9 * interval_in_seconds and 1.1 * interval_in_seconds.
 # Don't want all nodes restarting systemd-journald at the same time.
