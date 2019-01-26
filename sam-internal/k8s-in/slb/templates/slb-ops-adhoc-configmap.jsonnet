@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 
-if false then {
+if slbflights.slbJournaldKillerEnabled then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
@@ -10,7 +10,7 @@ if false then {
         labels: {} + configs.ownerLabel.slb,
     },
     data: {
-        "slb-cleanup-logs.sh": std.toString(importstr "scripts/slb-cleanup-logs.sh"),
+        "slb-journald-killer.sh": std.toString(importstr "scripts/slb-journald-killer.sh"),
     },
 } else
     "SKIP"
