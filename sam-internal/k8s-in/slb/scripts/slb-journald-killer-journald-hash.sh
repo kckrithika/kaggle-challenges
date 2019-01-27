@@ -18,7 +18,7 @@ window_width=$(((interval_in_seconds*2)/10))
 
 # Check whether we are currently on the bad journald version.
 function is_journald_at_bad_version() {
-    [[ $(sha256sum /host-systemd/systemd-journald) == "756726577e2e92be38e3aa86e785fba1acc73ede06c3e3db450036ad6d0ca069" ]]
+    [[ $(sha256sum /host-systemd/systemd-journald | awk '{print $1}') == "756726577e2e92be38e3aa86e785fba1acc73ede06c3e3db450036ad6d0ca069" ]]
 }
 
 # kill_journald_loop is the core worker loop of this script. It sleeps for a period of time before checking whether
