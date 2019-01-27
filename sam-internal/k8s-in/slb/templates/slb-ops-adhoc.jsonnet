@@ -4,6 +4,11 @@ local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = import "slbconfig.jsonnet";
 
+local script = if slbflights.slbJournaldKillerScopeToJournaldHash then
+    "/config/slb-journald-killer-journald-hash.sh"
+else
+    "/config/slb-journald-killer.sh";
+
 // mgrass: 2019-01-25: journald killer for issue discussed in https://computecloud.slack.com/archives/C4BM25SK0/p1548450935086900
 if slbconfigs.isSlbEstate && slbflights.slbJournaldKillerEnabled then configs.daemonSetBase("slb") {
     spec+: {
@@ -17,7 +22,7 @@ if slbconfigs.isSlbEstate && slbflights.slbJournaldKillerEnabled then configs.da
                         image: slbimages.hypersdn,
                         command: [
                             "/bin/bash",
-                            "/config/slb-journald-killer.sh",
+                            script,
                         ],
                         name: "slb-ops-adhoc",
                         resources: {
@@ -36,7 +41,13 @@ if slbconfigs.isSlbEstate && slbflights.slbJournaldKillerEnabled then configs.da
                                 mountPath: "/hostetc",
                             },
                             configs.config_volume_mount,
-                        ]),
+                        ]) + (if slbflights.slbJournaldKillerScopeToJournaldHash then [
+                            {
+                                name: "host-systemd-volume",
+                                mountPath: "/host-systemd",
+                            },
+                        ]
+                        else []),
                     },
                 ],
                 volumes: std.prune([
@@ -47,7 +58,15 @@ if slbconfigs.isSlbEstate && slbflights.slbJournaldKillerEnabled then configs.da
                         },
                     },
                     configs.config_volume("slb-ops-adhoc"),
-                ]),
+                ]) + (if slbflights.slbJournaldKillerScopeToJournaldHash then [
+                    {
+                        name: "host-systemd-volume",
+                        hostPath: {
+                            path: "/usr/lib/systemd",
+                        },
+                    },
+                ]
+                else []),
             } + slbconfigs.getGracePeriod()
               + slbconfigs.getDnsPolicy()
               + slbconfigs.slbEstateNodeSelector,
