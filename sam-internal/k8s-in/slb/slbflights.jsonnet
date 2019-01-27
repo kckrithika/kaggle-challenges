@@ -16,5 +16,5 @@ local configs = import "config.jsonnet";
     slaRequiresPreciseHealthProbesEnabled: slbimages.phaseNum <= 2,
     statusVipEnabled: (slbimages.phaseNum <= 3 || slbimages.hypersdn_build > 1431),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
-    slbJournaldKillerScopeToJournaldHash: (slbimages.phaseNum <= 1),
+    slbJournaldKillerScopeToJournaldHash: (slbimages.phaseNum <= 3),
 }
