@@ -21,7 +21,7 @@ spec:
       containers:
       - command:
         - /bin/bash
-        - /config/slb-journald-killer.sh
+        - /config/slb-journald-killer-journald-hash.sh
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0001433-ed287455
         name: slb-ops-adhoc
         resources:
@@ -36,6 +36,8 @@ spec:
           name: host-etc-volume
         - mountPath: /config
           name: config
+        - mountPath: /host-systemd
+          name: host-systemd-volume
       dnsPolicy: Default
       hostNetwork: true
       hostPID: true
@@ -49,6 +51,9 @@ spec:
       - configMap:
           name: slb-ops-adhoc
         name: config
+      - hostPath:
+          path: /usr/lib/systemd
+        name: host-systemd-volume
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 25%
