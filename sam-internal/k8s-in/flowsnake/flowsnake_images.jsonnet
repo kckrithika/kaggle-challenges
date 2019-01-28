@@ -40,7 +40,7 @@ local utils = import "util_functions.jsonnet";
                 docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-706-itest",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
-                deployer_image_tag: "sam-0002470-52e6c77a",
+                deployer_image_tag: "sam-0002076-c7dd1d69",
                 snapshoter_image_tag: "sam-0002052-bc0d9ea5",
                 snapshot_consumer_image_tag: "sam-0002052-bc0d9ea5",
                 kubedns_image_tag: "1.14.9",
@@ -130,7 +130,7 @@ local utils = import "util_functions.jsonnet";
         "2": self.default_image_tags {
 
             // image tag overrides go here
-            deployer_image_tag: "sam-0002470-52e6c77a",
+            deployer_image_tag: "sam-0002376-c267a6c7",
             madkub_image_tag: "1.0.0-0000081-ddcaa288",
 
             feature_flags: {
