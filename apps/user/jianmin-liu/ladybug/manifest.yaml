@@ -17,6 +17,9 @@ system:
         name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
+      args:
+      - log.stdout.enabled=true
+      - log.stdout.json=false
       livenessProbe:
         initialDelaySeconds: 10
         timeoutSeconds: 10
