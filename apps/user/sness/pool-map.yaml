@@ -1,6 +1,4 @@
 apps:
  my-sam-test:    
   - prd/prd-sam
- sness-switchboard-7020-endpoint:
-  - prd/prd-sam
   
