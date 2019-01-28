@@ -95,6 +95,7 @@ spec:
         - --httpconfig.allowedCiphers=ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA
         - --httpconfig.allowedEcdhCurves=secp521r1:secp384r1:prime256v1
         - --httpconfig.dhParamsFile=/tlsparams/dhparams.pem
+        - --httpconfig.accessLogDirectory=/host/data/slb/logs/slb-nginx-config-b
         env:
         - name: NODE_NAME
           valueFrom:
@@ -127,7 +128,7 @@ spec:
         env:
         - name: KINGDOM
           value: hnd
-        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000058-f078c862
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000064-a989192b
         livenessProbe:
           httpGet:
             path: /
