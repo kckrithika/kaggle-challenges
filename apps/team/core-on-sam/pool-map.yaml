@@ -150,3 +150,10 @@ apps:
     hostSubList:
     - shared2-samminioncoreapp3-1-prd.eng.sfdc.net
     - shared2-samminioncoreapp3-2-prd.eng.sfdc.net
+
+# Steam Envs
+ stmfa_-_prd_na47:
+  - name: prd/prd-sp2-sam_coreapp
+    hostSubList:
+    - shared2-samminioncoreapp2-4-prd.eng.sfdc.net
+    - shared2-samminioncoreapp2-5-prd.eng.sfdc.net
