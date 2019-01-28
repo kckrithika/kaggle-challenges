@@ -34,6 +34,7 @@ if slbconfigs.isSlbEstate && slbflights.nginxAccesslogsEnabled then configs.depl
                                      "/sdn/slb-nginx-accesslogs",
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--k8sApiServer=" + "http://shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:40000/",
+                                     "--httpTimeout=5m",
                                  ],
 
                         volumeMounts: std.prune([
