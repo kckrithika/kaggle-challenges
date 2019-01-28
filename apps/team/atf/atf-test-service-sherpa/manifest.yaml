@@ -3,6 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: atf-test-service-sherpa
+    count: 1
     containers:
     - name: atf-test-service-sherpa-con
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/atf/atf-test-service:0c72c88
