@@ -32,7 +32,7 @@ LivenessProbeExceptions:
 DuplicateFunctionExceptions:
   - "user/dkardach:default"
 InsecureImageExceptions:
-  - "dummyToEnableCheck"
+  - "gcr.io/*"
 PortCollisionExceptions:
   - "user/gutsin/redis-test"
   - "user/adhoot/TestRCHostNW"
