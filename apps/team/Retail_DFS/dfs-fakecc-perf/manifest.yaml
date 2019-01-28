@@ -9,6 +9,9 @@ system:
     - name: server-cert
       maddogCert:
         type: server
+    - name: client-cert
+      maddogCert:
+        type: client
 
     containers:
     - name: fakecc
@@ -35,6 +38,8 @@ system:
       volumeMounts:
       - name: server-cert
         mountPath: /server-certs
+      - name: client-cert
+        mountPath: /client-certs
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
