@@ -8,7 +8,7 @@ system:
       disco_dc: prd
       disco_env: ""
       disco_subenv: ""
-      disco_pod: "na45"
+      disco_pod: "na44"
       disco_sp: "SP2"
       disco_role: ordering-istio
     annotations:
