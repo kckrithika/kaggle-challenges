@@ -17,6 +17,9 @@ system:
     - name: fakecc
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hpresnall/fakecc:20190125_100341
       # associate the log directory to a logical volume.
+      volumeMounts:
+      - name: server-cert
+        mountPath: /server-certs
       env:
       - name: DELAY
         value: 100
