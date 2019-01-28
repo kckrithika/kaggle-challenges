@@ -84,7 +84,7 @@ local utils = import "util_functions.jsonnet";
         "1": self.default_image_tags {
 
             // image tag overrides go here
-            deployer_image_tag: "sam-0002376-c267a6c7",
+            deployer_image_tag: "sam-0002470-52e6c77a",
             madkub_image_tag: "1.0.0-0000081-ddcaa288",
 
             feature_flags: {
