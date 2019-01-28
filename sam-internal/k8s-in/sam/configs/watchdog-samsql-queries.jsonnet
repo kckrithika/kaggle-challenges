@@ -15,7 +15,6 @@
 #      alertAction: "pagerDuty",  # Special column telling which email to use (see watchdog-samsql-profiles.jsonnet)
 #      sql: "select * from ..."   # The SQL query.  If the results contain `alertProfile` or `alertAction` they will override this file
 #
-local kubeapisla = (import "watchdog-samsql-alerts/sqlkubeapinode.libsonnet").sqlkubeapi,
 
   sql_alerts: [
     (import "watchdog-samsql-alerts/sqlsladepl.libsonnet"),
@@ -31,8 +30,8 @@ local kubeapisla = (import "watchdog-samsql-alerts/sqlkubeapinode.libsonnet").sq
     (import "watchdog-samsql-alerts/sqlprimageunavailable.libsonnet"),
     (import "watchdog-samsql-alerts/kubednspodcount.libsonnet"),
     (import "watchdog-samsql-alerts/kubednspodcount-prod.libsonnet"),
-    kubeapisla("pagerduty", "dist=0"),
-    kubeapisla("businesshours_pagerduty", "dist>0"),
+    (import "watchdog-samsql-alerts/sqlkubeapinode.libsonnet").sqlkubeapi("pagerduty", "dist=0"),
+    (import "watchdog-samsql-alerts/sqlkubeapinode.libsonnet").sqlkubeapi("businesshours_pagerduty", "dist>0"),
   ],
 
 
