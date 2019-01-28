@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: slb-canary-proxy-tcp
+    slb.sfdc.net/portconfigurations: |-
+      [
+       {
+        "healthPath": "/",
+        "lbtype": "tcp",
+        "port": 9115,
+        "targetport": 9115
+       },
+       {
+        "healthprotocol": "tcp",
+        "lbtype": "tcp",
+        "port": 8081,
+        "proxyprotocol": true,
+        "targetport": 8081
+       }
+      ]
+  labels:
+    app: slb-canary-proxy-tcp-service
+  name: slb-canary-proxy-tcp-service
+  namespace: sam-system
+spec:
+  ports:
+  - name: slb-canary-proxy-tcp-port
+    nodePort: 32144
+    port: 9115
+    protocol: TCP
+    targetPort: 9115
+  - name: slb-canary-proxy-tcp-proxyproto-port
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
+  selector:
+    name: slb-canary-proxy-tcp
+  type: NodePort
