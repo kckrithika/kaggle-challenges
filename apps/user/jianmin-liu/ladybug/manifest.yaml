@@ -20,11 +20,6 @@ system:
       args:
       - log.stdout.enabled=true
       - log.stdout.json=false
-      env:
-      - LOGGING_JSON_STDOUT_LEVEL
-        value: all
-      - LOGGING_STDERR_LEVEL
-        value: all
       livenessProbe:
         initialDelaySeconds: 10
         timeoutSeconds: 10
