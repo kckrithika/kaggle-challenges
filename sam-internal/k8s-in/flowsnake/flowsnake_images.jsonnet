@@ -93,7 +93,8 @@ local utils = import "util_functions.jsonnet";
                 image_renames_and_canary_build_tags: "unverified",
                 madkub_077_upgrade: "deploy-hand-in-hand-with-madkub_image_tag-change",
                 dynamic_watchdogs: "verified in test",
-                impersonation_proxy: "verified-in-prd-dev",
+                impersonation_proxy: "verified-in-prd-*",
+                slb_ingress: "unverified",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
             },
@@ -137,7 +138,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
                 dynamic_watchdogs: "verified in dev",
-                impersonation_proxy: "verified-in-prd-dev",
+                impersonation_proxy: "verified-in-prd-*",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
                 madkub_077_upgrade: "",
@@ -169,7 +170,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 dynamic_watchdogs: "verified in dev",
-                impersonation_proxy: "verified-in-prd-dev",
+                impersonation_proxy: "verified-in-prd-*",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
                 madkub_077_upgrade: "",
