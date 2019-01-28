@@ -8,9 +8,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/atf/atf-test-service:0c72c88
       ports:
       - name: service-port
-        containerPort: 10080
-      - name: management-port
-        containerPort: 10081
+        containerPort: 7022
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -21,9 +19,9 @@ system:
       image: sfci/servicelibs/sherpa-envoy:1.0.3
       ports:
       - name: sherpa-b-in
-        containerPort: 7012
+        containerPort: 7014
       - name: sherpa-b-in-tls
-        containerPort: 7443
+        containerPort: 7442
       - name: sherpa-b-adm
         containerPort: 15373
       env:
@@ -59,10 +57,10 @@ system:
       args:
       # Non-namespaced, plaintext
       - -endpoint
-      - atf-test-service-sherpa:DATACENTER_ALLENV:7012
+      - atf-test-service-sherpa:DATACENTER_ALLENV:7014
       # Namespaced, TLS
       - -endpoint
-      - atf/atf-test-service-sherpa:DATACENTER_ALLENV:7443
+      - atf/atf-test-service-sherpa:DATACENTER_ALLENV:7442
       livenessProbe:
         initialDelaySeconds: 5
         exec:
