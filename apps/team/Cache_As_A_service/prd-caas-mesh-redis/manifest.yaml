@@ -48,6 +48,9 @@ system:
         requests: { memory: "500M" }
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:7c866de2c4f840082fac7f2d00aa2d93f7bee6be
+      args:
+      - --template
+      - /switchboard-config/switchboard-sidecar.config.yaml.template
       ports:
       - containerPort: 15373
       env:
