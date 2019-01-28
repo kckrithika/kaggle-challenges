@@ -168,6 +168,7 @@ system:
 
     - name: envoy-sidecar
       image: sfci/servicelibs/sherpa-envoy:1.0.4
+      env:
       - name: SFDC_ENVIRONMENT
         value: envoy-sidecar
       args:
