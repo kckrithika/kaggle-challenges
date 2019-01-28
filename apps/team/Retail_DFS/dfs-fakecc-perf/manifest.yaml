@@ -23,8 +23,6 @@ system:
       env:
       - name: DELAY
         value: 100
-      - name: CERT_DIR
-        value: /server-certs/server
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "1Gi" }
