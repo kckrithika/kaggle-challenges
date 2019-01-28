@@ -30,6 +30,8 @@
     (import "watchdog-samsql-alerts/sqlprimageunavailable.libsonnet"),
     (import "watchdog-samsql-alerts/kubednspodcount.libsonnet"),
     (import "watchdog-samsql-alerts/kubednspodcount-prod.libsonnet"),
+    (import "watchdog-samsql-alerts/sqlkubeapinode.libsonnet").sqlkubeapi("pagerduty", "dist=0"),
+    (import "watchdog-samsql-alerts/sqlkubeapinode.libsonnet").sqlkubeapi("businesshours_pagerduty", "dist>0"),
   ],
 
 
