@@ -55,7 +55,7 @@ system:
          value: mist61
        # SFDC_POD is used for cluster name
        - name: SFDC_POD
-         value: caas-cluster-casam-sp2
+         value: caas-cluster-1
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
