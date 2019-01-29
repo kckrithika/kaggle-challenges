@@ -10,7 +10,6 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
     sdn_estate_phases: flowsnakeconfig.validate_estate_fields({
         "phx-flowsnake_prod": 5,
         "ia2-flowsnake_prod": 4,
-        "ph2-flowsnake_prod": 5,
         "hnd-flowsnake_prod": 5,
         "ukb-flowsnake_prod": 5,
     }),
