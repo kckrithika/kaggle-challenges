@@ -82,11 +82,13 @@ system:
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-func-patch-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
       - name: OAUTH_CONSUMER_KEY
-        value: 3MVG9kV2EzIiYBBR3QDrpYkBeMT_W9xZOsltgiwwBO_jZ8azERi5iU744Ej8NCO5aE61a2XN4O9VGWhPo784h
+        value: 3MVG9qKMKuRGRcbsuPuzRDiXVrjOrpresbHd9IQYuanSzwEa86PEyPRevAGTtXwf9DyuQsSBx3oAilDhrxRl9
       - name: OAUTH_CONSUMER_SECRET
-        value: 1157428726324012493
+        value: DC988C015B06E91C7BE93CCF64F1F620C7B4383CCDE69536C56F33B9CA4F758C
       - name: SECURITY_REQUIRE_SECRETS
         value: false
+      - name: RSUI_HOST
+        value: stmfb.stm.salesforce-hub.com
       - name: SECURITY_ENCRYPTION_KEY1_PATH
         value: secrets/encryption-key1/rsui-encryption-key1.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
