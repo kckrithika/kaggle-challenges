@@ -14,8 +14,8 @@ system:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
       args:
-        - -t 20
-        - -v 256
+        - -t 1,5,10,20
+        - -v 1024,10240,102400
         - -o 0,1
         - -m
         - -a 127.0.0.1:7509
