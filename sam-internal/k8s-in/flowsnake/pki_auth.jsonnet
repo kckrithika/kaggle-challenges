@@ -113,6 +113,11 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
             authorizedLdapGroups: ["Analytics-DataPool"],
             authorizedClientCerts: ["wave-elt.datapool", "wave-elt.datapool-test1", "wave-elt.datapool-test2", "wave-elt.datapool-steelthread"],
         },
+        {
+            namespace: "hbase-flowsnake",
+            authorizedLdapGroups: ["svc_hbase_splunk"],
+            authorizedClientCerts: [],
+        },
       ],
       "prd/prd-minikube-small-flowsnake": [
         {
