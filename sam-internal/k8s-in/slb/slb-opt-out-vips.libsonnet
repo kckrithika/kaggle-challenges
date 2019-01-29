@@ -191,6 +191,11 @@ local vipwdOptOutConfig = {
       "cs4-stmda1-0-prd",  // Added by Pablo 1/8/2019 for incident #383013
       "login-stmfa1-0-prd",  // Added by Pablo 1/8/2019 for incident #383013
       "slb-portal-service",
+      // 2019/01/29 - mgrass: a unique vip setup (SLB vip -> customer proxy -> SLB vip -> artifactory backends) is causing
+      // an erroneous alert to fire for this vip while artifactory is down.
+      // Discussion here: https://computecloud.slack.com/archives/G340CE86R/p1548789670294000?thread_ts=1548789631.293500&cid=G340CE86R
+      // Opting out this vip for now.
+      "ops0-dvaregistryssl1-0-prd",
     ],
     namespaces:
     [
