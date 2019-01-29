@@ -255,27 +255,7 @@ local utils = import "util_functions.jsonnet";
             },
         },
 
-        "4-dfw": self["4"] {
-           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-
-           feature_flags: {
-               dynamic_watchdogs: "yes",
-           },
-
-           version_mapping: {
-                main: {
-                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        "4-ph2-hnd": self["4"] {
+        "4-dfw-ph2-hnd-ukb": self["4"] {
            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
@@ -309,10 +289,8 @@ local utils = import "util_functions.jsonnet";
             "4-iad-ord"
         else if (estate == "frf-flowsnake_prod" || estate == "par-flowsnake_prod") then
             "4-frf-par"
-        else if (estate == "dfw-flowsnake_prod") then
-            "4-dfw"
-        else if (estate == "ph2-flowsnake_prod" || estate == "hnd-flowsnake_prod") then
-            "4-ph2-hnd"
+        else if std.count(["dfw", "hnd", "ph2", "ukb"], kingdom) > 0 then
+            "4-dfw-ph2-hnd-ukb"
         else
             "4"
         ),
