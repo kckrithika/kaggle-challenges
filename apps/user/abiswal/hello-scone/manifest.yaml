@@ -10,7 +10,7 @@ system:
       - containerPort: 8181
       livenessProbe:
         httpGet:
-          path: /
+          path: /hello
           port: 8181
   loadbalancers:
   - lbname: samhellolb
