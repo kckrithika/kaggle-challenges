@@ -275,7 +275,7 @@ local utils = import "util_functions.jsonnet";
             },
         },
 
-        "4-ph2": self["4"] {
+        "4-ph2-hnd": self["4"] {
            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
@@ -311,8 +311,8 @@ local utils = import "util_functions.jsonnet";
             "4-frf-par"
         else if (estate == "dfw-flowsnake_prod") then
             "4-dfw"
-        else if (estate == "ph2-flowsnake_prod") then
-            "4-ph2"
+        else if (estate == "ph2-flowsnake_prod" || estate == "hnd-flowsnake_prod") then
+            "4-ph2-hnd"
         else
             "4"
         ),
