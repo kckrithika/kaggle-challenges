@@ -153,10 +153,10 @@ FROM   (
        tnrplatency,
        totallatencysec e2eLatency,
        evalPrLatency
-FROM   ( 
+FROM   (   
                        SELECT          pr_num, 
                                        imagelatencysec, 
-                                       totallatencysec, 
+                                       GREATEST(totallatencysec1, totallatencysec2) totallatencysec, 
                                        Timestampdiff(second, merged_time, 
                                        CASE 
                                                        WHEN t.manifest_zip_time IS NULL THEN Now()
@@ -164,7 +164,7 @@ FROM   (
                                        END) AS tnrplatency,
                                        evalPrLatency,
                                        merged_time
-                       FROM            ( 
+                       FROM            (   
                                                  SELECT    prs.pr_num, 
                                                            prs.git_hash, 
                                                            prs.merged_time, 
@@ -172,46 +172,60 @@ FROM   (
                                                            CASE 
                                                                      WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
                                                                      ELSE Json_unquote(payload -> '$.status.maxImageEndTime') 
-                                                           END,'%Y-%m-%dT%H:%i:%s'))) imagelatencysec, 
+                                                           END,'%Y-%m-%dT%H:%i:%s'))) imagelatencysec,
                                                            Max(Timestampdiff(second, prs.most_recent_authorized_time, Str_to_date(
-                                                           CASE 
-                                                                     WHEN payload -> '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
-                                                                     ELSE Json_unquote(payload -> '$.status.endTime') 
-                                                           END, '%Y-%m-%dT%H:%i:%s'))) totallatencysec,
-                                                           Timestampdiff(second, prs.`most_recent_authorized_time`, prs.`most_recent_evaluate_pr_completion_time`) evalPrLatency
-                                                 FROM      PullRequests prs 
+                                                           CASE
+                                                                     WHEN payload -> '$.status.startTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP()                                               
+                                                                     ELSE Json_unquote(payload -> '$.status.startTime')
+                                                           END, '%Y-%m-%dT%H:%i:%s'))) totallatencysec1,
+                                                           Max(Timestampdiff(second, prs.most_recent_authorized_time, Str_to_date(
+                                                           CASE
+                                                                     WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP()                                               
+                                                                     ELSE Json_unquote(payload -> '$.status.maxImageEndTime')
+                                                           END, '%Y-%m-%dT%H:%i:%s'))) totallatencysec2,
+                                                           Timestampdiff(second, prs.`most_recent_authorized_time`, prs.`most_recent_evaluate_pr_completion_time`) evalPrLatency              
+                                                 FROM      PullRequests prs
                                                  INNER JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num` = pApp.`pr_num`
                                                  LEFT JOIN 
                                                            ( 
-                                                                  SELECT * 
-                                                                  FROM   crd_history 
+                                                                  SELECT *
+                                                                  FROM   crd_history
                                                                   WHERE  apikind = 'Bundle') crds
                                                  ON        crds.prnum = prs.pr_num 
-                                                 WHERE     prs.state = 'merged' 
-                                                 AND       prs.merged_time > Now() - INTERVAL 24 HOUR
-                                                 GROUP BY  prs.pr_num) sam 
-                       LEFT OUTER JOIN TNRPManifestData t 
+         
+                                                 WHERE     prs.state = 'merged'
+                                                 AND       prs.merged_time > Now() - INTERVAL 1 DAY
+                                                 GROUP BY  prs.pr_num) sam
+                       LEFT OUTER JOIN TNRPManifestData t
                        ON              sam.git_hash = t.git_hash )sam
                        WHERE totallatencysec IS NOT NULL
-                       ORDER BY totallatencysec desc",
+                       ORDER BY totallatencysec DESC",
                     },
                     {
-                        name: "E2E PR latency 95th, 90th, 75th, 50th Pct in minutes",
+                        name: "E2E PR latency 95th, 90th, 75th, 50th Pct in minutes over last 24 hrs",
                         sql: "SELECT * from(
                                  SELECT
                                          prLatency.*,
                                          @row_num :=@row_num + 1 AS row_num
                                     FROM
-                                        (
+                                        (   
                                         SELECT *
                                         FROM (   
                                        SELECT 
                                           prs.pr_num, 
+                                          GREATEST(
                                           max(TIMESTAMPDIFF(minute,prs.most_recent_authorized_time, STR_TO_DATE( 
                                           CASE 
-                                                    WHEN payload -> '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
-                                                    ELSE JSON_UNQUOTE(payload -> '$.status.endTime') 
-                                          END,'%Y-%m-%dT%H:%i:%s' ))) latency 
+                                                    WHEN payload -> '$.status.startTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
+                                                    ELSE JSON_UNQUOTE(payload -> '$.status.startTime') 
+                                          END,'%Y-%m-%dT%H:%i:%s' ))) ,
+                                           max(TIMESTAMPDIFF(minute,prs.most_recent_authorized_time, STR_TO_DATE( 
+                                          CASE 
+                                                    WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
+                                                    ELSE JSON_UNQUOTE(payload -> '$.status.maxImageEndTime') 
+                                          END,'%Y-%m-%dT%H:%i:%s' ))) 
+                                          ) latency
+                                          
                                         FROM PullRequests prs 
                                         INNER JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num` = pApp.`pr_num`
                                         LEFT JOIN 
@@ -220,15 +234,59 @@ FROM   (
                                                  FROM   crd_history 
                                                  WHERE  apikind = 'Bundle') crds 
                                                  ON  crds.prnum = prs.pr_num WHERE state ='merged' 
-                                                 AND `merged_time` > now() - INTERVAL 24 hour
+                                                 AND `merged_time` > now() - INTERVAL 1 DAY 
                                                  GROUP BY prs.pr_num 
                                       )nullPrLatency
                                       WHERE latency IS NOT NULL
                                       )prLatency
-                                  ,
+                                  ,   
                                      (SELECT @row_num:=0) counter ORDER BY prLatency.latency )    
                                     temp WHERE temp.row_num = ROUND (.95* @row_num) OR temp.row_num = ROUND (.90* @row_num) OR temp.row_num = ROUND (.75* @row_num) OR temp.row_num = ROUND (.50* @row_num)
                                     order by row_num desc",
                     },
+                    {
+                        name: "E2E PR latency 95th, 90th, 75th, 50th Pct in minutes for last 7 days",
+                        sql: "SELECT * from(
+                                 SELECT
+                                         prLatency.*,
+                                         @row_num :=@row_num + 1 AS row_num
+                                    FROM
+                                        (   
+                                        SELECT *
+                                        FROM (   
+                                       SELECT 
+                                          prs.pr_num, 
+                                          GREATEST(
+                                          max(TIMESTAMPDIFF(minute,prs.most_recent_authorized_time, STR_TO_DATE( 
+                                          CASE 
+                                                    WHEN payload -> '$.status.startTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
+                                                    ELSE JSON_UNQUOTE(payload -> '$.status.startTime') 
+                                          END,'%Y-%m-%dT%H:%i:%s' ))) ,
+                                           max(TIMESTAMPDIFF(minute,prs.most_recent_authorized_time, STR_TO_DATE( 
+                                          CASE 
+                                                    WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
+                                                    ELSE JSON_UNQUOTE(payload -> '$.status.maxImageEndTime') 
+                                          END,'%Y-%m-%dT%H:%i:%s' ))) 
+                                          ) latency
+                                          
+                                        FROM PullRequests prs 
+                                        INNER JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num` = pApp.`pr_num`
+                                        LEFT JOIN 
+                                          (   
+                                                 SELECT * 
+                                                 FROM   crd_history 
+                                                 WHERE  apikind = 'Bundle') crds 
+                                                 ON  crds.prnum = prs.pr_num WHERE state ='merged' 
+                                                 AND `merged_time` > now() - INTERVAL 7 DAY 
+                                                 GROUP BY prs.pr_num 
+                                      )nullPrLatency
+                                      WHERE latency IS NOT NULL
+                                      )prLatency
+                                  ,   
+                                     (SELECT @row_num:=0) counter ORDER BY prLatency.latency )    
+                                    temp WHERE temp.row_num = ROUND (.95* @row_num) OR temp.row_num = ROUND (.90* @row_num) OR temp.row_num = ROUND (.75* @row_num) OR temp.row_num = ROUND (.50* @row_num)
+                                    order by row_num desc",
+                    },
+
             ],
     }
