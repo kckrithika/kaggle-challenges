@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 
 {
     sherpaImage: (
+        // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
         // https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
         "%s/sfci/servicelibs/sherpa-envoy:1.0.5" % configs.registry
     ),

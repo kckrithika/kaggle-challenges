@@ -11,9 +11,9 @@
   spec: {
     ports: [
       {
-        name: "tls-in-port",
-        port: 7443,
-        targetPort: 7443,
+        name: "h1-tls-in-port",
+        port: 7442,
+        targetPort: 7442,
       },
     ],
     selector: {
