@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: cs103app-fra
+  - name: cs103-app-fra
     count: 1
     identity:
       serviceName: app
@@ -167,7 +167,7 @@ system:
         periodSeconds: 5
 
     - name: envoy-sidecar
-      image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
       env:
       - name: SFDC_ENVIRONMENT
         value: envoy-sidecar
@@ -232,7 +232,7 @@ system:
 
   loadbalancers:
   - lbname: cs103app-lb
-    function: cs103app-fra
+    function: cs103-app-fra
     slbEnabled: true
     ports:
 # HTTP listen port of coreapp - Exposed only for debugging.
