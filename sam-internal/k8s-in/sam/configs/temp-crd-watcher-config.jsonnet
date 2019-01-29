@@ -19,5 +19,5 @@ local configs = import "config.jsonnet";
   # with out-of-sync TNRP servers behind a VIP
   skipOldZips: true,
 
-  [if configs.kingdom == "prd" then "deletionPercentageThreshold"]: 20,
+  deletionPercentageThreshold: 20,
 }
