@@ -146,7 +146,7 @@ FROM   (
                        LIMIT 10",
                     },
                     {
-                        name: "Sam latency Non-null",
+                        name: "PR latency in seconds Non-null",
                         sql: "SELECT pr_num, 
        totallatencysec - (imagelatencysec + tnrplatency + evalPrLatency) samlatencysec,
        imagelatencysec artifactoryLatency,
@@ -188,13 +188,47 @@ FROM   (
                                                                   WHERE  apikind = 'Bundle') crds
                                                  ON        crds.prnum = prs.pr_num 
                                                  WHERE     prs.state = 'merged' 
-                                                 AND       prs.merged_time > Now() - interval 10 DAY
+                                                 AND       prs.merged_time > Now() - INTERVAL 24 HOUR
                                                  GROUP BY  prs.pr_num) sam 
                        LEFT OUTER JOIN TNRPManifestData t 
                        ON              sam.git_hash = t.git_hash )sam
                        WHERE totallatencysec IS NOT NULL
-                       ORDER BY merged_time desc
-                       LIMIT 10",
+                       ORDER BY totallatencysec desc",
+                    },
+                    {
+                        name: "E2E PR latency 95th, 90th, 75th, 50th Pct in minutes",
+                        sql: "SELECT * from(
+                                 SELECT
+                                         prLatency.*,
+                                         @row_num :=@row_num + 1 AS row_num
+                                    FROM
+                                        (
+                                        SELECT *
+                                        FROM (   
+                                       SELECT 
+                                          prs.pr_num, 
+                                          max(TIMESTAMPDIFF(minute,prs.most_recent_authorized_time, STR_TO_DATE( 
+                                          CASE 
+                                                    WHEN payload -> '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() 
+                                                    ELSE JSON_UNQUOTE(payload -> '$.status.endTime') 
+                                          END,'%Y-%m-%dT%H:%i:%s' ))) latency 
+                                        FROM PullRequests prs 
+                                        INNER JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num` = pApp.`pr_num`
+                                        LEFT JOIN 
+                                          (   
+                                                 SELECT * 
+                                                 FROM   crd_history 
+                                                 WHERE  apikind = 'Bundle') crds 
+                                                 ON  crds.prnum = prs.pr_num WHERE state ='merged' 
+                                                 AND `merged_time` > now() - INTERVAL 24 hour
+                                                 GROUP BY prs.pr_num 
+                                      )nullPrLatency
+                                      WHERE latency IS NOT NULL
+                                      )prLatency
+                                  ,
+                                     (SELECT @row_num:=0) counter ORDER BY prLatency.latency )    
+                                    temp WHERE temp.row_num = ROUND (.95* @row_num) OR temp.row_num = ROUND (.90* @row_num) OR temp.row_num = ROUND (.75* @row_num) OR temp.row_num = ROUND (.50* @row_num)
+                                    order by row_num desc",
                     },
             ],
     }
