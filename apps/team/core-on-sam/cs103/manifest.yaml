@@ -229,6 +229,146 @@ system:
         maxSurge: 200%
         maxUnavailable: 0
 
+  - name: cs103-switchboard-fra
+    identity:
+      serviceName: sfproxy-switchboard
+      pod: cs103
+    count: 1
+    containers:
+    - name: sfproxy-switchboard-server
+      image: sfci/servicelibs/switchboard:a6729b3a765d262943bb20f9921b4343784dccef
+      args:
+      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
+      - --clusters.external-clusters[1]=spaasmesh:HTTP2
+      - --metrics.maxNumberOfCollectedMetrics=100000
+      - --metrics.funnelTimeOut=90000
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      - name: GRPC_SERVER_PORT
+        value: 7020
+      - name: JVM_HEAP_MAX
+        value: 4G
+      ports:
+      - containerPort: 15372
+      resources:
+        limits:
+          cpu: 8
+          memory: 6Gi
+        requests:
+          cpu: 8
+          memory: 6Gi
+      volumeMounts:
+      - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
+        name: envoy-config-volume
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    - name: sfproxy-switchboard-sherpa
+      image: sfci/frontend-gateway/sfproxy:bc7e1fa
+      args:
+      - --template
+      - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
+      - --log-level
+      - trace
+      ports:
+      - containerPort: 15001
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      resources:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /switchboard-config
+        name: envoy-config-volume
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./sfproxy/scripts/check-switchboard.sh
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+
+    volumes:
+    - name: envoy-config-volume
+      emptyDir: {}
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+        lbnames:
+        - cs103-switchboard-lb
+
+  - name: cs103-sfproxy-fra
+    identity:
+      serviceName: sfproxy
+      pod: cs103
+    count: 3
+    containers:
+    - name: sfproxy-envoy
+      image: sfci/frontend-gateway/sfproxy:2784a0a
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      args:
+      - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
+      - --switchboard=cs103-switchboard-lb.core-on-sam.fra-sam.fra.slb.sfdc.net:15001
+      - --log-level=trace
+      ports:
+      - containerPort: 2525
+      - containerPort: 12060
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - name: tls-client-cert
+        mountPath: /client-certs
+      - name: tls-server-cert
+        mountPath: /server-certs
+
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+        lbnames:
+        - cs103-sfproxy-lb
 
   loadbalancers:
   - lbname: cs103app-lb
@@ -288,3 +428,37 @@ system:
 # side car Envoy's admin port - Exposed only for debugging purpose
     - port: 15373
       targetport: 15373
+  - lbname: cs103-switchboard-lb
+    function: cs103-switchboard-fra
+    nodeExposed: false
+    slbEnabled: true
+    ports:
+    - port: 15001
+      targetport: 15001
+    - port: 15370
+      targetport: 15372
+  - lbname: cs103-sfproxy-lb
+    function: cs103-sfproxy-fra
+    nodeExposed: false
+    slbEnabled: true
+    ports:
+  # TCP listen port of Envoy.
+    - port: 2525
+      targetport: 2525
+  # HTTP listen port of Envoy.
+    - port: 80
+      targetport: 12060
+      lbtype: http
+      tls: false
+      reencrypt: true
+  # HTTPS listen ports of Envoy.
+    - port: 443
+      targetport: 12060
+      lbtype: http
+      tls: true
+      reencrypt: true
+    - port: 8443
+      targetport: 12060
+      lbtype: http
+      tls: true
+      reencrypt: true
