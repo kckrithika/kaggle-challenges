@@ -332,9 +332,9 @@
             "--httpconfig.allowedEcdhCurves=secp521r1:secp384r1:prime256v1",
             "--httpconfig.dhParamsFile=/tlsparams/dhparams.pem",
         ] else [])
-        + (if slbflights.nginxLogsRefactor then [
+        + [
           "--httpconfig.accessLogDirectory=" + slbconfigs.logsDir,
-        ] else []),
+        ],
         volumeMounts: std.prune([
             slbconfigs.nginx.target_config_volume_mount,
             slbconfigs.slb_volume_mount,

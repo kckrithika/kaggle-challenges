@@ -11,9 +11,6 @@ local configs = import "config.jsonnet";
     fredEnabled: (slbimages.phaseNum <= 2),
     georgeEnabled: (slbimages.phaseNum <= 2),
     nginxAccesslogsEnabled: (configs.estate == "prd-sdc"),
-    portalKubeConfigEnabled: (slbimages.hypersdn_build >= 1431),
-    nginxLogsRefactor: (if slbimages.slbnginx_build >= 61 then true else false),
-    slaRequiresPreciseHealthProbesEnabled: slbimages.hypersdn_build >= 1441,
-    statusVipEnabled: (slbimages.phaseNum <= 3 || slbimages.hypersdn_build > 1431),
+    portalKubeConfigEnabled: (slbimages.hypersdn_build <= 1442),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
 }
