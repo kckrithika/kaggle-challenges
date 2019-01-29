@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -62,7 +62,7 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17350776
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17358742
       livenessProbe:
         exec:
           command:
@@ -205,15 +205,15 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1548454454236332032
+        value: 1548721626446689024
       - name: DEPLOY_ENV
         value: alpha
       - name: CYAN
-        value: https://us2-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8086
-      - name: CURL_GLOBAL_OPTS
-        value: -k
-      - name: K4A
-        value: have_to_get_this
+        value: https://us2-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
+      - name: SWITCH_BOARD_HOST
+        value: na2-switchboard-lb
+      - name: SWITCH_BOARD_PORT
+        value: 8088
       - name: ENABLE_DB_SCHEMA_UPGRADE
         value: 1
       - name: SET_DEFAULT_ORACLE_EDITION
@@ -221,9 +221,9 @@ system:
       - name: OLD_DWARF
         value: sneezy
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -239,12 +239,12 @@ system:
       - name: MADDOG_CLIENT
         value: /certs
       - name: CASAM_SETTINGS_PATH
-        value: mist61.mist.prd.na2.sequencer
+        value: mist61.-.prd.na2.sequencer
       - name: CASAM_SUPERPOD
         value: sp2
       - name: HTTP_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
-      image: sfci/casam/sequencer:4905b0
+      image: sfci/casam/sequencer:b214a6
       livenessProbe:
         failureThreshold: 10
         httpGet:
@@ -291,7 +291,7 @@ system:
   - containers:
     - args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
-      - --switchboard=us99-mist61switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
+      - --switchboard=na2-switchboard-lb:8088
       - --log-level=trace
       env:
       - name: ENVOY_DEBUG_OPTIONS
@@ -335,6 +335,103 @@ system:
         - us2-sfproxy-lb
         type: server
       name: tls-server-cert
+  - containers:
+    - args:
+      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
+      - --clusters.external-clusters[1]=spaasmesh:HTTP2
+      - --metrics.maxNumberOfCollectedMetrics=100000
+      - --metrics.funnelTimeOut=90000
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mist61
+      - name: GRPC_SERVER_PORT
+        value: 7020
+      - name: JVM_HEAP_MAX
+        value: 4G
+      image: sfci/servicelibs/switchboard:a6729b3a765d262943bb20f9921b4343784dccef
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      name: switchboard
+      ports:
+      - containerPort: 7020
+      - containerPort: 15372
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      resources:
+        limits:
+          cpu: 8
+          memory: 6Gi
+        requests:
+          cpu: 8
+          memory: 6Gi
+      volumeMounts:
+      - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
+        name: envoy-config-volume
+    - args:
+      - --template
+      - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
+      - --log-level
+      - trace
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mist61
+      - name: ENVOY_DEBUG_OPTIONS
+        value: --log-path /home/sfdc-sherpa/envoy.log
+      image: sfci/frontend-gateway/sfproxy:bc7e1fa
+      livenessProbe:
+        exec:
+          command:
+          - ./sfproxy/scripts/check-switchboard.sh
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      name: envoy-sidecar
+      ports:
+      - containerPort: 15001
+      - containerPort: 15373
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      resources:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /switchboard-config
+        name: envoy-config-volume
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+    count: 1
+    identity:
+      pod: na2
+      serviceName: switchboard
+    name: na2-mist61switchboard-prd
+    volumes:
+    - emptyDir: {}
+      name: envoy-config-volume
+    - maddogCert:
+        type: client
+      name: tls-client-cert
+    - maddogCert:
+        lbnames:
+        - na2-switchboard-lb
+        type: server
+      name: tls-server-cert
   loadbalancers:
   - function: na2-mist61sfproxy-prd
     lbname: us2-sfproxy-lb
@@ -342,12 +439,21 @@ system:
     ports:
     - port: 2525
       targetport: 2525
-    - port: 8086
-      targetport: 12060
     - port: 8443
       targetport: 12060
     - port: 8087
       targetport: 15373
+    slbEnabled: true
+  - function: na2-mist61switchboard-prd
+    lbname: na2-switchboard-lb
+    nodeExposed: false
+    ports:
+    - port: 8088
+      targetport: 15001
+    - port: 8089
+      targetport: 15372
+    - port: 8090
+      targetport: 15373
     - port: 8888
-      targetport: 12060
+      targetport: 7020
     slbEnabled: true
