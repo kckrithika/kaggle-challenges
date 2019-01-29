@@ -29,6 +29,9 @@ local samreleases = import "samreleases.json";
         "prd,prd-sam,bundle-controller,hypersam": "sam-0002455-fbe2cb61",
         "prd,prd-samdev,bundle-controller,hypersam": "sam-0002455-fbe2cb61",
 
+        #[xiao]
+        "prd,prd-sam,samapp-controller,hypersam": "sam-0002472-fe691728",
+
         #[small] sythetic checker failure fix
         "prd,prd-samtest,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20190118_133746.5f7caad8.dirty.small-ltm",
         },
