@@ -18,6 +18,7 @@ system:
         - -v 256
         - -o 0,1
         - -m
+        - -a 127.0.0.1:7509
         - -x 120
       livenessProbe:
         exec:
