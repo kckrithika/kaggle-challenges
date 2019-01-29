@@ -40,8 +40,10 @@ function kill_journald_loop() {
 
         [[ -z $journald_pid ]] && continue
 
-        echo "Killing journald"
-        kill -9 "$journald_pid"
+        # mgrass 01/28/2019 - We've downgraded known hosts to the older journald version. We've seen some undesirable side effects
+        # that appear to be correlated with force-killing journald. Don't kill journald, but keep the log in place for telemetry.
+        echo "Killing journald (pid $journald_pid) - NOT!"
+        # kill -9 "$journald_pid"
     done
 }
 
