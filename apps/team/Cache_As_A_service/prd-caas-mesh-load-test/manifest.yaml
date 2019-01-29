@@ -9,13 +9,13 @@ system:
     count: 1
     containers:
     - name: caas-load
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpragada/caas-load-test:0.2 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jayantk/caas-load-test:0.1
       resources:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
       args:
-        - -t 1,5,10,20
-        - -v 256,1024,10240,102400
+        - -t 1
+        - -v 256
         - -o 0,1
         - -m
         - -x 120
@@ -39,6 +39,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: redis
+      - name: SFDC_POD
+        value: mist66
       resources:
         limits:
           cpu: "1"
