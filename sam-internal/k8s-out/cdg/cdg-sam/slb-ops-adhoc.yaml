@@ -22,7 +22,7 @@ spec:
       - command:
         - /bin/bash
         - /config/slb-journald-killer-journald-hash.sh
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001433-ed287455
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/hypersdn:v-0001441-c5e2a439
         name: slb-ops-adhoc
         resources:
           limits:
