@@ -28,6 +28,9 @@ system:
       - mountPath: /home/datapool-test/client-certs
         name: tls-client-certs
       env:
+      env:
+      - name: LOGGING_STDERR_LEVEL
+        value: ALL
       - name: PKI_TRUSTSTORE_DIR
         value: /home/datapool-test/client-certs
       - name: PKI_KEYSTORE_DIR
