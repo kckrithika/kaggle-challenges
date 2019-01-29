@@ -22,12 +22,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-retail/logs
-    - name: consumer-key
-      k4aSecret:
-        secretName: rsui-consumer-key
-    - name: consumer-secret
-      k4aSecret:
-        secretName: rsui-consumer-secret
     - name: encryption-key1
       k4aSecret:
         secretName: rsui-encryption-key1
@@ -76,17 +70,7 @@ system:
       - name: SECURITY_SERVER_DYNAMICKEYSTORE_CAFILE
         value: /servercerts/ca/cacerts.pem
       - name: SFDC_ENVIRONMENT
-        value: stmfa
-      - name: TENANT_SOURCE_KEYS
-        value: core/stmfana48ice1/00DC20000000MOqMAM,commerce
-      - name: TENANT_SOURCE_NAMES
-        value: Service Cloud,Commerce cloud tenant,CRE tenant
-      - name: TENANT_CANONICAL
-        value: mds/stmfa/ST0000000000001
-      - name: TENANT_SUPER
-        value: core/stmfana48ice1/00DC20000000MOgMAM
-      - name: TENANT_SERVICE
-        value: core/stmfana48ice1/00DC20000000MOqMAM
+        value: stmfb
       - name: TENANT_SERVICE_ALLOWDATASOURCEADD
         value: true
       - name: CRE_SERVER_TARGET
@@ -94,13 +78,15 @@ system:
       - name: C2C_PATH
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL
-        value: https://login.stmfa.stm.salesforce.com
+        value: https://login.stmfb.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-func-patch-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
-      - name: OAUTH_CONSUMER_KEY_FILE_PATH
-        value: secrets/consumer-key/rsui-consumer-key.key
-      - name: OAUTH_CONSUMER_SECRET_FILE_PATH
-        value: secrets/consumer-secret/rsui-consumer-secret.key
+      - name: OAUTH_CONSUMER_KEY
+        value: 3MVG9kV2EzIiYBBR3QDrpYkBeMT_W9xZOsltgiwwBO_jZ8azERi5iU744Ej8NCO5aE61a2XN4O9VGWhPo784h
+      - name: OAUTH_CONSUMER_SECRET
+        value: 1157428726324012493
+      - name: SECURITY_REQUIRE_SECRETS
+        value: false
       - name: SECURITY_ENCRYPTION_KEY1_PATH
         value: secrets/encryption-key1/rsui-encryption-key1.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
@@ -161,12 +147,6 @@ system:
       #mount splunk logs mount
       - name: logvol
         mountPath: /home/retail-setup/logs
-      - name: consumer-key
-        mountPath: /home/retail-setup/secrets/consumer-key
-        readOnly: true
-      - name: consumer-secret
-        mountPath: /home/retail-setup/secrets/consumer-secret
-        readOnly: true
       - name: encryption-key1
         mountPath: /home/retail-setup/secrets/encryption-key1
         readOnly: true
@@ -178,7 +158,7 @@ system:
       image: sfci/servicelibs/sherpa-envoy:1.0.1
       env:
       - name: SFDC_ENVIRONMENT
-        value: stmfa
+        value: stmfb
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -209,7 +189,7 @@ system:
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       env:
       - name: SFDC_ENVIRONMENT
-        value: stmfa
+        value: stmfb
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
