@@ -249,7 +249,22 @@ local vipwdOptOutConfig = {
   "phx-sam": { serviceLists: ["slb-portal-service"] },
   "ord-sam": { serviceLists: ["slb-portal-service"] },
   "dfw-sam": { serviceLists: ["slb-portal-service"] },
-  "hnd-sam": { serviceLists: ["slb-portal-service"] },
+  "hnd-sam":
+  {
+    serviceLists:
+    [
+      "slb-portal-service",
+      // 2019/01/28 - vyjayanthi.raja
+      // Associated investigation: https://computecloud.slack.com/archives/G340CE86R/p1548731408150000
+      "pra-neutron-hnd",
+      "pra-mariadb-hnd",
+      "pra-keystone-apache-hnd",
+      "pra-ccn-1-0-hnd",
+      "pra-keystone-admin-hnd",
+      "pra-glance-api-hnd",
+      "pra-nova-hnd",
+    ],
+  },
   "cdg-sam": { serviceLists: ["slb-portal-service"] },
   "fra-sam": { serviceLists: ["slb-portal-service"] },
   "ia2-sam": { serviceLists: ["slb-portal-service"] },
