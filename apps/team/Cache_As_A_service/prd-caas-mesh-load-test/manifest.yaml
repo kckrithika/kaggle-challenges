@@ -14,7 +14,7 @@ system:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
       args:
-        - -t 10
+        - -t 20
         - -v 256
         - -o 0,1
         - -m
