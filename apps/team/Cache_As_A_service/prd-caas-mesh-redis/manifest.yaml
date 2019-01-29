@@ -14,7 +14,7 @@ system:
         limits: { memory: "8G" }
         requests: { memory: "8G" }
       args:
-        - --port=5000
+        - --port=12000
         - --maxMemoryMB=4096
         - --noAuth
         - --disableProtectedMode
@@ -23,16 +23,16 @@ system:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=5000
+           - --port=12000
         initialDelaySeconds: 15
         timeoutSeconds: 10
       ports:
-      - containerPort: 5000
+      - containerPort: 12000
     - name: caas-redis-announcer
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
       - -endpoint
-      - caas/caas-cluster-1:SUPERPOD:12050
+      - caas/caas-cluster-1:POD:12050
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -43,6 +43,8 @@ system:
          value: redis
        - name: NO_ENV_FOR_RESTART
          value: abc
+       - name: SFDC_POD
+         value: mist66
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
