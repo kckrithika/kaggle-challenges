@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - rpragada@salesforce.com
+    - jayant.kumar@salesforce.com
   functions:
   - name: prd-redis-switchboard
     count: 1
