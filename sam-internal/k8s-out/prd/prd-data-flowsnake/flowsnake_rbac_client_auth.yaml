@@ -22,6 +22,7 @@ items:
     - services
     - ingresses
     - persistentvolumes
+    - sparkapplications
     verbs:
     - '*'
   - apiGroups:

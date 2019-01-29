@@ -21,7 +21,20 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
                 {
                     apiGroups: ["*"],
                     verbs: ["*"],
-                    resources: ["pods", "replicationcontrollers", "deployments", "jobs", "replicasets", "secrets", "configmaps", "statefulsets", "services", "ingresses", "persistentvolumes"]
+                    resources: [
+                        "pods",
+                        "replicationcontrollers",
+                        "deployments",
+                        "jobs",
+                        "replicasets",
+                        "secrets",
+                        "configmaps",
+                        "statefulsets",
+                        "services",
+                        "ingresses",
+                        "persistentvolumes",
+                        "sparkapplications",
+                        ]
                 },
                 {
                     apiGroups: ["*"],
