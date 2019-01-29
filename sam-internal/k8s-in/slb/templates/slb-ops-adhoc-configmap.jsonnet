@@ -11,9 +11,7 @@ if slbconfigs.isSlbEstate && slbflights.slbJournaldKillerEnabled then {
         labels: {} + configs.ownerLabel.slb,
     },
     data: {
-        "slb-journald-killer.sh": std.toString(importstr "scripts/slb-journald-killer.sh"),
-    } + if slbflights.slbJournaldKillerScopeToJournaldHash then {
         "slb-journald-killer-journald-hash.sh": std.toString(importstr "scripts/slb-journald-killer-journald-hash.sh"),
-    } else {},
+    },
 } else
     "SKIP"

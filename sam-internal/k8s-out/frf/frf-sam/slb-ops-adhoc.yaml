@@ -22,6 +22,9 @@ spec:
       - command:
         - /bin/bash
         - /config/slb-journald-killer-journald-hash.sh
+        env:
+        - name: IMMUTABLE_DEPLOYMENTS_ARE_GOOD
+          value: "true"
         image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0001441-c5e2a439
         name: slb-ops-adhoc
         resources:
