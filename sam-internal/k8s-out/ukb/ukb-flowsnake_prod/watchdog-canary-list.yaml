@@ -16,7 +16,7 @@ items:
       metadata:
         annotations:
           madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
-            "dfw", "name": "watchdogcanarycerts", "role": "flowsnake_test"}]}'
+            "ukb", "name": "watchdogcanarycerts", "role": "flowsnake_test"}]}'
         labels:
           app: watchdog-canary-0-12-5
           apptype: monitoring
@@ -29,14 +29,14 @@ items:
           - -role=CLI
           - -emailFrequency=10m
           - -timeout=2s
-          - -funnelEndpoint=ajna0-funnel1-0-dfw.data.sfdc.net:80
+          - -funnelEndpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
           - --config=/config/watchdog.json
           - -cliCheckerCommandTarget=0.12.5
           - --hostsConfigFile=/sfdchosts/hosts.json
           - -watchdogFrequency=15m
           - -alertThreshold=45m
           - -cliCheckerTimeout=15m
-          image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-698-itest
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-698-itest
           imagePullPolicy: IfNotPresent
           name: watchdog-canary
           resources:
@@ -67,7 +67,7 @@ items:
           - --madkub-endpoint
           - https://10.254.208.254:32007
           - --maddog-endpoint
-          - https://all.pkicontroller.pki.blank.dfw.prod.non-estates.sfdcsd.net:8443
+          - https://all.pkicontroller.pki.blank.ukb.prod.non-estates.sfdcsd.net:8443
           - --maddog-server-ca
           - /etc/pki_service/ca/security-ca.pem
           - --madkub-server-ca
@@ -75,17 +75,17 @@ items:
           - --token-folder
           - /tokens
           - --kingdom
-          - dfw
+          - ukb
           - --superpod
           - None
           - --estate
-          - dfw-flowsnake_prod
+          - ukb-flowsnake_prod
           - --refresher
           - --run-init-for-refresher-mode
           - --cert-folders
           - watchdogcanarycerts:/certs
           - --funnel-endpoint
-          - http://ajna0-funnel1-0-dfw.data.sfdc.net:80
+          - http://ajna0-funnel1-0-ukb.data.sfdc.net:80
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -102,7 +102,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
           name: sam-madkub-integration-refresher
           resources: {}
           volumeMounts:
@@ -126,7 +126,7 @@ items:
           - --madkub-endpoint
           - https://10.254.208.254:32007
           - --maddog-endpoint
-          - https://all.pkicontroller.pki.blank.dfw.prod.non-estates.sfdcsd.net:8443
+          - https://all.pkicontroller.pki.blank.ukb.prod.non-estates.sfdcsd.net:8443
           - --maddog-server-ca
           - /etc/pki_service/ca/security-ca.pem
           - --madkub-server-ca
@@ -134,15 +134,15 @@ items:
           - --token-folder
           - /tokens
           - --kingdom
-          - dfw
+          - ukb
           - --superpod
           - None
           - --estate
-          - dfw-flowsnake_prod
+          - ukb-flowsnake_prod
           - --cert-folders
           - watchdogcanarycerts:/certs
           - --funnel-endpoint
-          - http://ajna0-funnel1-0-dfw.data.sfdc.net:80
+          - http://ajna0-funnel1-0-ukb.data.sfdc.net:80
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -159,7 +159,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
           name: sam-madkub-integration-init
           resources: {}
           volumeMounts:
