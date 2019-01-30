@@ -255,7 +255,7 @@ local utils = import "util_functions.jsonnet";
             },
         },
 
-        "4-dfw-ph2-hnd-ukb": self["4"] {
+        "4-dfw-ph2-hnd-ukb-phx": self["4"] {
            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
@@ -289,8 +289,8 @@ local utils = import "util_functions.jsonnet";
             "4-iad-ord"
         else if (estate == "frf-flowsnake_prod" || estate == "par-flowsnake_prod") then
             "4-frf-par"
-        else if std.count(["dfw", "hnd", "ph2", "ukb"], kingdom) > 0 then
-            "4-dfw-ph2-hnd-ukb"
+        else if std.count(["dfw", "hnd", "ph2", "ukb", "phx"], kingdom) > 0 then
+            "4-dfw-ph2-hnd-ukb-phx"
         else
             "4"
         ),
