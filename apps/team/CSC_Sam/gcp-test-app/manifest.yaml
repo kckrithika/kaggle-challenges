@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: samhello
-      image: gcr.io/gsf-core-devmvp-sam2/thargrove/samapptest:auto
+      image: gcr.io/gsf-core-devmvp-sam2/jy/samapptest:helloworld
       ports:
       - containerPort: 9090
       livenessProbe:
