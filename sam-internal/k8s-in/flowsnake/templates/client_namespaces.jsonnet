@@ -15,6 +15,9 @@ if std.length(flowsnake_clients.clients) > 0 then (
                     "sfdc.net/flowsnake.owner_name": client.owner_name,
                     "sfdc.net/pki-namespace": client.pki_namespace,
                  },
+                labels: {
+                    "madkub-injector": "enabled",
+                },
             },
         }
         for client in flowsnake_clients.clients
