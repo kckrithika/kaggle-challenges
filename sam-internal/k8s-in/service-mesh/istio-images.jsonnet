@@ -72,12 +72,12 @@ local kingdom = std.extVar("kingdom");
       "4"
   ),
 
-  pilot: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].pilot),
-  proxy: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].proxy),
-  proxyinit: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].proxyinit),
-  sidecarinjector: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].sidecarinjector),
-  shipping: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].shipping),
-  ordering: imageFunc.do_override_for_not_tnrp_image($.overrides, "pilot", $.per_phase[$.phase].ordering),
+  pilot: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].pilot),
+  proxy: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].proxy),
+  proxyinit: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].proxyinit),
+  sidecarinjector: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].sidecarinjector),
+  shipping: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].shipping),
+  ordering: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].ordering),
 
   # image_functions needs to know the filename of the template we are processing
   # Each template must set this at time of importing this file, for example:
