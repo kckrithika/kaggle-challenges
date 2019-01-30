@@ -66,13 +66,7 @@ local vipwdOptOutConfig = {
       // when the underlying issues discussed in https://gus.lightning.force.com/a07B0000004j96jIAA are resolved.
       "us98-mist61sfproxy-lb",
       // 2019/01/02 - mgrass: Issues with our monitoring cause some of the steam VIPs to be incorrectly marked as SLA eligible even with flappy
-      // backends. See https://computecloud.slack.com/archives/G340CE86R/p1541565429973500?thread_ts=1541565331.973300&cid=G340CE86R and
-      // https://computecloud.slack.com/archives/G340CE86R/p1541550564943000?thread_ts=1541542511.932500&cid=G340CE86R. It appears that
-      // frequent nginx reloads in prd-sam (because, e.g., backends are changing frequently) is resetting nginx's opinion of backend health,
-      // so the rise/fall counts maintained by the health module aren't stable.
-      // It looks like in prd-sam, we currently reload nginx approximately every 20 seconds on average, though there have been periods of time
-      // where we reloaded much more frequently:
-      //   https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=DOWNSAMPLE(-90d:slb.slb-nginx-config.PRD.NONE.prd-slb:nginx-serviceChangeCount%7Bdevice%3D*%7D:avg,%231h-sum%23)
+      // backends.
       // TODO: it's possible that the steam VIPs are no longer symptomatic, and these exclusions can be removed. If after removing, we still get
       //       VIP availability alerts, one or more of these should help resolve:
       //       * remove these steam VIP definitions (as I don't think anybody is depending on them), or
