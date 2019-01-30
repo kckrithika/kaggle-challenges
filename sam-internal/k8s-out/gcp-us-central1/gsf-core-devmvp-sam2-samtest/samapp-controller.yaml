@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: samappcontroller
+    pcn: deploy
+    sam.data.sfdc.net/owner: sam
+  name: samappcontroller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: samappcontroller
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: samappcontroller
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/samapp-controller
+        - --v=3
+        - --funnelEndpoint=ajna0-funnel1-0-gcp-us-central1.data.sfdc.net:80
+        - --logtostderr=true
+        - --config=/config/samapp-controller-config.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: SFDCLOC_PCN_KINGDOM
+          value: gcp-us-central1
+        - name: SFDCLOC_PCN_ESTATE
+          value: gsf-core-devmvp-sam2-samtest
+        - name: KUBECONFIG
+          value: ""
+        image: ops0-artifactrepo1-0-gcp-us-central1.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914
+        name: samapp-controller
+        volumeMounts:
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        pool: gsf-core-devmvp-sam2-samtest
+      serviceAccount: sam-stack-edit
+      serviceAccountName: sam-stack-edit
+      volumes:
+      - configMap:
+          name: samapp-controller
+        name: config
