@@ -69,7 +69,8 @@ items:
               "rabbitmq": {
                   "exchange-name": "firefly.delivery",
                   "prr-routing-key-format": "%s-%s.pr",
-                  "push-routing-key-format": "%s-%s.package"
+                  "push-routing-key-format": "%s-%s.package",
+                  "routing-key-format": "%s-%s.%s"
               }
           },
           "logging": {
@@ -304,10 +305,10 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "20"
+            value: "21"
           - name: DARKLAUNCH
             value: "true"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:279
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:295
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
