@@ -1,7 +1,7 @@
 apps:
   eaas:
     - prd/prd-sam
-  eaas-example:
+  email-service-example:
     - prd/prd-sam
   grpc-client:
     - prd/prd-sam
