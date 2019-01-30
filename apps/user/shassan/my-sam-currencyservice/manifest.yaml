@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: samcurrencyservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samcurrencyservice:shassan-20190121
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samcurrencyservice:shassan-20190130
       ports:
       - containerPort: 8110
       livenessProbe:
