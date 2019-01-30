@@ -16,7 +16,8 @@ data:
     ["Flowsnake_Platform"], "namespace": "flowsnake_test"}, {"authorizedClientCerts":
     [ ], "authorizedLdapGroups": ["Analytics Service Ownership"], "namespace": "einstein_analytics_discovery_monitoring"},
     {"authorizedClientCerts": ["wave-elt.datapool"], "authorizedLdapGroups": ["Analytics-DataPool"],
-    "namespace": "wave-elt"}]'
+    "namespace": "wave-elt"}, {"authorizedClientCerts": [ ], "authorizedLdapGroups":
+    ["Analytics-DataPool"], "namespace": "wave-discovery"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
