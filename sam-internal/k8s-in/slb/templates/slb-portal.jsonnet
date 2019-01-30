@@ -59,6 +59,9 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                        ] + (if slbconfigs.isTestEstate then [
                                                 "--slbEstate=" + configs.estate,
                                             ] else [])
+                                         + (if slbflights.portalSfdcHostsMountEnabled then [
+                                                configs.sfdchosts_arg,
+                                            ] else [])
                                        + slbconfigs.getNodeApiClientSocketSettings(),
                               volumeMounts: configs.filter_empty(
                                   [
@@ -70,6 +73,9 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                       configs.kube_config_volume_mount,
                                       ] else [])
                                   + madkub.madkubSlbCertVolumeMounts(certDirs)
+                                  + (if slbflights.portalSfdcHostsMountEnabled then [
+                                      configs.sfdchosts_volume_mount,
+                                     ] else [])
                               ),
                               livenessProbe: {
                                   httpGet: {

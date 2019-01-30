@@ -56,6 +56,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-portal
         - --cafile=/cert3/ca/cabundle.pem
         - --slbEstate=prd-sdc
+        - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-portal
         - --client.dialSocket=true
         env:
@@ -81,6 +82,8 @@ spec:
           name: certs
         - mountPath: /cert3
           name: cert3
+        - mountPath: /sfdchosts
+          name: sfdchosts
       - command:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-portal

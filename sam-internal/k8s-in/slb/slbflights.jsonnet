@@ -13,4 +13,5 @@ local configs = import "config.jsonnet";
     nginxAccesslogsEnabled: (configs.estate == "prd-sdc"),
     portalKubeConfigEnabled: (slbimages.hypersdn_build <= 1442),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
+    portalSfdcHostsMountEnabled: (slbimages.phaseNum <= 1),
 }
