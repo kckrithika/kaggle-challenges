@@ -170,6 +170,9 @@ system:
       allow:
       # slb estate for monitoring
       - 10.160.4.0/22
+      # casam hosts/containers
+      - 10.212.165.0/25
+      - 10.160.24.0/21
       # Corp
       - 61.120.150.128/28
       - 62.17.146.128/26
@@ -219,6 +222,9 @@ system:
       allow:
       # slb estate for monitoring
       - 10.160.4.0/22
+      # casam hosts/containers
+      - 10.212.165.0/25
+      - 10.160.24.0/21
       # Corp
       - 61.120.150.128/28
       - 62.17.146.128/26
@@ -266,6 +272,9 @@ system:
       allow:
       # slb estate for monitoring
       - 10.160.4.0/22
+      # casam hosts/containers
+      - 10.212.165.0/25
+      - 10.160.24.0/21
       # Corp
       - 61.120.150.128/28
       - 62.17.146.128/26
