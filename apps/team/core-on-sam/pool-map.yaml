@@ -30,11 +30,6 @@ apps:
   - name: fra/fra-sp1-sam_coreappalpha
  cs103-sfproxy:
   - name: fra/fra-sp1-sam_coreappalpha
-    hostSubList:
-    # Do we need to specify a host sublist here?
-    # - shared1-samminioncoreapp3-1-fra.ops.sfdc.net
-    # - shared1-samminioncoreapp3-2-fra.ops.sfdc.net
-    # - shared1-samminioncoreapp3-3-fra.ops.sfdc.net
 
  # CASAM team's non-coreapp deployments. Switchboard & Kaiju in group 1. Redis & jmeter in group 2.
  kaiju:
