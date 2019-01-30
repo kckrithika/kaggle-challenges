@@ -740,6 +740,18 @@
       "access": [
         "team/CSC_Sam"
       ],
+      "controlEstate": "gsf-core-devmvp-sam2-samtest",
+      "estate": "gsf-core-devmvp-sam2-samtest",
+      "kingdom": "gcp-us-central1",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam",
       "kingdom": "hnd",
