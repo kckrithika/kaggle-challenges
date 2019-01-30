@@ -258,9 +258,9 @@ system:
         - name: CASAM_SUPERPOD
           value: sp1
         - name: CYAN
-          value: https://cs103app-lb.core-on-sam-sp1.fra-sam.prd.slb.sfdc.net:8443
+          value: https://cs103app-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net:8443
         - name: SWITCH_BOARD_ADDRESS
-          value: cs103-switchboard-lb.core-on-sam-sp1.fra-sam.prd.slb.sfdc.net:15001
+          value: cs103-switchboard-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net:15001
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 1
