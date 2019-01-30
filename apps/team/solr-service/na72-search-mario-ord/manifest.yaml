@@ -4,7 +4,7 @@ system:
   functions:
     - name: na72-search-mario-ord
       type: stateful-set
-      count: 15
+      count: 12
       containers:
       - name: searchserver
         image: sfci/search-teams/sfci:17325471.399
