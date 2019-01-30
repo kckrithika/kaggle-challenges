@@ -6,6 +6,7 @@ data:
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "crdDeletionEnabled": true,
       "crdEnabled": true,
+      "deletionPercentageThreshold": 20,
       "disableCertsCheck": true,
       "etcdAppFolder": "temp-crd-watcher",
       "k4aEnabled": true,
