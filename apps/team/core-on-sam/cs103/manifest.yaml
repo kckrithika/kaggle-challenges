@@ -233,7 +233,7 @@ system:
   - name: cs103-sequencer-fra
     count: 1
     identity:
-      pod: na8
+      pod: cs103
       serviceName: sequencer
 
     volumes:
