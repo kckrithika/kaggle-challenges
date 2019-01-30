@@ -151,6 +151,8 @@ system:
         value: false
       - name: ENDPOINTS_JVM_ENABLED
         value: false
+      - name: THIS_ENV_VAR_CAN_BE_DELETED
+        value: true
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
