@@ -142,7 +142,7 @@ local internal = {
 
     build_info_from_tag(tag):: (
         internal.get_build_info_from_image_tag(tag)
-    )
+    ),
 
     # This hidden field needs to be set with the template name at time of import.  It must contain the value of std.thisFile from the template being processed
     # We use this to enable overrides per template.  It used to be set on the cmd line, but to speed up build we want to do a multi-file run of jsonnet which
