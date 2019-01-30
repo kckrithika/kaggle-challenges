@@ -30,12 +30,8 @@ if slbconfigs.isSlbEstate && slbflights.georgeEnabled then configs.deploymentBas
                     {
                         name: "slb-george",
                         image: slbimages.hypersdn,
-                        command:
-                                [
-                                    if configs.estate == "prd-sdc" then
-                                    "/sdn/slb-george" else "/sdn/slb-fred",
-                                ]
-                                + [
+                        command: [
+                                     "/sdn/slb-george",
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--commonoptions.metricsendpoint=" + configs.funnelVIP,
                                      "--commonoptions.hostname=$(NODE_NAME)",
