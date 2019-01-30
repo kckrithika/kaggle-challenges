@@ -81,3 +81,4 @@ apps:
   - prd/prd-sam
  gcp-test-app:
   - gcp-us-central1/gsf-core-devmvp-sam2-private-cluster
+  - gcp-us-central1/gsf-core-devmvp-sam2-samtest
