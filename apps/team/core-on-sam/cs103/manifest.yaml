@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: cs103-app-fra
-    count: 1
+    count: 5
     identity:
       serviceName: app
       pod: cs103
