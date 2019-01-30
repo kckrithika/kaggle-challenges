@@ -56,7 +56,10 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                            "--certfile=/cert3/client/certificates/client.pem",
                                            "--log_dir=/host/data/slb/logs/slb-portal",
                                            "--cafile=/cert3/ca/cabundle.pem",
-                                       ] + (if slbconfigs.isTestEstate then [
+                                       ] + (if slbflights.portalSfdcHostsMountEnabled then [
+                                                configs.sfdchosts_arg,
+                                            ] else [])
+                                       + (if slbconfigs.isTestEstate then [
                                                 "--slbEstate=" + configs.estate,
                                             ] else [])
                                        + slbconfigs.getNodeApiClientSocketSettings(),
@@ -66,6 +69,9 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                       configs.maddog_cert_volume_mount,
                                       configs.cert_volume_mount,
                                   ]
+                                  + (if slbflights.portalSfdcHostsMountEnabled then [
+                                      configs.sfdchosts_volume_mount,
+                                     ] else [])
                                   + (if slbflights.portalKubeConfigEnabled then [
                                       configs.kube_config_volume_mount,
                                       ] else [])
