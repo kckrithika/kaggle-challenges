@@ -71,7 +71,8 @@ items:
               "rabbitmq": {
                   "exchange-name": "firefly.delivery",
                   "prr-routing-key-format": "%s-%s.pr",
-                  "push-routing-key-format": "%s-%s.package"
+                  "push-routing-key-format": "%s-%s.package",
+                  "routing-key-format": "%s-%s.%s"
               }
           },
           "logging": {
