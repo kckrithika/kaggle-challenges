@@ -6,6 +6,8 @@ items:
     annotations:
       sfdc.net/flowsnake.owner_name: Wave ELT
       sfdc.net/pki-namespace: wave-elt
+    labels:
+      madkub-injector: enabled
     name: wave-elt
 kind: List
 metadata: {}
