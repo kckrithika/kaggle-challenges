@@ -59,7 +59,7 @@ spec:
         - --monitorFrequency=10s
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
-        - --optOutServiceList=slb-portal-service,pra-neutron-hnd,pra-mariadb-hnd,pra-keystone-apache-hnd,pra-ccn-1-0-hnd,pra-keystone-admin-hnd,pra-glance-api-hnd,pra-nova-hnd
+        - --optOutServiceList=pra-neutron-hnd,pra-mariadb-hnd,pra-keystone-apache-hnd,pra-ccn-1-0-hnd,pra-keystone-admin-hnd,pra-glance-api-hnd,pra-nova-hnd
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         - --slaRequiresPreciseHealthProbe=true

@@ -59,7 +59,6 @@ spec:
         - --monitorFrequency=10s
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
-        - --optOutServiceList=slb-portal-service
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         - --slaRequiresPreciseHealthProbe=true
