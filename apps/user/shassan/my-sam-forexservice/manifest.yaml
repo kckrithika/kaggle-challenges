@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: samforexservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samforexservice:shassan-20190130
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samforexservice:shassan-20190130.01
       ports:
       - containerPort: 8000
       livenessProbe:
