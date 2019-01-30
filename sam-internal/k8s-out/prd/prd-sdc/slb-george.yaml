@@ -33,7 +33,7 @@ spec:
                 - slb-ipvs
       containers:
       - command:
-        - /sdn/slb-fred
+        - /sdn/slb-george
         - --log_dir=/host/data/slb/logs/
         - --commonoptions.metricsendpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --commonoptions.hostname=$(NODE_NAME)
