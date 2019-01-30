@@ -66,13 +66,7 @@ local vipwdOptOutConfig = {
       // when the underlying issues discussed in https://gus.lightning.force.com/a07B0000004j96jIAA are resolved.
       "us98-mist61sfproxy-lb",
       // 2019/01/02 - mgrass: Issues with our monitoring cause some of the steam VIPs to be incorrectly marked as SLA eligible even with flappy
-      // backends. See https://computecloud.slack.com/archives/G340CE86R/p1541565429973500?thread_ts=1541565331.973300&cid=G340CE86R and
-      // https://computecloud.slack.com/archives/G340CE86R/p1541550564943000?thread_ts=1541542511.932500&cid=G340CE86R. It appears that
-      // frequent nginx reloads in prd-sam (because, e.g., backends are changing frequently) is resetting nginx's opinion of backend health,
-      // so the rise/fall counts maintained by the health module aren't stable.
-      // It looks like in prd-sam, we currently reload nginx approximately every 20 seconds on average, though there have been periods of time
-      // where we reloaded much more frequently:
-      //   https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=DOWNSAMPLE(-90d:slb.slb-nginx-config.PRD.NONE.prd-slb:nginx-serviceChangeCount%7Bdevice%3D*%7D:avg,%231h-sum%23)
+      // backends.
       // TODO: it's possible that the steam VIPs are no longer symptomatic, and these exclusions can be removed. If after removing, we still get
       //       VIP availability alerts, one or more of these should help resolve:
       //       * remove these steam VIP definitions (as I don't think anybody is depending on them), or
@@ -186,25 +180,6 @@ local vipwdOptOutConfig = {
       "test-stmsa1-0-prd-steam-prd",
       "test-stmua1-0-prd-steam-prd",
       "test-stmub1-0-prd-steam-prd",
-      "eu1-stmda-stm",  // Added by Pablo 1/8/2019 for incident #382856
-      "eu2-stmda-stm",  // Added by Pablo 1/8/2019 for incident #383013
-      "cs4-stmda1-0-prd",  // Added by Pablo 1/8/2019 for incident #383013
-      "login-stmfa1-0-prd",  // Added by Pablo 1/8/2019 for incident #383013
-      "slb-portal-service",
-      // 2019/01/29 - mgrass: a unique vip setup (SLB vip -> customer proxy -> SLB vip -> artifactory backends) is causing
-      // an erroneous alert to fire for this vip while artifactory is down.
-      // Discussion here: https://computecloud.slack.com/archives/G340CE86R/p1548789670294000?thread_ts=1548789631.293500&cid=G340CE86R
-      // Opting out this vip for now.
-      "ops0-dvaregistryssl1-0-prd",
-    ],
-    namespaces:
-    [
-      // 2018/12/19 - mgrass: As best I can tell, this was added with https://git.soma.salesforce.com/sam/manifests/pull/12007/files#diff-e4ae2ca13fca104e5cff4a498c5f1c87R151.
-      // I can't find a concrete reason for why it was added, but slack messages proximate to this PR suggest that it may have been
-      // because the VIP were using DSR but the real servers were not running our puppet module.
-      // It appears the VIP has since been converted to tcp instead of dsr with https://git.soma.salesforce.com/sam/manifests/pull/12147,
-      // so this exclusion should probably just be removed.
-      "podgroup-prebuild",
     ],
   },
 
@@ -212,10 +187,6 @@ local vipwdOptOutConfig = {
   {
     serviceLists:
     [
-      // 2018/12/19 - mgrass: This exclusion was added with https://git.soma.salesforce.com/sam/manifests/pull/12007.
-      // It is unclear why that VIP was excluded from monitoring, but in any case, the  "slb-canary-service-ext" service was deleted
-      // in https://git.soma.salesforce.com/sam/manifests/pull/14314, so this exclusion can be removed.
-      "slb-canary-service-ext",
       // 2018/12/27 - mgrass: A known issue in our monitoring is causing these RDI VIPs in XRD to generate false alarms.
       // These should be removed when the underlying issues discussed in https://gus.lightning.force.com/a07B0000004j96jIAA
       // are resolved.
@@ -235,30 +206,12 @@ local vipwdOptOutConfig = {
       // We need to either delete the definition (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/cpt/vips/xrd/vips.yaml#L17)
       // or work with the customer to enable our realsvrcfg puppet module on their nodes.
       "cpt-dsr-validation-cpt-xrd",
-      "slb-portal-service",
     ],
   },
-  "iad-sam":
-  {
-    serviceLists:
-    [
-      // 2019/01/17 - vyjayanthi.raja: This exclusion was added a consequence of
-      // https://computecloud.slack.com/archives/G340CE86R/p1547774401918700?thread_ts=1547773808.918400&cid=G340CE86R
-      // where requests to portal's VIP were intermittently failing due to increased latency caused by talking to K8s
-      // on every request. This filter should be removed once https://git.soma.salesforce.com/sdn/sdn/pull/1655 is
-      // rolled out.
-      "slb-portal-service",
-    ],
-  },
-  "frf-sam": { serviceLists: ["slb-portal-service"] },
-  "phx-sam": { serviceLists: ["slb-portal-service"] },
-  "ord-sam": { serviceLists: ["slb-portal-service"] },
-  "dfw-sam": { serviceLists: ["slb-portal-service"] },
   "hnd-sam":
   {
     serviceLists:
     [
-      "slb-portal-service",
       // 2019/01/28 - vyjayanthi.raja
       // Associated investigation: https://computecloud.slack.com/archives/G340CE86R/p1548731408150000
       "pra-neutron-hnd",
@@ -270,10 +223,6 @@ local vipwdOptOutConfig = {
       "pra-nova-hnd",
     ],
   },
-  "cdg-sam": { serviceLists: ["slb-portal-service"] },
-  "fra-sam": { serviceLists: ["slb-portal-service"] },
-  "ia2-sam": { serviceLists: ["slb-portal-service"] },
-  "ph2-sam": { serviceLists: ["slb-portal-service"] },
 };
 
 local getOptOutServiceListParameter(estateConfig) =
