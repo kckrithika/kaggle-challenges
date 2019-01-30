@@ -3,11 +3,9 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - tvlaming@salesforce.com
     - gogden@salesforce.com
     - afranken@salesforce.com
     - gmercer@salesforce.com
-    - xjayaseelan@salesforce.com
     - mhowald@salesforce.com
     - bryan.barnard@salesforce.com
   functions:
@@ -24,7 +22,7 @@ system:
         secretName: dev-eventbusajna-ens-v1
     containers:
     - name: dev-event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.6
+      image: sfci/mc-eventing/event-notification:1.0.7
       ports:
       - containerPort: 15372
       env:
@@ -36,8 +34,8 @@ system:
         value: mc.test.mceventbusdev
       - name: EVENTCONSUMER_GROUP_ID
         value: eventing-notification
-      - name: DOES_K4A_WORK
-        value: WE_WILL_FOUND_OUT
+      - name: JAVA_OPTS
+        value: -Xms1G -Xmx3G -XX:+UseG1GC
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
@@ -51,6 +49,9 @@ system:
       - name: eventbusajna-ens-v1
         mountPath: /secrets/eventbusajna-ens-v1
         readOnly: true
+      resources:
+        limits: { cpu: "2", memory: "4Gi" }
+        requests: { cpu: "2", memory: "2Gi" }
   loadbalancers:
   - lbname: dev-event-notification-service-lb
     function: dev-event-notification-service
