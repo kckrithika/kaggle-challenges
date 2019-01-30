@@ -3,5 +3,5 @@ apps:
         - prd/prd-sam
     geoip-envoy-tls-sandbox:
         - prd/prd-sam
-    envoy-canary:
+    envoy-canary-new:
         - prd/prd-sam
