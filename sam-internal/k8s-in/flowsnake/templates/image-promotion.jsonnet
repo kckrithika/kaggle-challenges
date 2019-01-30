@@ -57,9 +57,13 @@ for ix in std.range(0, std.length(extra_images_to_promote) - 1)
          /* TODO: remove these after will is done testing spark s3 on prod */
         + [
 {
-          image: "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net/dva/flowsnake-spark-s3:15",
+          image: "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net/dva/flowsnake-spark-s3:jenkins-dva-transformation-flowsnake-sample-apps-spark-s3-worker-image-1-itest",
           name: "spark-s3",
-        },
+},
+{
+          image: "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net/dva/flowsnake-spark-s3-worker:jenkins-dva-transformation-flowsnake-sample-apps-spark-s3-worker-image-1-itest",
+          name: "spark-s3-worker",
+},
 ],
       },
     },
