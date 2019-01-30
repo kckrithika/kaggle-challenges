@@ -205,11 +205,11 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1548885879591810048
+        value: 1548885992020753920
       - name: DRY_RUN
         value: 0
       - name: DEPLOY_ENV
-        value: https://gus.lightning.force.com/lightning/r/CollaborationGroup/0F9B0000000XkmOKAS/view
+        value: CASAM builds tracking
       - name: CYAN
         value: https://us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti:8443
       - name: SWITCH_BOARD_ADDRESS
