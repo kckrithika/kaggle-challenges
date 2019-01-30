@@ -1,6 +1,10 @@
 local configs = import "config.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local versions = import "service-mesh/sherpa-injector/versions.jsonnet";
+local maddogInit = import "service-mesh/sherpa-injector/maddog/_init-cert-container.jsonnet";
+local maddogPermissions = import "service-mesh/sherpa-injector/maddog/_init-permissions-container.jsonnet";
+local maddogRefresher = import "service-mesh/sherpa-injector/maddog/_cert-refresher-container.jsonnet";
+local enableSherpa = false;
 
 configs.deploymentBase("service-mesh") {
   metadata+: {
@@ -11,7 +15,7 @@ configs.deploymentBase("service-mesh") {
     },
   },
   spec+: {
-    replicas: 3,
+    replicas: if configs.estate == "prd-samtest" then 1 else 3,
     template: {
       metadata: {
         labels: {
@@ -37,6 +41,18 @@ configs.deploymentBase("service-mesh") {
                       "sherpa-injector.service-mesh.svc.%s" % configs.dnsdomain,
                     ],
                   },
+                  {
+                    "cert-type": "client",
+                    kingdom: configs.kingdom,
+                    name: "cert2",
+                    role: "sherpa-injector",
+                    san: [
+                      "sherpa-injector",
+                      "sherpa-injector.service-mesh",
+                      "sherpa-injector.service-mesh.svc",
+                      "sherpa-injector.service-mesh.svc.%s" % configs.dnsdomain,
+                    ],
+                  },
                 ],
             }, " "
           ),
@@ -49,31 +65,43 @@ configs.deploymentBase("service-mesh") {
             image: versions.injectorImage,
             imagePullPolicy: "IfNotPresent",
             args: [
-              "--port=7443",  // can't use 443 here because of the permissions
-              "--cert=/server-certificates/server/certificates/server.pem",
-              "--key=/server-certificates/server/keys/server-key.pem",
               "--template=sherpa-container.yaml.template",
               "--image=%s" % versions.sherpaImage,
               "--log-level=debug",
+            ] +
+            if enableSherpa then [
+              // h1 port to use with Sherpa
+              "--port=7022",
+            ] else [
+              "--port=7442",  // use the same port as we use in Sherpa (h1 TLS IN)
+              "--cert=/server-certs/server/certificates/server.pem",
+              "--key=/server-certs/server/keys/server-key.pem",
             ],
             volumeMounts+: [
               {
                 name: "cert1",
-                mountPath: "/server-certificates",
+                mountPath: "/server-certs",
+              },
+              {
+                name: "cert2",
+                mountPath: "/client-certs",
               },
             ],
-            ports: [
+            ports+: [
               {
-                containerPort: 7443,
+                containerPort: if enableSherpa then 7022 else 7442,
               },
             ],
             livenessProbe: {
               exec: {
                 command: [
                   "./is-alive.sh",
-                  "7443",
-                  "/server-certificates/server/certificates/server.pem",
-                  "/server-certificates/server/keys/server-key.pem",
+                  if enableSherpa then "7022" else "7442",
+                ] +
+                if !enableSherpa then [
+                  // Pass the certificates folder for the liveness probe to use TLS
+                  "/client-certs/client/certificates/client.pem",
+                  "/client-certs/client/keys/client-key.pem",
                 ],
               },
               initialDelaySeconds: 2,
@@ -83,9 +111,12 @@ configs.deploymentBase("service-mesh") {
               exec: {
                 command: [
                   "./is-ready.sh",
-                  "7443",
-                  "/server-certificates/server/certificates/server.pem",
-                  "/server-certificates/server/keys/server-key.pem",
+                  if enableSherpa then "7022" else "7442",
+                ] +
+                if !enableSherpa then [
+                  // Pass certificates for the readiness probe to use with TLS
+                  "/client-certs/client/certificates/client.pem",
+                  "/client-certs/client/keys/client-key.pem",
                 ],
               },
               initialDelaySeconds: 4,
@@ -93,62 +124,117 @@ configs.deploymentBase("service-mesh") {
             },
             resources: {},
           },
-          {
-            image: "" + samimages.madkub + "",
-            args: [
-              "/sam/madkub-client",
-              "--madkub-endpoint=https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
-              "--maddog-endpoint=" + configs.maddogEndpoint + "",
-              "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
-              "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
-              "--cert-folders=cert1:/cert1/",
-              "--token-folder=/tokens/",
-              "--requested-cert-type=server",
-              "--ca-folder=/maddog-certs/ca",
-              "--refresher",
-              "--run-init-for-refresher-mode",
-            ],
-            name: "madkub-refresher",
+          maddogRefresher.madkubRefresherContainer,
+        ] +
+        if enableSherpa then [{
+            name: "sherpa",
+            image: versions.sherpaImage,
             imagePullPolicy: "IfNotPresent",
-            volumeMounts: [
-              {
-                mountPath: "/cert1",
-                name: "cert1",
-              },
-              {
-                mountPath: "/maddog-certs/",
-                name: "maddog-certs",
-              },
-              {
-                mountPath: "/tokens",
-                name: "tokens",
-              },
+            args: [
+              "--log-level=debug",
             ],
+
             env: [
               {
-                name: "MADKUB_NODENAME",
+                name: "SFDC_ENVIRONMENT",
+                value: "mesh",
+              },
+              {
+                name: "FUNCTION_NAMESPACE",
                 valueFrom:
                   {
-                    fieldRef: { fieldPath: "spec.nodeName", apiVersion: "v1" },
+                    fieldRef: { fieldPath: "metadata.namespace", apiVersion: "v1" },
                   },
               },
               {
-                name: "MADKUB_NAME",
+                name: "FUNCTION_INSTANCE_NAME",
                 valueFrom:
                   {
                     fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
                   },
               },
               {
-                name: "MADKUB_NAMESPACE",
+                name: "FUNCTION_INSTANCE_IP",
                 valueFrom:
                   {
-                    fieldRef: { fieldPath: "metadata.namespace", apiVersion: "v1" },
+                    fieldRef: { fieldPath: "status.podIP", apiVersion: "v1" },
                   },
               },
+              {
+                name: "FUNCTION",
+                value: "sherpa-injector",
+              },
+              {
+                name: "KINGDOM",
+                value: configs.kingdom,
+              },
+              {
+                name: "ESTATE",
+                value: configs.estate,
+              },
+              {
+                name: "SETTINGS_SUPERPOD",
+                value: "-",
+              },
+              {
+                name: "SETTINGS_PATH",
+                value: "mesh.-." + configs.kingdom + ".-.sherpa-injector",
+              },
             ],
-          },
-        ],
+
+            volumeMounts+: [
+              {
+                name: "cert1",
+                mountPath: "/server-certs",
+              },
+              {
+                name: "cert2",
+                mountPath: "/client-certs",
+              },
+            ],
+            ports: [
+              {
+                // h1-in
+                containerPort: 7014,
+              },
+              {
+                // h1-tls-in
+                containerPort: 7442,
+              },
+              {
+                // admin
+                containerPort: 15373,
+              },
+            ],
+            livenessProbe: {
+              exec: {
+                command: [
+                  "./bin/is-alive",
+                ],
+              },
+              initialDelaySeconds: 5,
+              periodSeconds: 5,
+            },
+            readinessProbe: {
+              exec: {
+                command: [
+                  "./bin/is-ready",
+                ],
+              },
+              initialDelaySeconds: 4,
+              periodSeconds: 5,
+            },
+            resources: {
+              limits: {
+                cpu: "1",
+                memory: "1Gi",
+              },
+              requests: {
+                cpu: "1",
+                memory: "1Gi",
+              },
+            },
+        }] else [],
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
@@ -168,86 +254,18 @@ configs.deploymentBase("service-mesh") {
             emptyDir: {
               medium: "Memory",
             },
+            name: "cert2",
+          },
+          {
+            emptyDir: {
+              medium: "Memory",
+            },
             name: "tokens",
           },
         ],
         initContainers+: [
-          {
-            image: "" + samimages.madkub + "",
-            args: [
-              "/sam/madkub-client",
-              "--madkub-endpoint=https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
-              "--maddog-endpoint=" + configs.maddogEndpoint + "",
-              "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
-              "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
-              '--cert-folders=cert1:/cert1/',
-              "--token-folder=/tokens/",
-              "--requested-cert-type=server",
-              "--ca-folder=/maddog-certs/ca",
-            ],
-            name: "madkub-init",
-            imagePullPolicy: "IfNotPresent",
-            volumeMounts: [
-              {
-                mountPath: "/cert1",
-                name: "cert1",
-              },
-              {
-                mountPath: "/maddog-certs/",
-                name: "maddog-certs",
-              },
-              {
-                mountPath: "/tokens",
-                name: "tokens",
-              },
-            ],
-            env: [
-              {
-                name: "MADKUB_NODENAME",
-                valueFrom:
-                  {
-                    fieldRef: { fieldPath: "spec.nodeName", apiVersion: "v1" },
-                  },
-              },
-              {
-                name: "MADKUB_NAME",
-                valueFrom:
-                  {
-                    fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
-                  },
-              },
-              {
-                name: "MADKUB_NAMESPACE",
-                valueFrom:
-                  {
-                    fieldRef: { fieldPath: "metadata.namespace", apiVersion: "v1" },
-                  },
-              },
-            ],
-          },
-{
-  command: [
-        "bash",
-        "-c",
-        "set -ex\nchmod 775 -R /cert1 && chown -R 7447:7447 /cert1\n",
-    ],
-        image: "%s/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673" % configs.registry,
-        imagePullPolicy: "IfNotPresent",
-        name: "permissionsetterinitcontainer",
-        securityContext: {
-            runAsNonRoot: false,
-            runAsUser: 0,
-          },
-        volumeMounts: [
-          {
-            mountPath: "/cert1",
-            name: "cert1",
-          },
-        ],
-
-},
-
-
+          maddogInit.madkubInitContainer,
+          maddogPermissions.permissionSetterInitContainer,
         ],
       },
     },
