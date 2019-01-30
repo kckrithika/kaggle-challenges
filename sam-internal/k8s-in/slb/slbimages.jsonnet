@@ -47,14 +47,14 @@ local slbreleases = import "slbreleases.json";
     phaseNum: std.parseInt($.phase),
 
     # These are the images used by the templates
-    hypersdn: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", slbreleases[$.phase].hypersdn.label),
-    hypersdn_build: std.parseInt(std.split(slbreleases[$.phase].hypersdn.label, "-")[1]),
+    hypersdn: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hypersdn", slbreleases[$.phase].hypersdn.label),
+    hypersdn_build: imageFunc.build_info_from_tag(slbreleases[$.phase].hypersdn.label).buildNumber,
 
-    slbnginx: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "slb-nginx", slbreleases[$.phase].slbnginx.label),
-    slbnginx_build: std.parseInt(std.split(slbreleases[$.phase].slbnginx.label, "-")[1]),
+    slbnginx: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "slb-nginx", slbreleases[$.phase].slbnginx.label),
+    slbnginx_build: imageFunc.build_info_from_tag(slbreleases[$.phase].slbnginx.label).buildNumber,
 
-    hsmnginx: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "slb-nginx-kms", slbreleases[$.phase].kmsnginx.label),
-    hsmnginx_build: std.parseInt(std.split(slbreleases[$.phase].kmsnginx.label, "-")[1]),
+    hsmnginx: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "slb-nginx-kms", slbreleases[$.phase].kmsnginx.label),
+    hsmnginx_build: imageFunc.build_info_from_tag(slbreleases[$.phase].kmsnginx.label).buildNumber,
 
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:

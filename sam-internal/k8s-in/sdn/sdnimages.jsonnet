@@ -75,10 +75,10 @@ local kingdom = std.extVar("kingdom");
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
 
     # These are the images used by the templates
-    hypersdn: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].hypersdn),
-    bird: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "bird", $.per_phase[$.phase].bird),
-    hyperelk: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hyperelk", $.per_phase[$.phase].hyperelk),
-    elkagents: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].elkagents),
+    hypersdn: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].hypersdn),
+    bird: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "bird", $.per_phase[$.phase].bird),
+    hyperelk: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hyperelk", $.per_phase[$.phase].hyperelk),
+    elkagents: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].elkagents),
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:
     #
