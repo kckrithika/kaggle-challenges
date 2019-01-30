@@ -4,4 +4,4 @@ apps:
     geoip-envoy-tls-sandbox:
         - prd/prd-sam
     envoy-canary:
-	- prd/prd-sam
+	      - prd/prd-sam
