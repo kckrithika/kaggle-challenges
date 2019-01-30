@@ -267,7 +267,7 @@ system:
 
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:0b680e
+      image: sfci/casam/sequencer:b6ff35
 
       env:
         - name: CASAM_SETTINGS_PATH
@@ -276,10 +276,8 @@ system:
           value: sp2
         - name: CYAN
           value: https://us8-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
-        - name: SWITCH_BOARD_HOST
-          value: us99-mist61switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
-        - name: SWITCH_BOARD_PORT
-          value: 8088
+        - name: SWITCH_BOARD_ADDRESS
+          value: us99-mist61switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 1
@@ -289,6 +287,8 @@ system:
           value: green
         - name: MAJOR_RELEASE_NUMBER
           value: 218
+        - name: RELEASE_TYPE
+          value: PATCH
         - name: DB_SID
           value: mist61b218utf
         - name: OLD_DWARF
@@ -313,7 +313,7 @@ system:
         - name: DRY_RUN
           value: 0
         - name: SKIP_KAIJU
-          value: y
+          value: 1
 
       livenessProbe:
         exec:
