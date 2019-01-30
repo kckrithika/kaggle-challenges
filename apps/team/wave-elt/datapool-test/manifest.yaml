@@ -28,9 +28,14 @@ system:
       - mountPath: /home/datapool-test/client-certs
         name: tls-client-certs
       env:
-      env:
+      - name: SFDC_ENVIRONMENT
+        value: kingdom-test
+
+      - name: LOGGING_JSON_STDOUT_LEVEL
+        value: all
       - name: LOGGING_STDERR_LEVEL
         value: ALL
+
       - name: PKI_TRUSTSTORE_DIR
         value: /home/datapool-test/client-certs
       - name: PKI_KEYSTORE_DIR
