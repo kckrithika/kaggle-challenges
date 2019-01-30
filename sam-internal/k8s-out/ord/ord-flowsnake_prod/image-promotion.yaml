@@ -100,18 +100,6 @@ spec:
         name: flowsnake-spark-token-renewer
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-secret-updater:681
         name: flowsnake-spark-secret-updater
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python27:681
-        name: flowsnake-tensorflow-python27
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python35:681
-        name: flowsnake-tensorflow-python35
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-worker:681
-        name: flowsnake-storm-worker
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-nimbus:681
-        name: flowsnake-storm-nimbus
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-submitter:681
-        name: flowsnake-storm-submitter
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-ui:681
-        name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-test-data:681
         name: flowsnake-test-data
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-environment-service:681
@@ -126,8 +114,6 @@ spec:
         name: flowsnake-kafka-connect
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:681
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:681
-        name: flowsnake-job-flowsnake-storm-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:681
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-zookeeper:681
@@ -136,8 +122,6 @@ spec:
         name: flowsnake-logstash
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.11.0
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.11.0
-        name: flowsnake-job-flowsnake-storm-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.11.0
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:696
@@ -168,18 +152,6 @@ spec:
         name: flowsnake-spark-token-renewer
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-secret-updater:696
         name: flowsnake-spark-secret-updater
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python27:696
-        name: flowsnake-tensorflow-python27
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python35:696
-        name: flowsnake-tensorflow-python35
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-worker:696
-        name: flowsnake-storm-worker
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-nimbus:696
-        name: flowsnake-storm-nimbus
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-submitter:696
-        name: flowsnake-storm-submitter
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-ui:696
-        name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-test-data:696
         name: flowsnake-test-data
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-environment-service:696
@@ -194,8 +166,6 @@ spec:
         name: flowsnake-kafka-connect
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:696
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:696
-        name: flowsnake-job-flowsnake-storm-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:696
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-zookeeper:696
@@ -204,8 +174,6 @@ spec:
         name: flowsnake-logstash
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.12.0
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.12.0
-        name: flowsnake-job-flowsnake-storm-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.0
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:10001
@@ -236,18 +204,6 @@ spec:
         name: flowsnake-spark-token-renewer
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-secret-updater:10001
         name: flowsnake-spark-secret-updater
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python27:10001
-        name: flowsnake-tensorflow-python27
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python35:10001
-        name: flowsnake-tensorflow-python35
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-worker:10001
-        name: flowsnake-storm-worker
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-nimbus:10001
-        name: flowsnake-storm-nimbus
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-submitter:10001
-        name: flowsnake-storm-submitter
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-ui:10001
-        name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-test-data:10001
         name: flowsnake-test-data
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-environment-service:10001
@@ -262,8 +218,6 @@ spec:
         name: flowsnake-kafka-connect
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:10001
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:10001
-        name: flowsnake-job-flowsnake-storm-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:10001
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-zookeeper:10001
@@ -272,8 +226,6 @@ spec:
         name: flowsnake-logstash
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.12.1
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.12.1
-        name: flowsnake-job-flowsnake-storm-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.1
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
@@ -304,18 +256,6 @@ spec:
         name: flowsnake-spark-token-renewer
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-secret-updater:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
         name: flowsnake-spark-secret-updater
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python27:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
-        name: flowsnake-tensorflow-python27
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python35:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
-        name: flowsnake-tensorflow-python35
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-worker:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
-        name: flowsnake-storm-worker
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-nimbus:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
-        name: flowsnake-storm-nimbus
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-submitter:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
-        name: flowsnake-storm-submitter
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-ui:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
-        name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-test-data:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
         name: flowsnake-test-data
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-environment-service:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
@@ -330,8 +270,6 @@ spec:
         name: flowsnake-kafka-connect
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
-        name: flowsnake-job-flowsnake-storm-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-zookeeper:jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
@@ -340,8 +278,6 @@ spec:
         name: flowsnake-logstash
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.12.2
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.12.2
-        name: flowsnake-job-flowsnake-storm-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.2
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:10011
@@ -372,18 +308,6 @@ spec:
         name: flowsnake-spark-token-renewer
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-secret-updater:10011
         name: flowsnake-spark-secret-updater
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python27:10011
-        name: flowsnake-tensorflow-python27
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python35:10011
-        name: flowsnake-tensorflow-python35
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-worker:10011
-        name: flowsnake-storm-worker
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-nimbus:10011
-        name: flowsnake-storm-nimbus
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-submitter:10011
-        name: flowsnake-storm-submitter
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-ui:10011
-        name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-test-data:10011
         name: flowsnake-test-data
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-environment-service:10011
@@ -398,8 +322,6 @@ spec:
         name: flowsnake-kafka-connect
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:10011
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:10011
-        name: flowsnake-job-flowsnake-storm-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:10011
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-zookeeper:10011
@@ -408,9 +330,9 @@ spec:
         name: flowsnake-logstash
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.12.5
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:0.12.5
-        name: flowsnake-job-flowsnake-storm-demo-job
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.5
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-698-itest
+        name: extra-image-0
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-s3:15
         name: spark-s3
