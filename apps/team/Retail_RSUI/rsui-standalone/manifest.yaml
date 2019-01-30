@@ -97,7 +97,7 @@ system:
       - name: C2C_PATH
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL
-        value: https://na44.stmfa.stm.salesforce.com
+        value: https://login.stmfa.stm.salesforce.com
       - name: CORE_OAUTH_SANDBOXURL
         value: https://test.stmfa.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
@@ -109,7 +109,7 @@ system:
       - name: SECURITY_ENCRYPTION_KEY1_PATH
         value: secrets/encryption-key1/rsui-encryption-key1.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
-        value: secrets/encryption-key2/rsui-encryption-key2.key
+        value: secrets/encryption-key2/rsui-encryption-key1.key
       - name: GATER_EMBEDDED_MODE
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
@@ -151,8 +151,6 @@ system:
         value: false
       - name: ENDPOINTS_JVM_ENABLED
         value: false
-      - name: THIS_ENV_VAR_CAN_BE_DELETED
-        value: true
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
