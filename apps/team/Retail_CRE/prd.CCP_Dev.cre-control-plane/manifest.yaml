@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.7.0.0.develop-1.7.7675f4e.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.7.0.0.pk-rest.000e2ea.4
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,cre-api@salesforce.com"
@@ -67,6 +67,8 @@ system:
           value: false
         - name: SECRET_KEY_FILE
           value: /keys-kube/cre-aes.key
+        - name: SERVER_PORT
+          value: 7022 # HTTP1_TLS/REST
         - name: DUMMY_RETRY_VAR
           value: helloworld1
         - name: JVM_ARGS
@@ -88,6 +90,7 @@ system:
       ports:
       - containerPort: 8080
       - containerPort: 7020
+      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         exec:
@@ -110,7 +113,7 @@ system:
     - name: sherpa-cre-control-plane
       # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
       # Use the full git SHA as the docker image tag.
-      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       volumeMounts:
       - mountPath: /log
         name: sherpa-log-volume
@@ -127,6 +130,8 @@ system:
       ports:
       - containerPort: 7443
         name: sh-in-http2-tls
+      - containerPort: 7442
+        name: sh-in-http1-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
@@ -146,6 +151,8 @@ system:
       args:
       - -endpoint
       - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7443
+      - -endpoint
+      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7442
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
