@@ -17,6 +17,12 @@ local build_versioned_entry(imageName, version) = {
    image: flowsnakeconfig.strata_registry + "/" + imageName + ":" + version,
 };
 
+# SAM won't pick up images if they're deployed via k8s List files, so add those here.
+local extra_images_to_promote = [
+    flowsnake_images.watchdog_canary,
+];
+
+
 if util.is_production(kingdom) then
 {
   apiVersion: "extensions/v1beta1",
@@ -43,6 +49,11 @@ if util.is_production(kingdom) then
           for version in std.objectFields(flowsnake_images.version_mapping.main)
         ]
         )
+        +
+        [
+          { name: "extra-image-" + ix, image: extra_images_to_promote[ix] }
+for ix in std.range(0, std.length(extra_images_to_promote) - 1)
+        ]
          /* TODO: remove these after will is done testing spark s3 on prod */
         + [
 {
