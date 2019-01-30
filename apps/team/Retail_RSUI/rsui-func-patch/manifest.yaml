@@ -92,7 +92,7 @@ system:
       - name: SECURITY_ENCRYPTION_KEY1_PATH
         value: secrets/encryption-key1/rsui-encryption-key1.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
-        value: secrets/encryption-key2/rsui-encryption-key2.key
+        value: secrets/encryption-key2/rsui-encryption-key1.key
       - name: GATER_EMBEDDED_MODE
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
@@ -133,6 +133,8 @@ system:
         value: false
       - name: ENDPOINTS_JVM_ENABLED
         value: false
+      - name: CORE_GRPC_RETRY_LIMIT
+        value: 5
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
