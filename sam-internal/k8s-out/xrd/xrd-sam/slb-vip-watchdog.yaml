@@ -59,7 +59,7 @@ spec:
         - --monitorFrequency=10s
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
-        - --optOutServiceList=cpt-dsr-validation-cpt-xrd
+        - --optOutServiceList=vir511-1-0-xrd,vir512-1-0-xrd,cpt-dsr-validation-cpt-xrd
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         - --slaRequiresPreciseHealthProbe=true
