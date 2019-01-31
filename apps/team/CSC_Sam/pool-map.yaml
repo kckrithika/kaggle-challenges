@@ -80,5 +80,5 @@ apps:
  GusLint:
   - prd/prd-sam
  gcp-test-app:
-  - gcp-us-central1/gsf-core-devmvp-sam2-private-cluster
+  - mcp/gsf-core-devmvp-sam2-samtest
   - gcp-us-central1/gsf-core-devmvp-sam2-samtest
