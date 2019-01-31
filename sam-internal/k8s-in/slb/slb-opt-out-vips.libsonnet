@@ -199,13 +199,14 @@ local vipwdOptOutConfig = {
     [
       // 2019/01/28 - vyjayanthi.raja
       // Associated investigation: https://computecloud.slack.com/archives/G340CE86R/p1548731408150000
-      "pra-neutron-hnd",
-      "pra-mariadb-hnd",
-      "pra-keystone-apache-hnd",
-      "pra-ccn-1-0-hnd",
-      "pra-keystone-admin-hnd",
-      "pra-glance-api-hnd",
-      "pra-nova-hnd",
+      // 2019/01/31 - pablo - re-enabled at customer request for an investigation
+      // "pra-neutron-hnd",
+      // "pra-mariadb-hnd",
+      // "pra-keystone-apache-hnd",
+      // "pra-ccn-1-0-hnd",
+      // "pra-keystone-admin-hnd",
+      // "pra-glance-api-hnd",
+      // "pra-nova-hnd",
     ],
   },
 };
