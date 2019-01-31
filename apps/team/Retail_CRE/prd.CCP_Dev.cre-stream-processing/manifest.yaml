@@ -40,7 +40,7 @@ system:
         - name: CONTROLPLANE_REST_TESTING_ENABLED
           value: true
         - name: CONTROLPLANE_REST_ENDPOINT
-          value: cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:5442
+          value: http://cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:5442
         - name: DUMMY_RESTART_VAR
           value: helloworld1
         - name: JVM_ARGS
