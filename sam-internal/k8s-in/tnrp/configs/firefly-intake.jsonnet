@@ -63,7 +63,7 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
         'exchange-name': envConfig.environmentMapping[configs.estate].exchangeName,
         'prr-routing-key-format': envConfig.environmentMapping[configs.estate].prrRoutingKeyFormat,
         'push-routing-key-format': envConfig.environmentMapping[configs.estate].pushRoutingKeyFormat,
-        'routing-key-format': '%s-%s.%s',
+        'routing-key-format': envConfig.environmentMapping[configs.estate].routingKeyFormat,
       },
       ghe: {
         'webhook-secret-token-validation': envConfig.environmentMapping[configs.estate].webHookSecretTokenValidationEnabled,
