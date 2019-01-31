@@ -26,41 +26,41 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
         name: "madkub-init",
         imagePullPolicy: "IfNotPresent",
         volumeMounts: [
-        {
-            mountPath: "/certs",
-            name: "certs",
-        },
-        {
-            mountPath: "/maddog-certs/",
-            name: "maddog-certs",
-        },
-        {
-            mountPath: "/tokens",
-            name: "tokens",
-        },
+          {
+              mountPath: "/certs",
+              name: "certs",
+          },
+          {
+              mountPath: "/maddog-certs/",
+              name: "maddog-certs",
+          },
+          {
+              mountPath: "/tokens",
+              name: "tokens",
+          },
         ],
         env: [
-        {
-            name: "MADKUB_NODENAME",
-            valueFrom:
-            {
-                fieldRef: { fieldPath: "spec.nodeName", apiVersion: "v1" },
-            },
-        },
-        {
-            name: "MADKUB_NAME",
-            valueFrom:
-            {
-                fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
-            },
-        },
-        {
-            name: "MADKUB_NAMESPACE",
-            valueFrom:
-            {
-                fieldRef: { fieldPath: "metadata.namespace", apiVersion: "v1" },
-            },
-        },
+          {
+              name: "MADKUB_NODENAME",
+              valueFrom:
+              {
+                  fieldRef: { fieldPath: "spec.nodeName", apiVersion: "v1" },
+              },
+          },
+          {
+              name: "MADKUB_NAME",
+              valueFrom:
+              {
+                  fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
+              },
+          },
+          {
+              name: "MADKUB_NAMESPACE",
+              valueFrom:
+              {
+                  fieldRef: { fieldPath: "metadata.namespace", apiVersion: "v1" },
+              },
+          },
         ],
     },
 

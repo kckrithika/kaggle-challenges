@@ -230,8 +230,23 @@ items:
     template:
       metadata:
         annotations:
-          madkub.sam.sfdc.net/allcerts: '{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client",
-            "kingdom":"prd", "role": "firefly"}]}'
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+                "certreqs": [
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "certs",
+                        "role": "firefly"
+                    },
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "customer-certs",
+                        "role": "firefly.customer"
+                    }
+                ]
+            }
         labels:
           name: firefly-package
           sam.data.sfdc.net/owner: tnrp
@@ -259,6 +274,8 @@ items:
           - --run-init-for-refresher-mode
           - --ca-folder
           - /maddog-certs/ca
+          - --cert-folders
+          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -282,6 +299,8 @@ items:
             name: tokens
           - mountPath: /maddog-certs/
             name: maddog-certs
+          - mountPath: /customer-certs/
+            name: customer-certs
         - command:
           - java
           - -jar
@@ -369,6 +388,8 @@ items:
             name: git-ssh-keys
           - mountPath: /firefly
             name: firefly-root-dir
+          - mountPath: /customer-certs/
+            name: customer-certs
         initContainers:
         - args:
           - /sam/madkub-client
@@ -388,6 +409,8 @@ items:
           - client
           - --ca-folder
           - /maddog-certs/ca
+          - --cert-folders
+          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -414,6 +437,8 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: tokens
+          - mountPath: /customer-certs/
+            name: customer-certs
         nodeSelector:
           pool: prd-sam
         terminationGracePeriodSeconds: 10
@@ -444,6 +469,9 @@ items:
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
+        - emptyDir:
+            medium: Memory
+          name: customer-certs
 - apiVersion: v1
   data:
     application.yml: |-
@@ -1079,8 +1107,23 @@ items:
     template:
       metadata:
         annotations:
-          madkub.sam.sfdc.net/allcerts: '{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client",
-            "kingdom":"prd", "role": "firefly"}]}'
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+                "certreqs": [
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "certs",
+                        "role": "firefly"
+                    },
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "customer-certs",
+                        "role": "firefly.customer"
+                    }
+                ]
+            }
         labels:
           name: firefly-pullrequest
           sam.data.sfdc.net/owner: tnrp
@@ -1108,6 +1151,8 @@ items:
           - --run-init-for-refresher-mode
           - --ca-folder
           - /maddog-certs/ca
+          - --cert-folders
+          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -1131,6 +1176,8 @@ items:
             name: tokens
           - mountPath: /maddog-certs/
             name: maddog-certs
+          - mountPath: /customer-certs/
+            name: customer-certs
         - command:
           - java
           - -jar
@@ -1216,6 +1263,8 @@ items:
             name: git-ssh-keys
           - mountPath: /firefly
             name: firefly-root-dir
+          - mountPath: /customer-certs/
+            name: customer-certs
         initContainers:
         - args:
           - /sam/madkub-client
@@ -1235,6 +1284,8 @@ items:
           - client
           - --ca-folder
           - /maddog-certs/ca
+          - --cert-folders
+          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -1261,6 +1312,8 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: tokens
+          - mountPath: /customer-certs/
+            name: customer-certs
         nodeSelector:
           pool: prd-sam
         terminationGracePeriodSeconds: 10
@@ -1291,4 +1344,7 @@ items:
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
+        - emptyDir:
+            medium: Memory
+          name: customer-certs
 kind: List
