@@ -82,13 +82,6 @@ apps:
       - shared0-samminionatlasdir1-1-phx.ops.sfdc.net
       - shared0-samminionatlasdir1-2-phx.ops.sfdc.net
       - shared0-samminionatlasdir2-1-phx.ops.sfdc.net
- 
-  # PHX Proxy Nodes
-  shared0-samminionatlasfe-phx:
-    - name: phx/phx-sam_cloudatlas
-      hostSubList:
-      - shared0-samminionatlasfe1-1-phx.ops.sfdc.net
-      - shared0-samminionatlasfe2-1-phx.ops.sfdc.net
 
   # PAR DS Nodes
   shared0-samminionatlasdir-par:
