@@ -93,10 +93,13 @@ system:
       - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
-        exec:
-            command:
-            - ls
-        initialDelaySeconds: 30
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTP
       volumeMounts:
       - mountPath: /secrets-kube/
         name: secretvol
@@ -151,8 +154,8 @@ system:
       args:
       - -endpoint
       - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7443
-      - -endpoint
-      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7442
+#      - -endpoint
+#      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7442
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -189,4 +192,4 @@ system:
     slbEnabled: true
     ports:
       - port: 8091
-        targetport: 8080
+        targetport: 7022

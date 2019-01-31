@@ -85,7 +85,7 @@ system:
         name: server-certs
       env:
         - name: SFDC_ENVIRONMENT
-          value: stmfa
+          value: ccp-dev
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
