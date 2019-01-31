@@ -28,22 +28,22 @@ spec:
         - -alertThreshold=1h
         - -emailFrequency=12h
         - -laddr=0.0.0.0:8083
-        - -imageName=ops0-artifactrepo1-0-gcp-us-central1.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914
+        - -imageName=ops0-artifactrepo1-0-mvp.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914
         - -watchDogKind=Deployment
         - -enableStatefulChecks=false
         - -timeout=2s
-        - -funnelEndpoint=ajna0-funnel1-0-gcp-us-central1.data.sfdc.net:80
+        - -funnelEndpoint=ajna0-funnel1-0-mvp.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -recipient=sam-alerts@salesforce.com,csc-sam-business-hours-only@salesforce.pagerduty.com
         env:
         - name: SFDCLOC_PCN_KINGDOM
-          value: gcp-us-central1
+          value: mvp
         - name: SFDCLOC_PCN_ESTATE
           value: gsf-core-devmvp-sam2-samtest
         - name: KUBECONFIG
           value: ""
-        image: ops0-artifactrepo1-0-gcp-us-central1.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914
+        image: ops0-artifactrepo1-0-mvp.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914
         name: watchdog-synthetic
         ports:
         - containerPort: 8083
