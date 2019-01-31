@@ -9,14 +9,13 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
             image: "" + samimages.madkub + "",
             args: [
               "/sam/madkub-client",
-              "--madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007",
+              "--madkub-endpoint=https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
               "--maddog-endpoint=" + configs.maddogEndpoint + "",
               "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
               "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
               "--cert-folders=cert1:/cert1/",
               "--cert-folders=cert2:/cert2/",
               "--token-folder=/tokens/",
-              //"--requested-cert-type=server",
               "--ca-folder=/maddog-certs/ca",
               "--refresher",
               "--run-init-for-refresher-mode",
