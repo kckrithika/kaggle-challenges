@@ -229,28 +229,3 @@ local getOptOutNamespaceParameter(estateConfig) =
     else getOptOutServiceListParameter(vipwdOptOutConfig[estate]) + getOptOutNamespaceParameter(vipwdOptOutConfig[estate])
   ),
 }
-// This file declares VIP configurations that are currently omitted from monitoring by VIP watchdog.
-//
-// Ideally, this list would be empty; however, bugs in our monitoring necessitate a way for us to temporarily exclude
-// one or more VIPs from monitoring until the bug can be fixed.
-//
-// This is a rather large hammer -- VIPs filtered from monitoring do not receive any SLA guarantees, and VIP metrics
-// (availability, backend health, etc), are not emitted to Argus. Use with caution. Bias for fixing the monitoring
-// bug rather than adding to this list. When adding to this list, include a detailed comment (or link to a work item)
-// indicating why the VIP is being filtered and when the filter can be expected to be removed.
-//
-// The structure of the JSON object is like:
-// {
-//    <controlEstate>: // The name of the k8s control estate hosting the VIP.
-//    {
-//      serviceLists:  // Optional. If included, specifies one or more service lists to exclude from monitoring.
-//      [
-//        ...
-//      ],
-//      namespaces:    // Optional. If included, specifies one or more namespaces to exclude from monitoring.
-//      [
-//        ...
-//      ],
-//    },
-
-
