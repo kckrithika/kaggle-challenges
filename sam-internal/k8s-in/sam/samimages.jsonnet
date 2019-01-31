@@ -31,6 +31,7 @@ local samreleases = import "samreleases.json";
 
         #[xiao]
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002472-fe691728",
+        "frf,frf-sam,samapp-controller,hypersam": "sam-0002472-fe691728",
 
         #[small] sythetic checker failure fix
         "prd,prd-samtest,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20190118_133746.5f7caad8.dirty.small-ltm",
