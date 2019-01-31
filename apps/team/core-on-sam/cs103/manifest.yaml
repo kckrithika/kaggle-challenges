@@ -76,7 +76,7 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: green
+          value: blue
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
@@ -265,11 +265,11 @@ system:
         - name: READY_SERVER_COUNT
           value: 5
         - name: CURRENT_RELEASE_VERSION
-          value: blue
-        - name: NEW_RELEASE_VERSION
           value: green
+        - name: NEW_RELEASE_VERSION
+          value: blue
         - name: MAJOR_RELEASE_NUMBER
-          value: 218
+          value: 216
         - name: RELEASE_TYPE
           value: PATCH
         - name: DB_SID
@@ -277,13 +277,13 @@ system:
         - name: OLD_DWARF
           value: sleepy
         - name: LOCK_DWARF
-          value: 0
+          value: 1
         - name: TRIGGER_CAFFEINE
           value: 0
         - name: UNLOCK_DWARF
-          value: 0
+          value: 1
         - name: KILL_DWARF
-          value: 0
+          value: 1
         - name: ENABLE_DB_SCHEMA_UPGRADE
           value: 0
         - name: SET_DEFAULT_ORACLE_EDITION
@@ -296,7 +296,7 @@ system:
         - name: SKIP_KAIJU
           value: 1
         - name: FORCE_DEPLOY
-          value: 2
+          value: 0
 
       livenessProbe:
         exec:
