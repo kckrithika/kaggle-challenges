@@ -199,7 +199,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: sfci/casam/coreapp_config_overrides:95284f
+      image: sfci/casam/coreapp_config_overrides:641f92
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.fra.cs103.app
@@ -294,6 +294,8 @@ system:
         - name: DRY_RUN
           value: 0
         - name: SKIP_KAIJU
+          value: 1
+        - name: FORCE_DEPLOY
           value: 1
 
       livenessProbe:
