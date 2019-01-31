@@ -4,11 +4,11 @@ apiVersion: v1
 
 system:
   functions:
-  - name: ladybug
-    count: 1
+  - name: gus
+    count: 2
     containers:
-    - name: ladybug-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/ladybug:jianmin.liu-20190131-ae7beac
+    - name: gus-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/gus:jianmin.liu-20190131-51b5c75
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -45,7 +45,7 @@ system:
       # FUNCTION_NAMESPACE: The Kubernetes namespace in which the container is running.
       args:
       - -endpoint
-      - ladybug:DATACENTER_ALLENV:7012
+      - gus:DATACENTER_ALLENV:7012
       - -logging.dir
       - /log
       livenessProbe:
@@ -90,7 +90,7 @@ system:
     volumes:
     - name: logvolbeacon
       hostPath:
-        path: /home/sfdc-scone-ladybug-beacon/logs
+        path: /home/sfdc-scone-gus-beacon/logs
     - name: sherpaclientcert
       maddogCert:
         type: client
@@ -99,4 +99,4 @@ system:
         type: server
     - name: logvolservice
       hostPath:
-        path: /home/sfdc-scone-ladybug/logs
+        path: /home/sfdc-scone-gus/logs
