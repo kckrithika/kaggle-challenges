@@ -89,7 +89,7 @@ configs.deploymentBase("service-mesh") {
             ],
             ports+: [
               {
-                containerPort: if enableSherpa then "7022" else "7442",
+                containerPort: if enableSherpa then 7022 else 7442,
               },
             ],
             livenessProbe: {
