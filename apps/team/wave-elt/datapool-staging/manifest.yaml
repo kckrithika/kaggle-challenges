@@ -30,12 +30,6 @@ system:
       - name: LOGGING_STDERR_LEVEL
         value: ALL
 
-      - name: PKI_TRUSTSTORE_DIR
-        value: /home/datapool/client-certs
-
-      - name: PKI_KEYSTORE_DIR
-        value: /home/datapool/client-certs/client
-
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
         value: dva/datapool-engine:406-1f2e6252caad9c1e9ce34a1072e69e032ca33f53
 
