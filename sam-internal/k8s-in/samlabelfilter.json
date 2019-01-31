@@ -2,5 +2,9 @@
   {
     "kingdomEstateMatch": "gcp-*/*",
     "requiredLabelValues": { "pcn": "deploy" }
+  },
+  {
+    "kingdomEstateMatch": "mvp/*",
+    "requiredLabelValues": { "pcn": "deploy" }
   }
 ]

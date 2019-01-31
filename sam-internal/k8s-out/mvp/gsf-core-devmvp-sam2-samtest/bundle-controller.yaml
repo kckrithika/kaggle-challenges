@@ -23,22 +23,22 @@ spec:
       - command:
         - /sam/bundlecontroller
         - --config=/config/bundle-controller-config.json
-        - --funnelEndpoint=ajna0-funnel1-0-gcp-us-central1.data.sfdc.net:80
+        - --funnelEndpoint=ajna0-funnel1-0-mvp.data.sfdc.net:80
         env:
         - name: SFDCLOC_PCN_KINGDOM
-          value: gcp-us-central1
+          value: mvp
         - name: SFDCLOC_PCN_ESTATE
-          value: gsf-core-devmvp-sam2-private-cluster
+          value: gsf-core-devmvp-sam2-samtest
         - name: KUBECONFIG
           value: ""
-        image: ops0-artifactrepo1-0-gcp-us-central1.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914
+        image: ops0-artifactrepo1-0-mvp.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914
         name: bundle-controller
         volumeMounts:
         - mountPath: /config
           name: config
       hostNetwork: true
       nodeSelector:
-        pool: gsf-core-devmvp-sam2-private-cluster
+        pool: gsf-core-devmvp-sam2-samtest
       serviceAccount: sam-stack-edit
       serviceAccountName: sam-stack-edit
       volumes:

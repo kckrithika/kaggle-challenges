@@ -728,30 +728,6 @@
       "access": [
         "team/CSC_Sam"
       ],
-      "controlEstate": "gsf-core-devmvp-sam2-private-cluster",
-      "estate": "gsf-core-devmvp-sam2-private-cluster",
-      "kingdom": "gcp-us-central1",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "csc-sam"
-      ],
-      "access": [
-        "team/CSC_Sam"
-      ],
-      "controlEstate": "gsf-core-devmvp-sam2-samtest",
-      "estate": "gsf-core-devmvp-sam2-samtest",
-      "kingdom": "gcp-us-central1",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "csc-sam"
-      ],
-      "access": [
-        "team/CSC_Sam"
-      ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam",
       "kingdom": "hnd",
@@ -1353,6 +1329,18 @@
       "controlEstate": "lo3-sam",
       "estate": "lo3-sam_gater",
       "kingdom": "lo3",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
+      "controlEstate": "gsf-core-devmvp-sam2-samtest",
+      "estate": "gsf-core-devmvp-sam2-samtest",
+      "kingdom": "mvp",
       "superPod": "None"
     },
     {
