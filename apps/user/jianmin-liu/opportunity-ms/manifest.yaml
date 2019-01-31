@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: opportunity-ms
-    count: 0
+    count: 1
     containers:
     - name: opportunity-ms
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/opportunity-ms:jianmin-20190107-6c9c812 # scone app
