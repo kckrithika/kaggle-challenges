@@ -296,7 +296,7 @@ system:
         - name: SKIP_KAIJU
           value: 1
         - name: FORCE_DEPLOY
-          value: 1
+          value: 2
 
       livenessProbe:
         exec:
