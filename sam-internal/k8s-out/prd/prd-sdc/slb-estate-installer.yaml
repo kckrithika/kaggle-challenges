@@ -40,7 +40,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/hypersdn:2044-7f004debb33ddc771baaee822e47852057a8de53
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/hypersdn:2045-7ab30ade0ae5f024a7e38af41ad26a02a9884343
         name: slb-estate-installer
         securityContext:
           privileged: true
