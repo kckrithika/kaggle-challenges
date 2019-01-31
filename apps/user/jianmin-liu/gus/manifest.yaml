@@ -5,7 +5,7 @@ apiVersion: v1
 system:
   functions:
   - name: gus
-    count: 1
+    count: 2
     containers:
     - name: gus-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/gus:jianmin.liu-20190131-3-51b5c75
