@@ -33,7 +33,7 @@ system:
 
     containers:
     - name: coreapp
-      image: sfci/casam/coreapp:release_216-patch_17299679
+      image: sfci/casam/coreapp:release_216-patch_17304344
 
       env:
         # Other db info takes from core configs 
@@ -76,7 +76,7 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: blue
+          value: green
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
@@ -265,9 +265,9 @@ system:
         - name: READY_SERVER_COUNT
           value: 5
         - name: CURRENT_RELEASE_VERSION
-          value: green
-        - name: NEW_RELEASE_VERSION
           value: blue
+        - name: NEW_RELEASE_VERSION
+          value: green
         - name: MAJOR_RELEASE_NUMBER
           value: 218
         - name: RELEASE_TYPE
