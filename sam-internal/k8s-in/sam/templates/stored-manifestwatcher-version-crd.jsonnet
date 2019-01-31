@@ -7,7 +7,7 @@ local configs = import "config.jsonnet";
       annotations: {
         "manifestctl.sam.data.sfdc.net/swagger": "disable",
       },
-      labels: {} + configs.ownerLabel.sam,
+      labels: {} + configs.ownerLabel.sam + configs.pcnEnableLabel,
     },
     spec: {
       group: "samcrd.salesforce.com",
