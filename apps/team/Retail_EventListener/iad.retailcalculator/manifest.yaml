@@ -30,8 +30,6 @@ system:
         limits: { cpu: "2", memory: "5Gi" }
         requests: { cpu: "2", memory: "5Gi" }
       env:
-        - name: RC_VERSION
-          value: "1.5.21"
         - name: SFDC_ENVIRONMENT
           value: prod
         - name: SERVER_PORT
