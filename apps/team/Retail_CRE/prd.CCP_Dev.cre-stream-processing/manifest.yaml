@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.7.0.0.develop-1.7.9d8cb68.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.7.0.0.pk-rest.3e3f1bd.4
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Shared_Dev
@@ -37,6 +37,10 @@ system:
           value: http://ajna0-funnel1-0-prd.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
           value: cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:5443
+        - name: CONTROLPLANE_REST_TESTING_ENABLED
+          value: true
+        - name: CONTROLPLANE_REST_ENDPOINT
+          value: cre-control-plane-ccp-dev.retail-cre.localhost.mesh.force.com:5442
         - name: DUMMY_RESTART_VAR
           value: helloworld1
         - name: JVM_ARGS
