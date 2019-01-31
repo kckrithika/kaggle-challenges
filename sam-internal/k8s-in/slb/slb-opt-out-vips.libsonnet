@@ -187,6 +187,21 @@ local vipwdOptOutConfig = {
   {
     serviceLists:
     [
+      // 2018/12/27 - mgrass: A known issue in our monitoring is causing these RDI VIPs in XRD to generate false alarms.
+      // These should be removed when the underlying issues discussed in https://gus.lightning.force.com/a07B0000004j96jIAA
+      // are resolved.
+      "vir501-1-0-xrd",
+      "vir502-1-0-xrd",
+      "vir503-1-0-xrd",
+      "vir504-1-0-xrd",
+      "vir505-1-0-xrd",
+      "vir506-1-0-xrd",
+      "vir507-1-0-xrd",
+      "vir508-1-0-xrd",
+      "vir509-1-0-xrd",
+      "vir510-1-0-xrd",
+      "vir511-1-0-xrd",
+      "vir512-1-0-xrd",
       // 2019/01/02 - mgrass: This self-serve DSR VIP doesn't have the associated puppet changes to allow it to work.
       // We need to either delete the definition (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/cpt/vips/xrd/vips.yaml#L17)
       // or work with the customer to enable our realsvrcfg puppet module on their nodes.
