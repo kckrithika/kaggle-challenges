@@ -76,7 +76,7 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: blue
+          value: green
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
@@ -199,7 +199,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: sfci/casam/coreapp_config_overrides:95284f
+      image: sfci/casam/coreapp_config_overrides:641f92
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.fra.cs103.app
@@ -265,9 +265,9 @@ system:
         - name: READY_SERVER_COUNT
           value: 5
         - name: CURRENT_RELEASE_VERSION
-          value: green
-        - name: NEW_RELEASE_VERSION
           value: blue
+        - name: NEW_RELEASE_VERSION
+          value: green
         - name: MAJOR_RELEASE_NUMBER
           value: 218
         - name: RELEASE_TYPE
