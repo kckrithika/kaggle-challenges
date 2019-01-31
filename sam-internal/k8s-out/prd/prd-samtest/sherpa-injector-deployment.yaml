@@ -69,7 +69,7 @@ spec:
           periodSeconds: 3
         name: sherpa-injector
         ports:
-        - containerPort: 7442
+        - containerPort: "7442"
         readinessProbe:
           exec:
             command:

@@ -16,7 +16,6 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
               "--cert-folders=cert1:/cert1/",
               "--cert-folders=cert2:/cert2/",
               "--token-folder=/tokens/",
-              //"--requested-cert-type=server",
               "--ca-folder=/maddog-certs/ca",
               "--refresher",
               "--run-init-for-refresher-mode",

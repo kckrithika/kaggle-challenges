@@ -16,7 +16,6 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
               '--cert-folders=cert1:/cert1/', // Server certs
               '--cert-folders=cert2:/cert2/', // Client certs
               "--token-folder=/tokens/",
-              //"--requested-cert-type=server",
               "--ca-folder=/maddog-certs/ca",
             ],
             name: "madkub-init",
