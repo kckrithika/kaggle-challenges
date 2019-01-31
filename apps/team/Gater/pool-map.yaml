@@ -36,3 +36,5 @@ apps:
   - prd/prd-sam_gater
  gate-analyzer:
   - prd/prd-sam
+ gater-perf:
+  - prd/prd-sam_gater
