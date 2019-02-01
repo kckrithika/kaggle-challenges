@@ -62,6 +62,9 @@ system:
         name: sherpa-tls  
       - containerPort: 15373
         name: sherpa-adm
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -133,6 +136,9 @@ system:
       ports:
       - containerPort: 15373
         name: sherpa-adm
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
