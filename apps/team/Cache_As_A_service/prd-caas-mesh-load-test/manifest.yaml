@@ -19,6 +19,7 @@ system:
         - -o 0,1
         - -a 127.0.0.1:7509
         - -x 120
+        - -s mist66
       livenessProbe:
         exec:
           command: ["true"]
