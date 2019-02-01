@@ -63,7 +63,7 @@ system:
         periodSeconds: 120
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
       # HTTP port for exposing to SLB for IoT
       - containerPort: 7012
@@ -120,7 +120,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search-synthetics
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.1.0
       resources:
         limits: { cpu: "100m", memory: "1Gi" }
         requests: { cpu: "100m", memory: "1Gi" }
@@ -141,7 +141,7 @@ system:
         periodSeconds: 900
         failureThreshold: 1
     - name: universal-search-synthetics-cre
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.1.0
       resources:
         limits: { cpu: "100m", memory: "1Gi" }
         requests: { cpu: "100m", memory: "1Gi" }
@@ -162,7 +162,7 @@ system:
         periodSeconds: 900
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
       - containerPort: 15373
         name: sherpa-adm
