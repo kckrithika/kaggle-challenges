@@ -17,7 +17,15 @@ system:
           port: 8000
         initialDelaySeconds: 60 
         timeoutSeconds: 10
-
+      name: depaut-demo
+      ports:
+      - containerPort: 8000
+        name: runlistapi
+      - containerPort: 8080
+        name: jenkins
+      volumeMounts:
+      - mountPath: /data/jenkins
+        name: jenkinsdata
   loadbalancers:
   - lbname: depaut-runlistapi-lb
     function: depaut-runlistapi
