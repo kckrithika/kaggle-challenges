@@ -185,19 +185,19 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-fcp-package-tfm-configmap
+    name: firefly-package-fcp-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-fcp-package
+      slb.sfdc.net/name: firefly-package
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-fcp-package
+      app: firefly-package
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-fcp-package-tfm-service
+    name: firefly-package-fcp-service
     namespace: firefly
   spec:
     ports:
@@ -206,21 +206,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-fcp-package
+      name: firefly-package
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-fcp-package
+      name: firefly-package
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-fcp-package-tfm-deployment
+    name: firefly-package-fcp-deployment
     namespace: firefly
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-fcp-package
+        name: firefly-package
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -233,9 +233,9 @@ items:
           madkub.sam.sfdc.net/allcerts: '{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client",
             "kingdom":"prd", "role": "firefly"}]}'
         labels:
-          name: firefly-fcp-package
+          name: firefly-package
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-fcp-package-tfm-deployment
+        name: firefly-package-fcp-deployment
         namespace: firefly
       spec:
         containers:
@@ -337,7 +337,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-fcp-package
+          name: firefly-package
           ports:
           - containerPort: 8081
             name: admin-port
@@ -425,7 +425,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-fcp-package-tfm-configmap
+                name: firefly-package-fcp-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
@@ -629,19 +629,19 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-fcp-package-singleton-tfm-configmap
+    name: firefly-package-singleton-fcp-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-fcp-package-singleton
+      slb.sfdc.net/name: firefly-package-singleton
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-fcp-package-singleton
+      app: firefly-package-singleton
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-fcp-package-singleton-tfm-service
+    name: firefly-package-singleton-fcp-service
     namespace: firefly
   spec:
     ports:
@@ -650,21 +650,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-fcp-package-singleton
+      name: firefly-package-singleton
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-fcp-package-singleton
+      name: firefly-package-singleton
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-fcp-package-singleton-tfm-deployment
+    name: firefly-package-singleton-fcp-deployment
     namespace: firefly
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-fcp-package-singleton
+        name: firefly-package-singleton
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -677,9 +677,9 @@ items:
           madkub.sam.sfdc.net/allcerts: '{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client",
             "kingdom":"prd", "role": "firefly"}]}'
         labels:
-          name: firefly-fcp-package-singleton
+          name: firefly-package-singleton
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-fcp-package-singleton-tfm-deployment
+        name: firefly-package-singleton-fcp-deployment
         namespace: firefly
       spec:
         containers:
@@ -781,7 +781,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-fcp-package-singleton
+          name: firefly-package-singleton
           ports:
           - containerPort: 8081
             name: admin-port
@@ -854,7 +854,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-fcp-package-singleton-tfm-configmap
+                name: firefly-package-singleton-fcp-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
@@ -1034,19 +1034,19 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-fcp-pullrequest-tfm-configmap
+    name: firefly-pullrequest-fcp-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-fcp-pullrequest
+      slb.sfdc.net/name: firefly-pullrequest
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-fcp-pullrequest
+      app: firefly-pullrequest
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-fcp-pullrequest-tfm-service
+    name: firefly-pullrequest-fcp-service
     namespace: firefly
   spec:
     ports:
@@ -1055,21 +1055,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-fcp-pullrequest
+      name: firefly-pullrequest
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-fcp-pullrequest
+      name: firefly-pullrequest
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-fcp-pullrequest-tfm-deployment
+    name: firefly-pullrequest-fcp-deployment
     namespace: firefly
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-fcp-pullrequest
+        name: firefly-pullrequest
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -1082,9 +1082,9 @@ items:
           madkub.sam.sfdc.net/allcerts: '{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client",
             "kingdom":"prd", "role": "firefly"}]}'
         labels:
-          name: firefly-fcp-pullrequest
+          name: firefly-pullrequest
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-fcp-pullrequest-tfm-deployment
+        name: firefly-pullrequest-fcp-deployment
         namespace: firefly
       spec:
         containers:
@@ -1182,7 +1182,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-fcp-pullrequest
+          name: firefly-pullrequest
           ports:
           - containerPort: 8081
             name: admin-port
@@ -1272,7 +1272,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-fcp-pullrequest-tfm-configmap
+                name: firefly-pullrequest-fcp-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
