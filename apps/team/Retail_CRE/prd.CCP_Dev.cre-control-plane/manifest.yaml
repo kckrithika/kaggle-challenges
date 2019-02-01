@@ -153,7 +153,7 @@ system:
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
       - -endpoint
-      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7442
+      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7014
       - -endpoint
       - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7443
       resources:
