@@ -29,3 +29,7 @@ system:
          value: newton
        - name: PYTHONUNBUFFERED
          value: 1
+       - name: SFDC_ENVIRONMENT
+         value: redis
+       - name: SFDC_POD
+         value: mist66
