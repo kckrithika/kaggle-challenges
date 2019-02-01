@@ -13,6 +13,7 @@ local portConfig = import "portconfig.jsonnet";
         gitHttpLogging:: 'NONE',
         prrRoutingKeyFormat:: '%s-%s.pr',
         pushRoutingKeyFormat:: '%s-%s.package',
+        routingKeyFormat:: '%s-%s.%s',
     },
     dev:: $.common {
         artifactoryDevHost:: 'testrepo1-0-prd.data.sfdc.net',
