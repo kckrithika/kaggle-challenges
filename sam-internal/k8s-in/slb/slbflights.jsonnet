@@ -11,9 +11,8 @@ local configs = import "config.jsonnet";
     fredEnabled: (slbimages.hypersdn_build >= 1446),
     georgeEnabled: (slbimages.hypersdn_build >= 1446),
     nginxAccesslogsEnabled: (configs.estate == "prd-sdc"),
-    portalKubeConfigEnabled: (slbimages.hypersdn_build <= 1442),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
     portalSfdcHostsMountEnabled: (slbimages.phaseNum <= 3),
-    artifactoryBootstrapEnabled: (slbimages.phaseNum <= 1),
+    artifactoryBootstrapEnabled: (slbimages.hypersdn_build >= 2046),
     kernelVersionCheckerEnabled: (slbimages.phaseNum <= 1),
 }
