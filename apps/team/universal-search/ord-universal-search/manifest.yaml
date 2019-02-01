@@ -111,7 +111,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search-synthetics
-      image: sfci/searchdev/universal-search-synthetics:0.0.7
+      image: sfci/searchdev/universal-search-synthetics:0.1.0
       resources:
         limits: { cpu: "100m", memory: "1Gi" }
         requests: { cpu: "100m", memory: "1Gi" }
