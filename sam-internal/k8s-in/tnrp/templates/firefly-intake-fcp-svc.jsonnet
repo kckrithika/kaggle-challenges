@@ -6,7 +6,7 @@ local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
 local intakeConfig = import "configs/firefly-intake.jsonnet";
 local fireflyConfigs = import "fireflyconfigs.jsonnet";
 
-if firefly_feature_flags.is_firefly_svc_enabled then
+if configs.estate == "prd-sam" then
 {
   local intakeservice = serviceDeployment {
     serviceConf:: {
