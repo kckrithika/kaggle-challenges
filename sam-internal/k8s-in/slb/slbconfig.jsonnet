@@ -451,6 +451,14 @@
 
     getGracePeriod():: { terminationGracePeriodSeconds: 5 },
 
+    // IPVS nodes can't talk to SLB VIPs. Use the F5 Artifactory VIP as a bootstrap registry for ipvs nodes.
+    bootstrapRegistry: (
+        if kingdom == "prd" then
+            "ops0-artifactrepo2-0-%s.%s.r.data.sfdc.net" % [kingdom, kingdom]
+        else
+            "ops0-artifactrepo1-0-%s.%s.r.data.sfdc.net" % [kingdom, kingdom]
+    ),
+
 
     subnet: self.perCluster.subnet[estate],
     publicSubnet: self.perCluster.publicSubnet[estate],

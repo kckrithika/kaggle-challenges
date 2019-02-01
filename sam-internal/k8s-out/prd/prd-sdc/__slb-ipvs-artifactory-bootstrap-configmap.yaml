@@ -1,0 +1,20 @@
+apiVersion: v1
+data:
+  slb-hosts-updater.sh: |-
+    #!/bin/bash
+
+    set -o errexit
+    set -o nounset
+    set -o pipefail
+    set -o xtrace
+
+    function main() {
+        sleep INFINITY
+    }
+
+    main
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: slb-ipvs-artifactory-bootstrap
+  namespace: sam-system
