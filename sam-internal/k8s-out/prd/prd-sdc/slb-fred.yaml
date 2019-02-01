@@ -44,7 +44,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/hypersdn:2046-6b431a7fd9786af9b5093633f8fbdf5659e0453c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/hypersdn:2048-120a3b8fb71b2be10c316f0a4c584446faef5153
         name: slb-fred
         volumeMounts:
         - mountPath: /host/data/slb/logs/
