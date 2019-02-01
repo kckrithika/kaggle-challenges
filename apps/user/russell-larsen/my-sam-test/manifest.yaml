@@ -3,6 +3,10 @@ system:
   functions:
   - name: default
     count: 1
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: gittoken
     containers:
     - name: samhello
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/russell-larsen/samhello:20190201.1
@@ -12,6 +16,10 @@ system:
         httpGet:
           path: /
           port: 9090
+      volumeMounts:
+       - mountPath: /secrets/
+         name: secretvol
+         readOnly: true
   loadbalancers:
   - lbname: samhellolb
     function: default
