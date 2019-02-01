@@ -41,7 +41,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -49,7 +49,7 @@ system:
       - name: CLUSTER_NAME
         value: na2
       - name: DEPLOYMENT
-        value: G
+        value: B
       - name: USE_CONFIG_SIDECAR
         value: 1
       - name: CASAM_HOST_NAME
@@ -200,11 +200,11 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1548997770563453952
+        value: 1549058467102725888
       - name: DRY_RUN
         value: 0
       - name: DEPLOY_ENV
-        value: alpha
+        value: casam-alpha
       - name: CYAN
         value: https://us2-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: SWITCH_BOARD_ADDRESS
@@ -220,9 +220,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -248,12 +248,12 @@ system:
       - name: CASAM_SETTINGS_PATH
         value: mist61.-.prd.na2.sequencer
       - name: CASAM_SUPERPOD
-        value: s2
+        value: sp2
       - name: HTTP_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: SKIP_KAIJU
         value: 1
-      image: sfci/casam/sequencer:b6ff35
+      image: sfci/casam/sequencer:70058a
       livenessProbe:
         failureThreshold: 10
         httpGet:
