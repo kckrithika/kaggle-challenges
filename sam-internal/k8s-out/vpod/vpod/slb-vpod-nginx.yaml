@@ -76,7 +76,7 @@ spec:
         env:
         - name: KINGDOM
           value: vpod
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000066-937ffff3
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000068-9df2d419
         livenessProbe:
           httpGet:
             path: /
