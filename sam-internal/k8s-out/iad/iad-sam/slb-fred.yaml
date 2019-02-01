@@ -2,15 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-canary-proxy-tcp-host
-  name: slb-canary-proxy-tcp-host
+    name: slb-fred
+  name: slb-fred
   namespace: sam-system
 spec:
   minReadySeconds: 30
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      name: slb-canary-proxy-tcp-host
+      name: slb-fred
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -19,22 +19,37 @@ spec:
   template:
     metadata:
       labels:
-        name: slb-canary-proxy-tcp-host
+        name: slb-fred
       namespace: sam-system
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: slb-service
+                operator: NotIn
+                values:
+                - slb-ipvs
       containers:
       - command:
-        - /sdn/slb-canary-service
-        - --serviceName=slb-canary-proxy-tcp-host
+        - /sdn/slb-fred
         - --log_dir=/host/data/slb/logs/
-        - --ports=9120
+        - --commonoptions.metricsendpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
+        - --commonoptions.hostname=$(NODE_NAME)
+        - --vipName=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net
+        - --port=9116
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/sdn/hypersdn:2046-6b431a7fd9786af9b5093633f8fbdf5659e0453c
-        name: slb-canary-proxy-tcp-host
+        name: slb-fred
         volumeMounts:
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
       dnsPolicy: Default
-      hostNetwork: true
       nodeSelector:
         pool: iad-sam
       terminationGracePeriodSeconds: 5
