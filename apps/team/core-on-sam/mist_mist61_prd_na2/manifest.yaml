@@ -12,20 +12,12 @@ system:
         value: mist61b218utf-1
       - name: DB_USER
         value: sleepy
-      - name: DB_PASSWORD
-        value: rotate
       - name: DB_STATS_USER
         value: snowwhite
-      - name: DB_STATS_PASSWORD
-        value: rotate
-      - name: DB_CONN_NUM
-        value: 25
-      - name: PLSQL_UPDATE_RUNSTATS
-        value: false
-      - name: SERVER_ID
-        value: x
       - name: IP_DB
         value: mist61ice1-db1-1-prd.eng.sfdc.net
+      - name: SERVER_ID
+        value: x
       - name: IP_MNDS1
         value: 127.0.0.1
       - name: OFFLINE
@@ -44,10 +36,12 @@ system:
         value: 8443
       - name: S2PORT
         value: 12098
+      - name: PLSQL_UPDATE_RUNSTATS
+        value: false
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -55,7 +49,7 @@ system:
       - name: CLUSTER_NAME
         value: na2
       - name: DEPLOYMENT
-        value: B
+        value: G
       - name: USE_CONFIG_SIDECAR
         value: 1
       - name: CASAM_HOST_NAME
@@ -78,12 +72,13 @@ system:
       - containerPort: 12098
       - containerPort: 8443
       readinessProbe:
-        failureThreshold: 10
-        httpGet:
-          path: /ping.jsp
-          port: 8085
+        exec:
+          command:
+          - /home/sfdc/salesforce/build/ready_probe.sh
+        failureThreshold: 99999
         initialDelaySeconds: 120
-        periodSeconds: 1
+        periodSeconds: 5
+        timeoutSeconds: 5
       volumeMounts:
       - mountPath: /home/sfdc/logs/sfdc
         name: log-volume-sfdc
@@ -99,7 +94,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na2.app
-      image: sfci/casam/coreapp_config_overrides:f6b69d
+      image: sfci/casam/coreapp_config_overrides:641f92
       livenessProbe:
         exec:
           command:
@@ -205,35 +200,47 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1548721626446689024
+        value: 1548997770563453952
+      - name: DRY_RUN
+        value: 0
       - name: DEPLOY_ENV
         value: alpha
       - name: CYAN
         value: https://us2-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
-      - name: SWITCH_BOARD_HOST
-        value: na2-switchboard-lb
-      - name: SWITCH_BOARD_PORT
-        value: 8088
-      - name: ENABLE_DB_SCHEMA_UPGRADE
-        value: 1
-      - name: SET_DEFAULT_ORACLE_EDITION
-        value: 1
-      - name: OLD_DWARF
-        value: sneezy
+      - name: SWITCH_BOARD_ADDRESS
+        value: na2-switchboard-lb:8088
+      - name: RELEASE_VESION
+        value: ""
+      - name: RELEASE_TYPE
+        value: DAILY
+      - name: MAJOR_RELEASE_NUMBER
+        value: 218
+      - name: MINOR_RELEASE_NUMBER
+        value: 0
+      - name: PATCH_RELEASE_NUMBER
+        value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
         value: mist61b218utf
+      - name: ENABLE_DB_SCHEMA_UPGRADE
+        value: 0
+      - name: SET_DEFAULT_ORACLE_EDITION
+        value: 0
+      - name: OLD_DWARF
+        value: sneezy
+      - name: KILL_DWARF
+        value: 0
       - name: LOCK_DWARF
-        value: 1
+        value: 0
       - name: TRIGGER_CAFFEINE
-        value: 1
+        value: 0
       - name: UNLOCK_DWARF
-        value: 1
+        value: 0
       - name: SNOWWHITE_PWD
         value: rotate
       - name: MADDOG_CLIENT
@@ -241,10 +248,12 @@ system:
       - name: CASAM_SETTINGS_PATH
         value: mist61.-.prd.na2.sequencer
       - name: CASAM_SUPERPOD
-        value: sp2
+        value: s2
       - name: HTTP_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
-      image: sfci/casam/sequencer:b214a6
+      - name: SKIP_KAIJU
+        value: 1
+      image: sfci/casam/sequencer:b6ff35
       livenessProbe:
         failureThreshold: 10
         httpGet:
