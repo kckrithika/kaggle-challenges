@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-george
+  name: slb-george
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  selector:
+    matchLabels:
+      name: slb-george
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: slb-george
+      namespace: sam-system
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: slb-service
+                operator: NotIn
+                values:
+                - slb-ipvs
+      containers:
+      - command:
+        - /sdn/slb-george
+        - --log_dir=/host/data/slb/logs/
+        - --commonoptions.metricsendpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --commonoptions.hostname=$(NODE_NAME)
+        - --vipName=slb-canary-proxy-http.sam-system.prd-samtwo.prd.slb.sfdc.net
+        - --port=9116
+        - --downloadSize=1
+        - --uploadSize=1
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/hypersdn:2046-6b431a7fd9786af9b5093633f8fbdf5659e0453c
+        name: slb-george
+        volumeMounts:
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+      dnsPolicy: Default
+      nodeSelector:
+        pool: prd-samtwo
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - hostPath:
+          path: /data/slb/logs/
+        name: var-logs-volume
