@@ -72,9 +72,6 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                   + (if slbflights.portalSfdcHostsMountEnabled then [
                                       configs.sfdchosts_volume_mount,
                                      ] else [])
-                                  + (if slbflights.portalKubeConfigEnabled then [
-                                      configs.kube_config_volume_mount,
-                                      ] else [])
                                   + madkub.madkubSlbCertVolumeMounts(certDirs)
                               ),
                               livenessProbe: {
@@ -95,10 +92,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                           },
                                       },
                                   },
-                              ]
-                              + (if slbflights.portalKubeConfigEnabled then [
-                                    configs.kube_config_env,
-                              ] else []),
+                              ],
                           },
                           slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                           slbshared.slbCleanupConfig,
