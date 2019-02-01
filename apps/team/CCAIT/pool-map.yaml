@@ -12,6 +12,6 @@ apps:
     - prd/prd-sam_gater
 
   geoip-demo-sandbox:
-    - prd/prd-sam_gater
+    - prd/prd-sam
   geoip-xlt-sandbox:
     - prd/prd-sam_gater

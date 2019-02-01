@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: shipping-test
-    count: 1
+    count: 0
     labels:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:

@@ -61,13 +61,3 @@ apps:
 # Enable as needed:
 #  geoipnk:
 #    - prd/prd-sam_gater
-
-  tictactoe-server-envoy:
-    - prd/prd-sam_gater
-  tictactoe-client-envoy:
-    - prd/prd-sam_gater
-  tictactoe-client-envoy-ns:
-    - prd/prd-sam_gater
-  tictactoe-server-envoy-ns:
-    - prd/prd-sam_gater
-
