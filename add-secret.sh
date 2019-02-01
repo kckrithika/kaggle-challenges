@@ -70,6 +70,14 @@ if [ "${KINGDOM}" != "prd" ] &&  [ "${KINGDOM}" != "xrd" ]; then
   echo ""
 fi
 
+if [ "${KINGDOM}" == "mvp" ] ; then
+  echo ""
+  echo "=========="
+  echo "NOTE: Your team needs to be whitelisted for mvp in SAM before you can create K4A secrets for mvp."
+  echo "=========="
+  echo ""
+fi
+
 # Use this to get hypersam env var
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
