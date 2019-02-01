@@ -12,7 +12,7 @@ set -o xtrace
 function update_hosts() {
     host=$1
     override=$2
-    hosts_file_path="/etc/hosts"
+    hosts_file_path="/host-etc/hosts"
     ip=$(dig +short "${override}" | head -n 1)
     if [ -z "$ip" ]; then
          echo "failed to resolve $override"
