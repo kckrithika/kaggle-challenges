@@ -44,6 +44,14 @@
         },
     },
 
+    kernelVersionNodeFilter: "pool=" + $.slbEstate,
+    kernelVersionPrefixList: (
+        if configs.estate == "prd-sdc" then
+            "3.10.0-862"
+        else
+            "3.10.0-862,3.10.0-957"
+    ),
+
     perCluster: {
         ddiService: {
             [k]: "https://ddi-api-" + k + ".data.sfdc.net"
