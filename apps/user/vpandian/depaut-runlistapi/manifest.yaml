@@ -7,7 +7,6 @@ system:
     - name: depaut-runlistapi
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vpandian/runlistapi:v0-20190201
       ports:
-      - containerPort: 8009
       - containerPort: 8000
       - containerPort: 8080
       - containerPort: 22
