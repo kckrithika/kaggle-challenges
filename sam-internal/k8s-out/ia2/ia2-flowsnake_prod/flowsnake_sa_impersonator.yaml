@@ -1,0 +1,38 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  automountServiceAccountToken: true
+  kind: ServiceAccount
+  metadata:
+    name: flowsnake-impersonation-proxy
+    namespace: flowsnake
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRole
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: impersonate-any-user
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - users
+    - groups
+    verbs:
+    - impersonate
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: impersonator-proxy-impersonates
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: impersonate-any-user
+  subjects:
+  - kind: ServiceAccount
+    name: flowsnake-impersonation-proxy
+    namespace: flowsnake
+kind: List
+metadata: {}
