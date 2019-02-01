@@ -120,7 +120,7 @@ system:
     nodeExposed: true
     slbEnabled: true
     ports:
-    - port: 7022
+    - port: 7025
       targetport: 7022
-    - port: 15372
+    - port: 15375
       targetport: 15372
