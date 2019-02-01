@@ -6,7 +6,7 @@ system:
   functions:
   - name: moana-driver
     identity:
-      serviceName: datapool
+      serviceName: moana-driver
     count: 1
     containers:
     - name: moana-driver

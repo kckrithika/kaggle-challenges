@@ -21,8 +21,8 @@ apps:
   datapool-test:
   - prd/prd-sam
 
-# Disabled need ACLs for Kafka
-#  moana-driver-prd:
-#  - prd/prd-sam
+# moana driver used for testing moana via kafka.
+  moana-driver-prd:
+  - prd/prd-sam
 
 
