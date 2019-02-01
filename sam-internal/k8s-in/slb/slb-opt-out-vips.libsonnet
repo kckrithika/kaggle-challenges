@@ -182,6 +182,8 @@ local vipwdOptOutConfig = {
       "test-stmub1-0-prd-steam-prd",
     ],
     namespaces: [
+      // 2019/01/31 - mgrass: Long-time flaky VIP in user namespace. Opting out to address more pressing matters.
+      // Investigation here: https://computecloud.slack.com/archives/G340CE86R/p1548979993685500?thread_ts=1548979508.678000&cid=G340CE86R.
       "user-varun-vyas",
     ],
   },
