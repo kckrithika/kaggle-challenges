@@ -181,6 +181,9 @@ local vipwdOptOutConfig = {
       "test-stmua1-0-prd-steam-prd",
       "test-stmub1-0-prd-steam-prd",
     ],
+    namespaces: [
+      "user-varun-vyas",
+    ],
   },
 
   "xrd-sam":
