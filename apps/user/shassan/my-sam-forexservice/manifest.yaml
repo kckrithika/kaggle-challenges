@@ -12,6 +12,51 @@ system:
         httpGet:
           path: /forex/hello
           port: 8000
+    - name: beacon
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      args:
+      - -endpoint
+      - samapp/user-shassan/mysamforexservice:DATACENTER_ALLENV:7443
+      livenessProbe:
+       initialDelaySeconds: 5
+       exec:
+         command:
+         - /home/scone/is-alive.sh
+    - name: sherpa
+      # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      ports:
+      - containerPort: 7443
+        name: http2-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+           - ./bin/is-alive
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+           - ./bin/is-ready
+        initialDelaySeconds: 110
+        periodSeconds: 5
+  # The cert names should match whatever you chose in your volumes section.
+  # The mount paths match the defaults assumed by sherpa. Changing the paths requires a corresponding manual override in sherpa.
+      volumeMounts:
+       - name: client-cert
+         mountPath: /client-certs
+       - name: server-cert
+         mountPath: /server-certs
+    volumes:
+    - name: client-cert
+      maddogCert:
+        type: client
+    - name: server-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - lbname: shassan-samforexlb
     function: mysamforexservice
