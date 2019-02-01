@@ -3155,6 +3155,30 @@
     },
     {
       "namespaces": [
+        "sds"
+      ],
+      "access": [
+        "team/sds"
+      ],
+      "controlEstate": "xrd-sam",
+      "estate": "xrd-sdstools",
+      "kingdom": "xrd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "sds"
+      ],
+      "access": [
+        "team/sds"
+      ],
+      "controlEstate": "xrd-sam",
+      "estate": "xrd-sdstoolsdev",
+      "kingdom": "xrd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
