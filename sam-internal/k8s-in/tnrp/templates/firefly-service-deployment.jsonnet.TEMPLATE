@@ -38,6 +38,11 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
 
     replace_after(0, 0, "")
   ),
+
+  // Only generate certs for customer vaults for PR and Package services
+  local is_customer_certs_enabled = configs.estate == 'prd-sam' &&
+    ($['serviceName'] == "firefly-pullrequest" || $['serviceName'] == "firefly-package"),
+
   serviceConf:: {},
   commonVolMounts:: [
     {
@@ -140,137 +145,178 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
       replicas: $.replicas,
       template: {
          metadata: {
-          namespace: "firefly",
-          name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
-          labels: {
-            name: $.serviceName,
-          } + configs.ownerLabel.tnrp,
-          annotations: {
-            'madkub.sam.sfdc.net/allcerts': strReplace('{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client", "kingdom":"prd", "role": "#role"}]}', '#role', $.role),
-          },
+           namespace: "firefly",
+           name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['deployment']),
+           labels: {
+             name: $.serviceName,
+           } + configs.ownerLabel.tnrp,
+           annotations: if is_customer_certs_enabled then {
+             // Create a cert with role firefly.customer for accessing customer secrets
+             local certReqs = [
+               {"name": "certs", "cert-type":"client", "kingdom":"prd", "role": $.role},
+               {"name": "customer-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer"},
+             ],
+             'madkub.sam.sfdc.net/allcerts': std.manifestJson({"certreqs" : certReqs}),
+           } else {
+             'madkub.sam.sfdc.net/allcerts': strReplace('{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client", "kingdom":"prd", "role": "#role"}]}', '#role', $.role),
+           },
          },
          spec: {
           initContainers: [
-            madkub.madkubInitContainer(),
+            madkub.madkubInitContainer() + if is_customer_certs_enabled then {
+              args +: [
+                "--cert-folders",
+                "customer-certs:/customer-certs/",
+              ],
+              volumeMounts +: [
+                {
+                  mountPath: "/customer-certs/",
+                  name: "customer-certs",
+                },
+              ],
+            } else {},
           ],
           containers: [
-          madkub.madkubRefreshContainer(),
-          {
-            name: $.serviceName,
-            image: $.dockerImage,
-            [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
-            command: $.command,
-            imagePullPolicy: 'Always',
-            env: $.env,
-            ports: [
-                 {
-                   name: "admin-port",
-                   protocol: "TCP",
-                   containerPort: $.serviceConf.healthPort,
-                 },
-            ] + if std.length($.serviceConf.port) < 0 then [] else $.serviceConf.port,
-            volumeMounts: $.volumeMounts,
-            livenessProbe: {
-              httpGet: {
-              path: '/actuator',
-              port: 'admin-port',
+            madkub.madkubRefreshContainer() + if is_customer_certs_enabled then {
+              args +: [
+                "--cert-folders",
+                "customer-certs:/customer-certs/",
+              ],
+              volumeMounts +: [         
+                {
+                  mountPath: "/customer-certs/",
+                  name: "customer-certs",
+                },
+              ],
+            } else {},
+            {
+              name: $.serviceName,
+              image: $.dockerImage,
+              [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
+              command: $.command,
+              imagePullPolicy: 'Always',
+              env: $.env,
+              ports: [
+                   {
+                     name: "admin-port",
+                     protocol: "TCP",
+                     containerPort: $.serviceConf.healthPort,
+                   },
+              ] + if std.length($.serviceConf.port) < 0 then [] else $.serviceConf.port,
+              volumeMounts: $.volumeMounts,
+              livenessProbe: {
+                httpGet: {
+                path: '/actuator',
+                port: 'admin-port',
+                },
+                initialDelaySeconds: 30,
+                timeoutSeconds: 30,
+                periodSeconds: 30,
+                successThreshold: 1,
+                failureThreshold: 10,
               },
-              initialDelaySeconds: 30,
-              timeoutSeconds: 30,
-              periodSeconds: 30,
-              successThreshold: 1,
-              failureThreshold: 10,
-            },
-//            [if std.startsWith($.serviceName, "firefly-intake") then "readinessProbe"]: {
-//              httpGet: {
-//              path: '/actuator/health',
-//              port: 'admin-port',
+//              [if std.startsWith($.serviceName, "firefly-intake") then "readinessProbe"]: {
+//                httpGet: {
+//                path: '/actuator/health',
+//                port: 'admin-port',
+//                },
+//                initialDelaySeconds: 30,
+//                timeoutSeconds: 30,
+//                periodSeconds: 60,
+//                successThreshold: 1,
+//                failureThreshold: 10,
 //              },
-//              initialDelaySeconds: 30,
-//              timeoutSeconds: 30,
-//              periodSeconds: 60,
-//              successThreshold: 1,
-//              failureThreshold: 10,
-//            },
-          },
-           ] + if $.serviceConf.dindEnabled == false then [] else [
-          {
-             name: "dind-daemon",
-             image: images.fireflydind,
-             securityContext: {
-               privileged: true,
-             },
-             volumeMounts: [
-              {
-                name: "docker-graph-storage",
-                mountPath: "/var/lib/docker",
+            },
+          ] + if $.serviceConf.dindEnabled == false then [] else [
+            {
+              name: "dind-daemon",
+              image: images.fireflydind,
+              securityContext: {
+                privileged: true,
               },
-              {
-                name: "docker-build-dir",
-                mountPath: "/tmp",
-              },
-              {
-                name: "git-ssh-keys",
-                mountPath: "/root/.ssh/",
-              },
-              {
-                name: "firefly-root-dir",
-                mountPath: "/firefly",
-              },
-             ],
-          },
+              volumeMounts: [
+                {
+                  name: "docker-graph-storage",
+                  mountPath: "/var/lib/docker",
+                },
+                {
+                  name: "docker-build-dir",
+                  mountPath: "/tmp",
+                },
+                {
+                  name: "git-ssh-keys",
+                  mountPath: "/root/.ssh/",
+                },
+                {
+                  name: "firefly-root-dir",
+                  mountPath: "/firefly",
+                },
+              ] + if is_customer_certs_enabled then [
+                {
+                  name: "customer-certs",
+                  mountPath: "/customer-certs/",
+                }
+              ] else [],
+            },
           ],
           volumes: [
-          {
-            name: 'app-config-volume',
-            projected: {
-            sources: [
-              {
-              configMap: {
-                name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['configmap']),
-                items: [
-                {
-                  key: 'application.yml',
-                  path: 'application.yml',
-                },
+            {
+              name: 'app-config-volume',
+              projected: {
+                sources: [
+                  {
+                    configMap: {
+                      name: std.join("-", [$.serviceName] + [if "repoName" in $.serviceConf then $.serviceConf.repoName] + ['configmap']),
+                      items: [
+                        {
+                          key: 'application.yml',
+                          path: 'application.yml',
+                        },
+                      ],
+                    },
+                  },
                 ],
               },
+            },
+            {
+              name: "docker-graph-storage",
+              emptyDir: {},
+            },
+            {
+              name: "docker-build-dir",
+              emptyDir: {},
+            },
+            {
+              name: "firefly-root-dir",
+              emptyDir: {},
+            },
+            {
+              name: "tokens",
+              emptyDir: {
+                medium: "Memory",
               },
-            ],
             },
-          },
-          {
-            name: "docker-graph-storage",
-            emptyDir: {},
-          },
-          {
-            name: "docker-build-dir",
-            emptyDir: {},
-          },
-          {
-            name: "firefly-root-dir",
-            emptyDir: {},
-          },
-          {
-            name: "tokens",
-            emptyDir: {
-              medium: "Memory",
+            {
+              name: "certs",
+              emptyDir: {
+                medium: "Memory",
+              },
             },
-          },
-          {
-            name: "certs",
-            emptyDir: {
-              medium: "Memory",
+            {
+              name: "git-ssh-keys",
+              emptyDir: {
+                medium: "Memory",
+              },
             },
-          },
-          {
-            name: "git-ssh-keys",
-            emptyDir: {
-              medium: "Memory",
-            },
-          },
-          configs.maddog_cert_volume,
-          ],
+            configs.maddog_cert_volume,
+          ] + if is_customer_certs_enabled then [
+              {
+                name: "customer-certs",
+                emptyDir: {
+                  medium: "Memory",
+                },
+              },
+          ] else [],
           terminationGracePeriodSeconds: 10,
           nodeSelector: {
             pool: $.serviceConf.pool,
