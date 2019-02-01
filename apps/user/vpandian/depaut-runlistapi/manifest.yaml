@@ -25,7 +25,7 @@ system:
         name: jenkins
       volumeMounts:
       - mountPath: /data/jenkins
-        name: jenkinsdata
+        name: depautjenkinsdata
   loadbalancers:
   - lbname: depaut-runlistapi-lb
     function: depaut-runlistapi
