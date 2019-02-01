@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-private
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:0.10.5
+      image: sfci/searchdev/universal-search:1.0.4
       ports:
       - name: service-port
         containerPort: 7020
@@ -51,20 +51,17 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 120
+        initialDelaySeconds: 60
         timeoutSeconds: 10
         periodSeconds: 120
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
       - containerPort: 7443
         name: sherpa-tls  
       - containerPort: 15373
         name: sherpa-adm
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -113,8 +110,8 @@ system:
     - name: universal-search-synthetics
       image: sfci/searchdev/universal-search-synthetics:0.0.7
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: { cpu: "100m", memory: "1Gi" }
+        requests: { cpu: "100m", memory: "1Gi" }
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
@@ -132,13 +129,10 @@ system:
         periodSeconds: 900
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
       - containerPort: 15373
         name: sherpa-adm
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
