@@ -21,4 +21,7 @@ apps:
   datapool-test:
   - prd/prd-sam
 
+  moana-driver-prd:
+  - prd/prd-sam
+
 
