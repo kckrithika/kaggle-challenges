@@ -14,4 +14,5 @@ local configs = import "config.jsonnet";
     portalKubeConfigEnabled: (slbimages.hypersdn_build <= 1442),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
     portalSfdcHostsMountEnabled: (slbimages.phaseNum <= 3),
+    artifactoryBootstrapEnabled: (slbimages.phaseNum <= 1),
 }

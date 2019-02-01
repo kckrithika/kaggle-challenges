@@ -50,6 +50,11 @@ local slbreleases = import "slbreleases.json";
     hypersdn: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hypersdn", slbreleases[$.phase].hypersdn.label),
     hypersdn_build: imageFunc.build_info_from_tag(slbreleases[$.phase].hypersdn.label).buildNumber,
 
+    # An old hypersdn image that should be deployed on all current ipvs nodes.
+    # TODO: switch to the sdn image (from sdnimages.jsonnet) once that has been successfully pulled everywhere.
+    fixed_hypersdn_bootstrap_tag: "v-0001443-9c651010",
+    hypersdn_ipvs_bootstrap: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hypersdn", $.fixed_hypersdn_bootstrap_tag),
+
     slbnginx: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "slb-nginx", slbreleases[$.phase].slbnginx.label),
     slbnginx_build: imageFunc.build_info_from_tag(slbreleases[$.phase].slbnginx.label).buildNumber,
 
