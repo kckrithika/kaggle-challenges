@@ -59,12 +59,12 @@ system:
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
       - "-interval=10m"
-      - "-image=slb-nginx" # The name of the image in artifactory.
-      - "-owner=sdn"
+      - "-image=nginx" # The name of the image in artifactory.
+      - "-owner=slb"
       - "-imageKey=slbnginx" # The name of the object to update in slbreleases.json.
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
-      - "-imageRegistryImageSource=tnrp"
+      - "-imageRegistryImageSource=dva"
       livenessProbe:
         exec:
           command: ["ls", "/"]
@@ -77,12 +77,12 @@ system:
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
       - "-interval=10m"
-      - "-image=slb-nginx-kms" # The name of the image in artifactory.
-      - "-owner=sdn"
+      - "-image=nginx-kms" # The name of the image in artifactory.
+      - "-owner=slb"
       - "-imageKey=kmsnginx" # The name of the object to update in slbreleases.json.
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
-      - "-imageRegistryImageSource=tnrp"
+      - "-imageRegistryImageSource=dva"
       livenessProbe:
         exec:
           command: ["ls", "/"]
