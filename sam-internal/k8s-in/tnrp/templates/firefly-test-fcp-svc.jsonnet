@@ -30,6 +30,9 @@ if configs.estate == "prd-sam" then
        local appConfig = packageConfig.config("firefly-package") + {
          appconfig+: {
             "multi-repo-supported": true,
+            docker+: {
+              "force-create-container": true,
+            },
           },
         },
        "application.yml": std.manifestJson(appConfig),
@@ -81,6 +84,9 @@ if configs.estate == "prd-sam" then
           appconfig+: {
             "multi-repo-supported": true,
             "self-auth-allowed": false,
+            docker+: {
+              "force-create-container": true,
+            },
           },
         },
         "application.yml": std.manifestJson(appConfig),
