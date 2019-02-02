@@ -108,6 +108,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
+      - name: FORCE_RESTART
+        value: 1
       args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
       - --switchboard=cs103-switchboard-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net:15001
