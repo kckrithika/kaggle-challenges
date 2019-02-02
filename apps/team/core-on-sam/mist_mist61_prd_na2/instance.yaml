@@ -1,4 +1,4 @@
-color: green
+color: blue
 db:
   hostName: mist61ice1-db1-1-prd.eng.sfdc.net
   instance: mist61b218utf-1
@@ -24,6 +24,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:a6729b3a765d262943bb20f9921b4343784dccef
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na2
-nonce: 1549070928667234000
+nonce: 1549071667970920000
 replicaCount: 1
 settingsSuperPod: sp2
