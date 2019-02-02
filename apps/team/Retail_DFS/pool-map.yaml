@@ -4,6 +4,8 @@ apps:
     - name: prd/prd-sam_crosscloudplatform
   dfs-func:   # fuctional test env instance
     - name: prd/prd-sam_crosscloudplatform
+  dfs-func-patch:   # fuctional patch test env instance
+    - name: prd/prd-sam_crosscloudplatform
   dfs-perf:   # perf test env instance
     - name: prd/prd-sam_crosscloudplatform
   dfs-fakecc-perf: # fake CC instance for perf testing
