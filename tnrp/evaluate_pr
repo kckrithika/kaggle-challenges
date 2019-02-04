@@ -10,7 +10,7 @@ else
    echo "*** EXECUTING IN $FIREFLY ENVIRONMENT"
    SAMBINDIR=/sam
    # This is required for SAM to run json consistency tests for sam-internal files
-   yum install -y make gcc gcc-c++ slb-manifest-builder-20190116_193918.8e59833.clean.4c6a93ba43c7-1.x86_64
+   yum install -y make gcc gcc-c++ slb-manifest-builder-20190202_195932.a96ca5a.clean.f5b44fb5d445-1.x86_64
 fi
 
 
