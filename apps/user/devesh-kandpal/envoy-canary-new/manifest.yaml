@@ -28,7 +28,7 @@ system:
     - name: envoy-canary-sherpa
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/56
       #image: sfci/servicelibs/sherpa-envoy:1.0.3
-      image: sfci/servicelibs/sherpa-envoy:31782074e49ce4f96adac97ad72c7834061225a8
+      image: sfci/servicelibs/sherpa-envoy:67314a498a5bcb29cf483b55d4753cb63bf2705b
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
