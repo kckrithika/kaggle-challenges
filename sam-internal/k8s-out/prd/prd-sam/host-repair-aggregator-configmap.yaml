@@ -13,7 +13,10 @@ data:
         "prd-sam",
         "xrd-sam",
         "prd-samtwo",
-        "frf-sam"
+        "frf-sam",
+        "dfw-sam",
+        "phx-sam",
+        "yhu-sam"
       ],
       "k8sFromDB": true,
       "k8sResourceDbName": "sam_kube_resource",
