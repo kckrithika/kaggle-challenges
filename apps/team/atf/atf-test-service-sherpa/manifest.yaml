@@ -17,7 +17,7 @@ system:
 
     - name: sherpa-b
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/53
-      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
       - name: sherpa-b-in
         containerPort: 7014
@@ -31,11 +31,6 @@ system:
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
-      volumeMounts:
-      - mountPath: /client-certs
-        name: client-cert
-      - mountPath: /server-certs
-        name: server-cert
       livenessProbe:
         exec:
           command:
@@ -54,7 +49,7 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       env:
       - name: SFDC_ENVIRONMENT
-        value: stmfa
+        value: atf
       args:
       # Non-namespaced, plaintext
       - -endpoint
@@ -68,10 +63,10 @@ system:
           command:
             - "/home/scone/is-alive.sh"
 
-    volumes:
-    - name: client-cert
-      maddogCert:
-        type: client
-    - name: server-cert
-      maddogCert:
-        type: server
+  loadbalancers:
+  - lbname: atf-test-service-sherpa-lb
+    function: atf-test-service-sherpa
+    slbEnabled: true
+    ports:
+      - port: 7025
+        targetport: 7022
