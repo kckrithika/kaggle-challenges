@@ -106,6 +106,33 @@ spec:
         volumeMounts:
         - mountPath: /etc/istio/config
           name: config-volume
+      - args:
+        - --debug-mode
+        - "true"
+        env:
+        - name: FUNCTION_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: SETTINGS_SUPERPOD
+          value: '-'
+        - name: SETTINGS_PATH
+          value: -.-.prd.-.istio-pilot
+        - name: SFDC_METRICS_SERVICE_HOST
+          value: ajna0-funnel1-0-prd.data.sfdc.net
+        - name: SFDC_METRICS_SERVICE_PORT
+          value: "80"
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
+        imagePullPolicy: Always
+        name: metrics-scraper
+        readinessProbe:
+          exec:
+            command:
+            - /bin/true
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 5
       nodeSelector:
         pool: prd-sam_gater
       serviceAccount: istio-pilot-service-account

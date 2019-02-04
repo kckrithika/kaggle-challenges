@@ -3,6 +3,7 @@ local hosts = import "sam/configs/hosts.jsonnet";
 local istioConfigs = (import "service-mesh/istio-config.jsonnet") + { templateFilename:: std.thisFile };
 local istioUtils = (import "service-mesh/istio-utils.jsonnet") + { templateFilename:: std.thisFile };
 local istioImages = (import "service-mesh/istio-images.jsonnet") + { templateFilename:: std.thisFile };
+local funnelEndpoint = std.split(configs.funnelVIP, ":");
 
 configs.deploymentBase("mesh-control-plane") {
   metadata+: {
@@ -107,6 +108,54 @@ configs.deploymentBase("mesh-control-plane") {
               {
                 name: "config-volume",
                 mountPath: "/etc/istio/config",
+              },
+            ],
+          },
+          {
+            name: "metrics-scraper",
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev",
+            imagePullPolicy: "Always",
+            readinessProbe: {
+              exec: {
+                command: [
+                  "/bin/true",
+                ],
+              },
+              initialDelaySeconds: 5,
+              periodSeconds: 30,
+              timeoutSeconds: 5,
+            },
+            args: [
+              "--debug-mode",
+              "true",
+            ],
+            env: [
+              // See https://confluence.internal.salesforce.com/pages/viewpage.action?spaceKey=SAM&title=SAM+Environment+Variables
+              // for SAM environment variables.
+              {
+                name: "FUNCTION_NAMESPACE",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
+              {
+                name: "SETTINGS_SUPERPOD",
+                value: "-",
+              },
+              {
+                name: "SETTINGS_PATH",
+                value: "-.-." + configs.kingdom + ".-." + "istio-pilot",
+              },
+              {
+                name: "SFDC_METRICS_SERVICE_HOST",
+                value: funnelEndpoint[0],
+              },
+              {
+                name: "SFDC_METRICS_SERVICE_PORT",
+                value: funnelEndpoint[1],
               },
             ],
           },
