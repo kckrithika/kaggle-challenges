@@ -14,10 +14,9 @@ system:
         httpGet:
           path: /manage/health
           port: management-port
-
     - name: sherpa-b
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/53
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
       ports:
       - name: sherpa-b-in
         containerPort: 7014
@@ -27,10 +26,15 @@ system:
         containerPort: 15373
       env:
       - name: SFDC_ENVIRONMENT
-        value: stmfa
+        value: atf
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - mountPath: /client-certs
+        name: client-cert
+      - mountPath: /server-certs
+        name: server-cert
       livenessProbe:
         exec:
           command:
@@ -44,7 +48,6 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
-
     - name: beacon
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       env:
@@ -62,7 +65,13 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
-
+    volumes:
+    - name: client-cert
+      maddogCert:
+        type: client
+    - name: server-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - lbname: atf-test-service-sherpa-lb
     function: atf-test-service-sherpa
