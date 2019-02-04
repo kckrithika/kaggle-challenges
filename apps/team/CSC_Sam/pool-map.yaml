@@ -81,3 +81,5 @@ apps:
   - prd/prd-sam
  gcp-test-app:
   - mvp/gsf-core-devmvp-sam2-samtest
+ gcp-test-app-maddog:
+  - mvp/gsf-core-devmvp-sam2-samtest

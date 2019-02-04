@@ -1,0 +1,21 @@
+apiVersion: v1
+system:
+  functions:
+    - name: sam-gcp-test-func-maddog
+      count: 2
+      containers:
+        - name: samhello
+          image: gcr.io/gsf-core-devmvp-sam2/jy/samapptest:helloworld
+          ports:
+            - containerPort: 9090
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 9090
+          volumeMounts:
+            - mountPath: /certs
+              name: certs
+      volumes:
+        - name: certs
+          maddogCert:
+            type: server
