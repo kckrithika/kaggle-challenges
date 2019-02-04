@@ -8,7 +8,7 @@ system:
       k4aSecret:
         secretName: gittoken
     containers:
-    - name: samhello
+    - name: ampminus
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/russell-larsen/samhello:20190201.1
       ports:
       - containerPort: 9090
@@ -21,7 +21,7 @@ system:
          name: secretvol
          readOnly: true
   loadbalancers:
-  - lbname: samhellolb
+  - lbname: ampminuslb
     function: default
     slbenabled: true
     ports:
