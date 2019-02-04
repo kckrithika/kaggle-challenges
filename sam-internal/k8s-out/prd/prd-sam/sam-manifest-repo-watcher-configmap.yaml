@@ -29,7 +29,7 @@ data:
         "svc-tnrp-git-rw",
         "svc-tnrp-git"
       ],
-      "tnrp-bot-scan-frequency": "30s",
+      "tnrp-bot-scan-frequency": "10s",
       "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/",
       "tnrp-scan-on": true,
       "webhook-on": true,
