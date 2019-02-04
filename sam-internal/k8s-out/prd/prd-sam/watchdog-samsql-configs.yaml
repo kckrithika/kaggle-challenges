@@ -163,9 +163,8 @@ data:
     samlatencysec\nFROM   (   \n                       SELECT          pr_num, \n                                       imagelatencysec,
     \n                                       GREATEST(totallatencysec1, totallatencysec2)
     totallatencysec, \n                                       Timestampdiff(second,
-    merged_time, \n                                       CASE \n                                                       WHEN
-    t.manifest_zip_time IS NULL THEN Now()\n                                                       ELSE
-    t.manifest_zip_time \n                                       END) AS tnrplatency,\n                                       evalPrLatency,\n                                       merged_time\n                       FROM            (   \n                                                 SELECT    prs.pr_num,
+    merged_time, \n                                       LEAST(t.manifest_zip_time,
+    startTime)) AS tnrplatency,\n                                       evalPrLatency,\n                                       merged_time\n                       FROM            (   \n                                                 SELECT    prs.pr_num,
     \n                                                           prs.git_hash, \n                                                           prs.merged_time,
     \n                                                           Max(Timestampdiff(second,
     Str_to_date(Json_unquote(payload -> ''$.status.startTime''),''%Y-%m-%dT%H:%i:%s''),
@@ -184,7 +183,10 @@ data:
     Json_unquote(payload -> ''$.status.maxImageEndTime'')\n                                                           END,
     ''%Y-%m-%dT%H:%i:%s''))) totallatencysec2,\n                                                           Timestampdiff(second,
     prs.`most_recent_authorized_time`, prs.`most_recent_evaluate_pr_completion_time`)
-    evalPrLatency        \n                                                 FROM      PullRequests
+    evalPrLatency,\n                                                           Max(Str_to_date(\n                                                           CASE\n                                                                     WHEN
+    payload -> ''$.status.startTime'' = ''0001-01-01T00:00:00Z'' THEN CURRENT_TIMESTAMP()\n                                                                     ELSE
+    Json_unquote(payload -> ''$.status.startTime'')\n                                                           END,
+    ''%Y-%m-%dT%H:%i:%s'')) startTime\n                                                 FROM      PullRequests
     prs \n                                                 INNER JOIN PullRequestToTeamOrUser
     pApp ON prs.`pr_num` = pApp.`pr_num`\n                                                 LEFT
     JOIN \n                                                           (   \n                                                                  SELECT

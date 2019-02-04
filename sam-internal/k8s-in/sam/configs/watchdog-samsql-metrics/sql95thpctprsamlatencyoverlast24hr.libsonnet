@@ -13,10 +13,7 @@ FROM   (
                                        imagelatencysec, 
                                        GREATEST(totallatencysec1, totallatencysec2) totallatencysec, 
                                        Timestampdiff(second, merged_time, 
-                                       CASE 
-                                                       WHEN t.manifest_zip_time IS NULL THEN Now()
-                                                       ELSE t.manifest_zip_time 
-                                       END) AS tnrplatency,
+                                       LEAST(t.manifest_zip_time, startTime)) AS tnrplatency,
                                        evalPrLatency,
                                        merged_time
                        FROM            (   
@@ -38,7 +35,12 @@ FROM   (
                                                                      WHEN payload -> '$.status.maxImageEndTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP()        
                                                                      ELSE Json_unquote(payload -> '$.status.maxImageEndTime')
                                                            END, '%Y-%m-%dT%H:%i:%s'))) totallatencysec2,
-                                                           Timestampdiff(second, prs.`most_recent_authorized_time`, prs.`most_recent_evaluate_pr_completion_time`) evalPrLatency        
+                                                           Timestampdiff(second, prs.`most_recent_authorized_time`, prs.`most_recent_evaluate_pr_completion_time`) evalPrLatency,
+                                                           Max(Str_to_date(
+                                                           CASE
+                                                                     WHEN payload -> '$.status.startTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP()
+                                                                     ELSE Json_unquote(payload -> '$.status.startTime')
+                                                           END, '%Y-%m-%dT%H:%i:%s')) startTime
                                                  FROM      PullRequests prs 
                                                  INNER JOIN PullRequestToTeamOrUser pApp ON prs.`pr_num` = pApp.`pr_num`
                                                  LEFT JOIN 
