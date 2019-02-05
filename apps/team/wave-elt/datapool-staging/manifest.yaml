@@ -10,7 +10,7 @@ system:
     count: 1
     containers:
     - name: datapool-service
-      image: sfci/insights/datapoolservice:release-89-52e3d5c
+      image: sfci/insights/datapoolservice:release-90-2d5b4d2
       ports:
       - containerPort: 7020
         name: grpc
@@ -34,7 +34,7 @@ system:
         value: dva/datapool-engine:409-302e14bf9ae4fab2a24098bae3e2df31ea7a1ca7
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_NEXT
-        value: dva/datapool-engine:jenkins-insights-WaveDataPool-master-8-itest
+        value: dva/datapool-engine:jenkins-insights-WaveDataPool-master-9-itest
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
         value: mist40,mist47,stmfa
