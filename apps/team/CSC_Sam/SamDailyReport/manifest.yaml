@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: samreport
-      image: tnrp/sam/hypersam:sam-0002229-6749f11e
+      image: dva/sam/hypersam:2600-3d363277b10101ae15b8e17a2d2853b49c7af030
       env:
         - name: TEST
           value: "123"
