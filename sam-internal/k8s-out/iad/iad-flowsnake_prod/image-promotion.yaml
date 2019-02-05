@@ -332,14 +332,6 @@ spec:
         name: flowsnake-job-flowsnake-demo-job
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.5
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest
-        name: flowsnake-spark-driver-2-1-0
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-master_2.1.0:jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest
-        name: flowsnake-spark-master-2-1-0
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-worker_2.1.0:jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest
-        name: flowsnake-spark-worker-2-1-0
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-history-server_2.1.0:jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest
-        name: flowsnake-spark-history-server-2-1-0
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-driver_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest
         name: flowsnake-spark-driver-2-3-0
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest
@@ -372,18 +364,10 @@ spec:
         name: flowsnake-sluice-configurator
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-kafka-connect:jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest
         name: flowsnake-kafka-connect
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest
-        name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest
-        name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-zookeeper:jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest
         name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-logstash:jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest
         name: flowsnake-logstash
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:0.12.5-wave
-        name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:0.12.5-wave
-        name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-698-itest
         name: extra-image-0
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-s3:jenkins-dva-transformation-flowsnake-sample-apps-spark-s3-worker-image-1-itest
