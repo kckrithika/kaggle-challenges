@@ -24,7 +24,7 @@ system:
 
     containers:
     - name: coreapp
-      image: tnrp/casam/coreapp:218_patch__17256182-0000133-36928cc3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_216-patch_17322943
 
       env:
         # DB info
@@ -35,13 +35,13 @@ system:
           value: rotate
 
         - name: DB_SID
-          value: mist61b218utf
+          value: mist61a216utf
 
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
 
         - name: DB_INSTANCE_NAME
-          value: mist61b218utf-1
+          value: mist61a216utf-1
           
         - name: DB_STATS_USER
           value: snowwhite
@@ -133,13 +133,12 @@ system:
         periodSeconds: 1
 
       readinessProbe:
-        exec:
-          command:
-           - /home/sfdc/salesforce/build/ready_probe.sh
+        failureThreshold: 100
+        httpGet:
+          path: /ping.jsp
+          port: 8085
         initialDelaySeconds: 120
-        periodSeconds: 5
-        timeoutSeconds: 5
-        failureThreshold: 99999
+        periodSeconds: 1
 
       ports:
         # Actually used by the container
