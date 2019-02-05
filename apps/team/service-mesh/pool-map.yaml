@@ -5,20 +5,24 @@ apps:
 
   switchboard:
     - prd/prd-sam_gater
-  switchboard-prod:
-    - cdg/cdg-sam_gater
-    - dfw/dfw-sam_gater
-    - fra/fra-sam_gater
+  switchboard-prod-1-canary:
+    - par/par-sam_gater
+  switchboard-prod-2:
     - frf/frf-sam_gater
+    - ukb/ukb-sam_gater
+  switchboard-prod-3:
+    - fra/fra-sam_gater
     - hnd/hnd-sam_gater
+  switchboard-prod-4:
     - iad/iad-sam_gater
     - ord/ord-sam_gater
+  switchboard-prod-5:
+    - dfw/dfw-sam_gater
+  switchboard-prod-6:
+    - cdg/cdg-sam_gater
     - phx/phx-sam_gater
-    - ukb/ukb-sam_gater
     - ph2/ph2-sam_gater
     - ia2/ia2-sam_gater
-  switchboard-prod-canary:
-    - par/par-sam_gater
 
   time:
     - prd/prd-sam
