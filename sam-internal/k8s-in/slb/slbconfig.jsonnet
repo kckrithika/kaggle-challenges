@@ -46,7 +46,7 @@
 
     kernelVersionNodeFilter: "pool=" + $.slbEstate,
     kernelVersionPrefixList: (
-        if configs.estate == "prd-sdc" then
+        if slbimages.hypersdn_build < 1425 then
             "3.10.0-862"
         else
             "3.10.0-862,3.10.0-957"
