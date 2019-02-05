@@ -90,7 +90,14 @@ local utils = import "util_functions.jsonnet",
     else
         "https://ops0-piperepo1-0-" + kingdom + ".data.sfdc.net/"
     ),
-    tnrpArchiveEndpoint: self.tnrpEndpoint + "tnrp/content_repo/0/archive",
+    tnrpArchiveEndpoint: (
+    if utils.is_pcn(kingdom) then
+        "https://ops0-artifactrepo2-0-xrd.slb.sfdc.net/tnrp/content_repo/0/archive"
+    else
+        self.tnrpEndpoint + "tnrp/content_repo/0/archive"
+    ),
+    gcpRegistry: "gcr.io",
+    gcpProject: "gsf-core-devmvp-sam2",
     registry: (
     if kingdom == "prd" then
         "ops0-artifactrepo2-0-" + kingdom + ".data.sfdc.net"
@@ -99,6 +106,8 @@ local utils = import "util_functions.jsonnet",
     else if kingdom == "vpod" then
         #use PRD
         "ops0-artifactrepo2-0-prd.data.sfdc.net"
+    else if utils.is_pcn(kingdom) then
+        self.gcpRegistry + "/" + self.gcpProject
     else
         "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net"
     ),
