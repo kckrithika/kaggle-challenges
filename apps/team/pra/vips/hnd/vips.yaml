@@ -33,17 +33,6 @@
     reencrypt: true
     healthport: 80
     healthprotocol: tcp
-- lbname: pra-ccn-1-0-hnd
-  customlbname: pra-ccn-1-0-hnd
-  servers:
-  - ops0-praccn1-1-hnd.ops.sfdc.net
-  - ops0-praccn2-1-hnd.ops.sfdc.net
-  ports:
-  - port: 5000
-    targetport: 5000
-    lbtype: http
-    healthport: 80
-    healthprotocol: tcp
 - lbname: pra-keystone-admin-hnd
   customlbname: pra-keystone-admin-hnd
   servers:
