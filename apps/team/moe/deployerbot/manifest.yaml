@@ -141,7 +141,7 @@ system:
       - "-owner=sam"
       - "-samInternalTeamName=SAM"
       - "-targetPhaseNumber=1"
-      - "-imageRegistryImageSource=tnrp"
+      - "-imageRegistryImageSource=dva"
       livenessProbe:
         exec:
           command: ["ls", "/"]
