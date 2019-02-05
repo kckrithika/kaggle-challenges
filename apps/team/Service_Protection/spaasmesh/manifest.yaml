@@ -13,12 +13,12 @@ system:
     
     # number of instances ("kpods") to deploy and run
     # recommended min: 3 for availability
-    count: 1
+    count: 3
     
     # Docker image(s) that make up one instance of the service
     containers:
     - name: spaas
-      image: sfci/service-protection/sps:0.0.5.4
+      image: sfci/service-protection/sps:0.0.5.7
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
