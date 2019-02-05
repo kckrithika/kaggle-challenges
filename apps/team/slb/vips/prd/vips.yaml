@@ -62,4 +62,4 @@
     healthprotocol: http
     healthpath: /ping.jsp?allBusy
     removeheaders:
-    - "CipherSuite"      
+    - "CipherSuite"
