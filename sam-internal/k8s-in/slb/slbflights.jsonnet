@@ -12,5 +12,5 @@ local configs = import "config.jsonnet";
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
     portalSfdcHostsMountEnabled: (slbimages.phaseNum <= 3),
     artifactoryBootstrapEnabled: (slbimages.hypersdn_build >= 2046),
-    kernelVersionCheckerEnabled: (slbimages.phaseNum <= 1),
+    kernelVersionCheckerEnabled: (slbimages.hypersdn_build >= 2053),
 }
