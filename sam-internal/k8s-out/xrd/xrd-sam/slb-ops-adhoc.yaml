@@ -25,7 +25,7 @@ spec:
         env:
         - name: IMMUTABLE_DEPLOYMENTS_ARE_GOOD
           value: "true"
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/sdn/hypersdn:2046-6b431a7fd9786af9b5093633f8fbdf5659e0453c
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/sdn/hypersdn:2050-616c5eb2473cec1c78db647ac46da72d09fbd547
         name: slb-ops-adhoc
         resources:
           limits:
