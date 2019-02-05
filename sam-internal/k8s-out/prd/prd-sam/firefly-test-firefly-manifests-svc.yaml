@@ -32,6 +32,7 @@ items:
               "docker": {
                   "connect-timeout": "480000ms",
                   "docker-cert-path": "/etc/docker/certs.d",
+                  "force-create-container": "false",
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
@@ -39,6 +40,7 @@ items:
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
               "max-latency": "600000ms",
+              "multi-repo-supported": false,
               "repo-config": {
                   "manifest_driven_promotions": {
                       "type": "artifacts"
@@ -335,7 +337,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "23"
+            value: "24"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -346,7 +348,7 @@ items:
             value: sam-test-firefly-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: sam-test-firefly-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:299
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:301
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -505,6 +507,7 @@ items:
               "docker": {
                   "connect-timeout": "480000ms",
                   "docker-cert-path": "/etc/docker/certs.d",
+                  "force-create-container": "false",
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
@@ -512,6 +515,7 @@ items:
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
               "max-latency": "600000ms",
+              "multi-repo-supported": false,
               "repo-config": {
                   "manifest_driven_promotions": {
                       "type": "artifacts"
@@ -702,8 +706,17 @@ items:
     template:
       metadata:
         annotations:
-          madkub.sam.sfdc.net/allcerts: '{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client",
-            "kingdom":"prd", "role": "firefly"}]}'
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+                "certreqs": [
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "certs",
+                        "role": "firefly"
+                    }
+                ]
+            }
         labels:
           name: firefly-package-singleton
           sam.data.sfdc.net/owner: tnrp
@@ -789,7 +802,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "21"
+            value: "22"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -800,7 +813,7 @@ items:
             value: sam-test-firefly-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: sam-test-firefly-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:299
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:301
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -923,6 +936,7 @@ items:
               "docker": {
                   "connect-timeout": "480000ms",
                   "docker-cert-path": "/etc/docker/certs.d",
+                  "force-create-container": "false",
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
@@ -930,6 +944,8 @@ items:
                   "pipeline-manifest-json": "/tnrp/pipeline_manifest.json"
               },
               "instance-type": "${INSTANCE_TYPE}",
+              "multi-repo-supported": false,
+              "self-auth-allowed": true,
               "workspace-config": {
                   "root-dir": "/firefly"
               }
@@ -1211,14 +1227,14 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "24"
+            value: "25"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
             value: test-firefly-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: sam-test-firefly-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:299
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:301
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1559,8 +1575,17 @@ items:
     template:
       metadata:
         annotations:
-          madkub.sam.sfdc.net/allcerts: '{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client",
-            "kingdom":"prd", "role": "firefly"}]}'
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+                "certreqs": [
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "certs",
+                        "role": "firefly"
+                    }
+                ]
+            }
         labels:
           name: firefly-promotion
           sam.data.sfdc.net/owner: tnrp
@@ -1644,14 +1669,14 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "16"
+            value: "17"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
             value: test-firefly-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: sam-test-firefly-manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:296
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:301
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10

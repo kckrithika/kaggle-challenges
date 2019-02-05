@@ -47,6 +47,8 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       artifactory: artifactoryConfig.base,
       'context-prefix': '',
       'back-off-period': '2000ms',
+      'multi-repo-supported': false,
+      'self-auth-allowed': true,
     },
     local custom_monitoring_configs = {
       'enable-metrics-logging': false,

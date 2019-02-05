@@ -11,8 +11,6 @@ local portConfig = import "portconfig.jsonnet";
         dockerCertPath:: "/etc/docker/certs.d",
         artifactoryUserName:: 'svc_tnrp_artifactory',
         gitHttpLogging:: 'NONE',
-        prrRoutingKeyFormat:: '%s-%s.pr',
-        pushRoutingKeyFormat:: '%s-%s.package',
         routingKeyFormat:: '%s-%s.%s',
     },
     dev:: $.common {

@@ -60,7 +60,8 @@ local dockerConfig = import "configs/firefly-docker.jsonnet";
       artifactory: artifactoryConfig.prod,
       'context-prefix': '',
       'deliver-to-gcp': 'true',
-      'image-promotion-yaml': 'image-promotion.yaml'
+      'image-promotion-yaml': 'image-promotion.yaml',
+      'multi-repo-supported': false,
     },
     local custom_monitoring_configs = {
       'enable-metrics-logging': false,

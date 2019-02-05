@@ -68,8 +68,6 @@ items:
               },
               "rabbitmq": {
                   "exchange-name": "firefly.delivery",
-                  "prr-routing-key-format": "%s-%s.pr",
-                  "push-routing-key-format": "%s-%s.package",
                   "routing-key-format": "%s-%s.%s"
               }
           },
@@ -220,8 +218,17 @@ items:
     template:
       metadata:
         annotations:
-          madkub.sam.sfdc.net/allcerts: '{"certreqs":[{"name": "certs","san":["firefly"],"cert-type":"client",
-            "kingdom":"prd", "role": "firefly"}]}'
+          madkub.sam.sfdc.net/allcerts: |-
+            {
+                "certreqs": [
+                    {
+                        "cert-type": "client",
+                        "kingdom": "prd",
+                        "name": "certs",
+                        "role": "firefly"
+                    }
+                ]
+            }
         labels:
           name: firefly-intake-dl
           sam.data.sfdc.net/owner: tnrp
@@ -305,10 +312,10 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "22"
+            value: "23"
           - name: DARKLAUNCH
             value: "true"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:296
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:301
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10

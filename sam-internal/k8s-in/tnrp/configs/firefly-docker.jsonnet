@@ -6,4 +6,5 @@ local configs = import "config.jsonnet";
   'docker-cert-path': envConfig.environmentMapping[configs.estate].dockerCertPath,
   'read-timeout': '480000ms',
   'connect-timeout': '480000ms',
+  'force-create-container': 'false',
 }

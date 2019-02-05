@@ -61,8 +61,6 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
       monitoring: monitoringConfig.monitor(serviceName),
       rabbitmq: {
         'exchange-name': envConfig.environmentMapping[configs.estate].exchangeName,
-        'prr-routing-key-format': envConfig.environmentMapping[configs.estate].prrRoutingKeyFormat,
-        'push-routing-key-format': envConfig.environmentMapping[configs.estate].pushRoutingKeyFormat,
         'routing-key-format': envConfig.environmentMapping[configs.estate].routingKeyFormat,
       },
       ghe: {
