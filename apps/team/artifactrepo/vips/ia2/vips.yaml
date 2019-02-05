@@ -1,0 +1,15 @@
+- lbname: ops0-artifactrepo1-0-ia2
+  customlbname: ops0-artifactrepo1-0-ia2
+  servers:
+    - ops0-artifactrepo1-1-ia2.ops.sfdc.net
+    - ops0-artifactrepo1-2-ia2.ops.sfdc.net
+    - ops0-artifactrepo2-1-ia2.ops.sfdc.net
+  ports:
+    - port: 443
+      targetport: 18443
+      lbtype: http
+      tls: true
+      reencrypt: true
+      healthport: 8080
+      healthpath: /artifactory/api/system/ping
+      healthprotocol: http
