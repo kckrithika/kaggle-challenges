@@ -9,7 +9,7 @@ system:
         secretName: gittoken
     containers:
     - name: ampminus
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/russell-larsen/samhello:20190201.1
+      image: dva-registry.internal.salesforce.com/dva/ampminus:3
       ports:
       - containerPort: 9090
       livenessProbe:
