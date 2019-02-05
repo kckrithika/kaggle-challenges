@@ -1,5 +1,5 @@
 apps:
- sme-beacon:
+ prd-sme-new:
   - prd/prd-sam
- sme-groups:
+ prd-sme-old:
   - prd/prd-sam
