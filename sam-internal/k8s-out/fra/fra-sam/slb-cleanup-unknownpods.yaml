@@ -29,7 +29,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-fra.data.sfdc.net/dva/sdn/hypersdn:2046-6b431a7fd9786af9b5093633f8fbdf5659e0453c
+        image: ops0-artifactrepo1-0-fra.data.sfdc.net/dva/sdn/hypersdn:2050-616c5eb2473cec1c78db647ac46da72d09fbd547
         name: slb-cleanup-unknownpods
         volumeMounts:
         - mountPath: /etc/pki_service
