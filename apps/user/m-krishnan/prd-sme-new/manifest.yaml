@@ -18,7 +18,7 @@ system:
       - service.jar
       args:
       - --modelstore.repo.models=model_repository_root/models
-      - --modelstore.repo.manifests=model_repository_root/test_manifests/manifests
+      - --modelstore.repo.manifests=model_repository_root/manifests
       ports:
       - name: service-port
         containerPort: 7020
