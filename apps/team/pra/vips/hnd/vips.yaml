@@ -32,6 +32,7 @@
     tls: true
     reencrypt: true
     healthport: 80
+    healthpath: /ping
     healthprotocol: tcp
 - lbname: pra-keystone-admin-hnd
   customlbname: pra-keystone-admin-hnd
@@ -45,6 +46,7 @@
     tls: true
     reencrypt: true
     healthport: 80
+    healthpath: /ping
     healthprotocol: tcp
 - lbname: pra-glance-api-hnd
   customlbname: pra-glance-api-hnd
