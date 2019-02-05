@@ -2,15 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-canary-passthrough-host-network
-  name: slb-canary-passthrough-host-network
+    name: slb-nginx-accesslogs
+  name: slb-nginx-accesslogs
   namespace: sam-system
 spec:
   minReadySeconds: 30
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      name: slb-canary-passthrough-host-network
+      name: slb-nginx-accesslogs
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -19,24 +19,31 @@ spec:
   template:
     metadata:
       labels:
-        name: slb-canary-passthrough-host-network
+        name: slb-nginx-accesslogs
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sdn/slb-canary-service
-        - --serviceName=slb-canary-passthrough-host-network
+        - /sdn/slb-nginx-accesslogs
         - --log_dir=/host/data/slb/logs/
-        - --ports=9113
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/sdn/hypersdn:2050-616c5eb2473cec1c78db647ac46da72d09fbd547
-        name: slb-canary-passthrough-host-network
+        - --k8sApiServer=http://shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:40000/
+        - --httpTimeout=5m
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/sdn/hypersdn:2053-e6865a4d154ada4779ecb7facb3e38e66d6c73d9
+        name: slb-nginx-accesslogs
+        resources:
+          limits:
+            memory: 1Gi
         volumeMounts:
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
       dnsPolicy: Default
-      hostNetwork: true
       nodeSelector:
-        pool: iad-sam
+        pool: xrd-sam
       terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
