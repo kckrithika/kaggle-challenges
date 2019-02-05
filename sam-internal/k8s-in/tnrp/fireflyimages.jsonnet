@@ -52,28 +52,28 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             fireflyintake: "296",
-             fireflycrawler: "296",
-             fireflypackage: "299",
-             fireflypromotion: "296",
-             fireflypullrequest: "299",
+             fireflyintake: "301",
+             fireflycrawler: "301",
+             fireflypackage: "301",
+             fireflypromotion: "301",
+             fireflypullrequest: "301",
              fireflyevalresultmonitor: "279",
              fireflydind: "224",
              rabbitmq: "140",
-             rabbitmqmonitord: "296",
+             rabbitmqmonitord: "301",
             },
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             fireflyintake: "279",
-             fireflycrawler: "279",
-             fireflypackage: "287",
-             fireflypromotion: "286",
-             fireflypullrequest: "286",
+             fireflyintake: "301",
+             fireflycrawler: "301",
+             fireflypackage: "301",
+             fireflypromotion: "301",
+             fireflypullrequest: "301",
              fireflyevalresultmonitor: "278",
              fireflydind: "224",
              rabbitmq: "140",
-             rabbitmqmonitord: "259",
+             rabbitmqmonitord: "301",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
