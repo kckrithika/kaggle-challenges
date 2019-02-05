@@ -5,7 +5,7 @@ apps:
 
   switchboard:
     - prd/prd-sam_gater
-  switchboard-prod-1-canary:
+  switchboard-prod-1:
     - par/par-sam_gater
   switchboard-prod-2:
     - frf/frf-sam_gater
