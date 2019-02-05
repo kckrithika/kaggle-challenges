@@ -64,7 +64,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--client.serverInterface=lo",
                                                        "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
                                                        "--maxDeleteEntries=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
-                                                   ]
+                                                   ] + (if configs.estate == "lo2-sam" then ["--secrets.ssendpoint=secretservice-lo2.data.sfdc.net"] else if configs.estate == "lo3-sam" then ["--secrets.ssendpoint=secretservice-lo3.data.sfdc.net"] else [])
                                                    + slbconfigs.getNodeApiClientSocketSettings(),
                                           volumeMounts: configs.filter_empty([
                                               configs.maddog_cert_volume_mount,

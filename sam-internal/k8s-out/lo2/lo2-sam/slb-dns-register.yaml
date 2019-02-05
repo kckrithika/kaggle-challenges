@@ -50,6 +50,7 @@ spec:
         - --client.serverInterface=lo
         - --restrictedSubnets=161.71.44.0/23,
         - --maxDeleteEntries=10
+        - --secrets.ssendpoint=secretservice-lo2.data.sfdc.net
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
         image: ops0-artifactrepo1-0-lo2.data.sfdc.net/dva/sdn/hypersdn:2046-6b431a7fd9786af9b5093633f8fbdf5659e0453c
