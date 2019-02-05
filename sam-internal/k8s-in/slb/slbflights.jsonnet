@@ -13,4 +13,5 @@ local configs = import "config.jsonnet";
     portalSfdcHostsMountEnabled: (slbimages.phaseNum <= 3),
     artifactoryBootstrapEnabled: (slbimages.hypersdn_build >= 2046),
     kernelVersionCheckerEnabled: (slbimages.hypersdn_build >= 2053),
+    nginxStreamlogsEnabled: (slbimages.phaseNum <= 1),
 }
