@@ -24,7 +24,7 @@ system:
 
     containers:
     - name: coreapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_216-patch_17322943
+      image: tnrp/casam/coreapp:218_patch__17256182-0000133-36928cc3
 
       env:
         # DB info
@@ -35,13 +35,13 @@ system:
           value: rotate
 
         - name: DB_SID
-          value: mist61a216utf
+          value: mist61b218utf
 
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
 
         - name: DB_INSTANCE_NAME
-          value: mist61a216utf-1
+          value: mist61b218utf-1
           
         - name: DB_STATS_USER
           value: snowwhite
@@ -90,7 +90,7 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: blue
+          value: green
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
@@ -281,13 +281,13 @@ system:
         - name: READY_SERVER_COUNT
           value: 3
         - name: CURRENT_RELEASE_VERSION
-          value: green
-        - name: NEW_RELEASE_VERSION
           value: blue
+        - name: NEW_RELEASE_VERSION
+          value: green
         - name: MAJOR_RELEASE_NUMBER
           value: 218
         - name: RELEASE_TYPE
-          value: MINOR
+          value: MAJOR
         - name: DB_SID
           value: mist61b218utf
         - name: OLD_DWARF
@@ -305,7 +305,7 @@ system:
         - name: ENABLE_DB_SCHEMA_UPGRADE
           value: 1
         - name: SET_DEFAULT_ORACLE_EDITION
-          value: 1
+          value: 0
         # set http proxy required for gus chatter binary to reach to login.salesforce.com
         - name: HTTP_PROXY
           value: public0-proxy1-0-prd.data.sfdc.net:8080
