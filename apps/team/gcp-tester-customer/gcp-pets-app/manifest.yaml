@@ -1,0 +1,15 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: sam-gcp-pets-app
+    count: 2
+    containers:
+    - name: pets-app
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tkuznets/docker-pets:toli
+      ports:
+      - containerPort: 5000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 5000
