@@ -10,7 +10,7 @@ data:
       "statefulAppEnabled": true,
       "threadcount": 15,
       "whiteListNamespaceRegexp": [
-        "csc-sam"
+        "^[^.]+"
       ]
     }
 kind: ConfigMap
