@@ -37,14 +37,14 @@ spec:
         - --log_dir=/host/data/slb/logs/
         - --commonoptions.metricsendpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --commonoptions.hostname=$(NODE_NAME)
-        - --vipName=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net
+        - --vipName=slb-canary-proxy-http.sam-system.xrd-sam.xrd.slb.sfdc.net
         - --port=9116
         env:
         - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/sdn/hypersdn:2053-e6865a4d154ada4779ecb7facb3e38e66d6c73d9
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/sdn/hypersdn:2055-14674f387b06a3341cf4a8253f515f2f95006452
         name: slb-fred
         volumeMounts:
         - mountPath: /host/data/slb/logs/

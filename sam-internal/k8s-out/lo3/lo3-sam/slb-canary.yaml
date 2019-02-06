@@ -43,7 +43,7 @@ spec:
         - --tlsPorts=9443
         - --privateKey=/canarycert/server/keys/server-key.pem
         - --publicKey=/canarycert/server/certificates/server.pem
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2050-616c5eb2473cec1c78db647ac46da72d09fbd547
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2053-e6865a4d154ada4779ecb7facb3e38e66d6c73d9
         name: slb-canary
         volumeMounts:
         - mountPath: /host/data/slb/logs/

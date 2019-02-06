@@ -32,6 +32,8 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
         - --deploymentsToMonitor=slb-ipvs,slb-nginx-config-b,slb-vip-watchdog,slb-dns-register
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --kernelVersionNodeFilter=pool=ukb-slb
+        - --kernelVersionPrefixList=3.10.0-862,3.10.0-957
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -39,7 +41,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/sdn/hypersdn:2050-616c5eb2473cec1c78db647ac46da72d09fbd547
+        image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/sdn/hypersdn:2053-e6865a4d154ada4779ecb7facb3e38e66d6c73d9
         name: slb-redundancy-checker
         securityContext:
           privileged: true
