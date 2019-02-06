@@ -86,7 +86,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:5ba305bc1b58502784a49ab5c476723e08cd2169
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:5ba305bc1b58502784a49ab5c476723e08cd2169
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
