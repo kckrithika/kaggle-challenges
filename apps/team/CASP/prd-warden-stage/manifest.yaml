@@ -24,7 +24,7 @@ system:
         - name: https
           containerPort: 8444
         - name: grpc
-          containerPort: 7878
+          containerPort: 7442
         env:
         - name: BRANCH
           value: "eng_production_staging"
