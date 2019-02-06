@@ -14,7 +14,7 @@
       healthport: 80
       healthpath: /
       healthprotocol: http
-- lbname: virev301
+- lbname: virdev301
   customlbname: virdev301
   servers:
     - virdev301-openstvmh1-29-prd.eng.sfdc.net
