@@ -27,7 +27,7 @@ system:
         periodSeconds: 5
       env:
        - name: NOT_REQUIRED
-         value: beta
+         value: alpha
        - name: PYTHONUNBUFFERED
          value: 1
        - name: SFDC_ENVIRONMENT
