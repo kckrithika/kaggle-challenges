@@ -77,5 +77,5 @@ system:
           targetport: 8889
         - port: 443
           targetport: 8444
-        - port: 7878
-          targetport: 7878
+        - port: 7442
+          targetport: 7442
