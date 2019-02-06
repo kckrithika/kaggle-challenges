@@ -1,0 +1,296 @@
+# Warning: DO NOT EDIT this generated file
+# See here on how to generate this file https://git.soma.salesforce.com/casam/casamctl
+
+apiVersion: v1
+system:
+  functions:
+  - containers:
+    - env:
+      - name: DB_USER
+        value: sleepy
+      - name: IP_MNDS1
+        value: 127.0.0.1
+      - name: OFFLINE
+        value: true
+      - name: PUBLIC_PORT
+        value: 443
+      - name: PUBLIC_PORT_IS_SECURE
+        value: true
+      - name: PUBLIC_HOST_NAME
+        value: cs103.salesforce.com
+      - name: SFPROXY_VIP
+        value: https://cs103app-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net:8443
+      - name: HTTP_PORT
+        value: 8085
+      - name: SPORT
+        value: 8443
+      - name: S2PORT
+        value: 12098
+      - name: PLSQL_UPDATE_RUNSTATS
+        value: false
+      - name: DISABLE_AUTH_RELEASE_CHECK
+        value: true
+      - name: CASAM_APP_COLOR
+        value: green
+      - name: SD_PORT_OVERRIDE
+        value: 13065
+      - name: CASAM_SETTINGS_PATH
+        value: prod.-.fra.cs103.app
+      - name: CLUSTER_NAME
+        value: cs103
+      - name: DEPLOYMENT
+        value: G
+      - name: USE_CONFIG_SIDECAR
+        value: 1
+      - name: CASAM_HOST_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
+      image: sfci/casam/coreapp:release_216-patch_17304344
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - HEALTHY
+        initialDelaySeconds: 480
+        periodSeconds: 1
+      name: coreapp
+      ports:
+      - containerPort: 8998
+      - containerPort: 8085
+      - containerPort: 11211
+      - containerPort: 12098
+      - containerPort: 8443
+      readinessProbe:
+        exec:
+          command:
+          - /home/sfdc/salesforce/build/ready_probe.sh
+        failureThreshold: 99999
+        initialDelaySeconds: 120
+        periodSeconds: 5
+        timeoutSeconds: 5
+      volumeMounts:
+      - mountPath: /home/sfdc/logs/sfdc
+        name: log-volume-sfdc
+      - mountPath: /home/sfdc/logs/jvm
+        name: log-volume-jvm
+      - mountPath: /etc/pki_service
+        name: tls-client-cert
+      - mountPath: /home/sfdc/config_override
+        name: coreapp-config-volume
+      - mountPath: /home/sfdc/salesforce/config/settings/overrides/sp-cs103-c1
+        name: secretvol-c1
+        readOnly: true
+      - mountPath: /home/sfdc/salesforce/config/settings/overrides/sp-cs103-pc
+        name: secretvol-pc
+        readOnly: true
+    - env:
+      - name: CASAM_SETTINGS_PATH
+        value: prod.-.fra.cs103.app
+      image: sfci/casam/coreapp_config_overrides:641f92
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/live
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      name: config-sidecar
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /home/sfdc/config_override
+        name: coreapp-config-volume
+    - args:
+      - --template
+      - /cyan-config/tls-terminator-config.yaml.template
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: envoy-sidecar
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      name: envoy-sidecar
+      ports:
+      - containerPort: 13065
+      - containerPort: 15373
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /cyan-config
+        name: envoy-config-volume
+      - mountPath: /certs/cert-client
+        name: tls-client-cert
+      - mountPath: /certs/cert-server
+        name: tls-server-cert
+    - env:
+      - name: CONFIG_DIR
+        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
+      image: sfci/casam/cyan-config:208cc2
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/live
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      name: envoy-sidecar-config
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
+        name: envoy-config-volume
+    count: 5
+    identity:
+      pod: cs103
+      serviceName: app
+    name: cs103-app-fra
+    progressDeadlineSeconds: 300
+    strategy:
+      rollingUpdate:
+        maxSurge: 200%
+        maxUnavailable: 0
+      type: RollingUpdate
+    terminationGracePeriodSeconds: 500
+    volumes:
+    - emptyDir: {}
+      name: envoy-config-volume
+    - emptyDir: {}
+      name: coreapp-config-volume
+    - maddogCert:
+        type: client
+      name: tls-client-cert
+    - maddogCert:
+        type: server
+      name: tls-server-cert
+    - hostPath:
+        path: /data/logs/sfdc
+      name: log-volume-sfdc
+    - hostPath:
+        path: /data/logs/jvm
+      name: log-volume-jvm
+    - k4aSecret:
+        secretName: caas-k4a-secret-sp-prod-c1
+      name: secretvol-c1
+    - k4aSecret:
+        secretName: caas-k4a-secret-sp-prod-pc
+      name: secretvol-pc
+  - containers:
+    - env:
+      - name: NONCE
+        value: 1549489543114939904
+      - name: DRY_RUN
+        value: 0
+      - name: CHATTER_GROUP_NAME
+        value: casam-alpha
+      - name: CYAN
+        value: https://cs103app-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net:8443
+      - name: SWITCH_BOARD_ADDRESS
+        value: cs103-switchboard-lb:15001
+      - name: RELEASE_VESION
+        value: ""
+      - name: RELEASE_TYPE
+        value: DAILY
+      - name: MAJOR_RELEASE_NUMBER
+        value: 216
+      - name: MINOR_RELEASE_NUMBER
+        value: 0
+      - name: PATCH_RELEASE_NUMBER
+        value: 0
+      - name: CURRENT_RELEASE_VERSION
+        value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
+      - name: READY_SERVER_COUNT
+        value: 5
+      - name: DB_SID
+        value: CSDB103
+      - name: ENABLE_DB_SCHEMA_UPGRADE
+        value: 0
+      - name: SET_DEFAULT_ORACLE_EDITION
+        value: 0
+      - name: OLD_DWARF
+        value: sneezy
+      - name: KILL_DWARF
+        value: 0
+      - name: LOCK_DWARF
+        value: 0
+      - name: TRIGGER_CAFFEINE
+        value: 0
+      - name: UNLOCK_DWARF
+        value: 0
+      - name: SNOWWHITE_PWD
+        value: rotate
+      - name: MADDOG_CLIENT
+        value: /certs
+      - name: CASAM_SETTINGS_PATH
+        value: prod.-.fra.cs103.sequencer
+      - name: CASAM_SUPERPOD
+        value: sp1
+      - name: HTTP_PROXY
+        value: public0-proxy1-0-fra.data.sfdc.net:8080
+      - name: SKIP_KAIJU
+        value: 0
+      image: sfci/casam/sequencer:6cef57
+      livenessProbe:
+        exec:
+          command:
+          - /usr/local/bin/ready_probe.sh
+        failureThreshold: 10
+        initialDelaySeconds: 60
+        periodSeconds: 1
+      name: sequencer
+      ports:
+      - containerPort: 12062
+      readinessProbe:
+        exec:
+          command:
+          - /usr/local/bin/ready_probe.sh
+        failureThreshold: 10
+        initialDelaySeconds: 60
+        periodSeconds: 1
+      volumeMounts:
+      - mountPath: /certs
+        name: cert
+      - mountPath: /secrets/
+        name: secretvol
+        readOnly: true
+      - mountPath: /kaiju-secrets/
+        name: kaiju-secret-vol
+        readOnly: true
+    count: 1
+    identity:
+      pod: cs103
+      serviceName: sequencer
+    name: cs103-sequencer-fra
+    progressDeadlineSeconds: 300
+    terminationGracePeriodSeconds: 500
+    volumes:
+    - maddogCert:
+        type: client
+      name: cert
+    - k4aSecret:
+        secretName: sequencer-gus
+      name: secretvol
+    - k4aSecret:
+        secretName: sequencer-kaiju
+      name: kaiju-secret-vol
+  loadbalancers: []
