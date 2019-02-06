@@ -206,6 +206,11 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
             namespace: "flowsnake_test",
             authorizedClientCerts: ["flowsnake_test"],
         },
+        {
+            namespace: "wave-elt",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["wave-elt.datapool"],
+        },
       ],
       "frf/frf-flowsnake_prod": [
         {
@@ -216,6 +221,11 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         {
             namespace: "flowsnake_test",
             authorizedClientCerts: ["flowsnake_test"],
+        },
+        {
+            namespace: "wave-elt",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["wave-elt.datapool"],
         },
       ],
       "par/par-flowsnake_prod": [
@@ -228,6 +238,11 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
             namespace: "flowsnake_test",
             authorizedClientCerts: ["flowsnake_test"],
         },
+        {
+            namespace: "wave-elt",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["wave-elt.datapool"],
+        },
       ],
       "dfw/dfw-flowsnake_prod": [
         {
@@ -237,6 +252,11 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         {
             namespace: "flowsnake_test",
             authorizedClientCerts: ["flowsnake_test"],
+        },
+        {
+            namespace: "wave-elt",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["wave-elt.datapool"],
         },
       ],
       "ia2/ia2-flowsnake_prod": [
@@ -248,6 +268,11 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
             namespace: "flowsnake_test",
             authorizedClientCerts: ["flowsnake_test"],
         },
+        {
+            namespace: "wave-elt",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["wave-elt.datapool"],
+        },
       ],
       "ph2/ph2-flowsnake_prod": [
         {
@@ -257,6 +282,11 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         {
             namespace: "flowsnake_test",
             authorizedClientCerts: ["flowsnake_test"],
+        },
+        {
+            namespace: "wave-elt",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["wave-elt.datapool"],
         },
       ],
       "hnd/hnd-flowsnake_prod": [
@@ -268,6 +298,11 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
             namespace: "flowsnake_test",
             authorizedClientCerts: ["flowsnake_test"],
         },
+        {
+            namespace: "wave-elt",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["wave-elt.datapool"],
+        },
       ],
       "ukb/ukb-flowsnake_prod": [
         {
@@ -277,6 +312,11 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         {
             namespace: "flowsnake_test",
             authorizedClientCerts: ["flowsnake_test"],
+        },
+        {
+            namespace: "wave-elt",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["wave-elt.datapool"],
         },
       ],
     }),
