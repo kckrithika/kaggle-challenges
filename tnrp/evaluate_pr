@@ -64,7 +64,24 @@ gpg --yes --batch --passphrase=$(md5sum /root/.ssh/id_rsa | cut -f1 -d" ") ./tok
 # The reason we need two image prefixes here is that we have dual-run of both SMB and MANIFESTCTL:
 #  1)for SMB, though gcr images are valid long-form images, it is seen as short-form and get added prefix due to hard coded SMB function;
 #  2)for MANIFESTCTL, it is reserved in its original form
-$SAMBINDIR/evaluate-pr --ghe-token-file ./token.txt -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb $SAMBINDIR/sam-manifest-builder -repo-name="$TNRP_PRODUCT" -unvalidated-image-prefixes "minikube,ops0-artifactrepo1-0-mvp,gcr.io" -full-schema -image-exists-tries=2 -image-exists-try-sleep-duration=10s -validate-self-check-enabled=true -self-authorize-check-regex="^(?:[^/]*/)sam-internal/k8s-out/([^/]*)/([^/]*)/,^(?:[^/]*/)apps/team/(?:[^/]*)/vips/" --moratoriumEnabled=true --maxNumberOfAdmins 2 --moratoriumBegin="2018-12-17T08:00:00Z" --moratoriumEnd="2019-01-02T08:00:00Z" --MoratoriumAccessDisabledMessage="End-of-Year Moratorium begins at 08:00 UTC on Monday, December 17 (03:00 EST, 12:00 AM PST on Monday morning) and ends at 08:00 UTC on Wednesday, January 2 (03:00 EST, 12:00 AM PST on Wednesday morning. During the moratorium prod PRs require approval by an admin, and admins are required to ensure that changes properly follow the moratorium guidelines. For more information see http://sfdc.co/sam-admins."
-
+$SAMBINDIR/evaluate-pr \
+--ghe-token-file ./token.txt \
+-authorizer $STAGE_GO_TRIGGER_USER \
+-orig-dir /tmp/manifests \
+-dir-with-changes $PWD \
+-pr="$STAGE_PULL_REQUEST_ID" \
+-smb $SAMBINDIR/sam-manifest-builder \
+-repo-name="$TNRP_PRODUCT" \
+-unvalidated-image-prefixes "minikube,ops0-artifactrepo1-0-mvp,gcr.io,ops0-artifactrepo2-0-xrd.slb.sfdc.net" \
+-full-schema \
+-image-exists-tries=2 \
+-image-exists-try-sleep-duration=10s \
+-validate-self-check-enabled=true \
+-self-authorize-check-regex="^(?:[^/]*/)sam-internal/k8s-out/([^/]*)/([^/]*)/,^(?:[^/]*/)apps/team/(?:[^/]*)/vips/" \
+--moratoriumEnabled=true \
+--maxNumberOfAdmins 2 \
+--moratoriumBegin="2018-12-17T08:00:00Z" \
+--moratoriumEnd="2019-01-02T08:00:00Z" \
+--MoratoriumAccessDisabledMessage="End-of-Year Moratorium begins at 08:00 UTC on Monday, December 17 (03:00 EST, 12:00 AM PST on Monday morning) and ends at 08:00 UTC on Wednesday, January 2 (03:00 EST, 12:00 AM PST on Wednesday morning. During the moratorium prod PRs require approval by an admin, and admins are required to ensure that changes properly follow the moratorium guidelines. For more information see http://sfdc.co/sam-admins."
 # Validate vips.yaml files for SLB, this does not copy any files to output
 /opt/slb/slb-manifest-builder -root $PWD -output $PWD -validate -v=1
