@@ -35,7 +35,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--commonoptions.metricsendpoint=" + configs.funnelVIP,
                                      "--commonoptions.hostname=$(NODE_NAME)",
-                                 ] + (if configs.estate == "prd-sdc" then
+                                 ] + (if slbflights.fredVipFix then
                                  [
                                      "--vipName=slb-canary-proxy-http.sam-system.%(estate)s.%(kingdom)s.slb.sfdc.net" % configs,
                                      "--port=%(canaryServiceProxyHttpPort)d" % slbports.slb,
