@@ -10,7 +10,7 @@ local configs = import "config.jsonnet";
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     nginxAccesslogsEnabled: (slbimages.hypersdn_build >= 2053),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
-    portalSfdcHostsMountEnabled: (slbimages.phaseNum <= 3),
+    portalSfdcHostsMountEnabled: (slbimages.phaseNum <= 4),
     artifactoryBootstrapEnabled: (slbimages.hypersdn_build >= 2046),
     kernelVersionCheckerEnabled: (slbimages.hypersdn_build >= 2053),
     nginxStreamlogsEnabled: (slbimages.phaseNum <= 1),
