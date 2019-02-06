@@ -14,3 +14,18 @@
       healthport: 80
       healthpath: /
       healthprotocol: http
+- lbname: virev301
+  customlbname: virdev301
+  servers:
+    - virdev301-openstvmh1-29-prd.eng.sfdc.net
+    - virdev301-openstvmh1-30-prd.eng.sfdc.net
+    - virdev301-openstvmh1-31-prd.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 80
+      lbtype: http
+      tls: true
+      reencrypt: false
+      healthport: 80
+      healthpath: /
+      healthprotocol: http
