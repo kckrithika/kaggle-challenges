@@ -447,6 +447,7 @@ spec:
         - --client.dialSocket=true
         - --maxDeleteLimit=10
         - --isRoleUsed=true
+        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --vcioptions.strict=true
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-nginx-config-b/slb-manifest-watcher.sentinel

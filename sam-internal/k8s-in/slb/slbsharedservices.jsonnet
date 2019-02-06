@@ -219,7 +219,7 @@
         command: [
                      "/sdn/slb-manifest-watcher",
                      "--manifestOutputDir=" + slbconfigs.manifestDir,
-                     "--tnrpEndpoint=" + (if configs.estate == "hnd-sam" then "https://ops0-piperepo2-1-hnd.ops.sfdc.net/" else configs.tnrpEndpoint),
+                     "--tnrpEndpoint=" + configs.tnrpEndpoint,
                      "--hostnameOverride=$(NODE_NAME)",
                      "--log_dir=" + slbconfigs.logsDir,
                      configs.sfdchosts_arg,
@@ -228,6 +228,9 @@
                  + (if slbflights.roleEnabled then [
                      "--isRoleUsed=true",
                      ] else [])
+                 + (if slbimages.hypersdn_build >= 2056 then [
+                     "--metricsEndpoint=" + configs.funnelVIP,
+                   ] else [])
                  + [
                         "--vcioptions.strict=true",
                         "--client.allowStale=true",
