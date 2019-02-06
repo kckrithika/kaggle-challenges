@@ -25,9 +25,9 @@ system:
           command:
             - "/home/scone/is-alive.sh"
 
-    - name: envoy-canary-sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/56
-      image: sfci/servicelibs/sherpa-envoy:2465d3eae46f71b2221a5a30c2e10ec95ceca917
+    - name: sherpa
+      # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases/tag/sfci-1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       env:
       - name: SFDC_ENVIRONMENT
         value: prod

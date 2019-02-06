@@ -1,11 +1,14 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+    - servicemesh@salesforce.com
   functions:
   - name: geoip
     count: 3
     containers:
-    - name: ccait-geoip-database
+    - name: geoip-database
       image: tnrp/ccait/geoip2-database:20170918
       # SAM insists on a liveness probe for containers so we need to keep the data container running via supported -d arg
       args: ["-d"]
@@ -18,8 +21,8 @@ system:
       - mountPath: /database
         name: maxmind-volume
 
-    - name: ccait-geoip-backend
-      image: sfci/ccait/geoip:5e8e64e7cd26af9afafeba19f7e29879dccdb437
+    - name: geoip
+      image: sfci/services/sfdc-bazel/geoip:51e8676 # monorepo build
       env:
       - name: JAVA_OPTS
         value: -Xms1g -Xmx1g
@@ -27,8 +30,6 @@ system:
         value: prod
       - name: COM_MAXMIND_DATABASE_FILE
         value: "/dw/data/GeoIP2-City.mmdb"
-      - name: LOGGING_DIR
-        value: "/log"
       resources:
         limits:
           cpu: "4"
@@ -39,8 +40,6 @@ system:
       volumeMounts:
       - mountPath: /dw/data
         name: maxmind-volume
-      - mountPath: /log
-        name: geoip-log-volume
       ports:
       - containerPort: 7020
         name: grpc
@@ -55,15 +54,15 @@ system:
           port: 15372
         initialDelaySeconds: 115
 
-    - name: sherpa-b
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/53
-      image: sfci/servicelibs/sherpa-envoy:1.0.3
+    - name: sherpa
+      # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases/tag/sfci-1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
-      - name: sherpa-b-in
+      - name: http2-in
         containerPort: 7012
-      - name: sherpa-b-in-tls
+      - name: http2-tls-in
         containerPort: 7443
-      - name: sherpa-b-adm
+      - name: sherpa-adm
         containerPort: 15373
       env:
       - name: SFDC_ENVIRONMENT
@@ -73,9 +72,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
       - mountPath: /client-certs
-        name: geoip-client-cert
+        name: tls-client-cert
       - mountPath: /server-certs
-        name: geoip-server-cert
+        name: tls-server-cert
       livenessProbe:
         exec:
           command:
@@ -89,18 +88,18 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
-    - name: beacon-geoip
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+    - name: beacon
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
       args:
       # Non-namespaced, plaintext
       - -endpoint
-      - geoip:DATACENTER_ALLENV:7012
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
       # Namespaced, TLS
       - -endpoint
-      - ccait/geoip:DATACENTER_ALLENV:7443
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -110,12 +109,9 @@ system:
     volumes:
     - name: maxmind-volume
       emptyDir: {}
-    - name: geoip-log-volume
-      hostPath:
-        path: /home/sfdc-geoip/logs
-    - name: geoip-client-cert
+    - name: tls-client-cert
       maddogCert:
         type: client
-    - name: geoip-server-cert
+    - name: tls-server-cert
       maddogCert:
         type: server
