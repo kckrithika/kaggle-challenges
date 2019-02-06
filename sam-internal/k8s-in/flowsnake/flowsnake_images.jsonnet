@@ -224,7 +224,7 @@ local utils = import "util_functions.jsonnet";
                   "0.12.1": 10001,
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
                   "0.12.5": 10011,
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest",  # Fixes XL annotation issue.
+                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-clean-up-shutdown-behavior-1-itest",  # Fixes XL annotation issue.
                 },
                 sections: {},
             },
