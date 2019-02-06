@@ -1333,10 +1333,12 @@
     },
     {
       "namespaces": [
-        "csc-sam"
+        "csc-sam",
+        "gcp-tester-customer"
       ],
       "access": [
-        "team/CSC_Sam"
+        "team/CSC_Sam",
+        "team/gcp-tester-customer"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-samtest",
       "estate": "gsf-core-devmvp-sam2-samtest",
