@@ -10,7 +10,7 @@ system:
     count: 1
     containers:
     - name: datapool-service
-      image: sfci/insights/datapoolservice:release-87-e0b2b91
+      image: sfci/insights/datapoolservice:release-90-2d5b4d2
       ports:
       - containerPort: 7020
         name: grpc
@@ -46,7 +46,7 @@ system:
         value: 40
 
       - name: FLOWSNAKE_WORKER_MEMORY_GB
-        value: 160
+        value: 106
 
       - name: FLOWSNAKE_WORKER_JVM_HEAP_SIZE_MB
         value: 999
