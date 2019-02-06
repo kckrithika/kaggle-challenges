@@ -37,6 +37,18 @@ system:
         httpGet:
           path: /manage/health
           port: 15375
+
+    - name: metrics-scraper
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
+      imagePullPolicy: Always
+      livenessProbe:
+        exec:
+          command:
+            - /bin/true
+        initialDelaySeconds: 5
+        periodSeconds: 30
+        timeoutSeconds: 5
+
     # Volumes used by auto-injected istio-proxy.
     volumes:
     - name: tls-client-cert
