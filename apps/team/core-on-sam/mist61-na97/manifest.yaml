@@ -227,7 +227,7 @@ system:
     count: 1
     containers:
     - name: sfproxy-switchboard-server
-      image: sfci/servicelibs/switchboard:a6729b3a765d262943bb20f9921b4343784dccef
+      image: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
