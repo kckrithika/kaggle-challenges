@@ -1,0 +1,26 @@
+apiVersion: v1
+data:
+  samapp-controller-config.json: |-
+    {
+      "dnsEnabledPoolNamesRegex": ".*",
+      "dockerRegistry": "",
+      "enableDNS": true,
+      "enableIdentityEnvVar": false,
+      "enableMaddog": true,
+      "funnelEndpoint": "ajna0-funnel1-0-mvp.data.sfdc.net:80",
+      "k4aInitContainerImage": "gcr.io/gsf-core-devmvp-sam2/tnrp/sam/hypersam:sam-0002447-69fdc914",
+      "maddogMaddogEndpoint": "https://10.168.192.67:8443",
+      "madkubImage": "gcr.io/gsf-core-devmvp-sam2/tnrp/sam/madkub:1.0.0-0000077-b1d3a629",
+      "namespaceHostSubList": [
+        "cloudatlas"
+      ],
+      "volPermissionInitContainerImage": "gcr.io/gsf-core-devmvp-sam2/tnrp/sam/hypersam:sam-1ebeb0ac-657"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    pcn: deploy
+    sam.data.sfdc.net/owner: sam
+  name: samapp-controller
+  namespace: sam-system

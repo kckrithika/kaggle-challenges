@@ -1,0 +1,32 @@
+---
+# List of teams that can deploy apps to this pool.
+# Team name must match GUS scrum team with spaces converted to underscore
+# Run k8s-in/build.sh after updating pools
+access:
+  - 'team/CSC_Sam'
+  - 'team/Cache_As_A_service'
+  - 'team/CASP'
+  - 'team/CCAIT'
+  - 'team/CloudAtlas'
+  - 'team/communities'
+  - 'team/core-on-sam'
+  - 'team/CSC_Health'
+  - 'team/distributed-tracing'
+  - 'team/EmailInfra'
+  - 'team/Gater'
+  - 'team/gateway'
+  - 'team/mc-eventing'
+  - 'team/Retail_CRE'
+  - 'team/Retail_DFS'
+  - 'team/Retail_EventListener'
+  - 'team/Retail_MDS'
+  - 'team/Retail_RSUI'
+  - 'team/Search_Scale_Safely'
+  - 'team/service-mesh'
+  - 'team/Service_Protection'
+  - 'team/universal-search'
+  - 'team/wave-elt'
+
+# Each pool is managed by a SAM control stack running in one estate
+# Name here is an exact match on a file under estates/estates repo
+controlEstate: mvp/gsf-core-devmvp-sam2-sam
