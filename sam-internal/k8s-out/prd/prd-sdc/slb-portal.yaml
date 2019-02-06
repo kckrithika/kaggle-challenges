@@ -267,6 +267,7 @@ spec:
         - --client.dialSocket=true
         - --maxDeleteLimit=10
         - --isRoleUsed=true
+        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --vcioptions.strict=true
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal/slb-manifest-watcher.sentinel

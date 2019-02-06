@@ -428,7 +428,7 @@ spec:
       - command:
         - /sdn/slb-manifest-watcher
         - --manifestOutputDir=/host/data/slb/manifests/slb-nginx-config-b
-        - --tnrpEndpoint=https://ops0-piperepo2-1-hnd.ops.sfdc.net/
+        - --tnrpEndpoint=https://ops0-piperepo1-0-hnd.data.sfdc.net/
         - --hostnameOverride=$(NODE_NAME)
         - --log_dir=/host/data/slb/logs/slb-nginx-config-b
         - --hostsConfigFile=/sfdchosts/hosts.json

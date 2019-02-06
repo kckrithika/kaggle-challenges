@@ -214,7 +214,7 @@ spec:
       - command:
         - /sdn/slb-manifest-watcher
         - --manifestOutputDir=/host/data/slb/manifests/slb-vip-watchdog
-        - --tnrpEndpoint=https://ops0-piperepo2-1-hnd.ops.sfdc.net/
+        - --tnrpEndpoint=https://ops0-piperepo1-0-hnd.data.sfdc.net/
         - --hostnameOverride=$(NODE_NAME)
         - --log_dir=/host/data/slb/logs/slb-vip-watchdog
         - --hostsConfigFile=/sfdchosts/hosts.json
