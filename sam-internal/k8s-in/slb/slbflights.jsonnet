@@ -14,4 +14,5 @@ local configs = import "config.jsonnet";
     artifactoryBootstrapEnabled: (slbimages.hypersdn_build >= 2046),
     kernelVersionCheckerEnabled: (slbimages.hypersdn_build >= 2053),
     nginxStreamlogsEnabled: (slbimages.phaseNum <= 1),
+    fredVipFix: (slbimages.hypersdn_build >= 2055),
 }

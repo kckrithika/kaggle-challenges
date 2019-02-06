@@ -40,7 +40,7 @@ spec:
         - --log_dir=/host/data/slb/logs/
         - --commonoptions.metricsendpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --commonoptions.hostname=$(NODE_NAME)
-        - --vipName=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net
+        - --vipName=slb-canary-proxy-http.sam-system.prd-samtest.prd.slb.sfdc.net
         - --port=9116
         env:
         - name: NODE_NAME
