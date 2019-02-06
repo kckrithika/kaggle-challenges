@@ -8,10 +8,6 @@ system:
     - env:
       - name: DB_USER
         value: sleepy
-      - name: IP_MNDS1
-        value: 127.0.0.1
-      - name: OFFLINE
-        value: true
       - name: PUBLIC_PORT
         value: 443
       - name: PUBLIC_PORT_IS_SECURE
@@ -188,15 +184,15 @@ system:
         path: /data/logs/jvm
       name: log-volume-jvm
     - k4aSecret:
-        secretName: caas-k4a-secret-sp-prod-c1
+        secretName: caas-k4a-secret-sp-cs103-c1
       name: secretvol-c1
     - k4aSecret:
-        secretName: caas-k4a-secret-sp-prod-pc
+        secretName: caas-k4a-secret-sp-cs103-pc
       name: secretvol-pc
   - containers:
     - env:
       - name: NONCE
-        value: 1549489543114939904
+        value: 1549496367367597056
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -204,11 +200,11 @@ system:
       - name: CYAN
         value: https://cs103app-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net:8443
       - name: SWITCH_BOARD_ADDRESS
-        value: cs103-switchboard-lb:15001
+        value: cs103-switchboard-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net:15001
       - name: RELEASE_VESION
         value: ""
       - name: RELEASE_TYPE
-        value: DAILY
+        value: PATCH
       - name: MAJOR_RELEASE_NUMBER
         value: 216
       - name: MINOR_RELEASE_NUMBER
@@ -237,8 +233,6 @@ system:
         value: 0
       - name: UNLOCK_DWARF
         value: 0
-      - name: SNOWWHITE_PWD
-        value: rotate
       - name: MADDOG_CLIENT
         value: /certs
       - name: CASAM_SETTINGS_PATH
