@@ -59,6 +59,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                        ] + (if slbflights.portalSfdcHostsMountEnabled then [
                                                 configs.sfdchosts_arg,
                                             ] else [])
+                                            + (if configs.estate == "lo2-sam" && slbimages.hypersdn_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo2.data.sfdc.net"] else if configs.estate == "lo3-sam" && slbimages.hypersdn_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo3.data.sfdc.net"] else [])
                                        + (if slbconfigs.isTestEstate then [
                                                 "--slbEstate=" + configs.estate,
                                             ] else [])

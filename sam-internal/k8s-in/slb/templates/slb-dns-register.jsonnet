@@ -92,7 +92,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--client.dialSocket=true",
                                                        "--commonoptions.metricsendpoint=" + configs.funnelVIP,
                                                        "--commonoptions.hostname=$(NODE_NAME)",
-                                                     ] + roleBasedSecretArgs,
+                                                     ] + (if configs.estate == "lo2-sam" && slbimages.hypersdn_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo2.data.sfdc.net"] else if configs.estate == "lo3-sam" && slbimages.hypersdn_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo3.data.sfdc.net"] else [])
+                                                     + roleBasedSecretArgs,
                                            volumeMounts: configs.filter_empty([
                                                configs.maddog_cert_volume_mount,
                                                configs.cert_volume_mount,
