@@ -1,4 +1,10 @@
 apps:
+  datapool-phx:
+  - phx/phx-sam_datapool
+  spark-engine-phx:
+  - phx/phx-sam_datapool
+  datapool-dfw:
+  - dfw/dfw-sam_datapool
   spark-engine-ph2:
   - ph2/ph2-sam_datapool
   spark-engine-ia2:
