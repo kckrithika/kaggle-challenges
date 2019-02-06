@@ -7,7 +7,7 @@ data:
     0.12.1 = 10001
     0.12.2 = jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
     0.12.5 = 10011
-    0.12.5-wave = jenkins-dva-transformation-flowsnake-platform-PR-811-3-itest
+    0.12.5-wave = jenkins-dva-transformation-flowsnake-platform-clean-up-shutdown-behavior-1-itest
 kind: ConfigMap
 metadata:
   creationTimestamp: null
