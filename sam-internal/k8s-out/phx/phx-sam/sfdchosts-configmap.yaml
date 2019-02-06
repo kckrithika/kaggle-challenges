@@ -1683,7 +1683,7 @@ data:
           "hostname": "samkingdomcaas0-caasminion1-3-phx.ops.sfdc.net",
           "kingdom": "phx",
           "pod": "none",
-          "rack": "t44-45",
+          "rack": "x01-40",
           "superpod": "none"
         },
         {
@@ -1705,7 +1705,7 @@ data:
           "hostname": "samkingdomcaas0-caasminion2-2-phx.ops.sfdc.net",
           "kingdom": "phx",
           "pod": "none",
-          "rack": "w30-40",
+          "rack": "w47-40",
           "superpod": "none"
         },
         {
@@ -1716,7 +1716,7 @@ data:
           "hostname": "samkingdomcaas0-caasminion2-3-phx.ops.sfdc.net",
           "kingdom": "phx",
           "pod": "none",
-          "rack": "r07-40",
+          "rack": "v01-40",
           "superpod": "none"
         },
         {
@@ -1738,7 +1738,7 @@ data:
           "hostname": "samkingdomcaas0-caasminion3-2-phx.ops.sfdc.net",
           "kingdom": "phx",
           "pod": "none",
-          "rack": "v01-40",
+          "rack": "s06-40",
           "superpod": "none"
         },
         {
