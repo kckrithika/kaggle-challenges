@@ -4,6 +4,7 @@ local istioConfigs = (import "service-mesh/istio-config.jsonnet") + { templateFi
 local istioUtils = (import "service-mesh/istio-utils.jsonnet") + { templateFilename:: std.thisFile };
 local istioImages = (import "service-mesh/istio-images.jsonnet") + { templateFilename:: std.thisFile };
 local funnelEndpoint = std.split(configs.funnelVIP, ":");
+local scraperImagePullPolicy = (if configs.kingdom == "prd" then "Always" else "IfNotPresent");
 
 configs.deploymentBase("mesh-control-plane") {
   metadata+: {
@@ -114,7 +115,7 @@ configs.deploymentBase("mesh-control-plane") {
           {
             name: "metrics-scraper",
             image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev",
-            imagePullPolicy: "Always",
+            imagePullPolicy: scraperImagePullPolicy,
             readinessProbe: {
               exec: {
                 command: [
@@ -125,10 +126,10 @@ configs.deploymentBase("mesh-control-plane") {
               periodSeconds: 30,
               timeoutSeconds: 5,
             },
-            args: [
+            args: if configs.kingdom == "prd" then [
               "--debug-mode",
               "true",
-            ],
+            ] else [],
             env: [
               // See https://confluence.internal.salesforce.com/pages/viewpage.action?spaceKey=SAM&title=SAM+Environment+Variables
               // for SAM environment variables.
