@@ -6,26 +6,16 @@ system:
   functions:
   - containers:
     - env:
-      - name: DB_SID
-        value: sfana47
       - name: DB_INSTANCE_NAME
         value: sfana47-1
       - name: DB_USER
         value: sleepy
-      - name: DB_PASSWORD
-        value: rotate
       - name: DB_STATS_USER
         value: snowwhite
-      - name: DB_STATS_PASSWORD
-        value: rotate
-      - name: DB_CONN_NUM
-        value: 25
-      - name: PLSQL_UPDATE_RUNSTATS
-        value: false
-      - name: SERVER_ID
-        value: x
       - name: IP_DB
         value: stmf1ice1-db4-1-prd-vip.eng.sfdc.net
+      - name: SERVER_ID
+        value: x
       - name: IP_MNDS1
         value: 127.0.0.1
       - name: OFFLINE
@@ -44,10 +34,12 @@ system:
         value: 8443
       - name: S2PORT
         value: 12098
+      - name: PLSQL_UPDATE_RUNSTATS
+        value: false
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -55,14 +47,14 @@ system:
       - name: CLUSTER_NAME
         value: na47
       - name: DEPLOYMENT
-        value: G
+        value: B
       - name: USE_CONFIG_SIDECAR
         value: 1
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17335520
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17412297
       livenessProbe:
         exec:
           command:
@@ -78,12 +70,13 @@ system:
       - containerPort: 12098
       - containerPort: 8443
       readinessProbe:
-        failureThreshold: 10
-        httpGet:
-          path: /ping.jsp
-          port: 8085
+        exec:
+          command:
+          - /home/sfdc/salesforce/build/ready_probe.sh
+        failureThreshold: 99999
         initialDelaySeconds: 120
-        periodSeconds: 1
+        periodSeconds: 5
+        timeoutSeconds: 5
       volumeMounts:
       - mountPath: /home/sfdc/logs/sfdc
         name: log-volume-sfdc
@@ -93,13 +86,10 @@ system:
         name: tls-client-cert
       - mountPath: /home/sfdc/config_override
         name: coreapp-config-volume
-      - mountPath: /home/sfdc/salesforce/config/settings/overrides/caas-cluster-casam-sp2
-        name: secretvol
-        readOnly: true
     - env:
       - name: CASAM_SETTINGS_PATH
         value: stmfa.-.prd.na47.app
-      image: sfci/casam/coreapp_config_overrides:2b789e
+      image: sfci/casam/coreapp_config_overrides:641f92
       livenessProbe:
         exec:
           command:
@@ -199,21 +189,18 @@ system:
     - hostPath:
         path: /data/logs/jvm
       name: log-volume-jvm
-    - k4aSecret:
-        secretName: caas-k4a-secret-prd
-      name: secretvol
   - containers:
     - env:
       - name: NONCE
-        value: 1548885992020753920
+        value: 1549490072540442112
       - name: DRY_RUN
         value: 0
-      - name: DEPLOY_ENV
-        value: CASAM builds tracking
+      - name: CHATTER_GROUP_NAME
+        value: casam-alpha
       - name: CYAN
         value: https://us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti:8443
       - name: SWITCH_BOARD_ADDRESS
-        value: na47-switchboard-lb:8088
+        value: na47-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti:8088
       - name: RELEASE_VESION
         value: ""
       - name: RELEASE_TYPE
@@ -225,9 +212,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -256,22 +243,24 @@ system:
         value: sp2
       - name: HTTP_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
-      image: sfci/casam/sequencer:4905b0
+      - name: SKIP_KAIJU
+        value: 1
+      image: sfci/casam/sequencer:02aa2d
       livenessProbe:
+        exec:
+          command:
+          - /usr/local/bin/ready_probe.sh
         failureThreshold: 10
-        httpGet:
-          path: /login
-          port: 12062
         initialDelaySeconds: 60
         periodSeconds: 1
       name: sequencer
       ports:
       - containerPort: 12062
       readinessProbe:
+        exec:
+          command:
+          - /usr/local/bin/ready_probe.sh
         failureThreshold: 10
-        httpGet:
-          path: /login
-          port: 12062
         initialDelaySeconds: 60
         periodSeconds: 1
       volumeMounts:
@@ -303,7 +292,7 @@ system:
   - containers:
     - args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
-      - --switchboard=na47-switchboard-lb:8088
+      - --switchboard=na47-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti:8088
       - --log-level=trace
       env:
       - name: ENVOY_DEBUG_OPTIONS
