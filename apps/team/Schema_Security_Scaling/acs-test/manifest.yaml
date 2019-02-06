@@ -1,0 +1,147 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - schemasecurityscalingscrumteam@salesforce.com
+  functions:
+  - name: acs-pap
+    count: 1
+    containers:
+    # PAP container
+    - name: pap
+      image: sfci/acs/acs-pap:acs-615130521ba46c1c023f8332ca70ce2c4e40d12a
+      ports:
+      - name: http1
+        containerPort: 9090
+        hostPort: 7022
+      - name: scone-adm
+        containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        timeoutSeconds: 10      
+    # PAP's Sherpa sidecar container
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      ports:
+      - name: http1-in
+        containerPort: 7014
+      - name: http1-tls-in
+        containerPort: 7442
+      - name: sherpa-adm
+        containerPort: 15373
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
+    - name: beacon
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      args:
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxUnavailable: 1
+  functions:
+  - name: acs-pdp
+    count: 5
+    containers:
+    - name: pdp
+      image: sfci/acs/acs-pdp:acs-615130521ba46c1c023f8332ca70ce2c4e40d12a
+      #args:
+      #- --server.port=9090
+      #- --logging.level.com.zaxxer.hikari=debug
+      #- --spring.datasource.hikari.maximumPoolSize=6
+      #- --spring.datasource.hikari.minimumIdle=5
+      #- --spring.datasource.hikari.leakDetectionThreshold=10000
+      #- --gater-service.thread.pool.max-size=0
+      #- --scone.detectsidecars=false
+      ports:
+      - name: http1
+        containerPort: 8080
+        hostPort: 7022
+      - name: scone-adm
+        containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      ports:
+      - name: http1-in
+        containerPort: 7014
+      - name: http1-tls-in
+        containerPort: 7442
+      - name: sherpa-adm
+        containerPort: 15373
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
+    - name: beacon
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      args:
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxUnavailable: 1
