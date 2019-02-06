@@ -90,7 +90,7 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: green
+          value: blue
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
@@ -266,7 +266,7 @@ system:
 
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:aa1402
+      image: sfci/casam/sequencer:02aa2d
 
       env:
         - name: CASAM_SETTINGS_PATH
@@ -281,13 +281,13 @@ system:
         - name: READY_SERVER_COUNT
           value: 3
         - name: CURRENT_RELEASE_VERSION
-          value: blue
-        - name: NEW_RELEASE_VERSION
           value: green
+        - name: NEW_RELEASE_VERSION
+          value: blue
         - name: MAJOR_RELEASE_NUMBER
           value: 218
         - name: RELEASE_TYPE
-          value: MAJOR
+          value: MINOR
         - name: DB_SID
           value: mist61b218utf
         - name: OLD_DWARF
@@ -295,15 +295,15 @@ system:
         - name: SNOWWHITE_PWD
           value: rotate
         - name: LOCK_DWARF
-          value: 1
+          value: 0
         - name: TRIGGER_CAFFEINE
-          value: 1
+          value: 0
         - name: UNLOCK_DWARF
-          value: 1
+          value: 0
         - name: KILL_DWARF
-          value: 1
+          value: 0
         - name: ENABLE_DB_SCHEMA_UPGRADE
-          value: 1
+          value: 0
         - name: SET_DEFAULT_ORACLE_EDITION
           value: 0
         # set http proxy required for gus chatter binary to reach to login.salesforce.com
