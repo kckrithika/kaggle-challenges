@@ -5,7 +5,7 @@ data:
     template: |-
       initContainers:
       - name: istio-init
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxy_init:1.0.2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:5ba305bc1b58502784a49ab5c476723e08cd2169
         args:
         - "-p"
         - [[ .MeshConfig.ProxyListenPort ]]
@@ -50,7 +50,7 @@ data:
         image: [[ if (isset .ObjectMeta.Annotations "sidecar.istio.io/proxyImage") -]]
         "[[ index .ObjectMeta.Annotations "sidecar.istio.io/proxyImage" ]]"
         [[ else -]]
-        ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxyv2:1.0.2
+        ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:5ba305bc1b58502784a49ab5c476723e08cd2169
         [[ end -]]
         args:
         - proxy
