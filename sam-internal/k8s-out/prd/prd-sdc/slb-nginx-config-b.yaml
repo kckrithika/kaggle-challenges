@@ -130,7 +130,7 @@ spec:
         env:
         - name: KINGDOM
           value: prd
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/nginx:112-bf25ef3e3110d213eb545e1759928bbcc73ab9bd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/nginx:113-86f818c157a019943624312a50b6f51b92d5e630
         livenessProbe:
           httpGet:
             path: /
