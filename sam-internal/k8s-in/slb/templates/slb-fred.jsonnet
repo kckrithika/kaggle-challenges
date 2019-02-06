@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet");
 local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbports = import "slbports.jsonnet";
 
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
 
@@ -34,9 +35,16 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--commonoptions.metricsendpoint=" + configs.funnelVIP,
                                      "--commonoptions.hostname=$(NODE_NAME)",
+                                 ] + (if configs.estate == "prd-sdc" then
+                                 [
+                                     "--vipName=slb-canary-proxy-http.sam-system.%(estate)s.%(kingdom)s.slb.sfdc.net" % configs,
+                                     "--port=%(canaryServiceProxyHttpPort)d" % slbports.slb,
+                                 ]
+
+                                 else [
                                      "--vipName=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net",
                                      "--port=9116",
-                                 ],
+                                 ]),
 
                         volumeMounts: std.prune([
                             slbconfigs.logs_volume_mount,
