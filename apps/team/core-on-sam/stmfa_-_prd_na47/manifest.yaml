@@ -14,12 +14,16 @@ system:
         value: snowwhite
       - name: IP_DB
         value: stmf1ice1-db4-1-prd-vip.eng.sfdc.net
-      - name: SERVER_ID
-        value: x
+      - name: DB_PASSWORD
+        value: rotate
+      - name: DB_STATS_PASSWORD
+        value: rotate
       - name: IP_MNDS1
         value: 127.0.0.1
       - name: OFFLINE
         value: true
+      - name: SERVER_ID
+        value: x
       - name: PUBLIC_PORT
         value: 8443
       - name: PUBLIC_PORT_IS_SECURE
@@ -39,7 +43,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -47,14 +51,14 @@ system:
       - name: CLUSTER_NAME
         value: na47
       - name: DEPLOYMENT
-        value: B
+        value: G
       - name: USE_CONFIG_SIDECAR
         value: 1
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17412297
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17423748
       livenessProbe:
         exec:
           command:
@@ -89,7 +93,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: stmfa.-.prd.na47.app
-      image: sfci/casam/coreapp_config_overrides:641f92
+      image: sfci/casam/coreapp_config_overrides:2b789e
       livenessProbe:
         exec:
           command:
@@ -192,7 +196,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1549490072540442112
+        value: 1549516401075547904
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -204,7 +208,7 @@ system:
       - name: RELEASE_VESION
         value: ""
       - name: RELEASE_TYPE
-        value: DAILY
+        value: PATCH
       - name: MAJOR_RELEASE_NUMBER
         value: 220
       - name: MINOR_RELEASE_NUMBER
@@ -212,9 +216,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -233,8 +237,6 @@ system:
         value: 0
       - name: UNLOCK_DWARF
         value: 0
-      - name: SNOWWHITE_PWD
-        value: rotate
       - name: MADDOG_CLIENT
         value: /certs
       - name: CASAM_SETTINGS_PATH
@@ -245,7 +247,7 @@ system:
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: SKIP_KAIJU
         value: 1
-      image: sfci/casam/sequencer:02aa2d
+      image: sfci/casam/sequencer:db58ae
       livenessProbe:
         exec:
           command:
