@@ -2388,7 +2388,8 @@
         "service-mesh",
         "scone",
         "service-protection",
-        "mesh-control-plane"
+        "mesh-control-plane",
+        "mesh-control-plane-test"
       ],
       "access": [
         "team/Gater",
