@@ -1,4 +1,12 @@
 apps:
+  datapool-ord:
+  - ord/ord-sam_datapool
+  spark-engine-ord:
+  - ord/ord-sam_datapool
+  datapool-iad:
+  - iad/iad-sam_datapool
+  spark-engine-iad:
+  - iad/iad-sam_datapool
   datapool-phx:
   - phx/phx-sam_datapool
   spark-engine-phx:
@@ -7,23 +15,18 @@ apps:
   - dfw/dfw-sam_datapool
   spark-engine-ph2:
   - ph2/ph2-sam_datapool
+
   spark-engine-ia2:
   - ia2/ia2-sam_datapool
   spark-engine-dfw:
   - dfw/dfw-sam_datapool
+
+  # PRD
   datapool-staging:
   - prd/prd-sam_datapool
-  datapool:
-  - iad/iad-sam_datapool
-  - ord/ord-sam_datapool
 
-# ======= Flowsnake Container ======== #
-  spark-engine-iad:
-  - iad/iad-sam_datapool
-  spark-engine-ord:
-  - ord/ord-sam_datapool
 
-# moana driver used for testing moana via kafka.
+  # moana driver used for testing moana via kafka.
   moana-driver-prd:
   - prd/prd-sam
 
