@@ -17,8 +17,8 @@ images:
   coreApp: sfci/casam/coreapp:release_216-patch_17304344
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
-  sequencer: sfci/casam/sequencer:6cef57
+  sequencer: sfci/casam/sequencer:db58ae
 name: cs103
-nonce: 1549501341233304000
+nonce: 1549502309933627000
 replicaCount: 5
 settingsSuperPod: sp1
