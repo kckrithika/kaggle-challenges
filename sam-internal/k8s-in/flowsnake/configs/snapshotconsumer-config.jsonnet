@@ -19,7 +19,7 @@ std.prune({
   kafkaTopics: (
     // Test fleet only has access to the test topic
     if flowsnake_config.is_test then "sfdc.test.fs-k8s-snapshots__prd.ajna_local__snapshot"
-    else "sfdc.test.fs-k8s-snapshots__prd.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__prd.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__frf.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__iad.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__ord.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__par.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__phx.ajna_local__snapshot"
+    else "sfdc.test.fs-k8s-snapshots__prd.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__prd.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__frf.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__iad.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__ord.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__par.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__phx.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__ph2.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__ukb.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__hnd.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__dfw.ajna_local__snapshot,sfdc.prod.fs-k8s-snapshots__ia2.ajna_local__snapshot"
     ),
   funnelEndpoint: configs.funnelVIP,
 }) else "SKIP"
