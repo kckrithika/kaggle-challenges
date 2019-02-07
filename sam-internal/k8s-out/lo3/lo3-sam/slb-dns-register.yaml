@@ -50,9 +50,10 @@ spec:
         - --client.serverInterface=lo
         - --restrictedSubnets=161.71.46.0/23,
         - --maxDeleteEntries=10
+        - --secrets.ssendpoint=secretservice-lo3.data.sfdc.net
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2053-e6865a4d154ada4779ecb7facb3e38e66d6c73d9
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2055-14674f387b06a3341cf4a8253f515f2f95006452
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -95,7 +96,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2053-e6865a4d154ada4779ecb7facb3e38e66d6c73d9
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2055-14674f387b06a3341cf4a8253f515f2f95006452
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -134,7 +135,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2053-e6865a4d154ada4779ecb7facb3e38e66d6c73d9
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2055-14674f387b06a3341cf4a8253f515f2f95006452
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -156,7 +157,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2053-e6865a4d154ada4779ecb7facb3e38e66d6c73d9
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2055-14674f387b06a3341cf4a8253f515f2f95006452
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -184,7 +185,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-dns-register/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2053-e6865a4d154ada4779ecb7facb3e38e66d6c73d9
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2055-14674f387b06a3341cf4a8253f515f2f95006452
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -250,7 +251,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2053-e6865a4d154ada4779ecb7facb3e38e66d6c73d9
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2055-14674f387b06a3341cf4a8253f515f2f95006452
         name: slb-manifest-watcher
         securityContext:
           privileged: true
@@ -274,6 +275,7 @@ spec:
         - --client.dialSocket=true
         - --commonoptions.metricsendpoint=ajna0-funnel1-0-lo3.data.sfdc.net:80
         - --commonoptions.hostname=$(NODE_NAME)
+        - --secrets.ssendpoint=secretservice-lo3.data.sfdc.net
         - --keyfile=/cert3/client/keys/client-key.pem
         - --certfile=/cert3/client/certificates/client.pem
         - --cafile=/cert3/ca/cabundle.pem
@@ -282,7 +284,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2053-e6865a4d154ada4779ecb7facb3e38e66d6c73d9
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sdn/hypersdn:2055-14674f387b06a3341cf4a8253f515f2f95006452
         name: slb-cname-register
         volumeMounts:
         - mountPath: /etc/pki_service
