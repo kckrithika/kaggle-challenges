@@ -125,6 +125,81 @@ system:
       volumeMounts:
       - mountPath: /tmp
         name: temp
+    - name: dashboard-ph2
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/ph2-flowsnake_prod
+        - --insecure-port=9097
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9097
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9097
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-ukb
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/ukb-flowsnake_prod
+        - --insecure-port=9098
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9098
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9098
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-hnd
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/hnd-flowsnake_prod
+        - --insecure-port=9099
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9099
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9099
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-dfw
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/dfw-flowsnake_prod
+        - --insecure-port=9100
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9100
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9100
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-ia2
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/ia2-flowsnake_prod
+        - --insecure-port=9101
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9101
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9101
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
     volumes:
     - name: temp
       emptyDir: {}
@@ -184,4 +259,39 @@ system:
     ports:
       - port: 80
         targetport: 9096
+        lbtype: dsr
+  - lbname: dashboard-ph2
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9097
+        lbtype: dsr
+  - lbname: dashboard-ukb
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9098
+        lbtype: dsr
+  - lbname: dashboard-hnd
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9099
+        lbtype: dsr
+  - lbname: dashboard-dfw
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9100
+        lbtype: dsr
+  - lbname: dashboard-ia2
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9101
         lbtype: dsr
