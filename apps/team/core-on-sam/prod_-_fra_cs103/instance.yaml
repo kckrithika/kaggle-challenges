@@ -19,6 +19,6 @@ images:
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:6cef57
 name: cs103
-nonce: 1549496367367597000
+nonce: 1549501341233304000
 replicaCount: 5
 settingsSuperPod: sp1

@@ -192,7 +192,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1549496367367597056
+        value: 1549501341233304064
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -287,4 +287,3 @@ system:
     - k4aSecret:
         secretName: sequencer-kaiju
       name: kaiju-secret-vol
-  loadbalancers: []
