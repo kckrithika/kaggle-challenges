@@ -16,8 +16,8 @@ version: v2
 apps:
 
 # Production Alpha
- cs103:
-  - name: fra/fra-sp1-sam_coreappalpha
+#  prod_-_fra_cs103:
+  # - name: fra/fra-sp1-sam_coreappalpha
  cs103-sfproxy:
   - name: fra/fra-sp1-sam_coreappalpha
 
