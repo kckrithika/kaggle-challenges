@@ -23,7 +23,7 @@ local samreleases = import "samreleases.json";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         #[pjoshi] Fixing manifest-repo-watcher
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002448-fecfa58c",
+        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20190206_191653.c5206861.dirty.prahladjos-ltm",
 
         #[prabh.singh] Bundle Override , latency fix
         "prd,prd-sam,bundle-controller,hypersam": "sam-0002455-fbe2cb61",
