@@ -35,6 +35,10 @@ local samreleases = import "samreleases.json";
 
         #[small] sythetic checker failure fix
         "prd,prd-samtest,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20190118_133746.5f7caad8.dirty.small-ltm",
+
+        #[thargrove] Needed only until Artifactory adds a docker-all alias to docker-gcp in XRD 2-0
+        "mvp,gsf-core-devmvp-sam2-sam,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
+        "mvp,gsf-core-devmvp-sam2-samtest,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
