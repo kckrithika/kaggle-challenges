@@ -1355,7 +1355,8 @@
         "service-mesh",
         "service-protection",
         "universal-search",
-        "wave-elt"
+        "wave-elt",
+        "solr-service"
       ],
       "access": [
         "team/CSC_Sam",
@@ -1380,7 +1381,8 @@
         "team/service-mesh",
         "team/Service_Protection",
         "team/universal-search",
-        "team/wave-elt"
+        "team/wave-elt",
+        "team/solr-service"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-sam",
       "estate": "gsf-core-devmvp-sam2-sam",
