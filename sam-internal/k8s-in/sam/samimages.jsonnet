@@ -41,7 +41,7 @@ local samreleases = import "samreleases.json";
 
     ### Phase kingdom/estate mapping
     phase: (
-        if (estate == "prd-samtest") then
+        if (estate == "prd-samtest" || kingdom == "mvp") then
             "1"
         else if (estate == "prd-samdev") then
             "2"

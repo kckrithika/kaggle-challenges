@@ -28,7 +28,7 @@ spec:
         - -alertThreshold=1h
         - -emailFrequency=12h
         - -laddr=0.0.0.0:8083
-        - -imageName=gcr.io/gsf-core-devmvp-sam2/tnrp/sam/hypersam:sam-0002472-fe691728
+        - -imageName=ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:2600-3d363277b10101ae15b8e17a2d2853b49c7af030
         - -watchDogKind=Deployment
         - -enableStatefulChecks=false
         - -timeout=2s
@@ -43,7 +43,7 @@ spec:
           value: gsf-core-devmvp-sam2-sam
         - name: KUBECONFIG
           value: ""
-        image: gcr.io/gsf-core-devmvp-sam2/tnrp/sam/hypersam:sam-0002472-fe691728
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:2600-3d363277b10101ae15b8e17a2d2853b49c7af030
         name: watchdog-synthetic
         ports:
         - containerPort: 8083

@@ -133,7 +133,7 @@ local internal = {
     #
     do_override_based_on_tag(overrides, repo, image_name, tag):: (
         local tagAfterOverride = internal.do_override(overrides, image_name, tag, $.templateFilename);
-        if (std.startsWith(tagAfterOverride, "ops0-artifactrepo") || std.startsWith(tagAfterOverride, "ops-artifactrepo") || std.startsWith(tagAfterOverride, configs.gcpRegistry)) then
+        if (std.startsWith(tagAfterOverride, "ops0-artifactrepo") || std.startsWith(tagAfterOverride, "ops-artifactrepo") || std.startsWith(tagAfterOverride, "gcr.io")) then
           tagAfterOverride
         else
           internal.add_registry(repo, image_name, tagAfterOverride)

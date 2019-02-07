@@ -35,7 +35,7 @@ spec:
           value: gsf-core-devmvp-sam2-samtest
         - name: KUBECONFIG
           value: ""
-        image: gcr.io/gsf-core-devmvp-sam2/tnrp/sam/hypersam:sam-0002472-fe691728
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:2600-3d363277b10101ae15b8e17a2d2853b49c7af030
         name: samapp-controller
         volumeMounts:
         - mountPath: /config
