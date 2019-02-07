@@ -11,8 +11,6 @@ system:
     containers:
     - name: stateful-hello
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tkuznets/docker-pets:toli
-      command:
-        - /sam/sam-test-app
       ports:
       - containerPort: 8000
         name: web
