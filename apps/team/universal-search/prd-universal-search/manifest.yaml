@@ -196,7 +196,7 @@ system:
         path: /home/sfdc-scone-universal-search-mock-index-workflow/logs
     containers:
     - name: universal-search-mock-index-workflow-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-mock-index-workflow:0.0.15
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-mock-index-workflow:0.0.16
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -228,7 +228,7 @@ system:
         path: /home/sfdc-scone-universal-search-mock-streaming-index/logs
     containers:
     - name: universal-search-mock-streaming-index-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-mock-streaming-index:0.0.15
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-mock-streaming-index:0.0.16
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
