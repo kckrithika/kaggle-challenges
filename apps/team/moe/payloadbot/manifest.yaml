@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: payloadbot
-      image: dva/moe/payloadbot:2057-5fd5bb385b2843052f76aed40da35383ff6439b7
+      image: dva/moe/payloadbot:2058-95bce4dfdb83072b2d656ffd34dcb0e7b8e4bea8
       command: ["/moe/payloadbot"]
       args:
       - "-gheTokenPath"

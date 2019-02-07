@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2057-5fd5bb385b2843052f76aed40da35383ff6439b7
+      image: dva/moe/deployerbot:2058-95bce4dfdb83072b2d656ffd34dcb0e7b8e4bea8
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -36,7 +36,7 @@ system:
         name: moe-gpg-signing-key
         readOnly: true
     - name: imagedeployer-hypersdn
-      image: dva/moe/deployerbot:2057-5fd5bb385b2843052f76aed40da35383ff6439b7
+      image: dva/moe/deployerbot:2058-95bce4dfdb83072b2d656ffd34dcb0e7b8e4bea8
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -54,7 +54,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 60
     - name: imagedeployer-nginx
-      image: dva/moe/deployerbot:2057-5fd5bb385b2843052f76aed40da35383ff6439b7
+      image: dva/moe/deployerbot:2058-95bce4dfdb83072b2d656ffd34dcb0e7b8e4bea8
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -72,7 +72,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 60
     - name: imagedeployer-nginx-kms
-      image: dva/moe/deployerbot:2057-5fd5bb385b2843052f76aed40da35383ff6439b7
+      image: dva/moe/deployerbot:2058-95bce4dfdb83072b2d656ffd34dcb0e7b8e4bea8
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -100,7 +100,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2057-5fd5bb385b2843052f76aed40da35383ff6439b7
+      image: dva/moe/deployerbot:2058-95bce4dfdb83072b2d656ffd34dcb0e7b8e4bea8
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -131,7 +131,7 @@ system:
         name: moe-gpg-signing-key
         readOnly: true
     - name: imagedeployer-hypersam
-      image: dva/moe/deployerbot:2057-5fd5bb385b2843052f76aed40da35383ff6439b7
+      image: dva/moe/deployerbot:2058-95bce4dfdb83072b2d656ffd34dcb0e7b8e4bea8
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -149,7 +149,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 60
     - name: imagedeployer-madkub
-      image: dva/moe/deployerbot:2057-5fd5bb385b2843052f76aed40da35383ff6439b7
+      image: dva/moe/deployerbot:2058-95bce4dfdb83072b2d656ffd34dcb0e7b8e4bea8
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -167,7 +167,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 60
     - name: imagedeployer-madkub-sidecar
-      image: dva/moe/deployerbot:2057-5fd5bb385b2843052f76aed40da35383ff6439b7
+      image: dva/moe/deployerbot:2058-95bce4dfdb83072b2d656ffd34dcb0e7b8e4bea8
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
