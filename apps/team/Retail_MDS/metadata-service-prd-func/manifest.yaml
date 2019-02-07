@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: metadata-service
-      image: docker-sfci-dev/sfci/metadata-cannon/metadata-service::0.7.1
+      image: docker-sfci-dev/sfci/metadata-cannon/metadata-service:0.7.1
       ports:
       - containerPort: 9091
       - containerPort: 15523
