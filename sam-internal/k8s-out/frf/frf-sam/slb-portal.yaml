@@ -55,6 +55,7 @@ spec:
         - --certfile=/cert3/client/certificates/client.pem
         - --log_dir=/host/data/slb/logs/slb-portal
         - --cafile=/cert3/ca/cabundle.pem
+        - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-portal
         - --client.dialSocket=true
         env:
@@ -78,6 +79,8 @@ spec:
           name: maddog-certs
         - mountPath: /data/certs
           name: certs
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /cert3
           name: cert3
       - command:

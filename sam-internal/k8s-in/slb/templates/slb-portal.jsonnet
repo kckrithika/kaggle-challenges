@@ -56,10 +56,9 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                            "--certfile=/cert3/client/certificates/client.pem",
                                            "--log_dir=/host/data/slb/logs/slb-portal",
                                            "--cafile=/cert3/ca/cabundle.pem",
-                                       ] + (if slbflights.portalSfdcHostsMountEnabled then [
-                                                configs.sfdchosts_arg,
-                                            ] else [])
-                                            + (if configs.estate == "lo2-sam" && slbimages.hyperslb_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo2.data.sfdc.net"] else if configs.estate == "lo3-sam" && slbimages.hyperslb_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo3.data.sfdc.net"] else [])
+                                           configs.sfdchosts_arg,
+                                       ]
+                                       + (if configs.estate == "lo2-sam" && slbimages.hyperslb_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo2.data.sfdc.net"] else if configs.estate == "lo3-sam" && slbimages.hyperslb_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo3.data.sfdc.net"] else [])
                                        + (if slbconfigs.isTestEstate then [
                                                 "--slbEstate=" + configs.estate,
                                             ] else [])
@@ -69,11 +68,8 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                       slbconfigs.slb_volume_mount,
                                       configs.maddog_cert_volume_mount,
                                       configs.cert_volume_mount,
-                                  ]
-                                  + (if slbflights.portalSfdcHostsMountEnabled then [
                                       configs.sfdchosts_volume_mount,
-                                     ] else [])
-                                  + madkub.madkubSlbCertVolumeMounts(certDirs)
+                                  ] + madkub.madkubSlbCertVolumeMounts(certDirs)
                               ),
                               livenessProbe: {
                                   httpGet: {
