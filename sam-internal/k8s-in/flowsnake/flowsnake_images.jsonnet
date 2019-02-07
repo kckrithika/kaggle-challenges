@@ -274,7 +274,7 @@ local utils = import "util_functions.jsonnet";
             },
         },
 
-        "4-dfw-ph2-hnd-ukb-phx": self["4"] {
+        "4-dfw": self["4"] {
            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
@@ -286,6 +286,83 @@ local utils = import "util_functions.jsonnet";
            version_mapping: {
                 main: {
                   "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                },
+            },
+        },
+
+        "4-ph2": self["4"] {
+           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+
+           feature_flags: {
+               dynamic_watchdogs: "yes",
+           },
+
+           version_mapping: {
+                main: {
+                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                },
+            },
+        },
+
+        "4-hnd": self["4"] {
+           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+
+           feature_flags: {
+               dynamic_watchdogs: "yes",
+           },
+
+           version_mapping: {
+                main: {
+                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                },
+            },
+        },
+
+        "4-ukb": self["4"] {
+           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+
+           feature_flags: {
+               dynamic_watchdogs: "yes",
+           },
+
+           version_mapping: {
+                main: {
+                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                },
+            },
+        },
+
+        "4-phx": self["4"] {
+           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+
+           feature_flags: {
+               dynamic_watchdogs: "yes",
+           },
+
+           version_mapping: {
+                main: {
+                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-clean-up-shutdown-behavior-1-itest",  # Fixes XL annotation issue.
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -310,8 +387,16 @@ local utils = import "util_functions.jsonnet";
             "4-ord"
         else if (estate == "frf-flowsnake_prod" || estate == "par-flowsnake_prod") then
             "4-frf-par"
-        else if std.count(["dfw", "hnd", "ph2", "ukb", "phx"], kingdom) > 0 then
-            "4-dfw-ph2-hnd-ukb-phx"
+        else if (estate == "dfw-flowsnake_prod") then
+            "4-dfw"
+        else if (estate == "ph2-flowsnake_prod") then
+            "4-ph2"
+        else if (estate == "hnd-flowsnake_prod") then
+            "4-hnd"
+        else if (estate == "ukb-flowsnake_prod") then
+            "4-ukb"
+        else if (estate == "phx-flowsnake_prod") then
+            "4-phx"
         else
             "4"
         ),
