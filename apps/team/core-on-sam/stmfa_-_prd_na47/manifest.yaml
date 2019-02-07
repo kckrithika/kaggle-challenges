@@ -6,6 +6,8 @@ system:
   functions:
   - containers:
     - env:
+      - name: DB_SID
+        value: sfana47
       - name: DB_INSTANCE_NAME
         value: sfana47-1
       - name: DB_USER
@@ -45,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -53,14 +55,14 @@ system:
       - name: CLUSTER_NAME
         value: na47
       - name: DEPLOYMENT
-        value: B
+        value: G
       - name: USE_CONFIG_SIDECAR
         value: 1
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17423748
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17426119
       livenessProbe:
         exec:
           command:
@@ -92,6 +94,9 @@ system:
         name: tls-client-cert
       - mountPath: /home/sfdc/config_override
         name: coreapp-config-volume
+      - mountPath: /home/sfdc/salesforce/config/settings/overrides/caas-cluster-casam-sp2
+        name: secretvol
+        readOnly: true
     - env:
       - name: CASAM_SETTINGS_PATH
         value: stmfa.-.prd.na47.app
@@ -195,10 +200,13 @@ system:
     - hostPath:
         path: /data/logs/jvm
       name: log-volume-jvm
+    - k4aSecret:
+        secretName: caas-k4a-secret-prd
+      name: secretvol
   - containers:
     - env:
       - name: NONCE
-        value: 1549517654510446080
+        value: 1549559178772588032
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -218,9 +226,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -239,6 +247,8 @@ system:
         value: 0
       - name: UNLOCK_DWARF
         value: 0
+      - name: SNOWWHITE_PWD
+        value: rotate
       - name: MADDOG_CLIENT
         value: /certs
       - name: CASAM_SETTINGS_PATH
