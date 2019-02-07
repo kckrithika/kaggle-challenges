@@ -206,7 +206,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1549559079554209024
+        value: 1549559178772588032
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -252,7 +252,7 @@ system:
       - name: MADDOG_CLIENT
         value: /certs
       - name: CASAM_SETTINGS_PATH
-        value: -.-.prd.na47.sequencer
+        value: stmfa.-.prd.na47.sequencer
       - name: CASAM_SUPERPOD
         value: sp2
       - name: HTTP_PROXY
