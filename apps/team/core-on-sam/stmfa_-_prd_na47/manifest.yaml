@@ -12,6 +12,8 @@ system:
         value: sleepy
       - name: DB_STATS_USER
         value: snowwhite
+      - name: DB_CONN_NUM
+        value: 25
       - name: IP_DB
         value: stmf1ice1-db4-1-prd-vip.eng.sfdc.net
       - name: DB_PASSWORD
@@ -43,7 +45,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -51,7 +53,7 @@ system:
       - name: CLUSTER_NAME
         value: na47
       - name: DEPLOYMENT
-        value: G
+        value: B
       - name: USE_CONFIG_SIDECAR
         value: 1
       - name: CASAM_HOST_NAME
@@ -196,7 +198,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1549516551446320128
+        value: 1549517654510446080
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -216,9 +218,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
