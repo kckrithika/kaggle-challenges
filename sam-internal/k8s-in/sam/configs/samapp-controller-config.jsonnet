@@ -20,7 +20,7 @@ std.prune({
   k4aInitContainerImage: samimages.k4aInitContainerImage,
 
   #stateful
-  [if configs.kingdom == "prd" then "enableStatefulSet"]: true,
+  [if configs.kingdom == "prd" || utils.is_pcn(configs.kingdom) then "enableStatefulSet"]: true,
 
   # others
     volPermissionInitContainerImage: samimages.permissionInitContainer,

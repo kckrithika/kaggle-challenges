@@ -7,6 +7,7 @@ data:
       "enableDNS": true,
       "enableIdentityEnvVar": false,
       "enableMaddog": true,
+      "enableStatefulSet": true,
       "funnelEndpoint": "ajna0-funnel1-0-mvp.data.sfdc.net:80",
       "k4aInitContainerImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
       "maddogMaddogEndpoint": "https://10.168.192.67:8443",
