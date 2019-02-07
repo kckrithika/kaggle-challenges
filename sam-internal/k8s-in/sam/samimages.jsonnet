@@ -39,6 +39,8 @@ local samreleases = import "samreleases.json";
         #[thargrove] Needed only until Artifactory adds a docker-all alias to docker-gcp in XRD 2-0
         "mvp,gsf-core-devmvp-sam2-sam,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
         "mvp,gsf-core-devmvp-sam2-samtest,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
+        "mvp,gsf-core-devmvp-sam2-sam,*,madkub": "gcr.io/gsf-core-devmvp-sam2/tnrp/sam/madkub:1.0.0-0000077-b1d3a629",
+        "mvp,gsf-core-devmvp-sam2-samtest,*,madkub": "gcr.io/gsf-core-devmvp-sam2/tnrp/sam/madkub:1.0.0-0000077-b1d3a629",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
