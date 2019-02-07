@@ -1,4 +1,4 @@
-color: blue
+color: green
 db:
   connectionCount: 25
   hostName: stmf1ice1-db4-1-prd-vip.eng.sfdc.net
@@ -17,7 +17,7 @@ env:
   subEnvName: '-'
 images:
   configOverrides: sfci/casam/coreapp_config_overrides:641f92
-  coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17423748
+  coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17426119
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:db58ae
@@ -25,6 +25,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:a6729b3a765d262943bb20f9921b4343784dccef
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na47
-nonce: 1549517654510446000
+nonce: 1549559079554209000
 replicaCount: 1
 settingsSuperPod: sp2
