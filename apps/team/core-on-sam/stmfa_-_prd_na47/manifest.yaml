@@ -14,20 +14,24 @@ system:
         value: snowwhite
       - name: IP_DB
         value: stmf1ice1-db4-1-prd-vip.eng.sfdc.net
-      - name: SERVER_ID
-        value: x
+      - name: DB_PASSWORD
+        value: rotate
+      - name: DB_STATS_PASSWORD
+        value: rotate
       - name: IP_MNDS1
         value: 127.0.0.1
       - name: OFFLINE
         value: true
+      - name: SERVER_ID
+        value: x
       - name: PUBLIC_PORT
         value: 8443
       - name: PUBLIC_PORT_IS_SECURE
         value: true
       - name: PUBLIC_HOST_NAME
-        value: us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti
+        value: us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
       - name: SFPROXY_VIP
-        value: https://us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti:8443
+        value: https://us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: HTTP_PORT
         value: 8085
       - name: SPORT
@@ -39,7 +43,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -47,14 +51,14 @@ system:
       - name: CLUSTER_NAME
         value: na47
       - name: DEPLOYMENT
-        value: B
+        value: G
       - name: USE_CONFIG_SIDECAR
         value: 1
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17412297
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17423748
       livenessProbe:
         exec:
           command:
@@ -192,19 +196,19 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1549490072540442112
+        value: 1549516551446320128
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
         value: casam-alpha
       - name: CYAN
-        value: https://us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti:8443
+        value: https://us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: SWITCH_BOARD_ADDRESS
-        value: na47-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti:8088
+        value: na47-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
       - name: RELEASE_VESION
         value: ""
       - name: RELEASE_TYPE
-        value: DAILY
+        value: PATCH
       - name: MAJOR_RELEASE_NUMBER
         value: 220
       - name: MINOR_RELEASE_NUMBER
@@ -212,9 +216,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -233,8 +237,6 @@ system:
         value: 0
       - name: UNLOCK_DWARF
         value: 0
-      - name: SNOWWHITE_PWD
-        value: rotate
       - name: MADDOG_CLIENT
         value: /certs
       - name: CASAM_SETTINGS_PATH
@@ -245,7 +247,7 @@ system:
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: SKIP_KAIJU
         value: 1
-      image: sfci/casam/sequencer:02aa2d
+      image: sfci/casam/sequencer:db58ae
       livenessProbe:
         exec:
           command:
@@ -292,7 +294,7 @@ system:
   - containers:
     - args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
-      - --switchboard=na47-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti:8088
+      - --switchboard=na47-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
       - --log-level=trace
       env:
       - name: ENVOY_DEBUG_OPTIONS
