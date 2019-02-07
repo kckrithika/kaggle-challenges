@@ -74,3 +74,80 @@
     - shared0-flowsnakeworkerprod1-63-ph2.ops.sfdc.net
     - shared0-flowsnakeworkerprod1-64-ph2.ops.sfdc.net
     - shared0-flowsnakeworkerprod1-65-ph2.ops.sfdc.net
+- lbname: ingress
+  ports:
+      - port: 443
+        targetport: 8443
+        lbtype: tcp
+        healthport: 80
+        healthprotocol: "http"
+        healthpath: "/ping.jsp"
+        lbalgorithm: roundrobin
+    # Derived from estates:
+    # grep 'worker.*\.sfdc\.net' kingdoms/ph2/ph2-flowsnake_prod.yaml | sed -e 's/\(.*\([1-9]-[0-9]*\)-.*\)/\2-\1/' | sort -t- -k1n -k2n | sed -e 's/^[-0-9]*\s*/    /'
+  servers:
+      - shared0-flowsnakeworkerprod1-1-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-2-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-3-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-4-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-5-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-6-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-7-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-8-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-9-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-10-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-11-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-12-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-13-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-14-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-15-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-16-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-17-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-18-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-19-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-20-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-21-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-22-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-23-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-24-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-25-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-26-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-27-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-28-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-29-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-30-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-31-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-32-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-33-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-34-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-35-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-36-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-37-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-38-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-39-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-40-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-41-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-42-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-43-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-44-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-45-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-46-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-47-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-48-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-49-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-50-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-51-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-52-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-53-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-54-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-55-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-56-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-57-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-58-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-59-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-60-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-61-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-62-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-63-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-64-ph2.ops.sfdc.net
+      - shared0-flowsnakeworkerprod1-65-ph2.ops.sfdc.net
