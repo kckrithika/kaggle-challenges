@@ -93,7 +93,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: stmfa.-.prd.na47.app
-      image: sfci/casam/coreapp_config_overrides:2b789e
+      image: sfci/casam/coreapp_config_overrides:641f92
       livenessProbe:
         exec:
           command:
@@ -196,7 +196,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1549516401075547904
+        value: 1549516504790031104
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
