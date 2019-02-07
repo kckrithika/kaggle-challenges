@@ -29,9 +29,9 @@ system:
       - name: PUBLIC_PORT_IS_SECURE
         value: true
       - name: PUBLIC_HOST_NAME
-        value: us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti
+        value: us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
       - name: SFPROXY_VIP
-        value: https://us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti:8443
+        value: https://us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: HTTP_PORT
         value: 8085
       - name: SPORT
@@ -196,15 +196,15 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1549516504790031104
+        value: 1549516551446320128
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
         value: casam-alpha
       - name: CYAN
-        value: https://us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti:8443
+        value: https://us47-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: SWITCH_BOARD_ADDRESS
-        value: na47-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti:8088
+        value: na47-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
       - name: RELEASE_VESION
         value: ""
       - name: RELEASE_TYPE
@@ -294,7 +294,7 @@ system:
   - containers:
     - args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
-      - --switchboard=na47-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.neti:8088
+      - --switchboard=na47-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
       - --log-level=trace
       env:
       - name: ENVOY_DEBUG_OPTIONS
