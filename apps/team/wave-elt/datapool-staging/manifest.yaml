@@ -43,10 +43,10 @@ system:
         value: dockerDefaultRegistryImage
 
       - name: FLOWSNAKE_WORKER_COUNT
-        value: 4
+        value: 16
 
       - name: FLOWSNAKE_WORKER_CORE_COUNT
-        value: 16
+        value: 12
 
       - name: FLOWSNAKE_WORKER_MEMORY_GB
         value: 64
