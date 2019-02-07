@@ -42,10 +42,10 @@ configs.deploymentBase("mesh-control-plane") {
           ),
         },
       },
-      spec: configs.specWithKubeConfigAndMadDog {
+      spec: configs.specWithMadDog {
 //        serviceAccountName: "istio-sidecar-injector-service-account",
         containers: [
-          configs.containerWithKubeConfigAndMadDog {
+          configs.containerWithMadDog {
             name: "sidecar-injector-webhook",
             image: istioImages.sidecarinjector,
             imagePullPolicy: "IfNotPresent",
