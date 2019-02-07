@@ -1,0 +1,32 @@
+apiVersion: v1
+
+system:
+  functions:
+    - name: search-gcp
+      type: stateful-set
+      count: 1
+      containers:
+      - name: searchserver
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17422476.427
+        env:
+        - name: SFDC_ENVIRONMENT
+          value: "sam"
+        - name: INSTANCE_URL
+          value: "na44.stmfa.stm.salesforce.com"
+        - name: LBNAME
+          value: "searchservers"
+        - name: DNS_PODNAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        ports:
+        - containerPort: 8983
+          name: solr-port
+        livenessProbe:
+          httpGet:
+            path: /ping.jsp
+            port: 8983
+          initialDelaySeconds: 120
+          periodSeconds: 5
+      lbname: searchservers
