@@ -2,6 +2,7 @@ apiVersion: v1
 data:
   version-mapping.properties: |
     0.12.5 = jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
+    0.12.5-wave = jenkins-dva-transformation-flowsnake-platform-clean-up-shutdown-behavior-1-itest
 kind: ConfigMap
 metadata:
   creationTimestamp: null
