@@ -10,9 +10,11 @@ std.prune({
   hostRegexWhitelist: (if configs.estate == "prd-samtest" then [
    ".*samtest.*",
   ] else [
+    ".*dfw.*",
+    ".*frf.*",
+    ".*phx.*",
     ".*prd.*",
     ".*xrd.*",
-    ".*frf.*",
   ]),
   actionConditions: { reboot: ["filesystemChecker", "kubeletChecker"] },
 }) else "SKIP"
