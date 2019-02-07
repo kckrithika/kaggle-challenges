@@ -7,3 +7,5 @@ apps:
   - prd/prd-sam_search
  testk4a:
   - prd/prd-sam_search
+ search-gcp:
+  - mvp/gsf-core-devmvp-sam2-sam
