@@ -32,6 +32,8 @@ apps:
   - prd/prd-sam_gater
  gate-manager-test-mesh:
   - prd/prd-sam_gater
+ gate-manager-perf-test:
+  - prd/prd-sam_gater
  gater-client-demo:
   - prd/prd-sam_gater
  gate-analyzer:
