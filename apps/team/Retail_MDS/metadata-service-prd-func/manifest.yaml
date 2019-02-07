@@ -21,7 +21,7 @@ system:
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
-        value: -Dliquibase.force.release.lock.on.timeout=true -Dgdot.server-url=https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim -Djwt-validation.enablement-per-role.app=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+        value: -Dliquibase.changeLogLockWaitTimeInMinutes=1 -Dliquibase.force.release.lock.on.timeout=true -Dgdot.server-url=https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim -Djwt-validation.enablement-per-role.app=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
       resources:
         limits:
           cpu: "4"
