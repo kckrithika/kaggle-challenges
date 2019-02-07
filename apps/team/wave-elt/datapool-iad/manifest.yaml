@@ -10,14 +10,14 @@ system:
     count: 1
     containers:
     - name: datapool-service
-      image: sfci/insights/datapoolservice:release-90-2d5b4d2
+      image: sfci/insights/datapoolservice:release-91-9f8e78d
       ports:
       - containerPort: 7020
         name: grpc
       - containerPort: 15372
         name: mgmt
       livenessProbe:
-        initialDelaySeconds: 91
+        initialDelaySeconds: 90
         periodSeconds: 60
         timeoutSeconds: 30
         httpGet:
@@ -26,12 +26,6 @@ system:
       env:
       - name: LOGGING_STDERR_LEVEL
         value: ALL
-
-      - name: PKI_TRUSTSTORE_DIR
-        value: /home/datapool/client-certs
-
-      - name: PKI_KEYSTORE_DIR
-        value: /home/datapool/client-certs/client
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
         value: dva/datapool-engine:409-302e14bf9ae4fab2a24098bae3e2df31ea7a1ca7
@@ -52,7 +46,7 @@ system:
         value: 40
 
       - name: FLOWSNAKE_WORKER_MEMORY_GB
-        value: 96
+        value: 106
 
       - name: FLOWSNAKE_WORKER_JVM_HEAP_SIZE_MB
         value: 999
