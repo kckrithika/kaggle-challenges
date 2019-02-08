@@ -1,0 +1,14 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: flowsnake-job-datapool-engine
+    count: 0
+    containers:
+    - name: flowsnake-job-datapool-engine
+      image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/datapool-engine:409-302e14bf9ae4fab2a24098bae3e2df31ea7a1ca7
+      livenessProbe:
+        exec:
+          command:
+          - ls
+        initialDelaySeconds: 5
