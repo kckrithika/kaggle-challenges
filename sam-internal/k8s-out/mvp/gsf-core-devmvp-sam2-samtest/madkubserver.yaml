@@ -121,8 +121,7 @@ spec:
         - mountPath: /maddog-certs/
           name: pki
       hostNetwork: false
-      nodeSelector:
-        master: "false"
+      nodeSelector: {}
       restartPolicy: Always
       serviceAccount: sam-stack-edit
       serviceAccountName: sam-stack-edit
