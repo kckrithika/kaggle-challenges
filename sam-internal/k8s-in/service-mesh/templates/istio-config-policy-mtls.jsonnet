@@ -1,10 +1,10 @@
-# Enable mTLS as default between sidecars in mesh-control-plane namespace
+# Enable mTLS as default between sidecars in service-mesh namespace
 {
   apiVersion: "authentication.istio.io/v1alpha1",
   kind: "Policy",
   metadata: {
     name: "istio-mtls-enable",
-    namespace: "mesh-control-plane",
+    namespace: "service-mesh",
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
     },
