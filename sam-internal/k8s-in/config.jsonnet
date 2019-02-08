@@ -111,6 +111,7 @@ local utils = import "util_functions.jsonnet",
     ),
     rcImtEndpoint: (if kingdom == "dfw" then "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark" else "https://reportcollector-" + kingdom + ".data.sfdc.net:18443/v1/bark"),
     maddogEndpoint: "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
+    maddogGCPEndpoint: "https://10.168.192.67:8443",
 
     # setting label name to identify which team owns the app
     ownerLabel: {
