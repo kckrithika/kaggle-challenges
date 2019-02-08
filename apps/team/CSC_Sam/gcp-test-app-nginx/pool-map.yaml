@@ -1,0 +1,3 @@
+apps:
+ gcp-test-app-nginx:
+   - mvp/gsf-core-devmvp-sam2-samtest
