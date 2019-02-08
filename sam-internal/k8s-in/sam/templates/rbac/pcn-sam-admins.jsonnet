@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local admins = import "configs/pcn-sam-admins.json";
+local admins = import "configs/pcn-sam-admins.jsonnet";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 local utils = import "util_functions.jsonnet";
 

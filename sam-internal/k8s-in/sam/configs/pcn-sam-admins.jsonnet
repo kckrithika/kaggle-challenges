@@ -1,3 +1,5 @@
+# Temporary setup until we figure out google groups and IAM and whatnot.
+# This at least means we dont need to hand-add RBAC rules after cluster reset
 [
     # SAM Team
     "thargrove@salesforce.com",
@@ -19,6 +21,6 @@
     "h.udhayakumar@salesforce.com",
     # SLB Team
     "mgrass@salesforce.com",
-    "pablo@salesforce.com",
+    "paverbuj@salesforce.com",
     "vyjayanthi.raja@salesforce.com",
 ]
