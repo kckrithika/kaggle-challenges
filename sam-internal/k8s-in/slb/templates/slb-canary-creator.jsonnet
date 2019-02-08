@@ -38,11 +38,11 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                 containers: [
                     {
                         name: "slb-canary-creator",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                                      "/sdn/slb-canary-creator",
-                                     "--canaryImage=" + slbimages.hypersdn,
+                                     "--canaryImage=" + slbimages.hyperslb,
                                      "--metricsEndpoint=" + configs.funnelVIP,
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--maxParallelism=" + slbconfigs.canaryMaxParallelism,

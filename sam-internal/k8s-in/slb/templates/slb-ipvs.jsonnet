@@ -60,7 +60,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 containers: [
                     {
                         name: "slb-ipvs-installer",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                             "/sdn/slb-ipvs-installer",
                             "--modules=/sdn",
@@ -113,7 +113,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     ),
                     {
                         name: "slb-ipvs-processor",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                             "/sdn/slb-ipvs-processor",
                             "--marker=" + slbconfigs.ipvsMarkerFile,
@@ -155,7 +155,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     },
                     {
                         name: "slb-ipvs-data",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                             "/sdn/slb-ipvs-data",
                             "--connPort=" + portconfigs.slb.ipvsDataConnPort,
@@ -187,7 +187,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     },
                     {
                         name: "slb-ipvs-conntrack",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                             "/sdn/slb-ipvs-conntrack",
                             "--log_dir=" + slbconfigs.logsDir,
@@ -220,7 +220,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     slbshared.slbManifestWatcher(),
                     {
                         name: "slb-cleanup-kern-logs",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                             "/bin/bash",
                             "/sdn/slb-cleanup-log.sh",

@@ -16,7 +16,7 @@ if slbconfigs.isSlbEstate && slbflights.slbJournaldKillerEnabled then configs.da
                 hostPID: true,
                 containers: [
                     {
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                             "/bin/bash",
                             script,

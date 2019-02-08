@@ -29,7 +29,7 @@ if slbconfigs.isSlbEstate && slbflights.nginxAccesslogsEnabled then configs.depl
                 containers: [
                     {
                         name: "slb-nginx-accesslogs",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                                      "/sdn/slb-nginx-accesslogs",
                                      "--log_dir=" + slbconfigs.logsDir,

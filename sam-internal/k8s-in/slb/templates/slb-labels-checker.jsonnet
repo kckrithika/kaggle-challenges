@@ -29,7 +29,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 containers: std.prune([
                     {
                         name: "slb-labels-checker",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                          [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                             "/sdn/slb-labels-checker",

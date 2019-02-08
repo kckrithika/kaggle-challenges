@@ -33,7 +33,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 containers: [
                     {
                         name: "slb-redundancy-checker",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                             "/sdn/slb-redundancy-checker",
                             "--log_dir=" + slbconfigs.logsDir,

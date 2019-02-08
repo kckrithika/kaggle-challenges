@@ -30,7 +30,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 containers: std.prune([
                                 {
                                     name: "slb-nginx-data-watchdog",
-                                    image: slbimages.hypersdn,
+                                    image: slbimages.hyperslb,
                                     command: [
                                                  "/sdn/slb-nginx-data-watchdog",
                                                  "--namespace=sam-system",
