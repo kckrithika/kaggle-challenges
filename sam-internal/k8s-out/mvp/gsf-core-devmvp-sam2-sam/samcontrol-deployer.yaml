@@ -30,7 +30,7 @@ spec:
         - name: SFDCLOC_PCN_KINGDOM
           value: mvp
         - name: SFDCLOC_PCN_ESTATE
-          value: gsf-core-devmvp-sam2-samtest
+          value: gsf-core-devmvp-sam2-sam
         - name: KUBECONFIG
           value: ""
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76
@@ -55,14 +55,14 @@ spec:
         - name: SFDCLOC_PCN_KINGDOM
           value: mvp
         - name: SFDCLOC_PCN_ESTATE
-          value: gsf-core-devmvp-sam2-samtest
+          value: gsf-core-devmvp-sam2-sam
         - name: KUBECONFIG
           value: ""
         image: gcr.io/gsf-core-devmvp-sam2/thargrove/etcd
         name: etcd-client
       hostNetwork: true
       nodeSelector:
-        pool: gsf-core-devmvp-sam2-samtest
+        pool: gsf-core-devmvp-sam2-sam
       serviceAccount: sam-stack-edit
       serviceAccountName: sam-stack-edit
       volumes:

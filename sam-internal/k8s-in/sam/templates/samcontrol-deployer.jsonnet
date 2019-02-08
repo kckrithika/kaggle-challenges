@@ -10,7 +10,7 @@ configs.deploymentBase("sam") {
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         name: "samcontrol-deployer",
-                        image: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/a-mitra/hypersam:latest",
+                        image: samimages.hypersam,
                         command: configs.filter_empty([
                             "/sam/samcontrol-deployer",
                             "--config=/config/samcontroldeployer.json",
