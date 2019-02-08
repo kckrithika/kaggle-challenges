@@ -9,7 +9,7 @@ system:
     containers:
     # PAP container
     - name: pap
-      image: sfci/acs/acs-pap:acs-615130521ba46c1c023f8332ca70ce2c4e40d12a
+      image: sfci/acs/pap:acs-615130521ba46c1c023f8332ca70ce2c4e40d12a
       args:
       - --server.port=7022
       ports:
@@ -77,7 +77,7 @@ system:
     count: 5
     containers:
     - name: pdp
-      image: sfci/acs/acs-pdp:acs-615130521ba46c1c023f8332ca70ce2c4e40d12a
+      image: sfci/acs/pdp:acs-615130521ba46c1c023f8332ca70ce2c4e40d12a
       args:
       - --server.port=7022
       #- --logging.level.com.zaxxer.hikari=debug
