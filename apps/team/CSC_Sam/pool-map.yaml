@@ -83,12 +83,6 @@ apps:
   - mvp/gsf-core-devmvp-sam2-samtest
  gcp-test-app-maddog:
   - mvp/gsf-core-devmvp-sam2-samtest
-  - mvp/gsf-core-devmvp-sam2-sam
  gcp-test-app-secret:
   - mvp/gsf-core-devmvp-sam2-samtest
-  - mvp/gsf-core-devmvp-sam2-sam
- gcp-pets-app:
-  - mvp/gsf-core-devmvp-sam2-sam
- gcp-test-app-stateful:
-  - mvp/gsf-core-devmvp-sam2-sam
 
