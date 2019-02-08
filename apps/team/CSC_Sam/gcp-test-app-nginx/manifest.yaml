@@ -5,7 +5,7 @@ system:
   - name: gcp-test-app-nginx
     count: 1
     containers:
-    - name: pets-app
+    - name: gcp-test-app-nginx
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tkuznets/nginx:1
       ports:
       - containerPort: 80
@@ -14,9 +14,9 @@ system:
           path: /
           port: 80
   loadbalancers:
-  - lbname: pets
-    function: default
+  - lbname: nginxlb
+    function: gcp-test-app-nginx
     nodeExposed: true
     ports:
-    - port: 50000
-      targetport: 50000
+    - port: 7601
+      targetport: 80
