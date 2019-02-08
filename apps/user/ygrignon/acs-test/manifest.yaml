@@ -72,7 +72,6 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxUnavailable: 1
-  functions:
   - name: acs-pdp
     count: 5
     containers:
