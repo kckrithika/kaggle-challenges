@@ -4,7 +4,7 @@ metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
   name: istio-mtls-enable
-  namespace: mesh-control-plane
+  namespace: service-mesh
 spec:
   peers:
   - mtls: {}
