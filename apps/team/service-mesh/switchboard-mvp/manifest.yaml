@@ -28,11 +28,13 @@ system:
       - --eventbus.threadpool.max.size=100
       ports:
       - containerPort: 15372
+      # Expose 7020 for direct connections without TLS
+      - containerPort: 7020
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
       - name: GRPC_SERVER_BIND_ENDPOINT
-        value: tcp://127.0.0.1:7020
+        value: tcp://0.0.0.0:7020
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
@@ -107,10 +109,12 @@ system:
         type: server
   loadbalancers:
   - lbname: switchboard-lb
-    # disabled for testing in GCP
-    # nodeExposed: true
+    nodeExposed: true
     function: switchboard
     ports:
+    - lbtype: dsr
+      port: 7020
+      targetport: 7020
     - lbtype: dsr
       port: 15001
       targetport: 15001
