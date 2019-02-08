@@ -8,8 +8,8 @@ system:
       disco_dc: prd
       disco_env: ""
       disco_subenv: ""
-      disco_pod: "na44"
-      disco_sp: "SP2"
+      disco_pod: ""
+      disco_sp: ""
       disco_role: ordering-istio
     annotations:
       sidecar.istio.io/inject: "true"
