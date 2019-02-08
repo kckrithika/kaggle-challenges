@@ -9,7 +9,7 @@ system:
         secretName: secrets.json
     containers:
     - name: ampminus
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ampminus:10
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ampminus:11
       ports:
       - containerPort: 9090
       livenessProbe:
