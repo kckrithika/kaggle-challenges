@@ -80,9 +80,6 @@ spec:
         - --healthCheckInterval=2s
         - --healthCheckFile=/health
         - --port=15009
-        env:
-        - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.0.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -112,8 +109,6 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
-        - mountPath: /kubeconfig
-          name: kubeconfig
         - mountPath: /etc/istio/config
           name: config-volume
           readOnly: true
@@ -204,9 +199,6 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
       - configMap:
           name: istio
         name: config-volume

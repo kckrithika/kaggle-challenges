@@ -61,6 +61,13 @@ apps:
     - prd/prd-sam_gater
   shipping-rate-limited:
     - prd/prd-sam_gater
+  
+  shipping-istio:
+    - prd/prd-sam_gater
+    - prd/prd-samtest
+  ordering-istio:
+    - prd/prd-sam_gater
+    - prd/prd-samtest
 
 # Enable as needed:
 #  geoipnk:
