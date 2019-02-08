@@ -5,7 +5,6 @@ apps:
 
   switchboard-mvp:
     - mvp/gsf-core-devmvp-sam2-sam
-
   switchboard:
     - prd/prd-sam_gater
   switchboard-prod-1:
@@ -30,6 +29,8 @@ apps:
   time:
     - prd/prd-sam
 
+  envoy-canary-mvp:
+    - mvp/gsf-core-devmvp-sam2-sam
   envoy-canary:
     - prd/prd-sam_gater
   envoy-canary-prod:
