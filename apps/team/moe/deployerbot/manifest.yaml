@@ -41,7 +41,7 @@ system:
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
       - "-interval=10m"
-      - "-image=hypersdn"
+      - "-image=hyperslb"
       - "-imageKey=hyperslb" # The name of the object to update in slbreleases.json.
       - "-owner=sdn"
       - "-samInternalTeamName=SLB"

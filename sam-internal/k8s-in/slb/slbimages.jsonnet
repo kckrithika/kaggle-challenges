@@ -47,7 +47,10 @@ local slbreleases = import "slbreleases.json";
     phaseNum: std.parseInt($.phase),
 
     # These are the images used by the templates
-    hyperslb: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hypersdn", slbreleases[$.phase].hyperslb.label),
+    hyperslbbuildinfo: imageFunc.build_info_from_tag(slbreleases[$.phase].hyperslb.label),
+    hyperslbrepo: (if $.hyperslbbuildinfo.buildNumber > 2060 then "slb" else "sdn"),
+    hyperslbimagename: (if $.hyperslbbuildinfo.buildNumber > 2060 then "hyperslb" else "hypersdn"),
+    hyperslb: imageFunc.do_override_for_pipeline_image($.overrides, $.hyperslbrepo, $.hyperslbimagename, slbreleases[$.phase].hyperslb.label),
     hyperslb_build: imageFunc.build_info_from_tag(slbreleases[$.phase].hyperslb.label).buildNumber,
 
     # An old hypersdn image that should be deployed on all current ipvs nodes.
