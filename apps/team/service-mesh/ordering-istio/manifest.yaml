@@ -5,6 +5,7 @@ system:
   - name: ordering-istio
     count: 1
     labels:
+      app: ordering-istio
       disco_dc: prd
       disco_env: ""
       disco_subenv: ""

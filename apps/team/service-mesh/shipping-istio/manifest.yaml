@@ -5,6 +5,7 @@ system:
   - name: shipping-istio
     count: 1
     labels:
+      app: shipping-istio
       disco_dc: prd
       disco_env: ""
       disco_subenv: ""
