@@ -34,7 +34,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                             "--maddog-endpoint",
                             if utils.is_pcn(configs.kingdom) then configs.maddogGCPEndpoint else configs.maddogEndpoint,
                             "--kubeconfig",
-                            "/kubeconfig",
+                            if utils.is_pcn(configs.kingdom) then "$(KUBECONFIG)" else "/kubeconfig",
                             "--client-cert",
                             if utils.is_pcn(configs.kingdom) then "/etc/gcp_certs/tls.crt" else "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
                             "--client-key",

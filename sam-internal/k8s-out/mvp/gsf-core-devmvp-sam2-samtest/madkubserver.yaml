@@ -28,7 +28,7 @@ spec:
         - --maddog-endpoint
         - https://10.168.192.67:8443
         - --kubeconfig
-        - /kubeconfig
+        - $(KUBECONFIG)
         - --client-cert
         - /etc/gcp_certs/tls.crt
         - --client-key
