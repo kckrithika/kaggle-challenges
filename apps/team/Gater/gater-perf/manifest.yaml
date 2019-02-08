@@ -3,22 +3,22 @@ system:
   functions:
   - name: gater-perf
     count: 1
-    hostnetwork: true
+    hostnetwork: false
     containers:
     - name: gater-perf
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:bdffc99
       args:
       - --gater.grpc.endpoint=gater-mesh.gater.localhost.mesh.force.com
       - --gater.grpc.port=5443
-      - --management.server.port=15372
+      - --management.server.port=15375
       - --gater.client-mode=GRPC
       ports:
       - containerPort: 8080
-      - containerPort: 15372
+      - containerPort: 15375
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15375
         initialDelaySeconds: 60
         timeoutSeconds: 10
       volumeMounts:
