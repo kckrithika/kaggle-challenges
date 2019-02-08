@@ -75,6 +75,33 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: drichelson@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: bhoyt@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: shaktiprakash.das@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: devesh.kandpal@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: jbratton@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: lgestrin@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: pnambiar@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rama.rao@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rmichela@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rpulle@salesforce.com
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -91,6 +118,24 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: megancarey@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: a.vuong@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: andrey.gusev@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: c.viswanathan@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: iginzburg@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: msiddavanahalli@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: mwaheed@salesforce.com
 kind: List
 metadata:
   labels:
