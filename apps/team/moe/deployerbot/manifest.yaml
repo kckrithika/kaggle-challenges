@@ -35,14 +35,14 @@ system:
       - mountPath: /gpgsecrets
         name: moe-gpg-signing-key
         readOnly: true
-    - name: imagedeployer-hypersdn
+    - name: imagedeployer-hyperslb
       image: dva/moe/deployerbot:2058-95bce4dfdb83072b2d656ffd34dcb0e7b8e4bea8
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
       - "-interval=10m"
       - "-image=hypersdn"
-      - "-imageKey=hypersdn" # The name of the object to update in slbreleases.json.
+      - "-imageKey=hyperslb" # The name of the object to update in slbreleases.json.
       - "-owner=sdn"
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
