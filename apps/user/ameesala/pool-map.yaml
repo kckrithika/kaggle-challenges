@@ -1,3 +1,4 @@
 apps:
- samhello:
-  - prd/prd-sam 
+ consul:
+  - prd/prd-sam
+  
