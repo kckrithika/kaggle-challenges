@@ -21,7 +21,7 @@ system:
       - name: GRPC_PORT
         value: 7036
       - name: SCONE_SHIPPING_DEST
-        value: shipping-istio:7035
+        value: shipping-istio:7443
       ports:
       - containerPort: 7036
         name: grpc-svc
