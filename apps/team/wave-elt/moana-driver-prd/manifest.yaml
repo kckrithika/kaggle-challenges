@@ -10,7 +10,7 @@ system:
     count: 1
     containers:
     - name: moana-driver
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/moana-driver:master-15-c950422
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/moana-driver:master-16-5da2313
       ports:
       - containerPort: 8080
         name: http
