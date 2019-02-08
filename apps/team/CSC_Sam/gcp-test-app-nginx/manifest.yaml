@@ -13,10 +13,3 @@ system:
         httpGet:
           path: /
           port: 80
-  loadbalancers:
-  - lbname: nginxlb
-    function: gcp-test-app-nginx
-    nodeExposed: true
-    ports:
-    - port: 7601
-      targetport: 80
