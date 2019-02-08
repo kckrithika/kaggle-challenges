@@ -3,6 +3,9 @@ apps:
   demo-geoip:
     - prd/prd-sam
 
+  switchboard-mvp:
+    - mvp/gsf-core-devmvp-sam2-sam
+
   switchboard:
     - prd/prd-sam_gater
   switchboard-prod-1:

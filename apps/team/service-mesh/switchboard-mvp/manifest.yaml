@@ -1,0 +1,121 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - servicemesh@salesforce.com
+  functions:
+  - name: switchboard
+    count: 3
+    containers:
+    - name: switchboard
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/switchboard:0c1c0bc5eb49b01fec211e5b300c415b057cebbd-201902081120
+      args:
+      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
+      - --clusters.external-clusters[1]=spaasmesh:HTTP2
+      - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy.service-mesh
+      - --listeners.external-auth-enabled-clusters[1]=shipping-rate-limited.service-mesh
+      - --listeners.rate-limit-enabled-clusters[0]=shipping-rate-limited.service-mesh
+      - --listeners.rate-limit-enabled-clusters[1]=dfs.retail-dfs
+      - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_source-cluster=true
+      - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_destination-cluster=true
+      - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_request-headers[:authority]=authority
+      - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_request-headers[:path]=path
+      - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_remote-address=true
+      - --metrics.maxNumberOfCollectedMetrics=150000
+      - --metrics.funnelTimeOut=100000
+      - --eventbus.threadpool.queue.size=50000
+      - --eventbus.threadpool.blockTimeMs=20
+      - --eventbus.threadpool.max.size=100
+      ports:
+      - containerPort: 15372
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stm
+      - name: GRPC_SERVER_BIND_ENDPOINT
+        value: tcp://127.0.0.1:7020
+      - name: JVM_HEAP_MAX
+        value: 4G
+      - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
+        value: "0"
+      resources:
+        limits:
+          cpu: "8"
+          memory: 6Gi
+        requests:
+          cpu: "8"
+          memory: 6Gi
+      volumeMounts:
+      - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
+        name: envoy-config-volume
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    - name: sherpa
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/sherpa-envoy:1.0.4-201902081120
+      args:
+      - --template
+      - /switchboard-config/switchboard-sidecar.config.yaml.template
+      ports:
+      - containerPort: 15001
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /switchboard-config
+        name: envoy-config-volume
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    volumes:
+    - name: envoy-config-volume
+      emptyDir: {}
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+  loadbalancers:
+  - lbname: switchboard-lb
+    nodeExposed: true
+    function: switchboard
+    ports:
+    - lbtype: dsr
+      port: 15001
+      targetport: 15001
+    - lbtype: dsr
+      port: 15370
+      targetport: 15372
+    - lbtype: dsr
+      port: 15374
+      targetport: 15373
