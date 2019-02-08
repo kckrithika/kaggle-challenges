@@ -23,6 +23,8 @@ system:
       - name: SCONE_SHIPPING_DEST
         value: shipping-istio:7443
       ports:
+      - containerPort: 7443 # Would move to proxy
+        name: grpc-proxy
       - containerPort: 7036
         name: grpc-svc
       - containerPort: 15374
