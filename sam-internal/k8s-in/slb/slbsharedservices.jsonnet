@@ -19,7 +19,7 @@
       includeProxyConfigurationVolume=true,
 ): {
         name: "slb-config-processor",
-        image: slbimages.hypersdn,
+        image: slbimages.hyperslb,
         command: [
                      "/sdn/slb-config-processor",
                      "--configDir=" + slbconfigs.configDir,
@@ -87,7 +87,7 @@
     },
     slbNodeApi(nodeApiPort, mwSentinelNeedsCheck):: {
         name: "slb-node-api",
-        image: slbimages.hypersdn,
+        image: slbimages.hyperslb,
         command: [
                      "/sdn/slb-node-api",
                      "--port=" + nodeApiPort,
@@ -111,7 +111,7 @@
     },
     slbCleanupConfig: {
         name: "slb-cleanup-config-processor",
-        image: slbimages.hypersdn,
+        image: slbimages.hyperslb,
         command: [
                      "/sdn/slb-cleanup",
                      "--period=1800s",
@@ -135,7 +135,7 @@
     },
     slbRealSvrCfg(nodeApiPort, nginxPodMode, deleteLimitOverride=0):: {
         name: "slb-realsvrcfg",
-        image: slbimages.hypersdn,
+        image: slbimages.hyperslb,
         command: [
                      "/sdn/slb-realsvrcfg",
                      "--configDir=" + slbconfigs.configDir,
@@ -164,7 +164,7 @@
     },
     slbFileWatcher: {
         name: "slb-file-watcher",
-        image: slbimages.hypersdn,
+        image: slbimages.hyperslb,
         command: [
             "/sdn/slb-file-watcher",
             "--filePath=/host/data/slb/logs/" + $.dirSuffix + "/slb-nginx-proxy.emerg.log",
@@ -191,7 +191,7 @@
     },
     slbIfaceProcessor(nodeApiPort, deleteLimitOverride=0): {
         name: "slb-iface-processor",
-        image: slbimages.hypersdn,
+        image: slbimages.hyperslb,
         command: [
                      "/sdn/slb-iface-processor",
                      "--configDir=" + slbconfigs.configDir,
@@ -215,7 +215,7 @@
     },
     slbManifestWatcher(supportedProxies=[], deleteLimitOverride=0): {
         name: "slb-manifest-watcher",
-        image: slbimages.hypersdn,
+        image: slbimages.hyperslb,
         command: [
                      "/sdn/slb-manifest-watcher",
                      "--manifestOutputDir=" + slbconfigs.manifestDir,
@@ -228,7 +228,7 @@
                  + (if slbflights.roleEnabled then [
                      "--isRoleUsed=true",
                      ] else [])
-                 + (if slbimages.hypersdn_build >= 2056 then [
+                 + (if slbimages.hyperslb_build >= 2056 then [
                      "--metricsEndpoint=" + configs.funnelVIP,
                    ] else [])
                  + [
@@ -255,7 +255,7 @@
     },
     slbLogCleanup: {
         name: "slb-cleanup",
-        image: slbimages.hypersdn,
+        image: slbimages.hyperslb,
         command: [
             "/sdn/slb-cleanup",
             "--period=1800s",
@@ -301,7 +301,7 @@
             },
         ],
         name: "slb-nginx-config",
-        image: slbimages.hypersdn,
+        image: slbimages.hyperslb,
         [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
         command: [
             "/sdn/slb-nginx-config",

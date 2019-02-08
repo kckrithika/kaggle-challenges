@@ -37,7 +37,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                 containers: [
                     {
                         name: "slb-echo-client",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                             "/sdn/slb-echo-service",
                             "--serviceName=slb-echo-svc",

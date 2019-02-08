@@ -29,7 +29,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 containers: [
                     {
                         name: "slb-george",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                                      "/sdn/slb-george",
                                      "--log_dir=" + slbconfigs.logsDir,

@@ -146,7 +146,7 @@ local getMadkubAnnotations(tlsPorts) = (
                 containers: std.prune([
                     {
                         name: canaryName,
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         [if !hostNetwork && configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: std.prune([
                                      "/sdn/slb-canary-service",

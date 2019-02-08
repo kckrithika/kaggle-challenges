@@ -33,7 +33,7 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                 containers: std.prune([
                     {
                         name: "slb-ipvsdata-watchdog",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                             "/sdn/slb-ipvs-data-watchdog",

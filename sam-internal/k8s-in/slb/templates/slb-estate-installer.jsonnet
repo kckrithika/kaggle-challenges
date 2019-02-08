@@ -59,7 +59,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                 containers: [
                     {
                         name: "slb-estate-installer",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                             "/sdn/slb-estate-installer",
                             "--log_dir=" + slbconfigs.logsDir,

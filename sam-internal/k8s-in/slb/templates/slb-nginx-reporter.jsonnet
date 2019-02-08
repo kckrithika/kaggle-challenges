@@ -26,7 +26,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 containers: [
                     {
                         name: serviceName,
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                             "/sdn/slb-nginx-reporter",
                             "--metricsEndpoint=" + configs.funnelVIP,

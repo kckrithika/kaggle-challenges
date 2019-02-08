@@ -8,7 +8,7 @@ local slbreleases = import "slbreleases.json";
     ### Global overrides - Anything here will override anything below
     overrides: {
         #
-        # This section lets you override any hypersdn image for a given kingdom,estate,template,image.
+        # This section lets you override any hyperslb image for a given kingdom,estate,template,image.
         # Template is the short name of the template. For k8s-in/templates/samcontrol.jsonnet use "samcontrol"
         # Image name
         #
@@ -47,8 +47,8 @@ local slbreleases = import "slbreleases.json";
     phaseNum: std.parseInt($.phase),
 
     # These are the images used by the templates
-    hypersdn: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hypersdn", slbreleases[$.phase].hypersdn.label),
-    hypersdn_build: imageFunc.build_info_from_tag(slbreleases[$.phase].hypersdn.label).buildNumber,
+    hyperslb: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hypersdn", slbreleases[$.phase].hyperslb.label),
+    hyperslb_build: imageFunc.build_info_from_tag(slbreleases[$.phase].hyperslb.label).buildNumber,
 
     # An old hypersdn image that should be deployed on all current ipvs nodes.
     # TODO: switch to the sdn image (from sdnimages.jsonnet) once that has been successfully pulled everywhere.

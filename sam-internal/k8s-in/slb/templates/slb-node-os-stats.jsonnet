@@ -46,7 +46,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                 containers: [
                     {
                         name: "slb-node-os-stats",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                             "/sdn/slb-node-os-stats",
                             "--metricsEndpoint=" + configs.funnelVIP,

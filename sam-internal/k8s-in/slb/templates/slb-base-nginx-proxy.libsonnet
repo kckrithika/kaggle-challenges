@@ -16,7 +16,7 @@
                         slbshared.slbNginxProxy(proxyImage, proxyFlavor, true),
                         {
                           name: "slb-nginx-data",
-                          image: slbimages.hypersdn,
+                          image: slbimages.hyperslb,
                           command: [
                             "/sdn/slb-nginx-data",
                             "--target=" + slbconfigs.nginx.containerTargetDir,
@@ -41,7 +41,7 @@
                         madkub.madkubRefreshContainer(slbconfigs.nginx.certDirs),
                         {
                           name: "slb-cert-checker",
-                          image: slbimages.hypersdn,
+                          image: slbimages.hyperslb,
                           command: [
                             "/sdn/slb-cert-checker",
                             "--metricsEndpoint=" + configs.funnelVIP,
@@ -66,7 +66,7 @@
 local afterSharedContainers = [
                       {
                         name: "slb-cert-deployer",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                                    "/sdn/slb-cert-deployer",
                                    "--metricsEndpoint=" + configs.funnelVIP,
@@ -74,7 +74,7 @@ local afterSharedContainers = [
                                    "--log_dir=" + slbconfigs.logsDir,
                                    "--custCertsDir=" + slbconfigs.nginx.customerCertsPath,
                                    configs.sfdchosts_arg,
-                                 ] + (if configs.estate == "lo2-sam" && slbimages.hypersdn_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo2.data.sfdc.net"] else if configs.estate == "lo3-sam" && slbimages.hypersdn_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo3.data.sfdc.net"] else [])
+                                 ] + (if configs.estate == "lo2-sam" && slbimages.hyperslb_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo2.data.sfdc.net"] else if configs.estate == "lo3-sam" && slbimages.hyperslb_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo3.data.sfdc.net"] else [])
                                  + slbconfigs.getNodeApiClientSocketSettings()
                                  + [
                                    slbconfigs.nginx.reloadSentinelParam,
@@ -99,7 +99,7 @@ local afterSharedContainers = [
   // are removed before new nginx services start.
   local nginxConfigWipeInitContainer = {
     name: "slb-nginx-config-wipe",
-    image: slbimages.hypersdn,
+    image: slbimages.hyperslb,
     command: [
       "/bin/bash",
       "-xec",

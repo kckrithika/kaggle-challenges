@@ -38,7 +38,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 containers: [
                     {
                         name: "slb-cleanup-unknownpods",
-                        image: slbimages.hypersdn,
+                        image: slbimages.hyperslb,
                         command: [
                             "/bin/bash",
                             "/sdn/slb-cleanup-stuckpods.sh",

@@ -89,7 +89,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                       containers: [
                           {
                               name: "slb-vip-watchdog",
-                              image: slbimages.hypersdn,
+                              image: slbimages.hyperslb,
                               [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                               command: [
                                            "/sdn/slb-vip-watchdog",
