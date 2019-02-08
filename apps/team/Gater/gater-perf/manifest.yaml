@@ -3,10 +3,15 @@ system:
   functions:
   - name: gater-perf
     count: 1
-    hostnetwork: false
+    hostnetwork: true
     containers:
     - name: gater-perf
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:bdffc99
+      args:
+      - --gater.grpc.endpoint=gater-mesh.gater.localhost.mesh.force.com
+      - --gater.grpc.port=5443
+      - --management.server.port=15372
+      - --gater.client-mode=GRPC
       ports:
       - containerPort: 8080
       - containerPort: 15372
