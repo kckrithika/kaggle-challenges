@@ -6,16 +6,10 @@ system:
     volumes:
     - name: secretvol
       k4aSecret:
-        secretName: gittoken
-        secretName: git-oauth-client-id
-        secretName: git-oauth-client-secret
-        secretName: gus-client-id
-        secretName: gus-client-secret
-        secretName: gus-username
-        secretName: gus-password
+        secretName: secrets.json
     containers:
     - name: ampminus
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ampminus:7
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ampminus:8
       ports:
       - containerPort: 9090
       livenessProbe:
