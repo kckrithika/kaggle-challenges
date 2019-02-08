@@ -13,7 +13,7 @@ if configs.kingdom == "prd" then
   kind: "Service",
   metadata: {
     name: "shipping-istio",
-    namespace: "mesh-control-plane-test",
+    namespace: "service-mesh",
   },
   spec: {
     externalTrafficPolicy: "Cluster",

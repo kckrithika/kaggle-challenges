@@ -1,7 +1,0 @@
-apps:
-  shipping-istio:
-    - prd/prd-sam_gater
-    - prd/prd-samtest
-  ordering-istio:
-    - prd/prd-sam_gater
-    - prd/prd-samtest

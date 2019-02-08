@@ -2388,8 +2388,7 @@
         "service-mesh",
         "scone",
         "service-protection",
-        "mesh-control-plane",
-        "mesh-control-plane-test"
+        "mesh-control-plane"
       ],
       "access": [
         "team/Gater",
@@ -2397,8 +2396,7 @@
         "team/service-mesh",
         "team/Scone",
         "team/Service_Protection",
-        "team/mesh-control-plane",
-        "team/mesh-control-plane-test"
+        "team/mesh-control-plane"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_gater",
