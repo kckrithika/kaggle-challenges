@@ -107,7 +107,8 @@ system:
         type: server
   loadbalancers:
   - lbname: switchboard-lb
-    nodeExposed: true
+    # disabled for testing in GCP
+    # nodeExposed: true
     function: switchboard
     ports:
     - lbtype: dsr
