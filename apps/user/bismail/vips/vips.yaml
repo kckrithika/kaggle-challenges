@@ -28,20 +28,7 @@
   ports:
   - port: 5000
     targetport: 5000
-    lbtype: http
-    tls: true
-    reencrypt: true
-    healthport: 80
-    healthprotocol: tcp
-- lbname: pra-ccn-1-0-test-prd
-  customlbname: pra-ccn-1-0-test-prd
-  servers:
-  - ops0-praccn1-1-prd.eng.sfdc.net
-  - ops0-praccn2-1-prd.eng.sfdc.net
-  ports:
-  - port: 5000
-    targetport: 5000
-    lbtype: http
+    lbtype: tcp
     healthport: 80
     healthprotocol: tcp
 - lbname: pra-keystone-admin-test-prd
@@ -52,9 +39,7 @@
   ports:
   - port: 35357
     targetport: 35357
-    lbtype: http
-    tls: true
-    reencrypt: true
+    lbtype: tcp
     healthport: 80
     healthprotocol: tcp
 - lbname: pra-glance-api-test-prd
