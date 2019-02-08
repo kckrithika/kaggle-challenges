@@ -4,6 +4,9 @@ system:
   functions:
     - name: aqueduct
       count: 1
+      identity:
+        emptyServiceName: true
+        namespace: emp_aqueduct
       volumes:
       - name: kafkaclientcerts
         maddogCert:
