@@ -28,12 +28,9 @@
   ports:
   - port: 5000
     targetport: 5000
-    lbtype: http
-    tls: true
-    reencrypt: true
+    lbtype: tcp
     healthport: 80
-    healthpath: /ping
-    healthprotocol: http
+    healthprotocol: tcp
 - lbname: pra-keystone-admin-hnd
   customlbname: pra-keystone-admin-hnd
   servers:
@@ -42,12 +39,9 @@
   ports:
   - port: 35357
     targetport: 35357
-    lbtype: http
-    tls: true
-    reencrypt: true
+    lbtype: tcp
     healthport: 80
-    healthpath: /ping
-    healthprotocol: http
+    healthprotocol: tcp
 - lbname: pra-glance-api-hnd
   customlbname: pra-glance-api-hnd
   servers:
