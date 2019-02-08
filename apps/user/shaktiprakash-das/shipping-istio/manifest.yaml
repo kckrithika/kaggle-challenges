@@ -4,12 +4,6 @@ system:
   functions:
   - name: shipping-istio
     count: 1
-    labels:
-      disco_dc: "PRD"
-      disco_env: ""
-      disco_subenv: ""
-      disco_pod: ""
-      disco_sp: ""
     annotations:
       sidecar.istio.io/inject: "true"
     containers:
@@ -27,6 +21,8 @@ system:
       - name: GRPC_PORT
         value: 7035
       ports:
+      - containerPort: 7443 # Would move to proxy
+        name: grpc-proxy
       - containerPort: 7035
         name: grpc-svc
       - containerPort: 15375
