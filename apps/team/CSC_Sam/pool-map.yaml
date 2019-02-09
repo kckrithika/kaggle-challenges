@@ -85,4 +85,6 @@ apps:
   - mvp/gsf-core-devmvp-sam2-samtest
  gcp-test-app-secret:
   - mvp/gsf-core-devmvp-sam2-samtest
+ gcp-test-app-nginx:
+   - mvp/gsf-core-devmvp-sam2-samtest
 
