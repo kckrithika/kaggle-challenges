@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: switchboard
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/switchboard:0c1c0bc5eb49b01fec211e5b300c415b057cebbd-201902081120
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/switchboard:64805f5110028be3c21bd1f564b72042ae834d2e-201902081800
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -26,6 +26,8 @@ system:
       - --eventbus.threadpool.queue.size=50000
       - --eventbus.threadpool.blockTimeMs=20
       - --eventbus.threadpool.max.size=100
+      # 2018-02-08: Static IP from one of the ZK Nodes. neded because there's no dns name yet.
+      - --zookeeper.seedHosts=10.168.160.111
       ports:
       - containerPort: 15372
       # Expose 7020 for direct connections without TLS
