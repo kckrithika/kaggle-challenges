@@ -10,5 +10,5 @@
       tls: true
       reencrypt: true
       healthport: 80
-      healthpath: /heartbeat
+      healthpath: /
       healthprotocol: http
