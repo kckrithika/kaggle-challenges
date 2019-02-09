@@ -15,6 +15,7 @@ items:
     - get
     - list
     - create
+    - delete
   - apiGroups:
     - ""
     resources:
@@ -43,6 +44,7 @@ items:
     - get
     - list
     - create
+    - delete
   - apiGroups:
     - ""
     resources:
@@ -71,6 +73,7 @@ items:
     - get
     - list
     - create
+    - delete
   - apiGroups:
     - ""
     resources:
