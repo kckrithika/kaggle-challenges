@@ -50,7 +50,7 @@
   ports:
   - port: 9292
     targetport: 9292
-    lbtype: http
+    lbtype: tcp
     healthport: 80
     healthprotocol: tcp
 - lbname: pra-nova-test-prd
