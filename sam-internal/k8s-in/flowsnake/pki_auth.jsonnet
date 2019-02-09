@@ -74,6 +74,11 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
             authorizedLdapGroups: ["Analytics-DataPool"],
             authorizedClientCerts: [],
         },
+        {
+            namespace: "lp-analytics",
+            authorizedLdapGroups: ["lpanalytics_flowsnake"],
+            authorizedClientCerts: [],
+        },
       ],
       "prd/prd-data-flowsnake_test": [
         {
