@@ -41,7 +41,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/hypersdn:2058-95bce4dfdb83072b2d656ffd34dcb0e7b8e4bea8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2061-9e4eb1376fb6ce16b2c8acaa624741ef1980618c
         name: slb-redundancy-checker
         securityContext:
           privileged: true
