@@ -37,8 +37,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                      "--commonoptions.hostname=$(NODE_NAME)",
                                      "--vipName=slb-canary-proxy-http.sam-system.%(estate)s.%(kingdom)s.slb.sfdc.net" % configs,
                                      "--port=%(canaryServiceProxyHttpPort)d" % slbports.slb,
-                                 ]),
-
+                                 ],
                         volumeMounts: std.prune([
                             slbconfigs.logs_volume_mount,
                         ]),
