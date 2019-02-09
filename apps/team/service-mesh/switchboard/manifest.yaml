@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:0c1c0bc5eb49b01fec211e5b300c415b057cebbd
+      image: sfci/servicelibs/switchboard:64805f5110028be3c21bd1f564b72042ae834d2e
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
