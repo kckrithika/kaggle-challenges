@@ -57,6 +57,34 @@ items:
     verbs:
     - create
 - apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: Role
+  metadata:
+    name: debug
+    namespace: core-on-sam
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    - pods/portforward
+    verbs:
+    - get
+    - list
+    - create
+  - apiGroups:
+    - ""
+    resources:
+    - pods/log
+    verbs:
+    - get
+    - list
+  - apiGroups:
+    - ""
+    resources:
+    - pods/exec
+    verbs:
+    - create
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: debug
@@ -136,6 +164,37 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: mwaheed@salesforce.com
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: debug
+    namespace: core-on-sam
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: debug
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: mgainsborough@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: ccamacho@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: hill.j@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: sathish.santhanam@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: saurabh.ahuja@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: svenugopal@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: vmanickam@salesforce.com
 kind: List
 metadata:
   labels:
