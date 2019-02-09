@@ -19,6 +19,9 @@ system:
       args:
       - -endpoint
       - envoy-canary:DATACENTER_ALLENV:7012
+      # 2018-02-08: Static IP from one of the ZK Nodes. neded because there's no dns name yet.
+      - -zk
+      - 10.168.160.111
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -27,6 +30,9 @@ system:
 
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/sherpa-envoy:1.0.4-201902081120
+      args:
+      # 2018-02-08: Direct non-tls connection to the switchboard for now
+      - --switchboard=switchboard-lb.service-mesh.svc:7020
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -45,9 +51,10 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
-      volumeMounts:
-        - name: tls-client-cert
-          mountPath: /client-certs
+      # no certs needed for the direct non-tls connection
+      #volumeMounts:
+      #  - name: tls-client-cert
+      #    mountPath: /client-certs
 
     volumes:
     - name: tls-client-cert
