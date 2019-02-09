@@ -13,7 +13,7 @@ local script = [
     "60",
 ];
 
-if slbconfigs.isSlbEstate && slbflights.artifactoryBootstrapEnabled then configs.daemonSetBase("slb") {
+if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
     spec+: {
         template: {
             spec: {

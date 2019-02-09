@@ -41,10 +41,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--deploymentsToMonitor=slb-ipvs,slb-nginx-config-b,slb-vip-watchdog,slb-dns-register",
                             configs.sfdchosts_arg,
-                        ] + (if slbflights.kernelVersionCheckerEnabled then [
                             "--kernelVersionNodeFilter=" + slbconfigs.kernelVersionNodeFilter,
                             "--kernelVersionPrefixList=" + slbconfigs.kernelVersionPrefixList,
-                        ] else []),
+                        ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
