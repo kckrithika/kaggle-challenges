@@ -8,7 +8,6 @@ data:
       "dry-run": false,
       "email": false,
       "email-delay": 0,
-      "enable-daily-tnrpUpdate": false,
       "etcd-override": "http://0.0.0.0:2379",
       "funnelEndpoint": "ajna0-funnel1-0-mvp.data.sfdc.net:80",
       "max-resource-time": "20m",

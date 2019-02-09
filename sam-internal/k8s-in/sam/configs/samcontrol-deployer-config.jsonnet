@@ -3,7 +3,7 @@ local utils = import "util_functions.jsonnet";
 std.prune({
   funnelEndpoint: configs.funnelVIP,
   "disable-security-check": true,
-
+  "tnrp-endpoint": configs.tnrpArchiveEndpoint,
   "dry-run": false,
   "poll-delay": (if configs.kingdom == "prd" then "30s" else 30000000000),
   email: !utils.is_pcn(configs.kingdom),
@@ -24,10 +24,8 @@ std.prune({
 
 } + if utils.is_pcn(configs.kingdom) then {
     "etcd-override": "http://0.0.0.0:2379",
-    "tnrp-endpoint": "https://ops0-artifactrepo2-0-xrd.slb.sfdc.net/tnrp/content_repo/0/archive",
     "enable-daily-tnrpUpdate": false,
 } else {
-    "tnrp-endpoint": configs.tnrpArchiveEndpoint,
     "ca-file": configs.caFile,
     "key-file": configs.keyFile,
     "cert-file": configs.certFile,
