@@ -14,7 +14,7 @@ local functions = {
             {
                 apiGroups: [""],
                 resources: ["pods", "pods/portforward"],
-                verbs: ["get", "list", "create"],
+                verbs: ["get", "list", "create", "delete"],
             },
             {
               apiGroups: [""],
