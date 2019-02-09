@@ -26,7 +26,7 @@ system:
       - --eventbus.threadpool.queue.size=50000
       - --eventbus.threadpool.blockTimeMs=20
       - --eventbus.threadpool.max.size=100
-      - --ads.threadpool.size=50
+      - --envoy.max.connection.ageSecs=86400
       ports:
       - containerPort: 15372
       env:
