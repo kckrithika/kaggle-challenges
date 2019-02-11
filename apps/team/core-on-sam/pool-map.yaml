@@ -37,6 +37,16 @@ apps:
     - shared2-samminioncoreapp1-4-prd.eng.sfdc.net
     - shared2-samminioncoreapp1-5-prd.eng.sfdc.net
 
+ # NA4 is generated from casam/manifests using templates
+ mist_mist61_prd_na4:
+   - name: prd/prd-sp2-sam_coreapp
+     hostSubList:
+       - shared2-samminioncoreapp1-1-prd.eng.sfdc.net
+       - shared2-samminioncoreapp1-2-prd.eng.sfdc.net
+       - shared2-samminioncoreapp1-3-prd.eng.sfdc.net
+       - shared2-samminioncoreapp1-4-prd.eng.sfdc.net
+       - shared2-samminioncoreapp1-5-prd.eng.sfdc.net
+
  mist61-na8:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
