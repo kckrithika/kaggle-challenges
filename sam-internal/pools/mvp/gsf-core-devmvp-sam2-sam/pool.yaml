@@ -27,6 +27,7 @@ access:
   - 'team/universal-search'
   - 'team/wave-elt'
   - 'team/solr-service'
+  - 'team/topology_svc'
 
 # Each pool is managed by a SAM control stack running in one estate
 # Name here is an exact match on a file under estates/estates repo
