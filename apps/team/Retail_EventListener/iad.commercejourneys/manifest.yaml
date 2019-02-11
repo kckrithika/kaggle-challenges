@@ -39,8 +39,8 @@ system:
           value: 15372
         - name: JVM_ARGS
           value: "-Xmx3G -Xms512m"
-        - name: NEW_PROP
-          value: "another fake value"
+        - name: NEW_PROP_A
+          value: "yet another fake value"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
