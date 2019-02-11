@@ -1,5 +1,6 @@
-color: green
+color: blue
 db:
+  connectionCount: 25
   hostName: mist61ice1-db1-1-prd.eng.sfdc.net
   instance: mist61a216utf-1
   lockUser: sneezy
@@ -23,6 +24,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:a6729b3a765d262943bb20f9921b4343784dccef
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na4
-nonce: 1549651699304935000
+nonce: 1549915654231511000
 replicaCount: 1
 settingsSuperPod: sp2
