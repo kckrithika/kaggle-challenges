@@ -13,7 +13,7 @@ data:
     ["IoT-RM-Flowsnake"], "namespace": "iot"}, {"authorizedClientCerts": ["wave-elt.datapool",
     "wave-elt.datapool-test1", "wave-elt.datapool-test2", "wave-elt.datapool-steelthread"],
     "authorizedLdapGroups": ["Analytics-DataPool"], "namespace": "wave-elt"}, {"authorizedClientCerts":
-    [ ], "authorizedLdapGroups": ["svc_hbase_splunk"], "namespace": "hbase-flowsnake"}]'
+    [ ], "authorizedLdapGroups": ["hbase_flowsnake_integration"], "namespace": "hbase-flowsnake"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
