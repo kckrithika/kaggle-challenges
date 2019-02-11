@@ -109,7 +109,7 @@ system:
       maddogCert:
         type: server
   loadbalancers:
-  - lbname: switchboard-lb
+  - lbname: switchboard
     nodeExposed: true
     function: switchboard
     ports:
