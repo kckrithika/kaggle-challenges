@@ -1,5 +1,5 @@
 # Use corp user name instead of git user ids
-admins:
+users:
   - vbhandari
   - svenugopal
   - chun.deng
@@ -7,3 +7,6 @@ admins:
   - al.lee
   - gpalaniyandy
   - schinmayanilayam
+admins:
+  - vbhandari
+  - svenugopal
