@@ -44,3 +44,4 @@ system:
     ports:
       - port: 8500
         targetport: 8500
+        lbtype: http
