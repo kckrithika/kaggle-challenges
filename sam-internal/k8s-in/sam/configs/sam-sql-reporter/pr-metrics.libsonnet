@@ -181,6 +181,23 @@ union all select  '50' as percentile, 4  as row_num
 ) t4
 where rank = t4.row_num",
                     },
+                    {
+                        name:"PR latency(sam-internal) in seconds",
+                        sql: "Select
+     PullRequests.pr_num,
+     Timestampdiff(second, merged_time,
+                           t.manifest_zip_time) AS tnrplatency,
+     Timestampdiff(second, PullRequests.`most_recent_authorized_time`, PullRequests.`most_recent_evaluate_pr_completion_time`) evalPrLatency,
+     most_recent_authorized_time
+
+FROM PullRequests
+LEFT JOIN PullRequestToTeamOrUser on PullRequests.pr_num = PullRequestToTeamOrUser.pr_num
+LEFT  JOIN TNRPManifestData t
+                       ON              PullRequests.git_hash = t.git_hash
+where PullRequests.merged_time > Now() - INTERVAL 1 DAY and PullRequestToTeamOrUser.pr_num is null
+ ORDER BY merged_time DESC",
+
+                    },
 
             ],
     }
