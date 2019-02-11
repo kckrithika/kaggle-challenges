@@ -1,8 +1,7 @@
 {
-      name: "Bad-Customer-Deployments-V2",
-      sql: "SELECT * FROM
-
-  Select appName,
+  name: "Bad-Customer-Deployments-V2",
+  sql: "Select
+  appName,
   namespace,
   controlEstate,
   overallStatus,
