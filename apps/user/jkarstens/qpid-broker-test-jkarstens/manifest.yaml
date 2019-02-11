@@ -6,7 +6,7 @@ system:
             - jkarstens@salesforce.com
     functions:
         - name: qpid-broker-test-jkarstens
-          count: 3
+          count: 1
           type: stateful-set
           containers:
               - name: qpid-broker-runtime
@@ -46,16 +46,16 @@ system:
               - name: logvol
                 hostpath:
                   path: /var/log/qpid
-          lbname: qpid-broker-test-jkarstens-lb-hack
-    loadbalancers:
-        - lbname: qpid-broker-test-jkarstens-lb
-          function: qpid-broker-test-jkarstens
-          slbEnabled: true
-          ports:
-              - port: 7022
-                targetport: 7022
-                lbtype: http
-              - port: 5672
-                targetport: 5672
-                lbtype: tcp
-
+          lbname: qpid-broker-test-jkarstens-lb
+#    loadbalancers:
+#        - lbname: qpid-broker-test-jkarstens-lb
+#          function: qpid-broker-test-jkarstens
+#          slbEnabled: true
+#          ports:
+#              - port: 7022
+#                targetport: 7022
+#                lbtype: http
+#              - port: 5672
+#                targetport: 5672
+#                lbtype: tcp
+#
