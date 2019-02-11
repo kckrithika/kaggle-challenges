@@ -959,6 +959,10 @@ data:
         {
           "name": "Sandbox-IPs-by-user",
           "sql": "select\n  namespace,\n  Payload-\u003e\u003e'$.spec.controlMap.app' as samAppName,\n  Payload-\u003e\u003e'$.spec.controlMap.annotations.date' as prDate,\n  Payload-\u003e\u003e'$.spec.controlMap.annotations.titleLine' as titleLine,\n  Payload-\u003e\u003e'$.spec.controlMap.pool' as pool,\n  case when Payload-\u003e\u003e'$.spec.customerApp.system.functions[0].count' is not null then Payload-\u003e\u003e'$.spec.customerApp.system.functions[0].count' else 0 end +\n  case when Payload-\u003e\u003e'$.spec.customerApp.system.functions[1].count' is not null then Payload-\u003e\u003e'$.spec.customerApp.system.functions[1].count' else 0 end +\n  case when Payload-\u003e\u003e'$.spec.customerApp.system.functions[2].count' is not null then Payload-\u003e\u003e'$.spec.customerApp.system.functions[2].count' else 0 end as ipCount\nfrom\n  k8s_resource\nwhere\n  apiKind = 'SamApp'\n  and\n  Payload-\u003e\u003e'$.spec.controlMap.pool' = 'prd/prd-sam'\n  and Payload-\u003e\u003e'$.spec.customerApp.system.functions[0].hostnetwork' != 'true'\n  "
+        },
+        {
+          "name": "Bad-Customer-Deployments-V2",
+          "sql": "Select\n  appName,\n  namespace,\n  controlEstate,\n  overallStatus,\n  samappMsg as error,\n  bundleStatus as detailedStatus\n  from crd_status_view\n  where overallStatus != 'success'\n "
         }
       ]
     }
