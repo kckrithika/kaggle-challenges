@@ -1,8 +1,6 @@
 apps:
   eaas: # pod to handle STEAM and development traffic. DO NOT use this environment for testing.
     - prd/prd-sam
-  eaas-test: # pod to test releases in our team namespace.
-    - prd/prd-sam
   eaas-prod: #- Prod configuration
     - dfw/dfw-sam_eaas
     - phx/phx-sam_eaas
