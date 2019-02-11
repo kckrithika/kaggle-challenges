@@ -26,6 +26,7 @@ system:
       - --eventbus.threadpool.queue.size=50000
       - --eventbus.threadpool.blockTimeMs=20
       - --eventbus.threadpool.max.size=100
+      - --healthIndicator.maxThreadCount=1300
       ports:
       - containerPort: 15372
       env:
