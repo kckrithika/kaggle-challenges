@@ -120,7 +120,7 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         },
         {
             namespace: "hbase-flowsnake",
-            authorizedLdapGroups: ["svc_hbase_splunk"],
+            authorizedLdapGroups: ["hbase_flowsnake_integration"],
             authorizedClientCerts: [],
         },
       ],
