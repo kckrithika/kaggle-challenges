@@ -1356,7 +1356,8 @@
         "service-protection",
         "universal-search",
         "wave-elt",
-        "solr-service"
+        "solr-service",
+        "topology-svc"
       ],
       "access": [
         "team/CSC_Sam",
@@ -1382,7 +1383,8 @@
         "team/Service_Protection",
         "team/universal-search",
         "team/wave-elt",
-        "team/solr-service"
+        "team/solr-service",
+        "team/topology_svc"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-sam",
       "estate": "gsf-core-devmvp-sam2-sam",
