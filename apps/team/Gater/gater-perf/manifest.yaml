@@ -39,6 +39,9 @@ system:
           command:
             - "/home/scone/is-alive.sh"
         initialDelaySeconds: 5
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
 
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.5
@@ -72,6 +75,9 @@ system:
     - name: logvolservice
       hostPath:
         path: /home/sfdc-scone-gater-perf/logs
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-scone-gater-perf-beacon/logs
     - name: tls-client-cert
       maddogCert:
         type: client
