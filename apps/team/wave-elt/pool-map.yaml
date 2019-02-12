@@ -33,6 +33,8 @@ apps:
   datapool-staging:
   - prd/prd-sam_datapool
 
+  datapool-test:
+  - prd/prd-sam_datapool
 
   # moana driver used for testing moana via kafka.
   moana-driver-prd:
