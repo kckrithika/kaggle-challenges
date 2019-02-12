@@ -14,7 +14,7 @@ system:
         maxUnavailable: 25%
     containers:
     - name: search-model-executor
-      image: sfci/searchdev/smt-search-model-executor:4.4
+      image: sfci/searchdev/smt-search-model-executor:4.5
       ports:
       - name: service-port
         containerPort: 7020
