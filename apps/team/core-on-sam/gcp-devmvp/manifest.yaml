@@ -20,16 +20,16 @@ system:
         type: server
     - name: log-volume-sfdc
       hostPath:
-        path: /mnt/disks/ssd0/logs/sfdc
+        path: /data/logs/sfdc
     - name: log-volume-jvm
       hostPath:
-        path: /mnt/disks/ssd0/logs/jvm
+        path: /data/logs/jvm
     - name: secretvol-c1
       k4aSecret:
-        secretName: caas-k4a-secret-sp-devmvp-c1
+        secretName: toli
     - name: secretvol-pc
       k4aSecret:
-        secretName: caas-k4a-secret-sp-devmvp-pc
+        secretName: toli
 
     containers:
     - name: coreapp
