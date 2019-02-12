@@ -39,8 +39,8 @@ system:
           port: 8500
     lbname: consul-stateful-ilb
   loadbalancers:
-  - lbname: consul-lb
-    function: consul
+  - function: consul
+    lbname: consul-lb
     slbEnabled: true
     ports:
       - port: 8500
