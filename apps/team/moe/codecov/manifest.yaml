@@ -180,7 +180,7 @@ system:
         periodSeconds: 60
     # nginx container
     - name: nginx
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:20190212-cors-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:20190212-cors-3
       volumeMounts:
       - name: datavol-rdi
         mountPath: /archive
