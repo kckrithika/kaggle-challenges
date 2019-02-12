@@ -1,4 +1,5 @@
 apps:
   consul:
     - prd/prd-sam
-  
+  samhello:
+    - prd/prd-sam
