@@ -80,4 +80,4 @@ apps:
 
 # GCP Alpha
  gcp-devmvp:
-  - mvp/gsf-core-devmvp-sam2_coreapp
+  - name: mvp/gsf-core-devmvp-sam2-sam
