@@ -19,7 +19,7 @@
     {
       kind: "ServiceAccount",
       name: "istio-sidecar-injector-service-account",
-      namespace: "istio-system",
+      namespace: "mesh-control-plane",
     },
   ],
 }
