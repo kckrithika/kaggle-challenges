@@ -12,7 +12,7 @@ system:
           type: server
     containers:
     - name: ampminus
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ampminus:15
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/ampminus:16
       ports:
       - containerPort: 9090
       livenessProbe:
