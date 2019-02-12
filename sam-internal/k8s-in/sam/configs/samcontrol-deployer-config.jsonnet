@@ -24,7 +24,6 @@ std.prune({
 
 } + if utils.is_pcn(configs.kingdom) then {
     "etcd-override": "http://0.0.0.0:2379",
-    "enable-daily-tnrpUpdate": false,
 } else {
     "ca-file": configs.caFile,
     "key-file": configs.keyFile,
