@@ -8,7 +8,11 @@ local configs = import "config.jsonnet";
     ),
     injectorImage: (
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
-        // https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-injector/job/master/57
-        "%s/sfci/servicelibs/sherpa-injector:d1d2f47de934515222575ff448bdac3f6173fe9d" % configs.registry
-    ),    
+        // https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-injector/job/master/77
+        "%s/sfci/servicelibs/sherpa-injector:95c31963979891afe08b4a7de8ca492e4feb516b" % configs.registry
+    ),
+    canarySherpaImage: (
+        // https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master
+        "%s/sfci/servicelibs/sherpa-envoy:7c866de2c4f840082fac7f2d00aa2d93f7bee6be" % configs.registry
+    ),
 }

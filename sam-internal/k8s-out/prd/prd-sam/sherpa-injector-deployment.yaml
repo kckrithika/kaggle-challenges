@@ -56,7 +56,8 @@ spec:
         - --port=7442
         - --cert=/server-certs/server/certificates/server.pem
         - --key=/server-certs/server/keys/server-key.pem
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:d1d2f47de934515222575ff448bdac3f6173fe9d
+        - --canary-image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:7c866de2c4f840082fac7f2d00aa2d93f7bee6be
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:95c31963979891afe08b4a7de8ca492e4feb516b
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -67,7 +68,7 @@ spec:
             - /client-certs/client/keys/client-key.pem
           initialDelaySeconds: 2
           periodSeconds: 3
-        name: sherpa-injector
+        name: injector
         ports:
         - containerPort: 7442
         readinessProbe:
