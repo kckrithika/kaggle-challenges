@@ -132,19 +132,3 @@ system:
     - name: tls-client-certs
       maddogCert:
         type: client
-
-
-  loadbalancers:
-  - lbname: datapool-lb
-    function: datapool
-    nodeExposed: true
-    slbenabled: true
-    ports:
-      - port: 7025  # Plain text port until we get SSL working
-        targetport: 7012
-      - port: 7443
-        targetport: 7443
-      - port: 15373
-        targetport: 15373
-
-
