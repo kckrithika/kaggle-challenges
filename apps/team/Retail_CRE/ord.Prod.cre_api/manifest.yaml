@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-api
-      image: sfci/cre/cre-api:1.5.0.0.master.f383f0c.186
+      image: sfci/cre/cre-api:1.6.0.0.master.c9737f2.188
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__ord.ajna_local__cre_metrics
