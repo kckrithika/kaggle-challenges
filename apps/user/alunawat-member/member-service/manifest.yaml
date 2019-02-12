@@ -1,0 +1,26 @@
+apiVersion: v1
+system:
+ functions:
+ - name: default
+   count: 1
+   containers:
+   - name: samhello
+     image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/abiswal/member-service-1.1:abiswal # sample member-service-app
+     ports:
+     - containerPort: 8182
+     - containerPort: 7182
+     livenessProbe:
+       httpGet:
+         path: /members/1234
+         port: 8182
+ loadbalancers:
+ - lbname: samhellolb
+   function: default
+   slbenabled: true
+   ports:
+     - port: 8182
+       targetport: 8182
+       lbtype: tcp
+     - port: 7182
+       targetport: 7182
+       lbtype: tcp
