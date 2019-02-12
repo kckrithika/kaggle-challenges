@@ -104,9 +104,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                            "--metricsBatchTimeout=30s",
                                        ] + slbconfigs.vipwdOptOutOptions
                                        + slbconfigs.getNodeApiClientSocketSettings()
-                                       + [
+                                       + (if slbflights.removeRequiresHealthProbeFlag then [] else [
                                            "--slaRequiresPreciseHealthProbe=true",
-                                       ],
+                                       ]),
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,

@@ -10,4 +10,5 @@ local configs = import "config.jsonnet";
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
     nginxStreamlogsEnabled: (slbimages.phaseNum <= 2),
+    removeRequiresHealthProbeFlag: (slbimages.hyperslb_build > 2061),
 }
