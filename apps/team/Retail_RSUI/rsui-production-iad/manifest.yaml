@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: rsui-production
+  - name: rsui-production-iad
     count: 3
     identity:
       serviceName: retail-setup
@@ -14,7 +14,8 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - rsui-production-lb
+        - rsui-production-iad-lb
+        - rsui-production-iad-test-lb
     - name: retailclientcert
       maddogCert:
         type: client
@@ -36,13 +37,14 @@ system:
         secretName: rsui-encryption-key2
 
     containers:
-    - name: rsui-production
-      image: sfci/retail/retail-setup:0.1.5.47 # docker image
+    - name: rsui-production-iad
+      image: sfci/retail/retail-setup:0.1.6.71 # docker image
       ports:
       - containerPort: 7022
         name: rsui-in-http1
-      - containerPort: 15372
-        name: rsui-in-admin
+      - containerPort: 7023
+        name: rsui-test-http1
+      # Inbound http2 port for incoming gRPC service mesh calls
       - containerPort: 7020
         name: rsui-in-http2
       resources:
@@ -59,6 +61,8 @@ system:
         value: 7022
       - name: GRPC_SERVICE_PORT
         value: 7020
+      - name: SERVER_ADDITIONALPORTS_SANDBOXLOGIN
+        value: 7023
       - name: SECURITY_CLIENT_DYNAMICKEYSTORE_MONITOREDDIRECTORY
         value: /clientcerts/client
       - name: SECURITY_CLIENT_DYNAMICKEYSTORE_CADIR
@@ -90,9 +94,11 @@ system:
       - name: C2C_PATH
         value: https://cloudatlas.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL
+        value: https://login.salesforce.com
+      - name: CORE_OAUTH_SANDBOX_URL
         value: https://test.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
-        value: https://iad.salesforce-hub.com/service/oauth/callback #TODO - Do we need separate manifests for ORD vs IAD?
+        value: https://iad.salesforce-hub.com/service/oauth/callback 
       - name: OAUTH_CONSUMER_KEY_FILE_PATH
         value: secrets/consumer-key/rsui-consumer-key.key
       - name: OAUTH_CONSUMER_SECRET_FILE_PATH
@@ -101,8 +107,8 @@ system:
         value: secrets/encryption-key1/rsui-encryption-key1.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
         value: secrets/encryption-key2/rsui-encryption-key2.key
-      - name: SECURITY_REQUIRE_SECRETS
-        value: false
+      - name: RSUI_HOST
+        value: salesforce-hub.com
       - name: GATER_EMBEDDED_MODE
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
@@ -115,13 +121,34 @@ system:
                 -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
                 -Xloggc:/home/scone/logs/retail-setup/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                 -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/retail-setup
-                -Dcom.sun.management.jmxremote.port=8898
-                -Dcom.sun.management.jmxremote.rmi.port=8898
-                -Dcom.sun.management.jmxremote.ssl=false
-                -Dcom.sun.management.jmxremote.authenticate=false
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Daura.production=true"
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: ALL
+      # Disable all management endpoints except for health
+      - name: ENDPOINTS_HEALTH_ENABLED
+        value: true
+      - name: ENDPOINTS_INFO_ENABLED
+        value: false
+      - name: ENDPOINTS_DUMP_ENABLED
+        value: false
+      - name: ENDPOINTS_APPMETRICS_ENABLED
+        value: false
+      - name: ENDPOINTS_LINT_ENABLED
+        value: false
+      - name: ENDPOINTS_CONFIGPROPS_ENABLED
+        value: false
+      - name: ENDPOINTS_ENV_ENABLED
+        value: false
+      - name: ENDPOINTS_SHUTDOWN_ENABLED
+        value: false
+      - name: ENDPOINTS_SHUTDOWN_SENSITIVE
+        value: false
+      - name: ENDPOINTS_BINDINGS_ENABLED
+        value: false
+      - name: ENDPOINTS_DTABS_ENABLED
+        value: false
+      - name: ENDPOINTS_JVM_ENABLED
+        value: false
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
@@ -151,7 +178,7 @@ system:
         mountPath: /home/retail-setup/secrets/encryption-key2
         readOnly: true
 
-    - name: sherpa-rsui-production
+    - name: sherpa-rsui-production-iad
       # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
       # Use the full git SHA as the docker image tag.
       image: sfci/servicelibs/sherpa-envoy:1.0.1
@@ -171,8 +198,6 @@ system:
       ports:
       - containerPort: 7443 # http2 in port for grpc
         name: sher-in-htp2tls
-      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
-        name: sherpa-in-admin
       livenessProbe:
         exec:
           command:
@@ -204,16 +229,45 @@ system:
             - "/home/scone/is-alive.sh"
 
   loadbalancers:
-  - lbname: rsui-production-lb
-    function: rsui-production
+  - lbname: rsui-production-iad-lb
+    function: rsui-production-iad
     slbEnabled: true
+    tlscertificate: secret_service:cstoolkit_iad.salesforce-hub.com_20190204-215232:EndEntity
+    tlskey: secret_service:cstoolkit_iad.salesforce-hub.com_20190204-215232:Key
     ports:
-      - port: 8080
-        targetport: 7022
       - port: 443
         targetport: 7022
         tls: true
         lbtype: http
         reencrypt: true
-      - port: 15372
-        targetport: 15372
+        allow:
+          # Corp
+          - 61.120.150.128/28
+          - 62.17.146.128/26
+          - 136.146.65.0/24
+          - 142.176.79.168/29
+          - 202.95.77.64/27
+          - 204.14.236.0/24
+          - 204.14.239.0/24
+          - 221.133.209.128/27
+  - lbname: rsui-production-iad-test-lb
+    function: rsui-production-iad
+    slbEnabled: true
+    tlscertificate: secret_service:cstoolkit_iad-test.salesforce-hub.com_20190204-215232:EndEntity
+    tlskey: secret_service:cstoolkit_iad-test.salesforce-hub.com_20190204-215232:Key
+    ports:
+      - port: 443
+        targetport: 7023
+        tls: true
+        lbtype: http
+        reencrypt: true
+        allow:
+          # Corp
+          - 61.120.150.128/28
+          - 62.17.146.128/26
+          - 136.146.65.0/24
+          - 142.176.79.168/29
+          - 202.95.77.64/27
+          - 204.14.236.0/24
+          - 204.14.239.0/24
+          - 221.133.209.128/27

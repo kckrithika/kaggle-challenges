@@ -1,0 +1,273 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: rsui-production-ord
+    count: 3
+    identity:
+      serviceName: retail-setup
+    volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+    - name: retailservercert
+      maddogCert:
+        type: server
+        lbnames:
+        - rsui-production-ord-lb
+        - rsui-production-ord-test-lb
+    - name: retailclientcert
+      maddogCert:
+        type: client
+    # maps the retail  volumnMount to a directory on the host machine
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-retail/logs
+    - name: consumer-key
+      k4aSecret:
+        secretName: rsui-consumer-key
+    - name: consumer-secret
+      k4aSecret:
+        secretName: rsui-consumer-secret
+    - name: encryption-key1
+      k4aSecret:
+        secretName: rsui-encryption-key1
+    - name: encryption-key2
+      k4aSecret:
+        secretName: rsui-encryption-key2
+
+    containers:
+    - name: rsui-production-ord
+      image: sfci/retail/retail-setup:0.1.6.71 # docker image
+      ports:
+      - containerPort: 7022
+        name: rsui-in-http1
+      - containerPort: 7023
+        name: rsui-test-http1
+      # Inbound http2 port for incoming gRPC service mesh calls
+      - containerPort: 7020
+        name: rsui-in-http2
+      resources:
+        limits: { cpu: "2", memory: "10Gi" }
+        requests: { cpu: "2", memory: "10Gi" }
+      env:
+      - name: MDS_HOST
+        value: metadata-service.retail-mds.localhost.mesh.force.com
+      - name: MDS_PORT
+        value: 5443
+      - name: MDS_REST
+        value: http://metadata-service.retail-mds.localhost.mesh.force.com:9091/metadata-service/mds
+      - name: SERVER_PORT
+        value: 7022
+      - name: GRPC_SERVICE_PORT
+        value: 7020
+      - name: SERVER_ADDITIONALPORTS_SANDBOXLOGIN
+        value: 7023
+      - name: SECURITY_CLIENT_DYNAMICKEYSTORE_MONITOREDDIRECTORY
+        value: /clientcerts/client
+      - name: SECURITY_CLIENT_DYNAMICKEYSTORE_CADIR
+        value: /clientcerts/ca
+      - name: PKI_CA_DIR
+        value: /servercerts
+      - name: PKI_MONITORDIR
+        value: /servercerts/server
+      - name: SECURITY_SERVER_DYNAMICKEYSTORE_MONITOREDDIRECTORY
+        value: /servercerts/server
+      - name: SECURITY_SERVER_DYNAMICKEYSTORE_CADIR
+        value: /servercerts/ca
+      - name: SECURITY_SERVER_DYNAMICKEYSTORE_CAFILE
+        value: /servercerts/ca/cacerts.pem
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      - name: TENANT_SOURCE_KEYS
+        value: core/prod/00De0000005WbtkEAC
+      - name: TENANT_SOURCE_NAMES
+        value: Service Org
+      - name: TENANT_CANONICAL
+        value: mds/prod/ST0000000000001
+      - name: TENANT_SUPER
+        value: core/prod/00De0000005WbtaEAC
+      - name: TENANT_SERVICE
+        value: core/prod/00De0000005WbtaEAC
+      - name: CRE_SERVER_TARGET
+        value: http://cre-api.retail-cre.localhost.mesh.force.com:5442
+      - name: C2C_PATH
+        value: https://cloudatlas.salesforce.com/empire/cloudatlas/scim
+      - name: CORE_OAUTH_URL
+        value: https://login.salesforce.com
+      - name: CORE_OAUTH_SANDBOX_URL
+        value: https://test.salesforce.com
+      - name: RSUI_OAUTH_CALLBACK
+        value: https://ord.salesforce-hub.com/service/oauth/callback 
+      - name: OAUTH_CONSUMER_KEY_FILE_PATH
+        value: secrets/consumer-key/rsui-consumer-key.key
+      - name: OAUTH_CONSUMER_SECRET_FILE_PATH
+        value: secrets/consumer-secret/rsui-consumer-secret.key
+      - name: SECURITY_ENCRYPTION_KEY1_PATH
+        value: secrets/encryption-key1/rsui-encryption-key1.key
+      - name: SECURITY_ENCRYPTION_KEY2_PATH
+        value: secrets/encryption-key2/rsui-encryption-key2.key
+      - name: RSUI_HOST
+        value: salesforce-hub.com
+      - name: GATER_EMBEDDED_MODE
+        value: false
+      - name: TRANSFORMATIONLIB_MDS_MODE
+        value: live
+      - name: JVM_ARGS
+        value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
+                -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                -Xloggc:/home/scone/logs/retail-setup/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/retail-setup
+                -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Daura.production=true"
+      - name: LOGGING_JSON_STDOUT_LEVEL
+        value: ALL
+      # Disable all management endpoints except for health
+      - name: ENDPOINTS_HEALTH_ENABLED
+        value: true
+      - name: ENDPOINTS_INFO_ENABLED
+        value: false
+      - name: ENDPOINTS_DUMP_ENABLED
+        value: false
+      - name: ENDPOINTS_APPMETRICS_ENABLED
+        value: false
+      - name: ENDPOINTS_LINT_ENABLED
+        value: false
+      - name: ENDPOINTS_CONFIGPROPS_ENABLED
+        value: false
+      - name: ENDPOINTS_ENV_ENABLED
+        value: false
+      - name: ENDPOINTS_SHUTDOWN_ENABLED
+        value: false
+      - name: ENDPOINTS_SHUTDOWN_SENSITIVE
+        value: false
+      - name: ENDPOINTS_BINDINGS_ENABLED
+        value: false
+      - name: ENDPOINTS_DTABS_ENABLED
+        value: false
+      - name: ENDPOINTS_JVM_ENABLED
+        value: false
+      livenessProbe:
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTPS
+      volumeMounts:
+      - name: retailservercert
+        mountPath: /servercerts
+      - name: retailclientcert
+        mountPath: /clientcerts
+      #mount splunk logs mount
+      - name: logvol
+        mountPath: /home/retail-setup/logs
+      - name: consumer-key
+        mountPath: /home/retail-setup/secrets/consumer-key
+        readOnly: true
+      - name: consumer-secret
+        mountPath: /home/retail-setup/secrets/consumer-secret
+        readOnly: true
+      - name: encryption-key1
+        mountPath: /home/retail-setup/secrets/encryption-key1
+        readOnly: true
+      - name: encryption-key2
+        mountPath: /home/retail-setup/secrets/encryption-key2
+        readOnly: true
+
+    - name: sherpa-rsui-production-ord
+      # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
+      # Use the full git SHA as the docker image tag.
+      image: sfci/servicelibs/sherpa-envoy:1.0.1
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - name: sherpa-log-volume
+        mountPath: /log
+      - name: retailclientcert
+        mountPath: /client-certs
+      - name: retailservercert
+        mountPath: /server-certs
+      ports:
+      - containerPort: 7443 # http2 in port for grpc
+        name: sher-in-htp2tls
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+
+    - name: beacon-rsui
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+      - -endpoint
+      - retail-rsui/retail-setup:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 150
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+
+  loadbalancers:
+  - lbname: rsui-production-ord-lb
+    function: rsui-production-ord
+    slbEnabled: true
+    tlscertificate: secret_service:cstoolkit_ord.salesforce-hub.com_20190204-215232:EndEntity
+    tlskey: secret_service:cstoolkit_ord.salesforce-hub.com_20190204-215232:Key
+    ports:
+      - port: 443
+        targetport: 7022
+        tls: true
+        lbtype: http
+        reencrypt: true
+        allow:
+          # Corp
+          - 61.120.150.128/28
+          - 62.17.146.128/26
+          - 136.146.65.0/24
+          - 142.176.79.168/29
+          - 202.95.77.64/27
+          - 204.14.236.0/24
+          - 204.14.239.0/24
+          - 221.133.209.128/27
+  - lbname: rsui-production-ord-test-lb
+    function: rsui-production-ord
+    slbEnabled: true
+    tlscertificate: secret_service:cstoolkit_ord-test.salesforce-hub.com_20190204-215232:EndEntity
+    tlskey: secret_service:cstoolkit_ord-test.salesforce-hub.com_20190204-215232:Key
+    ports:
+      - port: 443
+        targetport: 7023
+        tls: true
+        lbtype: http
+        reencrypt: true
+        allow:
+          # Corp
+          - 61.120.150.128/28
+          - 62.17.146.128/26
+          - 136.146.65.0/24
+          - 142.176.79.168/29
+          - 202.95.77.64/27
+          - 204.14.236.0/24
+          - 204.14.239.0/24
+          - 221.133.209.128/27
