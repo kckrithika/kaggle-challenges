@@ -6,6 +6,7 @@ system:
     count: 1
     labels:
       "sherpa-injector.service-mesh/inject": "enabled"
+      "sherpa-injector.service-mesh/canary": "enabled"
     containers:
 
     - name: shipping
