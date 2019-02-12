@@ -33,7 +33,7 @@ system:
 
     containers:
     - name: coreapp
-      image: docker-devmvp/casam/coreapp:release_main_1745343
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_1745343
 
       env:
         # Other db info takes from core configs 
@@ -145,7 +145,7 @@ system:
           readOnly: true
 
     - name: envoy-sidecar-config
-      image: docker-devmvp/casam/cyan-config:208cc2
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/cyan-config:208cc2
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
@@ -168,7 +168,7 @@ system:
         periodSeconds: 5
 
     - name: envoy-sidecar
-      image: docker-devmvp/servicelibs/sherpa-envoy:1.0.4
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/servicelibs/sherpa-envoy:1.0.4
       env:
       - name: SFDC_ENVIRONMENT
         value: envoy-sidecar
@@ -199,7 +199,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: docker-devmvp/casam/coreapp_config_overrides:641f92
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_config_overrides:641f92
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.fra.devmvp.app
