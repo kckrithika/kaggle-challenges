@@ -11,7 +11,7 @@ system:
     count: 1
     containers:
     - name: datapool-service
-      image: sfci/insights/datapoolservice:afield-spark-on-k8s-11-1f4b860
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:afield-spark-on-k8s-11-1f4b860
       ports:
       - containerPort: 7020
         name: grpc
