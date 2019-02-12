@@ -21,7 +21,7 @@ configs.deploymentBase("mesh-control-plane") {
     },
   },
   spec+: {
-    replicas: 1,
+    replicas: 2,
     template: {
       metadata: {
         labels: {
