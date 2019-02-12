@@ -1,4 +1,4 @@
-color: blue
+color: green
 db:
   sid: CSDB103
   user: sleepy
@@ -14,11 +14,11 @@ env:
   subEnvName: '-'
 images:
   configOverrides: sfci/casam/coreapp_config_overrides:0b4f96
-  coreApp: sfci/casam/coreapp:release_216-patch_17426390
+  coreApp: sfci/casam/coreapp:release_216-patch_17449345
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:db58ae
 name: cs103
-nonce: 1549671427421943000
+nonce: 1549934096959889374
 replicaCount: 5
 settingsSuperPod: sp1
