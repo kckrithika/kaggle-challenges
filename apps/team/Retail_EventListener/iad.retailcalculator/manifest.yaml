@@ -40,6 +40,8 @@ system:
           value: 15372
         - name: JVM_ARGS
           value: "-Xmx3G -Xms512m"
+        - name: TEST_PARAM
+          value: "Test value"
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
