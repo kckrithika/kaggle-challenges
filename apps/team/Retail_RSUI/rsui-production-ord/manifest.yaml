@@ -179,8 +179,6 @@ system:
         readOnly: true
 
     - name: sherpa-rsui-production-ord
-      # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
-      # Use the full git SHA as the docker image tag.
       image: sfci/servicelibs/sherpa-envoy:1.0.1
       env:
       - name: SFDC_ENVIRONMENT
@@ -241,6 +239,8 @@ system:
         lbtype: http
         reencrypt: true
         allow:
+          # slb estate for monitoring
+          - 10.160.4.0/22
           # Corp
           - 61.120.150.128/28
           - 62.17.146.128/26
@@ -262,6 +262,8 @@ system:
         lbtype: http
         reencrypt: true
         allow:
+          # slb estate for monitoring
+          - 10.160.4.0/22
           # Corp
           - 61.120.150.128/28
           - 62.17.146.128/26
