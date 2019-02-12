@@ -19,10 +19,10 @@ if configs.kingdom == "prd" then
     externalTrafficPolicy: "Cluster",
     ports: [
       {
-        name: "grpc-service",
+        name: "grpc-shipping",
         port: 7443,
         protocol: "TCP",
-        targetPort: 7035,
+        targetPort: 7020,
       },
     ],
     selector: {
