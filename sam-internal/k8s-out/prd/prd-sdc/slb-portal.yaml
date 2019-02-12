@@ -88,7 +88,7 @@ spec:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-portal
         - --period=1200s
-        - --vipsToAcl=slb-bravo-svc.sam-system.prd-sdc.prd.slb.sfdc.net
+        - --vipsToAcl=
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
