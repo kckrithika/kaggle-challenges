@@ -117,6 +117,15 @@ local sidecarConfig = |||
         - name: ISTIO_META_INTERCEPTION_MODE
           value: [[ or (index .ObjectMeta.Annotations "sidecar.istio.io/interceptionMode") .ProxyConfig.InterceptionMode.String ]]
         imagePullPolicy: IfNotPresent
+        ports: ## These ports are added to enable iptables redirection for old Sherpa fixed ports.
+        - containerPort: 7443  # Sherpa gRPC TLS port
+          name: grpc-istio-proxy-tls
+        - containerPort: 7442  # Sherpa http TLS port
+          name: http-istio-proxy-tls
+        - containerPort: 7012  # Sherpa gRPC plain text port
+          name: grpc-istio-proxy-plain
+        - containerPort: 7014  # Sherpa http plain text port
+          name: http-istio-proxy-plain
         securityContext:
           readOnlyRootFilesystem: true
           [[ if eq (or (index .ObjectMeta.Annotations "sidecar.istio.io/interceptionMode") .ProxyConfig.InterceptionMode.String) "TPROXY" -]]
