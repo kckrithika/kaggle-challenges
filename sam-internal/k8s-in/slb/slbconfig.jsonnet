@@ -218,6 +218,14 @@
                 "prd-samtest": 1,
                 "prd-samdev": 1,
                 "prd-samtwo": 3,
+                // 2019-02-12 - mgrass: the lo3 rack allocation for SLB is not ideal. 85% of nodes are allocated across
+                // two racks (7 in e06-dh22, 10 in f05-dh22): https://git.soma.salesforce.com/estates/estates/blob/ba130d2e7410c8fb3634ad69ac8370f9c31398f4/kingdoms/lo3/lo3-slb.yaml
+                // This leads to frequent SPOF situations with 8 instances of nginx, because it is likely that 4 are
+                // assigned to nodes in one rack. Reducing the instance count should alleviate, because k8s *should*
+                // try to spread across the `failure-domain.beta.kubernetes.io/zone` label. Longer term, we could go
+                // back to labeling nodes for nginx or try to get our estate rebalanced so nodes are spread better
+                // across the existing racks (or across more racks).
+                "lo3-sam": 3,
             },
 
         maxDeleteCount:
