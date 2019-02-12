@@ -43,7 +43,7 @@ configs.deploymentBase("mesh-control-plane") {
         },
       },
       spec: configs.specWithMadDog {
-//        serviceAccountName: "istio-sidecar-injector-service-account",
+        serviceAccountName: "istio-sidecar-injector-service-account",
         containers: [
           configs.containerWithMadDog {
             name: "sidecar-injector-webhook",

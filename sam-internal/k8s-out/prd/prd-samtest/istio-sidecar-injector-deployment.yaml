@@ -195,6 +195,7 @@ spec:
           name: tokens
       nodeSelector:
         master: "true"
+      serviceAccountName: istio-sidecar-injector-service-account
       volumes:
       - hostPath:
           path: /etc/pki_service
