@@ -76,11 +76,9 @@ configs.deploymentBase("service-mesh") {
               "--port=7442",  // use the same port as we use in Sherpa (h1 TLS IN)
               "--cert=/server-certs/server/certificates/server.pem",
               "--key=/server-certs/server/keys/server-key.pem",
-            ] + 
-            if std.length(versions.canaryServices) > 0 then [
-              // Add canary services, if needed
+            ] +
+            if std.length(versions.canarySherpaImage) > 0 then [
               "--canary-image=%s" % versions.canarySherpaImage,
-              "--canary-services=%s" % versions.canaryServices,
             ],
             volumeMounts+: [
               {

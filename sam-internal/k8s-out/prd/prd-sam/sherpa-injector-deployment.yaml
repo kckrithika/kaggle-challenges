@@ -57,8 +57,7 @@ spec:
         - --cert=/server-certs/server/certificates/server.pem
         - --key=/server-certs/server/keys/server-key.pem
         - --canary-image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:7c866de2c4f840082fac7f2d00aa2d93f7bee6be
-        - --canary-services=service-mesh.ordering-rate-limited,service-mesh.shipping-rate-limited
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:XXX-WITH-CANARY-SUPPORT
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:95c31963979891afe08b4a7de8ca492e4feb516b
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
