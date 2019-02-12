@@ -26,10 +26,10 @@ system:
         path: /data/logs/jvm
     - name: secretvol-c1
       k4aSecret:
-        secretName: caas-k4a-secret-sp-devmvp-c1
+        secretName: toli
     - name: secretvol-pc
       k4aSecret:
-        secretName: caas-k4a-secret-sp-devmvp-pc
+        secretName: toli
 
     containers:
     - name: coreapp
