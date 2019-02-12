@@ -77,3 +77,7 @@ apps:
     hostSubList:
     - shared2-samminioncoreapp2-4-prd.eng.sfdc.net
     - shared2-samminioncoreapp2-5-prd.eng.sfdc.net
+
+# GCP Alpha
+ gcp-devmvp:
+  - mvp/gsf-core-devmvp-sam2_coreapp
