@@ -29,6 +29,8 @@ system:
       - name: GRPC_PORT
         value: 7020
       ports:
+      - containerPort: 7443
+        name: grpc-proxy
       - containerPort: 7020
         name: grpc-svc
       - containerPort: 15375
