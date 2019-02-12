@@ -1,0 +1,45 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - jason.woods@salesforce.com
+
+  functions:
+    - name: qpid-broker-runtime
+      count: 1
+      containers:
+        - name: qpid-broker-runtime
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/jason-woods/qpid-broker-runtime:v0
+          ports:
+            - name: amqp-port
+              containerPort: 5672
+            - name: http-port
+              containerPort: 7022
+          env:
+            - name: HTTP_PORT
+              value: 7022
+            - name: AMQP_PORT
+              value: 5672
+          resources:
+            limits: { cpu: "24", memory: "8Gi" }
+            requests: { cpu: "24", memory: "8Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/qpid
+              name: logvol
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/qpid

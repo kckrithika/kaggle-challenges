@@ -1,2 +1,3 @@
-version: v2
 apps:
+  gcp-devmvp-qpid-broker-runtime:
+    - mvp/gsf-core-devmvp-sam2-sam
