@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: devmvp-app-gcp
-    count: 5
+    count: 1
     identity:
       serviceName: app
       pod: devmvp
@@ -26,10 +26,10 @@ system:
         path: /data/logs/jvm
     - name: secretvol-c1
       k4aSecret:
-        secretName: toli
+        secretName: caas-k4a-secret-sp-cs103-c1
     - name: secretvol-pc
       k4aSecret:
-        secretName: toli
+        secretName: caas-k4a-secret-sp-cs103-pc
 
     containers:
     - name: coreapp
