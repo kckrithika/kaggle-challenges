@@ -1,0 +1,29 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: slack-forwarder
+    count: 1
+    containers:
+    - name: slack-forwarder
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/moe/reverse-proxy:mgrass-201902112200
+      command: ["/moe/reverse-proxy"]
+      args:
+      - "-publicProxyURL=http://public0-proxy1-0-prd.data.sfdc.net:8080"
+      - "-targetURL=https://hooks.slack.com/services/"
+      - "-listenPort=8080"
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8080
+  loadbalancers:
+  - lbname: slack-forwarder
+    function: slack-forwarder
+    slbenabled: true
+    ports:
+      - port: 443
+        targetport: 8080
+        lbtype: http
+        tls: true

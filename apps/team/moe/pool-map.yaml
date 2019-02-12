@@ -7,3 +7,5 @@ apps:
     - prd/prd-sam
   deployerbot:
     - prd/prd-sam
+  slack-forwarder:
+    - prd/prd-sam
