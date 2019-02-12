@@ -28,6 +28,7 @@ access:
   - 'team/wave-elt'
   - 'team/solr-service'
   - 'team/topology_svc'
+  - 'team/qpid'
 
 # Each pool is managed by a SAM control stack running in one estate
 # Name here is an exact match on a file under estates/estates repo

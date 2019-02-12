@@ -1357,7 +1357,8 @@
         "universal-search",
         "wave-elt",
         "solr-service",
-        "topology-svc"
+        "topology-svc",
+        "qpid"
       ],
       "access": [
         "team/CSC_Sam",
@@ -1384,7 +1385,8 @@
         "team/universal-search",
         "team/wave-elt",
         "team/solr-service",
-        "team/topology_svc"
+        "team/topology_svc",
+        "team/qpid"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-sam",
       "estate": "gsf-core-devmvp-sam2-sam",
