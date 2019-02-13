@@ -1,6 +1,7 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
 local enabled = std.objectHas(flowsnake_images.feature_flags, "spark_operator");
+local spark_op_metrics = std.objectHas(flowsnake_images.feature_flags, "spark_op_metrics");
 
 if enabled then
 {
@@ -34,13 +35,30 @@ if enabled then
             },
             spec: {
                 serviceAccountName: "spark-operator",
-                containers: [{
-                    name: "spark-operator",
-                    image: flowsnake_images.spark_operator,
-                    imagePullPolicy: "Always",
-                    command: ["/usr/bin/spark-operator"],
-                    args: ["-logtostderr", "-v", "2"],
-                }],
+                containers: [
+                    {
+                        name: "spark-operator",
+                        image: flowsnake_images.spark_operator,
+                        imagePullPolicy: "Always",
+                        command: ["/usr/bin/spark-operator"],
+                    } +
+                    (if spark_op_metrics then {
+                        args: [
+                            "-logtostderr",
+                            "-v=2",
+                            "-enable-metrics=true",
+                            "-metrics-port=10254",
+                            "-metrics-endpoint=/metrics",
+                        ],
+                        ports: [{
+                            containerPort: 10254,
+                            name: "metrics",
+                            protocol: "TCP",
+                        }]
+                    } else {
+                        args: ["-logtostderr", "-v", "2"],
+                    }),
+                ]
             },
         },
     },

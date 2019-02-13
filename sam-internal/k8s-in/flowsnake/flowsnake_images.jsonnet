@@ -65,6 +65,7 @@ local utils = import "util_functions.jsonnet";
             madkub_image_tag: "minikube",
             nodeMonitor_image_tag: "minikube",
             zookeeper_image_tag: "minikube",
+            spark_operator_image_tag: "minikube",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -96,6 +97,7 @@ local utils = import "util_functions.jsonnet";
                 slb_ingress: "unverified",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
+                spark_op_metrics: "enabled",
             },
             version_mapping: {
                 main: {
