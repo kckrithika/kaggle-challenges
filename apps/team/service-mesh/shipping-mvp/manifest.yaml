@@ -7,7 +7,7 @@ system:
     containers:
 
     - name: shipping
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/shipping-service:bazel-monorepo-201902121730
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/shipping-service:bazel-monorepo-201902131530
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
