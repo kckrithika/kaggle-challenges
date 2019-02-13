@@ -257,7 +257,7 @@
             },
 
         vipsToAcl:
-            set_value_to_all_in_list((if slbimages.phaseNum <= 1 then "" else "slb-bravo-svc.sam-system." + configs.estate + ".prd.slb.sfdc.net"), $.slbEstates)
+            set_value_to_all_in_list((if slbimages.hyperslb_build >= 2064 then "" else "slb-bravo-svc.sam-system." + configs.estate + ".prd.slb.sfdc.net"), $.slbEstates)
             + { vpod: "" },
     },
 
