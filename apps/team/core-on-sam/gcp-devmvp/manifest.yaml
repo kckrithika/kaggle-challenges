@@ -199,7 +199,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_config_overrides:641f92
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_config_overrides:241254
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.fra.devmvp.app
