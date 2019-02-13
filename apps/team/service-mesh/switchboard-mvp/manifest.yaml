@@ -40,7 +40,7 @@ system:
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-        value: "0"
+        value: "1"
       resources:
         limits:
           cpu: "8"
@@ -110,7 +110,9 @@ system:
       maddogCert:
         type: server
   loadbalancers:
-  - lbname: switchboard
+  # temporarily use `switchboard-lb` instead of `switchboard` in order to avoid k8s injecting the `SWITCHBOARD_PORT` variable to pods
+  # That variable conflicts with our config file for Switchboard's envoy
+  - lbname: switchboard-lb
     nodeExposed: true
     function: switchboard
     ports:
