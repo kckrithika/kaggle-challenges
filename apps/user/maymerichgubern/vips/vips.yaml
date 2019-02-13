@@ -1,0 +1,15 @@
+- lbname: sr-scheduler
+  servers:
+   - sr0-sre1-1-prd.eng.sfdc.net
+   - sr0-sre1-2-prd.eng.sfdc.net
+   - sr0-sre2-1-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 8000
+     lbtype: tcp
+     sticky: 300
+     tls: true
+     reencrypt: true
+     healthport: 8000
+     healthpath: "/ping.jsp"
+     healthprotocol: http
