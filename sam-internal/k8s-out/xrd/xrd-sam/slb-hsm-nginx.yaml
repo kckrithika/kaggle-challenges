@@ -105,7 +105,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-nginx-config
         ports:
         - containerPort: 32146
@@ -166,7 +166,7 @@ spec:
         - /sdn/slb-nginx-data
         - --target=/host/data/slb/slb-hsm-nginx/config
         - --connPort=9125
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         livenessProbe:
           httpGet:
             path: /
@@ -199,7 +199,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
@@ -261,7 +261,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-cert-checker
         volumeMounts:
         - mountPath: /cert1
@@ -282,7 +282,7 @@ spec:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-hsm-nginx
         - --period=1800s
-        - --vipsToAcl=slb-bravo-svc.sam-system.xrd-sam.prd.slb.sfdc.net
+        - --vipsToAcl=
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
@@ -307,7 +307,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -346,7 +346,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -370,7 +370,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-hsm-nginx/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -389,7 +389,7 @@ spec:
         - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
         - --client.dialSocket=true
         - --maxDeleteVipCount=20
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-realsvrcfg
         securityContext:
           privileged: true
@@ -413,7 +413,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -450,7 +450,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-manifest-watcher
         securityContext:
           privileged: true
@@ -480,7 +480,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-cert-deployer
         volumeMounts:
         - mountPath: /cert1
@@ -542,7 +542,7 @@ spec:
         - /bin/bash
         - -xec
         - rm -rf /host/data/slb/slb-hsm-nginx/config/*
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-nginx-config-wipe
         volumeMounts:
         - mountPath: /host/data/slb/slb-hsm-nginx/config
