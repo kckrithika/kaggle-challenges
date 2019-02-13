@@ -3,10 +3,9 @@ system:
   functions:
   - name: gater-perf
     count: 1
-    hostnetwork: false
     containers:
     - name: gater-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:4249cc7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:1322dc0
       args:
       - --gater.grpc.endpoint=gater-mesh.gater.localhost.mesh.force.com
       - --gater.grpc.port=5443
@@ -16,16 +15,15 @@ system:
       ports:
       - containerPort: 8080
       - containerPort: 15375
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvolservice
       livenessProbe:
         httpGet:
           path: /manage/health
           port: 15375
         initialDelaySeconds: 60
         timeoutSeconds: 10
-      volumeMounts:
-      - mountPath: /home/scone/logs
-        name: logvolservice
-
     - name: beacon
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
@@ -35,15 +33,14 @@ system:
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       - -logging.dir
       - /log
-      livenessProbe:
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-        initialDelaySeconds: 5
       volumeMounts:
       - mountPath: /log
         name: logvolbeacon
-
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
@@ -71,7 +68,6 @@ system:
         initialDelaySeconds: 50
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
-
     volumes:
     - name: logvolservice
       hostPath:
