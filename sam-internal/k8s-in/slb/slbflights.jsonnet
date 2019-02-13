@@ -11,4 +11,5 @@ local configs = import "config.jsonnet";
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
     nginxStreamlogsEnabled: (slbimages.phaseNum <= 3 && slbimages.slbnginx_build >= 114 && slbimages.hsmnginx_build >= 114),
     removeRequiresHealthProbeFlag: (slbimages.hyperslb_build > 2061),
+    enableNginxWeightChange: (configs.estate == "prd-sdc"),
 }
