@@ -5,7 +5,7 @@ system:
     email:
       - steve.crouse@salesforce.com
       - charles.cox@salesforce.com
-      - richard.li@salesforce.com
+      - ehsan.sherkat@salesforce.com
       - jcormier@salesforce.com
       - dkilgore@salesforce.com
 
@@ -30,7 +30,7 @@ system:
 
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:1.5.12
+      image: sfci/mc-retail/retail-mc-event-beacon:1.6.4
       ports:
         - containerPort: 7022
         - containerPort: 15372
