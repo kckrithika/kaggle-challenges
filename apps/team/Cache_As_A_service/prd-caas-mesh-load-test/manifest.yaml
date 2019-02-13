@@ -9,17 +9,21 @@ system:
     count: 1
     containers:
     - name: caas-load
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jayantk/caas-load-test:0.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpragada/caas-load-test:11
       resources:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
       args:
-        - -t 1,5,10,20
-        - -v 256,1024,10240,102400
-        - -o 0,1
+        - -t 1,20
+        - -v 256,1024,10240
+        - -o -1
         - -a 127.0.0.1:7509
         - -x 120
         - -s mist66
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       livenessProbe:
         exec:
           command: ["true"]
@@ -34,3 +38,7 @@ system:
          value: redis
        - name: SFDC_POD
          value: mist66
+    volumes:
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-c1
