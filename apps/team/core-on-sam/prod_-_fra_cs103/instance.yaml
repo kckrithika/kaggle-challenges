@@ -1,4 +1,4 @@
-color: blue
+color: green
 db:
   sid: CSDB103
   user: sleepy
@@ -19,6 +19,6 @@ images:
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:db58ae
 name: cs103
-nonce: 1550004623441802000
+nonce: 1550097141599966000
 replicaCount: 5
 settingsSuperPod: sp1
