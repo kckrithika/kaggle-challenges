@@ -128,7 +128,7 @@ spec:
         env:
         - name: KINGDOM
           value: cdg
-        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000068-9df2d419
+        image: ops0-artifactrepo1-0-cdg.data.sfdc.net/dva/slb/nginx:114-da4c36ecc696f4d28b6884ea759babbef8ba8d50
         livenessProbe:
           httpGet:
             path: /
