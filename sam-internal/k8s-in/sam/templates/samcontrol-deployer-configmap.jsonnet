@@ -6,7 +6,7 @@ local configs = import "config.jsonnet";
     metadata: {
         name: "samcontrol-deployer",
         namespace: "sam-system",
-        labels: {} + configs.ownerLabel.sam,
+        labels: {} + configs.ownerLabel.sam + configs.pcnEnableLabel,
     },
     data: {
         "samcontroldeployer.json": std.toString(import "configs/samcontrol-deployer-config.jsonnet"),
