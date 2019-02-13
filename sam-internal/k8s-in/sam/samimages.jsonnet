@@ -43,6 +43,13 @@ local samreleases = import "samreleases.json";
         #[thargrove] Switch to strata build when its ready
         "mvp,gsf-core-devmvp-sam2-sam,*,madkub": "gcr.io/gsf-core-devmvp-sam2/thargrove/madkubserver:1.0.0-0000080-8a8659dd",
         "mvp,gsf-core-devmvp-sam2-samtest,*,madkub": "gcr.io/gsf-core-devmvp-sam2/thargrove/madkubserver:1.0.0-0000080-8a8659dd",
+
+         #[raksha] crdwatcher fix for synthetic
+         "prd,prd-samtest,crd-watcher,hypersam": "sam-0002494-cefb0d82",
+         "prd,prd-samdev,crd-watcher,hypersam": "sam-0002494-cefb0d82",
+         "prd,prd-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
+         "frf,frf-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
+
         },
 
     ### Per-phase image tags have been moved to samreleases.json
