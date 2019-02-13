@@ -7,7 +7,7 @@ system:
     containers:
 
     - name: shipping
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:bazel-monorepo
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/shipping-service:bazel-monorepo-201902121730
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -27,8 +27,7 @@ system:
           port: 15372
 
     - name: beacon
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/beacon:853c4db9f14805018be6f5e7607ffe65b5648822-201902081500
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
