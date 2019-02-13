@@ -56,6 +56,12 @@ apps:
   h1-test-server-envoy-tls:
     - prd/prd-sam_gater
 
+  ordering-mvp:
+    - mvp/gsf-core-devmvp-sam2-sam
+  shipping-mvp:
+    - mvp/gsf-core-devmvp-sam2-sam
+
+
   ordering-envoy-tls:
     - prd/prd-sam_gater
   shipping-envoy-tls:
