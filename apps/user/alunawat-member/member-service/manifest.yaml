@@ -4,7 +4,7 @@ system:
  - name: default
    count: 1
    containers:
-   - name: samhello
+   - name: member-service-poc
      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/abiswal/member-service-1.1:abiswal # sample member-service-app
      ports:
      - containerPort: 8182
@@ -14,7 +14,7 @@ system:
          path: /members/1234
          port: 8182
  loadbalancers:
- - lbname: samhellolb
+ - lbname: member-service-poc-lb
    function: default
    slbenabled: true
    ports:
