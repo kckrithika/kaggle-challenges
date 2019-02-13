@@ -10,4 +10,6 @@
      sticky: 300
      tls: true
      reencrypt: true
-     healthpath: /ping.jsp
+     healthport: 8000
+     healthpath: "/ping.jsp"
+     healthprotocol: http
