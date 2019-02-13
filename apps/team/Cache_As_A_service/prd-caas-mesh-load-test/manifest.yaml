@@ -20,6 +20,7 @@ system:
         - -a 127.0.0.1:7509
         - -x 120
         - -s mist66
+        - -r pass1234
       volumeMounts:
         - mountPath: /var/secrets
           name: secretvol
