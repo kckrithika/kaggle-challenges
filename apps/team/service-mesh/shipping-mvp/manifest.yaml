@@ -33,7 +33,10 @@ system:
         value: mesh
       args:
       - -endpoint
-      - service-mesh/shipping-mvp:DATACENTER:7443     
+      - service-mesh/shipping-mvp:DATACENTER:7443
+      # 2018-02-08: Static IP from one of the ZK Nodes. neded because there's no dns name yet.
+      - -zk
+      - 10.168.160.111
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -44,7 +47,7 @@ system:
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/sherpa-envoy:1.0.4-201902081120
       args:
       # 2018-02-08: Direct Connection to the switchboard for now
-      - --switchboard=switchboard.service-mesh.svc:15001
+      - --switchboard=switchboard-lb.service-mesh.svc:15001
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
