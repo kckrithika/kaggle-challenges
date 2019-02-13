@@ -27,11 +27,11 @@ system:
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: GRPC_PORT
-        value: 7020
+        value: 7035
       ports:
       - containerPort: 7443
         name: grpc-proxy
-      - containerPort: 7020
+      - containerPort: 7035
         name: grpc-svc
       - containerPort: 15375
         name: scone-mgmt
