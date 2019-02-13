@@ -173,6 +173,7 @@ system:
       allow:
       # slb estate for monitoring
       - 10.160.4.0/22
+      - 10.212.162.192/26
       # casam hosts/containers
       - 10.212.165.0/25
       - 10.160.24.0/21
@@ -213,6 +214,13 @@ system:
       - 35.161.249.213/32
       # PRD
       - 136.146.95.8/32
+      # filter proxies in PRA
+      - 136.147.62.12/32
+      - 13.108.238.12/32
+      - 13.108.254.12/32
+      - 136.147.46.12/32
+      - 85.222.130.12/32
+      - 101.53.164.12/32
     # HTTPS listen ports of Envoy.
     - port: 443
       targetport: 12060
@@ -225,6 +233,7 @@ system:
       allow:
       # slb estate for monitoring
       - 10.160.4.0/22
+      - 10.212.162.192/26
       # casam hosts/containers
       - 10.212.165.0/25
       - 10.160.24.0/21
@@ -265,6 +274,13 @@ system:
       - 35.161.249.213/32
       # PRD
       - 136.146.95.8/32
+      # filter proxies in PRA
+      - 136.147.62.12/32
+      - 13.108.238.12/32
+      - 13.108.254.12/32
+      - 136.147.46.12/32
+      - 85.222.130.12/32
+      - 101.53.164.12/32
     - port: 8443
       targetport: 12060
       lbtype: http
@@ -275,6 +291,7 @@ system:
       allow:
       # slb estate for monitoring
       - 10.160.4.0/22
+      - 10.212.162.192/26
       # casam hosts/containers
       - 10.212.165.0/25
       - 10.160.24.0/21
@@ -315,6 +332,13 @@ system:
       - 35.161.249.213/32
       # PRD
       - 136.146.95.8/32
+      # filter proxies in PRA
+      - 136.147.62.12/32
+      - 13.108.238.12/32
+      - 13.108.254.12/32
+      - 136.147.46.12/32
+      - 85.222.130.12/32
+      - 101.53.164.12/32
   ## entries for cs103.force.com VIP
   - lbname: cs103app-force-lb
     function: cs103-sfproxy-fra
@@ -330,6 +354,7 @@ system:
       allow:
       # slb estate for monitoring
       - 10.160.4.0/22
+      - 10.212.162.192/26
       # casam hosts/containers
       - 10.212.165.0/25
       - 10.160.24.0/21
@@ -370,6 +395,13 @@ system:
       - 35.161.249.213/32
       # PRD
       - 136.146.95.8/32
+      # filter proxies in PRA
+      - 136.147.62.12/32
+      - 13.108.238.12/32
+      - 13.108.254.12/32
+      - 136.147.46.12/32
+      - 85.222.130.12/32
+      - 101.53.164.12/32
     # HTTPS listen ports of Envoy.
     - port: 443
       targetport: 12060
@@ -382,6 +414,7 @@ system:
       allow:
       # slb estate for monitoring
       - 10.160.4.0/22
+      - 10.212.162.192/26
       # casam hosts/containers
       - 10.212.165.0/25
       - 10.160.24.0/21
@@ -422,6 +455,13 @@ system:
       - 35.161.249.213/32
       # PRD
       - 136.146.95.8/32
+      # filter proxies in PRA
+      - 136.147.62.12/32
+      - 13.108.238.12/32
+      - 13.108.254.12/32
+      - 136.147.46.12/32
+      - 85.222.130.12/32
+      - 101.53.164.12/32
     - port: 8443
       targetport: 12060
       lbtype: http
@@ -432,6 +472,7 @@ system:
       allow:
       # slb estate for monitoring
       - 10.160.4.0/22
+      - 10.212.162.192/26
       # casam hosts/containers
       - 10.212.165.0/25
       - 10.160.24.0/21
@@ -472,6 +513,13 @@ system:
       - 35.161.249.213/32
       # PRD
       - 136.146.95.8/32
+      # filter proxies in PRA
+      - 136.147.62.12/32
+      - 13.108.238.12/32
+      - 13.108.254.12/32
+      - 136.147.46.12/32
+      - 85.222.130.12/32
+      - 101.53.164.12/32
   ## entries for cs103.my.salesforcecom VIP
   - lbname: cs103app-my-lb
     function: cs103-sfproxy-fra
@@ -487,6 +535,7 @@ system:
       allow:
       # slb estate for monitoring
       - 10.160.4.0/22
+      - 10.212.162.192/26
       # casam hosts/containers
       - 10.212.165.0/25
       - 10.160.24.0/21
@@ -527,6 +576,13 @@ system:
       - 35.161.249.213/32
       # PRD
       - 136.146.95.8/32
+      # filter proxies in PRA
+      - 136.147.62.12/32
+      - 13.108.238.12/32
+      - 13.108.254.12/32
+      - 136.147.46.12/32
+      - 85.222.130.12/32
+      - 101.53.164.12/32
     # HTTPS listen ports of Envoy.
     - port: 443
       targetport: 12060
@@ -539,6 +595,7 @@ system:
       allow:
       # slb estate for monitoring
       - 10.160.4.0/22
+      - 10.212.162.192/26
       # casam hosts/containers
       - 10.212.165.0/25
       - 10.160.24.0/21
@@ -579,6 +636,13 @@ system:
       - 35.161.249.213/32
       # PRD
       - 136.146.95.8/32
+      # filter proxies in PRA
+      - 136.147.62.12/32
+      - 13.108.238.12/32
+      - 13.108.254.12/32
+      - 136.147.46.12/32
+      - 85.222.130.12/32
+      - 101.53.164.12/32
     - port: 8443
       targetport: 12060
       lbtype: http
@@ -589,6 +653,7 @@ system:
       allow:
       # slb estate for monitoring
       - 10.160.4.0/22
+      - 10.212.162.192/26
       # casam hosts/containers
       - 10.212.165.0/25
       - 10.160.24.0/21
@@ -629,3 +694,10 @@ system:
       - 35.161.249.213/32
       # PRD
       - 136.146.95.8/32
+      # filter proxies in PRA
+      - 136.147.62.12/32
+      - 13.108.238.12/32
+      - 13.108.254.12/32
+      - 136.147.46.12/32
+      - 85.222.130.12/32
+      - 101.53.164.12/32
