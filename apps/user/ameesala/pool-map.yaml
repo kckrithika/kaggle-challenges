@@ -1,5 +1,5 @@
 apps:
   consul:
     - prd/prd-sam
-  samhello:
+  beam:
     - prd/prd-sam
