@@ -6,6 +6,7 @@ system:
       - steve.crouse@salesforce.com
       - charles.cox@salesforce.com
       - jcormier@salesforce.com
+      - ehsan.sherkat@salesforce.com
       - dkilgore@salesforce.com
   functions:
   - name: retailcalculator
@@ -22,7 +23,7 @@ system:
         path: /home/sfdc-cj/logs
     containers:
     - name: retailcalculator
-      image: sfci/mc-retail/retail-calculator:1.5.21
+      image: sfci/mc-retail/retail-calculator:1.6.5
       ports:
         - containerPort: 8080
         - containerPort: 15372

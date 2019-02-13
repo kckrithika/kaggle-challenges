@@ -5,7 +5,7 @@ system:
     email:
       - steve.crouse@salesforce.com
       - charles.cox@salesforce.com
-      - richard.li@salesforce.com
+      - ehsan.sherkat@salesforce.com
       - jcormier@salesforce.com
       - dkilgore@salesforce.com
   functions:
@@ -23,7 +23,7 @@ system:
         path: /home/sfdc-cj/logs
     containers:
     - name: commercejourneys
-      image: sfci/mc-retail/commerce-journeys:1.5.30
+      image: sfci/mc-retail/commerce-journeys:1.6.10
       ports:
         - containerPort: 8080
         - containerPort: 15372
