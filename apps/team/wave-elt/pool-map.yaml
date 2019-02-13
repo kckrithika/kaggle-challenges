@@ -30,7 +30,7 @@ apps:
   - dfw/dfw-sam_datapool
 
   # PRD
-  datapool-staging:
+  datapool-prd:
   - prd/prd-sam_datapool
 
 # Removed until we can sort out alerting
