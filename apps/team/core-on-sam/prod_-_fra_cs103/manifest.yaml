@@ -192,7 +192,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1550097141599965952
+        value: 1550099646217030912
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -243,7 +243,7 @@ system:
         value: public0-proxy1-0-fra.data.sfdc.net:8080
       - name: SKIP_KAIJU
         value: 1
-      image: sfci/casam/sequencer:db58ae
+      image: sfci/casam/sequencer:ca008f
       livenessProbe:
         exec:
           command:
