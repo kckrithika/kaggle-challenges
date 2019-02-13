@@ -127,7 +127,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--httpTimeout=1s",
                             "--enablePersistence=false",
                         ]
-                        + (if slbflights.enableNginxWeightChange then ["--enableOnlyRunningStateProxy=true"] else [])
+                        + (if slbflights.enableOnlyRunningStateProxy then ["--enableOnlyRunningStateProxy=true"] else [])
                         + slbconfigs.getNodeApiClientSocketSettings()
                         + [
                             "--healthcheck.riseCount=5",
