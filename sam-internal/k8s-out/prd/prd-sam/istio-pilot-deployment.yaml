@@ -85,7 +85,7 @@ spec:
           value: "100"
         - name: PILOT_TRACE_SAMPLING
           value: "100"
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/pilot:1.0.2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:d021a6b1dd4db59fe1a82f07a7e5457830190e40
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
