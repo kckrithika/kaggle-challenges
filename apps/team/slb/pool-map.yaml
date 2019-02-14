@@ -1,2 +1,4 @@
 version: v2
 apps:
+ gcp-test-ilb-app:
+  - mvp/gsf-core-devmvp-sam2-samtest
