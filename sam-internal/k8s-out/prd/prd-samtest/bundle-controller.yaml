@@ -26,7 +26,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2615-1aa292fb7780a344d2664533158c04536b776a81
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2618-61d3a98286ddacd24c610ec7993f1196d8c7a4c8
         name: bundle-controller
         volumeMounts:
         - mountPath: /etc/pki_service
