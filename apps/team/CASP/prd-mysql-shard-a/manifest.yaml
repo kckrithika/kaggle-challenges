@@ -6,7 +6,7 @@ system:
         - pteyer@salesforce.com
         - paul.howden@salesforce.com
     functions:
-    - name: mysql-func
+    - name: mysql-func-shard-a
       count: 3
       strategy:
         type: RollingUpdate
@@ -14,12 +14,12 @@ system:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-      - name: prd-mysql-shard-3
+      - name: prd-mysql-shard-a
         image: tnrp/casp/mysql:0.0.1-0000032-c55bfbd5
         ports:
-        - name: mysql
+        - name: mysql-shard-a
           containerPort: 3306
-          hostPort: 7017
+          hostPort: 7015
         volumeMounts:
         - mountPath: /home/sfdc/mysql/data
           name: mysql-data-vol
@@ -32,7 +32,7 @@ system:
       volumes:
       - name: mysql-data-vol
         hostPath:
-          path: /data/mysql-shard-3
+          path: /data/mysql-data/shard-a
       - name: mysql-backups-vol
         hostPath:
-          path: /data/mysql-shard-3-backups
+          path: /data/mysql-backups/shard-a
