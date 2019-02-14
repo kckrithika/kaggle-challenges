@@ -32,7 +32,7 @@ system:
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/sherpa-envoy:1.0.4-201902081120
       args:
       # 2018-02-08: Direct Connection to the switchboard for now
-      - --switchboard=switchboard-lb.service-mesh.svc:15001
+      - --switchboard=switchboard.service-mesh.svc:15001
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh

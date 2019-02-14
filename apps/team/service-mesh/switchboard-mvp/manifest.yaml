@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: switchboard
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/switchboard:64805f5110028be3c21bd1f564b72042ae834d2e-201902081800
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/switchboard:95462e3e28b30f2007fcc1a05588fbf242719794-201902141230
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -40,7 +40,7 @@ system:
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-        value: "1"
+        value: "2"
       resources:
         limits:
           cpu: "8"
@@ -110,9 +110,7 @@ system:
       maddogCert:
         type: server
   loadbalancers:
-  # temporarily use `switchboard-lb` instead of `switchboard` in order to avoid k8s injecting the `SWITCHBOARD_PORT` variable to pods
-  # That variable conflicts with our config file for Switchboard's envoy
-  - lbname: switchboard-lb
+  - lbname: switchboard
     nodeExposed: true
     function: switchboard
     ports:
