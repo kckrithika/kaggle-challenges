@@ -44,6 +44,9 @@ local samreleases = import "samreleases.json";
         "mvp,gsf-core-devmvp-sam2-sam,*,madkub": "gcr.io/gsf-core-devmvp-sam2/thargrove/madkubserver:1.0.0-0000080-8a8659dd",
         "mvp,gsf-core-devmvp-sam2-samtest,*,madkub": "gcr.io/gsf-core-devmvp-sam2/thargrove/madkubserver:1.0.0-0000080-8a8659dd",
 
+        #[hsuanyu-chen] Enable Internal Load Balancer in PCN
+        "mvp,gsf-core-devmvp-sam2-samtest,samapp-controller,hypersam": "",
+
          #[raksha] crdwatcher fix for synthetic
          "prd,prd-samtest,crd-watcher,hypersam": "sam-0002494-cefb0d82",
          "prd,prd-samdev,crd-watcher,hypersam": "sam-0002494-cefb0d82",
