@@ -15,6 +15,7 @@ data:
       "namespaceHostSubList": [
         "cloudatlas"
       ],
+      "slbUseIlbInGkeEnv": true,
       "volPermissionInitContainerImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76"
     }
 kind: ConfigMap

@@ -19,6 +19,9 @@ std.prune({
   [if configs.estate == "vpod" then "enableK4a"]: false,
   k4aInitContainerImage: samimages.k4aInitContainerImage,
 
+  #pnc
+  [if utils.is_pcn(configs.kingdom) then "slbUseIlbInGkeEnv"]: true,
+
   #stateful
   [if configs.kingdom == "prd" || utils.is_pcn(configs.kingdom) then "enableStatefulSet"]: true,
 
