@@ -1,6 +1,12 @@
 apps:
  prd-mysql:
   - prd/prd-sam_warden
+ prd-mysql-shard-a:
+  - prd/prd-sam_warden
+ prd-mysql-shard-b:
+  - prd/prd-sam_warden
+ prd-mysql-shard-c:
+  - prd/prd-sam_warden
  prd-warden:
   - prd/prd-sam_warden
  prd-warden-stage:
