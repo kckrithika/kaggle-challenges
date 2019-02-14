@@ -226,8 +226,8 @@ local vipwdOptOutConfig = {
       // 2019/02/13 - vyjayanthi.raja
       // Associated investigation: https://computecloud.slack.com/archives/G340CE86R/p1550093301234000?thread_ts=1550091904.233300&cid=G340CE86R
       "spaasmeshlb",
-    ]
-  }
+    ],
+  },
 };
 
 local getOptOutServiceListParameter(estateConfig) =
