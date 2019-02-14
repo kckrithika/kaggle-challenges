@@ -24,6 +24,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
+      - name: JAVA_OPTS
+        value: "-Dscone.service.name=ordering-istio -Dshipping.dest=shipping-istio.service-mesh.svc.mesh.sfdc.net:7447 -Dmanagement.server.port=15374"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: GRPC_PORT
