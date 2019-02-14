@@ -31,6 +31,12 @@ local utils = import "util_functions.jsonnet";
                                 configs.config_volume_mount,
                                 configs.cert_volume_mount,
                             ]),
+                            [if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
+                            "ports"]: [
+                                    {
+                                        containerPort: 21553,
+                                    },
+                                ],
                         } + configs.containerInPCN
                         + {
                              livenessProbe: {
