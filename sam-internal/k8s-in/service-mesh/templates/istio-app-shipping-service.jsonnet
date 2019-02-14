@@ -20,7 +20,7 @@ if configs.kingdom == "prd" then
     ports: [
       {
         name: "grpc-shipping",
-        port: 7035,
+        port: 7443,
         protocol: "TCP",
         targetPort: 7035,
       },
