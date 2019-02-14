@@ -1,6 +1,39 @@
 apiVersion: v1
 items:
 - apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRole
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: client-cluster-role
+  rules:
+  - apiGroups:
+    - apiextensions.k8s.io
+    resources:
+    - customresourcedefinitions
+    verbs:
+    - get
+    - list
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-wave-elt
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: client-cluster-role
+  subjects:
+  - kind: User
+    name: wave-elt.datapool
+  - kind: User
+    name: wave-elt.datapool-test
+  - kind: User
+    name: flowsnake.lorrin-impersonation-test
+  - kind: User
+    name: wave-elt.spark-engine
+- apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
     annotations:
