@@ -1,0 +1,27 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - thargrove@salesforce.com
+  functions:
+  - name: history
+    count: 1
+    containers:
+    - name: history
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/history:thargrove-20190214_131047-d0e14b6
+      command: ["/bin/mock-history"]
+      args: ["--webfiles=/bin/webfiles"]
+      ports:
+      - containerPort: 8000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
+  loadbalancers:
+  - lbname: history
+    function: history
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 8000
