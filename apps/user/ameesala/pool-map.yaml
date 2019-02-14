@@ -1,5 +1,5 @@
 apps:
   consul:
     - prd/prd-sam
-  beam:
+  topology-data-ingest:
     - prd/prd-sam
