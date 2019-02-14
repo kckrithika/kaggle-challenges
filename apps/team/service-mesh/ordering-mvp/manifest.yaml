@@ -6,13 +6,11 @@ system:
     count: 1
     containers:
     - name: ordering
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/ordering-service:bazel-monorepo-201902121730
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/ordering-service:bazel-monorepo-201902131630
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
-      - name: JAVA_HEAP_OPTS
-        value: -Xmx256m
-      - name: SCONE_DEPLOYMENT_JVM_OPTIONS
+      - name: JAVA_OPTS
         value: "-Dscone.service.name=ordering-service-mvp -Dshipping.dest=shipping-mvp.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
       ports:
       - containerPort: 7020
