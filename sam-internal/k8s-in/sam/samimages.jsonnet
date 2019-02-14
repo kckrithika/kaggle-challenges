@@ -25,10 +25,6 @@ local samreleases = import "samreleases.json";
         #[pjoshi] Fixing manifest-repo-watcher
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20190206_191653.c5206861.dirty.prahladjos-ltm",
 
-        #[prabh.singh] Bundle Override , latency fix
-        "prd,prd-sam,bundle-controller,hypersam": "sam-0002455-fbe2cb61",
-        "prd,prd-samdev,bundle-controller,hypersam": "sam-0002455-fbe2cb61",
-
         #[xiao]
         "prd,prd-sam,samapp-controller,hypersam": "sam-0002472-fe691728",
         "frf,frf-sam,samapp-controller,hypersam": "sam-0002472-fe691728",
@@ -69,6 +65,11 @@ local samreleases = import "samreleases.json";
          "yhu,yhu-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
          "yul,yul-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
 
+         #[raksha] Bundlecontroller fix
+         "prd,prd-samtest,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "prd,prd-samdev,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "prd,prd-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "frf,frf-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
 
         },
 
