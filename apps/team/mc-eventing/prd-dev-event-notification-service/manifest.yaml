@@ -22,7 +22,7 @@ system:
         secretName: dev-eventbusajna-ens-v1
     containers:
     - name: dev-event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.7
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dev/mc-eventing/event-notification:W-5819704_sub_consumer_race_condition
       ports:
       - containerPort: 15372
       env:
