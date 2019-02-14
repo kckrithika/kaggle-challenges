@@ -85,3 +85,14 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxUnavailable: 1
+  loadbalancers:
+  - lbname: gater-perflb
+    function: gater-perf
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 8080
+        lbtype: http
+      - port: 15372
+        targetport: 15375
+        lbtype: http
