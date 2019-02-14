@@ -31,7 +31,7 @@ system:
         periodSeconds: 5
       env:
        - name: NOT_REQUIRED
-         value: rediscount1
+         value: rediscount6
        - name: PYTHONUNBUFFERED
          value: 1
        - name: SFDC_ENVIRONMENT
