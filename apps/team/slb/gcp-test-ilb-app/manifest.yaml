@@ -45,9 +45,6 @@ system:
     function: default
     slbenabled: true
     ports:
-      - port: 9090
-        targetport: 9090
-        lbtype: dsr
       - port: 81
         targetport: 9091
         lbtype: tcp
