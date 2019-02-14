@@ -146,6 +146,35 @@ items:
     verbs:
     - create
 - apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: Role
+  metadata:
+    name: debug
+    namespace: cache-as-a-service
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    - pods/portforward
+    verbs:
+    - get
+    - list
+    - create
+    - delete
+  - apiGroups:
+    - ""
+    resources:
+    - pods/log
+    verbs:
+    - get
+    - list
+  - apiGroups:
+    - ""
+    resources:
+    - pods/exec
+    verbs:
+    - create
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: debug
@@ -291,6 +320,34 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: nishant.sinha@salesforce.com
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: debug
+    namespace: cache-as-a-service
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: debug
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rpragada@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: jayant.kumar@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: sbandi@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: mkrishna@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: tdias@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rama.rao@salesforce.com
 kind: List
 metadata:
   labels:
