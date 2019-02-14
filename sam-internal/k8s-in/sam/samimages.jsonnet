@@ -65,11 +65,32 @@ local samreleases = import "samreleases.json";
          "yhu,yhu-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
          "yul,yul-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
 
+
          #[raksha] Bundlecontroller fix
          "prd,prd-samtest,bundle-controller,hypersam": "sam-0002499-db36ef44",
          "prd,prd-samdev,bundle-controller,hypersam": "sam-0002499-db36ef44",
          "prd,prd-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
          "frf,frf-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "cdg,cdg-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "cdu,cdu-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "dfw,dfw-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "fra,fra-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "hnd,hnd-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "iad,iad-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "ia2,ia2-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "lo3,lo3-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "lo2,lo2-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "ord,ord-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "par,par-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "ph2,ph2-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "phx,phx-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "syd,syd-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "ukb,ukb-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "wax,wax-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "xrd,xrs-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "yhu,yhu-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+         "yul,yul-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
+
 
         },
 
