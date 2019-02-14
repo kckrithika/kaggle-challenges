@@ -1,0 +1,19 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: topology-svc-client
+    count: 1
+    containers:
+    - name: topology-svc-client-service
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc-client:ameesala-20190214-4
+      ports:
+      - containerPort: 8080
+        name: scone-http
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
