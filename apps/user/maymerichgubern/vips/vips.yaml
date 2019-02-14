@@ -13,3 +13,21 @@
      healthport: 8000
      healthpath: "/ping.jsp"
      healthprotocol: http
+
+
+- lbname: sr-scheduler-dev
+  servers:
+   - sr0-airdev1-2-prd.eng.sfdc.net
+   - sr0-airdev2-1-prd.eng.sfdc.net
+   - sr0-airdev1-1-prd.eng.sfdc.net
+   - sr0-airdev2-2-prd.eng.sfdc.net
+  ports:
+   - port: 443
+     targetport: 8000
+     lbtype: tcp
+     sticky: 300
+     tls: true
+     reencrypt: true
+     healthport: 8000
+     healthpath: "/ping.jsp"
+     healthprotocol: http
