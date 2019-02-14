@@ -1498,6 +1498,45 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
+    name: role:shared0-samminionreportcollector1-1-xrd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionreportcollector1-1-xrd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionreportcollector2-1-xrd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionreportcollector2-1-xrd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionreportcollector3-1-xrd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionreportcollector3-1-xrd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
     name: role:shared0-sampool1-1-xrd.eng.sfdc.net
   rules:
   - apiGroups:
@@ -3903,45 +3942,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
-    name: role:sec-samminionsdstoolsdev1-2-xrd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - sec-samminionsdstoolsdev1-2-xrd.eng.sfdc.net
-    resources:
-    - nodes/status
-    verbs:
-    - '*'
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: ClusterRole
-  metadata:
-    name: role:sec-samminionsdstoolsdev2-1-xrd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - sec-samminionsdstoolsdev2-1-xrd.eng.sfdc.net
-    resources:
-    - nodes/status
-    verbs:
-    - '*'
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: ClusterRole
-  metadata:
-    name: role:sec-samminionsdstoolsdev2-2-xrd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - sec-samminionsdstoolsdev2-2-xrd.eng.sfdc.net
-    resources:
-    - nodes/status
-    verbs:
-    - '*'
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: ClusterRole
-  metadata:
     name: role:shared0-slbminion1-1-xrd.eng.sfdc.net
   rules:
   - apiGroups:
@@ -5464,6 +5464,39 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionpubdnsa2-1-xrd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionreportcollector1-1-xrd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionreportcollector1-1-xrd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionreportcollector1-1-xrd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionreportcollector2-1-xrd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionreportcollector2-1-xrd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionreportcollector2-1-xrd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionreportcollector3-1-xrd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionreportcollector3-1-xrd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionreportcollector3-1-xrd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
@@ -7499,39 +7532,6 @@ items:
   subjects:
   - kind: User
     name: sec-samminionsdstoolsdev1-1-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: ClusterRoleBinding
-  metadata:
-    name: rolebinding:sec-samminionsdstoolsdev1-2-xrd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: role:sec-samminionsdstoolsdev1-2-xrd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: sec-samminionsdstoolsdev1-2-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: ClusterRoleBinding
-  metadata:
-    name: rolebinding:sec-samminionsdstoolsdev2-1-xrd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: role:sec-samminionsdstoolsdev2-1-xrd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: sec-samminionsdstoolsdev2-1-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1beta1
-  kind: ClusterRoleBinding
-  metadata:
-    name: rolebinding:sec-samminionsdstoolsdev2-2-xrd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: role:sec-samminionsdstoolsdev2-2-xrd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: sec-samminionsdstoolsdev2-2-xrd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:

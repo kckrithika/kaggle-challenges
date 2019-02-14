@@ -1346,6 +1346,39 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector1-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "rack": "k11-cr08",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector2-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "rack": "k11-cr08",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector3-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "rack": "c02-cr08",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sampool",
           "controlestate": "xrd-sam",
           "devicerole": "samcompute",
@@ -3378,39 +3411,6 @@ data:
           "kingdom": "xrd",
           "pod": "none",
           "rack": "r11-cr08",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_sdstoolsdev",
-          "controlestate": "xrd-sam",
-          "devicerole": "samcompute",
-          "estate": "xrd-sdstoolsdev",
-          "hostname": "sec-samminionsdstoolsdev1-2-xrd.eng.sfdc.net",
-          "kingdom": "xrd",
-          "pod": "none",
-          "rack": "p11-cr08",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_sdstoolsdev",
-          "controlestate": "xrd-sam",
-          "devicerole": "samcompute",
-          "estate": "xrd-sdstoolsdev",
-          "hostname": "sec-samminionsdstoolsdev2-1-xrd.eng.sfdc.net",
-          "kingdom": "xrd",
-          "pod": "none",
-          "rack": "r11-cr08",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_sdstoolsdev",
-          "controlestate": "xrd-sam",
-          "devicerole": "samcompute",
-          "estate": "xrd-sdstoolsdev",
-          "hostname": "sec-samminionsdstoolsdev2-2-xrd.eng.sfdc.net",
-          "kingdom": "xrd",
-          "pod": "none",
-          "rack": "p11-cr08",
           "superpod": "none"
         },
         {
