@@ -1,0 +1,38 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - pteyer@salesforce.com
+        - paul.howden@salesforce.com
+    functions:
+    - name: mysql-func
+      count: 3
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: prd-mysql-shard-3
+        image: tnrp/casp/mysql:0.0.1-0000032-c55bfbd5
+        ports:
+        - name: mysql
+          containerPort: 3306
+          hostPort: 7017
+        volumeMounts:
+        - mountPath: /home/sfdc/mysql/data
+          name: mysql-data-vol
+        - mountPath: /home/sfdc/mysql/backups
+          name: mysql-backups-vol
+        livenessProbe:
+          exec:
+            command:
+            - /usr/bin/true
+      volumes:
+      - name: mysql-data-vol
+        hostPath:
+          path: /data/mysql-shard-3
+      - name: mysql-backups-vol
+        hostPath:
+          path: /data/mysql-shard-3-backups
