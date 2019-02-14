@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: topology-svc-client-service
-      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/topology-svc-client:ameesala-20190214-2
+      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/topology-svc-client:ameesala-20190214-3
       ports:
       - containerPort: 8080
         name: scone-http
