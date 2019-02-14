@@ -114,7 +114,7 @@ local afterSharedContainers = [
   // In LO3, there are 12 nginx replicas (to circumvent odd rack allocations) and
   // so rolling upgrades take longer.
   // Eventually, we made want to define the maxResourceTimes in slbconfig.jsonnet.
-  local maxResourceTime = if configs.estate == "lo3-sam" then "40m0s" else "",
+  local maxResourceTime = if configs.estate == "lo3-sam" then "50m0s" else "",
 
   slbBaseNginxProxyDeployment(
     proxyName,
