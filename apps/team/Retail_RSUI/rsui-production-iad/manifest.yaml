@@ -230,14 +230,14 @@ system:
   - lbname: rsui-production-iad-lb
     function: rsui-production-iad
     slbEnabled: true
-    tlscertificate: secret_service:cstoolkit_iad.salesforce-hub.com_20190204-215232:EndEntity
-    tlskey: secret_service:cstoolkit_iad.salesforce-hub.com_20190204-215232:Key
     ports:
       - port: 443
         targetport: 7022
         tls: true
         lbtype: http
         reencrypt: true
+        tlscertificate: secret_service:cstoolkit_iad.salesforce-hub.com_20190204-215232:EndEntity
+        tlskey: secret_service:cstoolkit_iad.salesforce-hub.com_20190204-215232:Key
         allow:
           # slb estate for monitoring
           - 10.208.104.0/22
@@ -253,14 +253,14 @@ system:
   - lbname: rsui-production-iad-test-lb
     function: rsui-production-iad
     slbEnabled: true
-    tlscertificate: secret_service:cstoolkit_iad-test.salesforce-hub.com_20190204-215232:EndEntity
-    tlskey: secret_service:cstoolkit_iad-test.salesforce-hub.com_20190204-215232:Key
     ports:
       - port: 443
         targetport: 7023
         tls: true
         lbtype: http
         reencrypt: true
+        tlscertificate: secret_service:cstoolkit_iad-test.salesforce-hub.com_20190204-215232:EndEntity
+        tlskey: secret_service:cstoolkit_iad-test.salesforce-hub.com_20190204-215232:Key
         allow:
           # slb estate for monitoring
           - 10.208.104.0/22
