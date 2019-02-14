@@ -3,3 +3,5 @@ apps:
     - prd/prd-sam
   topology-data-ingest:
     - prd/prd-sam
+  topology-svc:
+    - prd/prd-sam
