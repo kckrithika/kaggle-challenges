@@ -14,9 +14,9 @@ system:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
       args:
-        - -t 1,20
-        - -v 256,1024,10240
-        - -o -1
+        - -t 50,100,200
+        - -v 1024
+        - -o 0
         - -a 127.0.0.1:7509
         - -x 120
         - -s mist66
