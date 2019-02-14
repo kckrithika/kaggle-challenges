@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
  functions:
- - name: default
+ - name: member-ms
    count: 1
    containers:
    - name: member-service-poc

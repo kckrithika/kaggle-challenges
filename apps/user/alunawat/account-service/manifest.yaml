@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-    - name: default
+    - name: account-ms
       count: 1
       containers:
         - name: account-service
