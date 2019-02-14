@@ -5,3 +5,5 @@ apps:
     - prd/prd-sam
   topology-svc:
     - prd/prd-sam
+  topology-svc-client:
+    - prd/prd-sam
