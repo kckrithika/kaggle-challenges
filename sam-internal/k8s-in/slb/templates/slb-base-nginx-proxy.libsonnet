@@ -10,6 +10,7 @@
   local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: $.dirSuffix },
   local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: $.dirSuffix },
   local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: $.dirSuffix },
+  local utils = import "util_functions.jsonnet",
 
   local beforeSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="") = [
                         slbshared.slbNginxConfig(deleteLimitOverride=deleteLimitOverride, tlsConfigEnabled=true),
@@ -110,6 +111,11 @@ local afterSharedContainers = [
     ],
   },
 
+  // In LO3, there are 12 nginx replicas (to circumvent odd rack allocations) and
+  // so rolling upgrades take longer.
+  // Eventually, we made want to define the maxResourceTimes in slbconfig.jsonnet.
+  local maxResourceTime = if configs.estate == "lo3-sam" then "40m0s" else "",
+
   slbBaseNginxProxyDeployment(
     proxyName,
     replicas=2,
@@ -132,7 +138,7 @@ local afterSharedContainers = [
         metadata+: {
           annotations: {
             "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(slbconfigs.nginx.certDirs), " "),
-          },
+          } + utils.fieldIfNonEmpty("autodeployer.sam.data.sfdc.net/maxResourceTime", maxResourceTime, maxResourceTime),
         },
         spec+: {
                  volumes+: std.prune(
