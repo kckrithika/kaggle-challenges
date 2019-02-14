@@ -11,7 +11,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       - name: JAVA_OPTS
-        value: "-Dscone.service.name=ordering-service-mvp -Dshipping.dest=shipping-mvp.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
+        #value: "-Dscone.service.name=ordering-service-mvp -Dshipping.dest=shipping-mvp.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
+        value: "-Dscone.service.name=ordering-service-mvp -Dshipping.dest=shipping-mvp.localhost.mesh.force.com:7011 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
       ports:
       - containerPort: 7020
         name: grpc-svc
@@ -34,6 +35,9 @@ system:
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
       livenessProbe:
         exec:
           command:

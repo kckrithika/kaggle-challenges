@@ -32,6 +32,8 @@ system:
       args:
       - -endpoint
       - service-mesh/shipping-mvp:DATACENTER:7443
+      - -endpoint
+      - shipping-mvp:DATACENTER:7012
       # 2018-02-08: Static IP from one of the ZK Nodes. neded because there's no dns name yet.
       - -zk
       - 10.168.160.111
@@ -52,6 +54,13 @@ system:
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7012
+        name: grpc-in
+      - containerPort: 7443
+        name: grpc-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
       livenessProbe:
         exec:
           command:
