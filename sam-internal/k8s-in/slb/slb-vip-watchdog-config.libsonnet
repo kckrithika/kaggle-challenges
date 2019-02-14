@@ -1,4 +1,4 @@
-// This file declares VIP configurations that are currently omitted from monitoring by VIP watchdog.
+// This file declares the following VIP watchdog configurations that are currently omitted from monitoring by VIP watchdog.
 //
 // Ideally, this list would be empty; however, bugs in our monitoring necessitate a way for us to temporarily exclude
 // one or more VIPs from monitoring until the bug can be fixed.
