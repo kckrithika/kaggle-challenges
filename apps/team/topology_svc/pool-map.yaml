@@ -3,3 +3,5 @@ apps:
     - mvp/gsf-core-devmvp-sam2-sam
   topology-data-ingest:
     - mvp/gsf-core-devmvp-sam2-sam
+  topology-svc:
+    - mvp/gsf-core-devmvp-sam2-sam
