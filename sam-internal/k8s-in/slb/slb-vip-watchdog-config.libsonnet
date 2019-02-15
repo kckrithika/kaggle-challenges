@@ -1,4 +1,5 @@
-// This file declares the following VIP watchdog configurations that are currently omitted from monitoring by VIP watchdog.
+// This file declares the following VIP watchdog configurations:
+// 1. VIPs that are currently omitted from monitoring by VIP watchdog.
 //
 // Ideally, this list would be empty; however, bugs in our monitoring necessitate a way for us to temporarily exclude
 // one or more VIPs from monitoring until the bug can be fixed.
@@ -7,6 +8,13 @@
 // (availability, backend health, etc), are not emitted to Argus. Use with caution. Bias for fixing the monitoring
 // bug rather than adding to this list. When adding to this list, include a detailed comment (or link to a work item)
 // indicating why the VIP is being filtered and when the filter can be expected to be removed.
+//
+// 2. Very Important VIPs (VIVIPs) that should receive 24/7 monitoring and alerting.
+//
+// We would like to reduce our operational burden by constraining the list of VIPs that receive 24/7 monitoring and
+// page the oncall after hours. These VIPs are usually heavily used, optionally public facing VIPs that are fronting
+// by production systems (eg. Artifactory, Edge etc). VIVIPs will be tagged by vip-wd as `veryImportantVip=true`
+// and a special 24/7 alert can be created only for these VIPs.
 //
 // The structure of the JSON object is like:
 // {
@@ -17,6 +25,10 @@
 //        ...
 //      ],
 //      namespaces:    // Optional. If included, specifies one or more namespaces to exclude from monitoring.
+//      [
+//        ...
+//      ],
+//      vivips:        // Optional. If included, specifies one or more VIPs that should be tagged as Very Important.
 //      [
 //        ...
 //      ],
@@ -38,7 +50,17 @@
 // * For SAM apps, the namespace is the team / user name.
 // * For self-service VIPs, the namespace is always "kne".
 
-local vipwdOptOutConfig = {
+local slbimages = import "slbimages.jsonnet";
+
+local vipwdConfig = {
+  "prd-sdc":
+  {
+    // Some canary vivips for testing
+    vivips:
+    [
+      "slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net:9116",
+    ],
+  },
   "prd-sam":
   {
     serviceLists:
@@ -186,8 +208,37 @@ local vipwdOptOutConfig = {
       // Investigation here: https://computecloud.slack.com/archives/G340CE86R/p1548979993685500?thread_ts=1548979508.678000&cid=G340CE86R.
       "user-varun-vyas",
     ],
+    vivips: [
+       // There are 3 sledge VIPs that listen on these ports:
+       // sledge-stm-edge-prd.slb.sfdc.net
+       // sledge-mist51-ead-lb-edge-prd.slb.sfdc.net
+       // sledge-mist51-prd.slb.sfdc.net
+       // sledge-stm-ead-lb-edge-prd.slb.sfdc.net
+       "sledge-*.slb.sfdc.net:80",
+       "sledge-*.slb.sfdc.net:443",
+       "sledge-*.slb.sfdc.net:8443",
+       // Artifactory VIPs and their dvaregistry counterparts
+       "ops0-artifactrepo2-0-prd.slb.sfdc.net:443",
+       "ops0-artifactrepo1-0-prd.slb.sfdc.net:443",
+       "ops0-dvaregistryssl1-0-prd.slb.sfdc.net:443",
+       "ops0-dvaregistry1-0-prd.slb.sfdc.net:80",
+       "ops0-dvaregistry1-0-prd.slb.sfdc.net:443",
+       // Customer360 VIPs
+       "jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net:8080",
+       "jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net:443",
+       "jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net:15372",
+       "rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:443",
+       "rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:8080",
+       "rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:443",
+       "rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:15372",
+       "rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:7020",
+       "rsui-integ-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:15372",
+       "rsui-integ-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:8080",
+       // Flowsnake VIPs
+       "kubernetes-api-flowsnake-prd.slb.sfdc.net:443",
+       "ingress-flowsnake-prd.slb.sfdc.net:443",
+    ],
   },
-
   "xrd-sam":
   {
     serviceLists:
@@ -201,6 +252,16 @@ local vipwdOptOutConfig = {
       // We need to either delete the definition (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/cpt/vips/xrd/vips.yaml#L17)
       // or work with the customer to enable our realsvrcfg puppet module on their nodes.
       "cpt-dsr-validation-cpt-xrd",
+    ],
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-xrd.slb.sfdc.net:443",
+      "ops0-artifactrepo2-0-xrd.slb.sfdc.net:443",
+      // Edge VIPs
+      "sledge-*.slb.sfdc.net:80",
+      "sledge-*.slb.sfdc.net:443",
+      "sledge-*.slb.sfdc.net:8443",
     ],
   },
   "hnd-sam":
@@ -218,6 +279,18 @@ local vipwdOptOutConfig = {
       // "pra-glance-api-hnd",
       // "pra-nova-hnd",
     ],
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-hnd.slb.sfdc.net:443",
+      // Edge VIPs
+      "sledge-*.slb.sfdc.net:80",
+      "sledge-*.slb.sfdc.net:443",
+      "sledge-*.slb.sfdc.net:8443",
+      // Flowsnake VIPs
+      "kubernetes-api-flowsnake-hnd.slb.sfdc.net:443",
+      "ingress-flowsnake-hnd.slb.sfdc.net:443",
+    ],
   },
   "phx-sam":
   {
@@ -226,6 +299,156 @@ local vipwdOptOutConfig = {
       // 2019/02/13 - vyjayanthi.raja
       // Associated investigation: https://computecloud.slack.com/archives/G340CE86R/p1550093301234000?thread_ts=1550091904.233300&cid=G340CE86R
       "spaasmeshlb",
+    ],
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-phx.slb.sfdc.net:443",
+      // Edge VIPs
+      "sledge-*.slb.sfdc.net:80",
+      "sledge-*.slb.sfdc.net:443",
+      "sledge-*.slb.sfdc.net:8443",
+      // Flowsnake VIPs
+      "kubernetes-api-flowsnake-phx.slb.sfdc.net:443",
+      "ingress-flowsnake-phx.slb.sfdc.net:443",
+    ],
+  },
+  "cdg-sam":
+  {
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-cdg.slb.sfdc.net:443",
+    ],
+  },
+  "dfw-sam":
+  {
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-dfw.slb.sfdc.net:443",
+      // Edge VIPs
+      "sledge-*.slb.sfdc.net:80",
+      "sledge-*.slb.sfdc.net:443",
+      "sledge-*.slb.sfdc.net:8443",
+      // Flowsnake VIPs
+      "kubernetes-api-flowsnake-dfw.slb.sfdc.net:443",
+      "ingress-flowsnake-dfw.slb.sfdc.net:443",
+    ],
+  },
+  "fra-sam":
+  {
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-fra.slb.sfdc.net:443",
+      // Edge VIPs
+      "sledge-*.slb.sfdc.net:80",
+      "sledge-*.slb.sfdc.net:443",
+      "sledge-*.slb.sfdc.net:8443",
+    ],
+  },
+  "frf-sam":
+  {
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-frf.slb.sfdc.net:443",
+      // Edge VIPs
+      "sledge-*.slb.sfdc.net:80",
+      "sledge-*.slb.sfdc.net:443",
+      "sledge-*.slb.sfdc.net:8443",
+      // Flowsnake VIPs
+      "kubernetes-api-flowsnake-frf.slb.sfdc.net:443",
+      "ingress-flowsnake-frf.slb.sfdc.net:443",
+    ],
+  },
+  "ia2-sam":
+  {
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-ia2.slb.sfdc.net:443",
+      // Flowsnake VIPs
+      "kubernetes-api-flowsnake-ia2.slb.sfdc.net:443",
+      "ingress-flowsnake-ia2.slb.sfdc.net:443",
+    ],
+  },
+  "iad-sam":
+  {
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-iad.slb.sfdc.net:443",
+      // Edge VIPs
+      "sledge-*.slb.sfdc.net:80",
+      "sledge-*.slb.sfdc.net:443",
+      "sledge-*.slb.sfdc.net:8443",
+      // Flowsnake VIPs
+      "kubernetes-api-flowsnake-iad.slb.sfdc.net:443",
+      "ingress-flowsnake-iad.slb.sfdc.net:443",
+      // Customer360 VIPs
+      "rsui-production-iad-lb.retail-rsui.iad-sam.iad.slb.sfdc.net:443",
+      "rsui-production-iad-test-lb.retail-rsui.iad-sam.iad.slb.sfdc.net:443",
+    ],
+  },
+  "ord-sam":
+  {
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-ord.slb.sfdc.net:443",
+      // Edge VIPs
+      "sledge-*.slb.sfdc.net:80",
+      "sledge-*.slb.sfdc.net:443",
+      "sledge-*.slb.sfdc.net:8443",
+      // Flowsnake VIPs
+      "kubernetes-api-flowsnake-ord.slb.sfdc.net:443",
+      "ingress-flowsnake-ord.slb.sfdc.net:443",
+      // Customer360 VIPs
+      "rsui-production-ord-lb.retail-rsui.ord-sam.iad.slb.sfdc.net:443",
+      "rsui-production-ord-test-lb.retail-rsui.ord-sam.iad.slb.sfdc.net:443",
+    ],
+  },
+  "par-sam":
+  {
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-par.slb.sfdc.net:443",
+      // Edge VIPs
+      "sledge-*.slb.sfdc.net:80",
+      "sledge-*.slb.sfdc.net:443",
+      "sledge-*.slb.sfdc.net:8443",
+      // Flowsnake VIPs
+      "kubernetes-api-flowsnake-par.slb.sfdc.net:443",
+      "ingress-flowsnake-par.slb.sfdc.net:443",
+    ],
+  },
+  "ph2-sam":
+  {
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-ph2.slb.sfdc.net:443",
+      // Flowsnake VIPs
+      "kubernetes-api-flowsnake-ph2.slb.sfdc.net:443",
+      "ingress-flowsnake-ph2.slb.sfdc.net:443",
+    ],
+  },
+  "ukb-sam":
+  {
+    vivips:
+    [
+      // Artifactory VIPs
+      "ops0-artifactrepo1-0-ukb.slb.sfdc.net:443",
+      // Edge VIPs
+      "sledge-*.slb.sfdc.net:80",
+      "sledge-*.slb.sfdc.net:443",
+      "sledge-*.slb.sfdc.net:8443",
+      // Flowsnake VIPs
+      "kubernetes-api-flowsnake-ukb.slb.sfdc.net:443",
+      "ingress-flowsnake-ukb.slb.sfdc.net:443",
     ],
   },
 };
@@ -240,11 +463,17 @@ local getOptOutNamespaceParameter(estateConfig) =
     "--optOutNamespace=" + std.join(",", estateConfig.namespaces),
   ] else [];
 
+local getVivipsParameter(estateConfig) =
+  if std.objectHas(estateConfig, "vivips") then [
+    "--veryImportantVips=" + std.join(",", estateConfig.vivips),
+  ] else [];
+
 {
   // getVipWdOptOutOptions builds the command line parameters to supply to VIP watchdog. `estate` is the name of the control
   // estate (e.g., "prd-sam") to retrieve opt-out options for.
-  getVipWdOptOutOptions(estate):: (
-    if !std.objectHas(vipwdOptOutConfig, estate) then []
-    else getOptOutServiceListParameter(vipwdOptOutConfig[estate]) + getOptOutNamespaceParameter(vipwdOptOutConfig[estate])
+  getVipWdConfigOptions(estate):: (
+    if !std.objectHas(vipwdConfig, estate) then []
+    else getOptOutServiceListParameter(vipwdConfig[estate]) + getOptOutNamespaceParameter(vipwdConfig[estate])
+         + (if slbimages.phaseNum <= 1 then getVivipsParameter(vipwdConfig[estate]) else [])
   ),
 }

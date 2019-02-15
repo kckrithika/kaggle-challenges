@@ -501,7 +501,7 @@
     envoyVip: self.perCluster.envoyVip[estate],
     envoyVipCIDR: if std.length(self.envoyVip) != 0 then ([self.envoyVip + "/32"]) else [],
     vipsToAcl: self.perCluster.vipsToAcl[estate],
-    vipwdOptOutOptions: slbvipwdconfig.getVipWdOptOutOptions(estate),
+    vipwdConfigOptions: slbvipwdconfig.getVipWdConfigOptions(estate),
 
     sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
     sdn_watchdog_emailrec: "slb@salesforce.com",
