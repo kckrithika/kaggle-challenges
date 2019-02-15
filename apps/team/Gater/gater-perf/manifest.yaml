@@ -11,7 +11,7 @@ system:
       - --gater.grpc.port=5443
       - --management.server.port=15375
       - --gater.client-mode=GRPC
-      - --gater.perf.gate-names=com.salesforce.gater.alwaysEnabled,com.salesforce.gater.alwaysDisabled
+      - --gater.perf.gate-names=com.salesforce.gater.alwaysEnabled
       ports:
       - containerPort: 8080
       - containerPort: 15375
