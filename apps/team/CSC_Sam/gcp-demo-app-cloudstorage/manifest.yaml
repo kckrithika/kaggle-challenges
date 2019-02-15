@@ -5,7 +5,7 @@ system:
       count: 2
       containers:
         - name: bookshelf-app
-          image: gcr.io/gsf-core-devmvp-sam2/prabhs/bookshelf:latest
+          image: gcr.io/gsf-core-devmvp-sam2/prabhs/bookshelf:demo
           command: ["app"]
           env:
             - name: GOOGLE_APPLICATION_CREDENTIALS
