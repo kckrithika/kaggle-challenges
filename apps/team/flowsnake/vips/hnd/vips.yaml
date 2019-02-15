@@ -59,7 +59,7 @@
     - shared0-flowsnakeworkerprod1-48-hnd.ops.sfdc.net
     - shared0-flowsnakeworkerprod1-49-hnd.ops.sfdc.net
     - shared0-flowsnakeworkerprod1-50-hnd.ops.sfdc.net
-- lbname: kubernetes-api
+- lbname: ingress
   ports:
       - port: 443
         targetport: 8443
