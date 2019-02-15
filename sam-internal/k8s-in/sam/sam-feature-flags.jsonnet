@@ -22,6 +22,10 @@ local utils = import "util_functions.jsonnet";
         configs.estate == "prd-sam_storagedev" ||
         configs.estate == "xrd-sam",
 
+    dockerdaemonwd:
+        configs.estate == "prd-samtest" ||
+        configs.estate == "prd-samdev",
+
     # MadDog
     maddogforsamapps: !utils.is_gia(configs.kingdom) && !utils.is_pcn(configs.kingdom),
 
