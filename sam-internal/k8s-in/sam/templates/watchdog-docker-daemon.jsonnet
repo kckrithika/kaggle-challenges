@@ -73,5 +73,6 @@ if samfeatureflags.dockerdaemonwd then
                 name: "watchdog-docker-daemon",
             } + configs.ownerLabel.sam,
             name: "watchdog-docker-daemon",
+            namespace: "sam-system",
         },
 } else "SKIP"
