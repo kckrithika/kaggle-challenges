@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: member-ms-container
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/abiswal/member-ms:abiswal-2 # sample member-service-app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/abiswal/member-ms-1.3:abiswal-3 # sample member-service-app
       # SAM insists on a liveness probe for containers so we need to keep the data container running via supported -d arg
       ports:
       - containerPort: 7022
