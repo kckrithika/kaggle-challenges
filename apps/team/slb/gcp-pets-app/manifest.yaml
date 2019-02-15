@@ -13,14 +13,6 @@ system:
         httpGet:
           path: /
           port: 5000
-      volumeMounts:
-        - mountPath: /secrets/
-          name: secretvol
-          readOnly: true
-    volumes:
-      - name: secretvol
-        k4aSecret:
-          secretName: toli
 # SLB in GCP: https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000005yitiIAA/view
   loadbalancers:
   - lbname: pets
