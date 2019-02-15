@@ -31,7 +31,7 @@ spec:
           value: gsf-core-devmvp-sam2-samtest
         - name: KUBECONFIG
           value: ""
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:hypersam:2618-61d3a98286ddacd24c610ec7993f1196d8c7a4c8
         name: bundle-controller
         volumeMounts:
         - mountPath: /config

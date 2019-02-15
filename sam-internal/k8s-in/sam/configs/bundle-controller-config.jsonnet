@@ -11,6 +11,6 @@ local utils = import "util_functions.jsonnet";
   K4ASecretEnabled: true,
   statefulAppEnabled: true,
 
-  #pnc
-  [if utils.is_pcn(configs.kingdom) && configs.estate == "gsf-core-devmvp-sam2-samtest" then "slbUseIlbInGkeEnv"]: true,
+  #pnc (samtest)
+  [if configs.estate == "gsf-core-devmvp-sam2-samtest" then "slbUseIlbInGkeEnv"]: true,
 }
