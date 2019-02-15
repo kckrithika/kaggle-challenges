@@ -3,6 +3,7 @@
   servers:
   - ops0-praccn1-1-hnd.ops.sfdc.net
   - ops0-praccn2-1-hnd.ops.sfdc.net
+  - ops0-praccn1-2-hnd.ops.sfdc.net
   ports:
   - port: 3306
     targetport: 3306
@@ -14,6 +15,7 @@
   servers:
   - ops0-praccn1-1-hnd.ops.sfdc.net
   - ops0-praccn2-1-hnd.ops.sfdc.net
+  - ops0-praccn1-2-hnd.ops.sfdc.net
   ports:
   - port: 9696
     targetport: 9696
@@ -25,6 +27,7 @@
   servers:
   - ops0-praccn1-1-hnd.ops.sfdc.net
   - ops0-praccn2-1-hnd.ops.sfdc.net
+  - ops0-praccn1-2-hnd.ops.sfdc.net
   ports:
   - port: 5000
     targetport: 5000
@@ -36,6 +39,7 @@
   servers:
   - ops0-praccn1-1-hnd.ops.sfdc.net
   - ops0-praccn2-1-hnd.ops.sfdc.net
+  - ops0-praccn1-2-hnd.ops.sfdc.net
   ports:
   - port: 35357
     targetport: 35357
@@ -47,6 +51,7 @@
   servers:
   - ops0-praccn1-1-hnd.ops.sfdc.net
   - ops0-praccn2-1-hnd.ops.sfdc.net
+  - ops0-praccn1-2-hnd.ops.sfdc.net
   ports:
   - port: 9292
     targetport: 9292
@@ -58,6 +63,7 @@
   servers:
   - ops0-praccn1-1-hnd.ops.sfdc.net
   - ops0-praccn2-1-hnd.ops.sfdc.net
+  - ops0-praccn1-2-hnd.ops.sfdc.net
   ports:
   - port: 8774
     targetport: 8774
