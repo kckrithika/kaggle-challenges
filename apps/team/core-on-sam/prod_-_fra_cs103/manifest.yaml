@@ -45,9 +45,9 @@ system:
       image: sfci/casam/coreapp:release_216-patch_17449345
       command: ["/bin/sh", "-c"]
       args: ["
-      sed -i 's/true/false/g' /home/sfdc/salesforce/security-analytics-impl/config/seclog-config.json
-      cat /home/sfdc/salesforce/security-analytics-impl/config/seclog-config.json
-      cd /home/sfdc/salesforce/build
+      sed -i 's/true/false/g' /home/sfdc/salesforce/security-analytics-impl/config/seclog-config.json ;
+      cat /home/sfdc/salesforce/security-analytics-impl/config/seclog-config.json ;
+      cd /home/sfdc/salesforce/build ;
       ./sam_startup.sh
       "]
       livenessProbe:
