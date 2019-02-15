@@ -12,5 +12,5 @@ local utils = import "util_functions.jsonnet";
   statefulAppEnabled: true,
 
   #pnc
-  [if utils.is_pcn(configs.kingdom) then "slbUseIlbInGkeEnv"]: true,
+  [if utils.is_pcn(configs.kingdom) && configs.estate == "gsf-core-devmvp-sam2-samtest" then "slbUseIlbInGkeEnv"]: true,
 }

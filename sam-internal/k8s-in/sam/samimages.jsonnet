@@ -43,6 +43,7 @@ local samreleases = import "samreleases.json";
         #[hsuanyu-chen] Enable Internal Load Balancer in PCN
         "mvp,gsf-core-devmvp-sam2-sam,samapp-controller,hypersam": "hypersam:2618-61d3a98286ddacd24c610ec7993f1196d8c7a4c8",
         "mvp,gsf-core-devmvp-sam2-samtest,samapp-controller,hypersam": "hypersam:2618-61d3a98286ddacd24c610ec7993f1196d8c7a4c8",
+        "mvp,gsf-core-devmvp-sam2-samtest,bundle-controller,hypersam": "hypersam:2618-61d3a98286ddacd24c610ec7993f1196d8c7a4c8",
 
          #[raksha] crdwatcher fix for synthetic
          "prd,prd-samtest,crd-watcher,hypersam": "sam-0002494-cefb0d82",
