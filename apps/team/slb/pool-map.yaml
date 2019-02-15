@@ -1,4 +1,5 @@
-version: v2
 apps:
  gcp-test-ilb-app:
-  - name: mvp/gsf-core-devmvp-sam2-samtest
+  - mvp/gsf-core-devmvp-sam2-samtest
+ gcp-pets-app:
+  - mvp/gsf-core-devmvp-sam2-samtest
