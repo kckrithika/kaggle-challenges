@@ -30,6 +30,7 @@ system:
     function: default
     slbenabled: true
     ports:
-      - port: 9090
+      - port: 443
         targetport: 9090
-        lbtype: tcp
+        lbtype: http
+        tls: true
