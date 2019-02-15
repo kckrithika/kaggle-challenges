@@ -62,7 +62,7 @@ local vipwdConfig = {
     // Some canary vivips for testing
     vivips:
     [
-      "slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net:9116",
+      "slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net:*",
     ],
   },
   "prd-sam":
