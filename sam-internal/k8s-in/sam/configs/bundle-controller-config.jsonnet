@@ -10,4 +10,7 @@ local utils = import "util_functions.jsonnet";
   funnelEndpoint: configs.funnelVIP,
   K4ASecretEnabled: true,
   statefulAppEnabled: true,
+
+  #pnc
+  [if utils.is_pcn(configs.kingdom) then "slbUseIlbInGkeEnv"]: true,
 }
