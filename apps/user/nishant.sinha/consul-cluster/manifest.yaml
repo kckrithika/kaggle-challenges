@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: consul-ns
-    count: 3
+    count: 2
     type: stateful-set
     containers:
     - name: consul-ns
