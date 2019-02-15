@@ -10,8 +10,8 @@ system:
       serviceName: datapool
     count: 1
     containers:
-    - name: datapool-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:afield-spark-on-k8s-14-c371be8
+    - name: datapool-service-test
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:spark-on-k8s-3-2eaef35
       ports:
       - containerPort: 7020
         name: grpc
