@@ -34,9 +34,9 @@ system:
       - service-mesh/shipping-mvp:DATACENTER:7443
       - -endpoint
       - shipping-mvp:DATACENTER:7012
-      # 2018-02-08: Static IP from one of the ZK Nodes. neded because there's no dns name yet.
+      # 2018-02-14: Static IP for ZK LB Vip in GCP. neded because there's no dns name yet.
       - -zk
-      - 10.168.160.111
+      - 10.168.160.76
       livenessProbe:
         initialDelaySeconds: 5
         exec:
