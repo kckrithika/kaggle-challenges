@@ -348,7 +348,7 @@ items:
             value: tnrpfirefly-test_sam_manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: tnrpfirefly-test_sam_manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:301
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:314
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -378,7 +378,7 @@ items:
             name: app-config-volume
           - mountPath: /tmp
             name: docker-build-dir
-        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:224
+        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:238
           name: dind-daemon
           securityContext:
             privileged: true
@@ -813,7 +813,7 @@ items:
             value: tnrpfirefly-test_sam_manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: tnrpfirefly-test_sam_manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:301
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:314
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1234,7 +1234,7 @@ items:
             value: test_sam_manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: tnrpfirefly-test_sam_manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:301
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:314
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1266,7 +1266,7 @@ items:
             name: docker-build-dir
           - mountPath: /firefly
             name: firefly-root-dir
-        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:224
+        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:238
           name: dind-daemon
           securityContext:
             privileged: true
@@ -1676,7 +1676,7 @@ items:
             value: test_sam_manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: tnrpfirefly-test_sam_manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:301
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:314
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
