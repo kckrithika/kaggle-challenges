@@ -13,4 +13,5 @@ local configs = import "config.jsonnet";
     removeRequiresHealthProbeFlag: (slbimages.hyperslb_build > 2061),
     enableOnlyRunningStateProxy: (configs.estate == "prd-sdc"),
     enableNginxAccesslogs: (configs.estate == "prd-sdc"),
+    alertOnlyOnProxyErrorCode: (slbimages.phaseNum <= 1),
 }
