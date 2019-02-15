@@ -96,6 +96,8 @@ spec:
         - --httpconfig.allowedEcdhCurves=secp521r1:secp384r1:prime256v1
         - --httpconfig.dhParamsFile=/tlsparams/dhparams.pem
         - --httpconfig.accessLogDirectory=/host/data/slb/logs/slb-nginx-config-b
+        - --commonconfig.accessLogDirectory=/host/data/slb/logs/slb-nginx-config-b
+        - --tcpconfig.accessLogFormat=basic
         env:
         - name: NODE_NAME
           valueFrom:
