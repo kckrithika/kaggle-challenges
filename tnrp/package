@@ -16,7 +16,7 @@ if [ -z "$FIREFLY" ]; then
 else
    echo "*** EXECUTING IN $FIREFLY ENVIRONMENT"
    SAMBINDIR=/sam
-   yum install -y slb-manifest-builder-20190202_195932.a96ca5a.clean.f5b44fb5d445-1.x86_64
+   yum install -y slb-manifest-builder-20190214_162244.840e110.clean.47c9914c4982-1.x86_64
 fi
 
 
