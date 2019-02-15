@@ -12,5 +12,5 @@ local configs = import "config.jsonnet";
     nginxStreamlogsEnabled: (slbimages.phaseNum <= 4 && slbimages.slbnginx_build >= 114 && slbimages.hsmnginx_build >= 114),
     removeRequiresHealthProbeFlag: (slbimages.hyperslb_build > 2061),
     enableOnlyRunningStateProxy: (configs.estate == "prd-sdc"),
-    tempDisableNginxAccesslogs: (configs.estate == "prd-sdc"),
+    enableNginxAccesslogs: (configs.estate == "prd-sdc"),
 }
