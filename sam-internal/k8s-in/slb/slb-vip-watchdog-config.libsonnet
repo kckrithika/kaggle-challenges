@@ -451,6 +451,6 @@ local getVivipsParameter(estateConfig) =
   getVipWdConfigOptions(estate):: (
     if !std.objectHas(vipwdConfig, estate) then []
     else getOptOutServiceListParameter(vipwdConfig[estate]) + getOptOutNamespaceParameter(vipwdConfig[estate])
-         + (if slbimages.phaseNum <= 2 then getVivipsParameter(vipwdConfig[estate]) else [])
+         + (if slbimages.hyperslb_build >= 2064 then getVivipsParameter(vipwdConfig[estate]) else [])
   ),
 }
