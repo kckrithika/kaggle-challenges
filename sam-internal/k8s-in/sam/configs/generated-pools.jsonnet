@@ -1354,6 +1354,7 @@
         "search-scale-safely",
         "service-mesh",
         "service-protection",
+        "slb",
         "universal-search",
         "wave-elt",
         "solr-service",
@@ -1382,6 +1383,7 @@
         "team/Search_Scale_Safely",
         "team/service-mesh",
         "team/Service_Protection",
+        "team/slb",
         "team/universal-search",
         "team/wave-elt",
         "team/solr-service",
@@ -1395,10 +1397,12 @@
     },
     {
       "namespaces": [
-        "csc-sam"
+        "csc-sam",
+        "slb"
       ],
       "access": [
-        "team/CSC_Sam"
+        "team/CSC_Sam",
+        "team/slb"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-samtest",
       "estate": "gsf-core-devmvp-sam2-samtest",
