@@ -102,7 +102,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                            "--monitorFrequency=10s",
                                            "--client.serverInterface=lo",
                                            "--metricsBatchTimeout=30s",
-                                       ] + slbconfigs.vipwdConfigOptions
+                                       ] + (if slbflights.alertOnlyOnProxyErrorCode then [
+                                           "--featureFlagAlertOnlyOnProxyErrorCode=true",
+                                       ] else [])
+                                       + slbconfigs.vipwdConfigOptions
                                        + slbconfigs.getNodeApiClientSocketSettings()
                                        + (if slbflights.removeRequiresHealthProbeFlag then [] else [
                                            "--slaRequiresPreciseHealthProbe=true",
