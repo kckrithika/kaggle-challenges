@@ -45,7 +45,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -53,7 +53,7 @@ system:
       - name: CLUSTER_NAME
         value: na3
       - name: DEPLOYMENT
-        value: G
+        value: B
       - name: USE_CONFIG_SIDECAR
         value: 1
       - name: CASAM_HOST_NAME
@@ -204,7 +204,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1549946400660763648
+        value: 1550200218608602112
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -216,7 +216,7 @@ system:
       - name: RELEASE_VESION
         value: ""
       - name: RELEASE_TYPE
-        value: PATCH
+        value: MINOR
       - name: MAJOR_RELEASE_NUMBER
         value: 216
       - name: MINOR_RELEASE_NUMBER
@@ -224,9 +224,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -249,7 +249,7 @@ system:
         value: rotate
       - name: MADDOG_CLIENT
         value: /certs
-      - name: CASAM_SETTINGS_PATH
+      - name: SFPROXY_SETTINGS_PATH
         value: mist61.-.prd.na3.sequencer
       - name: CASAM_SUPERPOD
         value: sp2
