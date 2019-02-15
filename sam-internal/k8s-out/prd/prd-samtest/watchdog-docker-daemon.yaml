@@ -63,11 +63,20 @@ spec:
       restartPolicy: Always
       volumes:
       - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
           path: /var/run/docker.sock
         name: docker-socket
       - configMap:
-          name: watchdog
-        name: config
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /data/certs
         name: certs
+      - configMap:
+          name: watchdog
+        name: config

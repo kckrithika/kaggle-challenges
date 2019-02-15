@@ -17,7 +17,7 @@ if samfeatureflags.dockerdaemonwd then
                     } + configs.ownerLabel.sam,
                     namespace: "sam-system",
                 },
-                spec: {
+                spec: configs.specWithKubeConfigAndMadDog {
                     restartPolicy: "Always",
                     hostNetwork: true,  # NOTE: this pod *does* count against the IP limit, because it starts a Docker container on the default network
                     containers: [
@@ -61,8 +61,9 @@ if samfeatureflags.dockerdaemonwd then
                                 path: "/var/run/docker.sock",
                             },
                         },
-                        configs.config_volume("watchdog"),
+                        configs.sfdchosts_volume,
                         configs.cert_volume,
+                        configs.config_volume("watchdog"),
                     ],
                 },
             },
