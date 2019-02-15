@@ -103,6 +103,11 @@ std.prune({
     "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
     "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
   ],
+  cliCheckerFullCommands: {
+    DockerDaemon: {
+      DockerDaemon: "/test-docker.sh",
+    },
+  },
   maddogEtcdCerts: [
     "/etc/pki_service/etcd/etcd-server/certificates/etcd-server.pem",
     "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem",

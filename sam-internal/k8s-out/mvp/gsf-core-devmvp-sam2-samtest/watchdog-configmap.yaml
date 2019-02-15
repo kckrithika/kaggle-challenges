@@ -4,6 +4,11 @@ data:
     {
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "cliCheckerFullCommands": {
+        "DockerDaemon": {
+          "DockerDaemon": "/test-docker.sh"
+        }
+      },
       "deleteSyntheticDeployment": false,
       "deployer-funnelEndpoint": "ajna0-funnel1-0-mvp.data.sfdc.net:80",
       "deployer-imageName": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
