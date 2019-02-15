@@ -27,6 +27,8 @@ system:
   loadbalancers:
     - lbname: bookshelflb
       function: bookshelf-frontend
+      nodeExposed: true
+      slbenabled: true
       ports:
-        - port: 8080
+        - port: 8090
           targetport: 8080
