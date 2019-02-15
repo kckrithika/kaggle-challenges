@@ -1,0 +1,44 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - govcloud-secdev@salesforce.com
+  functions:
+  - name: gov-einstein-analytics
+    count: 1
+    type: deployment
+    containers:
+    - name: airstream
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rtandon/airstream:44d9c719480f
+      command: ["/airstream-app/entrypoint.sh"]
+      args: ["keep-alive"]
+      livenessProbe:
+        initialDelaySeconds: 30
+        exec:
+          command:
+            - /airstream-app/liveness_probe.sh
+      env:
+      - name: WAVE_USER
+        value: "rtandon.analytics@salesforce.com"
+      - name: WAVE_ENV
+        value: "na85"
+      - name: WAVE_ACCOUNT_ID_DS
+        value: "test_dataset"
+      - name: HOST_NAME
+        value: "localhost"
+      - name: PLSQL_FILE_PATH
+        value: "/test_data.pls"
+      - name: CRON_FREQ
+        value: "30 * * * *"
+      volumeMounts:
+      - name: user-profile-test
+        mountPath: /user-profile.cfg
+        readOnly: true
+      imagePullPolicy: Always
+    volumes:
+    - name: user-profile-test
+      k4aSecret:
+        secretName: gov-einstein-analytics-user-profile-secret-test
+    strategy:
+      type: rollingUpdate
