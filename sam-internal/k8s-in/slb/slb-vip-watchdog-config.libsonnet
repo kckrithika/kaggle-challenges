@@ -50,6 +50,10 @@
 // * For SAM apps, the namespace is the team / user name.
 // * For self-service VIPs, the namespace is always "kne".
 
+// For VIVIPS, the format can be either:
+// * FQDN:port (eg. ops0-dvaregistryssl1-0-prd.slb.sfdc.net:443)
+// * VIP:port  (eg. 13.110.24.14:80)
+
 local slbimages = import "slbimages.jsonnet";
 
 local vipwdConfig = {
@@ -214,26 +218,17 @@ local vipwdConfig = {
        // sledge-mist51-ead-lb-edge-prd.slb.sfdc.net
        // sledge-mist51-prd.slb.sfdc.net
        // sledge-stm-ead-lb-edge-prd.slb.sfdc.net
-       "sledge-*.slb.sfdc.net:80",
-       "sledge-*.slb.sfdc.net:443",
-       "sledge-*.slb.sfdc.net:8443",
+       "sledge-*.slb.sfdc.net:*",
        // Artifactory VIPs and their dvaregistry counterparts
        "ops0-artifactrepo2-0-prd.slb.sfdc.net:443",
        "ops0-artifactrepo1-0-prd.slb.sfdc.net:443",
        "ops0-dvaregistryssl1-0-prd.slb.sfdc.net:443",
-       "ops0-dvaregistry1-0-prd.slb.sfdc.net:80",
-       "ops0-dvaregistry1-0-prd.slb.sfdc.net:443",
+       "ops0-dvaregistry1-0-prd.slb.sfdc.net:*",
        // Customer360 VIPs
-       "jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net:8080",
-       "jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net:443",
-       "jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net:15372",
-       "rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:443",
+       "jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net:*",
+       "rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:*",
        "rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:8080",
-       "rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:443",
-       "rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:15372",
-       "rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:7020",
-       "rsui-integ-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:15372",
-       "rsui-integ-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:8080",
+       "rsui-integ-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:*",
        // Flowsnake VIPs
        "kubernetes-api-flowsnake-prd.slb.sfdc.net:443",
        "ingress-flowsnake-prd.slb.sfdc.net:443",
@@ -284,9 +279,7 @@ local vipwdConfig = {
       // Artifactory VIPs
       "ops0-artifactrepo1-0-hnd.slb.sfdc.net:443",
       // Edge VIPs
-      "sledge-*.slb.sfdc.net:80",
-      "sledge-*.slb.sfdc.net:443",
-      "sledge-*.slb.sfdc.net:8443",
+      "sledge-*.slb.sfdc.net:*",
       // Flowsnake VIPs
       "kubernetes-api-flowsnake-hnd.slb.sfdc.net:443",
       "ingress-flowsnake-hnd.slb.sfdc.net:443",
@@ -305,9 +298,7 @@ local vipwdConfig = {
       // Artifactory VIPs
       "ops0-artifactrepo1-0-phx.slb.sfdc.net:443",
       // Edge VIPs
-      "sledge-*.slb.sfdc.net:80",
-      "sledge-*.slb.sfdc.net:443",
-      "sledge-*.slb.sfdc.net:8443",
+      "sledge-*.slb.sfdc.net:*",
       // Flowsnake VIPs
       "kubernetes-api-flowsnake-phx.slb.sfdc.net:443",
       "ingress-flowsnake-phx.slb.sfdc.net:443",
@@ -328,9 +319,7 @@ local vipwdConfig = {
       // Artifactory VIPs
       "ops0-artifactrepo1-0-dfw.slb.sfdc.net:443",
       // Edge VIPs
-      "sledge-*.slb.sfdc.net:80",
-      "sledge-*.slb.sfdc.net:443",
-      "sledge-*.slb.sfdc.net:8443",
+      "sledge-*.slb.sfdc.net:*",
       // Flowsnake VIPs
       "kubernetes-api-flowsnake-dfw.slb.sfdc.net:443",
       "ingress-flowsnake-dfw.slb.sfdc.net:443",
@@ -343,9 +332,7 @@ local vipwdConfig = {
       // Artifactory VIPs
       "ops0-artifactrepo1-0-fra.slb.sfdc.net:443",
       // Edge VIPs
-      "sledge-*.slb.sfdc.net:80",
-      "sledge-*.slb.sfdc.net:443",
-      "sledge-*.slb.sfdc.net:8443",
+      "sledge-*.slb.sfdc.net:*",
     ],
   },
   "frf-sam":
@@ -355,9 +342,7 @@ local vipwdConfig = {
       // Artifactory VIPs
       "ops0-artifactrepo1-0-frf.slb.sfdc.net:443",
       // Edge VIPs
-      "sledge-*.slb.sfdc.net:80",
-      "sledge-*.slb.sfdc.net:443",
-      "sledge-*.slb.sfdc.net:8443",
+      "sledge-*.slb.sfdc.net:*",
       // Flowsnake VIPs
       "kubernetes-api-flowsnake-frf.slb.sfdc.net:443",
       "ingress-flowsnake-frf.slb.sfdc.net:443",
@@ -381,9 +366,7 @@ local vipwdConfig = {
       // Artifactory VIPs
       "ops0-artifactrepo1-0-iad.slb.sfdc.net:443",
       // Edge VIPs
-      "sledge-*.slb.sfdc.net:80",
-      "sledge-*.slb.sfdc.net:443",
-      "sledge-*.slb.sfdc.net:8443",
+      "sledge-*.slb.sfdc.net:*",
       // Flowsnake VIPs
       "kubernetes-api-flowsnake-iad.slb.sfdc.net:443",
       "ingress-flowsnake-iad.slb.sfdc.net:443",
@@ -399,9 +382,7 @@ local vipwdConfig = {
       // Artifactory VIPs
       "ops0-artifactrepo1-0-ord.slb.sfdc.net:443",
       // Edge VIPs
-      "sledge-*.slb.sfdc.net:80",
-      "sledge-*.slb.sfdc.net:443",
-      "sledge-*.slb.sfdc.net:8443",
+      "sledge-*.slb.sfdc.net:*",
       // Flowsnake VIPs
       "kubernetes-api-flowsnake-ord.slb.sfdc.net:443",
       "ingress-flowsnake-ord.slb.sfdc.net:443",
@@ -417,9 +398,7 @@ local vipwdConfig = {
       // Artifactory VIPs
       "ops0-artifactrepo1-0-par.slb.sfdc.net:443",
       // Edge VIPs
-      "sledge-*.slb.sfdc.net:80",
-      "sledge-*.slb.sfdc.net:443",
-      "sledge-*.slb.sfdc.net:8443",
+      "sledge-*.slb.sfdc.net:*",
       // Flowsnake VIPs
       "kubernetes-api-flowsnake-par.slb.sfdc.net:443",
       "ingress-flowsnake-par.slb.sfdc.net:443",
@@ -443,9 +422,7 @@ local vipwdConfig = {
       // Artifactory VIPs
       "ops0-artifactrepo1-0-ukb.slb.sfdc.net:443",
       // Edge VIPs
-      "sledge-*.slb.sfdc.net:80",
-      "sledge-*.slb.sfdc.net:443",
-      "sledge-*.slb.sfdc.net:8443",
+      "sledge-*.slb.sfdc.net:*",
       // Flowsnake VIPs
       "kubernetes-api-flowsnake-ukb.slb.sfdc.net:443",
       "ingress-flowsnake-ukb.slb.sfdc.net:443",
