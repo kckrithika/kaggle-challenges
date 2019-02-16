@@ -111,18 +111,4 @@ system:
         type: server
   loadbalancers:
   - lbname: switchboard
-    nodeExposed: true
     function: switchboard
-    ports:
-    - lbtype: dsr
-      port: 7020
-      targetport: 7020
-    - lbtype: dsr
-      port: 15001
-      targetport: 15001
-    - lbtype: dsr
-      port: 15370
-      targetport: 15372
-    - lbtype: dsr
-      port: 15374
-      targetport: 15373
