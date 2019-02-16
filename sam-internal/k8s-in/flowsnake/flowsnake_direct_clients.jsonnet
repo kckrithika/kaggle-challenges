@@ -29,7 +29,7 @@ local estate = std.extVar("estate");
             # Flowsnake adhoc developer testing
             {
                 owner_name: "Flowsnake",
-                namespace: "flowsnake_test",
+                namespace: "flowsnake-test",  # Kubernetes namespaces cannot contain '_' characters
                 pki_namespace: "flowsnake_test",
                 users: ["flowsnake_test.lorrin.nelson"],
             },

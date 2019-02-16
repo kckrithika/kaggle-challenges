@@ -8,6 +8,6 @@ items:
       sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
-    name: flowsnake_test
+    name: flowsnake-test
 kind: List
 metadata: {}
