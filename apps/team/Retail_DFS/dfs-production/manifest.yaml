@@ -22,7 +22,7 @@ system:
     containers:
     - name: dfs
       # Please update https://salesforce.quip.com/A9HVAFytGaqG with any changes.
-      image: sfci/enterprise-api/sfdc-platform-dfs:0.15.2
+      image: sfci/enterprise-api/sfdc-platform-dfs:0.16.0
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -42,6 +42,8 @@ system:
         value: datafederationservice
       - name: SCONE_SERVER_SECURITY_MUTUALAUTH
         value: true
+      - name: INCLUDE_ALL_STACK_TRACES
+        value: false
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
