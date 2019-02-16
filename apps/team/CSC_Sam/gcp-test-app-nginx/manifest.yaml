@@ -6,10 +6,10 @@ system:
     count: 1
     containers:
     - name: gcp-test-app-nginx
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tkuznets/nginx:2
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tkuznets/nginx:3
       ports:
-      - containerPort: 80
+      - containerPort: 7601
       livenessProbe:
         httpGet:
           path: /
-          port: 80
+          port: 7601
