@@ -65,7 +65,6 @@ spec:
         - --monitorFrequency=10s
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
-        - --featureFlagAlertOnlyOnProxyErrorCode=true
         - --veryImportantVips=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net:*
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
