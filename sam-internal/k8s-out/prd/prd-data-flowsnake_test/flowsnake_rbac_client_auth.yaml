@@ -19,7 +19,7 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-flowsnake_test
+    name: flowsnake-client-flowsnake-test
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
@@ -33,7 +33,7 @@ items:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
     name: flowsnake-client
-    namespace: flowsnake_test
+    namespace: flowsnake-test
   rules:
   - apiGroups:
     - '*'
@@ -65,7 +65,7 @@ items:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
     name: flowsnake-client
-    namespace: flowsnake_test
+    namespace: flowsnake-test
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -78,20 +78,20 @@ items:
   kind: ServiceAccount
   metadata:
     name: spark-driver
-    namespace: flowsnake_test
+    namespace: flowsnake-test
 - apiVersion: v1
   automountServiceAccountToken: false
   kind: ServiceAccount
   metadata:
     name: spark-executor
-    namespace: flowsnake_test
+    namespace: flowsnake-test
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
     name: spark-driver
-    namespace: flowsnake_test
+    namespace: flowsnake-test
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -99,6 +99,6 @@ items:
   subjects:
   - kind: ServiceAccount
     name: spark-driver
-    namespace: flowsnake_test
+    namespace: flowsnake-test
 kind: List
 metadata: {}
