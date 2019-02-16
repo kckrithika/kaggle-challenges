@@ -36,7 +36,7 @@ local samreleases = import "samreleases.json";
                         command: [
                                      "/sam/watchdog",
                                      "-role=SYNTHETIC",
-                                     "-watchdogFrequency=180s",
+                                     if configs.kingdom == "prd" then "-watchdogFrequency=300s" else "-watchdogFrequency=180s",
                                      "-alertThreshold=1h",
                                      "-emailFrequency=12h",
                                      "-laddr=" + samwdconfig.laddr,
