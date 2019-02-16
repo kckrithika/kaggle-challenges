@@ -23,4 +23,5 @@
     "mgrass@salesforce.com",
     "paverbuj@salesforce.com",
     "vyjayanthi.raja@salesforce.com",
+    "hsuanyu.chen@salesforce.com",
 ]
