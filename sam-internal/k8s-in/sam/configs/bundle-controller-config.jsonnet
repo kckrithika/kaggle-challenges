@@ -10,7 +10,4 @@ local utils = import "util_functions.jsonnet";
   funnelEndpoint: configs.funnelVIP,
   K4ASecretEnabled: true,
   statefulAppEnabled: true,
-
-  #pnc (samtest)
-  [if configs.estate == "gsf-core-devmvp-sam2-samtest" then "slbUseIlbInGkeEnv"]: true,
 }
