@@ -336,9 +336,9 @@
             "--httpconfig.dhParamsFile=/tlsparams/dhparams.pem",
         ] else [])
         + [
-            "--httpconfig.accessLogDirectory=" + slbconfigs.logsDir,
             "--commonconfig.accessLogDirectory=" + slbconfigs.logsDir,
             "--tcpconfig.accessLogFormat=basic",
+            "--httpconfig.accessLogDirectory=" + slbconfigs.logsDir,
         ],
         volumeMounts: std.prune([
             slbconfigs.nginx.target_config_volume_mount,

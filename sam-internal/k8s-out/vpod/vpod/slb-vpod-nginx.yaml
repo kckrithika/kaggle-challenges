@@ -45,9 +45,9 @@ spec:
         - --commonconfig.healthTimeout=3000
         - --vipInterfaceName=eth0
         - --control.nginxSentinel=/host/data/slb/slb-vpod-nginx/config/nginx.sentinel
-        - --httpconfig.accessLogDirectory=/host/data/slb/logs/slb-vpod-nginx
         - --commonconfig.accessLogDirectory=/host/data/slb/logs/slb-vpod-nginx
         - --tcpconfig.accessLogFormat=basic
+        - --httpconfig.accessLogDirectory=/host/data/slb/logs/slb-vpod-nginx
         env:
         - name: NODE_NAME
           valueFrom:
