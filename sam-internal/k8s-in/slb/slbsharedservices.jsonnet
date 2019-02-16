@@ -335,12 +335,10 @@
             "--httpconfig.allowedEcdhCurves=secp521r1:secp384r1:prime256v1",
             "--httpconfig.dhParamsFile=/tlsparams/dhparams.pem",
         ] else [])
-        + (if slbflights.nginxStreamlogsEnabled then [
+        + [
             "--commonconfig.accessLogDirectory=" + slbconfigs.logsDir,
             "--tcpconfig.accessLogFormat=basic",
-        ] else [])
-        + [
-          "--httpconfig.accessLogDirectory=" + slbconfigs.logsDir,
+            "--httpconfig.accessLogDirectory=" + slbconfigs.logsDir,
         ],
         volumeMounts: std.prune([
             slbconfigs.nginx.target_config_volume_mount,
