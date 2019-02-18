@@ -17,3 +17,11 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+  loadbalancers:
+  - lbname: topology-svc-lb
+    function: topology-svc
+    slbEnabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: http
