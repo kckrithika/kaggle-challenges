@@ -6,7 +6,7 @@ system:
       - jayant.kumar@salesforce.com
   functions:
   - name: redis-mesh
-    count: 6
+    count: 1
     containers:
     - name: caas-redis
       image: docker-all/dva/caas/release/caas-redis-4.0.10:10

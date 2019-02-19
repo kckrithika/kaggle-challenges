@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam
  caas-load-test:
   - prd/prd-sam
+ vagabond:
+  - prd/prd-sam

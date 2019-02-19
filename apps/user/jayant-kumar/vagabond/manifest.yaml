@@ -1,0 +1,25 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - jayant.kumar@salesforce.com
+  functions:
+  - name: vagabond-load-test
+    count: 1
+    containers:
+    - name: vagabond-load
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jayantk/vagabond:0.1
+      resources:
+        limits: { memory: "6G" }
+        requests: { memory: "6G" }
+      livenessProbe:
+        exec:
+          command: ["true"]
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      env:
+       - name: NOT_REQUIRED
+         value: newton
+       - name: PYTHONUNBUFFERED
+         value: 1
