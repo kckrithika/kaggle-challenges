@@ -30,9 +30,9 @@ system:
           maddogCert:
             type: client
   loadbalancers:
-    - lbname: bookshelflb
-      function: bookshelf-frontend
+    - lbname: bookshelfservice
+      function: bookshelf
       nodeExposed: true
       ports:
-        - port: 8090
+        - port: 8010
           targetport: 8080
