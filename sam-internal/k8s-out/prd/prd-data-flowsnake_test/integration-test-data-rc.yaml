@@ -18,7 +18,7 @@ spec:
         flowsnakeRole: FlowsnakeTestData
     spec:
       containers:
-      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-test-data:681
+      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-test-data:jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest
         imagePullPolicy: IfNotPresent
         name: test-data
         ports:
