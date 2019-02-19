@@ -87,6 +87,16 @@ local utils = import "util_functions.jsonnet";
             // image tag overrides go here
             madkub_image_tag: "1.0.0-0000081-ddcaa288",
 
+            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+            testData_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+            ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+            ingressDefaultBackend_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+            nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+            watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+            docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
