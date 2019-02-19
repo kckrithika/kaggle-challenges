@@ -1,0 +1,76 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - rpragada@salesforce.com
+  functions:
+  - name: devmvp-caas-test-client-gcp
+    count: 1
+    identity:
+      serviceName: caas
+      pod: devmvp
+    containers:
+    - name: caas-test-client
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-devmvp/caas/caas-load-test:12
+      resources:
+        limits: { memory: "6G" }
+        requests: { memory: "6G" }
+      args:
+        - -t 50,100,200
+        - -v 256,10240,102400
+        - -o 0,1
+        - -m
+        - -a 127.0.0.1:7509
+        - -x 120
+      livenessProbe:
+        exec:
+          command: ["true"]
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      env:
+       - name: NOT_REQUIRED
+         value: newton4
+       - name: PYTHONUNBUFFERED
+         value: 1
+    - name: sherpa
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/sherpa-envoy:1.0.4-201902081120
+      args:
+      # 2018-02-08: Direct Connection to the switchboard for now
+      - --switchboard=switchboard.service-mesh.svc:15001
+      ports:
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
