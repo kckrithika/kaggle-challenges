@@ -12,7 +12,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo
       env:
       - name: SFDC_ENVIRONMENT
-        value: mesh
+        value: istio
       - name: JAVA_HEAP_OPTS
         value: -Xmx256m
       - name: SCONE_DEPLOYMENT_JVM_OPTIONS
