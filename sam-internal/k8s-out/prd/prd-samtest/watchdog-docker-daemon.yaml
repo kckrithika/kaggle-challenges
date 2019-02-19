@@ -5,6 +5,7 @@ metadata:
     name: watchdog-docker-daemon
     sam.data.sfdc.net/owner: sam
   name: watchdog-docker-daemon
+  namespace: sam-system
 spec:
   selector:
     matchLabels:
@@ -25,7 +26,7 @@ spec:
       - command:
         - /sam/watchdog
         - -role=CLI
-        - -cliCheckerCommandTarget=/test-docker.sh
+        - -cliCheckerCommandTarget=DockerDaemon
         - -alertThreshold=30m
         - -watchDogKind=DaemonSet
         - -cliCheckerTimeout=5m

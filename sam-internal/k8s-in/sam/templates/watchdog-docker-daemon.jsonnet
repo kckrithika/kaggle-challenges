@@ -26,7 +26,7 @@ if samfeatureflags.dockerdaemonwd then
                             command: [
                                 "/sam/watchdog",
                                 "-role=CLI",
-                                "-cliCheckerCommandTarget=/test-docker.sh",
+                                "-cliCheckerCommandTarget=DockerDaemon",
                                 "-alertThreshold=30m",
                                 "-watchDogKind=" + $.kind,
                                 "-cliCheckerTimeout=5m",
@@ -73,5 +73,6 @@ if samfeatureflags.dockerdaemonwd then
                 name: "watchdog-docker-daemon",
             } + configs.ownerLabel.sam,
             name: "watchdog-docker-daemon",
+            namespace: "sam-system",
         },
 } else "SKIP"

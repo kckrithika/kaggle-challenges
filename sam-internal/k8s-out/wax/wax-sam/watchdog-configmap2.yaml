@@ -4,6 +4,11 @@ data:
     {
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "cliCheckerFullCommands": {
+        "DockerDaemon": {
+          "DockerDaemon": "/test-docker.sh"
+        }
+      },
       "deleteSyntheticDeployment": false,
       "deployer-funnelEndpoint": "mandm-funnel-wax.data.sfdc.net:8080",
       "deployer-imageName": "ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0002472-fe691728",

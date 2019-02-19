@@ -24,7 +24,8 @@ local utils = import "util_functions.jsonnet";
 
     dockerdaemonwd:
         configs.estate == "prd-samtest" ||
-        configs.estate == "prd-samdev",
+        configs.estate == "prd-samdev" ||
+        configs.estate == "prd-sam",
 
     # MadDog
     maddogforsamapps: !utils.is_gia(configs.kingdom),
