@@ -5,6 +5,7 @@ system:
     - servicemesh@salesforce.com
   functions:
   - name: switchboard
+    type: stateful-set
     count: 3
     containers:
     - name: switchboard
@@ -109,6 +110,4 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-  loadbalancers:
-  - lbname: switchboard
-    function: switchboard
+    lbname: switchboard
