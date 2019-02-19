@@ -7,7 +7,6 @@ system:
     labels:
       "sherpa-injector.service-mesh/inject": "enabled"
       app: ordering-mixed-mode
-      prat-test: true
     containers:
     - name: ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo
