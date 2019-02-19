@@ -7,6 +7,7 @@ system:
   functions:
   - name: vagabond-load-test
     count: 1
+    hostnetwork: true
     containers:
     - name: vagabond-load
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jayantk/vagabond:0.1
