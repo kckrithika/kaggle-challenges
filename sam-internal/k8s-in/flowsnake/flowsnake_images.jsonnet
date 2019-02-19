@@ -269,6 +269,7 @@ local utils = import "util_functions.jsonnet";
                 main: {
                   "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
                   "0.12.5": 10011,
+                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-813-2-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -308,6 +309,7 @@ local utils = import "util_functions.jsonnet";
            version_mapping: {
                 main: {
                   "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-813-2-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
