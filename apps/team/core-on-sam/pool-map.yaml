@@ -47,6 +47,16 @@ apps:
        - shared2-samminioncoreapp1-4-prd.eng.sfdc.net
        - shared2-samminioncoreapp1-5-prd.eng.sfdc.net
 
+ # NA5 is generated from casam/manifests using templates for CARE Team
+ mist_mist61_prd_na5:
+   - name: prd/prd-sp2-sam_coreapp
+     hostSubList:
+       - shared2-samminioncoreapp2-1-prd.eng.sfdc.net
+       - shared2-samminioncoreapp2-2-prd.eng.sfdc.net
+       - shared2-samminioncoreapp2-3-prd.eng.sfdc.net
+       - shared2-samminioncoreapp2-4-prd.eng.sfdc.net
+       - shared2-samminioncoreapp2-5-prd.eng.sfdc.net
+
  mist61-na8:
   - name: prd/prd-sp2-sam_coreapp
     hostSubList:
