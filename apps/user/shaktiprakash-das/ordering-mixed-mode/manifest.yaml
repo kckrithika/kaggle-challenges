@@ -57,12 +57,3 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-
-  loadbalancers:
-  - lbname: ordering-envoy-tls
-    nodeExposed: true
-    function: ordering-envoy-tls
-    ports:
-    - lbtype: dsr
-      port: 15379
-      targetport: 15372
