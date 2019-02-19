@@ -2,11 +2,11 @@ apiVersion: v1
 
 system:
   functions:
-  - name: ordering-envoy-tls
+  - name: ordering-mixed-mode
     count: 1
     labels:
       "sherpa-injector.service-mesh/inject": "enabled"
-      app: ordering-envoy-tls
+      app: ordering-mixed-mode
       prat-test: true
     containers:
     - name: ordering
@@ -17,7 +17,11 @@ system:
       - name: JAVA_HEAP_OPTS
         value: -Xmx256m
       - name: SCONE_DEPLOYMENT_JVM_OPTIONS
-        value: "-Dscone.service.name=ordering-service-envoy-tls -Dshipping.dest=shipping-istio.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
+        value: "-Dscone.service.name=ordering-mixed-mode -Dshipping.dest=shipping-istio.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
+      - name: JAVA_OPTS
+        value: "-Dscone.service.name=ordering-mixed-mode -Dshipping.dest=shipping-istio.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
+      - name: SCONE_SHIPPING_DEST
+        value: shipping-istio.service-mesh.localhost.mesh.force.com:5443
       ports:
       - containerPort: 7020
         name: grpc-svc
