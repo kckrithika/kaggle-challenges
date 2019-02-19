@@ -347,7 +347,7 @@ local utils = import "util_functions.jsonnet";
            version_mapping: {
                 main: {
                   "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-clean-up-shutdown-behavior-1-itest",  # Fixes XL annotation issue.
+                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-813-2-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -367,7 +367,7 @@ local utils = import "util_functions.jsonnet";
            version_mapping: {
                 main: {
                   "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-clean-up-shutdown-behavior-1-itest",  # Fixes XL annotation issue.
+                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-813-2-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
