@@ -9,12 +9,12 @@ system:
     count: 1
     containers:
     - name: cre-control-plane
-      image: sfci/cre/cre-control-plane:1.5.0.0.master.1d81e4a.116
+      image: sfci/cre/cre-control-plane:1.6.0.0.master.8e6afe7.121
       env:
         - name: SFDC_ENVIRONMENT
           value: prod
         - name: AUTHORIZED_USERS
-          value: "morun@salesforce.com,morun@sbt2.salesforce.com,morun@sbt3.salesforce.com,mbahrenburg@salesforce.com,mbahrenburg@sbt2.salesforce.com,mbahrenburg@sbt3.salesforce.com,adray@salesforce.com,adray@sbt2.salesforce.com,adray@sbt3.salesforce.com,bmontesano@sbt2.salesforce.com,jferguson@sbt2.salesforce.com"
+          value: "morun@salesforce.com,morun@sbt2.salesforce.com,morun@sbt3.salesforce.com,mbahrenburg@salesforce.com,mbahrenburg@sbt2.salesforce.com,mbahrenburg@sbt3.salesforce.com,adray@salesforce.com,adray@sbt2.salesforce.com,adray@sbt3.salesforce.com,bmontesano@sbt2.salesforce.com,jferguson@sbt2.salesforce.com,cre-api@salesforce.com"
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__ord.ajna_local__cre_metrics
         - name: METRICS_KAFKA_SERVER
