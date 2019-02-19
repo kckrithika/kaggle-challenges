@@ -55,6 +55,23 @@ system:
         periodSeconds: 30
         timeoutSeconds: 5
 
+      ## Shipping announced here for mixed-mode experiment.
+      ## This announcement matches the Service definition. It will feed disco info into ZK -> Switchboard's Envoy.
+    - name: beacon
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: mesh
+      args:
+        - -endpoint
+        - service-mesh/shipping-istio:DATACENTER:7447
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+
     # Volumes used by auto-injected istio-proxy.
     volumes:
     - name: tls-client-cert
