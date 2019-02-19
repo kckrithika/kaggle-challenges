@@ -1,0 +1,38 @@
+apiVersion: v1
+system:
+  functions:
+    - name: bookshelf
+      count: 2
+      containers:
+        - name: bookshelf-app
+          image: gcr.io/gsf-core-devmvp-sam2/prabhs/bookshelf:demo
+          command: ["app"]
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/secrets/cloudstorage/gsf-core-devmvp-sam2-2aec4b47c62a.json"
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          volumeMounts:
+            - mountPath: /secrets/cloudstorage
+              name: cloudstorage-instance-credential
+              readOnly: true
+            - mountPath: /certs
+              name: certs
+      volumes:
+        - name: cloudstorage-instance-credential
+          k4aSecret:
+            secretName: cloudstorage-instance-credential
+        - name: certs
+          maddogCert:
+            type: client
+  loadbalancers:
+    - lbname: bookshelfservice
+      function: bookshelf
+      nodeExposed: true
+      ports:
+        - port: 8010
+          targetport: 8080
