@@ -1,0 +1,29 @@
+color: green
+db:
+  connectionCount: 25
+  hostName: mist61ice1-db1-1-prd.eng.sfdc.net
+  instance: mist61b218utf-1
+  lockUser: sneezy
+  sid: mist61b218utf
+  statsUser: snowwhite
+  user: sleepy
+endpoints:
+  httpProxy: public0-proxy1-0-prd.data.sfdc.net:8080
+  publicDNSSuffix: core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+env:
+  name: mist
+  region: prd
+  subEnvName: mist61
+images:
+  configOverrides: sfci/casam/coreapp_config_overrides:241254
+  coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17488573
+  envoy: sfci/servicelibs/sherpa-envoy:1.0.4
+  envoyConfig: sfci/casam/cyan-config:208cc2
+  sequencer: sfci/casam/sequencer:ca008f
+  sfProxy: sfci/frontend-gateway/sfproxy:659513c
+  switchboard: sfci/servicelibs/switchboard:a6729b3a765d262943bb20f9921b4343784dccef
+  switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
+name: na5
+nonce: 1550606710759647000
+replicaCount: 1
+settingsSuperPod: sp2
