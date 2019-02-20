@@ -70,4 +70,16 @@
     lbtype: tcp
     healthport: 80
     healthprotocol: tcp
+- lbname: pra-etcd-hnd
+  customlbname: pra-etcd-hnd
+  servers:
+  - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
+  - ops0-praccn1-2-hnd.ops.sfdc.net
+  ports:
+  - port: 4001
+    targetport: 4001
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
 
