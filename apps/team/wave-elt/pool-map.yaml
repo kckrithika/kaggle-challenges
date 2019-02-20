@@ -1,4 +1,14 @@
 apps:
+  datapool-ph2:
+  - ph2/ph2-sam_datapool
+  datapool-par:
+  - par/par-sam_datapool
+  spark-engine-par:
+  - par/par-sam_datapool
+  datapool-frf:
+  - frf/frf-sam_datapool
+  spark-engine-frf:
+  - frf/frf-sam_datapool
   datapool-hnd:
   - hnd/hnd-sam_datapool
   spark-engine-hnd:

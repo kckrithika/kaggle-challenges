@@ -40,7 +40,7 @@ system:
         value: dockerDefaultRegistryImage
 
       - name: FLOWSNAKE_WORKER_COUNT
-        value: 44
+        value: 18
 
       - name: FLOWSNAKE_WORKER_CORE_COUNT
         value: 40
