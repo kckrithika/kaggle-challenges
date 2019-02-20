@@ -228,10 +228,8 @@
                  + (if slbflights.roleEnabled then [
                      "--isRoleUsed=true",
                      ] else [])
-                 + (if slbimages.hyperslb_build >= 2056 then [
-                     "--metricsEndpoint=" + configs.funnelVIP,
-                   ] else [])
                  + [
+                        "--metricsEndpoint=" + configs.funnelVIP,
                         "--vcioptions.strict=true",
                         "--client.allowStale=true",
                         "--control.manifestWatcherSentinel=" + mwSentinel,

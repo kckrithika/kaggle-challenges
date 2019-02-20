@@ -75,7 +75,7 @@ local afterSharedContainers = [
                                    "--log_dir=" + slbconfigs.logsDir,
                                    "--custCertsDir=" + slbconfigs.nginx.customerCertsPath,
                                    configs.sfdchosts_arg,
-                                 ] + (if configs.estate == "lo2-sam" && slbimages.hyperslb_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo2.data.sfdc.net"] else if configs.estate == "lo3-sam" && slbimages.hyperslb_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo3.data.sfdc.net"] else [])
+                                 ] + slbflights.ssEndpointParam
                                  + slbconfigs.getNodeApiClientSocketSettings()
                                  + [
                                    slbconfigs.nginx.reloadSentinelParam,

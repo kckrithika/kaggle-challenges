@@ -106,10 +106,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                            "--featureFlagAlertOnlyOnProxyErrorCode=true",
                                        ] else [])
                                        + slbconfigs.vipwdConfigOptions
-                                       + slbconfigs.getNodeApiClientSocketSettings()
-                                       + (if slbflights.removeRequiresHealthProbeFlag then [] else [
-                                           "--slaRequiresPreciseHealthProbe=true",
-                                       ]),
+                                       + slbconfigs.getNodeApiClientSocketSettings(),
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
