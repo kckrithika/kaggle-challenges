@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: metadata-service
-      image: docker-sfci-dev/sfci/metadata-cannon/metadata-service:0.7.13
+      image: docker-sfci-dev/sfci/metadata-cannon/metadata-service:0.7.18
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -21,7 +21,7 @@ system:
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
-        value: -Dgdot.server-url=https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim -Djwt-validation.enablement-per-role.app=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+        value: -Djwt-validation.enablement-per-role.app=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
       resources:
         limits:
           cpu: "4"
@@ -106,6 +106,8 @@ system:
     - name: mds-server-cert
       maddogCert:
         type: server
+        lbnames:
+        - metadata-service-prd-func-lb
     - name: mds-client-cert
       maddogCert:
         type: client
@@ -125,5 +127,5 @@ system:
     ports:
     - port: 9091
       targetport: 9091
-    - port: 7443
+    - port: 9093
       targetport: 7443
