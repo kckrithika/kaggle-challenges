@@ -12,6 +12,7 @@ local configs = import "config.jsonnet";
     removeRequiresHealthProbeFlag: (slbimages.hyperslb_build > 2061),
     enableOnlyRunningStateProxy: (configs.estate == "prd-sdc"),
     enableNginxAccesslogs: (configs.estate == "prd-sdc"),
+    removeDeprecatedIpvsProcessorFlags: (slbimages.phaseNum <= 1),
 
     # 2019/01/16 - this didn't work as expected so I disabled it (Pablo)
     # See: https://computecloud.slack.com/archives/G340CE86R/p1550291706553800
