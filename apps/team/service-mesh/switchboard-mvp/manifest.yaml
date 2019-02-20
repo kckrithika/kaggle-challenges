@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: switchboard
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:76d4992cfdae33aab510e9d325fa1f10c5803dd3
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/switchboard:95462e3e28b30f2007fcc1a05588fbf242719794-201902141230
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
