@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: ordering
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/ordering-service:bazel-monorepo-20190215160031
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/ordering-service:bazel-monorepo-20190220110527
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
