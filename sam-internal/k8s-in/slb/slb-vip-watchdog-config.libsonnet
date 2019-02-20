@@ -1,32 +1,25 @@
 // This file declares the following VIP watchdog configurations:
-// 1. VIPs that are currently omitted from monitoring by VIP watchdog.
-//
-// Ideally, this list would be empty; however, bugs in our monitoring necessitate a way for us to temporarily exclude
-// one or more VIPs from monitoring until the bug can be fixed.
-//
-// This is a rather large hammer -- VIPs filtered from monitoring do not receive any SLA guarantees, and VIP metrics
-// (availability, backend health, etc), are not emitted to Argus. Use with caution. Bias for fixing the monitoring
-// bug rather than adding to this list. When adding to this list, include a detailed comment (or link to a work item)
-// indicating why the VIP is being filtered and when the filter can be expected to be removed.
-//
-// 2. Very Important VIPs (VIVIPs) that should receive 24/7 monitoring and alerting.
+// 1. Very Important VIPs (VIVIPs) that should receive 24/7 monitoring and alerting.
 //
 // We would like to reduce our operational burden by constraining the list of VIPs that receive 24/7 monitoring and
 // page the oncall after hours. These VIPs are usually heavily used, optionally public facing VIPs that are fronting
 // by production systems (eg. Artifactory, Edge etc). VIVIPs will be tagged by vip-wd as `veryImportantVip=true`
 // and a special 24/7 alert can be created only for these VIPs.
 //
-// 3. slaOptOutVips -- VIPs that are opted out from SLA (but not from monitoring).
+// 2. slaOptOutVips -- VIPs that are opted out from SLA (but not from monitoring).
+//
+// Ideally, this list would be empty; however, bugs in our monitoring necessitate a way for us to temporarily exclude
+// one or more VIPs from monitoring until the bug can be fixed.
+//
+// VIPs opted out of SLA do not receive any SLA guarantees. Use with caution. Bias for fixing the monitoring
+// bug rather than adding to this list. When adding to this list, include a detailed comment (or link to a work item)
+// indicating why the VIP is being included and when it can be removed.
 //
 // The structure of the JSON object is like:
 // {
 //    <controlEstate>: // The name of the k8s control estate hosting the VIP.
 //    {
-//      serviceLists:  // Optional. If included, specifies one or more service lists to exclude from monitoring.
-//      [
-//        ...
-//      ],
-//      namespaces:    // Optional. If included, specifies one or more namespaces to exclude from monitoring.
+//      slaOptOutVips:  // Optional. If included, specifies one or more VIPs that should be explicitly opted out from SLA eligibility.
 //      [
 //        ...
 //      ],
@@ -37,22 +30,7 @@
 //    },
 // },
 //
-// A "service list" is an internal SLB concept. It has a mapping for both k8s services and self-service vips.
-// * For VIPs bound to a raw k8s service, the "service list" name is the name of the k8s service declaring the VIP.
-// * For SAM apps, the "service list" name corresponds to the "lbname" field in the SAM manifest.
-// * For self-service VIPs, the "service list" name is the "customlbname" field (if specified), otherwise it is formed
-//   from:
-//   - the "lbname" field in the VIP declaration,
-//   - the team / user name from the folder containing the vips.yaml,
-//   - the kingdom name:
-//   <lbname>-<team/username>-<kingdom>
-//
-// Similarly, the "namespace" used here depends on whether the VIP is bound to a k8s service or self-service:
-// * For VIPs bound to a k8s service, the namespace is the containing namespace for the service resource.
-// * For SAM apps, the namespace is the team / user name.
-// * For self-service VIPs, the namespace is always "kne".
-
-// For VIVIPS and slaOptOutVips, the format can be either:
+// The format of entries in the lists can be either:
 // * FQDN:port (eg. ops0-dvaregistryssl1-0-prd.slb.sfdc.net:443)
 // * VIP:port  (eg. 13.110.24.14:80)
 // Simple glob-style wildcards are also permitted, e.g., "*dvaregistry*:*".
@@ -118,17 +96,13 @@ local vipwdConfig = {
   },
   "xrd-sam":
   {
-    serviceLists:
+    slaOptOutVips:
     [
       // 2018/12/27 - mgrass: A known issue in our monitoring is causing these RDI VIPs in XRD to generate false alarms.
       // These should be removed when the underlying issues discussed in https://gus.lightning.force.com/a07B0000004j96jIAA
       // are resolved.
-      "vir511-1-0-xrd",
-      "vir512-1-0-xrd",
-      // 2019/01/02 - mgrass: This self-serve DSR VIP doesn't have the associated puppet changes to allow it to work.
-      // We need to either delete the definition (https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/cpt/vips/xrd/vips.yaml#L17)
-      // or work with the customer to enable our realsvrcfg puppet module on their nodes.
-      "cpt-dsr-validation-cpt-xrd",
+      "vir511-1-0-xrd*",
+      "vir512-1-0-xrd*",
     ],
     vivips:
     [
@@ -143,19 +117,6 @@ local vipwdConfig = {
   },
   "hnd-sam":
   {
-    serviceLists:
-    [
-      // 2019/01/28 - vyjayanthi.raja
-      // Associated investigation: https://computecloud.slack.com/archives/G340CE86R/p1548731408150000
-      // 2019/01/31 - pablo - re-enabled at customer request for an investigation
-      // "pra-neutron-hnd",
-      // "pra-mariadb-hnd",
-      // "pra-keystone-apache-hnd",
-      // "pra-ccn-1-0-hnd",
-      // "pra-keystone-admin-hnd",
-      // "pra-glance-api-hnd",
-      // "pra-nova-hnd",
-    ],
     vivips:
     [
       // Artifactory VIPs
@@ -169,11 +130,11 @@ local vipwdConfig = {
   },
   "phx-sam":
   {
-    serviceLists:
+    slaOptOutVips:
     [
       // 2019/02/13 - vyjayanthi.raja
       // Associated investigation: https://computecloud.slack.com/archives/G340CE86R/p1550093301234000?thread_ts=1550091904.233300&cid=G340CE86R
-      "spaasmeshlb",
+      "spaasmeshlb.service-protection.phx-sam.phx.slb.sfdc.net:15399",
     ],
     vivips:
     [
@@ -312,16 +273,6 @@ local vipwdConfig = {
   },
 };
 
-local getOptOutServiceListParameter(estateConfig) =
-  if std.objectHas(estateConfig, "serviceLists") then [
-    "--optOutServiceList=" + std.join(",", estateConfig.serviceLists),
-  ] else [];
-
-local getOptOutNamespaceParameter(estateConfig) =
-  if std.objectHas(estateConfig, "namespaces") then [
-    "--optOutNamespace=" + std.join(",", estateConfig.namespaces),
-  ] else [];
-
 local getVivipsParameter(estateConfig) =
   if std.objectHas(estateConfig, "vivips") then [
     "--veryImportantVips=" + std.join(",", estateConfig.vivips),
@@ -338,8 +289,6 @@ local getSlaOptOutVipsParameter(estateConfig) =
   getVipWdConfigOptions(estate):: (
     if !std.objectHas(vipwdConfig, estate) then []
     else
-      getOptOutServiceListParameter(vipwdConfig[estate]) +
-      getOptOutNamespaceParameter(vipwdConfig[estate]) +
       getVivipsParameter(vipwdConfig[estate]) +
       getSlaOptOutVipsParameter(vipwdConfig[estate])
   ),
