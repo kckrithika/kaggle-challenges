@@ -10,20 +10,22 @@ system:
       count: 3
       containers:
         - name: qpid-broker-runtime
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/appscale/qpid-broker-runtime:267fdc6.4
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/appscale/qpid-broker-runtime:cbb26c5.1
           ports:
             - name: amqp-port
-              containerPort: 5672
+              containerPort: 4001
             - name: http-port
               containerPort: 7022
           env:
+            - name: AMQP_PORT
+              value: 4001
             - name: HTTP_PORT
               value: 7022
-            - name: AMQP_PORT
-              value: 5672
+            - name: QPID_JAVA_HEAPSZ
+              value: 16g
           resources:
-            limits: { cpu: "24", memory: "20Gi" }
-            requests: { cpu: "24", memory: "20Gi" }
+            limits: { cpu: "24", memory: "32Gi" }
+            requests: { cpu: "24", memory: "32Gi" }
           livenessProbe:
             exec:
               command: ["/bin/true"]
@@ -42,7 +44,7 @@ system:
         - name: beacon
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           command: ["/bin/sh"]
-          args: ["-c", "QPID_HOST=$(hostname -s); java -jar service.jar -endpoint samapp/user-jason-woods/qpid-broker-service-mesh-${QPID_HOST}:POD:7442"]
+          args: ["-c", "QPID_HOST=$(hostname -s); java -jar service.jar -endpoint samapp/user-jason-woods/qpid-broker-service-mesh-${QPID_HOST}:POD:7442 -endpoint samapp/user-jason-woods/qpid-broker-service-mesh-${QPID_HOST}:POD:4000"]
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -51,13 +53,15 @@ system:
 
         - name: sherpa
           # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
-          image: sfci/servicelibs/sherpa-envoy:1.0.4
+          image: sfci/servicelibs/sherpa-envoy:1.0.5
           # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
           ports:
           - containerPort: 15373
             name: sherpa-adm
           - containerPort: 7442
             name: http1-tls-in
+          - containerPort: 4000
+            name: tcp-in
           livenessProbe:
             exec:
               command:
