@@ -7,7 +7,7 @@ spec:
   externalTrafficPolicy: Cluster
   ports:
   - name: grpc-shipping
-    port: 7447
+    port: 7443
     protocol: TCP
     targetPort: 7035
   selector:
