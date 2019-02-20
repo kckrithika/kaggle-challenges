@@ -12,22 +12,21 @@ system:
         httpGet:
           path: /ping
           port: 9090
-  loadbalancers:
-  - lbname: samhellolb
-    function: default
-    containers:
-     - name: csmsecretContainer                    
-       volumeMounts:
+      volumeMounts:
        - mountPath: /secrets/
          name: secretvol
          readOnly: true
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: csmsecret
+    
+  loadbalancers:
+  - lbname: samhellolb
+    function: default
     slbenabled: true
     ports:
       - port: 9090
         targetport: 9090
         lbtype: tcp
-  volumes:
-    - name: secretvol
-      k4aSecret:
-        secretName: csmsecret
   
