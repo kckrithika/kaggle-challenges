@@ -125,14 +125,17 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--client.serverInterface=lo",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--httpTimeout=1s",
+                        ] + (if !slbflights.removeDeprecatedIpvsProcessorFlags then [
                             "--enablePersistence=false",
-                        ]
+                        ] else [])
                         + (if slbflights.enableOnlyRunningStateProxy then ["--enableOnlyRunningStateProxy=true"] else [])
                         + slbconfigs.getNodeApiClientSocketSettings()
                         + [
                             "--healthcheck.riseCount=5",
                             "--healthcheck.fallCount=2",
+                        ] + (if !slbflights.removeDeprecatedIpvsProcessorFlags then [
                             "--computeProxyServers=true",
+                        ] else []) + [
                             "--healthcheck.healthchecktimeout=3s",
                         ],
                         volumeMounts: std.prune([
