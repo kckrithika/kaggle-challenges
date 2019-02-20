@@ -64,7 +64,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--client.serverInterface=lo",
                                                        "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
                                                        "--maxDeleteEntries=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
-                                                   ] + (if configs.estate == "lo2-sam" && slbimages.hyperslb_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo2.data.sfdc.net"] else if configs.estate == "lo3-sam" && slbimages.hyperslb_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo3.data.sfdc.net"] else [])
+                                                   ] + slbflights.ssEndpointParam
                                                    + slbconfigs.getNodeApiClientSocketSettings(),
                                           volumeMounts: configs.filter_empty([
                                               configs.maddog_cert_volume_mount,
@@ -92,7 +92,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--client.dialSocket=true",
                                                        "--commonoptions.metricsendpoint=" + configs.funnelVIP,
                                                        "--commonoptions.hostname=$(NODE_NAME)",
-                                                     ] + (if configs.estate == "lo2-sam" && slbimages.hyperslb_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo2.data.sfdc.net"] else if configs.estate == "lo3-sam" && slbimages.hyperslb_build >= 2055 then ["--secrets.ssendpoint=secretservice-lo3.data.sfdc.net"] else [])
+                                                     ] + slbflights.ssEndpointParam
                                                      + roleBasedSecretArgs,
                                            volumeMounts: configs.filter_empty([
                                                configs.maddog_cert_volume_mount,

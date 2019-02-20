@@ -47,10 +47,7 @@ local slbreleases = import "slbreleases.json";
     phaseNum: std.parseInt($.phase),
 
     # These are the images used by the templates
-    hyperslbbuildinfo: imageFunc.build_info_from_tag(slbreleases[$.phase].hyperslb.label),
-    hyperslbrepo: (if $.hyperslbbuildinfo.buildNumber > 2060 then "slb" else "sdn"),
-    hyperslbimagename: (if $.hyperslbbuildinfo.buildNumber > 2060 then "hyperslb" else "hypersdn"),
-    hyperslb: imageFunc.do_override_for_pipeline_image($.overrides, $.hyperslbrepo, $.hyperslbimagename, slbreleases[$.phase].hyperslb.label),
+    hyperslb: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "hyperslb", slbreleases[$.phase].hyperslb.label),
     hyperslb_build: imageFunc.build_info_from_tag(slbreleases[$.phase].hyperslb.label).buildNumber,
 
     # An old hypersdn image that should be deployed on all current ipvs nodes.
@@ -58,20 +55,10 @@ local slbreleases = import "slbreleases.json";
     fixed_hypersdn_bootstrap_tag: "v-0001443-9c651010",
     hypersdn_ipvs_bootstrap: imageFunc.do_override_for_pipeline_image($.overrides, "sdn", "hypersdn", $.fixed_hypersdn_bootstrap_tag),
 
-    // strata-built slb-nginx and slb-nginx-kms images use a different repo and image name:
-    // https://git.soma.salesforce.com/sdn/slb-nginx-proxy/blob/bf25ef3e3110d213eb545e1759928bbcc73ab9bd/.strata.yml#L22-L23
-    // Detect the correct repo and image name from the image tag.
-    // This can be removed once we have migrated fully over to strata builds.
-    nginxbuildinfo: imageFunc.build_info_from_tag(slbreleases[$.phase].slbnginx.label),
-    nginxrepo: (if $.nginxbuildinfo.pipeline == "strata" then "slb" else "sdn"),
-    nginximagename: (if $.nginxbuildinfo.pipeline == "strata" then "nginx" else "slb-nginx"),
-    slbnginx: imageFunc.do_override_for_pipeline_image($.overrides, $.nginxrepo, $.nginximagename, slbreleases[$.phase].slbnginx.label),
+    slbnginx: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "nginx", slbreleases[$.phase].slbnginx.label),
     slbnginx_build: imageFunc.build_info_from_tag(slbreleases[$.phase].slbnginx.label).buildNumber,
 
-    hsmnginxbuildinfo: imageFunc.build_info_from_tag(slbreleases[$.phase].kmsnginx.label),
-    hsmnginxrepo: (if $.hsmnginxbuildinfo.pipeline == "strata" then "slb" else "sdn"),
-    hsmnginximagename: (if $.hsmnginxbuildinfo.pipeline == "strata" then "nginx-kms" else "slb-nginx-kms"),
-    hsmnginx: imageFunc.do_override_for_pipeline_image($.overrides, $.hsmnginxrepo, $.hsmnginximagename, slbreleases[$.phase].kmsnginx.label),
+    hsmnginx: imageFunc.do_override_for_pipeline_image($.overrides, "slb", "nginx-kms", slbreleases[$.phase].kmsnginx.label),
     hsmnginx_build: imageFunc.build_info_from_tag(slbreleases[$.phase].kmsnginx.label).buildNumber,
 
     # image_functions needs to know the filename of the template we are processing
