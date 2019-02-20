@@ -66,6 +66,8 @@ spec:
         - discovery
         - --secureGrpcAddr
         - :15011
+        - --appNamespace
+        - service-mesh
         env:
         - name: POD_NAME
           valueFrom:
