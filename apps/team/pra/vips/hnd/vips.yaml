@@ -2,6 +2,7 @@
   customlbname: pra-mariadb-hnd
   servers:
   - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
   - ops0-praccn1-2-hnd.ops.sfdc.net
   ports:
   - port: 3306
@@ -13,6 +14,7 @@
   customlbname: pra-neutron-hnd
   servers:
   - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
   - ops0-praccn1-2-hnd.ops.sfdc.net
   ports:
   - port: 9696
@@ -24,6 +26,7 @@
   customlbname: pra-keystone-apache-hnd
   servers:
   - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
   - ops0-praccn1-2-hnd.ops.sfdc.net
   ports:
   - port: 5000
@@ -35,6 +38,7 @@
   customlbname: pra-keystone-admin-hnd
   servers:
   - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
   - ops0-praccn1-2-hnd.ops.sfdc.net
   ports:
   - port: 35357
@@ -46,6 +50,7 @@
   customlbname: pra-glance-api-hnd
   servers:
   - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
   - ops0-praccn1-2-hnd.ops.sfdc.net
   ports:
   - port: 9292
@@ -57,6 +62,7 @@
   customlbname: pra-nova-hnd
   servers:
   - ops0-praccn1-1-hnd.ops.sfdc.net
+  - ops0-praccn2-1-hnd.ops.sfdc.net
   - ops0-praccn1-2-hnd.ops.sfdc.net
   ports:
   - port: 8774
