@@ -79,6 +79,10 @@ apps:
     - prd/prd-sam_gater
     - prd/prd-samtest
 
+  ordering-mixed-mode:
+    - prd/prd-sam_gater
+    - prd/prd-samtest
+
 # Enable as needed:
 #  geoipnk:
 #    - prd/prd-sam_gater

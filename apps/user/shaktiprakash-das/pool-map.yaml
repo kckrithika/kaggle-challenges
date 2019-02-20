@@ -3,8 +3,6 @@ apps:
     - prd/prd-sam
   ordering-istio:
     - prd/prd-sam
-  ordering-mixed-mode:
-    - prd/prd-sam
 
 #  service-mesh-einstein:
 #    - prd/prd-sam

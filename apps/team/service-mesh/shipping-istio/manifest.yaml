@@ -29,7 +29,7 @@ system:
       - name: GRPC_PORT
         value: 7035
       ports:
-      - containerPort: 7447
+      - containerPort: 7443
         name: grpc-proxy
       - containerPort: 7035
         name: grpc-svc
@@ -65,7 +65,7 @@ system:
           value: istio
       args:
         - -endpoint
-        - service-mesh/shipping-istio:DATACENTER:7447
+        - service-mesh/shipping-istio:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
