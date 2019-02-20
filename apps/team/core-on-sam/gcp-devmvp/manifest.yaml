@@ -20,10 +20,10 @@ system:
         type: server
     - name: log-volume-sfdc
       hostPath:
-        path: /mnt/disks/ssd0/logs/sfdc
+        path: /mnt/disks/ssd0/data/logs/sfdc
     - name: log-volume-jvm
       hostPath:
-        path: /mnt/disks/ssd0/logs/jvm
+        path: /mnt/disks/ssd0/data/logs/jvm
     - name: secretvol-c1
       k4aSecret:
         secretName: caas-k4a-secret-sp-cs103-c1
