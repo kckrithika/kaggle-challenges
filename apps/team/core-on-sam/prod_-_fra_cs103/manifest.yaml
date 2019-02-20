@@ -27,7 +27,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -35,14 +35,14 @@ system:
       - name: CLUSTER_NAME
         value: cs103
       - name: DEPLOYMENT
-        value: B
+        value: G
       - name: USE_CONFIG_SIDECAR
         value: 1
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: sfci/casam/coreapp:release_216-patch_17496729
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_216-patch_17497816
       livenessProbe:
         exec:
           command:
@@ -192,12 +192,12 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1550685940705876992
+        value: 1550694690173297920
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
         value: casam-alpha
-      - name: CYAN
+      - name: SFPROXY_VIP
         value: https://cs103app-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net:8443
       - name: SWITCH_BOARD_ADDRESS
         value: cs103-switchboard-lb.core-on-sam-sp1.fra-sam.fra.slb.sfdc.net:15001
@@ -212,9 +212,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 5
       - name: DB_SID
@@ -242,8 +242,12 @@ system:
       - name: HTTP_PROXY
         value: public0-proxy1-0-fra.data.sfdc.net:8080
       - name: SKIP_KAIJU
-        value: 1
-      image: sfci/casam/sequencer:6d3761
+        value: 0
+      - name: KAIJU_REFOCUS_GETRESULT_URL
+        value: https://refocus.hk.salesforce.com/v1/samples/
+      - name: KAIJU_RUNTIME_TIMEOUT_MS
+        value: 30000
+      image: sfci/casam/sequencer:aac97f
       livenessProbe:
         exec:
           command:
