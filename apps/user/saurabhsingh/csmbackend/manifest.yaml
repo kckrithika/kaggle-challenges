@@ -5,13 +5,22 @@ system:
     count: 1
     containers:
     - name: csmbackend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/saurabhsingh/csmbackend:saurabhsingh-20190225 # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/saurabhsingh/csmbackend:saurabhsingh-20190226 # golang app
       ports:
       - containerPort: 9090
       livenessProbe:
         httpGet:
           path: /ping
           port: 9090
+      volumeMounts:
+       - mountPath: /secrets/
+         name: secretvol
+         readOnly: true
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: csmsecret
+    
   loadbalancers:
   - lbname: samhellolb
     function: default
@@ -20,3 +29,4 @@ system:
       - port: 9090
         targetport: 9090
         lbtype: tcp
+  
