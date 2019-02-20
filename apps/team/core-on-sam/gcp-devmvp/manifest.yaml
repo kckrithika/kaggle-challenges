@@ -18,12 +18,12 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-    # - name: log-volume-sfdc
-    #   hostPath:
-    #     path: /mnt/disks/ssd0/logs/sfdc
-    # - name: log-volume-jvm
-    #   hostPath:
-    #     path: /mnt/disks/ssd0/logs/jvm
+    - name: log-volume-sfdc
+      hostPath:
+        path: /mnt/disks/ssd0/data/logs/sfdc
+    - name: log-volume-jvm
+      hostPath:
+        path: /mnt/disks/ssd0/data/logs/jvm
     - name: secretvol-c1
       k4aSecret:
         secretName: caas-k4a-secret-sp-cs103-c1
@@ -129,10 +129,10 @@ system:
         - containerPort: 8443
 
       volumeMounts:
-        # - name: log-volume-sfdc
-        #   mountPath: /home/sfdc/logs/sfdc
-        # - name: log-volume-jvm
-        #   mountPath: /home/sfdc/logs/jvm
+        - name: log-volume-sfdc
+          mountPath: /home/sfdc/logs/sfdc
+        - name: log-volume-jvm
+          mountPath: /home/sfdc/logs/jvm
         - name: tls-client-cert
           mountPath: /etc/pki_service
         - name: coreapp-config-volume
