@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -55,14 +55,14 @@ system:
       - name: CLUSTER_NAME
         value: na4
       - name: DEPLOYMENT
-        value: B
+        value: G
       - name: USE_CONFIG_SIDECAR
         value: 1
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_216-patch_17433599
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_216-patch_17497816
       livenessProbe:
         exec:
           command:
@@ -100,7 +100,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na4.app
-      image: sfci/casam/coreapp_config_overrides:241254
+      image: sfci/casam/coreapp_config_overrides:bcad74
       livenessProbe:
         exec:
           command:
@@ -206,19 +206,19 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1549915654231511040
+        value: 1550690406005168896
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
         value: casam-alpha
-      - name: CYAN
+      - name: SFPROXY_VIP
         value: https://us4-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: SWITCH_BOARD_ADDRESS
         value: na4-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
       - name: RELEASE_VESION
         value: ""
       - name: RELEASE_TYPE
-        value: PATCH
+        value: MINOR
       - name: MAJOR_RELEASE_NUMBER
         value: 216
       - name: MINOR_RELEASE_NUMBER
@@ -226,9 +226,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -251,15 +251,19 @@ system:
         value: rotate
       - name: MADDOG_CLIENT
         value: /certs
-      - name: CASAM_SETTINGS_PATH
-        value: mist61.-.prd.na4.sequencer
+      - name: SFPROXY_SETTINGS_PATH
+        value: mist61.-.prd.na4.sfproxy
       - name: CASAM_SUPERPOD
         value: sp2
       - name: HTTP_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: SKIP_KAIJU
-        value: 1
-      image: sfci/casam/sequencer:db58ae
+        value: 0
+      - name: KAIJU_REFOCUS_GETRESULT_URL
+        value: https://refocus.internal.salesforce.com/v1/samples/
+      - name: KAIJU_RUNTIME_TIMEOUT_MS
+        value: 360000
+      image: sfci/casam/sequencer:aac97f
       livenessProbe:
         exec:
           command:
