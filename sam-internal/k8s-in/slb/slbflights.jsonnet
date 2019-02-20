@@ -14,6 +14,7 @@ local configs = import "config.jsonnet";
     removeDeprecatedIpvsProcessorFlags: (slbimages.phaseNum <= 1),
     # This can probably now be removed -- see https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006IJQPIA4/view.
     ssEndpointParam: (if configs.estate == "lo2-sam" || configs.estate == "lo3-sam" then ["--secrets.ssendpoint=secretservice-%s.data.sfdc.net" % [configs.kingdom]] else []),
+    useKubeDnsForPortal: (slbimages.phaseNum <= 1),
 
 
     # 2019/01/16 - this didn't work as expected so I disabled it (Pablo)
