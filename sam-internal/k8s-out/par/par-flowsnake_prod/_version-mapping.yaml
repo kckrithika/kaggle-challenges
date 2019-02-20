@@ -3,7 +3,7 @@ data:
   version-mapping.properties: |
     0.12.2 = jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest
     0.12.5 = 10011
-    0.12.5-wave = jenkins-dva-transformation-flowsnake-platform-PR-813-2-itest
+    0.12.5-wave = jenkins-dva-transformation-flowsnake-platform-PR-815-4-itest
 kind: ConfigMap
 metadata:
   creationTimestamp: null
