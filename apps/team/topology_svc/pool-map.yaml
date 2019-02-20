@@ -7,3 +7,9 @@ apps:
     - mvp/gsf-core-devmvp-sam2-sam
   topology-svc-client:
     - mvp/gsf-core-devmvp-sam2-sam
+  consul-dev:
+    - prd/prd-sam
+  topology-data-ingest-dev:
+    - prd/prd-sam
+  topology-svc-dev:
+    - prd/prd-sam

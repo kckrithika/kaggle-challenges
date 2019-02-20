@@ -1,0 +1,30 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: topology-svc
+    count: 1
+    containers:
+    - name: topology-svc-service
+      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/topology-svc:ameesala-20190220-3
+      env:
+        - name: JVM_ARGS
+          value: "-Dspring.profiles.active=prd"
+      ports:
+      - containerPort: 8080
+        name: scone-http
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+  loadbalancers:
+  - lbname: topology-svc-lb
+    function: topology-svc
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: http
