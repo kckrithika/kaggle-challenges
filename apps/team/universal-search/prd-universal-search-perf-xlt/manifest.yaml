@@ -40,8 +40,6 @@ system:
           - cat
           - ./bin/agentcontroller.sh
       env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
       - name: KRB5_CONF
         value: /data/test/data/krb-config/krb5_searchzk_prd.conf
       - name: JAAS_CONF
@@ -55,7 +53,7 @@ system:
       - name: test
         mountPath: /data/test
     - name: sherpa-xlt
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
       # HTTP port for exposing to SLB for IoT
       - containerPort: 7012
@@ -66,12 +64,6 @@ system:
         name: sherpa-xlt-tls
       - containerPort: 15373
         name: sherpa-xlt-adm
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
@@ -94,9 +86,6 @@ system:
     - name: perf-universal-search-xlt-certs
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180906-608512d
       args: ["-d"]
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
       livenessProbe:
         initialDelaySeconds: 30
         exec:
@@ -123,13 +112,6 @@ system:
     - name: master-xlt-controller
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/master-xlt-controller:irahim-20180906-fe3e4da
       args: ["-d"]
-      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         initialDelaySeconds: 30
         exec:
@@ -150,9 +132,6 @@ system:
       ports:
       - containerPort: 8080
         name: report-http
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
@@ -165,12 +144,6 @@ system:
     - name: perf-universal-search-xlt
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/perf-universal-search-xlt:irahim-20180906-608512d
       args: ["-d"]
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         initialDelaySeconds: 30
         exec:
