@@ -9,7 +9,7 @@ local configs = import "config.jsonnet";
     roleEnabled: (slbimages.phaseNum <= 1),
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
-    enableOnlyRunningStateProxy: (configs.estate == "prd-sdc"),
+    enableOnlyRunningStateProxy: (slbimages.hyperslb_build >= 2066),
     enableNginxAccesslogs: (configs.estate == "prd-sdc"),
     removeDeprecatedIpvsProcessorFlags: (slbimages.phaseNum <= 1),
     # This can probably now be removed -- see https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006IJQPIA4/view.
