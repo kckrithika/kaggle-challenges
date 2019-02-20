@@ -50,6 +50,15 @@ items:
     - update
     - delete
   - apiGroups:
+    - extensions.k8s.io
+    resources:
+    - ingresses
+    verbs:
+    - create
+    - get
+    - update
+    - delete
+  - apiGroups:
     - admissionregistration.k8s.io
     resources:
     - mutatingwebhookconfigurations
