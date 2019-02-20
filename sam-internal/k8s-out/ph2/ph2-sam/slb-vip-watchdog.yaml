@@ -59,6 +59,7 @@ spec:
         - --monitorFrequency=10s
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
+        - --veryImportantVips=ops0-artifactrepo1-0-ph2.slb.sfdc.net:443,kubernetes-api-flowsnake-ph2.slb.sfdc.net:443,ingress-flowsnake-ph2.slb.sfdc.net:443
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         env:
@@ -76,7 +77,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.name
-        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-vip-watchdog
         volumeMounts:
         - mountPath: /host/data/slb
@@ -89,7 +90,7 @@ spec:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-vip-watchdog
         - --period=1800s
-        - --vipsToAcl=slb-bravo-svc.sam-system.ph2-sam.prd.slb.sfdc.net
+        - --vipsToAcl=
         - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
@@ -113,7 +114,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -152,7 +153,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -176,7 +177,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-vip-watchdog/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -194,7 +195,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -230,7 +231,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        image: ops0-artifactrepo1-0-ph2.data.sfdc.net/dva/slb/hyperslb:2064-713d09959e8ef394c0762bac4ebdfe3e8980eb2f
         name: slb-manifest-watcher
         securityContext:
           privileged: true
