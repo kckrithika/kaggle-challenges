@@ -16,6 +16,8 @@
 // by production systems (eg. Artifactory, Edge etc). VIVIPs will be tagged by vip-wd as `veryImportantVip=true`
 // and a special 24/7 alert can be created only for these VIPs.
 //
+// 3. slaOptOutVips -- VIPs that are opted out from SLA (but not from monitoring).
+//
 // The structure of the JSON object is like:
 // {
 //    <controlEstate>: // The name of the k8s control estate hosting the VIP.
@@ -50,9 +52,10 @@
 // * For SAM apps, the namespace is the team / user name.
 // * For self-service VIPs, the namespace is always "kne".
 
-// For VIVIPS, the format can be either:
+// For VIVIPS and slaOptOutVips, the format can be either:
 // * FQDN:port (eg. ops0-dvaregistryssl1-0-prd.slb.sfdc.net:443)
 // * VIP:port  (eg. 13.110.24.14:80)
+// Simple glob-style wildcards are also permitted, e.g., "*dvaregistry*:*".
 
 local slbimages = import "slbimages.jsonnet";
 
@@ -67,16 +70,8 @@ local vipwdConfig = {
   },
   "prd-sam":
   {
-    serviceLists:
+    slaOptOutVips:
     [
-      // 2018/12/19 - mgrass: These VIPs were added to the exclusion list with https://git.soma.salesforce.com/sam/manifests/pull/12121.
-      // The rationale was:
-      //    Note that 2 new DSR VIPs have been added to the vip-wd optOut list. This is because those customers have yet to set up the
-      //    puppet module that will make the VIP work end to end.
-      // It appears that as of today this is still the case.
-      // TODO: follow up with @vyjayanthi-raja and customer to figure out next steps for these VIPs.
-      "pra-sfc-prd",
-      "pra-dsm-prd",
       // 2019/01/02 - mgrass: This VIP is using a rather interesting construct -- it's a VIP that points to a backend that is . . . a VIP:
       //  https://git.soma.salesforce.com/sam/manifests/blob/befcf4a6d97a0a4cb8904293aed5f9f78c571cb9/apps/user/vijay-kota/vips/vips.yaml#L3
       //  Vijay's reasoning for doing this:
@@ -86,131 +81,18 @@ local vipwdConfig = {
       //
       //  TODO: follow up with Vijay to see if this VIP is still needed. Now that https VIPs don't demand a client certificate, it shouldn't be
       //        necessary.
-      "us99-sfproxytest-vip-vijay-kota-prd",
+      "us99-sfproxytest-vip-vijay-kota-prd.slb.sfdc.net:*",
       // 2019/01/02 - mgrass: This VIP has a single backend, and that backend is sending unreliable health signals. See
       // https://computecloud.slack.com/archives/G340CE86R/p1545408207001700?thread_ts=1545402611.001100&cid=G340CE86R. This should be removed
       // when the underlying issues discussed in https://gus.lightning.force.com/a07B0000004j96jIAA are resolved.
-      "us98-mist61sfproxy-lb",
-      // 2019/01/02 - mgrass: Issues with our monitoring cause some of the steam VIPs to be incorrectly marked as SLA eligible even with flappy
-      // backends.
-      // TODO: it's possible that the steam VIPs are no longer symptomatic, and these exclusions can be removed. If after removing, we still get
-      //       VIP availability alerts, one or more of these should help resolve:
-      //       * remove these steam VIP definitions (as I don't think anybody is depending on them), or
-      //       * investigate whether addressing https://gus.lightning.force.com/a07B0000004j96jIAA resolves, or
-      //       * explore options to reload nginx config less frequently, possibly modeling after the k8s nginx ingress controller's use of lua
-      //         (https://github.com/kubernetes/ingress-nginx/blob/master/docs/how-it-works.md#avoiding-reloads-on-endpoints-changes), or
-      //       * switch to envoy, which doesn't require reloads to deal with dynamic endpoint changes :)
-      // List generated with:
-      //         grep -- '- lbname' apps/team/steam/vips/prd/vips.yaml | awk '{printf "\""$3"-steam-prd\",\n"}' | sort
-      // Followed by manually fixing up the 8 VIPs that have a customlbname.
-      "cs1-stmfa1-0-prd-steam-prd",
-      "cs1-stmfb1-0-prd-steam-prd",
-      "cs2-stmfa1-0-prd-steam-prd",
-      "cs2-stmfb1-0-prd-steam-prd",
-      "cs2-stmfc1-0-prd-steam-prd",
-      "cs2-stmsa1-0-prd-steam-prd",
-      "cs2-stmua1-0-prd-steam-prd",
-      "cs2-stmub1-0-prd-steam-prd",
-      "cs3-stmfa1-0-prd-steam-prd",
-      "cs3-stmfb1-0-prd-steam-prd",
-      "cs3-stmfc1-0-prd-steam-prd",
-      "cs3-stmua1-0-prd-steam-prd",
-      "cs3-stmub1-0-prd-steam-prd",
-      "cs4-stmda1-0-prd-steam-prd",
-      "eu1-stmda1-0-prd",
-      "eu1-stmda1-0-prd-steam-prd",
-      "eu2-stmda1-0-prd-steam-prd",
-      "la2-stmda1-0-prd",
-      "la2-stmda1-0-prd-steam-prd",
-      "la2-stmfa1-0-prd-steam-prd",
-      "la2-stmfb1-0-prd-steam-prd",
-      "la2-stmfc1-0-prd-steam-prd",
-      "la2-stmfd1-0-prd-steam-prd",
-      "la2-stmra1-0-prd-steam-prd",
-      "la2-stmsa1-0-prd-steam-prd",
-      "la2-stmua1-0-prd-steam-prd",
-      "la2-stmub1-0-prd-steam-prd",
-      "login-stmda1-0-prd-steam-prd",
-      "login-stmda-stm",
-      "login-stmfa1-0-prd-steam-prd",
-      "login-stmfb1-0-prd-steam-prd",
-      "login-stmfc1-0-prd-steam-prd",
-      "login-stmfd1-0-prd-steam-prd",
-      "login-stmra1-0-prd-steam-prd",
-      "login-stmsa1-0-prd-steam-prd",
-      "login-stmua1-0-prd-steam-prd",
-      "login-stmub1-0-prd-steam-prd",
-      "na20-stmra1-0-prd-steam-prd",
-      "na21-stmra1-0-prd-steam-prd",
-      "na22-stmra1-0-prd-steam-prd",
-      "na23-stmra1-0-prd-steam-prd",
-      "na24-stmra1-0-prd-steam-prd",
-      "na25-stmra1-0-prd-steam-prd",
-      "na26-stmra1-0-prd-steam-prd",
-      "na40-stmfa1-0-prd-steam-prd",
-      "na40-stmfb1-0-prd-steam-prd",
-      "na41-stmfa1-0-prd-steam-prd",
-      "na41-stmfb1-0-prd-steam-prd",
-      "na41-stmfc1-0-prd-steam-prd",
-      "na41-stmua1-0-prd-steam-prd",
-      "na41-stmub1-0-prd-steam-prd",
-      "na42-stmfa1-0-prd-steam-prd",
-      "na42-stmfb1-0-prd-steam-prd",
-      "na42-stmfc1-0-prd-steam-prd",
-      "na42-stmua1-0-prd-steam-prd",
-      "na42-stmub1-0-prd-steam-prd",
-      "na43-stmfa1-0-prd-steam-prd",
-      "na43-stmfb1-0-prd-steam-prd",
-      "na43-stmfc1-0-prd-steam-prd",
-      "na44-sitestmfc1-0-prd-steam-prd",
-      "na44-sitestmfd1-0-prd-steam-prd",
-      "na44-stmfa1-0-prd-steam-prd",
-      "na44-stmfb1-0-prd-steam-prd",
-      "na44-stmfc1-0-prd-steam-prd",
-      "na44-stmfd1-0-prd-steam-prd",
-      "na44-stmsa1-0-prd-steam-prd",
-      "na44-stmua1-0-prd-steam-prd",
-      "na44-stmub1-0-prd-steam-prd",
-      "na45-stmfa1-0-prd-steam-prd",
-      "na45-stmfb1-0-prd-steam-prd",
-      "na45-stmfc1-0-prd-steam-prd",
-      "na45-stmua1-0-prd-steam-prd",
-      "na45-stmub1-0-prd-steam-prd",
-      "na46-stmfb1-0-prd-steam-prd",
-      "na46-stmfc1-0-prd-steam-prd",
-      "na47-stmfa1-0-prd-steam-prd",
-      "na6-stmsa1-0-prd-steam-prd",
-      "na7-stmsa1-0-prd-steam-prd",
-      "na8-stmsa1-0-prd-steam-prd",
-      "na9-stmsa1-0-prd-steam-prd",
-      "stmda1hbase2a-hbasemon1-0-prd",
-      "stmdaeu1-cmp1-0-prd",
-      "stmdaeu2-cmp1-0-prd",
-      "stmda-insights2-redis1-0-prd",
-      "stmdashared2-pbsmatch1-0-prd",
-      "stmdashared2-pbsmatch1-0-prd-steam-prd",
-      "stm-edge1-0-prd-steam-prd",
-      "stmfashared2-pbsmatch1-0-prd-steam-prd",
-      "stmfbshared2-pbsmatch1-0-prd-steam-prd",
-      "stmfcshared2-pbsmatch1-0-prd-steam-prd",
-      "stmfdshared2-pbsmatch1-0-prd-steam-prd",
-      "stmrashared2-pbsmatch1-0-prd-steam-prd",
-      "stmsashared2-pbsmatch1-0-prd-steam-prd",
-      "stmshared2-pbsgeo2-0-prd-steam-prd",
-      "stmuashared2-pbsmatch1-0-prd-steam-prd",
-      "stmubshared2-pbsmatch1-0-prd-steam-prd",
-      "test-stmda1-0-prd-steam-prd",
-      "test-stmfa1-0-prd-steam-prd",
-      "test-stmfb1-0-prd-steam-prd",
-      "test-stmfc1-0-prd-steam-prd",
-      "test-stmsa1-0-prd-steam-prd",
-      "test-stmua1-0-prd-steam-prd",
-      "test-stmub1-0-prd-steam-prd",
-    ],
-    namespaces: [
+      "us98-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:*",
       // 2019/01/31 - mgrass: Long-time flaky VIP in user namespace. Opting out to address more pressing matters.
       // Investigation here: https://computecloud.slack.com/archives/G340CE86R/p1548979993685500?thread_ts=1548979508.678000&cid=G340CE86R.
-      "user-varun-vyas",
+      "aqueduct.user-varun-vyas.prd-sam.prd.slb.sfdc.net:*",
+      // 2019/01/02 - mgrass: Issues with our monitoring cause some of the steam VIPs to be incorrectly marked as SLA eligible even with flappy
+      // backends.
+      // TODO: it's possible that the steam VIPs are no longer symptomatic. Confirm whether https://gus.lightning.force.com/a07B0000004j96jIAA resolved.
+      "*-prd-steam-prd*",
     ],
     vivips: [
        // There are 3 sledge VIPs that listen on these ports:
@@ -445,12 +327,20 @@ local getVivipsParameter(estateConfig) =
     "--veryImportantVips=" + std.join(",", estateConfig.vivips),
   ] else [];
 
+local getSlaOptOutVipsParameter(estateConfig) =
+  if std.objectHas(estateConfig, "slaOptOutVips") then [
+    "--slaOptOutVips=" + std.join(",", estateConfig.slaOptOutVips),
+  ] else [];
+
 {
   // getVipWdOptOutOptions builds the command line parameters to supply to VIP watchdog. `estate` is the name of the control
   // estate (e.g., "prd-sam") to retrieve opt-out options for.
   getVipWdConfigOptions(estate):: (
     if !std.objectHas(vipwdConfig, estate) then []
-    else getOptOutServiceListParameter(vipwdConfig[estate]) + getOptOutNamespaceParameter(vipwdConfig[estate])
-         + (if slbimages.hyperslb_build >= 2064 then getVivipsParameter(vipwdConfig[estate]) else [])
+    else
+      getOptOutServiceListParameter(vipwdConfig[estate]) +
+      getOptOutNamespaceParameter(vipwdConfig[estate]) +
+      getVivipsParameter(vipwdConfig[estate]) +
+      getSlaOptOutVipsParameter(vipwdConfig[estate])
   ),
 }
