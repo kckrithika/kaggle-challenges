@@ -42,6 +42,8 @@ configs.deploymentBase("mesh-control-plane") {
               "discovery",
               "--secureGrpcAddr",
               ":15011",
+              "--appNamespace",
+              "service-mesh",
             ],
             ports: [
               {
