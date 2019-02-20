@@ -6,7 +6,7 @@ system:
     type: stateful-set
     containers:
     - name: consul
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ameesala/consul-osrb-am:ameesala-20190212
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/topology-svc/consul-docker:747b091
       args:
         - "agent"
         - "-advertise=$(FUNCTION_INSTANCE_IP)"
