@@ -47,6 +47,11 @@ if enabled then
                     verbs: ["create", "get", "update", "delete"],
                 },
                 {
+                    apiGroups: ["extensions.k8s.io"],
+                    resources: ["ingresses"],
+                    verbs: ["create", "get", "update", "delete"],
+                },
+                {
                     apiGroups: ["admissionregistration.k8s.io"],
                     resources: ["mutatingwebhookconfigurations"],
                     verbs: ["create", "get", "update", "delete"],
