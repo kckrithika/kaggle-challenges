@@ -32,8 +32,9 @@ system:
       - name: admin-port
         containerPort: 15372
       resources:
-        limits: { cpu: "24", memory: "16Gi" }
-        requests: { cpu: "24", memory: "16Gi" }
+        limits:
+          cpu: "24"
+          memory: "16Gi"
       env:
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
@@ -73,8 +74,9 @@ system:
       - containerPort: 15373
         name: sherpa-adm
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits:
+          cpu: "1"
+          memory: "1Gi"
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
@@ -121,9 +123,6 @@ system:
     containers:
     - name: universal-search-synthetics
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.1.0
-      resources:
-        limits: { cpu: "100m", memory: "1Gi" }
-        requests: { cpu: "100m", memory: "1Gi" }
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
@@ -142,9 +141,6 @@ system:
         failureThreshold: 1
     - name: universal-search-synthetics-cre
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.1.0
-      resources:
-        limits: { cpu: "100m", memory: "1Gi" }
-        requests: { cpu: "100m", memory: "1Gi" }
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
@@ -166,9 +162,6 @@ system:
       ports:
       - containerPort: 15373
         name: sherpa-adm
-      resources:
-        limits: { cpu: "100m", memory: "1Gi" }
-        requests: { cpu: "100m", memory: "1Gi" }
       volumeMounts:
       - name: client-cert-vol
         mountPath: /client-certs
