@@ -47,7 +47,7 @@ if enabled then
                     verbs: ["create", "get", "update", "delete"],
                 },
                 {
-                    apiGroups: ["extensions.k8s.io"],
+                    apiGroups: ["extensions"],
                     resources: ["ingresses"],
                     verbs: ["create", "get", "update", "delete"],
                 },
