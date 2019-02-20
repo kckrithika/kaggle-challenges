@@ -83,13 +83,11 @@ spec:
         - --client.serverInterface=lo
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --httpTimeout=1s
-        - --enablePersistence=false
         - --enableOnlyRunningStateProxy=true
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
         - --healthcheck.riseCount=5
         - --healthcheck.fallCount=2
-        - --computeProxyServers=true
         - --healthcheck.healthchecktimeout=3s
         env:
         - name: KUBECONFIG
