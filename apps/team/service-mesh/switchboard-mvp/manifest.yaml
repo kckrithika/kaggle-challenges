@@ -5,11 +5,10 @@ system:
     - servicemesh@salesforce.com
   functions:
   - name: switchboard
-    type: stateful-set
     count: 3
     containers:
     - name: switchboard
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/switchboard:95462e3e28b30f2007fcc1a05588fbf242719794-201902141230
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:76d4992cfdae33aab510e9d325fa1f10c5803dd3
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -110,4 +109,20 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-    lbname: switchboard
+  loadbalancers:
+  - lbname: switchboard
+    nodeExposed: true
+    function: switchboard
+    ports:
+    - lbtype: dsr
+      port: 7020
+      targetport: 7020
+    - lbtype: dsr
+      port: 15001
+      targetport: 15001
+    - lbtype: dsr
+      port: 15370
+      targetport: 15372
+    - lbtype: dsr
+      port: 15374
+      targetport: 15373
