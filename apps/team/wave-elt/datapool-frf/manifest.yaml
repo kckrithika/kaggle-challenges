@@ -1,0 +1,136 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - moanaserviceseng@salesforce.com
+  functions:
+  - name: datapool
+    identity:
+      serviceName: datapool
+    count: 1
+    containers:
+    - name: datapool-service
+      image: sfci/insights/datapoolservice:release-93-083fdfc
+      ports:
+      - containerPort: 7020
+        name: grpc
+      - containerPort: 15372
+        name: mgmt
+      livenessProbe:
+        initialDelaySeconds: 90
+        periodSeconds: 60
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+      env:
+      - name: LOGGING_STDERR_LEVEL
+        value: ALL
+
+      - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
+        value: dva/datapool-engine:410-0d47c95fe39a686a78daca24ff56a7723899cba9
+
+      - name: FLOWSNAKE_DATAPOOL_IMAGE_NEXT
+        value: ''
+
+      - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
+        value: ''
+
+      - name: FLOWSNAKE_DATAPOOL_IMAGE_KIND
+        value: dockerDefaultRegistryImage
+
+      - name: FLOWSNAKE_WORKER_COUNT
+        value: 18
+
+      - name: FLOWSNAKE_WORKER_CORE_COUNT
+        value: 40
+
+      - name: FLOWSNAKE_WORKER_MEMORY_GB
+        value: 106
+
+      - name: FLOWSNAKE_WORKER_JVM_HEAP_SIZE_MB
+        value: 999
+
+      - name: FLOWSNAKE_DATAPOOL_ENVIRONMENT_NAMES
+        value: wave-elt-1,wave-elt-2
+
+      volumeMounts:
+      - mountPath: /home/datapool/logs
+        name: logvol
+
+      - mountPath: /home/datapool/client-certs
+        name: tls-client-certs
+
+    - name: beacon
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 15
+      args:
+      - -endpoint
+      - wave-elt/datapool:DATACENTER_ALLENV:7443
+
+    - name: sherpa
+      image: sfci/servicelibs/sherpa:2.0.24
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 120
+        periodSeconds: 5
+
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 110
+        periodSeconds: 5
+
+      resources:
+        limits: {cpu: '1', memory: 1Gi}
+        requests: {cpu: '1', memory: 1Gi}
+
+      ports:
+      - containerPort: 7012
+        name: sherpa-in-plain
+
+      - containerPort: 7443
+        name: sherpa-in-tls
+
+      - containerPort: 15373
+        name: sherpa-adm
+
+      volumeMounts:
+      - mountPath: /server-certs
+        name: tls-server-certs
+
+      - mountPath: /client-certs
+        name: tls-client-certs
+
+      - mountPath: /log
+        name: sherpa-log-volume
+
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /data/sam/wave/log/datapool
+
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+
+    - name: tls-server-certs
+      maddogCert:
+        type: server
+
+    - name: tls-client-certs
+      maddogCert:
+        type: client
+
+
