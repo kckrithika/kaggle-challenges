@@ -4,15 +4,6 @@ items:
   kind: Namespace
   metadata:
     annotations:
-      sfdc.net/flowsnake.owner_name: Wave ELT
-      sfdc.net/pki-namespace: wave-elt
-    labels:
-      madkub-injector: enabled
-    name: wave-elt
-- apiVersion: v1
-  kind: Namespace
-  metadata:
-    annotations:
       sfdc.net/flowsnake.owner_name: Flowsnake
       sfdc.net/pki-namespace: flowsnake_test
     labels:

@@ -17,6 +17,10 @@ local estate = std.extVar("estate");
         #         [...etc]
         #     }
         # },
+
+        # ------------------------------------
+        # ---------- PRD-data fleet ----------
+        # ------------------------------------
         "prd-data-flowsnake": [
             {
                 owner_name: "Wave ELT",
@@ -24,8 +28,32 @@ local estate = std.extVar("estate");
                 pki_namespace: "wave-elt",
                 users: ["wave-elt.datapool", "wave-elt.datapool-test", "flowsnake.lorrin-impersonation-test", "wave-elt.spark-engine"],
             },
+            # Flowsnake adhoc developer testing
+            {
+                owner_name: "Flowsnake",
+                namespace: "flowsnake-test",  # Kubernetes namespaces cannot contain '_' characters
+                pki_namespace: "flowsnake_test",
+                users: ["flowsnake_test.lorrin.nelson"],
+            },
         ],
+
+        # ------------------------------------
+        # ---------- PRD-test fleet ----------
+        # ------------------------------------
         "prd-data-flowsnake_test": [
+            # Flowsnake adhoc developer testing
+            {
+                owner_name: "Flowsnake",
+                namespace: "flowsnake-test",  # Kubernetes namespaces cannot contain '_' characters
+                pki_namespace: "flowsnake_test",
+                users: ["flowsnake_test.lorrin.nelson"],
+            },
+        ],
+
+        # ------------------------------------
+        # ---------- PRD-dev fleet ----------
+        # ------------------------------------
+        "prd-dev-flowsnake_iot_test": [
             # Flowsnake adhoc developer testing
             {
                 owner_name: "Flowsnake",
