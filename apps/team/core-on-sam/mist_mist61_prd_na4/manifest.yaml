@@ -100,7 +100,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na4.app
-      image: sfci/casam/coreapp_config_overrides:241254
+      image: sfci/casam/coreapp_config_overrides:bcad74
       livenessProbe:
         exec:
           command:
@@ -206,7 +206,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1550690282784209920
+        value: 1550690406005168896
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
