@@ -12,6 +12,7 @@ items:
                   "webhook-secret-token-validation": false
               },
               "intake": {
+                  "instance-type": "firefly-templates",
                   "repo-config-map": {
                       "manifests": {
                           "handle-only-latest-commit": true,
@@ -70,7 +71,7 @@ items:
               },
               "rabbitmq": {
                   "exchange-name": "firefly.delivery",
-                  "routing-key-format": "%s-%s.%s"
+                  "routing-key-format": "%s.%s"
               }
           },
           "logging": {
@@ -165,22 +166,22 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-configmap
+    name: firefly-intake-templates-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-intake
+      slb.sfdc.net/name: firefly-intake-templates
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}, {"lbtype": "http",
         "port": 8080, "reencrypt": false, "sticky": 0, "targetPort": 8080, "tls":
         false}, {"lbtype": "http", "port": 8443, "reencrypt": false, "sticky": 0,
         "targetPort": 8080, "tls": true}]'
     labels:
-      app: firefly-intake
+      app: firefly-intake-templates
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-service
+    name: firefly-intake-templates-service
     namespace: firefly
   spec:
     ports:
@@ -197,21 +198,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-intake
+      name: firefly-intake-templates
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-intake
+      name: firefly-intake-templates
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-deployment
+    name: firefly-intake-templates-deployment
     namespace: firefly
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-intake
+        name: firefly-intake-templates
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -233,9 +234,9 @@ items:
                 ]
             }
         labels:
-          name: firefly-intake
+          name: firefly-intake-templates
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-intake-deployment
+        name: firefly-intake-templates-deployment
         namespace: firefly
       spec:
         containers:
@@ -329,7 +330,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-intake
+          name: firefly-intake-templates
           ports:
           - containerPort: 8081
             name: admin-port
@@ -400,7 +401,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-intake-configmap
+                name: firefly-intake-templates-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
