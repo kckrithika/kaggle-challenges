@@ -33,22 +33,13 @@ system:
         containerPort: 7020
       - name: admin-port
         containerPort: 15372
-      resources:
-        limits: { cpu: "1", memory: "8Gi" }
-        requests: { cpu: "1", memory: "8Gi" }
       env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
       - name: JAAS_CONF
         value: /home/sfdc-usmt/krb-config/jaas-prd.conf
       - name: ZK_CHROOT
         value: /search/universal/solr-cloud/cre
-      - name: SERVICE_THREADCOUNT
-        value: 4000
-      - name: CLIENT_MAXCONNPERROUTE
-        value: 4000
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
@@ -66,7 +57,7 @@ system:
         periodSeconds: 120
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
       # HTTP port for exposing to SLB for IoT
       - containerPort: 7012
@@ -75,12 +66,6 @@ system:
         name: sherpa-tls
       - containerPort: 15373
         name: sherpa-adm
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
