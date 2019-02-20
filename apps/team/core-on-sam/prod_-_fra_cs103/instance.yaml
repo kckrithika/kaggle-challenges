@@ -1,4 +1,4 @@
-color: blue
+color: green
 db:
   lockUser: "true"
   sid: CSDB103
@@ -20,6 +20,6 @@ images:
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:6d3761
 name: cs103
-nonce: 1550618594455910000
+nonce: 1550620955875849000
 replicaCount: 5
 settingsSuperPod: sp1
