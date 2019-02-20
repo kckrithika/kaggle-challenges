@@ -104,7 +104,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                       ],
                   }
                   + slbconfigs.getGracePeriod()
-                  + slbconfigs.getDnsPolicy()
+                  + (if !slbflights.useKubeDnsForPortal then slbconfigs.getDnsPolicy() else {})
                   + {
                         affinity: {
                             podAntiAffinity: {
