@@ -28,6 +28,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: kingdom-test
 
+      - name: LOGGING_JSON_STDOUT_LEVEL
+        value: all
       - name: LOGGING_STDERR_LEVEL
         value: ALL
 
@@ -39,21 +41,6 @@ system:
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
         value: mist40,mist47,stmfa
-
-      - name: FLOWSNAKE_DATAPOOL_IMAGE_KIND
-        value: dockerDefaultRegistryImage
-
-      - name: FLOWSNAKE_WORKER_COUNT
-        value: 16
-
-      - name: FLOWSNAKE_WORKER_CORE_COUNT
-        value: 12
-
-      - name: FLOWSNAKE_WORKER_MEMORY_GB
-        value: 64
-
-      - name: FLOWSNAKE_DATAPOOL_ENVIRONMENT_NAMES
-        value: wave-elt-1,wave-elt-2
 
       volumeMounts:
       - mountPath: /home/datapool/logs
