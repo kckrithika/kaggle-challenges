@@ -31,7 +31,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/sam/hypersam:2602-0417c093b85ccd37fe355a4c840b952c4544d441
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/sam/hypersam:2624-bee71f3d174816e59a880f0e94d79e3479846842
         name: k8s-resource-reporter
         volumeMounts:
         - mountPath: /etc/pki_service
