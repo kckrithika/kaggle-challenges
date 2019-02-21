@@ -1,3 +1,5 @@
+# This app runs with sherpa-envoy getting configs from Switchboard. Note the label "sherpa-injector.service-mesh/inject".
+# Calls shipping-istio running with istio-proxy which is getting configs from Istio Pilot.
 apiVersion: v1
 
 system:
@@ -13,12 +15,12 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
-      - name: JAVA_HEAP_OPTS
-        value: -Xmx256m
-      - name: SCONE_DEPLOYMENT_JVM_OPTIONS
-        value: "-Dscone.service.name=ordering-mixed-mode -Dshipping.dest=shipping-istio.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
       - name: JAVA_OPTS
         value: "-Dscone.service.name=ordering-mixed-mode -Dshipping.dest=shipping-istio.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=5000 -Dmanagement.server.port=15372"
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx256m
+      - name: GRPC_PORT
+        value: 7020
       - name: SCONE_SHIPPING_DEST
         value: shipping-istio.service-mesh.localhost.mesh.force.com:5443
       ports:

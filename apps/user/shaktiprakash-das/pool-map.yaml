@@ -1,8 +1,8 @@
 apps:
-  shipping-istio:
-    - prd/prd-sam
-  ordering-istio:
-    - prd/prd-sam
+#  shipping-istio:
+#    - prd/prd-sam
+#  ordering-istio:
+#    - prd/prd-sam
 
 #  service-mesh-einstein:
 #    - prd/prd-sam
