@@ -14,6 +14,6 @@ else
         namespace: "flowsnake",
     },
     data: {
-        "prometheus.yml": std.toString(import "configs/prometheus-funnel-config.jsonnet"),
+        "prometheus.json": std.toString(import "configs/prometheus-funnel-config.jsonnet"),
     },
 }
