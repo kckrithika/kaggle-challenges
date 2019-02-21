@@ -42,7 +42,7 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: sfci/casam/coreapp:release_216-patch_17497816
+      image: sfci/casam/coreapp:release_216-patch_17496729
       livenessProbe:
         exec:
           command:
@@ -192,7 +192,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1550785437976152064
+        value: 1550789170235776000
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
