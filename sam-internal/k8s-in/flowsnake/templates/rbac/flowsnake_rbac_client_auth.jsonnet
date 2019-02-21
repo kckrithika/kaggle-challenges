@@ -30,13 +30,17 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
 
             }
         ] +
-        std.flattenArrays([[
+        std.flattenArrays([
+        # Helper to work-around auto-deployer limitation of names having to be unique across kinds and namespaces
+        local makeName(name, kind) = name + "-" + client.namespace + "-" + kind;
+        [
         # Per-client: bind their user principal to the all-clients Cluster Role
         {
-            kind: "ClusterRoleBinding",
+            local kind = "ClusterRoleBinding",
+            kind: kind,
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "flowsnake-client-" + client.namespace,
+                name: makeName("flowsnake-client", kind),
                 annotations: {
                     "manifestctl.sam.data.sfdc.net/swagger": "disable",
                 },
@@ -56,10 +60,11 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
         },
         # Per-client: Role for their namespace
         {
-            kind: "Role",
+            local kind = "Role",
+            kind: kind,
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "flowsnake-client",
+                name: makeName("flowsnake-client", kind),
                 namespace: client.namespace,
                 annotations: {
                     "manifestctl.sam.data.sfdc.net/swagger": "disable",
@@ -93,18 +98,20 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
         },
         # Per-client: bind their user principal to their role in their namespace
         {
-            kind: "RoleBinding",
+            local kind = "RoleBinding",
+            kind: kind,
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "flowsnake-client",
+                name: makeName("flowsnake-client", kind),
                 namespace: client.namespace,
                 annotations: {
                     "manifestctl.sam.data.sfdc.net/swagger": "disable",
                 },
             },
             roleRef: {
-                kind: "Role",
-                name: "flowsnake-client",
+                local kind = "Role",
+                kind: kind,
+                name: makeName("flowsnake-client", kind),
                 apiGroup: "rbac.authorization.k8s.io",
             },
             subjects: [
@@ -120,7 +127,8 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
             kind: "ServiceAccount",
             apiVersion: "v1",
             metadata: {
-                name: "spark-driver",
+                # Omit "-ServiceAccount" from name because user-facing and want to be easy to comprehend
+                name: "spark-driver-" + client.namespace,
                 namespace: client.namespace,
             },
             automountServiceAccountToken: true,
@@ -129,31 +137,34 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
             kind: "ServiceAccount",
             apiVersion: "v1",
             metadata: {
-                name: "spark-executor",
+                # Omit "-ServiceAccount" from name because user-facing and want to be easy to comprehend
+                name: "spark-executor-" + client.namespace,
                 namespace: client.namespace,
             },
-            automountServiceAccountToken: false
+            automountServiceAccountToken: true,
         },
         # Per-client: Grant their spark-driver same permissions as client
         {
-            kind: "RoleBinding",
+            local kind = "RoleBinding",
+            kind: kind,
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "spark-driver",
+                name: makeName("spark-driver", kind),
                 namespace: client.namespace,
                 annotations: {
                     "manifestctl.sam.data.sfdc.net/swagger": "disable",
                 },
             },
             roleRef: {
-                kind: "Role",
-                name: "flowsnake-client",
+                local kind = "Role",
+                kind: kind,
+                name: makeName("flowsnake-client", kind),
                 apiGroup: "rbac.authorization.k8s.io",
             },
             subjects: [
                 {
                     kind: "ServiceAccount",
-                    name: "spark-driver",
+                    name: "spark-driver-" + client.namespace,
                     namespace: client.namespace,
                 }
             ]
