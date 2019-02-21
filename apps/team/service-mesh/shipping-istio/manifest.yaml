@@ -1,3 +1,5 @@
+# This app runs with istio-proxy getting configs from Istio Pilot. Note the annotation "sidecar.istio.io/inject".
+# Called by ordering-mixed-mode (sherpa-envoy) and ordering-istio (istio-proxy).
 apiVersion: v1
 
 system:
@@ -79,11 +81,13 @@ system:
       maddogCert:
         type: server
 
-  loadbalancers:
-    - lbname: shipping-istio-lb
-      function: shipping-istio
-      ports:
-        - lbtype: dsr
-          port: 7443
-          targetport: 7443
-          name: grpc-svc
+## Uncomment when SAM starts supporting port names. Delete the internal pipeline app first.
+#
+#  loadbalancers:
+#    - lbname: shipping-istio
+#      function: shipping-istio
+#      ports:
+#        - lbtype: dsr
+#          port: 7443
+#          targetport: 7443
+#          name: grpc-shipping
