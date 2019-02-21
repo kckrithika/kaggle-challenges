@@ -13,9 +13,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
-      - name: JAVA_HEAP_OPTS
-        value: -Xmx256m
-      - name: SCONE_DEPLOYMENT_JVM_OPTIONS
+      - name: JAVA_OPTS
         value: "-Dscone.service.name=shipping-service-envoy-tls -Dmanagement.server.port=15372"
       ports:
       - containerPort: 7020
