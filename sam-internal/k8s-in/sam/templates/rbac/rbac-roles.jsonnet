@@ -28,6 +28,17 @@ local rbac_utils = import "sam_rbac_functions.jsonnet";
         },
         {
           apiGroups: [
+             "*",
+          ],
+          resources: [
+            "pods/exec",
+             ],
+             verbs: [
+               "create",
+             ],
+        },
+        {
+          apiGroups: [
             "*",
           ],
           resources: [
