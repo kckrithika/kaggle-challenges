@@ -6,7 +6,7 @@ system:
       - jason.woods@salesforce.com
 
   functions:
-    - name: qpid-broker-runtime
+    - name: qpid-gcp
       type: stateful-set
       count: 1
       containers:
