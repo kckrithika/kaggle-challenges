@@ -7,6 +7,7 @@ system:
 
   functions:
     - name: qpid-broker-runtime
+      type: stateful-set
       count: 1
       containers:
         - name: qpid-broker-runtime
@@ -38,6 +39,7 @@ system:
           volumeMounts:
             - mountPath: /var/log/qpid
               name: logvol
+      lbname: qpid-broker
 
       volumes:
         - name: logvol
