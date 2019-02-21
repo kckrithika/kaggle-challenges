@@ -12,7 +12,7 @@ if configs.kingdom == "prd" then
   apiVersion: "v1",
   kind: "Service",
   metadata: {
-    name: "istio-ordering",
+    name: "istio-ordering-mixed-istio-to-sherpa",
     namespace: "service-mesh",
   },
   spec: {
@@ -26,8 +26,8 @@ if configs.kingdom == "prd" then
       },
     ],
     selector: {
-      sam_app: "istio-ordering",
-      sam_function: "istio-ordering",
+      sam_app: "istio-ordering-mixed-istio-to-sherpa",
+      sam_function: "istio-ordering-mixed-istio-to-sherpa",
     },
     sessionAffinity: "None",
     type: "NodePort",
