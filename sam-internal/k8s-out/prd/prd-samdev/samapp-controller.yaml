@@ -39,6 +39,8 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 5
         name: samapp-controller
+        ports:
+        - containerPort: 21548
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
