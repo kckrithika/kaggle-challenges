@@ -6,6 +6,7 @@ if configs.estate == "prd-samtwo" then
 {
   local package = packagesvc {
       serviceConf:: super.serviceConf {
+          dindEnabled: false,
           repoName: "templates",
       },
       env:: super.env + [

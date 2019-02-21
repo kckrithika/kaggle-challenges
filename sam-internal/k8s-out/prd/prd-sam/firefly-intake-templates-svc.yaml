@@ -12,6 +12,7 @@ items:
                   "webhook-secret-token-validation": false
               },
               "intake": {
+                  "disable2fa": true,
                   "instance-type": "firefly-templates",
                   "repo-config-map": {
                       "manifests": {

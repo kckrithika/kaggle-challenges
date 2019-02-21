@@ -90,6 +90,7 @@ if firefly_feature_flags.is_firefly_svc_enabled then
       local appConfig = intakeConfig.config("firefly-intake") + {
         firefly+: {
           intake+: {
+            "disable2fa": true,
             "instance-type": "firefly-templates",
           },
           rabbitmq+: {
