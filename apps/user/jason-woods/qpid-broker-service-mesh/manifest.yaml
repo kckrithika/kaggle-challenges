@@ -22,10 +22,10 @@ system:
             - name: HTTP_PORT
               value: 7022
             - name: QPID_JAVA_HEAPSZ
-              value: 16g
+              value: 8g
           resources:
-            limits: { cpu: "24", memory: "32Gi" }
-            requests: { cpu: "24", memory: "32Gi" }
+            limits: { cpu: "8", memory: "16Gi" }
+            requests: { cpu: "8", memory: "16Gi" }
           livenessProbe:
             exec:
               command: ["/bin/true"]
