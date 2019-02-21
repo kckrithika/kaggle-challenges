@@ -27,11 +27,9 @@ system:
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: GRPC_PORT
-        value: 7035
+        value: 7443
       ports:
       - containerPort: 7443
-        name: grpc-proxy
-      - containerPort: 7035
         name: grpc-svc
       - containerPort: 15375
         name: scone-mgmt
@@ -80,3 +78,12 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+
+  loadbalancers:
+    - lbname: shipping-istio-lb
+      function: shipping-istio
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-svc

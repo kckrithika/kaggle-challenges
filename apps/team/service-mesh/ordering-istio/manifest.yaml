@@ -66,3 +66,11 @@ system:
       maddogCert:
         type: server
 
+  loadbalancers:
+    - lbname: ordering-istio-lb
+      function: ordering-istio
+      ports:
+        - lbtype: dsr
+          port: 7036
+          targetport: 7036
+          name: grpc-svc
