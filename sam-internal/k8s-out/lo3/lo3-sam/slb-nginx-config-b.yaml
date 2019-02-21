@@ -1,6 +1,8 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  annotations:
+    autodeployer.sam.data.sfdc.net/maxResourceTime: 50m0s
   labels:
     name: slb-nginx-config-b
   name: slb-nginx-config-b
@@ -20,7 +22,6 @@ spec:
   template:
     metadata:
       annotations:
-        autodeployer.sam.data.sfdc.net/maxResourceTime: 50m0s
         madkub.sam.sfdc.net/allcerts: |-
           {
            "certreqs": [

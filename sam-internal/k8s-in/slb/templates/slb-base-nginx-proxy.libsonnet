@@ -132,9 +132,9 @@ local afterSharedContainers = [
     supportedProxies=[proxyName],
     deleteLimitOverride=deleteLimitOverride
 ) {
-    metadata+: {
-      annotations+: utils.fieldIfNonEmpty("autodeployer.sam.data.sfdc.net/maxResourceTime", maxResourceTime, maxResourceTime)
-    },
+    metadata+: std.prune({
+      annotations+: utils.fieldIfNonEmpty("autodeployer.sam.data.sfdc.net/maxResourceTime", maxResourceTime, maxResourceTime),
+    }),
     spec+: {
       template+: {
         metadata+: {
