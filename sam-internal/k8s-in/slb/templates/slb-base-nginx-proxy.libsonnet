@@ -132,13 +132,15 @@ local afterSharedContainers = [
     supportedProxies=[proxyName],
     deleteLimitOverride=deleteLimitOverride
 ) {
-
+    metadata+: {
+      annotations+: utils.fieldIfNonEmpty("autodeployer.sam.data.sfdc.net/maxResourceTime", maxResourceTime, maxResourceTime)
+    },
     spec+: {
       template+: {
         metadata+: {
           annotations: {
             "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx(madkub.madkubSlbCertsAnnotation(slbconfigs.nginx.certDirs), " "),
-          } + utils.fieldIfNonEmpty("autodeployer.sam.data.sfdc.net/maxResourceTime", maxResourceTime, maxResourceTime),
+          },
         },
         spec+: {
                  volumes+: std.prune(
