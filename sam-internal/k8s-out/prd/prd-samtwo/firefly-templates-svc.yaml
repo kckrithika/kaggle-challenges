@@ -374,21 +374,6 @@ items:
             name: app-config-volume
           - mountPath: /tmp
             name: docker-build-dir
-        - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-dind:238
-          name: dind-daemon
-          securityContext:
-            privileged: true
-          volumeMounts:
-          - mountPath: /var/lib/docker
-            name: docker-graph-storage
-          - mountPath: /tmp
-            name: docker-build-dir
-          - mountPath: /root/.ssh/
-            name: git-ssh-keys
-          - mountPath: /firefly
-            name: firefly-root-dir
-          - mountPath: /customer-certs/
-            name: customer-certs
         initContainers:
         - args:
           - /sam/madkub-client
