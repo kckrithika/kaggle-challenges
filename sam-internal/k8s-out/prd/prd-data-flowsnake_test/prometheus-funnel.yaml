@@ -23,7 +23,7 @@ spec:
       - args:
         - --config.file=/etc/config/prometheus.yml
         - --storage.tsdb.path=/prometheus-storage
-        - --web.external-url=http://localhost/
+        - --web.external-url=https://localhost/
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:16
         livenessProbe:
           httpGet:

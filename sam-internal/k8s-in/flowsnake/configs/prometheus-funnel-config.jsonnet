@@ -6,7 +6,7 @@ local kingdom = std.extVar("kingdom");
       "scrape_interval": "60s"
    },
    "remote_write": {
-      "url": "http://localhost:8000"
+      "url": "https://localhost:8000"
    },
    "scrape_configs": [
       {
@@ -55,7 +55,7 @@ local kingdom = std.extVar("kingdom");
                "target_label": "device"
             }
          ],
-         "scheme": "http",
+         "scheme": "https",
          "scrape_interval": "15s",
          "tls_config": {
             "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
@@ -89,7 +89,7 @@ local kingdom = std.extVar("kingdom");
                "target_label": "device"
             }
          ],
-         "scheme": "http",
+         "scheme": "https",
          "scrape_interval": "60s",
          "tls_config": {
             "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
@@ -144,7 +144,7 @@ local kingdom = std.extVar("kingdom");
                "target_label": "container_role"
             }
          ],
-         "scheme": "http",
+         "scheme": "https",
          "scrape_interval": "60s",
          "tls_config": {
             "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
