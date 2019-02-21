@@ -16,12 +16,12 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
+      - name: GRPC_PORT
+        value: 7020
       - name: JAVA_OPTS
         value: "-Dscone.service.name=istio-ordering-mixed-sherpa-to-istio -Dshipping.dest=istio-shipping-mixed-sherpa-to-istio.service-mesh.localhost.mesh.force.com:5443 -Dmanagement.server.port=15372"
       - name: JAVA_HEAP_OPTS
         value: -Xmx256m
-      - name: GRPC_PORT
-        value: 7020
       - name: SCONE_SHIPPING_DEST
         value: istio-shipping-mixed-sherpa-to-istio.service-mesh.localhost.mesh.force.com:5443
       ports:
