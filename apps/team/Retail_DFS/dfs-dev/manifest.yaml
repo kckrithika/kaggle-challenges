@@ -5,8 +5,6 @@ system:
   functions:
   - name: dfs-dev
     count: 1
-    identity:
-      serviceName: dfs
     volumes:
     - name: logvol
       hostPath:
@@ -31,8 +29,6 @@ system:
         value: stmfa
       - name: LOAD_CC_CERT
         value: true
-      - name: MDS_CANONICALMETADATA_SOURCETENANTKEY
-        value: mds/stmfa/ST0000000000001
       - name: MDS_DESTINATION
         value: metadata-service.retail-mds.localhost.mesh.force.com:5443
       - name: GDOT_USER
@@ -41,6 +37,8 @@ system:
         value: true
       - name: GDOT_BASEPATHOVERRIDE
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+      - name: INCLUDE_ALL_STACK_TRACES
+        value: true
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
@@ -69,7 +67,10 @@ system:
           port: 15372
           scheme: HTTP
     - name: sherpa-dfs
-      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      args:
+      - --server-ca
+      - /server-certs/ca_test/cacerts.pem
       volumeMounts:
         - name: dfs-server-cert
           mountPath: /server-certs
@@ -83,7 +84,6 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
         - containerPort: 7442
-        - containerPort: 7014
         - containerPort: 15373
       livenessProbe:
         exec:
@@ -97,24 +97,22 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 60
         periodSeconds: 120
-#    - name: beacon-dfs
-#      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-#      env:
-#      - name: SFDC_ENVIRONMENT
-#        value: stmfa
-#      resources:
-#        limits: { cpu: "1", memory: "1Gi" }
-#        requests: { cpu: "1", memory: "1Gi" }
-#      args:
-#      - -endpoint
-#      - dfs:DATACENTER:7014
-#      - -endpoint
-#      - retail-dfs/dfs:DATACENTER:7442
-#      livenessProbe:
-#        initialDelaySeconds: 5
-#        exec:
-#          command:
-#            - "/home/scone/is-alive.sh"
+    - name: beacon-dfs
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfa
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+      - -endpoint
+      - retail-dfs/dfs-dev:DATACENTER:7442
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
 
   loadbalancers:
   - lbname: dfs-lbdv
@@ -123,6 +121,6 @@ system:
     slbEnabled: true
     ports:
     - port: 7024
-      targetport: 7022
+      targetport: 7442
     - port: 15374
       targetport: 15372
