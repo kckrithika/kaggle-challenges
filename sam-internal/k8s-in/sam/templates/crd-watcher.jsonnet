@@ -31,8 +31,7 @@ local utils = import "util_functions.jsonnet";
                                 configs.config_volume_mount,
                                 configs.cert_volume_mount,
                             ]),
-                            [if configs.kingdom == "prd" then
-                            "ports"]: [
+                            ports: [
                                     {
                                         containerPort: 21553,
                                     },
