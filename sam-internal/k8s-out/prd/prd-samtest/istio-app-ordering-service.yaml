@@ -7,9 +7,9 @@ spec:
   externalTrafficPolicy: Cluster
   ports:
   - name: grpc-ordering
-    port: 7036
+    port: 7443
     protocol: TCP
-    targetPort: 7036
+    targetPort: 7443
   selector:
     sam_app: ordering-istio
     sam_function: ordering-istio

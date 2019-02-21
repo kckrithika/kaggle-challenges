@@ -20,9 +20,9 @@ if configs.kingdom == "prd" then
     ports: [
       {
         name: "grpc-ordering",
-        port: 7036,
+        port: 7443,
         protocol: "TCP",
-        targetPort: 7036,
+        targetPort: 7443,
       },
     ],
     selector: {
