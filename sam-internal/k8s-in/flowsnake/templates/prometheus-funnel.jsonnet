@@ -38,7 +38,7 @@ configs.deploymentBase("flowsnake") {
             args: [
               "--config.file=/etc/config/prometheus.yml",
               "--storage.tsdb.path=/prometheus-storage",
-              "--web.external-url=http://localhost/",
+              "--web.external-url=https://localhost/",
             ],
             image: flowsnake_images.prometheus_scraper,
             name: "prometheus",
