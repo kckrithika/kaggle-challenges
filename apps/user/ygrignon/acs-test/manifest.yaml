@@ -9,7 +9,7 @@ system:
     containers:
     # PAP container
     - name: pap
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pap:acs-615130521ba46c1c023f8332ca70ce2c4e40d12a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pap:acs-ede8822ec8f357ce8f32aaf42440e990b0f3fbcb
       args:
       - --server.port=7022
       - --logging.json.level=OFF
@@ -79,7 +79,7 @@ system:
     count: 5
     containers:
     - name: pdp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pdp:acs-615130521ba46c1c023f8332ca70ce2c4e40d12a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pdp:acs-ede8822ec8f357ce8f32aaf42440e990b0f3fbcb
       args:
       - --server.port=7022
       - --logging.json.level=OFF
