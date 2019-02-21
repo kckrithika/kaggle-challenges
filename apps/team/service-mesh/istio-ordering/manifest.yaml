@@ -1,45 +1,50 @@
 # This app runs with istio-proxy getting configs from Istio Pilot. Note the annotation "sidecar.istio.io/inject".
-# Called by ordering-mixed-mode (sherpa-envoy) and ordering-istio (istio-proxy).
+# Ordering (istio-proxy) -> Shipping (istio-proxy).
+
 apiVersion: v1
 
 system:
   functions:
-  - name: shipping-istio
+  - name: istio-ordering
     count: 1
     labels:
-      app: shipping-istio
+      app: istio-ordering
       disco_dc: prd
       disco_env: ""
       disco_subenv: ""
       disco_pod: ""
       disco_sp: ""
-      disco_role: shipping-istio
+      disco_role: istio-ordering
     annotations:
       sidecar.istio.io/inject: "true"
     containers:
-    - name: shipping
-      # Shipping App
-      #   https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/shipping/shipping-scone
-      # Shipping Config
-      #   https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/shipping/shipping-scone/src/main/resources/config/application.properties
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:bazel-monorepo
+    - name: ordering
+      # Ordering App
+      #    https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/ordering/ordering-scone
+      # Ordering Config
+      #    https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/ordering/ordering-scone/src/main/resources/config/application.properties
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo
       env:
       - name: SFDC_ENVIRONMENT
         value: istio
+      - name: JAVA_OPTS
+        value: "-Dscone.service.name=istio-ordering -Dshipping.dest=istio-shipping.service-mesh.svc.mesh.sfdc.net:7443 -Dmanagement.server.port=15372"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: GRPC_PORT
         value: 7443
+      - name: SCONE_SHIPPING_DEST
+        value: istio-shipping.service-mesh.svc.mesh.sfdc.net:7443
       ports:
       - containerPort: 7443
         name: grpc-svc
-      - containerPort: 15375
+      - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 15
+        initialDelaySeconds: 120
         httpGet:
           path: /manage/health
-          port: 15375
+          port: 15372
 
     - name: metrics-scraper
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
@@ -55,23 +60,6 @@ system:
         periodSeconds: 30
         timeoutSeconds: 5
 
-      ## Shipping announced here for mixed-mode experiment.
-      ## This announcement matches the Service definition. It will feed disco info into ZK -> Switchboard's Envoy.
-    - name: beacon
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      env:
-        - name: SFDC_ENVIRONMENT
-          value: istio
-      args:
-        - -endpoint
-        - service-mesh/shipping-istio:DATACENTER:7443
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-
     # Volumes used by auto-injected istio-proxy.
     volumes:
     - name: tls-client-cert
@@ -84,10 +72,10 @@ system:
 ## Uncomment when SAM starts supporting port names. Delete the internal pipeline app first.
 #
 #  loadbalancers:
-#    - lbname: shipping-istio
-#      function: shipping-istio
+#    - lbname: istio-ordering
+#      function: istio-ordering
 #      ports:
 #        - lbtype: dsr
 #          port: 7443
 #          targetport: 7443
-#          name: grpc-shipping
+#          name: grpc-ordering

@@ -71,15 +71,28 @@ apps:
     - prd/prd-sam_gater
   shipping-rate-limited:
     - prd/prd-sam_gater
-  
-  shipping-istio:
+
+  # Regular Mode: Istio -> Istio apps
+  istio-ordering:
     - prd/prd-sam_gater
     - prd/prd-samtest
-  ordering-istio:
+  istio-shipping:
     - prd/prd-sam_gater
     - prd/prd-samtest
 
-  ordering-mixed-mode:
+  # Mixed Mode: Sherpa -> Istio apps
+  istio-ordering-mixed-sherpa-to-istio:
+    - prd/prd-sam_gater
+    - prd/prd-samtest
+  istio-shipping-mixed-sherpa-to-istio:
+    - prd/prd-sam_gater
+    - prd/prd-samtest
+
+  # Mixed Mode: Istio -> Sherpa apps
+  istio-ordering-mixed-istio-to-sherpa:
+    - prd/prd-sam_gater
+    - prd/prd-samtest
+  istio-shipping-mixed-istio-to-sherpa:
     - prd/prd-sam_gater
     - prd/prd-samtest
 

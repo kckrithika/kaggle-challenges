@@ -1,19 +1,20 @@
 # This app runs with istio-proxy getting configs from Istio Pilot. Note the annotation "sidecar.istio.io/inject".
-# Calls shipping-istio running with istio-proxy which is getting configs from Istio Pilot.
+# Ordering (istio-proxy) -> Shipping (sherpa-envoy).
+
 apiVersion: v1
 
 system:
   functions:
-  - name: ordering-istio
+  - name: istio-ordering-mixed-istio-to-sherpa
     count: 1
     labels:
-      app: ordering-istio
+      app: istio-ordering-mixed-istio-to-sherpa
       disco_dc: prd
       disco_env: ""
       disco_subenv: ""
       disco_pod: ""
       disco_sp: ""
-      disco_role: ordering-istio
+      disco_role: istio-ordering-mixed-istio-to-sherpa
     annotations:
       sidecar.istio.io/inject: "true"
     containers:
@@ -27,23 +28,23 @@ system:
       - name: SFDC_ENVIRONMENT
         value: istio
       - name: JAVA_OPTS
-        value: "-Dscone.service.name=ordering-istio -Dshipping.dest=shipping-istio.service-mesh.svc.mesh.sfdc.net:7443 -Dmanagement.server.port=15374"
+        value: "-Dscone.service.name=istio-ordering-mixed-istio-to-sherpa -Dshipping.dest=istio-shipping-mixed-istio-to-sherpa.service-mesh.svc.mesh.sfdc.net:7443 -Dmanagement.server.port=15372"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: GRPC_PORT
         value: 7443
       - name: SCONE_SHIPPING_DEST
-        value: shipping-istio.service-mesh.svc.mesh.sfdc.net:7443
+        value: istio-shipping-mixed-istio-to-sherpa.service-mesh.svc.mesh.sfdc.net:7443
       ports:
       - containerPort: 7443
         name: grpc-svc
-      - containerPort: 15374
+      - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
           path: /manage/health
-          port: 15374
+          port: 15372
 
     - name: metrics-scraper
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
@@ -71,8 +72,8 @@ system:
 ## Uncomment when SAM starts supporting port names. Delete the internal pipeline app first.
 #
 #  loadbalancers:
-#    - lbname: ordering-istio
-#      function: ordering-istio
+#    - lbname: istio-ordering-mixed-istio-to-sherpa
+#      function: istio-ordering-mixed-istio-to-sherpa
 #      ports:
 #        - lbtype: dsr
 #          port: 7443
