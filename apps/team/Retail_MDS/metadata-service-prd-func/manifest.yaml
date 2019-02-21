@@ -88,7 +88,7 @@ system:
       - -endpoint
       - retail-mds/metadata-service:DATACENTER:7443
       - -endpoint
-      - retail-mds/metadata-service-prd:DATACENTER:7443:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net:9093
+      - retail-mds/metadata-service-prd:DATACENTER:7443:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
@@ -129,5 +129,5 @@ system:
     ports:
     - port: 9091
       targetport: 9091
-    - port: 9093
+    - port: 7443
       targetport: 7443
