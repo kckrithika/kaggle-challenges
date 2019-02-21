@@ -36,7 +36,7 @@ configs.deploymentBase("flowsnake") {
         containers: [
           {
             args: [
-              "--config.file=/etc/config/prometheus.yml",
+              "--config.file=/etc/config/prometheus.json",
               "--storage.tsdb.path=/prometheus-storage",
               "--web.external-url=https://localhost/",
             ],
