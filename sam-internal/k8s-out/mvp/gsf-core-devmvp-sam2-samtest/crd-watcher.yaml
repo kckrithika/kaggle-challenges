@@ -47,6 +47,8 @@ spec:
           initialDelaySeconds: 60
           periodSeconds: 30
         name: temp-crd-watcher
+        ports:
+        - containerPort: 21553
         volumeMounts:
         - mountPath: /config
           name: config
