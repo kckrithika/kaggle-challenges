@@ -66,6 +66,7 @@ gpg --yes --batch --passphrase=$(md5sum /root/.ssh/id_rsa | cut -f1 -d" ") ./tok
 #  2)for MANIFESTCTL, it is reserved in its original form
 $SAMBINDIR/evaluate-pr \
 --ghe-token-file ./token.txt \
+--self-authorize-dirs=xrd,prd,mvp \
 -authorizer $STAGE_GO_TRIGGER_USER \
 -orig-dir /tmp/manifests \
 -dir-with-changes $PWD \
