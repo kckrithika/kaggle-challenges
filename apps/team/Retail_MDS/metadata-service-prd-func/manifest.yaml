@@ -87,6 +87,8 @@ system:
       args:
       - -endpoint
       - retail-mds/metadata-service:DATACENTER:7443
+      - -endpoint
+      - retail-mds/metadata-service-prd:DATACENTER:7443:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net:9093
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
