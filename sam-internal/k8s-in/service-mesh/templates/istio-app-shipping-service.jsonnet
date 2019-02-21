@@ -12,7 +12,7 @@ if configs.kingdom == "prd" then
   apiVersion: "v1",
   kind: "Service",
   metadata: {
-    name: "shipping-istio",
+    name: "istio-shipping",
     namespace: "service-mesh",
   },
   spec: {
@@ -26,8 +26,8 @@ if configs.kingdom == "prd" then
       },
     ],
     selector: {
-      sam_app: "shipping-istio",
-      sam_function: "shipping-istio",
+      sam_app: "istio-shipping",
+      sam_function: "istio-shipping",
     },
     sessionAffinity: "None",
     type: "NodePort",
