@@ -50,6 +50,9 @@ system:
             exec:
               command:
                 - "/home/scone/is-alive.sh"
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
 
         - name: sherpa
           # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
@@ -62,6 +65,9 @@ system:
             name: http1-tls-in
           - containerPort: 4000
             name: tcp-in
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
           livenessProbe:
             exec:
               command:
@@ -80,6 +86,8 @@ system:
             mountPath: /client-certs
           - name: sherpaservercert
             mountPath: /server-certs
+          - name: sherpa-log-volume
+            mountPath: /log
 
       lbname: qpid-lb-jason-woods-service-mesh
 
@@ -93,3 +101,6 @@ system:
         - name: sherpaservercert
           maddogCert:
             type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
