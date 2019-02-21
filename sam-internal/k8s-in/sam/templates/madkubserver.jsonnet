@@ -7,9 +7,10 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
     metadata+: {
         name: "madkubserver",
         namespace: "sam-system",
-    },
+    }
+    + (if utils.is_pcn(configs.kingdom) then { labels: {} + configs.pcnEnableLabel } else {}),
     spec+: {
-        replicas: 3,
+        replicas: if utils.is_pcn(configs.kingdom) then 1 else 3,
         minReadySeconds: 45,
         revisionHistoryLimit: 2,
         template: {
@@ -21,8 +22,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
             spec: {
                 hostNetwork: if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then false else true,
                 nodeSelector: {
-                    master: "true",
-                },
+                } + (if utils.is_pcn(configs.kingdom) then {} else { master: "true" }),
                 containers: [
                     {
                         args: [
@@ -31,13 +31,13 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                             "0.0.0.0:32007",
                             "-d",
                             "--maddog-endpoint",
-                            configs.maddogEndpoint,
+                            if utils.is_pcn(configs.kingdom) then configs.maddogGCPEndpoint else configs.maddogEndpoint,
                             "--kubeconfig",
-                            "/kubeconfig",
+                            if utils.is_pcn(configs.kingdom) then "$(KUBECONFIG)" else "/kubeconfig",
                             "--client-cert",
-                            "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
+                            if utils.is_pcn(configs.kingdom) then "/etc/gcp_certs/tls.crt" else "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
                             "--client-key",
-                            "/etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem",
+                            if utils.is_pcn(configs.kingdom) then "/etc/gcp_certs/tls.key" else "/etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem",
                             "--maddog-server-ca",
                             "/etc/pki_service/ca/security-ca.pem",
                             "--cert-folder",
@@ -47,7 +47,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                             "--service-hostname",
                             "$(MADKUBSERVER_SERVICE_HOST)",
                             "--funnel-endpoint",
-                            "http://" + configs.funnelVIP,
+                            if utils.is_pcn(configs.kingdom) then "" else "http://" + configs.funnelVIP,
                             "--kingdom",
                             configs.kingdom,
                             "--estate",
@@ -58,7 +58,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                                 "--retry-max-elapsed-time",
                                 "20s",
                             ] else [],
-                        image: samimages.madkub,
+                        image: if utils.is_pcn(configs.kingdom) then samimages.static.madkubPCN else samimages.madkub,
                         name: "madkubserver",
                          [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         ports: [
@@ -71,23 +71,9 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                                 mountPath: "/kubeconfig",
                                 name: "kubeconfig",
                             },
-                            {
-                                mountPath: "/data/certs",
-                                name: "kubeconfig-certs",
-                            },
-                            {
-                                mountPath: "/certs",
-                                name: "datacerts",
-                            },
-                            {
-                                mountPath: "/tokens",
-                                name: "tokens",
-                            },
-                            {
-                                mountPath: "/etc/pki_service/",
-                                name: "pki",
-                            },
-                        ]),
+                        ]) + (if !utils.is_pcn(configs.kingdom) then [{ mountPath: "/data/certs", name: "kubeconfig-certs" }, { mountPath: "/certs", name: "datacerts" }] else [])
+                           + [{ mountPath: "/tokens", name: "tokens" }, { mountPath: "/etc/pki_service/", name: "pki" }]
+                           + (if utils.is_pcn(configs.kingdom) then [{ mountPath: "/etc/gcp_certs/", name: "tls" }] else []),
                         livenessProbe: {
                             httpGet: {
                                 path: "/healthz",
@@ -97,7 +83,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                             initialDelaySeconds: 30,
                             periodSeconds: 10,
                         },
-                    },
+                    } + configs.containerInPCN,
                     {
                         name: "madkub-refresher",
                         args: [
@@ -105,7 +91,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                                   "--madkub-endpoint",
                                   "",
                                   "--maddog-endpoint",
-                                  configs.maddogEndpoint,
+                                  if utils.is_pcn(configs.kingdom) then configs.maddogGCPEndpoint else configs.maddogEndpoint,
                                   "--maddog-server-ca",
                                   "/maddog-certs/ca/security-ca.pem",
                                   "--madkub-server-ca",
@@ -116,7 +102,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                                   "--refresher-token-grace-period",
                                   "30s",
                                   "--funnel-endpoint",
-                                  "http://" + configs.funnelVIP,
+                                  if utils.is_pcn(configs.kingdom) then "" else "http://" + configs.funnelVIP,
                                   "--kingdom",
                                   configs.kingdom,
                                   "--ca-folder",
@@ -135,7 +121,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                                   "--cert-folders",
                                   "madkubInternalCert:/certs/",
                               ]),
-                        image: samimages.madkub,
+                        image: if utils.is_pcn(configs.kingdom) then samimages.static.madkubPCN else samimages.madkub,
                         resources: {
                         },
                         volumeMounts: configs.filter_empty([
@@ -188,32 +174,12 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                             path: "/etc/kubernetes/kubeconfig",
                         },
                     },
-                    {
-                        name: "kubeconfig-certs",
-                        hostPath: {
-                            path: "/data/certs",
-                        },
-                    },
-                    {
-                        name: "pki",
-                        hostPath: {
-                            path: "/etc/pki_service",
-                        },
-                    },
-                    {
-                        name: "datacerts",
-                        emptyDir: {
-                            medium: "Memory",
-                        },
-                    },
-                    {
-                        name: "tokens",
-                        emptyDir: {
-                            medium: "Memory",
-                        },
-                    },
-                ]),
-            },
+                ]) + (if !utils.is_pcn(configs.kingdom) then [{ name: "kubeconfig-certs", hostPath: { path: "/data/certs" } }] else [])
+                   + [{ name: "pki", hostPath: { path: "/etc/pki_service" } }]
+                   + [{ name: "datacerts", emptyDir: { medium: "Memory" } }]
+                   + [{ name: "tokens", emptyDir: { medium: "Memory" } }]
+                   + (if utils.is_pcn(configs.kingdom) then [{ name: "tls", secret: { secretName: "madkubserver-cert" } }] else []),
+            } + configs.serviceAccount,
         },
     },
 } else "SKIP"

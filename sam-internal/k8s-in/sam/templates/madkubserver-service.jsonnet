@@ -9,13 +9,12 @@ if samfeatureflags.maddogforsamapps then {
     metadata: {
         labels: {
             service: "madkubserver",
-        } + configs.ownerLabel.sam,
+        } + configs.ownerLabel.sam
+        + configs.pcnEnableLabel,
         name: "madkubserver",
         namespace: "sam-system",
     },
     spec: {
-        # Hardcoding the ClusterIp for now as we dont have DNS/SLB
-        clusterIP: "10.254.208.254",
         ports: [
             {
                 name: "madkubapitls",
@@ -26,7 +25,9 @@ if samfeatureflags.maddogforsamapps then {
         selector: {
             service: "madkubserver",
         },
-    },
+    }
+    # Hardcoding the ClusterIp for now as we dont have DNS/SLB
+    + (if utils.is_pcn(configs.kingdom) then {} else { clusterIP: "10.254.208.254" }),
     status: {
         loadBalancer: {},
     },

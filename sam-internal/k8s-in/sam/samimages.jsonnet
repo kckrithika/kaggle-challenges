@@ -134,6 +134,7 @@ local samreleases = import "samreleases.json";
         kubedns: strata_registry + "/k8s-dns-kube-dns:" + kubedns_image_tag,
         kubednsmasq: strata_registry + "/k8s-dns-dnsmasq-nanny:" + kubedns_image_tag,
         kubednssidecar: strata_registry + "/k8s-dns-sidecar:" + kubedns_image_tag,
+        madkubPCN: "gcr.io/gsf-core-devmvp-sam2/thargrove/madkubserver:1.0.0-0000080-8a8659dd",
     },
 
     # ====== DO NOT EDIT BELOW HERE ======
