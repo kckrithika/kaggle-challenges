@@ -1,24 +1,3 @@
 apps:
-#  shipping-istio:
-#    - prd/prd-sam
-#  ordering-istio:
-#    - prd/prd-sam
-
 #  service-mesh-einstein:
 #    - prd/prd-sam
-
-#  switchboard:
-#    - prd/prd-sam
-#  geoip-tls:
-#    - prd/prd-sam
-# shipping-tls:
-#   - prd/prd-sam
-# ordering-tls:
-#   - prd/prd-sam
-
-# switchboard-envoy-mtls:
-#   - prd/prd-sam
-# shipping-envoy-mtls:
-#   - prd/prd-sam
-# ordering-envoy-mtls:
-#   - prd/prd-sam
