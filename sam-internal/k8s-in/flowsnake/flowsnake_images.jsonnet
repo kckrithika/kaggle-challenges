@@ -48,6 +48,7 @@ local utils = import "util_functions.jsonnet";
                 jdk8_base_tag: "33",
                 madkub_injector_image_tag: "9",
                 spark_operator_image_tag: "9",
+                prometheus_funnel_image_tag: "16",
         },
 
         ### Release Phase minikube
@@ -457,6 +458,9 @@ local utils = import "util_functions.jsonnet";
     kubednssidecar: flowsnakeconfig.strata_registry + "/k8s-dns-sidecar:" + $.per_phase[$.phase].kubedns_image_tag,
     # Used by synthetic-dns-check; possible future use for other config-map-script-based helper-pods
     jdk8_base: flowsnakeconfig.strata_registry + "/sfdc_centos7_jdk8:" + $.per_phase[$.phase].jdk8_base_tag,
+
+    prometheus_scraper: flowsnakeconfig.strata_registry + "/prome_for_k8s:" + $.per_phase[$.phase].prometheus_funnel_image_tag,
+    funnel_writer: flowsnakeconfig.strata_registry + "/funnel_writer:" + $.per_phase[$.phase].prometheus_funnel_image_tag,
 
     # image function logic borrowed from samimages.jsonnet. We currently do not use the override functionality,
     # but benefit from the automatic DC-correct determination of which artifactrepo to use.
