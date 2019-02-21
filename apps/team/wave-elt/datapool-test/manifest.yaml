@@ -7,11 +7,11 @@ system:
   - name: datapool-test
     # Used for PKI:
     identity:
-      serviceName: datapool
+      serviceName: datapool-test
     count: 1
     containers:
     - name: datapool-service-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:spark-on-k8s-9-631af86
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:spark-on-k8s-10-255f89a
       ports:
       - containerPort: 7020
         name: grpc
@@ -41,6 +41,12 @@ system:
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
         value: mist40,mist47,stmfa
+      
+      # Override the normal values to use these test topics: 
+      - name: KAFKA_RECIPE_REQUEST_TOPIC
+        value: sfdc.test.datapool__prd.ajna_local__job_request
+      - name: KAFKA_RECIPE_STATUS_TOPIC
+        value: sfdc.test.datapool__prd.ajna_local__job_status
 
       volumeMounts:
       - mountPath: /home/datapool/logs
