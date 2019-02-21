@@ -7,7 +7,7 @@ system:
   - name: datapool-test
     # Used for PKI:
     identity:
-      serviceName: datapool-test
+      serviceName: datapool-test1
     count: 1
     containers:
     - name: datapool-service-test
