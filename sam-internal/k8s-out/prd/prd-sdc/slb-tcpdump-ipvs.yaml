@@ -2,34 +2,25 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   labels:
-    name: slb-tcpdump
-  name: slb-tcpdump
+    name: slb-tcpdump-ipvs
+  name: slb-tcpdump-ipvs
   namespace: sam-system
 spec:
   selector:
     matchLabels:
       daemonset: "true"
-      name: slb-tcpdump
+      name: slb-tcpdump-ipvs
   template:
     metadata:
       labels:
         daemonset: "true"
-        name: slb-tcpdump
+        name: slb-tcpdump-ipvs
     spec:
       containers:
       - command:
-        - /bin/bash
-        - --timeout=30
-        - --tcpDumpCommand=tcpdump -i eth0
-        - /config/slb-hosts-updater.sh
-        - ops0-artifactrepo2-0-prd.data.sfdc.net
-        - ops0-artifactrepo2-0-prd.prd.r.data.sfdc.net
-        - "60"
-        env:
-        - name: IMMUTABLE_DEPLOYMENTS_ARE_GOOD
-          value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001443-9c651010
-        name: slb-tcpdump
+        - --tcpdump.pollinterval=10m
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2062-f3f2dc9fb6364aaa1b4e173a6a991da5f7880045
+        name: slb-tcpdump-ipvs
         resources:
           limits:
             cpu: "0.5"
@@ -38,8 +29,6 @@ spec:
             cpu: "0.5"
             memory: 300Mi
         volumeMounts:
-        - mountPath: /host-etc
-          name: host-etc-volume
         - mountPath: /config
           name: config
       dnsPolicy: Default
@@ -47,11 +36,8 @@ spec:
         slb-service: slb-ipvs
       terminationGracePeriodSeconds: 5
       volumes:
-      - hostPath:
-          path: /etc
-        name: host-etc-volume
       - configMap:
-          name: slb-tcpdump
+          name: slb-tcpdump-ipvs
         name: config
   updateStrategy:
     rollingUpdate:

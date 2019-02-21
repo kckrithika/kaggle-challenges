@@ -12,7 +12,7 @@ local tcpdumpCommandSet = {
     ],
 };
 
-if slbconfigs.isSlbEstate then {
+if slbconfigs.isSlbEstate && slbflights.slbTCPdumpEnabled then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
