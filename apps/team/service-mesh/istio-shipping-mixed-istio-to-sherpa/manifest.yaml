@@ -8,6 +8,13 @@ system:
   - name: istio-shipping-mixed-istio-to-sherpa
     count: 1
     labels:
+      app: istio-shipping-mixed-istio-to-sherpa
+      disco_dc: prd
+      disco_env: ""
+      disco_subenv: ""
+      disco_pod: ""
+      disco_sp: ""
+      disco_role: istio-shipping-mixed-istio-to-sherpa
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: shipping
