@@ -1359,7 +1359,8 @@
         "wave-elt",
         "solr-service",
         "topology-svc",
-        "qpid"
+        "qpid",
+        "einstein-analytics"
       ],
       "access": [
         "team/CSC_Sam",
@@ -1388,7 +1389,8 @@
         "team/wave-elt",
         "team/solr-service",
         "team/topology_svc",
-        "team/qpid"
+        "team/qpid",
+        "team/einstein-analytics"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-sam",
       "estate": "gsf-core-devmvp-sam2-sam",
