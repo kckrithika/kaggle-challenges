@@ -59,7 +59,7 @@ spec:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2067-99bb3536dfe96c78a4c77f0a4fb5db5d5a85957f
-        name: slb-cleanup-unknownpods
+        name: slb-cleanup-unknownpodscanary
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs

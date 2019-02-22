@@ -395,8 +395,8 @@
             successThreshold: 4,
         },
     },
-    slbUnknownPodCleanup(namespace): {
-        name: "slb-cleanup-unknownpods",
+    slbUnknownPodCleanup(name, namespace): {
+        name: "slb-cleanup-unknownpods" + name,
         image: slbimages.hyperslb,
         command: [
             "/bin/bash",

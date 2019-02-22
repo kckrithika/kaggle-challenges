@@ -37,10 +37,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     },
                 ]),
                 containers: [
-                    slbshared.slbUnknownPodCleanup(""),
+                    slbshared.slbUnknownPodCleanup("", ""),
                     ] + (
                         if slbflights.slbCleanupUnknownPods then
-                    [slbshared.slbUnknownPodCleanup("slb-canary")] else []
+                    [slbshared.slbUnknownPodCleanup("canary", "slb-canary")] else []
                 ),
                 nodeSelector: {
                     master: "true",
