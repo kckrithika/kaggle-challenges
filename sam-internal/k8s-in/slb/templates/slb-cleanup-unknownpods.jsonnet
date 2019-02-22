@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "slbports.jsonnet";
+local slbshared = import "slbsharedservices.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
@@ -36,39 +37,11 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     },
                 ]),
                 containers: [
-                    {
-                        name: "slb-cleanup-unknownpods",
-                        image: slbimages.hyperslb,
-                        command: [
-                            "/bin/bash",
-                            "/sdn/slb-cleanup-stuckpods.sh",
-                        ],
-                        volumeMounts: std.prune([
-                            configs.maddog_cert_volume_mount,
-                            slbconfigs.slb_volume_mount,
-                            slbconfigs.slb_config_volume_mount,
-                            slbconfigs.logs_volume_mount,
-                            configs.cert_volume_mount,
-                            configs.opsadhoc_volume_mount,
-                            configs.kube_config_volume_mount,
-                            {
-                                name: "kubectl",
-                                mountPath: "/usr/bin/kubectl",
-                            },
-                        ]),
-                        env: [
-                            {
-                               name: "NODE_NAME",
-                               valueFrom: {
-                                   fieldRef: {
-                                       fieldPath: "spec.nodeName",
-                                   },
-                               },
-                            },
-                           configs.kube_config_env,
-                        ],
-                    },
-                ],
+                    slbshared.slbUnknownPodCleanup(""),
+                    ] + (
+                        if slbflights.slbCleanupUnknownPods then
+                    [slbshared.slbUnknownPodCleanup("slb-canary")] else []
+                ),
                 nodeSelector: {
                     master: "true",
                 },
