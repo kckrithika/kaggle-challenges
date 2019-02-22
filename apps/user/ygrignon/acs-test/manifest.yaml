@@ -12,7 +12,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pap:acs-a548c7b3d4fde2aa6a01eb581021a5b4de4d04af
       args:
       - --server.port=7022
-      - --cache.server.name=sp-c1
+      - --cache.cluster.name=sp-c1
       - --logging.json.level=OFF
       - --logging.json.stdout.level=ALL
       - --debug
@@ -83,7 +83,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pdp:acs-a548c7b3d4fde2aa6a01eb581021a5b4de4d04af
       args:
       - --server.port=7022
-      - --cache.server.name=sp-c1
+      - --cache.cluster.name=sp-c1
       - --logging.json.level=OFF
       - --logging.json.stdout.level=ALL
       - --debug
@@ -157,13 +157,19 @@ system:
     function: acs-pap
     slbenabled: true
     ports:
-      - port: 7022
-        targetport: 7022
+      - port: 7014
+        targetport: 7014
+        lbtype: tcp
+      - port: 7442
+        targetport: 7442
         lbtype: tcp
   - lbname: acs-pdp-lb
     function: acs-pdp
     slbenabled: true
     ports:
-      - port: 7022
-        targetport: 7022
-        lbtype: tcp    
+      - port: 7014
+        targetport: 7014
+        lbtype: tcp
+      - port: 7442
+        targetport: 7442
+        lbtype: tcp 
