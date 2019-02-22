@@ -39,7 +39,7 @@ configs.deploymentBase("flowsnake") {
             args: [
               "--config.file=/etc/config/prometheus.json",
               "--storage.tsdb.path=/prometheus-storage",
-              "--web.external-url=https://localhost/",
+              "--web.external-url=http://localhost/",
             ],
             image: flowsnake_images.prometheus_scraper,
             name: "prometheus",
@@ -62,7 +62,7 @@ configs.deploymentBase("flowsnake") {
               httpGet: {
                 path: "/metrics",
                 port: 9090,
-                scheme: "HTTPS",
+                scheme: "HTTP",
               },
               initialDelaySeconds: 30,
               periodSeconds: 10,
@@ -70,7 +70,7 @@ configs.deploymentBase("flowsnake") {
           },
           {
             args: [
-              "--service=-flowsnake",
+              "--service=flowsnake",
               "--subservice=container_role,subservice,rob_args_test",
               "--datacenter",
               kingdom,
@@ -95,7 +95,7 @@ configs.deploymentBase("flowsnake") {
               httpGet: {
                 path: "/",
                 port: 8000,
-                scheme: "HTTPS",
+                scheme: "HTTP",
               },
               initialDelaySeconds: 30,
               periodSeconds: 10,

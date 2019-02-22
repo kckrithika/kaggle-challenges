@@ -48,7 +48,7 @@ local utils = import "util_functions.jsonnet";
                 jdk8_base_tag: "33",
                 madkub_injector_image_tag: "9",
                 spark_operator_image_tag: "9",
-                prometheus_funnel_image_tag: "16",
+                prometheus_funnel_image_tag: "17",
         },
 
         ### Release Phase minikube
