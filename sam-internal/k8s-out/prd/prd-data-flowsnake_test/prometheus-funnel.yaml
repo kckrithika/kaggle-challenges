@@ -23,13 +23,13 @@ spec:
       - args:
         - --config.file=/etc/config/prometheus.json
         - --storage.tsdb.path=/prometheus-storage
-        - --web.external-url=https://localhost/
+        - --web.external-url=http://localhost/
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:17
         livenessProbe:
           httpGet:
             path: /metrics
             port: 9090
-            scheme: HTTPS
+            scheme: HTTP
           initialDelaySeconds: 30
           periodSeconds: 10
         name: prometheus
@@ -53,7 +53,7 @@ spec:
           httpGet:
             path: /
             port: 8000
-            scheme: HTTPS
+            scheme: HTTP
           initialDelaySeconds: 30
           periodSeconds: 10
         name: funnel-writer
