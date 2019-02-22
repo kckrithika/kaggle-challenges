@@ -42,10 +42,12 @@ system:
               name: logvol
               
         - name: beacon-qpid
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/beacon:5caac08
           args:
+            - -endpoint
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1
             - -endpoint 
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:7442
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1_TLS
             - -endpoint
             - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:4000
           livenessProbe:
@@ -67,6 +69,8 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
+          - containerPort: 7014
+            name: http1-in
           - containerPort: 7442
             name: http1-tls-in
           - containerPort: 4000
