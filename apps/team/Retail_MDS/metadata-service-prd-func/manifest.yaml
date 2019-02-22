@@ -2,14 +2,13 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - vivanov@salesforce.com
-    - robert.snell@salesforce.com
+    - metadataservice@salesforce.com
   functions:
   - name: metadata-service
     count: 2
     containers:
     - name: metadata-service
-      image: docker-sfci-dev/sfci/metadata-cannon/metadata-service:0.7.18
+      image: docker-sfci-dev/sfci/metadata-cannon/metadata-service:0.7.24
       ports:
       - containerPort: 9091
       - containerPort: 15523

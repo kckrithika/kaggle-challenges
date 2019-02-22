@@ -7,10 +7,10 @@ system:
   - name: metadata-service-prd-perf
     identity:
       serviceName: metadata-service
-    count: 2
+    count: 4
     containers:
     - name: metadata-service
-      image: docker-sfci-dev/sfci/metadata-cannon/metadata-service:0.7.18
+      image: docker-sfci-dev/sfci/metadata-cannon/metadata-service:0.7.24
       ports:
       - containerPort: 9091
       - containerPort: 15523
