@@ -5,7 +5,7 @@ system:
     email:
       - jason.woods@salesforce.com
   functions:
-    - name: qpid-broker-prd
+    - name: prd-qpid-broker
       type: stateful-set
       count: 3
       containers:
@@ -94,7 +94,7 @@ system:
           - name: sherpa-log-volume
             mountPath: /log
 
-      lbname: qpid-broker-prd-lb-jason-woods
+      lbname: prd-qpid-broker-lb-jason-woods
 
       volumes:
         - name: logvol
