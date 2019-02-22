@@ -15,7 +15,7 @@
       "image_check_replacement_host": "ops0-artifactrepo2-0-prd.data.sfdc.net"
     },
     {
-      "match": "^(dva|tnrp|docker-all|sfci)",
+      "match": "^(dva|tnrp|docker-all|docker-dva-rc|docker-sfci-dev|sfci)",
       "image_check_replacement_host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
       "is_short_form": true
     },
