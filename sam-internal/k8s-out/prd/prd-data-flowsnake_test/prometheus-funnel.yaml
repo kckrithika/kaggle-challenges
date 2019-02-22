@@ -63,6 +63,7 @@ spec:
         - mountPath: /prometheus-storage
           name: prometheus-storage-volume
       restartPolicy: Always
+      serviceAccountName: prometheus-scraper
       volumes:
       - configMap:
           name: prometheus-server-conf
