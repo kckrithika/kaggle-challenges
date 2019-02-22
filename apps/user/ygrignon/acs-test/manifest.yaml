@@ -9,7 +9,7 @@ system:
     containers:
     # PAP container
     - name: pap
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pap:acs-a548c7b3d4fde2aa6a01eb581021a5b4de4d04afs
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pap:acs-a548c7b3d4fde2aa6a01eb581021a5b4de4d04af
       args:
       - --server.port=7022
       - --logging.json.level=OFF
