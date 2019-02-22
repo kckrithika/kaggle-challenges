@@ -20,14 +20,15 @@
      healthport: 12087
      healthpath: "/liveness-probe"
      healthprotocol: http
-- lbname: maureen-grok
-  customlbname: maureen-grok
+- lbname: maureen-acl-test
+  customlbname: maureen-acl-test
   roles:
   - grok
   ports:
   - port: 80
     targetport: 12087
     lbtype: http
+    allow: 127.0.0.1
 - lbname: test-header-sam
   customlbname: test-headers-sam
   servers:
