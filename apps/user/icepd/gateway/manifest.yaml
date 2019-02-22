@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: gateway
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/phinguyen/icegateway-test:1.91
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/phinguyen/icegateway-test:1.92
       livenessProbe:
         httpGet:
           path: /manage/health
