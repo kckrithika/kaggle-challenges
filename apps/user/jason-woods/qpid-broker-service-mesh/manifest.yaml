@@ -43,7 +43,6 @@ system:
               
         - name: beacon
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-          command: ["/bin/sh"]
           args:
             - -endpoint 
             - samapp/user-jason-woods/${FUNCTION_INSTANCE_NAME}:POD:7442
