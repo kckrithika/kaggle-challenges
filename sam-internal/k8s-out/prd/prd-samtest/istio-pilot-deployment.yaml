@@ -68,6 +68,8 @@ spec:
         - :15011
         - --appNamespace
         - service-mesh
+        - --log_output_level
+        - debug
         env:
         - name: POD_NAME
           valueFrom:
