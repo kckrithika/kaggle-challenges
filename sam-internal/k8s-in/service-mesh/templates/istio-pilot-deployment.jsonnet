@@ -44,6 +44,8 @@ configs.deploymentBase("mesh-control-plane") {
               ":15011",
               "--appNamespace",
               "service-mesh",
+              "--log_output_level",
+              "debug"
             ],
             ports: [
               {
