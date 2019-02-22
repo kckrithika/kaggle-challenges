@@ -206,7 +206,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1550853450868973056
+        value: 1550857484625233920
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -263,7 +263,7 @@ system:
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 360000
-      image: sfci/casam/sequencer:6d3761
+      image: sfci/casam/sequencer:aac97f
       livenessProbe:
         exec:
           command:
