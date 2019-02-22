@@ -967,6 +967,16 @@ data:
         {
           "name": "Bad-Customer-Deployments-V2",
           "sql": "Select\n  appName,\n  namespace,\n  controlEstate,\n  overallStatus,\n  samappMsg as error,\n  bundleStatus as detailedStatus\n  from crd_status_view\n  where overallStatus != 'success'\n "
+        },
+        {
+          "multisql": [
+            {
+              "name": "Hosts rebooted in last 7 days",
+              "note": "All Hosts rebooted in last 14 days.  Healty indicates if the host is currently healthy.",
+              "sql": "select\n  name,\n  controlEstate,\n  Payload-\u003e\u003e'$.status.details.totalRebootCount' as TotalRebootCount,\n  Payload-\u003e\u003e'$.observation.healthInfo.health' as Healthy,\n  Payload-\u003e\u003e'$.spec.startTime' as LastRebootTime\nfrom k8s_resource\nwhere ApiKind = 'HostRepair' and (TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload-\u003e\u003e'$.spec.startTime','%Y-%m-%dT%H:%i:%s'), NOW())/60.0/24.0)\u003c14\n"
+            }
+          ],
+          "name": "Host Repair"
         }
       ]
     }

@@ -69,6 +69,8 @@
    (import "watchdog-samsql-metrics/sqlresourcecounts.libsonnet"),
    (import "watchdog-samsql-metrics/sqlresbyproduceage.libsonnet"),
    (import "watchdog-samsql-metrics/sqlresagebycluster.libsonnet"),
+   (import "watchdog-samsql-metrics/hostrepairrebootcount.libsonnet"),
+   (import "watchdog-samsql-metrics/hostrepairlast7days.libsonnet"),
   ],
 
 }
