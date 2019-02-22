@@ -228,7 +228,6 @@ data:
     "alertThreshold": "10m", "instructions": "The following deployments are reported
     as bad customer deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
     "name": "SqlSlaDepl", "sql": "SELECT * FROM\n                        (\n                          SELECT\n                            ControlEstate,\n                            Namespace,\n                            Name,\n                            JSON_EXTRACT(Payload,
-    ''$.metadata.labels.\"sam.data.sfdc.net/owner\"'') AS ownerlabel,\n                            JSON_EXTRACT(Payload,
     ''$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"'') AS email,\n                            CASE
     WHEN JSON_EXTRACT(Payload, ''$.metadata.labels.sam_app'') is NULL then False\n                                 ELSE
     True END AS IsSamApp,\n                            JSON_EXTRACT(Payload, ''$.spec.replicas'')
@@ -241,17 +240,18 @@ data:
     1, 3),''-sam.csc-sam.prd-sam.prd.slb.sfdc.net/#!/deployment/'',Namespace,''/'',Name,''?namespace='',Namespace)
     AS Url\n                            FROM k8s_resource\n                            WHERE
     ApiKind = ''Deployment''\n                        ) AS ss\n                        WHERE\n                           isSamApp
-    AND ownerlabel = ''sam'' AND\n                           ( Namespace != ''sam-watchdog''
-    AND Namespace != ''sam-system'' AND Namespace != ''csc-sam'' AND Namespace NOT
-    LIKE ''%slb%'' AND Namespace NOT LIKE ''%user%'' \n                           AND
-    Namespace NOT LIKE ''%cloudatlas%'') AND\n                           (availableReplicas
-    != desiredReplicas OR availableReplicas IS NULL) AND\n                           (availability
-    IS NULL OR availability < 0.6) AND\n                           (kpodsDown IS NULL
-    OR kpodsDown >1) AND\n                           NOT ControlEstate LIKE ''prd-%''
-    AND\n                           ControlEstate != ''unknown'' AND\n                           desiredReplicas
-    > 1", "watchdogFrequency": "10m"}, {"alertAction": "email", "alertFrequency":
-    "24h", "alertProfile": "sam", "alertThreshold": "5m", "name": "CustomerAppsWithImagePullErrorsProd",
-    "sql": "select * from podDetailView where \n        JSON_SEARCH(\n          Payload->>''$.status.containerStatuses[*].state.waiting.reason'',
+    AND\n                           ( Namespace != ''sam-watchdog'' AND Namespace
+    != ''sam-system'' AND Namespace != ''csc-sam'' AND Namespace NOT LIKE ''%slb%''
+    AND Namespace NOT LIKE ''%user%'' \n                            AND Namespace
+    NOT LIKE ''%cloudatlas%''  # Follow up work item W-5415695\n                           )
+    AND\n                           (availableReplicas != desiredReplicas OR availableReplicas
+    IS NULL) AND\n                           (availability IS NULL OR availability
+    < 0.6) AND\n                           (kpodsDown IS NULL OR kpodsDown >1) AND\n                           NOT
+    ControlEstate LIKE ''prd-%'' AND\n                           ControlEstate !=
+    ''unknown'' AND\n                           desiredReplicas > 1", "watchdogFrequency":
+    "10m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
+    "alertThreshold": "5m", "name": "CustomerAppsWithImagePullErrorsProd", "sql":
+    "select * from podDetailView where \n        JSON_SEARCH(\n          Payload->>''$.status.containerStatuses[*].state.waiting.reason'',
     ''one'', ''ImagePullBackOff'')\n            is not null \n          AND Kingdom
     != ''prd'' \n          AND Kingdom != ''xrd'' \n          AND IsSamApp = 1;",
     "watchdogFrequency": "1m"}, {"alertAction": "pagerduty", "alertFrequency": "24h",
