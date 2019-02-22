@@ -43,13 +43,8 @@ system:
               
         - name: beacon-qpid
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/beacon:5caac08
-          args:
-            - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1
-            - -endpoint 
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1_TLS
-            - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:4000
+          command: ["/bin/sh"]
+          args: ["-c", "java -jar service.jar -endpoint samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1 -endpoint samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1_TLS -endpoint samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:4000"]
           livenessProbe:
             initialDelaySeconds: 5
             exec:
