@@ -33,6 +33,7 @@ configs.deploymentBase("flowsnake") {
         },
       },
       spec: {
+        serviceAccountName: "prometheus-scraper",
         containers: [
           {
             args: [
