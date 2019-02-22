@@ -15,7 +15,7 @@ system:
         type: client
     containers:
     - name: ordering-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20190222-05abcad
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20190222-55b241e
       ports:
       - containerPort: 7020
       - containerPort: 15372
@@ -23,7 +23,7 @@ system:
       - containerPort: 8080
       env:
       - name: IMAGE_NAME
-        value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20190222-05abcad
+        value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ynagata/ordering-service:ynagata-20190222-55b241e
       - name: MANIFEST_VERSION
         value: v1.8
       - name: SHIPPING_INTERVAL
