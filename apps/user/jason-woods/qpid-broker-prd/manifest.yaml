@@ -42,7 +42,7 @@ system:
               name: logvol
               
         - name: beacon-qpid
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/beacon:5caac08
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/beacon:5caac08
           args:
             - -endpoint
             - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1
