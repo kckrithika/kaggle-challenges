@@ -11,7 +11,7 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: prometheus-scraper
+    name: prometheus-scraper-binding
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole

@@ -21,7 +21,7 @@ else
             kind: "ClusterRoleBinding",
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "prometheus-scraper",
+                name: "prometheus-scraper-binding",
                 annotations: {
                      "manifestctl.sam.data.sfdc.net/swagger": "disable",
                 },
