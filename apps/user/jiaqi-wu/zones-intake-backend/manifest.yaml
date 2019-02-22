@@ -9,7 +9,7 @@ system:
           type: server
     containers:
     - name: zones-intake-backend
-      image: dva-registry.internal.salesforce.com/dva/sds-zonesui-backend:21 # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:test-1 # golang app
       ports:
       - containerPort: 3000
       livenessProbe:
