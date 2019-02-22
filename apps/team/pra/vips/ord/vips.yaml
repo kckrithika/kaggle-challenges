@@ -2,7 +2,6 @@
   customlbname: pra-mariadb-ord
   servers:
   - ops0-praccn1-1-ord.ops.sfdc.net
-  - ops0-praccn2-1-ord.ops.sfdc.net
   ports:
   - port: 3306
     targetport: 3306
@@ -28,20 +27,7 @@
   ports:
   - port: 5000
     targetport: 5000
-    lbtype: http
-    tls: true
-    reencrypt: true
-    healthport: 80
-    healthprotocol: tcp
-- lbname: pra-ccn-1-0-ord
-  customlbname: pra-ccn-1-0-ord
-  servers:
-  - ops0-praccn1-1-ord.ops.sfdc.net
-  - ops0-praccn2-1-ord.ops.sfdc.net
-  ports:
-  - port: 5000
-    targetport: 5000
-    lbtype: http
+    lbtype: tcp
     healthport: 80
     healthprotocol: tcp
 - lbname: pra-keystone-admin-ord
@@ -52,9 +38,7 @@
   ports:
   - port: 35357
     targetport: 35357
-    lbtype: http
-    tls: true
-    reencrypt: true
+    lbtype: tcp
     healthport: 80
     healthprotocol: tcp
 - lbname: pra-glance-api-ord
@@ -65,7 +49,7 @@
   ports:
   - port: 9292
     targetport: 9292
-    lbtype: http
+    lbtype: tcp
     healthport: 80
     healthprotocol: tcp
 - lbname: pra-nova-ord
@@ -76,9 +60,7 @@
   ports:
   - port: 8774
     targetport: 8774
-    lbtype: http
-    tls: true
-    reencrypt: true
+    lbtype: tcp
     healthport: 80
     healthprotocol: tcp
 
