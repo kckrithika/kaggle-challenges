@@ -22,15 +22,9 @@ local samreleases = import "samreleases.json";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        #[pjoshi] Fixing manifest-repo-watcher
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20190206_191653.c5206861.dirty.prahladjos-ltm",
 
         #[xiao]
-        "prd,prd-sam,samapp-controller,hypersam": "sam-0002472-fe691728",
         "frf,frf-sam,samapp-controller,hypersam": "sam-0002472-fe691728",
-
-        #[small] sythetic checker failure fix
-        "prd,prd-samtest,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20190118_133746.5f7caad8.dirty.small-ltm",
 
         #[thargrove] Needed only until Artifactory adds a docker-all alias to docker-gcp in XRD 2-0
         "mvp,gsf-core-devmvp-sam2-sam,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
@@ -45,9 +39,6 @@ local samreleases = import "samreleases.json";
         "mvp,gsf-core-devmvp-sam2-samtest,samapp-controller,hypersam": "2624-bee71f3d174816e59a880f0e94d79e3479846842",
 
          #[raksha] crdwatcher fix for synthetic
-         "prd,prd-samtest,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "prd,prd-samdev,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "prd,prd-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
          "frf,frf-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
          "cdg,cdg-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
          "cdu,cdu-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
@@ -71,9 +62,6 @@ local samreleases = import "samreleases.json";
 
 
          #[raksha] Bundlecontroller fix
-         "prd,prd-samtest,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "prd,prd-samdev,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "prd,prd-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
          "frf,frf-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
          "cdg,cdg-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
          "cdu,cdu-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
