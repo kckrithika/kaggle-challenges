@@ -312,7 +312,7 @@
             "--client.serverInterface=lo",
             "--hostnameOverride=$(NODE_NAME)",
             "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
-        ]
+        ] + slbflights.internalIpRange
         + slbconfigs.getNodeApiClientSocketSettings()
         + [
             slbconfigs.nginx.reloadSentinelParam,
