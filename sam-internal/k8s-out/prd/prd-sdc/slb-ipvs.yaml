@@ -159,6 +159,7 @@ spec:
         - --enableCheckAntiDdos=true
         - --dropEntry=1
         - --dropPacket=1
+        - --iprange.InternalIpRange=10.231.187.0/24,10.254.230.0/23
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2067-99bb3536dfe96c78a4c77f0a4fb5db5d5a85957f

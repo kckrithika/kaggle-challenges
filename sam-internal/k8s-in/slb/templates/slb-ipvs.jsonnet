@@ -202,7 +202,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--enableCheckAntiDdos=true",
                             "--dropEntry=1",
                             "--dropPacket=1",
-                        ]
+                        ] + slbflights.internalIpRange
                         + slbconfigs.getNodeApiClientSocketSettings(),
                         volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,
