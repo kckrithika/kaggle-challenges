@@ -395,4 +395,39 @@
             successThreshold: 4,
         },
     },
+    slbUnknownPodCleanup(namespace): {
+        name: "slb-cleanup-unknownpods",
+        image: slbimages.hyperslb,
+        command: [
+            "/bin/bash",
+            ] + (if namespace != "" then
+                ["/sdn/slb-cleanup-stuckpods.sh " + namespace]
+             else [
+                "/sdn/slb-cleanup-stuckpods.sh",
+        ]),
+        volumeMounts: std.prune([
+            configs.maddog_cert_volume_mount,
+            slbconfigs.slb_volume_mount,
+            slbconfigs.slb_config_volume_mount,
+            slbconfigs.logs_volume_mount,
+            configs.cert_volume_mount,
+            configs.opsadhoc_volume_mount,
+            configs.kube_config_volume_mount,
+            {
+                name: "kubectl",
+                mountPath: "/usr/bin/kubectl",
+            },
+        ]),
+        env: [
+            {
+               name: "NODE_NAME",
+               valueFrom: {
+                   fieldRef: {
+                       fieldPath: "spec.nodeName",
+                   },
+               },
+            },
+           configs.kube_config_env,
+        ],
+    },
 }
