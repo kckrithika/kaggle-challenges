@@ -70,7 +70,7 @@ configs.deploymentBase("flowsnake") {
           },
           {
             args: [
-              "--service=-flowsnake",
+              "--service=flowsnake",
               "--subservice=container_role,subservice,rob_args_test",
               "--datacenter",
               kingdom,
