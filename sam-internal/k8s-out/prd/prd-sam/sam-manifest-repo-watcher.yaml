@@ -26,7 +26,7 @@ spec:
         - --config=/config/sammanifestrepowatcher.json
         - --v=99
         - --alsologtostderr
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20190206_191653.c5206861.dirty.prahladjos-ltm
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2624-bee71f3d174816e59a880f0e94d79e3479846842
         livenessProbe:
           httpGet:
             path: /
