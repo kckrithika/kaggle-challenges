@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:989608078475385161b0cb298bc5534ea47f61c3
+      image: sfci/servicelibs/switchboard:55ee290fa3a3dbf138c337ced872d1db628bdab6
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -51,8 +51,8 @@ system:
           port: 15372
         initialDelaySeconds: 20
         periodSeconds: 14
-        timeoutSeconds: 10
         failureThreshold: 10
+        timeoutSeconds: 10
       readinessProbe:
         httpGet:
           path: /manage/health
