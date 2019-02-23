@@ -50,9 +50,9 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           args:
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:7014
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1_TLS
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:7442
             - -endpoint
             - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:4000
           env:
@@ -83,6 +83,8 @@ system:
             name: http1-tls-in
           - containerPort: 4000
             name: tcp-in
+          - containerPort: 7014
+            name: http1-in
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
