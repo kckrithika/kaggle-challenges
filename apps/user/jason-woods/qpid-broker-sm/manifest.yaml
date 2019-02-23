@@ -5,7 +5,7 @@ system:
     email:
       - jason.woods@salesforce.com
   functions:
-    - name: qpid-broke-prd
+    - name: qpid-broker-sm
       type: stateful-set
       count: 3
       containers:
@@ -44,7 +44,7 @@ system:
         - name: beacon-qpid
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           command: ["/bin/sh"]
-          args: ["-c", "java -jar service.jar -endpoint samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1 -endpoint samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1_TLS -endpoint samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:4000"]
+          args: ["-c", "java -jar service.jar -endpoint samapp/user-jason-woods/${FUNCTION_INSTANCE_NAME}:POD:HTTP1 -endpoint samapp/user-jason-woods/${FUNCTION_INSTANCE_NAME}:POD:HTTP1_TLS -endpoint samapp/user-jason-woods/${FUNCTION_INSTANCE_NAME}:POD:4000"]
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -94,7 +94,7 @@ system:
           - name: sherpa-log-volume
             mountPath: /log
 
-      lbname: qpid-broker-prd-lb-jason-woods
+      lbname: qpid-broker-sm-lb-jason-woods
 
       volumes:
         - name: logvol
