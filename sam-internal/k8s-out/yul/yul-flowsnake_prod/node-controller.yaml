@@ -1,0 +1,66 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: node-controller
+  name: node-controller
+  namespace: flowsnake
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      apptype: control
+      name: node-controller
+  template:
+    metadata:
+      labels:
+        apptype: control
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: NodeController
+        name: node-controller
+    spec:
+      containers:
+      - command:
+        - /sam/node-controller
+        - --funnelEndpoint=ajna0-funnel1-0-yul.data.sfdc.net:80
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: KUBECONFIG
+          value: /etc/kubernetes/kubeconfig-platform
+        image: ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/hypersam:sam-0001970-a296421d
+        name: node-controller
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/kubernetes/kubeconfig-platform
+          name: kubeconfig
+          readOnly: true
+        - mountPath: /etc/pki_service/ca
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+          readOnly: true
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/kubernetes/kubeconfig-platform
+        name: kubeconfig
+      - hostPath:
+          path: /etc/pki_service/ca
+        name: certificate-authority
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/certificates
+        name: client-certificate
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/keys
+        name: client-key

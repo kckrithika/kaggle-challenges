@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper-set
+  namespace: flowsnake
+spec:
+  clusterIP: None
+  ports:
+  - name: zk2181
+    port: 2181
+  - name: zk2888
+    port: 2888
+  - name: zk3888
+    port: 3888
+  selector:
+    app: glok-zk

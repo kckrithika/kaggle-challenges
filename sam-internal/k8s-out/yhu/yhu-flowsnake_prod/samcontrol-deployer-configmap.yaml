@@ -1,0 +1,35 @@
+apiVersion: v1
+data:
+  samcontroldeployer.json: |-
+    {
+      "ca-file": "/etc/pki_service/ca/cabundle.pem",
+      "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "delete-orphans": false,
+      "disable-rollback": true,
+      "disable-security-check": true,
+      "dry-run": false,
+      "email": true,
+      "email-delay": 0,
+      "funnelEndpoint": "ajna0-funnel1-0-yhu.data.sfdc.net:80",
+      "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+      "max-resource-time": 300000000000,
+      "orphan-namespaces": "flowsnake,default,kube-system",
+      "override-control-estate": "/yhu/yhu-sam",
+      "poll-delay": 30000000000,
+      "recipient": "flowsnake@salesforce.com",
+      "resource-cooldown": 15000000000,
+      "resource-progression-timeout": 120000000000,
+      "resources-to-skip": [
+        "_flowsnake-sdn-secret.yaml",
+        "image-promotion.yaml",
+        "sdn-secret.yaml"
+      ],
+      "sender": "flowsnake@salesforce.com",
+      "smtp-server": "ops0-mta2-1-yhu.ops.sfdc.net:25",
+      "tnrp-endpoint": "https://ops0-piperepo1-1-yhu.ops.sfdc.net/tnrp/content_repo/0/archive"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: samcontrol-deployer
+  namespace: sam-system

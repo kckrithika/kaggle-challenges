@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: flowsnake-test-data
+  name: flowsnake-test-data
+  namespace: flowsnake
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flowsnake-test-data
+  template:
+    metadata:
+      labels:
+        app: flowsnake-test-data
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: FlowsnakeTestData
+    spec:
+      containers:
+      - image: ops0-artifactrepo1-0-yul.data.sfdc.net/dva/flowsnake-test-data:681
+        imagePullPolicy: IfNotPresent
+        name: test-data
+        ports:
+        - containerPort: 80
+          name: k80
+      terminationGracePeriodSeconds: 60
