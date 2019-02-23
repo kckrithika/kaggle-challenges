@@ -8,6 +8,9 @@ system:
     - name: qpid-broker-sm
       type: stateful-set
       count: 3
+      identity:
+        pod: devmvp
+        serviceName: qpid-broker
       containers:
         - name: qpid-broker-runtime
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/appscale/qpid-broker-runtime:cbb26c5.1
@@ -23,6 +26,8 @@ system:
               value: 7022
             - name: QPID_JAVA_HEAPSZ
               value: 8g
+            - name: SFDC_ENVIRONMENT
+              value: prd
           resources:
             limits: { cpu: "8", memory: "16Gi" }
             requests: { cpu: "8", memory: "16Gi" }
@@ -43,8 +48,18 @@ system:
               
         - name: beacon-qpid
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-          command: ["/bin/sh"]
-          args: ["-c", "QPID_HOST=$(hostname -s); java -jar service.jar -endpoint samapp/user-jason-woods/${QPID_HOST}:POD:7442 -endpoint samapp/user-jason-woods/${QPID_HOST}:POD:4000"]
+          args:
+            - -endpoint
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1
+            - -endpoint
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:HTTP1_TLS
+            - -endpoint
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:4000
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: prd
+            - name: SFDC_POD
+              value: devmvp
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -71,6 +86,11 @@ system:
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: prd
+            - name: SFDC_POD
+              value: devmvp
           livenessProbe:
             exec:
               command:
