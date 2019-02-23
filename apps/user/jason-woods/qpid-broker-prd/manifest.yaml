@@ -5,7 +5,7 @@ system:
     email:
       - jason.woods@salesforce.com
   functions:
-    - name: qpid-broker-sm
+    - name: qpid-broke-prd
       type: stateful-set
       count: 3
       containers:
@@ -49,7 +49,7 @@ system:
             initialDelaySeconds: 5
             exec:
               command:
-                - "/home/scone/is-alive.sh"
+                - "/bin/true"
           resources:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
@@ -94,7 +94,7 @@ system:
           - name: sherpa-log-volume
             mountPath: /log
 
-      lbname: qpid-broker-sm-lb-jason-woods
+      lbname: qpid-broker-prd-lb-jason-woods
 
       volumes:
         - name: logvol
