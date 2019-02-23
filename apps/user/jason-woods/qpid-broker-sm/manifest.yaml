@@ -5,12 +5,11 @@ system:
     email:
       - jason.woods@salesforce.com
   functions:
-    - name: qpid-broker-prd
+    - name: qpid-broker
       type: stateful-set
       count: 3
       identity:
         pod: devmvp
-        serviceName: qpid-broker
       containers:
         - name: qpid-broker-runtime
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/appscale/qpid-broker-runtime:cbb26c5.1
@@ -27,7 +26,7 @@ system:
             - name: QPID_JAVA_HEAPSZ
               value: 8g
             - name: SFDC_ENVIRONMENT
-              value: prd
+              value: sam 
           resources:
             limits: { cpu: "8", memory: "16Gi" }
             requests: { cpu: "8", memory: "16Gi" }
@@ -50,14 +49,14 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           args:
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:7014
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER:7014
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:7442
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER:7442
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):POD:4000
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER:4000
           env:
             - name: SFDC_ENVIRONMENT
-              value: prd
+              value: sam
             - name: SFDC_POD
               value: devmvp
           livenessProbe:
@@ -90,7 +89,7 @@ system:
             requests: { cpu: "1", memory: "1Gi" }
           env:
             - name: SFDC_ENVIRONMENT
-              value: prd
+              value: sam
             - name: SFDC_POD
               value: devmvp
           livenessProbe:
@@ -114,7 +113,7 @@ system:
           - name: sherpa-log-volume
             mountPath: /log
 
-      lbname: qpid-broker-prd-lb-jason-woods
+      lbname: qpid-broker-lb-jason-woods
 
       volumes:
         - name: logvol
