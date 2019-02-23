@@ -28,8 +28,6 @@
   - port: 80
     targetport: 12087
     lbtype: http
-    allow:
-      - 127.0.0.1/32
 - lbname: test-header-sam
   customlbname: test-headers-sam
   servers:
