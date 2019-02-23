@@ -5,7 +5,7 @@ system:
     email:
       - jason.woods@salesforce.com
   functions:
-    - name: qpid-broker-sm
+    - name: qpid-broker-prd
       type: stateful-set
       count: 3
       identity:
@@ -114,7 +114,7 @@ system:
           - name: sherpa-log-volume
             mountPath: /log
 
-      lbname: qpid-broker-sm-lb-jason-woods
+      lbname: qpid-broker-prd-lb-jason-woods
 
       volumes:
         - name: logvol
