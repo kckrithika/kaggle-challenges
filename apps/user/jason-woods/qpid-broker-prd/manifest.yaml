@@ -8,8 +8,6 @@ system:
     - name: qpid-broker
       type: stateful-set
       count: 3
-      identity:
-        pod: devmvp
       containers:
         - name: qpid-broker-runtime
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/appscale/qpid-broker-runtime:cbb26c5.1
@@ -49,16 +47,14 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           args:
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER:7014
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER_ALLENV:7014
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER:7442
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER_ALLENV:7442
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER:4000
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER_ALLENV:4000
           env:
             - name: SFDC_ENVIRONMENT
               value: sam
-            - name: SFDC_POD
-              value: devmvp
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -90,8 +86,6 @@ system:
           env:
             - name: SFDC_ENVIRONMENT
               value: sam
-            - name: SFDC_POD
-              value: devmvp
           livenessProbe:
             exec:
               command:
