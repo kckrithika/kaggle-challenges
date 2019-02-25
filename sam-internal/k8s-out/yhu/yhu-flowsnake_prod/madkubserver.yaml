@@ -1,0 +1,125 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    service: madkubserver
+  name: madkubserver
+  namespace: flowsnake
+spec:
+  minReadySeconds: 45
+  replicas: 3
+  selector:
+    matchLabels:
+      service: madkubserver
+  template:
+    metadata:
+      labels:
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: MadkubServer
+        service: madkubserver
+    spec:
+      containers:
+      - args:
+        - /sam/madkub-server
+        - --listen
+        - 0.0.0.0:32007
+        - -d
+        - --maddog-endpoint
+        - https://all.pkicontroller.pki.blank.yhu.prod.non-estates.sfdcsd.net:8443
+        - --kubeconfig
+        - /kubeconfig
+        - --client-cert
+        - /etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem
+        - --client-key
+        - /etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem
+        - --maddog-server-ca
+        - /etc/pki_service/ca/security-ca.pem
+        - --cert-folder
+        - /certs/
+        - --token-folder
+        - /tokens/
+        - --service-hostname
+        - $(MADKUBSERVER_SERVICE_HOST)
+        - --kingdom
+        - yhu
+        - --estate
+        - yhu-flowsnake_prod
+        - --funnel-endpoint
+        - http://ajna0-funnel1-0-yhu.data.sfdc.net:80
+        image: ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 32007
+            scheme: HTTPS
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        name: madkubserver
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /certs
+          name: datacerts
+        - mountPath: /tokens
+          name: tokens
+        - mountPath: /etc/pki_service/
+          name: pki
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint
+        - ""
+        - --maddog-endpoint
+        - https://all.pkicontroller.pki.blank.yhu.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca
+        - /maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca
+        - /maddog-certs/ca/cacerts.pem
+        - --token-folder
+        - /tokens/
+        - --refresher
+        - --refresher-token-grace-period
+        - 30s
+        - --kingdom
+        - yhu
+        - --cert-folders
+        - madkubInternalCert:/certs/
+        - --funnel-endpoint
+        - http://ajna0-funnel1-0-yhu.data.sfdc.net:80
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+        name: madkub-refresher
+        volumeMounts:
+        - mountPath: /certs
+          name: datacerts
+        - mountPath: /tokens
+          name: tokens
+        - mountPath: /maddog-certs/
+          name: pki
+      restartPolicy: Always
+      volumes:
+      - emptyDir:
+          medium: Memory
+        name: datacerts
+      - emptyDir:
+          medium: Memory
+        name: tokens
+      - hostPath:
+          path: /etc/kubernetes/kubeconfig
+        name: kubeconfig
+      - hostPath:
+          path: /etc/pki_service
+        name: pki

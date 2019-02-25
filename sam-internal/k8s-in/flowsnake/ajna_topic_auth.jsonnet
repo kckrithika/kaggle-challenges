@@ -183,5 +183,9 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         },
         "ukb/ukb-flowsnake_prod": {
         },
+        "yul/yul-flowsnake_prod": {
+        },
+        "yhu/yhu-flowsnake_prod": {
+        },
     }),
 }
