@@ -6,7 +6,7 @@ system:
       - distributedtracing@salesforce.com
   functions:
   - name: zipkin-test
-    count: 1
+    count: 0
     strategy:
       type: RollingUpdate
       rollingUpdate:
