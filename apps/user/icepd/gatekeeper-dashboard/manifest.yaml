@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: gatekeeper-dashboard
-      image: dva/gateway:3-f9876078544bedeb1b80bd899050b915e1b56a13
+      image: dva/gateway:5-c482672f294b076d8fcd89d52dc691a68a604d56
       livenessProbe:
         httpGet:
           path: /manage/health
