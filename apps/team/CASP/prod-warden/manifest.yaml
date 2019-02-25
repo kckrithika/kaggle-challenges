@@ -28,8 +28,6 @@ system:
         - name: JWT_ENABLED
           value: "true"
         volumeMounts:
-        - mountPath: /opt/warden
-          name: warden-vol
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
         - mountPath: /home/sfdc-casp/pki/client
@@ -42,9 +40,6 @@ system:
             port: 15372
           initialDelaySeconds: 60
       volumes:
-      - name: warden-vol
-        hostPath:
-          path: /home/sfdc-casp/warden
       - name: log-vol
         hostPath:
           path: /home/sfdc-casp/logs
