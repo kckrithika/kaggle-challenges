@@ -18,6 +18,8 @@ system:
         httpGet:
           path: /
           port: 8000
+        initialDelaySeconds: 45
+        periodSeconds: 30
   loadbalancers:
   - lbname: history
     function: history
