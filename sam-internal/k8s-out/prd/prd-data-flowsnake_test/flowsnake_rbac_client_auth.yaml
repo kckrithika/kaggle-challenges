@@ -100,5 +100,91 @@ items:
   - kind: ServiceAccount
     name: spark-driver-flowsnake-test
     namespace: flowsnake-test
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-lorrin-test-ClusterRoleBinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: client-cluster-role
+  subjects:
+  - kind: User
+    name: flowsnake_test.lorrin.nelson
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-lorrin-test-Role
+    namespace: lorrin-test
+  rules:
+  - apiGroups:
+    - '*'
+    resources:
+    - pods
+    - replicationcontrollers
+    - deployments
+    - jobs
+    - replicasets
+    - secrets
+    - configmaps
+    - statefulsets
+    - services
+    - ingresses
+    - persistentvolumes
+    - sparkapplications
+    verbs:
+    - '*'
+  - apiGroups:
+    - '*'
+    resources:
+    - '*'
+    verbs:
+    - get
+    - list
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-lorrin-test-RoleBinding
+    namespace: lorrin-test
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-lorrin-test-Role
+  subjects:
+  - kind: User
+    name: flowsnake_test.lorrin.nelson
+- apiVersion: v1
+  automountServiceAccountToken: true
+  kind: ServiceAccount
+  metadata:
+    name: spark-driver-lorrin-test
+    namespace: lorrin-test
+- apiVersion: v1
+  automountServiceAccountToken: true
+  kind: ServiceAccount
+  metadata:
+    name: spark-executor-lorrin-test
+    namespace: lorrin-test
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: spark-driver-lorrin-test-RoleBinding
+    namespace: lorrin-test
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-lorrin-test-Role
+  subjects:
+  - kind: ServiceAccount
+    name: spark-driver-lorrin-test
+    namespace: lorrin-test
 kind: List
 metadata: {}

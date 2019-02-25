@@ -9,5 +9,14 @@ items:
     labels:
       madkub-injector: enabled
     name: flowsnake-test
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    annotations:
+      sfdc.net/flowsnake.owner_name: Flowsnake
+      sfdc.net/pki-namespace: lorrin-non-existent-pki
+    labels:
+      madkub-injector: enabled
+    name: lorrin-test
 kind: List
 metadata: {}
