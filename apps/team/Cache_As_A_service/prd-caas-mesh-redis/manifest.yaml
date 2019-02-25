@@ -14,7 +14,7 @@ system:
         limits: { memory: "8G" }
         requests: { memory: "8G" }
       args:
-        - --port=12000
+        - --port=12001
         - --maxMemoryMB=4096
         - --noAuth
         - --disableProtectedMode
@@ -23,17 +23,17 @@ system:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12000
+           - --port=12001
            - --noAuth
         initialDelaySeconds: 15
         timeoutSeconds: 10
       ports:
-      - containerPort: 12000
+      - containerPort: 12001
     - name: caas-redis-announcer
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
       - -endpoint
-      - caas/caas-cluster-1:POD:12050
+      - caas/caas-cluster-1:POD:12000
       livenessProbe:
         initialDelaySeconds: 5
         exec:
