@@ -5,8 +5,9 @@ std.prune({
   crdNamespace: "sam-system",
   funnelEndpoint: configs.funnelVIP,
   perEstateRepairPct: 0.001,
+  perEstateRepairFrequency: "30m",
   perKingdomRepairPct: 0.01,
-  conditionStableTime: "60m",
+  conditionStableTime: "35m",
   hostRegexWhitelist: (if configs.estate == "prd-samtest" then [
    ".*samtest.*",
   ] else [

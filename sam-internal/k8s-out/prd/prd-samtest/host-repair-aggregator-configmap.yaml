@@ -4,7 +4,7 @@ data:
     {
       "crdNamespace": "sam-system",
       "crdPollFrequency": "5m",
-      "crdPushFrequency": "10m",
+      "crdPushFrequency": "5m",
       "dbHostname": "mysql-inmem-read.sam-system.prd-sam.prd.slb.sfdc.net",
       "dbPasswordFile": "/var/mysqlPwd/host-repair-agg",
       "dbUsername": "host-repair-agg",
