@@ -69,5 +69,30 @@ local utils = import "util_functions.jsonnet";
         }
 
     ]
+
+    ### Init containers Definitions
+    config_gen_init_container(image_name, template, manifest, output_path):: {
+        local cmdline = if manifest == "" then
+                "-t " + template + " -o " + output_path
+            else
+                "-m " + manifest + " -o " + output_path,
+        command: [
+            "/usr/bin/ruby,
+            "/opt/config-gen/config_gen.rb" + cmdline,
+        ],
+        name: "config-gen",
+        image: image_name,
+        volumeMounts: rsyslogutils.config_gen_volume_mounts(),
+        env: [
+            {
+                name: "BROKER_VIP",
+                value: kafka_vip_from_yaml,
+            },
+            {
+                name: "KAFKA_TOPIC",
+                value: kafka_topic_from_yaml,
+            },
+        ],
+    },
 }
     

@@ -19,31 +19,6 @@ local configs = import "config.jsonnet";
         #   "prd,prd-samtwo,rsyslog,rsyslog": "xxxxx",
 
         },
-    
-    ### Init containers Definitions
-    config_gen_init_container(image_name, template, manifest, output_path):: {
-        local cmdline = if manifest == "" then
-                "-t " + template + " -o " + output_path
-            else
-                "-m " + manifest + " -o " + output_path,
-        command: [
-            "/usr/bin/ruby,
-            "/opt/config-gen/config_gen.rb" + cmdline,
-        ],
-        name: "config-gen",
-        image: image_name,
-        volumeMounts: rsyslogutils.config_gen_volume_mounts(),
-        env: [
-            {
-                name: "BROKER_VIP",
-                value: kafka_vip_from_yaml,
-            },
-            {
-                name: "KAFKA_TOPIC",
-                value: kafka_topic_from_yaml,
-            },
-        ],
-    },
 
     ### Per-phase image tags
     per_phase: {
@@ -77,7 +52,7 @@ local configs = import "config.jsonnet";
   ### Phase kingdom/estate mapping 
   ### rsyslog daemonset only deploys to GKE sam and samtest for now - other stages are TBD
   phase: (
-    if (estate == "gsf-core-devmvp-sam2-sam" || estate == "gsf-core-devmvp-sam2-samtest" || kingdom == "mvp") then
+    if (kingdom == "mvp") then
         "0"
     else if (1 == 2) then
         "1"

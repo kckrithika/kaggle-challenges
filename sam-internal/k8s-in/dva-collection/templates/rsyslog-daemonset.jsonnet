@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local appNamespace = "default";
+local appNamespace = "sam-system";
 local rsyslogimages = import "rsyslogimages.jsonnet";
 local rsyslogutils = import "rsyslogutils.jsonnet";
 
@@ -7,7 +7,7 @@ local config_gen_image = "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dv
 local rsyslog_image = "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:8.38.0alpha1";
 
 local initContainers = [
-    rsyslogimages.config_gen_init_container(
+    rsyslogutils.config_gen_init_container(
         config_gen_image,
         "",
         "/opt/config-gen/manifest.yaml",
@@ -15,7 +15,7 @@ local initContainers = [
     ),
 ];
 
-if configs.kingdom == "mvp" || configs.estate == "gsf-core-devmvp-sam2-sam" || configs.estate == "gsf-core-devmvp-sam2-samtest" then {
+if configs.kingdom == "mvp" then {
     apiVersion: "apps/v1",
     kind: "DaemonSet",
     metadata: {
