@@ -47,11 +47,11 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           args:
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER_ALLENV:7014
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME)-http:DATACENTER_ALLENV:7014
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER_ALLENV:7442
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME)-https:DATACENTER_ALLENV:7442
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER_ALLENV:4000
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME)-amqp:DATACENTER_ALLENV:4000
           env:
             - name: SFDC_ENVIRONMENT
               value: sam
