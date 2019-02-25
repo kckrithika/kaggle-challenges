@@ -36,6 +36,37 @@ items:
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
+              "gcp-syncers": {
+                  "config": {
+                      "thread-name-prefix": "gcp-syncer",
+                      "thread-pool-size": 2
+                  },
+                  "rpm": {
+                      "enable-syncer": true,
+                      "gcs-bucket": "rpm-gcp",
+                      "initial-delay": 5000,
+                      "repo-configs": {
+                          "rpm-gcp": {
+                              "product-name-regex": ".*"
+                          }
+                      },
+                      "sync-rate": 120000
+                  },
+                  "rps": {
+                      "enable-syncer": true,
+                      "gcs-bucket": "rps-spike",
+                      "initial-delay": 5000,
+                      "repo-configs": {
+                          "rps-gcp": {
+                              "product-name-regex": ".*"
+                          }
+                      },
+                      "sync-rate": 60000
+                  }
+              },
+              "gcs": {
+                  "service-account-key": "${gcsUploaderKey#FromSecretService}"
+              },
               "image-promotion-yaml": "image-promotion.yaml",
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
@@ -348,7 +379,7 @@ items:
             value: sam-test-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: sam-test-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:314
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:325
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -808,7 +839,7 @@ items:
             value: sam-test-manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: sam-test-manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:314
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:325
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1224,7 +1255,7 @@ items:
             value: test-manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: sam-test-manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:314
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:325
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
