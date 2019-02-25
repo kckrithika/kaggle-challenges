@@ -4,7 +4,7 @@ system:
       - distributedtracing@salesforce.com
   functions: 
   - name: elasticsearch-test
-    count: 1
+    count: 0
     type: stateful-set
     containers:
     - name: elasticsearch-test
@@ -42,7 +42,7 @@ system:
     lbname: elasticsearch-stateful-lb-test
 
   - name: zipkin-es-curator-test
-    count: 1
+    count: 0
     strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -63,7 +63,7 @@ system:
           periodSeconds: 5
 
   - name: zipkin-es-spark-test
-    count: 1
+    count: 0
     strategy:
         type: RollingUpdate
         rollingUpdate:
