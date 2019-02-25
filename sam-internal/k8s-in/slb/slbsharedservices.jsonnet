@@ -400,11 +400,8 @@
         image: slbimages.hyperslb,
         command: [
             "/bin/bash",
-            ] + (if namespace != "" then
-                ["/sdn/slb-cleanup-stuckpods.sh " + namespace]
-             else [
-                "/sdn/slb-cleanup-stuckpods.sh",
-        ]),
+            "/sdn/slb-cleanup-stuckpods.sh",
+        ] + (if namespace != "" then [namespace] else []),
         volumeMounts: std.prune([
             configs.maddog_cert_volume_mount,
             slbconfigs.slb_volume_mount,
