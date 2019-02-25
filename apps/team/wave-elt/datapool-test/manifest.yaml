@@ -33,7 +33,9 @@ system:
       - name: LOGGING_STDERR_LEVEL
         value: ALL
 
-      # Effectively a passive mode:
+      # A second consumer group, effectively in "passive mode"
+      - name: KAFKA_GROUP_ID
+        value: wave-datapool-test
       - name: HANDLED_ENVIRONMENTS
         value: no-such-env
 
