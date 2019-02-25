@@ -57,7 +57,7 @@ cd -
 
 # This is a temporary work-around while we wait for secret support in Firefly ~2/15.
 # This is a pgp encrypted read-only git token.  We use the md5 of the firefly ssh key to decrypt this at runtime.
-echo "jA0EBwMCyCpWDFbdw0LW0mcBYJJfsj4gQfACngTag7wTZeRBf6JW0wqpssS1o2CpxjqsyfHK24hcVu574jCLY1AnUp9LAING6U4PFvRtih0fdIbOlyysE7y9Q2pQTxeQfugUxc+uKzKd47RTzRB3ycHKvpjoyqwd" | base64 -d > token.txt.gpg
+echo "jA0EBwMCePMTZtkaEHXW0mMBsHBfGssM0kNt8edebupSSPdtUSCrZaXv3u+qxw5lQ67p0SQmMYXxzG+chWx25dVVrzHQCAjcHhWO4d0cQLcmRUIhftd4/LZ+w0rq/BFAmK4MjzJm3om0BZFfrMQZqyUS/8w=" | base64 -d > token.txt.gpg
 gpg --yes --batch --passphrase=$(md5sum /root/.ssh/id_rsa | cut -f1 -d" ") ./token.txt.gpg &> /dev/nul
 
 # For ops0-artifactrepo1-0-gcp and gcr.io in unvalidated-image-prefixes, it is a temp work-around to bypass image existence check during image promotion so that we can unblock customer PCN deployment
