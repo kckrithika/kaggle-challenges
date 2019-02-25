@@ -1,0 +1,97 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: istio-geoip
+    count: 1
+    labels:
+      app: istio-geoip
+      disco_dc: prd
+      disco_env: ""
+      disco_subenv: ""
+      disco_pod: ""
+      disco_sp: ""
+      disco_role: istio-geoip
+    annotations:
+      sidecar.istio.io/inject: "true"
+    containers:
+    - name: geoip-database
+      image: tnrp/ccait/geoip2-database:20170918
+      args:
+        - -d
+      volumeMounts:
+        - mountPath: /database
+          name: maxmind-volume
+      livenessProbe:
+        exec:
+          command:
+            - ls
+            - /database/GeoIP2-City.mmdb
+        initialDelaySeconds: 10
+        periodSeconds: 5
+    - name: geoip
+      image: sfci/services/sfdc-bazel/geoip:51e8676 # monorepo build
+      env:
+      - name: COM_MAXMIND_DATABASE_FILE
+        value: /dw/data/GeoIP2-City.mmdb
+      - name: SFDC_ENVIRONMENT
+        value: istio
+      - name: GRPC_PORT
+        value: 7443
+      - name: JAVA_OPTS
+        value: "-Dscone.service.name=istio-geoip -Dmanagement.server.port=15372"
+      - name: JAVA_HEAP_OPTS
+        value: -Xms1g -Xmx1g
+      resources:
+        limits:
+          cpu: "4"
+          memory: 2Gi
+        requests:
+          cpu: "4"
+          memory: 2Gi
+      ports:
+      - containerPort: 7443
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 15
+        httpGet:
+          path: /manage/health
+          port: 15372
+
+    - name: metrics-scraper
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
+      imagePullPolicy: Always
+      args:
+        - --endpoint
+        - "http://localhost:15000/stats/prometheus"
+      livenessProbe:
+        exec:
+          command:
+            - /bin/true
+        initialDelaySeconds: 5
+        periodSeconds: 30
+        timeoutSeconds: 5
+
+    # Volumes used by auto-injected istio-proxy.
+    volumes:
+    - name: maxmind-volume
+      emptyDir: {}
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+
+## Uncomment when SAM starts supporting port names. Delete the internal pipeline app first.
+#
+#  loadbalancers:
+#    - lbname: istio-geoip
+#      function: istio-geoip
+#      ports:
+#        - lbtype: dsr
+#          port: 7443
+#          targetport: 7443
+#          name: grpc-geoip
