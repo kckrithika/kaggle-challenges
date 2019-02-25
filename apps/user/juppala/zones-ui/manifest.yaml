@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:build-20190225
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:build-20190225-2
       ports:
       - containerPort: 8445
       livenessProbe:
