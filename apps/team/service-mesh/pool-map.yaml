@@ -73,6 +73,9 @@ apps:
     - prd/prd-sam_gater
 
   # Regular Mode: Istio -> Istio apps
+  istio-geoip:
+    - prd/prd-sam_gater
+    - prd/prd-samtest
   istio-ordering:
     - prd/prd-sam_gater
     - prd/prd-samtest
