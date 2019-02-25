@@ -348,7 +348,7 @@ items:
             value: tnrpfirefly-test_sam_manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: tnrpfirefly-test_sam_manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:317
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:325
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -813,7 +813,7 @@ items:
             value: tnrpfirefly-test_sam_manifests.promotion
           - name: LATEST_FILE_QUEUE
             value: tnrpfirefly-test_sam_manifests.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:317
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:325
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1234,7 +1234,7 @@ items:
             value: test_sam_manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: tnrpfirefly-test_sam_manifests.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:317
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:325
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1676,7 +1676,7 @@ items:
             value: test_sam_manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: tnrpfirefly-test_sam_manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:317
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:325
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
