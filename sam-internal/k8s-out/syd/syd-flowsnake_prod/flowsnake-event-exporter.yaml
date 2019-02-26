@@ -1,0 +1,71 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: flowsnake-event-exporter
+  name: flowsnake-event-exporter
+  namespace: flowsnake
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flowsnake-event-exporter
+  template:
+    metadata:
+      labels:
+        app: flowsnake-event-exporter
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: FlowsnakeEventExporter
+        name: flowsnake-event-exporter
+    spec:
+      containers:
+      - env:
+        - name: FLOWSNAKE_FLEET
+          valueFrom:
+            configMapKeyRef:
+              key: name
+              name: fleet-config
+        - name: DOCKER_REGISTRY_URL
+          valueFrom:
+            configMapKeyRef:
+              key: registry
+              name: fleet-config
+        - name: KUBECONFIG
+          valueFrom:
+            configMapKeyRef:
+              key: kubeconfig
+              name: fleet-config
+        - name: DOCKER_STRATA_REGISTRY_URL
+          valueFrom:
+            configMapKeyRef:
+              key: strata_registry
+              name: fleet-config
+        image: ops0-artifactrepo1-0-syd.data.sfdc.net/dva/flowsnake-event-exporter:726
+        imagePullPolicy: IfNotPresent
+        name: flowsnake-event-exporter
+        volumeMounts:
+        - mountPath: /etc/kubernetes/kubeconfig
+          name: kubeconfig
+          readOnly: true
+        - mountPath: /etc/pki_service/ca
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+          readOnly: true
+      volumes:
+      - hostPath:
+          path: /etc/kubernetes/kubeconfig-platform
+        name: kubeconfig
+      - hostPath:
+          path: /etc/pki_service/ca
+        name: certificate-authority
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/certificates
+        name: client-certificate
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/keys
+        name: client-key

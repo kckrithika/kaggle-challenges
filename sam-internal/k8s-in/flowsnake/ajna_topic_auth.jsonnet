@@ -187,5 +187,7 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         },
         "yhu/yhu-flowsnake_prod": {
         },
+        "syd/syd-flowsnake_prod": {
+        },
     }),
 }

@@ -1,0 +1,69 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: snapshoter
+  name: snapshoter
+  namespace: flowsnake
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      apptype: control
+      name: snapshoter
+  template:
+    metadata:
+      labels:
+        apptype: control
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: Snapshoter
+        name: snapshoter
+      namespace: flowsnake
+    spec:
+      containers:
+      - command:
+        - /sam/snapshoter
+        - --config=/config/snapshoter.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --v=4
+        - --alsologtostderr
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/hypersam:sam-0002052-bc0d9ea5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9095
+          initialDelaySeconds: 20
+          periodSeconds: 20
+          timeoutSeconds: 20
+        name: snapshoter
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: snapshoter
+        name: config
