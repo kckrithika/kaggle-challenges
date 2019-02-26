@@ -7,7 +7,7 @@ system:
     count: 2
     containers:
     - name: stateful-hello
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tkuznets/docker-pets:toli
+      image: gcr.io/gsf-core-devmvp-sam2/jy/samapptest:helloworld
       ports:
       - containerPort: 8000
         name: web
@@ -18,6 +18,9 @@ system:
         httpGet:
           path: /
           port: 8000
+      volumeMounts:
+        - name: www
+          mountPath: /var/lib/pd
     lbname: stateful-lb1-pvc
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
