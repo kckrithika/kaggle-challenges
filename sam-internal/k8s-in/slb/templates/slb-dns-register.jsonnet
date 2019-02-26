@@ -64,7 +64,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--client.serverInterface=lo",
                                                        "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
                                                        "--maxDeleteEntries=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
-                                                   ] + slbflights.ssEndpointParam
+                                                   ]
                                                    + slbconfigs.getNodeApiClientSocketSettings(),
                                           volumeMounts: configs.filter_empty([
                                               configs.maddog_cert_volume_mount,
@@ -92,7 +92,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--client.dialSocket=true",
                                                        "--commonoptions.metricsendpoint=" + configs.funnelVIP,
                                                        "--commonoptions.hostname=$(NODE_NAME)",
-                                                     ] + slbflights.ssEndpointParam
+                                                     ]
                                                      + roleBasedSecretArgs,
                                            volumeMounts: configs.filter_empty([
                                                configs.maddog_cert_volume_mount,

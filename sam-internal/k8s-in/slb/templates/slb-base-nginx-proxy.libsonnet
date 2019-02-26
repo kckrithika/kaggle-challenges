@@ -98,7 +98,7 @@ local afterSharedContainers = [
                                    "--log_dir=" + slbconfigs.logsDir,
                                    "--custCertsDir=" + slbconfigs.nginx.customerCertsPath,
                                    configs.sfdchosts_arg,
-                                 ] + slbflights.ssEndpointParam
+                                 ]
                                  + slbconfigs.getNodeApiClientSocketSettings()
                                  + [
                                    slbconfigs.nginx.reloadSentinelParam,
