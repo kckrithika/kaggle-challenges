@@ -21,7 +21,7 @@ system:
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
-        value: -Dgdot.server-url=https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim -Djwt-validation.enablement-per-role.app=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+        value: -Djwt-validation.enablement-per-role.app=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
       resources:
         limits:
           cpu: "4"
@@ -119,7 +119,7 @@ system:
       k4aSecret:
         secretName: mds-gdot-secrets-prd
   loadbalancers:
-  - lbname: metadata-service-prd-func-patch-lb
+  - lbname: metadata-service-func-patch-lb
     function: metadata-service-func-patch
     slbEnabled: true
     ports:
