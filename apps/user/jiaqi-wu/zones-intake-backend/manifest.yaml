@@ -7,9 +7,12 @@ system:
       - name: servercert
         maddogCert:
           type: server
+      - name: clientcert
+        maddogCert:
+          type: client
     containers:
     - name: zones-intake-backend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:test-5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:test-6
       ports:
       - containerPort: 3000
       livenessProbe:
@@ -19,6 +22,8 @@ system:
       volumeMounts:
       - name: servercert
         mountPath: /servercerts
+      - name: clientcert
+        mountPath: /clientcerts
   loadbalancers:
   - lbname: zones-intake-backend-lb
     function: zones-intake-backend
