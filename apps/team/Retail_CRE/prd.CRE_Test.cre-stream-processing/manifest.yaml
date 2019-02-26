@@ -40,7 +40,7 @@ system:
         - name: JVM_ARGS_TEST
           value: "-Xloggc:/opt/cre/$(FUNCTION)/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:HeapDumpPath=/opt/cre/$(FUNCTION)
-                  -XX:+FlightRecorder -XX:+UnlockCommercialFeatures
+                  -XX:+UnlockCommercialFeatures -XX:+FlightRecorder
                   -Dcom.sun.management.jmxremote.port=8898
                   -Dcom.sun.management.jmxremote.rmi.port=8898
                   -Dcom.sun.management.jmxremote.ssl=false
