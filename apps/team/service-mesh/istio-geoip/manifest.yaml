@@ -36,7 +36,7 @@ system:
         value: /dw/data/GeoIP2-City.mmdb
       - name: SFDC_ENVIRONMENT
         value: istio
-      - name: GRPC_PORT
+      - name: GRPC_SERVER_PORT
         value: 7443
       - name: JAVA_OPTS
         value: "-Dscone.service.name=istio-geoip -Dmanagement.server.port=15372"
