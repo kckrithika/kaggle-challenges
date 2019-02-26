@@ -122,7 +122,8 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search-synthetics
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.1.0
+      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.1.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev/athrogmorton/universal-search-synthetics:0.1
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
@@ -140,7 +141,8 @@ system:
         periodSeconds: 900
         failureThreshold: 1
     - name: universal-search-synthetics-cre
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.1.0
+      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.1.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev/athrogmorton/universal-search-synthetics:0.1
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
