@@ -96,6 +96,40 @@ local kingdom = std.extVar("kingdom");
             }
         },
         {
+          "bearer_token_file": "/var/run/secrets/kubernetes.io/serviceaccount/token",
+          "job_name": "prometheus_metrics",
+          "kubernetes_sd_configs": [
+            {
+              "role": "pod",
+               "namespaces": {
+                 "names": [
+                   "flowsnake"
+                 ]
+               },
+            }
+          ],
+          "relabel_configs": [
+            {
+              "action": "keep",
+              "source_labels": [
+                "__meta_kubernetes_pod_label_flowsnakeRole",
+                "__meta_kubernetes_pod_container_name",
+              ],
+               "regex": "PrometheusScraper;prometheus"
+            },
+            {
+              "source_labels": [
+                "__meta_kubernetes_pod_node_name"
+              ],
+              "target_label": "device"
+            }
+          ],
+          "scrape_interval": "60s",
+          "tls_config": {
+            "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+          }
+        },
+        {
             "bearer_token_file": "/var/run/secrets/kubernetes.io/serviceaccount/token",
             "job_name": "fs_metrics",
             "kubernetes_sd_configs": [
