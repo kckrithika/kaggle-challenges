@@ -2783,10 +2783,12 @@
     },
     {
       "namespaces": [
-        "cache-as-a-service-sp2"
+        "cache-as-a-service-sp2",
+        "schema-security-scaling-sp2"
       ],
       "access": [
-        "team/Cache_As_A_service"
+        "team/Cache_As_A_service",
+        "team/Schema_Security_Scaling"
       ],
       "controlEstate": "prd-samtwo",
       "estate": "prd-sp2-sam_caas",
