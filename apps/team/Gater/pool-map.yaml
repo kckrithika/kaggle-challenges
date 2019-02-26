@@ -23,9 +23,9 @@ apps:
   - wax/wax-sam_gater
  gate-manager-2instances:
  gate-manager-3instances:
-  - ph2/ph2-sam_gater
  gate-manager-4instances:
   - cdg/cdg-sam_gater
+  - ph2/ph2-sam_gater
  gate-manager-test:
   - prd/prd-sam_gater
  gate-manager-test-tnrp:
