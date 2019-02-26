@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.6.0-freeze-001.0.release-1.6.c341e9f.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.7.0.0.develop-1.7.3fcf73d.15
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Integration_Performance
@@ -39,18 +39,22 @@ system:
           value: cre-control-plane-ccp-perf.retail-cre.localhost.mesh.force.com:5443
         - name: DUMMY_RESTART_VAR
           value: helloworld1
-        - name: JVM_ARGS
-          value: "-verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
-                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
-                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
-                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
-                  -Xloggc:/opt/cre/cre-sp-ccp-perf/verbosegc_$(FUNCTION_INSTANCE_NAME).log
-                  -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
-                  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-sp-ccp-perf
+        - name: JVM_ARGS_PERF
+          value: "-Xloggc:/opt/cre/$(FUNCTION)/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                  -XX:HeapDumpPath=/opt/cre/$(FUNCTION)
+                  -XX:+UnlockCommercialFeatures -XX:+FlightRecorder
                   -Dcom.sun.management.jmxremote.port=8898
                   -Dcom.sun.management.jmxremote.rmi.port=8898
                   -Dcom.sun.management.jmxremote.ssl=false
-                  -Dcom.sun.management.jmxremote.authenticate=false
+                  -Dcom.sun.management.jmxremote.authenticate=false"
+        - name: JVM_ARGS
+          value: "-verbose:gc -XX:+PrintHeapAtGC
+                  -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                  -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                  -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                  -XX:+PrintStringTableStatistics
+                  -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
+                  -XX:+HeapDumpOnOutOfMemoryError
                   -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 8080
