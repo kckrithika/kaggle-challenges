@@ -22,7 +22,7 @@ system:
         secretName: eventbusajna-ens-v1
     containers:
     - name: qa3s1-event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.7
+      image: sfci/mc-eventing/event-notification:1.0.8
       ports:
       - containerPort: 15372
       env:
