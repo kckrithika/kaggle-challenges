@@ -39,6 +39,12 @@ system:
       - caas/caas-cluster-1:POD:12050
       - -zk
       - 10.168.160.76
+      livenessProbe:
+        exec:
+          command:
+          - pwd
+        initialDelaySeconds: 20
+        periodSeconds: 5
       env:
        - name: SFDC_ENVIRONMENT
          value: mesh
