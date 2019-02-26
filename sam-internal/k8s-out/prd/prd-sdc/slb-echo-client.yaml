@@ -46,7 +46,7 @@ spec:
         - --dataSize=1073741824
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2068-2d5bb20ff9b00af197dd4b5456babab9f81ec07c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2069-cbf3d563236587795fa8a59ef774267f31ecc63a
         name: slb-echo-client
         volumeMounts:
         - mountPath: /host/data/slb/logs/
