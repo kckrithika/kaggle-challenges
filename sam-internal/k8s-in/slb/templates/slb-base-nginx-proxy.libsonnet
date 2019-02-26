@@ -72,12 +72,10 @@
                               "--nginxStatusPublishingAddress=$(POD_IP):9999",
                               "--log_dir=" + slbconfigs.logsDir,
                           ],
-                          volumeMounts: configs.filter_empty([
-                            slbconfigs.slb_volume_mount,
+                          volumeMounts: std.prune([
                             slbconfigs.logs_volume_mount,
                           ]),
                           env: [
-                            slbconfigs.node_name_env,
                             slbconfigs.pod_ip_env,
                          ],
                           readinessProbe: {
