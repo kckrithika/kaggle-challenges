@@ -9,7 +9,7 @@ system:
     - name: stateful-hello
       image: gcr.io/gsf-core-devmvp-sam2/jy/samapptest:helloworld
       ports:
-      - containerPort: 8000
+      - containerPort: 9090
         name: web
       env:
         - name: DUMMYENV
@@ -17,7 +17,7 @@ system:
       livenessProbe:
         httpGet:
           path: /
-          port: 8000
+          port: 9090
       volumeMounts:
         - name: www
           mountPath: /var/lib/pd
