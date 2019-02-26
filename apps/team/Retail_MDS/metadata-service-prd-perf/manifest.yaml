@@ -7,7 +7,7 @@ system:
   - name: metadata-service-prd-perf
     identity:
       serviceName: metadata-service
-    count: 4
+    count: 2
     containers:
     - name: metadata-service
       image: docker-sfci-dev/sfci/metadata-cannon/metadata-service:0.7.24
@@ -22,7 +22,7 @@ system:
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
-        value: -Djwt-validation.enabled=false -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC -Xloggc:/home/sfdc-mds/logs/verbosegc_$(FUNCTION_INSTANCE_NAME).log -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/dfs -Dcom.sun.management.jmxremote.port=8898 -Dcom.sun.management.jmxremote.rmi.port=8898 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+        value: -Dcore.static.schema=true -Djwt-validation.enabled=false -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC -Xloggc:/home/sfdc-mds/logs/verbosegc_$(FUNCTION_INSTANCE_NAME).log -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/dfs -Dcom.sun.management.jmxremote.port=8898 -Dcom.sun.management.jmxremote.rmi.port=8898 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
       resources:
         limits:
           cpu: "4"
