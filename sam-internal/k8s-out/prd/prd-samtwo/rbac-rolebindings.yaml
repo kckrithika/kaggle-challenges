@@ -233,5 +233,67 @@ items:
     name: samcaas2-caasminion3-8-prd.eng.sfdc.net
   - kind: User
     name: samcaas2-caasminion3-9-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: schema-security-scaling-sp2:prd-sp2-sam_caas:rolebinding
+    namespace: schema-security-scaling-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samcaas2-caasminion1-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-3-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-4-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-5-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-6-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-7-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-8-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-3-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-4-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-5-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-6-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-7-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-8-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-9-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-3-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-4-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-5-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-6-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-7-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-8-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-9-prd.eng.sfdc.net
 kind: List
 metadata: {}
