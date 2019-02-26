@@ -32,6 +32,10 @@ system:
       - name: LOGGING_STDERR_LEVEL
         value: ALL
 
+      
+      - name: HANDLED_ENVIRONMENTS
+        value: stmfb,mist40,mist47
+
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
         value: dva/datapool-engine:410-0d47c95fe39a686a78daca24ff56a7723899cba9
 

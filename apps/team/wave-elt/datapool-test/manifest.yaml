@@ -37,7 +37,7 @@ system:
       - name: KAFKA_GROUP_ID
         value: wave-datapool-test
       - name: HANDLED_ENVIRONMENTS
-        value: no-such-env
+        value: stmfa
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
         value: dva/datapool-engine:409-302e14bf9ae4fab2a24098bae3e2df31ea7a1ca7
