@@ -39,11 +39,15 @@ system:
       - name: HANDLED_ENVIRONMENTS
         value: stmfa
 
+      # Turn off the sweeper so we can debug
+      - name: ENABLE_SWEEPER
+        value: false
+
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
-        value: dva/datapool-engine:409-302e14bf9ae4fab2a24098bae3e2df31ea7a1ca7
+        value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-k8s-test-1-itest
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_NEXT
-        value: dva/datapool-engine:jenkins-insights-WaveDataPool-master-15-itest
+        value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-k8s-test-1-itest
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
         value: mist40,mist47,stmfa
