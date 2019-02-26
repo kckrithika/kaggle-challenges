@@ -11,7 +11,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
     enableOnlyRunningStateProxy: (slbimages.hyperslb_build >= 2066),
-    enableNginxAccesslogs: (configs.estate == "prd-sdc"),
+    enableNginxAccesslogs: (slbimages.hyperslb_build >= 2068),
     removeDeprecatedIpvsProcessorFlags: (slbimages.hyperslb_build >= 2066),
     slbCleanupUnknownPods: (slbimages.hyperslb_build >= 2067),
     # This can probably now be removed -- see https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006IJQPIA4/view.
