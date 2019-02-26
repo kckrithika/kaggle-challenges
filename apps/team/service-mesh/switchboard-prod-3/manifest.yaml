@@ -8,19 +8,20 @@ system:
     count: 3
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:672a88484ca6393cb9e06a21b70d0162706cab42
+      image: sfci/servicelibs/switchboard:64805f5110028be3c21bd1f564b72042ae834d2e
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --metrics.maxNumberOfCollectedMetrics=150000
       - --metrics.funnelTimeOut=100000
+      - --healthIndicator.maxThreadCount=1300
       ports:
       - containerPort: 15372
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
-      - name: GRPC_SERVER_PORT
-        value: 7020
+      - name: GRPC_SERVER_BIND_ENDPOINT
+        value: tcp://127.0.0.1:7020
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
@@ -40,7 +41,9 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 20
-        periodSeconds: 5
+        periodSeconds: 14
+        timeoutSeconds: 10
+        failureThreshold: 10
       readinessProbe:
         httpGet:
           path: /manage/health
@@ -48,7 +51,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      image: sfci/servicelibs/sherpa-envoy:1.0.4
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
@@ -94,6 +97,7 @@ system:
       maddogCert:
         type: server
   loadbalancers:
+  # TODO: rename this lb when we start using switchboard SHA 95462e3e28b30f2007fcc1a05588fbf242719794 or newer
   - lbname: switchboard-lb
     nodeExposed: true
     function: switchboard
