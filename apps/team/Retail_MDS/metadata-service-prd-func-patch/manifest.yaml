@@ -1,0 +1,127 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - ascheer@salesforce.com
+    - kanchan.sannidhanam@salesforce.com
+  functions:
+  - name: metadata-service-prd-func-patch
+    count: 1
+    containers:
+    - name: metadata-service
+      image: docker-sfci-dev/sfci/metadata-cannon/metadata-service:0.7.3
+      ports:
+      - containerPort: 9091
+      - containerPort: 15523
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfb
+      - name: SERVER_PORT
+        value: "9091"
+      - name: MANAGEMENT_PORT
+        value: "15523"
+      - name: JVM_ARGS
+        value: -Djwt-validation.enablement-per-role.app=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+      resources:
+        limits:
+          cpu: "4"
+          memory: 3Gi
+        requests:
+          cpu: "4"
+          memory: 3Gi
+      volumeMounts:
+      - mountPath: /client-certs
+        name: mds-client-cert
+      - mountPath: /home/sfdc-mds/logs
+        name: logvol
+      - mountPath: /home/sfdc-mds/secrets
+        name: gdot-secrets-volume
+        readOnly: true
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15523
+        initialDelaySeconds: 60
+        periodSeconds: 60
+        timeoutSeconds: 90
+    - name: sherpa-mds
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      args:
+      - --server-ca
+      - /server-certs/ca_test/cacerts.pem
+      ports:
+      - name: sherpa-h2-tls
+        containerPort: 7443
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfb
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /log
+        name: sherpa-log-volume
+      - mountPath: /client-certs
+        name: mds-client-cert
+      - mountPath: /server-certs
+        name: mds-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - /home/sfdc-sherpa/bin/is-alive
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - /home/sfdc-sherpa/bin/is-ready
+        initialDelaySeconds: 60
+        periodSeconds: 120
+    - name: beacon-mds
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
+      args:
+      - -endpoint
+      - retail-mds/metadata-service:DATACENTER:7443
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfb
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+    volumes:
+    - name: mds-server-cert
+      maddogCert:
+        type: server
+    - name: mds-client-cert
+      maddogCert:
+        type: client
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-mds/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+    - name: gdot-secrets-volume
+      k4aSecret:
+        secretName: mds-gdot-secrets-prd
+  loadbalancers:
+  - lbname: metadata-service-prd-func-patch-lb
+    function: metadata-service-prd-func-patch
+    slbEnabled: true
+    ports:
+    - port: 9093
+      targetport: 9091
