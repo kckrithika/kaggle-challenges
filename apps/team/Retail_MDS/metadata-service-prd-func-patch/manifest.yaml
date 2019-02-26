@@ -119,8 +119,8 @@ system:
       k4aSecret:
         secretName: mds-gdot-secrets-prd
   loadbalancers:
-  - lbname: metadata-service-func-patch-lb
-    function: metadata-service-func-patch
+  - lbname: metadata-service-prd-func-patch-lb
+    function: metadata-service-prd-func-patch
     slbEnabled: true
     ports:
     - port: 9093
