@@ -49,16 +49,24 @@ system:
         requests:
           cpu: "4"
           memory: 2Gi
+      volumeMounts:
+        - mountPath: /dw/data
+          name: maxmind-volume
       ports:
       - containerPort: 7443
         name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 15
         httpGet:
           path: /manage/health
           port: 15372
+        initialDelaySeconds: 130
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 115
 
     - name: metrics-scraper
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
