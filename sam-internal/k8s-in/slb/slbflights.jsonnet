@@ -18,6 +18,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     ssEndpointParam: (if configs.estate == "lo2-sam" || configs.estate == "lo3-sam" then ["--secrets.ssendpoint=secretservice-%s.data.sfdc.net" % [configs.kingdom]] else []),
     useKubeDnsForPortal: (slbimages.phaseNum <= 2),
     internalIpRange: (if slbimages.phaseNum <= 1 then ["--iprange.InternalIpRange=%s" % [slbconfigs.perCluster.internalIpRange[configs.estate]]] else []),
+    conntrackMetrics: (if slbimages.hyperslb_build >= 2069),
 
     # 2019/01/16 - this didn't work as expected so I disabled it (Pablo)
     # See: https://computecloud.slack.com/archives/G340CE86R/p1550291706553800

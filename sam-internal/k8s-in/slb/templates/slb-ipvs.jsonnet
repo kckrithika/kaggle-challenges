@@ -197,13 +197,13 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                             "--client.serverInterface=lo",
-                            "--metricsEndpoint=" + configs.funnelVIP,
                             "--enableAcl=true",
                             "--enableConntrack=false",
                             "--enableCheckAntiDdos=true",
                             "--dropEntry=1",
                             "--dropPacket=1",
                         ] + slbflights.internalIpRange
+                        + (if slbflights.conntrackMetrics then ["--metricsEndpoint=" + configs.funnelVIP,] else [])
                         + slbconfigs.getNodeApiClientSocketSettings(),
                         volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,
