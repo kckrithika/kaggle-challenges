@@ -6,13 +6,13 @@ system:
       - rpragada@salesforce.com
   functions:
   - name: devmvp-caas-test-client-gcp
-    count: 1
+    count: 4
     identity:
       serviceName: caas
       pod: devmvp
     containers:
     - name: caas-test-client
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/caas/caas-load-test:12
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/caas/caas-load-test:13
       resources:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
