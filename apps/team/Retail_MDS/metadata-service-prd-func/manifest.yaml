@@ -85,9 +85,7 @@ system:
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
       - -endpoint
-      - retail-mds/metadata-service:DATACENTER:7443
-      - -endpoint
-      - retail-mds/metadata-service-prd:DATACENTER:7443:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net
+      - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
