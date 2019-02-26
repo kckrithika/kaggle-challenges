@@ -203,7 +203,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--dropEntry=1",
                             "--dropPacket=1",
                         ] + slbflights.internalIpRange
-                        + (if slbflights.conntrackMetrics then ["--metricsEndpoint=" + configs.funnelVIP,] else [])
+                        + (if slbflights.conntrackMetrics then ["--metricsEndpoint=" + configs.funnelVIP] else [])
                         + slbconfigs.getNodeApiClientSocketSettings(),
                         volumeMounts: std.prune([
                             slbconfigs.slb_volume_mount,

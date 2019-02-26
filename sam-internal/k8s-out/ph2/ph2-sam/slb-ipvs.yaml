@@ -157,7 +157,6 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --client.serverPort=12081
         - --client.serverInterface=lo
-        - --metricsEndpoint=ajna0-funnel1-0-ph2.data.sfdc.net:80
         - --enableAcl=true
         - --enableConntrack=false
         - --enableCheckAntiDdos=true
