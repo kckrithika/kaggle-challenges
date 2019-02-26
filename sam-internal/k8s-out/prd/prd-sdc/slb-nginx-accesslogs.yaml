@@ -26,13 +26,14 @@ spec:
       - command:
         - /sdn/slb-nginx-accesslogs
         - --log_dir=/host/data/slb/logs/
-        - --k8sApiServer=http://shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:40000/
         - --httpTimeout=5m
         env:
         - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2071-90e67f4bfc26447a02cf62a63bd13bd05b53af54
         name: slb-nginx-accesslogs
         resources:
@@ -41,6 +42,12 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /etc/pki_service
+          name: maddog-certs
       dnsPolicy: Default
       nodeSelector:
         pool: prd-sdc
@@ -49,3 +56,12 @@ spec:
       - hostPath:
           path: /data/slb/logs/
         name: var-logs-volume
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs

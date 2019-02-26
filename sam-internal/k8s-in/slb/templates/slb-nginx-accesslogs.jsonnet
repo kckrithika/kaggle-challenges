@@ -25,7 +25,10 @@ if slbconfigs.isSlbEstate && slbflights.enableNginxAccesslogs then configs.deplo
             spec: {
                 volumes: std.prune([
                     slbconfigs.logs_volume,
-                ]),
+                    configs.kube_config_volume,
+                    configs.cert_volume,
+                    configs.maddog_cert_volume,
+                    ]),
                 containers: [
                     {
                         name: "slb-nginx-accesslogs",
@@ -33,16 +36,19 @@ if slbconfigs.isSlbEstate && slbflights.enableNginxAccesslogs then configs.deplo
                         command: [
                                      "/sdn/slb-nginx-accesslogs",
                                      "--log_dir=" + slbconfigs.logsDir,
-                                     "--k8sApiServer=" + "http://shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:40000/",
                                      "--httpTimeout=5m",
                                  ],
 
                         volumeMounts: std.prune([
                             slbconfigs.logs_volume_mount,
-                        ]),
+                            configs.kube_config_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            ]),
                         env: [
                             slbconfigs.node_name_env,
-                        ],
+                            configs.kube_config_env,
+                            ],
                         resources: {
                             limits: {
                                 memory: "1Gi",
