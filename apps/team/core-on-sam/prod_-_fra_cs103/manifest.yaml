@@ -27,7 +27,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -35,7 +35,7 @@ system:
       - name: CLUSTER_NAME
         value: cs103
       - name: DEPLOYMENT
-        value: B
+        value: G
       - name: USE_CONFIG_SIDECAR
         value: 1
       - name: CASAM_HOST_NAME
@@ -83,7 +83,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.fra.cs103.app
-      image: sfci/casam/coreapp_config_overrides:bcad74
+      image: sfci/casam/coreapp_config_overrides:d73742
       livenessProbe:
         exec:
           command:
@@ -192,7 +192,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1550859247746321920
+        value: 1551221682919725056
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -204,7 +204,7 @@ system:
       - name: RELEASE_VESION
         value: ""
       - name: RELEASE_TYPE
-        value: PATCH
+        value: MINOR
       - name: MAJOR_RELEASE_NUMBER
         value: 216
       - name: MINOR_RELEASE_NUMBER
@@ -212,27 +212,27 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 5
       - name: DB_SID
         value: CSDB103
       - name: ENABLE_DB_SCHEMA_UPGRADE
-        value: 1
+        value: 0
       - name: SET_DEFAULT_ORACLE_EDITION
-        value: 1
+        value: 0
       - name: OLD_DWARF
         value: sneezy
       - name: KILL_DWARF
-        value: 1
+        value: 0
       - name: LOCK_DWARF
-        value: 1
+        value: 0
       - name: TRIGGER_CAFFEINE
         value: 0
       - name: UNLOCK_DWARF
-        value: 1
+        value: 0
       - name: MADDOG_CLIENT
         value: /certs
       - name: SFPROXY_SETTINGS_PATH
@@ -247,7 +247,7 @@ system:
         value: https://refocus.hk.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 30000
-      image: sfci/casam/sequencer:aac97f
+      image: sfci/casam/sequencer:b1254e
       livenessProbe:
         exec:
           command:
