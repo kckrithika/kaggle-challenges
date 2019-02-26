@@ -89,3 +89,5 @@ apps:
    - mvp/gsf-core-devmvp-sam2-samtest
  gcp-demo-app-cloudstore:
    - mvp/gsf-core-devmvp-sam2-sam
+ gcp-test-app-stateful-pvc:
+   - mvp/gsf-core-devmvp-sam2-sam
