@@ -315,7 +315,7 @@ items:
             value: "23"
           - name: DARKLAUNCH
             value: "true"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:325
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:327
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
