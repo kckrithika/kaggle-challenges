@@ -63,7 +63,33 @@
                             slbconfigs.node_name_env,
                           ],
                         },
-  ],
+  ] + (if slbflights.slbUpstreamReporterEnabled then
+                        [{
+                          name: "slb-upstream-status-reporter",
+                          image: slbimages.hyperslb,
+                          command: [
+                            "/sdn/slb-upstream-status-reporter",
+                              "--nginxStatusMonitorAddress=http://localhost:12080/_slb/health?format=json",
+                              "--nginxStatusPublishingAddress=$(POD_IP):9999",
+                              "--log_dir=" + slbconfigs.logsDir,
+                          ],
+                          volumeMounts: configs.filter_empty([
+                            slbconfigs.slb_volume_mount,
+                            slbconfigs.logs_volume_mount,
+                          ]),
+                          env: [
+                            slbconfigs.node_name_env,
+                            slbconfigs.pod_ip_env,
+                         ],
+                          readinessProbe: {
+                            httpGet: {
+                              path: "/upstreamServerHealth",
+                              port: 9999,
+                            },
+                            initialDelaySeconds: 5,
+                            periodSeconds: 3,
+                          },
+                        }] else []),
 local afterSharedContainers = [
                       {
                         name: "slb-cert-deployer",

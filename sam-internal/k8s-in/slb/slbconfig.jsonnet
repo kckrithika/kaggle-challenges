@@ -451,6 +451,15 @@
         },
     },
 
+    pod_ip_env: {
+        name: "POD_IP",
+        valueFrom: {
+            fieldRef: {
+                fieldPath: "status.podIP",
+            },
+        },
+    },
+
     function_namespace_env: {
         name: "FUNCTION_NAMESPACE",
         valueFrom: {
