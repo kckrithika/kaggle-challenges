@@ -18,7 +18,8 @@ if configs.kingdom == "mvp" then {
     kind: "DaemonSet",
     metadata: {
         name: "rsyslog-daemonset",
-        namespace: appNamespace
+        namespace: appNamespace,
+        labels: {} + configs.pcnEnableLabel
     },
     spec: {
         selector: {
