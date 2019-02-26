@@ -69,7 +69,6 @@
                           image: slbimages.hyperslb,
                           command: [
                             "/sdn/slb-upstream-status-reporter",
-                              "--nginxStatusMonitorAddress=http://localhost:12080/_slb/health?format=json",
                               "--nginxStatusPublishingAddress=$(POD_IP):9999",
                               "--log_dir=" + slbconfigs.logsDir,
                           ],
