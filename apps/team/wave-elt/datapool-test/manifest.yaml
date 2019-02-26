@@ -7,11 +7,11 @@ system:
   - name: datapool-test
     # Used for PKI:
     identity:
-      serviceName: datapool-test1
+      serviceName: datapool
     count: 1
     containers:
     - name: datapool-service-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:spark-on-k8s-10-255f89a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:spark-on-k8s-17-11787af
       ports:
       - containerPort: 7020
         name: grpc
@@ -33,6 +33,12 @@ system:
       - name: LOGGING_STDERR_LEVEL
         value: ALL
 
+      # A second consumer group, effectively in "passive mode"
+      - name: KAFKA_GROUP_ID
+        value: wave-datapool-test
+      - name: HANDLED_ENVIRONMENTS
+        value: no-such-env
+
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
         value: dva/datapool-engine:409-302e14bf9ae4fab2a24098bae3e2df31ea7a1ca7
 
@@ -41,12 +47,6 @@ system:
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
         value: mist40,mist47,stmfa
-      
-      # Override the normal values to use these test topics: 
-      - name: KAFKA_RECIPE_REQUEST_TOPIC
-        value: sfdc.test.datapool__prd.ajna_local__job_request
-      - name: KAFKA_RECIPE_STATUS_TOPIC
-        value: sfdc.test.datapool__prd.ajna_local__job_status
 
       volumeMounts:
       - mountPath: /home/datapool/logs
