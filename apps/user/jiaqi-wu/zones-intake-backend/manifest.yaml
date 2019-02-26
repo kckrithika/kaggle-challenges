@@ -14,11 +14,11 @@ system:
     - name: zones-intake-backend
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:test-6
       ports:
-      - containerPort: 3000
+      - containerPort: 30300
       livenessProbe:
         httpGet:
           path: /zones/v1/roles
-          port: 3000
+          port: 30300
       volumeMounts:
       - name: servercert
         mountPath: /servercerts
@@ -30,6 +30,6 @@ system:
     slbenabled: true
     ports:
       - port: 3000
-        targetport: 3000
+        targetport: 30300
         lbtype: http
         tls: false
