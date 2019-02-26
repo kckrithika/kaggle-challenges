@@ -1,0 +1,25 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: stateful-func-pvc
+    type: stateful-set
+    count: 2
+    containers:
+    - name: stateful-hello
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tkuznets/docker-pets:toli
+      ports:
+      - containerPort: 8000
+        name: web
+      env:
+        - name: DUMMYENV
+          value: "SOMEVALUE"
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
+    lbname: stateful-lb1-pvc
+    terminationGracePeriodSeconds: 33
+    volumeClaimTemplates:
+    - name: www
+      storageSizeRequest: 1Gi
