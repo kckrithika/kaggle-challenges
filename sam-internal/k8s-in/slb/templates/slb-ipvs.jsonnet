@@ -197,6 +197,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                             "--client.serverInterface=lo",
+                            "--metricsEndpoint=" + configs.funnelVIP,
                             "--enableAcl=true",
                             "--enableConntrack=false",
                             "--enableCheckAntiDdos=true",
