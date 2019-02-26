@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
+local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: std.thisFile };
 
 // Public functions
 {
@@ -68,7 +69,7 @@ local utils = import "util_functions.jsonnet";
             name: "rsyslog-imjournal",
         }
 
-    ]
+    ],
 
     ### Init containers Definitions
     config_gen_init_container(image_name, template, manifest, output_path):: {
@@ -77,20 +78,20 @@ local utils = import "util_functions.jsonnet";
             else
                 "-m " + manifest + " -o " + output_path,
         command: [
-            "/usr/bin/ruby,
+            "/usr/bin/ruby",
             "/opt/config-gen/config_gen.rb" + cmdline,
         ],
         name: "config-gen",
-        image: image_name,
-        volumeMounts: rsyslogutils.config_gen_volume_mounts(),
+        image: rsyslogimages.config_gen,
+        volumeMounts: $.config_gen_volume_mounts(),
         env: [
             {
                 name: "BROKER_VIP",
-                value: kafka_vip_from_yaml,
+                value: "kafka_vip_from_yaml",
             },
             {
                 name: "KAFKA_TOPIC",
-                value: kafka_topic_from_yaml,
+                value: "kafka_topic_from_yaml",
             },
         ],
     },

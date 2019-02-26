@@ -1,14 +1,12 @@
 local configs = import "config.jsonnet";
 local appNamespace = "sam-system";
-local rsyslogimages = import "rsyslogimages.jsonnet";
+// local rsyslogimages = import "rsyslogimages.libsonnet";
+local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: std.thisFile };
 local rsyslogutils = import "rsyslogutils.jsonnet";
-
-local config_gen_image = "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:v0.1alpha2";
-local rsyslog_image = "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:8.38.0alpha1";
 
 local initContainers = [
     rsyslogutils.config_gen_init_container(
-        config_gen_image,
+        rsyslogimages.config_gen,
         "",
         "/opt/config-gen/manifest.yaml",
         "/etc/app.conf.d/"
@@ -43,7 +41,7 @@ if configs.kingdom == "mvp" then {
                     {
                         name: "rsyslog-daemonset",
                         imagePullPolicy: "Always",
-                        image: rsyslog_image,
+                        image: rsyslogimages.rsyslog,
                         resources: {
                             requests: {
                                 memory: "2Gi",
