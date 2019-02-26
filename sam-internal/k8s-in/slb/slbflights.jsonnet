@@ -19,6 +19,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     useKubeDnsForPortal: (slbimages.phaseNum <= 2),
     internalIpRange: (if slbimages.phaseNum <= 1 then ["--iprange.InternalIpRange=%s" % [slbconfigs.perCluster.internalIpRange[configs.estate]]] else []),
     conntrackMetrics: (slbimages.hyperslb_build >= 2069),
+    slbUpstreamReporterEnabled: (if slbimages.phaseNum <= 1 && slbimages.hyperslb_build >= 2071 then true else false),
 
     # 2019/01/16 - this didn't work as expected so I disabled it (Pablo)
     # See: https://computecloud.slack.com/archives/G340CE86R/p1550291706553800
