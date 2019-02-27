@@ -110,8 +110,6 @@ kind: ServiceAccount
 metadata:
   labels:
     app: ingressgateway
-    chart: gateways-1.0.1
-    heritage: Tiller
     release: istio
   name: istio-ingressgateway-service-account
   namespace: mesh-control-plane
@@ -123,8 +121,6 @@ metadata:
     manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: istio-pilot
-    chart: pilot-1.0.1
-    heritage: Tiller
     release: istio
   name: istio-pilot-service-account
   namespace: mesh-control-plane
@@ -136,8 +132,6 @@ metadata:
     manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: istio-sidecar-injector
-    chart: sidecarInjectorWebhook-1.0.1
-    heritage: Tiller
     release: istio
   name: istio-sidecar-injector-service-account
   namespace: mesh-control-plane
@@ -147,8 +141,6 @@ kind: ClusterRole
 metadata:
   labels:
     app: gateways
-    chart: gateways-1.0.1
-    heritage: Tiller
     release: istio
   name: istio-ingressgateway-mesh-control-plane
 rules:
@@ -170,8 +162,6 @@ kind: ClusterRole
 metadata:
   labels:
     app: istio-pilot
-    chart: pilot-1.0.1
-    heritage: Tiller
     release: istio
   name: istio-pilot-mesh-control-plane
 rules:
@@ -252,8 +242,6 @@ kind: ClusterRole
 metadata:
   labels:
     app: istio-sidecar-injector
-    chart: sidecarInjectorWebhook-1.0.1
-    heritage: Tiller
     release: istio
   name: istio-sidecar-injector-mesh-control-plane
 rules:
@@ -293,8 +281,6 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app: istio-pilot
-    chart: pilot-1.0.1
-    heritage: Tiller
     release: istio
   name: istio-pilot-mesh-control-plane
 roleRef:
@@ -311,8 +297,6 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app: istio-sidecar-injector
-    chart: sidecarInjectorWebhook-1.0.1
-    heritage: Tiller
     release: istio
   name: istio-sidecar-injector-admin-role-binding-mesh-control-plane
 roleRef:
@@ -448,11 +432,8 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
-  annotations: null
   labels:
     app: istio-ingressgateway
-    chart: gateways-1.0.1
-    heritage: Tiller
     istio: ingressgateway
     release: istio
   name: istio-ingressgateway
@@ -466,8 +447,7 @@ spec:
   - name: https
     nodePort: 32390
     port: 443
-  - name: tcp
-    nodePort: 32400
+  - nodePort: 32400
     port: 32400
   - name: tcp-pilot-grpc-tls
     port: 15011
@@ -478,6 +458,12 @@ spec:
   - name: tcp-dns-tls
     port: 853
     targetPort: 853
+  - name: http2-prometheus
+    port: 15030
+    targetPort: 15030
+  - name: http2-grafana
+    port: 15031
+    targetPort: 15031
   selector:
     app: istio-ingressgateway
     istio: ingressgateway
@@ -488,8 +474,6 @@ kind: Service
 metadata:
   labels:
     app: istio-pilot
-    chart: pilot-1.0.1
-    heritage: Tiller
     release: istio
   name: istio-pilot
   namespace: mesh-control-plane
@@ -525,8 +509,6 @@ kind: Deployment
 metadata:
   labels:
     app: istio-ingressgateway
-    chart: gateways-1.0.1
-    heritage: Tiller
     istio: ingressgateway
     release: istio
   name: istio-ingressgateway
@@ -619,7 +601,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxyv2:1.0.2
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.0.2
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -1054,8 +1036,6 @@ metadata:
     manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: istio-sidecar-injector
-    chart: sidecarInjectorWebhook-1.0.1
-    heritage: Tiller
     release: istio
   name: istio-sidecar-injector
   namespace: mesh-control-plane
@@ -1102,6 +1082,8 @@ spec:
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
   name: istio-pilot
 spec:
   maxReplicas: 5

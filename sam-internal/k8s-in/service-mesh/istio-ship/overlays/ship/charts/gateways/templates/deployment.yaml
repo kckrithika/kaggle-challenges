@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: istio-ingressgateway
+    istio: ingressgateway
+    release: istio
+  name: istio-ingressgateway
+  namespace: mesh-control-plane
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: istio-proxy
+      containers:
+      - $setElementOrder/ports:
+        - containerPort: 80
+        - containerPort: 443
+        - containerPort: 32400
+        - containerPort: 15011
+        - containerPort: 8060
+        - containerPort: 853
+        args:
+        - proxy
+        - router
+        - -v
+        - "2"
+        - --discoveryRefreshDelay
+        - 1s
+        - --drainDuration
+        - 45s
+        - --parentShutdownDuration
+        - 1m0s
+        - --connectTimeout
+        - 10s
+        - --serviceCluster
+        - istio-ingressgateway
+        - --zipkinAddress
+        - zipkin:9411
+        - --proxyAdminPort
+        - "15000"
+        - --controlPlaneAuthPolicy
+        - NONE
+        - --discoveryAddress
+        - istio-pilot:8080
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.0.2
+        name: istio-proxy
+        ports:
+        - containerPort: 32400
+        - $patch: delete
+          containerPort: 15030
+        - $patch: delete
+          containerPort: 15031
+        - $patch: delete
+          containerPort: 31400

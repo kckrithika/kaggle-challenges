@@ -1,6 +1,3 @@
----
-# Source: istio/charts/gateways/templates/clusterrolebindings.yaml
-
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
@@ -10,7 +7,6 @@ roleRef:
   kind: ClusterRole
   name: istio-ingressgateway-mesh-control-plane
 subjects:
-  - kind: ServiceAccount
-    name: istio-ingressgateway-service-account
-    namespace: mesh-control-plane
----
+- kind: ServiceAccount
+  name: istio-ingressgateway-service-account
+  namespace: mesh-control-plane
