@@ -1,0 +1,118 @@
+apiVersion: v1
+data:
+  watchdog.json: |-
+    {
+      "caFile": "/etc/pki_service/ca/cabundle.pem",
+      "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "cliCheckerFullCommands": {
+        "0.12.2": {
+          "SparkLocal": "java -jar  -Dintegration.test.target=canary -Dflowsnake.api.host=flowsnake-cdu.data.sfdc.net -Dflowsnake.project.version=0.12.2 junit.jar -cp integration-test.jar -n '.*' -c com.salesforce.dva.transform.flowsnake.SparkLocalDriverDemoJobIT",
+          "SparkStandalone": "java -jar  -Dintegration.test.target=canary -Dflowsnake.api.host=flowsnake-cdu.data.sfdc.net -Dflowsnake.project.version=0.12.2 junit.jar -cp integration-test.jar -n '.*' -c com.salesforce.dva.transform.flowsnake.SparkStandaloneDemoJobIT"
+        },
+        "DockerDaemon": {
+          "DockerDaemon": "/test-docker.sh"
+        }
+      },
+      "deployer-funnelEndpoint": "ajna0-funnel1-0-cdu.data.sfdc.net:80",
+      "deployer-imageName": "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0002470-52e6c77a",
+      "deployer-rcImtEndpoint": "https://reportcollector-cdu.data.sfdc.net:18443/v1/bark",
+      "deployer-recipient": "flowsnake@salesforce.com",
+      "deployer-sender": "flowsnake@salesforce.com",
+      "deployer-smtpServer": "ops0-mta2-1-cdu.ops.sfdc.net:25",
+      "email-subject-prefix": "FLOWSNAKEWD",
+      "funnelEndpoint": "ajna0-funnel1-0-cdu.data.sfdc.net:80",
+      "imageName": "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0002015-fdb18963",
+      "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+      "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
+      "kubeResourceNamespacePrefixWhitelist": "sam-system,flowsnake",
+      "maxUptimeSampleSize": 5,
+      "monitoredProcesses": {
+        "docker-containerd.*docker-bootstrap": "age.dockercontainerdbootstrap",
+        "docker-containerd.*docker-containerd.sock": "age.dockercontainerd",
+        "dockerd.*docker-bootstrap": "age.dockerbootstrap",
+        "dockerd.*docker.sock": "age.dockermain",
+        "hyperkube.*apiserver": "age.kubeapiserver",
+        "hyperkube.*controller-manager": "age.kubecontrollermanager",
+        "hyperkube.*kubelet": "age.kubelet",
+        "hyperkube.*proxy": "age.kubeproxy",
+        "hyperkube.*scheduler": "age.kubescheduler",
+        "name=etcd": "age.etcd"
+      },
+      "publishAlertsToKafka": false,
+      "rcImtEndpoint": "https://reportcollector-cdu.data.sfdc.net:18443/v1/bark",
+      "recipient": "flowsnake@salesforce.com",
+      "sdpEndpoint": "http://localhost:39999",
+      "sender": "flowsnake@salesforce.com",
+      "smtpServer": "ops0-mta2-1-cdu.ops.sfdc.net:25",
+      "snooze": [
+        {
+          "checker": "kubeletChecker",
+          "estates": [
+            "iad-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "kubeletChecker",
+          "estates": [
+            "ord-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "nodeChecker",
+          "estates": [
+            "iad-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "nodeChecker",
+          "estates": [
+            "ord-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "podChecker",
+          "estates": [
+            "iad-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "podChecker",
+          "estates": [
+            "ord-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "kubeResourcesChecker",
+          "estates": [
+            "iad-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        },
+        {
+          "checker": "kubeResourcesChecker",
+          "estates": [
+            "ord-flowsnake_prod"
+          ],
+          "until": "2018/04/30"
+        }
+      ],
+      "tlsEnabled": true,
+      "universalProcesses": [
+        "dockerd.*docker-bootstrap",
+        "dockerd.*docker.sock",
+        "hyperkube.*kubelet",
+        "docker-containerd.*docker-containerd.sock",
+        "docker-containerd.*docker-bootstrap"
+      ]
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: watchdog
+  namespace: flowsnake
