@@ -46,7 +46,7 @@ local utils = import "util_functions.jsonnet";
                 kubedns_image_tag: "1.14.9",
                 eventExporter_image_tag: "726",
                 jdk8_base_tag: "33",
-                madkub_injector_image_tag: "9",
+                madkub_injector_image_tag: "11",
                 spark_operator_image_tag: "11",
                 prometheus_funnel_image_tag: "17",
         },
