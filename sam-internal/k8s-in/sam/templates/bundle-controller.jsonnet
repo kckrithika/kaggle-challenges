@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
                         ]),
                     }
                     + configs.containerInPCN
-                    + (if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+                    + {
                         livenessProbe: {
                              httpGet: {
                                  path: "/healthz",
@@ -33,7 +33,7 @@ local utils = import "util_functions.jsonnet";
                              initialDelaySeconds: 30,
                              periodSeconds: 5,
                          },
-                     } else {}),
+                     },
                 ],
                 volumes+: configs.filter_empty([
                     configs.cert_volume,

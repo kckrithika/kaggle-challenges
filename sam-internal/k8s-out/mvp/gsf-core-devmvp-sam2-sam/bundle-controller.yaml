@@ -32,6 +32,12 @@ spec:
         - name: KUBECONFIG
           value: ""
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 21546
+          initialDelaySeconds: 30
+          periodSeconds: 5
         name: bundle-controller
         volumeMounts:
         - mountPath: /config
