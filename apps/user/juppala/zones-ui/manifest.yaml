@@ -1,22 +1,44 @@
 apiVersion: v1
 system:
+  notifications:
+    email:
+      - zones-dev@salesforce.com
   functions:
   - name: zones
     count: 2
+    volumes:
+      - name: ui-servercert
+        maddogCert:
+          type: server
+      - name: ui-clientcert
+        maddogCert:
+          type: client    
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:build-20190225-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:build-20190226-1
       ports:
       - containerPort: 8445
       livenessProbe:
         httpGet:
           path: /
           port: 8445
+      volumeMounts:
+      - name: ui-servercert
+        mountPath: /servercerts
+      - name: ui-clientcert
+        mountPath: /clientcerts          
   loadbalancers:
   - lbname: zones-ui-lb
     function: zones
     slbenabled: true
     ports:
+      - port: 80
+        targetport: 8445
+        lbtype: http
+      - port: 443
+        targetport: 8445
+        lbtype: http
+        tls: true
       - port: 8445
         targetport: 8445
         lbtype: http
