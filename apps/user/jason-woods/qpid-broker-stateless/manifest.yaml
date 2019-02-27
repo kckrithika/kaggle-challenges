@@ -12,12 +12,12 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/appscale/qpid-broker-runtime:cbb26c5.1
           ports:
             - name: amqp-port
-              containerPort: 4001
+              containerPort: 5001
             - name: http-port
               containerPort: 7022
           env:
             - name: AMQP_PORT
-              value: 4001
+              value: 5001
             - name: HTTP_PORT
               value: 7022
             - name: QPID_JAVA_HEAPSZ
@@ -46,11 +46,11 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           args:
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME)-http:DATACENTER_ALLENV:7014
+            - $(SETTINGS_NAMESPACE)/$(SETTINGS_SERVICENAME)-http:DATACENTER_ALLENV:7014
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME)-https:DATACENTER_ALLENV:7442
+            - $(SETTINGS_NAMESPACE)/$(SETTINGS_SERVICENAME)-https:DATACENTER_ALLENV:7442
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME)-amqp:DATACENTER_ALLENV:4000
+            - $(SETTINGS_NAMESPACE)/$(SETTINGS_SERVICENAME)-amqp:DATACENTER_ALLENV:5000
           env:
             - name: SFDC_ENVIRONMENT
               value: sam
@@ -75,7 +75,7 @@ system:
             name: sherpa-adm
           - containerPort: 7442
             name: http1-tls-in
-          - containerPort: 4000
+          - containerPort: 5000
             name: tcp-in
           - containerPort: 7014
             name: http1-in
