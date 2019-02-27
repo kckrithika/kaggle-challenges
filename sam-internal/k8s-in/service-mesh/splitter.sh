@@ -17,7 +17,12 @@ csplit -f tmpistio -ks ./istio-ship/rendered.yaml "/---/+1" "{$(wc -l < ./istio-
 
 out_dir="./istio-ship-out/"
 
-rm ./istio-ship-out/*
+if [ "$1" == "k8s" ]; then
+  out_dir="../../k8s-out/prd/prd-sam/"
+else
+  rm -rf ./istio-ship-out/
+  mkdir ./istio-ship-out/
+fi
 
 for kind in "${istio_objects[@]}"; do
   obj_files=( $(grep -l "^kind: $kind$" ./tmpistio* ) )
