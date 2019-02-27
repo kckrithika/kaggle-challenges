@@ -3,8 +3,6 @@ kind: ClusterRole
 metadata:
   labels:
     app: istio-sidecar-injector
-    chart: sidecarInjectorWebhook-1.0.1
-    heritage: Tiller
     release: istio
   name: istio-sidecar-injector-mesh-control-plane
 rules:

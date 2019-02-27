@@ -13,11 +13,11 @@ istio_objects=(
   "Gateway"
 )
 
-csplit -f tmpistio -ks ./ship-istio/rendered.yaml "/---/+1" "{$(wc -l < ./ship-istio/rendered.yaml)}"
+csplit -f tmpistio -ks ./istio-ship/rendered.yaml "/---/+1" "{$(wc -l < ./istio-ship/rendered.yaml)}"
 
-out_dir="./ship-istio-out/"
+out_dir="./istio-ship-out/"
 
-rm ./ship-istio-out/*
+rm ./istio-ship-out/*
 
 for kind in "${istio_objects[@]}"; do
   obj_files=( $(grep -l "kind: $kind" ./tmpistio* ) )

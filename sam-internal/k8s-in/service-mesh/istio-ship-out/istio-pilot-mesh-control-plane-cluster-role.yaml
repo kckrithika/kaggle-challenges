@@ -3,8 +3,6 @@ kind: ClusterRole
 metadata:
   labels:
     app: istio-pilot
-    chart: pilot-1.0.1
-    heritage: Tiller
     release: istio
   name: istio-pilot-mesh-control-plane
 rules:
