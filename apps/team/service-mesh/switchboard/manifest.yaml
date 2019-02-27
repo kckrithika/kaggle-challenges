@@ -50,9 +50,7 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 20
-        periodSeconds: 14
-        failureThreshold: 10
-        timeoutSeconds: 10
+        periodSeconds: 5
       readinessProbe:
         httpGet:
           path: /manage/health
