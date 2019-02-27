@@ -1,19 +1,170 @@
-apiVersion: autoscaling/v2beta1
-kind: HorizontalPodAutoscaler
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
   annotations:
-    manifestctl.sam.data.sfdc.net/swagger: disable
+    checksum/config-volume: f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9
+  labels:
+    app: istio-pilot
+    chart: pilot-1.0.1
+    heritage: Tiller
+    istio: pilot
+    release: istio
   name: istio-pilot
+  namespace: mesh-control-plane
 spec:
-  maxReplicas: 5
-  metrics:
-  - resource:
-      name: cpu
-      targetAverageUtilization: 80
-    type: Resource
-  minReplicas: 1
-  scaleTargetRef:
-    apiVersion: apps/v1beta1
-    kind: Deployment
-    name: istio-pilot
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        scheduler.alpha.kubernetes.io/critical-pod: ""
+        sidecar.istio.io/inject: "false"
+      labels:
+        app: pilot
+        istio: pilot
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+            weight: 2
+          - preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - ppc64le
+            weight: 2
+          - preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - s390x
+            weight: 2
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+                - ppc64le
+                - s390x
+      containers:
+      - args:
+        - discovery
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: PILOT_CACHE_SQUASH
+          value: "5"
+        - name: GODEBUG
+          value: gctrace=2
+        - name: PILOT_PUSH_THROTTLE_COUNT
+          value: "100"
+        - name: PILOT_TRACE_SAMPLING
+          value: "100"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:d021a6b1dd4db59fe1a82f07a7e5457830190e40
+        imagePullPolicy: IfNotPresent
+        name: discovery
+        ports:
+        - containerPort: 8080
+        - containerPort: 15010
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 5
+        resources:
+          requests:
+            cpu: 500m
+            memory: 2048Mi
+        volumeMounts:
+        - mountPath: /etc/istio/config
+          name: config-volume
+      - args:
+        - proxy
+        - --serviceCluster
+        - istio-pilot
+        - --templateFile
+        - /etc/istio/proxy/envoy_pilot.yaml.tmpl
+        - --controlPlaneAuthPolicy
+        - NONE
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: INSTANCE_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:50d25caed2638ed29259a2be55ba2dc0ceb49b00
+        imagePullPolicy: IfNotPresent
+        name: istio-proxy
+        ports:
+        - containerPort: 15003
+        - containerPort: 15005
+        - containerPort: 15007
+        - containerPort: 15011
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts: []
+      - args:
+        - --debug-mode
+        - "true"
+        env:
+        - name: FUNCTION_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: SETTINGS_SUPERPOD
+          value: '-'
+        - name: SETTINGS_PATH
+          value: -.-.prd.-.istio-pilot
+        - name: SFDC_METRICS_SERVICE_HOST
+          value: ajna0-funnel1-0-prd.data.sfdc.net
+        - name: SFDC_METRICS_SERVICE_PORT
+          value: "80"
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
+        imagePullPolicy: Always
+        name: metrics-scraper
+        readinessProbe:
+          exec:
+            command:
+            - /bin/true
+          initialDelaySeconds: 5
+          periodSeconds: 30
+          timeoutSeconds: 5
+      nodeSelector:
+        pool: prd-sam_gater
+      serviceAccountName: istio-pilot-service-account
+      volumes:
+      - configMap:
+          name: istio
+        name: config-volume
 ---

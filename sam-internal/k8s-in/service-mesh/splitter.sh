@@ -8,7 +8,7 @@ istio_objects=(
   "ConfigMap"
   "Service"
   "Deployment"
-  "HorizontalPodAutoscaler",
+  "HorizontalPodAutoscaler"
   "MutatingWebhookConfiguration"
   "Gateway"
 )
@@ -20,7 +20,7 @@ out_dir="./istio-ship-out/"
 rm ./istio-ship-out/*
 
 for kind in "${istio_objects[@]}"; do
-  obj_files=( $(grep -l "kind: $kind" ./tmpistio* ) )
+  obj_files=( $(grep -l "^kind: $kind$" ./tmpistio* ) )
 
   # Find 1st 'name' attribute in the file.
   # Use it to form the target file name.
@@ -36,7 +36,10 @@ for kind in "${istio_objects[@]}"; do
 
     case "$kind" in
       "CustomResourceDefinition")
-        target_file_name="istio-crd-$(echo "$obj_name" | cut -d"." -f 1).yaml"
+        target_file_name="istio-crd-$(grep -h "kind:" "$file" | tail -1 | cut -d":" -f 2 | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]').yaml"
+        ;;
+      "ServiceAccount")
+        target_file_name="$(echo "$obj_name").yaml"
         ;;
       *)
         target_file_name="$(echo "$obj_name")-$(echo $kind | sed -e 's/\([A-Z]\)/-\1/g' -e 's/^-//' | tr '[:upper:]' '[:lower:]').yaml"
