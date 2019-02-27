@@ -26,8 +26,8 @@ system:
     containers:
     - name: universal-search
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.10.3
-      # psalagnac TODO: this image has logging disabled
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hkhiri/universal-search:1.0.9-haythem
+      # psalagnac TODO: this image does not foreward to Solr.
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/psalagnac/universal-search:noop14
       ports:
       - name: service-port
         containerPort: 7020
