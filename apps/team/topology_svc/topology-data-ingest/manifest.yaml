@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: topology-data-ingest
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-data-ingest:09-20190227-2
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-data-ingest:09-20190227-3
       env:
         - name: POD_NAMESPACE
           valueFrom:
