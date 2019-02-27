@@ -12,12 +12,12 @@ system:
           type: client
     containers:
     - name: zones-intake-backend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:test-6
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:25
       ports:
       - containerPort: 30300
       livenessProbe:
         httpGet:
-          path: /zones/v1/roles
+          path: /zones/v1/healthcheck
           port: 30300
       volumeMounts:
       - name: servercert
@@ -29,7 +29,7 @@ system:
     function: zones-intake-backend
     slbenabled: true
     ports:
-      - port: 3000
+      - port: 443
         targetport: 30300
         lbtype: http
-        tls: false
+        tls: true
