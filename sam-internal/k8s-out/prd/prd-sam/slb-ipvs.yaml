@@ -165,6 +165,7 @@ spec:
         - --enableCheckAntiDdos=true
         - --dropEntry=1
         - --dropPacket=1
+        - --iprange.InternalIpRange=10.231.187.0/24,10.254.230.0/23
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
