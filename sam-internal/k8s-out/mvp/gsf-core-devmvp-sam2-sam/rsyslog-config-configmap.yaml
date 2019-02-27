@@ -43,10 +43,10 @@ data:
     ----------------%>\n  \n\n  <%# container logs event %>\n  set $!event = exec_template(\"kubernetes_event\");\n\n
     \ <%# kubernetes app log annotation array %>\n  set $!annotations = \"[\" & exec_template(\"kubernetes_annotation_kubernetes_container\")
     & \", \" & exec_template(\"kubernetes_annotation_rsyslog_base\") & \"]\";\n\n<%#
-    ---- UNCOMMENT to TEST ----- %>\n  action(\n    name=\"syslog_file_action\"\n
+    ---- UNCOMMENT to TEST ----- %>\n  <%# action(\n    name=\"syslog_file_action\"\n
     \   type=\"omfile\"\n    file=\"/var/log/kubernetes_dockercontainers_ruleset.log\"\n
-    \   template=\"tpl_containers_log\"\n  )\n<%# ---- / UNCOMMENT to TEST ----- %>\n\n
-    \ <%# Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_kubernetes_kafka_action\"\n
+    \   template=\"tpl_containers_log\" %>\n  )\n<%# ---- / UNCOMMENT to TEST -----
+    %>\n\n  <%# Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_kubernetes_kafka_action\"\n
     \   broker=\"<%= config.broker_vip %>\"\n    template=\"tpl_containers_log\"\n
     \   topic= \"<%= config.topic %>\"\n    keepFailedMessages=\"on\"\n    partitions.auto=\"on\"\n
     \   resubmitOnFailure=\"off\"\n    reopenonhup=\"on\"\n    action.resumeRetryCount=\"-1\"\n
@@ -54,11 +54,11 @@ data:
     \     \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
     \     \"message.max.bytes=1000000\",\n      \"queue.buffering.max.ms=5000\",\n
     \     \"retries=2\",\n      \"retry.backoff.ms=100\",\n      \"socket.keepalive.enable=true\"\n
-    \     <%# \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
+    \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
     \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
-    \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"
-    %>\n    ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  ) & stop\n\n}\n<%#
-    ---- / End of definition for docker containers tenant ---- %>\n"
+    \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
+    \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  ) & stop\n\n}\n<%# ----
+    / End of definition for docker containers tenant ---- %>\n"
   general.conf.erb: "<%# General file based logs %>\n<%# Needed env variables:\n  -
     log_type\n  - file_path\n  - start_regex (optional)\n  - pod (TBD)\n  - owner\n
     \ - broker_vip\n  - kafka_topic %>\n<%# -------------------------------------------------
@@ -92,11 +92,11 @@ data:
     \   confParam=[\n      \"batch.num.messages=10000\",\n      \"compression.codec=gzip\",\n
     \     \"max.in.flight.requests.per.connection=2\",\n      \"message.max.bytes=1000000\",\n
     \     \"queue.buffering.max.ms=5000\",\n      \"retries=3\",\n      \"retry.backoff.ms=1000\",\n
-    \     \"socket.keepalive.enable=true\"\n      <%# \"security.protocol=ssl\",\n
-    \     \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n      \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
-    \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"
-    %>\n    ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n\n<%# END OF
-    FILE %>"
+    \     \"socket.keepalive.enable=true\"\n      \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
+    \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
+    \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
+    \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n\n<%# END OF FILE
+    %>"
   jetty.conf.erb: |
     <%# INPUT DEFINITIONS %>
     input(
@@ -144,10 +144,10 @@ data:
           "retries=86400",
           "retry.backoff.ms=1000",
           "socket.keepalive.enable=true"
-          <%# "security.protocol=ssl",
+          "security.protocol=ssl",
           "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
           "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
-          "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem" %>
+          "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem"
         ]
         topicConfParam=[
           "acks=-1"
@@ -219,10 +219,10 @@ data:
           "retries=2",
           "retry.backoff.ms=100",
           "socket.keepalive.enable=true"
-          <%# "security.protocol=ssl",
+          "security.protocol=ssl",
           "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
           "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
-          "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem" %>
+          "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem"
         ]
         topicConfParam=[
           "acks=-1"
@@ -292,10 +292,10 @@ data:
           "retries=86400",
           "retry.backoff.ms=1000",
           "socket.keepalive.enable=true"
-          <%# "security.protocol=ssl",
+          "security.protocol=ssl",
           "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
           "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
-          "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem" %>
+          "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem"
         ]
         topicConfParam=[
           "acks=-1"

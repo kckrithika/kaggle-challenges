@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       containers:
-      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:8.38-135
+      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:8.38-135-2-CERTS
         imagePullPolicy: Always
         name: rsyslog-daemonset
         resources:
@@ -137,7 +137,7 @@ spec:
         - -N1
         - -f
         - /etc/rsyslog.conf
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:8.38-135
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:8.38-135-2-CERTS
         name: config-check
         volumeMounts:
         - mountPath: /etc/rsyslog.conf

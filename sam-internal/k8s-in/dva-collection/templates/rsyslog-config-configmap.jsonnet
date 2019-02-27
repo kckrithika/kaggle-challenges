@@ -12,7 +12,7 @@ if configs.kingdom == "mvp" then {
     metadata: {
         name: "rsyslog-configmap",
         namespace: "sam-system",
-        labels: {} + configs.pcnEnableLabel
+        labels: {} + configs.pcnEnableLabel,
     },
     data: {
         "rsyslog.conf": rsyslogConf,
@@ -20,6 +20,6 @@ if configs.kingdom == "mvp" then {
         "container.conf.erb": containerConf,
         "journal.conf.erb": journalConf,
         "solr.conf.erb": solrConf,
-        "jetty.conf.erb": jettyConf
+        "jetty.conf.erb": jettyConf,
     },
 } else "SKIP"

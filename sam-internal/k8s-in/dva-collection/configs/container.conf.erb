@@ -91,11 +91,11 @@ ruleset(name = "kubernetes_dockercontainers_ruleset") {
   set $!annotations = "[" & exec_template("kubernetes_annotation_kubernetes_container") & ", " & exec_template("kubernetes_annotation_rsyslog_base") & "]";
 
 <%# ---- UNCOMMENT to TEST ----- %>
-  action(
+  <%# action(
     name="syslog_file_action"
     type="omfile"
     file="/var/log/kubernetes_dockercontainers_ruleset.log"
-    template="tpl_containers_log"
+    template="tpl_containers_log" %>
   )
 <%# ---- / UNCOMMENT to TEST ----- %>
 

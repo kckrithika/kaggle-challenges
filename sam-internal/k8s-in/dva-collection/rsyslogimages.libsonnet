@@ -54,7 +54,7 @@ local configs = import "config.jsonnet";
      },
     },
 
-    ### Phase kingdom/estate mapping 
+    ### Phase kingdom/estate mapping
     ### rsyslog daemonset only deploys to GKE sam and samtest for now - other stages are TBD
     phase: (
         if (kingdom == "mvp") then

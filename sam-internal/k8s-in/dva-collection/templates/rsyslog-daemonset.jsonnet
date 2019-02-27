@@ -35,7 +35,7 @@ local initContainers = [
         "/etc/rsyslog.d/50-solr_jetty.conf",
         "solr_topic"
     ),
-    rsyslogutils.config_check_init_container(rsyslogimages.rsyslog)
+    rsyslogutils.config_check_init_container(rsyslogimages.rsyslog),
 ];
 
 if configs.kingdom == "mvp" then {
@@ -43,22 +43,22 @@ if configs.kingdom == "mvp" then {
     metadata: {
         name: "rsyslog-daemonset",
         namespace: appNamespace,
-        labels: {} + configs.pcnEnableLabel
+        labels: {} + configs.pcnEnableLabel,
     },
     spec: {
         selector: {
             matchLabels: {
-                app: "collection-agent-daemonset"
-            }
+                app: "collection-agent-daemonset",
+            },
         },
         template: {
             metadata: {
                 labels: {
-                    app: "collection-agent-daemonset"
+                    app: "collection-agent-daemonset",
                 },
                 spec: {
                     automountServiceAccountToken: false,
-                    terminationGracePeriodSeconds: 60
+                    terminationGracePeriodSeconds: 60,
                 },
                 # init containers
                 initContainers: initContainers,
@@ -70,11 +70,11 @@ if configs.kingdom == "mvp" then {
                         resources: {
                             requests: {
                                 memory: "200Mi",
-                                cpu: "150m"
+                                cpu: "150m",
                             },
                             limits: {
                                 memory: "1024Mi",
-                                cpu: "300m"
+                                cpu: "300m",
                             },
                         },
                         volumeMounts:
@@ -82,8 +82,8 @@ if configs.kingdom == "mvp" then {
                             {
                                 name: "rsyslog-confs-tpl-vol",
                                 mountPath: "/etc/rsyslog.conf",
-                                subPath: "rsyslog.conf"
-                            },       
+                                subPath: "rsyslog.conf",
+                            },
                         ] + rsyslogutils.rsyslog_config_volume_mounts() + rsyslogutils.rsyslog_volume_mounts(),
                     },
                     {
@@ -91,27 +91,27 @@ if configs.kingdom == "mvp" then {
                         imagePullPolicy: "Always",
                         image: rsyslogimages.logarchive,
                         command: [
-                            '/usr/local/bin/sfdc_log_archiver', 
-                            '-dir', 
-                            '/home/sfdc/logs'
+                            '/usr/local/bin/sfdc_log_archiver',
+                            '-dir',
+                            '/home/sfdc/logs',
                         ],
-                        volumeMounts:[
+                        volumeMounts: [
                             {
                                 name: "logs-vol",
-                                mountPath: "/home/sfdc/logs"
+                                mountPath: "/home/sfdc/logs",
                             },
                         ],
                     },
                 ],
-                volumes: volumes
-            }
+                volumes: volumes,
+            },
         },
         templateGeneration: 2,
         updateStrategy: {
             rollingUpdate: {
                 maxUnavailable: 1,
-                type: "RollingUpdate"
-            }
-        }
-    }
+                type: "RollingUpdate",
+            },
+        },
+    },
 } else "SKIP"

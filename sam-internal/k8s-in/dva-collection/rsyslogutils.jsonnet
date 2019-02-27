@@ -16,55 +16,55 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
             name: "rsyslog-config",
         },
     ],
-    config_gen_tpl_volume():: [ 
+    config_gen_tpl_volume():: [
         {
             name: "rsyslog-config-tpl",
             configMap: {
-                name: "rsyslog-config-tpl"
+                name: "rsyslog-config-tpl",
             },
         },
     ],
-    config_gen_tpl_volume_mounts():: [ 
+    config_gen_tpl_volume_mounts():: [
         {
             mountPath: "/template",
-            name: "rsyslog-config-tpl"
+            name: "rsyslog-config-tpl",
         },
     ],
-    rsyslog_volume():: [ 
+    rsyslog_volume():: [
         {
             name: "varlog",
             hostPath: {
-                path: "/var/log"
+                path: "/var/log",
             },
         },
         {
             name: "varlibdockercontainers",
             hostPath: {
-                path: "/var/lib/docker/containers"
+                path: "/var/lib/docker/containers",
             },
         },
         {
             name: "logs-vol",
             hostPath: {
                 path: "/mnt/disks/ssd0/logs",
-                type: "DirectoryOrCreate"
+                type: "DirectoryOrCreate",
             },
         },
         {
             name: "rsyslog-workdir",
             hostPath: {
                 path: "/var/spool/rsyslog",
-                type: "DirectoryOrCreate"
+                type: "DirectoryOrCreate",
             },
         },
         {
             name: "rsyslog-imjournal",
             hostPath: {
-                path: "/var/log/journal"
+                path: "/var/log/journal",
             },
-        }
+        },
     ],
-    rsyslog_volume_mounts():: [ 
+    rsyslog_volume_mounts():: [
 
         {
             mountPath: "/var/log",
@@ -76,7 +76,7 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
         },
         {
             name: "logs-vol",
-            mountPath: "/home/sfdc/logs"
+            mountPath: "/home/sfdc/logs",
         },
         {
             mountPath: "/var/spool/rsyslog",
@@ -85,7 +85,7 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
         {
             mountPath: "/run/log/journal",
             name: "rsyslog-imjournal",
-        }
+        },
 
     ],
 
@@ -110,9 +110,9 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
                      configMapKeyRef: {
                         name: "kafka-cm",
                         key: "broker.vip",
-                     }
+                     },
                 },
-           
+
             },
             {
                 name: "KAFKA_TOPIC",
@@ -120,7 +120,7 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
                      configMapKeyRef: {
                         name: "kafka-cm",
                         key: topic,
-                     }
+                     },
                 },
             },
         ],
@@ -129,21 +129,20 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
     ## Config check container
     config_check_init_container(image_name):: {
         command: [
-            '/usr/sbin/rsyslogd', 
-            '-N1', 
-            '-f', 
-            '/etc/rsyslog.conf'            
+            '/usr/sbin/rsyslogd',
+            '-N1',
+            '-f',
+            '/etc/rsyslog.conf',
         ],
         name: "config-check",
         image: image_name,
-        volumeMounts: 
+        volumeMounts:
         [
             {
                 name: "rsyslog-confs-tpl-vol",
                 mountPath: "/etc/rsyslog.conf",
-                subPath: "rsyslog.conf"
-            },       
+                subPath: "rsyslog.conf",
+            },
         ] + $.rsyslog_config_volume_mounts() + $.rsyslog_volume_mounts(),
     },
 }
-    
