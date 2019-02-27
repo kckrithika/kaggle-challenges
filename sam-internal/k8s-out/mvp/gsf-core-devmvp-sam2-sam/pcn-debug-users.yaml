@@ -320,6 +320,9 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: nishant.sinha@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: mkrishna@salesforce.com
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -348,6 +351,9 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: rama.rao@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: vijay.kota@salesforce.com
 kind: List
 metadata:
   labels:
