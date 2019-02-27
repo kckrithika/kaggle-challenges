@@ -32,10 +32,14 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
         "ukb-flowsnake_prod": "flowsnake-ukb.data.sfdc.net",
         "yul-flowsnake_prod": "flowsnake-yul.data.sfdc.net",
         "yhu-flowsnake_prod": "flowsnake-yhu.data.sfdc.net",
+        "syd-flowsnake_prod": "flowsnake-syd.data.sfdc.net",
         // minikube fake VIPs
         "prd-minikube-small-flowsnake": "prd-minikube-small-flowsnake.data.sfdc.net",
         "prd-minikube-big-flowsnake": "prd-minikube-big-flowsnake.data.sfdc.net",
     }),
+
+    is_public_cloud: util.is_public_cloud(configs.kingdom),
+    sdn_enabled: !self.is_minikube && !self.is_public_cloud,
 
     # Standard SLB vip name is: <lbname>-<team-<kingdom>.slb.sfdc.net
     # Presume lbname is derived from role munged the same way as for ServiceMesh.

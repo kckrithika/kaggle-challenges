@@ -354,5 +354,20 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
             authorizedClientCerts: ["wave-elt.datapool"],
         },
       ],
+      "syd/syd-flowsnake_prod": [
+        {
+            namespace: "flowsnake",
+            authorizedClientCerts: ["flowsnake_master_prod"],
+        },
+        {
+            namespace: "flowsnake_test",
+            authorizedClientCerts: ["flowsnake_test"],
+        },
+        {
+            namespace: "wave-elt",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["wave-elt.datapool"],
+        },
+      ],
     }),
 }

@@ -1,0 +1,77 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: watchdog-common
+  name: watchdog-common
+  namespace: flowsnake
+spec:
+  selector:
+    matchLabels:
+      app: watchdog-common
+      apptype: monitoring
+  template:
+    metadata:
+      labels:
+        app: watchdog-common
+        apptype: monitoring
+        daemonset: "true"
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: WatchdogCommon
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - -role=COMMON
+        - -watchdogFrequency=5s
+        - -alertThreshold=20m
+        - -timeout=2s
+        - -funnelEndpoint=ajna0-funnel1-0-syd.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - -emailFrequency=10m
+        image: ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/hypersam:sam-0002015-fdb18963
+        name: watchdog
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /hostproc
+          name: procfs-volume
+        - mountPath: /config
+          name: config
+        - mountPath: /etc/pki_service/ca
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+          readOnly: true
+      hostNetwork: true
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /proc
+        name: procfs-volume
+      - configMap:
+          name: watchdog
+        name: config
+      - hostPath:
+          path: /etc/pki_service/ca
+        name: certificate-authority
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/certificates
+        name: client-certificate
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/keys
+        name: client-key
