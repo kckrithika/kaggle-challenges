@@ -17,7 +17,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     # This can probably now be removed -- see https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006IJQPIA4/view.
     ssEndpointParam: (if configs.estate == "lo2-sam" || configs.estate == "lo3-sam" then ["--secrets.ssendpoint=secretservice-%s.data.sfdc.net" % [configs.kingdom]] else []),
     useKubeDnsForPortal: (slbimages.phaseNum <= 2),
-    internalIpRange: (if slbimages.phaseNum <= 1 then ["--iprange.InternalIpRange=%s" % [slbconfigs.perCluster.internalIpRange[configs.estate]]] else []),
+    internalIpRange: (if slbimages.phaseNum <= 2 then ["--iprange.InternalIpRange=%s" % [slbconfigs.perCluster.internalIpRange[configs.estate]]] else []),
     conntrackMetrics: (slbimages.hyperslb_build >= 2069),
     slbUpstreamReporterEnabled: (if slbimages.phaseNum <= 2 && slbimages.hyperslb_build >= 2071 then true else false),
 
