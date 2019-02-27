@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: csmbackend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/saurabhsingh/csmbackend:saurabhsingh-20190233   # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/saurabhsingh/csmbackend:saurabhsingh-20190234   # golang app
       env:
        - name: ENVIRONMENT
          value: "PRD"
