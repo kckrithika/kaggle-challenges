@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
                         ]),
                     }
                     + configs.containerInPCN
-                    + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+                    + (if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                         livenessProbe: {
                              httpGet: {
                                  path: "/healthz",

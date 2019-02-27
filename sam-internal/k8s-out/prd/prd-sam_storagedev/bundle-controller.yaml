@@ -27,6 +27,12 @@ spec:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2624-bee71f3d174816e59a880f0e94d79e3479846842
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 21546
+          initialDelaySeconds: 30
+          periodSeconds: 5
         name: bundle-controller
         volumeMounts:
         - mountPath: /etc/pki_service
