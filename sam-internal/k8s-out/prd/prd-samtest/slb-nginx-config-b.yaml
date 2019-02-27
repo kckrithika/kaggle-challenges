@@ -280,6 +280,26 @@ spec:
         - mountPath: /customerCerts
           name: customer-certs
       - command:
+        - /sdn/slb-upstream-status-reporter
+        - --nginxStatusPublishingAddress=$(POD_IP):9999
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2071-90e67f4bfc26447a02cf62a63bd13bd05b53af54
+        name: slb-upstream-status-reporter
+        readinessProbe:
+          httpGet:
+            path: /upstreamServerHealth
+            port: 9999
+          initialDelaySeconds: 5
+          periodSeconds: 3
+        volumeMounts:
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+          name: var-logs-volume
+      - command:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config/slb-nginx-config-b
         - --period=1800s
