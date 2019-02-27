@@ -29,7 +29,7 @@ system:
     function: zones-intake-backend
     slbenabled: true
     ports:
-      - port: 443
+      - port: 3000
         targetport: 30300
         lbtype: http
         tls: false
