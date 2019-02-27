@@ -2,16 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-redundancy-checker
-  name: slb-redundancy-checker
+    name: slb-nginx-accesslogs
+  name: slb-nginx-accesslogs
   namespace: sam-system
 spec:
   minReadySeconds: 30
   replicas: 1
   selector:
     matchLabels:
-      apptype: monitoring
-      name: slb-redundancy-checker
+      name: slb-nginx-accesslogs
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -20,38 +19,29 @@ spec:
   template:
     metadata:
       labels:
-        apptype: monitoring
-        name: slb-redundancy-checker
+        name: slb-nginx-accesslogs
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sdn/slb-redundancy-checker
+        - /sdn/slb-nginx-accesslogs
         - --log_dir=/host/data/slb/logs/
-        - --hostnameOverride=$(NODE_NAME)
-        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --deploymentsToMonitor=slb-ipvs,slb-nginx-config-b,slb-vip-watchdog,slb-dns-register
-        - --hostsConfigFile=/sfdchosts/hosts.json
-        - --kernelVersionNodeFilter=pool=prd-slbtwo
-        - --kernelVersionPrefixList=3.10.0-862,3.10.0-957
+        - --httpTimeout=5m
         env:
-        - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig-platform
         - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2071-90e67f4bfc26447a02cf62a63bd13bd05b53af54
-        name: slb-redundancy-checker
-        securityContext:
-          privileged: true
+        name: slb-nginx-accesslogs
+        resources:
+          limits:
+            memory: 1Gi
         volumeMounts:
-        - mountPath: /host/data/slb
-          name: var-slb-volume
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
-        - mountPath: /sfdchosts
-          name: sfdchosts
         - mountPath: /kubeconfig
           name: kubeconfig
         - mountPath: /data/certs
@@ -60,18 +50,12 @@ spec:
           name: maddog-certs
       dnsPolicy: Default
       nodeSelector:
-        pool: prd-slbtwo
+        pool: prd-samtwo
       terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:
-          path: /data/slb
-        name: var-slb-volume
-      - hostPath:
           path: /data/slb/logs/
         name: var-logs-volume
-      - configMap:
-          name: sfdchosts
-        name: sfdchosts
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
