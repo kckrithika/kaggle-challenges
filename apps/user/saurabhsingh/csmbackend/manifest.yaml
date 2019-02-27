@@ -5,10 +5,10 @@ system:
     count: 1
     containers:
     - name: csmbackend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/saurabhsingh/csmbackend:saurabhsingh-20190230   # golang app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/saurabhsingh/csmbackend:saurabhsingh-20190231   # golang app
       env:
        - name: ENVIRONMENT
-         value: "PROD"
+         value: "PRD"
       ports:
        - containerPort: 9090
       livenessProbe:
