@@ -12,7 +12,7 @@ system:
     - name: datapool-service
       #master format: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:master-203-a04dec3
       #release format: sfci/insights/datapoolservice:release-94-5dceaf9
-      image: sfci/insights/datapoolservice:release-95-5209373
+      image: sfci/insights/datapoolservice:release-96-653b520
       ports:
       - containerPort: 7020
         name: grpc
