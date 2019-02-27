@@ -3,8 +3,7 @@ input(
   type="imfile"
   File="/home/sfdc/logs/solr/*.jvmgc.log_*"
   PersistStateInterval="50000"
-  readMode="0"
-  Tag="solr"
+  Tag="solr_jetty"
   ruleset="ruleset_solr_jetty"
   startmsg.regex="^([[:digit:]]{4}-(0[1-9]|1[0-2])-(0?[1-9]|[12][[:digit:]]|3[01]))([[:space:]]|T)(([01][[:digit:]]|2[0-3]):[0-5][[:digit:]]:([0-5][[:digit:]]|6[01]))[,|\\.][[:digit:]]{3}`"
   readTimeout = "5"
@@ -26,7 +25,7 @@ ruleset(name="ruleset_solr_jetty" queue.type="LinkedList" queue.size="5000" queu
   <%# Output action %>
   action(
     type="omkafka"
-    name="kafka_solr"
+    name="kafka_solr_jetty"
     broker= <%= config.broker_vip %>
     template="tpl_universal_schema_flatten"
     topic= <%= config.topic %>

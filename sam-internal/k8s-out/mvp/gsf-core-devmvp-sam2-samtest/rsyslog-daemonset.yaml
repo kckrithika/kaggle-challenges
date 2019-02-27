@@ -50,7 +50,7 @@ spec:
       initContainers:
       - command:
         - /usr/bin/ruby
-        - /opt/config-gen/config_gen.rb-t /templates/journal.conf.erb -o /etc/rsyslog.d/30-journal.conf
+        - /opt/config-gen/config_gen.rb -t /templates/journal.conf.erb -o /etc/rsyslog.d/30-journal.conf
         env:
         - name: BROKER_VIP
           valueFrom:
@@ -71,7 +71,7 @@ spec:
           name: rsyslog-config-tpl
       - command:
         - /usr/bin/ruby
-        - /opt/config-gen/config_gen.rb-t /templates/container.conf.erb -o /etc/rsyslog.d/40-container.conf
+        - /opt/config-gen/config_gen.rb -t /templates/container.conf.erb -o /etc/rsyslog.d/40-container.conf
         env:
         - name: BROKER_VIP
           valueFrom:
@@ -92,7 +92,7 @@ spec:
           name: rsyslog-config-tpl
       - command:
         - /usr/bin/ruby
-        - /opt/config-gen/config_gen.rb-t /templates/solr.conf.erb -o /etc/rsyslog.d/50-solr.conf
+        - /opt/config-gen/config_gen.rb -t /templates/solr.conf.erb -o /etc/rsyslog.d/50-solr.conf
         env:
         - name: BROKER_VIP
           valueFrom:
@@ -113,7 +113,7 @@ spec:
           name: rsyslog-config-tpl
       - command:
         - /usr/bin/ruby
-        - /opt/config-gen/config_gen.rb-t /templates/jetty.conf.erb -o /etc/rsyslog.d/50-solr_jetty.conf
+        - /opt/config-gen/config_gen.rb -t /templates/jetty.conf.erb -o /etc/rsyslog.d/50-solr_jetty.conf
         env:
         - name: BROKER_VIP
           valueFrom:

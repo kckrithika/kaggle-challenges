@@ -93,9 +93,9 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
     ## config gen container
     config_gen_init_container(image_name, template, manifest, output_path, topic):: {
         local cmdline = if manifest == "" then
-                "-t " + template + " -o " + output_path
+                " -t " + template + " -o " + output_path
             else
-                "-m " + manifest + " -o " + output_path,
+                " -m " + manifest + " -o " + output_path,
         command: [
             "/usr/bin/ruby",
             "/opt/config-gen/config_gen.rb" + cmdline,
