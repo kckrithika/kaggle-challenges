@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.7.0.0.develop-1.7.32b2d9f.13
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.7.0.0.develop-1.7.f0f53c5.16
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,adminqa@bt9.salesforce.com,cre-api@salesforce.com"
@@ -34,7 +34,7 @@ system:
         - name: ENGINE_PKI_NAME_OVERRIDE
           value: cre-engine-ccp-func
         - name: ENGINE_IMAGE_TAG
-          value: docker-sam/cre/cre-engine:1.6.0.0.develop-1.6.9c3140f.13
+          value: docker-sam/cre/cre-engine:1.6.0.0.develop-1.6.942d067.18
         - name: ENGINE_APPLICATION_NAME
           value: cre-engine-ccp-func
         - name: ENGINE_HBASE_DATACENTER
