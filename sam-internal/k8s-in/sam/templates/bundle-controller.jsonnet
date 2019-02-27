@@ -23,6 +23,7 @@ local utils = import "util_functions.jsonnet";
                             configs.config_volume_mount,
                         ]),
                     }
+                    
                     + configs.containerInPCN
                     + {
                         livenessProbe: {
