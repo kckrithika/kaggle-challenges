@@ -26,7 +26,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2633-e508caaf95457f35c52db83edd42ac2586078c24
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2635-2dfc515bfa2308ce412b1e57880d4f0f30dfa2f6
         name: host-repair-scheduler
         volumeMounts:
         - mountPath: /etc/pki_service
