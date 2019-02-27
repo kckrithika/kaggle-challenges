@@ -1,0 +1,124 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - jason.woods@salesforce.com
+  functions:
+    - name: qpid-broker-stateless
+      count: 1
+      containers:
+        - name: qpid-broker-runtime
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/appscale/qpid-broker-runtime:cbb26c5.1
+          ports:
+            - name: amqp-port
+              containerPort: 4001
+            - name: http-port
+              containerPort: 7022
+          env:
+            - name: AMQP_PORT
+              value: 4001
+            - name: HTTP_PORT
+              value: 7022
+            - name: QPID_JAVA_HEAPSZ
+              value: 8g
+            - name: SFDC_ENVIRONMENT
+              value: sam 
+          resources:
+            limits: { cpu: "8", memory: "16Gi" }
+            requests: { cpu: "8", memory: "16Gi" }
+          livenessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          volumeMounts:
+            - mountPath: /var/log/qpid
+              name: logvol
+              
+        - name: beacon-qpid
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+          args:
+            - -endpoint
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME)-http:DATACENTER_ALLENV:7014
+            - -endpoint
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME)-https:DATACENTER_ALLENV:7442
+            - -endpoint
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME)-amqp:DATACENTER_ALLENV:4000
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: sam
+          livenessProbe:
+            initialDelaySeconds: 5
+            exec:
+              command:
+                - "/home/scone/is-alive.sh"
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          volumeMounts:
+            - mountPath: /home/scone/logs
+              name: beacon-log-volume
+
+        - name: sherpa-qpid
+          # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/73
+          image: sfci/servicelibs/sherpa-envoy:1.0.5
+          # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+          ports:
+          - containerPort: 15373
+            name: sherpa-adm
+          - containerPort: 7442
+            name: http1-tls-in
+          - containerPort: 4000
+            name: tcp-in
+          - containerPort: 7014
+            name: http1-in
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: sam
+          livenessProbe:
+            exec:
+              command:
+              - "./bin/is-alive"
+            initialDelaySeconds: 120
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+              - "./bin/is-ready"
+            initialDelaySeconds: 110
+            periodSeconds: 5
+          # Mount volumes with certificates. The paths here match the defaults assumed by sherpa
+          volumeMounts:
+          - name: sherpaclientcert
+            mountPath: /client-certs
+          - name: sherpaservercert
+            mountPath: /server-certs
+          - name: sherpa-log-volume
+            mountPath: /log
+
+      volumes:
+        - name: logvol
+          hostpath:
+            path: /var/log/qpid
+        - name: sherpaclientcert
+          maddogCert:
+            type: client
+        - name: sherpaservercert
+          maddogCert:
+            type: server
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+        - name: beacon-log-volume
+          hostPath:
+            path: /home/sfdc-beacon/logs
