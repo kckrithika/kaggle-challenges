@@ -85,6 +85,9 @@ fi
 # Service Mesh - Istio Mesh Webhook
 ./parallel_build.py --src=service-mesh/istio-mesh-webhook/templates --out=../k8s-out/ --pools=service-mesh/istio-mesh-webhook/istio-mesh-webhook-estates.json --estatefilter=$1
 
+# DVA Collection - Collection agents
+./parallel_build.py --src=dva-collection/templates --out=../k8s-out/ --pools=../pools/ --estatefilter=$1
+
 # Skipper is a tool for creating dev/test k8s clusters in Private Cloud created
 # by the Storage Foundation team.
 # https://git.soma.salesforce.com/SFStorage/skipper

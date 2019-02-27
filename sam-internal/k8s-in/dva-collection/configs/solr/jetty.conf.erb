@@ -1,0 +1,56 @@
+<%# INPUT DEFINITIONS %>
+input(
+  type="imfile"
+  File="/home/sfdc/logs/solr/*.jvmgc.log_*"
+  PersistStateInterval="50000"
+  readMode="0"
+  Tag="solr"
+  ruleset="ruleset_solr_jetty"
+  startmsg.regex="^([[:digit:]]{4}-(0[1-9]|1[0-2])-(0?[1-9]|[12][[:digit:]]|3[01]))([[:space:]]|T)(([01][[:digit:]]|2[0-3]):[0-5][[:digit:]]:([0-5][[:digit:]]|6[01]))[,|\\.][[:digit:]]{3}`"
+  readTimeout = "5"
+  addmetadata="on"
+  escapelf="off"
+  discardTruncatedMsg="on"
+)
+
+<%# RULESET DEFINITION %>
+ruleset(name="ruleset_solr_jetty" queue.type="LinkedList" queue.size="5000" queue.lightdelaymark="3000" queue.fulldelaymark="4000") {
+
+  <%# Template Spec %>
+  set $!datacenter = "<%= config.cluser %>";
+  set $!superpod = "NONE";
+  set $!pod = "<%= config.node %>";
+  set $!owner = "Search";
+  set $!source_type = "solr_jvmgclog";
+
+  <%# Output action %>
+  action(
+    type="omkafka"
+    name="kafka_solr"
+    broker= <%= config.broker_vip %>
+    template="tpl_universal_schema_flatten"
+    topic= <%= config.topic %>
+    partitions.auto="on"
+    resubmitOnFailure="off"
+    reopenonhup="on"
+    action.resumeRetryCount="-1"
+    confParam=[
+      "batch.num.messages=10000",
+      "client.id=collections.rsyslog.test",
+      "compression.codec=gzip",
+      "max.in.flight.requests.per.connection=2",
+      "message.max.bytes=1000000",
+      "queue.buffering.max.ms=5000",
+      "retries=86400",
+      "retry.backoff.ms=1000",
+      "socket.keepalive.enable=true"
+      <%# "security.protocol=ssl",
+      "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
+      "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
+      "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem" %>
+    ]
+    topicConfParam=[
+      "acks=-1"
+    ]
+  )
+}

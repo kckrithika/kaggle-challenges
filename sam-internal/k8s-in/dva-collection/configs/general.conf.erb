@@ -1,0 +1,97 @@
+<%# General file based logs %>
+<%# Needed env variables:
+  - log_type
+  - file_path
+  - start_regex (optional)
+  - pod (TBD)
+  - owner
+  - broker_vip
+  - kafka_topic %>
+<%# ------------------------------------------------- %>
+<%# INPUT DEFINITIONS %>
+input(
+  type="imfile"
+  File="<%=config.file_path%>"
+  PersistStateInterval="50000"
+<%- if config.include? :start_regex -%>  
+  startmsg.regex="<%=config.start_regex%>"
+  readTimeout = "5"
+<%- else -%>
+  readMode="0"
+<%- end -%>
+  Tag="<%=config.log_type%>"
+  ruleset="ruleset_<%=config.log_type%>"
+  addmetadata="on"
+  escapelf="off"
+  discardTruncatedMsg="on"
+)
+
+<%# Output Template%>
+template(name="tpl_<%=config.log_type%>" type="list") {
+  constant(value="{\"schema_type\":\"json-schema\",\"schema_id\":\"event-flatten:1\",\"data\":{")
+  property(name="msg" outname="message" format="jsonf")
+  constant(value=",")
+  property(name="$!source_type" outname="source_type" format="jsonfr")
+  constant(value=",")
+  property(name="$!datacenter" outname="dc" format="jsonfr")
+  constant(value=",")
+  property(name="$!superpod" outname="superpod" format="jsonfr")
+  constant(value=",")
+  property(name="$!pod" outname="pod" format="jsonfr")
+  constant(value=",")
+  property(name="$!metadata!filename" outname="source" format="jsonfr")
+  constant(value=",")
+  property(name="$!hostname" format="jsonfr")
+  constant(value=",")
+  property(name="$!node" format="jsonfr")  
+  constant(value=",")
+  property(name="timegenerated" outname="agent_timestamp" dateFormat="rfc3339" date.inUTC="on" format="jsonfr")
+  constant(value=",")
+  property(name="$!owner" outname="owner" format="jsonfr")
+  constant(value="}}\n")
+}
+
+<%# RULESET DEFINITION %>
+ruleset(name="ruleset_<%=config.log_type%>") {
+
+  <%# Template Spec %>
+  set $!datacenter = "<%=config.cluster%>";
+  set $!superpod = "NONE";
+  <%# TODO pod - sfdc-pod or k8s pod %>
+  set $!pod = "<%= config.pod %>";
+  set $!owner = "<%= config.owner %>";
+  set $!source_type = "<%= config.owner %>" + ":" + ""<%= config.log_type %>"";
+  set $!node = "<%=config.node%>";
+
+  <%# Output action %>
+  action(
+    type="omkafka"
+    name="kafka_<%= config.log_type %>"
+    broker="<%= config.broker_vip %>"
+    template="tpl_<%= config.log_type %>"
+    topic="<%= config.kafka_topic %>"
+    partitions.auto="on"
+    resubmitOnFailure="on"
+    reopenonhup="on"
+    action.resumeRetryCount="-1"
+    confParam=[
+      "batch.num.messages=10000",
+      "compression.codec=gzip",
+      "max.in.flight.requests.per.connection=2",
+      "message.max.bytes=1000000",
+      "queue.buffering.max.ms=5000",
+      "retries=3",
+      "retry.backoff.ms=1000",
+      "socket.keepalive.enable=true"
+      <%# "security.protocol=ssl",
+      "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
+      "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
+      "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem" %>
+    ]
+    topicConfParam=[
+      "acks=-1"
+    ]
+  )
+}
+
+<%# END OF FILE %>

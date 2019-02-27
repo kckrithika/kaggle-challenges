@@ -4,17 +4,41 @@ local appNamespace = "sam-system";
 local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: std.thisFile };
 local rsyslogutils = import "rsyslogutils.jsonnet";
 
+local volumes = rsyslogutils.rsyslog_config_volume() + rsyslogutils.config_gen_tpl_volume() + rsyslogutils.rsyslog_volume();
+
 local initContainers = [
     rsyslogutils.config_gen_init_container(
         rsyslogimages.config_gen,
+        "/templates/journal.conf.erb",
         "",
-        "/opt/config-gen/manifest.yaml",
-        "/etc/app.conf.d/"
+        "/etc/rsyslog.d/30-journal.conf",
+        "general_topic"
     ),
+    rsyslogutils.config_gen_init_container(
+        rsyslogimages.config_gen,
+        "/templates/container.conf.erb",
+        "",
+        "/etc/rsyslog.d/40-container.conf",
+        "general_topic"
+    ),
+    rsyslogutils.config_gen_init_container(
+        rsyslogimages.config_gen,
+        "/templates/solr.conf.erb",
+        "",
+        "/etc/rsyslog.d/50-solr.conf",
+        "solr_topic"
+    ),
+    rsyslogutils.config_gen_init_container(
+        rsyslogimages.config_gen,
+        "/templates/jetty.conf.erb",
+        "",
+        "/etc/rsyslog.d/50-solr_jetty.conf",
+        "solr_topic"
+    ),
+    rsyslogutils.config_check_init_container(rsyslogimages.rsyslog)
 ];
 
 if configs.kingdom == "mvp" then {
-    apiVersion: "apps/v1",
     kind: "DaemonSet",
     metadata: {
         name: "rsyslog-daemonset",
@@ -45,14 +69,41 @@ if configs.kingdom == "mvp" then {
                         image: rsyslogimages.rsyslog,
                         resources: {
                             requests: {
-                                memory: "2Gi",
-                                cpu: "500m"
-                            }
+                                memory: "200Mi",
+                                cpu: "150m"
+                            },
+                            limits: {
+                                memory: "1024Mi",
+                                cpu: "300m"
+                            },
                         },
-                        volumeMounts:[] + rsyslogutils.rsyslog_volume_mounts() + rsyslogutils.config_gen_volume_mounts()
-                    }
+                        volumeMounts:
+                        [
+                            {
+                                name: "rsyslog-confs-tpl-vol",
+                                mountPath: "/etc/rsyslog.conf",
+                                subPath: "rsyslog.conf"
+                            },       
+                        ] + rsyslogutils.rsyslog_config_volume_mounts() + rsyslogutils.rsyslog_volume_mounts(),
+                    },
+                    {
+                        name: "logarchive",
+                        imagePullPolicy: "Always",
+                        image: rsyslogimages.logarchive,
+                        command: [
+                            '/usr/local/bin/sfdc_log_archiver', 
+                            '-dir', 
+                            '/home/sfdc/logs'
+                        ],
+                        volumeMounts:[
+                            {
+                                name: "logs-vol",
+                                mountPath: "/home/sfdc/logs"
+                            },
+                        ],
+                    },
                 ],
-                volumes: [] + rsyslogutils.rsyslog_volume() + rsyslogutils.config_gen_volume()
+                volumes: volumes
             }
         },
         templateGeneration: 2,

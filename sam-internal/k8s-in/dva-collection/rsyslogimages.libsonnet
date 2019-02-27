@@ -26,6 +26,7 @@ local configs = import "config.jsonnet";
     "0": $.per_phase["1"] {
        rsyslog: "8.38-135",
        config_gen: "v0.1alpha2",
+       logarchive: "2",
      },
 
     ### Release Phase 1 - TBD
@@ -71,5 +72,6 @@ local configs = import "config.jsonnet";
     # These are the images used by the templates
     rsyslog: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:" + $.per_phase[$.phase].rsyslog,
     config_gen: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:" + $.per_phase[$.phase].config_gen,
+    logarchive: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_log_archiver:" + $.per_phase[$.phase].logarchive,
 
 }
