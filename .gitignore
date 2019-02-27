@@ -4,4 +4,5 @@ jsonnet/
 sam-internal/k8s-in/multifile-temp/
 manifests.iml
 .idea/
-sam-internal/k8s-in/service-mesh/ship-istio/.ship/
+sam-internal/k8s-in/service-mesh/istio-ship/.ship/tmp/
+sam-internal/k8s-in/service-mesh/istio-ship/.ship/debug.log
