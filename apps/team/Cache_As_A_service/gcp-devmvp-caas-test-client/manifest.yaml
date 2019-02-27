@@ -6,13 +6,13 @@ system:
       - rpragada@salesforce.com
   functions:
   - name: devmvp-caas-test-client-gcp
-    count: 25
+    count: 1
     identity:
       serviceName: caas
       pod: devmvp
     containers:
     - name: caas-test-client
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/caas/caas-load-test:13
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/caas/caas-load-test:12
       resources:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
@@ -30,7 +30,7 @@ system:
         periodSeconds: 5
       env:
        - name: NOT_REQUIRED
-         value: newton14
+         value: newton9
        - name: PYTHONUNBUFFERED
          value: 1
     - name: sherpa
