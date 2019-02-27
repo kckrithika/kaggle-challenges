@@ -29,8 +29,38 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/slb/hyperslb:2066-e6a5bfbf4d3f22240ad179889c42e8571eeed9c2
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/slb/hyperslb:2067-99bb3536dfe96c78a4c77f0a4fb5db5d5a85957f
         name: slb-cleanup-unknownpods
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /slb
+          name: slblogs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /usr/bin/kubectl
+          name: kubectl
+      - command:
+        - /bin/bash
+        - /sdn/slb-cleanup-stuckpods.sh
+        - slb-canary
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/slb/hyperslb:2067-99bb3536dfe96c78a4c77f0a4fb5db5d5a85957f
+        name: slb-cleanup-unknownpodscanary
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
