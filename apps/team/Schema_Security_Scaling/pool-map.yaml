@@ -1,0 +1,8 @@
+version: v2
+apps:
+ prd-acs-load-test:
+  - name: prd/prd-sp2-sam_caas
+    hostSubList:
+    - samcaas2-caasminion1-2-prd.eng.sfdc.net
+    - samcaas2-caasminion3-3-prd.eng.sfdc.net
+    - samcaas2-caasminion3-7-prd.eng.sfdc.net
