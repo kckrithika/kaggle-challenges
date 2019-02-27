@@ -24,7 +24,7 @@ local configs = import "config.jsonnet";
     per_phase: {
     ### Release Phase 0 - for sam and samtest
     "0": $.per_phase["1"] {
-       rsyslog: "8.38-135",
+       rsyslog: "8.38-135-2-CERTS",
        config_gen: "v0.1alpha2",
        logarchive: "2",
      },
