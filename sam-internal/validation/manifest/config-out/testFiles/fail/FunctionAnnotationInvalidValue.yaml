@@ -1,9 +1,16 @@
 {
-   "$expectedError": "pass",
+   "$expectedError": {
+      "pattern": 7
+   },
    "apiVersion": "v1",
    "system": {
       "functions": [
          {
+            "annotations": {
+               "$invalid/%char": "_bad-value_",
+               "/nothingInPart1": "_b@d_",
+               "more/than/one/part": "b@dV@lue"
+            },
             "containers": [
                {
                   "env": [
@@ -33,39 +40,7 @@
                }
             ],
             "count": 1,
-            "name": "foo-function",
-            "volumes": [
-               {
-                  "hostPath": {
-                     "path": "/data/ca-cluster-a"
-                  },
-                  "name": "foo-data-ca-cluster-a"
-               },
-               {
-                  "hostPath": {
-                     "path": "/fastdata/gater"
-                  },
-                  "name": "foo-fastdata-gater"
-               },
-               {
-                  "hostPath": {
-                     "path": "/var/log/scheduler-db"
-                  },
-                  "name": "foo-var-log-scheduler-db"
-               },
-               {
-                  "hostPath": {
-                     "path": "/home/caas/logs/caas"
-                  },
-                  "name": "foo-home-caas-logs-caas"
-               },
-               {
-                  "hostPath": {
-                     "path": "/home/sfdc-retail/logs"
-                  },
-                  "name": "foo-home-sfdc-retail-logs"
-               }
-            ]
+            "name": "foo-function"
          }
       ],
       "loadbalancers": [

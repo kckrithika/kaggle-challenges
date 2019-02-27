@@ -23,6 +23,16 @@
         ]
     },
 
+    # Receives an array of patterns that MUST NOT be matched
+    DoNotMatchRegex(notAllowed):: {
+        not: {
+            anyOf: [
+                { pattern: notAllowedPatterns } 
+                for notAllowedPatterns in notAllowed
+            ] 
+        } 
+    },
+
     # Receives an ARRAY OF OBJECTS and the value cannot match any of the rules defined in the objects
     ListNotAllowed(reserved):: {
         not: {
@@ -41,7 +51,7 @@
     Required(reqList):: {
         required: reqList
     },
-    
+
     # Receives an array of UNSUPPORTED elements that CANNOT exist
     NotAllowed(notAllowed):: {
         propertyNames: $.ValuesNotAllowed(notAllowed)
@@ -56,6 +66,24 @@
     # Receives an array of values that restricts the field to a fixed set of values
     AllowedValues(values):: {
         enum: values,
+    },
+
+    # Receives 2 property values and ensures that exactly 1 of the 2 values exist
+    ExactlyOneExists(value1, value2):: {
+        anyOf: [
+            {
+                allOf: [
+                    $.Required([ value1 ]), 
+                    $.NotAllowed([ value2 ])
+                ]
+            },
+            { 
+                allOf: [
+                    $.Required([ value2 ]), 
+                    $.NotAllowed([ value1 ])
+                ]
+            }
+        ]
     },
 
     # Field MAY ONLY exist for certain groups

@@ -1,0 +1,59 @@
+{
+   "$expectedError": {
+      "pattern": 5
+   },
+   "apiVersion": "extensions/v1beta1",
+   "kind": "DaemonSet",
+   "metadata": {
+      "labels": {
+         "name": "foo-label-name"
+      },
+      "name": "foo-metadata-name",
+      "namespace": "foo-namespace"
+   },
+   "spec": {
+      "selector": {
+         "matchLabels": {
+            "name": "foo-selector-matchLabels-name"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "name": "foo-label-name"
+            },
+            "name": "foo-metadata-name"
+         },
+         "spec": {
+            "containers": [
+               {
+                  "image": "foo:1.1.4",
+                  "name": "foo",
+                  "ports": [
+                     {
+                        "containerPort": 5432
+                     }
+                  ]
+               },
+               {
+                  "name": "valid-container-name",
+                  "volumeMounts": [
+                     {
+                        "name": "_bad-one-part-name_"
+                     },
+                     {
+                        "name": "_bad-2-part-name_/bad"
+                     },
+                     {
+                        "name": "exceeds/the-63-word-count-limit-for-second-part-this-is-longer-than-63-characters"
+                     },
+                     {
+                        "name": "exceeds-the-first-part-length-which-is-253-so-this-is-going-to-be-long-test-test-test-test-test-test-test-test-test-test-est-test-test-test-placeholder-weoigaownva-vwegaweg-avv-vawevwegeagwab-awebasdgaweg-bwevagbfbssdfsdf-ok-253-characters-is-longer-than-i-expected/name"
+                     }
+                  ]
+               }
+            ]
+         }
+      }
+   }
+}

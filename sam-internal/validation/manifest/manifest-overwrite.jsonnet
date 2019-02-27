@@ -1,4 +1,4 @@
-local util = import "config-in/util.jsonnet";
+local util = import "../util.jsonnet";
 
 {
     # Exception for liveness probe, if container image matches any of the below, then livenessprobe is not a required field
@@ -35,28 +35,9 @@ local util = import "config-in/util.jsonnet";
         "tnrp/gater/gater:1.1.1-0000028-13622462"
     ]),
 
-    # Regex for allowed/disallowed image forms
-    imageForm:: {
-        allowed: [
-            "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+/.+:.+$",
-
-            # Allow these for Image Promotion
-            "^chatbots/.+/.+:.+$",
-            "^ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam/.+/.+:.+$",
-            "^tnrp/.+/.+:.+$",
-            "^sfci/.+/.+:.+$",
-            "^ops0-artifactrepo1-0-xrd.data.sfdc.net/docker-sam/.+/.+:.+$"
-        ],
-
-        notAllowed: [
-            "^.*(latest)$",
-            "^ops0-artifactrepo2-0-prd.data.sfdc.net/(docker-p2p|docker-sam)/.+:.+$"
-        ]
-    },
-
     # List and Range of reserved ports that should not be accessed (Range is inclusive)
     reservedPorts:: [
-        util.AllowedValues( [ 2379, 2380, 4194, 8000, 8002, 8080, 9099, 9100, 10250, 10251, 10252, 10255, 64121 ] ), 
+        util.AllowedValues( [ 2379, 2380, 4194, 8000, 8002, 8080, 9099, 9100, 10250, 10251, 10252, 10255, 6412 ] ), 
         util.Range( [ 0, 1024 ] ),
         util.Range( [ 32000, 40000 ] )
     ],
@@ -96,9 +77,30 @@ local util = import "config-in/util.jsonnet";
         "FUNCTION"
     ],
 
+    // List of SAM and K8s reserved Labels
+    reservedLabelsRegex:: [
+        "^" + "bundleName" + "$",
+        "^" + "deployed_by" + "$",
+        "^" + "pod-template-hash" + "$",
+        "^" + "controller-revision-hash" + "$",
+        "^" + "sam_.*" + "$",
+        "^" + ".*kubernetes.io/.*" + "$",
+    ],
+
+    // secure registry patterns indicating secure images
+    secureRegistry:: [
+        "^.*artifactrepo.*$"
+    ],
+
+    // Exceptions for insecure images
+    insecureImageExceptionSet:: [
+        "dummyToEnsureNotEverythingPass"
+    ],
+
 
 ###################################### Enable Exceptions #############################################
 
 
     Enable_LivenessProbeWhitelist: true,
+    Enable_InsecureImageExceptions: true,
 }

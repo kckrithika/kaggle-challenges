@@ -1,0 +1,24 @@
+{
+   "$expectedError": "pattern",
+   "apiVersion": "v1",
+   "kind": "Service",
+   "metadata": {
+      "annotations": {
+         "slb.sfdc.net/name": "NOT_VALID_DNS"
+      },
+      "name": "foo-metadata-name"
+   },
+   "spec": {
+      "ports": [
+         {
+            "name": "foo-port-name",
+            "port": 5432,
+            "protocol": "TCP",
+            "targetPort": 5432
+         }
+      ],
+      "selector": {
+         "app": "foo-selector-matchLabels-name"
+      }
+   }
+}

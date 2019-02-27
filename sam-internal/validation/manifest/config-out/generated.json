@@ -73,8 +73,7 @@
    "Rule_EnvRequirements": {
       "MustExist": {
          "required": [
-            "name",
-            "value"
+            "name"
          ]
       }
    },
@@ -232,42 +231,62 @@
       }
    },
    "Rule_ImageForm": {
-      "allOf": [
+      "oneOf": [
          {
-            "anyOf": [
-               {
-                  "pattern": "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+/.+:.+$"
-               },
-               {
-                  "pattern": "^chatbots/.+/.+:.+$"
-               },
-               {
-                  "pattern": "^ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam/.+/.+:.+$"
-               },
-               {
-                  "pattern": "^tnrp/.+/.+:.+$"
-               },
-               {
-                  "pattern": "^sfci/.+/.+:.+$"
-               },
-               {
-                  "pattern": "^ops0-artifactrepo1-0-xrd.data.sfdc.net/docker-sam/.+/.+:.+$"
-               }
-            ]
+            "pattern": "^ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/.+/.+:.+$"
          },
          {
-            "not": {
-               "anyOf": [
-                  {
-                     "pattern": "^.*(latest)$"
-                  },
-                  {
-                     "pattern": "^ops0-artifactrepo2-0-prd.data.sfdc.net/(docker-p2p|docker-sam)/.+:.+$"
+            "allOf": [
+               {
+                  "anyOf": [
+                     {
+                        "pattern": "^.+:.+$"
+                     }
+                  ]
+               },
+               {
+                  "not": {
+                     "anyOf": [
+                        {
+                           "pattern": "^ops0-artifactrepo1-0-prd.data.sfdc.net/.+/.+:.+$"
+                        },
+                        {
+                           "pattern": "^ops0-artifactrepo2-0-prd.data.sfdc.net/(docker-p2p|docker-sam)/.+:.+$"
+                        },
+                        {
+                           "pattern": "^.*(latest)$"
+                        }
+                     ]
                   }
-               ]
-            }
+               }
+            ]
          }
       ]
+   },
+   "Rule_InsecureImageValidation": {
+      "not": {
+         "allOf": [
+            {
+               "pattern": "^.+\\..+\\/.+$"
+            },
+            {
+               "not": {
+                  "enum": [
+                     "dummyToEnsureNotEverythingPass"
+                  ]
+               }
+            },
+            {
+               "not": {
+                  "anyOf": [
+                     {
+                        "pattern": "^.*artifactrepo.*$"
+                     }
+                  ]
+               }
+            }
+         ]
+      }
    },
    "Rule_IsDNS1035Validation": {
       "maxLength": 63,
@@ -332,29 +351,81 @@
             "type": "string"
          }
       },
+      "LBDestinationPort": {
+         "anyOf": [
+            {
+               "allOf": [
+                  {
+                     "required": [
+                        "targetport"
+                     ]
+                  },
+                  {
+                     "propertyNames": {
+                        "not": {
+                           "enum": [
+                              "httpsredirectport"
+                           ]
+                        }
+                     }
+                  }
+               ]
+            },
+            {
+               "allOf": [
+                  {
+                     "required": [
+                        "httpsredirectport"
+                     ]
+                  },
+                  {
+                     "propertyNames": {
+                        "not": {
+                           "enum": [
+                              "targetport"
+                           ]
+                        }
+                     }
+                  }
+               ]
+            }
+         ]
+      },
       "LBPortAlgorithm": {
+         "else": {
+            "if": {
+               "properties": {
+                  "lbalgorithm": {
+                     "enum": [
+                        "leastconn",
+                        "roundrobin",
+                        "hash"
+                     ]
+                  }
+               }
+            },
+            "then": {
+               "properties": {
+                  "lbtype": {
+                     "not": {
+                        "enum": [
+                           "dsr"
+                        ]
+                     }
+                  }
+               }
+            }
+         },
          "if": {
             "properties": {
                "lbalgorithm": {
                   "enum": [
-                     "leastconn",
-                     "roundrobin",
-                     "hash"
+                     ""
                   ]
                }
             }
          },
-         "then": {
-            "properties": {
-               "lbtype": {
-                  "not": {
-                     "enum": [
-                        "dsr"
-                     ]
-                  }
-               }
-            }
-         }
+         "then": { }
       },
       "LBPortAllowedAlgorithm": {
          "enum": [
@@ -370,27 +441,59 @@
             "http"
          ]
       },
-      "LBPortType": {
-         "if": {
-            "properties": {
-               "lbtype": {
-                  "enum": [
-                     "dsr",
-                     "tcp"
-                  ]
+      "LBTypeSpecificParameters": {
+         "allOf": [
+            {
+               "if": {
+                  "properties": {
+                     "lbtype": {
+                        "not": {
+                           "enum": [
+                              "tls"
+                           ]
+                        }
+                     }
+                  }
+               },
+               "then": {
+                  "propertyNames": {
+                     "not": {
+                        "enum": [
+                           "proxyprotocol"
+                        ]
+                     }
+                  }
+               }
+            },
+            {
+               "if": {
+                  "properties": {
+                     "lbtype": {
+                        "not": {
+                           "enum": [
+                              "http"
+                           ]
+                        }
+                     }
+                  }
+               },
+               "then": {
+                  "propertyNames": {
+                     "not": {
+                        "enum": [
+                           "sticky",
+                           "reencrypt",
+                           "tls",
+                           "mtls",
+                           "addheaders",
+                           "removeheaders",
+                           "httpsredirectport"
+                        ]
+                     }
+                  }
                }
             }
-         },
-         "then": {
-            "propertyNames": {
-               "not": {
-                  "enum": [
-                     "reencrypt",
-                     "sticky"
-                  ]
-               }
-            }
-         }
+         ]
       },
       "TLSPattern": {
          "pattern": "^secret_service:[a-zA-Z0-9]+:[-a-zA-Z0-9]*$"
@@ -439,8 +542,7 @@
    "Rule_LBRequirements": {
       "MustExist": {
          "required": [
-            "lbname",
-            "ports"
+            "lbname"
          ]
       }
    },
@@ -474,9 +576,34 @@
    "Rule_ManifestRequirements": {
       "MustExist": {
          "required": [
-            "apiVersion",
             "system"
          ]
+      }
+   },
+   "Rule_ReservedLabels": {
+      "propertyNames": {
+         "not": {
+            "anyOf": [
+               {
+                  "pattern": "^bundleName$"
+               },
+               {
+                  "pattern": "^deployed_by$"
+               },
+               {
+                  "pattern": "^pod-template-hash$"
+               },
+               {
+                  "pattern": "^controller-revision-hash$"
+               },
+               {
+                  "pattern": "^sam_.*$"
+               },
+               {
+                  "pattern": "^.*kubernetes.io/.*$"
+               }
+            ]
+         }
       }
    },
    "Rule_ReservedPorts": {
@@ -496,7 +623,7 @@
                   10251,
                   10252,
                   10255,
-                  64121
+                  6412
                ]
             },
             {
@@ -547,6 +674,30 @@
       "IsValidPortNumber": {
          "maximum": 65535,
          "minimum": 1
+      }
+   },
+   "Rule_ValidateLabels": {
+      "additionalProperties": {
+         "maxLength": 63,
+         "pattern": "^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$"
+      },
+      "propertyNames": {
+         "oneOf": [
+            {
+               "maxLength": 63,
+               "pattern": "^([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$"
+            },
+            {
+               "allOf": [
+                  {
+                     "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)/([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$"
+                  },
+                  {
+                     "pattern": "^.{1,253}/.{1,63}$"
+                  }
+               ]
+            }
+         ]
       }
    },
    "Rule_VolumeMountRequirements": {
@@ -662,8 +813,8 @@
          },
          {
             "additionalProperties": false,
-            "properties": {
-               "k4aSecret": {
+            "patternProperties": {
+               "k4asecret|k4aSecret": {
                   "properties": {
                      "secretName": {
                         "type": "string"
@@ -673,7 +824,9 @@
                      "secretName"
                   ],
                   "type": "object"
-               },
+               }
+            },
+            "properties": {
                "name": {
                   "$ref": "#/Rule_IsDNSValidation",
                   "type": "string"
@@ -682,8 +835,8 @@
          },
          {
             "additionalProperties": false,
-            "properties": {
-               "hostPath": {
+            "patternProperties": {
+               "hostpath|hostPath": {
                   "properties": {
                      "path": {
                         "$ref": "#/Rule_HostPathList",
@@ -691,7 +844,9 @@
                      }
                   },
                   "type": "object"
-               },
+               }
+            },
+            "properties": {
                "name": {
                   "$ref": "#/Rule_IsDNSValidation",
                   "type": "string"

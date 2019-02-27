@@ -42,11 +42,15 @@
             "lbname": "foo-lb",
             "ports": [
                {
+                  "addheaders": true,
                   "lbtype": "http",
+                  "mtls": true,
                   "port": 5432,
                   "reencrypt": true,
+                  "removeheaders": true,
                   "sticky": 100,
-                  "targetport": 5432
+                  "targetport": 5432,
+                  "tls": true
                }
             ]
          }

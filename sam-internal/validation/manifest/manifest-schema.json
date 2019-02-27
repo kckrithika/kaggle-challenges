@@ -44,6 +44,26 @@
                                     "type": "string",
                                     "$ref": "manifestConfigs#/Rule_FunctionTypeValidation/TypesAllowed"
                                 },
+
+                                "hostnetwork": {
+                                    "type": "boolean"
+                                },
+
+                                "annotations": {
+                                    "type": "object",
+                                    "allOf": [
+                                        { "$ref": "manifestConfigs#/Rule_ReservedLabels" },
+                                        { "$ref": "manifestConfigs#/Rule_ValidateLabels" }
+                                    ]
+                                },
+
+                                "labels": {
+                                    "type": "object",
+                                    "allOf": [
+                                        { "$ref": "manifestConfigs#/Rule_ReservedLabels" },
+                                        { "$ref": "manifestConfigs#/Rule_ValidateLabels" }
+                                    ]
+                                },
                         
                                 "identity": {
                                     "type": "object",
@@ -70,7 +90,6 @@
                                             },
 
                                             "env": {
-                                                "type": "array",
                                                 "items": {
                                                     "type": "object",
                                                     "allOf": [ { "$ref": "manifestConfigs#/Rule_EnvRequirements/MustExist" } ],
@@ -92,7 +111,10 @@
 
                                             "image": {
                                                 "type": "string",
-                                                "$ref": "manifestConfigs#/Rule_ImageForm"
+                                                "allOf": [
+                                                    { "$ref": "manifestConfigs#/Rule_InsecureImageValidation" },
+                                                    { "$ref": "manifestConfigs#/Rule_ImageForm" }
+                                                ]
                                             },
 
                                             "livenessProbe": {
@@ -176,7 +198,6 @@
                                 },
 
                                 "volumes": {
-                                    "type": "array",
                                     "items": {
                                         "type": "object",
                                         "$ref": "manifestConfigs#/Rule_VolumesFormat"
@@ -215,12 +236,20 @@
                                     "$ref":  "manifestConfigs#/Rule_IsDNS1035Validation"
                                 },
 
+                                "labels": {
+                                    "type": "object",
+                                    "allOf": [
+                                        { "$ref": "manifestConfigs#/Rule_ReservedLabels" },
+                                        { "$ref": "manifestConfigs#/Rule_ValidateLabels" }
+                                    ]
+                                },
+
                                 "function": {
-                                    "type": "string"
+
                                 },
 
                                 "selector": {
-                                    "type": "string"
+
                                 },
 
                                 "slbEnabled": {
@@ -237,14 +266,14 @@
                                         "type": "object",
                                         "allOf": [
                                             { "$ref": "manifestConfigs#/Rule_LBPortRequirements/MustExist" },
-                                            { "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBPortType" },
+                                            { "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBDestinationPort" },
+                                            { "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBTypeSpecificParameters" },
                                             { "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBPortAlgorithm" },
                                             { "$ref": "manifestConfigs#/Rule_LBPortsValidation/TLSValidation" }
                                         ],
                                         "properties": {
 
                                             "lbtype": {
-                                                "type": "string",
                                                 "$ref": "manifestConfigs#/Rule_LBPortsValidation/LBPortAllowedTypes"
                                             },
 

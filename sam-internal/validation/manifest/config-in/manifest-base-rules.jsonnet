@@ -1,5 +1,5 @@
 local base = import "base-config.jsonnet";
-local util = import "util.jsonnet";
+local util = import "../../util.jsonnet";
 local config = import "../manifest-overwrite.jsonnet";
 
 local schemaID = "manifestConfigs";
@@ -26,9 +26,13 @@ local schemaID = "manifestConfigs";
 
     Rule_ReservedPorts: util.ListNotAllowed(config.reservedPorts),
 
+    Rule_ValidateLabels: base.validateLabels,
+
+    Rule_ReservedLabels: base.reservedLabels,
+
     Rule_HostPathList: util.MatchRegex(config.allowedHostPathList.allowed, config.allowedHostPathList.notAllowed),
 
-    Rule_ImageForm: util.MatchRegex(config.imageForm.allowed, config.imageForm.notAllowed),
+    Rule_ImageForm: base.imageValidation,
 
     Rule_EnvVariableName: {
         EnvNamePatterns: util.MatchRegex(base.envNamePattern),
@@ -69,13 +73,15 @@ local schemaID = "manifestConfigs";
     Rule_LBPortsValidation: {
         LBPortAllowedTypes: util.AllowedValues(base.LBPortsValidation.LBPortAllowedTypes),
         LBPortAllowedAlgorithm: util.AllowedValues(base.LBPortsValidation.LBPortAllowedAlgorithm),
-        LBPortType: base.LBPortsValidation.LBPortType,
         LBPortAlgorithm: base.LBPortsValidation.LBPortAlgorithm,
+        LBTypeSpecificParameters: base.LBPortsValidation.LBTypeSpecificParameters,
+        LBDestinationPort: base.LBPortsValidation.LBDestinationPort,
         TLSValidation: base.LBPortsValidation.TLSValidation,
         TLSPattern: base.LBPortsValidation.TLSPattern,
         CIDRValidation: base.LBPortsValidation.CIDRValidation
     },
 
+    Rule_InsecureImageValidation: base.insecureImageValidation,
 
 
     Rule_ManifestRequirements: {

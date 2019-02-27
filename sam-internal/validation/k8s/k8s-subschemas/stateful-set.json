@@ -1,0 +1,175 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Validation Schema for k8s Stateful-Set",
+    "$id": "StatefulSetSchema",
+    "$ref": "#/allProperties",
+
+    "allProperties": {
+        "properties": {
+            "kind": {
+                "enum": [ "StatefulSet" ]
+            },
+
+            "metadata": {
+                "allOf": [
+                    { "$ref": "k8sConfigs#/Rule_LabelsValidation" },
+                    { "$ref": "k8sConfigs#/Rule_AnnotationValidation" }
+                ],
+                
+                "properties": {
+
+                    "labels": {
+
+                    },
+
+                    "annotations": {
+
+                    },
+
+                    "namespace": {
+
+                    }
+
+                }
+            },
+
+            "spec": {
+                "allOf": [ 
+                    { "$ref": "k8sConfigs#/Rule_StatefulSetSpecRequirements/MustExist" } 
+                ],
+                "properties": {
+
+                    "serviceName": {
+                        "type": "string"
+                    },
+        
+                    "template": {
+                        "properties": {
+
+                            "metadata": {
+                                "properties": {
+
+                                    "labels": {
+                                        "$ref": "k8sConfigs#/Rule_LabelsValidation"
+                                    },
+                
+                                    "annotations": {
+                                        "$ref": "k8sConfigs#/Rule_AnnotationValidation"
+                                    },
+                
+                                    "namespace": {
+                
+                                    }
+
+                                }
+                            },
+
+                            "spec": {
+                                "properties": {
+
+                                    "volumes": {
+                                        "items": {
+                                            "properties": {
+
+                                                "hostPath": {
+                                                    "properties": {
+                                                        
+                                                        "path": {
+                                                            "$ref": "k8sConfigs#/Rule_ValidateVolumes/BannedHostPaths"
+                                                        }
+
+                                                    }
+                                                },
+    
+                                                "name": {
+                                                    "$ref": "k8sConfigs#/Rule_IsDNSValidation"
+                                                }
+
+                                            }
+
+                                        }
+                                    },
+
+                                    "containers": {
+                                        "items": {
+                                            "properties": {
+
+                                                "name": {
+                                                    "$ref": "k8sConfigs#/Rule_IsDNSValidation"
+                                                },
+
+                                                "env": {
+                                                    "items": {
+                                                        "properties": {
+
+                                                            "name": {
+                                                                "$ref": "k8sConfigs#/Rule_ValidateNameInContainer/IsEnvVarName"
+                                                            }
+
+                                                        }
+                                                    }
+                                                },
+
+                                                "volumeMounts": {
+                                                    "items": {
+                                                        "properties": {
+
+                                                            "name": {
+                                                                "$ref": "k8sConfigs#/Rule_ValidateNameInContainer/IsQualifiedName"
+                                                            }
+
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    },
+
+                                    "initContainers": {
+                                        "items": {
+                                            "properties": {
+
+                                                "name": {
+                                                    "$ref": "k8sConfigs#/Rule_IsDNSValidation"
+                                                },
+
+                                                "env": {
+                                                    "items": {
+                                                        "properties": {
+
+                                                            "name": {
+                                                                "$ref": "k8sConfigs#/Rule_ValidateNameInContainer/IsEnvVarName"
+                                                            }
+
+                                                        }
+                                                    }
+                                                },
+
+                                                "volumeMounts": {
+                                                    "items": {
+                                                        "properties": {
+
+                                                            "name": {
+                                                                "$ref": "k8sConfigs#/Rule_ValidateNameInContainer/IsQualifiedName"
+                                                            }
+
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}

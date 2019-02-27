@@ -1,0 +1,272 @@
+{
+   "$id": "k8sConfigs",
+   "Rule_AffinityValidation": {
+      "if": {
+         "allOf": [
+            {
+               "properties": {
+                  "key": {
+                     "enum": [
+                        "pool"
+                     ]
+                  }
+               }
+            },
+            {
+               "properties": {
+                  "operator": {
+                     "enum": [
+                        "In"
+                     ]
+                  }
+               }
+            }
+         ]
+      },
+      "then": {
+         "properties": {
+            "values": {
+               "maxItems": 1,
+               "minItems": 1
+            }
+         }
+      }
+   },
+   "Rule_AnnotationValidation": {
+      "else": {
+         "else": {
+            "properties": {
+               "annotations": {
+                  "propertyNames": {
+                     "not": {
+                        "anyOf": [
+                           {
+                              "pattern": "^bundleName$"
+                           },
+                           {
+                              "pattern": "^deployed_by$"
+                           },
+                           {
+                              "pattern": "^pod-template-hash$"
+                           },
+                           {
+                              "pattern": "^controller-revision-hash$"
+                           },
+                           {
+                              "pattern": "^sam_.*$"
+                           },
+                           {
+                              "pattern": "^.*kubernetes.io/.*$"
+                           }
+                        ]
+                     }
+                  }
+               }
+            }
+         },
+         "if": {
+            "properties": {
+               "namespace": {
+                  "enum": [
+                     "sam-system"
+                  ]
+               }
+            }
+         },
+         "then": { }
+      },
+      "if": {
+         "properties": {
+            "namespace": {
+               "enum": [
+                  ""
+               ]
+            }
+         }
+      },
+      "then": {
+         "properties": {
+            "annotations": {
+               "propertyNames": {
+                  "not": {
+                     "anyOf": [
+                        {
+                           "pattern": "^bundleName$"
+                        },
+                        {
+                           "pattern": "^deployed_by$"
+                        },
+                        {
+                           "pattern": "^pod-template-hash$"
+                        },
+                        {
+                           "pattern": "^controller-revision-hash$"
+                        },
+                        {
+                           "pattern": "^sam_.*$"
+                        },
+                        {
+                           "pattern": "^.*kubernetes.io/.*$"
+                        }
+                     ]
+                  }
+               }
+            }
+         }
+      }
+   },
+   "Rule_IsDNS1035Validation": {
+      "maxLength": 63,
+      "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$"
+   },
+   "Rule_IsDNSValidation": {
+      "maxLength": 63,
+      "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"
+   },
+   "Rule_LabelsValidation": {
+      "else": {
+         "else": {
+            "properties": {
+               "labels": {
+                  "propertyNames": {
+                     "not": {
+                        "anyOf": [
+                           {
+                              "pattern": "^bundleName$"
+                           },
+                           {
+                              "pattern": "^deployed_by$"
+                           },
+                           {
+                              "pattern": "^pod-template-hash$"
+                           },
+                           {
+                              "pattern": "^controller-revision-hash$"
+                           },
+                           {
+                              "pattern": "^sam_.*$"
+                           },
+                           {
+                              "pattern": "^.*kubernetes.io/.*$"
+                           }
+                        ]
+                     }
+                  }
+               }
+            }
+         },
+         "if": {
+            "properties": {
+               "namespace": {
+                  "enum": [
+                     "sam-system"
+                  ]
+               }
+            }
+         },
+         "then": { }
+      },
+      "if": {
+         "properties": {
+            "namespace": {
+               "enum": [
+                  ""
+               ]
+            }
+         }
+      },
+      "then": {
+         "properties": {
+            "labels": {
+               "propertyNames": {
+                  "not": {
+                     "anyOf": [
+                        {
+                           "pattern": "^bundleName$"
+                        },
+                        {
+                           "pattern": "^deployed_by$"
+                        },
+                        {
+                           "pattern": "^pod-template-hash$"
+                        },
+                        {
+                           "pattern": "^controller-revision-hash$"
+                        },
+                        {
+                           "pattern": "^sam_.*$"
+                        },
+                        {
+                           "pattern": "^.*kubernetes.io/.*$"
+                        }
+                     ]
+                  }
+               }
+            }
+         }
+      }
+   },
+   "Rule_SLBAnnotationValidation": {
+      "properties": {
+         "slb.sfdc.net/name": {
+            "$ref": "#/Rule_IsDNS1035Validation"
+         },
+         "slb.sfdc.net/portconfigurations": { }
+      }
+   },
+   "Rule_StatefulSetSpecRequirements": {
+      "MustExist": {
+         "required": [
+            "serviceName"
+         ]
+      }
+   },
+   "Rule_ValidateNameInContainer": {
+      "IsEnvVarName": {
+         "allOf": [
+            {
+               "anyOf": [
+                  {
+                     "pattern": "^[-._a-zA-Z][-._a-zA-Z0-9]*$"
+                  }
+               ]
+            },
+            { }
+         ]
+      },
+      "IsQualifiedName": {
+         "oneOf": [
+            {
+               "maxLength": 63,
+               "pattern": "^([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$"
+            },
+            {
+               "allOf": [
+                  {
+                     "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)/([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$"
+                  },
+                  {
+                     "pattern": "^.{1,253}/.{1,63}$"
+                  }
+               ]
+            }
+         ]
+      }
+   },
+   "Rule_ValidateVolumes": {
+      "BannedHostPaths": {
+         "not": {
+            "enum": [
+               "/",
+               "/var",
+               "/usr",
+               "/bin",
+               "/lib",
+               "/sys",
+               "/opt",
+               "/boot"
+            ]
+         }
+      }
+   }
+}

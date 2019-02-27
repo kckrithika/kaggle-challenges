@@ -1,5 +1,5 @@
 local base = import 'template.libsonnet';
-local expectedError = import 'expectedErrorTypes.libsonnet';
+local expectedError = import '../../expectedErrorTypes.libsonnet';
 
 {
     "HostPathUseNotAllowedPattern.yaml": base {
@@ -88,7 +88,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
         override+:: {
             expectedError: expectedError.doesNotMatchPattern,
             containers: {
-                image: "somerandomhost.net/docker/retail/fail:123"
+                image: "somerandomhost.net"
             },
         },
     },
@@ -98,7 +98,7 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
         override+:: {
             expectedError: expectedError.notAllowedValuesUsed,
             containers: {
-                image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foo/bar:latest"
+                image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker/foo/bar:latest"
             },
         },
     },
@@ -285,18 +285,6 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
             expectedError: expectedError.requiredPropertyDoesntExist,
             functions: { 
                 containers:: "hidden" 
-            },
-        }
-    },
-
-
-    "EnvValueDoesNotExist.yaml": base {
-        override+:: {
-            expectedError: expectedError.requiredPropertyDoesntExist,
-            containers: {
-                env: [ 
-                    { name: "SOME_ENV_NAME" } 
-                ],
             },
         }
     },
@@ -505,7 +493,84 @@ local expectedError = import 'expectedErrorTypes.libsonnet';
             expectedError: expectedError.doesNotMatchPattern,
             lbports: {
                 tlscertificate: "some:invalid:format",
-                tls: false
+            },
+        },
+    },
+
+    "LBBothTargetAndRedirectPorts.yaml": base {
+       override+:: {
+            expectedError: expectedError.notAllowedValuesUsed,
+            lbports: {
+                httpsredirectport: 123,
+            },
+        },
+    },
+//
+    "LBLabelsUseReservedLabels.yaml": base {
+       override+:: {
+            expectedError: {
+                [ expectedError.notAllowedValuesUsed ]: 3
+            },
+            loadbalancers: {
+                labels: {
+                    sam_test: "someLabel",
+                    bundleName: "someLabel2",
+                    "test.kubernetes.io/test": "somelabel3",
+                },
+            },
+        },
+    },
+
+    "LBLabelInvalidFormat.yaml": base {
+       override+:: {
+            expectedError: {
+                [ expectedError.notAllowedValuesUsed ]: 3
+            },
+            loadbalancers: {
+                labels: {
+                    sam_test: "someLabel",
+                    bundleName: "someLabel2",
+                    "test.kubernetes.io/test": "somelabel3",
+                },
+            },
+        },
+    },
+
+    "FunctionLabelInvalidFormat.yaml": base {
+       override+:: {
+            expectedError: {
+                [ expectedError.doesNotMatchPattern ]: 4
+            },
+            functions: {
+                labels: {
+                    "more/than/one/part": "fail",
+                    "$invalid/%char": "fail2",
+                    "/nothingInPart1": "fail3"
+                },
+            },
+        },
+    },
+
+    "FunctionAnnotationInvalidValue.yaml": base {
+        override+:: {
+            expectedError: {
+                [ expectedError.doesNotMatchPattern ]: 7,
+            },
+            functions: {
+                annotations: {
+                    "more/than/one/part": "b@dV@lue",
+                    "$invalid/%char": "_bad-value_",
+                    "/nothingInPart1": "_b@d_"
+                },
+            },
+        },
+    },
+
+    "FunctionContainerInsecureImage.yaml": base {
+        override+:: {
+            expectedError: expectedError.notAllowedValuesUsed,
+            containers: {
+                image: "sam.test/test:tag"
             },
         },
     },

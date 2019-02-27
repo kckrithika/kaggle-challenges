@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Validation Schema for k8s Services",
+    "$id": "ServicesSchema",
+    "$ref": "#/allProperties",
+
+    "allProperties": {
+        "properties": {
+            "kind": {
+                "enum": [ "Service" ]
+            },
+
+            "metadata": {
+                "allOf": [
+                    { "$ref": "k8sConfigs#/Rule_LabelsValidation" },
+                    { "$ref": "k8sConfigs#/Rule_AnnotationValidation" }
+                ],
+                
+                "properties": {
+
+                    "annotations": {
+                        "$ref": "k8sConfigs#/Rule_SLBAnnotationValidation"
+                    },
+
+                    "labels": {
+
+                    },
+
+                    "namespace": {
+                        
+                    }
+
+                }
+            }
+
+        }
+    }
+}

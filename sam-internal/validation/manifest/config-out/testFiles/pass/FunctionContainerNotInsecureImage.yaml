@@ -12,7 +12,7 @@
                         "value": "bar"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foo/bar:1.1-sfdc",
+                  "image": "artifactrepo.test/test:tag",
                   "livenessProbe": {
                      "httpGet": {
                         "port": 5432
@@ -33,39 +33,7 @@
                }
             ],
             "count": 1,
-            "name": "foo-function",
-            "volumes": [
-               {
-                  "hostPath": {
-                     "path": "/data/ca-cluster-a"
-                  },
-                  "name": "foo-data-ca-cluster-a"
-               },
-               {
-                  "hostPath": {
-                     "path": "/fastdata/gater"
-                  },
-                  "name": "foo-fastdata-gater"
-               },
-               {
-                  "hostPath": {
-                     "path": "/var/log/scheduler-db"
-                  },
-                  "name": "foo-var-log-scheduler-db"
-               },
-               {
-                  "hostPath": {
-                     "path": "/home/caas/logs/caas"
-                  },
-                  "name": "foo-home-caas-logs-caas"
-               },
-               {
-                  "hostPath": {
-                     "path": "/home/sfdc-retail/logs"
-                  },
-                  "name": "foo-home-sfdc-retail-logs"
-               }
-            ]
+            "name": "foo-function"
          }
       ],
       "loadbalancers": [

@@ -1,0 +1,68 @@
+{
+   "$expectedError": "pass",
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "foo-label-name"
+      },
+      "name": "foo-metadata-name"
+   },
+   "spec": {
+      "selector": {
+         "matchLabels": {
+            "name": "foo-selector-matchLabels-name"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "name": "foo-label-name"
+            },
+            "name": "foo-metadata-name"
+         },
+         "spec": {
+            "affinity": {
+               "nodeAffinity": {
+                  "requiredDuringSchedulingIgnoredDuringExecution": {
+                     "nodeSelectorTerms": [
+                        {
+                           "matchExpressions": [
+                              {
+                                 "key": "pool",
+                                 "operator": "In",
+                                 "values": [
+                                    "Just 1 Value"
+                                 ]
+                              },
+                              {
+                                 "key": "not-pool",
+                                 "operator": "not-In",
+                                 "values": [
+                                    "More",
+                                    "Than",
+                                    "One",
+                                    "Value"
+                                 ]
+                              }
+                           ]
+                        }
+                     ]
+                  }
+               }
+            },
+            "containers": [
+               {
+                  "image": "foo:1.1.4",
+                  "name": "foo",
+                  "ports": [
+                     {
+                        "containerPort": 5432
+                     }
+                  ]
+               }
+            ]
+         }
+      }
+   }
+}

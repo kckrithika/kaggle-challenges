@@ -9,7 +9,6 @@ local base = import 'template.libsonnet';
         local patterns = [
             "/data/ca-cluster-a",
             "/fastdata/gater", 
-            "/cowdata", 
             "/var/log/scheduler-db", 
             "/home/caas/logs/caas", 
             "/home/sfdc-retail/logs"
@@ -217,6 +216,10 @@ local base = import 'template.libsonnet';
             lbports: {   
                 lbtype: "http",
                 reencrypt: true,
+                tls: true, 
+                mtls: true, 
+                addheaders: true, 
+                removeheaders: true,
                 sticky: 100
             }
         },
@@ -247,6 +250,48 @@ local base = import 'template.libsonnet';
                 tlskey: "secret_service:key123:secret",
                 lbtype: "http",
                 tls: true
+            },
+        },
+    },
+
+    "LBGoodLabel.yaml": base {
+        override+:: {
+            loadbalancers: {
+                labels: {
+                    "testing/one": "goodlabel1",
+                    "test.1.com/2": "good_label",
+                    "sfdc.co/sam": "good-label",
+                    "sfdc.co/test123": "wow-good_label",
+                },
+            },
+        },
+    },
+
+    "FunctionsGoodLabelAndAnnotations.yaml": base {
+        override+:: {
+            functions: {
+
+                labels: {
+                    "testing/one": "goodlabel1",
+                    "test.1.com/2": "good_label",
+                    "sfdc.co/sam": "good-label",
+                    "sfdc.co/test123": "wow-good_label",
+                },
+
+                annotations: {
+                    "testing/one": "goodlabel1",
+                    "test.1.com/2": "good_label",
+                    "sfdc.co/sam": "good-label",
+                    "sfdc.co/test123": "wow-good_label",
+                },
+            },
+        },
+    },
+
+    "FunctionContainersInsecureImageNotUse.yaml": base {
+        override+:: {
+            containers: {
+                image: "artifactrepo.test/test:tag"
             },
         },
     },

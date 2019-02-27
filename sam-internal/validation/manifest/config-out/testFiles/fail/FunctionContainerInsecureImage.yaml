@@ -1,5 +1,5 @@
 {
-   "$expectedError": "pass",
+   "$expectedError": "number_not",
    "apiVersion": "v1",
    "system": {
       "functions": [
@@ -12,7 +12,7 @@
                         "value": "bar"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:dca7fd4",
+                  "image": "sam.test/test:tag",
                   "livenessProbe": {
                      "httpGet": {
                         "port": 5432

@@ -1,5 +1,7 @@
 {
-   "$expectedError": "required",
+   "$expectedError": {
+      "pattern": 4
+   },
    "apiVersion": "v1",
    "system": {
       "functions": [
@@ -8,7 +10,8 @@
                {
                   "env": [
                      {
-                        "name": "SOME_ENV_NAME"
+                        "name": "FOO_ENV_NAME",
+                        "value": "bar"
                      }
                   ],
                   "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foo/bar:1.1-sfdc",
@@ -32,6 +35,11 @@
                }
             ],
             "count": 1,
+            "labels": {
+               "$invalid/%char": "fail2",
+               "/nothingInPart1": "fail3",
+               "more/than/one/part": "fail"
+            },
             "name": "foo-function"
          }
       ],
