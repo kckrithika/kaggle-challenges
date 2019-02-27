@@ -26,6 +26,8 @@ system:
       - --eventbus.threadpool.queue.size=50000
       - --eventbus.threadpool.blockTimeMs=20
       - --eventbus.threadpool.max.size=100
+      # 2018-02-14: Static IP for ZK LB Vip in GCP. neded because there's no dns name yet.
+      - --zookeeper.seedHosts=10.168.160.76
       ports:
       - containerPort: 15372
       # Expose 7020 for direct connections without TLS
