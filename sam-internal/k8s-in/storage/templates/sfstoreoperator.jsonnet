@@ -42,7 +42,6 @@ if std.setMember(configs.estate, enabledEstates) then configs.deploymentBase("st
                     {
                         name: "sfstoreoperator",
                         image: storageimages.sfstoreoperator,
-                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "sfstore-config",
@@ -55,7 +54,7 @@ if std.setMember(configs.estate, enabledEstates) then configs.deploymentBase("st
                         env: [
                             configs.kube_config_env,
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                     {
                         // Pump prometheus metrics to argus.
                         name: "sfms",

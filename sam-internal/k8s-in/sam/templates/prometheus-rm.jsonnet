@@ -16,7 +16,6 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                     {
                         name: "prometheus-rm",
                         image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lizhang/prometheus:11212018",
-                        [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         args: [
                             "--config.file",
                             "/prometheusconfig/prometheus-rm.json",
@@ -49,7 +48,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                             },
                             timeoutSeconds: 30,
                         },
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
                 volumes: configs.filter_empty([
                     {

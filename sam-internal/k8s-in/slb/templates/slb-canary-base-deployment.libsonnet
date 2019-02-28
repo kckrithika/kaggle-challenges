@@ -147,7 +147,6 @@ local getMadkubAnnotations(tlsPorts) = (
                     {
                         name: canaryName,
                         image: slbimages.hyperslb,
-                        [if !hostNetwork && configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: std.prune([
                                      "/sdn/slb-canary-service",
                                      "--serviceName=" + canaryName,
@@ -167,7 +166,7 @@ local getMadkubAnnotations(tlsPorts) = (
                                         "--proxyProtocolPorts=" + std.join(",", [std.toString(port) for port in proxyProtocolPorts]),
                                     ] else []
                                  )),
-                    }
+                    } + (if !hostNetwork then configs.ipAddressResourceRequest else {})
                     + getCanaryLivenessProbe(ports[0])
                     + getVolumeMounts(tlsPorts),
                     getMadkubRefreshContainer(tlsPorts),

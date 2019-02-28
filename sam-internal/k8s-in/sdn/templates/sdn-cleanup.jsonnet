@@ -14,7 +14,6 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     {
                         name: "sdn-cleanup",
                         image: sdnimages.hypersdn,
-                        [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                             "/sdn/sdn-cleanup",
                             "--period=1440m",
@@ -31,7 +30,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         securityContext: {
                             privileged: true,
                         },
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
             },
             metadata: {

@@ -187,13 +187,26 @@ local utils = import "util_functions.jsonnet",
     #          } + ipAddressResource,
     #      },
     #    ],
-     ipAddressResource: {
+    ipAddressResource: {
       limits+: {
         "sam.sfdc.net/ip-address": "1",
       },
       requests+: {
         "sam.sfdc.net/ip-address": "1",
       },
+    },
+
+    # The set of estates for which non-host network pods should have a container requesting
+    # an ip-address resource.
+    ipAddressResourceRequestEnabledEstates: std.set([
+        "prd-sam",
+        "prd-samdev",
+    ]),
+
+    # For estates where ip-address resource requests are enabled, this mixin augments a container's
+    # "resources" field to include an ip-address resource request.
+    ipAddressResourceRequest: {
+        [if std.setMember(estate, $.ipAddressResourceRequestEnabledEstates) then "resources"]+: $.ipAddressResource,
     },
 
     # This base contains common deployment fields to cut down on copy paste.

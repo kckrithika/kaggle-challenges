@@ -169,7 +169,6 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
             {
               name: $.serviceName,
               image: $.dockerImage,
-              [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
               command: $.command,
               imagePullPolicy: 'Always',
               env: $.env,
@@ -203,7 +202,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
 //                successThreshold: 1,
 //                failureThreshold: 10,
 //              },
-            },
+            } + configs.ipAddressResourceRequest,
           ] + if $.serviceConf.dindEnabled == false then [] else [
             {
               name: "dind-daemon",

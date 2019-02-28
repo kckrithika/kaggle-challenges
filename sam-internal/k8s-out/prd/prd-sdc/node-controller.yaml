@@ -23,6 +23,8 @@ spec:
         - /sam/node-controller
         - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --sdn-subnet-file-path=/kubeconfig/sfdc-sdn-subnet.env
+        - --default-max-podip=25
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

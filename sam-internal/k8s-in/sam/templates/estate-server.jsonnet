@@ -18,7 +18,6 @@ if samfeatureflags.estatessvc then {
                     {
                         name: "estate-server",
                         image: samimages.hypersam,
-                         [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                             "/sam/estatesvc/script/estatesvc-wrapper.sh",
                             configs.kingdom,
@@ -56,7 +55,7 @@ if samfeatureflags.estatessvc then {
                                 },
                             },
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
                 nodeSelector: {
                               } +

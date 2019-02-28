@@ -75,7 +75,6 @@ if std.setMember(configs.estate, enabledEstates) then configs.deploymentBase("st
                     {
                         name: "fds",
                         image: storageimages.fdscontroller,
-                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         ports: [
                             {
                                 containerPort: storageconfigs.serviceDefn.fds_svc.controller.port,
@@ -97,7 +96,7 @@ if std.setMember(configs.estate, enabledEstates) then configs.deploymentBase("st
                             fdsVolumeMounts,
                         env:
                             fdsEnvironmentVars,
-                    },
+                    } + configs.ipAddressResourceRequest,
                     {
                         // Pump prometheus metrics to argus.
                         name: "sfms",

@@ -45,7 +45,6 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                           {
                               name: "slb-portal",
                               image: slbimages.hyperslb,
-                              [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                               command: [
                                            "/sdn/slb-portal",
                                            "--hostname=$(NODE_NAME)",
@@ -89,7 +88,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                       },
                                   },
                               ],
-                          },
+                          } + configs.ipAddressResourceRequest,
                           slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                           slbshared.slbCleanupConfig,
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
