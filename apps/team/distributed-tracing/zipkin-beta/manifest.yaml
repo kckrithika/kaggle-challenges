@@ -6,12 +6,12 @@ system:
       - distributedtracing@salesforce.com
   functions:
   - name: zipkin-beta
-    count: 6
+    count: 1
     strategy:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 0
-        maxUnavailable: 3
+        maxUnavailable: 1
     volumes:
     - name: server-certs
       maddogCert:
