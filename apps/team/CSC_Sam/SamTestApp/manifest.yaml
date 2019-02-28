@@ -48,4 +48,3 @@ system:
       - port: 8888
         targetport: 8000
         name: http-foo
-        protocol: udp	
