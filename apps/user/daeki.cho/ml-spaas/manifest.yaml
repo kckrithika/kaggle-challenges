@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: ml-spaas
+    count: 1
+    containers:
+    - name: ml-spaas
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/daeki.cho/ml-spaas:cho-20190227
+      ports:
+      - containerPort: 50051
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 50051
+  loadbalancers:
+  - lbname: ml-spaaslb
+    function: ml-spaas
+    slbenabled: true
+    ports:
+      - port: 50051
+        targetport: 50051
+        lbtype: tcp
