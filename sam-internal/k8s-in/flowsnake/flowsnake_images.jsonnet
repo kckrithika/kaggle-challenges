@@ -48,7 +48,7 @@ local utils = import "util_functions.jsonnet";
                 jdk8_base_tag: "33",
                 madkub_injector_image_tag: "11",
                 spark_operator_image_tag: "11",
-                prometheus_funnel_image_tag: "17",
+                prometheus_funnel_image_tag: "19",
         },
 
         ### Release Phase minikube
@@ -153,7 +153,6 @@ local utils = import "util_functions.jsonnet";
                 impersonation_proxy: "verified-in-prd-*",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
-                spark_op_metrics: "enabled",
                 madkub_077_upgrade: "",
             },
             version_mapping: {
@@ -187,7 +186,6 @@ local utils = import "util_functions.jsonnet";
                 impersonation_proxy: "verified-in-prd-*",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
-                spark_op_metrics: "enabled",
                 madkub_077_upgrade: "",
             },
             version_mapping: {
