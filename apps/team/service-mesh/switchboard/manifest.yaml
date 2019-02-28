@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:55ee290fa3a3dbf138c337ced872d1db628bdab6
+      image: sfci/servicelibs/switchboard:008e82d3d64ef63b3fc8b771d78bf03d9abecb20
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -24,7 +24,6 @@ system:
       - --metrics.maxNumberOfCollectedMetrics=150000
       - --metrics.funnelTimeOut=100000
       - --healthIndicator.maxThreadCount=1300
-      - --envoy.max.connection.ageGraceMs=120000
       ports:
       - containerPort: 15372
       env:
