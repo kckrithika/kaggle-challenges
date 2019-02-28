@@ -29,7 +29,7 @@ system:
         - name: solr-data-volume
           mountPath: /home/sfdc/local-data/data
         - name: solr-log-volumes
-          mountPath: /home/sfdc-searchserver/logs
+          mountPath: /home/sfdc-searchserver/logs/solr
         livenessProbe:
           httpGet:
             path: /ping.jsp
@@ -45,4 +45,4 @@ system:
       volumes:
         - name: solr-log-volume
           hostPath:
-            path: /mnt/disks/ssd0/logs
+            path: /mnt/disks/ssd0/logs/solr
