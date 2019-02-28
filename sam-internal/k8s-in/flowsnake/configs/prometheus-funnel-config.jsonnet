@@ -53,7 +53,6 @@ local kingdom = std.extVar("kingdom");
                     "target_label": "device"
                 }
             ],
-            "scrape_interval": "15s",
             "tls_config": {
                 "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
             }
