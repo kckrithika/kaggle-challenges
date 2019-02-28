@@ -3,4 +3,5 @@ apps:
 #  - prd/prd-samdev
 # - prd/prd-samtest
 #  - prd/prd-sam
-
+  demoapp:
+  - prd/prd-sam
