@@ -5,7 +5,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then
 std.prune({
   crdNamespace: "sam-system",
   crdPollFrequency: "5m",
-  crdPushFrequency: "10m",
+  crdPushFrequency: "5m",
   nodeOfflineAfterTime: "60m",
   k8sFromDB: true,
   k8sResourceDbName: "sam_kube_resource",
