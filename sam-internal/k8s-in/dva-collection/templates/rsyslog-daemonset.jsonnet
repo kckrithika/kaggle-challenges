@@ -57,10 +57,10 @@ if configs.kingdom == "mvp" then {
                 labels: {
                     app: "collection-agent-daemonset",
                 },
-                spec: {
-                    automountServiceAccountToken: false,
-                    terminationGracePeriodSeconds: 60,
-                },
+            },
+            spec: {
+                automountServiceAccountToken: false,
+                terminationGracePeriodSeconds: 60,
                 # init containers
                 initContainers: initContainers,
                 containers: [
@@ -111,8 +111,8 @@ if configs.kingdom == "mvp" then {
         updateStrategy: {
             rollingUpdate: {
                 maxUnavailable: 1,
-                type: "RollingUpdate",
             },
+            type: "RollingUpdate",
         },
     },
 } else "SKIP"

@@ -11,6 +11,10 @@ spec:
       app: collection-agent-daemonset
   template:
     metadata:
+      labels:
+        app: collection-agent-daemonset
+    spec:
+      automountServiceAccountToken: false
       containers:
       - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:8.38-135-2-CERTS
         imagePullPolicy: Always
@@ -172,11 +176,7 @@ spec:
           name: rsyslog-workdir
         - mountPath: /run/log/journal
           name: rsyslog-imjournal
-      labels:
-        app: collection-agent-daemonset
-      spec:
-        automountServiceAccountToken: false
-        terminationGracePeriodSeconds: 60
+      terminationGracePeriodSeconds: 60
       volumes:
       - emptyDir: {}
         name: rsyslog-config
@@ -191,11 +191,9 @@ spec:
         name: varlibdockercontainers
       - hostPath:
           path: /mnt/disks/ssd0/logs
-          type: DirectoryOrCreate
         name: logs-vol
       - hostPath:
           path: /var/spool/rsyslog
-          type: DirectoryOrCreate
         name: rsyslog-workdir
       - hostPath:
           path: /var/log/journal
@@ -204,4 +202,4 @@ spec:
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 1
-      type: RollingUpdate
+    type: RollingUpdate
