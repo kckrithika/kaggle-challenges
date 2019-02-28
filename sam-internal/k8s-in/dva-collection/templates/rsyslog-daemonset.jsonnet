@@ -39,6 +39,7 @@ local initContainers = [
 ];
 
 if configs.kingdom == "mvp" then {
+    apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
     metadata: {
         name: "rsyslog-daemonset",
