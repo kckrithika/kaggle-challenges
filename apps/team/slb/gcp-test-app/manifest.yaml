@@ -5,19 +5,19 @@ system:
   - name: sam-gcp-test-app
     count: 2
     containers:
-    - name: gcp-test-app
+    - name: test-app
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tkuznets/docker-pets:toli
       ports:
-      - containerPort: 5000
+      - containerPort: 6000
       livenessProbe:
         httpGet:
           path: /
-          port: 5000
+          port: 6000
   loadbalancers:
-  - lbname: testLB
+  - lbname: testlb
     function: sam-gcp-test-app
     nodeExposed: true
     slbenabled: true
     ports:
-    - port: 50000
-      targetport: 5000
+    - port: 60000
+      targetport: 6000
