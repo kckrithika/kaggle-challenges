@@ -128,7 +128,7 @@ data:
         name="kafka_solr_jetty"
         broker= <%= config.broker_vip %>
         template="tpl_universal_schema_flatten"
-        topic= <%= config.topic %>
+        topic= <%= config.kafka_topic %>
         partitions.auto="on"
         resubmitOnFailure="off"
         reopenonhup="on"
@@ -191,11 +191,11 @@ data:
       set $!annotations = "[" & exec_template("syslog_annotation") & "]";
 
       <%# debugging %>
-      action(name="imjournal_syslog"
+      <%# action(name="imjournal_syslog"
         type="omfile"
         template="tpl_syslog"
         File="/var/log/imjournal_syslog.log"
-      )
+      ) %>
 
       <%# # Output action %>
       action(

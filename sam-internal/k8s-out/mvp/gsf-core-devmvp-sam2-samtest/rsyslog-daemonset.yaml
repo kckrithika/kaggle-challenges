@@ -55,7 +55,7 @@ spec:
         - name: BROKER_VIP
           valueFrom:
             configMapKeyRef:
-              key: broker.vip
+              key: broker_vip
               name: kafka-cm
         - name: KAFKA_TOPIC
           valueFrom:
@@ -76,7 +76,7 @@ spec:
         - name: BROKER_VIP
           valueFrom:
             configMapKeyRef:
-              key: broker.vip
+              key: broker_vip
               name: kafka-cm
         - name: KAFKA_TOPIC
           valueFrom:
@@ -97,7 +97,7 @@ spec:
         - name: BROKER_VIP
           valueFrom:
             configMapKeyRef:
-              key: broker.vip
+              key: broker_vip
               name: kafka-cm
         - name: KAFKA_TOPIC
           valueFrom:
@@ -118,7 +118,7 @@ spec:
         - name: BROKER_VIP
           valueFrom:
             configMapKeyRef:
-              key: broker.vip
+              key: broker_vip
               name: kafka-cm
         - name: KAFKA_TOPIC
           valueFrom:

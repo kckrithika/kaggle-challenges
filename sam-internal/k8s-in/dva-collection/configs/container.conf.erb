@@ -105,7 +105,7 @@ ruleset(name = "kubernetes_dockercontainers_ruleset") {
     name="kafka_kubernetes_kafka_action"
     broker="<%= config.broker_vip %>"
     template="tpl_containers_log"
-    topic= "<%= config.topic %>"
+    topic= "<%= config.kafka_topic %>"
     keepFailedMessages="on"
     partitions.auto="on"
     resubmitOnFailure="off"

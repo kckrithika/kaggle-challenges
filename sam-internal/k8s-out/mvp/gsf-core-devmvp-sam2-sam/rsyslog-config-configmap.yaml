@@ -48,7 +48,7 @@ data:
     \   template=\"tpl_containers_log\" %>\n  )\n<%# ---- / UNCOMMENT to TEST -----
     %>\n\n  <%# Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_kubernetes_kafka_action\"\n
     \   broker=\"<%= config.broker_vip %>\"\n    template=\"tpl_containers_log\"\n
-    \   topic= \"<%= config.topic %>\"\n    keepFailedMessages=\"on\"\n    partitions.auto=\"on\"\n
+    \   topic= \"<%= config.kafka_topic %>\"\n    keepFailedMessages=\"on\"\n    partitions.auto=\"on\"\n
     \   resubmitOnFailure=\"off\"\n    reopenonhup=\"on\"\n    action.resumeRetryCount=\"-1\"\n
     \   confParam=[\n      \"batch.num.messages=10000\",\n      \"client.id=collections.rsyslog.syslog\",\n
     \     \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
@@ -128,7 +128,7 @@ data:
         name="kafka_solr_jetty"
         broker= <%= config.broker_vip %>
         template="tpl_universal_schema_flatten"
-        topic= <%= config.topic %>
+        topic= <%= config.kafka_topic %>
         partitions.auto="on"
         resubmitOnFailure="off"
         reopenonhup="on"
@@ -191,11 +191,11 @@ data:
       set $!annotations = "[" & exec_template("syslog_annotation") & "]";
 
       <%# debugging %>
-      action(name="imjournal_syslog"
+      <%# action(name="imjournal_syslog"
         type="omfile"
         template="tpl_syslog"
         File="/var/log/imjournal_syslog.log"
-      )
+      ) %>
 
       <%# # Output action %>
       action(
@@ -275,7 +275,7 @@ data:
         name="kafka_solr"
         broker= <%= config.broker_vip %>
         template="tpl_universal_schema_flatten"
-        topic= <%= config.topic %>
+        topic= <%= config.kafka_topic %>
         partitions.auto="on"
         resubmitOnFailure="off"
         reopenonhup="on"

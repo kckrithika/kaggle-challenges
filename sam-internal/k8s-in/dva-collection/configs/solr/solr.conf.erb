@@ -28,7 +28,7 @@ ruleset(name="ruleset_solr" queue.type="LinkedList" queue.size="5000" queue.ligh
     name="kafka_solr"
     broker= <%= config.broker_vip %>
     template="tpl_universal_schema_flatten"
-    topic= <%= config.topic %>
+    topic= <%= config.kafka_topic %>
     partitions.auto="on"
     resubmitOnFailure="off"
     reopenonhup="on"
