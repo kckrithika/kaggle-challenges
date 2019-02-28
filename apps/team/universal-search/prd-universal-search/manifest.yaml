@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:1.0.8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:1.1.0
       ports:
       - name: service-port
         containerPort: 7020
@@ -254,7 +254,7 @@ system:
     lbname: universal-search-slb
     ports:
     - port: 7020
-      targetport: 7012
+      targetport: 7020
     - lbtype: http
       port: 15372
       targetport: 15372
