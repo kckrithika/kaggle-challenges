@@ -152,6 +152,7 @@ local utils = import "util_functions.jsonnet";
                 dynamic_watchdogs: "verified in dev",
                 impersonation_proxy: "verified-in-prd-*",
                 madkub_injector: "enabled",
+                spark_op_metrics: "enabled",
                 spark_operator: "enabled",
                 madkub_077_upgrade: "",
             },
