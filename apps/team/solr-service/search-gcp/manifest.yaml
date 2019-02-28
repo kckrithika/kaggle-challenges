@@ -7,12 +7,14 @@ system:
       count: 1
       containers:
       - name: searchserver
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17529542.439
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
         - name: INSTANCE_URL
-          value: "na44.stmfa.stm.salesforce.com"
+          value: "DISABLED"
+        - name: ENCRYPTION_URL
+          value: "DISABLED"
         - name: LBNAME
           value: "searchservers"
         - name: DNS_PODNAME
@@ -23,6 +25,11 @@ system:
         ports:
         - containerPort: 8983
           name: solr-port
+        volumeMounts:
+        - name: solr-data-volume
+          mountPath: /home/sfdc/local-data/data
+        - name: solr-log-volume
+          mountPath: /home/sfdc-searchserver/logs/solr
         livenessProbe:
           httpGet:
             path: /ping.jsp
@@ -30,3 +37,12 @@ system:
           initialDelaySeconds: 120
           periodSeconds: 5
       lbname: searchservers
+      terminationGracePeriodSeconds: 10
+      volumeClaimTemplates:
+      - name: solr-data-volume
+        storageClassName: standard
+        storageSizeRequest: 10Gi
+      volumes:
+        - name: solr-log-volume
+          hostPath:
+            path: /mnt/disks/ssd0/data/logs/solr
