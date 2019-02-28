@@ -195,7 +195,7 @@ spec:
           value: "4"
         - name: RABBITMQ_NODENAME
           value: rabbit@$(MY_POD_NAME).rabbitmq-set.$(MY_POD_NAMESPACE).svc.prd-samtwo.prd.sam.sfdc.net.
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq-monitord:314
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-rabbitmq-monitord:327
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 10
