@@ -30,7 +30,9 @@ system:
     - name: secretvol-pc
       k4aSecret:
         secretName: caas-k4a-secret-sp-cs103-pc
-
+    - name: secretvol-db
+      k4aSecret:
+        secretName: gcp-mvp-1az-db-pw
     containers:
     - name: coreapp
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_1745343
@@ -142,6 +144,9 @@ system:
           readOnly: true
         - mountPath: /home/sfdc/salesforce/config/settings/overrides/sp-devmvp-pc
           name: secretvol-pc
+          readOnly: true
+        - mountPath: /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-1az-db-pw
+          name: secretvol-db
           readOnly: true
 
     - name: envoy-sidecar-config
