@@ -3,10 +3,10 @@ apiVersion: v1
 system:
   functions:
   - name: slack-forwarder
-    count: 1
+    count: 2
     containers:
     - name: slack-forwarder
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/moe/reverse-proxy:mgrass-201902112200
+      image: dva/moe/reverse-proxy:2071-90e67f4bfc26447a02cf62a63bd13bd05b53af54
       command: ["/moe/reverse-proxy"]
       args:
       - "-publicProxyURL=http://public0-proxy1-0-prd.data.sfdc.net:8080"
