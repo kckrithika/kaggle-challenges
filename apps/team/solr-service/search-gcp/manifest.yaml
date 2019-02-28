@@ -12,7 +12,9 @@ system:
         - name: SFDC_ENVIRONMENT
           value: "sam"
         - name: INSTANCE_URL
-          value: "na44.stmfa.stm.salesforce.com"
+          value: "DISABLED"
+        - name: ENCRYPTION_URL
+          value: "DISABLED"
         - name: LBNAME
           value: "searchservers"
         - name: DNS_PODNAME
@@ -23,6 +25,9 @@ system:
         ports:
         - containerPort: 8983
           name: solr-port
+        volumeMounts:
+        - name: solr-data-volume
+          mountPath: /home/sfdc/local-data/data
         livenessProbe:
           httpGet:
             path: /ping.jsp
@@ -30,3 +35,8 @@ system:
           initialDelaySeconds: 120
           periodSeconds: 5
       lbname: searchservers
+      terminationGracePeriodSeconds: 10
+      volumeClaimTemplates:
+      - name: solr-data-volume
+        storageClassName: standard
+        storageSizeRequest: 10Gi
