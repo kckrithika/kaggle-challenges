@@ -37,7 +37,7 @@ if configs.estate == "prd-samtwo" then
               },
               "gcp-syncers": {
                 config: {
-                  "thread-pool-size": 2,
+                  "thread-pool-size": 1,
                   "thread-name-prefix": "gcp-syncer",
                 },
                 rps: {
@@ -49,10 +49,10 @@ if configs.estate == "prd-samtwo" then
                       "product-name-regex": ".*",
                     },
                   },
-                  "gcs-bucket": "rps-spike",
+                  "gcs-bucket": "sfcd-rps",
                 },
                 rpm: {
-                  "enable-syncer": true,
+                  "enable-syncer": false,
                   "initial-delay": 5000,
                   "sync-rate": 120000,
                   "repo-configs": {
