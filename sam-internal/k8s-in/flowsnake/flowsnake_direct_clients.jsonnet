@@ -48,12 +48,6 @@ local estate = std.extVar("estate");
                 pki_namespace: "flowsnake_test",
                 users: ["flowsnake_test.lorrin.nelson"],
             },
-            {
-                owner_name: "Flowsnake",
-                namespace: "lorrin-test",  # Kubernetes namespaces cannot contain '_' characters
-                pki_namespace: "lorrin-non-existent-pki",
-                users: ["flowsnake_test.lorrin.nelson"],
-            },
         ],
 
         # ------------------------------------
