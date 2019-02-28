@@ -12,11 +12,36 @@ input(
   discardTruncatedMsg="on"
 )
 
+<%# Output Template%>
+template(name="tpl_jetty" type="list") {
+  constant(value="{\"schema_type\":\"json-schema\",\"schema_id\":\"event-flatten:1\",\"data\":{")
+  property(name="msg" outname="message" format="jsonf")
+  constant(value=",")
+  property(name="$!source_type" outname="source_type" format="jsonfr")
+  constant(value=",")
+  property(name="$!datacenter" outname="dc" format="jsonfr")
+  constant(value=",")
+  property(name="$!superpod" outname="superpod" format="jsonfr")
+  constant(value=",")
+  property(name="$!pod" outname="pod" format="jsonfr")
+  constant(value=",")
+  property(name="$!metadata!filename" outname="source" format="jsonfr")
+  constant(value=",")
+  property(name="$!hostname" format="jsonfr")
+  constant(value=",")
+  property(name="$!node" format="jsonfr")  
+  constant(value=",")
+  property(name="timegenerated" outname="agent_timestamp" dateFormat="rfc3339" date.inUTC="on" format="jsonfr")
+  constant(value=",")
+  property(name="$!owner" outname="owner" format="jsonfr")
+  constant(value="}}\n")
+}
+
 <%# RULESET DEFINITION %>
 ruleset(name="ruleset_solr_jetty" queue.type="LinkedList" queue.size="5000" queue.lightdelaymark="3000" queue.fulldelaymark="4000") {
 
   <%# Template Spec %>
-  set $!datacenter = "<%= config.cluser %>";
+  set $!datacenter = "<%= config.cluster %>";
   set $!superpod = "NONE";
   set $!pod = "<%= config.node %>";
   set $!owner = "Search";
@@ -26,9 +51,9 @@ ruleset(name="ruleset_solr_jetty" queue.type="LinkedList" queue.size="5000" queu
   action(
     type="omkafka"
     name="kafka_solr_jetty"
-    broker= <%= config.broker_vip %>
-    template="tpl_universal_schema_flatten"
-    topic= <%= config.kafka_topic %>
+    broker= "<%= config.broker_vip %>"
+    template="tpl_jetty"
+    topic= "<%= config.kafka_topic %>"
     partitions.auto="on"
     resubmitOnFailure="off"
     reopenonhup="on"
@@ -42,7 +67,7 @@ ruleset(name="ruleset_solr_jetty" queue.type="LinkedList" queue.size="5000" queu
       "queue.buffering.max.ms=5000",
       "retries=86400",
       "retry.backoff.ms=1000",
-      "socket.keepalive.enable=true"
+      "socket.keepalive.enable=true",
       "security.protocol=ssl",
       "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
       "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",

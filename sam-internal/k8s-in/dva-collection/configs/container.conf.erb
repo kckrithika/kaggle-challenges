@@ -90,14 +90,12 @@ ruleset(name = "kubernetes_dockercontainers_ruleset") {
   <%# kubernetes app log annotation array %>
   set $!annotations = "[" & exec_template("kubernetes_annotation_kubernetes_container") & ", " & exec_template("kubernetes_annotation_rsyslog_base") & "]";
 
-<%# ---- UNCOMMENT to TEST ----- %>
   <%# action(
     name="syslog_file_action"
     type="omfile"
     file="/var/log/kubernetes_dockercontainers_ruleset.log"
-    template="tpl_containers_log" %>
-  )
-<%# ---- / UNCOMMENT to TEST ----- %>
+    template="tpl_containers_log"
+  ) %>
 
   <%# Output action %>
   action(
@@ -120,7 +118,7 @@ ruleset(name = "kubernetes_dockercontainers_ruleset") {
       "queue.buffering.max.ms=5000",
       "retries=2",
       "retry.backoff.ms=100",
-      "socket.keepalive.enable=true"
+      "socket.keepalive.enable=true",
       "security.protocol=ssl",
       "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
       "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
