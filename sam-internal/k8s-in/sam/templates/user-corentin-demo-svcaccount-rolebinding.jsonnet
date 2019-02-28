@@ -16,6 +16,6 @@ if configs.estate == "prd-sam" then {
    roleRef: {
             kind: "Role",
             name: "deployment-reader",
-            apiGroup: "rbac.authorization.k8s.io/v1beta1",
+            apiGroup: "rbac.authorization.k8s.io",
         },
 } else "SKIP"
