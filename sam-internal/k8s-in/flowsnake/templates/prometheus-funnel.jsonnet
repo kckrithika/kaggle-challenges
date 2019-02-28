@@ -70,12 +70,11 @@ configs.deploymentBase("flowsnake") {
           },
           {
             args: [
-              "--service=flowsnake",
-              "--subservice=container_role,subservice,rob_args_test",
-              "--datacenter",
-              kingdom,
-              "--estate",
-              estate,
+              "--serviceName=flowsnake",
+              "--subserviceName=rob_args_test",
+              "--default=datacenter:" + kingdom,
+              "--default=estate:" + estate,
+              "--default=superpod:NONE",
               "--batch_size=512",
             ],
             image: flowsnake_images.funnel_writer,

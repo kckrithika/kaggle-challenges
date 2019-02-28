@@ -24,7 +24,7 @@ spec:
         - --config.file=/etc/config/prometheus.json
         - --storage.tsdb.path=/prometheus-storage
         - --web.external-url=http://localhost/
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:17
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:19
         livenessProbe:
           httpGet:
             path: /metrics
@@ -41,14 +41,13 @@ spec:
         - mountPath: /etc/config
           name: prometheus-server-conf
       - args:
-        - --service=flowsnake
-        - --subservice=container_role,subservice,rob_args_test
-        - --datacenter
-        - prd
-        - --estate
-        - prd-data-flowsnake_test
+        - --serviceName=flowsnake
+        - --subserviceName=rob_args_test
+        - --default=datacenter:prd
+        - --default=estate:prd-data-flowsnake_test
+        - --default=superpod:NONE
         - --batch_size=512
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:17
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:19
         livenessProbe:
           httpGet:
             path: /

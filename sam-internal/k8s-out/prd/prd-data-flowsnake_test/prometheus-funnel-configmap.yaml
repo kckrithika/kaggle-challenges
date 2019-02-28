@@ -47,10 +47,6 @@ data:
               "target_label": "estate"
             },
             {
-              "replacement": "NONE",
-              "target_label": "superpod"
-            },
-            {
               "source_labels": [
                 "__meta_kubernetes_pod_node_name"
               ],
@@ -82,6 +78,14 @@ data:
             {
               "replacement": "spark-operator",
               "target_label": "subservice"
+            },
+            {
+              "replacement": "prd",
+              "target_label": "datacenter"
+            },
+            {
+              "replacement": "prd-data-flowsnake_test",
+              "target_label": "estate"
             },
             {
               "source_labels": [
@@ -118,64 +122,22 @@ data:
               ]
             },
             {
+              "replacement": "prometheus",
+              "target_label": "subservice"
+            },
+            {
+              "replacement": "prd",
+              "target_label": "datacenter"
+            },
+            {
+              "replacement": "prd-data-flowsnake_test",
+              "target_label": "estate"
+            },
+            {
               "source_labels": [
                 "__meta_kubernetes_pod_node_name"
               ],
               "target_label": "device"
-            }
-          ],
-          "scrape_interval": "60s",
-          "tls_config": {
-            "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-          }
-        },
-        {
-          "bearer_token_file": "/var/run/secrets/kubernetes.io/serviceaccount/token",
-          "job_name": "fs_metrics",
-          "kubernetes_sd_configs": [
-            {
-              "role": "pod"
-            }
-          ],
-          "relabel_configs": [
-            {
-              "action": "keep",
-              "regex": "(.+)",
-              "source_labels": [
-                "__meta_kubernetes_pod_label_flowsnakeEnvironmentName"
-              ]
-            },
-            {
-              "action": "replace",
-              "regex": "(.+)",
-              "source_labels": [
-                "__meta_kubernetes_pod_label_flowsnakeEnvironmentName"
-              ],
-              "target_label": "flowsnake_environment"
-            },
-            {
-              "action": "replace",
-              "regex": "(.+)",
-              "source_labels": [
-                "__meta_kubernetes_pod_label_flowsnakeOwner"
-              ],
-              "target_label": "owner"
-            },
-            {
-              "action": "replace",
-              "regex": "(.+)",
-              "source_labels": [
-                "__meta_kubernetes_pod_node_name"
-              ],
-              "target_label": "device"
-            },
-            {
-              "action": "replace",
-              "regex": "(.+)",
-              "source_labels": [
-                "__meta_kubernetes_pod_label_app"
-              ],
-              "target_label": "container_role"
             }
           ],
           "scrape_interval": "60s",
