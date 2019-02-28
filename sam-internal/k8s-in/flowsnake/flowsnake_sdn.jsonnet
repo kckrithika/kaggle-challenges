@@ -8,7 +8,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
     // The estate not being in this map at all means that it is fully bootstrapped and running Flowsnake.
     // Note: keys in this map are estate name only, not kingdom/estate.
     sdn_estate_phases: flowsnakeconfig.validate_estate_fields({
-        "ia2-flowsnake_prod": 4,
+        "ia2-flowsnake_prod": 5,
     }),
 
     sdn_deployment_phases: [
