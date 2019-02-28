@@ -9,8 +9,9 @@ if configs.kingdom == "mvp" then {
         labels: {} + configs.pcnEnableLabel,
     },
     data: {
-        "broker.vip": "ajna-kafka.ajnalocal1.vip.core.test.us-central2.gcp.sfdc",
+        broker_vip: "ajna-kafka.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:9093",
         generic_topic: "sfdc.test.rsyslog__gcp.us-central1.core.ajnalocal1__logs.sam",
         solr_topic: "sfdc.test.rsyslog__gcp.us-central1.core.ajnalocal1__logs.solr",
+        casam_topic: "sfdc.test.rsyslog__gcp.us-central1.core.ajnalocal1__logs.casam.sam",
     },
 } else "SKIP"

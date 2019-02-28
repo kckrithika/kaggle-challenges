@@ -35,11 +35,11 @@ ruleset(name="ruleset_imjounal_syslog" queue.type="LinkedList" queue.size="10000
   set $!annotations = "[" & exec_template("syslog_annotation") & "]";
 
   <%# debugging %>
-  action(name="imjournal_syslog"
+  <%# action(name="imjournal_syslog"
     type="omfile"
     template="tpl_syslog"
     File="/var/log/imjournal_syslog.log"
-  )
+  ) %>
 
   <%# # Output action %>
   action(

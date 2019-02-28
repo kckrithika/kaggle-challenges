@@ -109,7 +109,7 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
                 valueFrom: {
                      configMapKeyRef: {
                         name: "kafka-cm",
-                        key: "broker.vip",
+                        key: "broker_vip",
                      },
                 },
 
