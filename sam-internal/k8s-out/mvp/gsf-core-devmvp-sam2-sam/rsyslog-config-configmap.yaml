@@ -42,18 +42,17 @@ data:
     = \"true\";\n\n  <%# ------------ end of parsing kubernetes container annotations
     ----------------%>\n  \n\n  <%# container logs event %>\n  set $!event = exec_template(\"kubernetes_event\");\n\n
     \ <%# kubernetes app log annotation array %>\n  set $!annotations = \"[\" & exec_template(\"kubernetes_annotation_kubernetes_container\")
-    & \", \" & exec_template(\"kubernetes_annotation_rsyslog_base\") & \"]\";\n\n<%#
-    ---- UNCOMMENT to TEST ----- %>\n  <%# action(\n    name=\"syslog_file_action\"\n
-    \   type=\"omfile\"\n    file=\"/var/log/kubernetes_dockercontainers_ruleset.log\"\n
-    \   template=\"tpl_containers_log\" %>\n  )\n<%# ---- / UNCOMMENT to TEST -----
-    %>\n\n  <%# Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_kubernetes_kafka_action\"\n
-    \   broker=\"<%= config.broker_vip %>\"\n    template=\"tpl_containers_log\"\n
-    \   topic= \"<%= config.kafka_topic %>\"\n    keepFailedMessages=\"on\"\n    partitions.auto=\"on\"\n
+    & \", \" & exec_template(\"kubernetes_annotation_rsyslog_base\") & \"]\";\n\n
+    \ <%# action(\n    name=\"syslog_file_action\"\n    type=\"omfile\"\n    file=\"/var/log/kubernetes_dockercontainers_ruleset.log\"\n
+    \   template=\"tpl_containers_log\"\n  ) %>\n\n  <%# Output action %>\n  action(\n
+    \   type=\"omkafka\"\n    name=\"kafka_kubernetes_kafka_action\"\n    broker=\"<%=
+    config.broker_vip %>\"\n    template=\"tpl_containers_log\"\n    topic= \"<%=
+    config.kafka_topic %>\"\n    keepFailedMessages=\"on\"\n    partitions.auto=\"on\"\n
     \   resubmitOnFailure=\"off\"\n    reopenonhup=\"on\"\n    action.resumeRetryCount=\"-1\"\n
     \   confParam=[\n      \"batch.num.messages=10000\",\n      \"client.id=collections.rsyslog.syslog\",\n
     \     \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
     \     \"message.max.bytes=1000000\",\n      \"queue.buffering.max.ms=5000\",\n
-    \     \"retries=2\",\n      \"retry.backoff.ms=100\",\n      \"socket.keepalive.enable=true\"\n
+    \     \"retries=2\",\n      \"retry.backoff.ms=100\",\n      \"socket.keepalive.enable=true\",\n
     \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
     \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
     \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
@@ -92,68 +91,44 @@ data:
     \   confParam=[\n      \"batch.num.messages=10000\",\n      \"compression.codec=gzip\",\n
     \     \"max.in.flight.requests.per.connection=2\",\n      \"message.max.bytes=1000000\",\n
     \     \"queue.buffering.max.ms=5000\",\n      \"retries=3\",\n      \"retry.backoff.ms=1000\",\n
-    \     \"socket.keepalive.enable=true\"\n      \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
+    \     \"socket.keepalive.enable=true\",\n      \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
     \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
     \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n\n<%# END OF FILE
     %>"
-  jetty.conf.erb: |
-    <%# INPUT DEFINITIONS %>
-    input(
-      type="imfile"
-      File="/home/sfdc/logs/solr/*.jvmgc.log_*"
-      PersistStateInterval="50000"
-      Tag="solr_jetty"
-      ruleset="ruleset_solr_jetty"
-      startmsg.regex="^([[:digit:]]{4}-(0[1-9]|1[0-2])-(0?[1-9]|[12][[:digit:]]|3[01]))([[:space:]]|T)(([01][[:digit:]]|2[0-3]):[0-5][[:digit:]]:([0-5][[:digit:]]|6[01]))[,|\\.][[:digit:]]{3}`"
-      readTimeout = "5"
-      addmetadata="on"
-      escapelf="off"
-      discardTruncatedMsg="on"
-    )
-
-    <%# RULESET DEFINITION %>
-    ruleset(name="ruleset_solr_jetty" queue.type="LinkedList" queue.size="5000" queue.lightdelaymark="3000" queue.fulldelaymark="4000") {
-
-      <%# Template Spec %>
-      set $!datacenter = "<%= config.cluser %>";
-      set $!superpod = "NONE";
-      set $!pod = "<%= config.node %>";
-      set $!owner = "Search";
-      set $!source_type = "solr_jvmgclog";
-
-      <%# Output action %>
-      action(
-        type="omkafka"
-        name="kafka_solr_jetty"
-        broker= <%= config.broker_vip %>
-        template="tpl_universal_schema_flatten"
-        topic= <%= config.kafka_topic %>
-        partitions.auto="on"
-        resubmitOnFailure="off"
-        reopenonhup="on"
-        action.resumeRetryCount="-1"
-        confParam=[
-          "batch.num.messages=10000",
-          "client.id=collections.rsyslog.test",
-          "compression.codec=gzip",
-          "max.in.flight.requests.per.connection=2",
-          "message.max.bytes=1000000",
-          "queue.buffering.max.ms=5000",
-          "retries=86400",
-          "retry.backoff.ms=1000",
-          "socket.keepalive.enable=true"
-          "security.protocol=ssl",
-          "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
-          "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
-          "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem"
-        ]
-        topicConfParam=[
-          "acks=-1"
-        ]
-      )
-    }
-  journal.conf.erb: |+
+  jetty.conf.erb: "<%# INPUT DEFINITIONS %>\ninput(\n  type=\"imfile\"\n  File=\"/home/sfdc/logs/solr/*.jvmgc.log_*\"\n
+    \ PersistStateInterval=\"50000\"\n  Tag=\"solr_jetty\"\n  ruleset=\"ruleset_solr_jetty\"\n
+    \ startmsg.regex=\"^([[:digit:]]{4}-(0[1-9]|1[0-2])-(0?[1-9]|[12][[:digit:]]|3[01]))([[:space:]]|T)(([01][[:digit:]]|2[0-3]):[0-5][[:digit:]]:([0-5][[:digit:]]|6[01]))[,|\\\\.][[:digit:]]{3}`\"\n
+    \ readTimeout = \"5\"\n  addmetadata=\"on\"\n  escapelf=\"off\"\n  discardTruncatedMsg=\"on\"\n)\n\n<%#
+    Output Template%>\ntemplate(name=\"tpl_jetty\" type=\"list\") {\n  constant(value=\"{\\\"schema_type\\\":\\\"json-schema\\\",\\\"schema_id\\\":\\\"event-flatten:1\\\",\\\"data\\\":{\")\n
+    \ property(name=\"msg\" outname=\"message\" format=\"jsonf\")\n  constant(value=\",\")\n
+    \ property(name=\"$!source_type\" outname=\"source_type\" format=\"jsonfr\")\n
+    \ constant(value=\",\")\n  property(name=\"$!datacenter\" outname=\"dc\" format=\"jsonfr\")\n
+    \ constant(value=\",\")\n  property(name=\"$!superpod\" outname=\"superpod\" format=\"jsonfr\")\n
+    \ constant(value=\",\")\n  property(name=\"$!pod\" outname=\"pod\" format=\"jsonfr\")\n
+    \ constant(value=\",\")\n  property(name=\"$!metadata!filename\" outname=\"source\"
+    format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!hostname\" format=\"jsonfr\")\n
+    \ constant(value=\",\")\n  property(name=\"$!node\" format=\"jsonfr\")  \n  constant(value=\",\")\n
+    \ property(name=\"timegenerated\" outname=\"agent_timestamp\" dateFormat=\"rfc3339\"
+    date.inUTC=\"on\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!owner\"
+    outname=\"owner\" format=\"jsonfr\")\n  constant(value=\"}}\\n\")\n}\n\n<%# RULESET
+    DEFINITION %>\nruleset(name=\"ruleset_solr_jetty\" queue.type=\"LinkedList\" queue.size=\"5000\"
+    queue.lightdelaymark=\"3000\" queue.fulldelaymark=\"4000\") {\n\n  <%# Template
+    Spec %>\n  set $!datacenter = \"<%= config.cluster %>\";\n  set $!superpod = \"NONE\";\n
+    \ set $!pod = \"<%= config.node %>\";\n  set $!owner = \"Search\";\n  set $!source_type
+    = \"solr_jvmgclog\";\n\n  <%# Output action %>\n  action(\n    type=\"omkafka\"\n
+    \   name=\"kafka_solr_jetty\"\n    broker= \"<%= config.broker_vip %>\"\n    template=\"tpl_jetty\"\n
+    \   topic= \"<%= config.kafka_topic %>\"\n    partitions.auto=\"on\"\n    resubmitOnFailure=\"off\"\n
+    \   reopenonhup=\"on\"\n    action.resumeRetryCount=\"-1\"\n    confParam=[\n
+    \     \"batch.num.messages=10000\",\n      \"client.id=collections.rsyslog.test\",\n
+    \     \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
+    \     \"message.max.bytes=1000000\",\n      \"queue.buffering.max.ms=5000\",\n
+    \     \"retries=86400\",\n      \"retry.backoff.ms=1000\",\n      \"socket.keepalive.enable=true\",\n
+    \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
+    \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
+    \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
+    \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n"
+  journal.conf.erb: |
     <%# syslog related schema annotations %>
     template(name="syslog_annotation" type="string" string="{\"schema_type\":\"json-schema\",\"schema_id\":\"rsyslog-base:1\",\"uuid\":\"%uuid%\",\"environment\":\"TechOps\",\"data\":{\"dc\":\"<%= config.cluster %>\",\"node\":\"<%= config.node %>\",\"superpod\":\"NONE\",\"source\":\"%programname%\",\"source_type\":\"syslog\",\"index\":\"true\"}}")
 
@@ -217,7 +192,7 @@ data:
           "queue.buffering.max.ms=5000",
           "retries=2",
           "retry.backoff.ms=100",
-          "socket.keepalive.enable=true"
+          "socket.keepalive.enable=true",
           "security.protocol=ssl",
           "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
           "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
@@ -244,62 +219,38 @@ data:
     \      queue.workerThreads=\"1\"\n       action.execOnlyOnceEveryInterval=\"1800\"\n
     \      action.resumeInterval=\"5\"\n       killUnresponsive=\"on\"\n       forceSingleInstance=\"on\")\n}\n\nruleset(name=\"ruleset_stdout\")
     {  \n  action(type=\"omstdout\")\n}\n\n$IncludeConfig /etc/rsyslog.d/*.conf"
-  solr.conf.erb: |
-    <%# INPUT DEFINITIONS %>
-    input(
-      type="imfile"
-      File="/home/sfdc/logs/solr/*.gmt.log"
-      PersistStateInterval="50000"
-      Tag="solr"
-      ruleset="ruleset_solr"
-      startmsg.regex="^([[:alnum:]]{1,})`[[:digit:]]{14}.[[:digit:]]{3}`"
-      readTimeout = "5"
-      addmetadata="on"
-      escapelf="off"
-      discardTruncatedMsg="on"
-    )
-
-    <%# RULESET DEFINITION %>
-    ruleset(name="ruleset_solr" queue.type="LinkedList" queue.size="5000" queue.lightdelaymark="3000" queue.fulldelaymark="4000") {
-
-      <%# Template Spec %>
-      set $!datacenter = "<%= config.cluser %>";
-      set $!superpod = "NONE";
-      set $!pod = "<%= config.node %>";
-      set $!owner = "Search";
-      set $!source_type = "solr6";
-
-      <%# Output action %>
-      action(
-        type="omkafka"
-        name="kafka_solr"
-        broker= <%= config.broker_vip %>
-        template="tpl_universal_schema_flatten"
-        topic= <%= config.kafka_topic %>
-        partitions.auto="on"
-        resubmitOnFailure="off"
-        reopenonhup="on"
-        action.resumeRetryCount="-1"
-        confParam=[
-          "batch.num.messages=10000",
-          "client.id=collections.rsyslog.test",
-          "compression.codec=gzip",
-          "max.in.flight.requests.per.connection=2",
-          "message.max.bytes=1000000",
-          "queue.buffering.max.ms=5000",
-          "retries=86400",
-          "retry.backoff.ms=1000",
-          "socket.keepalive.enable=true"
-          "security.protocol=ssl",
-          "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
-          "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
-          "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem"
-        ]
-        topicConfParam=[
-          "acks=-1"
-        ]
-      )
-    }
+  solr.conf.erb: "<%# INPUT DEFINITIONS %>\ninput(\n  type=\"imfile\"\n  File=\"/home/sfdc/logs/solr/*.gmt.log\"\n
+    \ PersistStateInterval=\"50000\"\n  Tag=\"solr\"\n  ruleset=\"ruleset_solr\"\n
+    \ startmsg.regex=\"^([[:alnum:]]{1,})`[[:digit:]]{14}.[[:digit:]]{3}`\"\n  readTimeout
+    = \"5\"\n  addmetadata=\"on\"\n  escapelf=\"off\"\n  discardTruncatedMsg=\"on\"\n)\n\n<%#
+    Output Template%>\ntemplate(name=\"tpl_solr\" type=\"list\") {\n  constant(value=\"{\\\"schema_type\\\":\\\"json-schema\\\",\\\"schema_id\\\":\\\"event-flatten:1\\\",\\\"data\\\":{\")\n
+    \ property(name=\"msg\" outname=\"message\" format=\"jsonf\")\n  constant(value=\",\")\n
+    \ property(name=\"$!source_type\" outname=\"source_type\" format=\"jsonfr\")\n
+    \ constant(value=\",\")\n  property(name=\"$!datacenter\" outname=\"dc\" format=\"jsonfr\")\n
+    \ constant(value=\",\")\n  property(name=\"$!superpod\" outname=\"superpod\" format=\"jsonfr\")\n
+    \ constant(value=\",\")\n  property(name=\"$!pod\" outname=\"pod\" format=\"jsonfr\")\n
+    \ constant(value=\",\")\n  property(name=\"$!metadata!filename\" outname=\"source\"
+    format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!hostname\" format=\"jsonfr\")\n
+    \ constant(value=\",\")\n  property(name=\"$!node\" format=\"jsonfr\")  \n  constant(value=\",\")\n
+    \ property(name=\"timegenerated\" outname=\"agent_timestamp\" dateFormat=\"rfc3339\"
+    date.inUTC=\"on\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!owner\"
+    outname=\"owner\" format=\"jsonfr\")\n  constant(value=\"}}\\n\")\n}\n\n<%# RULESET
+    DEFINITION %>\nruleset(name=\"ruleset_solr\" queue.type=\"LinkedList\" queue.size=\"5000\"
+    queue.lightdelaymark=\"3000\" queue.fulldelaymark=\"4000\") {\n\n  <%# Template
+    Spec %>\n  set $!datacenter = \"<%= config.cluster %>\";\n  set $!superpod = \"NONE\";\n
+    \ set $!pod = \"<%= config.node %>\";\n  set $!owner = \"Search\";\n  set $!source_type
+    = \"solr6\";\n\n  <%# Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_solr\"\n
+    \   broker= \"<%= config.broker_vip %>\"\n    template=\"tpl_solr\"\n    topic=
+    \"<%= config.kafka_topic %>\"\n    partitions.auto=\"on\"\n    resubmitOnFailure=\"off\"\n
+    \   reopenonhup=\"on\"\n    action.resumeRetryCount=\"-1\"\n    confParam=[\n
+    \     \"batch.num.messages=10000\",\n      \"client.id=collections.rsyslog.test\",\n
+    \     \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
+    \     \"message.max.bytes=1000000\",\n      \"queue.buffering.max.ms=5000\",\n
+    \     \"retries=86400\",\n      \"retry.backoff.ms=1000\",\n      \"socket.keepalive.enable=true\",\n
+    \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
+    \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
+    \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
+    \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n"
 kind: ConfigMap
 metadata:
   creationTimestamp: null
