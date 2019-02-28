@@ -1,0 +1,80 @@
+<%# syslog related schema annotations %>
+template(name="syslog_annotation" type="string" string="{\"schema_type\":\"json-schema\",\"schema_id\":\"rsyslog-base:1\",\"uuid\":\"%uuid%\",\"environment\":\"TechOps\",\"data\":{\"dc\":\"<%= config.cluster %>\",\"node\":\"<%= config.node %>\",\"superpod\":\"NONE\",\"source\":\"%programname%\",\"source_type\":\"syslog\",\"index\":\"true\"}}")
+
+
+<%# Universal schema for stdout and stderr streaming  %>
+template(name="tpl_syslog" type="list") {
+  constant(value="{\"schema_type\":\"json-schema\",\"schema_id\":\"event-envelope:1\",\"data\":{")
+  constant(value="\"event\":")
+  property(name="$!event")
+  constant(value=",")
+  property(name="hostname" format="jsonfr")
+  constant(value=",")
+  property(name="timegenerated" outname="event_timestamp" dateFormat="rfc3339" date.inUTC="on" format="jsonfr")
+  constant(value=",")
+  property(name="timegenerated" outname="agent_timestamp" dateFormat="rfc3339" date.inUTC="on" format="jsonfr")
+  constant(value=",")
+  property(name="$!owner" outname="owner" format="jsonfr")
+  constant(value=",\"annotations\": ")
+  property(name="$!annotations")
+  constant(value="}}\n")
+}
+
+
+<%# RULESET DEFINITION %>
+ruleset(name="ruleset_imjounal_syslog" queue.type="LinkedList" queue.size="10000" queue.discardmark="9000" queue.lightdelaymark="10000" queue.fulldelaymark="10000" queue.discardseverity="5") {
+
+  <%# # Template Spec %>
+  set $!event!schema_type = "json-schema";
+  set $!event!schema_id = "syslog:1";
+  set $!event!data!message = $msg;
+  set $!owner = "rsyslog";
+  set $!event!data!facility = $syslogfacility-text;
+  set $!event!data!severity = $syslogseverity-text;
+  set $!event!data!priority = $syslogpriority-text;
+  set $!annotations = "[" & exec_template("syslog_annotation") & "]";
+
+  <%# debugging %>
+  <%# action(name="imjournal_syslog"
+    type="omfile"
+    template="tpl_syslog"
+    File="/var/log/imjournal_syslog.log"
+  ) %>
+
+  <%# # Output action %>
+  action(
+    type="omkafka"
+    name="kafka_imjournal_syslog"
+    broker="<%=config.broker_vip%>"
+    template="tpl_syslog"
+    topic="<%=config.kafka_topic%>"
+    partitions.auto="on"
+    resubmitOnFailure="off"
+    reopenonhup="on"
+    action.resumeRetryCount="0"
+    confParam=[
+      "batch.num.messages=10000",
+      "client.id=collections.rsyslog.syslog",
+      "compression.codec=gzip",
+      "max.in.flight.requests.per.connection=2",
+      "message.max.bytes=1000000",
+      "queue.buffering.max.ms=5000",
+      "retries=2",
+      "retry.backoff.ms=100",
+      "socket.keepalive.enable=true"
+      "security.protocol=ssl",
+      "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
+      "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
+      "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem"
+    ]
+    topicConfParam=[
+      "acks=-1"
+    ]
+  )
+}
+
+<%# process imjournal logs %>
+if $inputname == 'imjournal' then {
+    call ruleset_imjounal_syslog
+}
+

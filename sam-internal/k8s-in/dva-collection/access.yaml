@@ -1,0 +1,18 @@
+#Use corp user name instead of git user ids e.g. prahlad.joshi instead of prahlad-joshi
+#If you are updating it, there is a high chance you need to update k8s-out/access.yaml
+#and tnrp/access.yaml
+users:
+  - gjiang
+  - xiayang.wu
+  - gabriel.intrator
+  - s.raghunathan
+  - awaheed
+  - w.li
+  - rdevineni
+  - nyen
+  - sahilbansal
+
+# Admins are responsible for ensuring only approved changes are made during moratoriums.  See https://sfdc.co/sam-admins
+admins:
+  - awaheed
+  - xiayang.wu

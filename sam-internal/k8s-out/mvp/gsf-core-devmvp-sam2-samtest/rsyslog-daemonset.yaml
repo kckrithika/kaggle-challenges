@@ -1,0 +1,205 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    pcn: deploy
+  name: rsyslog-daemonset
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      app: collection-agent-daemonset
+  template:
+    metadata:
+      labels:
+        app: collection-agent-daemonset
+    spec:
+      automountServiceAccountToken: false
+      containers:
+      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:8.38-135-2-CERTS
+        imagePullPolicy: Always
+        name: rsyslog-daemonset
+        resources:
+          limits:
+            cpu: 300m
+            memory: 1024Mi
+          requests:
+            cpu: 150m
+            memory: 200Mi
+        volumeMounts:
+        - mountPath: /etc/rsyslog.conf
+          name: rsyslog-confs-tpl-vol
+          subPath: rsyslog.conf
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+        - mountPath: /var/log
+          name: varlog
+        - mountPath: /var/lib/docker/containers
+          name: varlibdockercontainers
+        - mountPath: /home/sfdc/logs
+          name: logs-vol
+        - mountPath: /var/spool/rsyslog
+          name: rsyslog-workdir
+        - mountPath: /run/log/journal
+          name: rsyslog-imjournal
+      - command:
+        - /usr/local/bin/sfdc_log_archiver
+        - -dir
+        - /home/sfdc/logs
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_log_archiver:2
+        imagePullPolicy: Always
+        name: logarchive
+        volumeMounts:
+        - mountPath: /home/sfdc/logs
+          name: logs-vol
+      initContainers:
+      - command:
+        - /usr/bin/ruby
+        - /opt/config-gen/config_gen.rb
+        - -t
+        - /templates/journal.conf.erb
+        - -o
+        - /etc/rsyslog.d/30-journal.conf
+        env:
+        - name: BROKER_VIP
+          valueFrom:
+            configMapKeyRef:
+              key: broker_vip
+              name: kafka-cm
+        - name: KAFKA_TOPIC
+          valueFrom:
+            configMapKeyRef:
+              key: general_topic
+              name: kafka-cm
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:v0.1alpha2
+        name: config-gen
+        volumeMounts:
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+        - mountPath: /template
+          name: rsyslog-config-tpl
+      - command:
+        - /usr/bin/ruby
+        - /opt/config-gen/config_gen.rb
+        - -t
+        - /templates/container.conf.erb
+        - -o
+        - /etc/rsyslog.d/40-container.conf
+        env:
+        - name: BROKER_VIP
+          valueFrom:
+            configMapKeyRef:
+              key: broker_vip
+              name: kafka-cm
+        - name: KAFKA_TOPIC
+          valueFrom:
+            configMapKeyRef:
+              key: general_topic
+              name: kafka-cm
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:v0.1alpha2
+        name: config-gen
+        volumeMounts:
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+        - mountPath: /template
+          name: rsyslog-config-tpl
+      - command:
+        - /usr/bin/ruby
+        - /opt/config-gen/config_gen.rb
+        - -t
+        - /templates/solr.conf.erb
+        - -o
+        - /etc/rsyslog.d/50-solr.conf
+        env:
+        - name: BROKER_VIP
+          valueFrom:
+            configMapKeyRef:
+              key: broker_vip
+              name: kafka-cm
+        - name: KAFKA_TOPIC
+          valueFrom:
+            configMapKeyRef:
+              key: solr_topic
+              name: kafka-cm
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:v0.1alpha2
+        name: config-gen
+        volumeMounts:
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+        - mountPath: /template
+          name: rsyslog-config-tpl
+      - command:
+        - /usr/bin/ruby
+        - /opt/config-gen/config_gen.rb
+        - -t
+        - /templates/jetty.conf.erb
+        - -o
+        - /etc/rsyslog.d/50-solr_jetty.conf
+        env:
+        - name: BROKER_VIP
+          valueFrom:
+            configMapKeyRef:
+              key: broker_vip
+              name: kafka-cm
+        - name: KAFKA_TOPIC
+          valueFrom:
+            configMapKeyRef:
+              key: solr_topic
+              name: kafka-cm
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:v0.1alpha2
+        name: config-gen
+        volumeMounts:
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+        - mountPath: /template
+          name: rsyslog-config-tpl
+      - command:
+        - /usr/sbin/rsyslogd
+        - -N1
+        - -f
+        - /etc/rsyslog.conf
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:8.38-135-2-CERTS
+        name: config-check
+        volumeMounts:
+        - mountPath: /etc/rsyslog.conf
+          name: rsyslog-confs-tpl-vol
+          subPath: rsyslog.conf
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+        - mountPath: /var/log
+          name: varlog
+        - mountPath: /var/lib/docker/containers
+          name: varlibdockercontainers
+        - mountPath: /home/sfdc/logs
+          name: logs-vol
+        - mountPath: /var/spool/rsyslog
+          name: rsyslog-workdir
+        - mountPath: /run/log/journal
+          name: rsyslog-imjournal
+      terminationGracePeriodSeconds: 60
+      volumes:
+      - emptyDir: {}
+        name: rsyslog-config
+      - configMap:
+          name: rsyslog-config-tpl
+        name: rsyslog-config-tpl
+      - hostPath:
+          path: /var/log
+        name: varlog
+      - hostPath:
+          path: /var/lib/docker/containers
+        name: varlibdockercontainers
+      - hostPath:
+          path: /mnt/disks/ssd0/logs
+        name: logs-vol
+      - hostPath:
+          path: /var/spool/rsyslog
+        name: rsyslog-workdir
+      - hostPath:
+          path: /var/log/journal
+        name: rsyslog-imjournal
+  templateGeneration: 2
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
