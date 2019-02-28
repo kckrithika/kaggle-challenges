@@ -117,11 +117,11 @@ else
                         },
                         resources: {
                             limits: {
-                                memory: "170Mi",
+                                memory: "500Mi",
                             },
                             requests: {
                                 cpu: "100m",
-                                memory: "70Mi",
+                                memory: "300Mi",
                             },
                         },
                         terminationMessagePath: "/dev/termination-log",
@@ -188,7 +188,7 @@ else
                         resources: {
                             requests: {
                                 cpu: "150m",
-                                memory: "20Mi",
+                                memory: "200Mi",
                             },
                         },
                         terminationMessagePath: "/dev/termination-log",
@@ -226,7 +226,7 @@ else
                         resources: {
                             requests: {
                                 cpu: "10m",
-                                memory: "20Mi",
+                                memory: "200Mi",
                             },
                         },
                         terminationMessagePath: "/dev/termination-log",
