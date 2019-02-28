@@ -4,3 +4,6 @@ apps:
 
  shipping-service:    # this must match the name of your application. It must be lower case.
   - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
+
+ prodtest-service:    # this must match the name of your application. It must be lower case.
+  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
