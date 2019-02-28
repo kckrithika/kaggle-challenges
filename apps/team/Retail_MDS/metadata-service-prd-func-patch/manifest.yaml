@@ -6,8 +6,6 @@ system:
     - kanchan.sannidhanam@salesforce.com
   functions:
   - name: metadata-service-prd-func-patch
-    identity:
-      serviceName: metadata-service
     count: 1
     containers:
     - name: metadata-service
