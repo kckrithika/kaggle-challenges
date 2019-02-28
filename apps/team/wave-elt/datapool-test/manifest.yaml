@@ -11,7 +11,7 @@ system:
     count: 1
     containers:
     - name: datapool-service-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:spark-on-k8s-18-7984426
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:spark-on-k8s-25-4a556d8
       ports:
       - containerPort: 7020
         name: grpc
@@ -33,24 +33,17 @@ system:
       - name: LOGGING_STDERR_LEVEL
         value: ALL
 
-      # A second consumer group, effectively in "passive mode"
       - name: KAFKA_GROUP_ID
         value: wave-datapool-test
-      - name: HANDLED_ENVIRONMENTS
-        value: stmfa
+      - name: HANDLED_PODS_PATTERN
+        value: stmfa\..*
 
       # Turn off the sweeper so we can debug
       - name: ENABLE_SWEEPER
         value: false
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
-        value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-k8s-test-1-itest
-
-      - name: FLOWSNAKE_DATAPOOL_IMAGE_NEXT
-        value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-k8s-test-1-itest
-
-      - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
-        value: mist40,mist47,stmfa
+        value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-k8s-test-2-itest
 
       volumeMounts:
       - mountPath: /home/datapool/logs
