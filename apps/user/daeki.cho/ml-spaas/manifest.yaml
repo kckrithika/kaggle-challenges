@@ -9,9 +9,9 @@ system:
       ports:
       - containerPort: 50051
       livenessProbe:
-        httpGet:
-          path: /
-          port: 50051
+        periodSeconds: 60
+        exec:
+          command: ["/bin/grpc_health_probe", "-addr=:50051"]
   loadbalancers:
   - lbname: ml-spaaslb
     function: ml-spaas
