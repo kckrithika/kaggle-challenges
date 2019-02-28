@@ -43,7 +43,7 @@ configs.deploymentBase("service-mesh") {
         containers: [
           configs.containerWithMadDog {
             name: "istio-mesh-webhook",
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/istio-mesh-webhook:faf141868df38b7665bbf3bf0581cd16e60fb625",
+            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:5cb1283c9cf9b14c3e96a83bda769aa630657133",
             imagePullPolicy: "IfNotPresent",
             args: [
               "server",
