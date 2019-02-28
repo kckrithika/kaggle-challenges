@@ -34,6 +34,7 @@ spec:
         - --client.serverInterface=lo
         - --hostnameOverride=$(NODE_NAME)
         - --httpconfig.trustedProxies=0.0.0.0/0
+        - --iprange.InternalIpRange=127.0.0.1/32
         - --client.socketDir=/host/data/slb/config/slb-vpod-nginx
         - --client.dialSocket=true
         - --control.nginxReloadSentinel=/host/data/slb/slb-vpod-nginx/config/nginx.marker

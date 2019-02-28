@@ -106,6 +106,7 @@ spec:
         - --client.serverInterface=lo
         - --hostnameOverride=$(NODE_NAME)
         - --httpconfig.trustedProxies=10.252.240.0/25,10.252.247.32/27
+        - --iprange.InternalIpRange=10.231.187.0/24,10.254.230.0/23
         - --client.socketDir=/host/data/slb/config/slb-hsm-nginx
         - --client.dialSocket=true
         - --control.nginxReloadSentinel=/host/data/slb/slb-hsm-nginx/config/nginx.marker
