@@ -9,7 +9,7 @@ system:
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.29-9974ae4603f2a86b86702f71747442b8e4a06430
+      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.30-394824ef343534b7775274c55fd4a6534cac3bac
       ports:
       - name: grpc
         containerPort: 7020
@@ -32,6 +32,9 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
+      # mount pki client certs (and CA cert) for SMTP connection Eaas -> MTA
+      - mountPath: /etc/pki_service
+        name: eaas-client-cert
       livenessProbe:
         httpGet:
           path: /manage/health
