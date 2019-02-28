@@ -20,13 +20,13 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
         {
             name: "rsyslog-config-tpl",
             configMap: {
-                name: "rsyslog-config-tpl",
+                name: "rsyslog-configmap",
             },
         },
     ],
     config_gen_tpl_volume_mounts():: [
         {
-            mountPath: "/template",
+            mountPath: "/templates",
             name: "rsyslog-config-tpl",
         },
     ],
@@ -89,11 +89,11 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
 
     ### Init containers Definitions
     ## config gen container
-    config_gen_init_container(image_name, template, manifest, output_path, topic):: {
+    config_gen_init_container(config_name, image_name, template, manifest, output_path, topic):: {
         local cmdline = if manifest == "" then
         [
             "/usr/bin/ruby",
-            "/opt/config-gen/config_gen.rb",
+            "/app/config_gen.rb",
             "-t",
             template,
             "-o",
@@ -101,15 +101,15 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
         ]
         else
         [
-             "/usr/bin/ruby",
-            "/opt/config-gen/config_gen.rb",
+            "/usr/bin/ruby",
+            "/app/config_gen.rb",
             "-m",
             manifest,
             "-o",
             output_path,
         ],
         command: cmdline,
-        name: "config-gen",
+        name: "config-gen-" + config_name,
         image: image_name,
         volumeMounts: $.rsyslog_config_volume_mounts() + $.config_gen_tpl_volume_mounts(),
         env: [
@@ -148,7 +148,7 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
         volumeMounts:
         [
             {
-                name: "rsyslog-confs-tpl-vol",
+                name: "rsyslog-config-tpl",
                 mountPath: "/etc/rsyslog.conf",
                 subPath: "rsyslog.conf",
             },

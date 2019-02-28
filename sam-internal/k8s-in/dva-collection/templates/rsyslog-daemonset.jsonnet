@@ -8,6 +8,7 @@ local volumes = rsyslogutils.rsyslog_config_volume() + rsyslogutils.config_gen_t
 
 local initContainers = [
     rsyslogutils.config_gen_init_container(
+        "journal",
         rsyslogimages.config_gen,
         "/templates/journal.conf.erb",
         "",
@@ -15,6 +16,7 @@ local initContainers = [
         "general_topic"
     ),
     rsyslogutils.config_gen_init_container(
+        "container",
         rsyslogimages.config_gen,
         "/templates/container.conf.erb",
         "",
@@ -22,6 +24,7 @@ local initContainers = [
         "general_topic"
     ),
     rsyslogutils.config_gen_init_container(
+        "solr",
         rsyslogimages.config_gen,
         "/templates/solr.conf.erb",
         "",
@@ -29,6 +32,7 @@ local initContainers = [
         "solr_topic"
     ),
     rsyslogutils.config_gen_init_container(
+        "jetty",
         rsyslogimages.config_gen,
         "/templates/jetty.conf.erb",
         "",
@@ -81,7 +85,7 @@ if configs.kingdom == "mvp" then {
                         volumeMounts:
                         [
                             {
-                                name: "rsyslog-confs-tpl-vol",
+                                name: "rsyslog-config-tpl",
                                 mountPath: "/etc/rsyslog.conf",
                                 subPath: "rsyslog.conf",
                             },

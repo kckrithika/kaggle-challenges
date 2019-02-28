@@ -28,7 +28,7 @@ spec:
             memory: 200Mi
         volumeMounts:
         - mountPath: /etc/rsyslog.conf
-          name: rsyslog-confs-tpl-vol
+          name: rsyslog-config-tpl
           subPath: rsyslog.conf
         - mountPath: /etc/rsyslog.d
           name: rsyslog-config
@@ -55,7 +55,7 @@ spec:
       initContainers:
       - command:
         - /usr/bin/ruby
-        - /opt/config-gen/config_gen.rb
+        - /app/config_gen.rb
         - -t
         - /templates/journal.conf.erb
         - -o
@@ -72,15 +72,15 @@ spec:
               key: general_topic
               name: kafka-cm
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:v0.1alpha2
-        name: config-gen
+        name: config-gen-journal
         volumeMounts:
         - mountPath: /etc/rsyslog.d
           name: rsyslog-config
-        - mountPath: /template
+        - mountPath: /templates
           name: rsyslog-config-tpl
       - command:
         - /usr/bin/ruby
-        - /opt/config-gen/config_gen.rb
+        - /app/config_gen.rb
         - -t
         - /templates/container.conf.erb
         - -o
@@ -97,15 +97,15 @@ spec:
               key: general_topic
               name: kafka-cm
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:v0.1alpha2
-        name: config-gen
+        name: config-gen-container
         volumeMounts:
         - mountPath: /etc/rsyslog.d
           name: rsyslog-config
-        - mountPath: /template
+        - mountPath: /templates
           name: rsyslog-config-tpl
       - command:
         - /usr/bin/ruby
-        - /opt/config-gen/config_gen.rb
+        - /app/config_gen.rb
         - -t
         - /templates/solr.conf.erb
         - -o
@@ -122,15 +122,15 @@ spec:
               key: solr_topic
               name: kafka-cm
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:v0.1alpha2
-        name: config-gen
+        name: config-gen-solr
         volumeMounts:
         - mountPath: /etc/rsyslog.d
           name: rsyslog-config
-        - mountPath: /template
+        - mountPath: /templates
           name: rsyslog-config-tpl
       - command:
         - /usr/bin/ruby
-        - /opt/config-gen/config_gen.rb
+        - /app/config_gen.rb
         - -t
         - /templates/jetty.conf.erb
         - -o
@@ -147,11 +147,11 @@ spec:
               key: solr_topic
               name: kafka-cm
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:v0.1alpha2
-        name: config-gen
+        name: config-gen-jetty
         volumeMounts:
         - mountPath: /etc/rsyslog.d
           name: rsyslog-config
-        - mountPath: /template
+        - mountPath: /templates
           name: rsyslog-config-tpl
       - command:
         - /usr/sbin/rsyslogd
@@ -162,7 +162,7 @@ spec:
         name: config-check
         volumeMounts:
         - mountPath: /etc/rsyslog.conf
-          name: rsyslog-confs-tpl-vol
+          name: rsyslog-config-tpl
           subPath: rsyslog.conf
         - mountPath: /etc/rsyslog.d
           name: rsyslog-config
@@ -181,7 +181,7 @@ spec:
       - emptyDir: {}
         name: rsyslog-config
       - configMap:
-          name: rsyslog-config-tpl
+          name: rsyslog-configmap
         name: rsyslog-config-tpl
       - hostPath:
           path: /var/log
