@@ -6,7 +6,7 @@ system:
   functions:
   - containers:
     - args:
-      - sh /home/sfdc/salesforce/build/sam_startup.sh
+      - /home/sfdc/salesforce/build/sam_startup.sh
       command:
       - /bin/sh
       - -c
@@ -211,7 +211,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1551385665205505024
+        value: 1551385742920210944
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
