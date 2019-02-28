@@ -7,7 +7,7 @@ system:
       count: 1
       containers:
       - name: searchserver
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17529542.439
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
@@ -28,7 +28,7 @@ system:
         volumeMounts:
         - name: solr-data-volume
           mountPath: /home/sfdc/local-data/data
-        - name: solr-log-volumes
+        - name: solr-log-volume
           mountPath: /home/sfdc-searchserver/logs/solr
         livenessProbe:
           httpGet:
@@ -45,4 +45,4 @@ system:
       volumes:
         - name: solr-log-volume
           hostPath:
-            path: /mnt/disks/ssd0/logs/solr
+            path: /mnt/disks/ssd0/data/logs/solr
