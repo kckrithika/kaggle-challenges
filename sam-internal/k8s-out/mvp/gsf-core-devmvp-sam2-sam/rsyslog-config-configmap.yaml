@@ -128,7 +128,7 @@ data:
     \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
     \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n"
-  journal.conf.erb: |
+  journal.conf.erb: |+
     <%# syslog related schema annotations %>
     template(name="syslog_annotation" type="string" string="{\"schema_type\":\"json-schema\",\"schema_id\":\"rsyslog-base:1\",\"uuid\":\"%uuid%\",\"environment\":\"TechOps\",\"data\":{\"dc\":\"<%= config.cluster %>\",\"node\":\"<%= config.node %>\",\"superpod\":\"NONE\",\"source\":\"%programname%\",\"source_type\":\"syslog\",\"index\":\"true\"}}")
 
