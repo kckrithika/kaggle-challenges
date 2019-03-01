@@ -7,7 +7,6 @@ system:
   functions:
   - name: gov-einstein-analytics
     count: 1
-    type: deployment
     containers:
     - name: airstream
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rtandon/airstream:f9a5d18cd209
