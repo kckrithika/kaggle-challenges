@@ -43,7 +43,7 @@ system:
         value: false
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
-        value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-k8s-test-2-itest
+        value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-spark-on-k8s-2-itest
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
         value: ''
