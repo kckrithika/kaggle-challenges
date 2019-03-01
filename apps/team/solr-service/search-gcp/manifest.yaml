@@ -4,7 +4,7 @@ system:
   functions:
     - name: search-gcp
       type: stateful-set
-      count: 1
+      count: 3
       containers:
       - name: searchserver
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
@@ -22,6 +22,9 @@ system:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.name
+        resources:
+          limits: { cpu: "24", memory: "80Gi" }
+          requests: { cpu: "10", memory: "64Gi" }
         ports:
         - containerPort: 8983
           name: solr-port
