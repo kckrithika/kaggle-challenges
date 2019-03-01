@@ -4,57 +4,9 @@
 {
    "artifacts":[
       {
-         "repo_id":"testandrelease",
-         "artifact_id":"golang",
-         "nexus_url":"https://nexus.soma.salesforce.com/nexus",
-         "filename":"golang-1.6-2.x86_64.rpm",
-         "version":"1.6-2.x86_64",
-         "scope":[
-         "7"
-         ],
-         "group_id":"golang",
-         "type":"rpm",
-         "repo_path":"golang"
-      },
-      {
-         "repo_id":"testandrelease",
-         "artifact_id":"dca-python-cffi",
-         "nexus_url":"https://nexus.soma.salesforce.com/nexus",
-         "filename":"dca-python-cffi-0.8.6-22.x86_64.rpm",
-         "version":"0.8.6-22.x86_64",
-         "scope":[
-         "7"
-         ],
-         "group_id":"python",
-         "type":"rpm",
-         "repo_path":"python"
-      },
-      {
-         "repo_id": "testandrelease",
          "artifact_id": "sammanifestbuilder",
-         "nexus_url": "https://nexus.soma.salesforce.com/nexus",
-         "filename": "sammanifestbuilder-20181129_232051.538b2251.clean.ops_pipedocker1_1_prd-1.x86_64.rpm",
-         "version": "20181129_232051.538b2251.clean.ops_pipedocker1_1_prd-1.x86_64",
-
-         "scope":[
-         "7"
-         ],
-         "group_id": "rpm-sam",
-         "type":"rpm",
-         "repo_path":"rpm-sam"
-      },
-      {
-         "repo_id": "testandrelease",
-         "artifact_id": "slb-manifest-builder",
-         "nexus_url": "https://nexus.soma.salesforce.com/nexus",
-         "filename": "slb-manifest-builder-20181102_195903.30938bb.dirty.ops_pipedocker1_1_prd-1.x86_64.rpm",
-         "version": "20181102_195903.30938bb.dirty.ops_pipedocker1_1_prd-1.x86_64",
-         "scope":[
-         "7"
-         ],
-         "group_id": "rpm-sdn",
-         "type":"rpm",
-         "repo_path":"rpm-sdn"
+         "filename": "sammanifestbuilder-dummyversion.x86_64.rpm",
+         "version": "dummyversion.x86_64"
       }
    ],
    "os_release": [ "7" ],
