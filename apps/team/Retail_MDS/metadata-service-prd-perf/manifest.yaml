@@ -10,7 +10,7 @@ system:
     count: 2
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/metadata-service:0.6.35-nojwt
+      image: docker-sfci-dev/sfci/metadata-cannon/metadata-service:0.6.35
       ports:
       - containerPort: 9091
       - containerPort: 15523
