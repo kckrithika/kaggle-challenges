@@ -1,35 +1,52 @@
 {
   "image_rules": [
     {
-      "match": "^(ops0-artifactrepo1-0-prd.data.sfdc.net)"
+      "match": "^(ops[0]?-artifactrepo1-0-([a-z0-9]{3}).(?:slb|data).sfdc.net)/dva/flowsnake",
+      "note": "[Temporary] Flowsnake has a large number of docker images in each kingdom that causes very slow PRs.  Skip these until we speed up image checks",
+      "skip_image_exist_check": true
     },
     {
-      "match": "^(ops0-artifactrepo2-0-prd.data.sfdc.net)"
+      "match": "^(ops[0]?-artifactrepo1-0-prd.data.sfdc.net)",
+      "note": "This repo holds docker-sam which is for developer testing"
     },
     {
-      "match": "^(ops0-artifactrepo2-0-xrd.(?:slb|data).sfdc.net)",
+      "match": "^(ops[0]?-artifactrepo2-0-prd.data.sfdc.net)",
+      "note": "This repo holds images build from official build pipelines"
+    },
+    {
+      "match": "^(ops[0]?-artifactrepo2-0-xrd.(?:slb|data).sfdc.net)",
+      "note": "This is a special instance of artifactory for use in GCP.  Images here are replicated from 1-0 in PRD",
       "image_check_replacement_host": "ops0-artifactrepo1-0-prd.data.sfdc.net"
     },
     {
-      "match": "^(ops0-artifactrepo1-0-([a-z0-9]{3}).(?:slb|data).sfdc.net)",
+      "match": "^(ops[0]?-artifactrepo1-0-([a-z0-9]{3}).(?:slb|data).sfdc.net)",
+      "note": "Long-form production artifactory instances.  We can conver this to the PRD artifactory for image check",
       "image_check_replacement_host": "ops0-artifactrepo2-0-prd.data.sfdc.net"
     },
     {
       "match": "^(dva|tnrp|docker-all|docker-dva-rc|docker-sfci-dev|sfci)",
+      "note": "Short-form images get turned into long-form in-cluster by the controller.  In PRD we use 2-0",
       "image_check_replacement_host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
       "is_short_form": true
     },
     {
+      "match": "^/(dva|tnrp|docker-all|docker-dva-rc|docker-sfci-dev|sfci)",
+      "note": "Invalid short-form images.  Should not start with a slash",
+      "err_msg": "Short form images in SAM should not start with a slash"
+    },
+    {
       "match": "^(gcr.io)",
+      "note": "We have no way to check images for GCR in firefly",
       "skip_image_exist_check": true
     },
     {
       "match": "^(minikube)",
+      "note": "Minikube is for local testing only, skip",
       "skip_image_exist_check": true
     },
     {
-      "match": "^[a-zA-Z0-9-./:]",
-      "err_msg": "This is not a valid image"
+      "match": ".*",
+      "err_msg": "Docker image URL format does not match a known pattern.  See documentation at https://sfdc.co/samimg  Rules can be found here https://sfdc.co/samimgrules"
     }
   ]
 }
