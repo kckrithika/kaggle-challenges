@@ -1394,7 +1394,7 @@
       lbtype: http
       sticky: 300
       tls: false
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
     - port: 443
@@ -1403,7 +1403,7 @@
       sticky: 300
       reencrypt: true
       tls: true
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
     - port: 5000
@@ -1412,7 +1412,7 @@
       sticky: 300
       reencrypt: true
       tls: true
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
     - port: 35357
@@ -1421,7 +1421,7 @@
       sticky: 300
       reencrypt: true
       tls: true
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
     - port: 8773
@@ -1430,7 +1430,7 @@
       sticky: 300
       reencrypt: true
       tls: true
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
     - port: 8774
@@ -1439,7 +1439,7 @@
       sticky: 300
       reencrypt: true
       tls: true
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
     - port: 8778
@@ -1448,7 +1448,7 @@
       sticky: 300
       reencrypt: true
       tls: true
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
     - port: 8775
@@ -1457,7 +1457,7 @@
       sticky: 300
       reencrypt: true
       tls: true
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
     - port: 9191
@@ -1466,7 +1466,7 @@
       sticky: 300
       reencrypt: true
       tls: true
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
     - port: 9292
@@ -1475,7 +1475,7 @@
       sticky: 300
       reencrypt: true
       tls: true
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
     - port: 9696
@@ -1484,7 +1484,7 @@
       sticky: 300
       reencrypt: true
       tls: true
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
     - port: 8776
@@ -1493,7 +1493,7 @@
       sticky: 300
       reencrypt: true
       tls: true
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
     - port: 10000
@@ -1502,6 +1502,6 @@
       sticky: 300
       reencrypt: true
       tls: true
-      healthport: 80
+      healthport: 25843
       healthpath: /ping
       healthprotocol: http
