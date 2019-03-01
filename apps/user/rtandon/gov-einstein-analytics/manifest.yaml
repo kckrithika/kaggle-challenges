@@ -10,7 +10,7 @@ system:
     type: deployment
     containers:
     - name: airstream
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rtandon/airstream:44d9c719480f
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rtandon/airstream:f9a5d18cd209
       command: ["/airstream-app/entrypoint.sh"]
       args: ["keep-alive"]
       livenessProbe:
