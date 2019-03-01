@@ -1,5 +1,8 @@
 apiVersion: v1
 system:
+  notifications:
+    email:
+      - jiaqi.wu@salesforce.com
   functions:
   - name: zones-intake-backend
     count: 2
@@ -12,7 +15,7 @@ system:
           type: client
     containers:
     - name: zones-intake-backend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:24
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:25
       ports:
       - containerPort: 30300
       livenessProbe:
