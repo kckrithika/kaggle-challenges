@@ -5,7 +5,7 @@ system:
 #      - zones-dev@salesforce.com
   functions:
   - name: zones-ui
-    count: 2
+    count: 1
     volumes:
       - name: ui-servercert
         maddogCert:
@@ -15,7 +15,7 @@ system:
           type: client    
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:build-20190228-4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:build-20190228-5
       ports:
       - containerPort: 8445
       livenessProbe:
