@@ -5,7 +5,10 @@ system:
     - servicemesh@salesforce.com
   functions:
   - name: switchboard
-    count: 3
+    count: 5
+    strategy:
+      rollingUpdate:
+        maxUnavailable: 2
     containers:
     - name: switchboard
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/switchboard:95462e3e28b30f2007fcc1a05588fbf242719794-201902141230

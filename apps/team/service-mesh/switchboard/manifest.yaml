@@ -5,7 +5,10 @@ system:
     - servicemesh@salesforce.com
   functions:
   - name: switchboard
-    count: 3
+    count: 5
+    strategy:
+      rollingUpdate:
+        maxUnavailable: 2
     containers:
     - name: switchboard
       image: sfci/servicelibs/switchboard:008e82d3d64ef63b3fc8b771d78bf03d9abecb20
