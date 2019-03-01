@@ -10,7 +10,7 @@ system:
     volumes:
     - name: envoy-config-volume
       emptyDir: {}
-    - name: coreapp-config-volume
+    - name: coreapp-casam-volume
       emptyDir: {}
     - name: tls-client-cert
       maddogCert:
@@ -41,7 +41,7 @@ system:
       command: ["/bin/sh", "-c"]
       args: ["
       CASAM_DIR=${HOME}/salesforce/casam ; 
-      while [ ! -f '${CASAM_DIR}/.overrides_sidecar_done' ]; do echo -ne '`date`: Waiting for coverride sidecar to complete its job\n' ;  sleep 1 ; done ;
+      while [ ! -f '${CASAM_DIR}/.overrides_sidecar_done' ]; do echo -ne '$(date): Waiting for coverride sidecar to complete its job\n' ;  sleep 1 ; done ;
       export DB_PASSWORD=$(cat /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-1az-db-pw/dbpw.txt) ;
       ${CASAM_DIR}/bin/startup.sh
       "]
@@ -155,8 +155,8 @@ system:
           mountPath: /home/sfdc/logs/jvm
         - name: tls-client-cert
           mountPath: /etc/pki_service
-        - name: coreapp-config-volume
-          mountPath: /home/sfdc/config_override
+        - mountPath: /home/sfdc/salesforce/casam
+          name: coreapp-casam-volume
         - mountPath: /home/sfdc/salesforce/config/settings/overrides/sp-devmvp-c1
           name: secretvol-c1
           readOnly: true
@@ -221,7 +221,7 @@ system:
       - name: tls-server-cert
         mountPath: /certs/cert-server
 
-    - name: config-sidecar
+    - name: casam-sidecar
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:a4ea3c
       env:
       - name: CASAM_SETTINGS_PATH
@@ -241,9 +241,9 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
       volumeMounts:
-      - name: coreapp-config-volume
-        mountPath: /home/sfdc/config_override
-
+      - mountPath: /home/sfdc/salesforce/casam
+        name: coreapp-casam-volume
+        
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
       args:
