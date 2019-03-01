@@ -40,10 +40,9 @@ system:
 
       command: ["/bin/sh", "-c"]
       args: ["
-      CASAM_DIR=${HOME}/salesforce/casam ; 
-      while [ ! -f '${CASAM_DIR}/.overrides_sidecar_done' ]; do echo -ne '$(date): Waiting for coverride sidecar to complete its job\n' ;  sleep 1 ; done ;
+      while [ ! -f '/home/sfdc/salesforce/casam/.overrides_sidecar_done' ]; do echo -ne 'Waiting for coverride sidecar to complete its job\n' ;  sleep 1 ; done ;
       export DB_PASSWORD=$(cat /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-1az-db-pw/dbpw.txt) ;
-      ${CASAM_DIR}/bin/startup.sh
+      /home/sfdc/salesforce/casam/bin/startup.sh
       "]
 
       env:
