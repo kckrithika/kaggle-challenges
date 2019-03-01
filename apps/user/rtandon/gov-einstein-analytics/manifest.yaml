@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: airstream
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rtandon/airstream:f9a5d18cd209
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rtandon/airstream:7e20ba13f3a3
       command: ["/airstream-app/entrypoint.sh"]
       args: ["keep-alive"]
       livenessProbe:
@@ -40,4 +40,4 @@ system:
       k4aSecret:
         secretName: gov-einstein-analytics-user-profile-secret-test
     strategy:
-      type: rollingUpdate
+      type: RollingUpdate
