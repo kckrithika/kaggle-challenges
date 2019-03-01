@@ -8,6 +8,110 @@
       "access": [
         "team/CSC_Sam"
       ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_datapool",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater",
+        "ccait",
+        "service-mesh",
+        "service-protection"
+      ],
+      "access": [
+        "team/Gater",
+        "team/CCAIT",
+        "team/service-mesh",
+        "team/Service_Protection"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_gater",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_kingdom_caas",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "mc-eventing"
+      ],
+      "access": [
+        "team/mc-eventing"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_mc_consumer",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-health",
+        "distributed-tracing"
+      ],
+      "access": [
+        "team/CSC_Health",
+        "team/distributed-tracing"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_report_collector",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service-sp1"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sp1-sam_caas",
+      "kingdom": "cdg",
+      "superPod": "sp1"
+    },
+    {
+      "namespaces": [
+        "core-on-sam-sp1"
+      ],
+      "access": [
+        "team/core-on-sam"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sp1-sam_coreappalpha",
+      "kingdom": "cdg",
+      "superPod": "sp1"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
       "controlEstate": "cdu-sam",
       "estate": "cdu-sam",
       "kingdom": "cdu",

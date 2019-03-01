@@ -11,3 +11,4 @@ spec:
   ports:
   - port: 443
     targetPort: 15009
+    name: sidecar-injector-port

@@ -26,5 +26,10 @@ spec:
     port: 443
   - nodePort: 32400
     port: 32400
+    name: tcp
   - $patch: delete
     port: 31400
+  - $patch: delete
+    port: 15030
+  - $patch: delete
+    port: 15031

@@ -88,9 +88,11 @@ spec:
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
+  annotations:
+    helm.sh/hook: crd-install
+    manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: istio-pilot
-  manifestctl.sam.data.sfdc.net/swagger: disable
   name: virtualservices.networking.istio.io
 spec:
   group: networking.istio.io
@@ -447,7 +449,8 @@ spec:
   - name: https
     nodePort: 32390
     port: 443
-  - nodePort: 32400
+  - name: tcp
+    nodePort: 32400
     port: 32400
   - name: tcp-pilot-grpc-tls
     port: 15011
@@ -458,12 +461,6 @@ spec:
   - name: tcp-dns-tls
     port: 853
     targetPort: 853
-  - name: http2-prometheus
-    port: 15030
-    targetPort: 15030
-  - name: http2-grafana
-    port: 15031
-    targetPort: 15031
   selector:
     app: istio-ingressgateway
     istio: ingressgateway
@@ -499,7 +496,8 @@ metadata:
   namespace: mesh-control-plane
 spec:
   ports:
-  - port: 443
+  - name: sidecar-injector-port
+    port: 443
     targetPort: 15009
   selector:
     istio: sidecar-injector
@@ -518,6 +516,14 @@ spec:
   template:
     metadata:
       annotations:
+        madkub.sam.sfdc.net/allcerts: "{\n \"certreqs\": [\n  {\n   \"cert-type\":
+          \"client\",\n   \"kingdom\": \"prd\",\n   \"name\": \"tls-client-cert\",\n
+          \  \"role\": \"istio-ingressgateway.mesh-control-plane\"\n  },\n  {\n   \"cert-type\":
+          \"server\",\n   \"kingdom\": \"prd\",\n   \"name\": \"tls-server-cert\",\n
+          \  \"role\": \"istio-ingressgateway.mesh-control-plane\",\n   \"san\": [\n
+          \   \"istio-ingressgateway\",\n    \"istio-ingressgateway.mesh-control-plane\",\n
+          \   \"istio-ingressgateway.mesh-control-plane.svc\",\n    \"istio-ingressgateway.mesh-control-plane.svc.prd-sam.prd.sam.sfdc.net\"\n
+          \  ]\n  }\n ]\n}        "
         scheduler.alpha.kubernetes.io/critical-pod: ""
         sidecar.istio.io/inject: "false"
       labels:
@@ -574,7 +580,7 @@ spec:
         - --serviceCluster
         - istio-ingressgateway
         - --zipkinAddress
-        - zipkin:9411
+        - zipkin.service-mesh:9411
         - --proxyAdminPort
         - "15000"
         - --controlPlaneAuthPolicy
@@ -601,7 +607,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.0.2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:50d25caed2638ed29259a2be55ba2dc0ceb49b00
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -615,29 +621,141 @@ spec:
           requests:
             cpu: 10m
         volumeMounts:
-        - mountPath: /etc/certs
-          name: istio-certs
-          readOnly: true
-        - mountPath: /etc/istio/ingressgateway-certs
-          name: ingressgateway-certs
-          readOnly: true
-        - mountPath: /etc/istio/ingressgateway-ca-certs
-          name: ingressgateway-ca-certs
-          readOnly: true
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /etc/certs/root-cert.pem
+          name: tls-server-cert
+          subPath: ca.pem
+        - mountPath: /etc/certs/cert-chain.pem
+          name: tls-server-cert
+          subPath: server/certificates/server.pem
+        - mountPath: /etc/certs/key.pem
+          name: tls-server-cert
+          subPath: server/keys/server-key.pem
+        - mountPath: /etc/certs/client.pem
+          name: tls-client-cert
+          subPath: client/certificates/client.pem
+        - mountPath: /etc/certs/client-key.pem
+          name: tls-client-cert
+          subPath: client/keys/client-key.pem
+        - mountPath: /client-cert
+          name: tls-client-cert
+        - mountPath: /server-cert
+          name: tls-server-cert
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://10.254.208.254:32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=tls-client-cert:/client-cert/
+        - --cert-folders=tls-server-cert:/server-cert/
+        - --token-folder=/tokens/
+        - --ca-folder=/maddog-certs/ca
+        - --refresher
+        - --run-init-for-refresher-mode
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        imagePullPolicy: IfNotPresent
+        name: madkub-refresher
+        resources: {}
+        volumeMounts:
+        - mountPath: /client-cert
+          name: tls-client-cert
+        - mountPath: /server-cert
+          name: tls-server-cert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://10.254.208.254:32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=tls-client-cert:/client-cert/
+        - --cert-folders=tls-server-cert:/server-cert/
+        - --token-folder=/tokens/
+        - --ca-folder=/maddog-certs/ca
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        imagePullPolicy: IfNotPresent
+        name: madkub-init
+        volumeMounts:
+        - mountPath: /client-cert
+          name: tls-client-cert
+        - mountPath: /server-cert
+          name: tls-server-cert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      - command:
+        - bash
+        - -c
+        - |
+          set -ex
+          chmod 775 -R /client-cert && chown -R 7447:7447 /client-cert
+          chmod 775 -R /server-cert && chown -R 7447:7447 /server-cert
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673
+        imagePullPolicy: Always
+        name: permissionsetterinitcontainer
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /client-cert
+          name: tls-client-cert
+        - mountPath: /server-cert
+          name: tls-server-cert
+      nodeSelector:
+        pool: prd-sam_gater
       serviceAccountName: istio-ingressgateway-service-account
       volumes:
-      - name: istio-certs
-        secret:
-          optional: true
-          secretName: istio.istio-ingressgateway-service-account
-      - name: ingressgateway-certs
-        secret:
-          optional: true
-          secretName: istio-ingressgateway-certs
-      - name: ingressgateway-ca-certs
-        secret:
-          optional: true
-          secretName: istio-ingressgateway-ca-certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - emptyDir:
+          medium: Memory
+        name: tls-client-cert
+      - emptyDir:
+          medium: Memory
+        name: tls-server-cert
+      - emptyDir:
+          medium: Memory
+        name: tokens
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -646,8 +764,6 @@ metadata:
     checksum/config-volume: f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9
   labels:
     app: istio-pilot
-    chart: pilot-1.0.1
-    heritage: Tiller
     istio: pilot
     release: istio
   name: istio-pilot
@@ -699,6 +815,12 @@ spec:
       containers:
       - args:
         - discovery
+        - --secureGrpcAddr
+        - :15011
+        - --appNamespace
+        - service-mesh
+        - --log_output_level
+        - debug
         env:
         - name: POD_NAME
           valueFrom:
@@ -724,6 +846,7 @@ spec:
         ports:
         - containerPort: 8080
         - containerPort: 15010
+        - containerPort: 15011
         readinessProbe:
           httpGet:
             path: /ready

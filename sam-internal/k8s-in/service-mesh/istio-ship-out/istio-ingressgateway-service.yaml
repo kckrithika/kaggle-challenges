@@ -16,7 +16,8 @@ spec:
   - name: https
     nodePort: 32390
     port: 443
-  - nodePort: 32400
+  - name: tcp
+    nodePort: 32400
     port: 32400
   - name: tcp-pilot-grpc-tls
     port: 15011
@@ -27,12 +28,6 @@ spec:
   - name: tcp-dns-tls
     port: 853
     targetPort: 853
-  - name: http2-prometheus
-    port: 15030
-    targetPort: 15030
-  - name: http2-grafana
-    port: 15031
-    targetPort: 15031
   selector:
     app: istio-ingressgateway
     istio: ingressgateway
