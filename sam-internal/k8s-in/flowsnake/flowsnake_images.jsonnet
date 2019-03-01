@@ -390,7 +390,28 @@ local utils = import "util_functions.jsonnet";
                 },
             },
         },
+
+        "4-ia2": self["4"] {
+           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
+           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
+           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
+
+           feature_flags: {
+               dynamic_watchdogs: "yes",
+           },
+
+           version_mapping: {
+                main: {
+                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
+                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                },
+            },
+        },
     },
+
 
     ### Phase kingdom/estate mapping
     phase: (
@@ -418,6 +439,8 @@ local utils = import "util_functions.jsonnet";
             "4-ukb"
         else if (estate == "phx-flowsnake_prod") then
             "4-phx"
+        else if (estate == "ia2-flowsnake_prod") then
+            "4-ia2"
         else
             "4"
         ),
