@@ -33,15 +33,33 @@ system:
     - name: secretvol-db
       k4aSecret:
         secretName: gcp-mvp-1az-db-pw
+
     containers:
     - name: coreapp
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_1745343
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17537882
+
+      command: ["/bin/sh", "-c"]
+      args: ["
+      CASAM_DIR=${HOME}/salesforce/casam ; 
+      while [ ! -f '${CASAM_DIR}/.overrides_sidecar_done' ]; do echo -ne '`date`: Waiting for coverride sidecar to complete its job\n' ;  sleep 1 ; done ;
+      export DB_PASSWORD=$(cat /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-1az-db-pw/dbpw.txt) ;
+      ${CASAM_DIR}/bin/startup.sh
+      "]
 
       env:
-        # Other db info takes from core configs 
+        # db pw extracted from k4a at startup
         - name: DB_USER
           value: sleepy
-
+        - name: DB_SID
+          value: CSDB6-1
+        - name: IP_DB
+          value: 10.168.160.73
+        - name: SERVER_ID
+          value: R
+          
+        - name: INTERNAL_ENV
+          value: true
+          
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
           value: 443
@@ -86,7 +104,7 @@ system:
 
         # Settings.path
         - name: CASAM_SETTINGS_PATH
-          value: prod.-.fra.devmvp.app
+          value: prod.-.phx.na3.app
 
         # Cluster name
         - name: CLUSTER_NAME
@@ -204,10 +222,10 @@ system:
         mountPath: /certs/cert-server
 
     - name: config-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_config_overrides:241254
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:a4ea3c
       env:
       - name: CASAM_SETTINGS_PATH
-        value: prod.-.fra.devmvp.app
+        value: prod.-.phx.na3.app
       livenessProbe:
         exec:
           command:
@@ -225,6 +243,39 @@ system:
       volumeMounts:
       - name: coreapp-config-volume
         mountPath: /home/sfdc/config_override
+
+    - name: sherpa
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+      args:
+      # 2018-02-08: Direct Connection to the switchboard for now
+      - --switchboard=switchboard.service-mesh.svc:15001
+      - --admin-port=switchboard.service-mesh.svc:15374
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 15374
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
 
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
