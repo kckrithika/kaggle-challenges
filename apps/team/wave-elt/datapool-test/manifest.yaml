@@ -39,7 +39,7 @@ system:
       - name: KAFKA_GROUP_ID
         value: wave-datapool-test
       - name: HANDLED_PODS_PATTERN
-        value: stmfa\..*|master-moana-driver
+        value: stmfa\..*|moana-driver-master
 
       # Turn off the sweeper so we can debug
       - name: ENABLE_SWEEPER

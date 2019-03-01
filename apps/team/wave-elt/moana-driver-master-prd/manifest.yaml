@@ -36,7 +36,10 @@ system:
         value: master
 
       - name: HANDLED_PODS_PATTERN
-        value: stmfa\..*|master-moana-driver
+        value: stmfa\..*|moana-driver-master
+
+      - name: TEST_POD
+        value: moana-driver-master
 
       - name: PKI_TRUSTSTORE_DIR
         value: /home/scone/client-certs

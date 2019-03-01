@@ -35,8 +35,12 @@ system:
       - name: DEPLOYMENT_ID
         value: release
 
+      - name: TEST_POD
+        value: moana-driver-release
+
+
       - name: HANDLED_PODS_PATTERN
-        value: stmfa\..*|master-moana-driver
+        value: stmfa\..*|moana-driver-master
       - name: HANDLED_PODS_INVERT_MATCH
         value: true
 
