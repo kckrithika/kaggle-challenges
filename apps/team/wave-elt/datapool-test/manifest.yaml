@@ -28,6 +28,9 @@ system:
       - name: SFDC_ENVIRONMENT
         value: kingdom-test
 
+      - name: DEPLOYMENT_ID
+        value: master
+
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: all
       - name: LOGGING_STDERR_LEVEL
@@ -36,7 +39,7 @@ system:
       - name: KAFKA_GROUP_ID
         value: wave-datapool-test
       - name: HANDLED_PODS_PATTERN
-        value: stmfa\..*
+        value: stmfa\..*|master-moana-driver
 
       # Turn off the sweeper so we can debug
       - name: ENABLE_SWEEPER

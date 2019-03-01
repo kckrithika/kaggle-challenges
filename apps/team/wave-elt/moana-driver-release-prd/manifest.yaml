@@ -4,7 +4,7 @@ system:
     email:
       - moanaserviceseng@salesforce.com
   functions:
-  - name: moana-driver
+  - name: moana-driver-release
     identity:
       serviceName: moana-driver
     count: 1
@@ -31,6 +31,14 @@ system:
         value: all
       - name: LOGGING_STDERR_LEVEL
         value: ALL
+
+      - name: DEPLOYMENT_ID
+        value: release
+
+      - name: HANDLED_PODS_PATTERN
+        value: stmfa\..*|master-moana-driver
+      - name: HANDLED_PODS_INVERT_MATCH
+        value: true
 
       - name: PKI_TRUSTSTORE_DIR
         value: /home/scone/client-certs
@@ -63,8 +71,8 @@ system:
 
 
   loadbalancers:
-  - lbname: moana-driver-lb
-    function: moana-driver
+  - lbname: moana-driver-release-lb
+    function: moana-driver-release
     nodeExposed: true
     slbEnabled: true
     ports:
