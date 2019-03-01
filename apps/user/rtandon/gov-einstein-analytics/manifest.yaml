@@ -27,9 +27,9 @@ system:
       - name: HOST_NAME
         value: "localhost"
       - name: PLSQL_FILE_PATH
-        value: "/test_data.pls"
+        value: "/airstream-app/test_data.pls"
       - name: CRON_FREQ
-        value: "30 * * * *"
+        value: "30 2 * * *"
       volumeMounts:
       - name: user-profile-test
         mountPath: /user-profile.cfg
@@ -41,3 +41,6 @@ system:
         secretName: gov-einstein-analytics-user-profile-secret-test
     strategy:
       type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
