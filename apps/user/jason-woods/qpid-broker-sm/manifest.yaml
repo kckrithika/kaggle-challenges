@@ -5,20 +5,20 @@ system:
     email:
       - jason.woods@salesforce.com
   functions:
-    - name: qpid-broker
+    - name: qpid-broker-sm
       type: stateful-set
-      count: 3
+      count: 1
       containers:
         - name: qpid-broker-runtime
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/appscale/qpid-broker-runtime:cbb26c5.1
           ports:
             - name: amqp-port
-              containerPort: 4001
+              containerPort: 2021
             - name: http-port
               containerPort: 7022
           env:
             - name: AMQP_PORT
-              value: 4001
+              value: 2021
             - name: HTTP_PORT
               value: 7022
             - name: QPID_JAVA_HEAPSZ
@@ -49,9 +49,7 @@ system:
             - -endpoint
             - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME)-http:DATACENTER_ALLENV:7014
             - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME)-https:DATACENTER_ALLENV:7442
-            - -endpoint
-            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME)-amqp:DATACENTER_ALLENV:4000
+            - samapp/user-jason-woods/$(FUNCTION_INSTANCE_NAME):DATACENTER_ALLENV:2020
           env:
             - name: SFDC_ENVIRONMENT
               value: sam
@@ -74,9 +72,7 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
-          - containerPort: 7442
-            name: http1-tls-in
-          - containerPort: 4000
+          - containerPort: 2020
             name: tcp-in
           - containerPort: 7014
             name: http1-in
@@ -107,7 +103,7 @@ system:
           - name: sherpa-log-volume
             mountPath: /log
 
-      lbname: qpid-broker-lb-jason-woods
+      lbname: qpid-broker-sm-lb-jason-woods
 
       volumes:
         - name: logvol
