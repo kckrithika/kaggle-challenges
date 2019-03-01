@@ -3213,6 +3213,20 @@
     },
     {
       "namespaces": [
+        "csc-health",
+        "distributed-tracing"
+      ],
+      "access": [
+        "team/CSC_Health",
+        "team/distributed-tracing"
+      ],
+      "controlEstate": "xrd-sam",
+      "estate": "xrd-sam_report_collector",
+      "kingdom": "xrd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "*"
       ],
       "access": [
