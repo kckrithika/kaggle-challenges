@@ -11,7 +11,7 @@ system:
       livenessProbe:
         periodSeconds: 60
         exec:
-          command: ["/bin/grpc_health_probe", "-addr=:7020 -service=ml-spaas"]
+          command: ["/bin/grpc_health_probe", "-addr=:7020", "-service=ml-spaas"]
   loadbalancers:
   - lbname: ml-spaaslb
     function: ml-spaas
