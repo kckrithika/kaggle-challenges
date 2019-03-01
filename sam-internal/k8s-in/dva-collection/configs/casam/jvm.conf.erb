@@ -1,19 +1,19 @@
 <%# INPUT DEFINITIONS %>
 input(
   type="imfile"
-  File="/home/sfdc/logs/solr/jetty/*.jvmgc.log_*"
+  File="/home/sfdc/logs/jvm/*.jvm.log_*"
   PersistStateInterval="50000"
-  Tag="solr_jetty"
-  ruleset="ruleset_solr_jetty"
-  startmsg.regex="^([[:digit:]]{4}-(0[1-9]|1[0-2])-(0?[1-9]|[12][[:digit:]]|3[01]))([[:space:]]|T)(([01][[:digit:]]|2[0-3]):[0-5][[:digit:]]:([0-5][[:digit:]]|6[01]))[,|\\.][[:digit:]]{3}`"
-  readTimeout = "5"
+  readMode="0"
+  Tag="casam_jvm"
+  ruleset="ruleset_casam_jvm"
+  readMode="0"
   addmetadata="on"
   escapelf="off"
   discardTruncatedMsg="on"
 )
 
 <%# Output Template%>
-template(name="tpl_jetty" type="list") {
+template(name="tpl_casam_jvm" type="list") {
   constant(value="{\"schema_type\":\"json-schema\",\"schema_id\":\"event-flatten:1\",\"data\":{")
   property(name="msg" outname="message" format="jsonf")
   constant(value=",")
@@ -38,29 +38,35 @@ template(name="tpl_jetty" type="list") {
 }
 
 <%# RULESET DEFINITION %>
-ruleset(name="ruleset_solr_jetty" queue.type="LinkedList" queue.size="5000" queue.lightdelaymark="3000" queue.fulldelaymark="4000") {
+ruleset(name="ruleset_casam_jvm") {
 
   <%# Template Spec %>
-  set $!datacenter = "<%= config.cluster %>";
+  set $!datacenter = "<%= config.cluster%>";
   set $!superpod = "NONE";
   set $!pod = "<%= config.node %>";
-  set $!owner = "Search";
-  set $!source_type = "solr_jvmgclog";
+  set $!owner = "CASAM";
+  set $!source_type = "casam_jvmlog";
+
+  <%# omfile for debugging %>
+  <%# action(name="file_casam_jvm"
+    type="omfile"
+    template="tpl_casam_jvm"
+    File="/var/log/rsyslog/casam_jvm.log"
+  ) %>
 
   <%# Output action %>
   action(
     type="omkafka"
-    name="kafka_solr_jetty"
-    broker= "<%= config.broker_vip %>"
-    template="tpl_jetty"
-    topic= "<%= config.kafka_topic %>"
+    name="kafka_casam_jvm"
+    broker="<%= config.broker_vip %>"
+    template="tpl_casam_jvm"
+    topic="<%= config.kafka_topic %>"
     partitions.auto="on"
     resubmitOnFailure="off"
     reopenonhup="on"
     action.resumeRetryCount="-1"
     confParam=[
       "batch.num.messages=10000",
-      "client.id=collections.rsyslog.test",
       "compression.codec=gzip",
       "max.in.flight.requests.per.connection=2",
       "message.max.bytes=1000000",
@@ -78,3 +84,5 @@ ruleset(name="ruleset_solr_jetty" queue.type="LinkedList" queue.size="5000" queu
     ]
   )
 }
+
+<%# END OF FILE %>

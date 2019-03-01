@@ -154,6 +154,81 @@ spec:
         - mountPath: /templates
           name: rsyslog-config-tpl
       - command:
+        - /usr/bin/ruby
+        - /app/config_gen.rb
+        - -t
+        - /templates/core.conf.erb
+        - -o
+        - /etc/rsyslog.d/50-casam.conf
+        env:
+        - name: BROKER_VIP
+          valueFrom:
+            configMapKeyRef:
+              key: broker_vip
+              name: kafka-cm
+        - name: KAFKA_TOPIC
+          valueFrom:
+            configMapKeyRef:
+              key: casam_topic
+              name: kafka-cm
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:v0.1alpha2
+        name: config-gen-casam
+        volumeMounts:
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+        - mountPath: /templates
+          name: rsyslog-config-tpl
+      - command:
+        - /usr/bin/ruby
+        - /app/config_gen.rb
+        - -t
+        - /templates/jvm.conf.erb
+        - -o
+        - /etc/rsyslog.d/50-casam_jvm.conf
+        env:
+        - name: BROKER_VIP
+          valueFrom:
+            configMapKeyRef:
+              key: broker_vip
+              name: kafka-cm
+        - name: KAFKA_TOPIC
+          valueFrom:
+            configMapKeyRef:
+              key: general_topic
+              name: kafka-cm
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:v0.1alpha2
+        name: config-gen-casam-jvm
+        volumeMounts:
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+        - mountPath: /templates
+          name: rsyslog-config-tpl
+      - command:
+        - /usr/bin/ruby
+        - /app/config_gen.rb
+        - -t
+        - /templates/jvmgc.conf.erb
+        - -o
+        - /etc/rsyslog.d/50-casam_jvmgc.conf
+        env:
+        - name: BROKER_VIP
+          valueFrom:
+            configMapKeyRef:
+              key: broker_vip
+              name: kafka-cm
+        - name: KAFKA_TOPIC
+          valueFrom:
+            configMapKeyRef:
+              key: general_topic
+              name: kafka-cm
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:v0.1alpha2
+        name: config-gen-casam-jvmgc
+        volumeMounts:
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+        - mountPath: /templates
+          name: rsyslog-config-tpl
+      - command:
         - /usr/sbin/rsyslogd
         - -N1
         - -f
@@ -190,7 +265,7 @@ spec:
           path: /var/lib/docker/containers
         name: varlibdockercontainers
       - hostPath:
-          path: /mnt/disks/ssd0/logs
+          path: /mnt/disks/ssd0/data/logs
         name: logs-vol
       - hostPath:
           path: /var/spool/rsyslog

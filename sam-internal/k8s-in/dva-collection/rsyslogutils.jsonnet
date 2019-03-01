@@ -46,7 +46,7 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
         {
             name: "logs-vol",
             hostPath: {
-                path: "/mnt/disks/ssd0/logs",
+                path: "/mnt/disks/ssd0/data/logs",
             },
         },
         {
