@@ -76,7 +76,7 @@ local build_btrfs_test_commands = if std.objectHas(flowsnake_images.feature_flag
 } else {};
 
 local build_spark_operator_test_commands = if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog") then {
-    SparkOperatorTest: { SparkOperatorTest: "/spark-operator-test/check-spark-operator.sh" },
+    SparkOperatorTest: { SparkOperatorTest: "/watchdog-spark-operator/check-spark-operator.sh" },
 } else {};
 
 {
