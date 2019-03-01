@@ -79,12 +79,6 @@ items:
   metadata:
     name: spark-driver-flowsnake-test
     namespace: flowsnake-test
-- apiVersion: v1
-  automountServiceAccountToken: true
-  kind: ServiceAccount
-  metadata:
-    name: spark-executor-flowsnake-test
-    namespace: flowsnake-test
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -105,21 +99,19 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-lorrin-test-ClusterRoleBinding
+    name: flowsnake-client-flowsnake-watchdog-ClusterRoleBinding
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
     name: client-cluster-role
-  subjects:
-  - kind: User
-    name: flowsnake_test.lorrin.nelson
+  subjects: []
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-lorrin-test-Role
-    namespace: lorrin-test
+    name: flowsnake-client-flowsnake-watchdog-Role
+    namespace: flowsnake-watchdog
   rules:
   - apiGroups:
     - '*'
@@ -150,41 +142,33 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-lorrin-test-RoleBinding
-    namespace: lorrin-test
+    name: flowsnake-client-flowsnake-watchdog-RoleBinding
+    namespace: flowsnake-watchdog
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
-    name: flowsnake-client-lorrin-test-Role
-  subjects:
-  - kind: User
-    name: flowsnake_test.lorrin.nelson
+    name: flowsnake-client-flowsnake-watchdog-Role
+  subjects: []
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount
   metadata:
-    name: spark-driver-lorrin-test
-    namespace: lorrin-test
-- apiVersion: v1
-  automountServiceAccountToken: true
-  kind: ServiceAccount
-  metadata:
-    name: spark-executor-lorrin-test
-    namespace: lorrin-test
+    name: spark-driver-flowsnake-watchdog
+    namespace: flowsnake-watchdog
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: spark-driver-lorrin-test-RoleBinding
-    namespace: lorrin-test
+    name: spark-driver-flowsnake-watchdog-RoleBinding
+    namespace: flowsnake-watchdog
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
-    name: flowsnake-client-lorrin-test-Role
+    name: flowsnake-client-flowsnake-watchdog-Role
   subjects:
   - kind: ServiceAccount
-    name: spark-driver-lorrin-test
-    namespace: lorrin-test
+    name: spark-driver-flowsnake-watchdog
+    namespace: flowsnake-watchdog
 kind: List
 metadata: {}

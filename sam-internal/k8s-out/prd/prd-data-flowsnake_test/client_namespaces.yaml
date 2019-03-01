@@ -14,9 +14,9 @@ items:
   metadata:
     annotations:
       sfdc.net/flowsnake.owner_name: Flowsnake
-      sfdc.net/pki-namespace: lorrin-non-existent-pki
+      sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
-    name: lorrin-test
+    name: flowsnake-watchdog
 kind: List
 metadata: {}

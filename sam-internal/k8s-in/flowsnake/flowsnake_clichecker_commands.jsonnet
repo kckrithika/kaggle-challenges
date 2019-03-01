@@ -32,8 +32,6 @@ local set_test_class(test_name) = " -c com.salesforce.dva.transform.flowsnake." 
 ##  and no additional parameters to be passed in, junit and test artifacts from the canary-watchdog image, etc.
 local build_test_command(test_name, version) = build_run_command(version) + set_test_class(test_name);
 
-local flag_btrfs_test = std.objectHas(flowsnake_images.feature_flags, "btrfs_watchdog_hard_reset");
-
 ## Flowsnake release -> Watchdog name -> jUnit Test class
 ## make sure add watchdog_canary_versions
 local tests_for_each_version = {
@@ -73,10 +71,14 @@ local build_docker_test_commands = {
     DockerDaemon: { DockerDaemon: "/test-docker.sh" },
 };
 
-local build_btrfs_test_commands = if flag_btrfs_test then {
+local build_btrfs_test_commands = if std.objectHas(flowsnake_images.feature_flags, "btrfs_watchdog_hard_reset") then {
     BtrfsHung: { BtrfsHung: "bash /var/run/check-btrfs/check-btrfs.sh" },
 } else {};
 
+local build_spark_operator_test_commands = if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog") then {
+    SparkOperatorTest: { SparkOperatorTest: "/spark-operator-test/check-spark-operator.sh" },
+} else {};
+
 {
-    command_sets:: build_canary_commands + build_docker_test_commands + build_btrfs_test_commands,
+    command_sets:: build_canary_commands + build_docker_test_commands + build_btrfs_test_commands + build_spark_operator_test_commands,
 }
