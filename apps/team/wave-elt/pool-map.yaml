@@ -47,7 +47,8 @@ apps:
   - prd/prd-sam_datapool
 
   # moana driver used for testing moana via kafka.
-  moana-driver-prd:
-  - prd/prd-sam
-
+  moana-driver-release-prd:
+  - prd/prd-sam_datapool
+  moana-driver-master-prd:
+  - prd/prd-sam_datapool
 
