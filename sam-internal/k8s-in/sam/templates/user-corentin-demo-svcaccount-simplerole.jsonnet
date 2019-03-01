@@ -8,7 +8,7 @@ if configs.estate == "prd-sam" then {
   },
   rules: [
   {
-    apiGroups: [""],
+    apiGroups: ["*"],
     resources: ["pods", "pods/log", "deployments"],
     verbs: ["get", "list"],
     },

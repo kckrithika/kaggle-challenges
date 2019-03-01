@@ -9,7 +9,7 @@ if configs.estate == "prd-sam" then {
   subjects: [
         {
           kind: "ServiceAccount",
-          name: "default",
+          name: "demo",
           namespace: "user-cdebains",
          },
    ],

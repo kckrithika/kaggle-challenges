@@ -3,7 +3,7 @@ if configs.estate == "prd-sam" then {
   apiVersion: "v1",
   kind: "ServiceAccount",
   metadata: {
-    name: "default",
+    name: "demo",
     namespace: "user-cdebains",
   },
 } else "SKIP"

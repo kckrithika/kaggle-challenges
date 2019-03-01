@@ -5,7 +5,7 @@ metadata:
   namespace: user-cdebains
 rules:
 - apiGroups:
-  - ""
+  - '*'
   resources:
   - pods
   - pods/log
