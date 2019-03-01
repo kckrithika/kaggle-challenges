@@ -32,7 +32,7 @@ else
             kind: "RoleBinding",
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "watchdog-spark-operator-RoleBinding",
+                name: "watchdog-spark-operator-rolebinding",
                 namespace: "flowsnake-watchdog",
                 annotations: {
                     "manifestctl.sam.data.sfdc.net/swagger": "disable",
@@ -56,7 +56,7 @@ else
             kind: "ConfigMap",
             apiVersion: "v1",
             metadata: {
-              name: "watchdog-spark-operator-ConfigMap",
+              name: "watchdog-spark-operator-configmap",
               namespace: "flowsnake",
             },
             data: {
@@ -128,7 +128,7 @@ else
                 labels: {
                     name: "watchdog-spark-operator",
                 },
-                name: "watchdog-spark-operator-Deployment",
+                name: "watchdog-spark-operator-deployment",
                 namespace: "flowsnake",
             },
             spec+: {
@@ -192,7 +192,7 @@ else
                             configs.config_volume("watchdog"),
                             {
                                 configMap: {
-                                    name: "watchdog-spark-operator-ConfigMap",
+                                    name: "watchdog-spark-operator-configmap",
                                 },
                                 name: "watchdog-spark-operator",
                             },
