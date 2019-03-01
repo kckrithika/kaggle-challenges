@@ -28,7 +28,7 @@ system:
         value: ALL
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
-        value: dva/datapool-engine:410-0d47c95fe39a686a78daca24ff56a7723899cba9
+        value: dva/datapool-engine:411-e244d4000305b468b1b0b57c65f0c620e88503c2
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_NEXT
         value: ''
