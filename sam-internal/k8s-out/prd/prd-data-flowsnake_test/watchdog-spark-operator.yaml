@@ -4,14 +4,14 @@ items:
   automountServiceAccountToken: true
   kind: ServiceAccount
   metadata:
-    name: watchdog-spark-operator
+    name: watchdog-spark-operator-serviceaccount
     namespace: flowsnake
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: watchdog-spark-operator
+    name: watchdog-spark-operator-rolebinding
     namespace: flowsnake-watchdog
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -19,7 +19,7 @@ items:
     name: flowsnake-client-flowsnake-watchdog-Role
   subjects:
   - kind: ServiceAccount
-    name: watchdog-spark-operator
+    name: watchdog-spark-operator-serviceaccount
     namespace: flowsnake
 - apiVersion: v1
   data:
@@ -65,7 +65,7 @@ items:
       {"path": "/tmp", "type": "Directory"}, "name": "test-volume"}]}}'
   kind: ConfigMap
   metadata:
-    name: watchdog-spark-operator
+    name: watchdog-spark-operator-configmap
     namespace: flowsnake
 - apiVersion: extensions/v1beta1
   kind: Deployment
@@ -131,7 +131,7 @@ items:
             - key: check-spark-operator.sh
               mode: 493
               path: check-spark-operator.sh
-            name: watchdog-spark-operator
+            name: watchdog-spark-operator-configmap
           name: watchdog-spark-operator
         - configMap:
             name: sfdchosts

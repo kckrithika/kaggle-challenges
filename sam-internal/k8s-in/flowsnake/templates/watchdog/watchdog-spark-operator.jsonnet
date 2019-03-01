@@ -22,7 +22,7 @@ else
             kind: "ServiceAccount",
             apiVersion: "v1",
             metadata: {
-                name: "watchdog-spark-operator",
+                name: "watchdog-spark-operator-serviceaccount",
                 namespace: "flowsnake",
             },
             automountServiceAccountToken: true,
@@ -32,7 +32,7 @@ else
             kind: "RoleBinding",
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "watchdog-spark-operator",
+                name: "watchdog-spark-operator-rolebinding",
                 namespace: "flowsnake-watchdog",
                 annotations: {
                     "manifestctl.sam.data.sfdc.net/swagger": "disable",
@@ -46,7 +46,7 @@ else
             subjects: [
                 {
                     kind: "ServiceAccount",
-                    name: "watchdog-spark-operator",
+                    name: "watchdog-spark-operator-serviceaccount",
                     namespace: "flowsnake",
                 }
             ]
@@ -56,7 +56,7 @@ else
             kind: "ConfigMap",
             apiVersion: "v1",
             metadata: {
-              name: "watchdog-spark-operator",
+              name: "watchdog-spark-operator-configmap",
               namespace: "flowsnake",
             },
             data: {
@@ -192,7 +192,7 @@ else
                             configs.config_volume("watchdog"),
                             {
                                 configMap: {
-                                    name: "watchdog-spark-operator",
+                                    name: "watchdog-spark-operator-configmap",
                                     # rw-r--r-- 644 octal, 420 decimal
                                     defaultMode: 420,
                                     items: [
