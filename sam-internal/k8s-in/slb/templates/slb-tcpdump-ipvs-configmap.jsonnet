@@ -6,7 +6,7 @@ local tcpdumpCommandSet = {
     tcpdumpcommands: [
         {
             command: "-i any",
-            duration: "5m",
+            duration: "1m",
             packetcapture: true,
         },
     ],
