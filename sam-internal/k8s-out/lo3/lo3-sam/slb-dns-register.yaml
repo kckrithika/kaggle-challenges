@@ -50,7 +50,6 @@ spec:
         - --client.serverInterface=lo
         - --restrictedSubnets=161.71.46.0/23,
         - --maxDeleteEntries=10
-        - --secrets.ssendpoint=secretservice-lo3.data.sfdc.net
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
         image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/slb/hyperslb:2071-90e67f4bfc26447a02cf62a63bd13bd05b53af54
@@ -276,7 +275,6 @@ spec:
         - --client.dialSocket=true
         - --commonoptions.metricsendpoint=ajna0-funnel1-0-lo3.data.sfdc.net:80
         - --commonoptions.hostname=$(NODE_NAME)
-        - --secrets.ssendpoint=secretservice-lo3.data.sfdc.net
         - --keyfile=/cert3/client/keys/client-key.pem
         - --certfile=/cert3/client/certificates/client.pem
         - --cafile=/cert3/ca/cabundle.pem

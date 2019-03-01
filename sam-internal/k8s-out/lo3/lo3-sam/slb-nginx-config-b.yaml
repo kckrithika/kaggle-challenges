@@ -473,7 +473,6 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-nginx-config-b
         - --custCertsDir=/customerCerts
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --secrets.ssendpoint=secretservice-lo3.data.sfdc.net
         - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
         - --client.dialSocket=true
         - --control.nginxReloadSentinel=/host/data/slb/slb-nginx-config-b/config/nginx.marker
