@@ -33,15 +33,14 @@ std.prune({
                             (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "vpod" then configs.ci_namespaces_volume_mount else {}),
                             configs.cert_volume_mount,
                         ]),
-                          [if configs.kingdom == "prd" then
-                          "ports"]: [
+                          ports: [
                                   {
                                       containerPort: 21548,
                                   },
                               ],
                     }
                     + configs.containerInPCN
-                    + (if configs.kingdom == "prd" then {
+                    + {
                         livenessProbe: {
                              httpGet: {
                                  path: "/healthz",
@@ -50,7 +49,7 @@ std.prune({
                              initialDelaySeconds: 30,
                              periodSeconds: 5,
                          },
-                     } else {}),
+                     },
                 ],
                 volumes+: configs.filter_empty([
                     configs.sfdchosts_volume,

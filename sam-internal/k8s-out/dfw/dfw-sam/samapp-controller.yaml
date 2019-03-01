@@ -31,7 +31,15 @@ spec:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/sam/hypersam:2633-e508caaf95457f35c52db83edd42ac2586078c24
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 21548
+          initialDelaySeconds: 30
+          periodSeconds: 5
         name: samapp-controller
+        ports:
+        - containerPort: 21548
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
