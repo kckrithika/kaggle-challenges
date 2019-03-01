@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-if configs.estate == "prd-sam" then {
+if configs.estate == "" then {
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
   kind: "Role",
   metadata: {
