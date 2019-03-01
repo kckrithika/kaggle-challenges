@@ -38,10 +38,6 @@ system:
       - name: HANDLED_PODS_PATTERN
         value: stmfa\..*
 
-      # Turn off the sweeper so we can debug
-      - name: ENABLE_SWEEPER
-        value: false
-
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
         value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-spark-on-k8s-2-itest
 
