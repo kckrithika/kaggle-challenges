@@ -98,7 +98,7 @@ data:
     \   confParam=[\n      \"batch.num.messages=10000\",\n      \"compression.codec=gzip\",\n
     \     \"max.in.flight.requests.per.connection=2\",\n      \"message.max.bytes=1000000\",\n
     \     \"queue.buffering.max.ms=5000\",\n      \"retries=86400\",\n      \"retry.backoff.ms=1000\",\n
-    \     \"socket.keepalive.enable=true\"，\n      \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
+    \     \"socket.keepalive.enable=true\",\n      \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
     \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
     \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n\n<%# END OF FILE
@@ -256,7 +256,7 @@ data:
 
   jvm.conf.erb: "<%# INPUT DEFINITIONS %>\ninput(\n  type=\"imfile\"\n  File=\"/home/sfdc/logs/jvm/*.jvm.log_*\"\n
     \ PersistStateInterval=\"50000\"\n  readMode=\"0\"\n  Tag=\"casam_jvm\"\n  ruleset=\"ruleset_casam_jvm\"\n
-    \ readMode=\"0\"\n  addmetadata=\"on\"\n  escapelf=\"off\"\n  discardTruncatedMsg=\"on\"\n)\n\n<%#
+    \ addmetadata=\"on\"\n  escapelf=\"off\"\n  discardTruncatedMsg=\"on\"\n)\n\n<%#
     Output Template%>\ntemplate(name=\"tpl_casam_jvm\" type=\"list\") {\n  constant(value=\"{\\\"schema_type\\\":\\\"json-schema\\\",\\\"schema_id\\\":\\\"event-flatten:1\\\",\\\"data\\\":{\")\n
     \ property(name=\"msg\" outname=\"message\" format=\"jsonf\")\n  constant(value=\",\")\n
     \ property(name=\"$!source_type\" outname=\"source_type\" format=\"jsonfr\")\n
@@ -287,7 +287,7 @@ data:
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n\n<%# END OF FILE
     %>"
   jvmgc.conf.erb: "<%# INPUT DEFINITIONS %>\ninput(\n  type=\"imfile\"\n  File=\"/home/sfdc/logs/jvm/*.jvmgc.log_*\"\n
-    \ PersistStateInterval=\"50000\"\n  readMode=\"0\"\n  Tag=\"casam_jvmgc\"\n  ruleset=\"ruleset_casam_jvmgc\"\n
+    \ PersistStateInterval=\"50000\"\n  Tag=\"casam_jvmgc\"\n  ruleset=\"ruleset_casam_jvmgc\"\n
     \ startmsg.regex=\"^([[:digit:]]{4}-(0[1-9]|1[0-2])-(0?[1-9]|[12][[:digit:]]|3[01]))([[:space:]]|T)(([01][[:digit:]]|2[0-3]):[0-5][[:digit:]]:([0-5][[:digit:]]|6[01]))[,|\\\\.][[:digit:]]{3}\"\n
     \ readTimeout = \"5\"  \n  addmetadata=\"on\"\n  escapelf=\"off\"\n  discardTruncatedMsg=\"on\"\n)\n\n<%#
     Output Template%>\ntemplate(name=\"tpl_casam_jvmgc\" type=\"list\") {\n  constant(value=\"{\\\"schema_type\\\":\\\"json-schema\\\",\\\"schema_id\\\":\\\"event-flatten:1\\\",\\\"data\\\":{\")\n
