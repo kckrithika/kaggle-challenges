@@ -32,7 +32,7 @@ else
             kind: "RoleBinding",
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "watchdog-spark-operator-rolebinding",
+                name: "watchdog-spark-operator",
                 namespace: "flowsnake-watchdog",
                 annotations: {
                     "manifestctl.sam.data.sfdc.net/swagger": "disable",
@@ -56,7 +56,7 @@ else
             kind: "ConfigMap",
             apiVersion: "v1",
             metadata: {
-              name: "watchdog-spark-operator-configmap",
+              name: "watchdog-spark-operator",
               namespace: "flowsnake",
             },
             data: {
@@ -65,7 +65,7 @@ else
                     "apiVersion": "sparkoperator.k8s.io/v1beta1",
                     "kind": "SparkApplication",
                     "metadata": {
-                        "name": "watchdog-spark-operator-app",
+                        "name": "watchdog-spark-operator",
                         "namespace": "flowsnake-watchdog",
                     },
                     "spec": {
@@ -128,7 +128,7 @@ else
                 labels: {
                     name: "watchdog-spark-operator",
                 },
-                name: "watchdog-spark-operator-deployment",
+                name: "watchdog-spark-operator",
                 namespace: "flowsnake",
             },
             spec+: {
@@ -192,7 +192,21 @@ else
                             configs.config_volume("watchdog"),
                             {
                                 configMap: {
-                                    name: "watchdog-spark-operator-configmap",
+                                    name: "watchdog-spark-operator",
+                                    # rw-r--r-- 644 octal, 420 decimal
+                                    defaultMode: 420,
+                                    items: [
+                                        {
+                                            key: "spark-application.json",
+                                            path: "spark-application.json",
+                                        },
+                                        {
+                                            key: "check-spark-operator.sh",
+                                            path: "check-spark-operator.sh",
+                                            # rwx-r-xr-x 755 octal, 493 decimal
+                                            mode: 493,
+                                        },
+                                    ],
                                 },
                                 name: "watchdog-spark-operator",
                             },
