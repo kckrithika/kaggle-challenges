@@ -122,6 +122,9 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     is_test: (
         estate == "prd-data-flowsnake_test"
     ),
+    is_r_and_d: (
+        kingdom == "prd"
+    ),
     snapshots_enabled: !self.is_minikube,
     registry: if self.is_minikube then "minikube" else configs.registry,
     strata_registry: if self.is_minikube then "minikube" else configs.registry + "/dva",

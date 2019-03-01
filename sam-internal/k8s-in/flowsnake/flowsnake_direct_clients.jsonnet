@@ -1,6 +1,6 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
-
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 {
     # add new Spark-on-kubernetes clients to this object.
     clients_per_estate: {
@@ -28,42 +28,45 @@ local estate = std.extVar("estate");
                 pki_namespace: "wave-elt",
                 users: ["wave-elt.datapool", "wave-elt.datapool-test", "flowsnake.lorrin-impersonation-test", "wave-elt.spark-engine"],
             },
-            # Flowsnake adhoc developer testing
-            {
-                owner_name: "Flowsnake",
-                namespace: "flowsnake-test",  # Kubernetes namespaces cannot contain '_' characters
-                pki_namespace: "flowsnake_test",
-                users: ["flowsnake_test.lorrin.nelson"],
-            },
         ],
 
         # ------------------------------------
         # ---------- PRD-test fleet ----------
         # ------------------------------------
         "prd-data-flowsnake_test": [
-            # Flowsnake adhoc developer testing
-            {
-                owner_name: "Flowsnake",
-                namespace: "flowsnake-test",  # Kubernetes namespaces cannot contain '_' characters
-                pki_namespace: "flowsnake_test",
-                users: ["flowsnake_test.lorrin.nelson"],
-            },
         ],
 
         # ------------------------------------
         # ---------- PRD-dev fleet ----------
         # ------------------------------------
         "prd-dev-flowsnake_iot_test": [
-            # Flowsnake adhoc developer testing
-            {
-                owner_name: "Flowsnake",
-                namespace: "flowsnake-test",  # Kubernetes namespaces cannot contain '_' characters
-                pki_namespace: "flowsnake_test",
-                users: ["flowsnake_test.lorrin.nelson"],
-            },
         ],
     },
 
-    clients: if std.objectHas(self.clients_per_estate, estate) then self.clients_per_estate[estate] else [],
+    # Every estate gets flowsnake-watchdog for continuous synthetic testing
+    # Every R&D estate gets flowsnake-test (for ad hoc deleveloper testing
+
+    clients_additional: [] +
+    (if std.objectHas(flowsnake_images.feature_flags, "spark_operator") then [
+        # Flowsnake ad hoc developer testing
+        {
+            owner_name: "Flowsnake",
+            namespace: "flowsnake-test",  # Kubernetes namespaces cannot contain '_' characters
+            pki_namespace: "flowsnake_test",  # https://git.soma.salesforce.com/Infrastructure-Security/GlobalRegistry/blob/82cdcf28a5c12df73f5d73cb6f214d516b9dd348/conf/namespace.json#L1940-L1947
+            users: ["flowsnake_test.lorrin.nelson"],  # Get yourself a workstation cert and add it here. https://salesforce.quip.com/TkvaAbgSpYF4
+        },
+    ] else []) +
+    # TODO: is_test check temporary until validated in prd-test
+    (if flowsnake_config.is_r_and_d && flowsnake_config.is_test then [
+        # Flowsnake watchdog continuous synthetic testing of Spark operator
+        {
+            owner_name: "Flowsnake",
+            namespace: "flowsnake-watchdog",  # Kubernetes namespaces cannot contain '_' characters
+            pki_namespace: "flowsnake_test",  # https://git.soma.salesforce.com/Infrastructure-Security/GlobalRegistry/blob/82cdcf28a5c12df73f5d73cb6f214d516b9dd348/conf/namespace.json#L1940-L1947
+            users: [],  # No external access required
+        },
+    ] else []),
+
+    clients: (if std.objectHas(self.clients_per_estate, estate) then self.clients_per_estate[estate] else []) + self.clients_additional,
 
 }

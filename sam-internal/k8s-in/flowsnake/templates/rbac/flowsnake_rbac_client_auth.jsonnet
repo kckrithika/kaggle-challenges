@@ -1,5 +1,6 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_clients = import "flowsnake_direct_clients.jsonnet";
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 
 if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.clients) > 0 then (
 {
@@ -7,7 +8,7 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
     kind: "List",
     metadata: {},
     items:
-        # ClusterRole used by all clients for certain cluster-wide actions
+        # ClusterRole granted to all users of all client namespaces for cluster-wide actions like viewing CRD definitions.
         [
             {
                 kind: "ClusterRole",
@@ -30,11 +31,15 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
 
             }
         ] +
+
+        # Note this is the start of a loop over client in flowsnake_clients.clients
         std.flattenArrays([
+
         # Helper to work-around auto-deployer limitation of names having to be unique across kinds and namespaces
         local makeName(name, kind) = name + "-" + client.namespace + "-" + kind;
-        [
-        # Per-client: bind their user principal to the all-clients Cluster Role
+
+        ([
+        # Per-client: bind each of their user principals to the shared client-cluster-role
         {
             local kind = "ClusterRoleBinding",
             kind: kind,
@@ -96,7 +101,7 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
                 },
             ],
         },
-        # Per-client: bind their user principal to their role in their namespace
+        # Per-client: bind each of their user principals to their role in their namespace
         {
             local kind = "RoleBinding",
             kind: kind,
@@ -132,8 +137,11 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
                 namespace: client.namespace,
             },
             automountServiceAccountToken: true,
-        },
-        {
+        },] +
+        (if !std.objectHas(flowsnake_images.feature_flags, "spark_op_remove_bogus_executor_account") then
+        # Currently, Spark just uses the default service account for executors. Can enable creation of the
+        # executor accounts once Spark supports specifying them.
+        [{
             kind: "ServiceAccount",
             apiVersion: "v1",
             metadata: {
@@ -142,9 +150,9 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
                 namespace: client.namespace,
             },
             automountServiceAccountToken: true,
-        },
+        },] else [] ) +
         # Per-client: Grant their spark-driver same permissions as client
-        {
+        [{
             local kind = "RoleBinding",
             kind: kind,
             apiVersion: "rbac.authorization.k8s.io/v1",
@@ -168,10 +176,8 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
                     namespace: client.namespace,
                 }
             ]
-        }
+        },]
         # No binding for executor = no permissions
-
-    ] for client in flowsnake_clients.clients ] )
-
+        ) for client in flowsnake_clients.clients ] )
 }
 ) else "SKIP"

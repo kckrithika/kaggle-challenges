@@ -109,6 +109,8 @@ local utils = import "util_functions.jsonnet";
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
                 spark_op_metrics: "enabled",
+                spark_op_watchdog: "enabled",
+                spark_op_remove_bogus_executor_account: "enabled",
             },
             version_mapping: {
                 main: {
