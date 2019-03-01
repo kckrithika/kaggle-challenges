@@ -62,14 +62,6 @@ if [[ -n $1 ]];  then
         exit 1
 fi
 
-if [ "${KINGDOM}" != "prd" ] &&  [ "${KINGDOM}" != "xrd" ]; then
-  echo ""
-  echo "=========="
-  echo "NOTE: K4A Secret support in production is in limited release right now, and SLA is only provided to customers with a special agreement with SAM+K4A.  This is temporary and we expect to reach GA soon (~end of FY19).  For more info contact Anubhav Dhoot (SAM PO) and Richard Clayton (SAM TPM)."
-  echo "=========="
-  echo ""
-fi
-
 if [ "${KINGDOM}" == "mvp" ] ; then
   echo ""
   echo "=========="
