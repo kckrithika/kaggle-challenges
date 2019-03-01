@@ -31,8 +31,9 @@ std.prune({
   dbPasswordFile: "/var/mysqlPwd/host-repair-agg",
   signals: [
     "filesystemChecker",
-    "maddogCertChecker",
     "kubeletChecker",
+    "cliChecker.DockerDaemon",
+    "procUpTime",
   ],
   funnelEndpoint: configs.funnelVIP,
 }) else "SKIP"

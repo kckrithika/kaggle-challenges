@@ -29,8 +29,9 @@ data:
       "nodeOfflineAfterTime": "60m",
       "signals": [
         "filesystemChecker",
-        "maddogCertChecker",
-        "kubeletChecker"
+        "kubeletChecker",
+        "cliChecker.DockerDaemon",
+        "procUpTime"
       ]
     }
 kind: ConfigMap
