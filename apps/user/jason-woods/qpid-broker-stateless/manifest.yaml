@@ -5,7 +5,7 @@ system:
     email:
       - jason.woods@salesforce.com
   functions:
-    - name: qpid-broker-stateless-amqp
+    - name: qpid-broker-stateless
       count: 1
       containers:
         - name: qpid-broker-runtime
@@ -48,9 +48,7 @@ system:
             - -endpoint
             - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-http:DATACENTER_ALLENV:7014
             - -endpoint
-            - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-https:DATACENTER_ALLENV:7442
-            - -endpoint
-            - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION)-amqp:DATACENTER_ALLENV:3000
+            - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:3000
           env:
             - name: SFDC_ENVIRONMENT
               value: sam
@@ -73,8 +71,6 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
-          - containerPort: 7442
-            name: http1-tls-in
           - containerPort: 3000
             name: tcp-in
           - containerPort: 7014
