@@ -58,7 +58,6 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                            "--cafile=/cert3/ca/cabundle.pem",
                                            configs.sfdchosts_arg,
                                        ]
-                                       + slbflights.ssEndpointParam
                                        + (if slbconfigs.isTestEstate then [
                                                 "--slbEstate=" + configs.estate,
                                             ] else [])

@@ -14,8 +14,6 @@ local slbconfigs = import "slbconfig.jsonnet";
     enableNginxAccesslogs: (slbimages.hyperslb_build >= 2068),
     removeDeprecatedIpvsProcessorFlags: (slbimages.hyperslb_build >= 2066),
     slbCleanupUnknownPods: (slbimages.hyperslb_build >= 2067),
-    # This can probably now be removed -- see https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006IJQPIA4/view.
-    ssEndpointParam: (if configs.estate == "lo2-sam" || configs.estate == "lo3-sam" then ["--secrets.ssendpoint=secretservice-%s.data.sfdc.net" % [configs.kingdom]] else []),
     useKubeDnsForPortal: (slbimages.phaseNum <= 2),
     internalIpRange: (if slbimages.phaseNum <= 2 then ["--iprange.InternalIpRange=%s" % [slbconfigs.perCluster.internalIpRange[configs.estate]]] else []),
     conntrackMetrics: (slbimages.hyperslb_build >= 2069),

@@ -56,7 +56,6 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-portal
         - --cafile=/cert3/ca/cabundle.pem
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --secrets.ssendpoint=secretservice-lo3.data.sfdc.net
         - --client.socketDir=/host/data/slb/config/slb-portal
         - --client.dialSocket=true
         env:
