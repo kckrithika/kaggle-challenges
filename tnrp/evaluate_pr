@@ -55,6 +55,8 @@ git clone git@git.soma.salesforce.com:sam/${TNRP_PRODUCT}.git manifests
 
 cd -
 
+$SAMBINDIR/aclrepo -validateDir $PWD
+
 # This is a temporary work-around while we wait for secret support in Firefly ~2/15.
 # This is a pgp encrypted read-only git token.  We use the md5 of the firefly ssh key to decrypt this at runtime.
 echo "jA0EBwMCePMTZtkaEHXW0mMBsHBfGssM0kNt8edebupSSPdtUSCrZaXv3u+qxw5lQ67p0SQmMYXxzG+chWx25dVVrzHQCAjcHhWO4d0cQLcmRUIhftd4/LZ+w0rq/BFAmK4MjzJm3om0BZFfrMQZqyUS/8w=" | base64 -d > token.txt.gpg
@@ -84,6 +86,9 @@ $SAMBINDIR/evaluate-pr \
 --moratoriumBegin="2018-12-17T08:00:00Z" \
 --moratoriumEnd="2019-01-02T08:00:00Z" \
 --imageRulePath="sam-internal/k8s-in/sam/configs/image-rules.json" \
---MoratoriumAccessDisabledMessage="End-of-Year Moratorium begins at 08:00 UTC on Monday, December 17 (03:00 EST, 12:00 AM PST on Monday morning) and ends at 08:00 UTC on Wednesday, January 2 (03:00 EST, 12:00 AM PST on Wednesday morning. During the moratorium prod PRs require approval by an admin, and admins are required to ensure that changes properly follow the moratorium guidelines. For more information see http://sfdc.co/sam-admins."
+--MoratoriumAccessDisabledMessage="End-of-Year Moratorium begins at 08:00 UTC on Monday, December 17 (03:00 EST, 12:00 AM PST on Monday morning) and ends at 08:00 UTC on Wednesday, January 2 (03:00 EST, 12:00 AM PST on Wednesday morning. During the moratorium prod PRs require approval by an admin, and admins are required to ensure that changes properly follow the moratorium guidelines. For more information see http://sfdc.co/sam-admins." \
+--timeout=10m \
+
+
 # Validate vips.yaml files for SLB, this does not copy any files to output
 /opt/slb/slb-manifest-builder -root $PWD -output $PWD -validate -v=1

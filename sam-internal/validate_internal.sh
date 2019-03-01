@@ -19,6 +19,14 @@ docker run \
   -u 0 \
   -v ${PWD}:/repo \
   ${HYPERSAM} \
+  aclrepo -validateDir /repo/
+
+docker run \
+  --rm \
+  -it \
+  -u 0 \
+  -v ${PWD}:/repo \
+  ${HYPERSAM} \
   manifestctl validate-manifests \
   --inputDir='/repo/' \
   --validationExceptionsFile=/repo/sam-internal/validation-whitelist.yaml \
