@@ -5,7 +5,7 @@ system:
     email:
       - jason.woods@salesforce.com
   functions:
-    - name: qpid-broker
+    - name: qpid-broker-mq
       count: 1
       containers:
         - name: qpid-broker-runtime
