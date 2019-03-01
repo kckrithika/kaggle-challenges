@@ -188,6 +188,8 @@ else
                                 ],
                             },
                         ],
+                        serviceAccount: "watchdog-spark-operator-serviceaccount",
+                        serviceAccountName: "watchdog-spark-operator-serviceaccount",
                         volumes: [
                             configs.config_volume("watchdog"),
                             {
