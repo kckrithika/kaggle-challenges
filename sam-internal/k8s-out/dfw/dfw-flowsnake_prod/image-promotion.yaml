@@ -4,7 +4,7 @@ spec:
   template:
     spec:
       containers:
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-environment-service:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-environment-service:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-environment-service
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-environment-service:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-environment-service
@@ -16,79 +16,79 @@ spec:
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-kafka-configurator:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-kafka-configurator:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-kafka-configurator
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-kafka-configurator:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-kafka-configurator
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-kafka-connect:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-kafka-connect:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-kafka-connect
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-kafka-connect:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-kafka-connect
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-kafka-rest-proxy
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-kafka-rest-proxy
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-local-kafka:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-local-kafka:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-local-kafka
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-local-kafka:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-local-kafka
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-local-zookeeper:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-local-zookeeper:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-local-zookeeper
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-local-zookeeper:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-local-zookeeper
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-logstash:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-logstash:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-logstash
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-logstash:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-logstash
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-rewriting-proxy:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-rewriting-proxy:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-rewriting-proxy
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-rewriting-proxy:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-rewriting-proxy
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-sluice-configurator:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-sluice-configurator:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-sluice-configurator
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-sluice-configurator:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-sluice-configurator
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-spark-driver-2-1-0
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-driver_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-driver_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-spark-driver-2-3-0
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-driver_2.3.0:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-spark-driver-2-3-0
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-history-server_2.1.0:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-spark-history-server-2-1-0
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-history-server_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-history-server_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-spark-history-server-2-3-0
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-history-server_2.3.0:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-spark-history-server-2-3-0
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-master_2.1.0:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-spark-master-2-1-0
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-spark-master-2-3-0
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-spark-master-2-3-0
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-secret-updater:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-secret-updater:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-spark-secret-updater
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-secret-updater:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-spark-secret-updater
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-token-renewer:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-token-renewer:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-spark-token-renewer
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-token-renewer:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-spark-token-renewer
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-worker_2.1.0:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-spark-worker-2-1-0
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-worker_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-worker_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-spark-worker-2-3-0
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-spark-worker_2.3.0:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-spark-worker-2-3-0
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-stream-production-monitor:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-stream-production-monitor:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-stream-production-monitor
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-stream-production-monitor:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-stream-production-monitor
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-test-data:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-test-data:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-test-data
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-test-data:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-test-data
-      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-zookeeper:jenkins-dva-transformation-flowsnake-platform-PR-815-6-itest
+      - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-zookeeper:jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest
         name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/flowsnake-zookeeper:jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest
         name: flowsnake-zookeeper
