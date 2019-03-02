@@ -56,14 +56,14 @@ system:
         - name: IP_DB
           value: 10.168.160.73
         - name: SERVER_ID
-          value: R
+          value: 5
           
         - name: INTERNAL_ENV
           value: true
           
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
-          value: 443
+          value: 13065
 
         # Set to true it PUBLIC_PORT is an https endpoint
         - name: PUBLIC_PORT_IS_SECURE
@@ -73,7 +73,7 @@ system:
         # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
         # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
-          value: devmvp.salesforce.com
+          value: mgainsboro-wsl2
 
         - name: SFPROXY_VIP
           value: https://devmvpapp-lb.core-on-sam-sp1.gcp-sam.gcp.slb.sfdc.net:8443
@@ -223,7 +223,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: casam-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:a4ea3c
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:b10fa8
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
