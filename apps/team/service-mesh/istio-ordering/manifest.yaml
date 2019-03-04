@@ -69,13 +69,12 @@ system:
       maddogCert:
         type: server
 
-## Uncomment when SAM starts supporting port names. Delete the internal pipeline app first.
-#
-#  loadbalancers:
-#    - lbname: istio-ordering
-#      function: istio-ordering
-#      ports:
-#        - lbtype: dsr
-#          port: 7443
-#          targetport: 7443
-#          name: grpc-ordering
+
+  loadbalancers:
+    - lbname: istio-ordering
+      function: istio-ordering
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-ordering
