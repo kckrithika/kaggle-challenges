@@ -26,7 +26,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
                 owner_name: "Wave ELT",
                 namespace: "wave-elt",
                 pki_namespace: "wave-elt",
-                users: ["wave-elt.datapool", "wave-elt.datapool-test", "flowsnake.lorrin-impersonation-test", "wave-elt.spark-engine"],
+                users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
             },
         ],
 
@@ -44,7 +44,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
     },
 
     # Every estate gets flowsnake-watchdog for continuous synthetic testing
-    # Every R&D estate gets flowsnake-test (for ad hoc deleveloper testing
+    # Every R&D estate gets flowsnake-test (for ad hoc deleveloper testing)
 
     clients_additional: [] +
     (if std.objectHas(flowsnake_images.feature_flags, "spark_operator") then [
@@ -57,7 +57,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
         },
     ] else []) +
     # TODO: is_test check temporary until validated in prd-test
-    (if flowsnake_config.is_r_and_d && flowsnake_config.is_test then [
+    (if flowsnake_config.is_r_and_d && std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog") then [
         # Flowsnake watchdog continuous synthetic testing of Spark operator
         {
             owner_name: "Flowsnake",
