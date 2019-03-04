@@ -6,6 +6,4 @@
   ports:
    - port: 8443
      targetport: 8443
-     tls: true
-     reencrypt: true
-     lbalgorithm: roundrobin
+     lbtype: tcp
