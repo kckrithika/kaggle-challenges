@@ -38,7 +38,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                 ]),
                 containers: [
                     slbshared.slbUnknownPodCleanup("", ""),
-                    slbshared.slbUnknownPodCleanup("canary", "slb-canary")
+                    slbshared.slbUnknownPodCleanup("canary", "slb-canary"),
                 ],
                 nodeSelector: {
                     master: "true",
