@@ -50,6 +50,15 @@ system:
       - name: JAVA_OPTS
         value: -server -XX:MaxMetaspaceSize=128m -Xmx512m -Xms512m
 
+      - name: TESTRECIPE_INTERVAL
+        value: 600s
+
+      - name: TESTRECIPE_TIMEOUT
+        value: 540s
+
+      - name: TESTRECIPE_LASTSUCCESSTARGET
+        value: 660s
+
       volumeMounts:
       - mountPath: /home/scone/client-certs
         name: tls-client-certs
