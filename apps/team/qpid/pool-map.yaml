@@ -1,3 +1,5 @@
 apps:
   qpid-gcp:
     - mvp/gsf-core-devmvp-sam2-sam
+  gcp-devmvp-qpid:
+    - mvp/gsf-core-devmvp-sam2-sam
