@@ -6,7 +6,7 @@ local utils = import "util_functions.jsonnet";
 std.prune({
   # MadDog
     enableMaddog: samfeatureflags.maddogforsamapps,
-    maddogMaddogEndpoint: if utils.is_pcn(configs.kingdom) then "https://10.168.192.67:8443" else (if configs.estate == "vpod" then "https://maddog-onebox:8443" else configs.maddogEndpoint),
+    maddogMaddogEndpoint: if utils.is_pcn(configs.kingdom) then configs.maddogGCPEndpoint else (if configs.estate == "vpod" then "https://maddog-onebox:8443" else configs.maddogEndpoint),
     madkubImage: samimages.madkubSidecar,
     enableMaddogCopyTestCA: samfeatureflags.maddogCopyTestCA,
     funnelEndpoint: configs.funnelVIP,
