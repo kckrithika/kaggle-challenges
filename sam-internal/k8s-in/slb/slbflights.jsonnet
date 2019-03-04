@@ -10,13 +10,8 @@ local slbconfigs = import "slbconfig.jsonnet";
     roleEnabled: (slbimages.phaseNum <= 1),
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
-    enableOnlyRunningStateProxy: (slbimages.hyperslb_build >= 2066),
-    enableNginxAccesslogs: (slbimages.hyperslb_build >= 2068),
-    removeDeprecatedIpvsProcessorFlags: (slbimages.hyperslb_build >= 2066),
-    slbCleanupUnknownPods: (slbimages.hyperslb_build >= 2067),
     useKubeDnsForPortal: (slbimages.phaseNum <= 2),
     internalIpRange: (if slbimages.phaseNum <= 2 then ["--iprange.InternalIpRange=%s" % [slbconfigs.perCluster.internalIpRange[configs.estate]]] else []),
-    conntrackMetrics: (slbimages.hyperslb_build >= 2069),
     slbUpstreamReporterEnabled: (if (slbimages.phaseNum <= 3 && slbimages.hyperslb_build >= 2071) || slbimages.hyperslb_build >= 2072 then true else false),
     slbTCPdumpEnabled: (slbimages.phaseNum <= 1),
 
