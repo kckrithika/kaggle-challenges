@@ -1,0 +1,110 @@
+<%# INPUT DEFINITIONS %>
+input(
+  type="imfile"
+  File="/home/sfdc/logs/sfdc/*.gmt.log"
+  PersistStateInterval="50000"
+  startmsg.regex="^([[:alnum:]]{1,})`[[:digit:]]{14}.[[:digit:]]{3}`"
+  readTimeout = "5"
+  Tag="core"
+  ruleset="ruleset_core"
+  addmetadata="on"
+  escapelf="off"
+  discardTruncatedMsg="on"
+)
+
+<%# Output Template%>
+template(name = "tpl_core" type="list") {
+  constant(value="{\"@version\": \"1\"")
+  constant(value=",\"type\": \"core\"")
+  constant(value=",")
+  property(name="hostname" outname="host" format="jsonfr")
+  constant(value=",")
+  property(name="$!pod" outname="pod" format="jsonfr")
+  constant(value=",\"datacenter\": \"<%=config.cluster%>\"")
+  constant(value=",\"node\": \"<%=config.node%>\"")
+  constant(value=",\"superpod\": \"NONE\"")
+  constant(value=",")
+  property(name="msg" outname="message" format="jsonf")
+  constant(value=",")
+  property(name="$!metadata!filename" outname="path" format="jsonfr")
+  constant(value=",")
+  property(name="$!ts_generated" outname="timestamp_produce" format="jsonfr")
+  constant(value=",")
+  property(name="$!ts" outname="@timestamp" format="jsonfr")
+  constant(value=",")
+  property(name="$!ts_raw" outname="raw_timestamp" format="jsonfr")
+  constant(value=",")
+  property(name="$!log_record_type" outname="log_record_type" format="jsonfr")
+  constant(value=",")
+  property(name="$!uuid" outname="uuid" format="jsonfr")
+  constant(value=", \"latency\": 0}\n")
+}
+
+# 20171103184919.875 --> 2017-11-03T18:49:19.875Z
+template(name="tpl_origin_ts" type="list") {
+  property(name="$!ts_raw" position.from="1" position.to="4")
+  constant(value="-")
+  property(name="$!ts_raw" position.from="5" position.to="6")
+  constant(value="-")
+  property(name="$!ts_raw" position.from="7" position.to="8")
+  constant(value="T")
+  property(name="$!ts_raw" position.from="9" position.to="10")
+  constant(value=":")
+  property(name="$!ts_raw" position.from="11" position.to="12")
+  constant(value=":")
+  property(name="$!ts_raw" position.from="13" position.to="18")
+  constant(value="Z")
+}
+
+# 2017-12-14T08:01:17.267119+00:00 -> 2017-12-14T08:01:17.267Z
+template(name="tpl_generated_ts" type="list") {
+  property(name="timegenerated" dateFormat="rfc3339" position.from="1" position.to="23")
+  constant(value="Z")
+}
+
+<%# RULESET DEFINITION %>
+ruleset(name="ruleset_core") {
+
+  <%# Template Spec %>
+  set $!log_record_type = field($msg, 96, 1);
+  set $!ts_raw = field($msg, 96, 2);
+  set $!ts = exec_template("tpl_origin_ts");
+  set $!ts_generated = exec_template("tpl_generated_ts");
+  # filename - mist61.sfdc.debug-perf-core-6b86b5c8b7-7r6f7.app.20180907.214.gmt.log
+  set $!filename = field($!metadata!filename, 47, 5);
+  set $!host = field($!filename, 46, 3);
+  set $!pod = field($!host, 45, 1);
+  set $!uuid = $!ts_raw & field($msg, 96, 16) & field($!host, 45, 4) & "-" & field($!host, 45, 5);
+  
+  <%# Output action %>
+  action(
+    type="omkafka"
+    name="kafka_core"
+    broker="<%=config.broker_vip%>"
+    template="tpl_core"
+    topic="<%=config.kafka_topic%>"
+    partitions.auto="on"
+    resubmitOnFailure="on"
+    reopenonhup="on"
+    action.resumeRetryCount="-1"
+    confParam=[
+      "batch.num.messages=10000",
+      "compression.codec=gzip",
+      "max.in.flight.requests.per.connection=2",
+      "message.max.bytes=1000000",
+      "queue.buffering.max.ms=5000",
+      "retries=86400",
+      "retry.backoff.ms=1000",
+      "socket.keepalive.enable=true",
+      "security.protocol=ssl",
+      "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
+      "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
+      "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem"
+    ]
+    topicConfParam=[
+      "acks=-1"
+    ]
+  )
+}
+
+<%# END OF FILE %>

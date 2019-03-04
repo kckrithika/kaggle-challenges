@@ -39,6 +39,30 @@ local initContainers = [
         "/etc/rsyslog.d/50-solr_jetty.conf",
         "solr_topic"
     ),
+    rsyslogutils.config_gen_init_container(
+        "casam",
+        rsyslogimages.config_gen,
+        "/templates/core.conf.erb",
+        "",
+        "/etc/rsyslog.d/50-casam.conf",
+        "casam_topic"
+    ),
+    rsyslogutils.config_gen_init_container(
+        "casam-jvm",
+        rsyslogimages.config_gen,
+        "/templates/jvm.conf.erb",
+        "",
+        "/etc/rsyslog.d/50-casam_jvm.conf",
+        "general_topic"
+    ),
+    rsyslogutils.config_gen_init_container(
+        "casam-jvmgc",
+        rsyslogimages.config_gen,
+        "/templates/jvmgc.conf.erb",
+        "",
+        "/etc/rsyslog.d/50-casam_jvmgc.conf",
+        "general_topic"
+    ),
     rsyslogutils.config_check_init_container(rsyslogimages.rsyslog),
 ];
 
