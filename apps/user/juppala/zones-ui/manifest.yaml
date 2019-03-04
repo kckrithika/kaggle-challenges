@@ -1,8 +1,8 @@
 apiVersion: v1
 system:
-#  notifications:
-#    email:
-#      - zones-dev@salesforce.com
+  notifications:
+    email:
+      - juppala@salesforce.com
   functions:
   - name: zones-ui
     count: 1
@@ -15,7 +15,7 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:build-20190304-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:build-20190304-2
       ports:
       - containerPort: 8445
       livenessProbe:
