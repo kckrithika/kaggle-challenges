@@ -14,9 +14,14 @@
       "note": "This repo holds images build from official build pipelines"
     },
     {
-      "match": "^(ops[0]?-artifactrepo2-0-xrd.(?:slb|data).sfdc.net)",
+      "match": "^(ops[0]?-artifactrepo2-0-xrd.(?:slb|data).sfdc.net)/docker-devmvp/",
       "note": "This is a special instance of artifactory for use in GCP.  Images here are replicated from 1-0 in PRD",
       "image_check_replacement_host": "ops0-artifactrepo1-0-prd.data.sfdc.net"
+    },
+    {
+      "match": "^(ops[0]?-artifactrepo2-0-xrd.(?:slb|data).sfdc.net)/",
+      "note": "This is for images that are dual-published from the build system.  Firefly cant talk to xrd, and in prd the repo name is diff.  For now skip",
+      "skip_image_exist_check": true
     },
     {
       "match": "^(ops[0]?-artifactrepo1-0-([a-z0-9]{3}).(?:slb|data).sfdc.net)",
