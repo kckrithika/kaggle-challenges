@@ -7,7 +7,7 @@ system:
 
     containers:
     - name: lookup-bot
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/lookup-bot:20190129-1342
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kfoster/lookup-bot:20190304-1530
 
       ports:
       - containerPort: 8080
