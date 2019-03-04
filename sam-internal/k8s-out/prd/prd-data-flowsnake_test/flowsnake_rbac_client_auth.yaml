@@ -126,5 +126,26 @@ items:
     verbs:
     - get
     - list
+- apiVersion: v1
+  automountServiceAccountToken: true
+  kind: ServiceAccount
+  metadata:
+    name: spark-driver-flowsnake-watchdog
+    namespace: flowsnake-watchdog
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: spark-driver-flowsnake-watchdog-RoleBinding
+    namespace: flowsnake-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-flowsnake-watchdog-Role
+  subjects:
+  - kind: ServiceAccount
+    name: spark-driver-flowsnake-watchdog
+    namespace: flowsnake-watchdog
 kind: List
 metadata: {}

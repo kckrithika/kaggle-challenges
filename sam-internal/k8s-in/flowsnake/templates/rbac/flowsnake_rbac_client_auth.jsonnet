@@ -78,7 +78,7 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
                 },
             ],
         }] +
-        if std.length(client.users) == 0 then [] else [
+        (if std.length(client.users) == 0 then [] else [
         # Per-client: bind each of their user principals to the shared client-cluster-role
         {
             local kind = "ClusterRoleBinding",
@@ -128,7 +128,7 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
                 }
                 for user in client.users
             ]
-        }] + [
+        }]) + [
         # Per-client: Service accounts for Spark
         {
             kind: "ServiceAccount",
