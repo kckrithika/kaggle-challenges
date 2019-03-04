@@ -30,9 +30,11 @@ system:
         value: "/airstream-app/test_data.pls"
       - name: CRON_FREQ
         value: "2:30"
+      - name: CONFIG_FILE
+        value: "/var/secrets/user-profile.cfg"
       volumeMounts:
       - name: user-profile-test
-        mountPath: /
+        mountPath: /var/secrets
         readOnly: true
       imagePullPolicy: Always
     volumes:
