@@ -26,7 +26,7 @@ spec:
         - 0.0.0.0:32007
         - -d
         - --maddog-endpoint
-        - https://10.168.192.67:8443
+        - https://10.168.195.227:8443
         - --kubeconfig
         - $(KUBECONFIG)
         - --client-cert
@@ -79,7 +79,7 @@ spec:
         - --madkub-endpoint
         - ""
         - --maddog-endpoint
-        - https://10.168.192.67:8443
+        - https://10.168.195.227:8443
         - --maddog-server-ca
         - /maddog-certs/ca/security-ca.pem
         - --madkub-server-ca
