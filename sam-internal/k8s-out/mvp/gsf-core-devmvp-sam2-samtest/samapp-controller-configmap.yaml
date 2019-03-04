@@ -9,14 +9,14 @@ data:
       "enableMaddog": true,
       "enableStatefulSet": true,
       "funnelEndpoint": "ajna0-funnel1-0-mvp.data.sfdc.net:80",
-      "k4aInitContainerImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
+      "k4aInitContainerImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914",
       "maddogMaddogEndpoint": "https://10.168.192.67:8443",
       "madkubImage": "gcr.io/gsf-core-devmvp-sam2/thargrove/madkubserver:1.0.0-0000080-8a8659dd",
       "namespaceHostSubList": [
         "cloudatlas"
       ],
       "slbUseIlbInGkeEnv": true,
-      "volPermissionInitContainerImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76"
+      "volPermissionInitContainerImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657"
     }
 kind: ConfigMap
 metadata:

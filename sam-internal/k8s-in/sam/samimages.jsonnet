@@ -23,58 +23,9 @@ local samreleases = import "samreleases.json";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
 
-        #[thargrove] Needed only until Artifactory adds a docker-all alias to docker-gcp in XRD 2-0
-        "mvp,gsf-core-devmvp-sam2-sam,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
-        "mvp,gsf-core-devmvp-sam2-samtest,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
-
         #[thargrove] Switch to strata build when its ready
         "mvp,gsf-core-devmvp-sam2-sam,*,madkub": "gcr.io/gsf-core-devmvp-sam2/thargrove/madkubserver:1.0.0-0000080-8a8659dd",
         "mvp,gsf-core-devmvp-sam2-samtest,*,madkub": "gcr.io/gsf-core-devmvp-sam2/thargrove/madkubserver:1.0.0-0000080-8a8659dd",
-
-        #[hsuanyu-chen] Enable Internal Load Balancer in PCN
-        "mvp,gsf-core-devmvp-sam2-sam,samapp-controller,hypersam": "2624-bee71f3d174816e59a880f0e94d79e3479846842",
-        "mvp,gsf-core-devmvp-sam2-samtest,samapp-controller,hypersam": "2624-bee71f3d174816e59a880f0e94d79e3479846842",
-
-         #[raksha] crdwatcher fix for synthetic
-         "cdg,cdg-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "dfw,dfw-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "fra,fra-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "hnd,hnd-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "iad,iad-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "ia2,ia2-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "lo3,lo3-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "lo2,lo2-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "ord,ord-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "par,par-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "ph2,ph2-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "phx,phx-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "syd,syd-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "ukb,ukb-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "wax,wax-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "xrd,xrs-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "yhu,yhu-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-         "yul,yul-sam,crd-watcher,hypersam": "sam-0002494-cefb0d82",
-
-
-         #[raksha] Bundlecontroller fix
-         "cdg,cdg-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "dfw,dfw-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "fra,fra-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "hnd,hnd-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "iad,iad-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "ia2,ia2-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "lo3,lo3-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "lo2,lo2-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "ord,ord-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "par,par-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "ph2,ph2-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "phx,phx-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "syd,syd-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "ukb,ukb-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "wax,wax-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "xrd,xrs-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "yhu,yhu-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
-         "yul,yul-sam,bundle-controller,hypersam": "sam-0002499-db36ef44",
 
 
         },
