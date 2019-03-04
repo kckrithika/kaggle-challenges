@@ -7,7 +7,8 @@ system:
       count: 3
       containers:
       - name: searchserver
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
+        # image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17565279.443
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
