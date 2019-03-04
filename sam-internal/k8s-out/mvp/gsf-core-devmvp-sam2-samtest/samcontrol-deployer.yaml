@@ -33,7 +33,7 @@ spec:
           value: gsf-core-devmvp-sam2-samtest
         - name: KUBECONFIG
           value: ""
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:2640-51b6be1dab8ab91922b88dc4c23d001b9d647feb
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:2642-2ba92e7906255d862adce32b13b05bc343975210
         livenessProbe:
           httpGet:
             path: /
