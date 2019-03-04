@@ -79,12 +79,6 @@ items:
   metadata:
     name: spark-driver-flowsnake-test
     namespace: flowsnake-test
-- apiVersion: v1
-  automountServiceAccountToken: true
-  kind: ServiceAccount
-  metadata:
-    name: spark-executor-flowsnake-test
-    namespace: flowsnake-test
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
