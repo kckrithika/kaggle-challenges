@@ -15,25 +15,6 @@ items:
     - get
     - list
 - apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRoleBinding
-  metadata:
-    annotations:
-      manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-wave-elt-ClusterRoleBinding
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: client-cluster-role
-  subjects:
-  - kind: User
-    name: wave-elt.datapool
-  - kind: User
-    name: wave-elt.datapool-test
-  - kind: User
-    name: flowsnake.lorrin-impersonation-test
-  - kind: User
-    name: wave-elt.spark-engine
-- apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
     annotations:
@@ -66,6 +47,23 @@ items:
     - get
     - list
 - apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-wave-elt-ClusterRoleBinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: client-cluster-role
+  subjects:
+  - kind: User
+    name: wave-elt.datapool
+  - kind: User
+    name: wave-elt.datapool-test
+  - kind: User
+    name: wave-elt.spark-engine
+- apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
     annotations:
@@ -81,8 +79,6 @@ items:
     name: wave-elt.datapool
   - kind: User
     name: wave-elt.datapool-test
-  - kind: User
-    name: flowsnake.lorrin-impersonation-test
   - kind: User
     name: wave-elt.spark-engine
 - apiVersion: v1
@@ -112,19 +108,6 @@ items:
   - kind: ServiceAccount
     name: spark-driver-wave-elt
     namespace: wave-elt
-- apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRoleBinding
-  metadata:
-    annotations:
-      manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-flowsnake-test-ClusterRoleBinding
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: client-cluster-role
-  subjects:
-  - kind: User
-    name: flowsnake_test.lorrin.nelson
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
@@ -157,6 +140,19 @@ items:
     verbs:
     - get
     - list
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-flowsnake-test-ClusterRoleBinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: client-cluster-role
+  subjects:
+  - kind: User
+    name: flowsnake_test.lorrin.nelson
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:

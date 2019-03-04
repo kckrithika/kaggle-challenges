@@ -38,33 +38,10 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
         # Helper to work-around auto-deployer limitation of names having to be unique across kinds and namespaces
         local makeName(name, kind) = name + "-" + client.namespace + "-" + kind;
 
-        ([
-        # Per-client: bind each of their user principals to the shared client-cluster-role
-        {
-            local kind = "ClusterRoleBinding",
-            kind: kind,
-            apiVersion: "rbac.authorization.k8s.io/v1",
-            metadata: {
-                name: makeName("flowsnake-client", kind),
-                annotations: {
-                    "manifestctl.sam.data.sfdc.net/swagger": "disable",
-                },
-            },
-            roleRef: {
-                kind: "ClusterRole",
-                name: "client-cluster-role",
-                apiGroup: "rbac.authorization.k8s.io",
-            },
-            subjects: [
-                {
-                    kind: "User",
-                    name: user,
-                }
-                for user in client.users
-            ]
-        },
+        (
+
         # Per-client: Role for their namespace
-        {
+        [{
             local kind = "Role",
             kind: kind,
             apiVersion: "rbac.authorization.k8s.io/v1",
@@ -100,6 +77,31 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
                     resources: ["*"]
                 },
             ],
+        }] +
+        if std.length(client.users) == 0 then [] else [
+        # Per-client: bind each of their user principals to the shared client-cluster-role
+        {
+            local kind = "ClusterRoleBinding",
+            kind: kind,
+            apiVersion: "rbac.authorization.k8s.io/v1",
+            metadata: {
+                name: makeName("flowsnake-client", kind),
+                annotations: {
+                    "manifestctl.sam.data.sfdc.net/swagger": "disable",
+                },
+            },
+            roleRef: {
+                kind: "ClusterRole",
+                name: "client-cluster-role",
+                apiGroup: "rbac.authorization.k8s.io",
+            },
+            subjects: [
+                {
+                    kind: "User",
+                    name: user,
+                }
+                for user in client.users
+            ]
         },
         # Per-client: bind each of their user principals to their role in their namespace
         {
@@ -126,7 +128,7 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
                 }
                 for user in client.users
             ]
-        },
+        }] + [
         # Per-client: Service accounts for Spark
         {
             kind: "ServiceAccount",

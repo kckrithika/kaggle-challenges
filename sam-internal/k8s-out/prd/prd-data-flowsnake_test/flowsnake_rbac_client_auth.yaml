@@ -15,19 +15,6 @@ items:
     - get
     - list
 - apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRoleBinding
-  metadata:
-    annotations:
-      manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-flowsnake-test-ClusterRoleBinding
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: client-cluster-role
-  subjects:
-  - kind: User
-    name: flowsnake_test.lorrin.nelson
-- apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
     annotations:
@@ -59,6 +46,19 @@ items:
     verbs:
     - get
     - list
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-flowsnake-test-ClusterRoleBinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: client-cluster-role
+  subjects:
+  - kind: User
+    name: flowsnake_test.lorrin.nelson
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -95,17 +95,6 @@ items:
     name: spark-driver-flowsnake-test
     namespace: flowsnake-test
 - apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRoleBinding
-  metadata:
-    annotations:
-      manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-flowsnake-watchdog-ClusterRoleBinding
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: client-cluster-role
-  subjects: []
-- apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
   metadata:
     annotations:
@@ -137,38 +126,5 @@ items:
     verbs:
     - get
     - list
-- apiVersion: rbac.authorization.k8s.io/v1
-  kind: RoleBinding
-  metadata:
-    annotations:
-      manifestctl.sam.data.sfdc.net/swagger: disable
-    name: flowsnake-client-flowsnake-watchdog-RoleBinding
-    namespace: flowsnake-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: Role
-    name: flowsnake-client-flowsnake-watchdog-Role
-  subjects: []
-- apiVersion: v1
-  automountServiceAccountToken: true
-  kind: ServiceAccount
-  metadata:
-    name: spark-driver-flowsnake-watchdog
-    namespace: flowsnake-watchdog
-- apiVersion: rbac.authorization.k8s.io/v1
-  kind: RoleBinding
-  metadata:
-    annotations:
-      manifestctl.sam.data.sfdc.net/swagger: disable
-    name: spark-driver-flowsnake-watchdog-RoleBinding
-    namespace: flowsnake-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: Role
-    name: flowsnake-client-flowsnake-watchdog-Role
-  subjects:
-  - kind: ServiceAccount
-    name: spark-driver-flowsnake-watchdog
-    namespace: flowsnake-watchdog
 kind: List
 metadata: {}
