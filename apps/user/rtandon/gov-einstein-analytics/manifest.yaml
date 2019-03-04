@@ -32,7 +32,7 @@ system:
         value: "2:30"
       volumeMounts:
       - name: user-profile-test
-        mountPath: /user-profile.cfg
+        mountPath: /
         readOnly: true
       imagePullPolicy: Always
     volumes:
