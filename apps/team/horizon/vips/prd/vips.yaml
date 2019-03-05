@@ -18,5 +18,5 @@
     - ina1shared0-infinsightdb2-1-prd.eng.sfdc.net
   ports:
     - port: 22
-      targetport: 22
+      targetport: 5432
       lbtype: http		 
