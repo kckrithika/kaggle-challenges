@@ -1,0 +1,8 @@
+- lbname: horizon-postgres-xrd
+  servers: 
+    - shared0-infinsightdb1-1-xrd.eng.sfdc.net
+    - shared0-infinsightdb2-2-xrd.eng.sfdc.net
+  ports:
+    - port: 22
+      targetport: 5432
+      lbtype: tcp
