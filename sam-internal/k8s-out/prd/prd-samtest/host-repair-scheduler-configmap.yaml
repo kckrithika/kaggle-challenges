@@ -5,7 +5,9 @@ data:
       "actionConditions": {
         "reboot": [
           "filesystemChecker",
-          "kubeletChecker"
+          "kubeletChecker",
+          "cliChecker.DockerDaemon",
+          "procUpTime"
         ]
       },
       "conditionStableTime": "35m",

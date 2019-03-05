@@ -17,5 +17,5 @@ std.prune({
     ".*prd.*",
     ".*xrd.*",
   ]),
-  actionConditions: { reboot: ["filesystemChecker", "kubeletChecker"] },
+  actionConditions: { reboot: ["filesystemChecker", "kubeletChecker", "cliChecker.DockerDaemon", "procUpTime"] },
 }) else "SKIP"
