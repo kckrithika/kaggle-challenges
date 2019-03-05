@@ -95,7 +95,7 @@ spec:
           value: ajna0-funnel1-0-prd.data.sfdc.net
         - name: SFDC_METRICS_SERVICE_PORT
           value: "80"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:c1202dc8ed1a7815f712de03ff155d0e4c47a44c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:823d644b510f6ce7f981f7533515024d91853226
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
