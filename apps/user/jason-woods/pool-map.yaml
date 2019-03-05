@@ -1,5 +1,5 @@
 apps:
-    qpid-broker-ss:
+    qpid-broker-stateful:
         - prd/prd-sam
     qpid-broker-stateless:
         - prd/prd-sam
