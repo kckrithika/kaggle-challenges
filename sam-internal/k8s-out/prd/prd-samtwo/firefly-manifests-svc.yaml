@@ -339,7 +339,7 @@ items:
           - name: CONFIG_VERSION
             value: "18"
           - name: DARKLAUNCH
-            value: "true"
+            value: "false"
           - name: INSTANCE_TYPE
             value: manifests
           - name: PACKAGE_QUEUE
@@ -799,7 +799,7 @@ items:
           - name: CONFIG_VERSION
             value: "16"
           - name: DARKLAUNCH
-            value: "true"
+            value: "false"
           - name: INSTANCE_TYPE
             value: manifests
           - name: PACKAGE_QUEUE
@@ -1656,7 +1656,7 @@ items:
           - name: CONFIG_VERSION
             value: "11"
           - name: DARKLAUNCH
-            value: "true"
+            value: "false"
           - name: INSTANCE_TYPE
             value: manifests
           - name: RABBIT_MQ_QUEUE_NAME
