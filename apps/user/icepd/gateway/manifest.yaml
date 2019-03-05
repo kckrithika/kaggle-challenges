@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: gateway
-      image: dva/gateway:7-a5ea6a08a8f580f7a7fa89e7f42c8edec1559dba
+      image: dva/gateway:9-d6f1b122c75200cc608a0325cc82596020f2cc8c
       livenessProbe:
         httpGet:
           path: /manage/health
