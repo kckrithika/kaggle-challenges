@@ -40,7 +40,7 @@ configs.deploymentBase("sam") {
                 ] + if utils.is_pcn(configs.kingdom) then [
                     configs.containerWithKubeConfigAndMadDog {
                         name: "etcd-client",
-                        image: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tnrp/sam/etcd",
+                        image: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tnrp/sam/etcd:v2.3.7",
                         command: configs.filter_empty([
                             "./etcd",
                             "--listen-peer-urls=http://0.0.0.0:2380",
