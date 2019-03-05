@@ -56,11 +56,11 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         },
                     },
                 ],
-                nodeSelector: {
-                    pool: configs.estate,
-                },
-            } + slbconfigs.getGracePeriod()
-              + slbconfigs.getDnsPolicy(),
+            }
+            + (if slbflights.nginAccesslogsRunInSlbEstate then slbconfigs.slbEstateNodeSelector
+               else { nodeSelector: { pool: configs.estate } })
+            + slbconfigs.getGracePeriod()
+            + slbconfigs.getDnsPolicy(),
         },
         strategy: {
             type: "RollingUpdate",
