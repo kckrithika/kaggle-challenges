@@ -286,9 +286,9 @@ local utils = import "util_functions.jsonnet";
             "2"
         else if (estate == "prd-data-flowsnake") then
             "3"
-        else if (estate == "iad-flowsnake_prod" || estate == "ord-flowsnake_prod") then
+        else if (kingdom == "iad" || kingdom == "ord") then
             "4-iad-ord"
-        else if (estate == "yul-flowsnake_prod" || estate == "ia2-flowsnake_prod") then
+        else if (kingdom == "yul") then
             "4-pcl"
         else
             "4"
