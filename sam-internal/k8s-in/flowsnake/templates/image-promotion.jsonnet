@@ -38,7 +38,10 @@ local environment_images_to_promote = std.uniq(std.sort(std.flattenArrays(
 # SAM won't pick up images if they're deployed via k8s List files, so add those here.
 local extra_images_to_promote = [
     flowsnake_images.watchdog_canary,
-];
+] +
+(if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog") then [
+        flowsnake_images.watchdog_spark_operator,
+    ] else []);
 
 
 if util.is_production(kingdom) then

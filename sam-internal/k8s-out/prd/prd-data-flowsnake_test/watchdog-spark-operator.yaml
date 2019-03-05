@@ -58,14 +58,12 @@ items:
       "SparkApplication", "metadata": {"name": "watchdog-spark-operator", "namespace":
       "flowsnake-watchdog"}, "spec": {"deps": { }, "driver": {"coreLimit": "200m",
       "cores": 0.10000000000000001, "labels": {"version": "2.4.0"}, "memory": "512m",
-      "serviceAccount": "spark-driver-flowsnake-watchdog", "volumeMounts": [{"mountPath":
-      "/tmp", "name": "test-volume"}]}, "executor": {"cores": 1, "instances": 1, "labels":
-      {"version": "2.4.0"}, "memory": "512m", "volumeMounts": [{"mountPath": "/tmp",
-      "name": "test-volume"}]}, "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lorrin.nelson/flowsnake-sample-spark-operator:20190219104328",
-      "imagePullPolicy": "Always", "mainApplicationFile": "local:///tmp/spark-examples_2.11-2.4.0.jar",
+      "serviceAccount": "spark-driver-flowsnake-watchdog"}, "executor": {"cores":
+      1, "instances": 1, "labels": {"version": "2.4.0"}, "memory": "512m"}, "image":
+      "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-sample-spark-operator:jenkins-dva-transformation-flowsnake-sample-apps-PR-20-2-itest",
+      "imagePullPolicy": "Always", "mainApplicationFile": "local:///spark-app/sample-spark-operator.jar",
       "mainClass": "org.apache.spark.examples.SparkPi", "mode": "cluster", "restartPolicy":
-      {"type": "Never"}, "sparkVersion": "", "type": "Scala", "volumes": [{"hostPath":
-      {"path": "/tmp", "type": "Directory"}, "name": "test-volume"}]}}'
+      {"type": "Never"}, "sparkVersion": "", "type": "Scala"}}'
   kind: ConfigMap
   metadata:
     name: watchdog-spark-operator-configmap

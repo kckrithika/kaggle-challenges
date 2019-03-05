@@ -78,12 +78,6 @@ else
                             },
                             "memory": "512m",
                             "serviceAccount": "spark-driver-flowsnake-watchdog",
-                            "volumeMounts": [
-                                {
-                                    "mountPath": "/tmp",
-                                    "name": "test-volume"
-                                }
-                            ]
                         },
                         "executor": {
                             "cores": 1,
@@ -92,16 +86,10 @@ else
                                 "version": "2.4.0"
                             },
                             "memory": "512m",
-                            "volumeMounts": [
-                                {
-                                    "mountPath": "/tmp",
-                                    "name": "test-volume"
-                                }
-                            ]
                         },
-                        "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lorrin.nelson/flowsnake-sample-spark-operator:20190219104328",
+                        "image": flowsnake_images.watchdog_spark_operator,
                         "imagePullPolicy": "Always",
-                        "mainApplicationFile": "local:///tmp/spark-examples_2.11-2.4.0.jar",
+                        "mainApplicationFile": "local:///spark-app/sample-spark-operator.jar",
                         "mainClass": "org.apache.spark.examples.SparkPi",
                         "mode": "cluster",
                         "restartPolicy": {
@@ -109,15 +97,6 @@ else
                         },
                         "sparkVersion": "",
                         "type": "Scala",
-                        "volumes": [
-                            {
-                                "hostPath": {
-                                    "path": "/tmp",
-                                    "type": "Directory"
-                                },
-                                "name": "test-volume"
-                            }
-                        ]
                     },
                 }),
             },
