@@ -1,4 +1,6 @@
 apps:
+  datapool-ia2:
+  - ia2/ia2-sam_datapool
   datapool-ph2:
   - ph2/ph2-sam_datapool
   datapool-par:
