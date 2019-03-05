@@ -105,7 +105,7 @@ local wave_elt_production = {
     # Every R&D estate gets flowsnake-test (for ad hoc deleveloper testing)
 
     clients_additional: [] +
-    (if std.objectHas(flowsnake_images.feature_flags, "spark_operator") then [
+    (if flowsnake_config.is_r_and_d then [
         # Flowsnake ad hoc developer testing
         {
             owner_name: "Flowsnake",
@@ -114,7 +114,7 @@ local wave_elt_production = {
             users: ["flowsnake_test.lorrin.nelson"],  # Get yourself a workstation cert and add it here. https://salesforce.quip.com/TkvaAbgSpYF4
         },
     ] else []) +
-    (if flowsnake_config.is_r_and_d && watchdog.watchdog_enabled then [
+    (if watchdog.watchdog_enabled && std.objectHas(flowsnake_images.feature_flags, "spark_operator") then [
         # Flowsnake watchdog continuous synthetic testing of Spark operator
         {
             owner_name: "Flowsnake",

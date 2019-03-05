@@ -1,0 +1,143 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  automountServiceAccountToken: true
+  kind: ServiceAccount
+  metadata:
+    name: watchdog-spark-operator-serviceaccount
+    namespace: flowsnake
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: watchdog-spark-operator-rolebinding
+    namespace: flowsnake-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-flowsnake-watchdog-Role
+  subjects:
+  - kind: ServiceAccount
+    name: watchdog-spark-operator-serviceaccount
+    namespace: flowsnake
+- apiVersion: v1
+  data:
+    check-spark-operator.sh: |
+      #!/usr/bin/bash
+      set -o nounset
+      set -o errexit
+      set -o pipefail
+
+      # Disable use of SAM's custom kubeconfig
+      unset KUBECONFIG
+
+      kc() {
+        kubectl -n flowsnake-watchdog "$@"
+      }
+
+      APP_NAME="watchdog-spark-operator"
+      SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
+
+      echo "Cleaning up $APP_NAME resources from prior runs"
+      kc delete sparkapplication $APP_NAME || true
+      kc delete pod -l $SELECTOR || true
+      # Wait for pods from prior runs to delete.
+      while ! $(kc get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
+
+      echo "Creating SparkApplication $APP_NAME"
+      kc create -f /watchdog-spark-operator/spark-application.json
+
+      echo "Waiting for SparkApplication $APP_NAME to complete"
+      # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
+      while ! $(kc get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep -P '(COMPLETED|FAILED)' > /dev/null); do sleep 1; done;
+      echo "Terminal SparkApplication $APP_NAME state is $(kc get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}')"
+      # Test successful iff final state is COMPLETED. Use exit code from grep.
+      kc get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep COMPLETED > /dev/null
+    spark-application.json: '{"apiVersion": "sparkoperator.k8s.io/v1beta1", "kind":
+      "SparkApplication", "metadata": {"name": "watchdog-spark-operator", "namespace":
+      "flowsnake-watchdog"}, "spec": {"deps": { }, "driver": {"coreLimit": "200m",
+      "cores": 0.10000000000000001, "labels": {"version": "2.4.0"}, "memory": "512m",
+      "serviceAccount": "spark-driver-flowsnake-watchdog"}, "executor": {"cores":
+      1, "instances": 1, "labels": {"version": "2.4.0"}, "memory": "512m"}, "image":
+      "ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/flowsnake-sample-spark-operator:jenkins-dva-transformation-flowsnake-sample-apps-PR-20-2-itest",
+      "imagePullPolicy": "Always", "mainApplicationFile": "local:///spark-app/sample-spark-operator.jar",
+      "mainClass": "org.apache.spark.examples.SparkPi", "mode": "cluster", "restartPolicy":
+      {"type": "Never"}, "sparkVersion": "", "type": "Scala"}}'
+  kind: ConfigMap
+  metadata:
+    name: watchdog-spark-operator-configmap
+    namespace: flowsnake
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      name: watchdog-spark-operator
+    name: watchdog-spark-operator
+    namespace: flowsnake
+  spec:
+    selector:
+      matchLabels:
+        app: watchdog-spark-operator
+        apptype: monitoring
+    template:
+      metadata:
+        labels:
+          app: watchdog-spark-operator
+          apptype: monitoring
+          flowsnakeOwner: dva-transform
+          flowsnakeRole: WatchdogSparkOperator
+      spec:
+        containers:
+        - command:
+          - /sam/watchdog
+          - -role=CLI
+          - -emailFrequency=10m
+          - -timeout=2s
+          - -funnelEndpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80
+          - --config=/config/watchdog.json
+          - -cliCheckerCommandTarget=SparkOperatorTest
+          - --hostsConfigFile=/sfdchosts/hosts.json
+          - -watchdogFrequency=15m
+          - -alertThreshold=45m
+          - -cliCheckerTimeout=15m
+          image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/hypersam:sam-0002015-fdb18963
+          imagePullPolicy: IfNotPresent
+          name: watchdog-canary
+          resources:
+            limits:
+              cpu: "1"
+              memory: 500Mi
+            requests:
+              cpu: "1"
+              memory: 500Mi
+          volumeMounts:
+          - mountPath: /config
+            name: config
+          - mountPath: /sfdchosts
+            name: sfdchosts
+          - mountPath: /watchdog-spark-operator
+            name: watchdog-spark-operator
+        hostNetwork: true
+        restartPolicy: Always
+        serviceAccount: watchdog-spark-operator-serviceaccount
+        serviceAccountName: watchdog-spark-operator-serviceaccount
+        volumes:
+        - configMap:
+            name: watchdog
+          name: config
+        - configMap:
+            defaultMode: 420
+            items:
+            - key: spark-application.json
+              path: spark-application.json
+            - key: check-spark-operator.sh
+              mode: 493
+              path: check-spark-operator.sh
+            name: watchdog-spark-operator-configmap
+          name: watchdog-spark-operator
+        - configMap:
+            name: sfdchosts
+          name: sfdchosts
+kind: List
+metadata: {}
