@@ -4,6 +4,7 @@ local util = import "util_functions.jsonnet";
 local kingdom = std.extVar("kingdom");
 local configs = import "config.jsonnet";
 local image_renames_and_canary_build_tags = std.objectHas(flowsnake_images.feature_flags, "image_renames_and_canary_build_tags");
+local watchdog = import "watchdog.jsonnet";
 
 # Turn an image:tag into a name k8s can use for a container
 local image_to_name(imageNameTag) = std.join("-", std.split(std.join("-", std.split(std.split(imageNameTag, ":")[0], "_")), "."));
@@ -36,13 +37,15 @@ local environment_images_to_promote = std.uniq(std.sort(std.flattenArrays(
 
 
 # SAM won't pick up images if they're deployed via k8s List files, so add those here.
-local extra_images_to_promote = [
+local extra_images_to_promote =
+(if watchdog.watchdog_enabled then
+[
     flowsnake_images.watchdog_canary,
-] +
-(if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog") then [
+] + (if std.objectHas(flowsnake_images.feature_flags, "spark_operator") then
+    [
         flowsnake_images.watchdog_spark_operator,
-    ] else []);
-
+    ] else [])
+else []);
 
 if util.is_production(kingdom) then
 {

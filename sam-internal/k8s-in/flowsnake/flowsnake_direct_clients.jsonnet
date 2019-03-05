@@ -1,6 +1,7 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local watchdog = import "watchdog.jsonnet";
 {
     # add new Spark-on-kubernetes clients to this object.
     clients_per_estate: {
@@ -56,8 +57,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
             users: ["flowsnake_test.lorrin.nelson"],  # Get yourself a workstation cert and add it here. https://salesforce.quip.com/TkvaAbgSpYF4
         },
     ] else []) +
-    # TODO: is_test check temporary until validated in prd-test
-    (if flowsnake_config.is_r_and_d && std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog") then [
+    (if flowsnake_config.is_r_and_d && watchdog.watchdog_enabled then [
         # Flowsnake watchdog continuous synthetic testing of Spark operator
         {
             owner_name: "Flowsnake",

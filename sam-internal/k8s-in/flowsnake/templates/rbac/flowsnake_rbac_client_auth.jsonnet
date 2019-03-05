@@ -140,19 +140,6 @@ if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.
             },
             automountServiceAccountToken: true,
         },] +
-        (if !std.objectHas(flowsnake_images.feature_flags, "spark_op_remove_bogus_executor_account") then
-        # Currently, Spark just uses the default service account for executors. Can enable creation of the
-        # executor accounts once Spark supports specifying them.
-        [{
-            kind: "ServiceAccount",
-            apiVersion: "v1",
-            metadata: {
-                # Omit "-ServiceAccount" from name because user-facing and want to be easy to comprehend
-                name: "spark-executor-" + client.namespace,
-                namespace: client.namespace,
-            },
-            automountServiceAccountToken: true,
-        },] else [] ) +
         # Per-client: Grant their spark-driver same permissions as client
         [{
             local kind = "RoleBinding",

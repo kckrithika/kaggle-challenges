@@ -1,15 +1,9 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local configs = import "config.jsonnet";
-local estate = std.extVar("estate");
-local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
-local enabled_canary_versions = [ ver for ver in watchdog.watchdog_canary_versions if std.objectHas(flowsnake_images.version_mapping.main, ver)];
-local cert_name = "watchdogcanarycerts";
 
-if ! watchdog.watchdog_enabled || ! std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog") then
+if !(watchdog.watchdog_enabled && std.objectHas(flowsnake_images.feature_flags, "spark_operator")) then
 "SKIP"
 else
 {
