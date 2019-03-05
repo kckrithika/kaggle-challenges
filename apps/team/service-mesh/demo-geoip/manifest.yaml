@@ -12,8 +12,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
-      - name: ENVOY_DEBUG_OPTIONS
-        value: --component-log-level config:debug
       livenessProbe:
         exec:
           command: ["/bin/true"]
