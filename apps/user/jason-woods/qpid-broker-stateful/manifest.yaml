@@ -7,18 +7,18 @@ system:
   functions:
     - name: qpid-broker-stateful
       type: stateful-set
-      count: 3
+      count: 1
       containers:
         - name: qpid-broker-runtime
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/appscale/qpid-broker-runtime:2dff64f.10
           ports:
             - name: amqp-port
-              containerPort: 2031
+              containerPort: 2041
             - name: http-port
               containerPort: 7022
           env:
             - name: AMQP_PORT
-              value: 2031
+              value: 2041
             - name: HTTP_PORT
               value: 7022
             - name: QPID_JAVA_HEAPSZ
@@ -50,7 +50,7 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
-          - containerPort: 2030
+          - containerPort: 2040
             name: tcp-in
           - containerPort: 7442
             name: http1-tls-in
