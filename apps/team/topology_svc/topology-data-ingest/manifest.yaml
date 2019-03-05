@@ -13,6 +13,8 @@ system:
               fieldPath: metadata.namespace
         - name: CONSUL_HOST
           value: "consul-0.consul-stateful-ilb.$(POD_NAMESPACE).svc"
+        - name: DUMMY_ENV_VAR
+          value: 42
       ports:
       - containerPort: 8000
       livenessProbe:
