@@ -11,4 +11,4 @@
       reencrypt: true
       healthport: 80
       healthpath: /
-      healthprotocol: http
+      healthprotocol: http		 
