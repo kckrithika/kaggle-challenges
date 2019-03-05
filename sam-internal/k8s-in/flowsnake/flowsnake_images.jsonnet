@@ -254,7 +254,6 @@ local utils = import "util_functions.jsonnet";
 
         },
 
-        # TODO - currently IA2 is included in this phase because it needs PR-819-3-itest images. Move IA2 to phase 4 eventually because it is not pcl.
         "4-pcl": self["4"] {
            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
