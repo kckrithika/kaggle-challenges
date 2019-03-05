@@ -1,0 +1,7 @@
+- lbname: horizon-postgres
+  servers:
+   - shared0-slbminion1-3-prd.eng.sfdc.net
+  ports:
+   - port: 22
+     targetport: 22
+     lbtype: tcp
