@@ -5,7 +5,7 @@ system:
     email:
       - jason.woods@salesforce.com
   functions:
-    - name: qpid-broker-stateful
+    - name: qpid-broker-ss
       type: stateful-set
       count: 1
       containers:
@@ -13,12 +13,12 @@ system:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/appscale/qpid-broker-runtime:2dff64f.10
           ports:
             - name: amqp-port
-              containerPort: 2041
+              containerPort: 2051
             - name: http-port
               containerPort: 7022
           env:
             - name: AMQP_PORT
-              value: 2041
+              value: 2051
             - name: HTTP_PORT
               value: 7022
             - name: QPID_JAVA_HEAPSZ
@@ -50,7 +50,7 @@ system:
           ports:
           - containerPort: 15373
             name: sherpa-adm
-          - containerPort: 2040
+          - containerPort: 2050
             name: tcp-in
           - containerPort: 7442
             name: http1-tls-in
@@ -81,7 +81,7 @@ system:
           - name: sherpa-log-volume
             mountPath: /log
 
-      lbname: qpid-broker-stateful-lb-jason-woods
+      lbname: qpid-broker-ss-lb-jason-woods
 
       volumes:
         - name: logvol
