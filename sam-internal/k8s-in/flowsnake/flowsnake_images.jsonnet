@@ -287,7 +287,7 @@ local utils = import "util_functions.jsonnet";
             "3"
         else if (kingdom == "iad" || kingdom == "ord") then
             "4-iad-ord"
-        else if (kingdom == "yul") then
+        else if (kingdom == "syd" || kingdom == "yhu" || kingdom == "yul") then
             "4-pcl"
         else
             "4"
