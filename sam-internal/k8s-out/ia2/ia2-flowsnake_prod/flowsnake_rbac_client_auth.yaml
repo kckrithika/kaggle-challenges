@@ -59,10 +59,6 @@ items:
   subjects:
   - kind: User
     name: wave-elt.datapool
-  - kind: User
-    name: wave-elt.datapool-test
-  - kind: User
-    name: wave-elt.spark-engine
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -77,21 +73,11 @@ items:
   subjects:
   - kind: User
     name: wave-elt.datapool
-  - kind: User
-    name: wave-elt.datapool-test
-  - kind: User
-    name: wave-elt.spark-engine
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount
   metadata:
     name: spark-driver-wave-elt
-    namespace: wave-elt
-- apiVersion: v1
-  automountServiceAccountToken: true
-  kind: ServiceAccount
-  metadata:
-    name: spark-executor-wave-elt
     namespace: wave-elt
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
