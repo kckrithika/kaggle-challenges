@@ -1,0 +1,203 @@
+apiVersion: v1
+items:
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      name: watchdog-canary
+    name: watchdog-canary-0-12-5
+    namespace: flowsnake
+  spec:
+    selector:
+      matchLabels:
+        app: watchdog-canary-0-12-5
+        apptype: monitoring
+    template:
+      metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
+            "yhu", "name": "watchdogcanarycerts", "role": "flowsnake_test"}]}'
+        labels:
+          app: watchdog-canary-0-12-5
+          apptype: monitoring
+          flowsnakeOwner: dva-transform
+          flowsnakeRole: WatchdogCanary-0-12-5
+      spec:
+        containers:
+        - command:
+          - /sam/watchdog
+          - -role=CLI
+          - -emailFrequency=10m
+          - -timeout=2s
+          - -funnelEndpoint=ajna0-funnel1-0-yhu.data.sfdc.net:80
+          - --config=/config/watchdog.json
+          - -cliCheckerCommandTarget=0.12.5
+          - --hostsConfigFile=/sfdchosts/hosts.json
+          - -watchdogFrequency=15m
+          - -alertThreshold=45m
+          - -cliCheckerTimeout=15m
+          image: ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-698-itest
+          imagePullPolicy: IfNotPresent
+          name: watchdog-canary
+          resources:
+            limits:
+              cpu: "1"
+              memory: 500Mi
+            requests:
+              cpu: "1"
+              memory: 500Mi
+          volumeMounts:
+          - mountPath: /config
+            name: config
+          - mountPath: /certs
+            name: datacerts
+          - mountPath: /etc/pki_service/ca
+            name: certificate-authority
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/certificates
+            name: client-certificate
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/keys
+            name: client-key
+            readOnly: true
+          - mountPath: /sfdchosts
+            name: sfdchosts
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint
+          - https://10.254.208.254:32007
+          - --maddog-endpoint
+          - https://all.pkicontroller.pki.blank.yhu.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca
+          - /etc/pki_service/ca/security-ca.pem
+          - --madkub-server-ca
+          - /etc/pki_service/ca/cacerts.pem
+          - --token-folder
+          - /tokens
+          - --kingdom
+          - yhu
+          - --superpod
+          - None
+          - --estate
+          - yhu-flowsnake_prod
+          - --refresher
+          - --run-init-for-refresher-mode
+          - --cert-folders
+          - watchdogcanarycerts:/certs
+          - --funnel-endpoint
+          - http://ajna0-funnel1-0-yhu.data.sfdc.net:80
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          name: sam-madkub-integration-refresher
+          resources: {}
+          volumeMounts:
+          - mountPath: /certs
+            name: datacerts
+          - mountPath: /tokens
+            name: tokens
+          - mountPath: /etc/pki_service/ca
+            name: certificate-authority
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/certificates
+            name: client-certificate
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/keys
+            name: client-key
+            readOnly: true
+        hostNetwork: true
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint
+          - https://10.254.208.254:32007
+          - --maddog-endpoint
+          - https://all.pkicontroller.pki.blank.yhu.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca
+          - /etc/pki_service/ca/security-ca.pem
+          - --madkub-server-ca
+          - /etc/pki_service/ca/cacerts.pem
+          - --token-folder
+          - /tokens
+          - --kingdom
+          - yhu
+          - --superpod
+          - None
+          - --estate
+          - yhu-flowsnake_prod
+          - --cert-folders
+          - watchdogcanarycerts:/certs
+          - --funnel-endpoint
+          - http://ajna0-funnel1-0-yhu.data.sfdc.net:80
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          name: sam-madkub-integration-init
+          resources: {}
+          volumeMounts:
+          - mountPath: /certs
+            name: datacerts
+          - mountPath: /tokens
+            name: tokens
+          - mountPath: /etc/pki_service/ca
+            name: certificate-authority
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/certificates
+            name: client-certificate
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/keys
+            name: client-key
+            readOnly: true
+        restartPolicy: Always
+        volumes:
+        - configMap:
+            name: watchdog
+          name: config
+        - emptyDir:
+            medium: Memory
+          name: datacerts
+        - emptyDir:
+            medium: Memory
+          name: tokens
+        - hostPath:
+            path: /etc/pki_service/ca
+          name: certificate-authority
+        - hostPath:
+            path: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+        - hostPath:
+            path: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+        - configMap:
+            name: sfdchosts
+          name: sfdchosts
+kind: List
+metadata: {}

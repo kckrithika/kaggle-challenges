@@ -216,19 +216,17 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Remaining production fleets
         "4": self.default_image_tags {
-            ### DO NOT SET TAG OVERRIDES HERE
-            ### Instead, update default_image_tags definition at top of this file and delete
-            ### any overrides in other phases that are equal to the new defaults.
+           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
 
-            feature_flags: {
-                ### AFTER SETTING FEATURE FLAGS HERE:
-                ### issue PR to deploy your changes. Then create a follow-on PR
-                ### that deletes all the feature flags and conditional logic from
-                ### the templates. This PR should not result in any k8s-out diffs.
-            },
-            version_mapping: {
+           feature_flags: {
+               dynamic_watchdogs: "yes",
+           },
+           version_mapping: {
                 main: {
-                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
+                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -238,8 +236,11 @@ local utils = import "util_functions.jsonnet";
 
         ### A very special phase 4 for IAD and ORD that preserves access to old versions used by CRE.
         ### TODO:  Remove when CRE is migrated to 0.12.2+
-        "4-iad": self["4"] {
+        "4-iad-ord": self["4"] {
 
+            feature_flags: {
+                   dynamic_watchdogs: "yes",
+            },
             version_mapping: {
                 main: {
                   "0.10.0": 662,
@@ -255,150 +256,7 @@ local utils = import "util_functions.jsonnet";
 
         },
 
-        ### A very special phase 4 for IAD and ORD that preserves access to old versions used by CRE.
-        ### TODO:  Remove when CRE is migrated to 0.12.2+
-        "4-ord": self["4"] {
-
-            version_mapping: {
-                main: {
-                  "0.10.0": 662,
-                  "0.11.0": 681,
-                  "0.12.0": 696,
-                  "0.12.1": 10001,
-                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
-                  "0.12.5": 10011,
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
-                },
-                sections: {},
-            },
-
-        },
-
-        ### Phase 4 is undeployable due to image promotion volume - breaking it up further.
-        "4-frf-par": self["4"] {
-            ### DO NOT SET TAG OVERRIDES HERE
-            ### Instead, update default_image_tags definition at top of this file and delete
-            ### any overrides in other phases that are equal to the new defaults.
-
-            feature_flags: {
-                ### AFTER SETTING FEATURE FLAGS HERE:
-                ### issue PR to deploy your changes. Then create a follow-on PR
-                ### that deletes all the feature flags and conditional logic from
-                ### the templates. This PR should not result in any k8s-out diffs.
-            },
-            version_mapping: {
-                main: {
-                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
-                  "0.12.5": 10011,
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        "4-dfw": self["4"] {
-           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-
-           feature_flags: {
-               dynamic_watchdogs: "yes",
-           },
-
-           version_mapping: {
-                main: {
-                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        "4-ph2": self["4"] {
-           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-
-           feature_flags: {
-               dynamic_watchdogs: "yes",
-           },
-
-           version_mapping: {
-                main: {
-                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        "4-hnd": self["4"] {
-           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-
-           feature_flags: {
-               dynamic_watchdogs: "yes",
-           },
-
-           version_mapping: {
-                main: {
-                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        "4-ukb": self["4"] {
-           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-
-           feature_flags: {
-               dynamic_watchdogs: "yes",
-           },
-
-           version_mapping: {
-                main: {
-                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        "4-phx": self["4"] {
-           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-
-           feature_flags: {
-               dynamic_watchdogs: "yes",
-           },
-
-           version_mapping: {
-                main: {
-                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        "4-ia2": self["4"] {
+        "4-pcl": self["4"] {
            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
@@ -406,27 +264,6 @@ local utils = import "util_functions.jsonnet";
            feature_flags: {
                dynamic_watchdogs: "yes",
            },
-
-           version_mapping: {
-                main: {
-                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        "4-yul": self["4"] {
-           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-
-           feature_flags: {
-               dynamic_watchdogs: "yes",
-           },
-
            version_mapping: {
                 main: {
                   "0.12.5": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
@@ -450,26 +287,10 @@ local utils = import "util_functions.jsonnet";
             "2"
         else if (estate == "prd-data-flowsnake") then
             "3"
-        else if (estate == "iad-flowsnake_prod") then
-            "4-iad"
-        else if (estate == "ord-flowsnake_prod") then
-            "4-ord"
-        else if (estate == "frf-flowsnake_prod" || estate == "par-flowsnake_prod") then
-            "4-frf-par"
-        else if (estate == "dfw-flowsnake_prod") then
-            "4-dfw"
-        else if (estate == "ph2-flowsnake_prod") then
-            "4-ph2"
-        else if (estate == "hnd-flowsnake_prod") then
-            "4-hnd"
-        else if (estate == "ukb-flowsnake_prod") then
-            "4-ukb"
-        else if (estate == "phx-flowsnake_prod") then
-            "4-phx"
-        else if (estate == "ia2-flowsnake_prod") then
-            "4-ia2"
-        else if (estate == "yul-flowsnake_prod") then
-            "4-yul"
+        else if (kingdom == "iad" || kingdom == "ord") then
+            "4-iad-ord"
+        else if (kingdom == "syd" || kingdom == "yhu" || kingdom == "yul") then
+            "4-pcl"
         else
             "4"
         ),

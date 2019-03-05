@@ -5,9 +5,9 @@ data:
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "cliCheckerFullCommands": {
-        "0.12.2": {
-          "SparkLocal": "java -jar  -Dintegration.test.target=canary -Dflowsnake.api.host=flowsnake-yhu.data.sfdc.net -Dflowsnake.project.version=0.12.2 junit.jar -cp integration-test.jar -n '.*' -c com.salesforce.dva.transform.flowsnake.SparkLocalDriverDemoJobIT",
-          "SparkStandalone": "java -jar  -Dintegration.test.target=canary -Dflowsnake.api.host=flowsnake-yhu.data.sfdc.net -Dflowsnake.project.version=0.12.2 junit.jar -cp integration-test.jar -n '.*' -c com.salesforce.dva.transform.flowsnake.SparkStandaloneDemoJobIT"
+        "0.12.5": {
+          "SparkLocal": "java -jar  -Dintegration.test.target=canary -Dflowsnake.api.host=flowsnake-yhu.data.sfdc.net -Dflowsnake.project.version=0.12.5 junit.jar -cp integration-test.jar -n '.*' -c com.salesforce.dva.transform.flowsnake.SparkLocalDriverDemoJobIT",
+          "SparkStandalone": "java -jar  -Dintegration.test.target=canary -Dflowsnake.api.host=flowsnake-yhu.data.sfdc.net -Dflowsnake.project.version=0.12.5 junit.jar -cp integration-test.jar -n '.*' -c com.salesforce.dva.transform.flowsnake.SparkStandaloneDemoJobIT"
         },
         "DockerDaemon": {
           "DockerDaemon": "/test-docker.sh"
