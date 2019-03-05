@@ -41,10 +41,10 @@
               OR
               (TotalCount < 10 AND NotReadyCount >=2))
               "
-              # add snooze conditions with expiration time
+              # add snooze conditions with expiration timestamp
               + "
               AND NOT
-              (minionpool like 'par-sam' AND NotReadyPerc < 0.5 AND now() < STR_TO_DATE('2019-02-01', '%Y-%m-%d'))
+              (minionpool like 'par-sam_warden' AND now() < STR_TO_DATE('2019-03-21', '%Y-%m-%d')) #as in https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006UbTRIA0/view
               AND NOT
               (minionpool like 'phx-sam_mgmt_hub' AND now() < STR_TO_DATE('2019-01-22', '%Y-%m-%d'))
               AND NOT
