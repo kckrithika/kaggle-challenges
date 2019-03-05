@@ -63,7 +63,8 @@ system:
           
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
-          value: 7442
+          value: 13065
+#          value: 7442
 
         # Set to true it PUBLIC_PORT is an https endpoint
         - name: PUBLIC_PORT_IS_SECURE
@@ -78,7 +79,8 @@ system:
         - name: SFPROXY_VIP
           value: https://devmvpapp-lb.core-on-sam-sp1.gcp-sam.gcp.slb.sfdc.net:8443
         - name: HTTP_PORT
-          value: 7022
+          value: 8085
+#          value: 7022
         # This maps to https_port
         - name: SPORT
           value: 8443
@@ -101,7 +103,8 @@ system:
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
-          value: 7442
+#          value: 7442
+          value: 13065
 
         # Settings.path
         - name: CASAM_SETTINGS_PATH
@@ -144,8 +147,8 @@ system:
       ports:
         # Actually used by the container
         - containerPort: 8998
-#        - containerPort: 8085
-        - containerPort: 7022
+        - containerPort: 8085
+#        - containerPort: 7022
         - containerPort: 11211
         - containerPort: 12098
         - containerPort: 8443
@@ -169,59 +172,59 @@ system:
           name: secretvol-db
           readOnly: true
 
-#    - name: envoy-sidecar-config
-#      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/cyan-config:208cc2
-#      env:
-#      - name: CONFIG_DIR
-#        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
-#      volumeMounts:
-#      - name: envoy-config-volume
-#        mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
-#      livenessProbe:
-#        exec:
-#          command:
-#          - cat
-#          - /tmp/live
-#        initialDelaySeconds: 10
-#        periodSeconds: 5
-#      readinessProbe:
-#        exec:
-#          command:
-#          - cat
-#          - /tmp/ready
-#        initialDelaySeconds: 10
-#        periodSeconds: 5
+    - name: envoy-sidecar-config
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/cyan-config:208cc2
+      env:
+      - name: CONFIG_DIR
+        value: /home/sfdc-sherpa/sherpa-envoy-config-volume
+      volumeMounts:
+      - name: envoy-config-volume
+        mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/live
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 10
+        periodSeconds: 5
 
-#    - name: envoy-sidecar
-#      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/servicelibs/sherpa-envoy:1.0.4
-#      env:
-#      - name: SFDC_ENVIRONMENT
-#        value: envoy-sidecar
-#      args:
-#      - --template
-#      - /cyan-config/tls-terminator-config.yaml.template
-#      ports:
-#      - containerPort: 13065
-#      - containerPort: 15373
-#      livenessProbe:
-#        exec:
-#          command:
-#          - ./bin/is-alive
-#        initialDelaySeconds: 20
-#        periodSeconds: 5
-#      readinessProbe:
-#        exec:
-#          command:
-#          - ./bin/is-ready
-#        initialDelaySeconds: 15
-#        periodSeconds: 5
-#      volumeMounts:
-#      - name: envoy-config-volume
-#        mountPath: /cyan-config
-#      - name: tls-client-cert
-#        mountPath: /certs/cert-client
-#      - name: tls-server-cert
-#        mountPath: /certs/cert-server
+    - name: envoy-sidecar
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/servicelibs/sherpa-envoy:1.0.4
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: envoy-sidecar
+      args:
+      - --template
+      - /cyan-config/tls-terminator-config.yaml.template
+      ports:
+      - containerPort: 13065
+      - containerPort: 15373
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - name: envoy-config-volume
+        mountPath: /cyan-config
+      - name: tls-client-cert
+        mountPath: /certs/cert-client
+      - name: tls-server-cert
+        mountPath: /certs/cert-server
 
     - name: casam-sidecar
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:7d9273
