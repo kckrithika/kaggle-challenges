@@ -4,6 +4,8 @@ local versions = import "service-mesh/sherpa-injector/versions.jsonnet";
 local maddogInit = import "service-mesh/sherpa-injector/maddog/_init-cert-container.jsonnet";
 local maddogPermissions = import "service-mesh/sherpa-injector/maddog/_init-permissions-container.jsonnet";
 local maddogRefresher = import "service-mesh/sherpa-injector/maddog/_cert-refresher-container.jsonnet";
+local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
+local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
 local enableSherpa = false;
 
 configs.deploymentBase("service-mesh") {
@@ -80,6 +82,16 @@ configs.deploymentBase("service-mesh") {
             if std.length(versions.canarySherpaImage) > 0 then [
               "--canary-image=%s" % versions.canarySherpaImage,
             ],
+            env+: [
+              {
+                name: "SFDC_METRICS_SERVICE_HOST",
+                value: funnelEndpointHost,
+              },
+              {
+                name: "SFDC_METRICS_SERVICE_PORT",
+                value: funnelEndpointPort,
+              },
+            ],
             volumeMounts+: [
               {
                 name: "cert1",
@@ -136,8 +148,7 @@ configs.deploymentBase("service-mesh") {
             args: [
               "--log-level=debug",
             ],
-
-            env: [
+            env+: [
               {
                 name: "SFDC_ENVIRONMENT",
                 value: "mesh",
@@ -182,6 +193,14 @@ configs.deploymentBase("service-mesh") {
               {
                 name: "SETTINGS_PATH",
                 value: "mesh.-." + configs.kingdom + ".-.sherpa-injector",
+              },
+              {
+                name: "SFDC_METRICS_SERVICE_HOST",
+                value: funnelEndpointHost,
+              },
+              {
+                name: "SFDC_METRICS_SERVICE_PORT",
+                value: funnelEndpointPort,
               },
             ],
 
