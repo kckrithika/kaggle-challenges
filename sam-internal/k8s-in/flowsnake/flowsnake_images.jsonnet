@@ -222,6 +222,7 @@ local utils = import "util_functions.jsonnet";
 
            feature_flags: {
                dynamic_watchdogs: "yes",
+               impersonation_proxy: "verified-in-prd-*",
            },
            version_mapping: {
                 main: {
@@ -239,7 +240,8 @@ local utils = import "util_functions.jsonnet";
         "4-iad-ord": self["4"] {
 
             feature_flags: {
-                   dynamic_watchdogs: "yes",
+                dynamic_watchdogs: "yes",
+                impersonation_proxy: "verified-in-prd-*",
             },
             version_mapping: {
                 main: {
