@@ -300,7 +300,6 @@
         ],
         name: "slb-nginx-config",
         image: slbimages.hyperslb,
-        [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
         command: [
             "/sdn/slb-nginx-config",
             "--target=" + slbconfigs.nginx.containerTargetDir,
@@ -352,7 +351,7 @@
             slbconfigs.node_name_env,
             configs.kube_config_env,
         ],
-    },
+    } + configs.ipAddressResourceRequest,
     slbNginxProxy(proxyImage, proxyFlavor="", tlsConfigEnabled=false): {
         name: "slb-nginx-proxy",
         image: proxyImage,

@@ -60,7 +60,6 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                             ] else [],
                         image: if utils.is_pcn(configs.kingdom) then samimages.static.madkubPCN else samimages.madkub,
                         name: "madkubserver",
-                         [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         ports: [
                             {
                                 containerPort: 3000,
@@ -83,7 +82,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                             initialDelaySeconds: 30,
                             periodSeconds: 10,
                         },
-                    } + configs.containerInPCN,
+                    } + configs.containerInPCN + configs.ipAddressResourceRequest,
                     {
                         name: "madkub-refresher",
                         args: [

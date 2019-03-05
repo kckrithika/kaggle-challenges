@@ -90,7 +90,6 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                           {
                               name: "slb-vip-watchdog",
                               image: slbimages.hyperslb,
-                              [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                               command: [
                                            "/sdn/slb-vip-watchdog",
                                            "--log_dir=" + slbconfigs.logsDir,
@@ -117,7 +116,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                   slbconfigs.function_namespace_env,
                                   slbconfigs.function_instance_name_env,
                               ],
-                          },
+                          } + configs.ipAddressResourceRequest,
                           slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                           slbshared.slbCleanupConfig,
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),

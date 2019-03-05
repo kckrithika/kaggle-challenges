@@ -71,7 +71,6 @@ if std.setMember(configs.estate, enabledEstates) then
                         name: "sfms",
                         image: storageimages.sfms,
                         imagePullPolicy: "IfNotPresent",
-                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                             "/opt/sfms/bin/sfms",
                         ],
@@ -93,7 +92,7 @@ if std.setMember(configs.estate, enabledEstates) then
                             },
                         ],
                         env: storageutils.sfms_environment_vars(storageconfigs.serviceDefn.ceph_metrics_svc.name),
-                    },
+                    } + configs.ipAddressResourceRequest,
                     {
                         name: "configwatcher",
                         image: storageimages.configwatcher,

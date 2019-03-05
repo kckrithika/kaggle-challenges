@@ -50,7 +50,6 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                             },
                         },
                         name: "samsqlreporter",
-                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         ports: [
                             {
                                 containerPort: 64212,
@@ -69,7 +68,7 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                                 readOnly: true,
                             },
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
                 volumes: [
                     {

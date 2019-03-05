@@ -106,7 +106,6 @@ if std.setMember(configs.estate, enabledEstates) then configs.deploymentBase("st
                     {
                         name: "cephoperator",
                         image: storageimages.cephoperator,
-                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         volumeMounts:
                             storageutils.log_init_volume_mounts()
                             + storageutils.cert_volume_mounts(),
@@ -125,7 +124,7 @@ if std.setMember(configs.estate, enabledEstates) then configs.deploymentBase("st
                             },
 
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                     {
                         // Pump prometheus metrics to argus.
                         name: "sfms",

@@ -39,7 +39,6 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                     {
                         name: "slb-canary-creator",
                         image: slbimages.hyperslb,
-                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                                      "/sdn/slb-canary-creator",
                                      "--canaryImage=" + slbimages.hyperslb,
@@ -67,7 +66,7 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                         securityContext: {
                             privileged: true,
                         },
-                    },
+                    } + configs.ipAddressResourceRequest,
                     slbshared.slbLogCleanup,
                 ],
             } + slbconfigs.getGracePeriod()

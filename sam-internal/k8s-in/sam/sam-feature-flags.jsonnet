@@ -51,6 +51,10 @@ local utils = import "util_functions.jsonnet";
 
      sdpv1: configs.estate == "prd-sam",
 
+     # Whether nodes are patched by node-controller with the max sdn pod count resource ("sam.sfdc.net/ip-address").
+     ipAddressCapacityNodeResource: std.setMember(configs.estate, std.set(["prd-samdev", "prd-samtest", "prd-sam", "prd-sdc"])),
+
+     # Whether the SAM app controller injects a request for an IP address ("sam.sfdc.net/ip-address") for non-host network pods.
      ipAddressCapacityRequest: configs.estate == "prd-samdev" || configs.estate == "prd-sam",
 
      enableIdentityEnvVar:

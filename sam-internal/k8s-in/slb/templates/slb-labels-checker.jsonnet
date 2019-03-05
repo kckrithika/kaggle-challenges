@@ -30,7 +30,6 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     {
                         name: "slb-labels-checker",
                         image: slbimages.hyperslb,
-                         [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                             "/sdn/slb-labels-checker",
                             "--log_dir=" + slbconfigs.logsDir,
@@ -61,7 +60,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                 },
                             },
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                     slbshared.slbLogCleanup,
                 ]),
             } + slbconfigs.getGracePeriod()

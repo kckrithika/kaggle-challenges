@@ -48,7 +48,6 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
           {
             name: 'rabbitmq',
             image: images.rabbitmq,
-            [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
             lifecycle: {
               postStart: {
                 exec: {
@@ -216,7 +215,7 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               successThreshold: 1,
               failureThreshold: 10,
             },
-          },
+          } + configs.ipAddressResourceRequest,
           madkub.madkubRefreshContainer(),
           {
             name: 'rabbitmq-monitord',
@@ -226,7 +225,6 @@ if firefly_feature_flags.is_rabbitmq_enabled then {
               runAsUser: 0,
             },
             command: ["java", "-jar", "/home/rabbitmq/rabbitmq-monitor-svc.jar", "--spring.profiles.active=" + configs.estate, "--spring.config.location=/home/rabbitmq/config/"],
-            [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
             imagePullPolicy: 'Always',
             env: [
               {

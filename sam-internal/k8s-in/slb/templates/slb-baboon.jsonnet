@@ -38,7 +38,6 @@ if (slbconfigs.isTestEstate || configs.estate == "prd-sam") && configs.estate !=
                     {
                         name: "slb-baboon",
                         image: slbimages.hyperslb,
-                        [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                                 "/sdn/slb-baboon",
                                 "--k8sapiserver=",
@@ -90,7 +89,7 @@ if (slbconfigs.isTestEstate || configs.estate == "prd-sam") && configs.estate !=
                             },
                             configs.kube_config_env,
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                     slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorLivenessProbePort),
                     slbshared.slbCleanupConfig,
                     slbshared.slbNodeApi(portconfigs.slb.slbNodeApiPort, false),

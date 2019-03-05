@@ -238,11 +238,6 @@ spec:
           periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 60
-        resources:
-          limits:
-            sam.sfdc.net/ip-address: "1"
-          requests:
-            sam.sfdc.net/ip-address: "1"
         securityContext:
           runAsNonRoot: false
           runAsUser: 0

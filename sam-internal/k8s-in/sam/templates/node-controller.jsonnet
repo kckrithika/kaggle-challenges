@@ -13,13 +13,12 @@ if samfeatureflags.estatessvc then {
                     configs.containerWithKubeConfigAndMadDog {
                         name: "node-controller",
                         image: samimages.hypersam,
-                          [if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: configs.filter_empty([
                             "/sam/node-controller",
                             "--funnelEndpoint=" + configs.funnelVIP,
                             configs.sfdchosts_arg,
                           ]
-                        + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" then ["--sdn-subnet-file-path=/kubeconfig/sfdc-sdn-subnet.env", "--default-max-podip=25"] else []),),
+                        + (if samfeatureflags.ipAddressCapacityNodeResource then ["--sdn-subnet-file-path=/kubeconfig/sfdc-sdn-subnet.env", "--default-max-podip=25"] else []),),
                         volumeMounts+: [
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
@@ -34,7 +33,7 @@ if samfeatureflags.estatessvc then {
                                 },
                             },
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
                 volumes+: [
                     configs.sfdchosts_volume,

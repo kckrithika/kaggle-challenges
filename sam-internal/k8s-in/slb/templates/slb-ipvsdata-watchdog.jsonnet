@@ -34,7 +34,6 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                     {
                         name: "slb-ipvsdata-watchdog",
                         image: slbimages.hyperslb,
-                        [if configs.estate == "prd-sam" then "resources"]: configs.ipAddressResource,
                         command: [
                             "/sdn/slb-ipvs-data-watchdog",
                             "--log_dir=" + slbconfigs.logsDir,
@@ -67,7 +66,7 @@ if configs.estate == "prd-sdc" || slbconfigs.isProdEstate then configs.deploymen
                             slbconfigs.node_name_env,
                             configs.kube_config_env,
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                     slbshared.slbLogCleanup,
                 ]),
             } + slbconfigs.getGracePeriod()

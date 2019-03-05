@@ -35,8 +35,7 @@ configs.daemonSetBase("sam") {
                                 containerPort: 53353,
                             },
                         ],
-                        [if configs.kingdom == "prd" then "resources"]+: configs.ipAddressResource,
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
                 volumes+: [
                     configs.sfdchosts_volume,
