@@ -30,10 +30,18 @@
      healthprotocol: "https"
 - lbname: sledge-ead-lb
   servers:
+   - public0-gateway1-1-ukb.ops.sfdc.net
    - public0-gateway1-2-ukb.ops.sfdc.net
    - public0-gateway1-3-ukb.ops.sfdc.net
+   - public0-gateway1-4-ukb.ops.sfdc.net
+   - public0-gateway1-5-ukb.ops.sfdc.net
+   - public0-gateway1-6-ukb.ops.sfdc.net
+   - public0-gateway2-1-ukb.ops.sfdc.net
    - public0-gateway2-2-ukb.ops.sfdc.net
    - public0-gateway2-3-ukb.ops.sfdc.net
+   - public0-gateway2-4-ukb.ops.sfdc.net
+   - public0-gateway2-5-ukb.ops.sfdc.net
+   - public0-gateway2-6-ukb.ops.sfdc.net
   ports:
    - port: 80
      targetport: 80
