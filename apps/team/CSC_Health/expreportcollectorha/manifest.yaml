@@ -16,14 +16,12 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: expreport-collectorha
-      image: tnrp/csc-health/report-collector:1.21.0-0000313-c320d751
+      image: docker-all/dva/report-collector:7
       ports:
       - name: admin
         containerPort: 8082
       - name: provider-https
         containerPort: 8443
-      - name: consumer-https
-        containerPort: 8444
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
@@ -40,12 +38,8 @@ system:
         value: /var/secrets/redis/auth
       - name: ReportCollector_app_https_enabled
         value: true
-      - name: ReportCollector_app_http_enabled
-        value: false
       - name: ReportCollector_app_https_providerPort
         value: 8443
-      - name: ReportCollector_app_https_consumerPort
-        value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
       - name: ReportCollector_app_https_dynamicCertificateOptions_caCert
@@ -56,6 +50,8 @@ system:
         value: true
       - name: ReportCollector_app_https_supportCompression
         value: true
+      - name: ReportCollector_app_http_enabled
+        value: false
       - name: ReportCollector_app_redisWriteCircuitBreaker_resetTimeout
         value: 10000
       - name: ReportCollector_app_serviceProtection_enabled
@@ -67,7 +63,7 @@ system:
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
         value: 10
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
-        value: 10
+        value: 0
       - name: ReportCollector_datastore
         value: redisIndex
       livenessProbe:
@@ -103,7 +99,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: expredis
-      image: tnrp/csc-health/redis-auth:4.0.8-0000008-24e58629
+      image: docker-all/dva/csc-health-redis-auth:1
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol

@@ -130,6 +130,7 @@ apps:
     - ia2/ia2-sam_report_collector
     - ph2/ph2-sam_report_collector
   expreportcollectorha:
+    - prd/prd-sam_report_collector
   exprepcollavailwd:
   expcname-repcollavailwd:
   cname-repcollavailwd:
@@ -151,3 +152,4 @@ apps:
     - yul/yul-sam_report_collector
   service-event-recorder:
   exptemp-store:
+    - prd/prd-sam_report_collector
