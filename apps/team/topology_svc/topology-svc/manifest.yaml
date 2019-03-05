@@ -24,4 +24,3 @@ system:
     ports:
       - port: 8080
         targetport: 8080
-        lbtype: http
