@@ -11,7 +11,7 @@ system:
         maxUnavailable: 2
     containers:
     - name: switchboard
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/switchboard:a1b5df8eec24c48d77fd92a9467e2c3a6bc1e631-201903041200
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:6af5b90f7d2edbbcdb52e7c5654ce4c53ec937af
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -61,6 +61,7 @@ system:
           - /bin/true
         initialDelaySeconds: 15
         periodSeconds: 5
+      # TODO:NIKO: 3/5/2019 hardcoding the probes to figure out health probe failures leading to pod crashes and restarts
       #livenessProbe:
       #  httpGet:
       #    path: /manage/health
