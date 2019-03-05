@@ -14,7 +14,7 @@ data:
       },
       "deleteSyntheticDeployment": false,
       "deployer-funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-      "deployer-imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2642-2ba92e7906255d862adce32b13b05bc343975210",
+      "deployer-imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2644-80d5e92f97356a83fa0854f1d24ccf3927f9e3e5",
       "deployer-rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "deployer-recipient": "",
       "deployer-sender": "",
@@ -35,7 +35,7 @@ data:
         "/home/"
       ],
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2642-2ba92e7906255d862adce32b13b05bc343975210",
+      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2644-80d5e92f97356a83fa0854f1d24ccf3927f9e3e5",
       "k8sproxyEndpoint": "http://localhost:40000",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",

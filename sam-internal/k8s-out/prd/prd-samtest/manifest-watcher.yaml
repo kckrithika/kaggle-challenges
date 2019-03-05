@@ -27,7 +27,7 @@ spec:
         - --config=/config/manifestwatcher.json
         - --syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2642-2ba92e7906255d862adce32b13b05bc343975210
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2644-80d5e92f97356a83fa0854f1d24ccf3927f9e3e5
         name: manifest-watcher
         volumeMounts:
         - mountPath: /etc/pki_service
