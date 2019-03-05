@@ -35,5 +35,11 @@
                            (kpodsDown IS NULL OR kpodsDown >1) AND
                            NOT ControlEstate LIKE 'prd-%' AND
                            ControlEstate != 'unknown' AND
-                           desiredReplicas > 1",
+                           desiredReplicas > 1"
+
+                           # add snooze conditions with expiration timestamp
+                           # as in https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006UbTRIA0/view
+                             + "
+                             AND NOT
+                             (controlestate like 'par-sam' AND namespace like 'casp' AND now() < STR_TO_DATE('2019-03-21', '%Y-%m-%d'))",
     }
