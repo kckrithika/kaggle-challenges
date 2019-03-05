@@ -1,5 +1,5 @@
-- lbname: authval-prd 
-  customlbname: authval-prd
+- lbname: ops0-authval1-0-prd
+  customlbname: ops0-authval1-0-prd
   servers:
    - ops0-authval1-1-prd.eng.sfdc.net
    - ops0-authval2-1-prd.eng.sfdc.net 
