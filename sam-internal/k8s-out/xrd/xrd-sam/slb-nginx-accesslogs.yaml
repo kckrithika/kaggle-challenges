@@ -50,7 +50,7 @@ spec:
           name: maddog-certs
       dnsPolicy: Default
       nodeSelector:
-        pool: xrd-sam
+        pool: xrd-slb
       terminationGracePeriodSeconds: 5
       volumes:
       - hostPath:

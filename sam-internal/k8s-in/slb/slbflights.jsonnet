@@ -14,7 +14,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     internalIpRange: (if slbimages.phaseNum <= 4 then ["--iprange.InternalIpRange=%s" % [slbconfigs.perCluster.internalIpRange[configs.estate]]] else []),
     slbUpstreamReporterEnabled: (if (slbimages.phaseNum <= 3 && slbimages.hyperslb_build >= 2071) || slbimages.hyperslb_build >= 2072 then true else false),
     slbTCPdumpEnabled: (slbimages.phaseNum <= 1),
-    nginAccesslogsRunInSlbEstate: (slbimages.phaseNum <= 2),
+    nginAccesslogsRunInSlbEstate: (slbimages.hyperslb_build >= 2072),
 
     # 2019/01/16 - this didn't work as expected so I disabled it (Pablo)
     # See: https://computecloud.slack.com/archives/G340CE86R/p1550291706553800
