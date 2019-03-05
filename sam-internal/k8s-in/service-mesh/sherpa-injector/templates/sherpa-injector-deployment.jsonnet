@@ -84,6 +84,63 @@ configs.deploymentBase("service-mesh") {
             ],
             env+: [
               {
+                name: "SFDC_ENVIRONMENT",
+                value: "mesh",
+              },
+              {
+                name: "SETTINGS_SERVICENAME",
+                value: "sherpa-injector",
+              },
+              {
+                name: "FUNCTION_NAMESPACE",
+                valueFrom:
+                  {
+                    fieldRef: { fieldPath: "metadata.namespace", apiVersion: "v1" },
+                  },
+              },
+              {
+                name: "FUNCTION_INSTANCE_NAME",
+                valueFrom:
+                  {
+                    fieldRef: { fieldPath: "metadata.name", apiVersion: "v1" },
+                  },
+              },
+              {
+                name: "FUNCTION_INSTANCE_IP",
+                valueFrom:
+                  {
+                    fieldRef: { fieldPath: "status.podIP", apiVersion: "v1" },
+                  },
+              },
+              {
+                name: "FUNCTION",
+                value: "sherpa-injector",
+              },
+              {
+                name: "KINGDOM",
+                value: configs.kingdom,
+              },
+              {
+                name: "ESTATE",
+                value: configs.estate,
+              },
+              {
+                name: "SUPERPOD",
+                value: "-",
+              },
+              {
+                name: "SETTINGS_SUPERPOD",
+                value: "-",
+              },
+              {
+                name: "SETTINGS_PATH",
+                value: "mesh.-." + configs.kingdom + ".-.sherpa-injector",
+              },
+              {
+                name: "SFDC_SETTINGS_PATH",
+                value: "mesh.-." + configs.kingdom + ".-.sherpa-injector",
+              },
+              {
                 name: "SFDC_METRICS_SERVICE_HOST",
                 value: funnelEndpointHost,
               },
@@ -154,6 +211,10 @@ configs.deploymentBase("service-mesh") {
                 value: "mesh",
               },
               {
+                name: "SETTINGS_SERVICENAME",
+                value: "sherpa-injector",
+              },
+              {
                 name: "FUNCTION_NAMESPACE",
                 valueFrom:
                   {
@@ -187,11 +248,19 @@ configs.deploymentBase("service-mesh") {
                 value: configs.estate,
               },
               {
+                name: "SUPERPOD",
+                value: "-",
+              },
+              {
                 name: "SETTINGS_SUPERPOD",
                 value: "-",
               },
               {
                 name: "SETTINGS_PATH",
+                value: "mesh.-." + configs.kingdom + ".-.sherpa-injector",
+              },
+              {
+                name: "SFDC_SETTINGS_PATH",
                 value: "mesh.-." + configs.kingdom + ".-.sherpa-injector",
               },
               {
