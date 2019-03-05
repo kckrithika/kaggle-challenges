@@ -124,12 +124,12 @@ system:
     nodeExposed: true
     function: switchboard
     ports:
-    - lbtype: dsr
+    - lbtype: tcp
       port: 15001
       targetport: 15001
-    - lbtype: dsr
+    - lbtype: tcp
       port: 15370
       targetport: 15372
-    - lbtype: dsr
+    - lbtype: tcp
       port: 15374
       targetport: 15373
