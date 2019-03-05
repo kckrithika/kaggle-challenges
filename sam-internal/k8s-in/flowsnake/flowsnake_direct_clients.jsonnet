@@ -2,6 +2,13 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local watchdog = import "watchdog.jsonnet";
+local wave_elt_production = {
+        owner_name: "Wave ELT",
+        namespace: "wave-elt",
+        pki_namespace: "wave-elt",
+        users: ["wave-elt.datapool"],
+};
+
 {
     # add new Spark-on-kubernetes clients to this object.
     clients_per_estate: {
@@ -38,10 +45,60 @@ local watchdog = import "watchdog.jsonnet";
         ],
 
         # ------------------------------------
-        # ---------- PRD-dev fleet ----------
+        # ---------- PRD-dev fleet -----------
         # ------------------------------------
         "prd-dev-flowsnake_iot_test": [
         ],
+
+        # -------------------------------
+        # ---------- DFW fleet ----------
+        # -------------------------------
+        "dfw-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- FRF fleet ----------
+        # -------------------------------
+        "frf-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- HND fleet ----------
+        # -------------------------------
+        "hnd-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- IA2 fleet ----------
+        # -------------------------------
+        "ia2-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- IAD fleet ----------
+        # -------------------------------
+        "iad-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- ORD fleet ----------
+        # -------------------------------
+        "ord-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- PAR fleet ----------
+        # -------------------------------
+        "par-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- PH2 fleet ----------
+        # -------------------------------
+        "ph2-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- PHX fleet ----------
+        # -------------------------------
+        "phx-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- UKB fleet ----------
+        # -------------------------------
+        "ukb-flowsnake_prod": [wave_elt_production],
     },
 
     # Every estate gets flowsnake-watchdog for continuous synthetic testing
