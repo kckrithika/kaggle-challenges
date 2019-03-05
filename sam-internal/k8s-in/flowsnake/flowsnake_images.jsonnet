@@ -193,6 +193,8 @@ local utils = import "util_functions.jsonnet";
                 spark_operator: "enabled",
                 spark_op_metrics: "enabled",
                 madkub_077_upgrade: "",
+                spark_op_watchdog: "verified-in-prd-dev",
+                spark_op_remove_bogus_executor_account: "verified-in-prd-dev",
             },
             version_mapping: {
                 main: {
