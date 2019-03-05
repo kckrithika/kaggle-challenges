@@ -58,7 +58,7 @@ spec:
           value: gsf-core-devmvp-sam2-samtest
         - name: KUBECONFIG
           value: ""
-        image: gcr.io/gsf-core-devmvp-sam2/thargrove/etcd
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tnrp/sam/etcd
         name: etcd-client
       hostNetwork: true
       nodeSelector:
