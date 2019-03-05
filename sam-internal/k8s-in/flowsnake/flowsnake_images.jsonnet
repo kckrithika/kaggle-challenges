@@ -110,8 +110,6 @@ local utils = import "util_functions.jsonnet";
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
                 spark_op_metrics: "enabled",
-                spark_op_watchdog: "enabled",
-                spark_op_remove_bogus_executor_account: "enabled",
             },
             version_mapping: {
                 main: {
@@ -158,8 +156,6 @@ local utils = import "util_functions.jsonnet";
                 spark_operator: "enabled",
                 spark_op_metrics: "enabled",
                 madkub_077_upgrade: "",
-                spark_op_watchdog: "verified-in-prd-test",
-                spark_op_remove_bogus_executor_account: "verified-in-prd-test",
             },
             version_mapping: {
                 main: {
@@ -194,8 +190,6 @@ local utils = import "util_functions.jsonnet";
                 spark_operator: "enabled",
                 spark_op_metrics: "enabled",
                 madkub_077_upgrade: "",
-                spark_op_watchdog: "verified-in-prd-dev",
-                spark_op_remove_bogus_executor_account: "verified-in-prd-dev",
             },
             version_mapping: {
                 main: {
