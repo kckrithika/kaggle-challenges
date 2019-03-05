@@ -15,7 +15,16 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:build-20190304-10
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:build-20190304-11
+      env:
+      - name: ZONES_ENVIRONMENT
+        value: "dev"
+      - name: HTTPS_PROXY
+        value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+      - name: ZONES_BASE_URL
+        value: "https://gus--zonesintk.my.salesforce.com"
+      - name: ZONES_SERVICE_URL
+        value: "http://zones-intake-backend-lb.user-jiaqi-wu.prd-sam.prd.slb.sfdc.net:3000"
       ports:
       - containerPort: 8445
       livenessProbe:
