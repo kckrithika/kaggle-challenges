@@ -24,10 +24,10 @@ local watchdog = import "watchdog.jsonnet";
         # ------------------------------------
         "prd-data-flowsnake": [
             {
-                owner_name: "Wave ELT",
-                namespace: "wave-elt",
-                pki_namespace: "wave-elt",
-                users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+            owner_name: "Wave ELT",
+            namespace: "wave-elt",
+            pki_namespace: "wave-elt",
+            users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
             },
         ],
 
@@ -38,9 +38,129 @@ local watchdog = import "watchdog.jsonnet";
         ],
 
         # ------------------------------------
-        # ---------- PRD-dev fleet ----------
+        # ---------- PRD-dev fleet -----------
         # ------------------------------------
         "prd-dev-flowsnake_iot_test": [
+        ],
+
+        # -------------------------------
+        # ---------- DFW fleet ----------
+        # -------------------------------
+        "dfw-flowsnake_prod": [
+            {
+            owner_name: "Wave ELT",
+            namespace: "wave-elt",
+            pki_namespace: "wave-elt",
+            users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+            },
+        ],
+
+        # -------------------------------
+        # ---------- FRF fleet ----------
+        # -------------------------------
+        "frf-flowsnake_prod": [
+            {
+            owner_name: "Wave ELT",
+            namespace: "wave-elt",
+            pki_namespace: "wave-elt",
+            users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+            },
+        ],
+
+        # -------------------------------
+        # ---------- HND fleet ----------
+        # -------------------------------
+        "hnd-flowsnake_prod": [
+            {
+            owner_name: "Wave ELT",
+            namespace: "wave-elt",
+            pki_namespace: "wave-elt",
+            users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+            },
+        ],
+
+        # -------------------------------
+        # ---------- IA2 fleet ----------
+        # -------------------------------
+        "ia2-flowsnake_prod": [
+            {
+            owner_name: "Wave ELT",
+            namespace: "wave-elt",
+            pki_namespace: "wave-elt",
+            users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+            },
+        ],
+
+        # -------------------------------
+        # ---------- IAD fleet ----------
+        # -------------------------------
+        "iad-flowsnake_prod": [
+            {
+            owner_name: "Wave ELT",
+            namespace: "wave-elt",
+            pki_namespace: "wave-elt",
+            users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+            },
+        ],
+
+        # -------------------------------
+        # ---------- ORD fleet ----------
+        # -------------------------------
+        "ord-flowsnake_prod": [
+            {
+            owner_name: "Wave ELT",
+            namespace: "wave-elt",
+            pki_namespace: "wave-elt",
+            users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+            },
+        ],
+
+        # -------------------------------
+        # ---------- PAR fleet ----------
+        # -------------------------------
+        "par-flowsnake_prod": [
+            {
+            owner_name: "Wave ELT",
+            namespace: "wave-elt",
+            pki_namespace: "wave-elt",
+            users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+            },
+        ],
+
+        # -------------------------------
+        # ---------- PH2 fleet ----------
+        # -------------------------------
+        "ph2-flowsnake_prod": [
+            {
+            owner_name: "Wave ELT",
+            namespace: "wave-elt",
+            pki_namespace: "wave-elt",
+            users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+            },
+        ],
+
+        # -------------------------------
+        # ---------- PHX fleet ----------
+        # -------------------------------
+        "phx-flowsnake_prod": [
+            {
+            owner_name: "Wave ELT",
+            namespace: "wave-elt",
+            pki_namespace: "wave-elt",
+            users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+            },
+        ],
+
+        # -------------------------------
+        # ---------- UKB fleet ----------
+        # -------------------------------
+        "ukb-flowsnake_prod": [
+            {
+            owner_name: "Wave ELT",
+            namespace: "wave-elt",
+            pki_namespace: "wave-elt",
+            users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+            },
         ],
     },
 
