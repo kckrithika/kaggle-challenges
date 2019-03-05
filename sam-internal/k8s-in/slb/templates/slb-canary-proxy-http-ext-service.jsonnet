@@ -10,7 +10,7 @@ local canaryName = "slb-canary-proxy-http";
 local serviceName = canaryName + "-ext-service";
 local vipName = canaryName + "-ext";
 
-local newKingdoms = ['ph2-sam', 'ia2-sam', 'par-sam', 'ukb-sam', 'lo2-sam', 'lo3-sam'];
+local newKingdoms = ['ia2-sam', 'par-sam', 'ukb-sam', 'lo2-sam', 'lo3-sam'];
 local notIsNewKingdom = configs.estate in { [e]: 1 for e in newKingdoms };
 
 local tlscertificate = if configs.estate == "prd-samtwo" then
