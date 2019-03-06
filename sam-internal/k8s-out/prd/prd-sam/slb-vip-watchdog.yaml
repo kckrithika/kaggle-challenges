@@ -64,7 +64,7 @@ spec:
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
         - --veryImportantVips=sledge-*.slb.sfdc.net:*,ops0-artifactrepo2-0-prd.slb.sfdc.net:443,ops0-artifactrepo1-0-prd.slb.sfdc.net:443,ops0-dvaregistryssl1-0-prd.slb.sfdc.net:443,ops0-dvaregistry1-0-prd.slb.sfdc.net:*,jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net:*,rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:*,rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:8080,rsui-integ-lb.retail-rsui.prd-sam.prd.slb.sfdc.net:*,kubernetes-api-flowsnake-prd.slb.sfdc.net:443,ingress-flowsnake-prd.slb.sfdc.net:443
-        - --slaOptOutVips=us99-sfproxytest-vip-vijay-kota-prd.slb.sfdc.net:*,us98-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:*,aqueduct.user-varun-vyas.prd-sam.prd.slb.sfdc.net:*,*-prd-steam-prd*
+        - --slaOptOutVips=us99-sfproxytest-vip-vijay-kota-prd.slb.sfdc.net:*,us98-mist61sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:*,aqueduct.user-varun-vyas.prd-sam.prd.slb.sfdc.net:*,*-prd-steam-prd*,*slb-portal-service*
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         env:

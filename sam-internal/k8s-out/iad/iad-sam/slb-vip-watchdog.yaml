@@ -60,6 +60,7 @@ spec:
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
         - --veryImportantVips=ops0-artifactrepo1-0-iad.slb.sfdc.net:443,sledge-*.slb.sfdc.net:*,kubernetes-api-flowsnake-iad.slb.sfdc.net:443,ingress-flowsnake-iad.slb.sfdc.net:443,rsui-production-iad-lb.retail-rsui.iad-sam.iad.slb.sfdc.net:443,rsui-production-iad-test-lb.retail-rsui.iad-sam.iad.slb.sfdc.net:443
+        - --slaOptOutVips=*slb-portal-service*
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         env:

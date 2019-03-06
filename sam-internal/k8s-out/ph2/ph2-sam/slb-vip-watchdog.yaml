@@ -60,6 +60,7 @@ spec:
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
         - --veryImportantVips=ops0-artifactrepo1-0-ph2.slb.sfdc.net:443,kubernetes-api-flowsnake-ph2.slb.sfdc.net:443,ingress-flowsnake-ph2.slb.sfdc.net:443
+        - --slaOptOutVips=*slb-portal-service*
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         env:
