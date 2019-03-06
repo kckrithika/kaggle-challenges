@@ -109,6 +109,7 @@ spec:
           name: tokens
         - mountPath: /maddog-onebox
           name: maddog-onebox-certs
+      hostNetwork: false
       restartPolicy: Always
       volumes:
       - emptyDir:
