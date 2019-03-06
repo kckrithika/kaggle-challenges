@@ -5,13 +5,13 @@ apiVersion: v1
 
 system:
   functions:
-  - name: istio-fake-casam
+  - name: istio-fake-casam-na35
     count: 1
     labels:
       disco_dc: prd
       disco_env: "stm"
       disco_subenv: ""
-      disco_pod: "na34"
+      disco_pod: "na35"
       disco_sp: "SP1"
       disco_role: app
       app: app
