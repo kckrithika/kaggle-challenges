@@ -23,17 +23,11 @@ spec:
       containers:
       - args:
         - -logtostderr
-        - -v=2
-        - -enable-metrics=true
-        - -metrics-port=10254
-        - -metrics-endpoint=/metrics
+        - -v
+        - "2"
         command:
         - /usr/bin/spark-operator
         image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:11
         imagePullPolicy: Always
         name: spark-operator
-        ports:
-        - containerPort: 10254
-          name: metrics
-          protocol: TCP
       serviceAccountName: spark-operator
