@@ -1,0 +1,78 @@
+# This app runs with istio-proxy getting configs from Istio Pilot. Note the annotation "sidecar.istio.io/inject".
+# Ordering (istio-proxy) -> Shipping (istio-proxy).
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: istio-fake-casam
+    count: 1
+    labels:
+      app: istio-fake-casam
+      disco_dc: prd
+      disco_env: ""
+      disco_subenv: ""
+      disco_pod: "na34"
+      disco_sp: "SP1"
+      disco_role: app
+      app: app
+    annotations:
+      sidecar.istio.io/inject: "true"
+    containers:
+    - name: fake-casam
+      # Shipping App
+      #   https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/shipping/shipping-scone
+      # Shipping Config
+      #   https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/shipping/shipping-scone/src/main/resources/config/application.properties
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:bazel-monorepo
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: istio
+      - name: GRPC_PORT
+        value: 7443
+      - name: JAVA_OPTS
+        value: "-Dscone.service.name=istio-shipping -Dmanagement.server.port=15372"
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      ports:
+      - containerPort: 7443
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 15
+        httpGet:
+          path: /manage/health
+          port: 15372
+
+    - name: metrics-scraper
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
+      imagePullPolicy: Always
+      args:
+        - --endpoint
+        - "http://localhost:15000/stats/prometheus"
+      livenessProbe:
+        exec:
+          command:
+            - /bin/true
+        initialDelaySeconds: 5
+        periodSeconds: 30
+        timeoutSeconds: 5
+
+    # Volumes used by auto-injected istio-proxy.
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+
+  loadbalancers:
+    - lbname: app
+      function: istio-fake-casam
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-shipping

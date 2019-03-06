@@ -98,6 +98,8 @@ apps:
   istio-shipping-mixed-istio-to-sherpa:
     - prd/prd-sam_gater
     - prd/prd-samtest
+  istio-fake-casam:
+    - prd/prd-sam_gater
 
 # Enable as needed:
 #  geoipnk:
