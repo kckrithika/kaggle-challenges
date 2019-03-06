@@ -209,6 +209,10 @@ local utils = import "util_functions.jsonnet",
         [if std.setMember(estate, $.ipAddressResourceRequestEnabledEstates) then "resources"]+: $.ipAddressResource,
     },
 
+    # The default maximum number of pod IP addresses a node is capable of supporting. This is used
+    # by node-controller when there's an error reading from the --sdn-subnet-file-path file.
+    defaultMaxPodIP: (if estate == "prd-sdc" then 13 else 25),
+
     # This base contains common deployment fields to cut down on copy paste.
     # Use it like this (dont forget the '+' after spec):
     #
