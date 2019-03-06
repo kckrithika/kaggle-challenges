@@ -1,0 +1,25 @@
+kind: ""
+apiversion: ""
+resources:
+- charts/gateways/templates/autoscale.yaml
+- charts/gateways/templates/clusterrole.yaml
+- charts/gateways/templates/clusterrolebindings.yaml
+- charts/gateways/templates/deployment.yaml
+- charts/gateways/templates/service.yaml
+- charts/gateways/templates/serviceaccount.yaml
+- charts/pilot/templates/autoscale.yaml
+- charts/pilot/templates/clusterrole.yaml
+- charts/pilot/templates/clusterrolebinding.yaml
+- charts/pilot/templates/deployment.yaml
+- charts/pilot/templates/gateway.yaml
+- charts/pilot/templates/service.yaml
+- charts/pilot/templates/serviceaccount.yaml
+- charts/sidecarInjectorWebhook/templates/clusterrole.yaml
+- charts/sidecarInjectorWebhook/templates/clusterrolebinding.yaml
+- charts/sidecarInjectorWebhook/templates/deployment.yaml
+- charts/sidecarInjectorWebhook/templates/mutatingwebhook.yaml
+- charts/sidecarInjectorWebhook/templates/service.yaml
+- charts/sidecarInjectorWebhook/templates/serviceaccount.yaml
+- configmap.yaml
+- crds.yaml
+- sidecar-injector-configmap.yaml
