@@ -85,13 +85,6 @@ fi
 # Service Mesh - Istio Mesh Webhook
 ./parallel_build.py --src=service-mesh/istio-mesh-webhook/templates --out=../k8s-out/ --pools=service-mesh/istio-mesh-webhook/istio-mesh-webhook-estates.json --estatefilter=$1
 
-# Skipper is a tool for creating dev/test k8s clusters in Private Cloud created
-# by the Storage Foundation team.
-# https://git.soma.salesforce.com/SFStorage/skipper
-# The line below creates k8s-out yaml files from jsonnet from storage templates
-# that are appropriate for this environment.
-./parallel_build.py --src=storage/templates/ --out=../k8s-out/ --pools=skipperEstates.json --estatefilter=$1
-
 ./parallel_build.py --src=sam/templates/,slb/templates/ --out=../k8s-out/ --pools=vpod/vpodEstates.json --estatefilter=$1
 
 # Json is quite poor when it comes to multi-line strings.  Since configMaps are a kubernetes resource with files
