@@ -12,7 +12,6 @@ if slbconfigs.isSlbEstate && slbflights.slbTCPdumpEnabled then configs.daemonSet
                         image: slbimages.hyperslb,
                         command: [
                             "/sdn/slb-tcpdump",
-                            "--tcpdump.pollinterval=5m",
                         ],
                         name: "slb-tcpdump-ipvs",
                         resources: {
