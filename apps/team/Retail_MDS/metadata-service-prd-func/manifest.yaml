@@ -12,8 +12,6 @@ system:
       ports:
       - containerPort: 9091
       - containerPort: 15523
-      # Direct gRPC port, exposed for client testing.
-      - containerPort: 7020
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
@@ -51,6 +49,8 @@ system:
       - --server-ca
       - /server-certs/ca_test/cacerts.pem
       ports:
+      - name: sherpa-h2-plain
+        containerPort: 7012
       - name: sherpa-h2-tls
         containerPort: 7443
       - containerPort: 15373
@@ -86,6 +86,8 @@ system:
     - name: beacon-mds
       image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
       args:
+      - -endpoint
+      - metadata-service:DATACENTER:7012
       - -endpoint
       - retail-mds/metadata-service:DATACENTER:7443:metadata-service-prd-func-lb.retail-mds.prd-sam.prd.slb.sfdc.net
       env:
@@ -130,6 +132,3 @@ system:
       targetport: 9091
     - port: 7443
       targetport: 7443
-      # Direct gRPC port, exposed for testing purposes
-    - port: 7020
-      targetport: 7020
