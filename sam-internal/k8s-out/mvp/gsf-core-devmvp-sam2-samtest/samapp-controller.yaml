@@ -23,7 +23,7 @@ spec:
       - command:
         - /sam/samapp-controller
         - --v=3
-        - --funnelEndpoint=ajna0-funnel1-0-mvp.data.sfdc.net:80
+        - --funnelEndpoint=funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net
         - --logtostderr=true
         - --config=/config/samapp-controller-config.json
         - --hostsConfigFile=/sfdchosts/hosts.json

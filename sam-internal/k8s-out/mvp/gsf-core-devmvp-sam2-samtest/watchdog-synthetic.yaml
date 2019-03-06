@@ -32,7 +32,7 @@ spec:
         - -watchDogKind=Deployment
         - -enableStatefulChecks=false
         - -timeout=2s
-        - -funnelEndpoint=ajna0-funnel1-0-mvp.data.sfdc.net:80
+        - -funnelEndpoint=funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -recipient=sam-alerts@salesforce.com,csc-sam-business-hours-only@salesforce.pagerduty.com

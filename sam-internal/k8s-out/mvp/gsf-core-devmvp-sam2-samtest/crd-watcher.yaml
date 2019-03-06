@@ -22,7 +22,7 @@ spec:
       containers:
       - command:
         - /sam/manifest-watcher
-        - --funnelEndpoint=ajna0-funnel1-0-mvp.data.sfdc.net:80
+        - --funnelEndpoint=funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net
         - --v=2
         - --logtostderr=true
         - --config=/config/tempmanifestwatcher.json
