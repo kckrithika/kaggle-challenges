@@ -62,3 +62,11 @@ system:
       maddogCert:
         type: server
 
+  loadbalancers:
+    - lbname: istio-shipping-mixed-istio-to-sherpa
+      function: istio-shipping-mixed-istio-to-sherpa
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-shipping
