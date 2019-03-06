@@ -69,7 +69,6 @@ system:
       maddogCert:
         type: server
 
-
   loadbalancers:
     - lbname: istio-ordering
       function: istio-ordering

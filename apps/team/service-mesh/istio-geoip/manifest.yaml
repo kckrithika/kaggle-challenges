@@ -93,13 +93,11 @@ system:
       maddogCert:
         type: server
 
-## Uncomment when SAM starts supporting port names. Delete the internal pipeline app first.
-#
-#  loadbalancers:
-#    - lbname: istio-geoip
-#      function: istio-geoip
-#      ports:
-#        - lbtype: dsr
-#          port: 7443
-#          targetport: 7443
-#          name: grpc-geoip
+  loadbalancers:
+    - lbname: istio-geoip
+      function: istio-geoip
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-geoip
