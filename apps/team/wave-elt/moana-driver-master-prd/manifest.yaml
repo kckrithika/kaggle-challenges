@@ -10,7 +10,7 @@ system:
     count: 1
     containers:
     - name: moana-driver
-      image: sfci/insights/moana-driver:master-11-835362e
+      image: sfci/insights/moana-driver:master-12-93e6865
       ports:
       - containerPort: 8080
         name: http
