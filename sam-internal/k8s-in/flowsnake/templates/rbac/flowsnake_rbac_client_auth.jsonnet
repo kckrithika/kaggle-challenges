@@ -1,6 +1,5 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_clients = import "flowsnake_direct_clients.jsonnet";
-local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 
 if flowsnake_config.kubernetes_create_user_auth && std.length(flowsnake_clients.clients) > 0 then (
 {

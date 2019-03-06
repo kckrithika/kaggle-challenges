@@ -11,6 +11,9 @@ data:
         },
         "DockerDaemon": {
           "DockerDaemon": "/test-docker.sh"
+        },
+        "SparkOperatorTest": {
+          "SparkOperatorTest": "/watchdog-spark-operator/check-spark-operator.sh"
         }
       },
       "deployer-funnelEndpoint": "ajna0-funnel1-0-ia2.data.sfdc.net:80",

@@ -211,15 +211,18 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Remaining production fleets
         "4": self.default_image_tags {
-           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+            // image tag overrides go here
+            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
 
-           feature_flags: {
-               dynamic_watchdogs: "yes",
-               impersonation_proxy: "verified-in-prd-*",
-           },
-           version_mapping: {
+            feature_flags: {
+                dynamic_watchdogs: "yes",
+                impersonation_proxy: "verified-in-prd-*",
+                madkub_injector: "enabled",
+                spark_operator: "verified-in-prd-*",
+            },
+            version_mapping: {
                 main: {
                   "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
                   "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
@@ -233,11 +236,7 @@ local utils = import "util_functions.jsonnet";
         ### A very special phase 4 for IAD and ORD that preserves access to old versions used by CRE.
         ### TODO:  Remove when CRE is migrated to 0.12.2+
         "4-iad-ord": self["4"] {
-
-            feature_flags: {
-                dynamic_watchdogs: "yes",
-                impersonation_proxy: "verified-in-prd-*",
-            },
+            //Inherit image tag overrides and feature flags from regular phase 4. Only version_mapping is different.
             version_mapping: {
                 main: {
                   "0.10.0": 662,
@@ -280,9 +279,9 @@ local utils = import "util_functions.jsonnet";
             "minikube"
         else if estate == "prd-data-flowsnake_test" then
             "1"
-        else if (kingdom == "prd" && estate != "prd-data-flowsnake") then
+        else if estate == "prd-dev-flowsnake_iot_test" then
             "2"
-        else if (estate == "prd-data-flowsnake") then
+        else if estate == "prd-data-flowsnake" then
             "3"
         else if (kingdom == "iad" || kingdom == "ord") then
             "4-iad-ord"

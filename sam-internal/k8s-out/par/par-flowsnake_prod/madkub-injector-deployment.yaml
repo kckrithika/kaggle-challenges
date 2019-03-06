@@ -1,0 +1,190 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: madkub-injector
+  namespace: flowsnake
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: madkub-injector
+  template:
+    metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
+          "par", "name": "madkubinjector", "role": "flowsnake.madkub-injector", "san":
+          ["madkub-injector.flowsnake", "madkub-injector.flowsnake.svc", "madkub-injector.flowsnake.svc.cluster.local"]}]}'
+      labels:
+        app: madkub-injector
+    spec:
+      containers:
+      - args:
+        - -madkubVolumesFile
+        - /etc/madkub-required-volumes/volumes.jaysawn
+        - -madkubContainerSpecFile
+        - /etc/madkub-container-spec/spec.jaysawn
+        - -kingdom
+        - par
+        - -v
+        - "2"
+        - -alsologtostderr
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:11
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8443
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        name: injector
+        ports:
+        - containerPort: 8443
+        volumeMounts:
+        - mountPath: /etc/madkub-container-spec
+          name: spec
+          readOnly: true
+        - mountPath: /etc/madkub-required-volumes
+          name: volumes
+          readOnly: true
+        - mountPath: /certs
+          name: datacerts
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint
+        - https://10.254.208.254:32007
+        - --maddog-endpoint
+        - https://all.pkicontroller.pki.blank.par.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca
+        - /etc/pki_service/ca/security-ca.pem
+        - --madkub-server-ca
+        - /etc/pki_service/ca/cacerts.pem
+        - --token-folder
+        - /tokens
+        - --kingdom
+        - par
+        - --superpod
+        - None
+        - --estate
+        - par-flowsnake_prod
+        - --refresher
+        - --run-init-for-refresher-mode
+        - --cert-folders
+        - madkubinjector:/certs
+        - --funnel-endpoint
+        - http://ajna0-funnel1-0-par.data.sfdc.net:80
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+        name: sam-madkub-integration-refresher
+        resources: {}
+        volumeMounts:
+        - mountPath: /certs
+          name: datacerts
+        - mountPath: /tokens
+          name: tokens
+        - mountPath: /etc/pki_service/ca
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+          readOnly: true
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint
+        - https://10.254.208.254:32007
+        - --maddog-endpoint
+        - https://all.pkicontroller.pki.blank.par.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca
+        - /etc/pki_service/ca/security-ca.pem
+        - --madkub-server-ca
+        - /etc/pki_service/ca/cacerts.pem
+        - --token-folder
+        - /tokens
+        - --kingdom
+        - par
+        - --superpod
+        - None
+        - --estate
+        - par-flowsnake_prod
+        - --cert-folders
+        - madkubinjector:/certs
+        - --funnel-endpoint
+        - http://ajna0-funnel1-0-par.data.sfdc.net:80
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+        name: sam-madkub-integration-init
+        resources: {}
+        volumeMounts:
+        - mountPath: /certs
+          name: datacerts
+        - mountPath: /tokens
+          name: tokens
+        - mountPath: /etc/pki_service/ca
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+          readOnly: true
+      serviceAccountName: madkub-injector
+      volumes:
+      - configMap:
+          name: madkub-container-spec
+        name: spec
+      - configMap:
+          name: madkub-required-volumes
+        name: volumes
+      - emptyDir:
+          medium: Memory
+        name: datacerts
+      - emptyDir:
+          medium: Memory
+        name: tokens
+      - hostPath:
+          path: /etc/pki_service/ca
+        name: certificate-authority
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/certificates
+        name: client-certificate
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/keys
+        name: client-key
+      - hostPath:
+          path: /etc/kubernetes/kubeconfig
+        name: kubeconfig
