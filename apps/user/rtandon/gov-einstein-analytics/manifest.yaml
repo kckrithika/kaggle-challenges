@@ -29,22 +29,28 @@ system:
       - name: WAVE_ACCOUNT_ID_DS
         value: "test_dataset"
       - name: HOST_NAME
-        value: "localhost"
+        value: "rtandon-wsl.internal.salesforce.com"
       - name: PLSQL_FILE_PATH
-        value: "/airstream-app/test_data.pls"
-      - name: CRON_FREQ
-        value: "2:30"
+        value: "/home/rtandon/Development/scripts/airstream-app/test_data.pls"
+      - name: KRB5_KEYTAB
+        value: "/var/secrets/krb5/gov-analytics-test.keytab"
       - name: CONFIG_FILE
-        value: "/var/secrets/user-profile.cfg"
+        value: "/var/secrets/profile/user-profile.cfg"
       volumeMounts:
       - name: user-profile-test
-        mountPath: /var/secrets
+        mountPath: /var/secrets/profile
+        readOnly: true
+      - name: krb-keytab-test
+        mountPath: /var/secrets/krb5
         readOnly: true
       imagePullPolicy: Always
     volumes:
     - name: user-profile-test
       k4aSecret:
         secretName: gov-einstein-analytics-user-profile-secret-test
+    - name: krb-keytab-test
+      k4aSecret:
+        secretName: gov-einstein-analytics-krb-keytab-secret-test
     strategy:
       type: RollingUpdate
       rollingUpdate:
