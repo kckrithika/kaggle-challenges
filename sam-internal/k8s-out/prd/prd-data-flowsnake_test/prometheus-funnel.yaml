@@ -24,7 +24,7 @@ spec:
         - --config.file=/etc/config/prometheus.json
         - --storage.tsdb.path=/prometheus-storage
         - --web.external-url=http://localhost/
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:19
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:21
         livenessProbe:
           httpGet:
             path: /metrics
@@ -47,7 +47,7 @@ spec:
         - --default=estate:prd-data-flowsnake_test
         - --default=superpod:NONE
         - --batch_size=512
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:19
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:21
         livenessProbe:
           httpGet:
             path: /
