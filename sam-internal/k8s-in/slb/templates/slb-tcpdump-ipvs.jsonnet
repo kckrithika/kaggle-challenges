@@ -13,6 +13,7 @@ if slbconfigs.isSlbEstate && slbflights.slbTCPdumpEnabled then configs.daemonSet
                         command: [
                             // Make sure that tcpdump.pollinterval is smaller than duration specified in the configmap
                             "--tcpdump.pollinterval=5m",
+                            "/sdn/slb-tcpdump",
                         ],
                         name: "slb-tcpdump-ipvs",
                         resources: {

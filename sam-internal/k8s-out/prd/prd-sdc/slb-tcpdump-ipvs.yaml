@@ -19,6 +19,7 @@ spec:
       containers:
       - command:
         - --tcpdump.pollinterval=5m
+        - /sdn/slb-tcpdump
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2079-60c698e83816b1103ca424d98001e53a6b74bccf
         name: slb-tcpdump-ipvs
         resources:
