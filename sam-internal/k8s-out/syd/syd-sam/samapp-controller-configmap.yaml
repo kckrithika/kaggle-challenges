@@ -7,6 +7,7 @@ data:
       "enableDNS": true,
       "enableIdentityEnvVar": false,
       "enableMaddog": true,
+      "enableStatefulSet": true,
       "funnelEndpoint": "ajna0-funnel1-0-syd.data.sfdc.net:80",
       "k4aInitContainerImage": "ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/hypersam:sam-0002447-69fdc914",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.syd.prod.non-estates.sfdcsd.net:8443",
