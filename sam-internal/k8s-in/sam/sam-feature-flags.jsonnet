@@ -55,7 +55,7 @@ local utils = import "util_functions.jsonnet";
      ipAddressCapacityNodeResource: std.setMember(configs.estate, std.set(["prd-samdev", "prd-samtest", "prd-sam", "prd-sdc"])),
 
      # Whether the SAM app controller injects a request for an IP address ("sam.sfdc.net/ip-address") for non-host network pods.
-     ipAddressCapacityRequest: configs.estate == "prd-samdev" || configs.estate == "prd-sam",
+     ipAddressCapacityRequest: std.setMember(configs.estate, configs.ipAddressResourceRequestEnabledEstates),
 
      enableIdentityEnvVar:
         configs.kingdom == "prd",

@@ -201,6 +201,7 @@ local utils = import "util_functions.jsonnet",
     ipAddressResourceRequestEnabledEstates: std.set([
         "prd-sam",
         "prd-samdev",
+        "prd-sdc",
     ]),
 
     # For estates where ip-address resource requests are enabled, this mixin augments a container's
