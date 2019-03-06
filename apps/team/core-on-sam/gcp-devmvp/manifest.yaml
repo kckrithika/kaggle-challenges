@@ -136,9 +136,12 @@ system:
         periodSeconds: 1
 
       readinessProbe:
-        exec:
-          command:
-           - /home/sfdc/salesforce/build/ready_probe.sh
+        httpGet:
+          path: /ping.jsp
+          port: 8085
+#        exec:
+#          command:
+#           - /home/sfdc/salesforce/build/ready_probe.sh
         initialDelaySeconds: 120
         periodSeconds: 5
         timeoutSeconds: 5
@@ -200,9 +203,23 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: envoy-sidecar
+      command: ["/home/sfdc-sherpa/hot_restarter"]
       args:
-      - --template
+      - /home/sfdc-sherpa/envoy 
+      - -c
       - /cyan-config/tls-terminator-config.yaml.template
+      - --restart-epoch 
+      - 0 
+      - --allow-unknown-fields 
+      - --max-stats 
+      - 32768 
+      - --drain-time-s 
+      - 60 
+      - --parent-shutdown-time-s 
+      - 90
+      - --base-id 
+      - 1
+       
       ports:
       - containerPort: 13065
       - containerPort: 15373
