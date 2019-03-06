@@ -18,7 +18,7 @@ if samfeatureflags.estatessvc then {
                             "--funnelEndpoint=" + configs.funnelVIP,
                             configs.sfdchosts_arg,
                         ] + (if samfeatureflags.ipAddressCapacityNodeResource then [
-                            "--sdn-subnet-file-path=/kubeconfig/sfdc-sdn-subnet.env", 
+                            "--sdn-subnet-file-path=/kubeconfig/sfdc-sdn-subnet.env",
                             "--default-max-podip=" + configs.defaultMaxPodIP,
                         ] else []),),
                         volumeMounts+: [
