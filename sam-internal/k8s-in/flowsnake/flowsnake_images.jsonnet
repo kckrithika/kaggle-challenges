@@ -98,7 +98,7 @@ local utils = import "util_functions.jsonnet";
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
             docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
             eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-            prometheus_funnel_image_tag: "21",
+            prometheus_funnel_image_tag: "23",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -155,7 +155,6 @@ local utils = import "util_functions.jsonnet";
                 impersonation_proxy: "verified-in-prd-*",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
-                spark_op_metrics: "enabled",
                 madkub_077_upgrade: "",
             },
             version_mapping: {
@@ -189,7 +188,6 @@ local utils = import "util_functions.jsonnet";
                 impersonation_proxy: "verified-in-prd-*",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
-                spark_op_metrics: "enabled",
                 madkub_077_upgrade: "",
             },
             version_mapping: {
