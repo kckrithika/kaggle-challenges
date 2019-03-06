@@ -31,6 +31,11 @@ spec:
         - --alsologtostderr=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001009-1b641ae3
         name: sdn-cleanup
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
         securityContext:
           privileged: true
         volumeMounts:

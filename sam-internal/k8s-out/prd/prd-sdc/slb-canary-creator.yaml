@@ -42,6 +42,11 @@ spec:
               fieldPath: spec.nodeName
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2075-9c8f169c93566d26a80547ca82c78dd92ba89851
         name: slb-canary-creator
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
         securityContext:
           privileged: true
         volumeMounts:
