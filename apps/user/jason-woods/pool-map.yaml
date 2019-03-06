@@ -3,3 +3,5 @@ apps:
         - prd/prd-sam
     qpid-broker-stateless:
         - prd/prd-sam
+    prd-qpid-test-client:
+        - prd/prd-sam
