@@ -60,7 +60,7 @@ spec:
         - --client.serverInterface=lo
         - --metricsBatchTimeout=30s
         - --veryImportantVips=ops0-artifactrepo1-0-xrd.slb.sfdc.net:443,ops0-artifactrepo2-0-xrd.slb.sfdc.net:443,sledge-*.slb.sfdc.net:80,sledge-*.slb.sfdc.net:443,sledge-*.slb.sfdc.net:8443
-        - --slaOptOutVips=vir511-1-0-xrd*,vir512-1-0-xrd*
+        - --slaOptOutVips=vir511-1-0-xrd*,vir512-1-0-xrd*,*slb-portal-service*
         - --client.socketDir=/host/data/slb/config/slb-vip-watchdog
         - --client.dialSocket=true
         env:
