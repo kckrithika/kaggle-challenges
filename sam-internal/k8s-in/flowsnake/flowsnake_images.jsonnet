@@ -214,6 +214,9 @@ local utils = import "util_functions.jsonnet";
             // When production canary phase was introduced, production image tags were _ahead_ of phase three. Temporarily
             // adding overrides here to avoid reverting canary to older images in phase 3. Remove as soon as new images
             // flow through phase 3.
+            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
 
             // prd-data needs a bunch of crufty old versions we don't want in production, so override version_mapping.
             version_mapping: {
