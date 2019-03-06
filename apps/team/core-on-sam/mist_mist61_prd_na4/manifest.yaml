@@ -7,9 +7,9 @@ system:
   - containers:
     - env:
       - name: DB_SID
-        value: mist61a216utf
+        value: mist61c220utf
       - name: DB_INSTANCE_NAME
-        value: mist61a216utf-1
+        value: mist61c220utf-1
       - name: DB_USER
         value: sleepy
       - name: DB_STATS_USER
@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -55,14 +55,12 @@ system:
       - name: CLUSTER_NAME
         value: na4
       - name: DEPLOYMENT
-        value: G
-      - name: USE_CONFIG_SIDECAR
-        value: 1
+        value: B
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_216-patch_17497816
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17593186
       livenessProbe:
         exec:
           command:
@@ -80,7 +78,7 @@ system:
       readinessProbe:
         exec:
           command:
-          - /home/sfdc/salesforce/build/ready_probe.sh
+          - /home/sfdc/salesforce/casam/bin/ready_probe.sh
         failureThreshold: 99999
         initialDelaySeconds: 120
         periodSeconds: 5
@@ -92,8 +90,8 @@ system:
         name: log-volume-jvm
       - mountPath: /etc/pki_service
         name: tls-client-cert
-      - mountPath: /home/sfdc/config_override
-        name: coreapp-config-volume
+      - mountPath: /home/sfdc/salesforce/casam
+        name: coreapp-casam-volume
       - mountPath: /home/sfdc/salesforce/config/settings/overrides/caas-cluster-casam-sp2
         name: secretvol
         readOnly: true
@@ -108,7 +106,7 @@ system:
           - /tmp/live
         initialDelaySeconds: 10
         periodSeconds: 5
-      name: config-sidecar
+      name: casam-sidecar
       readinessProbe:
         exec:
           command:
@@ -117,8 +115,8 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
       volumeMounts:
-      - mountPath: /home/sfdc/config_override
-        name: coreapp-config-volume
+      - mountPath: /home/sfdc/salesforce/casam
+        name: coreapp-casam-volume
     - args:
       - --template
       - /cyan-config/tls-terminator-config.yaml.template
@@ -187,7 +185,7 @@ system:
     - emptyDir: {}
       name: envoy-config-volume
     - emptyDir: {}
-      name: coreapp-config-volume
+      name: coreapp-casam-volume
     - maddogCert:
         type: client
       name: tls-client-cert
@@ -206,7 +204,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1550690406005168896
+        value: 1551901645872706048
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -220,19 +218,19 @@ system:
       - name: RELEASE_TYPE
         value: MINOR
       - name: MAJOR_RELEASE_NUMBER
-        value: 216
+        value: 220
       - name: MINOR_RELEASE_NUMBER
         value: 0
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
-        value: mist61a216utf
+        value: mist61c220utf
       - name: ENABLE_DB_SCHEMA_UPGRADE
         value: 0
       - name: SET_DEFAULT_ORACLE_EDITION
@@ -263,7 +261,7 @@ system:
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 360000
-      image: sfci/casam/sequencer:aac97f
+      image: sfci/casam/sequencer:b1254e
       livenessProbe:
         exec:
           command:
