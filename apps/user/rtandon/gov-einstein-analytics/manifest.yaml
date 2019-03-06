@@ -18,6 +18,10 @@ system:
           command:
             - /airstream-app/liveness_probe.sh
       env:
+      - name: HTTP_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: HTTPS_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: WAVE_USER
         value: "rtandon.analytics@salesforce.com"
       - name: WAVE_ENV
