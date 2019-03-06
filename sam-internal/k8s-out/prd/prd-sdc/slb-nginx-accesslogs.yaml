@@ -39,6 +39,9 @@ spec:
         resources:
           limits:
             memory: 1Gi
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
         volumeMounts:
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
