@@ -4,6 +4,7 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local configs = import "config.jsonnet";
 local old_062_image = !std.objectHas(flowsnake_images.feature_flags, "madkub_077_upgrade");
+local utils = import "util_functions.jsonnet";
 
 configs.deploymentBase("flowsnake") {
   local label_node = self.spec.template.metadata.labels,
@@ -31,6 +32,7 @@ configs.deploymentBase("flowsnake") {
         },
       },
       spec: {
+        hostNetwork: if utils.is_public_cloud(configs.kingdom) then true else false,
         containers: [
           {
             args: [
