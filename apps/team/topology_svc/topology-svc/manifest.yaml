@@ -22,5 +22,5 @@ system:
     function: topology-svc
     slbEnabled: true
     ports:
-      - port: 8080
+      - port: 80
         targetport: 8080
