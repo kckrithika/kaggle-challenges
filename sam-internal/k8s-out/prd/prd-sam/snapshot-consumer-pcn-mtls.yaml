@@ -2,15 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: snapshot-producer-mtls-test
+    name: snapshot-consumer-pcn-mtls
     sam.data.sfdc.net/owner: sam
-  name: snapshot-producer
+  name: snapshot-consumer-pcn-mtls
   namespace: sam-system
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: snapshot-producer
+      name: snapshot-consumer-pcn-mtls
   template:
     metadata:
       annotations:
@@ -19,55 +19,49 @@ spec:
            "certreqs": [
             {
              "cert-type": "client",
-             "kingdom": "cdu",
+             "kingdom": "prd",
              "name": "cert1",
-             "role": "sam-system.snapshot-producer"
+             "role": "sam-system.snapshot-consumer-prod-mtls"
             }
            ]
           }
       labels:
         apptype: control
-        name: snapshot-producer
+        name: snapshot-consumer-pcn-mtls
         sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sam/snapshoter
-        - --config=/config/snapshoter-mtls.json
+        - /sam/snapshotconsumer
+        - --config=/config/snapshot-consumer-pcn-mtls.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --v=4
-        - --alsologtostderr
+        - -v=3
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/sam/hypersam:2633-e508caaf95457f35c52db83edd42ac2586078c24
-        livenessProbe:
-          failureThreshold: 5
-          httpGet:
-            path: /
-            port: 9095
-          initialDelaySeconds: 600
-          periodSeconds: 30
-          timeoutSeconds: 30
-        name: snapshot-producer
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2624-bee71f3d174816e59a880f0e94d79e3479846842
+        name: snapshot-consumer-pcn-mtls
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /config
           name: config
         - mountPath: /data/certs
           name: certs
-        - mountPath: /sfdchosts
-          name: sfdchosts
+        - mountPath: /var/mysqlPwd
+          name: mysql-ssc-pcn
+          readOnly: true
         - mountPath: /cert1
           name: cert1
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.cdu.prod.non-estates.sfdcsd.net:8443
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
@@ -92,7 +86,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         resources: {}
@@ -103,12 +97,12 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
-      hostNetwork: true
+      dnsPolicy: ClusterFirst
       initContainers:
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.cdu.prod.non-estates.sfdcsd.net:8443
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
@@ -131,7 +125,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
@@ -145,24 +139,27 @@ spec:
         - bash
         - -c
         - "set -ex\nchmod 775 -R /data/certs && chown -R 7447:7447 /data/certs \nchmod
-          775 -R /cert1 && chown -R 7447:7447 /cert1\necho \"dummy\"\n"
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657
+          775 -R /cert1 && chown -R 7447:7447 /cert1\n"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673
         imagePullPolicy: Always
         name: permissionsetterinitcontainer
         securityContext:
           runAsNonRoot: false
           runAsUser: 0
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /config
           name: config
         - mountPath: /data/certs
           name: certs
-        - mountPath: /sfdchosts
-          name: sfdchosts
+        - mountPath: /var/mysqlPwd
+          name: mysql-passwords
+          readOnly: true
         - mountPath: /cert1
           name: cert1
       nodeSelector:
-        pool: cdu-sam
+        master: "true"
       volumes:
       - hostPath:
           path: /etc/pki_service
@@ -171,14 +168,18 @@ spec:
           path: /etc/kubernetes
         name: kubeconfig
       - configMap:
-          name: snapshoter-mtls
-        name: config
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /data/certs
         name: certs
       - configMap:
-          name: sfdchosts
-        name: sfdchosts
+          name: snapshot-consumer-pcn-mtls
+        name: config
+      - name: mysql-ssc-pcn
+        secret:
+          defaultMode: 420
+          secretName: mysql-ssc-pcn
       - emptyDir:
           medium: Memory
         name: cert1
