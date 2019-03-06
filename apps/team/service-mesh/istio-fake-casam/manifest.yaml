@@ -10,7 +10,7 @@ system:
     labels:
       app: istio-fake-casam
       disco_dc: prd
-      disco_env: ""
+      disco_env: "stm"
       disco_subenv: ""
       disco_pod: "na34"
       disco_sp: "SP1"
@@ -27,7 +27,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/shipping-service:bazel-monorepo
       env:
       - name: SFDC_ENVIRONMENT
-        value: istio
+        value: stm
       - name: GRPC_PORT
         value: 7443
       - name: JAVA_OPTS
