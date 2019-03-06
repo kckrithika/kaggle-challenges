@@ -172,7 +172,7 @@ spec:
         - mountPath: /data/certs
           name: data-cert
           readOnly: true
-      serviceAccountName: madkub-injector
+      serviceAccountName: madkub-injector-serviceaccount
       volumes:
       - configMap:
           name: madkub-container-spec

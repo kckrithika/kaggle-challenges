@@ -10,7 +10,7 @@ if enabled then
             apiVersion: "v1",
             kind: "ServiceAccount",
             metadata: {
-                name: "spark-operator",
+                name: "spark-operator-serviceaccount",
                 namespace: "flowsnake",
             },
         },
@@ -18,7 +18,7 @@ if enabled then
             apiVersion: "rbac.authorization.k8s.io/v1beta1",
             kind: "ClusterRole",
             metadata: {
-                name: "spark-operator",
+                name: "spark-operator-clusterrole",
             },
             rules: [
                 {
@@ -67,18 +67,18 @@ if enabled then
             apiVersion: "rbac.authorization.k8s.io/v1beta1",
             kind: "ClusterRoleBinding",
             metadata: {
-                name: "spark-operator",
+                name: "spark-operator-clusterrolebinding",
             },
             subjects: [
                 {
                     kind: "ServiceAccount",
-                    name: "spark-operator",
+                    name: "spark-operator-serviceaccount",
                     namespace: "flowsnake",
                 },
             ],
             roleRef: {
               kind: "ClusterRole",
-              name: "spark-operator",
+              name: "spark-operator-clusterrole",
               apiGroup: "rbac.authorization.k8s.io",
             },
         }
