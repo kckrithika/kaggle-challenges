@@ -16,6 +16,8 @@ system:
           value: "DISABLED"
         - name: ENCRYPTION_URL
           value: "DISABLED"
+        - name: ENABLE_METRICS
+          value: "true"
         - name: LBNAME
           value: "searchservers"
         - name: DNS_PODNAME
@@ -34,6 +36,8 @@ system:
           mountPath: /home/sfdc/local-data/data
         - name: solr-log-volume
           mountPath: /home/sfdc-searchserver/logs/solr
+        - name: certs
+          mountPath: /certs
         livenessProbe:
           httpGet:
             path: /ping.jsp
@@ -50,3 +54,6 @@ system:
         - name: solr-log-volume
           hostPath:
             path: /mnt/disks/ssd0/data/logs/solr
+        - name: certs
+          maddogCert:
+            type: server
