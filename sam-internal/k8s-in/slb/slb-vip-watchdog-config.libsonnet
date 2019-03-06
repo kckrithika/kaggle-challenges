@@ -281,6 +281,7 @@ local getVivipsParameter(estateConfig) =
 local globalOptOutVips = [
   // Portal has known issues where page load depends on how responsive DNS lookups are. This can lead to
   // flakiness in VIP watchdog's alerting.
+  // see https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006QrWiIAK/view for more details
   "*slb-portal-service*",
 ];
 
