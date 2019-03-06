@@ -23,7 +23,7 @@ spec:
       - command:
         - /sam/bundlecontroller
         - --config=/config/bundle-controller-config.json
-        - --funnelEndpoint=funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net
+        - --funnelEndpoint=funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443
         env:
         - name: SFDCLOC_PCN_KINGDOM
           value: mvp

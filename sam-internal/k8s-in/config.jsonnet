@@ -71,7 +71,7 @@ local utils = import "util_functions.jsonnet",
     else if utils.is_gia(kingdom) then
         "mandm-funnel-" + kingdom + ".data.sfdc.net:8080"
     else if utils.is_pcn(kingdom) then
-        "funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net"
+        "funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443"
     else
         "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net:80"
     ),

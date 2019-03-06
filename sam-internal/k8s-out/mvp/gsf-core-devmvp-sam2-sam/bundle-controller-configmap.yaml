@@ -4,7 +4,7 @@ data:
     {
       "K4ASecretEnabled": true,
       "checkImageExistsFlag": false,
-      "funnelEndpoint": "funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net",
+      "funnelEndpoint": "funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443",
       "qps": 100,
       "resyncinterval": "60m",
       "statefulAppEnabled": true,
