@@ -4,14 +4,14 @@ system:
     email:
       - moanaserviceseng@salesforce.com
   functions:
-  - name: datapool-test
+  - name: jobcontroller-master
     # Used for PKI:
     identity:
       serviceName: datapool
     count: 1
     containers:
-    - name: datapool-service-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:spark-on-k8s-35-aea1b5d
+    - name: jobcontroller
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:spark-on-k8s-38-6632051
       ports:
       - containerPort: 7020
         name: grpc
@@ -42,7 +42,7 @@ system:
         value: stmfa\..*|moana-driver-master
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
-        value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-spark-on-k8s-2-itest
+        value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-spark-on-k8s-3-itest
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
         value: ''
