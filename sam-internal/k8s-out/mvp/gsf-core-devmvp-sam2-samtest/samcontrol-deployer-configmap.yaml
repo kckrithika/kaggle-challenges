@@ -9,7 +9,7 @@ data:
       "email": false,
       "email-delay": 0,
       "etcd-override": "http://0.0.0.0:2379",
-      "funnelEndpoint": "funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net",
+      "funnelEndpoint": "funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443",
       "max-resource-time": "20m",
       "poll-delay": 30000000000,
       "recipient": "sam@salesforce.com",
