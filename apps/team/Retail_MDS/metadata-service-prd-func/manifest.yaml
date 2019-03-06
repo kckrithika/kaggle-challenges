@@ -12,6 +12,8 @@ system:
       ports:
       - containerPort: 9091
       - containerPort: 15523
+      # Direct gRPC port, exposed for client testing.
+      - containerPort: 7020
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
@@ -52,9 +54,6 @@ system:
       - name: sherpa-h2-tls
         containerPort: 7443
       - containerPort: 15373
-      # plain-text gRPC port, enabled for testing only
-      - containerPort: 7012
-        name: sherpa-h2-plain
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
@@ -132,5 +131,5 @@ system:
     - port: 7443
       targetport: 7443
       # Direct gRPC port, exposed for testing purposes
-    - port: 7012
-      targetport: 7012
+    - port: 7020
+      targetport: 7020
