@@ -36,4 +36,4 @@ spec:
         - containerPort: 10254
           name: metrics
           protocol: TCP
-      serviceAccountName: spark-operator
+      serviceAccountName: spark-operator-serviceaccount

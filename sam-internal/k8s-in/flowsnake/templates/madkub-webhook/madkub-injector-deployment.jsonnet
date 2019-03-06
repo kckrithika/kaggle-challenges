@@ -37,7 +37,7 @@ if enabled then
                 }
             },
             spec: {
-                serviceAccountName: "madkub-injector",
+                serviceAccountName: "madkub-injector-serviceaccount",
                 containers: [
                     {
                         name: "injector",

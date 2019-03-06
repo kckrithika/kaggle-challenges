@@ -162,7 +162,7 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
-      serviceAccountName: madkub-injector
+      serviceAccountName: madkub-injector-serviceaccount
       volumes:
       - configMap:
           name: madkub-container-spec

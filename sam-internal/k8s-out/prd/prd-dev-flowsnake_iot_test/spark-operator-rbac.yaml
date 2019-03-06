@@ -3,12 +3,12 @@ items:
 - apiVersion: v1
   kind: ServiceAccount
   metadata:
-    name: spark-operator
+    name: spark-operator-serviceaccount
     namespace: flowsnake
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
-    name: spark-operator
+    name: spark-operator-clusterrole
   rules:
   - apiGroups:
     - ""
@@ -77,13 +77,13 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
-    name: spark-operator
+    name: spark-operator-clusterrolebinding
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: spark-operator
+    name: spark-operator-clusterrole
   subjects:
   - kind: ServiceAccount
-    name: spark-operator
+    name: spark-operator-serviceaccount
     namespace: flowsnake
 kind: List

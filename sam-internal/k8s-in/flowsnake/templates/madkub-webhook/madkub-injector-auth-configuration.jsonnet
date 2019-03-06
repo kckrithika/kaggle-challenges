@@ -13,14 +13,14 @@ if enabled then
             automountServiceAccountToken: true,
             metadata: {
                 namespace: "flowsnake",
-                name: "madkub-injector",
+                name: "madkub-injector-serviceaccount",
             }
         },
         {
             kind: "ClusterRoleBinding",
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "madkub-injector",
+                name: "madkub-injector-clusterrolebinding",
                 annotations: {
                      "manifestctl.sam.data.sfdc.net/swagger": "disable",
                 },
@@ -34,7 +34,7 @@ if enabled then
                 {
                     kind: "ServiceAccount",
                     namespace: "flowsnake",
-                    name: "madkub-injector",
+                    name: "madkub-injector-serviceaccount",
                 }
             ]
         }

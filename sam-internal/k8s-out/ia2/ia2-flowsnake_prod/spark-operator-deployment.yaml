@@ -30,4 +30,4 @@ spec:
         image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:11
         imagePullPolicy: Always
         name: spark-operator
-      serviceAccountName: spark-operator
+      serviceAccountName: spark-operator-serviceaccount

@@ -34,7 +34,7 @@ if enabled then
                 },
             },
             spec: {
-                serviceAccountName: "spark-operator",
+                serviceAccountName: "spark-operator-serviceaccount",
                 containers: [
                     {
                         name: "spark-operator",
