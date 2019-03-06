@@ -9,7 +9,7 @@ system:
       count: 3
       containers:
         - name: qpid-test-client
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/appscale/qpid-client-test-dev:99f9bf9
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/appscale/qpid-client-test-dev:6b8c05b
           resources:
             limits: { cpu: "8", memory: "2Gi" }
             requests: { cpu: "8", memory: "2Gi" }
