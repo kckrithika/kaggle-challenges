@@ -8,7 +8,7 @@ system:
       containers:
       - name: searchserver
         # image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17565279.443
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17595849.445
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
@@ -16,6 +16,8 @@ system:
           value: "DISABLED"
         - name: ENCRYPTION_URL
           value: "DISABLED"
+        - name: ENABLE_METRICS
+          value: "true"
         - name: LBNAME
           value: "searchservers"
         - name: DNS_PODNAME
@@ -34,6 +36,8 @@ system:
           mountPath: /home/sfdc/local-data/data
         - name: solr-log-volume
           mountPath: /home/sfdc-searchserver/logs/solr
+        - name: certs
+          mountPath: /certs
         livenessProbe:
           httpGet:
             path: /ping.jsp
@@ -50,3 +54,6 @@ system:
         - name: solr-log-volume
           hostPath:
             path: /mnt/disks/ssd0/data/logs/solr
+        - name: certs
+          maddogCert:
+            type: server
