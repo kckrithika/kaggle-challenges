@@ -88,7 +88,7 @@ local nginxContainer = {
         slbconfigs.nginx_logs_volume_mount,
         slbconfigs.slb_volume_mount,
     ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
-};
+} + configs.ipAddressResourceRequest;
 
 // Anti-affinitize the proxy to ipvs and to itself -- the proxy can't run on the same node as ipvs.
 local affinity = {

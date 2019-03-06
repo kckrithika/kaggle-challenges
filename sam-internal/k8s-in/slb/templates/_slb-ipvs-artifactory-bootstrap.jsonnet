@@ -48,7 +48,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                                 value: "1",
                             },
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
                 volumes: [
                     {
