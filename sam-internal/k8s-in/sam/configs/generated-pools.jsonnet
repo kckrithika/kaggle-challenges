@@ -2263,20 +2263,6 @@
     },
     {
       "namespaces": [
-        "legostore",
-        "storage-foundation"
-      ],
-      "access": [
-        "team/LegoStore",
-        "team/Storage_Foundation"
-      ],
-      "controlEstate": "prd-sam_storage",
-      "estate": "prd-sam_cephdev",
-      "kingdom": "prd",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
         "chatbot"
       ],
       "access": [
@@ -2512,48 +2498,6 @@
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_sfstore",
-      "kingdom": "prd",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "sf-store",
-        "storage-foundation"
-      ],
-      "access": [
-        "team/SF_Store",
-        "team/Storage_Foundation"
-      ],
-      "controlEstate": "prd-sam_storage",
-      "estate": "prd-sam_sfstoredev",
-      "kingdom": "prd",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "storage-foundation",
-        "sf-store",
-        "legostore"
-      ],
-      "access": [
-        "team/Storage_Foundation",
-        "team/SF_Store",
-        "team/LegoStore"
-      ],
-      "controlEstate": "prd-sam_storage",
-      "estate": "prd-sam_storage",
-      "kingdom": "prd",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "storage-foundation"
-      ],
-      "access": [
-        "team/Storage_Foundation"
-      ],
-      "controlEstate": "prd-sam_storagedev",
-      "estate": "prd-sam_storagedev",
       "kingdom": "prd",
       "superPod": "None"
     },
