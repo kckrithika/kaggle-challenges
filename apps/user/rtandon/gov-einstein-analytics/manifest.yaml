@@ -32,16 +32,23 @@ system:
         value: "rtandon-wsl.internal.salesforce.com"
       - name: PLSQL_FILE_PATH
         value: "/home/rtandon/Development/scripts/airstream-app/test_data.pls"
-      - name: KRB5_KEYTAB
+      - name: KRB5_KTNAME
         value: "/var/secrets/krb5/gov-analytics-test.keytab"
+      - name: KRB5_CONFIG
+        value: "/var/secrets/krb5/krb5.conf"
+      - name: KRB5CCNAME
+        value: "FILE:/tmp/tgt"
       - name: CONFIG_FILE
         value: "/var/secrets/profile/user-profile.cfg"
       volumeMounts:
       - name: user-profile-test
-        mountPath: /var/secrets/profile
+        mountPath: /var/secrets/profile/user-profile.cfg
         readOnly: true
       - name: krb-keytab-test
-        mountPath: /var/secrets/krb5
+        mountPath: /var/secrets/krb5_keytab/gov-analytics-test.keytab
+        readOnly: true
+      - name: krb-conf-test
+        mountPath: /var/secrets/krb5_conf/krb5.conf
         readOnly: true
       imagePullPolicy: Always
     volumes:
@@ -51,6 +58,9 @@ system:
     - name: krb-keytab-test
       k4aSecret:
         secretName: gov-einstein-analytics-krb-keytab-secret-test
+    - name: krb-conf-test
+      k4aSecret:
+        secretName: gov-einstein-analytics-krb-conf-secret-test
     strategy:
       type: RollingUpdate
       rollingUpdate:
