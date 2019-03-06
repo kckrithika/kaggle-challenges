@@ -28,7 +28,7 @@ if slbconfigs.isSlbEstate && slbflights.slbTCPdumpEnabled then configs.daemonSet
                         volumeMounts: [
                             configs.config_volume_mount,
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
                 volumes: [
                     configs.config_volume("slb-tcpdump-ipvs"),

@@ -47,7 +47,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             slbconfigs.node_name_env,
                             configs.kube_config_env,
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
             } + slbconfigs.getGracePeriod()
               + slbconfigs.slbEstateNodeSelector,

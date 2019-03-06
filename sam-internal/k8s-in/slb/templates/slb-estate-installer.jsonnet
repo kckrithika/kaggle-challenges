@@ -83,7 +83,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                             configs.kube_config_env,
                             slbconfigs.node_name_env,
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
             } + slbconfigs.getGracePeriod()
               + slbconfigs.getDnsPolicy(),

@@ -54,7 +54,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                 memory: "1Gi",
                             },
                         },
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
             }
             + (if slbflights.nginAccesslogsRunInSlbEstate then slbconfigs.slbEstateNodeSelector

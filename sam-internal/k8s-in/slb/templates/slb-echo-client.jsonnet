@@ -50,7 +50,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                         ]),
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
                 nodeSelector: {
                     pool: configs.estate,

@@ -47,7 +47,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                         env: [
                             slbconfigs.node_name_env,
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
                 nodeSelector: {
                     pool: configs.estate,

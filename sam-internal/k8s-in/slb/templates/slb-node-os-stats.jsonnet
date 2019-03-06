@@ -60,7 +60,7 @@ if configs.estate == "prd-sdc" then configs.deploymentBase("slb") {
                         securityContext: {
                             privileged: true,
                         },
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
             } + slbconfigs.getGracePeriod()
               + slbconfigs.getDnsPolicy(),

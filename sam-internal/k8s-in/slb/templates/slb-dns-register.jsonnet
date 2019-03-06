@@ -73,7 +73,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                               slbconfigs.logs_volume_mount,
                                               configs.sfdchosts_volume_mount,
                                           ] + madkub.madkubSlbCertVolumeMounts(certDirs)),
-                                      },
+                                      } + configs.ipAddressResourceRequest,
                                       slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort),
                                       slbshared.slbCleanupConfig,
                                       slbshared.slbLogCleanup,

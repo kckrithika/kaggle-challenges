@@ -66,7 +66,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                 },
                             },
                         ],
-                    },
+                    } + configs.ipAddressResourceRequest,
                 ],
             } + slbconfigs.getGracePeriod()
               + slbconfigs.getDnsPolicy()
