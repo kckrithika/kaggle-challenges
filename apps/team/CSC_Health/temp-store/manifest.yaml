@@ -16,7 +16,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: temp-store
-      image: docker-all/dva/report-collector:3
+      image: docker-all/dva/report-collector:8
       ports:
       - name: provider-https
         containerPort: 8443
@@ -99,6 +99,12 @@ system:
                 "minDelay": 60000,
                 "maxDelay": 120000 },
               { "filter": { "type": "watchdog", "providerId": "search.infrastructure-watchdog-cpt", "trusted": true },
+                "minDelay": 60000,
+                "maxDelay": 120000 },
+              { "filter": { "type": "watchdog", "providerId": "*.infrastructure-watchdog-cpt", "trusted": true },
+                "minDelay": 60000,
+                "maxDelay": 120000 },
+              { "filter": { "type": "watchdog", "providerId": "*.infrastructure-watchdog-CP-health", "trusted": true },
                 "minDelay": 60000,
                 "maxDelay": 120000 },
               { "filter": { "type": "observer", "providerId": "netmgt.nhal_client", "trusted": true },

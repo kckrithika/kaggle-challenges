@@ -19,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: docker-all/dva/report-collector:3
+      image: docker-all/dva/report-collector:8
       ports:
       - name: admin
         containerPort: 8082
@@ -96,7 +96,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: docker-all/dva/report-collector:3
+      image: docker-all/dva/report-collector:8
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
