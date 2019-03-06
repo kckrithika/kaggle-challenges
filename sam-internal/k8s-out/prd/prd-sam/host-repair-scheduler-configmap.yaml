@@ -14,11 +14,17 @@ data:
       "crdNamespace": "sam-system",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "hostRegexWhitelist": [
+        ".*cdg.*",
         ".*dfw.*",
         ".*frf.*",
+        ".*iad.*",
+        ".*ord.*",
+        ".*ph2.*",
         ".*phx.*",
         ".*prd.*",
-        ".*xrd.*"
+        ".*xrd.*",
+        ".*ukb.*",
+        ".*yhu.*"
       ],
       "perEstateRepairFrequency": "30m",
       "perEstateRepairPct": 0.001,
