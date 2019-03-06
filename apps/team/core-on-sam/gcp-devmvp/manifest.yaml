@@ -203,23 +203,11 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: envoy-sidecar
-      command: ["/home/sfdc-sherpa/hot_restarter"]
-      args:
-      - /home/sfdc-sherpa/envoy 
-      - -c
-      - /cyan-config/tls-terminator-config.yaml.template
-      - --restart-epoch 
-      - 0 
-      - --allow-unknown-fields 
-      - --max-stats 
-      - 32768 
-      - --drain-time-s 
-      - 60 
-      - --parent-shutdown-time-s 
-      - 90
-      - --base-id 
-      - 1
-       
+      command: ["/bin/sh", "-c"]
+      args: ["
+      cp /cyan-config/tls-terminator-config.yaml.template /home/sfdc-sherpa/tls-terminator-config.yaml ; 
+      /home/sfdc-sherpa/hot_restarter /home/sfdc-sherpa/envoy -c /home/sfdc-sherpa/tls-terminator-config.yaml --restart-epoch 0 --allow-unknown-fields --max-stats 32768 --drain-time-s 60 --parent-shutdown-time-s 90 --base-id 1
+      "]
       ports:
       - containerPort: 13065
       - containerPort: 15373
