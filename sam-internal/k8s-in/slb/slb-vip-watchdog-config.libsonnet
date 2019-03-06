@@ -278,9 +278,17 @@ local getVivipsParameter(estateConfig) =
     "--veryImportantVips=" + std.join(",", estateConfig.vivips),
   ] else [];
 
+local globalOptOutVips = [
+  // Portal has known issues where page load depends on how responsive DNS lookups are. This can lead to
+  // flakiness in VIP watchdog's alerting.
+  "*slb-portal-service*",
+];
+
 local getSlaOptOutVipsParameter(estateConfig) =
   if std.objectHas(estateConfig, "slaOptOutVips") then [
-    "--slaOptOutVips=" + std.join(",", estateConfig.slaOptOutVips),
+    "--slaOptOutVips=" + std.join(",", estateConfig.slaOptOutVips + globalOptOutVips),
+  ] else if std.length(globalOptOutVips) > 0 then [
+    "--slaOptOutVips=" + std.join(",", globalOptOutVips),
   ] else [];
 
 {
