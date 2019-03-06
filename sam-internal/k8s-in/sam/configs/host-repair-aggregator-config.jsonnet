@@ -14,7 +14,7 @@ std.prune({
           "prd-samtest",
   ] else [
           "cdg-sam",
-          "chx-sam",
+          "cdu-sam",
           "dfw-sam",
           "fra-sam",
           "frf-sam",
@@ -22,6 +22,8 @@ std.prune({
           "hnd-sam",
           "ia2-sam",
           "iad-sam",
+          "lo2-sam",
+          "lo3-sam",
           "ord-sam",
           "par-sam",
           "ph2-sam",

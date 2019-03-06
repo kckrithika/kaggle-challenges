@@ -11,7 +11,7 @@ data:
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "k8sCeListFromDB": [
         "cdg-sam",
-        "chx-sam",
+        "cdu-sam",
         "dfw-sam",
         "fra-sam",
         "frf-sam",
@@ -19,6 +19,8 @@ data:
         "hnd-sam",
         "ia2-sam",
         "iad-sam",
+        "lo2-sam",
+        "lo3-sam",
         "ord-sam",
         "par-sam",
         "ph2-sam",
