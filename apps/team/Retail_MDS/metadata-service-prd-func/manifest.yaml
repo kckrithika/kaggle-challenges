@@ -20,7 +20,7 @@ system:
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
-        value: -Djwt-validation.enabled=false -Djwt-validation.enablement-per-role.app=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+        value: -Djwt-validation.enablement-per-role.app=false -Xmx2G -Xms2G -XX:ParallelGCThreads=8
       resources:
         limits:
           cpu: "4"
@@ -49,8 +49,6 @@ system:
       - --server-ca
       - /server-certs/ca_test/cacerts.pem
       ports:
-      - name: sherpa-h2-plain
-        containerPort: 7012
       - name: sherpa-h2-tls
         containerPort: 7443
       - containerPort: 15373
