@@ -11,7 +11,7 @@ system:
     count: 1
     containers:
     - name: jobcontroller
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:spark-on-k8s-38-6632051
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:spark-on-k8s-42-ea53545
       ports:
       - containerPort: 7020
         name: grpc
