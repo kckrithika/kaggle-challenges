@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: casam-sfproxy-lb
+    pcn: deploy
+    sam_app: devmvp-sfproxy
+  name: casam-sfproxy-lb
+  namespace: core-on-sam
+spec:
+  externalTrafficPolicy: Local
+  ports:
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 12060
+  - name: mtls
+    port: 8443
+    protocol: TCP
+    targetPort: 12060
+  selector:
+    sam_app: devmvp-sfproxy
+  type: LoadBalancer
