@@ -3,7 +3,7 @@ local configs = import "config.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 
-if !(watchdog.watchdog_enabled && std.objectHas(flowsnake_images.feature_flags, "spark_operator")) then
+if !watchdog.watchdog_enabled then
 "SKIP"
 else
 {

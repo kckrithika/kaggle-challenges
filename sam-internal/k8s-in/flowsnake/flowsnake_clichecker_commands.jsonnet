@@ -75,9 +75,9 @@ local build_btrfs_test_commands = if std.objectHas(flowsnake_images.feature_flag
     BtrfsHung: { BtrfsHung: "bash /var/run/check-btrfs/check-btrfs.sh" },
 } else {};
 
-local build_spark_operator_test_commands = if std.objectHas(flowsnake_images.feature_flags, "spark_operator") then {
+local build_spark_operator_test_commands = {
     SparkOperatorTest: { SparkOperatorTest: "/watchdog-spark-operator/check-spark-operator.sh" },
-} else {};
+};
 
 {
     command_sets:: build_canary_commands + build_docker_test_commands + build_btrfs_test_commands + build_spark_operator_test_commands,

@@ -114,7 +114,7 @@ local wave_elt_production = {
             users: ["flowsnake_test.lorrin.nelson"],  # Get yourself a workstation cert and add it here. https://salesforce.quip.com/TkvaAbgSpYF4
         },
     ] else []) +
-    (if watchdog.watchdog_enabled && std.objectHas(flowsnake_images.feature_flags, "spark_operator") then [
+    (if watchdog.watchdog_enabled then [
         # Flowsnake watchdog continuous synthetic testing of Spark operator
         {
             owner_name: "Flowsnake",
