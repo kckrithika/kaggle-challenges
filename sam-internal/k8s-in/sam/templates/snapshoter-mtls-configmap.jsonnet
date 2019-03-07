@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 if samfeatureflags.kafkaProducer then {
     kind: "ConfigMap",
@@ -10,6 +11,6 @@ if samfeatureflags.kafkaProducer then {
         labels: {} + configs.ownerLabel.sam,
     },
     data: {
-        "snapshoter-mtls.json": std.toString(import "configs/snapshoter-mtls-config.jsonnet"),
+        "snapshoter-mtls.json": "" + (if utils.is_pcn(configs.kingdom) then std.toString(import "configs/snapshoter-pcn-config.jsonnet") else std.toString(import "configs/snapshoter-mtls-config.jsonnet")),
     },
 } else "SKIP"

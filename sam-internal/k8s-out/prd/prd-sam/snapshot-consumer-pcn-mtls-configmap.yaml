@@ -1,0 +1,28 @@
+apiVersion: v1
+data:
+  snapshot-consumer-pcn-mtls.json: |-
+    {
+      "caFile": "/etc/pki_service/ca/cabundle.pem",
+      "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "clientCertFile": "/cert1/client/certificates/client.pem",
+      "clientKeyFile": "/cert1/client/keys/client-key.pem",
+      "consumeTableName": "consume",
+      "dbHostname": "mysql-inmem-0.mysql-inmem-service.sam-system",
+      "dbPasswordFile": "/var/mysqlPwd/ssc-pcn",
+      "dbUsername": "ssc-pcn",
+      "enableKafkaClientAuth": true,
+      "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
+      "k8sResourceDbName": "sam_kube_resource",
+      "k8sResourceTableName": "k8s_resource",
+      "kafkaClientId": "snapshot-consumer-prd",
+      "kafkaConsumerEndpoint": "ajna0-brokeragg1-0-prd.data.sfdc.net:9093",
+      "kafkaTopics": "sfdc.test.sam__gcp.us-central1.core.ajnalocal1__resourcestatus",
+      "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: sam
+  name: snapshot-consumer-pcn-mtls
+  namespace: sam-system

@@ -48,12 +48,12 @@ spec:
           name: maddog-certs
         - mountPath: /kubeconfig
           name: kubeconfig
-        - mountPath: /sfdchosts
-          name: sfdchosts
         - mountPath: /config
           name: config
         - mountPath: /data/certs
           name: certs
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /cert1
           name: cert1
       - args:
@@ -145,12 +145,12 @@ spec:
           runAsNonRoot: false
           runAsUser: 0
         volumeMounts:
-        - mountPath: /sfdchosts
-          name: sfdchosts
         - mountPath: /config
           name: config
         - mountPath: /data/certs
           name: certs
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /cert1
           name: cert1
       nodeSelector:
@@ -163,14 +163,14 @@ spec:
           path: /etc/kubernetes
         name: kubeconfig
       - configMap:
-          name: sfdchosts
-        name: sfdchosts
+          name: snapshoter-mtls
+        name: config
       - hostPath:
           path: /data/certs
         name: certs
       - configMap:
-          name: snapshoter-mtls
-        name: config
+          name: sfdchosts
+        name: sfdchosts
       - emptyDir:
           medium: Memory
         name: cert1
