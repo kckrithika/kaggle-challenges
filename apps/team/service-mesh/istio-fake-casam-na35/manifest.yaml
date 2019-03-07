@@ -69,7 +69,7 @@ system:
 
   loadbalancers:
     - lbname: app
-      function: istio-fake-casam
+      function: istio-fake-casam-na35
       ports:
         - lbtype: dsr
           port: 7443
