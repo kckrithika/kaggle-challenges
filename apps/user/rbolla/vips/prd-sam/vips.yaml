@@ -10,5 +10,5 @@
      tls: true
      healthport: 8445
      healthpath: /ping
-     healthprotocol: "https"
+     healthprotocol: http
      lbalgorithm: roundrobin
