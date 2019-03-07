@@ -31,10 +31,10 @@ system:
         secretName: rsui-consumer-secret
     - name: encryption-key1
       k4aSecret:
-        secretName: rsui-encryption-key1
+        secretName: rsui-encryption-key3
     - name: encryption-key2
       k4aSecret:
-        secretName: rsui-encryption-key2
+        secretName: rsui-encryption-key1
 
     containers:
     - name: retail-setup
@@ -107,7 +107,7 @@ system:
       - name: OAUTH_CONSUMER_SECRET_FILE_PATH
         value: secrets/consumer-secret/rsui-consumer-secret.key
       - name: SECURITY_ENCRYPTION_KEY1_PATH
-        value: secrets/encryption-key1/rsui-encryption-key1.key
+        value: secrets/encryption-key1/rsui-encryption-key3.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
         value: secrets/encryption-key2/rsui-encryption-key1.key
       - name: GATER_EMBEDDED_MODE
