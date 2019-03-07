@@ -22,6 +22,9 @@ if casamSFProxyLoadBalancerEnabled then {
     # See https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
     externalTrafficPolicy: "Local",
 
+    # Manually-provisioned static IP ("casam-sfproxy"). See https://console.cloud.google.com/networking/addresses/list?project=gsf-core-devmvp-sam2&pli=1
+    loadBalancerIP: "35.208.225.34",
+
     ports: [
     # sfproxy isn't currently configured to listen for plaintext http requests.
     # Disabled until https://git.soma.salesforce.com/frontend-gateway/sfproxy/blob/master/config/core-on-sam/sfproxy-config.yaml.template#L33
