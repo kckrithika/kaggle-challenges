@@ -104,7 +104,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
                 madkub_077_upgrade: "deploy-hand-in-hand-with-madkub_image_tag-change",
-                impersonation_proxy: "verified-in-prd-*",
                 slb_ingress: "unverified",
                 spark_op_metrics: "enabled",
             },
@@ -147,7 +146,6 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
-                impersonation_proxy: "verified-in-prd-*",
                 madkub_077_upgrade: "",
             },
             version_mapping: {
@@ -177,7 +175,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                impersonation_proxy: "verified-in-prd-*",
                 madkub_077_upgrade: "",
             },
             version_mapping: {
@@ -206,7 +203,6 @@ local utils = import "util_functions.jsonnet";
             eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
 
             feature_flags: {
-                impersonation_proxy: "verified-in-prd-*",
             },
             version_mapping: {
                 main: {

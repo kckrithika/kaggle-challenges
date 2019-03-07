@@ -1,0 +1,210 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: impersonation-proxy
+  name: impersonation-proxy
+  namespace: flowsnake
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      apptype: control
+      name: impersonation-proxy
+  template:
+    metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
+          "yul", "name": "impersonation-proxy", "role": "flowsnake.impersonation-proxy",
+          "san": ["kubernetes-api-flowsnake-yul.slb.sfdc.net", "kubernetes-api.flowsnake.localhost.mesh.force.com"]}]}'
+      labels:
+        apptype: control
+        flowsnakeOwner: dva-transform
+        flowsnakeRole: ImpersonationProxy
+        name: impersonation-proxy
+      namespace: flowsnake
+    spec:
+      automountServiceAccountToken: true
+      containers:
+      - env:
+        - name: PROXY_HOST
+          value: impersonation-proxy.flowsnake.svc.cluster.local
+        - name: PROXY_PORT
+          value: "443"
+        - name: PROXY_CERT
+          value: /certs-nginx-server/server/certificates/server.pem
+        - name: PROXY_KEY
+          value: /certs-nginx-server/server/keys/server-key.pem
+        - name: TARGET_HOST
+          value: flowsnake-master-prod.sfdc-role
+        - name: TARGET_PORT
+          value: "443"
+        - name: CA_CERT
+          value: /certs-nginx-server/ca.pem
+        - name: SERVICE_ACCOUNT_TOKEN_FILE
+          value: /var/run/secrets/kubernetes.io/serviceaccount/token
+        image: ops0-artifactrepo1-0-yul.data.sfdc.net/dva/flowsnake-kubernetes-impersonation-proxy:6-9ac63c5dfed1d4683add1289f98025d3226febd4
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 443
+            scheme: HTTPS
+          timeoutSeconds: 10
+        name: nginx
+        ports:
+        - containerPort: 443
+          hostPort: 8444
+          name: https-proxy
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 443
+            scheme: HTTPS
+          timeoutSeconds: 10
+        resources:
+          limits:
+            memory: 270Mi
+          requests:
+            cpu: 100m
+            memory: 70Mi
+        volumeMounts:
+        - mountPath: /certs-nginx-server
+          name: datacerts
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint
+        - https://10.254.208.254:32007
+        - --maddog-endpoint
+        - https://all.pkicontroller.pki.blank.yul.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca
+        - /etc/pki_service/ca/security-ca.pem
+        - --madkub-server-ca
+        - /etc/pki_service/ca/cacerts.pem
+        - --token-folder
+        - /tokens
+        - --kingdom
+        - yul
+        - --superpod
+        - None
+        - --estate
+        - yul-flowsnake_prod
+        - --refresher
+        - --run-init-for-refresher-mode
+        - --cert-folders
+        - impersonation-proxy:/certs-nginx-server
+        - --funnel-endpoint
+        - http://ajna0-funnel1-0-yul.data.sfdc.net:80
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000083-127f2ff0
+        name: sam-madkub-integration-refresher
+        resources: {}
+        volumeMounts:
+        - mountPath: /certs-nginx-server
+          name: datacerts
+        - mountPath: /tokens
+          name: tokens
+        - mountPath: /etc/pki_service/ca
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+          readOnly: true
+      hostAliases:
+      - hostnames:
+        - flowsnake-master-prod.sfdc-role
+        ip: 10.254.208.1
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint
+        - https://10.254.208.254:32007
+        - --maddog-endpoint
+        - https://all.pkicontroller.pki.blank.yul.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca
+        - /etc/pki_service/ca/security-ca.pem
+        - --madkub-server-ca
+        - /etc/pki_service/ca/cacerts.pem
+        - --token-folder
+        - /tokens
+        - --kingdom
+        - yul
+        - --superpod
+        - None
+        - --estate
+        - yul-flowsnake_prod
+        - --cert-folders
+        - impersonation-proxy:/certs-nginx-server
+        - --funnel-endpoint
+        - http://ajna0-funnel1-0-yul.data.sfdc.net:80
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000083-127f2ff0
+        name: sam-madkub-integration-init
+        resources: {}
+        volumeMounts:
+        - mountPath: /certs-nginx-server
+          name: datacerts
+        - mountPath: /tokens
+          name: tokens
+        - mountPath: /etc/pki_service/ca
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+          readOnly: true
+      serviceAccountName: flowsnake-impersonation-proxy
+      volumes:
+      - emptyDir:
+          medium: Memory
+        name: datacerts
+      - emptyDir:
+          medium: Memory
+        name: tokens
+      - hostPath:
+          path: /etc/pki_service/ca
+        name: certificate-authority
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/certificates
+        name: client-certificate
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/keys
+        name: client-key
