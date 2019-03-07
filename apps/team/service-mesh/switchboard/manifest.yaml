@@ -60,6 +60,7 @@ system:
           port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.5
       args:
@@ -97,6 +98,7 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
     volumes:
     - name: envoy-config-volume
       emptyDir: {}
