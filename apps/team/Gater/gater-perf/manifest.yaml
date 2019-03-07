@@ -13,7 +13,7 @@ system:
       - --gater.client-mode=THRIFT
       - --gater.perf.gate-names=com.salesforce.gater.alwaysEnabled
       - --gater.thrift.service.destination=/s/gater-mesh
-      - --gater.thrift.service.destination=/s/gater-mesh-metadata
+      - --gater.thrift.metadata.destination=/s/gater-mesh-metadata
       - --metrics.collectionInterval=60
       
       ports:
