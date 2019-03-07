@@ -45,7 +45,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0001009-1b641ae3
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/hypersdn:2080-75863b710c5ead37b4ebfb9bf539ba80e7cf32ec
         livenessProbe:
           httpGet:
             path: /liveness-probe
