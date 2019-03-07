@@ -33,22 +33,22 @@ system:
       - name: PLSQL_FILE_PATH
         value: "/home/rtandon/Development/scripts/airstream-app/test_data.pls"
       - name: KRB5_KTNAME
-        value: "/var/secrets/krb5/gov-analytics-test.keytab"
+        value: "/var/secrets/krb5_keytab/gov-analytics-test.keytab"
       - name: KRB5_CONFIG
-        value: "/var/secrets/krb5/krb5.conf"
+        value: "/var/secrets/krb5_conf/krb5.conf"
       - name: KRB5CCNAME
         value: "FILE:/tmp/tgt"
       - name: CONFIG_FILE
         value: "/var/secrets/profile/user-profile.cfg"
       volumeMounts:
       - name: user-profile-test
-        mountPath: /var/secrets/profile/user-profile.cfg
+        mountPath: /var/secrets/profile
         readOnly: true
       - name: krb-keytab-test
-        mountPath: /var/secrets/krb5_keytab/gov-analytics-test.keytab
+        mountPath: /var/secrets/krb5_keytab
         readOnly: true
       - name: krb-conf-test
-        mountPath: /var/secrets/krb5_conf/krb5.conf
+        mountPath: /var/secrets/krb5_conf
         readOnly: true
       imagePullPolicy: Always
     volumes:
