@@ -6,9 +6,9 @@
   ports:
    - port: 8443
      targetport: 8443
-     lbtype: http
+     lbtype: https
      tls: true
      healthport: 8445
      healthpath: /ping
-     healthprotocol: http
+     healthprotocol: "https"
      lbalgorithm: roundrobin
