@@ -2,21 +2,7 @@
   customlbname: ops0-authval1-0-prd
   servers:
    - ops0-authval1-1-prd.eng.sfdc.net
-   - ops0-authval2-1-prd.eng.sfdc.net
-  ports:
-   - port: 8443
-     targetport: 8443
-     lbtype: tcp
-     healthport: 8445
-     healthpath: /ping
-     healthprotocol: http
-     lbalgorithm: roundrobin
-
-- lbname: ops0-authval1-0-xrd
-  customlbname: ops0-authval1-0-xrd
-  servers:
-   - ops0-authval1-1-xrd.eng.sfdc.net
-   - ops0-authval2-1-xrd.eng.sfdc.net
+   - ops0-authval2-1-prd.eng.sfdc.net 
   ports:
    - port: 8443
      targetport: 8443
