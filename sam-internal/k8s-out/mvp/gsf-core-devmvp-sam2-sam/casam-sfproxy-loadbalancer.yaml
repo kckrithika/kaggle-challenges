@@ -9,7 +9,7 @@ metadata:
   namespace: core-on-sam
 spec:
   externalTrafficPolicy: Local
-  loadBalancerIP: 35.208.225.34
+  loadBalancerIP: 35.193.207.80
   ports:
   - name: https
     port: 443
