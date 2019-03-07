@@ -144,4 +144,4 @@ system:
     slbenabled: true
     ports:
       - port: 8093
-        targetport: 8080
+        targetport: 7020
