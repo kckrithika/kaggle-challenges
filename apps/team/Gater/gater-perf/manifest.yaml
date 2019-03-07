@@ -15,6 +15,7 @@ system:
       - --gater.thrift.service.destination=/s/gater-mesh
       - --gater.thrift.metadata.destination=/s/gater-mesh-metadata
       - --metrics.collectionInterval=60
+      - --endpoints.bindings.names=/s/gater-mesh,/s/gater-mesh-metadata
       
       ports:
       - containerPort: 8080
