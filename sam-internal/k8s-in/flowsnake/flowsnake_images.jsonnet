@@ -104,7 +104,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
                 madkub_077_upgrade: "deploy-hand-in-hand-with-madkub_image_tag-change",
-                dynamic_watchdogs: "verified in test",
                 impersonation_proxy: "verified-in-prd-*",
                 slb_ingress: "unverified",
                 madkub_injector: "enabled",
@@ -150,7 +149,6 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
-                dynamic_watchdogs: "verified in dev",
                 impersonation_proxy: "verified-in-prd-*",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
@@ -183,7 +181,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                dynamic_watchdogs: "verified in dev",
                 impersonation_proxy: "verified-in-prd-*",
                 madkub_injector: "enabled",
                 spark_operator: "enabled",
@@ -215,7 +212,6 @@ local utils = import "util_functions.jsonnet";
             eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
 
             feature_flags: {
-                dynamic_watchdogs: "yes",
                 impersonation_proxy: "verified-in-prd-*",
                 madkub_injector: "enabled",
                 spark_operator: "verified-in-prd-*",
@@ -258,7 +254,6 @@ local utils = import "util_functions.jsonnet";
            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
 
            feature_flags: {
-               dynamic_watchdogs: "yes",
            },
            version_mapping: {
                 main: {

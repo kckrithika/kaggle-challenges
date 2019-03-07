@@ -9,7 +9,7 @@ local watchdog = import "watchdog.jsonnet";
 local enabled_canary_versions = [ ver for ver in watchdog.watchdog_canary_versions if std.objectHas(flowsnake_images.version_mapping.main, ver)];
 local cert_name = "watchdogcanarycerts";
 
-if ! watchdog.watchdog_enabled || ! std.objectHas(flowsnake_images.feature_flags, "dynamic_watchdogs") || std.length(enabled_canary_versions) < 1 then
+if ! watchdog.watchdog_enabled || std.length(enabled_canary_versions) < 1 then
 "SKIP"
 else
 {
