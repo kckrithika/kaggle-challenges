@@ -8,19 +8,19 @@ system:
     count: 2
     containers:
     - name: email-report
-      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/infra_analytics/email_reporter_container:centOs_7
+      image:  ops0-artifactrepo2-0-prd.data.sfdc.net/infra_analytics/email_reporter_container:centOs_7
       ports:
       - containerPort: 9090
       livenessProbe:
         httpGet:
           path: /
           port: 9090
-    loadbalancers:
-    - lbname: samhellolb
-      function: default
-      slbenabled: true
-      ports:
-        - port: 9090
-          targetport: 9090
-          lbtype: tcp
+  loadbalancers:
+  - lbname: emailreportlb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 9090
+        targetport: 9090
+        lbtype: tcp
   
