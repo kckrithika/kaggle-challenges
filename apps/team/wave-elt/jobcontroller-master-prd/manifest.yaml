@@ -42,7 +42,7 @@ system:
         value: stmfa\..*|moana-driver-master
 
       - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
-        value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-spark-on-k8s-3-itest
+        value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-spark-on-k8s-4-itest
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
         value: ''
