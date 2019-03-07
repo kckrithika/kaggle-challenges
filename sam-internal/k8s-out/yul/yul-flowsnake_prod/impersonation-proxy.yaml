@@ -96,6 +96,8 @@ spec:
         - --run-init-for-refresher-mode
         - --cert-folders
         - impersonation-proxy:/certs-nginx-server
+        - --ca-folder
+        - /etc/pki_service/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-yul.data.sfdc.net:80
         env:
@@ -156,6 +158,8 @@ spec:
         - yul-flowsnake_prod
         - --cert-folders
         - impersonation-proxy:/certs-nginx-server
+        - --ca-folder
+        - /etc/pki_service/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-yul.data.sfdc.net:80
         env:

@@ -33,7 +33,7 @@ local utils = import "util_functions.jsonnet";
                 impersonation_proxy_image_tag: "6-9ac63c5dfed1d4683add1289f98025d3226febd4",
                 logloader_image_tag: "468",
                 logstash_image_tag: "468",
-                madkub_image_tag: "1.0.0-0000062-dca2d8d1",  # Don't forget to fix the cli params when this is changed
+                madkub_image_tag: "1.0.0-0000081-ddcaa288",
                 nodeMonitor_image_tag: 662,
                 watchdog_image_tag: "sam-0002015-fdb18963",
                 watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
@@ -71,7 +71,7 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                # glok_retired: "foo", # W-4959832 (Remove logging to GloK and Glok/ZK/ES/Kibana/logloader) https://gus.my.salesforce.com/a07B0000004wnlxIAA
+                # glok_retired: "foo", # W-4959832 (Remove logging to GloK and Glok/ZK/ES/Kibana/logloader) https:#gus.my.salesforce.com/a07B0000004wnlxIAA
             },
             version_mapping: {
                 main: {
@@ -85,10 +85,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
-
-            // image tag overrides go here
-            madkub_image_tag: "1.0.0-0000081-ddcaa288",
-
+            # image tag overrides go here
             cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
             testData_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
@@ -103,7 +100,6 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
-                madkub_077_upgrade: "deploy-hand-in-hand-with-madkub_image_tag-change",
                 slb_ingress: "unverified",
                 spark_op_metrics: "enabled",
             },
@@ -139,14 +135,11 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
-
-            // image tag overrides go here
-            madkub_image_tag: "1.0.0-0000081-ddcaa288",
+            # image tag overrides go here
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
-                madkub_077_upgrade: "",
             },
             version_mapping: {
                 main: {
@@ -169,13 +162,10 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
         "3": self.default_image_tags {
-
-            // image tag overrides go here
-            madkub_image_tag: "1.0.0-0000081-ddcaa288",
+            # image tag overrides go here
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                madkub_077_upgrade: "",
             },
             version_mapping: {
                 main: {
@@ -197,12 +187,13 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Remaining production fleets
         "4": self.default_image_tags {
-            // image tag overrides go here
+            # image tag overrides go here
             cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
             eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
 
             feature_flags: {
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
             },
             version_mapping: {
                 main: {
@@ -218,7 +209,7 @@ local utils = import "util_functions.jsonnet";
         ### A very special phase 4 for IAD and ORD that preserves access to old versions used by CRE.
         ### TODO:  Remove when CRE is migrated to 0.12.2+
         "4-iad-ord": self["4"] {
-            //Inherit image tag overrides and feature flags from regular phase 4. Only version_mapping is different.
+            # Inherit image tag overrides and feature flags from regular phase 4. Only version_mapping is different.
             version_mapping: {
                 main: {
                   "0.10.0": 662,
@@ -241,8 +232,8 @@ local utils = import "util_functions.jsonnet";
            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
 
-           feature_flags: {
-           },
+           # Inherit feature flags from regular phase 4.
+
            version_mapping: {
                 main: {
                   "0.12.5": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
@@ -275,7 +266,7 @@ local utils = import "util_functions.jsonnet";
         ),
 
     # These are the images used by the templates
-    # Only change when image name change from https://git.soma.salesforce.com/dva-transformation/flowsnake-platform
+    # Only change when image name change from https:#git.soma.salesforce.com/dva-transformation/flowsnake-platform
     cert_secretizer: flowsnakeconfig.strata_registry + "/flowsnake-cert-secretizer:" + $.per_phase[$.phase].cert_secretizer_image_tag,
     es: flowsnakeconfig.strata_registry + "/flowsnake-elasticsearch:" + $.per_phase[$.phase].es_image_tag,
     fleet_service: flowsnakeconfig.strata_registry + "/flowsnake-fleet-service:" + $.per_phase[$.phase].fleetService_image_tag,

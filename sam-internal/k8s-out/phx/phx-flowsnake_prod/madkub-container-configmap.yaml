@@ -5,12 +5,12 @@ data:
     "--maddog-server-ca", "/etc/pki_service/ca/security-ca.pem", "--madkub-server-ca",
     "/etc/pki_service/ca/cacerts.pem", "--token-folder", "/tokens", "--kingdom", "phx",
     "--superpod", "None", "--estate", "phx-flowsnake_prod", "--cert-folders", "usercerts:/certs",
-    "--funnel-endpoint", "http://ajna0-funnel1-0-phx.data.sfdc.net:80"], "env": [{"name":
-    "MADKUB_NODENAME", "valueFrom": {"fieldRef": {"apiVersion": "v1", "fieldPath":
-    "spec.nodeName"}}}, {"name": "MADKUB_NAME", "valueFrom": {"fieldRef": {"apiVersion":
-    "v1", "fieldPath": "metadata.name"}}}, {"name": "MADKUB_NAMESPACE", "valueFrom":
-    {"fieldRef": {"apiVersion": "v1", "fieldPath": "metadata.namespace"}}}], "image":
-    "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1",
+    "--ca-folder", "/etc/pki_service/ca", "--funnel-endpoint", "http://ajna0-funnel1-0-phx.data.sfdc.net:80"],
+    "env": [{"name": "MADKUB_NODENAME", "valueFrom": {"fieldRef": {"apiVersion": "v1",
+    "fieldPath": "spec.nodeName"}}}, {"name": "MADKUB_NAME", "valueFrom": {"fieldRef":
+    {"apiVersion": "v1", "fieldPath": "metadata.name"}}}, {"name": "MADKUB_NAMESPACE",
+    "valueFrom": {"fieldRef": {"apiVersion": "v1", "fieldPath": "metadata.namespace"}}}],
+    "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288",
     "name": "sam-madkub-integration-init", "resources": { }, "volumeMounts": [{"mountPath":
     "/certs", "name": "datacerts"}, {"mountPath": "/tokens", "name": "tokens"}, {"mountPath":
     "/etc/pki_service/ca", "name": "certificate-authority", "readOnly": true}, {"mountPath":

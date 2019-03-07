@@ -71,6 +71,8 @@ spec:
         - --run-init-for-refresher-mode
         - --cert-folders
         - madkubinjector:/certs
+        - --ca-folder
+        - /etc/pki_service/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-syd.data.sfdc.net:80
         env:
@@ -127,6 +129,8 @@ spec:
         - syd-flowsnake_prod
         - --cert-folders
         - madkubinjector:/certs
+        - --ca-folder
+        - /etc/pki_service/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-syd.data.sfdc.net:80
         env:

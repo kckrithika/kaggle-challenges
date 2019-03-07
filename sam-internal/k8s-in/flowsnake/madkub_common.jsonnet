@@ -3,7 +3,6 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-local old_062_image = !std.objectHas(flowsnake_images.feature_flags, "madkub_077_upgrade");
 
 # Helper function used to process the cert_names argument used by multiple functions in this file.
 #
@@ -146,11 +145,10 @@ local refresher_container(cert_names) = {
         "--refresher",
         "--run-init-for-refresher-mode",
     ] + std.flattenArrays([['--cert-folders', '%s:%s' % [cert.name, cert.dir]] for cert in certs]) +
-    (if old_062_image then [
-    ] else [
+    [
        "--ca-folder",
        if flowsnake_config.is_minikube then "/maddog-onebox/ca" else "/etc/pki_service/ca",
-        ]) +
+    ] +
     (if !flowsnake_config.is_minikube then [
         "--funnel-endpoint",
         flowsnake_config.funnel_endpoint,
@@ -229,11 +227,10 @@ local init_container(cert_names) = {
         "--estate",
         estate,
     ] + std.flattenArrays([['--cert-folders', '%s:%s' % [cert.name, cert.dir]] for cert in certs]) +
-    (if old_062_image then [
-    ] else [
+    [
        "--ca-folder",
        if flowsnake_config.is_minikube then "/maddog-onebox/ca" else "/etc/pki_service/ca",
-     ]) +
+    ] +
     (if !flowsnake_config.is_minikube then [
         "--funnel-endpoint",
         flowsnake_config.funnel_endpoint,
