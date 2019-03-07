@@ -38,6 +38,8 @@ system:
         value: "/var/secrets/krb5_conf/krb5.conf"
       - name: KRB5CCNAME
         value: "FILE:/tmp/tgt"
+      - name: KRB5_PRINCIPAL
+        value: "rtandon@INTERNAL.SALESFORCE.COM"
       - name: CONFIG_FILE
         value: "/var/secrets/profile/user-profile.cfg"
       volumeMounts:
