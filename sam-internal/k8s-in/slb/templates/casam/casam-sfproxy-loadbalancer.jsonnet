@@ -23,7 +23,7 @@ if casamSFProxyLoadBalancerEnabled then {
     externalTrafficPolicy: "Local",
 
     # Manually-provisioned static IP ("casam-sfproxy"). See https://console.cloud.google.com/networking/addresses/list?project=gsf-core-devmvp-sam2&pli=1
-    loadBalancerIP: "35.208.225.34",
+    loadBalancerIP: "35.193.207.80",
 
     ports: [
     # sfproxy isn't currently configured to listen for plaintext http requests.
