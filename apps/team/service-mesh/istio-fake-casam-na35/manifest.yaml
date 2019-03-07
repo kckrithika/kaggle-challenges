@@ -6,6 +6,8 @@ apiVersion: v1
 system:
   functions:
   - name: istio-fake-casam-na35
+    identity:
+      serviceName: app
     count: 1
     labels:
       disco_dc: prd
@@ -68,7 +70,7 @@ system:
         type: server
 
   loadbalancers:
-    - lbname: app
+    - lbname: app-na35
       function: istio-fake-casam-na35
       ports:
         - lbtype: dsr
