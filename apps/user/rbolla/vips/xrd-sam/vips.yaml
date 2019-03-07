@@ -6,5 +6,5 @@
   ports:
    - port: 8443
      targetport: 8443
-     lbtype: https
+     lbtype: http
      lbalogrithm: roundrobin
