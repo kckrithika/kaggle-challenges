@@ -1,8 +1,7 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
-local enabled = std.objectHas(flowsnake_images.feature_flags, "madkub_injector");
 
-if enabled then
+if flowsnake_config.madkub_enabled then
 {
     apiVersion: "admissionregistration.k8s.io/v1beta1",
     kind: "MutatingWebhookConfiguration",

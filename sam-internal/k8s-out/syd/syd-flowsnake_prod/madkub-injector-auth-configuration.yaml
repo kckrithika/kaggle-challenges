@@ -1,0 +1,24 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  automountServiceAccountToken: true
+  kind: ServiceAccount
+  metadata:
+    name: madkub-injector-serviceaccount
+    namespace: flowsnake
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: madkub-injector-clusterrolebinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: view
+  subjects:
+  - kind: ServiceAccount
+    name: madkub-injector-serviceaccount
+    namespace: flowsnake
+kind: List
+metadata: {}
