@@ -8,6 +8,16 @@ local utils = import "util_functions.jsonnet";
 
 {
   slbCanaryBaseService(canaryName, portConfigurations, serviceName=canaryName, vipName=canaryName, cnames=[]):: (
+    # XRD is currently bumping into peering prefix limits (60) that restrict the number of distinct VIPs
+    # we can serve before everything blows up. Disable canary VIPs in XRD until we can advertise more VIPs.
+    # See https://computecloud.slack.com/archives/G340CE86R/p1551987919271500.
+    local slbAnnotations = if configs.kingdom != "xrd" || serviceName == "slb-portal-service" then {
+        annotations: {
+          "slb.sfdc.net/name": vipName,
+          "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(portConfigurations),
+        } + utils.fieldIfNonEmpty("slb.sfdc.net/cnames", cnames, std.manifestJsonEx(cnames, " ")),
+    } else {};
+
     // Confirm the format of the cnames field -- it should be an array of objects containing cname: string pairs.
     if std.assertEqual("array", std.type(cnames)) &&
        std.length(cnames) == 0 || (
@@ -24,11 +34,7 @@ local utils = import "util_functions.jsonnet";
         labels: {
           app: serviceName,
         } + configs.ownerLabel.slb,
-        annotations: {
-          "slb.sfdc.net/name": vipName,
-          "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(portConfigurations),
-        } + utils.fieldIfNonEmpty("slb.sfdc.net/cnames", cnames, std.manifestJsonEx(cnames, " ")),
-      },
+      } + slbAnnotations,
 
       spec: {
         ports: [
