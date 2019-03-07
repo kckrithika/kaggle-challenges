@@ -1,4 +1,5 @@
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local flowsnake_config = import "flowsnake_config.jsonnet";
+if flowsnake_config.madkub_enabled then
 {
     apiVersion: "v1",
     kind: "Service",
@@ -22,8 +23,8 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             },
         ],
     } +
-    (if flowsnakeconfig.is_minikube then {} else { clusterIP: "10.254.208.254" }),
+    (if flowsnake_config.is_minikube then {} else { clusterIP: "10.254.208.254" }),
     status: {
         loadBalancer: {},
     },
-}
+} else "SKIP"
