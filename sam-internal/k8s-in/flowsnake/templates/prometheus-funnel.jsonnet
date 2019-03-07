@@ -72,9 +72,9 @@ configs.deploymentBase("flowsnake") {
             args: [
               "--serviceName=flowsnake",
               "--subserviceName=rob_args_test",
-              "--default=datacenter:" + kingdom,
-              "--default=estate:" + estate,
-              "--default=superpod:NONE",
+              "--tagDefault=datacenter:" + kingdom,
+              "--tagDefault=estate:" + estate,
+              "--tagDefault=superpod:NONE",
               "--batch_size=512",
             ],
             image: flowsnake_images.funnel_writer,
