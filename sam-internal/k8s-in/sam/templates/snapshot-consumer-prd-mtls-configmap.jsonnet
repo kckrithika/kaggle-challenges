@@ -5,11 +5,11 @@ if samfeatureflags.kafkaConsumer then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
-        name: "snapshot-consumer-pcn-mtls",
+        name: "snapshot-consumer-prd-mtls",
         namespace: "sam-system",
         labels: {} + configs.ownerLabel.sam,
     },
     data: {
-        "snapshot-consumer-pcn-mtls.json": std.toString(import "configs/snapshot-consumer-pcn-mtls-config.jsonnet"),
+        "snapshot-consumer-prd-mtls.json": std.toString(import "configs/snapshot-consumer-prd-mtls-config.jsonnet"),
     },
 } else "SKIP"
