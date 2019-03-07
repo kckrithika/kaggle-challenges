@@ -162,8 +162,8 @@ spec:
         - --enableCheckAntiDdos=true
         - --dropEntry=1
         - --dropPacket=1
-        - --iprange.InternalIpRange=10.222.242.128/26,10.208.104.0/22
         - --metricsEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
+        - --iprange.InternalIpRange=10.222.242.128/26,10.208.104.0/22
         - --client.socketDir=/host/data/slb/config/slb-ipvs
         - --client.dialSocket=true
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2072-3b46cf055ea8bea82bf786dcad4c9f2d53db7932

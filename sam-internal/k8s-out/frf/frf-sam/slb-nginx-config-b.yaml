@@ -81,6 +81,7 @@ spec:
         - --client.serverInterface=lo
         - --hostnameOverride=$(NODE_NAME)
         - --httpconfig.trustedProxies=0.0.0.0/0
+        - --iprange.InternalIpRange=10.248.195.192/26,10.214.20.0/22
         - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
         - --client.dialSocket=true
         - --control.nginxReloadSentinel=/host/data/slb/slb-nginx-config-b/config/nginx.marker
