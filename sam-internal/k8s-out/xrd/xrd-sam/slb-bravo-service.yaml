@@ -1,37 +1,6 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    slb.sfdc.net/cnames: |-
-      [
-       {
-        "cname": "bravo-xrd-sam.slb.sfdc.net"
-       }
-      ]
-    slb.sfdc.net/name: slb-bravo-svc
-    slb.sfdc.net/portconfigurations: |-
-      [
-       {
-        "lbtype": "tcp",
-        "port": 9090,
-        "targetport": 9090
-       },
-       {
-        "lbtype": "http",
-        "port": 9091,
-        "targetport": 9091
-       },
-       {
-        "lbtype": "dsr",
-        "port": 9092,
-        "targetport": 9092
-       },
-       {
-        "lbtype": "dsr",
-        "port": 9443,
-        "targetport": 9443
-       }
-      ]
   labels:
     app: slb-bravo-svc
   name: slb-bravo-svc
