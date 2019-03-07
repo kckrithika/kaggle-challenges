@@ -61,8 +61,7 @@ configs.deploymentBase("flowsnake") {
               "--estate",
               estate,
             ] +
-            (if utils.is_public_cloud(configs.kingdom) then ["--token-ip-use-host-ip"] else []
-            ) +
+            (if utils.is_public_cloud(configs.kingdom) then ["--token-ip-use-host-ip"] else []) +
             (if !flowsnakeconfig.is_minikube then [
               "--funnel-endpoint",
               flowsnakeconfig.funnel_endpoint,
