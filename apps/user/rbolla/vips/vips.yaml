@@ -6,7 +6,6 @@
   ports:
    - port: 8443
      targetport: 8443
-     tls: true
      healthport: 8445
      healthpath: /ping
      healthprotocol: https
