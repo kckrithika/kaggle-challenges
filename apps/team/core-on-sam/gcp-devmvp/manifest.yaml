@@ -36,7 +36,7 @@ system:
 
     containers:
     - name: coreapp
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17541162
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17597280
 
       command: ["/bin/sh", "-c"]
       args: ["
@@ -237,7 +237,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: casam-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:f3b580
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:7d9273
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
