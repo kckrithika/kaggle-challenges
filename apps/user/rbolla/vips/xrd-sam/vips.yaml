@@ -1,13 +1,10 @@
-- lbname: ops1-authval1-0-xrd
-  customlbname: ops1-authval1-0-xrd
+- lbname: ops0-authval1-0-xrd
+  customlbname: ops0-authval1-0-xrd
   servers:
    - ops0-authval1-1-xrd.eng.sfdc.net
    - ops0-authval2-1-xrd.eng.sfdc.net
   ports:
-   - port: 443
+   - port: 8443
      targetport: 8443
-     lbtype: http
-     tls: true
-     healthport: 8445
-     healthprotocol: tcp
-     lbalgorithm: roundrobin
+     lbtype: tcp
+     lbalogrithm: roundrobin
