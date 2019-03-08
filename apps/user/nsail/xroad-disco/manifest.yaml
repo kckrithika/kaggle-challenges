@@ -1,0 +1,21 @@
+apiVersion: v1
+system:
+  functions:
+  - name: xroad-disco
+    count: 1
+
+    containers:
+    - name: xroad-disco
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/artifactory/docker-sam/configurator/xroad-disco:nsail-20190307-3f6102f
+
+      ports:
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+        
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - HEALTHY
