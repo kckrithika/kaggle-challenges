@@ -8,6 +8,7 @@ system:
   functions:
   - name: gateway-service
     count: 3
+    hostnetwork: true
     volumes: 
     - name: client-cert
       maddogCert:
