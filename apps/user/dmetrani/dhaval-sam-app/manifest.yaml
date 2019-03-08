@@ -12,6 +12,26 @@ system:
         httpGet:
           path: /
           port: 4321
+      env:
+      - name: REFOCUS_BASE_URL
+        value: "https://refocus.internal.salesforce.com"
+      - name: REFOCUS_API_URL
+        value: "/v1/subjects/{refocus_dashboard_name}/hierarchy"
+      - name: REFOCUS_DASHBOARD_NAME_CORE
+        value: "Salesforce.DailyReleaseCore"
+      - name: REFOCUS_DASHBOARD_LIST
+        value: "DailyReleaseCore||Ffx_Daily_Release||Liveagent_Daily_Release||Releaserunner_Daily_Release||Solrservice_Daily_Release||Solr_Daily_Release"
+      - name: REFOCUS_EXPECTED_MESSAGES
+        value: "Completed Successfully.||Workflow in progress.||New deployment||Workflow Failed"
+      - name: REFOCUS_SLACK_USER_MAP
+        value: "jkumar:jitendra.kumar||vpandian:vino||mgirod:marc.girod"
+      - name: REFOCUS_PILOT_USERS
+        value: "dmetrani||mtay||atan||kpareek||jkumar||jitendra.kumar||vpandian||amedam||mmenon||dsheehan||mgirod"
+      - name: REFOCUS_SLACK_BOT_USER
+        value: "GRE-Alerts"
+      - name: REFOCUS_SLACK_CHANNEL
+        value: "gre-alerts"
+
   loadbalancers:
   - lbname: dhavalsamapplb
     function: default
