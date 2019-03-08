@@ -6,7 +6,7 @@ system:
 
     containers:
     - name: xroad-disco
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/artifactory/docker-sam/configurator/xroad-disco:nsail-20190307-3f6102f
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/configurator/xroad-disco:nsail-20190307-3f6102f
 
       ports:
       - containerPort: 7020
