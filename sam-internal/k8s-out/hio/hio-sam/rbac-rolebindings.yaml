@@ -59,5 +59,53 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: gater:hio-sam_gater:rolebinding
+    namespace: gater
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-hio.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-hio.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-hio.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: service-mesh:hio-sam_gater:rolebinding
+    namespace: service-mesh
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-hio.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-hio.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-hio.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: service-protection:hio-sam_gater:rolebinding
+    namespace: service-protection
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-hio.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-hio.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-hio.ops.sfdc.net
 kind: List
 metadata: {}
