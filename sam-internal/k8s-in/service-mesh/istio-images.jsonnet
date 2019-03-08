@@ -33,8 +33,7 @@ local kingdom = std.extVar("kingdom");
        proxy: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:50d25caed2638ed29259a2be55ba2dc0ceb49b00",
        proxyinit: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:50d25caed2638ed29259a2be55ba2dc0ceb49b00",
        sidecarinjector: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.0.2",
-       shipping: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:86a47e93cb4796e4a24f63cee4b305356ddecc1e",
-       ordering: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-ordering:86a47e93cb4796e4a24f63cee4b305356ddecc1e",
+       metricsscraper: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev",
      },
 
     ### Release Phase 1 - TBD
@@ -76,8 +75,7 @@ local kingdom = std.extVar("kingdom");
   proxy: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].proxy),
   proxyinit: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].proxyinit),
   sidecarinjector: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].sidecarinjector),
-  shipping: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].shipping),
-  ordering: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].ordering),
+  metricsscraper: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].metricsscraper),
 
   # image_functions needs to know the filename of the template we are processing
   # Each template must set this at time of importing this file, for example:

@@ -2,6 +2,6 @@
 apiVersion: admissionregistration.k8s.io/v1beta1
 kind: MutatingWebhookConfiguration
 metadata:
-  name: istio-sidecar-injector
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
+  name: istio-sidecar-injector
