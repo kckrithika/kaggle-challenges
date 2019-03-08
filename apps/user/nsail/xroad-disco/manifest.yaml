@@ -1,0 +1,32 @@
+apiVersion: v1
+system:
+  functions:
+  - name: xroad-disco
+    count: 1
+
+    containers:
+    - name: xroad-disco
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/configurator/xroad-disco:nsail-20190307-3f6102f
+
+      ports:
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - HEALTHY
+
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvolservice
+
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+    volumes:
+      - name: logvolservice
+        hostPath:
+          path: /home/sfdc-scone-xroad-disco/logs
