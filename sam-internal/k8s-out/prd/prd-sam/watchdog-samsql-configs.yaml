@@ -430,7 +430,13 @@ data:
     (now() > STR_TO_DATE(''2019-01-10'', ''%Y-%m-%d'') OR Name != ''shared0-samkubeapi1-1-phx.ops.sfdc.net'')\n                                AND
     (now() > STR_TO_DATE(''2019-01-10'', ''%Y-%m-%d'') OR Name != ''shared0-samkubeapi1-1-yhu.ops.sfdc.net'')\n                          GROUP
     BY minionpool\n                        ) ss\n                        ) ss2\n                where
-    NotReadyApiCount>0 and dist>0", "watchdogFrequency": "5m"}]}'
+    NotReadyApiCount>0 and dist>0", "watchdogFrequency": "5m"}, {"alertAction": "businesshours_pagerduty",
+    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "20m", "instructions":
+    "The following SAM control stack components dont have a healhty autodeployer pod",
+    "name": "SqlSamControlDeployer", "sql": "select\n                      ControlEstate,\n                      name,\n                      NodeName\n                  from
+    podDetailView\n                  where\n                  Phase <> ''Running''
+    and\n                  Namespace = ''sam-system'' and name like ''samcontrol-deployer%''
+    ", "watchdogFrequency": "5m"}]}'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
