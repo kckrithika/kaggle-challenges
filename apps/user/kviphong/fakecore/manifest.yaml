@@ -3,32 +3,23 @@ apiVersion: v1
 system:
   functions:
   - name: fakecore
-    count: 0
+    count: 1 
     containers:
     - name: fakecore-sam
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore_salescloud:2
       ports:
       - containerPort: 8085
       livenessProbe:
-        httpGet:
-          path: /response
-          port: 8085
-      readinessProbe:
-        httpGet:
-          path: /ready.jsp
-          port: 8085
+        exec:
+          command:
+          - "date"
       env:
         - name: DELAY
-          value: 180
-    strategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxSurge: 200%
-        maxUnavailable: 0
+          value: 10 
   loadbalancers:
   - lbname: fakecoreslb
     function: fakecore
-    nodeExposed: true
+    slbenabled: true
     ports:
       - port: 8111
         targetport: 8085
