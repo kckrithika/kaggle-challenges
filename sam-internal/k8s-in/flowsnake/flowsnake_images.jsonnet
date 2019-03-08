@@ -71,7 +71,7 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                # glok_retired: "foo", # W-4959832 (Remove logging to GloK and Glok/ZK/ES/Kibana/logloader) https:#gus.my.salesforce.com/a07B0000004wnlxIAA
+                # glok_retired: "foo", # W-4959832 (Remove logging to GloK and Glok/ZK/ES/Kibana/logloader) https://gus.my.salesforce.com/a07B0000004wnlxIAA
             },
             version_mapping: {
                 main: {
@@ -266,7 +266,7 @@ local utils = import "util_functions.jsonnet";
         ),
 
     # These are the images used by the templates
-    # Only change when image name change from https:#git.soma.salesforce.com/dva-transformation/flowsnake-platform
+    # Only change when image name change from https://git.soma.salesforce.com/dva-transformation/flowsnake-platform
     cert_secretizer: flowsnakeconfig.strata_registry + "/flowsnake-cert-secretizer:" + $.per_phase[$.phase].cert_secretizer_image_tag,
     es: flowsnakeconfig.strata_registry + "/flowsnake-elasticsearch:" + $.per_phase[$.phase].es_image_tag,
     fleet_service: flowsnakeconfig.strata_registry + "/flowsnake-fleet-service:" + $.per_phase[$.phase].fleetService_image_tag,
