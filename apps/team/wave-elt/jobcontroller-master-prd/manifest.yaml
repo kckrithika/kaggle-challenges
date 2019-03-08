@@ -13,8 +13,6 @@ system:
     - name: jobcontroller
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:mb_update-logging-2-4d1b2d5
       ports:
-      - containerPort: 7020
-        name: grpc
       - containerPort: 15372
         name: mgmt
       livenessProbe:
@@ -41,7 +39,7 @@ system:
       - name: HANDLED_PODS_PATTERN
         value: stmfa\..*|moana-driver-master
 
-      - name: FLOWSNAKE_DATAPOOL_IMAGE_CURRENT
+      - name: MOANA_SPARK_ENGINE_IMAGE
         value: dva-registry.internal.salesforce.com/dva/datapool-engine:jenkins-insights-WaveDataPool-spark-on-k8s-4-itest
 
       - name: FLOWSNAKE_ENVIRONMENT_NAMES_ON_NEXT_RELEASE
