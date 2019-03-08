@@ -33,6 +33,8 @@ system:
         value: "gre-alerts"
       - name: REFOCUS_API_KEY
         value: "xxxx"
+      - name: HUBOT_SLACK_TOKEN
+        value: "xxxx"
 
   loadbalancers:
   - lbname: dhavalsamapplb
