@@ -22,14 +22,15 @@ recipient: (
 laddr: (if configs.estate == "prd-sam" then "0.0.0.0:8063" else "0.0.0.0:8083"),
 syntheticPort: (if configs.estate == "prd-sam" then 8063 else 8083),
 
-pagerduty_args: (if utils.is_public_cloud(configs.kingdom) || utils.is_gia(configs.kingdom) || utils.is_production(configs.kingdom) then [
+pagerduty_args: (if utils.is_production(configs.kingdom) then [
         "-recipient=" + $.recipient + "," + "sam-pagerduty@salesforce.com",
 ] else if (configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "xrd-sam") then [
         "-recipient=" + $.recipient + "," + "sam-pagerduty@salesforce.com",
 ] else []),
 
-low_urgency_pagerduty_args: (if configs.estate == "prd-sdc" || configs.estate == "prd-sam_storage" || configs.estate == "prd-sam_storagedev" then []
-                            else ["-recipient=" + $.recipient + (if $.recipient != "" then "," else "") + "csc-sam-business-hours-only@salesforce.pagerduty.com"]),
+low_urgency_pagerduty_args: (if utils.is_production(configs.kingdom) || configs.estate == "prd-samtwo" then ["-recipient=" + $.recipient + (if $.recipient != "" then "," else "") + "csc-sam-business-hours-only@salesforce.pagerduty.com"]
+                             else if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "xrd-sam" then ["-recipient=" + $.recipient + (if $.recipient != "" then "," else "") + "csc-sam-rnd-business-hours-only@salesforce.pagerduty.com"]
+                             else []),
 
 filesystem_watchdog_args: (["-recipient=" + $.recipient + (if $.recipient != "" then "," else "") + "make@salesforce.com"]),
 
