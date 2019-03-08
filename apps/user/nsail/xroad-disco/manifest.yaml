@@ -23,3 +23,10 @@ system:
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
+
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+    volumes:
+      - name: logvolservice
+        hostPath:
+          path: /home/sfdc-scone-xroad-disco/logs
