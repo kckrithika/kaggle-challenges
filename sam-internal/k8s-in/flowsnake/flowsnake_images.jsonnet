@@ -95,6 +95,7 @@ local utils = import "util_functions.jsonnet";
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
             docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
             eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+            impersonation_proxy_image_tag: "jenkins-dva-transformation-kubernetes-impersonation-proxy-cert_reload-1-itest",  # Testing cert reloading in prd-test
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
