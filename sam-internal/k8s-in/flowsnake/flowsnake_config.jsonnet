@@ -133,6 +133,7 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     funnel_endpoint: "http://" + $.funnel_vip_and_port,
     madkub_endpoint: if self.is_minikube then "https://madkubserver:32007" else "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
     maddog_endpoint: if self.is_minikube then "https://maddog-onebox:8443" else configs.maddogEndpoint,
+    madkub_enabled: !self.is_minikube,
     kubedns_manifests_enabled: !self.is_minikube,
     # Performance impact of logging DNS queries unknown. In test fleet alone it is ~5000 per minute. Presume this can
     # only be done temporarily.
@@ -171,7 +172,7 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     kubernetes_hosts_are_admin: self.kubernetes_rbac_stage == "host_only" || self.kubernetes_rbac_stage == "host_and_user",
     kubernetes_create_user_auth: self.kubernetes_rbac_stage == "host_and_user" || self.kubernetes_rbac_stage == "user_only",
 
-    impersonation_proxy_enabled: std.objectHas(flowsnake_images.feature_flags, "impersonation_proxy") && !self.is_minikube,
+    impersonation_proxy_enabled: self.madkub_enabled,
     impersonation_proxy_replicas: if self.is_test then 1 else 2,
 
 

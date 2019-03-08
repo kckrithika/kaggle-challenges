@@ -84,6 +84,8 @@ items:
           - --run-init-for-refresher-mode
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-iad.data.sfdc.net:80
           env:
@@ -102,7 +104,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: sam-madkub-integration-refresher
           resources: {}
           volumeMounts:
@@ -141,6 +143,8 @@ items:
           - iad-flowsnake_prod
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-iad.data.sfdc.net:80
           env:
@@ -159,7 +163,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: sam-madkub-integration-init
           resources: {}
           volumeMounts:
@@ -283,6 +287,8 @@ items:
           - --run-init-for-refresher-mode
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-iad.data.sfdc.net:80
           env:
@@ -301,7 +307,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: sam-madkub-integration-refresher
           resources: {}
           volumeMounts:
@@ -340,6 +346,8 @@ items:
           - iad-flowsnake_prod
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-iad.data.sfdc.net:80
           env:
@@ -358,7 +366,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: sam-madkub-integration-init
           resources: {}
           volumeMounts:
@@ -482,6 +490,8 @@ items:
           - --run-init-for-refresher-mode
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-iad.data.sfdc.net:80
           env:
@@ -500,7 +510,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: sam-madkub-integration-refresher
           resources: {}
           volumeMounts:
@@ -539,6 +549,8 @@ items:
           - iad-flowsnake_prod
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-iad.data.sfdc.net:80
           env:
@@ -557,7 +569,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: sam-madkub-integration-init
           resources: {}
           volumeMounts:
@@ -681,6 +693,8 @@ items:
           - --run-init-for-refresher-mode
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-iad.data.sfdc.net:80
           env:
@@ -699,7 +713,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: sam-madkub-integration-refresher
           resources: {}
           volumeMounts:
@@ -738,6 +752,8 @@ items:
           - iad-flowsnake_prod
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-iad.data.sfdc.net:80
           env:
@@ -756,7 +772,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: sam-madkub-integration-init
           resources: {}
           volumeMounts:
@@ -880,6 +896,8 @@ items:
           - --run-init-for-refresher-mode
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-iad.data.sfdc.net:80
           env:
@@ -898,7 +916,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: sam-madkub-integration-refresher
           resources: {}
           volumeMounts:
@@ -937,6 +955,8 @@ items:
           - iad-flowsnake_prod
           - --cert-folders
           - watchdogcanarycerts:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
           - --funnel-endpoint
           - http://ajna0-funnel1-0-iad.data.sfdc.net:80
           env:
@@ -955,7 +975,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+          image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: sam-madkub-integration-init
           resources: {}
           volumeMounts:

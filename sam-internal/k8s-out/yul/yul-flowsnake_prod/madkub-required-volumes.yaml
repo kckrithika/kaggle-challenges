@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  volumes.jaysawn: '[{"emptyDir": {"medium": "Memory"}, "name": "datacerts"}, {"emptyDir":
+    {"medium": "Memory"}, "name": "tokens"}, {"hostPath": {"path": "/etc/pki_service/ca"},
+    "name": "certificate-authority"}, {"hostPath": {"path": "/etc/pki_service/platform/platform-client/certificates"},
+    "name": "client-certificate"}, {"hostPath": {"path": "/etc/pki_service/platform/platform-client/keys"},
+    "name": "client-key"}]'
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: madkub-required-volumes
+  namespace: flowsnake

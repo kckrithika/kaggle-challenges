@@ -96,6 +96,8 @@ spec:
         - --run-init-for-refresher-mode
         - --cert-folders
         - impersonation-proxy:/certs-nginx-server
+        - --ca-folder
+        - /etc/pki_service/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-hnd.data.sfdc.net:80
         env:
@@ -114,7 +116,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
         name: sam-madkub-integration-refresher
         resources: {}
         volumeMounts:
@@ -156,6 +158,8 @@ spec:
         - hnd-flowsnake_prod
         - --cert-folders
         - impersonation-proxy:/certs-nginx-server
+        - --ca-folder
+        - /etc/pki_service/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-hnd.data.sfdc.net:80
         env:
@@ -174,7 +178,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
         name: sam-madkub-integration-init
         resources: {}
         volumeMounts:

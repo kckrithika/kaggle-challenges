@@ -1,7 +1,5 @@
 local flowsnake_images = import "flowsnake_images.jsonnet";
-local enabled = std.objectHas(flowsnake_images.feature_flags, "spark_operator");
 
-if enabled then
 {
     apiVersion: "v1",
     kind: "List",
@@ -83,4 +81,4 @@ if enabled then
             },
         }
     ]
-} else "SKIP"
+}

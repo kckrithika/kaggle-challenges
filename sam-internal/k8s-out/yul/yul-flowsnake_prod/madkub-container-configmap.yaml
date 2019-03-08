@@ -1,0 +1,24 @@
+apiVersion: v1
+data:
+  spec.jaysawn: '{"args": ["/sam/madkub-client", "--madkub-endpoint", "https://10.254.208.254:32007",
+    "--maddog-endpoint", "https://all.pkicontroller.pki.blank.yul.prod.non-estates.sfdcsd.net:8443",
+    "--maddog-server-ca", "/etc/pki_service/ca/security-ca.pem", "--madkub-server-ca",
+    "/etc/pki_service/ca/cacerts.pem", "--token-folder", "/tokens", "--kingdom", "yul",
+    "--superpod", "None", "--estate", "yul-flowsnake_prod", "--cert-folders", "usercerts:/certs",
+    "--ca-folder", "/etc/pki_service/ca", "--funnel-endpoint", "http://ajna0-funnel1-0-yul.data.sfdc.net:80"],
+    "env": [{"name": "MADKUB_NODENAME", "valueFrom": {"fieldRef": {"apiVersion": "v1",
+    "fieldPath": "spec.nodeName"}}}, {"name": "MADKUB_NAME", "valueFrom": {"fieldRef":
+    {"apiVersion": "v1", "fieldPath": "metadata.name"}}}, {"name": "MADKUB_NAMESPACE",
+    "valueFrom": {"fieldRef": {"apiVersion": "v1", "fieldPath": "metadata.namespace"}}}],
+    "image": "ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000083-127f2ff0",
+    "name": "sam-madkub-integration-init", "resources": { }, "volumeMounts": [{"mountPath":
+    "/certs", "name": "datacerts"}, {"mountPath": "/tokens", "name": "tokens"}, {"mountPath":
+    "/etc/pki_service/ca", "name": "certificate-authority", "readOnly": true}, {"mountPath":
+    "/etc/pki_service/platform/platform-client/certificates", "name": "client-certificate",
+    "readOnly": true}, {"mountPath": "/etc/pki_service/platform/platform-client/keys",
+    "name": "client-key", "readOnly": true}]}'
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: madkub-container-spec
+  namespace: flowsnake

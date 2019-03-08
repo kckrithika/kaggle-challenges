@@ -41,10 +41,8 @@ local extra_images_to_promote =
 (if watchdog.watchdog_enabled then
 [
     flowsnake_images.watchdog_canary,
-] + (if std.objectHas(flowsnake_images.feature_flags, "spark_operator") then
-    [
-        flowsnake_images.watchdog_spark_operator,
-    ] else [])
+    flowsnake_images.watchdog_spark_operator,
+    ]
 else []);
 
 if util.is_production(kingdom) then

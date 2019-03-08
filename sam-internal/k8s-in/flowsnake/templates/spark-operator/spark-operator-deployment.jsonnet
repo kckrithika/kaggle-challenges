@@ -1,9 +1,7 @@
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
-local enabled = std.objectHas(flowsnake_images.feature_flags, "spark_operator");
 local spark_op_metrics = std.objectHas(flowsnake_images.feature_flags, "spark_op_metrics");
 
-if enabled then
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -62,4 +60,4 @@ if enabled then
             },
         },
     },
-} else "SKIP"
+}
