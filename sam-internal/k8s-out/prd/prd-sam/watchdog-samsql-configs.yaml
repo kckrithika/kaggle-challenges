@@ -250,6 +250,10 @@ data:
     ControlEstate LIKE ''prd-%'' AND\n                           ControlEstate !=
     ''unknown'' AND\n                           desiredReplicas > 1\n                             AND
     NOT\n                             (controlestate like ''par-sam'' AND namespace
+    like ''casp'' AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d''))\n                             AND
+    NOT\n                             (controlestate like ''cdg-sam'' AND namespace
+    like ''mc-eventing'' AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d''))\n                             AND
+    NOT\n                             (controlestate like ''frf-sam'' AND namespace
     like ''casp'' AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d''))", "watchdogFrequency":
     "10m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
     "alertThreshold": "5m", "name": "CustomerAppsWithImagePullErrorsProd", "sql":
