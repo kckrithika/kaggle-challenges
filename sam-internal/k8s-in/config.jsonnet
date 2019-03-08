@@ -43,6 +43,8 @@ local utils = import "util_functions.jsonnet",
             ph2: "ops0-mta2-1-ph2.ops.sfdc.net:25",
             lo2: "ops0-mta2-1-lo2.ops.sfdc.net:25",
             lo3: "ops0-mta2-1-lo3.ops.sfdc.net:25",
+            hio: "ops0-mta1-4-hio.ops.sfdc.net:25",
+            ttd: "ops0-mta1-4-ttd.ops.sfdc.net:25",
         },
 
         # TODO: remove mom and charon endpoint to sdn-config
