@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.7.0.0.develop-1.7.f0f53c5.16
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.7.0.0.develop-1.7.4a17fb2.26
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,cre-api@salesforce.com"
@@ -67,8 +67,6 @@ system:
           value: false
         - name: SECRET_KEY_FILE
           value: /keys-kube/cre-aes.key
-        - name: SERVER_PORT
-          value: 7022 # HTTP1_TLS/REST
         - name: DUMMY_RETRY_VAR
           value: helloworld1
         - name: JVM_ARGS
@@ -184,4 +182,4 @@ system:
     slbEnabled: true
     ports:
       - port: 8091
-        targetport: 7020
+        targetport: 8080
