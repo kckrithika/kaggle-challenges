@@ -11,4 +11,14 @@
       reencrypt: true
       healthport: 80
       healthpath: /
-      healthprotocol: http		 
+      healthprotocol: http
+
+- lbname: horizon-postgres-prd
+  customlbname: horizon-postgres-prd
+  servers: 
+    - ina1shared0-infinsightdb1-1-prd.eng.sfdc.net
+    - ina1shared0-infinsightdb2-1-prd.eng.sfdc.net
+  ports:
+    - port: 5432
+      targetport: 5432
+      lbtype: tcp		 
