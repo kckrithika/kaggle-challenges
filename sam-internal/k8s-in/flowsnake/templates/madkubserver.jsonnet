@@ -32,7 +32,6 @@ configs.deploymentBase("flowsnake") {
         },
       },
       spec: {
-        hostNetwork: if utils.is_public_cloud(configs.kingdom) then true else false,
         containers: [
           {
             args: [
@@ -70,6 +69,16 @@ configs.deploymentBase("flowsnake") {
               "7",
             ]) +
             ["--retry-max-elapsed-time", "20s"],
+            [if utils.is_public_cloud(configs.kingdom) then "env"]: [
+              {
+                name: "TOKEN_SERVER_IP",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "status.hostIP",
+                  },
+                },
+              },
+            ],
             image: flowsnake_images.madkub,
             name: "madkubserver",
             ports: [
