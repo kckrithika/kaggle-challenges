@@ -728,6 +728,18 @@
       "access": [
         "team/CSC_Sam"
       ],
+      "controlEstate": "hio-sam",
+      "estate": "hio-sam",
+      "kingdom": "hio",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam",
       "kingdom": "hnd",
@@ -2885,6 +2897,18 @@
       "controlEstate": "syd-sam",
       "estate": "syd-sam_report_collector",
       "kingdom": "syd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
+      "controlEstate": "ttd-sam",
+      "estate": "ttd-sam",
+      "kingdom": "ttd",
       "superPod": "None"
     },
     {
