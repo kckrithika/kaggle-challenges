@@ -11,7 +11,7 @@ system:
     count: 1
     containers:
     - name: jobcontroller
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:mb_update-logging-2-4d1b2d5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/insights/datapoolservice:mb_update-logging-3-b681892
       ports:
       - containerPort: 15372
         name: mgmt
