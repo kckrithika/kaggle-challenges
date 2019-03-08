@@ -9,6 +9,7 @@ data:
       "enableMaddog": true,
       "enableStatefulSet": true,
       "funnelEndpoint": "funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443",
+      "imagePullPolicy": "IfNotPresent",
       "k4aInitContainerImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
       "maddogMaddogEndpoint": "https://10.168.195.227:8443",
       "madkubImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/minwang/madkub:1.0.0-0000077-b1d3a629",
