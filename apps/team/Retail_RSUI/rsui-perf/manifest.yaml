@@ -152,7 +152,7 @@ system:
     - name: sherpa-rsui-perf
        # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
       # Use the full git SHA as the docker image tag.
-      image: sfci/servicelibs/sherpa-envoy:1.0.1
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
