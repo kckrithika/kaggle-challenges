@@ -67,8 +67,6 @@ system:
           value: false
         - name: SECRET_KEY_FILE
           value: /keys-kube/cre-aes.key
-        - name: SERVER_PORT
-          value: 7022 # HTTP1_TLS/REST
         - name: DUMMY_RETRY_VAR
           value: helloworld1
         - name: JVM_ARGS
@@ -184,4 +182,4 @@ system:
     slbEnabled: true
     ports:
       - port: 8091
-        targetport: 7020
+        targetport: 8080
