@@ -42,7 +42,7 @@ system:
       args: ["
       while [ ! -f '/home/sfdc/salesforce/casam/.overrides_sidecar_done' ]; do echo -ne 'Waiting for coverride sidecar to complete its job\n' ;  sleep 1 ; done ;
       export DB_PASSWORD=$(cat /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-1az-db-pw/dbpw.txt) ;
-      cp /home/sfdc/salesforce/casam/lib/caaspatch.jar.optional /home/sfdc/salesforce/casam/lib/caaspatch.jar
+      cp /home/sfdc/salesforce/casam/lib/caaspatch.jar.optional /home/sfdc/salesforce/casam/lib/caaspatch.jar ;
       /home/sfdc/salesforce/casam/bin/startup.sh
       "]
 
