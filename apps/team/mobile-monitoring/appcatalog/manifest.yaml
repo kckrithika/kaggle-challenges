@@ -138,7 +138,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 20
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.1
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam" # Use whatever environment your kpod uses
