@@ -31,6 +31,8 @@ system:
         value: "GRE-Alerts"
       - name: REFOCUS_SLACK_CHANNEL
         value: "gre-alerts"
+      - name: REFOCUS_API_KEY
+        value: "xxxx"
 
   loadbalancers:
   - lbname: dhavalsamapplb
