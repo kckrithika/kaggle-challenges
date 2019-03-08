@@ -37,6 +37,8 @@ system:
           value: false
         - name: HBASE_QUERY_LIMIT
           value: 10
+        - name: DUMMY_VAR
+          value: helloworld
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
