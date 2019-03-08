@@ -110,6 +110,7 @@ system:
         providers+=,ffx.infrastructure-watchdog-cpt ;
         providers+=,health.infrastructure-watchdog-cpt ;
         providers+=,search.infrastructure-watchdog-cpt ;
+        providers+=,*.infrastructure-watchdog-CP-health ;
 
         export CHS_REPORTCOLLECTOR_WHITELIST=${providers} ;
         export CHS_REPORTCOLLECTOR_POLLPERIOD=60s ;
