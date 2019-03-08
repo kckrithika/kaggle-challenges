@@ -42,6 +42,7 @@ system:
       args: ["
       while [ ! -f '/home/sfdc/salesforce/casam/.overrides_sidecar_done' ]; do echo -ne 'Waiting for coverride sidecar to complete its job\n' ;  sleep 1 ; done ;
       export DB_PASSWORD=$(cat /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-1az-db-pw/dbpw.txt) ;
+      cp /home/sfdc/salesforce/casam/lib/caaspatch.jar.optional /home/sfdc/salesforce/casam/lib/caaspatch.jar
       /home/sfdc/salesforce/casam/bin/startup.sh
       "]
 
@@ -237,7 +238,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: casam-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:7d9273
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:ffde33
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
