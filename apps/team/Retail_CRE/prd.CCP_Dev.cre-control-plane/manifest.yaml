@@ -67,8 +67,6 @@ system:
           value: false
         - name: SECRET_KEY_FILE
           value: /keys-kube/cre-aes.key
-        - name: DUMMY_RETRY_VAR
-          value: helloworld1
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
@@ -110,7 +108,7 @@ system:
     - name: sherpa-cre-control-plane
       # Each commit to master for https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master has an image created.
       # Use the full git SHA as the docker image tag.
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
       volumeMounts:
       - mountPath: /log
         name: sherpa-log-volume
@@ -142,10 +140,10 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
     - name: beacon
-      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - retail-cre/cre-control-plane-ccp-func:DATACENTER_ALLENV:7443
+      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7443
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
