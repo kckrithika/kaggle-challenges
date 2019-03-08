@@ -33,7 +33,7 @@
                             AND minionpool NOT LIKE '%storage%'
                             AND (now() > STR_TO_DATE('2019-01-10', '%Y-%m-%d') OR Name != 'shared0-samkubeapi3-1-par.ops.sfdc.net')
                                 AND (now() > STR_TO_DATE('2019-01-10', '%Y-%m-%d') OR Name != 'shared0-samkubeapi1-1-phx.ops.sfdc.net')
-                                AND (now() > STR_TO_DATE('2019-01-10', '%Y-%m-%d') OR Name != 'shared0-samkubeapi1-1-yhu.ops.sfdc.net')
+                                AND (now() > STR_TO_DATE('2019-03-21', '%Y-%m-%d') OR Name != 'shared0-samkubeapi1-1-yhu.ops.sfdc.net')
                           GROUP BY minionpool
                         ) ss
                         ) ss2
