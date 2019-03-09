@@ -101,7 +101,7 @@
     args: [
       "/sam/madkub-client",
       "--madkub-endpoint=https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
-      "--maddog-endpoint=" + configs.maddogEndpoint + "",
+      "--maddog-endpoint=" + configs.maddogEndpoint,
       "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
       "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
     ] + $.madkubIstioCertFolders(certDirs) + [

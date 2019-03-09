@@ -1,12 +1,14 @@
+# Auto-generated file. Do not modify manually. Check README.md.
+local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 {
   apiVersion: "v1",
   kind: "Service",
   metadata: {
-    name: "istio-sidecar-injector",
-    namespace: "mesh-control-plane",
     labels: {
       istio: "sidecar-injector",
     },
+    name: "istio-sidecar-injector",
+    namespace: "mesh-control-plane",
   },
   spec: {
     ports: [

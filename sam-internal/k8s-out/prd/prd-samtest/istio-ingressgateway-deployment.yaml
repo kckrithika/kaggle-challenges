@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     app: istio-ingressgateway
-    chart: gateways-1.0.2
     istio: ingressgateway
     release: istio
   name: istio-ingressgateway
@@ -42,6 +41,39 @@ spec:
         app: istio-ingressgateway
         istio: ingressgateway
     spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+            weight: 2
+          - preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - ppc64le
+            weight: 2
+          - preference:
+              matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - s390x
+            weight: 2
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+                - ppc64le
+                - s390x
       containers:
       - args:
         - proxy
@@ -92,15 +124,10 @@ spec:
         ports:
         - containerPort: 80
         - containerPort: 443
-        - containerPort: 32400
+        - containerPort: 31400
         - containerPort: 15011
         - containerPort: 8060
         - containerPort: 853
-        - containerPort: 15030
-        - containerPort: 15031
-        - containerPort: 15090
-          name: http-envoy-prom
-          protocol: TCP
         resources:
           requests:
             cpu: 10m
@@ -138,7 +165,6 @@ spec:
         - --ca-folder=/maddog-certs/ca
         - --refresher
         - --run-init-for-refresher-mode
-        - "false"
         env:
         - name: MADKUB_NODENAME
           valueFrom:
@@ -226,7 +252,8 @@ spec:
         - mountPath: /server-cert
           name: tls-server-cert
       nodeSelector:
-        pool: prd-samtest
+        pool: prd-sam_gater
+      serviceAccountName: istio-ingressgateway-service-account
       volumes:
       - hostPath:
           path: /etc/pki_service

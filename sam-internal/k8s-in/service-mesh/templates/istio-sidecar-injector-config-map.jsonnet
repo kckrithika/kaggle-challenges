@@ -1,180 +1,20 @@
-local configs = import "config.jsonnet";
-local istioUtils = import "istio-utils.jsonnet";
-local istioImages = (import "istio-images.jsonnet") + { templateFilename:: std.thisFile };
-
-local params = {
-  initContainerImage: istioImages.proxyinit,
-  proxyContainerImage: istioImages.proxy,
-  # Only include the "magic" mesh IP. All *.svc.mesh.sfdc.net subdomains will resolve to that address.
-  includedOutboundIpRanges: "127.1.2.3/32",
-  excludedOutboundIpRanges: "",
-};
-
-local sidecarConfig = |||
-    policy: disabled
-    template: |-
-      initContainers:
-      - name: istio-init
-        image: %(initContainerImage)s
-        args:
-        - "-p"
-        - [[ .MeshConfig.ProxyListenPort ]]
-        - "-u"
-        - 1337
-        - "-m"
-        - [[ or (index .ObjectMeta.Annotations "sidecar.istio.io/interceptionMode") .ProxyConfig.InterceptionMode.String ]]
-        - "-i"
-        [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeOutboundIPRanges") -]]
-        - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeOutboundIPRanges"  ]]"
-        [[ else -]]
-        - "%(includedOutboundIpRanges)s"
-        [[ end -]]
-        - "-x"
-        [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeOutboundIPRanges") -]]
-        - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeOutboundIPRanges"  ]]"
-        [[ else -]]
-        - "%(excludedOutboundIpRanges)s"
-        [[ end -]]
-        - "-b"
-        [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeInboundPorts") -]]
-        - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeInboundPorts"  ]]"
-        [[ else -]]
-        - [[ range .Spec.Containers -]][[ range .Ports -]][[ .ContainerPort -]], [[ end -]][[ end -]][[ end]]
-        - "-d"
-        [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeInboundPorts") -]]
-        - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeInboundPorts" ]]"
-        [[ else -]]
-        - [[ .ProxyConfig.ProxyAdminPort ]]
-        [[ end -]]
-        imagePullPolicy: IfNotPresent
-        securityContext:
-          runAsNonRoot: false
-          runAsUser: 0
-          capabilities:
-            add:
-            - NET_ADMIN
-          restartPolicy: Always
-
-      containers:
-      - name: istio-proxy
-        image: [[ if (isset .ObjectMeta.Annotations "sidecar.istio.io/proxyImage") -]]
-        "[[ index .ObjectMeta.Annotations "sidecar.istio.io/proxyImage" ]]"
-        [[ else -]]
-        %(proxyContainerImage)s
-        [[ end -]]
-        args:
-        - proxy
-        - sidecar
-        - --configPath
-        - [[ .ProxyConfig.ConfigPath ]]
-        - --binaryPath
-        - [[ .ProxyConfig.BinaryPath ]]
-        - --serviceCluster
-        [[ if ne "" (index .ObjectMeta.Labels "app") -]]
-        - [[ index .ObjectMeta.Labels "app" ]]
-        [[ else -]]
-        - "istio-proxy"
-        [[ end -]]
-        - --drainDuration
-        - [[ formatDuration .ProxyConfig.DrainDuration ]]
-        - --parentShutdownDuration
-        - [[ formatDuration .ProxyConfig.ParentShutdownDuration ]]
-        - --discoveryAddress
-        - [[ .ProxyConfig.DiscoveryAddress ]]
-        - --discoveryRefreshDelay
-        - [[ formatDuration .ProxyConfig.DiscoveryRefreshDelay ]]
-        - --zipkinAddress
-        - [[ .ProxyConfig.ZipkinAddress ]]
-        - --connectTimeout
-        - [[ formatDuration .ProxyConfig.ConnectTimeout ]]
-        - --statsdUdpAddress
-        - [[ .ProxyConfig.StatsdUdpAddress ]]
-        - --proxyAdminPort
-        - [[ .ProxyConfig.ProxyAdminPort ]]
-        [[ if gt .ProxyConfig.Concurrency 0 -]]
-        - --concurrency
-        - [[ .ProxyConfig.Concurrency ]]
-        [[ end -]]
-        - --controlPlaneAuthPolicy
-        - [[ or (index .ObjectMeta.Annotations "sidecar.istio.io/controlPlaneAuthPolicy") .ProxyConfig.ControlPlaneAuthPolicy ]]
-        env:
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: POD_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: INSTANCE_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
-        - name: ISTIO_META_POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: ISTIO_META_INTERCEPTION_MODE
-          value: [[ or (index .ObjectMeta.Annotations "sidecar.istio.io/interceptionMode") .ProxyConfig.InterceptionMode.String ]]
-        imagePullPolicy: IfNotPresent
-        securityContext:
-          readOnlyRootFilesystem: true
-          [[ if eq (or (index .ObjectMeta.Annotations "sidecar.istio.io/interceptionMode") .ProxyConfig.InterceptionMode.String) "TPROXY" -]]
-          capabilities:
-            add:
-            - NET_ADMIN
-          runAsGroup: 1337
-          [[ else -]]
-          runAsUser: 1337
-          [[ end -]]
-        restartPolicy: Always
-        resources:
-          [[ if (isset .ObjectMeta.Annotations "sidecar.istio.io/proxyCPU") -]]
-          requests:
-            cpu: "[[ index .ObjectMeta.Annotations "sidecar.istio.io/proxyCPU" ]]"
-            memory: "[[ index .ObjectMeta.Annotations "sidecar.istio.io/proxyMemory" ]]"
-        [[ else -]]
-          requests:
-            cpu: 10m
-
-        [[ end -]]
-        volumeMounts:
-        - mountPath: /etc/istio/proxy
-          name: istio-envoy
-        - mountPath: /etc/certs/root-cert.pem # Maddog certs mapped to istio certs default locations.
-          name: tls-server-cert               # Volume should be defined in Manifest file.
-          subPath: ca.pem
-        - mountPath: /etc/certs/cert-chain.pem
-          name: tls-server-cert
-          subPath: server/certificates/server.pem
-        - mountPath: /etc/certs/key.pem
-          name: tls-server-cert
-          subPath: server/keys/server-key.pem
-        - mountPath: /etc/certs/client.pem
-          name: tls-client-cert
-          subPath: client/certificates/client.pem
-        - mountPath: /etc/certs/client-key.pem
-          name: tls-client-cert
-          subPath: client/keys/client-key.pem
-      volumes:
-      - emptyDir:
-          medium: Memory
-        name: istio-envoy
-|||;
-
+# Auto-generated file. Do not modify manually. Check README.md.
+local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 {
   apiVersion: "v1",
+  data: {
+    config: "policy: disabled\ntemplate: |-\n  initContainers:\n  - name: istio-init\n    image: \"ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:1.0.2\"\n    args:\n    - \"-p\"\n    - [[ .MeshConfig.ProxyListenPort ]]\n    - \"-u\"\n    - 1337\n    - \"-m\"\n    - [[ or (index .ObjectMeta.Annotations \"sidecar.istio.io/interceptionMode\") .ProxyConfig.InterceptionMode.String ]]\n    - \"-i\"\n    [[ if (isset .ObjectMeta.Annotations \"traffic.sidecar.istio.io/includeOutboundIPRanges\") -]]\n    - \"[[ index .ObjectMeta.Annotations \"traffic.sidecar.istio.io/includeOutboundIPRanges\"  ]]\"\n    [[ else -]]\n    - \"127.1.2.3/32\"\n    [[ end -]]\n    - \"-x\"\n    [[ if (isset .ObjectMeta.Annotations \"traffic.sidecar.istio.io/excludeOutboundIPRanges\") -]]\n    - \"[[ index .ObjectMeta.Annotations \"traffic.sidecar.istio.io/excludeOutboundIPRanges\"  ]]\"\n    [[ else -]]\n    - \"\"\n    [[ end -]]\n    - \"-b\"\n    [[ if (isset .ObjectMeta.Annotations \"traffic.sidecar.istio.io/includeInboundPorts\") -]]\n    - \"[[ index .ObjectMeta.Annotations \"traffic.sidecar.istio.io/includeInboundPorts\"  ]]\"\n    [[ else -]]\n    - [[ range .Spec.Containers -]][[ range .Ports -]][[ .ContainerPort -]], [[ end -]][[ end -]][[ end]]\n    - \"-d\"\n    [[ if (isset .ObjectMeta.Annotations \"traffic.sidecar.istio.io/excludeInboundPorts\") -]]\n    - \"[[ index .ObjectMeta.Annotations \"traffic.sidecar.istio.io/excludeInboundPorts\" ]]\"\n    [[ else -]]\n    - \"\"\n    [[ end -]]\n    imagePullPolicy: IfNotPresent\n    securityContext:\n      runAsNonRoot: false\n      runAsUser: 0\n      capabilities:\n        add:\n        - NET_ADMIN\n      restartPolicy: Always\n  \n  containers:\n  - name: istio-proxy\n    image: [[ if (isset .ObjectMeta.Annotations \"sidecar.istio.io/proxyImage\") -]]\n    \"[[ index .ObjectMeta.Annotations \"sidecar.istio.io/proxyImage\" ]]\"\n    [[ else -]]\n    ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:50d25caed2638ed29259a2be55ba2dc0ceb49b00\n    [[ end -]]\n    args:\n    - proxy\n    - sidecar\n    - --configPath\n    - [[ .ProxyConfig.ConfigPath ]]\n    - --binaryPath\n    - [[ .ProxyConfig.BinaryPath ]]\n    - --serviceCluster\n    [[ if ne \"\" (index .ObjectMeta.Labels \"app\") -]]\n    - [[ index .ObjectMeta.Labels \"app\" ]]\n    [[ else -]]\n    - \"istio-proxy\"\n    [[ end -]]\n    - --drainDuration\n    - [[ formatDuration .ProxyConfig.DrainDuration ]]\n    - --parentShutdownDuration\n    - [[ formatDuration .ProxyConfig.ParentShutdownDuration ]]\n    - --discoveryAddress\n    - [[ .ProxyConfig.DiscoveryAddress ]]\n    - --discoveryRefreshDelay\n    - [[ formatDuration .ProxyConfig.DiscoveryRefreshDelay ]]\n    - --zipkinAddress\n    - [[ .ProxyConfig.ZipkinAddress ]]\n    - --connectTimeout\n    - [[ formatDuration .ProxyConfig.ConnectTimeout ]]\n    - --proxyAdminPort\n    - [[ .ProxyConfig.ProxyAdminPort ]]\n    [[ if gt .ProxyConfig.Concurrency 0 -]]\n    - --concurrency\n    - [[ .ProxyConfig.Concurrency ]]\n    [[ end -]]\n    - --controlPlaneAuthPolicy\n    - [[ or (index .ObjectMeta.Annotations \"sidecar.istio.io/controlPlaneAuthPolicy\") .ProxyConfig.ControlPlaneAuthPolicy ]]\n    env:\n    - name: POD_NAME\n      valueFrom:\n        fieldRef:\n          fieldPath: metadata.name\n    - name: POD_NAMESPACE\n      valueFrom:\n        fieldRef:\n          fieldPath: metadata.namespace\n    - name: INSTANCE_IP\n      valueFrom:\n        fieldRef:\n          fieldPath: status.podIP\n    - name: ISTIO_META_POD_NAME\n      valueFrom:\n        fieldRef:\n          fieldPath: metadata.name\n    - name: ISTIO_META_INTERCEPTION_MODE\n      value: [[ or (index .ObjectMeta.Annotations \"sidecar.istio.io/interceptionMode\") .ProxyConfig.InterceptionMode.String ]]\n    imagePullPolicy: IfNotPresent\n    securityContext:\n      readOnlyRootFilesystem: true\n      [[ if eq (or (index .ObjectMeta.Annotations \"sidecar.istio.io/interceptionMode\") .ProxyConfig.InterceptionMode.String) \"TPROXY\" -]]\n      capabilities:\n        add:\n        - NET_ADMIN\n      runAsGroup: 1337\n      [[ else -]]\n      runAsUser: 1337\n      [[ end -]]\n    restartPolicy: Always\n    resources:\n      [[ if (isset .ObjectMeta.Annotations \"sidecar.istio.io/proxyCPU\") -]]\n      requests:\n        cpu: \"[[ index .ObjectMeta.Annotations \"sidecar.istio.io/proxyCPU\" ]]\"\n        memory: \"[[ index .ObjectMeta.Annotations \"sidecar.istio.io/proxyMemory\" ]]\"\n    [[ else -]]\n      requests:\n        cpu: 10m\n      \n    [[ end -]]\n    volumeMounts:\n    - mountPath: /etc/istio/proxy\n      name: istio-envoy\n    - mountPath: /etc/certs/root-cert.pem # Maddog certs mapped to istio certs default locations.\n      name: tls-server-cert               # Volume should be defined in Manifest file.\n      subPath: ca.pem\n    - mountPath: /etc/certs/cert-chain.pem\n      name: tls-server-cert\n      subPath: server/certificates/server.pem\n    - mountPath: /etc/certs/key.pem\n      name: tls-server-cert\n      subPath: server/keys/server-key.pem\n    - mountPath: /etc/certs/client.pem\n      name: tls-client-cert\n      subPath: client/certificates/client.pem\n    - mountPath: /etc/certs/client-key.pem\n      name: tls-client-cert\n      subPath: client/keys/client-key.pem\n  volumes:\n  - emptyDir:\n      medium: Memory\n    name: istio-envoy",
+  },
   kind: "ConfigMap",
   metadata: {
-    name: "istio-sidecar-injector",
-    namespace: "mesh-control-plane",
     labels: {
       app: "istio",
       chart: "istio-1.0.1",
+      heritage: "Tiller",
       istio: "sidecar-injector",
+      release: "istio",
     },
-  },
-  data: {
-    config: sidecarConfig % params,
+    name: "istio-sidecar-injector",
+    namespace: "mesh-control-plane",
   },
 }

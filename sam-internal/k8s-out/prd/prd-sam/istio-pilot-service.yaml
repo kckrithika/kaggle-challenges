@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: istio-pilot
-    version: istio-1.0.1
+    release: istio
   name: istio-pilot
   namespace: mesh-control-plane
 spec:

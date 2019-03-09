@@ -110,6 +110,8 @@ spec:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
   labels:
     app: ingressgateway
     release: istio
@@ -434,6 +436,7 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
+  annotations: null
   labels:
     app: istio-ingressgateway
     istio: ingressgateway
@@ -443,15 +446,15 @@ metadata:
 spec:
   ports:
   - name: http2
-    nodePort: 32380
+    nodePort: 31380
     port: 80
     targetPort: 80
   - name: https
-    nodePort: 32390
+    nodePort: 31390
     port: 443
   - name: tcp
-    nodePort: 32400
-    port: 32400
+    nodePort: 31400
+    port: 31400
   - name: tcp-pilot-grpc-tls
     port: 15011
     targetPort: 15011
@@ -516,14 +519,7 @@ spec:
   template:
     metadata:
       annotations:
-        madkub.sam.sfdc.net/allcerts: "{\n \"certreqs\": [\n  {\n   \"cert-type\":
-          \"client\",\n   \"kingdom\": \"prd\",\n   \"name\": \"tls-client-cert\",\n
-          \  \"role\": \"istio-ingressgateway.mesh-control-plane\"\n  },\n  {\n   \"cert-type\":
-          \"server\",\n   \"kingdom\": \"prd\",\n   \"name\": \"tls-server-cert\",\n
-          \  \"role\": \"istio-ingressgateway.mesh-control-plane\",\n   \"san\": [\n
-          \   \"istio-ingressgateway\",\n    \"istio-ingressgateway.mesh-control-plane\",\n
-          \   \"istio-ingressgateway.mesh-control-plane.svc\",\n    \"istio-ingressgateway.mesh-control-plane.svc.prd-sam.prd.sam.sfdc.net\"\n
-          \  ]\n  }\n ]\n}        "
+        madkub.sam.sfdc.net/allcerts: mcpIstioConfig.ingressGatewayMadkubAnnotations
         scheduler.alpha.kubernetes.io/critical-pod: ""
         sidecar.istio.io/inject: "false"
       labels:
@@ -607,13 +603,13 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:50d25caed2638ed29259a2be55ba2dc0ceb49b00
+        image: mcpIstioConfig.proxyImage
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
         - containerPort: 80
         - containerPort: 443
-        - containerPort: 32400
+        - containerPort: 31400
         - containerPort: 15011
         - containerPort: 8060
         - containerPort: 853
@@ -644,8 +640,8 @@ spec:
           name: tls-server-cert
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://10.254.208.254:32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - --madkub-endpoint=%(madkubEndpoint)s
+        - --maddog-endpoint=%(maddogEndpoint)s
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=tls-client-cert:/client-cert/
@@ -670,7 +666,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        image: mcpIstioConfig.madkubImage
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         resources: {}
@@ -686,8 +682,8 @@ spec:
       initContainers:
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://10.254.208.254:32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - --madkub-endpoint=%(madkubEndpoint)s
+        - --maddog-endpoint=%(maddogEndpoint)s
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=tls-client-cert:/client-cert/
@@ -710,7 +706,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        image: mcpIstioConfig.madkubImage
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
@@ -840,13 +836,13 @@ spec:
           value: "100"
         - name: PILOT_TRACE_SAMPLING
           value: "100"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:d021a6b1dd4db59fe1a82f07a7e5457830190e40
+        image: mcpIstioConfig.pilotImage
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
+        - containerPort: 15011
         - containerPort: 8080
         - containerPort: 15010
-        - containerPort: 15011
         readinessProbe:
           httpGet:
             path: /ready
@@ -885,7 +881,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: status.podIP
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:50d25caed2638ed29259a2be55ba2dc0ceb49b00
+        image: mcpIstioConfig.proxyImage
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -907,14 +903,14 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: SETTINGS_SUPERPOD
-          value: '-'
+          value: mcpIstioConfig.superpod
         - name: SETTINGS_PATH
-          value: -.-.prd.-.istio-pilot
+          value: mcpIstioConfig.settingsPath
         - name: SFDC_METRICS_SERVICE_HOST
-          value: ajna0-funnel1-0-prd.data.sfdc.net
+          value: mcpIstioConfig.funnelHost
         - name: SFDC_METRICS_SERVICE_PORT
-          value: "80"
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
+          value: mcpIstioConfig.funnelPort
+        image: mcpIstioConfig.metricsScraperImage
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:
@@ -937,8 +933,6 @@ kind: Deployment
 metadata:
   labels:
     app: sidecarInjectorWebhook
-    chart: sidecarInjectorWebhook-1.0.1
-    heritage: Tiller
     istio: sidecar-injector
     release: istio
   name: istio-sidecar-injector
@@ -951,23 +945,7 @@ spec:
   template:
     metadata:
       annotations:
-        madkub.sam.sfdc.net/allcerts: |-
-          {
-           "certreqs": [
-            {
-             "cert-type": "server",
-             "kingdom": "prd",
-             "name": "cert1",
-             "role": "istio.mesh-control-plane",
-             "san": [
-              "istio-sidecar-injector",
-              "istio-sidecar-injector.mesh-control-plane",
-              "istio-sidecar-injector.mesh-control-plane.svc",
-              "istio-sidecar-injector.mesh-control-plane.svc.prd-sam.prd.sam.sfdc.net"
-             ]
-            }
-           ]
-          }
+        madkub.sam.sfdc.net/allcerts: mcpIstioConfig.sidecarInjectorMadkubAnnotations
         scheduler.alpha.kubernetes.io/critical-pod: ""
         sidecar.istio.io/inject: "false"
       labels:
@@ -1016,7 +994,7 @@ spec:
         - --healthCheckInterval=2s
         - --healthCheckFile=/health
         - --port=15009
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.0.2
+        image: mcpIstioConfig.sidecarInjectorImage
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -1043,20 +1021,20 @@ spec:
           requests:
             cpu: 10m
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /cert1
+          name: cert1
         - mountPath: /etc/istio/config
           name: config-volume
           readOnly: true
         - mountPath: /etc/istio/inject
           name: inject-config
           readOnly: true
-        - mountPath: /etc/pki_service
-          name: maddog-certs
-        - mountPath: /cert1
-          name: cert1
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://10.254.208.254:32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - --madkub-endpoint=%(madkubEndpoint)s
+        - --maddog-endpoint=%(maddogEndpoint)s
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
@@ -1081,7 +1059,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        image: mcpIstioConfig.madkubImage
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         resources: {}
@@ -1095,8 +1073,8 @@ spec:
       initContainers:
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://10.254.208.254:32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - --madkub-endpoint=%(madkubEndpoint)s
+        - --maddog-endpoint=%(maddogEndpoint)s
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
@@ -1119,7 +1097,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+        image: mcpIstioConfig.madkubImage
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
@@ -1133,15 +1111,6 @@ spec:
         master: "true"
       serviceAccountName: istio-sidecar-injector-service-account
       volumes:
-      - configMap:
-          name: istio
-        name: config-volume
-      - configMap:
-          items:
-          - key: config
-            path: config
-          name: istio-sidecar-injector
-        name: inject-config
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
@@ -1151,6 +1120,15 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
+      - configMap:
+          name: istio
+        name: config-volume
+      - configMap:
+          items:
+          - key: config
+            path: config
+          name: istio-sidecar-injector
+        name: inject-config
 ---
 apiVersion: admissionregistration.k8s.io/v1beta1
 kind: MutatingWebhookConfiguration
@@ -1161,7 +1139,6 @@ metadata:
     app: istio-sidecar-injector
     release: istio
   name: istio-sidecar-injector
-  namespace: mesh-control-plane
 webhooks:
 - clientConfig:
     caBundle: ""

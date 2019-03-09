@@ -4,6 +4,7 @@ patchesStrategicMerge:
 - charts/gateways/templates/autoscale.yaml
 - charts/gateways/templates/deployment.yaml
 - charts/gateways/templates/service.yaml
+- charts/gateways/templates/serviceaccount.yaml
 - charts/pilot/templates/autoscale.yaml
 - charts/pilot/templates/deployment.yaml
 - charts/pilot/templates/gateway.yaml

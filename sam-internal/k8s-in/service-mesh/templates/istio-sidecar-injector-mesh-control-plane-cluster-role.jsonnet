@@ -1,14 +1,14 @@
+# Auto-generated file. Do not modify manually. Check README.md.
+local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 {
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
   kind: "ClusterRole",
   metadata: {
-    name: "istio-sidecar-injector-mesh-control-plane",
     labels: {
       app: "istio-sidecar-injector",
-      chart: "sidecarInjectorWebhook-1.0.1",
-      heritage: "Tiller",
-      release: "RELEASE-NAME",
+      release: "istio",
     },
+    name: "istio-sidecar-injector-mesh-control-plane",
   },
   rules: [
     {

@@ -3,7 +3,7 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app: istio-pilot
-    version: istio-1.0.1
+    release: istio
   name: istio-pilot-mesh-control-plane
 roleRef:
   apiGroup: rbac.authorization.k8s.io

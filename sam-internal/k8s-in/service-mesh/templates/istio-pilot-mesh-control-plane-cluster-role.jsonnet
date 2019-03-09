@@ -1,12 +1,14 @@
-local configs = import "config.jsonnet";
-local istioUtils = import "istio-utils.jsonnet";
-
+# Auto-generated file. Do not modify manually. Check README.md.
+local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 {
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
   kind: "ClusterRole",
   metadata: {
+    labels: {
+      app: "istio-pilot",
+      release: "istio",
+    },
     name: "istio-pilot-mesh-control-plane",
-    labels: istioUtils.istioLabels,
   },
   rules: [
     {

@@ -3,9 +3,7 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app: istio-sidecar-injector
-    chart: sidecarInjectorWebhook-1.0.1
-    heritage: Tiller
-    release: RELEASE-NAME
+    release: istio
   name: istio-sidecar-injector-admin-role-binding-mesh-control-plane
 roleRef:
   apiGroup: rbac.authorization.k8s.io

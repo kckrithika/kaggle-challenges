@@ -1,31 +1,13 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    checksum/config-volume: f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9
-  labels:
-    app: istio-pilot
-    istio: pilot
-    release: istio
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
   template:
     spec:
-      $setElementOrder/containers:
-      - name: discovery
-      - name: istio-proxy
-      - name: metrics-scraper
-      $setElementOrder/volumes:
-      - name: config-volume
       containers:
-      - $setElementOrder/ports:
-        - containerPort: 8080
-        - containerPort: 15010
-        - containerPort: 15011
-        $setElementOrder/volumeMounts:
-        - mountPath: /etc/istio/config
-        args:
+      - args:
         - discovery
         - --secureGrpcAddr
         - :15011
@@ -33,14 +15,14 @@ spec:
         - service-mesh
         - --log_output_level
         - debug
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:d021a6b1dd4db59fe1a82f07a7e5457830190e40
+        image: mcpIstioConfig.pilotImage
         name: discovery
         ports:
         - containerPort: 15011
         volumeMounts:
         - $patch: delete
           mountPath: /etc/certs
-      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:50d25caed2638ed29259a2be55ba2dc0ceb49b00
+      - image: mcpIstioConfig.proxyImage
         name: istio-proxy
         volumeMounts:
         - $patch: delete
@@ -55,14 +37,14 @@ spec:
               apiVersion: v1
               fieldPath: metadata.namespace
         - name: SETTINGS_SUPERPOD
-          value: '-'
+          value: mcpIstioConfig.superpod
         - name: SETTINGS_PATH
-          value: -.-.prd.-.istio-pilot
+          value: mcpIstioConfig.settingsPath
         - name: SFDC_METRICS_SERVICE_HOST
-          value: ajna0-funnel1-0-prd.data.sfdc.net
+          value: mcpIstioConfig.funnelHost
         - name: SFDC_METRICS_SERVICE_PORT
-          value: "80"
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
+          value: mcpIstioConfig.funnelPort
+        image: mcpIstioConfig.metricsScraperImage
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:
