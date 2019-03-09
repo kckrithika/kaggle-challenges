@@ -1,49 +1,51 @@
+# Auto-generated file. Do not modify manually. Check README.md.
+local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 {
   apiVersion: "admissionregistration.k8s.io/v1beta1",
   kind: "MutatingWebhookConfiguration",
   metadata: {
-    name: "istio-sidecar-injector",
-    labels: {
-      app: "istio-sidecar-injector",
-      chart: "sidecarInjectorWebhook-1.0.1",
-    },
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
     },
+    labels: {
+      app: "istio-sidecar-injector",
+      release: "istio",
+    },
+    name: "istio-sidecar-injector",
   },
   webhooks: [
     {
-      name: "sidecar-injector.istio.io",
       clientConfig: {
+        caBundle: "",
         service: {
           name: "istio-sidecar-injector",
           namespace: "mesh-control-plane",
           path: "/inject",
         },
-        caBundle: "",
+      },
+      failurePolicy: "Fail",
+      name: "sidecar-injector.istio.io",
+      namespaceSelector: {
+        matchLabels: {
+          "istio-injection": "enabled",
+        },
       },
       rules: [
         {
-          operations: [
-            "CREATE",
-          ],
           apiGroups: [
             "",
           ],
           apiVersions: [
             "v1",
           ],
+          operations: [
+            "CREATE",
+          ],
           resources: [
             "pods",
           ],
         },
       ],
-      failurePolicy: "Fail",
-      namespaceSelector: {
-        matchLabels: {
-          "istio-injection": "enabled",
-        },
-      },
     },
   ],
 }

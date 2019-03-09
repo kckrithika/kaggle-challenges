@@ -7,7 +7,8 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
     },
-    name: "istio-pilot",
+    name: "istio-ingressgateway",
+    namespace: "mesh-control-plane",
   },
   spec: {
     maxReplicas: 5,
@@ -24,7 +25,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     scaleTargetRef: {
       apiVersion: "apps/v1beta1",
       kind: "Deployment",
-      name: "istio-pilot",
+      name: "istio-ingressgateway",
     },
   },
 }

@@ -4,21 +4,17 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
   kind: "ClusterRoleBinding",
   metadata: {
-    labels: {
-      app: "istio-sidecar-injector",
-      release: "istio",
-    },
-    name: "istio-sidecar-injector-admin-role-binding-mesh-control-plane",
+    name: "istio-ingressgateway-mesh-control-plane",
   },
   roleRef: {
     apiGroup: "rbac.authorization.k8s.io",
     kind: "ClusterRole",
-    name: "istio-sidecar-injector-mesh-control-plane",
+    name: "istio-ingressgateway-mesh-control-plane",
   },
   subjects: [
     {
       kind: "ServiceAccount",
-      name: "istio-sidecar-injector-service-account",
+      name: "istio-ingressgateway-service-account",
       namespace: "mesh-control-plane",
     },
   ],

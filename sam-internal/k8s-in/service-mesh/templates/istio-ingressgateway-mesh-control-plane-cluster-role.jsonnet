@@ -5,37 +5,27 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   kind: "ClusterRole",
   metadata: {
     labels: {
-      app: "istio-sidecar-injector",
+      app: "gateways",
       release: "istio",
     },
-    name: "istio-sidecar-injector-mesh-control-plane",
+    name: "istio-ingressgateway-mesh-control-plane",
   },
   rules: [
     {
       apiGroups: [
-        "*",
+        "extensions",
       ],
       resources: [
-        "configmaps",
+        "thirdpartyresources",
+        "virtualservices",
+        "destinationrules",
+        "gateways",
       ],
       verbs: [
         "get",
-        "list",
         "watch",
-      ],
-    },
-    {
-      apiGroups: [
-        "admissionregistration.k8s.io",
-      ],
-      resources: [
-        "mutatingwebhookconfigurations",
-      ],
-      verbs: [
-        "get",
         "list",
-        "watch",
-        "patch",
+        "update",
       ],
     },
   ],

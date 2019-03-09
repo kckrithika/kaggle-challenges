@@ -1,43 +1,101 @@
-local configs = import "config.jsonnet";
-local hosts = import "sam/configs/hosts.jsonnet";
-local istioConfigs = (import "service-mesh/istio-config.jsonnet") + { templateFilename:: std.thisFile };
-local istioUtils = (import "service-mesh/istio-utils.jsonnet") + { templateFilename:: std.thisFile };
-local istioImages = (import "service-mesh/istio-images.jsonnet") + { templateFilename:: std.thisFile };
-local funnelEndpoint = std.split(configs.funnelVIP, ":");
-local scraperImagePullPolicy = (if configs.kingdom == "prd" then "Always" else "IfNotPresent");
-
-configs.deploymentBase("mesh-control-plane") {
-  metadata+: {
-    name: "istio-pilot",
-    namespace: "mesh-control-plane",
-    labels: {
-      istio: "pilot",
-    } + istioUtils.istioLabels,
+# Auto-generated file. Do not modify manually. Check README.md.
+local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
+{
+  apiVersion: "extensions/v1beta1",
+  kind: "Deployment",
+  metadata: {
     annotations: {
       "checksum/config-volume": "f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9",
     },
+    labels: {
+      app: "istio-pilot",
+      istio: "pilot",
+      release: "istio",
+    },
+    name: "istio-pilot",
+    namespace: "mesh-control-plane",
   },
-  spec+: {
+  spec: {
     replicas: 1,
     template: {
       metadata: {
-        labels: {
-          apptype: "control",
-          istio: "pilot",
-        } + istioUtils.istioLabels,
         annotations: {
-          "sidecar.istio.io/inject": "false",
           "scheduler.alpha.kubernetes.io/critical-pod": "",
+          "sidecar.istio.io/inject": "false",
+        },
+        labels: {
+          app: "pilot",
+          istio: "pilot",
         },
       },
       spec: {
-        serviceAccount: "istio-pilot-service-account",
-        serviceAccountName: "istio-pilot-service-account",
+        affinity: {
+          nodeAffinity: {
+            preferredDuringSchedulingIgnoredDuringExecution: [
+              {
+                preference: {
+                  matchExpressions: [
+                    {
+                      key: "beta.kubernetes.io/arch",
+                      operator: "In",
+                      values: [
+                        "amd64",
+                      ],
+                    },
+                  ],
+                },
+                weight: 2,
+              },
+              {
+                preference: {
+                  matchExpressions: [
+                    {
+                      key: "beta.kubernetes.io/arch",
+                      operator: "In",
+                      values: [
+                        "ppc64le",
+                      ],
+                    },
+                  ],
+                },
+                weight: 2,
+              },
+              {
+                preference: {
+                  matchExpressions: [
+                    {
+                      key: "beta.kubernetes.io/arch",
+                      operator: "In",
+                      values: [
+                        "s390x",
+                      ],
+                    },
+                  ],
+                },
+                weight: 2,
+              },
+            ],
+            requiredDuringSchedulingIgnoredDuringExecution: {
+              nodeSelectorTerms: [
+                {
+                  matchExpressions: [
+                    {
+                      key: "beta.kubernetes.io/arch",
+                      operator: "In",
+                      values: [
+                        "amd64",
+                        "ppc64le",
+                        "s390x",
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        },
         containers: [
           {
-            name: "discovery",
-            image: istioImages.pilot,
-            imagePullPolicy: "IfNotPresent",
             args: [
               "discovery",
               "--secureGrpcAddr",
@@ -47,27 +105,7 @@ configs.deploymentBase("mesh-control-plane") {
               "--log_output_level",
               "debug",
             ],
-            ports: [
-              {
-                containerPort: 8080,
-              },
-              {
-                containerPort: 15010,
-              },
-              {
-                containerPort: 15011,
-              },
-            ],
-            readinessProbe: {
-              httpGet: {
-                path: "/ready",
-                port: 8080,
-              },
-              initialDelaySeconds: 5,
-              periodSeconds: 30,
-              timeoutSeconds: 5,
-            },
-            env+: [
+            env: [
               {
                 name: "POD_NAME",
                 valueFrom: {
@@ -103,40 +141,111 @@ configs.deploymentBase("mesh-control-plane") {
                 value: "100",
               },
             ],
+            image: mcpIstioConfig.pilotImage,
+            imagePullPolicy: "IfNotPresent",
+            name: "discovery",
+            ports: [
+              {
+                containerPort: 15011,
+              },
+              {
+                containerPort: 8080,
+              },
+              {
+                containerPort: 15010,
+              },
+            ],
+            readinessProbe: {
+              httpGet: {
+                path: "/ready",
+                port: 8080,
+              },
+              initialDelaySeconds: 5,
+              periodSeconds: 30,
+              timeoutSeconds: 5,
+            },
             resources: {
               requests: {
                 cpu: "500m",
                 memory: "2048Mi",
               },
             },
-            volumeMounts+: [
+            volumeMounts: [
               {
-                name: "config-volume",
                 mountPath: "/etc/istio/config",
+                name: "config-volume",
               },
             ],
           },
           {
-            name: "metrics-scraper",
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev",
-            imagePullPolicy: scraperImagePullPolicy,
-            readinessProbe: {
-              exec: {
-                command: [
-                  "/bin/true",
-                ],
+            args: [
+              "proxy",
+              "--serviceCluster",
+              "istio-pilot",
+              "--templateFile",
+              "/etc/istio/proxy/envoy_pilot.yaml.tmpl",
+              "--controlPlaneAuthPolicy",
+              "NONE",
+            ],
+            env: [
+              {
+                name: "POD_NAME",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.name",
+                  },
+                },
               },
-              initialDelaySeconds: 5,
-              periodSeconds: 30,
-              timeoutSeconds: 5,
+              {
+                name: "POD_NAMESPACE",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
+              {
+                name: "INSTANCE_IP",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "status.podIP",
+                  },
+                },
+              },
+            ],
+            image: mcpIstioConfig.proxyImage,
+            imagePullPolicy: "IfNotPresent",
+            name: "istio-proxy",
+            ports: [
+              {
+                containerPort: 15003,
+              },
+              {
+                containerPort: 15005,
+              },
+              {
+                containerPort: 15007,
+              },
+              {
+                containerPort: 15011,
+              },
+            ],
+            resources: {
+              requests: {
+                cpu: "10m",
+              },
             },
-            args: if configs.kingdom == "prd" then [
+            volumeMounts: [],
+          },
+          {
+            args: [
               "--debug-mode",
               "true",
-            ] else [],
+            ],
             env: [
-              // See https://confluence.internal.salesforce.com/pages/viewpage.action?spaceKey=SAM&title=SAM+Environment+Variables
-              // for SAM environment variables.
               {
                 name: "FUNCTION_NAMESPACE",
                 valueFrom: {
@@ -148,99 +257,48 @@ configs.deploymentBase("mesh-control-plane") {
               },
               {
                 name: "SETTINGS_SUPERPOD",
-                value: "-",
+                value: mcpIstioConfig.superpod,
               },
               {
                 name: "SETTINGS_PATH",
-                value: "-.-." + configs.kingdom + ".-." + "istio-pilot",
+                value: mcpIstioConfig.settingsPath,
               },
               {
                 name: "SFDC_METRICS_SERVICE_HOST",
-                value: funnelEndpoint[0],
+                value: mcpIstioConfig.funnelHost,
               },
               {
                 name: "SFDC_METRICS_SERVICE_PORT",
-                value: funnelEndpoint[1],
+                value: mcpIstioConfig.funnelPort,
               },
             ],
+            image: mcpIstioConfig.metricsScraperImage,
+            imagePullPolicy: "Always",
+            name: "metrics-scraper",
+            readinessProbe: {
+              exec: {
+                command: [
+                  "/bin/true",
+                ],
+              },
+              initialDelaySeconds: 5,
+              periodSeconds: 30,
+              timeoutSeconds: 5,
+            },
           },
         ],
         nodeSelector: {
-          pool: istioConfigs.istioEstate,
+          pool: "prd-sam_gater",
         },
-        volumes+: [
+        serviceAccountName: "istio-pilot-service-account",
+        volumes: [
           {
-            name: "config-volume",
             configMap: {
               name: "istio",
             },
+            name: "config-volume",
           },
         ],
-        affinity: {
-          nodeAffinity: {
-            requiredDuringSchedulingIgnoredDuringExecution: {
-              nodeSelectorTerms: [
-                {
-                  matchExpressions: [
-                    {
-                      key: "beta.kubernetes.io/arch",
-                      operator: "In",
-                      values: [
-                        "amd64",
-                        "ppc64le",
-                        "s390x",
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-            preferredDuringSchedulingIgnoredDuringExecution: [
-              {
-                weight: 2,
-                preference: {
-                  matchExpressions: [
-                    {
-                      key: "beta.kubernetes.io/arch",
-                      operator: "In",
-                      values: [
-                        "amd64",
-                      ],
-                    },
-                  ],
-                },
-              },
-              {
-                weight: 2,
-                preference: {
-                  matchExpressions: [
-                    {
-                      key: "beta.kubernetes.io/arch",
-                      operator: "In",
-                      values: [
-                        "ppc64le",
-                      ],
-                    },
-                  ],
-                },
-              },
-              {
-                weight: 2,
-                preference: {
-                  matchExpressions: [
-                    {
-                      key: "beta.kubernetes.io/arch",
-                      operator: "In",
-                      values: [
-                        "s390x",
-                      ],
-                    },
-                  ],
-                },
-              },
-            ],
-          },
-        },
       },
     },
   },

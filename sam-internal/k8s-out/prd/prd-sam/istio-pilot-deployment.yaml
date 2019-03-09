@@ -6,27 +6,19 @@ metadata:
   labels:
     app: istio-pilot
     istio: pilot
-    version: istio-1.0.1
+    release: istio
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: istio-pilot
-      apptype: control
-      istio: pilot
-      version: istio-1.0.1
   template:
     metadata:
       annotations:
         scheduler.alpha.kubernetes.io/critical-pod: ""
         sidecar.istio.io/inject: "false"
       labels:
-        app: istio-pilot
-        apptype: control
+        app: pilot
         istio: pilot
-        version: istio-1.0.1
     spec:
       affinity:
         nodeAffinity:
@@ -93,9 +85,9 @@ spec:
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
+        - containerPort: 15011
         - containerPort: 8080
         - containerPort: 15010
-        - containerPort: 15011
         readinessProbe:
           httpGet:
             path: /ready
@@ -110,6 +102,42 @@ spec:
         volumeMounts:
         - mountPath: /etc/istio/config
           name: config-volume
+      - args:
+        - proxy
+        - --serviceCluster
+        - istio-pilot
+        - --templateFile
+        - /etc/istio/proxy/envoy_pilot.yaml.tmpl
+        - --controlPlaneAuthPolicy
+        - NONE
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: INSTANCE_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:50d25caed2638ed29259a2be55ba2dc0ceb49b00
+        imagePullPolicy: IfNotPresent
+        name: istio-proxy
+        ports:
+        - containerPort: 15003
+        - containerPort: 15005
+        - containerPort: 15007
+        - containerPort: 15011
+        resources:
+          requests:
+            cpu: 10m
+        volumeMounts: []
       - args:
         - --debug-mode
         - "true"
@@ -139,7 +167,6 @@ spec:
           timeoutSeconds: 5
       nodeSelector:
         pool: prd-sam_gater
-      serviceAccount: istio-pilot-service-account
       serviceAccountName: istio-pilot-service-account
       volumes:
       - configMap:

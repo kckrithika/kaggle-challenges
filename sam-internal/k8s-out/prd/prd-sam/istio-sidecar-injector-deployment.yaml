@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   labels:
     app: sidecarInjectorWebhook
-    chart: sidecarInjectorWebhook-1.0.1
     istio: sidecar-injector
+    release: istio
   name: istio-sidecar-injector
   namespace: mesh-control-plane
 spec:
@@ -22,7 +22,7 @@ spec:
              "cert-type": "server",
              "kingdom": "prd",
              "name": "cert1",
-             "role": "istio.mesh-control-plane",
+             "role": "istio-sidecar-injector.mesh-control-plane",
              "san": [
               "istio-sidecar-injector",
               "istio-sidecar-injector.mesh-control-plane",
@@ -109,14 +109,14 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
+        - mountPath: /cert1
+          name: cert1
         - mountPath: /etc/istio/config
           name: config-volume
           readOnly: true
         - mountPath: /etc/istio/inject
           name: inject-config
           readOnly: true
-        - mountPath: /cert1
-          name: cert1
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
@@ -200,6 +200,12 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - emptyDir:
+          medium: Memory
+        name: cert1
+      - emptyDir:
+          medium: Memory
+        name: tokens
       - configMap:
           name: istio
         name: config-volume
@@ -209,9 +215,3 @@ spec:
             path: config
           name: istio-sidecar-injector
         name: inject-config
-      - emptyDir:
-          medium: Memory
-        name: cert1
-      - emptyDir:
-          medium: Memory
-        name: tokens

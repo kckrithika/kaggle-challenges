@@ -1139,7 +1139,6 @@ metadata:
     app: istio-sidecar-injector
     release: istio
   name: istio-sidecar-injector
-  namespace: mesh-control-plane
 webhooks:
 - clientConfig:
     caBundle: ""
