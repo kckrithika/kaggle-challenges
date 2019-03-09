@@ -14,6 +14,12 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   },
   spec: {
     replicas: 1,
+    selector: {
+      matchLabels: {
+        app: "istio-ingressgateway",
+        istio: "ingressgateway",
+      },
+    },
     template: {
       metadata: {
         annotations: {
@@ -164,9 +170,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               },
               {
                 containerPort: 443,
-              },
-              {
-                containerPort: 31400,
               },
               {
                 containerPort: 15011,

@@ -11,6 +11,10 @@ metadata:
   namespace: mesh-control-plane
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: pilot
+      istio: pilot
   template:
     metadata:
       annotations:

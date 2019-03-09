@@ -16,20 +16,20 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   spec: {
     ports: [
       {
+        name: "tcp",
+        nodePort: 32400,
+        port: 32400,
+      },
+      {
         name: "http2",
-        nodePort: 31380,
+        nodePort: 32380,
         port: 80,
         targetPort: 80,
       },
       {
         name: "https",
-        nodePort: 31390,
+        nodePort: 32390,
         port: 443,
-      },
-      {
-        name: "tcp",
-        nodePort: 31400,
-        port: 31400,
       },
       {
         name: "tcp-pilot-grpc-tls",

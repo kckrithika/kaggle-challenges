@@ -4,6 +4,10 @@ metadata:
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
+  selector:
+    matchLabels:
+      app: pilot
+      istio: pilot
   template:
     spec:
       containers:

@@ -4,6 +4,10 @@ metadata:
   name: istio-ingressgateway
   namespace: mesh-control-plane
 spec:
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+      istio: ingressgateway
   template:
     metadata:
       annotations:
@@ -40,6 +44,8 @@ spec:
           containerPort: 15030
         - $patch: delete
           containerPort: 15031
+        - $patch: delete
+          containerPort: 31400
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
