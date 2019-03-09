@@ -12,7 +12,6 @@ spec:
   selector:
     matchLabels:
       istio: sidecar-injector
-      sam.data.sfdc.net/owner: mesh-control-plane
   template:
     metadata:
       annotations:
@@ -37,7 +36,6 @@ spec:
         sidecar.istio.io/inject: "false"
       labels:
         istio: sidecar-injector
-        sam.data.sfdc.net/owner: mesh-control-plane
     spec:
       affinity:
         nodeAffinity:
