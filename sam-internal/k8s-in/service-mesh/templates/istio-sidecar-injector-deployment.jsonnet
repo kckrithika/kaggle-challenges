@@ -17,6 +17,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     selector: {
       matchLabels: {
         istio: "sidecar-injector",
+        "sam.data.sfdc.net/owner": "mesh-control-plane",
       },
     },
     template: {
@@ -28,6 +29,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         },
         labels: {
           istio: "sidecar-injector",
+          "sam.data.sfdc.net/owner": "mesh-control-plane",
         },
       },
       spec: {

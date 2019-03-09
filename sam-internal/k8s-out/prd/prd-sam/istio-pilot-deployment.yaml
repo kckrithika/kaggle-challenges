@@ -15,6 +15,7 @@ spec:
     matchLabels:
       app: pilot
       istio: pilot
+      sam.data.sfdc.net/owner: mesh-control-plane
   template:
     metadata:
       annotations:
@@ -23,6 +24,7 @@ spec:
       labels:
         app: pilot
         istio: pilot
+        sam.data.sfdc.net/owner: mesh-control-plane
     spec:
       affinity:
         nodeAffinity:

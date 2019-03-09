@@ -8,10 +8,13 @@ spec:
     matchLabels:
       app: istio-ingressgateway
       istio: ingressgateway
+      sam.data.sfdc.net/owner: mesh-control-plane
   template:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: mcpIstioConfig.ingressGatewayMadkubAnnotations
+      labels:
+        sam.data.sfdc.net/owner: mesh-control-plane
     spec:
       containers:
       - args:

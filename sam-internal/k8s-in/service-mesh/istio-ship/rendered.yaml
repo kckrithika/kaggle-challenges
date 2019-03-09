@@ -520,6 +520,7 @@ spec:
     matchLabels:
       app: istio-ingressgateway
       istio: ingressgateway
+      sam.data.sfdc.net/owner: mesh-control-plane
   template:
     metadata:
       annotations:
@@ -529,6 +530,7 @@ spec:
       labels:
         app: istio-ingressgateway
         istio: ingressgateway
+        sam.data.sfdc.net/owner: mesh-control-plane
     spec:
       affinity:
         nodeAffinity:
@@ -773,6 +775,7 @@ spec:
     matchLabels:
       app: pilot
       istio: pilot
+      sam.data.sfdc.net/owner: mesh-control-plane
   template:
     metadata:
       annotations:
@@ -781,6 +784,7 @@ spec:
       labels:
         app: pilot
         istio: pilot
+        sam.data.sfdc.net/owner: mesh-control-plane
     spec:
       affinity:
         nodeAffinity:
@@ -949,6 +953,7 @@ spec:
   selector:
     matchLabels:
       istio: sidecar-injector
+      sam.data.sfdc.net/owner: mesh-control-plane
   template:
     metadata:
       annotations:
@@ -957,6 +962,7 @@ spec:
         sidecar.istio.io/inject: "false"
       labels:
         istio: sidecar-injector
+        sam.data.sfdc.net/owner: mesh-control-plane
     spec:
       affinity:
         nodeAffinity:

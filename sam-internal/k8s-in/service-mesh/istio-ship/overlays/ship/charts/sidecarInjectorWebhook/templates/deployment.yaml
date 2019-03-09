@@ -8,10 +8,13 @@ spec:
   selector:
     matchLabels:
       istio: sidecar-injector
+      sam.data.sfdc.net/owner: mesh-control-plane
   template:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: mcpIstioConfig.sidecarInjectorMadkubAnnotations
+      labels:
+        sam.data.sfdc.net/owner: mesh-control-plane
     spec:
       containers:
       - args:
@@ -113,8 +116,6 @@ spec:
       nodeSelector:
         master: "true"
       volumes:
-      - $patch: delete
-        name: certs
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
@@ -124,3 +125,5 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
+      - $patch: delete
+        name: certs

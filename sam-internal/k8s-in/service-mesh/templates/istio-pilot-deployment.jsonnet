@@ -21,6 +21,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       matchLabels: {
         app: "pilot",
         istio: "pilot",
+        "sam.data.sfdc.net/owner": "mesh-control-plane",
       },
     },
     template: {
@@ -32,6 +33,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         labels: {
           app: "pilot",
           istio: "pilot",
+          "sam.data.sfdc.net/owner": "mesh-control-plane",
         },
       },
       spec: {
