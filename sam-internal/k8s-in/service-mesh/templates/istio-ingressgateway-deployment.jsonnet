@@ -18,6 +18,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       matchLabels: {
         app: "istio-ingressgateway",
         istio: "ingressgateway",
+        "sam.data.sfdc.net/owner": "mesh-control-plane",
       },
     },
     template: {
@@ -30,6 +31,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         labels: {
           app: "istio-ingressgateway",
           istio: "ingressgateway",
+          "sam.data.sfdc.net/owner": "mesh-control-plane",
         },
       },
       spec: {
