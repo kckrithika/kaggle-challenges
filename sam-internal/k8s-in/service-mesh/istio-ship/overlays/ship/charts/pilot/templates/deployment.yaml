@@ -8,11 +8,7 @@ spec:
     matchLabels:
       app: pilot
       istio: pilot
-      sam.data.sfdc.net/owner: mesh-control-plane
   template:
-    metadata:
-      labels:
-        sam.data.sfdc.net/owner: mesh-control-plane
     spec:
       containers:
       - args:
