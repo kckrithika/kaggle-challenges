@@ -57,8 +57,11 @@ items:
       SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
 
       echo "Cleaning up $APP_NAME resources from prior runs"
+      # || true because exit code 1 if spark application can't be found.
       kcfw delete sparkapplication $APP_NAME || true
-      kcfw delete pod -l $SELECTOR || true
+      # kubectl returns success even if no pods match the label selector. This is helpful,
+      # this will have the side-effect of aborting the script early if it cannot access kubeapi.
+      kcfw delete pod -l $SELECTOR
       # Wait for pods from prior runs to delete.
       while ! $(kcfw get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
 
@@ -92,6 +95,9 @@ items:
         apptype: monitoring
     template:
       metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
+            "prd", "name": "watchdogsparkoperator", "role": "flowsnake_test.flowsnake-watchdog"}]}'
         labels:
           app: watchdog-spark-operator
           apptype: monitoring
@@ -113,7 +119,7 @@ items:
           - -cliCheckerTimeout=15m
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0002530-db32f9dc
           imagePullPolicy: IfNotPresent
-          name: watchdog-canary
+          name: watchdog
           resources:
             limits:
               cpu: "1"
@@ -130,7 +136,126 @@ items:
             name: watchdog-spark-scripts
           - mountPath: /watchdog-spark-specs
             name: watchdog-spark-specs
+          - mountPath: /certs
+            name: datacerts
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint
+          - https://10.254.208.254:32007
+          - --maddog-endpoint
+          - https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca
+          - /etc/pki_service/ca/security-ca.pem
+          - --madkub-server-ca
+          - /etc/pki_service/ca/cacerts.pem
+          - --token-folder
+          - /tokens
+          - --kingdom
+          - prd
+          - --superpod
+          - None
+          - --estate
+          - prd-data-flowsnake_test
+          - --refresher
+          - --run-init-for-refresher-mode
+          - --cert-folders
+          - watchdogsparkoperator:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
+          - --funnel-endpoint
+          - http://ajna0-funnel1-0-prd.data.sfdc.net:80
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
+          name: sam-madkub-integration-refresher
+          resources: {}
+          volumeMounts:
+          - mountPath: /certs
+            name: datacerts
+          - mountPath: /tokens
+            name: tokens
+          - mountPath: /etc/pki_service/ca
+            name: certificate-authority
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/certificates
+            name: client-certificate
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/keys
+            name: client-key
+            readOnly: true
         hostNetwork: true
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint
+          - https://10.254.208.254:32007
+          - --maddog-endpoint
+          - https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca
+          - /etc/pki_service/ca/security-ca.pem
+          - --madkub-server-ca
+          - /etc/pki_service/ca/cacerts.pem
+          - --token-folder
+          - /tokens
+          - --kingdom
+          - prd
+          - --superpod
+          - None
+          - --estate
+          - prd-data-flowsnake_test
+          - --cert-folders
+          - watchdogsparkoperator:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
+          - --funnel-endpoint
+          - http://ajna0-funnel1-0-prd.data.sfdc.net:80
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
+          name: sam-madkub-integration-init
+          resources: {}
+          volumeMounts:
+          - mountPath: /certs
+            name: datacerts
+          - mountPath: /tokens
+            name: tokens
+          - mountPath: /etc/pki_service/ca
+            name: certificate-authority
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/certificates
+            name: client-certificate
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/keys
+            name: client-key
+            readOnly: true
         restartPolicy: Always
         serviceAccount: watchdog-spark-operator-serviceaccount
         serviceAccountName: watchdog-spark-operator-serviceaccount

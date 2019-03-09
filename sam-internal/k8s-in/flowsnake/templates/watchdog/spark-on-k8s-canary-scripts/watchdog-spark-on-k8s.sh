@@ -15,8 +15,11 @@ APP_NAME=${SPEC%.*}
 SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
 
 echo "Cleaning up $APP_NAME resources from prior runs"
+# || true because exit code 1 if spark application can't be found.
 kcfw delete sparkapplication $APP_NAME || true
-kcfw delete pod -l $SELECTOR || true
+# kubectl returns success even if no pods match the label selector. This is helpful,
+# this will have the side-effect of aborting the script early if it cannot access kubeapi.
+kcfw delete pod -l $SELECTOR
 # Wait for pods from prior runs to delete.
 while ! $(kcfw get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
 
