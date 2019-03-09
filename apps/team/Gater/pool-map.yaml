@@ -23,6 +23,7 @@ apps:
   - wax/wax-sam_gater
  gate-manager-gia2:
   - hio/hio-sam_gater
+  - ttd/ttd-sam_gater
  gate-manager-2instances:
  gate-manager-3instances:
  gate-manager-4instances:
