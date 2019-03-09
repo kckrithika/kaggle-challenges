@@ -51,7 +51,7 @@ system:
             initialDelaySeconds: 15
             periodSeconds: 15
       - name: sherpa
-        image: sfci/servicelibs/sherpa-envoy:1.0.1
+        image: sfci/servicelibs/sherpa-envoy:1.0.5
         #args: ["--zipkin-rate", "0.0"]
         env:
         - name: SFDC_ENVIRONMENT
