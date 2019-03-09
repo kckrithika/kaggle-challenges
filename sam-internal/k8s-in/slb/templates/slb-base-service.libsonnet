@@ -8,10 +8,7 @@ local utils = import "util_functions.jsonnet";
 
 {
   slbCanaryBaseService(canaryName, portConfigurations, serviceName=canaryName, vipName=canaryName, cnames=[]):: (
-    # XRD is currently bumping into peering prefix limits (60) that restrict the number of distinct VIPs
-    # we can serve before everything blows up. Disable canary VIPs in XRD until we can advertise more VIPs.
-    # See https://computecloud.slack.com/archives/G340CE86R/p1551987919271500.
-    local slbAnnotations = if configs.kingdom != "xrd" || serviceName == "slb-portal-service" then {
+    local slbAnnotations = if !slbflights.disableCanaryVIPs || serviceName == "slb-portal-service" then {
         annotations: {
           "slb.sfdc.net/name": vipName,
           "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(portConfigurations),

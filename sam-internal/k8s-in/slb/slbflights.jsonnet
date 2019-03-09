@@ -15,6 +15,12 @@ local slbconfigs = import "slbconfig.jsonnet";
     slbTCPdumpEnabled: (slbimages.phaseNum <= 1),
     nginAccesslogsRunInSlbEstate: (slbimages.hyperslb_build >= 2072),
 
+    # XRD is currently bumping into peering prefix limits (60) that restrict the number of distinct VIPs
+    # we can serve before everything blows up. Disable canary VIPs (and downstream components like fred/george)
+    # in XRD until we can increase the prefix limits and thus advertise more VIPs.
+    # See https://computecloud.slack.com/archives/G340CE86R/p1551987919271500.
+    disableCanaryVIPs: (configs.kingdom == "xrd"),
+
     # 2019/01/16 - this didn't work as expected so I disabled it (Pablo)
     # See: https://computecloud.slack.com/archives/G340CE86R/p1550291706553800
     alertOnlyOnProxyErrorCode: (slbimages.phaseNum < 1),
