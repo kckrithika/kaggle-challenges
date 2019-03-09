@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-api-cre-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.7.0.0.at-provisioning-jwt4.127001b.7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:1.7.0.0.at-provisioning-jwt4.2618cbf.12
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CRE_Test
