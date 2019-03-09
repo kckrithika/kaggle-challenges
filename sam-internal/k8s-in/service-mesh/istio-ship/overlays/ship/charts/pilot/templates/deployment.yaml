@@ -15,14 +15,14 @@ spec:
         - service-mesh
         - --log_output_level
         - debug
-        image: mcpIstioConfig.pilot
+        image: mcpIstioConfig.pilotImage
         name: discovery
         ports:
         - containerPort: 15011
         volumeMounts:
         - $patch: delete
           mountPath: /etc/certs
-      - image: mcpIstioConfig.proxy
+      - image: mcpIstioConfig.proxyImage
         name: istio-proxy
         volumeMounts:
         - $patch: delete
@@ -44,7 +44,7 @@ spec:
           value: mcpIstioConfig.funnelHost
         - name: SFDC_METRICS_SERVICE_PORT
           value: mcpIstioConfig.funnelPort
-        image: mcpIstioConfig.metricsscraper
+        image: mcpIstioConfig.metricsScraperImage
         imagePullPolicy: Always
         name: metrics-scraper
         readinessProbe:

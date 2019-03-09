@@ -1,12 +1,10 @@
----
-# Source: istio/charts/sidecarInjectorWebhook/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: istio-sidecar-injector
-  namespace: mesh-control-plane
   labels:
     istio: sidecar-injector
+  name: istio-sidecar-injector
+  namespace: mesh-control-plane
 spec:
   ports:
   - port: 443
