@@ -9,13 +9,16 @@ metadata:
   namespace: core-on-sam
 spec:
   externalTrafficPolicy: Local
+  healthCheckNodePort: 32638
   loadBalancerIP: 35.193.207.80
   ports:
   - name: https
+    nodePort: 31006
     port: 443
     protocol: TCP
     targetPort: 12060
   - name: mtls
+    nodePort: 31745
     port: 8443
     protocol: TCP
     targetPort: 12060
