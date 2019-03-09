@@ -17,6 +17,12 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   },
   spec: {
     replicas: 1,
+    selector: {
+      matchLabels: {
+        app: "pilot",
+        istio: "pilot",
+      },
+    },
     template: {
       metadata: {
         annotations: {

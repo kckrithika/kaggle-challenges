@@ -9,3 +9,12 @@ spec:
     port: 15030
   - $patch: delete
     port: 15031
+  - $patch: delete
+    port: 31400
+  - port: 32400
+    nodePort: 32400
+    name: tcp
+  - port: 80
+    nodePort: 32380
+  - port: 443
+    nodePort: 32390
