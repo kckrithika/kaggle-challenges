@@ -10,6 +10,7 @@ system:
       command: ["/secretservice/secretservice-watchdog"]
       args:
       - "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+      - "--interval=300s"
       livenessProbe:
         exec:
           command: ["ls", "/"]
