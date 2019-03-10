@@ -9,6 +9,17 @@
      healthport: 12087
      healthpath: "/liveness-probe"
      healthprotocol: http
+- lbname: maureen-selfservice-two
+  servers:
+  - 10.231.187.82
+  - 10.231.187.19
+  ports:
+  - port: 80
+    targetport: 12087
+    lbtype: http
+    healthport: 12087
+    healthpath: "/liveness-probe"
+    healthprotocol: http
 - lbname: maureen-test-two
   servers:
    - 10.231.187.66
