@@ -6,13 +6,13 @@ system:
     count: 1
     containers:
     - name: secretservice-watchdog
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vyjayanthi.raja/secretservice-watchdog:vyjayanthi.raja-201903101026
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vyjayanthi.raja/secretservice-watchdog:vyjayanthi.raja-201903101048
       command: ["/secretservice/secretservice-watchdog"]
       args:
-      - "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
-      - "--interval=300s"
-      - "--vaultName=vyj-test-vault2"
-      - "--role=user-vyjayanthi-raja.secretservice-watchdog"
+      - "-metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+      - "-interval=300s"
+      - "-vaultName=vyj-test-vault2"
+      - "-role=user-vyjayanthi-raja.secretservice-watchdog"
       livenessProbe:
         exec:
           command: ["ls", "/"]
