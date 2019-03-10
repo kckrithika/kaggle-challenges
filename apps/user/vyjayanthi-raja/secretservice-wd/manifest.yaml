@@ -1,0 +1,26 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: secretservice-watchdog
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vyjayanthi.raja/secretservice-watchdog:vyjayanthi.raja-201903100026
+      command: ["/secretservice/secretservice-watchdog"]
+      args:
+      - "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+      - "--interval=300s"
+      livenessProbe:
+        exec:
+          command: ["ls", "/"]
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60
+      volumeMounts:
+      - mountPath: /clientcert
+        name: cert
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
