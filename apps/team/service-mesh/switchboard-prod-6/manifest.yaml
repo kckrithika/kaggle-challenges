@@ -6,6 +6,9 @@ system:
   functions:
   - name: switchboard
     count: 5
+    strategy:
+      rollingUpdate:
+        maxUnavailable: 2
     containers:
     - name: switchboard
       image: sfci/servicelibs/switchboard:64805f5110028be3c21bd1f564b72042ae834d2e
