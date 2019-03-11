@@ -11,8 +11,8 @@ system:
         maxUnavailable: 2
     containers:
     - name: switchboard
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/551
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:4243796a6e4b935b00e09971db12d9ae45c0b00d
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/554
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:0783ab522a873808b1d930d98fcb28615729e216
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -27,7 +27,8 @@ system:
       - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_remote-address=true
       - --metrics.maxNumberOfCollectedMetrics=150000
       - --metrics.funnelTimeOut=100000
-      - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
+      # TODO:NIKO:2019-03-11 this doesn't work because ajna tls is announced on 7443, which is H2 TLSß
+      #- --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       ports:
       - containerPort: 15372
       # Expose 7020 for direct connections without TLS

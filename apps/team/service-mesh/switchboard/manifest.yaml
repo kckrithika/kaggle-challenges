@@ -11,8 +11,8 @@ system:
         maxUnavailable: 2
     containers:
     - name: switchboard
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/551
-      image: sfci/servicelibs/switchboard:4243796a6e4b935b00e09971db12d9ae45c0b00d
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/554
+      image: sfci/servicelibs/switchboard:0783ab522a873808b1d930d98fcb28615729e216
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
