@@ -40,7 +40,7 @@ system:
         value: stmfa\..*|moana-driver-master
 
       - name: MOANA_SPARK_ENGINE_IMAGE
-        value: dva/datapool-engine:500-ca7a6dc22540961cdd9eeb8061bc6b07f0e2c8a7
+        value: ops0-artifactrepo1-0-prd.data.sfdc.net/dva/datapool-engine:500-ca7a6dc22540961cdd9eeb8061bc6b07f0e2c8a7
 
       volumeMounts:
       - mountPath: /home/datapool/logs
