@@ -104,7 +104,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000083-127f2ff0
+          image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           name: sam-madkub-integration-refresher
           resources: {}
           volumeMounts:
@@ -163,7 +163,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000083-127f2ff0
+          image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           name: sam-madkub-integration-init
           resources: {}
           volumeMounts:

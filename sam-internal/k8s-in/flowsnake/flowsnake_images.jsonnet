@@ -228,7 +228,7 @@ local utils = import "util_functions.jsonnet";
 
         "4-pcl": self["4"] {
            # In PCL, Madkub server needs to use host IP for token IP to get server token.
-           madkub_image_tag: "1.0.0-0000083-127f2ff0",
+           madkub_image_tag: "1.0.0-0000084-9f4a6ca6",
            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
