@@ -185,69 +185,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           },
           {
             args: [
-              "proxy",
-              "--serviceCluster",
-              "istio-pilot",
-              "--templateFile",
-              "/etc/istio/proxy/envoy_pilot.yaml.tmpl",
-              "--controlPlaneAuthPolicy",
-              "NONE",
-            ],
-            env: [
-              {
-                name: "POD_NAME",
-                valueFrom: {
-                  fieldRef: {
-                    apiVersion: "v1",
-                    fieldPath: "metadata.name",
-                  },
-                },
-              },
-              {
-                name: "POD_NAMESPACE",
-                valueFrom: {
-                  fieldRef: {
-                    apiVersion: "v1",
-                    fieldPath: "metadata.namespace",
-                  },
-                },
-              },
-              {
-                name: "INSTANCE_IP",
-                valueFrom: {
-                  fieldRef: {
-                    apiVersion: "v1",
-                    fieldPath: "status.podIP",
-                  },
-                },
-              },
-            ],
-            image: mcpIstioConfig.proxyImage,
-            imagePullPolicy: "IfNotPresent",
-            name: "istio-proxy",
-            ports: [
-              {
-                containerPort: 15003,
-              },
-              {
-                containerPort: 15005,
-              },
-              {
-                containerPort: 15007,
-              },
-              {
-                containerPort: 15011,
-              },
-            ],
-            resources: {
-              requests: {
-                cpu: "10m",
-              },
-            },
-            volumeMounts: [],
-          },
-          {
-            args: [
               "--debug-mode",
               "true",
             ],
