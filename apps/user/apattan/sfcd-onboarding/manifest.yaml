@@ -3,7 +3,7 @@ apiVersion: v2
 system:
   functions:
   - name: apattan-sfcd-onboarding
-    count: 1
+    count: 0
     identity:
       serviceName: apattan-sfcd-onboarding
     containers:
@@ -15,20 +15,18 @@ system:
         httpGet:
           path: /api/health
           port: 5000
+      env:
+      - name: VAULT_NAME
+        value: "sfcd-onboarding"
+      - name: GCP_SERVICE_KEY_JSON
+        value: '/etc/sfcd-onboarding/.gcp_service_key.json'
       volumeMounts:
         - name: client-certs
-          mountPath: /certs/client
-        - name: lb-certs
-          mountPath: /certs/lb-certs
+          mountPath: /certs
     volumes:
     - name: client-certs
       maddogCert:
         type: client
-    - name: lb-certs
-      maddogCert:
-        type: server
-        lbnames:
-        - sfcd-onboarding-lb
   loadbalancers:
   - lbname: sfcd-onboarding-lb
     function: apattan-sfcd-onboarding
