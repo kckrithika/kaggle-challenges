@@ -1,0 +1,12 @@
+- lbname: ops0-authval1-0-ukb
+  customlbname: ops0-authval1-0-ukb
+  servers:
+   - ops0-authval1-1-ukb.ops.sfdc.net
+   - ops0-authval2-1-ukb.ops.sfdc.net
+  ports:
+   - port: 8443
+     targetport: 8443
+     lbtype: tcp
+     lbalogrithm: roundrobin
+     healthport: 8443
+     healthprotocol: "tcp"
