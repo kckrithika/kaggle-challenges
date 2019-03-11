@@ -45,7 +45,7 @@ spec:
               if [ "$reply" -lt 200 -o "$reply" -ge 400 ]; then exit 1; fi; ps -o
               comm,etime | grep nginx-ingress | grep -cE '[1-9]-[0-9]' | grep -q 0
           failureThreshold: 5
-          initialDelaySeconds: 60
+          initialDelaySeconds: 300
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
