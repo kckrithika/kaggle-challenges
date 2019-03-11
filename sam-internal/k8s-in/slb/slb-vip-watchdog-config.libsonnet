@@ -273,32 +273,34 @@ local vipwdConfig = {
   },
 };
 
-local getVivipsParameter(estateConfig) =
-  if std.objectHas(estateConfig, "vivips") then [
-    "--veryImportantVips=" + std.join(",", estateConfig.vivips),
-  ] else [];
-
-local globalOptOutVips = [
+// List of VIPs that are opted out of SLA globally. Entries here must use glob syntax to identify VIPs.
+local globalSlaOptOutVips = [
   // Portal has known issues where page load depends on how responsive DNS lookups are. This can lead to
   // flakiness in VIP watchdog's alerting.
   // see https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006QrWiIAK/view for more details
   "*slb-portal-service*",
 ];
 
-local getSlaOptOutVipsParameter(estateConfig) =
-  if std.objectHas(estateConfig, "slaOptOutVips") then [
-    "--slaOptOutVips=" + std.join(",", estateConfig.slaOptOutVips + globalOptOutVips),
-  ] else if std.length(globalOptOutVips) > 0 then [
-    "--slaOptOutVips=" + std.join(",", globalOptOutVips),
-  ] else [];
+// List of global very important VIPs. Entries here must use glob syntax to identify VIPs.
+local globalVivips = [
+];
+
+local getEstateSpecificVIPSet(estateConfig, vipSetName) =
+  if std.objectHas(estateConfig, vipSetName) then estateConfig[vipSetName] else [];
+
+local getEstateConfig(estate) =
+  if std.objectHas(vipwdConfig, estate) then vipwdConfig[estate] else {};
+
+local getVipWdVipParameter(estate, estateConfigName, globalVipSet, parameterName) = (
+  local vipSet = getEstateSpecificVIPSet(getEstateConfig(estate), estateConfigName) + globalVipSet;
+  if std.length(vipSet) > 0 then ["--%s=%s" % [parameterName, std.join(",", vipSet)]] else []
+);
 
 {
   // getVipWdOptOutOptions builds the command line parameters to supply to VIP watchdog. `estate` is the name of the control
-  // estate (e.g., "prd-sam") to retrieve opt-out options for.
+  // estate (e.g., "prd-sam") to retrieve VIP watchdog options for.
   getVipWdConfigOptions(estate):: (
-    if !std.objectHas(vipwdConfig, estate) then []
-    else
-      getVivipsParameter(vipwdConfig[estate]) +
-      getSlaOptOutVipsParameter(vipwdConfig[estate])
+    getVipWdVipParameter(estate, "vivips", globalVivips, "veryImportantVips") +
+    getVipWdVipParameter(estate, "slaOptOutVips", globalSlaOptOutVips, "slaOptOutVips")
   ),
 }
