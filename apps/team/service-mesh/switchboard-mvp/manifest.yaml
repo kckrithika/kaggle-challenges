@@ -27,6 +27,7 @@ system:
       - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_remote-address=true
       - --metrics.maxNumberOfCollectedMetrics=150000
       - --metrics.funnelTimeOut=100000
+      - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       ports:
       - containerPort: 15372
       # Expose 7020 for direct connections without TLS
