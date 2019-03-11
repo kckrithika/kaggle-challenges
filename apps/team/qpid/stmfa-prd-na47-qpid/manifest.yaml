@@ -6,7 +6,7 @@ system:
       - jason.woods@salesforce.com
 
   functions:
-    - name: stmfa-na47-qpid
+    - name: stmfa-prd-na47-qpid
       type: stateful-set
       count: 3
       containers:
@@ -43,7 +43,7 @@ system:
           volumeMounts:
             - mountPath: /var/log/qpid
               name: logvol
-      lbname: stmfa-na47-qpid-lb
+      lbname: stmfa-prd-na47-qpid-lb
 
       volumes:
         - name: logvol
