@@ -30,6 +30,10 @@ local samreleases = import "samreleases.json";
         "mvp,gsf-core-devmvp-sam2-sam,*,madkub": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/minwang/madkub:1.0.0-0000077-b1d3a629",
         "mvp,gsf-core-devmvp-sam2-samtest,*,madkub": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/minwang/madkub:1.0.0-0000077-b1d3a629",
 
+        #[hsuanyu-chen] Enable Internal Load Balancer in PCN
+        "mvp,gsf-core-devmvp-sam2-sam,samapp-controller,hypersam": "2624-bee71f3d174816e59a880f0e94d79e3479846842",
+        "mvp,gsf-core-devmvp-sam2-samtest,samapp-controller,hypersam": "2624-bee71f3d174816e59a880f0e94d79e3479846842",
+
         },
 
     ### Per-phase image tags have been moved to samreleases.json
