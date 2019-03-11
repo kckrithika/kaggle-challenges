@@ -18,7 +18,7 @@ system:
   loadbalancers:
   - lbname: emailreportlb
     function: default
-    slbenabled: true
+    slbEnabled: true
     ports:
       - port: 9090
         targetport: 9090
