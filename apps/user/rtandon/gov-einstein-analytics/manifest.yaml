@@ -10,8 +10,8 @@ system:
     containers:
     - name: airstream
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rtandon/airstream:0f94959ef252
-      command: ["/airstream-app/entrypoint.sh"]
-      args: ["test"]
+      command: ["python3"]
+      args: ["sam.py", "--test"]
       livenessProbe:
         initialDelaySeconds: 30
         exec:
