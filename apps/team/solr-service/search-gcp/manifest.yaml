@@ -8,7 +8,7 @@ system:
       containers:
       - name: searchserver
         # image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17598804.448
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17630069.449
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
@@ -56,4 +56,4 @@ system:
             path: /mnt/disks/ssd0/data/logs/solr
         - name: certs
           maddogCert:
-            type: server
+            type: client
