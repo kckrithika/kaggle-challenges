@@ -13,7 +13,7 @@ system:
     
     # number of instances ("kpods") to deploy and run
     # recommended min: 3 for availability
-    count: 3
+    count: 1
     
     # Docker image(s) that make up one instance of the service
     containers:
@@ -24,7 +24,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       resources:
-        limits: { cpu: "2", memory: "4Gi" }
+        limits: { cpu: "4", memory: "4Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
       ports:
