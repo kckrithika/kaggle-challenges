@@ -15,6 +15,13 @@ local slbconfigs = import "slbconfig.jsonnet";
     slbTCPdumpEnabled: (slbimages.phaseNum <= 1),
     nginAccesslogsRunInSlbEstate: (slbimages.hyperslb_build >= 2072),
 
+    # Portal's root endpoint (`/`) queries DNS for every page load. VIP watchdog (reachability on the target port and VIP availability) and kubelet 
+    # (liveness probe) both hit this endpoint every 3 seconds, causing undue stress on DNS lookups. Change the liveness probe endpoint to something
+    # less dependent on external systems. Unfortunately, VIP watchdog's reachability probe can't be similarly configured. 
+    # https://gus.lightning.force.com/a07B0000006QrWiIAK (when implemented) should help with portal's page load times.
+    # https://gus.lightning.force.com/a07B0000005jkagIAA (when implemented) should allow us to reduce VIP watchdog's load on the main portal page.
+    portalLivenessProbeEndpoint: (if slbimages.phaseNum <= 1 then "/webfiles/" else "/"),
+
     # XRD is currently bumping into peering prefix limits (60) that restrict the number of distinct VIPs
     # we can serve before everything blows up. Disable canary VIPs (and downstream components like fred/george)
     # in XRD until we can increase the prefix limits and thus advertise more VIPs.

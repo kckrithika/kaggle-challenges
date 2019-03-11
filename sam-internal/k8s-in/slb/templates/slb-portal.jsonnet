@@ -71,7 +71,7 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                               ),
                               livenessProbe: {
                                   httpGet: {
-                                      path: "/",
+                                      path: slbflights.portalLivenessProbeEndpoint,
                                       port: portconfigs.slb.slbPortalServicePort,
                                   },
                                   initialDelaySeconds: 30,
