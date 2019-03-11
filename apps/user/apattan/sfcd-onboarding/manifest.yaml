@@ -1,9 +1,11 @@
-apiVersion: v1
+apiVersion: v2
 
 system:
   functions:
   - name: apattan-sfcd-onboarding
     count: 1
+    identity:
+      serviceName: apattan-sfcd-onboarding
     containers:
     - name: sfcd-onboarding
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/apattan/sfcd-onboarding:latest
@@ -13,8 +15,22 @@ system:
         httpGet:
           path: /api/health
           port: 5000
+      volumeMounts:
+        - name: client-certs
+          mountPath: /certs/client
+        - name: lb-certs
+          mountPath: /certs/lb-certs
+    volumes:
+    - name: client-certs
+      maddogCert:
+        type: client
+    - name: lb-certs
+      maddogCert:
+        type: server
+        lbnames:
+        - sfcd-onboarding-lb
   loadbalancers:
-  - lbname: apattan-sfcd-onboarding-lb
+  - lbname: sfcd-onboarding-lb
     function: apattan-sfcd-onboarding
     slbenabled: true
     ports:
