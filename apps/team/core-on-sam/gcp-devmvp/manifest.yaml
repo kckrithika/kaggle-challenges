@@ -302,3 +302,11 @@ system:
         maxSurge: 200%
         maxUnavailable: 0
 
+  loadbalancers:
+  - function: devmvp-app-gcp
+    lbname: devmvp-app-gcp-lb
+    nodeExposed: true
+    ports:
+    - lbtype: tcp
+      port: 13065
+      targetport: 13065
