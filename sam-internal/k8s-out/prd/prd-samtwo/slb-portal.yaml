@@ -284,6 +284,7 @@ spec:
           name: maddog-certs
         - mountPath: /proxyconfig
           name: proxyconfig
+      dnsPolicy: Default
       initContainers:
       - args:
         - /sam/madkub-client
