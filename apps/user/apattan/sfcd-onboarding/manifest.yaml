@@ -18,6 +18,8 @@ system:
     function: apattan-sfcd-onboarding
     slbenabled: true
     ports:
-      - port: 8080
+      - port: 443
         targetport: 5000
-        lbtype: tcp
+        lbtype: http
+        tls: true
+        sticky: 300
