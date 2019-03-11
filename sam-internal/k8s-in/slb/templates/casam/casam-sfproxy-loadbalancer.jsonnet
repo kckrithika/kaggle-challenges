@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local ports = import "portconfig.jsonnet";
 
 # SFProxy for devmvp needs a LoadBalancer service to provision a regional TCP LoadBalancer.
 # SAM manifest translation only supports internal load balancers.
@@ -21,6 +22,7 @@ if casamSFProxyLoadBalancerEnabled then {
     # CASAM needs the client source IP to be preserved. This requires "externalTrafficPolicy: Local".
     # See https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
     externalTrafficPolicy: "Local",
+    healthCheckNodePort: ports.slb.casamMVP_SFProxyHealthCheckNodePort,
 
     # Manually-provisioned static IP ("casam-sfproxy"). See https://console.cloud.google.com/networking/addresses/list?project=gsf-core-devmvp-sam2&pli=1
     loadBalancerIP: "35.193.207.80",
@@ -39,12 +41,14 @@ if casamSFProxyLoadBalancerEnabled then {
         name: "https",
         protocol: 'TCP',
         port: 443,
+        nodePort: ports.slb.casamMVP_SFProxyHTTPSNodePort,
         targetPort: 12060,
       },
       {
         name: "mtls",
         protocol: "TCP",
         port: 8443,
+        nodePort: ports.slb.casamMVP_SFProxyMTLSNodePort,
         targetPort: 12060,
       },
     ],

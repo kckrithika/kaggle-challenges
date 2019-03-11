@@ -55,6 +55,10 @@
         bravoServiceNodePort3: 32147,
         slbEchoServiceNodePort: 32148,
         slbIpvsControlPort: 32149,
+
+        casamMVP_SFProxyHTTPSNodePort: 31006,
+        casamMVP_SFProxyMTLSNodePort: 31745,
+        casamMVP_SFProxyHealthCheckNodePort: 32638,
     },
     flowsnake: {
         nginx_ingress_http: 32080,
