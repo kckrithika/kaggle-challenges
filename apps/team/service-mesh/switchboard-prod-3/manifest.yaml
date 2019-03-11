@@ -5,7 +5,7 @@ system:
     - servicemesh@salesforce.com
   functions:
   - name: switchboard
-    count: 3
+    count: 5
     containers:
     - name: switchboard
       image: sfci/servicelibs/switchboard:64805f5110028be3c21bd1f564b72042ae834d2e
