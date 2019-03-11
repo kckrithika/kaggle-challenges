@@ -10,7 +10,7 @@ system:
     count: 1
     containers:
     - name: moana-driver
-      image: sfci/insights/moana-driver:master-12-93e6865
+      image: sfci/insights/moana-driver:release-6-c75c031
       ports:
       - containerPort: 8080
         name: http
@@ -48,16 +48,20 @@ system:
         value: /home/scone/client-certs/client
 
       - name: JAVA_OPTS
-        value: -server -XX:MaxMetaspaceSize=128m -Xmx512m -Xms512m
+        value: -server -XX:MaxMetaspaceSize=256m -Xmx1024m -Xms1024m
 
       - name: TESTRECIPE_INTERVAL
-        value: 600s
+        value: 300s
 
       - name: TESTRECIPE_TIMEOUT
-        value: 540s
+        value: 240s
 
       - name: TESTRECIPE_LASTSUCCESSTARGET
-        value: 660s
+        value: 360s
+
+      - name: TESTRECIPE_MAESTROPINGTEST
+        value: "true"
+
 
       volumeMounts:
       - mountPath: /home/scone/client-certs
@@ -66,10 +70,10 @@ system:
       resources:
         limits:
           cpu: 2
-          memory: 1G
+          memory: 2G
         requests:
           cpu: 1
-          memory: 1G
+          memory: 2G
     volumes:
     - name: tls-server-certs
       maddogCert:
