@@ -11,7 +11,7 @@ system:
       args:
       - "-metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
       - "-interval=300s"
-      - "-vaultName=vyj-test-vault4"
+      - "-vaultName=secretservice-canary-vault"
       - "-role=samapp.user-vyjayanthi-raja.secretservice-watchdog"
       - "-logtostderr=true"
       livenessProbe:
