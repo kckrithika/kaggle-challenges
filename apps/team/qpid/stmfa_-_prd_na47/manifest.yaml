@@ -7,9 +7,6 @@ system:
 
   functions:
     - name: stmfa-na47-qpid
-      identity:
-        pod: na47
-        serviceName: qpid
       type: stateful-set
       count: 3
       containers:
