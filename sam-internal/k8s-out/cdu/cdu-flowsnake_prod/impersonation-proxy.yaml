@@ -2,64 +2,78 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: watchdog-canary
-  name: watchdog-canary-0-12-2
+    name: impersonation-proxy
+  name: impersonation-proxy
   namespace: flowsnake
 spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: watchdog-canary-0-12-2
-      apptype: monitoring
+      apptype: control
+      name: impersonation-proxy
   template:
     metadata:
       annotations:
-        madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
-          "cdu", "name": "watchdogcanarycerts", "role": "flowsnake_test"}]}'
+        madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
+          "cdu", "name": "impersonation-proxy", "role": "flowsnake.impersonation-proxy",
+          "san": ["kubernetes-api-flowsnake-cdu.slb.sfdc.net", "kubernetes-api.flowsnake.localhost.mesh.force.com"]}]}'
       labels:
-        app: watchdog-canary-0-12-2
-        apptype: monitoring
+        apptype: control
         flowsnakeOwner: dva-transform
-        flowsnakeRole: WatchdogCanary-0-12-2
+        flowsnakeRole: ImpersonationProxy
+        name: impersonation-proxy
+      namespace: flowsnake
     spec:
+      automountServiceAccountToken: true
       containers:
-      - command:
-        - /sam/watchdog
-        - -role=CLI
-        - -emailFrequency=10m
-        - -timeout=2s
-        - -funnelEndpoint=ajna0-funnel1-0-cdu.data.sfdc.net:80
-        - --config=/config/watchdog.json
-        - -cliCheckerCommandTarget=0.12.2
-        - --hostsConfigFile=/sfdchosts/hosts.json
-        - -watchdogFrequency=15m
-        - -alertThreshold=45m
-        - -cliCheckerTimeout=15m
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-698-itest
+      - env:
+        - name: PROXY_HOST
+          value: impersonation-proxy.flowsnake.svc.cluster.local
+        - name: PROXY_PORT
+          value: "443"
+        - name: PROXY_CERT
+          value: /certs-nginx-server/server/certificates/server.pem
+        - name: PROXY_KEY
+          value: /certs-nginx-server/server/keys/server-key.pem
+        - name: TARGET_HOST
+          value: flowsnake-master-prod.sfdc-role
+        - name: TARGET_PORT
+          value: "443"
+        - name: CA_CERT
+          value: /certs-nginx-server/ca.pem
+        - name: SERVICE_ACCOUNT_TOKEN_FILE
+          value: /var/run/secrets/kubernetes.io/serviceaccount/token
+        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-kubernetes-impersonation-proxy:6-9ac63c5dfed1d4683add1289f98025d3226febd4
         imagePullPolicy: IfNotPresent
-        name: watchdog-canary
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 443
+            scheme: HTTPS
+          timeoutSeconds: 10
+        name: nginx
+        ports:
+        - containerPort: 443
+          hostPort: 8444
+          name: https-proxy
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 443
+            scheme: HTTPS
+          timeoutSeconds: 10
         resources:
           limits:
-            cpu: "1"
-            memory: 500Mi
+            memory: 270Mi
           requests:
-            cpu: "1"
-            memory: 500Mi
+            cpu: 100m
+            memory: 70Mi
         volumeMounts:
-        - mountPath: /config
-          name: config
-        - mountPath: /certs
+        - mountPath: /certs-nginx-server
           name: datacerts
-        - mountPath: /etc/pki_service/ca
-          name: certificate-authority
-          readOnly: true
-        - mountPath: /etc/pki_service/platform/platform-client/certificates
-          name: client-certificate
-          readOnly: true
-        - mountPath: /etc/pki_service/platform/platform-client/keys
-          name: client-key
-          readOnly: true
-        - mountPath: /sfdchosts
-          name: sfdchosts
       - args:
         - /sam/madkub-client
         - --madkub-endpoint
@@ -81,7 +95,9 @@ spec:
         - --refresher
         - --run-init-for-refresher-mode
         - --cert-folders
-        - watchdogcanarycerts:/certs
+        - impersonation-proxy:/certs-nginx-server
+        - --ca-folder
+        - /etc/pki_service/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-cdu.data.sfdc.net:80
         env:
@@ -100,11 +116,11 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000083-127f2ff0
         name: sam-madkub-integration-refresher
         resources: {}
         volumeMounts:
-        - mountPath: /certs
+        - mountPath: /certs-nginx-server
           name: datacerts
         - mountPath: /tokens
           name: tokens
@@ -117,7 +133,10 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
-      hostNetwork: true
+      hostAliases:
+      - hostnames:
+        - flowsnake-master-prod.sfdc-role
+        ip: 10.254.208.1
       initContainers:
       - args:
         - /sam/madkub-client
@@ -138,7 +157,9 @@ spec:
         - --estate
         - cdu-flowsnake_prod
         - --cert-folders
-        - watchdogcanarycerts:/certs
+        - impersonation-proxy:/certs-nginx-server
+        - --ca-folder
+        - /etc/pki_service/ca
         - --funnel-endpoint
         - http://ajna0-funnel1-0-cdu.data.sfdc.net:80
         env:
@@ -157,11 +178,11 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
+        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000083-127f2ff0
         name: sam-madkub-integration-init
         resources: {}
         volumeMounts:
-        - mountPath: /certs
+        - mountPath: /certs-nginx-server
           name: datacerts
         - mountPath: /tokens
           name: tokens
@@ -174,11 +195,8 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
-      restartPolicy: Always
+      serviceAccountName: flowsnake-impersonation-proxy
       volumes:
-      - configMap:
-          name: watchdog
-        name: config
       - emptyDir:
           medium: Memory
         name: datacerts
@@ -194,6 +212,3 @@ spec:
       - hostPath:
           path: /etc/pki_service/platform/platform-client/keys
         name: client-key
-      - configMap:
-          name: sfdchosts
-        name: sfdchosts

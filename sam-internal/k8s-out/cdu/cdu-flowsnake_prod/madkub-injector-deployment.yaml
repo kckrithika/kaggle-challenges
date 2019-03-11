@@ -1,60 +1,54 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: cert-secretizer
+  name: madkub-injector
   namespace: flowsnake
 spec:
-  minReadySeconds: 45
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      name: cert-secretizer
+      app: madkub-injector
   template:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
-          "cdu", "name": "ingresscerts", "role": "flowsnake.api", "san": ["flowsnake-cdu.data.sfdc.net",
-          "api.flowsnake.localhost.mesh.force.com"]}]}'
+          "cdu", "name": "madkubinjector", "role": "flowsnake.madkub-injector", "san":
+          ["madkub-injector.flowsnake", "madkub-injector.flowsnake.svc", "madkub-injector.flowsnake.svc.cluster.local"]}]}'
       labels:
-        flowsnakeOwner: dva-transform
-        flowsnakeRole: FlowsnakeCertSecretizer
-        name: cert-secretizer
+        app: madkub-injector
     spec:
       containers:
-      - env:
-        - name: FLOWSNAKE_FLEET
-          valueFrom:
-            configMapKeyRef:
-              key: name
-              name: fleet-config
-        - name: KUBECONFIG
-          valueFrom:
-            configMapKeyRef:
-              key: kubeconfig
-              name: fleet-config
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-cert-secretizer:jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest
+      - args:
+        - -madkubVolumesFile
+        - /etc/madkub-required-volumes/volumes.jaysawn
+        - -madkubContainerSpecFile
+        - /etc/madkub-container-spec/spec.jaysawn
+        - -kingdom
+        - cdu
+        - -v
+        - "2"
+        - -alsologtostderr
+        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-madkub-injector-webhook:11
         imagePullPolicy: Always
-        name: cert-secretizer
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8443
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        name: injector
+        ports:
+        - containerPort: 8443
         volumeMounts:
-        - mountPath: /certToSecretConfigs
-          name: certs-to-secrets
-        - mountPath: /etc/flowsnake/config/auth-namespaces
-          name: auth-namespaces
+        - mountPath: /etc/madkub-container-spec
+          name: spec
+          readOnly: true
+        - mountPath: /etc/madkub-required-volumes
+          name: volumes
           readOnly: true
         - mountPath: /certs
           name: datacerts
-        - mountPath: /etc/kubernetes/kubeconfig
-          name: kubeconfig
-          readOnly: true
-        - mountPath: /etc/pki_service/ca
-          name: certificate-authority
-          readOnly: true
-        - mountPath: /etc/pki_service/platform/platform-client/certificates
-          name: client-certificate
-          readOnly: true
-        - mountPath: /etc/pki_service/platform/platform-client/keys
-          name: client-key
-          readOnly: true
       - args:
         - /sam/madkub-client
         - --madkub-endpoint
@@ -76,7 +70,7 @@ spec:
         - --refresher
         - --run-init-for-refresher-mode
         - --cert-folders
-        - ingresscerts:/certs
+        - madkubinjector:/certs
         - --ca-folder
         - /etc/pki_service/ca
         - --funnel-endpoint
@@ -134,7 +128,7 @@ spec:
         - --estate
         - cdu-flowsnake_prod
         - --cert-folders
-        - ingresscerts:/certs
+        - madkubinjector:/certs
         - --ca-folder
         - /etc/pki_service/ca
         - --funnel-endpoint
@@ -172,14 +166,14 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
-      restartPolicy: Always
+      serviceAccountName: madkub-injector-serviceaccount
       volumes:
       - configMap:
-          name: certs-to-secrets
-        name: certs-to-secrets
+          name: madkub-container-spec
+        name: spec
       - configMap:
-          name: auth-namespaces
-        name: auth-namespaces
+          name: madkub-required-volumes
+        name: volumes
       - emptyDir:
           medium: Memory
         name: datacerts
@@ -196,5 +190,5 @@ spec:
           path: /etc/pki_service/platform/platform-client/keys
         name: client-key
       - hostPath:
-          path: /etc/kubernetes/kubeconfig-platform
+          path: /etc/kubernetes/kubeconfig
         name: kubeconfig
