@@ -113,7 +113,6 @@ spec:
           name: tokens
         - mountPath: /maddog-certs/
           name: pki
-      hostNetwork: false
       restartPolicy: Always
       volumes:
       - emptyDir:
