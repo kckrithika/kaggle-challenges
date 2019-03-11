@@ -21,4 +21,24 @@
   ports:
     - port: 5432
       targetport: 5432
+      lbtype: tcp
+
+- lbname: horizon-staging-prd
+  customlbname: horizon-staging-prd
+  servers:
+    - ina1shared0-infinsightapi2-1-prd.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 443
+      lbtype: http
+      tls: true
+      reencrypt: true
+
+- lbname: horizon-staging-postgres-prd
+  customlbname: horizon-staging-postgres-prd
+  servers:
+    - ina1shared0-infinsightapi2-1-prd.eng.sfdc.net
+  ports:
+    - port: 5432
+      targetport: 5432
       lbtype: tcp		 
