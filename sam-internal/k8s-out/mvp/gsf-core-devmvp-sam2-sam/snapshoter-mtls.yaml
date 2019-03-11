@@ -1,0 +1,161 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: snapshot-producer-mtls-test
+    pcn: deploy
+    sam.data.sfdc.net/owner: sam
+  name: snapshot-producer
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: snapshot-producer
+  template:
+    metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: |-
+          {
+           "certreqs": [
+            {
+             "cert-type": "client",
+             "kingdom": "mvp",
+             "name": "cert1",
+             "role": "sam-system.snapshot-producer"
+            }
+           ]
+          }
+      labels:
+        apptype: control
+        name: snapshot-producer
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/snapshoter
+        - --config=/config/snapshoter-mtls.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --v=4
+        - --alsologtostderr
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76
+        livenessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /
+            port: 9095
+          initialDelaySeconds: 600
+          periodSeconds: 30
+          timeoutSeconds: 30
+        name: snapshot-producer
+        volumeMounts:
+        - mountPath: /config
+          name: config
+        - mountPath: /cert1
+          name: cert1
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.mvp.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=cert1:/cert1/
+        - --token-folder=/tokens/
+        - --requested-cert-type=client
+        - --ca-folder=/maddog-certs/ca
+        - --refresher
+        - --run-init-for-refresher-mode
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/minwang/madkub:1.0.0-0000077-b1d3a629
+        imagePullPolicy: IfNotPresent
+        name: madkub-refresher
+        resources: {}
+        volumeMounts:
+        - mountPath: /cert1
+          name: cert1
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      hostNetwork: true
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.mvp.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=cert1:/cert1/
+        - --token-folder=/tokens/
+        - --requested-cert-type=client
+        - --ca-folder=/maddog-certs/ca
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/minwang/madkub:1.0.0-0000077-b1d3a629
+        imagePullPolicy: IfNotPresent
+        name: madkub-init
+        volumeMounts:
+        - mountPath: /cert1
+          name: cert1
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      - command:
+        - bash
+        - -c
+        - "set -ex\nchmod 775 -R /data/certs && chown -R 7447:7447 /data/certs \nchmod
+          775 -R /cert1 && chown -R 7447:7447 /cert1\necho \"dummy\"\n"
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76
+        imagePullPolicy: Always
+        name: permissionsetterinitcontainer
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /config
+          name: config
+        - mountPath: /cert1
+          name: cert1
+      nodeSelector:
+        pool: gsf-core-devmvp-sam2-sam
+      volumes:
+      - configMap:
+          name: snapshoter-mtls
+        name: config
+      - emptyDir:
+          medium: Memory
+        name: cert1
+      - emptyDir:
+          medium: Memory
+        name: tokens
