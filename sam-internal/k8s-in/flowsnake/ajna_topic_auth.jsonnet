@@ -189,5 +189,7 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         },
         "syd/syd-flowsnake_prod": {
         },
+        "cdu/cdu-flowsnake_prod": {
+        },
     }),
 }

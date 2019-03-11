@@ -1,0 +1,89 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: spark-operator-serviceaccount
+    namespace: flowsnake
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRole
+  metadata:
+    name: spark-operator-clusterrole
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    verbs:
+    - '*'
+  - apiGroups:
+    - ""
+    resources:
+    - services
+    - configmaps
+    - secrets
+    verbs:
+    - create
+    - get
+    - delete
+  - apiGroups:
+    - ""
+    resources:
+    - nodes
+    verbs:
+    - get
+  - apiGroups:
+    - ""
+    resources:
+    - events
+    verbs:
+    - create
+    - update
+    - patch
+  - apiGroups:
+    - apiextensions.k8s.io
+    resources:
+    - customresourcedefinitions
+    verbs:
+    - create
+    - get
+    - update
+    - delete
+  - apiGroups:
+    - extensions
+    resources:
+    - ingresses
+    verbs:
+    - create
+    - get
+    - update
+    - delete
+  - apiGroups:
+    - admissionregistration.k8s.io
+    resources:
+    - mutatingwebhookconfigurations
+    verbs:
+    - create
+    - get
+    - update
+    - delete
+  - apiGroups:
+    - sparkoperator.k8s.io
+    resources:
+    - sparkapplications
+    - scheduledsparkapplications
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: ClusterRoleBinding
+  metadata:
+    name: spark-operator-clusterrolebinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: spark-operator-clusterrole
+  subjects:
+  - kind: ServiceAccount
+    name: spark-operator-serviceaccount
+    namespace: flowsnake
+kind: List

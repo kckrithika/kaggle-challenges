@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  kubeconfig: /etc/kubernetes/kubeconfig
+  name: cdu-flowsnake_prod
+  registry: ops0-artifactrepo1-0-cdu.data.sfdc.net
+  strata_registry: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: fleet-config
+  namespace: default
