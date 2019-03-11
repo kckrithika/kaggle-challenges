@@ -12,7 +12,7 @@ if samfeatureflags.kafkaProducer then {
     metadata: {
         labels: {
             name: "snapshot-producer-mtls-test",
-        } + configs.ownerLabel.sam,
+        } + configs.ownerLabel.sam + configs.pcnEnableLabel,
         name: "snapshot-producer",
         namespace: "sam-system",
     },
