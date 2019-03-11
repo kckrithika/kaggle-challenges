@@ -1661,7 +1661,7 @@ items:
             value: manifests
           - name: RABBIT_MQ_QUEUE_NAME
             value: sam-manifests.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:338
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:341
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
