@@ -38,3 +38,19 @@ system:
           path: /
           port: 8500
     lbname: consul-stateful-ilb
+  loadbalancers:
+  - lbname: consul-lb
+    function: consul
+    slbEnabled: true
+    ports:
+      - port: 8500
+        targetport: 8500
+      - port: 8301
+        targetport: 8301
+      - port: 8302
+        targetport: 8302
+      - port: 8300
+        targetport: 8300
+      - port: 8600
+        targetport: 8600
+
