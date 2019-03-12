@@ -53,9 +53,11 @@ configs.containerWithKubeConfigAndMadDog {
                         "--v=4",
                         "--alsologtostderr",
                     ],
-                    volumeMounts+: [configs.config_volume_mount]
-                        + (if !utils.is_pcn(configs.kingdom) then [configs.cert_volume_mount, configs.sfdchosts_volume_mount] else [])
-                        + madkub.madkubSamCertVolumeMounts(certDirs),
+                    volumeMounts+: configs.filter_empty([
+                        configs.config_volume_mount,
+                        configs.cert_volume_mount,
+                        configs.sfdchosts_volume_mount,
+] + madkub.madkubSamCertVolumeMounts(certDirs)),
                     image: samimages.hypersam,
                     name: "snapshot-producer",
                 } + if configs.estate == "prd-sam" then {
@@ -73,14 +75,10 @@ configs.containerWithKubeConfigAndMadDog {
                         timeoutSeconds: 30,
                         failureThreshold: 5,
                     },
-                },
+                } + configs.containerInPCN,
                 ] + [madkub.madkubRefreshContainer(certDirs)],
-                volumes+: [
-                    configs.config_volume("snapshoter-mtls"),
-                ] + (if !utils.is_pcn(configs.kingdom) then [configs.cert_volume, configs.sfdchosts_volume] else [])
-                  + madkub.madkubSamCertVolumes(certDirs)
-                  + madkub.madkubSamMadkubVolumes(),
-                initContainers+: [
+                volumes+: configs.filter_empty([configs.config_volume("snapshoter-mtls"), configs.cert_volume, configs.sfdchosts_volume] + madkub.madkubSamCertVolumes(certDirs) + madkub.madkubSamMadkubVolumes()),
+                initContainers+: (if !utils.is_pcn(configs.kingdom) then [
                     madkub.madkubInitContainer(certDirs),
 {
                         image: samimages.permissionInitContainer,
@@ -100,11 +98,9 @@ configs.containerWithKubeConfigAndMadDog {
                           runAsNonRoot: false,
                           runAsUser: 0,
                         },
-                    volumeMounts+: [configs.config_volume_mount]
-                        + (if !utils.is_pcn(configs.kingdom) then [configs.cert_volume_mount, configs.sfdchosts_volume_mount] else [])
-                        + madkub.madkubSamCertVolumeMounts(certDirs),
+                    volumeMounts+: configs.filter_empty([configs.config_volume_mount, configs.cert_volume_mount, configs.sfdchosts_volume_mount] + madkub.madkubSamCertVolumeMounts(certDirs)),
                     },
-                ],
+                ] else []),
                 hostNetwork: true,
                 nodeSelector: {
                               } +

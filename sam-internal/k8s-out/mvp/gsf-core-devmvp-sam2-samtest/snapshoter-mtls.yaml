@@ -39,6 +39,13 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --v=4
         - --alsologtostderr
+        env:
+        - name: SFDCLOC_PCN_KINGDOM
+          value: mvp
+        - name: SFDCLOC_PCN_ESTATE
+          value: gsf-core-devmvp-sam2-samtest
+        - name: KUBECONFIG
+          value: ""
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76
         livenessProbe:
           failureThreshold: 5
@@ -94,59 +101,7 @@ spec:
         - mountPath: /tokens
           name: tokens
       hostNetwork: true
-      initContainers:
-      - args:
-        - /sam/madkub-client
-        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.mvp.prod.non-estates.sfdcsd.net:8443
-        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
-        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
-        - --cert-folders=cert1:/cert1/
-        - --token-folder=/tokens/
-        - --requested-cert-type=client
-        - --ca-folder=/maddog-certs/ca
-        env:
-        - name: MADKUB_NODENAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: spec.nodeName
-        - name: MADKUB_NAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.name
-        - name: MADKUB_NAMESPACE
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/minwang/madkub:1.0.0-0000077-b1d3a629
-        imagePullPolicy: IfNotPresent
-        name: madkub-init
-        volumeMounts:
-        - mountPath: /cert1
-          name: cert1
-        - mountPath: /maddog-certs/
-          name: maddog-certs
-        - mountPath: /tokens
-          name: tokens
-      - command:
-        - bash
-        - -c
-        - "set -ex\nchmod 775 -R /data/certs && chown -R 7447:7447 /data/certs \nchmod
-          775 -R /cert1 && chown -R 7447:7447 /cert1\necho \"dummy\"\n"
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76
-        imagePullPolicy: Always
-        name: permissionsetterinitcontainer
-        securityContext:
-          runAsNonRoot: false
-          runAsUser: 0
-        volumeMounts:
-        - mountPath: /config
-          name: config
-        - mountPath: /cert1
-          name: cert1
+      initContainers: []
       nodeSelector:
         pool: gsf-core-devmvp-sam2-samtest
       volumes:
