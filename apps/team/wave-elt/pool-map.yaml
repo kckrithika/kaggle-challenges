@@ -1,4 +1,6 @@
 apps:
+  moana-ukb:
+  - ukb/ukb-sam_datapool
   datapool-ia2:
   - ia2/ia2-sam_datapool
   datapool-ph2:
@@ -15,10 +17,6 @@ apps:
   - hnd/hnd-sam_datapool
   spark-engine-hnd:
   - hnd/hnd-sam_datapool
-  datapool-ukb:
-  - ukb/ukb-sam_datapool
-  spark-engine-ukb:
-  - ukb/ukb-sam_datapool
   datapool-ord:
   - ord/ord-sam_datapool
   spark-engine-ord:
