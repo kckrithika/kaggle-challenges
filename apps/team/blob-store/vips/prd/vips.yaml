@@ -2,9 +2,9 @@
 # The customlbname ensures that the VIP retains its existing DNS name of us-prd-1.slb.sfdc.net
   customlbname: us-prd-1
   servers: 
-    - vir411-rgw1-1-prd.eng.sfdc.net
-    - vir411-rgw1-2-prd.eng.sfdc.net
-    - vir411-rgw1-3-prd.eng.sfdc.net
+    - vir410-rgw1-1-prd.eng.sfdc.net
+    - vir410-rgw1-2-prd.eng.sfdc.net
+    - vir410-rgw1-3-prd.eng.sfdc.net
   ports:
     - port: 443
       targetport: 80
