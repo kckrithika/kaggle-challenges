@@ -8,23 +8,10 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local hosts = import "configs/hosts.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+if configs.estate == "prd-samdev" then {
     kind: "DaemonSet",
-    metadata: {
-        name: "docker-cleaner",
-        namespace: "kube-system",
-        labels: {
-            "addonmanager.kubernetes.io/mode": "Reconcile",
-            "k8s-app": "docker-cleaner",
-            "kubernetes.io/cluster-service": "true",
-        } + configs.ownerLabel.sam,
-        spec: {
-            revisionHistoryLimit: 2,
-            selector: {
-                matchLabels: {
-                    "k8s-app": "docker-cleanup",
-                },
-            },
+    spec: {
+        template: {
             spec: {
                 securityContext: {
                     runAsUser: 0,
@@ -32,24 +19,30 @@ if configs.estate == "prd-samtest" then {
                 },
                 containers: [
                     {
-                        name: "docker-cleanup",
+                        name: "docker-cleaner",
                         image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-devmvp/tkuznets/docker:dind",
-                        command:
-                        -"/bin/sh"
-                        - "-c"
-                        - '|
-                          while true
-                          do
-                            docker system prune -af && docker load -i /opt/kubernetes/images/etcd.tar
-                            sleep 604800
-                          done',
+                        command: [
+                                  "bash",
+                                  "-c",
+|||
+                                  while true
+                                  do
+                                    docker system prune -af && docker load -i /opt/kubernetes/images/etcd.tar
+                                    sleep 604800
+                                  done'
+|||,
+                        ],
                         volumeMounts: configs.filter_empty([
-                            {
-                                name: "images",
-                                mountPath: "/opt/kubernetes/images",
-                            },
+                                    {
+                                        name: "images",
+                                        mountPath: "/opt/kubernetes/images",
+                                    },
+                                    {
+                                        name: "docker-socket",
+                                        mountPath: "/var/run/docker.sock",
+                                    },
                         ]),
-                    } + configs.ipAddressResourceRequest,
+                    },
                 ],
                 volumes: configs.filter_empty([
                     {
@@ -58,14 +51,27 @@ if configs.estate == "prd-samtest" then {
                         },
                         name: "images",
                     },
+                    {
+                        hostPath: {
+                            path: "/var/run/docker.sock",
+                        },
+                        name: "docker-socket",
+                    },
                 ]),
             },
-
             metadata: {
                 labels: {
-                    name: "docker-cleanup",
+                    name: "docker-cleaner",
                 } + configs.ownerLabel.sam,
             },
         },
+    },
+    apiVersion: "extensions/v1beta1",
+    metadata: {
+        name: "docker-cleaner",
+        namespace: "kube-system",
+        labels: {
+            name: "docker-cleaner",
+        } + configs.ownerLabel.sam,
     },
 } else "SKIP"
