@@ -26,9 +26,9 @@ kcfw create -f /watchdog-spark-operator/$SPEC
 echo "Waiting for SparkApplication $APP_NAME to complete"
 # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
 while ! $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep -P '(COMPLETED|FAILED)' > /dev/null); do sleep 1; done;
-echo "Terminal SparkApplication $APP_NAME state is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}')"
-# Test successful iff final state is COMPLETED. Use exit code from grep.
-kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep COMPLETED > /dev/null
 echo ---- Begin Spark Driver Log ----
 kcfw logs $(kcfw get pod -l $SELECTOR -o name)
 echo ---- End Spark Driver Log ----
+echo "Terminal SparkApplication $APP_NAME state is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}')"
+# Test successful iff final state is COMPLETED. Use exit code from grep.
+kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep COMPLETED > /dev/null
