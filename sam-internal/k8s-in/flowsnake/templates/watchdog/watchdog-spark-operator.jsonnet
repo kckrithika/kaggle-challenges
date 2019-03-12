@@ -55,9 +55,8 @@ else
               namespace: "flowsnake",
             },
             data: {
-                "check-spark-operator.sh": (if estate == "prd-data-flowsnake_test" then
-                  importstr "watchdog-spark-on-k8s.sh" else importstr "watchdog-spark-operator--check-spark-operator.sh"),
-                "spark-application.json": (if estate == "prd-data-flowsnake_test" then (import 'spark-on-k8s-canary-specs/spark-application.libsonnet') else std.toString({
+                "check-spark-operator.sh": if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then importstr "watchdog-spark-on-k8s.sh" else importstr "watchdog-spark-operator--check-spark-operator.sh",
+                "spark-application.json": if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then (import 'spark-on-k8s-canary-specs/spark-application.libsonnet') else std.toString({
                     "apiVersion": "sparkoperator.k8s.io/v1beta1",
                     "kind": "SparkApplication",
                     "metadata": {
@@ -94,8 +93,8 @@ else
                         "sparkVersion": "",
                         "type": "Scala",
                     },
-                })),
-            } + (if estate == "prd-data-flowsnake_test" then { "spark-s3.json": (import 'spark-on-k8s-canary-specs/spark-s3.libsonnet') } else {}),
+                }),
+            } + if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then { "spark-s3.json": (import 'spark-on-k8s-canary-specs/spark-s3.libsonnet') } else {},
         },
         configs.deploymentBase("flowsnake") {
             local label_node = self.spec.template.metadata.labels,
