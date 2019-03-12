@@ -101,7 +101,7 @@ items:
           - -watchdogFrequency=15m
           - -alertThreshold=45m
           - -cliCheckerTimeout=15m
-          image: ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/hypersam:sam-0002015-fdb18963
+          image: ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/hypersam:sam-0002530-db32f9dc
           imagePullPolicy: IfNotPresent
           name: watchdog-canary
           resources:

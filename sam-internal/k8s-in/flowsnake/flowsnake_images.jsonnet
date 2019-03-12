@@ -95,6 +95,7 @@ local utils = import "util_functions.jsonnet";
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
             docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
             eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+            watchdog_image_tag: "sam-0002530-db32f9dc",  # Adds cli-checker stderr logging
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -231,6 +232,7 @@ local utils = import "util_functions.jsonnet";
            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
+           watchdog_image_tag: "sam-0002530-db32f9dc",  # Adds cli-checker stderr logging
 
            # Inherit feature flags from regular phase 4.
 
