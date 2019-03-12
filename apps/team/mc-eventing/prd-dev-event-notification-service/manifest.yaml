@@ -8,6 +8,7 @@ system:
     - gmercer@salesforce.com
     - mhowald@salesforce.com
     - bryan.barnard@salesforce.com
+    - pruthvi.patel@salesforce.com
   functions:
   - name: dev-event-notification-service
     identity:
@@ -22,7 +23,7 @@ system:
         secretName: dev-eventbusajna-ens-v1
     containers:
     - name: dev-event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.8
+      image: sfci/mc-eventing/event-notification:1.0.9
 #      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:W-5819704_sub_consumer_race_condition.3
       ports:
       - containerPort: 15372
