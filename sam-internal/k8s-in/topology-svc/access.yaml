@@ -1,0 +1,11 @@
+#Use corp user name instead of git user ids e.g. johann.dev instead of johann-dev
+#If you are updating it, there is a high chance you need to update k8s-out/access.yaml
+#and tnrp/access.yaml
+# Admins are responsible for ensuring only approved changes are made during moratoriums.  See https://sfdc.co/sam-admins
+admins:
+  - mkrishna
+users:
+  - hmittal
+  - ameesala
+  - mkrishna
+  - nishant.sinha 
