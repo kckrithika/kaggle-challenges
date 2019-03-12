@@ -15,7 +15,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     nginAccesslogsRunInSlbEstate: (slbimages.hyperslb_build >= 2072),
 
     # HSM nginx currently serves too few VIPs for the upstream status reporter to provide a good signal about
-    # the health of upstream servers. Disable the container for now. 
+    # the health of upstream servers. Disable the container for now.
     # See https://computecloud.slack.com/archives/G340CE86R/p1552359954498500?thread_ts=1552346706.487600&cid=G340CE86R.
     slbUpstreamReporterEnabledForHsmNginx: (false),
 
