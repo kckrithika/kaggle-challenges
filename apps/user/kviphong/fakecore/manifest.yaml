@@ -15,7 +15,29 @@ system:
           - "date"
       env:
         - name: DELAY
-          value: 10 
+          value: 10
+      volumeMounts:
+      - mountPath: /home/sfdc/automation
+        name: perf-automation-volume
+    - name: perf-sidecar
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perfsidecar:20180312-1
+      livenessProbe:
+        exec:
+          command:
+          - "date"
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /home/sfdc/.done_unpack
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /home/sfdc/automation
+        name: perf-automation-volume
+    volumes:
+    - emptyDir: {}
+      name: perf-automation-volume
   loadbalancers:
   - lbname: fakecoreslb
     function: fakecore
