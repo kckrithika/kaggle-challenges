@@ -231,7 +231,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           },
         ],
         nodeSelector: {
-          pool: "prd-sam_gater",
+          pool: mcpIstioConfig.istioEstate,
         },
         serviceAccountName: "istio-pilot-service-account",
         volumes: [

@@ -383,7 +383,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           },
         ],
         nodeSelector: {
-          pool: "prd-sam_gater",
+          pool: mcpIstioConfig.istioEstate,
         },
         serviceAccountName: "istio-ingressgateway-service-account",
         volumes: [

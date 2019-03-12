@@ -173,7 +173,7 @@ spec:
         - mountPath: /server-cert
           name: tls-server-cert
       nodeSelector:
-        pool: prd-sam_gater
+        pool: mcpIstioConfig.istioEstate
       volumes:
       - $patch: delete
         name: istio-certs
