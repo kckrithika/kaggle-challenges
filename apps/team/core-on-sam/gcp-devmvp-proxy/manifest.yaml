@@ -1,0 +1,173 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: na3-switchboard-phx
+    identity:
+      serviceName: sfproxy-switchboard
+      pod: na3
+    count: 1
+    containers:
+    - name: sfproxy-switchboard-server
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
+      args:
+      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
+      - --clusters.external-clusters[1]=spaasmesh:HTTP2
+      - --metrics.maxNumberOfCollectedMetrics=100000
+      - --metrics.funnelTimeOut=90000
+      - --zookeeper.seedHosts=10.168.160.76:2181
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      - name: GRPC_SERVER_PORT
+        value: 7020
+      - name: JVM_HEAP_MAX
+        value: 4G
+      - name: SETTINGS_PATH
+        value: prod.-.phx.na3.sfproxy-switchboard
+      ports:
+      - containerPort: 15372
+      resources:
+        limits:
+          cpu: 8
+          memory: 6Gi
+        requests:
+          cpu: 8
+          memory: 6Gi
+      volumeMounts:
+      - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
+        name: envoy-config-volume
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    - name: sfproxy-switchboard-sherpa
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sfproxy:bc7e1fa
+      args:
+      - --template
+      - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
+      - --log-level
+      - trace
+      ports:
+      - containerPort: 15001
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      - name: SETTINGS_PATH
+        value: prod.-.phx.na3.sfproxy-switchboard-sherpa
+      resources:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /switchboard-config
+        name: envoy-config-volume
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./sfproxy/scripts/check-switchboard.sh
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+
+    volumes:
+    - name: envoy-config-volume
+      emptyDir: {}
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+        lbnames:
+        - na3-switchboard-lb
+
+  - name: na3-sfproxy-phx
+    identity:
+      serviceName: sfproxy
+      pod: na3
+    count: 3
+    containers:
+    - name: sfproxy-envoy
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sfproxy:bc7e1fa
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      - name: FORCE_RESTART
+        value: 1
+      - name: SETTINGS_PATH
+        value: prod.-.phx.na3.sfproxy-envoy
+      args:
+      - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
+      - --switchboard=na3-switchboard-lb:16001
+      - --log-level=trace
+      ports:
+      - containerPort: 2525
+      - containerPort: 12060
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+      - name: tls-client-cert
+        mountPath: /client-certs
+      - name: tls-server-cert
+        mountPath: /server-certs
+
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+        lbnames:
+        - na3app-lb
+
+  loadbalancers:
+  - lbname: na3-switchboard-lb
+    function: na3-switchboard-phx
+    nodeExposed: true
+    ports:
+    - port: 16001
+      targetport: 15001
+    - port: 16372
+      targetport: 15372
+  - lbname: na3app-lb
+    function: na3-sfproxy-phx
+    nodeExposed: true
+    slbEnabled: false
+    ports:
+    # HTTPS listen ports of Envoy.
+    - port: 12443
+      targetport: 12060
+    - port: 18443
+      targetport: 12060
