@@ -8,6 +8,7 @@ system:
     - gmercer@salesforce.com
     - mhowald@salesforce.com
     - bryan.barnard@salesforce.com
+    - pruthvi.patel@salesforce.com
   functions:
   - name: qa1s1-event-notification-service
     identity:
@@ -22,7 +23,7 @@ system:
         secretName: eventbusajna-ens-v1
     containers:
     - name: qa1s1-event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.8
+      image: sfci/mc-eventing/event-notification:1.0.9
       ports:
       - containerPort: 15372
       env:
