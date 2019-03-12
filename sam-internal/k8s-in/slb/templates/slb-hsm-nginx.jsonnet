@@ -51,5 +51,6 @@ if slbflights.hsmCanaryEnabled && !slbflights.disableCanaryVIPs then
       hsmNginxAffinity,
       slbimages.hsmnginx,
       proxyFlavor="hsm",
+      slbUpstreamReporterEnabled=slbflights.slbUpstreamReporterEnabledForHsmNginx,
 ) {}
 else "SKIP"

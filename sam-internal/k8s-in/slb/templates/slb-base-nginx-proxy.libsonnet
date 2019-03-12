@@ -12,7 +12,7 @@
   local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile, dirSuffix:: $.dirSuffix },
   local utils = import "util_functions.jsonnet",
 
-  local beforeSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="") = [
+  local beforeSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="", slbUpstreamReporterEnabled=true) = [
                         slbshared.slbNginxConfig(deleteLimitOverride=deleteLimitOverride, tlsConfigEnabled=true),
                         slbshared.slbNginxProxy(proxyImage, proxyFlavor, true),
                         {
@@ -63,7 +63,7 @@
                             slbconfigs.node_name_env,
                           ],
                         },
-  ] + (if slbflights.slbUpstreamReporterEnabled then
+  ] + (if slbUpstreamReporterEnabled then
                         [{
                           name: "slb-upstream-status-reporter",
                           image: slbimages.hyperslb,
@@ -146,11 +146,12 @@ local afterSharedContainers = [
     proxyImage,
     deleteLimitOverride=0,
     proxyFlavor="",
+    slbUpstreamReporterEnabled=true,
   ):: slbbasedeployment.slbBaseDeployment(
     proxyName,
     replicas,
     affinity,
-    beforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor),
+    beforeSharedContainers(proxyImage, deleteLimitOverride, proxyFlavor, slbUpstreamReporterEnabled),
     afterSharedContainers,
     supportedProxies=[proxyName],
     deleteLimitOverride=deleteLimitOverride
