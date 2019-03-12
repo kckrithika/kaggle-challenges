@@ -14,7 +14,7 @@ The [istio-ship](./istio-ship) directory contains Ship's workspace to convert Is
 1. If updating Istio images, update the new image as required in [istio-images.jsonnet](./istio-images.jsonnet). Note: Phased deployment not decided yet for istio, only phase 0 active.
 1. If updating the estates Istio runs on, update the [istio-pilot-estates.json](./istio-pilot-estates.json).
 1. If updating overlays, ensure [Ship is installed](https://github.com/replicatedhq/ship#installation), navigate to [istio-ship](./istio-ship) directory and run `ship update --headed`.
-1. If updating overlays, complete all the steps in Ship's visual UI. Jsonnet variables in overlays can be represented as `"mcpIstioConfig.<name>"` or `"%(<name>)s" % mcpIstioConfig`. Where, `<name>` is the variable name defined in [`istio-config.jsonnet`](./istio-config.jsonnet).
+1. If updating overlays, complete all the steps in Ship's visual UI. Jsonnet variables in overlays can be represented as `mcpIstioConfig.<name>` or `%(<name>)s`. Where, `<name>` is the variable name defined in [`istio-config.jsonnet`](./istio-config.jsonnet).
 1. Run [`./generate-istio-templates.sh`](./generate-istio-templates.sh) script. This will auto-generate jsonnet templates in [templates](./templates) directory based on the [rendered.yaml](./istio-ship/rendered.yaml).
 1. Run [`./build.sh`](../build.sh) script in [k8s-in directory](../). This will generate the k8s yamls in [k8s-out directory](../../k8s-out) as per the estates.
 1. If you would like to verify the generated k8s resource files, apply them directly to your local k8s cluster or to prd-samtest only. Ensure you are in the intended kubectl context.
