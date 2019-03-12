@@ -77,8 +77,8 @@ local build_btrfs_test_commands = if std.objectHas(flowsnake_images.feature_flag
 
 local build_spark_operator_test_commands = {
     SparkOperatorTest: {
-        SparkOperatorTest: if std.objectHas(flowsnake_images.feature_flags, "btrfs_watchdog_hard_reset") then "/watchdog-spark-operator/check-spark-operator.sh spark-application.json watchdog-spark-operator" else "/watchdog-spark-operator/check-spark-operator.sh",
-    } + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then { SparkS3Test: "/watchdog-spark-operator/check-spark-operator.sh spark-s3.json  watchdog-spark-s3" } else {}),
+        SparkOperatorTest: if std.objectHas(flowsnake_images.feature_flags, "btrfs_watchdog_hard_reset") then "/watchdog-spark-operator/check-spark-operator.sh watchdog-spark-operator.json" else "/watchdog-spark-operator/check-spark-operator.sh",
+    } + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then { SparkS3Test: "/watchdog-spark-operator/check-spark-operator.sh watchdog-spark-s3.json" } else {}),
 };
 
 {

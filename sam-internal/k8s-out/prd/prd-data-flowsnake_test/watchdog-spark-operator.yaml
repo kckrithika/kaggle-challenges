@@ -36,8 +36,8 @@ items:
         kubectl -n flowsnake-watchdog "$@"
       }
 
-      # APP_NAME="watchdog-spark-operator"
-      APP_NAME=$2
+      SPEC=$1
+      APP_NAME=${SPEC%.*}
       SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
 
       echo "Cleaning up $APP_NAME resources from prior runs"
@@ -47,7 +47,7 @@ items:
       while ! $(kcfw get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
 
       echo "Creating SparkApplication $APP_NAME"
-      kcfw create -f /watchdog-spark-operator/$1
+      kcfw create -f /watchdog-spark-operator/$SPEC
 
       echo "Waiting for SparkApplication $APP_NAME to complete"
       # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
@@ -55,39 +55,10 @@ items:
       echo "Terminal SparkApplication $APP_NAME state is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}')"
       # Test successful iff final state is COMPLETED. Use exit code from grep.
       kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep COMPLETED > /dev/null
-    spark-application.json:
-      apiVersion: sparkoperator.k8s.io/v1beta1
-      kind: SparkApplication
-      metadata:
-        name: watchdog-spark-operator
-        namespace: flowsnake-watchdog
-      spec:
-        deps:
-          jars:
-          - local:///sample-apps/sample-spark-operator/extra-jars/*
-        driver:
-          coreLimit: 200m
-          cores: 0.1
-          labels:
-            version: 2.4.0
-          memory: 512m
-          serviceAccount: spark-driver-flowsnake-watchdog
-        executor:
-          cores: 1
-          instances: 1
-          labels:
-            version: 2.4.0
-          memory: 512m
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-sample-spark-operator:ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/spark-on-k8s-sample-apps:1
-        imagePullPolicy: Always
-        mainApplicationFile: local:///sample-apps/sample-spark-operator/sample-spark-operator.jar
-        mainClass: org.apache.spark.examples.SparkPi
-        mode: cluster
-        restartPolicy:
-          type: Never
-        sparkVersion: ""
-        type: Scala
-    spark-s3.json:
+      echo ---- Begin Spark Driver Log ----
+      kcfw logs $(kcfw get pod -l $SELECTOR -o name)
+      echo ---- End Spark Driver Log ----
+    watchdog-spark-s3.json:
       apiVersion: sparkoperator.k8s.io/v1beta1
       kind: SparkApplication
       metadata:
