@@ -19,7 +19,7 @@ system:
         ports:
         - name: mysql
           containerPort: 3306
-          hostPort: 7014
+          hostPort: 7015
         volumeMounts:
         - mountPath: /home/sfdc/mysql/data
           name: mysql-data-vol
@@ -32,7 +32,7 @@ system:
       volumes:
       - name: mysql-data-vol
         hostPath:
-          path: /data/mysql
+          path: /data/mysql-data
       - name: mysql-backups-vol
         hostPath:
           path: /data/mysql-backups
