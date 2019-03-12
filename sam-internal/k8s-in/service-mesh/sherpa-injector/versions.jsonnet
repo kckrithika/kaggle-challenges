@@ -4,15 +4,15 @@ local configs = import "config.jsonnet";
     sherpaImage: (
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
         // https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-        "%s/sfci/servicelibs/sherpa-envoy:1.0.5" % configs.registry
+        "%s/sfci/servicelibs/sherpa-envoy:6c67c98234e9f47f2ff9bb9c5c90acc6ac390be7" % configs.registry
     ),
     injectorImage: (
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
-        // https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-injector/job/master/102
-        "%s/sfci/servicelibs/sherpa-injector:b5924f58f393d16d4d78b21d77bcc3f581a46dc5" % configs.registry
+        // https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-injector/job/master/109
+        "%s/sfci/servicelibs/sherpa-injector:9637c42ce66eb71611328c9ea47cb5301c38673c" % configs.registry
     ),
     canarySherpaImage: (
         // https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master
-        "%s/sfci/servicelibs/sherpa-envoy:7c866de2c4f840082fac7f2d00aa2d93f7bee6be" % configs.registry
+        "%s/sfci/servicelibs/sherpa-envoy:6c67c98234e9f47f2ff9bb9c5c90acc6ac390be7" % configs.registry
     ),
 }
