@@ -45,7 +45,7 @@ spec:
           value: /certs-nginx-server/ca.pem
         - name: SERVICE_ACCOUNT_TOKEN_FILE
           value: /var/run/secrets/kubernetes.io/serviceaccount/token
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-kubernetes-impersonation-proxy:6-9ac63c5dfed1d4683add1289f98025d3226febd4
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-kubernetes-impersonation-proxy:jenkins-dva-transformation-kubernetes-impersonation-proxy-cert_reload-1-itest
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
