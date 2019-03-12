@@ -23,7 +23,7 @@ system:
         value: 7020
       - name: JVM_HEAP_MAX
         value: 4G
-      - name: SFDC_SETTINGS_PATH
+      - name: SETTINGS_PATH
         value: prod.-.phx.na3.sfproxy-switchboard
       ports:
       - containerPort: 15372
@@ -61,7 +61,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
-      - name: SFDC_SETTINGS_PATH
+      - name: SETTINGS_PATH
         value: prod.-.phx.na3.sfproxy-switchboard-sherpa
       resources:
         limits:
@@ -115,7 +115,7 @@ system:
         value: prod
       - name: FORCE_RESTART
         value: 1
-      - name: SFDC_SETTINGS_PATH
+      - name: SETTINGS_PATH
         value: prod.-.phx.na3.sfproxy-envoy
       args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
