@@ -16,7 +16,7 @@ data:
       "manifestV1Enabled": false,
       "skipOldZips": true,
       "tlsEnabled": true,
-      "tnrpArchiveEndpoint": "https://ops0-piperepo1-0-ttd.data.sfdc.net/tnrp/content_repo/0/archive"
+      "tnrpArchiveEndpoint": "https://ops0-piperepo1-1-ttd.ops.sfdc.net/tnrp/content_repo/0/archive"
     }
 kind: ConfigMap
 metadata:

@@ -31,7 +31,7 @@ spec:
       - command:
         - /sdn/sdn-route-watchdog
         - --funnelEndpoint=ajna0-funnel1-0-ttd.data.sfdc.net:80
-        - --archiveSvcEndpoint=https://ops0-piperepo1-0-ttd.data.sfdc.net/tnrp/content_repo/0/archive
+        - --archiveSvcEndpoint=https://ops0-piperepo1-1-ttd.ops.sfdc.net/tnrp/content_repo/0/archive
         - --smtpServer=ops0-mta1-4-ttd.ops.sfdc.net:25
         - --sender=sdn-alerts@salesforce.com
         - --recipient=sdn@salesforce.com
