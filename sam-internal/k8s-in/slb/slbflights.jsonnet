@@ -11,9 +11,13 @@ local slbconfigs = import "slbconfig.jsonnet";
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
     useKubeDnsForPortal: (slbimages.phaseNum <= 1),
-    slbUpstreamReporterEnabled: (if (slbimages.phaseNum <= 3 && slbimages.hyperslb_build >= 2071) || slbimages.hyperslb_build >= 2072 then true else false),
     slbTCPdumpEnabled: (slbimages.phaseNum <= 1),
     nginAccesslogsRunInSlbEstate: (slbimages.hyperslb_build >= 2072),
+
+    # HSM nginx currently serves too few VIPs for the upstream status reporter to provide a good signal about
+    # the health of upstream servers. Disable the container for now.
+    # See https://computecloud.slack.com/archives/G340CE86R/p1552359954498500?thread_ts=1552346706.487600&cid=G340CE86R.
+    slbUpstreamReporterEnabledForHsmNginx: (false),
 
     # Portal's root endpoint (`/`) queries DNS for every page load. VIP watchdog (reachability on the target port and VIP availability) and kubelet
     # (liveness probe) both hit this endpoint every 3 seconds, causing undue stress on DNS lookups. Change the liveness probe endpoint to something
