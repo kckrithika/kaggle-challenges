@@ -21,6 +21,8 @@ system:
         name: perf-automation-volume
     - name: perf-sidecar
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perfsidecar:20180312-1
+      ports:
+      - containerPort: 10001
       livenessProbe:
         exec:
           command:
