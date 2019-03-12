@@ -21,6 +21,8 @@ apps:
   - cdg/cdg-sam
   - fra/fra-sam
   - frf/frf-sam
+  - hio/hio-sam
+  - ttd/ttd-sam
  SamTestAppMaddog:
   - prd/prd-sam
   - prd/prd-samtest
