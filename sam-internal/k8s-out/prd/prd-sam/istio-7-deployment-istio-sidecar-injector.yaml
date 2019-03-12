@@ -21,7 +21,7 @@ spec:
             {
              "cert-type": "server",
              "kingdom": "prd",
-             "name": "cert1",
+             "name": "tls-server-cert",
              "role": "istio-sidecar-injector.mesh-control-plane",
              "san": [
               "istio-sidecar-injector",
@@ -72,9 +72,9 @@ spec:
                 - s390x
       containers:
       - args:
-        - --caCertFile=/cert1/ca.pem
-        - --tlsCertFile=/cert1/server/certificates/server.pem
-        - --tlsKeyFile=/cert1/server/keys/server-key.pem
+        - --caCertFile=/server-cert/ca.pem
+        - --tlsCertFile=/server-cert/server/certificates/server.pem
+        - --tlsKeyFile=/server-cert/server/keys/server-key.pem
         - --injectConfig=/etc/istio/inject/config
         - --meshConfig=/etc/istio/config/mesh
         - --healthCheckInterval=2s
@@ -109,8 +109,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
-        - mountPath: /cert1
-          name: cert1
+        - mountPath: /server-cert
+          name: tls-server-cert
         - mountPath: /etc/istio/config
           name: config-volume
           readOnly: true
@@ -123,7 +123,7 @@ spec:
         - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
-        - --cert-folders=cert1:/cert1/
+        - --cert-folders=tls-server-cert:/server-cert/
         - --token-folder=/tokens/
         - --requested-cert-type=client
         - --ca-folder=/maddog-certs/ca
@@ -150,8 +150,8 @@ spec:
         name: madkub-refresher
         resources: {}
         volumeMounts:
-        - mountPath: /cert1
-          name: cert1
+        - mountPath: /server-cert
+          name: tls-server-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -163,7 +163,7 @@ spec:
         - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
-        - --cert-folders=cert1:/cert1/
+        - --cert-folders=tls-server-cert:/server-cert/
         - --token-folder=/tokens/
         - --requested-cert-type=client
         - --ca-folder=/maddog-certs/ca
@@ -187,8 +187,8 @@ spec:
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
-        - mountPath: /cert1
-          name: cert1
+        - mountPath: /server-cert
+          name: tls-server-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -202,7 +202,7 @@ spec:
         name: maddog-certs
       - emptyDir:
           medium: Memory
-        name: cert1
+        name: tls-server-cert
       - emptyDir:
           medium: Memory
         name: tokens
