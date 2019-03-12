@@ -27,7 +27,7 @@ system:
     - name: universal-search
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.10.3
       # psalagnac TODO: this image does not foreward to Solr.
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hkhiri/universal-search:0.0.6-dropwizards
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hkhiri/universal-search:dropwizard_
       ports:
       - name: service-port
         containerPort: 7020
