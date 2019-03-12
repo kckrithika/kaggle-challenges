@@ -81,7 +81,7 @@ std.prune({
   # This will goaway slowly
   storageClassName: (if configs.estate == "prd-samdev" then "standard"),
   enableK4aChecks: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then true),
-  enableMaddogCertChecks: (if samfeatureflags.maddogforsamapps && !utils.is_public_cloud(configs.kingdom) && !utils.is_pcn(configs.kingdom) then true else false),
+  enableMaddogCertChecks: (if samfeatureflags.maddogforsamapps && !utils.is_running_flannel(configs.kingdom) && !utils.is_pcn(configs.kingdom) then true else false),
   deleteSyntheticDeployment: false,
   filesystemCheckDirs: [
     "/data/",
