@@ -4,6 +4,9 @@ system:
     email:
       - moanaserviceseng@salesforce.com
   functions:
+
+
+
   - name: moana-driver-master
     identity:
       serviceName: moana-driver
@@ -24,13 +27,6 @@ system:
           path: /manage/health
           port: 15372
       env:
-      - name: SFDC_ENVIRONMENT
-        value: kingdom-test
-
-      - name: LOGGING_JSON_STDOUT_LEVEL
-        value: all
-      - name: LOGGING_STDERR_LEVEL
-        value: ALL
 
       - name: DEPLOYMENT_ID
         value: master
