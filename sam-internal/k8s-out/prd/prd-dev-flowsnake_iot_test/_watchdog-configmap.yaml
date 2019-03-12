@@ -32,7 +32,7 @@ data:
           "DockerDaemon": "/test-docker.sh"
         },
         "SparkOperatorTest": {
-          "SparkOperatorTest": "/watchdog-spark-operator/check-spark-operator.sh watchdog-spark-operator.json"
+          "SparkOperatorTest": "/watchdog-spark-operator/check-spark-operator.sh"
         }
       },
       "deployer-funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
