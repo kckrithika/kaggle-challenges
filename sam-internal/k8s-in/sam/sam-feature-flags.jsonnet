@@ -23,7 +23,7 @@ local utils = import "util_functions.jsonnet";
         configs.estate == "xrd-sam",
 
     # MadDog
-    maddogforsamapps: !utils.is_gia(configs.kingdom),
+    maddogforsamapps: !(configs.kingdom == "wax" || configs.kingdom == "chx"),
 
     # EstatesSvc gets an rpm from estates but that does not have data for GIA or public cloud
     # NodeController uses estatesSvc.

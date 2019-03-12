@@ -19,6 +19,11 @@ local kingdom = std.extVar("kingdom");
         kingdom == "chx" || kingdom == "wax" || kingdom == "hio" || kingdom == "ttd"
     ),
 
+    # This is for filtering DCs running flannel
+    is_running_flannel(kingdom):: (
+        self.is_gia(kingdom) || self.is_public_cloud(kingdom)
+    ),
+
     is_production(kingdom):: (
       kingdom != "prd" &&
       kingdom != "xrd" &&

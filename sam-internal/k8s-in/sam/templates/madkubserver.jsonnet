@@ -20,7 +20,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                 } + configs.ownerLabel.sam,
             },
             spec: {
-                hostNetwork: if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then false else true,
+                hostNetwork: if !utils.is_running_flannel(configs.kingdom) then false else true,
                 nodeSelector: {
                 } + (if utils.is_pcn(configs.kingdom) then {} else { master: "true" }),
                 containers: [

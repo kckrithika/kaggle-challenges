@@ -2,44 +2,41 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: samappcontroller
+    name: watchdog-maddog
     sam.data.sfdc.net/owner: sam
-  name: samappcontroller
+  name: watchdog-maddog
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: samappcontroller
+      name: watchdog-maddog
   template:
     metadata:
       labels:
-        apptype: control
-        name: samappcontroller
+        apptype: monitoring
+        name: watchdog-maddog
         sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sam/samapp-controller
-        - --v=3
-        - --funnelEndpoint=ajna0-funnel1-0-hio.data.sfdc.net:80
-        - --logtostderr=true
-        - --config=/config/samapp-controller-config.json
+        - /sam/watchdog
+        - -role=MADDOG
+        - -watchdogFrequency=10s
+        - -alertThreshold=300s
+        - -madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007/healthz
+        - -maddog-endpoint=https://all.pkicontroller.pki.blank.hio.prod.non-estates.sfdcsd.net:8443/sfdc/v1/ping
+        - -watchDogKind=Deployment
+        - -timeout=2s
+        - -funnelEndpoint=ajna0-funnel1-0-hio.data.sfdc.net:80
+        - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --madkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - -emailFrequency=24h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-hio.data.sfdc.net/dva/sam/hypersam:2633-e508caaf95457f35c52db83edd42ac2586078c24
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 21548
-          initialDelaySeconds: 30
-          periodSeconds: 5
-        name: samapp-controller
-        ports:
-        - containerPort: 21548
+        name: watchdog-maddog
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
@@ -47,10 +44,10 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /config
-          name: config
         - mountPath: /data/certs
           name: certs
+        - mountPath: /config
+          name: config
       hostNetwork: true
       nodeSelector:
         pool: hio-sam
@@ -68,5 +65,5 @@ spec:
           path: /data/certs
         name: certs
       - configMap:
-          name: samapp-controller
+          name: watchdog
         name: config
