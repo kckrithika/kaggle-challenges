@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    pcn: deploy
+  name: consul-ss
+  namespace: topology-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consul-ss
+  template:
+    metadata:
+      labels:
+        app: consul-ss
+    spec:
+      containers:
+      - args:
+        - agent
+        - -advertise=$(POD_IP)
+        - -bind=0.0.0.0
+        - -bootstrap-expect=1
+        - -client=0.0.0.0
+        - -datacenter=london
+        - -data-dir=/consul/data
+        - -domain=cluster.local
+        - -server
+        - -ui
+        - -disable-host-node-id
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-ts:142-20190212-3
+        name: consul
