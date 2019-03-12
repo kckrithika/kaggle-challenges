@@ -91,6 +91,10 @@ local utils = import "util_functions.jsonnet",
         "https://ops0-piperepo1-1-" + kingdom + "." + engOrOps + ".sfdc.net/"
     else if utils.is_gia(kingdom) then
         "https://ops-piperepo1-0-" + kingdom + ".data.sfdc.net/"
+    else if kingdom == "ttd" then
+        "https://ops0-piperepo1-1-ttd.ops.sfdc.net/"
+    else if kingdom == "hio" then
+        "https://ops0-piperepo1-1-hio.ops.sfdc.net/"
     else
         "https://ops0-piperepo1-0-" + kingdom + ".data.sfdc.net/"
     ),

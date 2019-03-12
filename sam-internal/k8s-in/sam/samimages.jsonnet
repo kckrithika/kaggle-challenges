@@ -34,6 +34,9 @@ local samreleases = import "samreleases.json";
         "mvp,gsf-core-devmvp-sam2-sam,samapp-controller,hypersam": "2624-bee71f3d174816e59a880f0e94d79e3479846842",
         "mvp,gsf-core-devmvp-sam2-samtest,samapp-controller,hypersam": "2624-bee71f3d174816e59a880f0e94d79e3479846842",
 
+        #[prabh-singh] Fix AutoDeployer error/override in GIA
+        "ttd,ttd-sam,samcontrol-deployer,hypersam": "sam-0002532-de840aef",
+        "hio,hio-sam,samcontrol-deployer,hypersam": "sam-0002532-de840aef",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
