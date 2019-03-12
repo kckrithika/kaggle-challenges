@@ -17,7 +17,7 @@ data:
       "deployer-sender": "sam-alerts@salesforce.com",
       "deployer-smtpServer": "ops0-mta1-4-ttd.ops.sfdc.net:25",
       "email-subject-prefix": "SAMWD",
-      "enableMaddogCertChecks": true,
+      "enableMaddogCertChecks": false,
       "filesystemCheckDirs": [
         "/data/",
         "/data/logs/sdn/",
