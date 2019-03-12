@@ -16,7 +16,7 @@ local kingdom = std.extVar("kingdom");
 
     # This is for filtering GIA
     is_gia(kingdom):: (
-        kingdom == "chx" || kingdom == "wax"
+        kingdom == "chx" || kingdom == "wax" || kingdom == "hio" || kingdom == "ttd"
     ),
 
     is_production(kingdom):: (

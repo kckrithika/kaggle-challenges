@@ -70,7 +70,7 @@ local utils = import "util_functions.jsonnet",
     funnelVIP: (
     if kingdom == "par" || kingdom == "frf" then
         "mandm-funnel-" + kingdom + "1.data.sfdc.net:8080"
-    else if utils.is_gia(kingdom) then
+    else if kingdom == "chx" || kingdom == "wax" then
         "mandm-funnel-" + kingdom + ".data.sfdc.net:8080"
     else if utils.is_pcn(kingdom) then
         "funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443"
@@ -89,12 +89,8 @@ local utils = import "util_functions.jsonnet",
     # until we roll a code fix
     if utils.is_public_cloud(kingdom) then
         "https://ops0-piperepo1-1-" + kingdom + "." + engOrOps + ".sfdc.net/"
-    else if utils.is_gia(kingdom) then
+    else if kingdom == "chx" || kingdom == "wax" then
         "https://ops-piperepo1-0-" + kingdom + ".data.sfdc.net/"
-    else if kingdom == "ttd" then
-        "https://ops0-piperepo1-1-ttd.ops.sfdc.net/"
-    else if kingdom == "hio" then
-        "https://ops0-piperepo1-1-hio.ops.sfdc.net/"
     else
         "https://ops0-piperepo1-0-" + kingdom + ".data.sfdc.net/"
     ),
@@ -107,7 +103,7 @@ local utils = import "util_functions.jsonnet",
     registry: (
     if kingdom == "prd" then
         "ops0-artifactrepo2-0-" + kingdom + ".data.sfdc.net"
-    else if utils.is_gia(kingdom) then
+    else if kingdom == "wax" || kingdom == "chx" then
         "ops-artifactrepo1-0-" + kingdom + ".data.sfdc.net"
     else if kingdom == "vpod" then
         #use PRD

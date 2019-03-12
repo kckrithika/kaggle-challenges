@@ -9,7 +9,7 @@ data:
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "skipOldZips": true,
       "tlsEnabled": true,
-      "tnrpArchiveEndpoint": "https://ops0-piperepo1-1-hio.ops.sfdc.net/tnrp/content_repo/0/archive"
+      "tnrpArchiveEndpoint": "https://ops0-piperepo1-0-hio.data.sfdc.net/tnrp/content_repo/0/archive"
     }
 kind: ConfigMap
 metadata:
