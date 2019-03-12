@@ -35,7 +35,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   metricsScraperImage: istioImages.metricsscraper,
   madkubImage: samimages.madkub,
 
-  ### Istio Config Objects. Represented as `"mcpIstioConfig.<name>"` in template.
+  ## Istio Config Objects. Represented as `"mcpIstioConfig.<name>"` in template.
   sidecarInjectorMadkubAnnotations: std.manifestJsonEx(
     {
       certreqs:
@@ -56,7 +56,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
     }, " "
   ),
 
-  ### Istio Config Strings. Represented as `"%(<name>)s" % mcpIstioConfig` in template.
+  ## Istio Config Strings. Represented as `"%(<name>)s" % mcpIstioConfig` in template.
   istioEstate: (
     if configs.estate == "prd-samtest" then
       configs.estate
