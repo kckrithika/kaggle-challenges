@@ -5,7 +5,7 @@ system:
       - juppala@salesforce.com
   functions:
   - name: zones-ui
-    count: 1
+    count: 2
     volumes:
       - name: ui-servercert
         maddogCert:
@@ -15,7 +15,7 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:build-20190305
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:build-20190312-1
       env:
       - name: ZONES_ENVIRONMENT
         value: "dev"
@@ -25,6 +25,8 @@ system:
         value: "https://gus--zonesintk.my.salesforce.com"
       - name: ZONES_SERVICE_URL
         value: "http://zones-intake-backend-lb.user-jiaqi-wu.prd-sam.prd.slb.sfdc.net:3000"
+      - name: ZONES_SECRET_SERVICE_URL
+        value: "https://secretservice.dmz.salesforce.com:8271/vaultczar/api/1.0/getSecretBySubscriber"
       ports:
       - containerPort: 8445
       livenessProbe:
@@ -49,4 +51,7 @@ system:
         targetport: 8445
         lbtype: http
         tls: true
+      - port: 8080
+        targetport: 8445
+        lbtype: http
 
