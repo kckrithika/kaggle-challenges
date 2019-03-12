@@ -57,6 +57,18 @@
     },
     {
       "namespaces": [
+        "mc-eventing"
+      ],
+      "access": [
+        "team/mc-eventing"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_mc_consumer",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-health",
         "distributed-tracing"
       ],
