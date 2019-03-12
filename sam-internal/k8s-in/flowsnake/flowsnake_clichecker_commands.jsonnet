@@ -76,7 +76,9 @@ local build_btrfs_test_commands = if std.objectHas(flowsnake_images.feature_flag
 } else {};
 
 local build_spark_operator_test_commands = {
-    SparkOperatorTest: { SparkOperatorTest: "/watchdog-spark-operator/check-spark-operator.sh" },
+    SparkOperatorTest: {
+        SparkOperatorTest: if estate == "prd-data-flowsnake_test" then "/watchdog-spark-operator/check-spark-operator.sh spark-application.json watchdog-spark-operator" else "/watchdog-spark-operator/check-spark-operator.sh",
+    } + (if estate == "prd-data-flowsnake_test" then { SparkS3Test: "/watchdog-spark-operator/check-spark-operator.sh spark-s3.json  watchdog-spark-s3" } else {}),
 };
 
 {
