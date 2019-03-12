@@ -134,7 +134,7 @@ spec:
           periodSeconds: 30
           timeoutSeconds: 5
       nodeSelector:
-        pool: prd-sam_gater
+        pool: prd-samtest
       serviceAccountName: istio-pilot-service-account
       volumes:
       - configMap:

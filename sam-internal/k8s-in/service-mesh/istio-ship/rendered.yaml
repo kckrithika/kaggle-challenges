@@ -740,7 +740,7 @@ spec:
         - mountPath: /server-cert
           name: tls-server-cert
       nodeSelector:
-        pool: prd-sam_gater
+        pool: mcpIstioConfig.istioEstate
       serviceAccountName: istio-ingressgateway-service-account
       volumes:
       - hostPath:
@@ -892,7 +892,7 @@ spec:
           periodSeconds: 30
           timeoutSeconds: 5
       nodeSelector:
-        pool: prd-sam_gater
+        pool: mcpIstioConfig.istioEstate
       serviceAccountName: istio-pilot-service-account
       volumes:
       - configMap:
