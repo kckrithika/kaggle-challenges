@@ -32,38 +32,107 @@ items:
       # Disable use of SAM's custom kubeconfig
       unset KUBECONFIG
 
-      kc() {
+      kcfw() {
         kubectl -n flowsnake-watchdog "$@"
       }
 
-      APP_NAME="watchdog-spark-operator"
+      SPEC=$1
+      APP_NAME=${SPEC%.*}
       SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
 
       echo "Cleaning up $APP_NAME resources from prior runs"
-      kc delete sparkapplication $APP_NAME || true
-      kc delete pod -l $SELECTOR || true
+      kcfw delete sparkapplication $APP_NAME || true
+      kcfw delete pod -l $SELECTOR || true
       # Wait for pods from prior runs to delete.
-      while ! $(kc get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
+      while ! $(kcfw get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
 
       echo "Creating SparkApplication $APP_NAME"
-      kc create -f /watchdog-spark-operator/spark-application.json
+      kcfw create -f /watchdog-spark-operator/$SPEC
 
       echo "Waiting for SparkApplication $APP_NAME to complete"
       # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
-      while ! $(kc get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep -P '(COMPLETED|FAILED)' > /dev/null); do sleep 1; done;
-      echo "Terminal SparkApplication $APP_NAME state is $(kc get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}')"
+      while ! $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep -P '(COMPLETED|FAILED)' > /dev/null); do sleep 1; done;
+      echo ---- Begin Spark Driver Log ----
+      kcfw logs $(kcfw get pod -l $SELECTOR -o name)
+      echo ---- End Spark Driver Log ----
+      echo "Terminal SparkApplication $APP_NAME state is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}')"
       # Test successful iff final state is COMPLETED. Use exit code from grep.
-      kc get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep COMPLETED > /dev/null
-    spark-application.json: '{"apiVersion": "sparkoperator.k8s.io/v1beta1", "kind":
-      "SparkApplication", "metadata": {"name": "watchdog-spark-operator", "namespace":
-      "flowsnake-watchdog"}, "spec": {"deps": { }, "driver": {"coreLimit": "200m",
-      "cores": 0.10000000000000001, "labels": {"version": "2.4.0"}, "memory": "512m",
-      "serviceAccount": "spark-driver-flowsnake-watchdog"}, "executor": {"cores":
-      1, "instances": 1, "labels": {"version": "2.4.0"}, "memory": "512m"}, "image":
-      "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-sample-spark-operator:jenkins-dva-transformation-flowsnake-sample-apps-PR-20-2-itest",
-      "imagePullPolicy": "Always", "mainApplicationFile": "local:///spark-app/sample-spark-operator.jar",
-      "mainClass": "org.apache.spark.examples.SparkPi", "mode": "cluster", "restartPolicy":
-      {"type": "Never"}, "sparkVersion": "", "type": "Scala"}}'
+      kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep COMPLETED > /dev/null
+    watchdog-spark-operator.json:
+      apiVersion: sparkoperator.k8s.io/v1beta1
+      kind: SparkApplication
+      metadata:
+        name: watchdog-spark-operator
+        namespace: flowsnake-watchdog
+      spec:
+        deps:
+          jars:
+          - local:///sample-apps/sample-spark-operator/extra-jars/*
+        driver:
+          coreLimit: 200m
+          cores: 0.1
+          labels:
+            version: 2.4.0
+          memory: 512m
+          serviceAccount: spark-driver-flowsnake-watchdog
+        executor:
+          cores: 1
+          instances: 1
+          labels:
+            version: 2.4.0
+          memory: 512m
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-sample-spark-operator:ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/spark-on-k8s-sample-apps:1
+        imagePullPolicy: Always
+        mainApplicationFile: local:///sample-apps/sample-spark-operator/sample-spark-operator.jar
+        mainClass: org.apache.spark.examples.SparkPi
+        mode: cluster
+        restartPolicy:
+          type: Never
+        sparkVersion: ""
+        type: Scala
+    watchdog-spark-s3.json:
+      apiVersion: sparkoperator.k8s.io/v1beta1
+      kind: SparkApplication
+      metadata:
+        name: watchdog-spark-s3
+        namespace: flowsnake-watchdog
+      spec:
+        deps:
+          jars:
+          - local:///sample-apps/spark-s3-integration/extra-jars/*
+        driver:
+          coreLimit: 200m
+          cores: 0.1
+          envVars:
+            AWS_REGION: us-west-2
+            AWS_SSE_KEY: ea96b117-8eee-4314-b214-8a125eb5242e
+            DATA_FILE: /sample-apps/spark-s3-integration/constitution_of_india.txt
+            LOG_SPARK_EVENTS_IN_S3: "true"
+            S3_BUCKET: moana-spark-history
+            S3_PATH: spark-test
+          labels:
+            version: 2.4.0
+          memory: 512m
+          secrets:
+          - name: aws
+            path: /etc/flowsnake/secrets/aws
+            secretType: Generic
+          serviceAccount: spark-driver-flowsnake-watchdog
+        executor:
+          cores: 1
+          instances: 1
+          labels:
+            version: 2.4.0
+          memory: 512m
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-sample-spark-operator:ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/spark-on-k8s-sample-apps:1
+        imagePullPolicy: Always
+        mainApplicationFile: local:///sample-apps/spark-s3-integration/sample-spark-operator.jar
+        mainClass: com.salesforce.dva.transform.flowsnake.demo.SparkS3Demo
+        mode: cluster
+        restartPolicy:
+          type: Never
+        sparkVersion: ""
+        type: Scala
   kind: ConfigMap
   metadata:
     name: watchdog-spark-operator-configmap

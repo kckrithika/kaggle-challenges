@@ -2,6 +2,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local configs = import "config.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
+local estate = std.extVar("estate");
 
 if !watchdog.watchdog_enabled then
 "SKIP"
@@ -53,47 +54,55 @@ else
               name: "watchdog-spark-operator-configmap",
               namespace: "flowsnake",
             },
-            data: {
-                "check-spark-operator.sh": (importstr "watchdog-spark-operator--check-spark-operator.sh"),
-                "spark-application.json": std.toString({
-                    "apiVersion": "sparkoperator.k8s.io/v1beta1",
-                    "kind": "SparkApplication",
-                    "metadata": {
-                        "name": "watchdog-spark-operator",
-                        "namespace": "flowsnake-watchdog",
-                    },
-                    "spec": {
-                        "deps": {},
-                        "driver": {
-                            "coreLimit": "200m",
-                            "cores": 0.1,
-                            "labels": {
-                                "version": "2.4.0"
+            data: 
+            if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then
+                {
+                  "check-spark-operator.sh": importstr "watchdog-spark-on-k8s.sh",
+                  "watchdog-spark-s3.json": import "spark-on-k8s-canary-specs/watchdog-spark-s3.libsonnet", 
+                  "watchdog-spark-operator.json": import "spark-on-k8s-canary-specs/watchdog-spark-operator.libsonnet"
+                }
+            else 
+                {
+                  "check-spark-operator.sh": importstr "watchdog-spark-operator--check-spark-operator.sh",
+                  "spark-application.json": std.toString({
+                        "apiVersion": "sparkoperator.k8s.io/v1beta1",
+                        "kind": "SparkApplication",
+                        "metadata": {
+                            "name": "watchdog-spark-operator",
+                            "namespace": "flowsnake-watchdog",
+                        },
+                        "spec": {
+                            "deps": {},
+                            "driver": {
+                                "coreLimit": "200m",
+                                "cores": 0.1,
+                                "labels": {
+                                    "version": "2.4.0"
+                                },
+                                "memory": "512m",
+                                "serviceAccount": "spark-driver-flowsnake-watchdog",
                             },
-                            "memory": "512m",
-                            "serviceAccount": "spark-driver-flowsnake-watchdog",
-                        },
-                        "executor": {
-                            "cores": 1,
-                            "instances": 1,
-                            "labels": {
-                                "version": "2.4.0"
+                            "executor": {
+                                "cores": 1,
+                                "instances": 1,
+                                "labels": {
+                                    "version": "2.4.0"
+                                },
+                                "memory": "512m",
                             },
-                            "memory": "512m",
+                            "image": flowsnake_images.watchdog_spark_operator,
+                            "imagePullPolicy": "Always",
+                            "mainApplicationFile": "local:///spark-app/sample-spark-operator.jar",
+                            "mainClass": "org.apache.spark.examples.SparkPi",
+                            "mode": "cluster",
+                            "restartPolicy": {
+                                "type": "Never"
+                            },
+                            "sparkVersion": "",
+                            "type": "Scala",
                         },
-                        "image": flowsnake_images.watchdog_spark_operator,
-                        "imagePullPolicy": "Always",
-                        "mainApplicationFile": "local:///spark-app/sample-spark-operator.jar",
-                        "mainClass": "org.apache.spark.examples.SparkPi",
-                        "mode": "cluster",
-                        "restartPolicy": {
-                            "type": "Never"
-                        },
-                        "sparkVersion": "",
-                        "type": "Scala",
-                    },
-                }),
-            },
+                    })
+                }
         },
         configs.deploymentBase("flowsnake") {
             local label_node = self.spec.template.metadata.labels,
