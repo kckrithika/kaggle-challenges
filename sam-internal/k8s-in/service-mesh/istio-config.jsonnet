@@ -12,8 +12,7 @@ local sidecarInjectorSans = [
   "istio-sidecar-injector.mesh-control-plane.svc",  // This is the one that works with webhook's clientConfig.service
   "istio-sidecar-injector.mesh-control-plane.svc.%s" % configs.dnsdomain,
 ];
-// TODO change cert1 to server-cert
-local sidecarInjectorServerCertConfig = madkub.serverCertConfig("cert1", "/cert1", "istio-sidecar-injector", "mesh-control-plane", sidecarInjectorSans);
+local sidecarInjectorServerCertConfig = madkub.serverCertConfig("tls-server-cert", "/server-cert", "istio-sidecar-injector", "mesh-control-plane", sidecarInjectorSans);
 local sidecarInjectorCertConfigs = [sidecarInjectorServerCertConfig];
 
 ## Istio ingressGateway madkub certificates.
@@ -29,7 +28,6 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
 
 {
   ## Istio Images. Represented as `"mcpIstioConfig.<image>"` in template.
-  // TODO rename images to camel case.
   pilotImage: istioImages.pilot,
   proxyImage: istioImages.proxy,
   proxyInitImage: istioImages.proxyinit,

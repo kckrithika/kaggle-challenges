@@ -99,9 +99,9 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         containers: [
           {
             args: [
-              "--caCertFile=/cert1/ca.pem",
-              "--tlsCertFile=/cert1/server/certificates/server.pem",
-              "--tlsKeyFile=/cert1/server/keys/server-key.pem",
+              "--caCertFile=/server-cert/ca.pem",
+              "--tlsCertFile=/server-cert/server/certificates/server.pem",
+              "--tlsKeyFile=/server-cert/server/keys/server-key.pem",
               "--injectConfig=/etc/istio/inject/config",
               "--meshConfig=/etc/istio/config/mesh",
               "--healthCheckInterval=2s",
@@ -151,8 +151,8 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 name: "maddog-certs",
               },
               {
-                mountPath: "/cert1",
-                name: "cert1",
+                mountPath: "/server-cert",
+                name: "tls-server-cert",
               },
               {
                 mountPath: "/etc/istio/config",
@@ -173,7 +173,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "--maddog-endpoint=%(maddogEndpoint)s" % mcpIstioConfig,
               "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
               "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
-              "--cert-folders=cert1:/cert1/",
+              "--cert-folders=tls-server-cert:/server-cert/",
               "--token-folder=/tokens/",
               "--requested-cert-type=client",
               "--ca-folder=/maddog-certs/ca",
@@ -215,8 +215,8 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             resources: {},
             volumeMounts: [
               {
-                mountPath: "/cert1",
-                name: "cert1",
+                mountPath: "/server-cert",
+                name: "tls-server-cert",
               },
               {
                 mountPath: "/maddog-certs/",
@@ -237,7 +237,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "--maddog-endpoint=%(maddogEndpoint)s" % mcpIstioConfig,
               "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
               "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
-              "--cert-folders=cert1:/cert1/",
+              "--cert-folders=tls-server-cert:/server-cert/",
               "--token-folder=/tokens/",
               "--requested-cert-type=client",
               "--ca-folder=/maddog-certs/ca",
@@ -276,8 +276,8 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             name: "madkub-init",
             volumeMounts: [
               {
-                mountPath: "/cert1",
-                name: "cert1",
+                mountPath: "/server-cert",
+                name: "tls-server-cert",
               },
               {
                 mountPath: "/maddog-certs/",
@@ -305,7 +305,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             emptyDir: {
               medium: "Memory",
             },
-            name: "cert1",
+            name: "tls-server-cert",
           },
           {
             emptyDir: {
