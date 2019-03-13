@@ -135,14 +135,14 @@ configs.deploymentBase("service-mesh") {
                 value: "mesh.-." + configs.kingdom + ".-.sherpa-injector",
               },
               {
-                name: "SFDC_METRICS_SERVICE_HOST",               
+                name: "SFDC_METRICS_SERVICE_HOST",
                 // use `value: funnelEndpointHost,` if direct link to ajna is needed
-                value: "ajnafunneldirect.localhost.mesh.force.com"
+                value: "ajnafunneldirect.localhost.mesh.force.com",
               },
               {
                 name: "SFDC_METRICS_SERVICE_PORT",
                 // use `value: funnelEndpointPort,` if direct link to ajna is needed
-                value: "7013"
+                value: "7013",
               },
             ],
             volumeMounts+: [
@@ -309,7 +309,8 @@ configs.deploymentBase("service-mesh") {
                 memory: "1Gi",
               },
             },
-        }],
+        },
+],
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
