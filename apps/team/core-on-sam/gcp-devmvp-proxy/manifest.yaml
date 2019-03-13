@@ -43,7 +43,8 @@ system:
 #          port: 15372
         exec:
           command:
-          - echo OK
+          - echo 
+          - OK
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
@@ -52,7 +53,8 @@ system:
 #          port: 15372
         exec:
           command:
-          - echo OK
+          - echo 
+          - OK
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sfproxy-switchboard-sherpa
