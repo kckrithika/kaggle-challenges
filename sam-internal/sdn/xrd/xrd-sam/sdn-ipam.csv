@@ -1,12 +1,8 @@
 Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate,RemoteAs
 samkingdomcaas0-caasminion1-1-xrd.eng.sfdc.net,10.210.152.10/29,10.229.36.160/27,m08-02,xrd-sam_kingdom_caas,65009
 samkingdomcaas0-caasminion1-2-xrd.eng.sfdc.net,10.210.152.11/29,10.229.36.192/27,m08-02,xrd-sam_kingdom_caas,65009
-samkingdomcaas0-caasminion1-3-xrd.eng.sfdc.net,10.210.152.34/29,10.229.36.224/27,q09-02,xrd-sam_kingdom_caas,65009
 samkingdomcaas0-caasminion2-1-xrd.eng.sfdc.net,10.210.152.2/29,10.229.36.64/27,j14-02,xrd-sam_kingdom_caas,65009
-samkingdomcaas0-caasminion2-2-xrd.eng.sfdc.net,10.210.152.3/29,10.229.36.96/27,j14-02,xrd-sam_kingdom_caas,65009
-samkingdomcaas0-caasminion2-3-xrd.eng.sfdc.net,10.210.152.26/29,10.229.36.128/27,l06-02,xrd-sam_kingdom_caas,65009
 samkingdomcaas0-caasminion3-1-xrd.eng.sfdc.net,10.210.152.18/29,10.229.36.0/27,f04-02,xrd-sam_kingdom_caas,65009
-samkingdomcaas0-caasminion3-2-xrd.eng.sfdc.net,10.210.152.19/29,10.229.36.32/27,f04-02,xrd-sam_kingdom_caas,65009
 shared0-samcompute1-1-xrd.eng.sfdc.net,10.210.202.66/28,10.229.0.128/27,c05-02,xrd-sam,65009
 shared0-samcompute1-2-xrd.eng.sfdc.net,10.210.202.82/28,10.229.0.160/27,r11-02,xrd-sam,65009
 shared0-samcompute2-1-xrd.eng.sfdc.net,10.210.202.2/28,10.229.0.96/27,b08-02,xrd-sam,65009
