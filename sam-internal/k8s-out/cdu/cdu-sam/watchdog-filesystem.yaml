@@ -28,10 +28,10 @@ spec:
         - -maxUptimeSampleSize=5
         - -watchDogKind=DaemonSet
         - -recipient=sam-alerts@salesforce.com,make@salesforce.com
-        - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-cdu.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
         - -emailFrequency=24h
         env:
         - name: KUBECONFIG

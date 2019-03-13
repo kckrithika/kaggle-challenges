@@ -28,10 +28,10 @@ spec:
         - -watchdogFrequency=5s
         - -alertThreshold=3m
         - -watchDogKind=DaemonSet
-        - -timeout=2s
         - -funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
         - -emailFrequency=12h
         env:
         - name: KUBECONFIG

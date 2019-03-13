@@ -27,10 +27,10 @@ spec:
         - -madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007/healthz
         - -maddog-endpoint=https://all.pkicontroller.pki.blank.par.prod.non-estates.sfdcsd.net:8443/sfdc/v1/ping
         - -watchDogKind=Deployment
-        - -timeout=2s
         - -funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
         - -emailFrequency=24h
         env:
         - name: KUBECONFIG

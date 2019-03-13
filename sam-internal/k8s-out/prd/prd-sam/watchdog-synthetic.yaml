@@ -30,10 +30,10 @@ spec:
         - -imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2644-80d5e92f97356a83fa0854f1d24ccf3927f9e3e5
         - -watchDogKind=Deployment
         - -enableStatefulChecks=false
-        - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
         - -recipient=sam-test-alerts@salesforce.com,csc-sam-rnd-business-hours-only@salesforce.pagerduty.com
         env:
         - name: KUBECONFIG
