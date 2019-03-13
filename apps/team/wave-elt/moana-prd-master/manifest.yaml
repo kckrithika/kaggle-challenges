@@ -1,0 +1,182 @@
+#
+# Generated manifest
+# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
+#
+# generated: 2019-03-13 16:36:06.733885
+# from:  0986e18e89de24a857ebf97b0d9a5ceee15f1d40
+# by: mbyne
+system:
+  notifications:
+    email:
+    - moanaserviceseng@salesforce.com
+  functions:
+  - count: 0
+    name: moana-engine
+    containers:
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:jenkins-insights-WaveDataPool-master-32-itest
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - ls
+      name: moana-engine
+  - count: 1
+    volumes:
+    - maddogCert:
+        type: server
+      name: tls-server-certs
+    - maddogCert:
+        type: client
+      name: tls-client-certs
+    identity:
+      serviceName: moana-driver
+    containers:
+    - livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+        timeoutSeconds: 30
+        periodSeconds: 60
+      name: moana-driver
+      image: sfci/insights/moana-driver:release-7-6cc9a0f
+      volumeMounts:
+      - mountPath: /home/scone/client-certs
+        name: tls-client-certs
+      env:
+      - name: LOGGING_JSON_STDOUT_LEVEL
+        value: ALL
+      - name: LOGGING_STDERR_LEVEL
+        value: ALL
+      - name: TEST_POD
+        value: moana-driver
+      - name: PKI_TRUSTSTORE_DIR
+        value: /home/scone/client-certs
+      - name: PKI_KEYSTORE_DIR
+        value: /home/scone/client-certs/client
+      - name: JAVA_OPTS
+        value: -server -XX:MaxMetaspaceSize=256m -Xmx1024m -Xms1024m
+      - name: TESTRECIPE_INTERVAL
+        value: 300s
+      - name: TESTRECIPE_TIMEOUT
+        value: 240s
+      - name: TESTRECIPE_LASTSUCCESSTARGET
+        value: 360s
+      - name: TESTRECIPE_MAESTROPINGTEST
+        value: 'true'
+      - name: DEPLOYMENT_ID
+        value: master
+      - name: HANDLED_PODS_PATTERN
+        value: stmfa\..*|moana-driver-master
+      ports:
+      - containerPort: 8080
+        name: http
+      - containerPort: 15372
+        name: mgmt
+      resources:
+        requests:
+          cpu: 1
+          memory: 2G
+        limits:
+          cpu: 2
+          memory: 2G
+    name: moana-driver
+  - count: 1
+    volumes:
+    - hostPath:
+        path: /data/sam/wave/log/datapool
+      name: logvol
+    - hostPath:
+        path: /home/sfdc-sherpa/logs
+      name: sherpa-log-volume
+    - maddogCert:
+        type: server
+      name: tls-server-certs
+    - maddogCert:
+        type: client
+      name: tls-client-certs
+    identity:
+      serviceName: datapool
+    containers:
+    - livenessProbe:
+        initialDelaySeconds: 90
+        httpGet:
+          path: /manage/health
+          port: 15372
+        timeoutSeconds: 30
+        periodSeconds: 60
+      name: jobcontroller
+      image: sfci/insights/datapoolservice:master-209-136d583
+      volumeMounts:
+      - mountPath: /home/datapool/logs
+        name: logvol
+      - mountPath: /home/datapool/client-certs
+        name: tls-client-certs
+      env:
+      - name: LOGGING_JSON_STDOUT_LEVEL
+        value: ALL
+      - name: LOGGING_STDERR_LEVEL
+        value: ALL
+      - name: MOANA_SPARK_ENGINE_IMAGE
+        value: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:jenkins-insights-WaveDataPool-master-32-itest
+      - name: KAFKA_GROUP_ID
+        value: moana-jobcontroller-master
+      - name: DEPLOYMENT_ID
+        value: master
+      - name: HANDLED_PODS_PATTERN
+        value: stmfa\..*|moana-driver-master
+      ports:
+      - containerPort: 7020
+        name: grpc
+      - containerPort: 15372
+        name: mgmt
+    - image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - wave-elt/datapool:DATACENTER_ALLENV:7443
+      livenessProbe:
+        initialDelaySeconds: 15
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+      name: beacon
+    - livenessProbe:
+        initialDelaySeconds: 120
+        periodSeconds: 5
+        exec:
+          command:
+          - ./bin/is-alive
+      name: sherpa
+      image: sfci/servicelibs/sherpa:2.0.24
+      volumeMounts:
+      - mountPath: /server-certs
+        name: tls-server-certs
+      - mountPath: /client-certs
+        name: tls-client-certs
+      - mountPath: /log
+        name: sherpa-log-volume
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      readinessProbe:
+        initialDelaySeconds: 110
+        periodSeconds: 5
+        exec:
+          command:
+          - ./bin/is-ready
+      ports:
+      - containerPort: 7012
+        name: sherpa-in-plain
+      - containerPort: 7443
+        name: sherpa-in-tls
+      - containerPort: 15373
+        name: sherpa-adm
+      resources:
+        requests:
+          cpu: '1'
+          memory: 1Gi
+        limits:
+          cpu: '1'
+          memory: 1Gi
+    name: jobcontroller
+apiVersion: v1

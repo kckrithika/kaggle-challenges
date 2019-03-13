@@ -1,4 +1,6 @@
 apps:
+  moana-prd-master:
+  - prd/prd-sam_datapool
   moana-ukb:
   - ukb/ukb-sam_datapool
   datapool-ia2:
@@ -43,12 +45,8 @@ apps:
   datapool-prd:
   - prd/prd-sam_datapool
 
-  jobcontroller-master-prd:
-  - prd/prd-sam_datapool
-
   # moana driver used for testing moana via kafka.
   moana-driver-release-prd:
   - prd/prd-sam_datapool
-  moana-driver-master-prd:
-  - prd/prd-sam_datapool
+
 
