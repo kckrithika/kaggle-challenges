@@ -15,8 +15,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sconex
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: { cpu: "1", memory: "2Gi" }
+        requests: { cpu: "1", memory: "2Gi" }
       volumeMounts:
       - mountPath: /secrets/service-config/
         name: secretvol
