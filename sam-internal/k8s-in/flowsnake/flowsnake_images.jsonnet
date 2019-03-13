@@ -37,7 +37,7 @@ local utils = import "util_functions.jsonnet";
                 nodeMonitor_image_tag: 662,
                 watchdog_image_tag: "sam-0002015-fdb18963",
                 watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
-                watchdog_spark_operator_image_tag: if std.objectHas(self.feature_flags, "watchdog_canary_redo") then "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/spark-on-k8s-sample-apps:1" else "jenkins-dva-transformation-flowsnake-sample-apps-PR-20-2-itest",
+                watchdog_spark_operator_image_tag: if std.objectHas(self.feature_flags, "watchdog_canary_redo") then "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest" else "jenkins-dva-transformation-flowsnake-sample-apps-PR-20-2-itest",
                 docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-706-itest",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
@@ -105,6 +105,8 @@ local utils = import "util_functions.jsonnet";
                 slb_ingress: "unverified",
                 spark_op_metrics: "enabled",
                 watchdog_canary_redo: "",
+                /* this is for canary spark s3 integration */
+                /* watchdog_canary_spark_s3: "", */
             },
             version_mapping: {
                 main: {
@@ -285,7 +287,7 @@ local utils = import "util_functions.jsonnet";
     logstash: flowsnakeconfig.strata_registry + "/flowsnake-logstash:" + $.per_phase[$.phase].logstash_image_tag,
     node_monitor: flowsnakeconfig.strata_registry + "/flowsnake-node-monitor:" + $.per_phase[$.phase].nodeMonitor_image_tag,
     watchdog_canary: flowsnakeconfig.strata_registry + "/watchdog-canary:" + $.per_phase[$.phase].watchdog_canary_image_tag,
-    watchdog_spark_operator: flowsnakeconfig.strata_registry + "/flowsnake-sample-spark-operator:" + $.per_phase[$.phase].watchdog_spark_operator_image_tag,
+    watchdog_spark_operator: flowsnakeconfig.strata_registry + (if std.objectHas(self.feature_flags, "watchdog_canary_redo") then "/flowsnake-spark-on-k8s-sample-apps:" else "/flowsnake-sample-spark-operator:") + $.per_phase[$.phase].watchdog_spark_operator_image_tag,
     docker_daemon_watchdog: flowsnakeconfig.strata_registry + "/docker-daemon-watchdog:" + $.per_phase[$.phase].docker_daemon_watchdog_image_tag,
     zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
     madkub_injector: flowsnakeconfig.strata_registry + "/flowsnake-madkub-injector-webhook:" + $.per_phase[$.phase].madkub_injector_image_tag,

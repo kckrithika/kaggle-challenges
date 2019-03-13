@@ -4,7 +4,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
     "kind": "SparkApplication",
     "metadata": {
         "name": "watchdog-spark-operator",
-        "namespace": "flowsnake-watchdog",
+        "namespace": "flowsnake-watchdog"
     },
     "spec": {
         "deps": {
@@ -19,7 +19,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
                 "version": "2.4.0"
             },
             "memory": "512m",
-            "serviceAccount": "spark-driver-flowsnake-watchdog",
+            "serviceAccount": "spark-driver-flowsnake-watchdog"
         },
         "executor": {
             "cores": 1,
@@ -27,7 +27,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
             "labels": {
                 "version": "2.4.0"
             },
-            "memory": "512m",
+            "memory": "512m"
         },
         "image": flowsnake_images.watchdog_spark_operator,
         "imagePullPolicy": "Always",
@@ -38,6 +38,6 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
             "type": "Never"
         },
         "sparkVersion": "",
-        "type": "Scala",
-    },
+        "type": "Scala"
+    }
 }

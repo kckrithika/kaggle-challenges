@@ -4,12 +4,12 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
     "kind": "SparkApplication",
     "metadata": {
         "name": "watchdog-spark-s3",
-        "namespace": "flowsnake-watchdog",
+        "namespace": "flowsnake-watchdog"
     },
     "spec": {
         "deps": {
             "jars": [
-                "local:///sample-apps/spark-s3-integration/extra-jars/*"
+                "local:///sample-apps/sample-s3-integration/spark-extra-jars/*"
             ]
         },
         "driver": {
@@ -24,7 +24,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
                 "S3_PATH":"spark-test",
                 "LOG_SPARK_EVENTS_IN_S3":"true",
                 "AWS_SSE_KEY":"ea96b117-8eee-4314-b214-8a125eb5242e",
-                "DATA_FILE":"/sample-apps/spark-s3-integration/constitution_of_india.txt"
+                "DATA_FILE":"/sample-apps/sample-s3-integration/constitution_of_india.txt"
             },
             "memory": "512m",
             "serviceAccount": "spark-driver-flowsnake-watchdog",
@@ -42,17 +42,17 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
             "labels": {
                 "version": "2.4.0"
             },
-            "memory": "512m",
+            "memory": "512m"
         },
         "image": flowsnake_images.watchdog_spark_operator,
         "imagePullPolicy": "Always",
-        "mainApplicationFile": "local:///sample-apps/spark-s3-integration/sample-spark-operator.jar",
+        "mainApplicationFile": "local:///sample-apps/sample-s3-integration/spark-s3-integration.jar",
         "mainClass": "com.salesforce.dva.transform.flowsnake.demo.SparkS3Demo",
         "mode": "cluster",
         "restartPolicy": {
             "type": "Never"
         },
         "sparkVersion": "",
-        "type": "Scala",
-    },
+        "type": "Scala"
+    }
 }
