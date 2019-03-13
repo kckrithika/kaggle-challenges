@@ -38,15 +38,21 @@ system:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
       livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
+#        httpGet:
+#          path: /manage/health
+#          port: 15372
+        exec:
+          command:
+          - echo OK
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
+#        httpGet:
+#          path: /manage/health
+#          port: 15372
+        exec:
+          command:
+          - echo OK
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sfproxy-switchboard-sherpa
