@@ -36,4 +36,8 @@ local slbconfigs = import "slbconfig.jsonnet";
     alertOnlyOnProxyErrorCode: (slbimages.phaseNum < 1),
     # Only set to true if hyperslb >= 2088
     useHttp10HealthChecks: false,
+
+    # 2019/03/13 Due to upstream reporter deployments take longer. This feature flag enables more maxUnavailable to speed up deployments where have
+    # many replicas and can tolerate that rate of change
+    permitMoreUnavailable: (slbimages.phaseNum <= 1),
 }
