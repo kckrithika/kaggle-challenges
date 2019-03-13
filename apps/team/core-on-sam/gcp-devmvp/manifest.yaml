@@ -77,7 +77,7 @@ system:
         # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
         # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
-          value: devmvp-app-gcp-lb
+          value: sfproxy.core-on-sam.sfdc-role
 
         - name: SFPROXY_VIP
           value: https://devmvpapp-lb.core-on-sam-sp1.gcp-sam.gcp.slb.sfdc.net:8443
