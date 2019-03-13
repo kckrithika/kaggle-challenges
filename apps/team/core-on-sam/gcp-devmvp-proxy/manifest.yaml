@@ -10,13 +10,11 @@ system:
     containers:
     - name: sfproxy-switchboard-server
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
-      args:
-      - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
-      - --clusters.external-clusters[1]=spaasmesh:HTTP2
-      - --metrics.maxNumberOfCollectedMetrics=100000
-      - --metrics.funnelTimeOut=90000
-      - --zookeeper.seedHosts=10.168.160.76:2181
-      - --scone.dev-mode=true
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export SETTINGS_PATH=prod.-.phx.na3.sfproxy-switchboard ;
+      ./launcher.sh switchboard-exec.jar --clusters.external-clusters[0]=ajnafunneldirect:HTTP1 --clusters.external-clusters[1]=spaasmesh:HTTP2 --metrics.maxNumberOfCollectedMetrics=100000 --metrics.funnelTimeOut=90000 --zookeeper.seedHosts=10.168.160.76:2181 --scone.dev-mode=true
+      "]
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -60,11 +58,11 @@ system:
         periodSeconds: 5
     - name: sfproxy-switchboard-sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sfproxy:bc7e1fa
-      args:
-      - --template
-      - /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template
-      - --log-level
-      - trace
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export SETTINGS_PATH=prod.-.phx.na3.sfproxy-switchboard-sherpa ;
+      bin/entrypoint --template /home/sfdc-sherpa/sfproxy/config/switchboard-sidecar/sfproxy-switchboard-sidecar.config.yaml.template --log-level trace
+      "]
       ports:
       - containerPort: 15001
       env:
@@ -126,10 +124,11 @@ system:
         value: 1
       - name: SETTINGS_PATH
         value: prod.-.phx.na3.sfproxy-envoy
-      args:
-      - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
-      - --switchboard=na3-switchboard-lb:16001
-      - --log-level=trace
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export SETTINGS_PATH=prod.-.phx.na3.sfproxy-envoy ;
+      bin/entrypoint --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template --switchboard=na3-switchboard-lb:16001 --log-level=trace
+      "]
       ports:
       - containerPort: 2525
       - containerPort: 12060
