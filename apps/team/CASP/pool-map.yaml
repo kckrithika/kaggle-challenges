@@ -1,31 +1,11 @@
 apps:
  prd-mysql-shard-a:
   - prd/prd-sam_warden
- prd-mysql-shard-b:
-  - prd/prd-sam_warden
- prd-mysql-shard-c:
-  - prd/prd-sam_warden
  prd-warden:
   - prd/prd-sam_warden
  prd-warden-stage:
   - prd/prd-sam_warden
  prod-mysql-shard-a:
-  - dfw/dfw-sam_warden
-  - iad/iad-sam_warden
-  - ord/ord-sam_warden
-  - par/par-sam_warden
-  - ukb/ukb-sam_warden
-  - phx/phx-sam_warden
-  - frf/frf-sam_warden
- prod-mysql-shard-b:
-  - dfw/dfw-sam_warden
-  - iad/iad-sam_warden
-  - ord/ord-sam_warden
-  - par/par-sam_warden
-  - ukb/ukb-sam_warden
-  - phx/phx-sam_warden
-  - frf/frf-sam_warden
- prod-mysql-shard-c:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
   - ord/ord-sam_warden
