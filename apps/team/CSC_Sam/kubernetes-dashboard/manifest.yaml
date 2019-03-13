@@ -406,6 +406,22 @@ system:
       volumeMounts:
       - mountPath: /tmp
         name: temp
+    - name: dashboard-gcp-mvp
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/gsf-core-devmvp-sam2-samtest
+        - --insecure-port=9117
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/gsf-core-devmvp-sam2-samtest/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9117
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9117
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
     volumes:
     - name: temp
       emptyDir: {}
@@ -560,3 +576,9 @@ system:
     ports:
       - port: 80
         targetport: 9116
+  - lbname: dashboard-gcp-mvp
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9117
