@@ -61,6 +61,7 @@
                     "*.retail-rsui." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
                     "*.stmfa.stm.salesforce-hub.com",
                     "*.my.stmfa.stm.salesforce-hub.com",
+                    "*.my.stmfb.stm.salesforce-hub.com",
                 ]) else []),
             },
         },
