@@ -9,7 +9,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local hosts = import "configs/hosts.jsonnet";
 
 if configs.estate == "prd-samdev" then {
-    kind: "DaemonSet",
+    kind: "Deployment",
     spec: {
         template: {
             spec: {
@@ -22,14 +22,14 @@ if configs.estate == "prd-samdev" then {
                         name: "docker-cleaner",
                         image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-devmvp/tkuznets/docker:dind",
                         command: [
-                                  "bash",
+                                  "sh",
                                   "-c",
 |||
                                   while true
                                   do
                                     docker system prune -af && docker load -i /opt/kubernetes/images/etcd.tar
                                     sleep 604800
-                                  done'
+                                  done
 |||,
                         ],
                         volumeMounts: configs.filter_empty([
@@ -44,6 +44,9 @@ if configs.estate == "prd-samdev" then {
                         ]),
                     },
                 ],
+                nodeSelector: {
+                    "kubernetes.io/hostname": "shared0-samdevcompute1-1-prd.eng.sfdc.net",
+                },
                 volumes: configs.filter_empty([
                     {
                         hostPath: {
@@ -69,7 +72,7 @@ if configs.estate == "prd-samdev" then {
     apiVersion: "extensions/v1beta1",
     metadata: {
         name: "docker-cleaner",
-        namespace: "kube-system",
+        namespace: "sam-system",
         labels: {
             name: "docker-cleaner",
         } + configs.ownerLabel.sam,
