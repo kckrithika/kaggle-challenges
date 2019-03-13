@@ -94,7 +94,7 @@ spec:
         - name: SFDC_METRICS_SERVICE_HOST
           value: ajnafunneldirect.localhost.mesh.force.com
         - name: SFDC_METRICS_SERVICE_PORT
-          valu: "7013"
+          value: "7013"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:9637c42ce66eb71611328c9ea47cb5301c38673c
         imagePullPolicy: IfNotPresent
         livenessProbe:

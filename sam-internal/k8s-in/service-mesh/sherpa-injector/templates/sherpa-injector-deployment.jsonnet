@@ -142,7 +142,7 @@ configs.deploymentBase("service-mesh") {
               {
                 name: "SFDC_METRICS_SERVICE_PORT",
                 // use `value: funnelEndpointPort,` if direct link to ajna is needed
-                valu: "7013"
+                value: "7013"
               },
             ],
             volumeMounts+: [
