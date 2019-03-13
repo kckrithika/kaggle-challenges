@@ -193,9 +193,6 @@ configs.deploymentBase("service-mesh") {
             name: "sherpa",
             image: versions.sherpaImage,
             imagePullPolicy: "IfNotPresent",
-            args: [
-              "--log-level=debug",
-            ],
             env+: [
               {
                 name: "SFDC_ENVIRONMENT",
