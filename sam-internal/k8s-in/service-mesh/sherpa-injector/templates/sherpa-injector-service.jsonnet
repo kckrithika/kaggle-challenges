@@ -12,8 +12,8 @@
     ports: [
       {
         name: "h1-tls-in-port",
-        port: 7442,
-        targetPort: 7442,
+        port: 17442,
+        targetPort: 17442,
       },
     ],
     selector: {
