@@ -32,6 +32,7 @@ data:
           "DockerDaemon": "/test-docker.sh"
         },
         "SparkOperatorTest": {
+          "ImpersonationProxyTest": "/watchdog-spark-scripts/check-spark-operator-v2.sh --impersonation-proxy /watchdog-spark-specs/watchdog-spark-operator.json",
           "SparkOperatorTest": "/watchdog-spark-scripts/check-spark-operator.sh /watchdog-spark-specs/watchdog-spark-operator.json"
         }
       },

@@ -47,6 +47,13 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     # (Some munging required to distinguish between multiple instances in a single kingdom)
     slb_fqdn(role):: $.role_munge_for_estate(role) + "-flowsnake-" + kingdom + ".slb.sfdc.net",
 
+    # api_public_name is combined with other coordinates (team, datacenter) to produce
+    # publicly visible endpoints. Intentionaly not named impersonation-proxy, because that's an implementation detail
+    # our customers don't care about.
+    api_public_name: "kubernetes-api",
+    # SLB SAN matches lbname in sam-manifests/apps/team/flowsnake/vips/prd/vips.yaml
+    api_slb_fqdn: self.slb_fqdn(self.api_public_name),
+
     # The suffix applied to the PKI role for each estate. PKI role is yet another "role" concept at Salesforce. It is
     # more commonly referred to as the application name (based on its use in SAM). It is what is in the OU 0 field of
     # MadDog certficate.
