@@ -31,10 +31,19 @@ system:
         value: "GRE-Alerts"
       - name: REFOCUS_SLACK_CHANNEL
         value: "gre-alerts"
-      - name: REFOCUS_API_KEY
-        value: "xxxx"
-      - name: HUBOT_SLACK_TOKEN
-        value: "xxxx"
+      # - name: REFOCUS_API_KEY
+      #   value: "xxxx"
+      # - name: HUBOT_SLACK_TOKEN
+      #   value: "xxxx"
+      volumeMounts:
+       - mountPath: /secrets/
+         name: secretvol
+         readOnly: true
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: dmetrani
+
 
   loadbalancers:
   - lbname: dhavalsamapplb
