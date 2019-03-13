@@ -14,7 +14,7 @@ local configs = import "config.jsonnet";
   "kafka-payload-kb": 300,
   "kafka-endpoint": "ajna-kafka.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:9093",
   "kafka-topic": "sfdc.test.sam__gcp.us-central1.core.ajnalocal1__resourcestatus",
-  "ca-file": configs.caFile,
+  "ca-file": "/etc/pki_service/ca/cacerts.pem",
   "send-events": true,
   "liveness-probe-port": 9095,
   "ignored-resources": [],

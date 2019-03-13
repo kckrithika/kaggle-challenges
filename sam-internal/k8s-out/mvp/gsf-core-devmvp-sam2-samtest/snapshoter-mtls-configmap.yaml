@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   snapshoter-mtls.json: |-
     {
-      "ca-file": "/etc/pki_service/ca/cabundle.pem",
+      "ca-file": "/etc/pki_service/ca/cacerts.pem",
       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "client-cert-file": "/cert1/client/certificates/client.pem",
       "client-key-file": "/cert1/client/keys/client-key.pem",
