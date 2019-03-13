@@ -6,7 +6,6 @@ local maddogPermissions = import "service-mesh/sherpa-injector/maddog/_init-perm
 local maddogRefresher = import "service-mesh/sherpa-injector/maddog/_cert-refresher-container.jsonnet";
 local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
 local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
-local enableSherpa = false;
 
 configs.deploymentBase("service-mesh") {
   metadata+: {
@@ -70,12 +69,7 @@ configs.deploymentBase("service-mesh") {
               "--template=sherpa-container.yaml.template",
               "--image=%s" % versions.sherpaImage,
               "--log-level=debug",
-            ] +
-            if enableSherpa then [
-              // h1 port to use with Sherpa
-              "--port=7022",
-            ] else [
-              "--port=7442",  // use the same port as we use in Sherpa (h1 TLS IN)
+              "--port=17442",  // Similar to Sherpa (h1 TLS IN), but +10000, since we don't want to clash with sherpa ports
               "--cert=/server-certs/server/certificates/server.pem",
               "--key=/server-certs/server/keys/server-key.pem",
             ] +
@@ -141,12 +135,14 @@ configs.deploymentBase("service-mesh") {
                 value: "mesh.-." + configs.kingdom + ".-.sherpa-injector",
               },
               {
-                name: "SFDC_METRICS_SERVICE_HOST",
-                value: funnelEndpointHost,
+                name: "SFDC_METRICS_SERVICE_HOST",               
+                // use `value: funnelEndpointHost,` if direct link to ajna is needed
+                value: "ajnafunneldirect.localhost.mesh.force.com"
               },
               {
                 name: "SFDC_METRICS_SERVICE_PORT",
-                value: funnelEndpointPort,
+                // use `value: funnelEndpointPort,` if direct link to ajna is needed
+                valu: "7013"
               },
             ],
             volumeMounts+: [
@@ -161,16 +157,14 @@ configs.deploymentBase("service-mesh") {
             ],
             ports+: [
               {
-                containerPort: if enableSherpa then 7022 else 7442,
+                containerPort: 17442,
               },
             ],
             livenessProbe: {
               exec: {
                 command: [
                   "./is-alive.sh",
-                  if enableSherpa then "7022" else "7442",
-                ] +
-                if !enableSherpa then [
+                  "17442",
                   // Pass the certificates folder for the liveness probe to use TLS
                   "/client-certs/client/certificates/client.pem",
                   "/client-certs/client/keys/client-key.pem",
@@ -183,9 +177,7 @@ configs.deploymentBase("service-mesh") {
               exec: {
                 command: [
                   "./is-ready.sh",
-                  if enableSherpa then "7022" else "7442",
-                ] +
-                if !enableSherpa then [
+                  "17442",
                   // Pass certificates for the readiness probe to use with TLS
                   "/client-certs/client/certificates/client.pem",
                   "/client-certs/client/keys/client-key.pem",
@@ -197,8 +189,7 @@ configs.deploymentBase("service-mesh") {
             resources: {},
           },
           maddogRefresher.madkubRefresherContainer,
-        ] +
-        if enableSherpa then [{
+          {
             name: "sherpa",
             image: versions.sherpaImage,
             imagePullPolicy: "IfNotPresent",
@@ -284,14 +275,7 @@ configs.deploymentBase("service-mesh") {
               },
             ],
             ports: [
-              {
-                // h1-in
-                containerPort: 7014,
-              },
-              {
-                // h1-tls-in
-                containerPort: 7442,
-              },
+              // We don't expose any IN ports here, because Sherpa will only be used for Egress
               {
                 // admin
                 containerPort: 15373,
@@ -325,7 +309,7 @@ configs.deploymentBase("service-mesh") {
                 memory: "1Gi",
               },
             },
-        }] else [],
+        }],
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
