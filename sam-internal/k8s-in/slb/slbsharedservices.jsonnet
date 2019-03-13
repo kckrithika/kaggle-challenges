@@ -337,7 +337,10 @@
             "--commonconfig.accessLogDirectory=" + slbconfigs.logsDir,
             "--tcpconfig.accessLogFormat=basic",
             "--httpconfig.accessLogDirectory=" + slbconfigs.logsDir,
-        ],
+        ]
+        + (if slbflights.useHttp10HealthChecks && slbimages.hyperslb_build >= 2088 then [
+            "--commonconfig.useHttpOnePointO=true",
+        ] else []),
         volumeMounts: std.prune([
             slbconfigs.nginx.target_config_volume_mount,
             slbconfigs.slb_volume_mount,
