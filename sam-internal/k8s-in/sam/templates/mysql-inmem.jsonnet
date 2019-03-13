@@ -60,7 +60,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                                                   key: "pool",
                                                   operator: "In",
                                                   values: [
-                                                      "prd-sam",
+                                                      configs.estate,
                                                     ],
                                                 },
                                             ],
