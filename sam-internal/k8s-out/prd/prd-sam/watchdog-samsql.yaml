@@ -34,10 +34,10 @@ spec:
         - -v=5
         - --alsologtostderr
         - -watchDogKind=Deployment
-        - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

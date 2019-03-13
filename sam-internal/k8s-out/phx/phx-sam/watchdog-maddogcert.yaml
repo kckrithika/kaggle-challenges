@@ -29,10 +29,10 @@ spec:
         - -alertThreshold=30m
         - -emailFrequency=24h
         - -watchDogKind=DaemonSet
-        - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

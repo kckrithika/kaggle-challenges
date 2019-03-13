@@ -28,10 +28,10 @@ spec:
         - -shouldBatchMetrics=true
         - -watchDogKind=Deployment
         - -recipient=""
-        - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-dfw.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
         - -emailFrequency=24h
         env:
         - name: KUBECONFIG

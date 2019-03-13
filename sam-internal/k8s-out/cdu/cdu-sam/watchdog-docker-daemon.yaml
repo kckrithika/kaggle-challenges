@@ -30,10 +30,10 @@ spec:
         - -alertThreshold=30m
         - -watchDogKind=DaemonSet
         - -cliCheckerTimeout=5m
-        - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-cdu.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

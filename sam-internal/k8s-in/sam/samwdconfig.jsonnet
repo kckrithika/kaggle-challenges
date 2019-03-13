@@ -34,10 +34,12 @@ low_urgency_pagerduty_args: (if utils.is_production(configs.kingdom) || configs.
 
 filesystem_watchdog_args: (["-recipient=" + $.recipient + (if $.recipient != "" then "," else "") + "make@salesforce.com"]),
 
-shared_args: configs.filter_empty([
-    "-timeout=2s",
+shared_args: configs.filter_empty(
+[
+    #"-timeout=2s",
     "-funnelEndpoint=" + configs.funnelVIP,
     "--config=/config/watchdog.json",
     configs.sfdchosts_arg,
-]),
+] + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then ["-timeout=120s"] else ["-timeout=2s"]),
+),
 }

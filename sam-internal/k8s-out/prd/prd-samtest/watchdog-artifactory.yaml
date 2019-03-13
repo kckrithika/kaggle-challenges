@@ -28,10 +28,10 @@ spec:
         - --enableEmailPerCheckerInstance=true
         - --recipient=sam@salesforce.com
         - --sender=sam@salesforce.com
-        - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=120s
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

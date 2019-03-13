@@ -26,10 +26,10 @@ spec:
         - -alertThreshold=1h
         - -watchDogKind=Deployment
         - -emailFrequency=10000h
-        - -timeout=2s
         - -funnelEndpoint=mandm-funnel-chx.data.sfdc.net:8080
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

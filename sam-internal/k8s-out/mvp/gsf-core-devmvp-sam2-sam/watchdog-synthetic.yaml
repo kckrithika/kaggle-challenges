@@ -31,10 +31,10 @@ spec:
         - -imageName=ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76
         - -watchDogKind=Deployment
         - -enableStatefulChecks=false
-        - -timeout=2s
         - -funnelEndpoint=funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -timeout=2s
         - -recipient=sam-alerts@salesforce.com,csc-sam-business-hours-only@salesforce.pagerduty.com
         env:
         - name: SFDCLOC_PCN_KINGDOM
