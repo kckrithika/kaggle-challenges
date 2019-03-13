@@ -199,7 +199,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - retail-rsui/retail-setup-func-patch:DATACENTER:7443
+      - retail-rsui/retail-setup:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 150
         exec:
