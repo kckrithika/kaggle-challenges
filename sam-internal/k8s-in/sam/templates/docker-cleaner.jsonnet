@@ -27,8 +27,16 @@ if configs.estate == "prd-samdev" then {
 |||
                                   while true
                                   do
-                                    docker system prune -af && docker load -i /opt/kubernetes/images/etcd.tar
+                                    usedCowdataPercent=`df -h /cowdata/ | tail -1 | awk '{print $5}'  | cut -f 1 -d %`
+                                    if [ $usedCowdataPercent -gt 85 ]; then
+                                      echo "used $usedCowdataPercent % in /cowdata, starting cleaning"
+                                      docker system prune -af && docker load -i /opt/kubernetes/images/etcd.tar
+                                    else
+                                      echo "only used $usedCowdataPercent %, not doing cleaning"
+                                    fi
+                                    echo "about to sleep"
                                     sleep 604800
+                                    echo "done sleeping"
                                   done
 |||,
                         ],
