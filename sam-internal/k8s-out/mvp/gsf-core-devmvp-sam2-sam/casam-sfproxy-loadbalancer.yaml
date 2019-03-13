@@ -24,4 +24,5 @@ spec:
     targetPort: 12060
   selector:
     sam_app: gcp-devmvp-proxy
+    sam_function: na3-sfproxy-phx
   type: LoadBalancer

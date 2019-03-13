@@ -54,6 +54,7 @@ if casamSFProxyLoadBalancerEnabled then {
     ],
     selector: {
       sam_app: "gcp-devmvp-proxy",
+      sam_function: "na3-sfproxy-phx",
     },
   },
 } else "SKIP"
