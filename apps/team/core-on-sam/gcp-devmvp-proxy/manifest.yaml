@@ -99,8 +99,8 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-        lbnames:
-        - na3-switchboard-lb
+#        lbnames:
+#        - na3-switchboard-lb
 
   - name: na3-sfproxy-phx
     identity:
@@ -149,8 +149,8 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-        lbnames:
-        - na3app-lb
+#        lbnames:
+#        - na3app-lb
 
   loadbalancers:
   - lbname: na3-switchboard-lb
