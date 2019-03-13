@@ -53,7 +53,7 @@ if casamSFProxyLoadBalancerEnabled then {
       },
     ],
     selector: {
-      sam_app: "devmvp-sfproxy",
+      sam_app: "gcp-devmvp-proxy",
     },
   },
 } else "SKIP"
