@@ -34,6 +34,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+      terminationMessagePolicy: FallbackToLogsOnError
 
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/

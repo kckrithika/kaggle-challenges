@@ -24,3 +24,4 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+      terminationMessagePolicy: FallbackToLogsOnError
