@@ -35,15 +35,16 @@ system:
       #   value: "xxxx"
       # - name: HUBOT_SLACK_TOKEN
       #   value: "xxxx"
+      volumeMounts:
+       - mountPath: /secrets/
+         name: secretvol
+         readOnly: true
     volumes:
     - name: secretvol
       k4aSecret:
         secretName: dmetrani
-    volumeMounts:
-       - mountPath: /secrets/
-         name: secretvol
-         readOnly: true
-         
+
+
   loadbalancers:
   - lbname: dhavalsamapplb
     function: default
