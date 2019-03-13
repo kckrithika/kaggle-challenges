@@ -46,6 +46,37 @@ else
                 }
             ]
         },
+    ] + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then
+    # ConfigMap containing the resources of the watchdog
+    [
+        {
+            kind: "ConfigMap",
+            apiVersion: "v1",
+            metadata: {
+                name: "watchdog-spark-on-k8s-spec-configmap",
+                namespace: "flowsnake",
+            },
+            data: {
+                "watchdog-spark-operator.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-operator.libsonnet"),
+            } + if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_spark_s3") then
+            {
+                "watchdog-spark-s3.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-s3.libsonnet"), 
+            } else {},
+        },
+        # ConfigMap containing the logic of the watchdog
+        {
+            kind: "ConfigMap",
+            apiVersion: "v1",
+            metadata: {
+                name: "watchdog-spark-on-k8s-script-configmap",
+                namespace: "flowsnake",
+            },
+            data: {
+                "check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh"
+            }
+        }
+    ] else 
+    [
         # ConfigMap containing the logic and resources of the watchdog
         {
             kind: "ConfigMap",
@@ -54,15 +85,7 @@ else
               name: "watchdog-spark-operator-configmap",
               namespace: "flowsnake",
             },
-            data: 
-            if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then
-                {
-                  "check-spark-operator.sh": importstr "watchdog-spark-on-k8s.sh",
-                  "watchdog-spark-s3.json": import "spark-on-k8s-canary-specs/watchdog-spark-s3.libsonnet", 
-                  "watchdog-spark-operator.json": import "spark-on-k8s-canary-specs/watchdog-spark-operator.libsonnet"
-                }
-            else 
-                {
+            data: {
                   "check-spark-operator.sh": importstr "watchdog-spark-operator--check-spark-operator.sh",
                   "spark-application.json": std.toString({
                         "apiVersion": "sparkoperator.k8s.io/v1beta1",
@@ -101,9 +124,11 @@ else
                             "sparkVersion": "",
                             "type": "Scala",
                         },
-                    })
-                }
+                  })
+            }
         },
+    ]) +
+    [
         configs.deploymentBase("flowsnake") {
             local label_node = self.spec.template.metadata.labels,
             metadata: {
@@ -163,17 +188,49 @@ else
                                 volumeMounts: [
                                     configs.config_volume_mount,
                                     watchdog.sfdchosts_volume_mount,
-                                    {
-                                        mountPath: "/watchdog-spark-operator",
-                                        name: "watchdog-spark-operator",
-                                    },
-                                ],
+                                ] + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then
+                                    [
+                                        {
+                                            mountPath: "/watchdog-spark-scripts",
+                                            name: "watchdog-spark-scripts",
+                                        },
+                                        {
+                                            mountPath: "/watchdog-spark-specs",
+                                            name: "watchdog-spark-specs",
+                                        },
+                                    ]
+                                else 
+                                    [
+                                        {
+                                            mountPath: "/watchdog-spark-operator",
+                                            name: "watchdog-spark-operator",
+                                        },
+                                    ]
+                                ),
                             },
                         ],
                         serviceAccount: "watchdog-spark-operator-serviceaccount",
                         serviceAccountName: "watchdog-spark-operator-serviceaccount",
                         volumes: [
                             configs.config_volume("watchdog"),
+                        ] + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then
+                              [
+                                  {
+                                      configMap: {
+                                          name: "watchdog-spark-on-k8s-spec-configmap",
+                                      },
+                                      name: "watchdog-spark-specs",
+                                  },
+                                  {
+                                      configMap: {
+                                          name: "watchdog-spark-on-k8s-script-configmap",
+                                          # rw-r--r-- 644 octal, 420 decimal
+                                          defaultMode: 420,
+                                      },
+                                      name: "watchdog-spark-scripts",
+                                  },
+                              ]
+                        else  [
                             {
                                 configMap: {
                                     name: "watchdog-spark-operator-configmap",
@@ -194,8 +251,9 @@ else
                                 },
                                 name: "watchdog-spark-operator",
                             },
-                        ]
-                          + [ watchdog.sfdchosts_volume ],
+                        ]) + [
+                            watchdog.sfdchosts_volume 
+                        ] 
                     },
                 }
             }

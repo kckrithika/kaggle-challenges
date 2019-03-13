@@ -23,6 +23,22 @@ items:
     namespace: flowsnake
 - apiVersion: v1
   data:
+    watchdog-spark-operator.json: '{"apiVersion": "sparkoperator.k8s.io/v1beta1",
+      "kind": "SparkApplication", "metadata": {"name": "watchdog-spark-operator",
+      "namespace": "flowsnake-watchdog"}, "spec": {"deps": {"jars": ["local:///sample-apps/sample-spark-operator/extra-jars/*"]},
+      "driver": {"coreLimit": "200m", "cores": 0.10000000000000001, "labels": {"version":
+      "2.4.0"}, "memory": "512m", "serviceAccount": "spark-driver-flowsnake-watchdog"},
+      "executor": {"cores": 1, "instances": 1, "labels": {"version": "2.4.0"}, "memory":
+      "512m"}, "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
+      "imagePullPolicy": "Always", "mainApplicationFile": "local:///sample-apps/sample-spark-operator/sample-spark-operator.jar",
+      "mainClass": "org.apache.spark.examples.SparkPi", "mode": "cluster", "restartPolicy":
+      {"type": "Never"}, "sparkVersion": "", "type": "Scala"}}'
+  kind: ConfigMap
+  metadata:
+    name: watchdog-spark-on-k8s-spec-configmap
+    namespace: flowsnake
+- apiVersion: v1
+  data:
     check-spark-operator.sh: |
       #!/usr/bin/bash
       set -o nounset
@@ -47,7 +63,7 @@ items:
       while ! $(kcfw get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
 
       echo "Creating SparkApplication $APP_NAME"
-      kcfw create -f /watchdog-spark-operator/$SPEC
+      kcfw create -f /watchdog-spark-specs/$SPEC
 
       echo "Waiting for SparkApplication $APP_NAME to complete"
       # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
@@ -58,84 +74,9 @@ items:
       echo "Terminal SparkApplication $APP_NAME state is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}')"
       # Test successful iff final state is COMPLETED. Use exit code from grep.
       kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep COMPLETED > /dev/null
-    watchdog-spark-operator.json:
-      apiVersion: sparkoperator.k8s.io/v1beta1
-      kind: SparkApplication
-      metadata:
-        name: watchdog-spark-operator
-        namespace: flowsnake-watchdog
-      spec:
-        deps:
-          jars:
-          - local:///sample-apps/sample-spark-operator/extra-jars/*
-        driver:
-          coreLimit: 200m
-          cores: 0.1
-          labels:
-            version: 2.4.0
-          memory: 512m
-          serviceAccount: spark-driver-flowsnake-watchdog
-        executor:
-          cores: 1
-          instances: 1
-          labels:
-            version: 2.4.0
-          memory: 512m
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-sample-spark-operator:ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/spark-on-k8s-sample-apps:1
-        imagePullPolicy: Always
-        mainApplicationFile: local:///sample-apps/sample-spark-operator/sample-spark-operator.jar
-        mainClass: org.apache.spark.examples.SparkPi
-        mode: cluster
-        restartPolicy:
-          type: Never
-        sparkVersion: ""
-        type: Scala
-    watchdog-spark-s3.json:
-      apiVersion: sparkoperator.k8s.io/v1beta1
-      kind: SparkApplication
-      metadata:
-        name: watchdog-spark-s3
-        namespace: flowsnake-watchdog
-      spec:
-        deps:
-          jars:
-          - local:///sample-apps/spark-s3-integration/extra-jars/*
-        driver:
-          coreLimit: 200m
-          cores: 0.1
-          envVars:
-            AWS_REGION: us-west-2
-            AWS_SSE_KEY: ea96b117-8eee-4314-b214-8a125eb5242e
-            DATA_FILE: /sample-apps/spark-s3-integration/constitution_of_india.txt
-            LOG_SPARK_EVENTS_IN_S3: "true"
-            S3_BUCKET: moana-spark-history
-            S3_PATH: spark-test
-          labels:
-            version: 2.4.0
-          memory: 512m
-          secrets:
-          - name: aws
-            path: /etc/flowsnake/secrets/aws
-            secretType: Generic
-          serviceAccount: spark-driver-flowsnake-watchdog
-        executor:
-          cores: 1
-          instances: 1
-          labels:
-            version: 2.4.0
-          memory: 512m
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-sample-spark-operator:ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/spark-on-k8s-sample-apps:1
-        imagePullPolicy: Always
-        mainApplicationFile: local:///sample-apps/spark-s3-integration/sample-spark-operator.jar
-        mainClass: com.salesforce.dva.transform.flowsnake.demo.SparkS3Demo
-        mode: cluster
-        restartPolicy:
-          type: Never
-        sparkVersion: ""
-        type: Scala
   kind: ConfigMap
   metadata:
-    name: watchdog-spark-operator-configmap
+    name: watchdog-spark-on-k8s-script-configmap
     namespace: flowsnake
 - apiVersion: extensions/v1beta1
   kind: Deployment
@@ -185,8 +126,10 @@ items:
             name: config
           - mountPath: /sfdchosts
             name: sfdchosts
-          - mountPath: /watchdog-spark-operator
-            name: watchdog-spark-operator
+          - mountPath: /watchdog-spark-scripts
+            name: watchdog-spark-scripts
+          - mountPath: /watchdog-spark-specs
+            name: watchdog-spark-specs
         hostNetwork: true
         restartPolicy: Always
         serviceAccount: watchdog-spark-operator-serviceaccount
@@ -196,15 +139,12 @@ items:
             name: watchdog
           name: config
         - configMap:
+            name: watchdog-spark-on-k8s-spec-configmap
+          name: watchdog-spark-specs
+        - configMap:
             defaultMode: 420
-            items:
-            - key: spark-application.json
-              path: spark-application.json
-            - key: check-spark-operator.sh
-              mode: 493
-              path: check-spark-operator.sh
-            name: watchdog-spark-operator-configmap
-          name: watchdog-spark-operator
+            name: watchdog-spark-on-k8s-script-configmap
+          name: watchdog-spark-scripts
         - configMap:
             name: sfdchosts
           name: sfdchosts

@@ -79,9 +79,12 @@ local build_spark_operator_test_commands =
     if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then
         {
             SparkOperatorTest: {
-                SparkOperatorTest: "/watchdog-spark-operator/check-spark-operator.sh watchdog-spark-operator.json",
-                SparkS3Test: "/watchdog-spark-operator/check-spark-operator.sh watchdog-spark-s3.json",
-            },
+                SparkOperatorTest: "/watchdog-spark-scripts/check-spark-operator.sh /watchdog-spark-specs/watchdog-spark-operator.json",
+
+            } + if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_spark_s3") then
+            {
+                SparkS3Test: "/watchdog-spark-scripts/check-spark-operator.sh /watchdog-spark-specs/watchdog-spark-s3.json",
+            } else {},
         }
     else
         {
