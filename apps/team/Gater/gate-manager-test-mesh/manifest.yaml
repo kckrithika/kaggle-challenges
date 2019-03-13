@@ -12,7 +12,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/gater-mesh:dmachak-20190222A
       args:
       - --server.port=9090
-      - --logging.evaluator.level=ALWAYS_LOG
+      - --logging.evaluator.level=ERRORS_ONLY
       - --gater-service.thread.pool.max-size=0
       - --gater.thrift.service.endpoint=gater-mesh
       - --gater.thrift.metadata.endpoint=gater-mesh-metadata
