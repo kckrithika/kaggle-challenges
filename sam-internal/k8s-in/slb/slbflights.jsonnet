@@ -10,7 +10,6 @@ local slbconfigs = import "slbconfig.jsonnet";
     roleEnabled: (slbimages.phaseNum <= 1),
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
-    useKubeDnsForPortal: (slbimages.phaseNum <= 1),
     slbTCPdumpEnabled: (slbimages.phaseNum <= 1),
     nginAccesslogsRunInSlbEstate: (slbimages.hyperslb_build >= 2072),
 
@@ -24,7 +23,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     # less dependent on external systems. Unfortunately, VIP watchdog's reachability probe can't be similarly configured.
     # https://gus.lightning.force.com/a07B0000006QrWiIAK (when implemented) should help with portal's page load times.
     # https://gus.lightning.force.com/a07B0000005jkagIAA (when implemented) should allow us to reduce VIP watchdog's load on the main portal page.
-    portalLivenessProbeEndpoint: (if slbimages.phaseNum <= 2 then "/webfiles/" else "/"),
+    portalLivenessProbeEndpoint: (if slbimages.hyperslb_build >= 2086 then "/webfiles/" else "/"),
 
     # XRD is currently bumping into peering prefix limits (60) that restrict the number of distinct VIPs
     # we can serve before everything blows up. Disable canary VIPs (and downstream components like fred/george)
