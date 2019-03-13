@@ -19,4 +19,6 @@ local slbconfigs = import "slbconfig.jsonnet";
     # 2019/01/16 - this didn't work as expected so I disabled it (Pablo)
     # See: https://computecloud.slack.com/archives/G340CE86R/p1550291706553800
     alertOnlyOnProxyErrorCode: (slbimages.phaseNum < 1),
+    # Only set to true if hyperslb >= 2088
+    useHttp10HealthChecks: false,
 }
