@@ -55,7 +55,7 @@ spec:
         - --maxDeleteEntries=50
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2086-135d385285c9e2594d0cabdd2b717c8361495fa6
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2088-7ceff4228fef6177c35815de9fa3800ff546c463
         name: slb-dns-register-processor
         resources:
           limits:
@@ -105,7 +105,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2086-135d385285c9e2594d0cabdd2b717c8361495fa6
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2088-7ceff4228fef6177c35815de9fa3800ff546c463
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -144,7 +144,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2086-135d385285c9e2594d0cabdd2b717c8361495fa6
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2088-7ceff4228fef6177c35815de9fa3800ff546c463
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -166,7 +166,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2086-135d385285c9e2594d0cabdd2b717c8361495fa6
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2088-7ceff4228fef6177c35815de9fa3800ff546c463
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -194,7 +194,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-dns-register/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2086-135d385285c9e2594d0cabdd2b717c8361495fa6
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2088-7ceff4228fef6177c35815de9fa3800ff546c463
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -261,7 +261,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2086-135d385285c9e2594d0cabdd2b717c8361495fa6
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2088-7ceff4228fef6177c35815de9fa3800ff546c463
         name: slb-manifest-watcher
         securityContext:
           privileged: true
@@ -293,7 +293,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2086-135d385285c9e2594d0cabdd2b717c8361495fa6
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2088-7ceff4228fef6177c35815de9fa3800ff546c463
         name: slb-cname-register
         volumeMounts:
         - mountPath: /etc/pki_service
