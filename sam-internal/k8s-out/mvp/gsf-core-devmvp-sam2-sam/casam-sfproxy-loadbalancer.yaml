@@ -23,5 +23,5 @@ spec:
     protocol: TCP
     targetPort: 12060
   selector:
-    sam_app: devmvp-sfproxy
+    sam_app: gcp-devmvp-proxy
   type: LoadBalancer
