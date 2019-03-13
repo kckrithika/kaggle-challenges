@@ -27,12 +27,12 @@ system:
         value: "jkumar:jitendra.kumar||vpandian:vino||mgirod:marc.girod"
       - name: REFOCUS_PILOT_USERS
         value: "dmetrani||mtay||atan||kpareek||jkumar||jitendra.kumar||vpandian||amedam||mmenon||dsheehan||mgirod"
-      - name: REFOCUS_SLACK_BOT_USER
-        value: "GRE-Alerts"
       - name: REFOCUS_SLACK_CHANNEL
         value: "gre-alerts"
-      # - name: REFOCUS_API_KEY
-      #   value: "xxxx"
+      - name: REFOCUS_SLACK_BOT_USER
+        value: "GRE-Alerts"
+      - name: REFOCUS_API_KEY
+        value: "xxxx"
       # - name: HUBOT_SLACK_TOKEN
       #   value: "xxxx"
       volumeMounts:
