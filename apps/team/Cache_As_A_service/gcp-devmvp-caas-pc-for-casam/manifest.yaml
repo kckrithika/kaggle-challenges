@@ -17,7 +17,7 @@ system:
         limits: { memory: "8G" }
         requests: { memory: "8G" }
       args:
-        - --port=12002
+        - --port=12004
         - --maxMemoryMB=4096
         - --noAuth
         - --disableProtectedMode
@@ -27,17 +27,17 @@ system:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12002
+           - --port=12004
            - --noAuth
         initialDelaySeconds: 15
         timeoutSeconds: 10
       ports:
-      - containerPort: 12002
+      - containerPort: 12004
     - name: caas-redis-announcer
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/beacon:853c4db9f14805018be6f5e7607ffe65b5648822-201902081500
       args:
       - -endpoint
-      - caas/pc:POD:12001
+      - caas/pc:POD:12003
       - -zk
       - 10.168.160.76
       livenessProbe:
