@@ -3,248 +3,251 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - moe@salesforce.com
+      - moe@salesforce.com
 
   functions:
-  - name: postgres
-    count: 1
-    type: stateful-set
-    containers:
     - name: postgres
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/postgres:9.3-sfdc
+      count: 1
+      type: stateful-set
+      containers:
+        - name: postgres
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/postgres:9.3-sfdc
 
-      env:
-      # Set PGDATA to a subdir, since postgres doesn't like being at a mountpoint.
-      # See https://github.com/docker-library/docs/pull/277/files
-      - name: PGDATA
-        value: /var/lib/postgresql/data/pgdata
+          env:
+            # Set PGDATA to a subdir, since postgres doesn't like being at a mountpoint.
+            # See https://github.com/docker-library/docs/pull/277/files
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
 
-      volumeMounts:
-      - name: datavol-rdi
-        mountPath: /var/lib/postgresql/data
+          volumeMounts:
+            - name: datavol-rdi
+              mountPath: /var/lib/postgresql/data
 
-      ports:
-      - containerPort: 5432
+          ports:
+            - containerPort: 5432
 
-      resources:
-        requests:
-          memory: "1Gi"
-          cpu: "1"
-        limits:
-          memory: "4Gi"
-          cpu: "2"
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "1"
+            limits:
+              memory: "4Gi"
+              cpu: "2"
 
-      livenessProbe:
-        tcpSocket:
-          port: 5432
-        failureThreshold: 3
-        initialDelaySeconds: 5
-        periodSeconds: 60
+          livenessProbe:
+            tcpSocket:
+              port: 5432
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 60
 
-    lbname: postgres-headless-lb
+      lbname: postgres-headless-lb
 
-    # Give containers a bit of time to shut down, as they might be syncing
-    # state into the PV on shutdown.
-    terminationGracePeriodSeconds: 30
+      # Give containers a bit of time to shut down, as they might be syncing
+      # state into the PV on shutdown.
+      terminationGracePeriodSeconds: 30
 
-    volumeClaimTemplates:
-    - name: datavol-rdi
-      storageClassName: moe-rdi-hdd-pool
-      storageSizeRequest: 500Gi
+      volumeClaimTemplates:
+        - name: datavol-rdi
+          storageClassName: moe-rdi-hdd-pool
+          storageSizeRequest: 500Gi
 
-  - name: redis
-    count: 1
-    type: stateful-set
-    containers:
     - name: redis
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/redis:3.0.7-alpine
+      count: 1
+      type: stateful-set
+      containers:
+        - name: redis
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/redis:3.0.7-alpine
 
-      volumeMounts:
-      - name: datavol-rdi
-        mountPath: /data
+          volumeMounts:
+            - name: datavol-rdi
+              mountPath: /data
 
-      ports:
-      - containerPort: 6379
+          ports:
+            - containerPort: 6379
 
-      resources:
-        requests:
-          memory: "1Gi"
-          cpu: "1"
-        limits:
-          memory: "16Gi"
-          cpu: "2"
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "1"
+            limits:
+              memory: "16Gi"
+              cpu: "2"
 
-      livenessProbe:
-        tcpSocket:
-          port: 6379
-        failureThreshold: 3
-        initialDelaySeconds: 5
-        periodSeconds: 60
+          livenessProbe:
+            tcpSocket:
+              port: 6379
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 60
 
-    lbname: redis-headless-lb
+      lbname: redis-headless-lb
 
-    # Give containers a bit of time to shut down, as they might be syncing
-    # state into the PV on shutdown.
-    terminationGracePeriodSeconds: 30
+      # Give containers a bit of time to shut down, as they might be syncing
+      # state into the PV on shutdown.
+      terminationGracePeriodSeconds: 30
 
-    volumeClaimTemplates:
-    - name: datavol-rdi
-      storageClassName: moe-rdi-hdd-pool
-      storageSizeRequest: 100Gi
+      volumeClaimTemplates:
+        - name: datavol-rdi
+          storageClassName: moe-rdi-hdd-pool
+          storageSizeRequest: 100Gi
 
-  - name: monitor
-    count: 1
-    type: stateful-set
-    containers:
     - name: monitor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/moe/codecov/enterprise:v4.3.10
-      args:
-      - /bin/run
-      - monitor
+      count: 1
+      type: stateful-set
+      containers:
+        - name: monitor
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/moe/codecov/enterprise:v4.3.10
+          args:
+            - /bin/run
+            - monitor
 
-      volumeMounts:
-      - name: codecov-config
-        mountPath: /config
-        readOnly: true
+          volumeMounts:
+            - name: codecov-config
+              mountPath: /config
+              readOnly: true
 
-      ports:
-      - containerPort: 5000
+          ports:
+            - containerPort: 5000
 
-      resources:
-        requests:
-          memory: "1Gi"
-          cpu: "1"
-        limits:
-          memory: "2Gi"
-          cpu: "2"
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "1"
+            limits:
+              memory: "2Gi"
+              cpu: "2"
 
-      livenessProbe:
-        tcpSocket:
-          port: 5000
-        failureThreshold: 3
-        initialDelaySeconds: 5
-        periodSeconds: 60
+          livenessProbe:
+            tcpSocket:
+              port: 5000
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 60
 
-    lbname: codecov-monitor-headless-lb
+      lbname: codecov-monitor-headless-lb
 
-    # Give containers a bit of time to shut down, as they might be syncing
-    # state into the PV on shutdown.
-    terminationGracePeriodSeconds: 30
+      # Give containers a bit of time to shut down, as they might be syncing
+      # state into the PV on shutdown.
+      terminationGracePeriodSeconds: 30
 
-    volumes:
-    - name: codecov-config
-      k4aSecret:
-        secretName: codecov-el
+      volumes:
+        - name: codecov-config
+          k4aSecret:
+            secretName: codecov-el
 
-  - name: core
-    count: 1
-    type: stateful-set
-    containers:
-    # worker container
-    - name: worker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/moe/codecov/enterprise:v4.3.10
-      args:
-      - /bin/run
-      - worker
-      volumeMounts:
-      - name: codecov-config
-        mountPath: /config
-        readOnly: true
-      - name: datavol-rdi
-        mountPath: /archive
-      livenessProbe:
-        exec:
-          command: ["ls", "/"]
-        failureThreshold: 3
-        initialDelaySeconds: 5
-        periodSeconds: 60
-    # web container
-    - name: web
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/moe/codecov/enterprise:v4.3.10
-      args:
-      - /bin/run
-      - web
-      volumeMounts:
-      - name: codecov-config
-        mountPath: /config
-        readOnly: true
-      - name: datavol-rdi
-        mountPath: /archive
-      ports:
-      - containerPort: 5000
-      livenessProbe:
-        tcpSocket:
-          port: 5000
-        failureThreshold: 3
-        initialDelaySeconds: 5
-        periodSeconds: 60
-    # nginx container
-    - name: nginx
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:20190212-cors-3
-      volumeMounts:
-      - name: datavol-rdi
-        mountPath: /archive
-      - name: certs
-        mountPath: /certs
-      ports:
-        - containerPort: 80
-        - containerPort: 443
-      livenessProbe:
-        tcpSocket:
-          port: 80
-        failureThreshold: 3
-        initialDelaySeconds: 60
-        periodSeconds: 60
+    - name: core
+      count: 1
+      type: stateful-set
+      containers:
+        # worker container
+        - name: worker
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/moe/codecov/enterprise:v4.3.10
+          args:
+            - /bin/run
+            - worker
+          volumeMounts:
+            - name: codecov-config
+              mountPath: /config
+              readOnly: true
+            - name: datavol-rdi
+              mountPath: /archive
+          livenessProbe:
+            exec:
+              command: ["ls", "/"]
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 60
+        # web container
+        - name: web
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/moe/codecov/enterprise:v4.3.10
+          args:
+            - /bin/run
+            - web
+          volumeMounts:
+            - name: codecov-config
+              mountPath: /config
+              readOnly: true
+            - name: datavol-rdi
+              mountPath: /archive
+          ports:
+            - containerPort: 5000
+          livenessProbe:
+            tcpSocket:
+              port: 5000
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 60
+        # nginx container
+        - name: nginx
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:20190212-cors-3
+          volumeMounts:
+            - name: datavol-rdi
+              mountPath: /archive
+            - name: certs
+              mountPath: /certs
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          livenessProbe:
+            tcpSocket:
+              port: 80
+            failureThreshold: 3
+            initialDelaySeconds: 60
+            periodSeconds: 60
 
-    lbname: codecov-headless-lb
+      lbname: codecov-headless-lb
 
-    # Give containers a bit of time to shut down, as they might be syncing
-    # state into the PV on shutdown.
-    terminationGracePeriodSeconds: 30
+      # Give containers a bit of time to shut down, as they might be syncing
+      # state into the PV on shutdown.
+      terminationGracePeriodSeconds: 30
 
-    volumeClaimTemplates:
-    - name: datavol-rdi
-      storageClassName: moe-rdi-hdd-pool
-      storageSizeRequest: 500Gi
+      volumeClaimTemplates:
+        - name: datavol-rdi
+          storageClassName: moe-rdi-hdd-pool
+          storageSizeRequest: 500Gi
 
-    volumes:
-    - name: certs
-      maddogCert:
-        type: server
-        lbnames:
-        - codecov
-    - name: codecov-config
-      k4aSecret:
-        secretName: codecov-el
+      volumes:
+        - name: certs
+          maddogCert:
+            type: server
+            lbnames:
+              - codecov
+        - name: codecov-config
+          k4aSecret:
+            secretName: codecov-el
 
   loadbalancers:
-  - lbname: postgres
-    function: postgres
-    slbEnabled: true
-    ports:
-      - port: 5432
-        targetport: 5432
-  - lbname: redis
-    function: redis
-    slbEnabled: false
-    ports:
-      - port: 6379
-        targetport: 6379
-  - lbname: codecov-monitor
-    function: monitor
-    slbEnabled: true
-    ports:
-      - port: 5000
-        targetport: 5000
-        lbtype: tcp
-  - lbname: codecov
-    function: core
-    slbEnabled: true
-    nodeExposed: false
-    ports:
-      - port: 80
-        targetport: 80
-        lbtype: dsr
-      - port: 443
-        targetport: 443
-        lbtype: dsr
+    - lbname: postgres
+      function: postgres
+      slbEnabled: true
+      ports:
+        - port: 5432
+          targetport: 5432
+    - lbname: redis
+      function: redis
+      slbEnabled: false
+      ports:
+        - port: 6379
+          targetport: 6379
+    - lbname: codecov-monitor
+      function: monitor
+      slbEnabled: true
+      ports:
+        - port: 5000
+          targetport: 5000
+          lbtype: tcp
+    - lbname: codecov
+      function: core
+      slbEnabled: true
+      nodeExposed: false
+      ports:
+        - port: 80
+          targetport: 80
+          lbtype: dsr
+        - port: 443
+          targetport: 443
+          lbtype: dsr
+          healthport: 443
+          healthpath: "/"
+          healthprotocol: https
