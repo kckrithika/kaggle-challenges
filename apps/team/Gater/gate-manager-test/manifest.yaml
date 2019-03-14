@@ -6,10 +6,9 @@ system:
   functions:
   - name: gater
     count: 5
-    hostnetwork: false
     containers:
     - name: gater1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.14.1-SNAPSHOT_20190312_154_30310e2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.14.1-SNAPSHOT_20190314_155_55841c2
       args:
       - --server.port=9090
       - --logging.level.com.zaxxer.hikari=debug
