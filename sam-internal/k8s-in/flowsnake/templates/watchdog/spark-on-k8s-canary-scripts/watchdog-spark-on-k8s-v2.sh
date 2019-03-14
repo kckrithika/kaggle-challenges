@@ -30,12 +30,16 @@ else
     export KUBECONFIG=/watchdog-spark-operator/kubeconfig-impersonation-proxy
 fi
 
+kc() {
+  kubectl "$@"
+}
 kcfw() {
-  kubectl -n flowsnake-watchdog "$@"
+  kc -n flowsnake-watchdog "$@"
 }
 
 SPEC=$1
-APP_NAME=$(basename ${SPEC%.*}) # /watchdog-spark-specs/watchdog-spark-operator.jsonnet -> watchdog-spark-operator
+APP_NAME=$(python -c 'import json,sys; print json.load(sys.stdin)["metadata"]["name"]' < $SPEC)
+APP_NAMESPACE=$(python -c 'import json,sys; print json.load(sys.stdin)["metadata"]["namespace"]' < $SPEC)
 SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
 
 echo "Cleaning up $APP_NAME resources from prior runs"
@@ -54,7 +58,7 @@ echo "Waiting for SparkApplication $APP_NAME to complete"
 # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
 while ! $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep -P '(COMPLETED|FAILED)' > /dev/null); do sleep 1; done;
 echo ---- Begin Spark Driver Log ----
-kcfw logs $(kcfw get pod -l $SELECTOR -o name)
+kcfw logs $(kc -n $APP_NAMESPACE get pod -l $SELECTOR -o name) || true
 echo ---- End Spark Driver Log ----
 echo "Terminal SparkApplication $APP_NAME state is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}')"
 # Test successful iff final state is COMPLETED. Use exit code from grep.
