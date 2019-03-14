@@ -4,7 +4,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - coreserviceprotection@salesforce.com
+    - coreserviceprotectionscrumteam@salesforce.com
   functions:
   # service name
   - name: spaas
@@ -17,19 +17,28 @@ system:
     containers:
     - name: spaas
       #Prod image cannot be used directly in sam sandbox?
-      image: sfci/service-protection/sps:0.0.5.7
+      image: sfci/service-protection/sps:0.0.5.12
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.22
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
-        
+      - name: PKI_SERVERCA_DIR
+        value: /servercerts
+      - name: PKI_SERVERMONITORDIR
+        value: /servercerts/server
+      - name: PKI_CLIENTCA_DIR
+        value: /clientcerts
+      - name: PKI_CLIENTMONITORDIR
+        value: /clientcerts/client       
       # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
       ports:
       - name: management-port
         containerPort: 15400
       - name: grpc-port 
         containerPort: 7020
+      - name: grpc-mtls-port 
+        containerPort: 7033
 
      # In your startup script, set logging.dir to this location
       # /log is mapped outside the container to the host's filesystem
@@ -95,10 +104,10 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sconex
       args:
-      # Non-namespaced, plaintext
+      # Non-namespaced, mTLS terminated at service
       - -endpoint
-      - spaas:DATACENTER_ALLENV:7020
-       # Namespaced, TLS
+      - spaas:DATACENTER_ALLENV:7033
+       # Namespaced, TLS terminated at sherpa
       - -endpoint
       - service-protection/spaas:DATACENTER_ALLENV:7443 
       - -logging.dir
@@ -129,6 +138,8 @@ system:
     function: spaas
     nodeExposed: true
     ports:
+      - port: 7033
+        targetport: 7033
       - port: 7022
         targetport: 7020
       - lbtype: http
