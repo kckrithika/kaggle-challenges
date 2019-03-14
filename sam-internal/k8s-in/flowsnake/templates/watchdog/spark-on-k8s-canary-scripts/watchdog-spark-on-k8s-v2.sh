@@ -52,7 +52,7 @@ kcfw delete pod -l $SELECTOR
 while ! $(kcfw get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
 
 echo "Creating SparkApplication $APP_NAME"
-kcfw create -f /watchdog-spark-specs/$SPEC
+kcfw create -f $SPEC
 
 echo "Waiting for SparkApplication $APP_NAME to complete"
 # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
