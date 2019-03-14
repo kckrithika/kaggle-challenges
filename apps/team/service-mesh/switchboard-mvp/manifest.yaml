@@ -12,8 +12,7 @@ system:
     containers:
     - name: switchboard
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/554
-      #image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:0783ab522a873808b1d930d98fcb28615729e216
-      image: sfci/servicelibs/switchboard:0783ab522a873808b1d930d98fcb28615729e216
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:0783ab522a873808b1d930d98fcb28615729e216
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -79,8 +78,7 @@ system:
       #  periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      #image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
-      image: sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
