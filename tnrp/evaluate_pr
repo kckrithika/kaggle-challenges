@@ -88,7 +88,7 @@ $SAMBINDIR/evaluate-pr \
 --imageRulePath="sam-internal/k8s-in/sam/configs/image-rules.json" \
 --MoratoriumAccessDisabledMessage="End-of-Year Moratorium begins at 08:00 UTC on Monday, December 17 (03:00 EST, 12:00 AM PST on Monday morning) and ends at 08:00 UTC on Wednesday, January 2 (03:00 EST, 12:00 AM PST on Wednesday morning. During the moratorium prod PRs require approval by an admin, and admins are required to ensure that changes properly follow the moratorium guidelines. For more information see http://sfdc.co/sam-admins." \
 --timeout=10m \
-
+--disableDedupFlag=false \
 
 # Validate vips.yaml files for SLB, this does not copy any files to output
 /opt/slb/slb-manifest-builder -root $PWD -output $PWD -validate -v=1
