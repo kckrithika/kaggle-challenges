@@ -35,6 +35,8 @@ apps:
   - prd/prd-sam_gater
  gate-manager-test-mesh:
   - prd/prd-sam_gater
+ gate-manager-mvp:
+  - mvp/gsf-core-devmvp-sam2-sam
  gater-client-demo:
   - prd/prd-sam_gater
  gate-analyzer:
