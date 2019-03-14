@@ -7,6 +7,8 @@ system:
   functions:
   - name: demo-authz
     count: 1
+    labels:
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: demo-authz
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/strauz:prd-test
@@ -14,12 +16,24 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       ports:
-      - containerPort: 9443
-        name: authz-grpc-svc
+      - containerPort: 7020
+        name: grpc-svc
       livenessProbe:
         exec:
           command: ["/bin/true"]
         initialDelaySeconds: 20
+    - name: beacon
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      args:
+      - -endpoint
+      - $(FUNCTION):DATACENTER:HTTP2
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER:HTTP2_TLS
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
     volumes:
     - name: tls-client-cert
       maddogCert:
