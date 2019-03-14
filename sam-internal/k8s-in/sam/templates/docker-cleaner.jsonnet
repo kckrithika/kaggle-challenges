@@ -38,7 +38,9 @@ if configs.estate == "prd-samdev" then {
                                       docker system prune -af
                                       if [[ `hostname` == "shared0-samdevcompute1-1-prd.eng.sfdc.net" ]]; then
                                         docker load -i /opt/kubernetes/images/etcd.tar
-                                            echo "loaded etcd image on `hostname`"
+                                        echo "loaded etcd image on `hostname`"
+                                      else
+                                        echo "skipping loading of etcd since it's not a Jenkins machine"
                                       fi
                                     else
                                       echo "only used $usedCowdataPercent %, not doing cleaning"
