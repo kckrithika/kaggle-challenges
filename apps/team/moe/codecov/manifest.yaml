@@ -190,11 +190,13 @@ system:
             - containerPort: 80
             - containerPort: 443
           livenessProbe:
-            tcpSocket:
-              port: 80
+            httpGet:
+              path: /
+              scheme: https
+              port: 443
             failureThreshold: 3
             initialDelaySeconds: 60
-            periodSeconds: 60
+            periodSeconds: 10
 
       lbname: codecov-headless-lb
 
@@ -248,6 +250,3 @@ system:
         - port: 443
           targetport: 443
           lbtype: dsr
-          healthport: 443
-          healthpath: "/"
-          healthprotocol: https
