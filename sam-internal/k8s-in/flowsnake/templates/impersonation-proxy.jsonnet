@@ -6,10 +6,6 @@ local madkub_common = import "madkub_common.jsonnet";
 
 # app_name is used internally to identify the Kubernetes resources
 local app_name = "impersonation-proxy";
-# public_name is combined with other coordinates (team, datacenter) to produce
-# publicly visible endpoints. For our customers, the impersonation-proxy is just
-# the way they access the Kubernetes API.
-local public_name = "kubernetes-api";
 
 local certs = madkub_common.make_cert_config([
     {
@@ -52,10 +48,9 @@ else
                             {
                                 name: cert.name,
                                 role: "flowsnake." + flowsnake_config.role_munge_for_estate(app_name),
-                                # SLB SAN matches lbname in sam-manifests/apps/team/flowsnake/vips/prd/vips.yaml
                                 san: [
-                                    flowsnake_config.slb_fqdn(public_name),
-                                    flowsnake_config.service_mesh_fqdn(public_name),
+                                    flowsnake_config.api_slb_fqdn,
+                                    flowsnake_config.service_mesh_fqdn(flowsnake_config.api_public_name),
                                 ],
                                 "cert-type": cert.type,
                                 kingdom: kingdom,

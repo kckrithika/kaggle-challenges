@@ -1,8 +1,15 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local configs = import "config.jsonnet";
+local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
-local estate = std.extVar("estate");
+local cert_name = "watchdogsparkoperator";
+local watchdog_redo=std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo");
+local test_impersonation=std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_test_proxy");
+local increase_frequency=std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_increase_frequency");
+local std_new = import "stdlib_0.12.1.jsonnet";
 
 if !watchdog.watchdog_enabled then
 "SKIP"
@@ -46,7 +53,7 @@ else
                 }
             ]
         },
-    ] + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then
+    ] + (if watchdog_redo then
     # ConfigMap containing the resources of the watchdog
     [
         {
@@ -73,7 +80,32 @@ else
             },
             data: {
                 "check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh"
-            }
+            } + (if test_impersonation then {
+                # Eventually use this script everywhere, but keep separate until confirmed working in prd-test
+                "check-spark-operator-v2.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-v2.sh",
+                kubeconfig:
+                    std_new.strReplace(|||
+                    apiVersion: v1
+                    clusters:
+                    - cluster:
+                        certificate-authority: /certs/ca.pem
+                        server: https://{{KUBEAPI}}
+                      name: kubernetes
+                    contexts:
+                    - context:
+                        cluster: kubernetes
+                        user: kubernetes
+                      name: default-context
+                    current-context: default-context
+                    kind: Config
+                    preferences: {}
+                    users:
+                    - name: kubernetes
+                      user:
+                        client-certificate: /certs/client/certificates/client.pem
+                        client-key: /certs/client/keys/client-key.pem
+                |||,"{{KUBEAPI}}",flowsnakeconfig.api_slb_fqdn),
+            } else {})
         }
     ] else 
     [
@@ -86,45 +118,45 @@ else
               namespace: "flowsnake",
             },
             data: {
-                  "check-spark-operator.sh": importstr "watchdog-spark-operator--check-spark-operator.sh",
-                  "spark-application.json": std.toString({
-                        "apiVersion": "sparkoperator.k8s.io/v1beta1",
-                        "kind": "SparkApplication",
-                        "metadata": {
-                            "name": "watchdog-spark-operator",
-                            "namespace": "flowsnake-watchdog",
+                "check-spark-operator.sh": importstr "watchdog-spark-operator--check-spark-operator.sh",
+                "spark-application.json": std.toString({
+                    "apiVersion": "sparkoperator.k8s.io/v1beta1",
+                    "kind": "SparkApplication",
+                    "metadata": {
+                        "name": "watchdog-spark-operator",
+                        "namespace": "flowsnake-watchdog",
+                    },
+                    "spec": {
+                        "deps": {},
+                        "driver": {
+                            "coreLimit": "200m",
+                            "cores": 0.1,
+                            "labels": {
+                                "version": "2.4.0"
+                            },
+                            "memory": "512m",
+                            "serviceAccount": "spark-driver-flowsnake-watchdog",
                         },
-                        "spec": {
-                            "deps": {},
-                            "driver": {
-                                "coreLimit": "200m",
-                                "cores": 0.1,
-                                "labels": {
-                                    "version": "2.4.0"
-                                },
-                                "memory": "512m",
-                                "serviceAccount": "spark-driver-flowsnake-watchdog",
+                        "executor": {
+                            "cores": 1,
+                            "instances": 1,
+                            "labels": {
+                                "version": "2.4.0"
                             },
-                            "executor": {
-                                "cores": 1,
-                                "instances": 1,
-                                "labels": {
-                                    "version": "2.4.0"
-                                },
-                                "memory": "512m",
-                            },
-                            "image": flowsnake_images.watchdog_spark_operator,
-                            "imagePullPolicy": "Always",
-                            "mainApplicationFile": "local:///spark-app/sample-spark-operator.jar",
-                            "mainClass": "org.apache.spark.examples.SparkPi",
-                            "mode": "cluster",
-                            "restartPolicy": {
-                                "type": "Never"
-                            },
-                            "sparkVersion": "",
-                            "type": "Scala",
+                            "memory": "512m",
                         },
-                  })
+                        "image": flowsnake_images.watchdog_spark_operator,
+                        "imagePullPolicy": "Always",
+                        "mainApplicationFile": "local:///spark-app/sample-spark-operator.jar",
+                        "mainClass": "org.apache.spark.examples.SparkPi",
+                        "mode": "cluster",
+                        "restartPolicy": {
+                            "type": "Never"
+                        },
+                        "sparkVersion": "",
+                        "type": "Scala",
+                    },
+                 })
             }
         },
     ]) +
@@ -146,7 +178,19 @@ else
                     }
                 },
                 template: {
-                    metadata: {
+                    metadata: (if test_impersonation then {
+                        annotations: {
+                            "madkub.sam.sfdc.net/allcerts": std.toString({
+                                certreqs: [
+                                    {
+                                        name: cert_name,
+                                        role: "flowsnake_test.flowsnake-watchdog",
+                                        "cert-type": "client",
+                                        kingdom: kingdom,
+                                    }
+                                ]
+                            }),
+                        }} else {}) + {
                         labels: {
                             app: "watchdog-spark-operator",
                             apptype: "monitoring",
@@ -154,7 +198,9 @@ else
                             flowsnakeRole: "WatchdogSparkOperator",
                         },
                     },
-                    spec: {
+                    spec: (if test_impersonation then {
+                            initContainers: [ madkub_common.init_container(cert_name), ],
+                        } else {}) + {
                         restartPolicy: "Always",
                         hostNetwork: true,
                         containers: [
@@ -170,11 +216,14 @@ else
                                     "--config=/config/watchdog.json",
                                     "-cliCheckerCommandTarget=SparkOperatorTest",
                                     "--hostsConfigFile=/sfdchosts/hosts.json",
-                                    "-watchdogFrequency=15m",
-                                    "-alertThreshold=45m",
+                                    # Delay between runs. We want to more or less run continuously.
+                                    "-watchdogFrequency=" + (if increase_frequency then "1m" else "15m"),
+                                    # Alert if last success was longer ago than this.
+                                    "-alertThreshold=" + (if increase_frequency then "1m" else "45m"),
+                                    # Kill and fail test if it runs for longer than this.
                                     "-cliCheckerTimeout=15m",
                                 ],
-                                name: "watchdog-canary",
+                                name: if watchdog_redo then "watchdog" else "watchdog-canary",
                                 resources: {
                                     requests: {
                                         cpu: "1",
@@ -188,7 +237,7 @@ else
                                 volumeMounts: [
                                     configs.config_volume_mount,
                                     watchdog.sfdchosts_volume_mount,
-                                ] + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then
+                                ] + (if watchdog_redo then
                                     [
                                         {
                                             mountPath: "/watchdog-spark-scripts",
@@ -198,8 +247,8 @@ else
                                             mountPath: "/watchdog-spark-specs",
                                             name: "watchdog-spark-specs",
                                         },
-                                    ]
-                                else 
+                                    ] + (if test_impersonation then madkub_common.cert_mounts(cert_name) else [])
+                                else
                                     [
                                         {
                                             mountPath: "/watchdog-spark-operator",
@@ -208,12 +257,12 @@ else
                                     ]
                                 ),
                             },
-                        ],
+                        ] + if test_impersonation then [ madkub_common.refresher_container(cert_name) ] else [],
                         serviceAccount: "watchdog-spark-operator-serviceaccount",
                         serviceAccountName: "watchdog-spark-operator-serviceaccount",
                         volumes: [
                             configs.config_volume("watchdog"),
-                        ] + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then
+                        ] + (if watchdog_redo then
                               [
                                   {
                                       configMap: {

@@ -105,8 +105,9 @@ local utils = import "util_functions.jsonnet";
                 slb_ingress: "unverified",
                 spark_op_metrics: "enabled",
                 watchdog_canary_redo: "",
-                /* this is for canary spark s3 integration */
-                /* watchdog_canary_spark_s3: "", */
+                # watchdog_canary_spark_s3: "", # canary spark s3 integration
+                spark_op_watchdog_test_proxy: "enabled",
+                spark_op_watchdog_increase_frequency: "enabled",
             },
             version_mapping: {
                 main: {
