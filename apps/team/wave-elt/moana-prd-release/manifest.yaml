@@ -2,14 +2,14 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-03-14 10:27:19.618199
-# from:  2ddfd6c31b73ea7499bcc8a47ee744719364eee5
+# generated: 2019-03-14 11:39:46.158635
+# from:  9004b052d09e020ffe052dde4c91d513835a07f4
 # by: mbyne
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:jenkins-insights-WaveDataPool-master-32-itest
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:510-3e6dc916e7eef89c01b2450e12d54ab9c03e83b8
       livenessProbe:
         exec:
           command: [ls]
@@ -59,12 +59,12 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:jenkins-insights-WaveDataPool-master-32-itest'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:510-3e6dc916e7eef89c01b2450e12d54ab9c03e83b8'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-release}
       - {name: DEPLOYMENT_ID, value: release}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/datapoolservice:master-209-136d583
+      image: sfci/insights/datapoolservice:release-97-f6af665
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
