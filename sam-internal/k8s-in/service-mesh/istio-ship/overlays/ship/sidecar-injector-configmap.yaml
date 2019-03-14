@@ -1,3 +1,7 @@
+# IMPORTANT - To preserve SAM k8s out yaml formatting, 
+#   do NOT leave any empty lines or comments in multi-line config values.
+# This would be of immense help when comparing the final k8s out directory & 
+#   would prevent bugs due to lack of readability in k8s-out for ConfigMap.
 apiVersion: v1
 data:
   config: |-
@@ -44,7 +48,6 @@ data:
             add:
             - NET_ADMIN
           restartPolicy: Always
-      
       containers:
       - name: istio-proxy
         image: [[ if (isset .ObjectMeta.Annotations "sidecar.istio.io/proxyImage") -]]
@@ -124,7 +127,6 @@ data:
         [[ else -]]
           requests:
             cpu: 10m
-          
         [[ end -]]
         volumeMounts:
         - mountPath: /etc/istio/proxy

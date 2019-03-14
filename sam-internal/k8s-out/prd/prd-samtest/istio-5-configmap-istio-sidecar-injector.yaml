@@ -44,7 +44,6 @@ data:
             add:
             - NET_ADMIN
           restartPolicy: Always
-
       containers:
       - name: istio-proxy
         image: [[ if (isset .ObjectMeta.Annotations "sidecar.istio.io/proxyImage") -]]
@@ -124,7 +123,6 @@ data:
         [[ else -]]
           requests:
             cpu: 10m
-
         [[ end -]]
         volumeMounts:
         - mountPath: /etc/istio/proxy
