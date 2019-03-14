@@ -19,11 +19,12 @@ configs.daemonSetBase("sam") {
                                  ]
                                  + samwdconfig.shared_args
                                  + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
-                        volumeMounts+: [
+                        volumeMounts+: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
                             configs.config_volume_mount,
-                        ],
+                            (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then configs.var_tmp_volume_mount else {}),
+                        ]),
                         name: "watchdog",
                         resources: {
                             requests: {
@@ -37,11 +38,12 @@ configs.daemonSetBase("sam") {
                         },
                     },
                 ],
-                volumes+: [
+                volumes+: configs.filter_empty([
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     configs.config_volume("watchdog"),
-                ],
+                    (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then configs.var_tmp_volume else {}),
+                ]),
                 # We are still using flannel in minion pools in public cloud, so we need to keep an eye on etcd that holds its config
                 # Everywhere else, we just care about the KubeApi etcd nodes
                 nodeSelector: if utils.is_public_cloud(configs.kingdom) then {

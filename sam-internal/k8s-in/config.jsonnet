@@ -367,6 +367,18 @@ local utils = import "util_functions.jsonnet",
         name: "maddog-certs",
     },
 
+    # For apps that needs var tmp directory from the host
+    var_tmp_volume_mount: {
+        mountPath: "/var/tmp",
+        name: "var-tmp",
+    },
+    var_tmp_volume: {
+        hostPath: {
+            path: "/var/tmp",
+        },
+        name: "var-tmp",
+    },
+
     # For use by PCN sfdclocation
     pcn_kingdom_env: {
         name: "SFDCLOC_PCN_KINGDOM",
