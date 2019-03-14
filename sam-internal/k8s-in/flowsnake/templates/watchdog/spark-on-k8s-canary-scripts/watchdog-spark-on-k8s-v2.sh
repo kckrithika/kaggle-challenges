@@ -3,6 +3,9 @@ set -o nounset
 set -o errexit
 set -o pipefail
 
+# Disable use of SAM's custom kubeconfig, restore default Kubernetes behavior (this cluster's kubeapi using service account token)
+unset KUBECONFIG
+
 # Parse command line arguments. https://stackoverflow.com/a/14203146
 POSITIONAL=()
 while [[ $# -gt 0 ]]
@@ -10,9 +13,11 @@ do
 key="$1"
 
 case $key in
-    --impersonation-proxy)
-    IMPERSONATION_PROXY="true"
-    shift
+    --kubeconfig)
+    # Use a custom kubeconfig (e.g. to access via MadDog PKI certs and Impersonation Proxy)
+    export KUBECONFIG="$2"
+    shift # past argument
+    shift # past value
     ;;
     *)    # unknown option
     POSITIONAL+=("$1") # save it in an array for later
@@ -21,14 +26,6 @@ case $key in
 esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
-
-if [[ -z "$IMPERSONATION_PROXY" ]]; then
-    # Disable use of SAM's custom kubeconfig, restore default Kubernetes behavior (this cluster's kubeapi using service account token)
-    unset KUBECONFIG
-else
-    # Use a custom kubeconfig to access via MadDog PKI certs and Impersonation Proxy
-    export KUBECONFIG=/watchdog-spark-operator/kubeconfig-impersonation-proxy
-fi
 
 kcfw() {
   kubectl -n flowsnake-watchdog "$@"

@@ -23,6 +23,36 @@ items:
     namespace: flowsnake
 - apiVersion: v1
   data:
+    kubeconfig-impersonation-proxy: |
+      apiVersion: v1
+      clusters:
+      - cluster:
+          certificate-authority: /certs/ca.pem
+          server: https://kubernetes-api-test-flowsnake-prd.slb.sfdc.net
+        name: kubernetes
+      contexts:
+      - context:
+          cluster: kubernetes
+          user: kubernetes
+        name: default-context
+      current-context: default-context
+      kind: Config
+      preferences: {}
+      users:
+      - name: kubernetes
+        user:
+          client-certificate: /certs/client/certificates/client.pem
+          client-key: /certs/client/keys/client-key.pem
+    watchdog-spark-impersonation.json: '{"apiVersion": "sparkoperator.k8s.io/v1beta1",
+      "kind": "SparkApplication", "metadata": {"name": "watchdog-spark-impersonation",
+      "namespace": "flowsnake-watchdog"}, "spec": {"deps": {"jars": ["local:///sample-apps/sample-spark-operator/extra-jars/*"]},
+      "driver": {"coreLimit": "200m", "cores": 0.10000000000000001, "labels": {"version":
+      "2.4.0"}, "memory": "512m", "serviceAccount": "spark-driver-flowsnake-watchdog"},
+      "executor": {"cores": 1, "instances": 1, "labels": {"version": "2.4.0"}, "memory":
+      "512m"}, "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
+      "imagePullPolicy": "Always", "mainApplicationFile": "local:///sample-apps/sample-spark-operator/sample-spark-operator.jar",
+      "mainClass": "org.apache.spark.examples.SparkPi", "mode": "cluster", "restartPolicy":
+      {"type": "Never"}, "sparkVersion": "", "type": "Scala"}}'
     watchdog-spark-operator.json: '{"apiVersion": "sparkoperator.k8s.io/v1beta1",
       "kind": "SparkApplication", "metadata": {"name": "watchdog-spark-operator",
       "namespace": "flowsnake-watchdog"}, "spec": {"deps": {"jars": ["local:///sample-apps/sample-spark-operator/extra-jars/*"]},
@@ -45,6 +75,9 @@ items:
       set -o errexit
       set -o pipefail
 
+      # Disable use of SAM's custom kubeconfig, restore default Kubernetes behavior (this cluster's kubeapi using service account token)
+      unset KUBECONFIG
+
       # Parse command line arguments. https://stackoverflow.com/a/14203146
       POSITIONAL=()
       while [[ $# -gt 0 ]]
@@ -52,9 +85,11 @@ items:
       key="$1"
 
       case $key in
-          --impersonation-proxy)
-          IMPERSONATION_PROXY="true"
-          shift
+          --kubeconfig)
+          # Use a custom kubeconfig (e.g. to access via MadDog PKI certs and Impersonation Proxy)
+          export KUBECONFIG="$2"
+          shift # past argument
+          shift # past value
           ;;
           *)    # unknown option
           POSITIONAL+=("$1") # save it in an array for later
@@ -63,14 +98,6 @@ items:
       esac
       done
       set -- "${POSITIONAL[@]}" # restore positional parameters
-
-      if [[ -z "$IMPERSONATION_PROXY" ]]; then
-          # Disable use of SAM's custom kubeconfig, restore default Kubernetes behavior (this cluster's kubeapi using service account token)
-          unset KUBECONFIG
-      else
-          # Use a custom kubeconfig to access via MadDog PKI certs and Impersonation Proxy
-          export KUBECONFIG=/watchdog-spark-operator/kubeconfig-impersonation-proxy
-      fi
 
       kcfw() {
         kubectl -n flowsnake-watchdog "$@"
@@ -139,26 +166,6 @@ items:
       echo "Terminal SparkApplication $APP_NAME state is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}')"
       # Test successful iff final state is COMPLETED. Use exit code from grep.
       kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep COMPLETED > /dev/null
-    kubeconfig: |
-      apiVersion: v1
-      clusters:
-      - cluster:
-          certificate-authority: /certs/ca.pem
-          server: https://kubernetes-api-test-flowsnake-prd.slb.sfdc.net
-        name: kubernetes
-      contexts:
-      - context:
-          cluster: kubernetes
-          user: kubernetes
-        name: default-context
-      current-context: default-context
-      kind: Config
-      preferences: {}
-      users:
-      - name: kubernetes
-        user:
-          client-certificate: /certs/client/certificates/client.pem
-          client-key: /certs/client/keys/client-key.pem
   kind: ConfigMap
   metadata:
     name: watchdog-spark-on-k8s-script-configmap

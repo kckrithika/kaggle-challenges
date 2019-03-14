@@ -65,10 +65,14 @@ else
             },
             data: {
                 "watchdog-spark-operator.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-operator.libsonnet"),
-            } + if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_spark_s3") then
+            } + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_spark_s3") then
             {
                 "watchdog-spark-s3.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-s3.libsonnet"),
-            } else {},
+            } else {}) + (if test_impersonation then
+            {
+                "watchdog-spark-impersonation.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-impersonation.libsonnet"),
+                "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-specs/kubeconfig-impersonation-proxy.libsonnet"),
+            } else {})
         },
         # ConfigMap containing the logic of the watchdog
         {
@@ -83,28 +87,6 @@ else
             } + (if test_impersonation then {
                 # Eventually use this script everywhere, but keep separate until confirmed working in prd-test
                 "check-spark-operator-v2.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-v2.sh",
-                kubeconfig:
-                    std_new.strReplace(|||
-                    apiVersion: v1
-                    clusters:
-                    - cluster:
-                        certificate-authority: /certs/ca.pem
-                        server: https://{{KUBEAPI}}
-                      name: kubernetes
-                    contexts:
-                    - context:
-                        cluster: kubernetes
-                        user: kubernetes
-                      name: default-context
-                    current-context: default-context
-                    kind: Config
-                    preferences: {}
-                    users:
-                    - name: kubernetes
-                      user:
-                        client-certificate: /certs/client/certificates/client.pem
-                        client-key: /certs/client/keys/client-key.pem
-                |||,"{{KUBEAPI}}",flowsnakeconfig.api_slb_fqdn),
             } else {})
         }
     ] else
