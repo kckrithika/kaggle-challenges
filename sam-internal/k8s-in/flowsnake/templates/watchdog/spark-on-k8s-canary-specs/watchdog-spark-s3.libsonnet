@@ -3,7 +3,10 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
     "apiVersion": "sparkoperator.k8s.io/v1beta1",
     "kind": "SparkApplication",
     "metadata": {
-        "name": "watchdog-spark-s3",
+        # Name must match filename.
+        # This magic converts e.g. ./flowsnake/templates/watchdog/spark-on-k8s-canary-specs/watchdog-spark-operator.libsonnet -> watchdog-spark-operator
+        "thisFile_split":: std.split(std.thisFile,"/"),
+        "name": std.splitLimit(self.thisFile_split[std.length(self.thisFile_split) -1],".",1)[0],
         "namespace": "flowsnake-watchdog"
     },
     "spec": {

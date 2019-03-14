@@ -11,7 +11,7 @@ kcfw() {
 }
 
 SPEC=$1
-APP_NAME=${SPEC%.*}
+APP_NAME=$(basename ${SPEC%.*}) # /watchdog-spark-specs/watchdog-spark-operator.json -> watchdog-spark-operator
 SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
 
 echo "Cleaning up $APP_NAME resources from prior runs"
