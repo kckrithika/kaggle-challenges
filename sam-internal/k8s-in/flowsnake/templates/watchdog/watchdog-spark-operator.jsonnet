@@ -273,7 +273,7 @@ else
                                   {
                                       configMap: {
                                           name: "watchdog-spark-on-k8s-script-configmap",
-                                          # rwx-r-xr-x 755 octal, 493 decimal
+                                          # rwxr-xr-x 755 octal, 493 decimal
                                           defaultMode: 493,
                                       },
                                       name: "watchdog-spark-scripts",
@@ -293,7 +293,7 @@ else
                                         {
                                             key: "check-spark-operator.sh",
                                             path: "check-spark-operator.sh",
-                                            # rwx-r-xr-x 755 octal, 493 decimal
+                                            # rwxr-xr-x 755 octal, 493 decimal
                                             mode: 493,
                                         },
                                     ],
