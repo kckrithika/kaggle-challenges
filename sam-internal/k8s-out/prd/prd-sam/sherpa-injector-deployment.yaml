@@ -51,12 +51,12 @@ spec:
       containers:
       - args:
         - --template=sherpa-container.yaml.template
-        - --image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:6c67c98234e9f47f2ff9bb9c5c90acc6ac390be7
+        - --image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
         - --log-level=debug
         - --port=17442
         - --cert=/server-certs/server/certificates/server.pem
         - --key=/server-certs/server/keys/server-key.pem
-        - --canary-image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:6c67c98234e9f47f2ff9bb9c5c90acc6ac390be7
+        - --canary-image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
         env:
         - name: SFDC_ENVIRONMENT
           value: mesh
@@ -95,7 +95,7 @@ spec:
           value: ajnafunneldirect.localhost.mesh.force.com
         - name: SFDC_METRICS_SERVICE_PORT
           value: "7013"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:9637c42ce66eb71611328c9ea47cb5301c38673c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:9a055d6b5d391f30318a848432f4cfa409033703
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -202,7 +202,7 @@ spec:
           value: ajna0-funnel1-0-prd.data.sfdc.net
         - name: SFDC_METRICS_SERVICE_PORT
           value: "80"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:6c67c98234e9f47f2ff9bb9c5c90acc6ac390be7
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
