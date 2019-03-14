@@ -1,0 +1,93 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - gater@salesforce.com
+  functions:
+  - name: gater
+    count: 5
+    containers:
+    - name: gater1
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-sam/gater/gate-manager:1.14.1-SNAPSHOT_20190314_155_55841c2
+      args:
+      - --server.port=9090
+      - --logging.level.com.zaxxer.hikari=debug
+      - --spring.datasource.hikari.maximumPoolSize=6
+      - --spring.datasource.hikari.minimumIdle=5
+      - --spring.datasource.hikari.leakDetectionThreshold=10000
+      - --gater-service.thread.pool.max-size=0
+      - --scone.detectsidecars=false
+      ports:
+      - containerPort: 7020
+      - containerPort: 9522
+      - containerPort: 9523
+      - containerPort: 9090
+      - containerPort: 15372
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: blitz
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /fastdata/gater
+        name: dbvol
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      ports:
+      - name: http2-in
+        containerPort: 7012
+      - name: http2-tls-in
+        containerPort: 7443
+      - name: sherpa-adm
+        containerPort: 15373
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
+    - name: beacon
+      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      args:
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-gater/logs
+    - name: dbvol
+      hostPath:
+        path: /home/sfdc-gater/db
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxUnavailable: 1
