@@ -66,7 +66,7 @@ system:
           
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
-          value: 13065
+          value: 443
 #          value: 7442
 
         # Set to true it PUBLIC_PORT is an https endpoint
@@ -77,7 +77,7 @@ system:
         # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
         # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
-          value: sfproxy.core-on-sam.sfdc-role
+          value: casam.devmvp.gcp.sfdcsvc.net
 
         - name: SFPROXY_VIP
           value: https://devmvpapp-lb.core-on-sam-sp1.gcp-sam.gcp.slb.sfdc.net:8443
@@ -240,7 +240,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: casam-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:f66232
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:bc2429
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
