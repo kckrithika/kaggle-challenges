@@ -363,7 +363,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "-c",
               "set -ex\nchmod 775 -R /client-cert \u0026\u0026 chown -R 7447:7447 /client-cert\nchmod 775 -R /server-cert \u0026\u0026 chown -R 7447:7447 /server-cert\n",
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
+            image: mcpIstioConfig.permissionInitContainer,
             imagePullPolicy: "Always",
             name: "permissionsetterinitcontainer",
             securityContext: {

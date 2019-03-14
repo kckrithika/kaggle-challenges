@@ -74,4 +74,6 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   madkubEndpoint: "https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
   maddogEndpoint: configs.maddogEndpoint,
 
+  dummyToTriggerYamlMultilineFormat: "",
+
 }
