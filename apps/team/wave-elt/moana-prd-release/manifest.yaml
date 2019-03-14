@@ -2,7 +2,7 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-03-13 17:17:25.979282
+# generated: 2019-03-13 17:16:23.928278
 # from:  d87bae35689ea06b394340798736b3f38c8e43d1
 # by: mbyne
 system:
@@ -11,9 +11,9 @@ system:
     - moanaserviceseng@salesforce.com
   functions:
   - count: 0
-    name: moana-engine-master
+    name: moana-engine-release
     containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:jenkins-insights-WaveDataPool-master-32-itest
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:510-3e6dc916e7eef89c01b2450e12d54ab9c03e83b8
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -65,9 +65,11 @@ system:
       - name: TESTRECIPE_MAESTROPINGTEST
         value: 'true'
       - name: DEPLOYMENT_ID
-        value: master
+        value: release
       - name: HANDLED_PODS_PATTERN
         value: stmfa\..*|moana-driver-master
+      - name: HANDLED_PODS_INVERT_MATCH
+        value: 'true'
       ports:
       - containerPort: 8080
         name: http
@@ -80,7 +82,7 @@ system:
         limits:
           cpu: 2
           memory: 2G
-    name: moana-driver-master
+    name: moana-driver-release
   - count: 1
     volumes:
     - hostPath:
@@ -106,7 +108,7 @@ system:
         timeoutSeconds: 30
         periodSeconds: 60
       name: jobcontroller
-      image: sfci/insights/datapoolservice:master-209-136d583
+      image: sfci/insights/datapoolservice:release-97-f6af665
       volumeMounts:
       - mountPath: /home/datapool/logs
         name: logvol
@@ -118,13 +120,15 @@ system:
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: MOANA_SPARK_ENGINE_IMAGE
-        value: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:jenkins-insights-WaveDataPool-master-32-itest
+        value: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:510-3e6dc916e7eef89c01b2450e12d54ab9c03e83b8
       - name: KAFKA_GROUP_ID
-        value: moana-jobcontroller-master
+        value: moana-jobcontroller-release
       - name: DEPLOYMENT_ID
-        value: master
+        value: release
       - name: HANDLED_PODS_PATTERN
         value: stmfa\..*|moana-driver-master
+      - name: HANDLED_PODS_INVERT_MATCH
+        value: 'true'
       ports:
       - containerPort: 7020
         name: grpc
@@ -178,5 +182,5 @@ system:
         limits:
           cpu: '1'
           memory: 1Gi
-    name: jobcontroller-master
+    name: jobcontroller-release
 apiVersion: v1

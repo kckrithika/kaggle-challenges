@@ -1,4 +1,6 @@
 apps:
+  moana-prd-release:
+  - prd/prd-sam_datapool
   moana-prd-master:
   - prd/prd-sam_datapool
   moana-ukb:
@@ -41,12 +43,6 @@ apps:
   spark-engine-dfw:
   - dfw/dfw-sam_datapool
 
-  # PRD
-  datapool-prd:
-  - prd/prd-sam_datapool
 
-  # moana driver used for testing moana via kafka.
-  moana-driver-release-prd:
-  - prd/prd-sam_datapool
 
 
