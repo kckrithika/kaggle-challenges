@@ -9,9 +9,8 @@ system:
     count: 1
     containers:
     - name: beacon
-      # image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/beacon:853c4db9f14805018be6f5e7607ffe65b5648822-201902081500
-      # https://sconelibci.dop.sfdc.net/job/sfdc_bazel__beacon/job/sfdc-bazel/job/master/52
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/beacon:a4b2343
+      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:f804d14
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -24,9 +23,8 @@ system:
       livenessProbe:
         initialDelaySeconds: 5
         exec:
-          # TODO: we will need to revert to use is-alive.sh when it is added back to the beacon's image
           command:
-            - "/bin/true"
+            - "/opt/is-alive.sh"
 
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
