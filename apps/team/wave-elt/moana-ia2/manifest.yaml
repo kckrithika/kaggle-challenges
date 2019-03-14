@@ -1,0 +1,119 @@
+#
+# Generated manifest
+# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
+#
+# generated: 2019-03-14 14:08:59.230712
+# from:  d7f39b35cfd9969e2ada095878c8ad9aab707a1c
+# by: mbyne
+apiVersion: v1
+system:
+  functions:
+  - containers:
+    - image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/datapool-engine:510-3e6dc916e7eef89c01b2450e12d54ab9c03e83b8
+      livenessProbe:
+        exec:
+          command: [ls]
+        initialDelaySeconds: 5
+      name: moana-engine
+    count: 0
+    name: moana-engine
+  - containers:
+    - env:
+      - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
+      - {name: LOGGING_STDERR_LEVEL, value: ALL}
+      - {name: TEST_POD, value: moana-driver}
+      - {name: PKI_TRUSTSTORE_DIR, value: /home/scone/client-certs}
+      - {name: PKI_KEYSTORE_DIR, value: /home/scone/client-certs/client}
+      - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=256m -Xmx1024m -Xms1024m'}
+      - {name: TESTRECIPE_INTERVAL, value: 300s}
+      - {name: TESTRECIPE_TIMEOUT, value: 240s}
+      - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
+      - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
+      image: sfci/insights/moana-driver:release-7-6cc9a0f
+      livenessProbe:
+        httpGet: {path: /manage/health, port: 15372}
+        initialDelaySeconds: 30
+        periodSeconds: 60
+        timeoutSeconds: 30
+      name: moana-driver
+      ports:
+      - {containerPort: 8080, name: http}
+      - {containerPort: 15372, name: mgmt}
+      resources:
+        limits: {cpu: 2, memory: 2G}
+        requests: {cpu: 1, memory: 2G}
+      volumeMounts:
+      - {mountPath: /home/scone/client-certs, name: tls-client-certs}
+    count: 1
+    identity: {serviceName: moana-driver}
+    name: moana-driver
+    volumes:
+    - maddogCert: {type: server}
+      name: tls-server-certs
+    - maddogCert: {type: client}
+      name: tls-client-certs
+  - containers:
+    - env:
+      - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
+      - {name: LOGGING_STDERR_LEVEL, value: ALL}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/datapool-engine:510-3e6dc916e7eef89c01b2450e12d54ab9c03e83b8'}
+      - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-primary}
+      image: sfci/insights/datapoolservice:release-97-f6af665
+      livenessProbe:
+        httpGet: {path: /manage/health, port: 15372}
+        initialDelaySeconds: 90
+        periodSeconds: 60
+        timeoutSeconds: 30
+      name: jobcontroller
+      ports:
+      - {containerPort: 7020, name: grpc}
+      - {containerPort: 15372, name: mgmt}
+      volumeMounts:
+      - {mountPath: /home/datapool/logs, name: logvol}
+      - {mountPath: /home/datapool/client-certs, name: tls-client-certs}
+    - args: [-endpoint, 'wave-elt/datapool:DATACENTER_ALLENV:7443']
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      livenessProbe:
+        exec:
+          command: [/home/scone/is-alive.sh]
+        initialDelaySeconds: 15
+      name: beacon
+    - env:
+      - {name: SFDC_ENVIRONMENT, value: prod}
+      image: sfci/servicelibs/sherpa:2.0.24
+      livenessProbe:
+        exec:
+          command: [./bin/is-alive]
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      name: sherpa
+      ports:
+      - {containerPort: 7012, name: sherpa-in-plain}
+      - {containerPort: 7443, name: sherpa-in-tls}
+      - {containerPort: 15373, name: sherpa-adm}
+      readinessProbe:
+        exec:
+          command: [./bin/is-ready]
+        initialDelaySeconds: 110
+        periodSeconds: 5
+      resources:
+        limits: {cpu: '1', memory: 1Gi}
+        requests: {cpu: '1', memory: 1Gi}
+      volumeMounts:
+      - {mountPath: /server-certs, name: tls-server-certs}
+      - {mountPath: /client-certs, name: tls-client-certs}
+      - {mountPath: /log, name: sherpa-log-volume}
+    count: 1
+    identity: {serviceName: datapool}
+    name: jobcontroller
+    volumes:
+    - hostPath: {path: /data/sam/wave/log/datapool}
+      name: logvol
+    - hostPath: {path: /home/sfdc-sherpa/logs}
+      name: sherpa-log-volume
+    - maddogCert: {type: server}
+      name: tls-server-certs
+    - maddogCert: {type: client}
+      name: tls-client-certs
+  notifications:
+    email: [moanaserviceseng@salesforce.com]

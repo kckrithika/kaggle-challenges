@@ -1,47 +1,39 @@
 apps:
-  moana-prd-release:
-  - prd/prd-sam_datapool
-  moana-prd-master:
-  - prd/prd-sam_datapool
+  moana-hnd:
+  - hnd/hnd-sam_datapool
+  moana-frf:
+  - frf/frf-sam_datapool
+  moana-par:
+  - par/par-sam_datapool
+  moana-ia2:
+  - ia2/ia2-sam_datapool
+  moana-dfw:
+  - dfw/dfw-sam_datapool
+  moana-ord:
+  - ord/ord-sam_datapool
   moana-ukb:
   - ukb/ukb-sam_datapool
-  datapool-ia2:
-  - ia2/ia2-sam_datapool
-  datapool-ph2:
-  - ph2/ph2-sam_datapool
-  datapool-par:
-  - par/par-sam_datapool
-  spark-engine-par:
-  - par/par-sam_datapool
-  datapool-frf:
-  - frf/frf-sam_datapool
-  spark-engine-frf:
-  - frf/frf-sam_datapool
-  datapool-hnd:
-  - hnd/hnd-sam_datapool
-  spark-engine-hnd:
-  - hnd/hnd-sam_datapool
-  datapool-ord:
-  - ord/ord-sam_datapool
-  spark-engine-ord:
-  - ord/ord-sam_datapool
+
+
+  moana-prd-release:
+    - prd/prd-sam_datapool
+  moana-prd-master:
+    - prd/prd-sam_datapool
+
   datapool-iad:
   - iad/iad-sam_datapool
   spark-engine-iad:
   - iad/iad-sam_datapool
+
   datapool-phx:
   - phx/phx-sam_datapool
   spark-engine-phx:
   - phx/phx-sam_datapool
-  datapool-dfw:
-  - dfw/dfw-sam_datapool
+
+  datapool-ph2:
+  - ph2/ph2-sam_datapool
   spark-engine-ph2:
   - ph2/ph2-sam_datapool
-
-  spark-engine-ia2:
-  - ia2/ia2-sam_datapool
-  spark-engine-dfw:
-  - dfw/dfw-sam_datapool
 
 
 
