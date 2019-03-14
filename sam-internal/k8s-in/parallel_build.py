@@ -12,6 +12,7 @@ if sys.version_info >= (3,0):
 else:
     from Queue import Queue
 from threading import Thread
+import uuid
 
 NUM_WORKER_THREADS = 10
 MULTI_TEMP_DIR = "./multifile-temp/"
@@ -86,7 +87,7 @@ def make_multifile(item):
     # }
     # We use a different multi-file for each estate and team combination (because these both influce arguments, and arguments are shared for all the multifile)
     # Estate and kingdom are passed on cmd line with '-V kingdom=xxx -V estate=yyy' and each team has a different include folder passed with `--jpath`
-    multifilename = os.path.join(MULTI_TEMP_DIR, "multi_"+item.kingdom+"_"+item.estate+"_" + item.team_dir + ".jsonnet")
+    multifilename = os.path.join(MULTI_TEMP_DIR, "multi_"+item.kingdom+"_"+item.estate+"_" + item.team_dir + "_" + str(uuid.uuid1()) + ".jsonnet")
     with open(multifilename, 'w') as multifile:
         multifile.write("{\n")
         for inFile in item.jsonnet_files:
@@ -180,13 +181,19 @@ def run_all_work_items(work_item_list):
 def make_work_items(templates_args, output_root_dir, control_estates, label_filter_map):
     ret = []
     for template_arg in templates_args:
+      project_estate_file = os.path.join(template_arg, "estate-filter.json")
+      template_estates = None
+      if os.path.isfile(project_estate_file):
+          project_estates = json.load(open(project_estate_file))["kingdomEstates"]
+          template_estates = list(filter_estates(project_estates, control_estates))
       if os.path.isdir(template_arg):
           template_list = [os.path.join(dp, f) for dp, dn, filenames in os.walk(template_arg) for f in filenames if os.path.splitext(f)[1] == '.jsonnet']
       elif os.path.isfile(template_arg):
           template_list = [template_arg]
       else:
           template_list = []
-      for ce in control_estates:
+
+      for ce in template_estates or control_estates:
             kingdom, estate = ce.split("/")
             full_out_dir = os.path.join(output_root_dir, kingdom, estate)
 
