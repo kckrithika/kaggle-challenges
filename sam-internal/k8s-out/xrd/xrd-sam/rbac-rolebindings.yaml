@@ -728,13 +728,13 @@ items:
     name: minion:role
   subjects:
   - kind: User
-    name: sec-samminionsdstools1-1-xrd.eng.sfdc.net
+    name: shared-samminionsdstools1-1-xrd.eng.sfdc.net
   - kind: User
-    name: sec-samminionsdstools1-2-xrd.eng.sfdc.net
+    name: shared-samminionsdstools1-2-xrd.eng.sfdc.net
   - kind: User
-    name: sec-samminionsdstools2-1-xrd.eng.sfdc.net
+    name: shared-samminionsdstools2-1-xrd.eng.sfdc.net
   - kind: User
-    name: sec-samminionsdstools2-2-xrd.eng.sfdc.net
+    name: shared-samminionsdstools2-2-xrd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -746,6 +746,6 @@ items:
     name: minion:role
   subjects:
   - kind: User
-    name: sec-samminionsdstoolsdev1-1-xrd.eng.sfdc.net
+    name: shared-samminionsdstoolsdev1-1-xrd.eng.sfdc.net
 kind: List
 metadata: {}
