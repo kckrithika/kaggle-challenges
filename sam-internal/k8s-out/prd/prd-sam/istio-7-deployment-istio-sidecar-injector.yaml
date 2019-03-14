@@ -80,7 +80,7 @@ spec:
         - --healthCheckInterval=2s
         - --healthCheckFile=/health
         - --port=15009
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.0.2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:a0383b6d85b9e2742777611a33ac778020220ab8
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
