@@ -58,6 +58,8 @@ system:
         value: /certs/ca.pem
       - name: OBS_REPORTCOLLECTOR_WHITELIST
         value: netmgt.nhal_client,netmgt.sandman,sandman
+      - name: OBS_REPORTCOLLECTOR_WHITELISTUNTRUSTED
+        value: infrastructure-observer.system
       - name: OBS_REPORTCOLLECTOR_CERTPATH
         value: /certs/client/certificates/client.pem
       - name: OBS_REPORTCOLLECTOR_KEYPATH
@@ -86,6 +88,7 @@ system:
         export OBS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
         export OBS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
         export OBS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
+
         /observationservice
       "]
     volumes:
