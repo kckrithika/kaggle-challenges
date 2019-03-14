@@ -1,4 +1,10 @@
 apps:
+  moana-ph2:
+  - ph2/ph2-sam_datapool
+  moana-phx:
+  - phx/phx-sam_datapool
+  moana-iad:
+  - iad/iad-sam_datapool
   moana-hnd:
   - hnd/hnd-sam_datapool
   moana-frf:
@@ -16,24 +22,9 @@ apps:
 
 
   moana-prd-release:
-    - prd/prd-sam_datapool
+  - prd/prd-sam_datapool
   moana-prd-master:
-    - prd/prd-sam_datapool
-
-  datapool-iad:
-  - iad/iad-sam_datapool
-  spark-engine-iad:
-  - iad/iad-sam_datapool
-
-  datapool-phx:
-  - phx/phx-sam_datapool
-  spark-engine-phx:
-  - phx/phx-sam_datapool
-
-  datapool-ph2:
-  - ph2/ph2-sam_datapool
-  spark-engine-ph2:
-  - ph2/ph2-sam_datapool
+  - prd/prd-sam_datapool
 
 
 
