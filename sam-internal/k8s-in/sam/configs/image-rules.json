@@ -3,7 +3,7 @@
     {
       "match": "^(ops[0]?-artifactrepo1-0-([a-z0-9]{3}).(?:slb|data).sfdc.net)/dva/flowsnake",
       "note": "[Temporary] Flowsnake has a large number of docker images in each kingdom that causes very slow PRs.  Skip these until we speed up image checks",
-      "skip_image_exist_check": true
+      "skip_image_exist_check": false
     },
     {
       "match": "^(ops[0]?-artifactrepo1-0-prd.data.sfdc.net)",
