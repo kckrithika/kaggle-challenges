@@ -67,7 +67,7 @@ else
                 "watchdog-spark-operator.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-operator.libsonnet"),
             } + if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_spark_s3") then
             {
-                "watchdog-spark-s3.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-s3.libsonnet"), 
+                "watchdog-spark-s3.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-s3.libsonnet"),
             } else {},
         },
         # ConfigMap containing the logic of the watchdog
@@ -107,7 +107,7 @@ else
                 |||,"{{KUBEAPI}}",flowsnakeconfig.api_slb_fqdn),
             } else {})
         }
-    ] else 
+    ] else
     [
         # ConfigMap containing the logic and resources of the watchdog
         {
@@ -273,8 +273,8 @@ else
                                   {
                                       configMap: {
                                           name: "watchdog-spark-on-k8s-script-configmap",
-                                          # rw-r--r-- 644 octal, 420 decimal
-                                          defaultMode: 420,
+                                          # rwx-r-xr-x 755 octal, 493 decimal
+                                          defaultMode: 493,
                                       },
                                       name: "watchdog-spark-scripts",
                                   },
@@ -301,8 +301,8 @@ else
                                 name: "watchdog-spark-operator",
                             },
                         ]) + [
-                            watchdog.sfdchosts_volume 
-                        ] 
+                            watchdog.sfdchosts_volume
+                        ]
                     },
                 }
             }

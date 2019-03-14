@@ -349,7 +349,7 @@ items:
             name: watchdog-spark-on-k8s-spec-configmap
           name: watchdog-spark-specs
         - configMap:
-            defaultMode: 420
+            defaultMode: 493
             name: watchdog-spark-on-k8s-script-configmap
           name: watchdog-spark-scripts
         - configMap:
