@@ -9,7 +9,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local hosts = import "configs/hosts.jsonnet";
 
 if configs.estate == "prd-samdev" then {
-    kind: "Deployment",
+    kind: "DaemonSet",
     spec: {
         template: {
             spec: {
@@ -42,6 +42,10 @@ if configs.estate == "prd-samdev" then {
                         ],
                         volumeMounts: configs.filter_empty([
                                     {
+                                        name: "cowdata",
+                                        mountPath: "/cowdata",
+                                    },
+                                    {
                                         name: "images",
                                         mountPath: "/opt/kubernetes/images",
                                     },
@@ -52,15 +56,18 @@ if configs.estate == "prd-samdev" then {
                         ]),
                     },
                 ],
-                nodeSelector: {
-                    "kubernetes.io/hostname": "shared0-samdevcompute1-1-prd.eng.sfdc.net",
-                },
                 volumes: configs.filter_empty([
                     {
                         hostPath: {
                             path: "/opt/kubernetes/images/",
                         },
                         name: "images",
+                    },
+                    {
+                        hostPath: {
+                            path: "/cowdata/",
+                        },
+                        name: "cowdata",
                     },
                     {
                         hostPath: {
