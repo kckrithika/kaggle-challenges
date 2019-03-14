@@ -38,9 +38,10 @@ local samreleases = import "samreleases.json";
         "ttd,ttd-sam,samcontrol-deployer,hypersam": "sam-0002532-de840aef",
         "hio,hio-sam,samcontrol-deployer,hypersam": "sam-0002532-de840aef",
 
-        #[lizhang] Enable etcd healthy info persist to a local file in prd-samdev and prd-samtest
+        #[lizhang] Enable etcd healthy info persist to a local file in prd-samdev, prd-samtest and prd-sam
         "prd,prd-samdev,watchdog-etcd,hypersam": "sam-0002535-9d228ded",
         "prd,prd-samtest,watchdog-etcd,hypersam": "sam-0002535-9d228ded",
+        "prd,prd-sam,watchdog-etcd,hypersam": "sam-0002535-9d228ded",
         },
 
     ### Per-phase image tags have been moved to samreleases.json

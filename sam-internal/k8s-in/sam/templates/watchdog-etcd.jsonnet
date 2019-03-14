@@ -23,7 +23,7 @@ configs.daemonSetBase("sam") {
                             configs.sfdchosts_volume_mount,
                             configs.cert_volume_mount,
                             configs.config_volume_mount,
-                            (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then configs.var_tmp_volume_mount else {}),
+                            (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then configs.var_tmp_volume_mount else {}),
                         ]),
                         name: "watchdog",
                         resources: {
@@ -42,7 +42,7 @@ configs.daemonSetBase("sam") {
                     configs.sfdchosts_volume,
                     configs.cert_volume,
                     configs.config_volume("watchdog"),
-                    (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then configs.var_tmp_volume else {}),
+                    (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then configs.var_tmp_volume else {}),
                 ]),
                 # We are still using flannel in minion pools in public cloud, so we need to keep an eye on etcd that holds its config
                 # Everywhere else, we just care about the KubeApi etcd nodes
