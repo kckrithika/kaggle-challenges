@@ -1,0 +1,47 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - aborra@salesforce.com
+        - hmittal@salesforce.com
+        - rpothana@salesforce.com
+    functions:
+    - name: tunifai-func
+      count: 2
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: prd-tunifai
+        image: dva/casp/tunifai_strata:jenkins-CASP-tunifai-dev-4-itest
+        ports:
+        - name: http
+          containerPort: 5000
+          hostPort: 5000
+        env:
+        - name: MYSQL_HOST_PORT
+          value: "shared0-samminionwarden1-1-prd.eng.sfdc.net:7015"
+        volumeMounts:
+        - mountPath: /mysql-secrets/
+          name: mysql-credentials
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 120
+      volumes:
+      - name: mysql-credentials
+        k4aSecret:
+          secretName: mysql-secrets
+
+    loadbalancers:
+    - lbname: tunifai-lb
+      function: tunifai-func
+      slbEnabled: true
+      ports:
+        - port: 80
+          targetport: 5000
