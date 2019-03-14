@@ -65,7 +65,7 @@
       strategy: {
         type: "RollingUpdate",
         rollingUpdate: {
-          maxUnavailable: (if slbflights.permitMoreUnavailable && replicas >= 4 then 2 else 1),
+          maxUnavailable: (if slbflights.permitMoreUnavailable && replicas >= 8 then "25%" else 1),
           maxSurge: 0,
         },
       },
