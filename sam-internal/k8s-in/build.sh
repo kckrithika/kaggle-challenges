@@ -70,20 +70,11 @@ else
   ${SAMBINDIR}/manifestctl generate-pool-list --in ../pools/ --out  ../k8s-in/sam/configs/generated-pools.jsonnet
 fi
 
-./parallel_build.py --src=sam/templates/,sdn/templates/,slb/templates/,storage/templates/,tnrp/templates,dva-collection/templates,topology-svc/templates --out=../k8s-out/ --pools=../pools/ --estatefilter=$1 --labelfilterfile=samlabelfilter.json
+./parallel_build.py --src=sam/templates/,sdn/templates/,slb/templates/,storage/templates/,tnrp/templates,dva-collection/templates,topology-svc/templates,service-mesh/templates,service-mesh/sherpa-injector/templates,service-mesh/istio-mesh-webhook/templates --out=../k8s-out/ --pools=../pools/ --estatefilter=$1 --labelfilterfile=samlabelfilter.json
 
 ./parallel_build.py --src=flowsnake/templates,sdn/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeEstates.json --estatefilter=$1
 # Skip SDN templates for Minikube
 ./parallel_build.py --src=flowsnake/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeMinikubeEstates.json --estatefilter=$1
-
-# Service Mesh - Istio Pilot
-./parallel_build.py --src=service-mesh/templates --out=../k8s-out/ --pools=service-mesh/istio-pilot-estates.json --estatefilter=$1
-
-# Service Mesh - Sherpa Injector
-./parallel_build.py --src=service-mesh/sherpa-injector/templates --out=../k8s-out/ --pools=service-mesh/sherpa-injector/sherpa-injector-estates.json --estatefilter=$1
-
-# Service Mesh - Istio Mesh Webhook
-./parallel_build.py --src=service-mesh/istio-mesh-webhook/templates --out=../k8s-out/ --pools=service-mesh/istio-mesh-webhook/istio-mesh-webhook-estates.json --estatefilter=$1
 
 ./parallel_build.py --src=sam/templates/,slb/templates/ --out=../k8s-out/ --pools=vpod/vpodEstates.json --estatefilter=$1
 
