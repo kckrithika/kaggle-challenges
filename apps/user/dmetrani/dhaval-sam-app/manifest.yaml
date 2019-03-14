@@ -31,10 +31,10 @@ system:
         value: "gre-alerts"
       - name: REFOCUS_SLACK_BOT_USER
         value: "GRE-Alerts"
-      - name: REFOCUS_API_KEY
-        value: "xxxx"
-      - name: HUBOT_SLACK_TOKEN
-        value: "xxxx"
+      # - name: REFOCUS_API_KEY
+      #   value: "xxxx"
+      # - name: HUBOT_SLACK_TOKEN
+      #   value: "xxxx"
       volumeMounts:
        - mountPath: /secrets/
          name: secretvol
