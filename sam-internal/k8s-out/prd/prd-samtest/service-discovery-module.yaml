@@ -28,7 +28,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2654-906a57b366f0769202f1ddf417b0130b69ac9acc
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2657-ead43191b654705039bcdc5012c304170ca01e36
         name: service-discovery-module
         volumeMounts:
         - mountPath: /etc/pki_service
