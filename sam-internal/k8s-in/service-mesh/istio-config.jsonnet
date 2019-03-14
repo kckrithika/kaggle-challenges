@@ -34,6 +34,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   sidecarInjectorImage: istioImages.sidecarinjector,
   metricsScraperImage: istioImages.metricsscraper,
   madkubImage: samimages.madkub,
+  permissionInitContainer: samimages.permissionInitContainer,
 
   ## Istio Config Objects. Represented as `"mcpIstioConfig.<name>"` in template.
   sidecarInjectorMadkubAnnotations: std.manifestJsonEx(

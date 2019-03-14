@@ -315,41 +315,40 @@ subjects:
 apiVersion: v1
 data:
   config: "policy: disabled\ntemplate: |-\n  initContainers:\n  - name: istio-init\n
-    \   image: \"ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:1.0.2\"\n
-    \   args:\n    - \"-p\"\n    - [[ .MeshConfig.ProxyListenPort ]]\n    - \"-u\"\n
-    \   - 1337\n    - \"-m\"\n    - [[ or (index .ObjectMeta.Annotations \"sidecar.istio.io/interceptionMode\")
-    .ProxyConfig.InterceptionMode.String ]]\n    - \"-i\"\n    [[ if (isset .ObjectMeta.Annotations
-    \"traffic.sidecar.istio.io/includeOutboundIPRanges\") -]]\n    - \"[[ index .ObjectMeta.Annotations
-    \"traffic.sidecar.istio.io/includeOutboundIPRanges\"  ]]\"\n    [[ else -]]\n
-    \   - \"127.1.2.3/32\"\n    [[ end -]]\n    - \"-x\"\n    [[ if (isset .ObjectMeta.Annotations
-    \"traffic.sidecar.istio.io/excludeOutboundIPRanges\") -]]\n    - \"[[ index .ObjectMeta.Annotations
-    \"traffic.sidecar.istio.io/excludeOutboundIPRanges\"  ]]\"\n    [[ else -]]\n
-    \   - \"\"\n    [[ end -]]\n    - \"-b\"\n    [[ if (isset .ObjectMeta.Annotations
-    \"traffic.sidecar.istio.io/includeInboundPorts\") -]]\n    - \"[[ index .ObjectMeta.Annotations
-    \"traffic.sidecar.istio.io/includeInboundPorts\"  ]]\"\n    [[ else -]]\n    -
-    [[ range .Spec.Containers -]][[ range .Ports -]][[ .ContainerPort -]], [[ end
-    -]][[ end -]][[ end]]\n    - \"-d\"\n    [[ if (isset .ObjectMeta.Annotations
-    \"traffic.sidecar.istio.io/excludeInboundPorts\") -]]\n    - \"[[ index .ObjectMeta.Annotations
-    \"traffic.sidecar.istio.io/excludeInboundPorts\" ]]\"\n    [[ else -]]\n    -
-    \"\"\n    [[ end -]]\n    imagePullPolicy: IfNotPresent\n    securityContext:\n
-    \     runAsNonRoot: false\n      runAsUser: 0\n      capabilities:\n        add:\n
-    \       - NET_ADMIN\n      restartPolicy: Always\n  \n  containers:\n  - name:
-    istio-proxy\n    image: [[ if (isset .ObjectMeta.Annotations \"sidecar.istio.io/proxyImage\")
+    \   image: %(proxyInitImage)s\n    args:\n    - \"-p\"\n    - [[ .MeshConfig.ProxyListenPort
+    ]]\n    - \"-u\"\n    - 1337\n    - \"-m\"\n    - [[ or (index .ObjectMeta.Annotations
+    \"sidecar.istio.io/interceptionMode\") .ProxyConfig.InterceptionMode.String ]]\n
+    \   - \"-i\"\n    [[ if (isset .ObjectMeta.Annotations \"traffic.sidecar.istio.io/includeOutboundIPRanges\")
+    -]]\n    - \"[[ index .ObjectMeta.Annotations \"traffic.sidecar.istio.io/includeOutboundIPRanges\"
+    \ ]]\"\n    [[ else -]]\n    - \"127.1.2.3/32\"\n    [[ end -]]\n    - \"-x\"\n
+    \   [[ if (isset .ObjectMeta.Annotations \"traffic.sidecar.istio.io/excludeOutboundIPRanges\")
+    -]]\n    - \"[[ index .ObjectMeta.Annotations \"traffic.sidecar.istio.io/excludeOutboundIPRanges\"
+    \ ]]\"\n    [[ else -]]\n    - \"\"\n    [[ end -]]\n    - \"-b\"\n    [[ if (isset
+    .ObjectMeta.Annotations \"traffic.sidecar.istio.io/includeInboundPorts\") -]]\n
+    \   - \"[[ index .ObjectMeta.Annotations \"traffic.sidecar.istio.io/includeInboundPorts\"
+    \ ]]\"\n    [[ else -]]\n    - [[ range .Spec.Containers -]][[ range .Ports -]][[
+    .ContainerPort -]], [[ end -]][[ end -]][[ end]]\n    - \"-d\"\n    [[ if (isset
+    .ObjectMeta.Annotations \"traffic.sidecar.istio.io/excludeInboundPorts\") -]]\n
+    \   - \"[[ index .ObjectMeta.Annotations \"traffic.sidecar.istio.io/excludeInboundPorts\"
+    ]]\"\n    [[ else -]]\n    - \"\"\n    [[ end -]]\n    imagePullPolicy: IfNotPresent\n
+    \   securityContext:\n      runAsNonRoot: false\n      runAsUser: 0\n      capabilities:\n
+    \       add:\n        - NET_ADMIN\n      restartPolicy: Always\n  \n  containers:\n
+    \ - name: istio-proxy\n    image: [[ if (isset .ObjectMeta.Annotations \"sidecar.istio.io/proxyImage\")
     -]]\n    \"[[ index .ObjectMeta.Annotations \"sidecar.istio.io/proxyImage\" ]]\"\n
-    \   [[ else -]]\n    ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:50d25caed2638ed29259a2be55ba2dc0ceb49b00\n
-    \   [[ end -]]\n    args:\n    - proxy\n    - sidecar\n    - --configPath\n    -
-    [[ .ProxyConfig.ConfigPath ]]\n    - --binaryPath\n    - [[ .ProxyConfig.BinaryPath
-    ]]\n    - --serviceCluster\n    [[ if ne \"\" (index .ObjectMeta.Labels \"app\")
-    -]]\n    - [[ index .ObjectMeta.Labels \"app\" ]]\n    [[ else -]]\n    - \"istio-proxy\"\n
-    \   [[ end -]]\n    - --drainDuration\n    - [[ formatDuration .ProxyConfig.DrainDuration
-    ]]\n    - --parentShutdownDuration\n    - [[ formatDuration .ProxyConfig.ParentShutdownDuration
-    ]]\n    - --discoveryAddress\n    - [[ .ProxyConfig.DiscoveryAddress ]]\n    -
-    --discoveryRefreshDelay\n    - [[ formatDuration .ProxyConfig.DiscoveryRefreshDelay
-    ]]\n    - --zipkinAddress\n    - [[ .ProxyConfig.ZipkinAddress ]]\n    - --connectTimeout\n
-    \   - [[ formatDuration .ProxyConfig.ConnectTimeout ]]\n    - --proxyAdminPort\n
-    \   - [[ .ProxyConfig.ProxyAdminPort ]]\n    [[ if gt .ProxyConfig.Concurrency
-    0 -]]\n    - --concurrency\n    - [[ .ProxyConfig.Concurrency ]]\n    [[ end -]]\n
-    \   - --controlPlaneAuthPolicy\n    - [[ or (index .ObjectMeta.Annotations \"sidecar.istio.io/controlPlaneAuthPolicy\")
+    \   [[ else -]]\n    %(proxyImage)s\n    [[ end -]]\n    args:\n    - proxy\n
+    \   - sidecar\n    - --configPath\n    - [[ .ProxyConfig.ConfigPath ]]\n    -
+    --binaryPath\n    - [[ .ProxyConfig.BinaryPath ]]\n    - --serviceCluster\n    [[
+    if ne \"\" (index .ObjectMeta.Labels \"app\") -]]\n    - [[ index .ObjectMeta.Labels
+    \"app\" ]]\n    [[ else -]]\n    - \"istio-proxy\"\n    [[ end -]]\n    - --drainDuration\n
+    \   - [[ formatDuration .ProxyConfig.DrainDuration ]]\n    - --parentShutdownDuration\n
+    \   - [[ formatDuration .ProxyConfig.ParentShutdownDuration ]]\n    - --discoveryAddress\n
+    \   - [[ .ProxyConfig.DiscoveryAddress ]]\n    - --discoveryRefreshDelay\n    -
+    [[ formatDuration .ProxyConfig.DiscoveryRefreshDelay ]]\n    - --zipkinAddress\n
+    \   - [[ .ProxyConfig.ZipkinAddress ]]\n    - --connectTimeout\n    - [[ formatDuration
+    .ProxyConfig.ConnectTimeout ]]\n    - --proxyAdminPort\n    - [[ .ProxyConfig.ProxyAdminPort
+    ]]\n    [[ if gt .ProxyConfig.Concurrency 0 -]]\n    - --concurrency\n    - [[
+    .ProxyConfig.Concurrency ]]\n    [[ end -]]\n    - --controlPlaneAuthPolicy\n
+    \   - [[ or (index .ObjectMeta.Annotations \"sidecar.istio.io/controlPlaneAuthPolicy\")
     .ProxyConfig.ControlPlaneAuthPolicy ]]\n    env:\n    - name: POD_NAME\n      valueFrom:\n
     \       fieldRef:\n          fieldPath: metadata.name\n    - name: POD_NAMESPACE\n
     \     valueFrom:\n        fieldRef:\n          fieldPath: metadata.namespace\n
@@ -728,7 +727,7 @@ spec:
           set -ex
           chmod 775 -R /client-cert && chown -R 7447:7447 /client-cert
           chmod 775 -R /server-cert && chown -R 7447:7447 /server-cert
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673
+        image: mcpIstioConfig.permissionInitContainer
         imagePullPolicy: Always
         name: permissionsetterinitcontainer
         securityContext:
