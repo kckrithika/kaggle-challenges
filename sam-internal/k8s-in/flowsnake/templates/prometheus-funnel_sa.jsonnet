@@ -28,7 +28,7 @@ else
             },
             roleRef: {
                 kind: "ClusterRole",
-                name: "view",
+                name: "prometheus-scraper-role",
                 apiGroup: "rbac.authorization.k8s.io",
             },
             subjects: [
@@ -36,6 +36,37 @@ else
                     kind: "ServiceAccount",
                     name: "prometheus-scraper",
                     namespace: "flowsnake",
+                },
+            ],
+        },
+        {
+            apiVersion: "rbac.authorization.k8s.io/v1",
+            kind: "ClusterRole",
+            metadata: {
+                name: "prometheus-scraper-role",
+                annotations: {
+                     "manifestctl.sam.data.sfdc.net/swagger": "disable",
+                },
+            },
+            rules: [
+                {
+                    apiGroups: [""],
+                    resources: ["pods", "nodes", "nodes/proxy", "customresourcedefinitions"],
+                    verbs: ["get", "list", "watch"],
+                },
+                {
+                    apiGroups: ["apiextensions.k8s.io"],
+                    resources: ["customresourcedefinitions"],
+                    verbs: ["get", "list", "watch"],
+                },
+                {
+                    apiGroups: ["sparkoperator.k8s.io"],
+                    resources: ["sparkapplications", "scheduledsparkapplications"],
+                    verbs: ["get", "list", "watch"],
+                },
+                {
+                    nonResourceURLs: ["/metrics", "/metrics/cadvisor"],
+                    verbs: ["get"],
                 },
             ],
         },
