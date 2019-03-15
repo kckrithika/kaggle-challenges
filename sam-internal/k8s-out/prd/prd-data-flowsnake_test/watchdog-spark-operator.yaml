@@ -361,6 +361,21 @@ items:
             defaultMode: 493
             name: watchdog-spark-on-k8s-script-configmap
           name: watchdog-spark-scripts
+        - emptyDir:
+            medium: Memory
+          name: datacerts
+        - emptyDir:
+            medium: Memory
+          name: tokens
+        - hostPath:
+            path: /etc/pki_service/ca
+          name: certificate-authority
+        - hostPath:
+            path: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+        - hostPath:
+            path: /etc/pki_service/platform/platform-client/keys
+          name: client-key
         - configMap:
             name: sfdchosts
           name: sfdchosts

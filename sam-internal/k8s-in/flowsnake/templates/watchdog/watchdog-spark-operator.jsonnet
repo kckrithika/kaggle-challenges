@@ -260,7 +260,7 @@ else
                                       },
                                       name: "watchdog-spark-scripts",
                                   },
-                              ]
+                              ] + (if test_impersonation then madkub_common.cert_volumes(cert_name) else [])
                         else  [
                             {
                                 configMap: {
