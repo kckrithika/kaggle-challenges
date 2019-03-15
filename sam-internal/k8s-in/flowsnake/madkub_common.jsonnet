@@ -120,8 +120,9 @@ local tokens_mount = {
 # Refresh container for Madkub - Reloads tokens at regular intervals, required for cert rotation
 #
 # cert_names parameter: see make_cert_config() comments for documentation
+# user: specificy uid that should own the certs; default root (0)
 #
-local refresher_container(cert_names) = {
+local refresher_container(cert_names, user=0) = {
     local certs = make_cert_config(cert_names),
     name: "sam-madkub-integration-refresher",
     args: [
@@ -199,13 +200,19 @@ local refresher_container(cert_names) = {
             },
         },
     ],
-};
+} + (if user == null || user == 0 then {} else {
+    securityContext: {
+        runAsNonRoot: true,
+        runAsUser: user,
+    },
+});
 
 # Init container for madkub - initializes connection to Madkub and loads initial certs.  Required for madkub integration
 #
 # cert_names parameter: see make_cert_config() comments for documentation
+# user: specificy uid that should own the certs; default root (0)
 #
-local init_container(cert_names) = {
+local init_container(cert_names, user=0) = {
     local certs = make_cert_config(cert_names),
     name: "sam-madkub-integration-init",
     args: [
@@ -280,7 +287,12 @@ local init_container(cert_names) = {
             },
         },
     ],
-};
+} + (if user == null || user == 0 then {} else {
+    securityContext: {
+        runAsNonRoot: true,
+        runAsUser: user,
+    },
+});
 
 ### Expose functions for use in other templates
 {
