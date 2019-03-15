@@ -27,6 +27,7 @@
   customlbname: horizon-staging-prd
   servers:
     - ina1shared0-infinsightapi2-1-prd.eng.sfdc.net
+    - shared0-infinsightdb1-1-xrd.eng.sfdc.net
   ports:
     - port: 443
       targetport: 443
