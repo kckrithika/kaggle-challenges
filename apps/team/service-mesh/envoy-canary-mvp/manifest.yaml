@@ -24,7 +24,7 @@ system:
         initialDelaySeconds: 5
         exec:
           command:
-            - "/opt/is-alive.sh"
+            - "/opt/beacon/is-alive.sh"
 
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
