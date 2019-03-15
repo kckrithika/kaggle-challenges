@@ -1,0 +1,15 @@
+apiVersion: v1
+system:
+  functions:
+  - name: disco-browser
+    count: 1
+    containers:
+    - name: disco-browser
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/configurator/disco-browser/disco-backend:disang-20190314
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - HEALTHY
