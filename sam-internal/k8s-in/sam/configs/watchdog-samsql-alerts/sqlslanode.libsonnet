@@ -37,9 +37,9 @@
               ) ss
               ) ss2
               WHERE
-              ((TotalCount >= 10 AND NotReadyPerc >=0.2)
+              ((TotalCount >= 10 AND NotReadyPerc >0.25)
               OR
-              (TotalCount < 10 AND NotReadyCount >=2))
+              (TotalCount < 10 AND NotReadyCount >2))
               "
               # add snooze conditions with expiration timestamp
               + "
