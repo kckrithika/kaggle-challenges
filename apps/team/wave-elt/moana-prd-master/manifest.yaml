@@ -2,14 +2,14 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-03-14 10:28:11.264042
-# from:  2ddfd6c31b73ea7499bcc8a47ee744719364eee5
-# by: mbyne
+# generated: 2019-03-15 20:14:51.876001
+# from:  
+# by: agitelman
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:jenkins-insights-WaveDataPool-master-32-itest
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:jenkins-insights-WaveDataPool-master-37-itest
       livenessProbe:
         exec:
           command: [ls]
@@ -31,7 +31,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/moana-driver:release-7-6cc9a0f
+      image: sfci/insights/moana-driver:master-15-516cc21
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -58,11 +58,11 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:jenkins-insights-WaveDataPool-master-32-itest'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:jenkins-insights-WaveDataPool-master-37-itest'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-master}
       - {name: DEPLOYMENT_ID, value: master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/datapoolservice:master-209-136d583
+      image: sfci/insights/datapoolservice:master-211-bc66587
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
