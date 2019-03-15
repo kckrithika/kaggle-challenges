@@ -19,7 +19,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-tcpdump
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2089-a16a9ed7295cc0087d8cc6ca0e585e94dc230c54
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
         name: slb-tcpdump-ipvs
         resources:
           limits:
