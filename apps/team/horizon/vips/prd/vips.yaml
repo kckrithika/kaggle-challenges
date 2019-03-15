@@ -38,6 +38,7 @@
   customlbname: horizon-staging-postgres-prd
   servers:
     - ina1shared0-infinsightapi2-1-prd.eng.sfdc.net
+    - shared0-infinsightdb1-1-xrd.eng.sfdc.net
   ports:
     - port: 5432
       targetport: 5432
