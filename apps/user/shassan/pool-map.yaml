@@ -6,3 +6,5 @@ apps:
   - prd/prd-sam
  my-sam-currencyservice:
   - prd/prd-sam
+ sam-spydrservice:
+  - prd/prd-sam
