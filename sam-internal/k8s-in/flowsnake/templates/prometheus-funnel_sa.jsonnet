@@ -43,7 +43,10 @@ else
             apiVersion: "rbac.authorization.k8s.io/v1",
             kind: "ClusterRole",
             metadata: {
-               name: "prometheus-scraper-role",
+                name: "prometheus-scraper-role",
+                annotations: {
+                     "manifestctl.sam.data.sfdc.net/swagger": "disable",
+                },
             },
             rules: [
                 {
