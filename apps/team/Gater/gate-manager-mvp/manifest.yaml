@@ -40,6 +40,8 @@ system:
         timeoutSeconds: 10
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+      args:
+        - --switchboard=switchboard.service-mesh.svc:15001
       ports:
       - name: http2-in
         containerPort: 7012
