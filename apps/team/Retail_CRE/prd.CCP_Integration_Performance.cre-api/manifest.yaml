@@ -31,6 +31,8 @@ system:
           value: cre-control-plane-ccp-perf.retail-cre.localhost.mesh.force.com:5443
         - name: LOG_JWT
           value: true
+        - name: HBASE_SUPER_TENANT_IDS_FLUSH
+          value: 00Dx00000005SuREAU,00Dx00000005SydEAE,00Dx00000005SyeEAE
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
