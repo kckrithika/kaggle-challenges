@@ -73,7 +73,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - /home/scone/is-alive.sh
+          - /opt/beacon/is-alive.sh
         initialDelaySeconds: 5
     volumes:
     - name: logvol
