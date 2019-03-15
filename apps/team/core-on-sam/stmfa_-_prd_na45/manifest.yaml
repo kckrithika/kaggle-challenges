@@ -45,7 +45,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17482286
+        value: oreapp
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -202,7 +202,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1552587252045516032
+        value: 1552689556088697088
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -224,7 +224,7 @@ system:
       - name: CURRENT_RELEASE_VERSION
         value: blue
       - name: NEW_RELEASE_VERSION
-        value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17482286
+        value: oreapp
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID

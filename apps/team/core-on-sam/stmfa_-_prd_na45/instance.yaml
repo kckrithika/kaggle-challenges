@@ -1,4 +1,4 @@
-color: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17482286
+color: oreapp
 db:
   connectionCount: 25
   hostName: gkr1ice3-db1-1-prd-vip.eng.sfdc.net
@@ -23,6 +23,6 @@ images:
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:d48544
 name: na45
-nonce: 1552587252045516000
+nonce: 1552689556088697000
 replicaCount: 1
 settingsSuperPod: sp2
