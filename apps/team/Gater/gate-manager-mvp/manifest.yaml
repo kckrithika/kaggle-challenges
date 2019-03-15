@@ -39,7 +39,7 @@ system:
         initialDelaySeconds: 60
         timeoutSeconds: 10
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      image: docker-devmvp/servicelibs/sherpa-envoy:1.0.4
       ports:
       - name: http2-in
         containerPort: 7012
@@ -66,7 +66,7 @@ system:
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
     - name: beacon
-      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      image: docker-devmvp/npshenichnyy/beacon:853c4db9f14805018be6f5e7607ffe65b5648822-201902081500
       args:
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
