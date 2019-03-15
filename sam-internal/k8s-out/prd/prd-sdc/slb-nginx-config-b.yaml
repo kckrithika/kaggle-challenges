@@ -535,21 +535,7 @@ spec:
       - command:
         - /sdn/slb-tcpdump
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2088-7ceff4228fef6177c35815de9fa3800ff546c463
-        name: slb-tcpdump-nginx
-        resources:
-          limits:
-            cpu: "0.5"
-            memory: 300Mi
-          requests:
-            cpu: "0.5"
-            memory: 300Mi
-        volumeMounts:
-        - mountPath: /config
-          name: config
-      - command:
-        - /sdn/slb-tcpdump
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2088-7ceff4228fef6177c35815de9fa3800ff546c463
-        name: slb-tcpdump-hsm-nginx
+        name: slb-tcpdump
         resources:
           limits:
             cpu: "0.5"

@@ -118,32 +118,12 @@ local afterSharedContainers = [
                       },
   ] + (if slbflights.slbTCPdumpEnabled then
                       [
-{
-                        image: slbimages.hyperslb,
-                        command: [
-                            "/sdn/slb-tcpdump",
-                        ],
-                        name: "slb-tcpdump-nginx",
-                        resources: {
-                            requests: {
-                                cpu: "0.5",
-                                memory: "300Mi",
-                            },
-                            limits: {
-                                cpu: "0.5",
-                                memory: "300Mi",
-                            },
-                        },
-                        volumeMounts: [
-                            configs.config_volume_mount,
-                        ],
-                        },
                         {
                         image: slbimages.hyperslb,
                         command: [
                             "/sdn/slb-tcpdump",
                         ],
-                        name: "slb-tcpdump-hsm-nginx",
+                        name: "slb-tcpdump",
                         resources: {
                             requests: {
                                 cpu: "0.5",
