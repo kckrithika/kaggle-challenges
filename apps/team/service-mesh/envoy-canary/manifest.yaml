@@ -25,7 +25,7 @@ system:
           command:
             - "/home/scone/is-alive.sh"
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
