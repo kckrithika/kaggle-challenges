@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_config = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 
@@ -76,6 +77,7 @@ configs.deploymentBase("flowsnake") {
               "--tagDefault=estate:" + estate,
               "--tagDefault=superpod:NONE",
               "--batchSize=512",
+              "--funnelUrl=" + flowsnake_config.funnel_endpoint,
             ],
             image: flowsnake_images.funnel_writer,
             name: "funnel-writer",

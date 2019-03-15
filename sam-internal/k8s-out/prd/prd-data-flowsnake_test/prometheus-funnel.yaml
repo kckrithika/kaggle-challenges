@@ -47,6 +47,7 @@ spec:
         - --tagDefault=estate:prd-data-flowsnake_test
         - --tagDefault=superpod:NONE
         - --batchSize=512
+        - --funnelUrl=http://ajna0-funnel1-0-prd.data.sfdc.net:80
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:jenkins-dva-transformation-prometheus-funnel-test_prep-7-itest
         livenessProbe:
           httpGet:
