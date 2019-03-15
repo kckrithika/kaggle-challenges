@@ -274,6 +274,9 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           name: sam-madkub-integration-refresher
           resources: {}
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 7337
           volumeMounts:
           - mountPath: /certs
             name: datacerts
@@ -333,6 +336,9 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           name: sam-madkub-integration-init
           resources: {}
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 7337
           volumeMounts:
           - mountPath: /certs
             name: datacerts

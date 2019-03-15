@@ -181,7 +181,8 @@ else
                         },
                     },
                     spec: (if test_impersonation then {
-                            initContainers: [ madkub_common.init_container(cert_name), ],
+                            # Watchdogs run as user sfdc (7337) per https://git.soma.salesforce.com/sam/sam/blob/master/docker/hypersam/Dockerfile
+                            initContainers: [ madkub_common.init_container(cert_name, user=7337), ],
                         } else {}) + {
                         restartPolicy: "Always",
                         hostNetwork: true,
@@ -239,7 +240,8 @@ else
                                     ]
                                 ),
                             },
-                        ] + if test_impersonation then [ madkub_common.refresher_container(cert_name) ] else [],
+                            # Watchdogs run as user sfdc (7337) per https://git.soma.salesforce.com/sam/sam/blob/master/docker/hypersam/Dockerfile
+                        ] + if test_impersonation then [ madkub_common.refresher_container(cert_name, user=7337) ] else [],
                         serviceAccount: "watchdog-spark-operator-serviceaccount",
                         serviceAccountName: "watchdog-spark-operator-serviceaccount",
                         volumes: [
