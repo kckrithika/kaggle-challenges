@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: devmvp-app-gcp
-    count: 1
+    count: 3
     identity:
       serviceName: app
       pod: devmvp
