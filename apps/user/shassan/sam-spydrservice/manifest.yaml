@@ -1,0 +1,21 @@
+apiVersion: v1
+system:
+  functions:
+  - name: mysamspydrservice
+    count: 1
+    containers:
+    - name: samspydrservice
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samspyderservice:shassan-20190315
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /index.html
+          port: 8080
+  loadbalancers:
+  - lbname: shassan-samspydrlb
+    function: mysamspydrservice
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
