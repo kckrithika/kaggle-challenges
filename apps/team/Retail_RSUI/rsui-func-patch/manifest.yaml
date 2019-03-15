@@ -73,6 +73,8 @@ system:
         value: stmfb
       - name: TENANT_SERVICE_ALLOWDATASOURCEADD
         value: true
+      - name: TENANT_CANONICAL
+        value: mds/stmfb/ST0000000000001
       - name: CRE_SERVER_TARGET
         value: http://cre-api-ccp-stage.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
