@@ -75,7 +75,7 @@ configs.deploymentBase("flowsnake") {
               "--tagDefault=datacenter:" + kingdom,
               "--tagDefault=estate:" + estate,
               "--tagDefault=superpod:NONE",
-              "--batch_size=512",
+              "--batchSize=512",
             ],
             image: flowsnake_images.funnel_writer,
             name: "funnel-writer",
