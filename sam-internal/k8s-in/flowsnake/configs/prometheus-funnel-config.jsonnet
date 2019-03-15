@@ -143,6 +143,51 @@ local kingdom = std.extVar("kingdom");
           "tls_config": {
             "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
           }
+        },
+        /*
+        {
+          "bearer_token_file": "/var/run/secrets/kubernetes.io/serviceaccount/token",
+          "job_name": "pod_metrics",
+          "scheme": "https",
+          "kubernetes_sd_configs": [
+            {
+              "role": "node",
+               "namespaces": {
+                 "names": [
+                   "flowsnake"
+                 ]
+               }
+            }
+          ],
+          "relabel_configs": [
+              { "target_label": "__address__",
+                "replacement": "kubernetes.default.svc:443",
+              },
+              {
+                "source_labels": [
+                  "__meta_kubernetes_node_name"
+                ],
+                "replacement": "/api/v1/nodes/${1}/proxy/metrics/cadvisor",
+                "target_label": "__metrics_path__",
+              },
+              {
+                "source_labels": [
+                  "__meta_kubernetes_node_name"
+                ],
+                "target_label": "device"
+              }
+          ],
+          "metric_relabel_configs": [
+                { "source_labels": ["namespace"],
+                  "action": "keep",
+                  "regex" : "flowsnake*"
+                }
+          ],
+          "scrape_interval": "60s",
+          "tls_config": {
+            "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+          }
         }
+        */
     ]
 }
