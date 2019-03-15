@@ -116,7 +116,29 @@ local afterSharedContainers = [
                           slbconfigs.node_name_env,
                         ],
                       },
-],
+  ] + (if slbflights.slbTCPdumpEnabled then
+                      [
+                        {
+                        image: slbimages.hyperslb,
+                        command: [
+                            "/sdn/slb-tcpdump",
+                        ],
+                        name: "slb-tcpdump",
+                        resources: {
+                            requests: {
+                                cpu: "0.5",
+                                memory: "300Mi",
+                            },
+                            limits: {
+                                cpu: "0.5",
+                                memory: "300Mi",
+                            },
+                        },
+                        volumeMounts: [
+                            configs.config_volume_mount,
+                        ],
+                        },
+] else []),
 
   // The nginx config wipe init container runs when a new nginx pod is first scheduled to a node.
   // It erases any files in the config directory, ensuring that any stale service config / block files
@@ -173,7 +195,10 @@ local afterSharedContainers = [
                    slbconfigs.nginx.target_config_volume,
                    slbconfigs.nginx.customer_certs_volume,
                    slbconfigs.nginx.tlsparams_volume,
-                 ]
+                   ]
+                   + (if slbflights.slbTCPdumpEnabled then
+                    [configs.config_volume(proxyName)]
+                   else [])
 ),
                  initContainers: std.prune([
                    madkub.madkubInitContainer(slbconfigs.nginx.certDirs),

@@ -7,8 +7,7 @@ local tcpdumpbaseservice = import "slb-tcpdump-base-configmap.libsonnet";
 local Command = "-i eth0";
 local Duration = "1m";
 local Packetcapture = true;
-local ProxyName = "slb-tcpdump-ipvs";
 
 if slbconfigs.isSlbEstate && slbflights.slbTCPdumpEnabled then
-    tcpdumpbaseservice.slbtcpdumpService(Command, Duration, Packetcapture, ProxyName) {
+    tcpdumpbaseservice.slbtcpdumpService(Command, Duration, Packetcapture, slbconfigs.nginxProxyName) {
 } else "SKIP"
