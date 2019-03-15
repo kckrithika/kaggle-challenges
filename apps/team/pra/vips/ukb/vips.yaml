@@ -1,0 +1,66 @@
+- lbname: pra-mariadb-ukb
+  customlbname: pra-mariadb-ukb
+  servers:
+  - ops0-praccn1-1-ukb.ops.sfdc.net
+  ports:
+  - port: 3306
+    targetport: 3306
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-neutron-ukb
+  customlbname: pra-neutron-ukb
+  servers:
+  - ops0-praccn1-1-ukb.ops.sfdc.net
+  - ops0-praccn2-1-ukb.ops.sfdc.net
+  ports:
+  - port: 9696
+    targetport: 9696
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-keystone-apache-ukb
+  customlbname: pra-keystone-apache-ukb
+  servers:
+  - ops0-praccn1-1-ukb.ops.sfdc.net
+  - ops0-praccn2-1-ukb.ops.sfdc.net
+  ports:
+  - port: 5000
+    targetport: 5000
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-keystone-admin-ukb
+  customlbname: pra-keystone-admin-ukb
+  servers:
+  - ops0-praccn1-1-ukb.ops.sfdc.net
+  - ops0-praccn2-1-ukb.ops.sfdc.net
+  ports:
+  - port: 35357
+    targetport: 35357
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-glance-api-ukb
+  customlbname: pra-glance-api-ukb
+  servers:
+  - ops0-praccn1-1-ukb.ops.sfdc.net
+  - ops0-praccn2-1-ukb.ops.sfdc.net
+  ports:
+  - port: 9292
+    targetport: 9292
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-nova-ukb
+  customlbname: pra-nova-ukb
+  servers:
+  - ops0-praccn1-1-ukb.ops.sfdc.net
+  - ops0-praccn2-1-ukb.ops.sfdc.net
+  ports:
+  - port: 8774
+    targetport: 8774
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+
