@@ -69,7 +69,7 @@ system:
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:f804d14
       args:
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
       livenessProbe:
         exec:
           command:
