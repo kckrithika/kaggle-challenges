@@ -8,8 +8,10 @@ system:
       k4aSecret:
         secretName: argfocus.json
     containers:
-    - name: ampminus
+    - name: argfocus
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/argfocus:4
+      command: ['/bin/sleep']
+      args: ['9999']
       livenessProbe:
         exec:
           command:
