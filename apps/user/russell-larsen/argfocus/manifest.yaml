@@ -9,9 +9,7 @@ system:
         secretName: argfocus.json
     containers:
     - name: argfocus
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/argfocus:4
-      command: ['/bin/sleep']
-      args: ['9999']
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/argfocus:5
       livenessProbe:
         exec:
           command:
