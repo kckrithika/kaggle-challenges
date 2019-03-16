@@ -70,7 +70,6 @@ else
                 "watchdog-spark-s3.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-s3.libsonnet"),
             } else {}) + (if test_impersonation then
             {
-                "watchdog-spark-impersonation.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-impersonation.libsonnet"),
                 "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-specs/kubeconfig-impersonation-proxy.libsonnet"),
             } else {})
         },
@@ -85,8 +84,7 @@ else
             data: {
                 "check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh"
             } + (if test_impersonation then {
-                # Eventually use this script everywhere, but keep separate until confirmed working in prd-test
-                "check-spark-operator-v2.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-v2.sh",
+                "check-impersonation.sh": importstr "spark-on-k8s-canary-scripts/check-impersonation.sh",
             } else {})
         }
     ] else

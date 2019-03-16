@@ -43,16 +43,6 @@ items:
         user:
           client-certificate: /certs/client/certificates/client.pem
           client-key: /certs/client/keys/client-key.pem
-    watchdog-spark-impersonation.json: '{"apiVersion": "sparkoperator.k8s.io/v1beta1",
-      "kind": "SparkApplication", "metadata": {"name": "watchdog-spark-impersonation",
-      "namespace": "flowsnake-watchdog"}, "spec": {"deps": {"jars": ["local:///sample-apps/sample-spark-operator/extra-jars/*"]},
-      "driver": {"coreLimit": "200m", "cores": 0.10000000000000001, "labels": {"version":
-      "2.4.0"}, "memory": "512m", "serviceAccount": "spark-driver-flowsnake-watchdog"},
-      "executor": {"cores": 1, "instances": 1, "labels": {"version": "2.4.0"}, "memory":
-      "512m"}, "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
-      "imagePullPolicy": "Always", "mainApplicationFile": "local:///sample-apps/sample-spark-operator/sample-spark-operator.jar",
-      "mainClass": "org.apache.spark.examples.SparkPi", "mode": "cluster", "restartPolicy":
-      {"type": "Never"}, "sparkVersion": "", "type": "Scala"}}'
     watchdog-spark-operator.json: '{"apiVersion": "sparkoperator.k8s.io/v1beta1",
       "kind": "SparkApplication", "metadata": {"name": "watchdog-spark-operator",
       "namespace": "flowsnake-watchdog"}, "spec": {"deps": {"jars": ["local:///sample-apps/sample-spark-operator/extra-jars/*"]},
@@ -69,7 +59,20 @@ items:
     namespace: flowsnake
 - apiVersion: v1
   data:
-    check-spark-operator-v2.sh: |
+    check-impersonation.sh: |
+      #!/usr/bin/bash
+
+      # This test actually does not involve Spark applications at all, but it is part of verifying the Flowsnake v2 offering.
+      # This test performs a minimal interaction with the Kubernetes API to verify connectivity, authentication, and
+      # authorization.
+
+      KUBECONFIG="$1"
+
+      # Success of this command demonstrates successful connection via impersonation proxy and mapping to
+      # user account flowsnake_test.flowsnake-watchdog (which in turn is bound to flowsnake-client-flowsnake-watchdog-Role)
+      # (Success does not depend on whether there exist any sparkapplication resources in the namespace)
+      kubectl -n flowsnake-watchdog get sparkapplications
+    check-spark-operator.sh: |
       #!/usr/bin/bash
       set -o nounset
       set -o errexit
@@ -98,45 +101,6 @@ items:
       esac
       done
       set -- "${POSITIONAL[@]}" # restore positional parameters
-
-      kcfw() {
-        kubectl -n flowsnake-watchdog "$@"
-      }
-
-      SPEC=$1
-      APP_NAME=$(python -c 'import json,sys; print json.load(sys.stdin)["metadata"]["name"]' < $SPEC)
-      SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
-
-      echo "Cleaning up $APP_NAME resources from prior runs"
-      # || true because exit code 1 if spark application can't be found.
-      kcfw delete sparkapplication $APP_NAME || true
-      # kubectl returns success even if no pods match the label selector. This is helpful,
-      # this will have the side-effect of aborting the script early if it cannot access kubeapi.
-      kcfw delete pod -l $SELECTOR
-      # Wait for pods from prior runs to delete.
-      while ! $(kcfw get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
-
-      echo "Creating SparkApplication $APP_NAME"
-      kcfw create -f $SPEC
-
-      echo "Waiting for SparkApplication $APP_NAME to complete"
-      # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
-      while ! $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep -P '(COMPLETED|FAILED)' > /dev/null); do sleep 1; done;
-      # This log dump does not work. Missing RBAC perms to view completed pods or to view logs? Disable for now.
-      # echo ---- Begin Spark Driver Log ----
-      # kcfw logs $(kcfw get pod -l $SELECTOR -o name) || true
-      # echo ---- End Spark Driver Log ----
-      echo "Terminal SparkApplication $APP_NAME state is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}')"
-      # Test successful iff final state is COMPLETED. Use exit code from grep.
-      kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep COMPLETED > /dev/null
-    check-spark-operator.sh: |
-      #!/usr/bin/bash
-      set -o nounset
-      set -o errexit
-      set -o pipefail
-
-      # Disable use of SAM's custom kubeconfig
-      unset KUBECONFIG
 
       kcfw() {
         kubectl -n flowsnake-watchdog "$@"
