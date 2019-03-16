@@ -19,11 +19,6 @@ system:
       - --logging.level.minimum = INFO
       - --caas.client.loglevel=FINER
       - --debug
-      # Associate the container's /log directory to a logical volume. The Dockerfile sets logging.dir to this directory
-      # and this volume mount is mapped to a host directory in volumes section at the end of the manifest. 
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
       ports:
       - name: http1
         containerPort: 7022
@@ -74,9 +69,6 @@ system:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
     volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-acs/logs
     - name: tls-client-cert
       maddogCert:
         type: client
@@ -87,7 +79,6 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxUnavailable: 1
-
   - name: acs-pdp
     count: 5
     containers:
@@ -102,11 +93,6 @@ system:
       - --logging.level.minimum = INFO
       - --caas.client.loglevel=FINER
       - --debug
-      # Associate the container's /log directory to a logical volume. The Dockerfile sets logging.dir to this directory
-      # and this volume mount is mapped to a host directory in volumes section below. 
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
       ports:
       - name: http1
         containerPort: 7022
@@ -156,9 +142,6 @@ system:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
     volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-acs/logs
     - name: tls-client-cert
       maddogCert:
         type: client
@@ -169,7 +152,6 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxUnavailable: 1
-
   loadbalancers:
   - lbname: acs-pap-lb
     function: acs-pap
