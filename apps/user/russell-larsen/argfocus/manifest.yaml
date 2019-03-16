@@ -1,0 +1,20 @@
+apiVersion: v1
+system:
+  functions:
+  - name: argfocus
+    count: 1
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: argfocus.json
+    containers:
+    - name: ampminus
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/argfocus:4
+      livenessProbe:
+        exec:
+          command:
+          - echo "hi"
+      volumeMounts:
+       - mountPath: /secrets/
+         name: secretvol
+         readOnly: true
