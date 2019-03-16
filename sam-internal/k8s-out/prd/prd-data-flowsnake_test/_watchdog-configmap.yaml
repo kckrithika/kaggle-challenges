@@ -33,7 +33,7 @@ data:
         },
         "SparkOperatorTest": {
           "ImpersonationProxyMinimalTest": "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-specs/kubeconfig-impersonation-proxy",
-          "ImpersonationProxySparkTest": "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-specs/kubeconfig-impersonation-proxy /watchdog-spark-specs/watchdog-spark-operator.json",
+          "ImpersonationProxySparkTest": "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-specs/kubeconfig-impersonation-proxy /watchdog-spark-specs/watchdog-spark-impersonation.json",
           "SparkOperatorTest": "/watchdog-spark-scripts/check-spark-operator.sh /watchdog-spark-specs/watchdog-spark-operator.json"
         }
       },

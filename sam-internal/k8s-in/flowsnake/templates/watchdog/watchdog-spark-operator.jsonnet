@@ -70,6 +70,7 @@ else
                 "watchdog-spark-s3.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-s3.libsonnet"),
             } else {}) + (if test_impersonation then
             {
+                "watchdog-spark-impersonation.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-impersonation.libsonnet"),
                 "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-specs/kubeconfig-impersonation-proxy.libsonnet"),
             } else {})
         },
