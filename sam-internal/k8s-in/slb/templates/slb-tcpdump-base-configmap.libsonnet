@@ -24,7 +24,7 @@ local slbflights = import "slbflights.jsonnet";
                 labels: {} + configs.ownerLabel.slb,
             },
             data: {
-                "tcpdumpipvscommand.json": std.manifestJsonEx(slbAnnotations, " "),
+                "tcpdumpcommand.json": std.manifestJsonEx(slbAnnotations, " "),
             },
         }
     ),
