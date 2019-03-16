@@ -12,8 +12,7 @@ system:
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/argfocus:5
       livenessProbe:
         exec:
-          command:
-          - echo "hi"
+          command: ["/bin/true"]
       volumeMounts:
        - mountPath: /secrets/
          name: secretvol
