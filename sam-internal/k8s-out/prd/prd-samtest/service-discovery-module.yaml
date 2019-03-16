@@ -30,6 +30,11 @@ spec:
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2657-ead43191b654705039bcdc5012c304170ca01e36
         name: service-discovery-module
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs

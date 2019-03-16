@@ -205,6 +205,7 @@ local utils = import "util_functions.jsonnet",
     ipAddressResourceRequestEnabledEstates: std.set([
         "prd-sam",
         "prd-samdev",
+        "prd-samtest",
         "prd-sdc",
     ]),
 

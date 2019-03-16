@@ -65,6 +65,11 @@ spec:
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
         name: slb-baboon
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
