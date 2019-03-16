@@ -88,7 +88,7 @@ local build_spark_operator_test_commands =
                 # Verify impersonation works at all
                 ImpersonationProxyMinimalTest: "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-specs/kubeconfig-impersonation-proxy",
                 # Run a Spark Application via the impersonation proxy
-                ImpersonationProxySparkTest: "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-specs/kubeconfig-impersonation-proxy /watchdog-spark-specs/watchdog-spark-operator.json",
+                ImpersonationProxySparkTest: "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-specs/kubeconfig-impersonation-proxy /watchdog-spark-specs/watchdog-spark-impersonation.json",
             } else {}),
         }
     else
