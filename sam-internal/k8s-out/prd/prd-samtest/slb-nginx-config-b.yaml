@@ -114,6 +114,11 @@ spec:
         ports:
         - containerPort: 32146
           name: slb-nginx-port
+        resources:
+          limits:
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            sam.sfdc.net/ip-address: "1"
         securityContext:
           privileged: true
         volumeMounts:
