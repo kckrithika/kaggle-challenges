@@ -18,6 +18,7 @@ system:
       - --gater.thrift.metadata.endpoint=gater-mesh-metadata
       - --gater.thrift.admin.endpoint=gater-mesh-admin
       - --metrics.collectionInterval=60
+      - --scone.detectsidecars=false
       ports:
       - containerPort: 7020
       - containerPort: 9522
