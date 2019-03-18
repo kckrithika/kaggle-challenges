@@ -257,6 +257,18 @@
     },
     {
       "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "dfw-sam",
+      "estate": "dfw-sam_dataprotection",
+      "kingdom": "dfw",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "emailinfra"
       ],
       "access": [
