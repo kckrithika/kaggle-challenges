@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: observation-service
-      image: docker-all/dva/csc-health/observation-service:1
+      image: docker-all/dva/csc-health/observation-service:4
       ports:
       - containerPort: 8080
       volumeMounts:
