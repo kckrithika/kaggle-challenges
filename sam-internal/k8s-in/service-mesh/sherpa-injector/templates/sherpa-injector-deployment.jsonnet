@@ -13,7 +13,9 @@ configs.deploymentBase("service-mesh") {
     namespace: "service-mesh",
     labels: {
       app: "sherpa-injector",
-    },
+    } +
+    // samlabelfilter.json requires this label to be present on GCP deployments
+    if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.pcnEnableLabel else {},
   },
   spec+: {
     replicas: if configs.estate == "prd-samtest" then 1 else 3,
@@ -193,6 +195,8 @@ configs.deploymentBase("service-mesh") {
             name: "sherpa",
             image: versions.sherpaImage,
             imagePullPolicy: "IfNotPresent",
+            args+: [] +
+            if configs.estate == "gsf-core-devmvp-sam2-sam" then ["--switchboard=switchboard.service-mesh.svc:15001"] else [],
             env+: [
               {
                 name: "SFDC_ENVIRONMENT",

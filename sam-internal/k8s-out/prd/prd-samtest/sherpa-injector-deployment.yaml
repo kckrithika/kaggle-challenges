@@ -164,7 +164,8 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
-      - env:
+      - args: []
+        env:
         - name: SFDC_ENVIRONMENT
           value: mesh
         - name: SETTINGS_SERVICENAME

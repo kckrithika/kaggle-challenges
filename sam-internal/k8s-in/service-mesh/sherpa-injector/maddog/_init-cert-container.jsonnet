@@ -9,8 +9,9 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
             image: "" + samimages.madkub + "",
             args: [
               "/sam/madkub-client",
-              "--madkub-endpoint=https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
-              "--maddog-endpoint=" + configs.maddogEndpoint + "",
+              // TODO(2018-03-18): GCP is a special case with its own IPs :(
+              "--madkub-endpoint=%s" % if configs.estate == "gsf-core-devmvp-sam2-sam" then "https://10.131.35.30:32007" else "https://10.254.208.254:32007",  // Check madkubserver-service.jsonnet for why IP
+              "--maddog-endpoint=%s" % if configs.estate == "gsf-core-devmvp-sam2-sam" then "https//10.168.195.227:8443" else configs.maddogEndpoint,
               "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
               "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
               '--cert-folders=cert1:/cert1/', // Server certs

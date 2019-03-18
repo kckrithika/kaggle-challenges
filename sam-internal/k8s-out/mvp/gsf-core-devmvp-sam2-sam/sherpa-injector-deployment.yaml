@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: sherpa-injector
+    pcn: deploy
   name: sherpa-injector
   namespace: service-mesh
 spec:
@@ -19,26 +20,26 @@ spec:
            "certreqs": [
             {
              "cert-type": "server",
-             "kingdom": "prd",
+             "kingdom": "mvp",
              "name": "cert1",
              "role": "sherpa-injector",
              "san": [
               "sherpa-injector",
               "sherpa-injector.service-mesh",
               "sherpa-injector.service-mesh.svc",
-              "sherpa-injector.service-mesh.svc.prd-sam.prd.sam.sfdc.net"
+              "sherpa-injector.service-mesh.svc.gsf-core-devmvp-sam2-sam.mvp.sam.sfdc.net"
              ]
             },
             {
              "cert-type": "client",
-             "kingdom": "prd",
+             "kingdom": "mvp",
              "name": "cert2",
              "role": "sherpa-injector",
              "san": [
               "sherpa-injector",
               "sherpa-injector.service-mesh",
               "sherpa-injector.service-mesh.svc",
-              "sherpa-injector.service-mesh.svc.prd-sam.prd.sam.sfdc.net"
+              "sherpa-injector.service-mesh.svc.gsf-core-devmvp-sam2-sam.mvp.sam.sfdc.net"
              ]
             }
            ]
@@ -51,12 +52,12 @@ spec:
       containers:
       - args:
         - --template=sherpa-container.yaml.template
-        - --image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
+        - --image=ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
         - --log-level=debug
         - --port=17442
         - --cert=/server-certs/server/certificates/server.pem
         - --key=/server-certs/server/keys/server-key.pem
-        - --canary-image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
+        - --canary-image=ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
         env:
         - name: SFDC_ENVIRONMENT
           value: mesh
@@ -80,22 +81,22 @@ spec:
         - name: FUNCTION
           value: sherpa-injector
         - name: KINGDOM
-          value: prd
+          value: mvp
         - name: ESTATE
-          value: prd-sam
+          value: gsf-core-devmvp-sam2-sam
         - name: SUPERPOD
           value: '-'
         - name: SETTINGS_SUPERPOD
           value: '-'
         - name: SETTINGS_PATH
-          value: mesh.-.prd.-.sherpa-injector
+          value: mesh.-.mvp.-.sherpa-injector
         - name: SFDC_SETTINGS_PATH
-          value: mesh.-.prd.-.sherpa-injector
+          value: mesh.-.mvp.-.sherpa-injector
         - name: SFDC_METRICS_SERVICE_HOST
           value: ajnafunneldirect.localhost.mesh.force.com
         - name: SFDC_METRICS_SERVICE_PORT
           value: "7013"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:9a055d6b5d391f30318a848432f4cfa409033703
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-injector:9a055d6b5d391f30318a848432f4cfa409033703
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -126,8 +127,8 @@ spec:
           name: cert2
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://10.254.208.254:32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - --madkub-endpoint=https://10.131.35.30:32007
+        - --maddog-endpoint=https//10.168.195.227:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
@@ -152,7 +153,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/mgrass/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         volumeMounts:
@@ -164,7 +165,8 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
-      - args: []
+      - args:
+        - --switchboard=switchboard.service-mesh.svc:15001
         env:
         - name: SFDC_ENVIRONMENT
           value: mesh
@@ -188,22 +190,22 @@ spec:
         - name: FUNCTION
           value: sherpa-injector
         - name: KINGDOM
-          value: prd
+          value: mvp
         - name: ESTATE
-          value: prd-sam
+          value: gsf-core-devmvp-sam2-sam
         - name: SUPERPOD
           value: '-'
         - name: SETTINGS_SUPERPOD
           value: '-'
         - name: SETTINGS_PATH
-          value: mesh.-.prd.-.sherpa-injector
+          value: mesh.-.mvp.-.sherpa-injector
         - name: SFDC_SETTINGS_PATH
-          value: mesh.-.prd.-.sherpa-injector
+          value: mesh.-.mvp.-.sherpa-injector
         - name: SFDC_METRICS_SERVICE_HOST
-          value: ajna0-funnel1-0-prd.data.sfdc.net
+          value: funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net
         - name: SFDC_METRICS_SERVICE_PORT
-          value: "80"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
+          value: "443"
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -235,8 +237,8 @@ spec:
       initContainers:
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://10.254.208.254:32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - --madkub-endpoint=https://10.131.35.30:32007
+        - --maddog-endpoint=https//10.168.195.227:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
@@ -259,7 +261,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/mgrass/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
@@ -278,7 +280,7 @@ spec:
           set -ex
           chmod 775 -R /cert1 && chown -R 7447:7447 /cert1
           chmod 775 -R /cert2 && chown -R 7447:7447 /cert2
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673
         imagePullPolicy: IfNotPresent
         name: permissionsetterinitcontainer
         securityContext:
@@ -290,14 +292,8 @@ spec:
         - mountPath: /cert2
           name: cert2
       nodeSelector:
-        master: "true"
+        pool: gsf-core-devmvp-sam2-sam
       volumes:
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
       - emptyDir:
           medium: Memory
         name: cert1
