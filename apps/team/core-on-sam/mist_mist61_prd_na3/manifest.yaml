@@ -62,7 +62,7 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17655217
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17569721
       livenessProbe:
         exec:
           command:
@@ -207,7 +207,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1552931827452577024
+        value: 1552943344672049920
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
