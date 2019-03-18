@@ -122,7 +122,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
         "disable-rollback": true,
         // v1 generates environment service dynamically out of manifest; disable orphan deletion when v1 is enabled
         "delete-orphans": !flowsnakeconfig.is_v1_enabled,
-        "orphan-namespaces": "flowsnake,sam-system",
+        "orphan-namespaces": (if flowsnakeconfig.is_v1_enabled then "flowsnake,default,kube-system" else "flowsnake,sam-system"),
         "disable-security-check": true,
         "override-control-estate": "/" + kingdom + "/" + kingdom + "-sam",
         funnelEndpoint: flowsnakeconfig.funnel_vip_and_port,
