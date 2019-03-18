@@ -131,7 +131,7 @@ spec:
         env:
         - name: KINGDOM
           value: frf
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/slb/nginx:117-8ea56d07eaad7e30a46c08c83afb55f16712b3da
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/slb/nginx:119-31e5c368e56942a60be71c57bc60fc0c6c0d9fe1
         livenessProbe:
           httpGet:
             path: /
