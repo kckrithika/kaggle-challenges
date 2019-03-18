@@ -43,7 +43,7 @@ system:
       - name: S2PORT
         value: 12098
       - name: PLSQL_UPDATE_RUNSTATS
-        value: true
+        value: false
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
@@ -207,7 +207,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1552929280179833088
+        value: 1552931827452577024
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
