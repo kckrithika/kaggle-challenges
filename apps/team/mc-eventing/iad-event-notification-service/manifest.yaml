@@ -44,6 +44,8 @@ system:
         value: public0-proxy1-0-iad.data.sfdc.net
       - name: EMITTER_PROXY_PORT
         value: 8080
+      - name: EVENTCONSUMER_GROUP_ID
+        value: eventing-notification-iad
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
