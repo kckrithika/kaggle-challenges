@@ -256,7 +256,7 @@ data:
     NOT\n                             (controlestate like ''frf-sam'' AND namespace
     like ''casp'' AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d''))", "watchdogFrequency":
     "10m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
-    "alertThreshold": "5m", "name": "CustomerAppsWithImagePullErrorsProd", "sql":
+    "alertThreshold": "5m", "name": "SqlCustomerAppsWithImagePullErrorsProd", "sql":
     "select * from podDetailView where \n        JSON_SEARCH(\n          Payload->>''$.status.containerStatuses[*].state.waiting.reason'',
     ''one'', ''ImagePullBackOff'')\n            is not null \n          AND Kingdom
     != ''prd'' \n          AND Kingdom != ''xrd'' \n          AND IsSamApp = 1;",
