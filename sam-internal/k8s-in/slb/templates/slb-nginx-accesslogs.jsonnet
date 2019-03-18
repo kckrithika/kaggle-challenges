@@ -4,7 +4,7 @@ local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbports = import "slbports.jsonnet";
 
-if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
+if slbconfigs.isSlbEstate && slbflights.nginxAccesslogsEnabled then configs.deploymentBase("slb") {
 
       metadata: {
           labels: {
@@ -57,8 +57,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                     } + configs.ipAddressResourceRequest,
                 ],
             }
-            + (if slbflights.nginAccesslogsRunInSlbEstate then slbconfigs.slbEstateNodeSelector
-               else { nodeSelector: { pool: configs.estate } })
+            + slbconfigs.slbEstateNodeSelector
             + slbconfigs.getGracePeriod()
             + slbconfigs.getDnsPolicy(),
         },
