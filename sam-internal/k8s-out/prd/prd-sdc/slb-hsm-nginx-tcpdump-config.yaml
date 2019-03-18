@@ -5,8 +5,8 @@ data:
       "tcpdumpcommands": [
         {
           "command": "-i eth0",
-          "duration": "1m",
-          "packetcapture": true
+          "duration": "15m",
+          "packetcapture": false
         }
       ]
     }

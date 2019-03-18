@@ -5,8 +5,8 @@ local slbflights = import "slbflights.jsonnet";
 local tcpdumpbaseservice = import "slb-tcpdump-base-configmap.libsonnet";
 
 local Command = "-i eth0";
-local Duration = "1m";
-local Packetcapture = true;
+local Duration = "15m";
+local Packetcapture = false;
 local ProxyName = "slb-tcpdump-ipvs";
 
 if slbconfigs.isSlbEstate && slbflights.slbTCPdumpEnabled then
