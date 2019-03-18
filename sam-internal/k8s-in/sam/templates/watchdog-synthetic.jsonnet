@@ -10,8 +10,7 @@ local samreleases = import "samreleases.json";
     metadata: {
         labels: {
             name: "watchdog-synthetic",
-        } + configs.ownerLabel.sam
-        + configs.pcnEnableLabel,
+        } + configs.ownerLabel.sam,
         name: "watchdog-synthetic",
         namespace: "sam-system",
     },
