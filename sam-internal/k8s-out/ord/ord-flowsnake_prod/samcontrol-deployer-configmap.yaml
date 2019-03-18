@@ -13,7 +13,7 @@ data:
       "funnelEndpoint": "ajna0-funnel1-0-ord.data.sfdc.net:80",
       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "max-resource-time": 300000000000,
-      "orphan-namespaces": "flowsnake,default,kube-system",
+      "orphan-namespaces": "flowsnake,sam-system",
       "override-control-estate": "/ord/ord-sam",
       "poll-delay": 30000000000,
       "recipient": "flowsnake@salesforce.com",

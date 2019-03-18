@@ -4,6 +4,7 @@ local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local util = import "util_functions.jsonnet";
 local kingdom = std.extVar("kingdom");
 
+if flowsnakeconfig.is_v1_enabled then
 {
     local label_node = self.spec.template.metadata.labels,
     apiVersion: "extensions/v1beta1",
@@ -173,4 +174,4 @@ local kingdom = std.extVar("kingdom");
             },
         },
     },
-}
+} else "SKIP"

@@ -1,7 +1,8 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flowsnake_config = import "flowsnake_config.jsonnet";
-{
+
+if flowsnake_config.is_v1_enabled then {
     ajna_applog_logrecordtype_grants: (
         if
             std.objectHas(self.ajna_applog_logrecordtype_grants_data, kingdom + "/" + estate)
@@ -1173,4 +1174,4 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         "zzpub",
     ],
 
-}
+} else "SKIP"

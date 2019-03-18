@@ -9,7 +9,7 @@ local configs = import "config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local public_name = "ingress";
 
-configs.deploymentBase("flowsnake") {
+if flowsnake_config.is_v1_enabled then configs.deploymentBase("flowsnake") {
   local label_node = self.spec.template.metadata.labels,
   metadata: {
     name: "cert-secretizer",
@@ -121,4 +121,4 @@ configs.deploymentBase("flowsnake") {
       },
     },
   },
-}
+} else "SKIP"

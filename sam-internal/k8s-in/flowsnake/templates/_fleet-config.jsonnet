@@ -1,6 +1,7 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+if flowsnakeconfig.is_v1_enabled then
 {
     apiVersion: "v1",
     kind: "ConfigMap",
@@ -15,4 +16,4 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
         kubeconfig: "/etc/kubernetes/kubeconfig",
         vip: flowsnakeconfig.fleet_vips[estate],
       },
-}
+} else "SKIP"

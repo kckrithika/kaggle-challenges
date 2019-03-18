@@ -1,5 +1,6 @@
 local portconfigs = import "portconfig.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+if flowsnakeconfig.is_v1_enabled then
 {
     apiVersion: "v1",
     kind: "Service",
@@ -29,4 +30,4 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             },
         ],
     },
-}
+} else "SKIP"

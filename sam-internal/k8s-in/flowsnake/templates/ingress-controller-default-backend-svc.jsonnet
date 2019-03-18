@@ -1,3 +1,5 @@
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
+if flowsnakeconfig.is_v1_enabled then
 {
     apiVersion: "v1",
     kind: "Service",
@@ -19,4 +21,4 @@
         sessionAffinity: "None",
         type: "ClusterIP",
     },
-}
+} else "SKIP"
