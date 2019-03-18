@@ -1388,7 +1388,8 @@
         "solr-service",
         "topology-svc",
         "qpid",
-        "einstein-analytics"
+        "einstein-analytics",
+        "vagabond"
       ],
       "access": [
         "team/CSC_Sam",
@@ -1418,7 +1419,8 @@
         "team/solr-service",
         "team/topology_svc",
         "team/qpid",
-        "team/einstein-analytics"
+        "team/einstein-analytics",
+        "team/Vagabond"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-sam",
       "estate": "gsf-core-devmvp-sam2-sam",
