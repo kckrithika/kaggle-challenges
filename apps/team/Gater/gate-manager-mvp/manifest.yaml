@@ -16,7 +16,7 @@ system:
       - --spring.datasource.hikari.minimumIdle=5
       - --spring.datasource.hikari.leakDetectionThreshold=10000
       - --gater-service.thread.pool.max-size=0
-      - --scone.detectsidecars=false
+      - --scone.detectsidecars=true
       - --synctask.enabled=false
       ports:
       - containerPort: 7020
