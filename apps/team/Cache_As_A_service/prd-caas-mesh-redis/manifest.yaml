@@ -30,7 +30,7 @@ system:
       ports:
       - containerPort: 12081
     - name: caas-redis-publisher
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpragada/caas-metrics-publisher:1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpragada/caas-metrics-publisher:2
       args:
       - -port=12081
       - -clustername=caas-cluster-1
