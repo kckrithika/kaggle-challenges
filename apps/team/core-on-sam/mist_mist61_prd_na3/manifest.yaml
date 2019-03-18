@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -55,14 +55,14 @@ system:
       - name: CLUSTER_NAME
         value: na3
       - name: DEPLOYMENT
-        value: G
+        value: B
       - name: ZDT
         value: false
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_216-patch_17561393
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17655217
       livenessProbe:
         exec:
           command:
@@ -207,7 +207,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1552692183124861952
+        value: 1552929280179833088
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -219,17 +219,17 @@ system:
       - name: RELEASE_VESION
         value: ""
       - name: RELEASE_TYPE
-        value: PATCH
+        value: MAJOR
       - name: MAJOR_RELEASE_NUMBER
-        value: 216
+        value: 218
       - name: MINOR_RELEASE_NUMBER
         value: 0
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -237,7 +237,7 @@ system:
       - name: ENABLE_DB_SCHEMA_UPGRADE
         value: 1
       - name: SET_DEFAULT_ORACLE_EDITION
-        value: 1
+        value: 0
       - name: OLD_DWARF
         value: sneezy
       - name: KILL_DWARF
@@ -245,7 +245,7 @@ system:
       - name: LOCK_DWARF
         value: 1
       - name: TRIGGER_CAFFEINE
-        value: 0
+        value: 1
       - name: UNLOCK_DWARF
         value: 1
       - name: SNOWWHITE_PWD
