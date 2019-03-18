@@ -131,7 +131,7 @@ spec:
         env:
         - name: KINGDOM
           value: lo2
-        image: ops0-artifactrepo1-0-lo2.data.sfdc.net/dva/slb/nginx:116-266528f61135a62e006465046973aaa4b0f3449b
+        image: ops0-artifactrepo1-0-lo2.data.sfdc.net/dva/slb/nginx:117-8ea56d07eaad7e30a46c08c83afb55f16712b3da
         livenessProbe:
           httpGet:
             path: /
