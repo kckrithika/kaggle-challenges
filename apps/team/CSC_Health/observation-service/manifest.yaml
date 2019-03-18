@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: observation-service-logrotator
-      image: docker-all/dva/csc-health/observation-service:1
+      image: docker-all/dva/csc-health/observation-service:4
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/observation-service
           name: logvol
