@@ -28,7 +28,7 @@ system:
         periodSeconds: 5
       env:
        - name: NOT_REQUIRED
-         value: newton5
+         value: newton6
        - name: PYTHONUNBUFFERED
          value: 1
     - name: sherpa
