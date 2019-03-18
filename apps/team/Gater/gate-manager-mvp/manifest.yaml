@@ -16,8 +16,9 @@ system:
       - --spring.datasource.hikari.minimumIdle=5
       - --spring.datasource.hikari.leakDetectionThreshold=10000
       - --gater-service.thread.pool.max-size=0
-      - --scone.detectsidecars=true
+      - --scone.detectsidecars=false
       - --synctask.enabled=false
+      - --metrics.funnelEndPointURL=http://funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443
       ports:
       - containerPort: 7020
       - containerPort: 9522
