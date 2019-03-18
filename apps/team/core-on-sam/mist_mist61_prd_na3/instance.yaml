@@ -15,7 +15,7 @@ env:
   region: prd
   subEnvName: mist61
 images:
-  coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17655217
+  coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17569721
   coreAppOverrides: sfci/casam/coreapp_overrides:aad77d
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
@@ -24,6 +24,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:a6729b3a765d262943bb20f9921b4343784dccef
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na3
-nonce: 1552931827452577000
+nonce: 1552943344672050000
 replicaCount: 1
 settingsSuperPod: sp2
