@@ -66,7 +66,8 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--maxDeleteEntries=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
                                                    ]
                                                    + (if slbflights.vipLimit then [
-                                                   "--vipLimit="+ slbconfigs.perCluster.prefixLimit[configs.estate],] else [])
+                                                   "--vipLimit=" + slbconfigs.perCluster.prefixLimit[configs.estate],
+] else [])
                                                    + slbconfigs.getNodeApiClientSocketSettings(),
                                           volumeMounts: configs.filter_empty([
                                               configs.maddog_cert_volume_mount,
