@@ -5,7 +5,7 @@ system:
     - gater@salesforce.com
   functions:
   - name: gater
-    count: 0
+    count: 3
     containers:
     - name: gater1
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/sortiz/gate-manager:gm-1-14-1-SNAPSHOT-1
