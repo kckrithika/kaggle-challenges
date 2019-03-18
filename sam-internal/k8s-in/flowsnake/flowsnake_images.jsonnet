@@ -97,6 +97,7 @@ local utils = import "util_functions.jsonnet";
             eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
             watchdog_image_tag: "sam-0002530-db32f9dc",  # Adds cli-checker stderr logging
             madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
+            deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
