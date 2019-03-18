@@ -32,7 +32,7 @@ system:
        - name: PYTHONUNBUFFERED
          value: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:7c866de2c4f840082fac7f2d00aa2d93f7bee6be
+      image: sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
       ports:
       - containerPort: 15373
       env:
