@@ -2,14 +2,14 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-03-14 11:39:46.158635
-# from:  9004b052d09e020ffe052dde4c91d513835a07f4
-# by: mbyne
+# generated: 2019-03-18 18:25:34.845403
+# from:  
+# by: agitelman
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:510-3e6dc916e7eef89c01b2450e12d54ab9c03e83b8
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:511-1f594ba40813caa009b3fb833bfadeb8fd495614
       livenessProbe:
         exec:
           command: [ls]
@@ -59,7 +59,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:510-3e6dc916e7eef89c01b2450e12d54ab9c03e83b8'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/datapool-engine:511-1f594ba40813caa009b3fb833bfadeb8fd495614'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-release}
       - {name: DEPLOYMENT_ID, value: release}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
