@@ -131,6 +131,17 @@
                 vpod: "127.0.0.1/32",
             },
 
+        prefixLimit:
+            set_value_to_all_in_list(60, $.testEstates)
+            + set_value_to_all_in_list(60, $.prodEstates)
+            + {
+                "prd-sam": 1000,
+                "lo2-sam": 1000,
+                "lo3-sam": 1000,
+                "ia2-sam": 1000,
+                "ph2-sam": 1000,
+            }
+
         reservedIps:
             set_value_to_all_in_list([], $.testEstates)
             + set_value_to_all_in_list([], $.prodEstates)

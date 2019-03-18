@@ -11,6 +11,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
     slbTCPdumpEnabled: (slbimages.phaseNum <= 1),
+    vipLimit: (slbimages.phaseNum <= 1),
 
     # slb-nginx-accesslogs can sometimes fill up disk -- see investigation at
     # https://computecloud.slack.com/archives/G340CE86R/p1552882461719300?thread_ts=1552870275.718300&cid=G340CE86R.
