@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: slb-tcpdump-ipvs
+    sam.data.sfdc.net/owner: slb
+  name: slb-tcpdump-ipvs
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      daemonset: "true"
+      name: slb-tcpdump-ipvs
+      sam.data.sfdc.net/owner: slb
+  template:
+    metadata:
+      labels:
+        daemonset: "true"
+        name: slb-tcpdump-ipvs
+        sam.data.sfdc.net/owner: slb
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-tcpdump
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        name: slb-tcpdump-ipvs
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+            sam.sfdc.net/ip-address: "1"
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+            sam.sfdc.net/ip-address: "1"
+        volumeMounts:
+        - mountPath: /config
+          name: config
+      dnsPolicy: Default
+      nodeSelector:
+        slb-service: slb-ipvs
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - configMap:
+          name: slb-tcpdump-ipvs
+        name: config
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate
