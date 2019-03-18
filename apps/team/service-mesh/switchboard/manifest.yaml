@@ -8,8 +8,8 @@ system:
     count: 5
     containers:
     - name: switchboard
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/566/
-      image: sfci/servicelibs/switchboard:4a501b14298c6411ddeb768fd3f6ec8d45676fc5
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/
+      image: sfci/servicelibs/switchboard:02843459414892682ff5a03f56fb061c60e74e1a
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
