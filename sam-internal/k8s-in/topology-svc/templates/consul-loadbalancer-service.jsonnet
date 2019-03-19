@@ -12,7 +12,9 @@ if configs.kingdom == 'mvp' then {
     metadata: {
         name: 'consul-lb',
         namespace: topologysvcNamespace,
-        labels: {} + configs.pcnEnableLabel,
+        labels: {
+            app: 'consul-lb',
+        } + configs.pcnEnableLabel,
         annotations: {
         },
     },
