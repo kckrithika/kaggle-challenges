@@ -16,7 +16,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "/sam/watchdog",
                                      "-role=APISERVERLB",
                                      "-watchdogFrequency=60s",
-                                     "-alertThreshold=5m",
+                                     "-alertThreshold=10m",
                                      "-watchDogKind=" + $.kind,
                                  ])
                                  + samwdconfig.pagerduty_args
