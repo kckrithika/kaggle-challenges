@@ -14,12 +14,12 @@ system:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
       args:
-        - -t 40
+        - -t 1,10,40
         - -v 256,1024
-        - -o 0
+        - -o -1
         - -m
         - -a 127.0.0.1:12082
-        - -x 120
+        - -x 3600
         - -l
       livenessProbe:
         exec:
