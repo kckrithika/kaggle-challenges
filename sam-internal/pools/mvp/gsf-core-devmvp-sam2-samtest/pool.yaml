@@ -4,6 +4,7 @@
 # Run k8s-in/build.sh after updating pools
 access:
   - 'team/CSC_Sam'
+  - 'team/dva-collection'
   - 'team/slb'
 
 # Each pool is managed by a SAM control stack running in one estate
