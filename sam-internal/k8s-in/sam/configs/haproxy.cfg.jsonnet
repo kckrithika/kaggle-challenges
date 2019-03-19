@@ -16,7 +16,7 @@ local configs = import "config.jsonnet";
 
 # Prd-sam is insecure because we dont know who we will break yet.  Prd-samdev is insecure for e2e.  No reason to mess with sdc/storage.
 # All new estates in PRD and XRD should be secure mostly-read-only by default
-local use_insecure = (if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sdc" || configs.estate == "prd-sam_storage" || configs.estate == "prd-sam_storagedev" then true else false);
+local use_insecure = (if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sdc" || configs.estate == "prd-sam_storage" || configs.estate == "prd-sam_storagedev" then true else false);
 
 {
 # In prd-sam we ran a wide-open proxy for a long time, and we dont yet know who will break if we lock down writes
