@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
+local name = (if configs.kingdom == "prd" then "crd-watcher" else "temp-crd-watcher");
 
 {
         kind: "Deployment",
@@ -11,7 +12,7 @@ local utils = import "util_functions.jsonnet";
                     hostNetwork: true,
                     containers: [
                         configs.containerWithKubeConfigAndMadDog {
-                            name: "crd-watcher",
+                            name: name,
                             image: samimages.hypersam,
                             command: configs.filter_empty([
                                 "/sam/manifest-watcher",
@@ -57,7 +58,7 @@ local utils = import "util_functions.jsonnet";
                             },
                             name: "sfdc-volume",
                         },
-                        configs.config_volume("crd-watcher"),
+                        configs.config_volume(name),
                     ]),
                     nodeSelector: {
                                   } +
@@ -69,7 +70,7 @@ local utils = import "util_functions.jsonnet";
                 } + configs.serviceAccount,
                 metadata: {
                     labels: {
-                        name: "crd-watcher",
+                        name: name,
                         apptype: "control",
                     } + configs.ownerLabel.sam,
                     namespace: "sam-system",
@@ -77,16 +78,16 @@ local utils = import "util_functions.jsonnet";
             },
             selector: {
                 matchLabels: {
-                    name: "crd-watcher",
+                    name: name,
                 },
             },
         },
         apiVersion: "extensions/v1beta1",
         metadata: {
             labels: {
-                name: "crd-watcher",
+                name: name,
             } + configs.ownerLabel.sam
             + configs.pcnEnableLabel,
-            name: "crd-watcher",
+            name: name,
         },
     }

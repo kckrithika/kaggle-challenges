@@ -2,19 +2,19 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: crd-watcher
+    name: temp-crd-watcher
     sam.data.sfdc.net/owner: sam
-  name: crd-watcher
+  name: temp-crd-watcher
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: crd-watcher
+      name: temp-crd-watcher
   template:
     metadata:
       labels:
         apptype: control
-        name: crd-watcher
+        name: temp-crd-watcher
         sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
@@ -41,7 +41,7 @@ spec:
             port: 21553
           initialDelaySeconds: 60
           periodSeconds: 30
-        name: crd-watcher
+        name: temp-crd-watcher
         ports:
         - containerPort: 21553
         volumeMounts:
@@ -75,5 +75,5 @@ spec:
           path: /manifests
         name: sfdc-volume
       - configMap:
-          name: crd-watcher
+          name: temp-crd-watcher
         name: config
