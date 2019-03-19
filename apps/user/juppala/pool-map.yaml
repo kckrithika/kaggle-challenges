@@ -5,3 +5,6 @@ apps:
  zones-ui:       # 
   - prd/prd-sam  # 
                  # 
+ amp-ui:       # 
+  - prd/prd-sam  # 
+                 # 
