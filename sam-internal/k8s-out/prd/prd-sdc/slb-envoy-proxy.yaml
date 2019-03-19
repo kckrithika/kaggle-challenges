@@ -276,6 +276,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-envoy
         - --client.serverPort=9130
         - --client.serverInterface=lo
+        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-envoy/slb-realsvrcfg.sentinel
         - --nginxPodMode=true
         - --client.socketDir=/host/data/slb/config/slb-envoy
         - --client.dialSocket=true

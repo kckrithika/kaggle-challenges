@@ -142,7 +142,7 @@
       "--client.serverInterface=lo",
     ] + (if slbflights.featureflagWaitForRealsvrCfg then [
       "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
-    ] else []) 
+    ] else [])
     + (if $.dirSuffix == "slb-nginx-config-b" then [
       "--control.sentinelExpiration=1200s",
     ] else [])
@@ -312,7 +312,7 @@
       "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
       "--control.sentinelExpiration=60s",
       "--featureflagWaitForRealsvrCfg=true",
-    ])
+    ] else [])
     + slbconfigs.getNodeApiClientSocketSettings()
     + [
       slbconfigs.nginx.reloadSentinelParam,
