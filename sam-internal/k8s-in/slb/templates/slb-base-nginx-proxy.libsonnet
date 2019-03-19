@@ -13,7 +13,7 @@
   local utils = import "util_functions.jsonnet",
 
   local beforeSharedContainers(proxyImage, deleteLimitOverride=0, proxyFlavor="", slbUpstreamReporterEnabled=true) = [
-    slbshared.slbNginxConfig(deleteLimitOverride=deleteLimitOverride, tlsConfigEnabled=true),
+    slbshared.slbNginxConfig(deleteLimitOverride=deleteLimitOverride, tlsConfigEnabled=true, waitForRealsvrCfg=true),
     slbshared.slbNginxProxy(proxyImage, proxyFlavor, true),
     {
       name: "slb-nginx-data",

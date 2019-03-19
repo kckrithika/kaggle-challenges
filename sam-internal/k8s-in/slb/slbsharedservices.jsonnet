@@ -9,6 +9,7 @@
 
   local configProcSentinel = slbconfigs.configDir + "/slb-config-proc.sentinel",
   local mwSentinel = slbconfigs.configDir + "/slb-manifest-watcher.sentinel",
+  local realsvrCfgSentinel = slbconfigs.configDir + "/slb-realsvrcfg.sentinel",
 
   slbConfigProcessor(
     configProcessorLivenessPort,
@@ -139,7 +140,10 @@
       "--log_dir=" + slbconfigs.logsDir,
       "--client.serverPort=" + nodeApiPort,
       "--client.serverInterface=lo",
-    ] + (if $.dirSuffix == "slb-nginx-config-b" then [
+    ] + (if slbflights.featureflagWaitForRealsvrCfg then [
+      "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
+    ] else []) 
+    + (if $.dirSuffix == "slb-nginx-config-b" then [
       "--control.sentinelExpiration=1200s",
     ] else [])
     + [
@@ -283,7 +287,7 @@
         periodSeconds: 15,
     },
   } else {}),
-  slbNginxConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false): {
+  slbNginxConfig(deleteLimitOverride=0, vipInterfaceName="", tlsConfigEnabled=false, waitForRealsvrCfg=false): {
     ports: [
       {
         name: "slb-nginx-port",
@@ -304,7 +308,11 @@
       "--hostnameOverride=$(NODE_NAME)",
       "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
       "--iprange.InternalIpRange=" + slbconfigs.perCluster.internalIpRange[configs.estate],
-    ]
+    ] + (if waitForRealsvrCfg && slbflights.featureflagWaitForRealsvrCfg then [
+      "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
+      "--control.sentinelExpiration=60s",
+      "--featureflagWaitForRealsvrCfg=true",
+    ])
     + slbconfigs.getNodeApiClientSocketSettings()
     + [
       slbconfigs.nginx.reloadSentinelParam,
