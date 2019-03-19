@@ -15,8 +15,10 @@ system:
           type: client
     containers:
     - name: amp-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/amp-ui:build-20190318-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/amp-ui:build-20190318-3
       env:
+      - name: AMP_SESSION_SECRET
+        value: "$D$@MPUI"
       - name: AMP_ENVIRONMENT
         value: "dev"
       - name: HTTPS_PROXY
