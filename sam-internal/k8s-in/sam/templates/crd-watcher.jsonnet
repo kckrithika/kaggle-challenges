@@ -11,7 +11,7 @@ local utils = import "util_functions.jsonnet";
                     hostNetwork: true,
                     containers: [
                         configs.containerWithKubeConfigAndMadDog {
-                            name: "temp-crd-watcher",
+                            name: "crd-watcher",
                             image: samimages.hypersam,
                             command: configs.filter_empty([
                                 "/sam/manifest-watcher",
@@ -57,7 +57,7 @@ local utils = import "util_functions.jsonnet";
                             },
                             name: "sfdc-volume",
                         },
-                        configs.config_volume("temp-crd-watcher"),
+                        configs.config_volume("crd-watcher"),
                     ]),
                     nodeSelector: {
                                   } +
@@ -69,7 +69,7 @@ local utils = import "util_functions.jsonnet";
                 } + configs.serviceAccount,
                 metadata: {
                     labels: {
-                        name: "temp-crd-watcher",
+                        name: "crd-watcher",
                         apptype: "control",
                     } + configs.ownerLabel.sam,
                     namespace: "sam-system",
@@ -77,16 +77,16 @@ local utils = import "util_functions.jsonnet";
             },
             selector: {
                 matchLabels: {
-                    name: "temp-crd-watcher",
+                    name: "crd-watcher",
                 },
             },
         },
         apiVersion: "extensions/v1beta1",
         metadata: {
             labels: {
-                name: "temp-crd-watcher",
+                name: "crd-watcher",
             } + configs.ownerLabel.sam
             + configs.pcnEnableLabel,
-            name: "temp-crd-watcher",
+            name: "crd-watcher",
         },
     }
