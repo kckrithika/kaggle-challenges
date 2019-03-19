@@ -113,7 +113,7 @@ system:
     identity:
       serviceName: sfproxy
       pod: na3
-    count: 3
+    count: 1
     containers:
     - name: sfproxy-envoy
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sfproxy:bc7e1fa
