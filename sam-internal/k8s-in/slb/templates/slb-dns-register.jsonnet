@@ -55,8 +55,13 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--path=" + slbconfigs.configDir,
                                                        "--ddi=" + slbconfigs.ddiService,
                                                    ] + roleBasedSecretArgs
+                                                   + (if slbflights.commonOpts then [
+                                                        "--commonoptions.hostname=$(NODE_NAME)",
+                                                        "--commonoptions.metricsendpoint=" + configs.funnelVIP,
+                                                   ] else [
+                                                        "--metricsEndpoint=" + configs.funnelVIP,
+                                                   ])
                                                    + [
-                                                       "--metricsEndpoint=" + configs.funnelVIP,
                                                        "--log_dir=" + slbconfigs.logsDir,
                                                        configs.sfdchosts_arg,
                                                        "--subnet=" + slbconfigs.subnet,

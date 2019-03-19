@@ -12,6 +12,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
     slbTCPdumpEnabled: (slbimages.phaseNum <= 1),
     vipLimit: (slbimages.hyperslb_build >= 2097),
+    commonOpts: (slbimages.hyperslb_build >= 2098),
 
     # Whether nginx-config should wait for realsvrcfg to place VIPs on the tunl interface.
     featureflagWaitForRealsvrCfg: (slbimages.phaseNum <= 1),

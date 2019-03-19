@@ -42,7 +42,8 @@ spec:
         - --keyfile=/cert3/client/keys/client-key.pem
         - --certfile=/cert3/client/certificates/client.pem
         - --cafile=/cert3/ca/cabundle.pem
-        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --commonoptions.hostname=$(NODE_NAME)
+        - --commonoptions.metricsendpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-dns-register
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --subnet=10.254.247.0/24
