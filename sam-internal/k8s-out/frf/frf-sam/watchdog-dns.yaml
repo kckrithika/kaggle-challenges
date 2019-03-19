@@ -31,7 +31,7 @@ spec:
         - -funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - -timeout=2s
+        - -timeout=120s
         - -recipient=sam-alerts@salesforce.com,sam-pagerduty@salesforce.com
         env:
         - name: KUBECONFIG
