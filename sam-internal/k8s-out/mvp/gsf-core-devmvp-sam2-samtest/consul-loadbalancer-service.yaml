@@ -15,19 +15,9 @@ spec:
     targetPort: 8500
   - name: serflan-tcp
     port: 8301
-    protocol: TCP
-    targetPort: 8301
-  - name: serflan-udp
-    port: 8301
-    protocol: UDP
     targetPort: 8301
   - name: serfwan-tcp
     port: 8302
-    protocol: TCP
-    targetPort: 8302
-  - name: serfwan-udp
-    port: 8302
-    protocol: UDP
     targetPort: 8302
   - name: server
     port: 8300

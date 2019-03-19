@@ -33,25 +33,11 @@ if configs.kingdom == 'mvp' then {
             },
             {
                 name: 'serflan-tcp',
-                protocol: 'TCP',
-                port: 8301,
-                targetPort: 8301,
-            },
-            {
-                name: 'serflan-udp',
-                protocol: 'UDP',
                 port: 8301,
                 targetPort: 8301,
             },
             {
                 name: 'serfwan-tcp',
-                protocol: 'TCP',
-                port: 8302,
-                targetPort: 8302,
-            },
-            {
-                name: 'serfwan-udp',
-                protocol: 'UDP',
                 port: 8302,
                 targetPort: 8302,
             },
