@@ -22,7 +22,7 @@ spec:
         - /sam/watchdog
         - -role=APISERVERLB
         - -watchdogFrequency=60s
-        - -alertThreshold=5m
+        - -alertThreshold=10m
         - -watchDogKind=Deployment
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
