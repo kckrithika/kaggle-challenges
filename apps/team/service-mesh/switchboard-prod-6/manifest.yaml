@@ -18,6 +18,10 @@ system:
       - --metrics.maxNumberOfCollectedMetrics=150000
       - --metrics.funnelTimeOut=100000
       - --healthIndicator.maxThreadCount=1300
+      # Standard is 60,000
+      - --clusters.zkScraper.scrapeTimeoutMs=120000
+      - --clusters.zkScraper.zkSessionTimeoutMs=120000
+      - --cluster.scraper.delayMs=120000
       ports:
       - containerPort: 15372
       env:
