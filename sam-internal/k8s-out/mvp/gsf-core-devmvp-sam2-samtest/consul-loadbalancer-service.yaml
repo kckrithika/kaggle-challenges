@@ -3,6 +3,7 @@ kind: Service
 metadata:
   annotations: {}
   labels:
+    app: consul-lb
     pcn: deploy
   name: consul-lb
   namespace: topology-svc
