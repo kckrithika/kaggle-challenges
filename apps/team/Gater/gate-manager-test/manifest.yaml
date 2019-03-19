@@ -6,6 +6,7 @@ system:
   functions:
   - name: gater
     count: 5
+    hostnetwork: true
     containers:
     - name: gater1
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.14.1-SNAPSHOT_20190314_155_55841c2
@@ -17,6 +18,7 @@ system:
       - --spring.datasource.hikari.leakDetectionThreshold=10000
       - --gater-service.thread.pool.max-size=0
       - --scone.detectsidecars=false
+      - --synctask.host-affinity=false
       ports:
       - containerPort: 7020
       - containerPort: 9522
