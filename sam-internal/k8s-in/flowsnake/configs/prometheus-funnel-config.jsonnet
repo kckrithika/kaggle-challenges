@@ -151,12 +151,7 @@ local kingdom = std.extVar("kingdom");
           "scheme": "https",
           "kubernetes_sd_configs": [
             {
-              "role": "node",
-               "namespaces": {
-                 "names": [
-                   "flowsnake"
-                 ]
-               }
+              "role": "node"
             }
           ],
           "relabel_configs": [
@@ -170,17 +165,46 @@ local kingdom = std.extVar("kingdom");
                 "replacement": "/api/v1/nodes/${1}/proxy/metrics/cadvisor",
                 "target_label": "__metrics_path__",
               },
-              {
-                "source_labels": [
-                  "__meta_kubernetes_node_name"
-                ],
-                "target_label": "device"
-              }
+                {
+                  "source_labels": [
+                    "__meta_kubernetes_node_name"
+                  ],
+                  "target_label": "device"
+                }
           ],
           "metric_relabel_configs": [
                 { "source_labels": ["namespace"],
                   "action": "keep",
                   "regex" : "flowsnake*"
+                },
+                { "regex": "id",
+                  "action": "labeldrop"
+                },
+                { "regex": "image",
+                  "action": "labeldrop"
+                },
+                { "regex": "instance",
+                  "action": "labeldrop"
+                },
+                { "regex": "interface",
+                  "action": "labeldrop"
+                },
+                { "regex": "name",
+                  "action": "labeldrop"
+                },
+                { "source_labels": ["pod_name"],
+                  "target_label": "pod_name",
+                  "regex": "([a-z0-9-]*)-[a-z0-9]*",
+                  "replacement": "${1}"
+                },
+                { "source_labels": ["flowsnakeRole"],
+                  "target_label": "subservice"
+                },
+                { "source_labels": ["flowsnakeEnvironmentName"],
+                  "target_label": "flowsnake_environment"
+                },
+                { "source_labels": ["flowsnakeOwner"],
+                  "target_label": "owner"
                 }
           ],
           "scrape_interval": "60s",
