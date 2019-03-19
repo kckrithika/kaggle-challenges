@@ -44,7 +44,7 @@ spec:
         - --serviceName=flowsnake
         - --subserviceName=NONE
         - --tagDefault=datacenter:prd
-        - --tagDefault=estate:prd-data-flowsnake_test
+        - --tagDefault=estate:prd-dev-flowsnake_iot_test
         - --tagDefault=superpod:NONE
         - --batchSize=512
         - --funnelUrl=http://ajna0-funnel1-0-prd.data.sfdc.net:80

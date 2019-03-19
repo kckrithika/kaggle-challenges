@@ -72,7 +72,7 @@ configs.deploymentBase("flowsnake") {
           {
             args: [
               "--serviceName=flowsnake",
-              "--subserviceName=rob_args_test",
+              "--subserviceName=NONE",
               "--tagDefault=datacenter:" + kingdom,
               "--tagDefault=estate:" + estate,
               "--tagDefault=superpod:NONE",
