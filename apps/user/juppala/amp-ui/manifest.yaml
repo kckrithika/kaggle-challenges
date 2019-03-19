@@ -15,16 +15,14 @@ system:
           type: client
     containers:
     - name: amp-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/amp-ui:build-20190318-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/amp-ui:build-20190318-2
       env:
       - name: AMP_ENVIRONMENT
         value: "dev"
       - name: HTTPS_PROXY
         value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
       - name: AMP_BASE_URL
-        value: "https://gus--ampintk.my.salesforce.com"
-      #- name: AMP_SERVICE_URL
-      #  value: "http://amp-intake-backend-lb.user-amp-be.prd-sam.prd.slb.sfdc.net:4434"
+        value: "https://gus.my.salesforce.com"
       - name: AMP_SECRET_SERVICE_URL
         value: "https://secretservice.dmz.salesforce.com:8271/vaultczar/api/1.0/getSecretBySubscriber"
       ports:
@@ -32,7 +30,7 @@ system:
       livenessProbe:
         httpGet:
           path: /amp/v1/healthCheck
-          port: 8445
+          port: 8443
       volumeMounts:
       - name: ui-servercert
         mountPath: /servercerts
