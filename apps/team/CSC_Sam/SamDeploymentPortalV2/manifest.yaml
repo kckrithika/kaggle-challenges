@@ -15,9 +15,9 @@ system:
       - --db-name=sam_kube_resource
       - --v=4
       - --alsologtostderr
-      - --web-banner-text=SAM Deployment Portal is currently in Beta. Please give
-      - --web-banner-link=https://docs.google.com/forms/d/e/1FAIpQLScvoEhUmQpYfT76s4ABH99HnTJjYmwXUMErqgAjWkcDWSgjVQ/viewform?usp=sf_link
-      - --web-banner-link-text=feedback!
+      - --web-banner-text=
+      - --web-banner-link=
+      - --web-banner-link-
       ports:
       - containerPort: 64123
       volumeMounts:
