@@ -33,6 +33,8 @@ system:
         name: logvol
       - mountPath: /fastdata/gater
         name: dbvol
+      - mountPath: /home/sfdc/automation
+        name: perf-automation-volume
       livenessProbe:
         httpGet:
           path: /manage/health
