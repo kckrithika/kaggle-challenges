@@ -43,6 +43,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-realsvrcfg
         - --client.serverPort=12084
         - --client.serverInterface=lo
+        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-realsvrcfg/slb-realsvrcfg.sentinel
         - --nginxPodMode=false
         - --client.socketDir=/host/data/slb/config/slb-realsvrcfg
         - --client.dialSocket=true
