@@ -272,7 +272,8 @@ data:
     nd\n                  WHERE\n                        KINGDOM != ''PRD'' AND KINGDOM
     != ''UNK''\n                        AND minionpool NOT LIKE ''%ceph%''\n                        AND
     minionpool NOT LIKE ''%slb%''\n                        AND minionpool NOT LIKE
-    ''%storage%''\n                        AND minionpool NOT LIKE ''%chatbot%''\n                  GROUP
+    ''%storage%''\n                        AND minionpool NOT LIKE ''%chatbot%''\n                        AND
+    minionpool NOT LIKE ''%gsf-core-devmvp-sam2-samtest%''\n                  GROUP
     BY minionpool\n              ) ss\n              ) ss2\n              WHERE\n              ((TotalCount
     >= 10 AND NotReadyPerc >0.25)\n              OR\n              (TotalCount < 10
     AND NotReadyCount >2))\n              \n              AND NOT\n              (minionpool

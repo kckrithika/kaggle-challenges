@@ -33,6 +33,7 @@
                         AND minionpool NOT LIKE '%slb%'
                         AND minionpool NOT LIKE '%storage%'
                         AND minionpool NOT LIKE '%chatbot%'
+                        AND minionpool NOT LIKE '%gsf-core-devmvp-sam2-samtest%'
                   GROUP BY minionpool
               ) ss
               ) ss2
