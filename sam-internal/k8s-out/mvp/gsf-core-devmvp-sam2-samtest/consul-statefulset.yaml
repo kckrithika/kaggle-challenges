@@ -11,7 +11,7 @@ spec:
   selector:
     matchLabels:
       app: consul-server
-  serviceName: consul-server
+  serviceName: consul-headless
   template:
     metadata:
       labels:
@@ -22,6 +22,7 @@ spec:
         - agent
         - -advertise=$(POD_IP)
         - -bind=0.0.0.0
+        - -client=0.0.0.0
         - -bootstrap-expect=3
         - -datacenter=gcp-uscentral1
         - -data-dir=/consul/data
@@ -61,12 +62,21 @@ spec:
         readinessProbe:
           exec:
             command:
-            - /bin/sh
-            - -ec
-            - '| curl http://$POD_IP:8500/v1/status/leader 2>/dev/null | grep -E ''".+"'''
+            - curl http://$POD_IP:8500/v1/status/leader 2>/dev/null | grep -E '".+"'
           failureThreshold: 2
           initialDelaySeconds: 5
           periodSeconds: 3
           successThreshold: 1
           timeoutSeconds: 5
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 7447
+      dnsPolicy: ClusterFirstWithHostNet
+      restartPolicy: Always
+      securityContext:
+        fsGroup: 7447
+        runAsNonRoot: true
+        runAsUser: 7447
       terminationGracePeriodSeconds: 10
+  updateStrategy:
+    type: RollingUpdate

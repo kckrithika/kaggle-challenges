@@ -50,8 +50,11 @@ if configs.kingdom == 'mvp' then {
     labels: {} + configs.pcnEnableLabel,
   },
   spec: {
-    serviceName: 'consul-server',
+    serviceName: 'consul-headless',
     podManagementPolicy: 'Parallel',
+    updateStrategy: {
+        type: 'RollingUpdate',
+    },
     replicas: 3,
     selector: {
       matchLabels: {
@@ -66,6 +69,13 @@ if configs.kingdom == 'mvp' then {
       },
       spec: {
         terminationGracePeriodSeconds: 10,
+        securityContext: {
+            fsGroup: 7447,
+            runAsNonRoot: true,
+            runAsUser: 7447,
+        },
+        dnsPolicy: 'ClusterFirstWithHostNet',
+        restartPolicy: 'Always',
         containers: [
           {
             name: 'consul',
@@ -74,6 +84,7 @@ if configs.kingdom == 'mvp' then {
               'agent',
               '-advertise=$(POD_IP)',
               '-bind=0.0.0.0',
+              '-client=0.0.0.0',
               '-bootstrap-expect=3',
               '-datacenter=gcp-uscentral1',
               '-data-dir=/consul/data',
@@ -100,9 +111,7 @@ if configs.kingdom == 'mvp' then {
             readinessProbe: {
               exec: {
                 command: [
-                  '/bin/sh',
-                  '-ec',
-                  '| curl http://$POD_IP:8500/v1/status/leader 2>/dev/null | grep -E \'".+"\'',
+                  'curl http://$POD_IP:8500/v1/status/leader 2>/dev/null | grep -E \'".+"\'',
                 ],
               },
               failureThreshold: 2,
@@ -110,6 +119,10 @@ if configs.kingdom == 'mvp' then {
               periodSeconds: 3,
               successThreshold: 1,
               timeoutSeconds: 5,
+            },
+            securityContext: {
+                runAsNonRoot: true,
+                runAsUser: 7447,
             },
           },
         ],
