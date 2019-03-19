@@ -1,4 +1,6 @@
 apps:
+ prd-search-query-service:
+  - prd/prd-search_model_executor
  prd-search_model_executor_xlt:
   - prd/prd-sam
  prd-search-model-executor:
