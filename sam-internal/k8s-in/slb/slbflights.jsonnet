@@ -13,6 +13,9 @@ local slbconfigs = import "slbconfig.jsonnet";
     slbTCPdumpEnabled: (slbimages.phaseNum <= 1),
     vipLimit: (slbimages.hyperslb_build >= 2097),
 
+    # Whether nginx-config should wait for realsvrcfg to place VIPs on the tunl interface.
+    featureflagWaitForRealsvrCfg: (slbimages.phaseNum <= 1),
+
     # slb-nginx-accesslogs can sometimes fill up disk -- see investigation at
     # https://computecloud.slack.com/archives/G340CE86R/p1552882461719300?thread_ts=1552870275.718300&cid=G340CE86R.
     nginxAccesslogsEnabled: (slbimages.phaseNum <= 1),
