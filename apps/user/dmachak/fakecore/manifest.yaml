@@ -1,0 +1,49 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: fakecore
+    count: 1 
+    containers:
+    - name: fakecore-sam
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore_salescloud:2
+      ports:
+      - containerPort: 8085
+      livenessProbe:
+        exec:
+          command:
+          - "date"
+      env:
+        - name: DELAY
+          value: 10
+      volumeMounts:
+      - mountPath: /home/sfdc/automation
+        name: perf-automation-volume
+    - name: perf-sidecar       # Sidecar container that deploys automation folder
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perfsidecar:20180312-1
+      ports:
+      - containerPort: 10001   # Port for the profiler
+      livenessProbe:
+        exec:
+          command:
+          - "date"             # I'm making it so that this container will never get recyled by SAM
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /home/sfdc/.done_unpack   # When the container finishes deploying all the bits, it'll create this file
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /home/sfdc/automation
+        name: perf-automation-volume
+    volumes:
+    - emptyDir: {}
+      name: perf-automation-volume    # Shared volume with all the automation tools
+  loadbalancers:
+  - lbname: fakecoreslb
+    function: fakecore
+    slbenabled: true
+    ports:
+      - port: 8111
+        targetport: 8085
