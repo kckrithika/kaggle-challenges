@@ -1,2 +1,3 @@
-version: v2
 apps:
+  collection-test:
+    - mvp/gsf-core-devmvp-sam2-samtest

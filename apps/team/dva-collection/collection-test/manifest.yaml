@@ -1,0 +1,62 @@
+apiVersion: v1
+
+system:
+  functions:
+    - name: collection-test
+      count: 1
+      containers:
+        - name: rsyslog
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:8.38-135-2-OMHTTP
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+          livenessProbe:
+            exec:
+              command:
+                - pgrep
+                - rsyslogd
+            initialDelaySeconds: 10
+            periodSeconds: 5
+        - name: sherpa
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+          args:
+            # 2018-02-08: Direct Connection to the switchboard for now
+            - --switchboard=switchboard.service-mesh.svc:15001
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          ports:
+            - containerPort: 7012
+              name: grpc-in
+            - containerPort: 7443
+              name: grpc-tls-in
+            - containerPort: 15373
+              name: sherpa-adm
+          livenessProbe:
+            exec:
+              command:
+                - ./bin/is-alive
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+                - ./bin/is-ready
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          volumeMounts:
+            - name: tls-client-cert
+              mountPath: /client-certs
+            - name: tls-server-cert
+              mountPath: /server-certs
+
+      volumes:
+        - name: tls-client-cert
+          maddogCert:
+            type: client
+        - name: tls-server-cert
+          maddogCert:
+            type: server
