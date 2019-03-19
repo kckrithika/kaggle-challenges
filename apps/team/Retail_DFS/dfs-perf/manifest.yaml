@@ -16,6 +16,8 @@ system:
     - name: dfs-server-cert
       maddogCert:
         type: server
+        lbnames:
+        - dfs-lbpf
     - name: dfs-client-cert
       maddogCert:
         type: client
@@ -23,7 +25,7 @@ system:
     containers:
     - name: dfs
       # Please update https://salesforce.quip.com/A9HVAFytGaqG with any changes.
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.15.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.18.0
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -81,6 +83,9 @@ system:
           scheme: HTTP
     - name: sherpa-dfs
       image: sfci/servicelibs/sherpa-envoy:1.0.4
+      args:
+      - --server-ca
+      - /server-certs/ca_test/cacerts.pem
       volumeMounts:
       - name: dfs-server-cert
         mountPath: /server-certs
@@ -133,6 +138,6 @@ system:
     slbEnabled: true
     ports:
     - port: 7023
-      targetport: 7022
+      targetport: 7442
     - port: 15373
       targetport: 15372
