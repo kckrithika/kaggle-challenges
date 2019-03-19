@@ -85,6 +85,9 @@ spec:
         - --hostnameOverride=$(NODE_NAME)
         - --httpconfig.trustedProxies=10.252.240.0/25,10.252.247.32/27
         - --iprange.InternalIpRange=127.0.0.1/32
+        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-nginx-config-b/slb-realsvrcfg.sentinel
+        - --control.sentinelExpiration=60s
+        - --featureflagWaitForRealsvrCfg=true
         - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
         - --client.dialSocket=true
         - --control.nginxReloadSentinel=/host/data/slb/slb-nginx-config-b/config/nginx.marker
@@ -412,6 +415,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-nginx-config-b
         - --client.serverPort=9130
         - --client.serverInterface=lo
+        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-nginx-config-b/slb-realsvrcfg.sentinel
         - --control.sentinelExpiration=1200s
         - --nginxPodMode=true
         - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
