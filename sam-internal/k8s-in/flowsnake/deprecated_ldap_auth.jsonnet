@@ -1,6 +1,8 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-{
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
+
+if flowsnakeconfig.is_v1_enabled then {
     auth_groups: (if std.objectHas(self.auth_groups_map, kingdom + "/" + estate) then $.auth_groups_map[kingdom + "/" + estate] else []),
 
     // DEPRECATED: Used for deploying Flowsnake versions <= 0.9.6.
@@ -36,4 +38,4 @@ local kingdom = std.extVar("kingdom");
             "Flowsnake_Ops_Platform",
         ],
     },
-}
+} else "SKIP"

@@ -4,7 +4,7 @@ data:
     {
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
-      "delete-orphans": false,
+      "delete-orphans": true,
       "disable-rollback": true,
       "disable-security-check": true,
       "dry-run": false,
@@ -13,7 +13,7 @@ data:
       "funnelEndpoint": "ajna0-funnel1-0-yhu.data.sfdc.net:80",
       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "max-resource-time": 300000000000,
-      "orphan-namespaces": "flowsnake,default,kube-system",
+      "orphan-namespaces": "flowsnake,sam-system",
       "override-control-estate": "/yhu/yhu-sam",
       "poll-delay": 30000000000,
       "recipient": "flowsnake@salesforce.com",

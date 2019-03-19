@@ -41,6 +41,8 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
 
     is_public_cloud: util.is_public_cloud(configs.kingdom),
     sdn_enabled: !self.is_minikube && !self.is_public_cloud,
+    # no v1 in PCL
+    is_v1_enabled: !self.is_public_cloud,
 
     # Standard SLB vip name is: <lbname>-<team-<kingdom>.slb.sfdc.net
     # Presume lbname is derived from role munged the same way as for ServiceMesh.

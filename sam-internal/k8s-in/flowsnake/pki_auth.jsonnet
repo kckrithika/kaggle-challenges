@@ -1,7 +1,8 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flowsnake_config = import "flowsnake_config.jsonnet";
-{
+
+if flowsnake_config.is_v1_enabled then {
     auth_namespaces: (if std.objectHas(self.auth_namespaces_data, kingdom + "/" + estate) then $.auth_namespaces_data[kingdom + "/" + estate] else error "No matching auth_namespaces entry: " + kingdom + "/" + estate),
 
     // Map from fleet (kingdom/estate) to list of PKI namespaces and who is permitted to create Flowsnake environments
@@ -385,4 +386,4 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         },
       ],
     }),
-}
+} else "SKIP"

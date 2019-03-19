@@ -1,5 +1,6 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
+if flowsnakeconfig.is_v1_enabled then
 {
     apiVersion: "extensions/v1beta1",
     kind: "Ingress",
@@ -32,4 +33,4 @@ local estate = std.extVar("estate");
             },
         ],
     },
-}
+} else "SKIP"

@@ -1,5 +1,6 @@
 local madkub_common = import "madkub_common.jsonnet";
-{
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
+if flowsnakeconfig.is_v1_enabled then {
     local cert_config = madkub_common.make_cert_config([{ name: "ingresscerts", type: "server" }])[0],
     cert_secretizer_config: {
         certToSecretConfigs: [
@@ -16,4 +17,4 @@ local madkub_common = import "madkub_common.jsonnet";
             },
         ],
     },
-}
+} else "SKIP"
