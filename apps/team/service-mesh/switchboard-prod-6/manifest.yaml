@@ -11,7 +11,7 @@ system:
         maxUnavailable: 2
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:64805f5110028be3c21bd1f564b72042ae834d2e
+      image: sfci/servicelibs/switchboard:02843459414892682ff5a03f56fb061c60e74e1a
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -28,7 +28,7 @@ system:
       - name: JVM_HEAP_MAX
         value: 4G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
-        value: "1"
+        value: "0"
       resources:
         limits:
           cpu: 8
@@ -44,18 +44,16 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 20
-        periodSeconds: 14
-        timeoutSeconds: 10
-        failureThreshold: 10
+        periodSeconds: 5
       readinessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/ready
           port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
@@ -102,8 +100,7 @@ system:
       maddogCert:
         type: server
   loadbalancers:
-  # TODO: rename this lb when we start using switchboard SHA 95462e3e28b30f2007fcc1a05588fbf242719794 or newer
-  - lbname: switchboard-lb
+  - lbname: switchboard
     nodeExposed: true
     function: switchboard
     ports:
