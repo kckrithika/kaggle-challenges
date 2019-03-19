@@ -15,9 +15,9 @@ system:
       - --db-name=sam_kube_resource
       - --v=4
       - --alsologtostderr
-      - --web-banner-text=
-      - --web-banner-link=
-      - --web-banner-link-
+      #- --web-banner-text=
+      #- --web-banner-link=
+      #- --web-banner-link-text=
       ports:
       - containerPort: 64123
       volumeMounts:
