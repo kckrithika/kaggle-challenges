@@ -53,6 +53,7 @@ spec:
         - --client.serverInterface=lo
         - --restrictedSubnets=,
         - --maxDeleteEntries=10
+        - --vipLimit=60
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2097-be25220695b853ead3d3de1288f56b53cdb95bd1
