@@ -25,10 +25,11 @@ spec:
         - --alsologtostderr
         - --latency-tolerance=301h
         - --gitPollPeriod=300h
+        - --globalRedirect="Moved to http://sfdc.co/samportal"
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2660-932f1cf8a724ff2381ebc46cbeb59405971800a4
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2661-a493a755679c30705e7667661204bc9e9b8ef77e
         livenessProbe:
           httpGet:
             path: /

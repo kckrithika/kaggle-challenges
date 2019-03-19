@@ -21,6 +21,7 @@ if samfeatureflags.sdpv1 then {
                             # Will be replaced soon by SDPv2
                             "--latency-tolerance=301h",
                             "--gitPollPeriod=300h",
+                            '--globalRedirect="Moved to http://sfdc.co/samportal"',
                         ]),
                         ports: [
                             {

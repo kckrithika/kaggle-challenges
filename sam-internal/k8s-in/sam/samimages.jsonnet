@@ -42,6 +42,9 @@ local samreleases = import "samreleases.json";
         "prd,prd-samdev,watchdog-etcd,hypersam": "sam-0002535-9d228ded",
         "prd,prd-samtest,watchdog-etcd,hypersam": "sam-0002535-9d228ded",
         "prd,prd-sam,watchdog-etcd,hypersam": "sam-0002535-9d228ded",
+
+        #[thargrove] Override SDPv1 so we can point to v1.  Remove after next phase release
+        "prd,prd-sam,sam-deployment-portal,hypersam": "2661-a493a755679c30705e7667661204bc9e9b8ef77e",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
