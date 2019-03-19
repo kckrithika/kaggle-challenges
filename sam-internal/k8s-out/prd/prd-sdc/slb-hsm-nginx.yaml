@@ -519,7 +519,12 @@ spec:
           name: sfdchosts
       - command:
         - /sdn/slb-tcpdump
+<<<<<<< HEAD
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
+=======
+        - --tcpdump.pollinterval=15m
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2097-be25220695b853ead3d3de1288f56b53cdb95bd1
+>>>>>>> changing duration back to 1m and pollinterval to 15m
         name: slb-tcpdump
         resources:
           limits:
