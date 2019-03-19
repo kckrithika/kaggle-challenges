@@ -270,12 +270,12 @@ data:
     as TotalCount,\n                        SUM(CASE WHEN READY = ''True'' THEN 0
     ELSE 1 END) as NotReadyCount,\n                        minionpool\n                  FROM\n                        nodeDetailView
     nd\n                  WHERE\n                        KINGDOM != ''PRD'' AND KINGDOM
-    != ''UNK''\n                        AND minionpool NOT LIKE ''%ceph%''\n                        AND
-    minionpool NOT LIKE ''%slb%''\n                        AND minionpool NOT LIKE
-    ''%storage%''\n                        AND minionpool NOT LIKE ''%chatbot%''\n                  GROUP
-    BY minionpool\n              ) ss\n              ) ss2\n              WHERE\n              ((TotalCount
-    >= 10 AND NotReadyPerc >0.25)\n              OR\n              (TotalCount < 10
-    AND NotReadyCount >2))\n              \n              AND NOT\n              (minionpool
+    != ''UNK'' AND KINGDOM != ''GSF''\n                        AND minionpool NOT
+    LIKE ''%ceph%''\n                        AND minionpool NOT LIKE ''%slb%''\n                        AND
+    minionpool NOT LIKE ''%storage%''\n                        AND minionpool NOT
+    LIKE ''%chatbot%''\n                  GROUP BY minionpool\n              ) ss\n              )
+    ss2\n              WHERE\n              ((TotalCount >= 10 AND NotReadyPerc >0.25)\n              OR\n              (TotalCount
+    < 10 AND NotReadyCount >2))\n              \n              AND NOT\n              (minionpool
     like ''par-sam_warden'' AND now() < STR_TO_DATE(''2019-03-21'', ''%Y-%m-%d''))
     #as in https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006UbTRIA0/view\n              AND
     NOT\n              (minionpool like ''phx-sam_mgmt_hub'' AND now() < STR_TO_DATE(''2019-01-22'',
