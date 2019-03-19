@@ -6,7 +6,10 @@ system:
     count: 1
     containers:
     - name: topology-svc-service
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:ameesala-20190214-227daab 
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:ameesala-20190319-780c6c9
+      env:
+        - name: JVM_ARGS
+          value: "-Dspring.profiles.active=gcp"
       ports:
       - containerPort: 8080
         name: scone-http
