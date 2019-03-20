@@ -36,6 +36,10 @@ events() {
     kcfw describe sparkapplication $APP_NAME | awk '/Events:/{flag=1;next}flag'
 }
 
+epoch() {
+    date '+%s'
+}
+
 SPEC=$1
 APP_NAME=$(python -c 'import json,sys; print json.load(sys.stdin)["metadata"]["name"]' < $SPEC)
 SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
@@ -53,7 +57,7 @@ while ! $(kcfw get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do 
 # ------ Run ---------
 echo "Creating SparkApplication $APP_NAME"
 kcfw create -f $SPEC
-START_TIME=$SECONDS
+START_TIME=$(epoch)
 
 echo "Waiting for SparkApplication $APP_NAME to terminate."
 # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
@@ -68,7 +72,8 @@ while ! $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationS
 done;
 
 # ------ Report Results ---------
-ELAPSED_SECS=$(($SECONDS - $START_TIME))
+END_TIME=$(epoch)
+ELAPSED_SECS=$(($END_TIME - $START_TIME))
 echo "SparkApplication $APP_NAME has terminated after $ELAPSED_SECS seconds. State is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'). Events:"
 events
 
