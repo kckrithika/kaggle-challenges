@@ -6,7 +6,7 @@ system:
     - sqep@salesforce.com
   functions:
   - name: search-query-service
-    count: 10
+    count: 8
     strategy:
       type: RollingUpdate
       rollingUpdate:
