@@ -5,10 +5,10 @@ system:
       count: 1
       containers: 
         - name: content-image-transform
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform:v1
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform:v2
           ports:
             - containerPort: 7020
-            - containerPort: 15372
+            - containerPort: 15374
           env:
             - name: SFDC_ENVIRONMENT
               value: stm
@@ -26,13 +26,13 @@ system:
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 15372
+              port: 15374
             initialDelaySeconds: 20
             periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /manage/ready
-              port: 15372
+              port: 15374
             initialDelaySeconds: 15
             periodSeconds: 5
           terminationMessagePolicy: FallbackToLogsOnError
@@ -88,11 +88,8 @@ system:
         port: 15501
         targetPort: 15001
       - lbtype: tcp
-        port: 15570
-        targetPort: 15372
-      - lbtype: tcp
         port: 15574
-        targetPort: 15373
+        targetPort: 15374
       - lbtype: tcp
         port: 15575
         targetPort: 7020
