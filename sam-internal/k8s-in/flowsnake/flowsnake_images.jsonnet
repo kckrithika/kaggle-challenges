@@ -109,6 +109,7 @@ local utils = import "util_functions.jsonnet";
                 # watchdog_canary_spark_s3: "", # canary spark s3 integration
                 spark_op_watchdog_test_proxy: "enabled",
                 spark_op_watchdog_increase_frequency: "enabled",
+                spark_op_watchdog_improve_logging: "enabled",
             },
             version_mapping: {
                 main: {
