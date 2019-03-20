@@ -1,0 +1,46 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: nagios-adapter
+    count: 1
+    volumes:
+    - name: nagiosauthvol
+      secret:
+        secretName: csc-nagios-auth-temp-stanpass
+    containers:
+    - name: nagios-adapter
+      image: docker-all/dva/csc-health/nagios-adapter:3
+      volumeMounts:
+      - mountPath: /var/secrets/nagios-auth
+        name: nagiosauthvol
+        readOnly: true
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+      env:
+      - name: nagiosadapter_general_nagios_manifests_directory
+        value: /nagios-adapter/watchdog-sdom-manifest/nagios_manifests/
+      - name: nagiosadapter_estates_estates_root_path
+        value: /nagios-adapter/estates-edl/
+      - name: nagiosadapter_nagios_nagios_username
+        value: stanfield.chu
+      - name: nagiosadapter_nagios_nagios_password_path
+        value: /var/secrets/nagios-auth/auth
+      - name: nagiosadapter_logger_log_file
+        value: /nagios-adapter/nagios-adapter/nagiosAdapter.log
+      - name: nagiosadapter_logger_log_level
+        value: DEBUG
+      - name: nagiosadapter_config_schema
+        value: /nagios-adapter/nagios-adapter/config_schema.json
+      - name: nagiosadapter_sleep_interval_seconds
+        value: 300
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export nagiosadapter_general_kingdom=${KINGDOM};
+      export nagiosadapter_reportcollector_reportcollector_endpoint=https://reportcollector-${KINGDOM}.data.sfdc.net:18443/v1/barkBatch;
+
+      ./startNagiosAdapterLoop.sh ${nagiosadapter_sleep_interval_seconds} ${nagiosadapter_config_schema}
+      "]

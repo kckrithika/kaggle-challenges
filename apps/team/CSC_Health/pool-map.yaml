@@ -154,3 +154,5 @@ apps:
   service-event-recorder:
   exptemp-store:
     - prd/prd-sam_report_collector
+  nagios-adapter:
+    - prd/prd-sam_report_collector
