@@ -88,9 +88,6 @@ system:
         port: 15501
         targetPort: 15001
       - lbtype: tcp
-        port: 15570
-        targetPort: 15372
-      - lbtype: tcp
         port: 15574
         targetPort: 15374
       - lbtype: tcp
