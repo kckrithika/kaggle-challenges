@@ -12,7 +12,7 @@ data:
       "imagePullPolicy": "Always",
       "k4aInitContainerImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
       "maddogMaddogEndpoint": "https://10.168.195.227:8443",
-      "madkubImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/mgrass/madkub:1.0.0-0000082-3d5c21b4",
+      "madkubImage": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/madkub:101-455e64bcfff4091317cd31152443871e5af8bc04",
       "namespaceHostSubList": [
         "cloudatlas"
       ],
