@@ -39,7 +39,7 @@ shared_args: configs.filter_empty(
     "-funnelEndpoint=" + configs.funnelVIP,
     "--config=/config/watchdog.json",
     configs.sfdchosts_arg,
-    "-timeout=120s",
+    "-timeout=2s",
 ]
 ),
 }

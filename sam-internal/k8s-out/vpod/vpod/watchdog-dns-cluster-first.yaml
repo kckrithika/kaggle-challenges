@@ -30,7 +30,7 @@ spec:
         - -funnelEndpoint=ajna0-funnel1-0-vpod.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - -timeout=120s
+        - -timeout=2s
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
