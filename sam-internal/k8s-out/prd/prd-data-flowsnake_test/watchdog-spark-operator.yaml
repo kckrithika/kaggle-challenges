@@ -116,10 +116,17 @@ items:
         kubectl -n flowsnake-watchdog "$@"
       }
 
+      events() {
+          # awk magic prints lines after search term found: https://stackoverflow.com/a/17988834
+          kcfw describe sparkapplication $APP_NAME | awk '/Events:/{flag=1;next}flag'
+          echo
+      }
+
       SPEC=$1
       APP_NAME=$(python -c 'import json,sys; print json.load(sys.stdin)["metadata"]["name"]' < $SPEC)
       SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
 
+      # ------ Clean up ---------
       echo "Cleaning up $APP_NAME resources from prior runs"
       # || true because exit code 1 if spark application can't be found.
       kcfw delete sparkapplication $APP_NAME || true
@@ -129,17 +136,41 @@ items:
       # Wait for pods from prior runs to delete.
       while ! $(kcfw get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
 
+      # ------ Run ---------
       echo "Creating SparkApplication $APP_NAME"
       kcfw create -f $SPEC
+      START_TIME=$SECONDS
 
-      echo "Waiting for SparkApplication $APP_NAME to complete"
+      echo "Waiting for SparkApplication $APP_NAME to terminate."
       # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
-      while ! $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep -P '(COMPLETED|FAILED)' > /dev/null); do sleep 1; done;
-      # This log dump does not work. Missing RBAC perms to view completed pods or to view logs? Disable for now.
-      # echo ---- Begin Spark Driver Log ----
-      # kcfw logs $(kcfw get pod -l $SELECTOR -o name) || true
-      # echo ---- End Spark Driver Log ----
-      echo "Terminal SparkApplication $APP_NAME state is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}')"
+      i=0
+      while ! $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep -P '(COMPLETED|FAILED)' > /dev/null); do
+          ((i = i + 1))
+          sleep 1;
+          if ((i % 60 == 0)); then
+              echo "...still waiting after $i seconds. Events so far:";
+              events;
+          fi;
+      done;
+
+      # ------ Report Results ---------
+      ELAPSED_SECS=$(($SECONDS - $START_TIME))
+      echo "SparkApplication $APP_NAME has terminated after $ELAPSED_SECS. State is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'). Events:"
+      events
+
+      POD=$(kcfw get pod -l $SELECTOR -o name)
+      if [[ -z $POD ]]; then
+          echo "Cannot locate driver pod. Maybe it never started? No logs to display."
+      else
+          echo
+          echo ---- Begin $POD Log ----
+          kcfw logs $POD || true
+          echo ---- End Spark Driver Log ----
+          echo
+      fi
+      # Alternatively, generate a Splunk link? Not sure there's a good way to filter for this particular execution, since the driver pod
+      # has the same name on every invocation on every fleet.
+
       # Test successful iff final state is COMPLETED. Use exit code from grep.
       kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep COMPLETED > /dev/null
   kind: ConfigMap

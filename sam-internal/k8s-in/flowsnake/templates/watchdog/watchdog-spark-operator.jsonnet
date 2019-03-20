@@ -9,6 +9,7 @@ local cert_name = "watchdogsparkoperator";
 local watchdog_redo=std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo");
 local test_impersonation=std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_test_proxy");
 local increase_frequency=std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_increase_frequency");
+local improve_logging=std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging");
 local std_new = import "stdlib_0.12.1.jsonnet";
 
 if !watchdog.watchdog_enabled then
@@ -83,7 +84,7 @@ else
                 namespace: "flowsnake",
             },
             data: {
-                "check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh"
+                "check-spark-operator.sh": if improve_logging then importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-v2.sh" else importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh"
             } + (if test_impersonation then {
                 "check-impersonation.sh": importstr "spark-on-k8s-canary-scripts/check-impersonation.sh",
             } else {})
