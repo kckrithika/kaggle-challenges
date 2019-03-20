@@ -44,6 +44,12 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                 namespace: "sam-system",
             },
         },
+        [if sdnimages.phase == "1" then "updateStrategy"]: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+            maxUnavailable: "25%",
+            },
+        },
     },
     metadata: {
         labels: {
