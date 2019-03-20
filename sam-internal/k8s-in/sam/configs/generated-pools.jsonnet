@@ -1382,6 +1382,7 @@
         "core-on-sam",
         "csc-health",
         "distributed-tracing",
+        "dva-collection",
         "emailinfra",
         "gater",
         "gateway",
@@ -1413,6 +1414,7 @@
         "team/core-on-sam",
         "team/CSC_Health",
         "team/distributed-tracing",
+        "team/dva-collection",
         "team/EmailInfra",
         "team/Gater",
         "team/gateway",
@@ -1442,10 +1444,12 @@
     {
       "namespaces": [
         "csc-sam",
+        "dva-collection",
         "slb"
       ],
       "access": [
         "team/CSC_Sam",
+        "team/dva-collection",
         "team/slb"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-samtest",
