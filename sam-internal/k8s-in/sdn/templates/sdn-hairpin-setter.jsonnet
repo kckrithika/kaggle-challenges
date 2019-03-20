@@ -51,6 +51,12 @@ configs.daemonSetBase("sdn") {
                 namespace: "sam-system",
             },
         },
+        [if sdnimages.phase == "1" then "updateStrategy"]: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+            maxUnavailable: "25%",
+            },
+        },
     },
     metadata: {
         labels: {

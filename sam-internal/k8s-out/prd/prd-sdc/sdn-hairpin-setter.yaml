@@ -40,3 +40,7 @@ spec:
       - hostPath:
           path: /var/logs/sdn/
         name: sdnlogs
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate
