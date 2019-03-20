@@ -34,7 +34,6 @@ kcfw() {
 events() {
     # awk magic prints lines after search term found: https://stackoverflow.com/a/17988834
     kcfw describe sparkapplication $APP_NAME | awk '/Events:/{flag=1;next}flag'
-    echo
 }
 
 SPEC=$1
@@ -70,14 +69,13 @@ done;
 
 # ------ Report Results ---------
 ELAPSED_SECS=$(($SECONDS - $START_TIME))
-echo "SparkApplication $APP_NAME has terminated after $ELAPSED_SECS. State is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'). Events:"
+echo "SparkApplication $APP_NAME has terminated after $ELAPSED_SECS seconds. State is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'). Events:"
 events
 
 POD=$(kcfw get pod -l $SELECTOR -o name)
 if [[ -z $POD ]]; then
     echo "Cannot locate driver pod. Maybe it never started? No logs to display."
 else
-    echo
     echo ---- Begin $POD Log ----
     kcfw logs $POD || true
     echo ---- End Spark Driver Log ----
