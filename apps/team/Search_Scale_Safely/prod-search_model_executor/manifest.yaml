@@ -6,7 +6,7 @@ system:
     - searchscalesafely@salesforce.com
   functions:
   - name: search-model-executor
-    count: 20
+    count: 10
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -14,7 +14,7 @@ system:
         maxUnavailable: 25%
     containers:
     - name: search-model-executor
-      image: sfci/searchdev/smt-search-model-executor:4.5
+      image: sfci/searchdev/smt-search-model-executor:4.8
       ports:
       - name: service-port
         containerPort: 7020
@@ -51,7 +51,7 @@ system:
       - name: beacon-log-volume
         mountPath: /home/scone/logs
     - name: sherpa-b
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
