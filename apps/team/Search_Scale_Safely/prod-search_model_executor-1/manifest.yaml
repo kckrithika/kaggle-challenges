@@ -6,7 +6,7 @@ system:
     - searchscalesafely@salesforce.com
   functions:
   - name: search-model-executor
-    count: 10
+    count: 8
     strategy:
       type: RollingUpdate
       rollingUpdate:
