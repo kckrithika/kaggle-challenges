@@ -23,5 +23,5 @@ metadata:
   creationTimestamp: null
   labels:
     sam.data.sfdc.net/owner: sam
-  name: temp-crd-watcher
+  name: crd-watcher
   namespace: sam-system
