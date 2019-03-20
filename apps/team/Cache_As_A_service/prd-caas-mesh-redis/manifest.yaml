@@ -56,7 +56,7 @@ system:
        - name: SFDC_ENVIRONMENT
          value: redis
        - name: NO_ENV_FOR_RESTART
-         value: new
+         value: new1
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
