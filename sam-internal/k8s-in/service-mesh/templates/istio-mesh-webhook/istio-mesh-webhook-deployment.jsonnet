@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local madkub = (import "service-mesh/istio-mesh-webhook/istio-mesh-webhook-madkub.jsonnet") + { templateFilename:: std.thisFile };
+local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 
 configs.deploymentBase("service-mesh") {
