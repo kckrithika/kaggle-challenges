@@ -42,5 +42,6 @@ system:
       export nagiosadapter_general_kingdom=${KINGDOM};
       export nagiosadapter_reportcollector_reportcollector_endpoint=https://reportcollector-${KINGDOM}.data.sfdc.net:18443/v1/barkBatch;
 
+      cd /nagios-adapter/nagios-adapter/
       ./startNagiosAdapterLoop.sh ${nagiosadapter_sleep_interval_seconds} ${nagiosadapter_config_schema}
       "]
