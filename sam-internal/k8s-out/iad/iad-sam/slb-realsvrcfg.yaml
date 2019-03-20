@@ -38,11 +38,12 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-realsvrcfg
         - --client.serverPort=12084
         - --client.serverInterface=lo
+        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-realsvrcfg/slb-realsvrcfg.sentinel
         - --nginxPodMode=false
         - --client.socketDir=/host/data/slb/config/slb-realsvrcfg
         - --client.dialSocket=true
         - --maxDeleteVipCount=10
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2097-be25220695b853ead3d3de1288f56b53cdb95bd1
         name: slb-realsvrcfg
         securityContext:
           privileged: true
@@ -83,7 +84,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2097-be25220695b853ead3d3de1288f56b53cdb95bd1
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -122,7 +123,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2097-be25220695b853ead3d3de1288f56b53cdb95bd1
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -146,7 +147,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=false
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-realsvrcfg/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2097-be25220695b853ead3d3de1288f56b53cdb95bd1
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -164,7 +165,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/slb/hyperslb:2097-be25220695b853ead3d3de1288f56b53cdb95bd1
         name: slb-cleanup
         securityContext:
           privileged: true
