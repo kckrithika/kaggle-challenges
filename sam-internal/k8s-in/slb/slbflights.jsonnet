@@ -10,7 +10,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     roleEnabled: (slbimages.phaseNum <= 1),
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
-    slbTCPdumpEnabled: (slbimages.phaseNum <= 1),
+    slbTCPdumpEnabled: (slbimages.phaseNum <= 2),
     vipLimit: (slbimages.hyperslb_build >= 2097),
     commonOpts: (slbimages.hyperslb_build >= 2098),
 

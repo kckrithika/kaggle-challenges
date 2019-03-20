@@ -13,5 +13,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  name: slb-hsm-nginx
+  labels:
+    sam.data.sfdc.net/owner: slb
+  name: slb-nginx-config-b
   namespace: sam-system

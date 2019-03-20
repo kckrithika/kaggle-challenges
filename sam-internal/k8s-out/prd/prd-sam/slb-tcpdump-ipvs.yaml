@@ -3,6 +3,7 @@ kind: DaemonSet
 metadata:
   labels:
     name: slb-tcpdump-ipvs
+    sam.data.sfdc.net/owner: slb
   name: slb-tcpdump-ipvs
   namespace: sam-system
 spec:
@@ -10,11 +11,13 @@ spec:
     matchLabels:
       daemonset: "true"
       name: slb-tcpdump-ipvs
+      sam.data.sfdc.net/owner: slb
   template:
     metadata:
       labels:
         daemonset: "true"
         name: slb-tcpdump-ipvs
+        sam.data.sfdc.net/owner: slb
     spec:
       containers:
       - command:

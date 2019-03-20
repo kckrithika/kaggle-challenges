@@ -121,6 +121,7 @@
       image: slbimages.hyperslb,
       command: [
           "/sdn/slb-tcpdump",
+          "--tcpdump.pollinterval=15m",
       ],
       name: "slb-tcpdump",
       resources: {

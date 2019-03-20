@@ -6,7 +6,7 @@ data:
         {
           "command": "-i eth0",
           "duration": "1m",
-          "packetcapture": true
+          "packetcapture": false
         }
       ]
     }

@@ -529,6 +529,21 @@ spec:
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+      - command:
+        - /sdn/slb-tcpdump
+        - --tcpdump.pollinterval=15m
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
+        name: slb-tcpdump
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /config
+          name: config
       dnsPolicy: Default
       initContainers:
       - args:
@@ -630,3 +645,6 @@ spec:
       - configMap:
           name: slb-tlsparams
         name: tlsparams-volume
+      - configMap:
+          name: slb-nginx-config-b
+        name: config
