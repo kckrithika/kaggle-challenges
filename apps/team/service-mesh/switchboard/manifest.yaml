@@ -16,9 +16,6 @@ system:
       - --listeners.external-auth-enabled-clusters[1]=shipping-rate-limited.service-mesh
       - --listeners.rate-limit-enabled-clusters[0]=shipping-rate-limited.service-mesh
       - --listeners.rate-limit-enabled-clusters[1]=dfs.retail-dfs
-      - --listeners.rate-limit-enabled-clusters[2]=metadata-service.retail-mds
-      - --listeners.rate-limit-enabled-clusters[3]=cre-api-ccp-perf.retail-cre
-      - --listeners.rate-limit-enabled-clusters[4]=retail-setup.retail-rsui
       - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_source-cluster=true
       - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_destination-cluster=true
       - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_request-headers[:authority]=authority
