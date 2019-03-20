@@ -24,7 +24,6 @@ system:
       - containerPort: 9522
       - containerPort: 9523
       - containerPort: 9090
-      - containerPort: 10001
       - containerPort: 15372
       env:
       - name: SFDC_ENVIRONMENT
