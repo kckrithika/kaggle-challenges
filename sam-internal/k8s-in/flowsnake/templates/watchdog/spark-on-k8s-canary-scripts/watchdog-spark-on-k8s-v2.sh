@@ -73,7 +73,7 @@ ELAPSED_SECS=$(($SECONDS - $START_TIME))
 echo "SparkApplication $APP_NAME has terminated after $ELAPSED_SECS. State is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'). Events:"
 events
 
-POD=$(kcfw get pod -l $SELECTOR -o name)
+POD=$(kcfw get pod -l ${SELECTOR},spark-role=driver -o name)
 if [[ -z $POD ]]; then
     echo "Cannot locate driver pod. Maybe it never started? No logs to display."
 else
