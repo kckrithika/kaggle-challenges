@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-logrotator
-      image: docker-all/dva/csc-health/candidate-service:5
+      image: docker-all/dva/csc-health/candidate-service:8
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: candidate-service
-      image: docker-all/dva/csc-health/candidate-service:5
+      image: docker-all/dva/csc-health/candidate-service:8
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -86,6 +86,8 @@ system:
         value: 80.0
       - name: CHS_SMOOTHINGCONFIG_PROBEXITLOOKBACK
         value: 10
+      - name: CHS_REPORTCOLLECTOR_WHITELISTUNTRUSTED
+        value: nagios-adapter
 
       livenessProbe:
         httpGet:
