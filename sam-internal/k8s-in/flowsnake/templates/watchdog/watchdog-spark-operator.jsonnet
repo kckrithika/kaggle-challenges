@@ -66,10 +66,7 @@ else
             },
             data: {
                 "watchdog-spark-operator.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-operator.libsonnet"),
-            } + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_spark_s3") then
-            {
-                "watchdog-spark-s3.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-s3.libsonnet"),
-            } else {}) + (if test_impersonation then
+            } + (if test_impersonation then
             {
                 "watchdog-spark-impersonation.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-impersonation.libsonnet"),
                 "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-specs/kubeconfig-impersonation-proxy.libsonnet"),

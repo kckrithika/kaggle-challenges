@@ -98,6 +98,7 @@ local utils = import "util_functions.jsonnet";
             watchdog_image_tag: "sam-0002530-db32f9dc",  # Adds cli-checker stderr logging
             madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
             deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
+            impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -150,7 +151,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 spark_op_metrics: "enabled",
                 watchdog_canary_redo: "verified in prd-test",  # Use v2 sample apps built from new repo
-                # watchdog_canary_spark_s3: "", # canary spark s3 integration
                 spark_op_watchdog_test_proxy: "verified in prd-test",
                 spark_op_watchdog_increase_frequency: "verified in prd-test",
                 spark_op_watchdog_improve_logging: "verified in prd-test",
@@ -181,6 +181,9 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 spark_op_metrics: "enabled",
+                spark_op_watchdog_test_proxy: "verified in prd-test",
+                spark_op_watchdog_increase_frequency: "verified in prd-test",
+                spark_op_watchdog_improve_logging: "verified in prd-test",
             },
             version_mapping: {
                 main: {
