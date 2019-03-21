@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-cantor
-        image: dva/casp/cantor_strata:29
+        image: dva/casp/cantor_strata:30
         ports:
         - name: cantor-grpc
           containerPort: 7443
