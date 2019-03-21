@@ -1,4 +1,6 @@
 apps:
+  moana-cdg:
+  - cdg/cdg-sam_datapool
   moana-ph2:
   - ph2/ph2-sam_datapool
   moana-phx:
