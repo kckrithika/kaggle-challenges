@@ -8,14 +8,6 @@ system:
     - name: istio-tcp-stateful
       type: stateful-set
       count: 3
-      labels:
-        app: istio-tcp-stateful
-        disco_dc: prd
-        disco_env: ""
-        disco_subenv: ""
-        disco_pod: ""
-        disco_sp: ""
-        disco_role: istio-tcp-stateful
       annotations:
         sidecar.istio.io/inject: "true"
       containers:
