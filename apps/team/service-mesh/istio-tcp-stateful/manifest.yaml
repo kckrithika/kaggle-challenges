@@ -12,7 +12,7 @@ system:
         - name: tcp-echo-stateful-server
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rama.rao/ramaraochavali/tcp-echo-server:latest
           ports:
-            - name: TCP_PORT
+            - name: tcp-port
               containerPort: 9000
           resources:
             limits: { cpu: "8", memory: "1Gi" }
