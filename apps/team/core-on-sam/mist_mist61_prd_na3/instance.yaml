@@ -2,9 +2,9 @@ color: blue
 db:
   connectionCount: 25
   hostName: mist61ice1-db1-1-prd.eng.sfdc.net
-  instance: mist61a216utf-1
+  instance: mist61b218utf-1
   lockUser: sneezy
-  sid: mist61a216utf
+  sid: mist61b218utf
   statsUser: snowwhite
   user: sleepy
 endpoints:

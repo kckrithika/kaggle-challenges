@@ -7,9 +7,9 @@ system:
   - containers:
     - env:
       - name: DB_SID
-        value: mist61a216utf
+        value: mist61b218utf
       - name: DB_INSTANCE_NAME
-        value: mist61a216utf-1
+        value: mist61b218utf-1
       - name: DB_USER
         value: sleepy
       - name: DB_STATS_USER
@@ -233,7 +233,7 @@ system:
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
-        value: mist61a216utf
+        value: mist61b218utf
       - name: ENABLE_DB_SCHEMA_UPGRADE
         value: 1
       - name: SET_DEFAULT_ORACLE_EDITION
