@@ -145,6 +145,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
             # image tag overrides go here
+            impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -179,6 +180,7 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                watchdog_canary_redo: "verified in prd-test",  # Use v2 sample apps built from new repo
                 spark_op_watchdog_test_proxy: "verified in prd-test",
                 spark_op_watchdog_increase_frequency: "verified in prd-test",
                 spark_op_watchdog_improve_logging: "verified in prd-test",
