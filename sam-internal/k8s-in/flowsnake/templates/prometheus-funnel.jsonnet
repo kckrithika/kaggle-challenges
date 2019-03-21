@@ -41,7 +41,9 @@ configs.deploymentBase("flowsnake") {
               "--config.file=/etc/config/prometheus.json",
               "--storage.tsdb.path=/prometheus-storage",
               "--web.external-url=http://localhost/",
-            ],
+            ] + if std.objectHas(flowsnake_images.feature_flags, "prometheus_exec") then [
+              "--web.enable-lifecycle",
+            ] else [],
             image: flowsnake_images.prometheus_scraper,
             name: "prometheus",
             ports: [
