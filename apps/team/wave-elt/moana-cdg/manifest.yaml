@@ -2,21 +2,12 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-03-21 19:03:16.941956
+# generated: 2019-03-21 22:27:22.946965
 # from:  
 # by: mbyne
 apiVersion: v1
 system:
   functions:
-  - containers:
-    - image: ops0-artifactrepo1-0-cdg.data.sfdc.net/dva/moana-engine:515-0def4d674d1eb04ffe27cbfb13a94cfcec4244ff
-      livenessProbe:
-        exec:
-          command: [ls]
-        initialDelaySeconds: 5
-      name: moana-engine
-    count: 0
-    name: moana-engine
   - containers:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
@@ -56,7 +47,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-cdg.data.sfdc.net/dva/moana-engine:515-0def4d674d1eb04ffe27cbfb13a94cfcec4244ff'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/dva/moana-engine:515-0def4d674d1eb04ffe27cbfb13a94cfcec4244ff'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-primary}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-par.slb.sfdc.net'}
       image: sfci/insights/datapoolservice:release-99-bf4a982
