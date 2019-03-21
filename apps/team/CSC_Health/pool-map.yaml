@@ -156,3 +156,5 @@ apps:
     - prd/prd-sam_report_collector
   nagios-adapter:
     - prd/prd-sam_report_collector
+    - par/par-sam_report_collector
+
