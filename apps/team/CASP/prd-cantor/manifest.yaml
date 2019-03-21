@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-cantor
-        image: dva/casp/cantor_strata:24
+        image: dva/casp/cantor_strata:28
         ports:
         - name: cantor-grpc
           containerPort: 7443
@@ -28,6 +28,9 @@ system:
           exec:
             command:
             - /usr/bin/true
+        env:
+        - name: SUBDOMAIN
+          value: "eng"
     loadbalancers:
     - lbname: cantor
       function: cantor-func
