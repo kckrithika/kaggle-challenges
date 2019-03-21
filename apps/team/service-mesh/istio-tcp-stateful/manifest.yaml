@@ -5,7 +5,7 @@ system:
     email:
       - rama.rao@salesforce.com
   functions:
-    - name: tcp-echo-stateful
+    - name: istio-tcp-stateful
       type: stateful-set
       count: 3
       containers:
