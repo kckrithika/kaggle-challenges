@@ -28,3 +28,5 @@ system:
               command: ["/bin/true"]
             initialDelaySeconds: 10
             timeoutSeconds: 10
+      
+      lbname: istio-tcp-stateful-lb-rama-rao
