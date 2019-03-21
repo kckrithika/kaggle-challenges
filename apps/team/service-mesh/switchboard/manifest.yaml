@@ -55,12 +55,14 @@ system:
           port: 15372
         initialDelaySeconds: 20
         periodSeconds: 5
+        timeoutSeconds: 3
       readinessProbe:
         httpGet:
           path: /manage/ready
           port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
+        timeoutSeconds: 3
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.5
