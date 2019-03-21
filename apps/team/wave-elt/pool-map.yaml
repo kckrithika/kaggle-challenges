@@ -1,4 +1,6 @@
 apps:
+  moana-engine-cdg-par:
+  - par/par-sam_datapool
   moana-cdg:
   - cdg/cdg-sam_datapool
   moana-ph2:
