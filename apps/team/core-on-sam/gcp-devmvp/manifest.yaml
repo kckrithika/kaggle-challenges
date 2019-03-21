@@ -49,6 +49,9 @@ system:
       "]
 
       env:
+        - name: REDEPLOY
+          value: 1
+          
         # db pw extracted from k4a at startup
         - name: DB_USER
           value: sleepy
