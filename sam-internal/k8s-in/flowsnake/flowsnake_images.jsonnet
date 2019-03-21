@@ -49,7 +49,7 @@ local utils = import "util_functions.jsonnet";
                 jdk8_base_tag: "33",
                 madkub_injector_image_tag: "11",
                 spark_operator_image_tag: "11",
-                prometheus_funnel_image_tag: "28",
+                prometheus_funnel_image_tag: "31",
         },
 
         ### Release Phase minikube
@@ -149,7 +149,6 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
-                spark_op_metrics: "enabled",
                 watchdog_canary_redo: "verified in prd-test",  # Use v2 sample apps built from new repo
                 spark_op_watchdog_test_proxy: "verified in prd-test",
                 spark_op_watchdog_increase_frequency: "verified in prd-test",
@@ -180,7 +179,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                spark_op_metrics: "enabled",
                 spark_op_watchdog_test_proxy: "verified in prd-test",
                 spark_op_watchdog_increase_frequency: "verified in prd-test",
                 spark_op_watchdog_improve_logging: "verified in prd-test",

@@ -45,8 +45,8 @@ local spark_op_metrics = std.objectHas(flowsnake_images.feature_flags, "spark_op
                             "-logtostderr",
                             "-v=2",
                             "-enable-metrics=true",
-                            "-metrics-port=10254",
                             "-metrics-endpoint=/metrics",
+                            "-metrics-port=10254",
                         ],
                         ports: [{
                             containerPort: 10254,
