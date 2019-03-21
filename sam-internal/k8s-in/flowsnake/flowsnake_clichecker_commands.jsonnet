@@ -81,10 +81,7 @@ local build_spark_operator_test_commands =
             SparkOperatorTest: {
                 SparkOperatorTest: "/watchdog-spark-scripts/check-spark-operator.sh /watchdog-spark-specs/watchdog-spark-operator.json",
 
-            } + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_spark_s3") then
-            {
-                SparkS3Test: "/watchdog-spark-scripts/check-spark-operator.sh /watchdog-spark-specs/watchdog-spark-s3.json",
-            } else {}) + (if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_test_proxy") then {
+            } + (if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_test_proxy") then {
                 # Verify impersonation works at all
                 ImpersonationProxyMinimalTest: "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-specs/kubeconfig-impersonation-proxy",
                 # Run a Spark Application via the impersonation proxy
