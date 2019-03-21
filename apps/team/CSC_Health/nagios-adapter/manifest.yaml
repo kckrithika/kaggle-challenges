@@ -6,8 +6,8 @@ system:
     count: 1
     volumes:
     - name: nagiosauthvol
-      secret:
-        secretName: csc-nagios-auth-temp-stanpass-manual
+      k4aSecret:
+        secretName: csc-nagios-auth-temp-stanpass
     containers:
     - name: nagios-adapter
       image: docker-all/dva/csc-health/nagios-adapter:4
