@@ -15,12 +15,3 @@ system:
           command:
             - echo
             - HEALTHY
-
-  loadbalancers:
-    - lbname: route-update-service
-      function: route-update-service
-      ports:
-        - lbtype: dsr
-          port: 7020
-          targetport: 7020
-          name: grpc-route-update-service
