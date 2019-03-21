@@ -32,7 +32,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/sam/hypersam:2660-932f1cf8a724ff2381ebc46cbeb59405971800a4
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/sam/hypersam:2662-7d92133983fc3617ead646326f8b83d3225e5bb8
         livenessProbe:
           httpGet:
             path: /info
