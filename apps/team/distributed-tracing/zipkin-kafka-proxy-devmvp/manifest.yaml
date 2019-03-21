@@ -1,0 +1,111 @@
+apiVersion: v1
+
+system:
+    notifications:
+        email:
+        - distributedtracing@salesforce.com
+    functions:
+    - name: zipkin-kafka-proxy-devmvp
+      count: 3
+      strategy:
+          type: RollingUpdate
+          rollingUpdate:
+              maxSurge: 0
+              maxUnavailable: 1
+      volumes:
+      - name: client-certs
+        maddogCert:
+          type: client
+      - name: server-certs
+        maddogCert:
+          type: server
+      - name: secretvol
+        secret:                          
+         secretName: jkspass    
+      containers:
+      - name: zipkin-kafka-proxy-devmvp
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gsf-mgmt-devmvp-zipkin/zipkin-proxy@sha256:1001572285e5926330d396a3ffef1ca093f28a83cccc16ad02c81dcd7709498f
+        env:
+        - name: ZIPKIN_KAFKA_PROXY_HOST
+          value: zipkin-kafka-proxy-devmvp
+        - name: QUERY_PORT
+          value: 7022
+        - name: KAFKA_SECURITY_PROTOCOL
+          value: SSL
+        - name: STORAGE_TYPE
+          value: kafka
+        - name: ZIPKIN_LOGGING_LEVEL
+          value: DEBUG
+        - name: KAFKA_BOOTSTRAP_SERVERS
+          value: ajna-kafka.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:9093
+        - name: KAFKA_TOPIC
+          value: sfdc.test.distributed-tracing.zipkin-kafka-proxy__gcp.us-central1.core.ajnalocal1__tracing
+        - name: KAFKA_ACKS
+          value: all
+        - name: JAVA_OPTS
+          value: -Dloader.path=plugins -Dzipkin.collector.kafka.bootstrap-servers= -Dzipkin.storage.kafka.bootstrap-servers=$(KAFKA_BOOTSTRAP_SERVERS) -Dzipkin.storage.kafka.topic=$(KAFKA_TOPIC) -Dzipkin.storage.kafka.overrides.acks=$(KAFKA_ACKS) -Djavax.net.debug=ssl -Dlogging.level.zipkin=$(ZIPKIN_LOGGING_LEVEL) -Dlogging.level.zipkin2=$(ZIPKIN_LOGGING_LEVEL) -Dzipkin.storage.kafka.overrides.security.protocol=$(KAFKA_SECURITY_PROTOCOL) -Dzipkin.storage.kafka.overrides.ssl.keystore.location=$(ZIPKIN_KEYSTORE_LOCATION)
+        resources:
+            limits: { cpu: "2", memory: "12Gi" }
+            requests: { cpu: "2", memory: "12Gi" }
+        volumeMounts:
+        - mountPath: /etc/pki_service/zipkin-kafka-proxy
+          name: client-certs
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+        livenessProbe:
+            httpGet:
+                path: /metrics
+                port: 7022
+            initialDelaySeconds: 15
+            periodSeconds: 15
+      - name: sherpa
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+        args:
+        # 2018-02-08: Direct Connection to the switchboard for now
+        - --switchboard=switchboard.service-mesh.svc:15001
+        env:
+        - name: SFDC_ENVIRONMENT
+          value: "sam"
+        resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+        ports:
+        # Temporary: Eventually we will only allow tls
+        - containerPort: 7014
+          hostPort: 7014
+          name: sherpa-http1-in
+        - containerPort: 7442
+          hostPort: 7442
+        - containerPort: 15373
+          name: sherpa-adm
+        livenessProbe:
+            exec:
+                command:
+                - "./bin/is-alive"
+            initialDelaySeconds: 60
+            periodSeconds: 5
+        readinessProbe:
+            exec:
+                command:
+                - "./bin/is-ready"
+            initialDelaySeconds: 50
+            periodSeconds: 5
+        volumeMounts:
+          - name: client-certs
+            mountPath: /client-certs
+          - name: server-certs
+            mountPath: /server-certs
+      - name: beacon
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/beacon:a4b2343
+        env:
+        - name: SFDC_ENVIRONMENT
+          value: mesh
+        args:
+        - -endpoint
+        - zipkin-devmvp:DATACENTER_ALLENV:7014
+        livenessProbe:
+            initialDelaySeconds: 5
+            exec:
+                command:
+                - "/home/scone/is-alive.sh"            
