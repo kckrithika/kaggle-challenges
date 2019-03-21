@@ -1,6 +1,6 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 
-if !std.objectHas(flowsnake_images.feature_flags, "spark_op_metrics") then
+if !std.objectHas(flowsnake_images.feature_flags, "prometheus_prep") then
 "SKIP"
 else
 {

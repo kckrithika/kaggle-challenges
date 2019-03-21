@@ -105,6 +105,7 @@ local utils = import "util_functions.jsonnet";
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
                 spark_op_metrics: "enabled",
+                prometheus_prep: "enabled",
                 watchdog_canary_redo: "",  # Use v2 sample apps built from new repo
                 # watchdog_canary_spark_s3: "", # canary spark s3 integration
                 spark_op_watchdog_test_proxy: "enabled",
@@ -149,6 +150,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
                 spark_op_metrics: "enabled",
+                prometheus_prep: "enabled",
                 watchdog_canary_redo: "verified in prd-test",  # Use v2 sample apps built from new repo
                 # watchdog_canary_spark_s3: "", # canary spark s3 integration
                 spark_op_watchdog_test_proxy: "verified in prd-test",
@@ -181,6 +183,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 spark_op_metrics: "enabled",
+                prometheus_prep: "enabled",
             },
             version_mapping: {
                 main: {
@@ -224,6 +227,11 @@ local utils = import "util_functions.jsonnet";
         ### A very special phase 4 for IAD and ORD that preserves access to old versions used by CRE.
         ### TODO:  Remove when CRE is migrated to 0.12.2+
         "4-iad-ord": self["4"] {
+
+            feature_flags: {
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                prometheus_prep: "enabled",
+            },
             # Inherit image tag overrides and feature flags from regular phase 4. Only version_mapping is different.
             version_mapping: {
                 main: {
