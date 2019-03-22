@@ -15,6 +15,14 @@ apps:
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
   - frf/frf-sam_warden
+ prod-cantor:
+  - dfw/dfw-sam_warden
+  - iad/iad-sam_warden
+  - ord/ord-sam_warden
+  - par/par-sam_warden
+  - ukb/ukb-sam_warden
+  - phx/phx-sam_warden
+  - frf/frf-sam_warden
  prod-warden:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
