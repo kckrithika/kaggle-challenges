@@ -26,12 +26,42 @@ spec:
           {
            "certreqs": [
             {
-             "cert-type": "client",
+             "cert-type": "server",
              "kingdom": "prd",
              "name": "cert1",
-             "role": "rsyslog_agent",
-             "san": null,
-             "superpod": null
+             "role": "samapp.slb",
+             "san": [
+              "*.sam-system.prd-sam.prd.slb.sfdc.net",
+              "*.slb.sfdc.net",
+              "*.soma.salesforce.com",
+              "*.data.sfdc.net",
+              "*.kms.slb.sfdc.net",
+              "*.moe.prd-sam.prd.slb.sfdc.net",
+              "*.internal.salesforce.com",
+              "*.stmda.stm.salesforce.com",
+              "*.my.stmda.stm.salesforce.com",
+              "*.eu2.stmda.stm.force.com",
+              "*.stmda.stm.force.com",
+              "*.eu2.visual.stmda.stm.force.com",
+              "*.eu2.content.stmda.stm.force.com",
+              "*.stmda.stm.cloudforce.com",
+              "*.stmda.stm.database.com",
+              "*.builder.stmda.stm.salesforce-communities.com",
+              "*.preview.stmda.stm.salesforce-communities.com",
+              "*.livepreview.stmda.stm.salesforce-communities.com",
+              "*.stmda.stm.documentforce.com",
+              "*.stmda.stm.visualforce.com",
+              "*.lightning.stmda.stm.force.com",
+              "*.container.stmda.stm.lightning.com",
+              "services.stmda.stm.salesforce.com",
+              "cloudatlas.stmda.stm.salesforce.com",
+              "*.a.stmda.stm.forceusercontent.com",
+              "*.d.stmda.stm.forceusercontent.com",
+              "*.retail-rsui.prd-sam.prd.slb.sfdc.net",
+              "*.stmfa.stm.salesforce-hub.com",
+              "*.my.stmfa.stm.salesforce-hub.com",
+              "*.my.stmfb.stm.salesforce-hub.com"
+             ]
             },
             {
              "cert-type": "client",

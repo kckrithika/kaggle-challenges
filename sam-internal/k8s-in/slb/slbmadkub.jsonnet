@@ -6,8 +6,34 @@
     local slbimages = (import "slbimages.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: $.dirSuffix },
 
+    // functions in this library take a certsDir paramter which is of the form (e.g.) ["cert1", "cert2"]
+    // A parameter should pass an array of which cert classes it needs and based on that compute the volumes, volumeMounts, annotations, and maddog parameters
+
+    local steamVipSans = [
+        "*.stmda.stm.salesforce.com",
+        "*.my.stmda.stm.salesforce.com",
+        "*.eu2.stmda.stm.force.com",
+        "*.stmda.stm.force.com",
+        "*.eu2.visual.stmda.stm.force.com",
+        "*.eu2.content.stmda.stm.force.com",
+        "*.stmda.stm.cloudforce.com",
+        "*.stmda.stm.database.com",
+        "*.builder.stmda.stm.salesforce-communities.com",
+        "*.preview.stmda.stm.salesforce-communities.com",
+        "*.livepreview.stmda.stm.salesforce-communities.com",
+        "*.stmda.stm.documentforce.com",
+        "*.stmda.stm.visualforce.com",
+        "*.lightning.stmda.stm.force.com",
+        "*.container.stmda.stm.lightning.com",
+        "services.stmda.stm.salesforce.com",
+        "cloudatlas.stmda.stm.salesforce.com",
+        "*.a.stmda.stm.forceusercontent.com",
+        "*.d.stmda.stm.forceusercontent.com",
+
+    ],
+
     local certDirLookup = {
-        cert1: {  // rsyslo-agent client certificate
+        cert1: {  // server certificate
             mount: {
                 mountPath: "/cert1",
                 name: "cert1",
@@ -20,11 +46,23 @@
             },
             annotation: {
                 name: "cert1",
-                "cert-type": "client",
+                "cert-type": "server",
                 kingdom: configs.kingdom,
-                superpod: null,
-                role: "rsyslog_agent",
-                san: null,
+                role: slbconfigs.samrole,
+                san: [
+                    "*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+                    "*.slb.sfdc.net",
+                    "*.soma.salesforce.com",
+                    "*.data.sfdc.net",
+                    "*.kms.slb.sfdc.net",
+                    "*.moe." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+                    "*.internal.salesforce.com",
+                ] + (if configs.estate == "prd-sam" then (steamVipSans + [
+                    "*.retail-rsui." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net",
+                    "*.stmfa.stm.salesforce-hub.com",
+                    "*.my.stmfa.stm.salesforce-hub.com",
+                    "*.my.stmfb.stm.salesforce-hub.com",
+                ]) else []),
             },
         },
         cert2: {  // client certificate

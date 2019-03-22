@@ -24,12 +24,19 @@ spec:
           {
            "certreqs": [
             {
-             "cert-type": "client",
+             "cert-type": "server",
              "kingdom": "cdg",
              "name": "cert1",
-             "role": "rsyslog_agent",
-             "san": null,
-             "superpod": null
+             "role": "samapp.slb",
+             "san": [
+              "*.sam-system.cdg-sam.cdg.slb.sfdc.net",
+              "*.slb.sfdc.net",
+              "*.soma.salesforce.com",
+              "*.data.sfdc.net",
+              "*.kms.slb.sfdc.net",
+              "*.moe.cdg-sam.cdg.slb.sfdc.net",
+              "*.internal.salesforce.com"
+             ]
             },
             {
              "cert-type": "client",
