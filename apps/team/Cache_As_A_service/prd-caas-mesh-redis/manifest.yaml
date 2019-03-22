@@ -6,7 +6,7 @@ system:
       - jayant.kumar@salesforce.com
   functions:
   - name: prd-redis-mesh
-    count: 2
+    count: 6
     identity:
       serviceName: caas
       pod: mist66
