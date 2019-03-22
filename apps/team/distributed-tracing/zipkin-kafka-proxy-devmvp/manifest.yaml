@@ -19,9 +19,9 @@ system:
       - name: server-certs
         maddogCert:
           type: server
-      - name: secretvol
-        secret:                          
-         secretName: jkspass    
+      # - name: secretvol
+      #   secret:                          
+      #    secretName: jkspass    
       containers:
       - name: zipkin-kafka-proxy-devmvp
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gsf-mgmt-devmvp-zipkin/zipkin-proxy:devmvp
@@ -50,9 +50,9 @@ system:
         volumeMounts:
         - mountPath: /etc/pki_service/zipkin-kafka-proxy
           name: client-certs
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
+        # - mountPath: /var/secrets
+        #   name: secretvol
+        #   readOnly: true
         livenessProbe:
             httpGet:
                 path: /metrics
