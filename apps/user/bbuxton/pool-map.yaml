@@ -1,7 +1,7 @@
 apps:
- scone-gen:
-  - prd/prd-sam
- perf-shipping-test:
-  - prd/prd-sam
+#  scone-gen:
+#   - prd/prd-sam
+#  perf-shipping-test:
+#   - prd/prd-sam
  poetry-gen:
   - prd/prd-sam
