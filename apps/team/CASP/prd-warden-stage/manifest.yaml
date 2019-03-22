@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden-stage
-        image: dva/casp/warden_strata:119
+        image: dva/casp/warden_strata:124
         ports:
         - name: http
           containerPort: 8889
@@ -47,7 +47,7 @@ system:
           httpGet:
             path: /manage/health
             port: 15372
-          initialDelaySeconds: 90
+          initialDelaySeconds: 60
       volumes:
       - name: staging-log-vol
         hostPath:
