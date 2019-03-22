@@ -24,7 +24,7 @@ system:
       #    secretName: jkspass    
       containers:
       - name: zipkin-kafka-proxy-devmvp
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gsf-mgmt-devmvp-zipkin/zipkin-proxy:devmvp
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gsf-mgmt-devmvp-zipkin/zipkin-proxy:devmvp20190322
         env:
         - name: ZIPKIN_KAFKA_PROXY_HOST
           value: zipkin-kafka-proxy-devmvp
@@ -32,6 +32,8 @@ system:
           value: 7022
         - name: KAFKA_SECURITY_PROTOCOL
           value: SSL
+        - name: ZIPKIN_KEYSTORE_LOCATION
+          value: /var/certs/keystore.jks
         - name: STORAGE_TYPE
           value: kafka
         - name: ZIPKIN_LOGGING_LEVEL
