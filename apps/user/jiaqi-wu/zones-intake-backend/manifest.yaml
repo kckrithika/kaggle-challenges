@@ -15,7 +15,7 @@ system:
           type: client
     containers:
     - name: zones-intake-backend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:27
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:33
       ports:
       - containerPort: 30300
       livenessProbe:
