@@ -113,6 +113,3 @@ apps:
 
   demo-authz:
     - prd/prd-sam_gater
-
-  route-update-service:
-    - prd/prd-sam_gater
