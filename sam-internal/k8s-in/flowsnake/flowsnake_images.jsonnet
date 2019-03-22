@@ -37,7 +37,7 @@ local utils = import "util_functions.jsonnet";
                 nodeMonitor_image_tag: 662,
                 watchdog_image_tag: "sam-0002015-fdb18963",
                 watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
-                watchdog_spark_operator_image_tag: if std.objectHas(self.feature_flags, "watchdog_canary_redo") then "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest" else "jenkins-dva-transformation-flowsnake-sample-apps-PR-20-2-itest",
+                watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
                 docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-706-itest",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
