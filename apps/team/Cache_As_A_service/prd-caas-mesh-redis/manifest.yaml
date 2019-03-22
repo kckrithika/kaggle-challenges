@@ -32,16 +32,6 @@ system:
         timeoutSeconds: 10
       ports:
       - containerPort: 12081
-    - name: redis-metrics-publisher
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpragada/caas-metrics-publisher:2
-      args:
-      - -port=12081
-      - -clustername=caas-cluster-1
-      livenessProbe:
-        exec:
-          command: ["true"]
-        initialDelaySeconds: 120
-        periodSeconds: 5
     - name: redis-announcer
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
@@ -56,7 +46,7 @@ system:
        - name: SFDC_ENVIRONMENT
          value: redis
        - name: NO_ENV_FOR_RESTART
-         value: new1
+         value: new2
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
