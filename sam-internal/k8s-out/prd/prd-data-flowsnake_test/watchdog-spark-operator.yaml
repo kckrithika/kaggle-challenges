@@ -375,6 +375,9 @@ items:
             defaultMode: 493
             name: watchdog-spark-on-k8s-script-configmap
           name: watchdog-spark-scripts
+        - configMap:
+            name: sfdchosts
+          name: sfdchosts
         - emptyDir:
             medium: Memory
           name: datacerts
@@ -390,8 +393,5 @@ items:
         - hostPath:
             path: /etc/pki_service/platform/platform-client/keys
           name: client-key
-        - configMap:
-            name: sfdchosts
-          name: sfdchosts
 kind: List
 metadata: {}

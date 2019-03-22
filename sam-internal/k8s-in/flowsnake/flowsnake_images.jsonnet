@@ -30,14 +30,14 @@ local utils = import "util_functions.jsonnet";
                 ingressDefaultBackend_image_tag: 662,
                 beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
                 kibana_image_tag: "345",
-                impersonation_proxy_image_tag: "jenkins-dva-transformation-kubernetes-impersonation-proxy-cert_reload-1-itest",
+                impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
                 logloader_image_tag: "468",
                 logstash_image_tag: "468",
                 madkub_image_tag: "1.0.0-0000081-ddcaa288",
                 nodeMonitor_image_tag: 662,
                 watchdog_image_tag: "sam-0002015-fdb18963",
                 watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
-                watchdog_spark_operator_image_tag: if std.objectHas(self.feature_flags, "watchdog_canary_redo") then "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest" else "jenkins-dva-transformation-flowsnake-sample-apps-PR-20-2-itest",
+                watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
                 docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-706-itest",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
@@ -98,7 +98,6 @@ local utils = import "util_functions.jsonnet";
             watchdog_image_tag: "sam-0002530-db32f9dc",  # Adds cli-checker stderr logging
             madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
             deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
-            impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -106,10 +105,6 @@ local utils = import "util_functions.jsonnet";
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
                 spark_op_metrics: "enabled",
-                watchdog_canary_redo: "",  # Use v2 sample apps built from new repo
-                # watchdog_canary_spark_s3: "", # canary spark s3 integration
-                spark_op_watchdog_test_proxy: "enabled",
-                spark_op_watchdog_increase_frequency: "enabled",
                 spark_op_watchdog_improve_logging: "enabled",
             },
             version_mapping: {
@@ -145,15 +140,10 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
             # image tag overrides go here
-            impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
-                watchdog_canary_redo: "verified in prd-test",  # Use v2 sample apps built from new repo
-                spark_op_watchdog_test_proxy: "verified in prd-test",
-                spark_op_watchdog_increase_frequency: "verified in prd-test",
-                spark_op_watchdog_improve_logging: "verified in prd-test",
             },
             version_mapping: {
                 main: {
@@ -180,10 +170,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                watchdog_canary_redo: "verified in prd-test",  # Use v2 sample apps built from new repo
-                spark_op_watchdog_test_proxy: "verified in prd-test",
-                spark_op_watchdog_increase_frequency: "verified in prd-test",
-                spark_op_watchdog_improve_logging: "verified in prd-test",
             },
             version_mapping: {
                 main: {
@@ -300,7 +286,7 @@ local utils = import "util_functions.jsonnet";
     logstash: flowsnakeconfig.strata_registry + "/flowsnake-logstash:" + $.per_phase[$.phase].logstash_image_tag,
     node_monitor: flowsnakeconfig.strata_registry + "/flowsnake-node-monitor:" + $.per_phase[$.phase].nodeMonitor_image_tag,
     watchdog_canary: flowsnakeconfig.strata_registry + "/watchdog-canary:" + $.per_phase[$.phase].watchdog_canary_image_tag,
-    watchdog_spark_operator: flowsnakeconfig.strata_registry + (if std.objectHas(self.feature_flags, "watchdog_canary_redo") then "/flowsnake-spark-on-k8s-sample-apps:" else "/flowsnake-sample-spark-operator:") + $.per_phase[$.phase].watchdog_spark_operator_image_tag,
+    watchdog_spark_operator: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].watchdog_spark_operator_image_tag,
     docker_daemon_watchdog: flowsnakeconfig.strata_registry + "/docker-daemon-watchdog:" + $.per_phase[$.phase].docker_daemon_watchdog_image_tag,
     zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
     madkub_injector: flowsnakeconfig.strata_registry + "/flowsnake-madkub-injector-webhook:" + $.per_phase[$.phase].madkub_injector_image_tag,

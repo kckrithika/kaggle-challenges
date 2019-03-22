@@ -76,26 +76,15 @@ local build_btrfs_test_commands = if std.objectHas(flowsnake_images.feature_flag
 } else {};
 
 local build_spark_operator_test_commands =
-    if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo") then
-        {
-            SparkOperatorTest: {
-                SparkOperatorTest: "/watchdog-spark-scripts/check-spark-operator.sh /watchdog-spark-specs/watchdog-spark-operator.json",
-
-            } + (if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_test_proxy") then {
-                # Verify impersonation works at all
-                ImpersonationProxyMinimalTest: "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-specs/kubeconfig-impersonation-proxy",
-                # Run a Spark Application via the impersonation proxy
-                ImpersonationProxySparkTest: "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-specs/kubeconfig-impersonation-proxy /watchdog-spark-specs/watchdog-spark-impersonation.json",
-            } else {}),
-        }
-    else
-        {
-            SparkOperatorTest: {
-                SparkOperatorTest: "/watchdog-spark-operator/check-spark-operator.sh",
-            },
-        }
-    ;
-
+    {
+        SparkOperatorTest: {
+            SparkOperatorTest: "/watchdog-spark-scripts/check-spark-operator.sh /watchdog-spark-specs/watchdog-spark-operator.json",
+            # Verify impersonation works at all
+            ImpersonationProxyMinimalTest: "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-specs/kubeconfig-impersonation-proxy",
+            # Run a Spark Application via the impersonation proxy
+            ImpersonationProxySparkTest: "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-specs/kubeconfig-impersonation-proxy /watchdog-spark-specs/watchdog-spark-impersonation.json",
+        },
+    };
 {
     command_sets:: build_canary_commands + build_docker_test_commands + build_btrfs_test_commands + build_spark_operator_test_commands,
 }
