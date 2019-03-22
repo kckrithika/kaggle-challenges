@@ -44,6 +44,7 @@ ruleset(name="ruleset_solr_jetty" queue.type="LinkedList" queue.size="5000" queu
   set $!datacenter = "<%= config.cluster %>";
   set $!superpod = "NONE";
   set $!pod = "<%= config.node %>";
+  set $!hostname = "<%= config.node %>";
   set $!owner = "Search";
   set $!source_type = "solr_jvmgclog";
 

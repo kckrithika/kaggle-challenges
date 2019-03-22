@@ -26,19 +26,12 @@ spec:
           {
            "certreqs": [
             {
-             "cert-type": "server",
+             "cert-type": "client",
              "kingdom": "prd",
              "name": "cert1",
-             "role": "samapp.slb",
-             "san": [
-              "*.sam-system.prd-samtest.prd.slb.sfdc.net",
-              "*.slb.sfdc.net",
-              "*.soma.salesforce.com",
-              "*.data.sfdc.net",
-              "*.kms.slb.sfdc.net",
-              "*.moe.prd-samtest.prd.slb.sfdc.net",
-              "*.internal.salesforce.com"
-             ]
+             "role": "rsyslog_agent",
+             "san": null,
+             "superpod": null
             },
             {
              "cert-type": "client",

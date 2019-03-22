@@ -1,13 +1,14 @@
 {
     dirSuffix:: "",
     local configs = import "config.jsonnet",
+    local utils = import "util_functions.jsonnet",
     local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile },
-    local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
-    local slbimages = (import "slbimages.jsonnet") + { dirSuffix:: $.dirSuffix },
-    local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: $.dirSuffix },
+    local rsyslogimages = (import "rsyslogimages.jsonnet") + { dirSuffix:: $.dirSuffix },
+    local rsyslogutils = (import "rsyslogutils.jsonnet") + { dirSuffix:: $.dirSuffix },
+    local maddogEndpoint = "https://10.168.195.227:8443",
 
     local certDirLookup = {
-        cert1: {  // rsyslo-agent client certificate
+        cert1: {  // rsyslog-agent client certificate
             mount: {
                 mountPath: "/cert1",
                 name: "cert1",
@@ -27,85 +28,31 @@
                 san: null,
             },
         },
-        cert2: {  // client certificate
-            mount: {
-                mountPath: "/cert2",
-                name: "cert2",
-            },
-            volume: {
-                emptyDir: {
-                    medium: "Memory",
-                },
-                name: "cert2",
-            },
-            annotation: {
-                name: "cert2",
-                "cert-type": "client",
-                kingdom: configs.kingdom,
-                role: slbconfigs.samrole,
-            },
-        },
-        cert3: {  // slb internal certificate for SS
-            mount: {
-                mountPath: "/cert3",
-                name: "cert3",
-            },
-            volume: {
-                emptyDir: {
-                    medium: "Memory",
-                },
-                name: "cert3",
-            },
-            annotation: {
-                name: "cert3",
-                "cert-type": "client",
-                kingdom: configs.kingdom,
-                role: "slb.internal",
-            },
-        },
-        canarycert: {  // certificate for canaries setting up https ports
-            mount: {
-                mountPath: "/canarycert",
-                name: "canarycert",
-            },
-            volume: {
-                emptyDir: {
-                    medium: "Memory",
-                },
-                name: "canarycert",
-            },
-            annotation: {
-                name: "canarycert",
-                "cert-type": "server",
-                kingdom: configs.kingdom,
-                role: "slb.canary",
-            },
-        },
     },
 
-    madkubSlbCertFolders(certDirs):: [
+    madkubRsyslogCertFolders(certDirs):: [
       '--cert-folders=%s:/%s/' % [dir, dir]
         for dir in certDirs
     ],
 
-    madkubSlbCertVolumeMounts(certDirs):: [
+    madkubRsyslogCertVolumeMounts(certDirs):: [
         certDirLookup[dir].mount
                 for dir in certDirs
     ],
 
-    madkubSlbCertVolumes(certDirs):: [
+    madkubRsyslogCertVolumes(certDirs):: [
         certDirLookup[dir].volume
                 for dir in certDirs
     ],
 
-    madkubSlbCertsAnnotation(certDirs):: {
+    madkubRsyslogCertsAnnotation(certDirs):: {
         certreqs: [
                 certDirLookup[dir].annotation
                         for dir in certDirs
         ],
     },
 
-    local madkubSlbMadkubVolumeMounts = [
+    local madkubRsyslogMadkubVolumeMounts = [
         {
             mountPath: "/maddog-certs/",
             name: "maddog-certs",
@@ -116,7 +63,7 @@
         },
     ],
 
-    madkubSlbMadkubVolumes():: [
+    madkubRsyslogMadkubVolumes():: [
         {
             emptyDir: {
                 medium: "Memory",
@@ -126,21 +73,21 @@
     ],
 
     madkubInitContainer(certDirs):: {
-        image: "" + samimages.madkub + "",
+        image: if utils.is_pcn(configs.kingdom) then samimages.static.madkubPCN else samimages.madkub,
         args: [
             "/sam/madkub-client",
             "--madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007",
-            "--maddog-endpoint=" + configs.maddogEndpoint + "",
+            "--maddog-endpoint=" + if utils.is_pcn(configs.kingdom) then configs.maddogGCPEndpoint else configs.maddogEndpoint + "",
             "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
             "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
-        ] + $.madkubSlbCertFolders(certDirs) + [
+        ] + $.madkubRsyslogCertFolders(certDirs) + [
             "--token-folder=/tokens/",
             "--requested-cert-type=client",
             "--ca-folder=/maddog-certs/ca",
         ],
         name: "madkub-init",
         imagePullPolicy: "IfNotPresent",
-        volumeMounts: $.madkubSlbCertVolumeMounts(certDirs) + madkubSlbMadkubVolumeMounts,
+        volumeMounts: $.madkubRsyslogCertVolumeMounts(certDirs) + madkubRsyslogMadkubVolumeMounts,
         env: [
             {
                 name: "MADKUB_NODENAME",

@@ -3,10 +3,12 @@ local appNamespace = "sam-system";
 // local rsyslogimages = import "rsyslogimages.libsonnet";
 local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: std.thisFile };
 local rsyslogutils = import "rsyslogutils.jsonnet";
+local madkub = (import "rsyslogmadkub.jsonnet") + { templateFilename:: std.thisFile };
 
-local volumes = rsyslogutils.rsyslog_config_volume() + rsyslogutils.config_gen_tpl_volume() + rsyslogutils.rsyslog_volume();
+local certDirs = ["cert1"];
 
 local initContainers = [
+    madkub.madkubInitContainer(certDirs),
     rsyslogutils.config_gen_init_container(
         "journal",
         rsyslogimages.config_gen,
@@ -85,6 +87,18 @@ if configs.kingdom == "mvp" then {
                 labels: {
                     app: "collection-agent-daemonset",
                 },
+                annotations: {
+                    "madkub.sam.sfdc.net/allcerts":
+                    std.manifestJsonEx(
+                    {
+                        certreqs:
+                            [
+                                certReq
+for certReq in madkub.madkubRsyslogCertsAnnotation(certDirs).certreqs
+                            ],
+                    }, " "
+),
+                },
             },
             spec: {
                 automountServiceAccountToken: false,
@@ -113,7 +127,7 @@ if configs.kingdom == "mvp" then {
                                 mountPath: "/etc/rsyslog.conf",
                                 subPath: "rsyslog.conf",
                             },
-                        ] + rsyslogutils.rsyslog_config_volume_mounts() + rsyslogutils.rsyslog_volume_mounts(),
+                        ] + rsyslogutils.rsyslog_config_volume_mounts() + rsyslogutils.rsyslog_volume_mounts() + madkub.madkubRsyslogCertVolumeMounts(certDirs),
                     },
                     {
                         name: "logarchive",
@@ -131,8 +145,15 @@ if configs.kingdom == "mvp" then {
                             },
                         ],
                     },
+                    madkub.madkubRefreshContainer(certDirs),
                 ],
-                volumes: volumes,
+                volumes+: [
+                    configs.maddog_cert_volume,
+                ] + rsyslogutils.rsyslog_config_volume()
+                  + rsyslogutils.config_gen_tpl_volume()
+                  + rsyslogutils.rsyslog_volume()
+                  + madkub.madkubRsyslogCertVolumes(certDirs)
+                  + madkub.madkubRsyslogMadkubVolumes(),
             },
         },
         templateGeneration: 2,
