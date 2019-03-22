@@ -4,31 +4,12 @@ metadata:
   name: route-update-service
   namespace: service-mesh
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: route-update-service
   template:
     metadata:
-      annotations:
-        madkub.sam.sfdc.net/allcerts: |-
-          {
-           "certreqs": [
-            {
-             "cert-type": "server",
-             "kingdom": "prd",
-             "name": "server-cert",
-             "role": "route-update-service.service-mesh",
-             "san": [
-              "route-update-service",
-              "route-update-service.service-mesh",
-              "route-update-service.service-mesh.svc",
-              "route-update-service.service-mesh.svc.prd-sam.prd.sam.sfdc.net"
-             ]
-            }
-           ]
-          }
-        sidecar.istio.io/inject: "false"
       labels:
         app: route-update-service
     spec:
@@ -46,57 +27,4 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 30
           timeoutSeconds: 5
-        volumeMounts:
-        - mountPath: /etc/pki_service
-          name: maddog-certs
-        - mountPath: /server-cert
-          name: server-cert
-      - args:
-        - /sam/madkub-client
-        - --madkub-endpoint=https://10.254.208.254:32007
-        - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
-        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
-        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
-        - --cert-folders=server-cert:/server-cert/
-        - --token-folder=/tokens/
-        - --ca-folder=/maddog-certs/ca
-        - --refresher
-        - --run-init-for-refresher-mode
-        env:
-        - name: MADKUB_NODENAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: spec.nodeName
-        - name: MADKUB_NAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.name
-        - name: MADKUB_NAMESPACE
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
-        imagePullPolicy: IfNotPresent
-        name: madkub-refresher
-        resources: {}
-        volumeMounts:
-        - mountPath: /server-cert
-          name: server-cert
-        - mountPath: /maddog-certs/
-          name: maddog-certs
-        - mountPath: /tokens
-          name: tokens
       serviceAccountName: route-update-service-service-account
-      volumes:
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - emptyDir:
-          medium: Memory
-        name: server-cert
-      - emptyDir:
-          medium: Memory
-        name: tokens
