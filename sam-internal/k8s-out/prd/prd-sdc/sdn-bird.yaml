@@ -25,7 +25,7 @@ spec:
           value: /usr/local/etc/bird.conf
         - name: BIRD_SOCKET
           value: /usr/local/var/run/bird.ctl
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/bird:v-0000016-a0f26f27
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/bird:501-ae2eecf2268bc202291675f383a7fc34390c4d4b
         livenessProbe:
           exec:
             command:
