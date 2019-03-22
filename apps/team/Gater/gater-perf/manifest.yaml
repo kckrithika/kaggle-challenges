@@ -10,7 +10,7 @@ system:
       - --gater.grpc.endpoint=gater-mesh.gater.localhost.mesh.force.com
       - --gater.grpc.port=5443
       - --management.server.port=15375
-      - --gater.client-mode=THRIFT
+      - --gater.client-mode=GRPC
       - --gater.perf.gate-names=com.salesforce.gater.alwaysEnabled
       - --gater.thrift.service.destination=/s/gater-mesh
       - --gater.thrift.metadata.destination=/s/gater-mesh-metadata
