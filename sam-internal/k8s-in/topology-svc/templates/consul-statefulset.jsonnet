@@ -111,7 +111,9 @@ if configs.kingdom == 'mvp' then {
             readinessProbe: {
               exec: {
                 command: [
-                  'curl http://$POD_IP:8500/v1/status/leader 2>/dev/null | grep -E \'".+"\'',
+                  '/bin/sh',
+                  '-ec',
+                  'curl "http://$POD_IP:8500/v1/status/leader" 2> /dev/null | grep -E \'".+"\'',
                 ],
               },
               failureThreshold: 2,
