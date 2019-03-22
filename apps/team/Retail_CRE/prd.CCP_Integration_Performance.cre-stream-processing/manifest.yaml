@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.7.0.0.gy-zipkin.81abc5b.14
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:1.7.0.0.develop-1.7.17a1a61.29
       env:
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_outbound_CCP_Integration_Performance
@@ -55,14 +55,14 @@ system:
                   -XX:+PrintStringTableStatistics
                   -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
                   -XX:+HeapDumpOnOutOfMemoryError
-                  -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 8080
       - containerPort: 7020
       - containerPort: 15372
       resources:
-        limits: { cpu: "2", memory: "4Gi" }
-        requests: { cpu: "2", memory: "3Gi" }
+        limits: { cpu: "2", memory: "6Gi" }
+        requests: { cpu: "2", memory: "5Gi" }
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
