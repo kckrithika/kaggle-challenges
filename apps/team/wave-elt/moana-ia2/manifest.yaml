@@ -2,14 +2,14 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-03-20 18:12:51.392071
+# generated: 2019-03-22 21:28:13.656857
 # from:  
 # by: agitelman
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/datapool-engine:514-83692841afa3c6580a5e7fcc63c3e2196f94b39b
+    - image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/moana-engine:516-530b5b532ec6629474fc18e55f204fbbcb9eac00
       livenessProbe:
         exec:
           command: [ls]
@@ -56,9 +56,9 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/datapool-engine:514-83692841afa3c6580a5e7fcc63c3e2196f94b39b'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/moana-engine:516-530b5b532ec6629474fc18e55f204fbbcb9eac00'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-primary}
-      image: sfci/insights/datapoolservice:release-98-7d03eba
+      image: sfci/insights/datapoolservice:release-99-bf4a982
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
