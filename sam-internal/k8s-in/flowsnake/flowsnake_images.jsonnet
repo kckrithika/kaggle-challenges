@@ -144,6 +144,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",
+                spark_op_metrics: "enabled",
             },
             version_mapping: {
                 main: {
