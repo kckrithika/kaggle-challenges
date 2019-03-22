@@ -17,7 +17,7 @@ system:
     containers:
     - name: spaas
       #Prod image cannot be used directly in sam sandbox?
-      image: sfci/service-protection/sps:0.0.5.12
+      image: sfci/service-protection/sps:0.0.5.14
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.22
       # set container environment variables
       env:
