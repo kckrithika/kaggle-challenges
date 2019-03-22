@@ -20,7 +20,6 @@ system:
         - -m
         - -a 127.0.0.1:12082
         - -x 120
-        - -l
       livenessProbe:
         exec:
           command: ["true"]
@@ -28,7 +27,7 @@ system:
         periodSeconds: 5
       env:
        - name: NOT_REQUIRED
-         value: newton8
+         value: newton9
        - name: PYTHONUNBUFFERED
          value: 1
     - name: sherpa
