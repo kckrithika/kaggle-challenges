@@ -1,0 +1,7 @@
+- lbname: agau-magister-test-prd
+  servers:
+   - 10.252.130.138
+  ports:
+   - port: 443
+     targetport: 443
+     lbtype: tcp
