@@ -83,6 +83,7 @@ system:
       - containerPort: 8080
       - containerPort: 7020
       - containerPort: 15372
+      - containerPort: 8898
       livenessProbe:
         exec:
             command:
