@@ -16,6 +16,7 @@ if configs.kingdom == 'mvp' then {
             app: 'consul-lb',
         } + configs.pcnEnableLabel,
         annotations: {
+            "cloud.google.com/load-balancer-type": "Internal",
         },
     },
     spec: {
