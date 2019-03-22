@@ -8,18 +8,18 @@ system:
       containers:
       - name: searchserver
         # image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17630069.449
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:TODO
         env:
-        - name: SFDC_ENVIRONMENT
-          value: "sam"
         - name: INSTANCE_URL
-          value: "DISABLED"
+          value: "https://casam.devmvp.gcp.sfdcsvc.net"
         - name: ENCRYPTION_URL
           value: "DISABLED"
         - name: ENABLE_METRICS
           value: "true"
         - name: LBNAME
           value: "searchservers"
+        - name: DNS_SUFFIX
+          value: "svc.sam.core.test.us-central1.gcp.sfdc.net"
         - name: DNS_PODNAME
           valueFrom:
             fieldRef:
