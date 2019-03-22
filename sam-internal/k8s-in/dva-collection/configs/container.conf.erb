@@ -121,9 +121,9 @@ ruleset(name = "kubernetes_dockercontainers_ruleset") {
       "retry.backoff.ms=100",
       "socket.keepalive.enable=true",
       "security.protocol=ssl",
-      "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
-      "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
-      "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem"
+      "ssl.ca.location=/cert1/ca/cacerts.pem",
+      "ssl.certificate.location=/cert1/client/certificates/client.pem",
+      "ssl.key.location=/cert1/client/keys/client-key.pem"
     ]
     topicConfParam=[
       "acks=-1"

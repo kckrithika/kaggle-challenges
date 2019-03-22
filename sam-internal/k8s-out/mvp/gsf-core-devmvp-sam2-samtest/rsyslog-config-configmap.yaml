@@ -54,9 +54,8 @@ data:
     \     \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
     \     \"message.max.bytes=1000000\",\n      \"queue.buffering.max.ms=5000\",\n
     \     \"retries=2\",\n      \"retry.backoff.ms=100\",\n      \"socket.keepalive.enable=true\",\n
-    \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
-    \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
-    \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
+    \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/cert1/ca/cacerts.pem\",\n
+    \     \"ssl.certificate.location=/cert1/client/certificates/client.pem\",\n      \"ssl.key.location=/cert1/client/keys/client-key.pem\"\n
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  ) & stop\n\n}\n<%# ----
     / End of definition for docker containers tenant ---- %>\n"
   core.conf.erb: "<%# INPUT DEFINITIONS %>\ninput(\n  type=\"imfile\"\n  File=\"/home/sfdc/logs/sfdc/*.gmt.log\"\n
@@ -98,9 +97,8 @@ data:
     \   confParam=[\n      \"batch.num.messages=10000\",\n      \"compression.codec=gzip\",\n
     \     \"max.in.flight.requests.per.connection=2\",\n      \"message.max.bytes=1000000\",\n
     \     \"queue.buffering.max.ms=5000\",\n      \"retries=86400\",\n      \"retry.backoff.ms=1000\",\n
-    \     \"socket.keepalive.enable=true\",\n      \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
-    \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
-    \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
+    \     \"socket.keepalive.enable=true\",\n      \"security.protocol=ssl\",\n      \"ssl.ca.location=/cert1/ca/cacerts.pem\",\n
+    \     \"ssl.certificate.location=/cert1/client/certificates/client.pem\",\n      \"ssl.key.location=/cert1/client/keys/client-key.pem\"\n
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n\n<%# END OF FILE
     %>"
   general.conf.erb: "<%# General file based logs %>\n<%# Needed env variables:\n  -
@@ -136,9 +134,8 @@ data:
     \   confParam=[\n      \"batch.num.messages=10000\",\n      \"compression.codec=gzip\",\n
     \     \"max.in.flight.requests.per.connection=2\",\n      \"message.max.bytes=1000000\",\n
     \     \"queue.buffering.max.ms=5000\",\n      \"retries=3\",\n      \"retry.backoff.ms=1000\",\n
-    \     \"socket.keepalive.enable=true\",\n      \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
-    \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
-    \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
+    \     \"socket.keepalive.enable=true\",\n      \"security.protocol=ssl\",\n      \"ssl.ca.location=/cert1/ca/cacerts.pem\",\n
+    \     \"ssl.certificate.location=/cert1/client/certificates/client.pem\",\n      \"ssl.key.location=/cert1/client/keys/client-key.pem\"\n
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n\n<%# END OF FILE
     %>"
   jetty.conf.erb: "<%# INPUT DEFINITIONS %>\ninput(\n  type=\"imfile\"\n  File=\"/home/sfdc/logs/solr/jetty/*.jvmgc.log_*\"\n
@@ -160,10 +157,11 @@ data:
     DEFINITION %>\nruleset(name=\"ruleset_solr_jetty\" queue.type=\"LinkedList\" queue.size=\"5000\"
     queue.lightdelaymark=\"3000\" queue.fulldelaymark=\"4000\") {\n\n  <%# Template
     Spec %>\n  set $!datacenter = \"<%= config.cluster %>\";\n  set $!superpod = \"NONE\";\n
-    \ set $!pod = \"<%= config.node %>\";\n  set $!owner = \"Search\";\n  set $!source_type
-    = \"solr_jvmgclog\";\n\n  <%# Output action %>\n  action(\n    type=\"omkafka\"\n
-    \   name=\"kafka_solr_jetty\"\n    broker= \"<%= config.broker_vip %>\"\n    template=\"tpl_jetty\"\n
-    \   topic= \"<%= config.kafka_topic %>\"\n    partitions.auto=\"on\"\n    resubmitOnFailure=\"off\"\n
+    \ set $!pod = \"<%= config.node %>\";\n  set $!hostname = \"<%= config.node %>\";\n
+    \ set $!owner = \"Search\";\n  set $!source_type = \"solr_jvmgclog\";\n\n  <%#
+    Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_solr_jetty\"\n
+    \   broker= \"<%= config.broker_vip %>\"\n    template=\"tpl_jetty\"\n    topic=
+    \"<%= config.kafka_topic %>\"\n    partitions.auto=\"on\"\n    resubmitOnFailure=\"off\"\n
     \   reopenonhup=\"on\"\n    action.resumeRetryCount=\"-1\"\n    confParam=[\n
     \     \"batch.num.messages=10000\",\n      \"client.id=collections.rsyslog.test\",\n
     \     \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
@@ -239,9 +237,9 @@ data:
           "retry.backoff.ms=100",
           "socket.keepalive.enable=true",
           "security.protocol=ssl",
-          "ssl.ca.location=/etc/pki_service/ca/cacerts.pem",
-          "ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem",
-          "ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem"
+          "ssl.ca.location=/cert1/ca/cacerts.pem",
+          "ssl.certificate.location=/cert1/client/certificates/client.pem",
+          "ssl.key.location=/cert1/client/keys/client-key.pem"
         ]
         topicConfParam=[
           "acks=-1"
@@ -281,9 +279,8 @@ data:
     \     \"batch.num.messages=10000\",\n      \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
     \     \"message.max.bytes=1000000\",\n      \"queue.buffering.max.ms=5000\",\n
     \     \"retries=86400\",\n      \"retry.backoff.ms=1000\",\n      \"socket.keepalive.enable=true\",\n
-    \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
-    \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
-    \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
+    \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/cert1/ca/cacerts.pem\",\n
+    \     \"ssl.certificate.location=/cert1/client/certificates/client.pem\",\n      \"ssl.key.location=/cert1/client/keys/client-key.pem\"\n
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n\n<%# END OF FILE
     %>"
   jvmgc.conf.erb: "<%# INPUT DEFINITIONS %>\ninput(\n  type=\"imfile\"\n  File=\"/home/sfdc/logs/jvm/*.jvmgc.log_*\"\n
@@ -314,9 +311,8 @@ data:
     \     \"batch.num.messages=10000\",\n      \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
     \     \"message.max.bytes=1000000\",\n      \"queue.buffering.max.ms=5000\",\n
     \     \"retries=86400\",\n      \"retry.backoff.ms=1000\",\n      \"socket.keepalive.enable=true\",\n
-    \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
-    \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
-    \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
+    \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/cert1/ca/cacerts.pem\",\n
+    \     \"ssl.certificate.location=/cert1/client/certificates/client.pem\",\n      \"ssl.key.location=/cert1/client/keys/client-key.pem\"\n
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n\n<%# END OF FILE
     %>"
   rsyslog.conf: "global (\n  workdirectory = \"/var/spool/rsyslog\"\n  maxMessageSize
@@ -348,16 +344,16 @@ data:
     DEFINITION %>\nruleset(name=\"ruleset_solr\" queue.type=\"LinkedList\" queue.size=\"5000\"
     queue.lightdelaymark=\"3000\" queue.fulldelaymark=\"4000\") {\n\n  <%# Template
     Spec %>\n  set $!datacenter = \"<%= config.cluster %>\";\n  set $!superpod = \"NONE\";\n
-    \ set $!pod = \"<%= config.node %>\";\n  set $!owner = \"Search\";\n  set $!source_type
-    = \"solr6\";\n\n  <%# Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_solr\"\n
-    \   broker= \"<%= config.broker_vip %>\"\n    template=\"tpl_solr\"\n    topic=
-    \"<%= config.kafka_topic %>\"\n    partitions.auto=\"on\"\n    resubmitOnFailure=\"off\"\n
-    \   reopenonhup=\"on\"\n    action.resumeRetryCount=\"-1\"\n    confParam=[\n
-    \     \"batch.num.messages=10000\",\n      \"client.id=collections.rsyslog.test\",\n
-    \     \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
-    \     \"message.max.bytes=1000000\",\n      \"queue.buffering.max.ms=5000\",\n
-    \     \"retries=86400\",\n      \"retry.backoff.ms=1000\",\n      \"socket.keepalive.enable=true\",\n
-    \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
+    \ set $!pod = \"<%= config.node %>\";\n  set $!hostname = \"<%= config.node %>\";\n
+    \ set $!owner = \"Search\";\n  set $!source_type = \"solr6\";\n\n  <%# Output
+    action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_solr\"\n    broker=
+    \"<%= config.broker_vip %>\"\n    template=\"tpl_solr\"\n    topic= \"<%= config.kafka_topic
+    %>\"\n    partitions.auto=\"on\"\n    resubmitOnFailure=\"off\"\n    reopenonhup=\"on\"\n
+    \   action.resumeRetryCount=\"-1\"\n    confParam=[\n      \"batch.num.messages=10000\",\n
+    \     \"client.id=collections.rsyslog.test\",\n      \"compression.codec=gzip\",\n
+    \     \"max.in.flight.requests.per.connection=2\",\n      \"message.max.bytes=1000000\",\n
+    \     \"queue.buffering.max.ms=5000\",\n      \"retries=86400\",\n      \"retry.backoff.ms=1000\",\n
+    \     \"socket.keepalive.enable=true\",\n      \"security.protocol=ssl\",\n      \"ssl.ca.location=/etc/pki_service/ca/cacerts.pem\",\n
     \     \"ssl.certificate.location=/etc/pki_service/root/rsyslog_agent/certificates/rsyslog_agent.pem\",\n
     \     \"ssl.key.location=/etc/pki_service/root/rsyslog_agent/keys/rsyslog_agent-key.pem\"\n
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n"
