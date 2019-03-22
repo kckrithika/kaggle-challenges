@@ -12,7 +12,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       - name: JAVA_OPTS
-        value: "-Dscone.service.name=shipping-service-mvp -Dmanagement.server.port=15372"
+        value: "-Dscone.service.name=shipping-service-mvp -Dmanagement.server.port=15372 -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442"
       ports:
       - containerPort: 7020
         name: grpc-svc
