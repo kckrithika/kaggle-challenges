@@ -25,3 +25,5 @@ apps:
     - prd/prd-sam_report_collector
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
+    zipkin-kafka-proxy-devmvp:
+    - mvp/gsf-core-devmvp-sam2-sam
