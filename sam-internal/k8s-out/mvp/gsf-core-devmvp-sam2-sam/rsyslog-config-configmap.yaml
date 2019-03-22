@@ -321,7 +321,7 @@ data:
     = \"omstdout\")\nmodule(load = \"impstats\"\n       interval=\"120\"\n       severity=\"7\"\n
     \      ruleset=\"ruleset_stdout\")\n\nruleset(name=\"ruleset_impstats\") {\n  call
     ruleset_stdout\n  action(type=\"omprog\"\n       name=\"pki_mointor\"\n       binary=\"/usr/local/bin/pki_cert_monitor.py
-    /etc/pki_service/root/rsyslog_agent\"\n       queue.type=\"LinkedList\"\n       queue.saveOnShutdown=\"off\"\n
+    /cert1/client\"\n       queue.type=\"LinkedList\"\n       queue.saveOnShutdown=\"off\"\n
     \      queue.workerThreads=\"1\"\n       action.execOnlyOnceEveryInterval=\"1800\"\n
     \      action.resumeInterval=\"5\"\n       killUnresponsive=\"on\"\n       forceSingleInstance=\"on\")\n}\n\nruleset(name=\"ruleset_stdout\")
     {  \n  action(type=\"omstdout\")\n}\n\n$IncludeConfig /etc/rsyslog.d/*.conf"
