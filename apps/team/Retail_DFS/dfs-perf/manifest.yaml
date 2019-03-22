@@ -10,9 +10,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-dfs/logs
-    - name: sherpa-logvol
-      hostPath:
-        path: /home/sfdc-sherpa/logs
     - name: dfs-server-cert
       maddogCert:
         type: server
@@ -91,8 +88,6 @@ system:
         mountPath: /server-certs
       - name: dfs-client-cert
         mountPath: /client-certs
-      - name: sherpa-logvol
-        mountPath: /log
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
