@@ -37,17 +37,17 @@ template(name="tpl_<%=config.log_type%>" type="list") {
   constant(value=",")
   property(name="$!superpod" outname="superpod" format="jsonfr")
   constant(value=",")
-  property(name="$!pod" outname="pod" format="jsonfr")
-  constant(value=",")
   property(name="$!metadata!filename" outname="source" format="jsonfr")
   constant(value=",")
   property(name="$!hostname" format="jsonfr")
   constant(value=",")
-  property(name="$!node" format="jsonfr")  
-  constant(value=",")
   property(name="timegenerated" outname="agent_timestamp" dateFormat="rfc3339" date.inUTC="on" format="jsonfr")
   constant(value=",")
   property(name="$!owner" outname="owner" format="jsonfr")
+  constant(value=",\"substrate\": \"<%=config.substrate%>\"")
+  constant(value=",\"region\": \"<%=config.region%>\"")
+  constant(value=",\"zone\": \"<%=config.zone%>\"")
+  constant(value=",\"account\": \"<%=config.cluster%>\"")
   constant(value="}}\n")
 }
 
@@ -55,13 +55,11 @@ template(name="tpl_<%=config.log_type%>" type="list") {
 ruleset(name="ruleset_<%=config.log_type%>") {
 
   <%# Template Spec %>
-  set $!datacenter = "<%=config.cluster%>";
+  set $!datacenter = "<%=config.datacenter%>";
   set $!superpod = "NONE";
-  <%# TODO pod - sfdc-pod or k8s pod %>
-  set $!pod = "<%= config.pod %>";
   set $!owner = "<%= config.owner %>";
   set $!source_type = "<%= config.owner %>" + ":" + ""<%= config.log_type %>"";
-  set $!node = "<%=config.node%>";
+  set $!hostname = "<%=config.node%>";
 
   <%# Output action %>
   action(

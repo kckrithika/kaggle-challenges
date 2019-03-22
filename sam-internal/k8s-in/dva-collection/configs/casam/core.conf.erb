@@ -14,14 +14,13 @@ input(
 
 <%# Output Template%>
 template(name = "tpl_core" type="list") {
-  constant(value="{\"@version\": \"1\"")
+  constant(value="{\"@version\": \"20\"")
   constant(value=",\"type\": \"core\"")
   constant(value=",")
-  property(name="hostname" outname="host" format="jsonfr")
+  property(name="$!host" outname="host" format="jsonfr")
   constant(value=",")
   property(name="$!pod" outname="pod" format="jsonfr")
-  constant(value=",\"datacenter\": \"<%=config.cluster%>\"")
-  constant(value=",\"node\": \"<%=config.node%>\"")
+  constant(value=",\"datacenter\": \"<%=config.datacenter%>\"")
   constant(value=",\"superpod\": \"NONE\"")
   constant(value=",")
   property(name="msg" outname="message" format="jsonf")
@@ -30,13 +29,23 @@ template(name = "tpl_core" type="list") {
   constant(value=",")
   property(name="$!ts_generated" outname="timestamp_produce" format="jsonfr")
   constant(value=",")
-  property(name="$!ts" outname="@timestamp" format="jsonfr")
-  constant(value=",")
   property(name="$!ts_raw" outname="raw_timestamp" format="jsonfr")
   constant(value=",")
   property(name="$!log_record_type" outname="log_record_type" format="jsonfr")
   constant(value=",")
   property(name="$!uuid" outname="uuid" format="jsonfr")
+  constant(value=",")
+  property(name="$!appversion" outname="appversion" format="jsonfr")
+  constant(value=",")
+  property(name="$!apptype" outname="apptype" format="jsonfr")
+  constant(value=",")
+  property(name="$!filedate" outname="filedate" format="jsonfr")
+  constant(value=",")
+  property(name="$!role" outname="role" format="jsonfr")
+  constant(value=",\"substrate\": \"<%=config.substrate%>\"")
+  constant(value=",\"region\": \"<%=config.region%>\"")
+  constant(value=",\"zone\": \"<%=config.zone%>\"")
+  constant(value=",\"account\": \"<%=config.cluster%>\"")
   constant(value=", \"latency\": 0}\n")
 }
 
@@ -74,6 +83,10 @@ ruleset(name="ruleset_core") {
   set $!filename = field($!metadata!filename, 47, 5);
   set $!host = field($!filename, 46, 3);
   set $!pod = field($!host, 45, 1);
+  set $!apptype = field($!filename, 46, 2);
+  set $!role = field($!filename, 46, 4);
+  set $!filedate = field($!filename, 46, 5);
+  set $!appversion = field($!filename, 46, 6);
   set $!uuid = $!ts_raw & field($msg, 96, 16) & field($!host, 45, 4) & "-" & field($!host, 45, 5);
   
   <%# Output action %>
