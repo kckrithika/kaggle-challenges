@@ -120,7 +120,7 @@ local wave_elt_production = {
             owner_name: "Flowsnake",
             namespace: "flowsnake-watchdog",  # Kubernetes namespaces cannot contain '_' characters
             pki_namespace: "flowsnake_test",  # https://git.soma.salesforce.com/Infrastructure-Security/GlobalRegistry/blob/82cdcf28a5c12df73f5d73cb6f214d516b9dd348/conf/namespace.json#L1940-L1947
-            users: (if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_test_proxy") then ["flowsnake_test.flowsnake-watchdog"] else []),  # For watchdogs that want to test impersonation proxy (i.e. want to use a cert rather than a service account token to create resources in flowsnake-watchdog namespace)
+            users: ["flowsnake_test.flowsnake-watchdog"],  # For watchdogs that want to test impersonation proxy (i.e. want to use a cert rather than a service account token to create resources in flowsnake-watchdog namespace)
         },
     ] else []),
 
