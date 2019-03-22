@@ -1,7 +1,8 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flowsnake_config = import "flowsnake_config.jsonnet";
-{
+
+if flowsnake_config.is_v1_enabled then {
     topic_grants: (if std.objectHas(self.topic_grants_map, kingdom + "/" + estate) then $.topic_grants_map[kingdom + "/" + estate] else error "No matching topic_grants entry: " + kingdom + "/" + estate),
 
     // Map from fleet (kingdom/estate) to map from LDAP group to list of Ajna topics.
@@ -192,4 +193,4 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         "cdu/cdu-flowsnake_prod": {
         },
     }),
-}
+} else "SKIP"

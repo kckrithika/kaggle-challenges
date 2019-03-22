@@ -40,7 +40,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-estate-installer
         securityContext:
           privileged: true

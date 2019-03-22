@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_config = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 
@@ -40,7 +41,9 @@ configs.deploymentBase("flowsnake") {
               "--config.file=/etc/config/prometheus.json",
               "--storage.tsdb.path=/prometheus-storage",
               "--web.external-url=http://localhost/",
-            ],
+            ] + if std.objectHas(flowsnake_images.feature_flags, "spark_op_metrics") then [
+              "--web.enable-lifecycle",
+            ] else [],
             image: flowsnake_images.prometheus_scraper,
             name: "prometheus",
             ports: [
@@ -71,11 +74,12 @@ configs.deploymentBase("flowsnake") {
           {
             args: [
               "--serviceName=flowsnake",
-              "--subserviceName=rob_args_test",
+              "--subserviceName=NONE",
+              "--tagDefault=superpod:NONE",
               "--tagDefault=datacenter:" + kingdom,
               "--tagDefault=estate:" + estate,
-              "--tagDefault=superpod:NONE",
               "--batchSize=512",
+              "--funnelUrl=" + flowsnake_config.funnel_endpoint,
             ],
             image: flowsnake_images.funnel_writer,
             name: "funnel-writer",

@@ -25,8 +25,8 @@ spec:
         - -logtostderr
         - -v=2
         - -enable-metrics=true
-        - -metrics-port=10254
         - -metrics-endpoint=/metrics
+        - -metrics-port=10254
         command:
         - /usr/bin/spark-operator
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:11

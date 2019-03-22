@@ -31,12 +31,12 @@ spec:
         - -funnelEndpoint=ajna0-funnel1-0-lo3.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - -timeout=2s
+        - -timeout=120s
         - -emailFrequency=24h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sam/hypersam:2644-80d5e92f97356a83fa0854f1d24ccf3927f9e3e5
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/sam/hypersam:2660-932f1cf8a724ff2381ebc46cbeb59405971800a4
         name: watchdog
         resources:
           limits:

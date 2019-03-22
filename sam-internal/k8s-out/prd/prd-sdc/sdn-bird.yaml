@@ -6,6 +6,7 @@ metadata:
   name: sdn-bird
   namespace: sam-system
 spec:
+  minReadySeconds: 60
   selector:
     matchLabels:
       apptype: control
@@ -25,7 +26,7 @@ spec:
           value: /usr/local/etc/bird.conf
         - name: BIRD_SOCKET
           value: /usr/local/var/run/bird.ctl
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/bird:v-0000016-a0f26f27
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sdn/bird:502-4894674ca22e33d82635b47d93ff5772296a0914
         livenessProbe:
           exec:
             command:
@@ -51,3 +52,7 @@ spec:
       - hostPath:
           path: /var/logs/sdn/
         name: sdnlogs
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 10%
+    type: RollingUpdate

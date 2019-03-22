@@ -1,0 +1,56 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - juppala@salesforce.com
+  functions:
+  - name: amp-ui
+    count: 2
+    volumes:
+      - name: ui-servercert
+        maddogCert:
+          type: server
+      - name: ui-clientcert
+        maddogCert:
+          type: client
+    containers:
+    - name: amp-ui
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/amp-ui:build-20190318-4
+      env:
+      - name: AMP_SESSION_SECRET
+        value: "$D$@MPUI"
+      - name: AMP_ENVIRONMENT
+        value: "dev"
+      - name: HTTPS_PROXY
+        value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+      - name: AMP_BASE_URL
+        value: "https://gus.my.salesforce.com"
+      - name: AMP_SECRET_SERVICE_URL
+        value: "https://secretservice.dmz.salesforce.com:8271/vaultczar/api/1.0/getSecretBySubscriber"
+      ports:
+      - containerPort: 8443
+      livenessProbe:
+        httpGet:
+          path: /amp/v1/healthCheck
+          port: 8443
+      volumeMounts:
+      - name: ui-servercert
+        mountPath: /servercerts
+      - name: ui-clientcert
+        mountPath: /clientcerts
+  loadbalancers:
+  - lbname: amp-ui-lb
+    function: amp-ui
+    slbenabled: true
+    ports:
+      - port: 443
+        targetport: 8443
+        lbtype: http
+        tls: true
+      - port: 8443
+        targetport: 8443
+        lbtype: http
+        tls: true
+      - port: 8080
+        targetport: 8443
+        lbtype: http

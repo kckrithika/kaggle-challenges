@@ -29,6 +29,10 @@ apps:
   time:
     - prd/prd-sam
 
+  # Istio Sample TCP stateful service
+  istio-tcp-stateful:
+    - prd/prd-sam
+
   envoy-canary-mvp:
     - mvp/gsf-core-devmvp-sam2-sam
   envoy-canary:
@@ -108,4 +112,7 @@ apps:
 #    - prd/prd-sam_gater
 
   demo-authz:
+    - prd/prd-sam_gater
+
+  route-update-service:
     - prd/prd-sam_gater

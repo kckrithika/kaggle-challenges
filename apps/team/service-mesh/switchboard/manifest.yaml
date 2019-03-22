@@ -8,8 +8,7 @@ system:
     count: 5
     containers:
     - name: switchboard
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/
-      image: sfci/servicelibs/switchboard:02843459414892682ff5a03f56fb061c60e74e1a
+      image: sfci/servicelibs/switchboard:59ef4e06c7ba1e86e8448966d8124ec8327d55f3
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -17,6 +16,9 @@ system:
       - --listeners.external-auth-enabled-clusters[1]=shipping-rate-limited.service-mesh
       - --listeners.rate-limit-enabled-clusters[0]=shipping-rate-limited.service-mesh
       - --listeners.rate-limit-enabled-clusters[1]=dfs.retail-dfs
+      - --listeners.rate-limit-enabled-clusters[2]=metadata-service.retail-mds
+      - --listeners.rate-limit-enabled-clusters[3]=cre-api-ccp-perf.retail-cre
+      - --listeners.rate-limit-enabled-clusters[4]=retail-setup.retail-rsui
       - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_source-cluster=true
       - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_destination-cluster=true
       - --routes.rate-limit-descriptors[shipping-rate-limited.service-mesh]_request-headers[:authority]=authority
@@ -53,12 +55,14 @@ system:
           port: 15372
         initialDelaySeconds: 20
         periodSeconds: 5
+        timeoutSeconds: 3
       readinessProbe:
         httpGet:
           path: /manage/ready
           port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
+        timeoutSeconds: 3
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.5

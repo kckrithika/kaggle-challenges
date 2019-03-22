@@ -1,11 +1,11 @@
 local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
-
+local name = "crd-watcher";
     {
         kind: "ConfigMap",
         apiVersion: "v1",
         metadata: {
-            name: "temp-crd-watcher",
+            name: name,
             namespace: "sam-system",
             labels: {} + configs.ownerLabel.sam + configs.pcnEnableLabel,
         },

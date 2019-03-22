@@ -38,9 +38,17 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
         "prd-minikube-small-flowsnake": "prd-minikube-small-flowsnake.data.sfdc.net",
         "prd-minikube-big-flowsnake": "prd-minikube-big-flowsnake.data.sfdc.net",
     }),
+    # Map to the "pod" or "cluster" names used in iDB and Splunk
+    idb_cluster_name_overrides: self.validate_estate_fields({
+        "prd-data-flowsnake": "flowsnake",
+        "prd-dev-flowsnake_iot_test": "flowsnake_iot_poc",
+        "prd-data-flowsnake_test": "flowsnake_test",
+    }),
 
     is_public_cloud: util.is_public_cloud(configs.kingdom),
     sdn_enabled: !self.is_minikube && !self.is_public_cloud,
+    # no v1 in PCL
+    is_v1_enabled: !self.is_public_cloud,
 
     # Standard SLB vip name is: <lbname>-<team-<kingdom>.slb.sfdc.net
     # Presume lbname is derived from role munged the same way as for ServiceMesh.
@@ -125,6 +133,12 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
             "minikube"
         else if std.objectHas(self.fleet_name_overrides, estate) then
             $.fleet_name_overrides[estate]
+        else
+            estate,
+    idb_cluster_name: if self.is_minikube then
+            "minikube"
+        else if std.objectHas(self.idb_cluster_name_overrides, estate) then
+            $.idb_cluster_name_overrides[estate]
         else
             estate,
     is_test: (

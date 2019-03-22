@@ -1376,12 +1376,14 @@
         "csc-sam",
         "cache-as-a-service",
         "casp",
+        "cbatch",
         "ccait",
         "cloudatlas",
         "communities",
         "core-on-sam",
         "csc-health",
         "distributed-tracing",
+        "dva-collection",
         "emailinfra",
         "gater",
         "gateway",
@@ -1407,12 +1409,14 @@
         "team/CSC_Sam",
         "team/Cache_As_A_service",
         "team/CASP",
+        "team/cbatch",
         "team/CCAIT",
         "team/CloudAtlas",
         "team/communities",
         "team/core-on-sam",
         "team/CSC_Health",
         "team/distributed-tracing",
+        "team/dva-collection",
         "team/EmailInfra",
         "team/Gater",
         "team/gateway",
@@ -1442,10 +1446,12 @@
     {
       "namespaces": [
         "csc-sam",
+        "dva-collection",
         "slb"
       ],
       "access": [
         "team/CSC_Sam",
+        "team/dva-collection",
         "team/slb"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-samtest",

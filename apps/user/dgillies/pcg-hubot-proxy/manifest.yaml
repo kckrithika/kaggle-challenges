@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 
 system:
@@ -19,8 +20,8 @@ system:
           path: /healthz
           port: 8080
   loadbalancers:
-  - lbname: slack-forwarder
-    function: slack-forwarder
+  - lbname: pcg-hubot-forwarder
+    function: pcg-hubot-forwarder
     slbenabled: true
     ports:
       - port: 443

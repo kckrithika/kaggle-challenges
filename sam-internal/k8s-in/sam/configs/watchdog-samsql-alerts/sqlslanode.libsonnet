@@ -28,7 +28,7 @@
                   FROM
                         nodeDetailView nd
                   WHERE
-                        KINGDOM != 'PRD' AND KINGDOM != 'UNK'
+                        KINGDOM != 'PRD' AND KINGDOM != 'UNK' AND KINGDOM != 'GSF'
                         AND minionpool NOT LIKE '%ceph%'
                         AND minionpool NOT LIKE '%slb%'
                         AND minionpool NOT LIKE '%storage%'

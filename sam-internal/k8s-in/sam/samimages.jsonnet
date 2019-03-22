@@ -26,9 +26,9 @@ local samreleases = import "samreleases.json";
         "mvp,gsf-core-devmvp-sam2-sam,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
         "mvp,gsf-core-devmvp-sam2-samtest,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
 
-        #[thargrove] Switch to strata build when its ready
-        "mvp,gsf-core-devmvp-sam2-sam,*,madkub": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/mgrass/madkub:1.0.0-0000082-3d5c21b4",
-        "mvp,gsf-core-devmvp-sam2-samtest,*,madkub": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/mgrass/madkub:1.0.0-0000082-3d5c21b4",
+        #[cdebains] Override with strata that's ready
+        "mvp,gsf-core-devmvp-sam2-sam,*,madkub": "102-5201f60ec3458206b47cc7c1b03944e2e47aa9c7",
+        "mvp,gsf-core-devmvp-sam2-samtest,*,madkub": "102-5201f60ec3458206b47cc7c1b03944e2e47aa9c7",
 
         #[hsuanyu-chen] Enable Internal Load Balancer in PCN
         "mvp,gsf-core-devmvp-sam2-sam,samapp-controller,hypersam": "2624-bee71f3d174816e59a880f0e94d79e3479846842",
@@ -42,6 +42,9 @@ local samreleases = import "samreleases.json";
         "prd,prd-samdev,watchdog-etcd,hypersam": "sam-0002535-9d228ded",
         "prd,prd-samtest,watchdog-etcd,hypersam": "sam-0002535-9d228ded",
         "prd,prd-sam,watchdog-etcd,hypersam": "sam-0002535-9d228ded",
+
+        #[thargrove] Override SDPv1 so we can point to v1.  Remove after next phase release
+        "prd,prd-sam,sam-deployment-portal,hypersam": "2661-a493a755679c30705e7667661204bc9e9b8ef77e",
         },
 
     ### Per-phase image tags have been moved to samreleases.json

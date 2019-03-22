@@ -13,9 +13,9 @@ system:
           path: /index.html
           port: 8080
   loadbalancers:
-  - lbname: shassan-samspydrlb
+  - lbname: spydr
     function: mysamspydrservice
     slbenabled: true
     ports:
-      - port: 8080
+      - port: 80
         targetport: 8080

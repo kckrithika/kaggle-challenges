@@ -1,6 +1,7 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 
+if flowsnakeconfig.is_v1_enabled then
 {
     local label_node = self.spec.template.metadata.labels,
     apiVersion: "extensions/v1beta1",
@@ -63,4 +64,4 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
             },
         },
     },
-}
+} else "SKIP"

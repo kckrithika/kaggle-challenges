@@ -10,7 +10,12 @@ local slbconfigs = import "slbconfig.jsonnet";
     roleEnabled: (slbimages.phaseNum <= 1),
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
-    slbTCPdumpEnabled: (slbimages.phaseNum <= 1),
+    slbTCPdumpEnabled: (slbimages.phaseNum <= 3),
+    vipLimit: (slbimages.hyperslb_build >= 2097),
+    commonOpts: (slbimages.hyperslb_build >= 2098),
+
+    # Whether nginx-config should wait for realsvrcfg to place VIPs on the tunl interface.
+    featureflagWaitForRealsvrCfg: (slbimages.hyperslb_build >= 2097),
 
     # slb-nginx-accesslogs can sometimes fill up disk -- see investigation at
     # https://computecloud.slack.com/archives/G340CE86R/p1552882461719300?thread_ts=1552870275.718300&cid=G340CE86R.

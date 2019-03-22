@@ -1,0 +1,21 @@
+apiVersion: v1
+system:
+  functions:
+  - name: spydr
+    count: 1
+    containers:
+    - name: spydr
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shassan/samspyderservice:shassan-20190315
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /index.html
+          port: 8080
+  loadbalancers:
+  - lbname: spydr
+    function: spydr
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 8080

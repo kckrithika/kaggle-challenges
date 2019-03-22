@@ -2,6 +2,8 @@
   customlbname: pra-mariadb-ukb
   servers:
   - ops0-praccn1-1-ukb.ops.sfdc.net
+  - ops0-praccn2-1-ukb.ops.sfdc.net
+  - ops0-praccn1-2-ukb.ops.sfdc.net
   ports:
   - port: 3306
     targetport: 3306

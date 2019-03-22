@@ -1,10 +1,22 @@
 apps:
+ prd-search-query-service:
+  - prd/prd-search_model_executor
  prd-search_model_executor_xlt:
   - prd/prd-sam
  prd-search-model-executor:
   - prd/prd-search_model_executor
+ prod-search-query-service-canary:
+  - ord/ord-search_model_executor
  prod-search_model_executor-1:
   - ord/ord-search_model_executor
+ prod-search-query-service:
+  - phx/phx-search_model_executor
+  - dfw/dfw-search_model_executor
+  - frf/frf-search_model_executor
+  - iad/iad-search_model_executor
+  - hnd/hnd-search_model_executor
+  - ukb/ukb-search_model_executor
+  - par/par-search_model_executor
  prod-search_model_executor:
   - phx/phx-search_model_executor
   - dfw/dfw-search_model_executor

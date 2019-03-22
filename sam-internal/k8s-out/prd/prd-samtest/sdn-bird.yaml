@@ -6,6 +6,7 @@ metadata:
   name: sdn-bird
   namespace: sam-system
 spec:
+  minReadySeconds: 60
   selector:
     matchLabels:
       apptype: control
@@ -51,3 +52,7 @@ spec:
       - hostPath:
           path: /var/logs/sdn/
         name: sdnlogs
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 10%
+    type: RollingUpdate

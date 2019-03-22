@@ -5,7 +5,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
 if samfeatureflags.sdpv1 then {
     kind: "Deployment",
     spec: {
-        replicas: 3,
+        replicas: 2,
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
@@ -21,6 +21,7 @@ if samfeatureflags.sdpv1 then {
                             # Will be replaced soon by SDPv2
                             "--latency-tolerance=301h",
                             "--gitPollPeriod=300h",
+                            '--globalRedirect=Moved to http://sfdc.co/samportal',
                         ]),
                         ports: [
                             {
@@ -85,5 +86,6 @@ if samfeatureflags.sdpv1 then {
             name: "sam-deployment-portal",
         } + configs.ownerLabel.sam,
         name: "sam-deployment-portal",
+        namespace: "sam-system",
     },
 } else "SKIP"

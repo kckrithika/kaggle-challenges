@@ -18,7 +18,7 @@ system:
       - --gater-service.thread.pool.max-size=0
       - --scone.detectsidecars=false
       - --synctask.enabled=false
-      - --metrics.funnelEndPointURL=http://funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443
+      - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       ports:
       - containerPort: 7020
       - containerPort: 9522

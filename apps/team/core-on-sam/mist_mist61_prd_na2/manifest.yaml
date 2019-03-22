@@ -60,7 +60,7 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17544522
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17655217
       livenessProbe:
         exec:
           command:
@@ -98,7 +98,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na2.app
-      image: sfci/casam/coreapp_overrides:d45b5c
+      image: sfci/casam/coreapp_overrides:68b60c
       livenessProbe:
         exec:
           command:
@@ -204,7 +204,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1552601429528206080
+        value: 1553289043918311680
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME

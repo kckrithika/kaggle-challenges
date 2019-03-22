@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-cre-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.7.0.0.develop-1.7.2a68a7b.29
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.7.0.0.at-old-c2c.bebd22c.4
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,cre-api@salesforce.com"

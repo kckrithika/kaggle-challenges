@@ -1,0 +1,95 @@
+apiVersion: v1
+system:
+  functions:
+    - name: content-image-transform
+      count: 1
+      containers: 
+        - name: content-image-transform
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform:v2
+          ports:
+            - containerPort: 7020
+            - containerPort: 15374
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: stm
+            - name: GRPC_SERVER_BIND_ENDPOINT
+              value: tcp://0.0.0.0:7020
+            - name: JVM_HEAP_MAX
+              value: 4G
+          resources:
+            limits:
+              cpu: "8"
+              memory: 6Gi
+            requests:
+              cpu: "8"
+              memory: 6Gi
+          livenessProbe:
+            httpGet:
+              path: /manage/health
+              port: 15374
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /manage/ready
+              port: 15374
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          terminationMessagePolicy: FallbackToLogsOnError
+        - name: sherpa
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+          ports:
+            - containerPort: 15001
+            - containerPort: 15373
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi
+            requests:
+              cpu: "1"
+              memory: 1Gi
+          volumeMounts:
+            - mountPath: /client-certs
+              name: tls-client-cert
+            - mountPath: /server-certs
+              name: tls-server-cert
+          livenessProbe:
+            exec:
+              command:
+                - "./bin/is-alive"
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+                - "./bin/is-ready"
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          terminationMessagePolicy: FallbackToLogsOnError
+      volumes:
+        - name: envoy-config-volume
+          emptyDir: {}
+        - name: tls-client-cert
+          maddogCert:
+            type: client
+        - name: tls-server-cert
+          maddogCert:
+            type: server
+
+  loadbalancers:
+  - lbname: content-image-transform
+    nodeExposed: true
+    function: content-image-transform
+    ports:
+      - lbtype: tcp
+        port: 15501
+        targetPort: 15001
+      - lbtype: tcp
+        port: 15574
+        targetPort: 15374
+      - lbtype: tcp
+        port: 15575
+        targetPort: 7020

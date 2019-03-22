@@ -181,11 +181,11 @@ def run_all_work_items(work_item_list):
 def make_work_items(templates_args, output_root_dir, control_estates, label_filter_map):
     ret = []
     for template_arg in templates_args:
+      control_estates_for_template = control_estates
       project_estate_file = os.path.join(template_arg, "estate-filter.json")
-      template_estates = None
       if os.path.isfile(project_estate_file):
           project_estates = json.load(open(project_estate_file))["kingdomEstates"]
-          template_estates = list(filter_estates(project_estates, control_estates))
+          control_estates_for_template = list(filter_estates(project_estates, control_estates_for_template))
       if os.path.isdir(template_arg):
           template_list = [os.path.join(dp, f) for dp, dn, filenames in os.walk(template_arg) for f in filenames if os.path.splitext(f)[1] == '.jsonnet']
       elif os.path.isfile(template_arg):
@@ -193,7 +193,7 @@ def make_work_items(templates_args, output_root_dir, control_estates, label_filt
       else:
           template_list = []
 
-      for ce in template_estates or control_estates:
+      for ce in control_estates_for_template:
             kingdom, estate = ce.split("/")
             full_out_dir = os.path.join(output_root_dir, kingdom, estate)
 

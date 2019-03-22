@@ -39,6 +39,7 @@ shared_args: configs.filter_empty(
     "-funnelEndpoint=" + configs.funnelVIP,
     "--config=/config/watchdog.json",
     configs.sfdchosts_arg,
-] + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then ["-timeout=120s"] else ["-timeout=2s"]),
+    "-timeout=120s",
+]
 ),
 }

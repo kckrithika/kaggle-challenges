@@ -41,7 +41,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-nginx-data-watchdog
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -67,7 +67,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-lo3.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-cleanup
         securityContext:
           privileged: true

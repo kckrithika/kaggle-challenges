@@ -6,9 +6,6 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 local cert_name = "watchdogsparkoperator";
-local watchdog_redo=std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_redo");
-local test_impersonation=std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_test_proxy");
-local increase_frequency=std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_increase_frequency");
 local std_new = import "stdlib_0.12.1.jsonnet";
 
 if !watchdog.watchdog_enabled then
@@ -53,9 +50,8 @@ else
                 }
             ]
         },
-    ] + (if watchdog_redo then
-    # ConfigMap containing the resources of the watchdog
-    [
+
+        # ConfigMap containing the resources of the watchdog
         {
             kind: "ConfigMap",
             apiVersion: "v1",
@@ -65,14 +61,9 @@ else
             },
             data: {
                 "watchdog-spark-operator.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-operator.libsonnet"),
-            } + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_canary_spark_s3") then
-            {
-                "watchdog-spark-s3.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-s3.libsonnet"),
-            } else {}) + (if test_impersonation then
-            {
                 "watchdog-spark-impersonation.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-impersonation.libsonnet"),
                 "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-specs/kubeconfig-impersonation-proxy.libsonnet"),
-            } else {})
+            }
         },
         # ConfigMap containing the logic of the watchdog
         {
@@ -83,65 +74,10 @@ else
                 namespace: "flowsnake",
             },
             data: {
-                "check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh"
-            } + (if test_impersonation then {
+                "check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",
                 "check-impersonation.sh": importstr "spark-on-k8s-canary-scripts/check-impersonation.sh",
-            } else {})
-        }
-    ] else
-    [
-        # ConfigMap containing the logic and resources of the watchdog
-        {
-            kind: "ConfigMap",
-            apiVersion: "v1",
-            metadata: {
-              name: "watchdog-spark-operator-configmap",
-              namespace: "flowsnake",
-            },
-            data: {
-                "check-spark-operator.sh": importstr "watchdog-spark-operator--check-spark-operator.sh",
-                "spark-application.json": std.toString({
-                    "apiVersion": "sparkoperator.k8s.io/v1beta1",
-                    "kind": "SparkApplication",
-                    "metadata": {
-                        "name": "watchdog-spark-operator",
-                        "namespace": "flowsnake-watchdog",
-                    },
-                    "spec": {
-                        "deps": {},
-                        "driver": {
-                            "coreLimit": "200m",
-                            "cores": 0.1,
-                            "labels": {
-                                "version": "2.4.0"
-                            },
-                            "memory": "512m",
-                            "serviceAccount": "spark-driver-flowsnake-watchdog",
-                        },
-                        "executor": {
-                            "cores": 1,
-                            "instances": 1,
-                            "labels": {
-                                "version": "2.4.0"
-                            },
-                            "memory": "512m",
-                        },
-                        "image": flowsnake_images.watchdog_spark_operator,
-                        "imagePullPolicy": "Always",
-                        "mainApplicationFile": "local:///spark-app/sample-spark-operator.jar",
-                        "mainClass": "org.apache.spark.examples.SparkPi",
-                        "mode": "cluster",
-                        "restartPolicy": {
-                            "type": "Never"
-                        },
-                        "sparkVersion": "",
-                        "type": "Scala",
-                    },
-                 })
             }
         },
-    ]) +
-    [
         configs.deploymentBase("flowsnake") {
             local label_node = self.spec.template.metadata.labels,
             metadata: {
@@ -159,7 +95,7 @@ else
                     }
                 },
                 template: {
-                    metadata: (if test_impersonation then {
+                    metadata: {
                         annotations: {
                             "madkub.sam.sfdc.net/allcerts": std.toString({
                                 certreqs: [
@@ -170,8 +106,8 @@ else
                                         kingdom: kingdom,
                                     }
                                 ]
-                            }),
-                        }} else {}) + {
+                            })
+                        },
                         labels: {
                             app: "watchdog-spark-operator",
                             apptype: "monitoring",
@@ -179,10 +115,9 @@ else
                             flowsnakeRole: "WatchdogSparkOperator",
                         },
                     },
-                    spec: (if test_impersonation then {
-                            # Watchdogs run as user sfdc (7337) per https://git.soma.salesforce.com/sam/sam/blob/master/docker/hypersam/Dockerfile
-                            initContainers: [ madkub_common.init_container(cert_name, user=7337), ],
-                        } else {}) + {
+                    spec: {
+                        # Watchdogs run as user sfdc (7337) per https://git.soma.salesforce.com/sam/sam/blob/master/docker/hypersam/Dockerfile
+                        initContainers: [ madkub_common.init_container(cert_name, user=7337), ],
                         restartPolicy: "Always",
                         hostNetwork: true,
                         containers: [
@@ -199,13 +134,13 @@ else
                                     "-cliCheckerCommandTarget=SparkOperatorTest",
                                     "--hostsConfigFile=/sfdchosts/hosts.json",
                                     # Delay between runs. We want to more or less run continuously.
-                                    "-watchdogFrequency=" + (if increase_frequency then "1m" else "15m"),
+                                    "-watchdogFrequency=1m",
                                     # Alert if last success was longer ago than this.
-                                    "-alertThreshold=" + (if increase_frequency then "1m" else "45m"),
+                                    "-alertThreshold=1m",
                                     # Kill and fail test if it runs for longer than this.
                                     "-cliCheckerTimeout=15m",
                                 ],
-                                name: if watchdog_redo then "watchdog" else "watchdog-canary",
+                                name: "watchdog",
                                 resources: {
                                     requests: {
                                         cpu: "1",
@@ -219,73 +154,39 @@ else
                                 volumeMounts: [
                                     configs.config_volume_mount,
                                     watchdog.sfdchosts_volume_mount,
-                                ] + (if watchdog_redo then
-                                    [
-                                        {
-                                            mountPath: "/watchdog-spark-scripts",
-                                            name: "watchdog-spark-scripts",
-                                        },
-                                        {
-                                            mountPath: "/watchdog-spark-specs",
-                                            name: "watchdog-spark-specs",
-                                        },
-                                    ] + (if test_impersonation then madkub_common.cert_mounts(cert_name) else [])
-                                else
-                                    [
-                                        {
-                                            mountPath: "/watchdog-spark-operator",
-                                            name: "watchdog-spark-operator",
-                                        },
-                                    ]
-                                ),
+                                    {
+                                        mountPath: "/watchdog-spark-scripts",
+                                        name: "watchdog-spark-scripts",
+                                    },
+                                    {
+                                        mountPath: "/watchdog-spark-specs",
+                                        name: "watchdog-spark-specs",
+                                    },
+                                ] + madkub_common.cert_mounts(cert_name),
                             },
                             # Watchdogs run as user sfdc (7337) per https://git.soma.salesforce.com/sam/sam/blob/master/docker/hypersam/Dockerfile
-                        ] + if test_impersonation then [ madkub_common.refresher_container(cert_name, user=7337) ] else [],
+                            madkub_common.refresher_container(cert_name, user=7337)
+                        ],
                         serviceAccount: "watchdog-spark-operator-serviceaccount",
                         serviceAccountName: "watchdog-spark-operator-serviceaccount",
                         volumes: [
                             configs.config_volume("watchdog"),
-                        ] + (if watchdog_redo then
-                              [
-                                  {
-                                      configMap: {
-                                          name: "watchdog-spark-on-k8s-spec-configmap",
-                                      },
-                                      name: "watchdog-spark-specs",
-                                  },
-                                  {
-                                      configMap: {
-                                          name: "watchdog-spark-on-k8s-script-configmap",
-                                          # rwxr-xr-x 755 octal, 493 decimal
-                                          defaultMode: 493,
-                                      },
-                                      name: "watchdog-spark-scripts",
-                                  },
-                              ] + (if test_impersonation then madkub_common.cert_volumes(cert_name) else [])
-                        else  [
                             {
                                 configMap: {
-                                    name: "watchdog-spark-operator-configmap",
-                                    # rw-r--r-- 644 octal, 420 decimal
-                                    defaultMode: 420,
-                                    items: [
-                                        {
-                                            key: "spark-application.json",
-                                            path: "spark-application.json",
-                                        },
-                                        {
-                                            key: "check-spark-operator.sh",
-                                            path: "check-spark-operator.sh",
-                                            # rwxr-xr-x 755 octal, 493 decimal
-                                            mode: 493,
-                                        },
-                                    ],
+                                    name: "watchdog-spark-on-k8s-spec-configmap",
                                 },
-                                name: "watchdog-spark-operator",
+                                name: "watchdog-spark-specs",
                             },
-                        ]) + [
+                            {
+                                configMap: {
+                                    name: "watchdog-spark-on-k8s-script-configmap",
+                                    # rwxr-xr-x 755 octal, 493 decimal
+                                    defaultMode: 493,
+                                },
+                                name: "watchdog-spark-scripts",
+                            },
                             watchdog.sfdchosts_volume
-                        ]
+                        ] + madkub_common.cert_volumes(cert_name),
                     },
                 }
             }

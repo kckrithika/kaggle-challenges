@@ -49,6 +49,9 @@ system:
       "]
 
       env:
+        - name: REDEPLOY
+          value: 1
+          
         # db pw extracted from k4a at startup
         - name: DB_USER
           value: sleepy
@@ -240,7 +243,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: casam-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:bc2429
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:e34ed5
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app

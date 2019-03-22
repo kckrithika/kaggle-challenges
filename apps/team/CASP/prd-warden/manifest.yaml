@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden
-        image: dva/casp/warden_strata:112
+        image: dva/casp/warden_strata:126
         ports:
         - name: http
           containerPort: 8889
@@ -48,7 +48,7 @@ system:
           httpGet:
             path: /manage/health
             port: 15372
-          initialDelaySeconds: 120
+          initialDelaySeconds: 60
       volumes:
       - name: log-vol
         hostPath:

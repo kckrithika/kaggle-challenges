@@ -1,0 +1,95 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+    - sqep@salesforce.com
+  functions:
+  - name: search-query-service
+    count: 8
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 25%
+    containers:
+    - name: search-query-service
+      image: sfci/searchdev/smt-search-model-executor:QS-4.8
+      ports:
+      - name: service-port
+        containerPort: 7020
+      - name: admin-port
+        containerPort: 15372
+      resources:
+        limits: { cpu: "24", memory: "20Gi" }
+        requests: { cpu: "24", memory: "20Gi" }
+      livenessProbe:
+        exec:
+          command: ["./runcheck.sh", "5"]
+        initialDelaySeconds: 120
+        timeoutSeconds: 10
+        periodSeconds: 60
+      readinessProbe:
+        exec:
+          command: ["./runcheck.sh", "5"]
+        initialDelaySeconds: 110
+        timeoutSeconds: 10
+      volumeMounts:
+      - mountPath: /home/sfdc-search-query-service/logs
+        name: logvol
+    - name: beacon
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      args:
+      # mTLS port
+      - -endpoint
+      - search-scale-safely/search-query-service:DATACENTER_ALLENV:7443
+      livenessProbe:
+        exec:
+          command: ["/home/scone/is-alive.sh"]
+        initialDelaySeconds: 5
+      volumeMounts:
+      - name: beacon-log-volume
+        mountPath: /home/scone/logs
+    - name: sherpa-b
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      ports:
+      - name: sherpa-b-tls
+        containerPort: 7443
+      - name: sherpa-b-adm
+        containerPort: 15373
+      livenessProbe:
+        exec:
+          command: ["./bin/is-alive"]
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command: ["./bin/is-ready"]
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      volumeMounts:
+      - name: sherpa-log-volume
+        mountPath: /log
+      - name: tls-server-cert
+        mountPath: /server-certs
+      - name: tls-client-cert
+        mountPath: /client-certs
+    volumes:
+    - name: logvol
+      hostpath:
+        path: /home/sfdc-search-query-service/logs
+    - name: sherpa-log-volume
+      hostpath:
+        path: /home/sfdc-sherpa/logs
+    - name: beacon-log-volume
+      hostpath:
+        path: /home/sfdc-beacon/logs
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server

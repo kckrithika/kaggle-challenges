@@ -1,0 +1,21 @@
+#
+# Generated manifest
+# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
+#
+# generated: 2019-03-21 22:41:07.375509
+# from:  
+# by: mbyne
+apiVersion: v1
+system:
+  functions:
+  - containers:
+    - image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/moana-engine:515-0def4d674d1eb04ffe27cbfb13a94cfcec4244ff
+      livenessProbe:
+        exec:
+          command: [ls]
+        initialDelaySeconds: 5
+      name: moana-engine
+    count: 0
+    name: moana-engine-cdg-par
+  notifications:
+    email: [moanaserviceseng@salesforce.com]

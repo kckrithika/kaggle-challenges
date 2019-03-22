@@ -82,6 +82,9 @@ spec:
         - --hostnameOverride=$(NODE_NAME)
         - --httpconfig.trustedProxies=10.220.132.2/32,10.220.132.10/32,10.220.132.18/32,10.220.132.26/32,10.220.132.34/32,10.220.132.42/32,10.220.132.50/32,10.220.132.58/32,10.220.132.66/32,10.220.132.74/32,10.220.132.82/32,10.220.132.90/32,10.220.132.100/32,10.220.132.106/32,10.220.132.114/32,10.220.132.122/32,10.220.132.130/32,10.220.132.138/32,10.220.132.146/32,10.220.132.154/32,10.220.132.162/32,10.220.132.170/32,10.220.132.178/32,10.220.132.186/32,10.220.132.194/32,10.220.132.202/32,10.220.132.210/32,10.220.132.218/32,10.220.132.226/32,10.220.132.234/32,10.220.132.242/32,10.220.132.250/32,10.220.158.2/32,10.220.158.10/32,10.220.158.18/32,10.220.158.26/32,10.220.158.34/32,10.220.158.42/32,10.220.158.50/32,10.220.158.58/32,10.220.158.66/32,10.220.158.74/32,10.220.158.82/32,10.220.158.90/32,10.220.158.100/32,10.220.158.106/32,10.220.158.114/32,10.220.158.122/32,10.220.158.130/32,10.220.158.138/32,10.220.158.146/32,10.220.158.154/32,10.220.158.162/32,10.220.158.170/32,10.220.158.178/32,10.220.158.186/32,10.220.158.194/32,10.220.158.202/32,10.220.158.210/32,10.220.158.218/32,10.220.158.226/32,10.220.158.234/32,10.220.158.242/32,10.220.158.250/32,10.220.159.2/32,10.220.159.10/32,10.220.159.18/32,10.220.159.26/32,10.220.159.34/32,10.220.159.42/32,10.220.164.194/32,10.220.164.202/32,10.247.97.2/32,10.247.97.10/32,10.247.98.130/32,10.247.98.138/32,10.247.99.130/32,10.247.99.138/32,10.247.101.130/32,10.247.101.138/32,10.247.102.130/32,10.247.102.138/32,10.247.103.226/32,10.247.103.234/32,10.247.105.130/32,10.247.105.138/32,10.247.106.130/32,10.247.106.138/32,10.247.120.2/32,10.247.120.10/32,10.247.120.66/32,10.247.120.74/32,10.247.122.34/32,10.247.122.42/32,10.247.203.134/32,10.247.203.142/32,10.247.204.196/32,10.247.204.206/32,10.247.206.4/32,10.247.206.14/32,10.247.207.68/32,10.247.207.78/32,10.247.216.134/32,10.247.216.139/32,10.247.217.196/32,10.247.217.206/32,10.247.219.2/32,10.247.219.12/32,10.247.220.67/32,10.247.220.78/32,10.247.221.133/32,10.247.221.139/32,10.247.226.67/32,10.247.226.76/32,10.247.228.134/32,10.247.228.142/32,10.247.229.198/32,10.247.229.203/32,10.247.238.131/32,10.247.238.139/32,10.247.239.198/32,10.247.239.202/32,10.247.241.134/32,10.247.241.139/32,10.247.242.134/32,10.247.242.142/32,10.247.246.2/32,10.247.246.12/32,10.247.247.68/32,10.247.247.77/32,10.247.249.130/32,10.247.249.138/32,10.247.250.194/32,10.247.250.202/32
         - --iprange.InternalIpRange=10.220.157.64/26,10.214.184.0/22
+        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-nginx-config-b/slb-realsvrcfg.sentinel
+        - --control.sentinelExpiration=60s
+        - --featureflagWaitForRealsvrCfg=true
         - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
         - --client.dialSocket=true
         - --control.nginxReloadSentinel=/host/data/slb/slb-nginx-config-b/config/nginx.marker
@@ -106,7 +109,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-nginx-config
         ports:
         - containerPort: 32146
@@ -165,7 +168,7 @@ spec:
         - /sdn/slb-nginx-data
         - --target=/host/data/slb/slb-nginx-config-b/config
         - --connPort=9125
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         livenessProbe:
           httpGet:
             path: /
@@ -198,7 +201,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
@@ -260,7 +263,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-cert-checker
         volumeMounts:
         - mountPath: /cert1
@@ -286,7 +289,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-upstream-status-reporter
         readinessProbe:
           httpGet:
@@ -326,7 +329,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -365,7 +368,7 @@ spec:
         - --shouldSkipSlbBlock=true
         - --skipFilesWithSuffix=.sock
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -389,7 +392,7 @@ spec:
         - --readOnly=false
         - --checkMwSentinel=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-nginx-config-b/slb-manifest-watcher.sentinel
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -404,12 +407,13 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-nginx-config-b
         - --client.serverPort=9130
         - --client.serverInterface=lo
+        - --control.realsvrCfgSentinel=/host/data/slb/config/slb-nginx-config-b/slb-realsvrcfg.sentinel
         - --control.sentinelExpiration=1200s
         - --nginxPodMode=true
         - --client.socketDir=/host/data/slb/config/slb-nginx-config-b
         - --client.dialSocket=true
         - --maxDeleteVipCount=10
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-realsvrcfg
         securityContext:
           privileged: true
@@ -433,7 +437,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -470,7 +474,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-manifest-watcher
         securityContext:
           privileged: true
@@ -500,7 +504,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-cert-deployer
         volumeMounts:
         - mountPath: /cert1
@@ -562,7 +566,7 @@ spec:
         - /bin/bash
         - -xec
         - rm -rf /host/data/slb/slb-nginx-config-b/config/*
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2090-2666e38eba058fe999667037ed50f5c16c95eb57
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/dva/slb/hyperslb:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: slb-nginx-config-wipe
         volumeMounts:
         - mountPath: /host/data/slb/slb-nginx-config-b/config

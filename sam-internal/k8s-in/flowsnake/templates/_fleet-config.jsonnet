@@ -1,6 +1,8 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+
+# Flowsnake event exporter depends on this config map.
 {
     apiVersion: "v1",
     kind: "ConfigMap",

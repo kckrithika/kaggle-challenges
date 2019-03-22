@@ -1,6 +1,6 @@
-local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_config = import "flowsnake_config.jsonnet";
 
-if !std.objectHas(flowsnake_images.feature_flags, "spark_op_metrics") then
+if flowsnake_config.is_minikube then
 "SKIP"
 else
 {

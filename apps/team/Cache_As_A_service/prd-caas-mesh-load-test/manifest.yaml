@@ -14,13 +14,12 @@ system:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
       args:
-        - -t 40
-        - -v 256,1024
-        - -o 0
+        - -t 1,20
+        - -v 256,1024,10240
+        - -o 0,1,2,5,6,8
         - -m
         - -a 127.0.0.1:12082
         - -x 120
-        - -l
       livenessProbe:
         exec:
           command: ["true"]
@@ -28,7 +27,7 @@ system:
         periodSeconds: 5
       env:
        - name: NOT_REQUIRED
-         value: newton7
+         value: newton9
        - name: PYTHONUNBUFFERED
          value: 1
     - name: sherpa

@@ -34,33 +34,33 @@
           namespace: "sam-system",
         },
         spec: {
-                affinity: affinity,
-                volumes: std.prune([
-                  slbconfigs.slb_volume,
-                  slbconfigs.logs_volume,
-                  slbconfigs.slb_config_volume,
-                  slbconfigs.cleanup_logs_volume,
-                  configs.sfdchosts_volume,
-                  configs.kube_config_volume,
-                  configs.maddog_cert_volume,
-                  configs.cert_volume,
-                  slbconfigs.sbin_volume,
-                  slbconfigs.proxyconfig_volume,
-                ]),
-                containers: beforeSharedContainers + [
-                  slbshared.slbConfigProcessor(
-                    slbports.slb.slbConfigProcessorLivenessProbePort,
-                    supportedProxies=supportedProxies
-),
-                  slbshared.slbCleanupConfig,
-                  slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
-                  slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true, deleteLimitOverride=deleteLimitOverride),
-                  slbshared.slbLogCleanup,
-                  slbshared.slbManifestWatcher(
-                    supportedProxies=supportedProxies, deleteLimitOverride=deleteLimitOverride
-),
-                ] + afterSharedContainers,
-              } + slbconfigs.getDnsPolicy(),
+          affinity: affinity,
+          volumes: std.prune([
+            slbconfigs.slb_volume,
+            slbconfigs.logs_volume,
+            slbconfigs.slb_config_volume,
+            slbconfigs.cleanup_logs_volume,
+            configs.sfdchosts_volume,
+            configs.kube_config_volume,
+            configs.maddog_cert_volume,
+            configs.cert_volume,
+            slbconfigs.sbin_volume,
+            slbconfigs.proxyconfig_volume,
+          ]),
+          containers: beforeSharedContainers + [
+            slbshared.slbConfigProcessor(
+              slbports.slb.slbConfigProcessorLivenessProbePort,
+              supportedProxies=supportedProxies
+            ),
+            slbshared.slbCleanupConfig,
+            slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
+            slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true, deleteLimitOverride=deleteLimitOverride),
+            slbshared.slbLogCleanup,
+            slbshared.slbManifestWatcher(
+              supportedProxies=supportedProxies, deleteLimitOverride=deleteLimitOverride
+            ),
+          ] + afterSharedContainers,
+        } + slbconfigs.getDnsPolicy(),
       },
       strategy: {
         type: "RollingUpdate",

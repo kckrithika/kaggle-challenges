@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-cantor
-        image: tnrp/casp/cantor:2.6.1-0000022-e4390cc5
+        image: dva/casp/cantor_strata:30
         ports:
         - name: cantor-grpc
           containerPort: 7443
@@ -24,17 +24,13 @@ system:
         - name: cantor-http
           containerPort: 8084
           hostPort: 18084
-        volumeMounts:
-        - mountPath: /home/sfdc-cantor/mysql/
-          name: cantor-vol
         livenessProbe:
           exec:
             command:
             - /usr/bin/true
-      volumes:
-      - name: cantor-vol
-        hostPath:
-          path: /data/cantor
+        env:
+        - name: SUBDOMAIN
+          value: "eng"
     loadbalancers:
     - lbname: cantor
       function: cantor-func

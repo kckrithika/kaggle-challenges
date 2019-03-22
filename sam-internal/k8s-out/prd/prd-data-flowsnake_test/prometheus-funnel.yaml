@@ -24,7 +24,8 @@ spec:
         - --config.file=/etc/config/prometheus.json
         - --storage.tsdb.path=/prometheus-storage
         - --web.external-url=http://localhost/
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:jenkins-dva-transformation-prometheus-funnel-test_prep-7-itest
+        - --web.enable-lifecycle
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/prome_for_k8s:31
         livenessProbe:
           httpGet:
             path: /metrics
@@ -42,12 +43,13 @@ spec:
           name: prometheus-server-conf
       - args:
         - --serviceName=flowsnake
-        - --subserviceName=rob_args_test
+        - --subserviceName=NONE
+        - --tagDefault=superpod:NONE
         - --tagDefault=datacenter:prd
         - --tagDefault=estate:prd-data-flowsnake_test
-        - --tagDefault=superpod:NONE
         - --batchSize=512
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:jenkins-dva-transformation-prometheus-funnel-test_prep-7-itest
+        - --funnelUrl=http://ajna0-funnel1-0-prd.data.sfdc.net:80
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/funnel_writer:31
         livenessProbe:
           httpGet:
             path: /

@@ -1,3 +1,7 @@
 apps:
+  gcp-devmvp:
+    - mvp/gsf-core-devmvp-sam2-sam
   content-jmagick:
     - prd/prd-sam
+  content-poppler:
+    - mvp/gsf-core-devmvp-sam2-sam

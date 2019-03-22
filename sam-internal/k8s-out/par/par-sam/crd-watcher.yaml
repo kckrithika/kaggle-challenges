@@ -2,19 +2,19 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: temp-crd-watcher
+    name: crd-watcher
     sam.data.sfdc.net/owner: sam
-  name: temp-crd-watcher
+  name: crd-watcher
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: temp-crd-watcher
+      name: crd-watcher
   template:
     metadata:
       labels:
         apptype: control
-        name: temp-crd-watcher
+        name: crd-watcher
         sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
@@ -34,14 +34,14 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/sam/hypersam:2644-80d5e92f97356a83fa0854f1d24ccf3927f9e3e5
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/sam/hypersam:2660-932f1cf8a724ff2381ebc46cbeb59405971800a4
         livenessProbe:
           httpGet:
             path: /healthz
             port: 21553
           initialDelaySeconds: 60
           periodSeconds: 30
-        name: temp-crd-watcher
+        name: crd-watcher
         ports:
         - containerPort: 21553
         volumeMounts:
@@ -75,5 +75,5 @@ spec:
           path: /manifests
         name: sfdc-volume
       - configMap:
-          name: temp-crd-watcher
+          name: crd-watcher
         name: config

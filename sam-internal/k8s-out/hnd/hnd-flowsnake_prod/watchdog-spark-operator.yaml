@@ -23,50 +23,162 @@ items:
     namespace: flowsnake
 - apiVersion: v1
   data:
+    kubeconfig-impersonation-proxy: |
+      apiVersion: v1
+      clusters:
+      - cluster:
+          certificate-authority: /certs/ca.pem
+          server: https://kubernetes-api-flowsnake-hnd.slb.sfdc.net
+        name: kubernetes
+      contexts:
+      - context:
+          cluster: kubernetes
+          user: kubernetes
+        name: default-context
+      current-context: default-context
+      kind: Config
+      preferences: {}
+      users:
+      - name: kubernetes
+        user:
+          client-certificate: /certs/client/certificates/client.pem
+          client-key: /certs/client/keys/client-key.pem
+    watchdog-spark-impersonation.json: '{"apiVersion": "sparkoperator.k8s.io/v1beta1",
+      "kind": "SparkApplication", "metadata": {"name": "watchdog-spark-impersonation",
+      "namespace": "flowsnake-watchdog"}, "spec": {"deps": {"jars": ["local:///sample-apps/sample-spark-operator/extra-jars/*"]},
+      "driver": {"coreLimit": "200m", "cores": 0.10000000000000001, "labels": {"version":
+      "2.4.0"}, "memory": "512m", "serviceAccount": "spark-driver-flowsnake-watchdog"},
+      "executor": {"cores": 1, "instances": 1, "labels": {"version": "2.4.0"}, "memory":
+      "512m"}, "image": "ops0-artifactrepo1-0-hnd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
+      "imagePullPolicy": "Always", "mainApplicationFile": "local:///sample-apps/sample-spark-operator/sample-spark-operator.jar",
+      "mainClass": "org.apache.spark.examples.SparkPi", "mode": "cluster", "restartPolicy":
+      {"type": "Never"}, "sparkVersion": "", "type": "Scala"}}'
+    watchdog-spark-operator.json: '{"apiVersion": "sparkoperator.k8s.io/v1beta1",
+      "kind": "SparkApplication", "metadata": {"name": "watchdog-spark-operator",
+      "namespace": "flowsnake-watchdog"}, "spec": {"deps": {"jars": ["local:///sample-apps/sample-spark-operator/extra-jars/*"]},
+      "driver": {"coreLimit": "200m", "cores": 0.10000000000000001, "labels": {"version":
+      "2.4.0"}, "memory": "512m", "serviceAccount": "spark-driver-flowsnake-watchdog"},
+      "executor": {"cores": 1, "instances": 1, "labels": {"version": "2.4.0"}, "memory":
+      "512m"}, "image": "ops0-artifactrepo1-0-hnd.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
+      "imagePullPolicy": "Always", "mainApplicationFile": "local:///sample-apps/sample-spark-operator/sample-spark-operator.jar",
+      "mainClass": "org.apache.spark.examples.SparkPi", "mode": "cluster", "restartPolicy":
+      {"type": "Never"}, "sparkVersion": "", "type": "Scala"}}'
+  kind: ConfigMap
+  metadata:
+    name: watchdog-spark-on-k8s-spec-configmap
+    namespace: flowsnake
+- apiVersion: v1
+  data:
+    check-impersonation.sh: |
+      #!/usr/bin/bash
+
+      # This test actually does not involve Spark applications at all, but it is part of verifying the Flowsnake v2 offering.
+      # This test performs a minimal interaction with the Kubernetes API to verify connectivity, authentication, and
+      # authorization.
+
+      KUBECONFIG="$1"
+
+      # Success of this command demonstrates successful connection via impersonation proxy and mapping to
+      # user account flowsnake_test.flowsnake-watchdog (which in turn is bound to flowsnake-client-flowsnake-watchdog-Role)
+      # (Success does not depend on whether there exist any sparkapplication resources in the namespace)
+      kubectl -n flowsnake-watchdog get sparkapplications
     check-spark-operator.sh: |
       #!/usr/bin/bash
       set -o nounset
       set -o errexit
       set -o pipefail
 
-      # Disable use of SAM's custom kubeconfig
+      # Disable use of SAM's custom kubeconfig, restore default Kubernetes behavior (this cluster's kubeapi using service account token)
       unset KUBECONFIG
 
-      kc() {
+      # Parse command line arguments. https://stackoverflow.com/a/14203146
+      POSITIONAL=()
+      while [[ $# -gt 0 ]]
+      do
+      key="$1"
+
+      case $key in
+          --kubeconfig)
+          # Use a custom kubeconfig (e.g. to access via MadDog PKI certs and Impersonation Proxy)
+          export KUBECONFIG="$2"
+          shift # past argument
+          shift # past value
+          ;;
+          *)    # unknown option
+          POSITIONAL+=("$1") # save it in an array for later
+          shift # past argument
+          ;;
+      esac
+      done
+      set -- "${POSITIONAL[@]}" # restore positional parameters
+
+      kcfw() {
         kubectl -n flowsnake-watchdog "$@"
       }
 
-      APP_NAME="watchdog-spark-operator"
+      events() {
+          # awk magic prints lines after search term found: https://stackoverflow.com/a/17988834
+          kcfw describe sparkapplication $APP_NAME | awk '/Events:/{flag=1;next}flag'
+      }
+
+      epoch() {
+          date '+%s'
+      }
+
+      SPEC=$1
+      APP_NAME=$(python -c 'import json,sys; print json.load(sys.stdin)["metadata"]["name"]' < $SPEC)
       SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
 
+      # ------ Clean up ---------
       echo "Cleaning up $APP_NAME resources from prior runs"
-      kc delete sparkapplication $APP_NAME || true
-      kc delete pod -l $SELECTOR || true
+      # || true because exit code 1 if spark application can't be found.
+      kcfw delete sparkapplication $APP_NAME || true
+      # kubectl returns success even if no pods match the label selector. This is helpful,
+      # this will have the side-effect of aborting the script early if it cannot access kubeapi.
+      kcfw delete pod -l $SELECTOR
       # Wait for pods from prior runs to delete.
-      while ! $(kc get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
+      while ! $(kcfw get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
 
+      # ------ Run ---------
       echo "Creating SparkApplication $APP_NAME"
-      kc create -f /watchdog-spark-operator/spark-application.json
+      kcfw create -f $SPEC
+      START_TIME=$(epoch)
 
-      echo "Waiting for SparkApplication $APP_NAME to complete"
+      echo "Waiting for SparkApplication $APP_NAME to terminate."
       # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
-      while ! $(kc get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep -P '(COMPLETED|FAILED)' > /dev/null); do sleep 1; done;
-      echo "Terminal SparkApplication $APP_NAME state is $(kc get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}')"
+      i=0
+      while ! $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep -P '(COMPLETED|FAILED)' > /dev/null); do
+          ((i = i + 1))
+          sleep 1;
+          if ((i % 60 == 0)); then
+              echo "...still waiting after $i seconds. Events so far:";
+              events;
+          fi;
+      done;
+
+      # ------ Report Results ---------
+      END_TIME=$(epoch)
+      ELAPSED_SECS=$(($END_TIME - $START_TIME))
+      echo "SparkApplication $APP_NAME has terminated after $ELAPSED_SECS seconds. State is $(kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'). Events:"
+      events
+
+      POD=$(kcfw get pod -l ${SELECTOR},spark-role=driver -o name)
+      if [[ -z $POD ]]; then
+          echo "Cannot locate driver pod. Maybe it never started? No logs to display."
+      else
+          echo ---- Begin $POD Log ----
+          kcfw logs $POD || true
+          echo ---- End Spark Driver Log ----
+          echo
+      fi
+      # Alternatively, generate a Splunk link? Not sure there's a good way to filter for this particular execution, since the driver pod
+      # has the same name on every invocation on every fleet.
+
       # Test successful iff final state is COMPLETED. Use exit code from grep.
-      kc get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep COMPLETED > /dev/null
-    spark-application.json: '{"apiVersion": "sparkoperator.k8s.io/v1beta1", "kind":
-      "SparkApplication", "metadata": {"name": "watchdog-spark-operator", "namespace":
-      "flowsnake-watchdog"}, "spec": {"deps": { }, "driver": {"coreLimit": "200m",
-      "cores": 0.10000000000000001, "labels": {"version": "2.4.0"}, "memory": "512m",
-      "serviceAccount": "spark-driver-flowsnake-watchdog"}, "executor": {"cores":
-      1, "instances": 1, "labels": {"version": "2.4.0"}, "memory": "512m"}, "image":
-      "ops0-artifactrepo1-0-hnd.data.sfdc.net/dva/flowsnake-sample-spark-operator:jenkins-dva-transformation-flowsnake-sample-apps-PR-20-2-itest",
-      "imagePullPolicy": "Always", "mainApplicationFile": "local:///spark-app/sample-spark-operator.jar",
-      "mainClass": "org.apache.spark.examples.SparkPi", "mode": "cluster", "restartPolicy":
-      {"type": "Never"}, "sparkVersion": "", "type": "Scala"}}'
+      kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}' | grep COMPLETED > /dev/null
   kind: ConfigMap
   metadata:
-    name: watchdog-spark-operator-configmap
+    name: watchdog-spark-on-k8s-script-configmap
     namespace: flowsnake
 - apiVersion: extensions/v1beta1
   kind: Deployment
@@ -82,6 +194,9 @@ items:
         apptype: monitoring
     template:
       metadata:
+        annotations:
+          madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "client", "kingdom":
+            "hnd", "name": "watchdogsparkoperator", "role": "flowsnake_test.flowsnake-watchdog"}]}'
         labels:
           app: watchdog-spark-operator
           apptype: monitoring
@@ -98,12 +213,12 @@ items:
           - --config=/config/watchdog.json
           - -cliCheckerCommandTarget=SparkOperatorTest
           - --hostsConfigFile=/sfdchosts/hosts.json
-          - -watchdogFrequency=15m
-          - -alertThreshold=45m
+          - -watchdogFrequency=1m
+          - -alertThreshold=1m
           - -cliCheckerTimeout=15m
           image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0002015-fdb18963
           imagePullPolicy: IfNotPresent
-          name: watchdog-canary
+          name: watchdog
           resources:
             limits:
               cpu: "1"
@@ -116,9 +231,136 @@ items:
             name: config
           - mountPath: /sfdchosts
             name: sfdchosts
-          - mountPath: /watchdog-spark-operator
-            name: watchdog-spark-operator
+          - mountPath: /watchdog-spark-scripts
+            name: watchdog-spark-scripts
+          - mountPath: /watchdog-spark-specs
+            name: watchdog-spark-specs
+          - mountPath: /certs
+            name: datacerts
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint
+          - https://10.254.208.254:32007
+          - --maddog-endpoint
+          - https://all.pkicontroller.pki.blank.hnd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca
+          - /etc/pki_service/ca/security-ca.pem
+          - --madkub-server-ca
+          - /etc/pki_service/ca/cacerts.pem
+          - --token-folder
+          - /tokens
+          - --kingdom
+          - hnd
+          - --superpod
+          - None
+          - --estate
+          - hnd-flowsnake_prod
+          - --refresher
+          - --run-init-for-refresher-mode
+          - --cert-folders
+          - watchdogsparkoperator:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
+          - --funnel-endpoint
+          - http://ajna0-funnel1-0-hnd.data.sfdc.net:80
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          name: sam-madkub-integration-refresher
+          resources: {}
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 7337
+          volumeMounts:
+          - mountPath: /certs
+            name: datacerts
+          - mountPath: /tokens
+            name: tokens
+          - mountPath: /etc/pki_service/ca
+            name: certificate-authority
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/certificates
+            name: client-certificate
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/keys
+            name: client-key
+            readOnly: true
         hostNetwork: true
+        initContainers:
+        - args:
+          - /sam/madkub-client
+          - --madkub-endpoint
+          - https://10.254.208.254:32007
+          - --maddog-endpoint
+          - https://all.pkicontroller.pki.blank.hnd.prod.non-estates.sfdcsd.net:8443
+          - --maddog-server-ca
+          - /etc/pki_service/ca/security-ca.pem
+          - --madkub-server-ca
+          - /etc/pki_service/ca/cacerts.pem
+          - --token-folder
+          - /tokens
+          - --kingdom
+          - hnd
+          - --superpod
+          - None
+          - --estate
+          - hnd-flowsnake_prod
+          - --cert-folders
+          - watchdogsparkoperator:/certs
+          - --ca-folder
+          - /etc/pki_service/ca
+          - --funnel-endpoint
+          - http://ajna0-funnel1-0-hnd.data.sfdc.net:80
+          env:
+          - name: MADKUB_NODENAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: spec.nodeName
+          - name: MADKUB_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          - name: MADKUB_NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+          image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          name: sam-madkub-integration-init
+          resources: {}
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 7337
+          volumeMounts:
+          - mountPath: /certs
+            name: datacerts
+          - mountPath: /tokens
+            name: tokens
+          - mountPath: /etc/pki_service/ca
+            name: certificate-authority
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/certificates
+            name: client-certificate
+            readOnly: true
+          - mountPath: /etc/pki_service/platform/platform-client/keys
+            name: client-key
+            readOnly: true
         restartPolicy: Always
         serviceAccount: watchdog-spark-operator-serviceaccount
         serviceAccountName: watchdog-spark-operator-serviceaccount
@@ -127,17 +369,29 @@ items:
             name: watchdog
           name: config
         - configMap:
-            defaultMode: 420
-            items:
-            - key: spark-application.json
-              path: spark-application.json
-            - key: check-spark-operator.sh
-              mode: 493
-              path: check-spark-operator.sh
-            name: watchdog-spark-operator-configmap
-          name: watchdog-spark-operator
+            name: watchdog-spark-on-k8s-spec-configmap
+          name: watchdog-spark-specs
+        - configMap:
+            defaultMode: 493
+            name: watchdog-spark-on-k8s-script-configmap
+          name: watchdog-spark-scripts
         - configMap:
             name: sfdchosts
           name: sfdchosts
+        - emptyDir:
+            medium: Memory
+          name: datacerts
+        - emptyDir:
+            medium: Memory
+          name: tokens
+        - hostPath:
+            path: /etc/pki_service/ca
+          name: certificate-authority
+        - hostPath:
+            path: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+        - hostPath:
+            path: /etc/pki_service/platform/platform-client/keys
+          name: client-key
 kind: List
 metadata: {}

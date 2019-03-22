@@ -108,6 +108,12 @@ if configs.estate == "prd-sdc" then configs.daemonSetBase("sdn") {
                 namespace: "sam-system",
             },
         },
+        [if sdnimages.phase == "1" || sdnimages.phase == "2" then "updateStrategy"]: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+            maxUnavailable: "25%",
+            },
+        },
     },
     metadata: {
         labels: {

@@ -1,0 +1,110 @@
+apiVersion: v1
+system:
+  functions:
+  - name: search-query-service
+    count: 4
+    containers:
+    - name: search-query-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor:QS-4.8-RC.3
+      command: ["java", "-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8955", "-jar", "service.jar"]
+      args:
+      - --modelstore.repo.models=model_repository_root/models
+      - --modelstore.repo.manifests=model_repository_root/test_manifests/manifests
+      ports:
+      - name: service-port
+        containerPort: 7020
+      - name: admin-port
+        containerPort: 15372
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      resources:
+        limits:
+          cpu: "12"
+          memory: 10Gi
+        requests:
+          cpu: "12"
+          memory: 10Gi
+      volumeMounts:
+      - mountPath: /home/sfdc-search-query-service/logs
+        name: logvol
+      livenessProbe:
+        exec:
+          command:
+          - ./runcheck.sh
+          - "5"
+        initialDelaySeconds: 120
+        periodSeconds: 60
+        timeoutSeconds: 10
+      readinessProbe:
+        exec:
+          command:
+          - ./runcheck.sh
+          - "5"
+        initialDelaySeconds: 110
+        timeoutSeconds: 10
+    - name: beacon
+      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      args:
+      - -endpoint
+      - search-scale-safely/search-query-service:DATACENTER_ALLENV:7443
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: beacon-log-volume
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+    - name: sherpa-b
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      ports:
+      - name: sherpa-b-tls
+        containerPort: 7443
+      - name: sherpa-b-adm
+        containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /log
+        name: sherpa-log-volume
+      - mountPath: /server-certs
+        name: tls-server-cert
+      - mountPath: /client-certs
+        name: tls-client-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-search-query-service/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+    - name: beacon-log-volume
+      hostPath:
+        path: /home/sfdc-beacon/logs
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server

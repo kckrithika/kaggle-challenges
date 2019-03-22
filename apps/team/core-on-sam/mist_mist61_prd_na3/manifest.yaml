@@ -7,9 +7,9 @@ system:
   - containers:
     - env:
       - name: DB_SID
-        value: mist61a216utf
+        value: mist61b218utf
       - name: DB_INSTANCE_NAME
-        value: mist61a216utf-1
+        value: mist61b218utf-1
       - name: DB_USER
         value: sleepy
       - name: DB_STATS_USER
@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -227,13 +227,13 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
-        value: mist61a216utf
+        value: mist61b218utf
       - name: ENABLE_DB_SCHEMA_UPGRADE
         value: 1
       - name: SET_DEFAULT_ORACLE_EDITION

@@ -55,8 +55,13 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--path=" + slbconfigs.configDir,
                                                        "--ddi=" + slbconfigs.ddiService,
                                                    ] + roleBasedSecretArgs
+                                                   + (if slbflights.commonOpts then [
+                                                        "--commonoptions.hostname=$(NODE_NAME)",
+                                                        "--commonoptions.metricsendpoint=" + configs.funnelVIP,
+                                                   ] else [
+                                                        "--metricsEndpoint=" + configs.funnelVIP,
+                                                   ])
                                                    + [
-                                                       "--metricsEndpoint=" + configs.funnelVIP,
                                                        "--log_dir=" + slbconfigs.logsDir,
                                                        configs.sfdchosts_arg,
                                                        "--subnet=" + slbconfigs.subnet,
@@ -65,6 +70,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
                                                        "--maxDeleteEntries=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
                                                    ]
+                                                   + (if slbflights.vipLimit then [
+                                                   "--vipLimit=" + slbconfigs.perCluster.prefixLimit[configs.estate],
+] else [])
                                                    + slbconfigs.getNodeApiClientSocketSettings(),
                                           volumeMounts: configs.filter_empty([
                                               configs.maddog_cert_volume_mount,
