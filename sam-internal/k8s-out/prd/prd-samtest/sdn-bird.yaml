@@ -54,5 +54,5 @@ spec:
         name: sdnlogs
   updateStrategy:
     rollingUpdate:
-      maxUnavailable: 10%
+      maxUnavailable: 15%
     type: RollingUpdate
