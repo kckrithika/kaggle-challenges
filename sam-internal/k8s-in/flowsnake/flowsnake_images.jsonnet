@@ -14,17 +14,108 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
     },
 
+    ### Flowsnake alternate structure for representing data in each phase
+    flowsnake_phases: {
+        # Promotion order is opposite of inheritance order. The final phase is the root of the inheritance, with
+        # earlier phases inheriting from it and adding overrides to deploy experimental new releases.
 
-    ### Per-phase image tags
-    per_phase: {
-        ### Image tags we do not change very often
-        # When you *do* need to change one of these images, just override in the phase(s) you want to change.
-        # Once the override is deployed to all phases, update the default and delete the overrides.
-        default_image_tags: {
-                cert_secretizer_image_tag: "716",
+        # Phase 1: prd-test fleet.
+        # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
+        "1": self["2"] {
+            image_tags+: {
+                cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+                testData_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+                ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+                ingressDefaultBackend_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+                nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+                watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+                eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+                watchdog_image_tag: "sam-0002530-db32f9dc",  # Adds cli-checker stderr logging
+                madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
+                deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
+            },
+            feature_flags+: {
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                btrfs_watchdog_hard_reset: "",
+                image_renames_and_canary_build_tags: "unverified",
+                slb_ingress: "unverified",
+                spark_op_metrics: "enabled",
+                spark_op_watchdog_improve_logging: "enabled",
+            },
+            version_mapping: $.flowsnake_phases["2-prd-data"].version_mapping {
+                "spark-2.3-test": 672,
+                "sla-metrics-test": "jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest",
+                branch_name_truncation: "jenkins-dva-transformation-flowsnake-platform-PR-680-5-itest",
+                khtest: "jenkins-dva-transformation-flowsnake-platform-PR-646-25-itest",
+            },
+        },
+        # Phase 2: Remaining PRD fleets and production canary fleets.
+        # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
+        "2": self["3"] {
+            image_tags+: {
+                cert_secretizer_image_tag: "716",  # TODO: This is _older_ than phase 3. Fix.
+                eventExporter_image_tag: "726",  # TODO: This is _older_ than phase 3. Fix.
+                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",  # TODO: This is _older_ than phase 3. Fix.
+            },
+            feature_flags+: {
+            },
+            version_mapping+: {
+                # TODO: Wave is done with v1, and 0.12.5 is stable. Get the same tag everywhere
+                "0.12.5": 10011,
+                "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
+            },
+        },
+        # prd-dev: Exceptions vs the rest of phase 2 only
+        "2-prd-dev": self["2"] {
+            feature_flags+: {
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                btrfs_watchdog_hard_reset: "",  # Was promoted to prd-dev before phasing refactor
+                spark_op_metrics: "enabled",  # Was promoted to prd-dev before phasing refactor
+            },
+            version_mapping: $.flowsnake_phases["2-prd-data"].version_mapping {
+                "spark-2.3-test": 672,  # TODO: is this still in use?
+            },
+        },
+        # prd-data: Exceptions vs. the rest of phase 2 only
+        "2-prd-data": self["2"] {
+            feature_flags+: {
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                spark_op_metrics: "enabled",  # Was promoted to prd-data before phasing refactor
+            },
+            version_mapping+: {
+                # TODO: Are these all still in use?
+                "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
+                "0.10.0": 662,
+                "0.11.0": 681,
+                "0.11.0.sluice_fix": 691,
+                "0.12.0": 696,
+                "0.12.1": 10001,
+                "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
+            },
+        },
+        # frf: Exceptions vs. the rest of phase 2 only
+        "2-frf": self["2"] {
+            # FRF was in sync the rest of phase 3 before the phasing refactor.
+            # TODO: Let it begin canarying what the rest of phase 2 is doing.
+            image_tags: $.flowsnake_phases["3"].image_tags,
+            version_mapping: $.flowsnake_phases["3"].version_mapping,
+        },
+        # cdu: Exceptions vs. the rest of phase 2 only
+        "2-cdu": self["2"] {
+            # CDU was in sync the rest of 3-pcl before the phasing refactor.
+            # TODO: Let it begin canarying what the rest of phase 2 is doing.
+            image_tags: $.flowsnake_phases["3-pcl"].image_tags,
+            version_mapping: $.flowsnake_phases["3-pcl"].version_mapping,
+        },
+        # Phase 2: Remaining production fleets.
+        # This is the defacto "default" set of items.
+        "3": {
+            image_tags: {
                 es_image_tag: "503",
-                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",
                 testData_image_tag: "681",
+                # TODO: Why are still still deploying Glok at all?
                 glok_image_tag: "472",  # NOTE: THIS MUST NOT CHANGE. As of Aug 2018, this image is no longer built by the flowsnake-platform project.
                 ingressControllerNginx_image_tag: 662,
                 ingressDefaultBackend_image_tag: 662,
@@ -45,212 +136,90 @@ local utils = import "util_functions.jsonnet";
                 snapshoter_image_tag: "sam-0002052-bc0d9ea5",
                 snapshot_consumer_image_tag: "sam-0002052-bc0d9ea5",
                 kubedns_image_tag: "1.14.9",
-                eventExporter_image_tag: "726",
                 jdk8_base_tag: "33",
                 madkub_injector_image_tag: "11",
                 spark_operator_image_tag: "11",
                 prometheus_funnel_image_tag: "31",
+                cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+                eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+            },
+            feature_flags: {
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+            },
+            version_mapping: {
+                "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+                "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
+            },
+        },
+        # Public Cloud ("MoFo") exceptions to the rest of phase 3.
+        "3-pcl": self["3"] {
+            image_tags+: {
+                # TODO: Get in sync with the rest of phase 3
+                # In PCL, Madkub server needs to use host IP for token IP to get server token.
+                madkub_image_tag: "1.0.0-0000084-9f4a6ca6",
+                cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
+                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
+                eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
+                watchdog_image_tag: "sam-0002530-db32f9dc",  # Adds cli-checker stderr logging
+            },
+            feature_flags+: {
+            },
+            version_mapping+: {
+                # TODO: Get in sync with the rest of phase 3
+                "0.12.5": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
+                "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
+            },
+        },
+        ### A very special phase 3 for IAD and ORD that preserves access to old versions used by CRE.
+        ### TODO:  Remove when CRE is migrated to 0.12.2+
+        "3-iad-ord": self["3"] {
+            version_mapping+: {
+                "0.10.0": 662,
+                "0.11.0": 681,
+                "0.12.0": 696,
+                "0.12.1": 10001,
+                "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
+                "0.12.5": 10011,
+                "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
+            },
         },
 
         ### Release Phase minikube
-        minikube: self.default_image_tags {
-            cert_secretizer_image_tag: "minikube",
-            es_image_tag: "minikube",
-            fleetService_image_tag: "minikube",
-            testData_image_tag: "minikube",
-            glok_image_tag: "472",  # NOTE: THIS MUST NOT CHANGE. As of Aug 2018, this image is no longer built by the flowsnake-platform project.
-            ingressControllerNginx_image_tag: "minikube",
-            ingressDefaultBackend_image_tag: "minikube",
-            kibana_image_tag: "minikube",
-            logloader_image_tag: "minikube",
-            logstash_image_tag: "minikube",
-            madkub_image_tag: "minikube",
-            nodeMonitor_image_tag: "minikube",
-            zookeeper_image_tag: "minikube",
-            spark_operator_image_tag: "minikube",
-
-            feature_flags: {
-                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                # glok_retired: "foo", # W-4959832 (Remove logging to GloK and Glok/ZK/ES/Kibana/logloader) https://gus.my.salesforce.com/a07B0000004wnlxIAA
+        minikube: self["3"] {
+            image_tags+: {
+                cert_secretizer_image_tag: "minikube",
+                es_image_tag: "minikube",
+                fleetService_image_tag: "minikube",
+                testData_image_tag: "minikube",
+                glok_image_tag: "472",  # NOTE: THIS MUST NOT CHANGE. As of Aug 2018, this image is no longer built by the flowsnake-platform project.
+                ingressControllerNginx_image_tag: "minikube",
+                ingressDefaultBackend_image_tag: "minikube",
+                kibana_image_tag: "minikube",
+                logloader_image_tag: "minikube",
+                logstash_image_tag: "minikube",
+                madkub_image_tag: "minikube",
+                nodeMonitor_image_tag: "minikube",
+                zookeeper_image_tag: "minikube",
+                spark_operator_image_tag: "minikube",
             },
+
             version_mapping: {
-                main: {
-                  minikube: "minikube",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
+                minikube: "minikube",
             },
         },
+    },
 
-        ### Release Phase 1 - Used for Flowsnake team-facing fleets
-        "1": self.default_image_tags {
-            # image tag overrides go here
-            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-            testData_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-            ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-            ingressDefaultBackend_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-            nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-            watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-            docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-            watchdog_image_tag: "sam-0002530-db32f9dc",  # Adds cli-checker stderr logging
-            madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
-            deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
-
-            feature_flags: {
-                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                btrfs_watchdog_hard_reset: "",
-                image_renames_and_canary_build_tags: "unverified",
-                slb_ingress: "unverified",
-                spark_op_metrics: "enabled",
-                spark_op_watchdog_improve_logging: "enabled",
-            },
+    ### Phase settings converted to SAM format.
+    per_phase: {
+        [phase]: $.flowsnake_phases[phase].image_tags {
+            feature_flags: $.flowsnake_phases[phase].feature_flags,
             version_mapping: {
-                main: {
-                  "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
-                  "0.10.0": 662,
-                  "0.11.0": 681,
-                  "0.11.0.sluice_fix": 691,
-                  "0.12.0": 696,
-                  "0.12.1": 10001,
-                  # Due to a problem with the original push to Nexus we've been forced to not use that build
-                  # We have opted to use the itest image built
-                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",
-                  # Using a master branch build to run integration tests in test fleet for 0.12.3
-                  "0.12.5": 10011,
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
-                }
-                +
-                # These are for developer testing only
-                # only copy above to phase 2
-                {
-                  "spark-2.3-test": 672,
-                  "sla-metrics-test": "jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest",
-                  branch_name_truncation: "jenkins-dva-transformation-flowsnake-platform-PR-680-5-itest",
-                  khtest: "jenkins-dva-transformation-flowsnake-platform-PR-646-25-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        ### Release Phase 2 - Used for customer-facing prototyping fleets
-        "2": self.default_image_tags {
-            # image tag overrides go here
-
-            feature_flags: {
-                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                btrfs_watchdog_hard_reset: "",
-                spark_op_metrics: "enabled",
-            },
-            version_mapping: {
-                main: {
-                  "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
-                  "spark-2.3-test": 672,
-                  "0.10.0": 662,
-                  "0.11.0": 681,
-                  "0.11.0.sluice_fix": 691,
-                  "0.12.0": 696,
-                  "0.12.1": 10001,
-                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
-                  "0.12.5": 10011,
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
-        "3": self.default_image_tags {
-            # image tag overrides go here
-
-            feature_flags: {
-                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                spark_op_metrics: "enabled",
-            },
-            version_mapping: {
-                main: {
-                  "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
-                  "0.10.0": 662,
-                  "0.11.0": 681,
-                  "0.11.0.sluice_fix": 691,
-                  "0.12.0": 696,
-                  "0.12.1": 10001,
-                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
-                  "0.12.5": 10011,
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        ### Release Phase 4 - Remaining production fleets
-        "4": self.default_image_tags {
-            # image tag overrides go here
-            cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-            eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-
-            feature_flags: {
-                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-            },
-            version_mapping: {
-                main: {
-                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        ### A very special phase 4 for IAD and ORD that preserves access to old versions used by CRE.
-        ### TODO:  Remove when CRE is migrated to 0.12.2+
-        "4-iad-ord": self["4"] {
-            # Inherit image tag overrides and feature flags from regular phase 4. Only version_mapping is different.
-            version_mapping: {
-                main: {
-                  "0.10.0": 662,
-                  "0.11.0": 681,
-                  "0.12.0": 696,
-                  "0.12.1": 10001,
-                  "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
-                  "0.12.5": 10011,
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
-                },
+                main: $.flowsnake_phases[phase].version_mapping,
                 sections: {},
             },
-
-        },
-
-        "4-pcl": self["4"] {
-           # In PCL, Madkub server needs to use host IP for token IP to get server token.
-           madkub_image_tag: "1.0.0-0000084-9f4a6ca6",
-           cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-           fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-           eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-           watchdog_image_tag: "sam-0002530-db32f9dc",  # Adds cli-checker stderr logging
-
-           # Inherit feature flags from regular phase 4.
-
-           version_mapping: {
-                main: {
-                  "0.12.5": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-                  "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
+        }
+for phase in std.objectFields($.flowsnake_phases)
     },
 
 
@@ -261,15 +230,19 @@ local utils = import "util_functions.jsonnet";
         else if estate == "prd-data-flowsnake_test" then
             "1"
         else if estate == "prd-dev-flowsnake_iot_test" then
-            "2"
+            "2-prd-dev"
         else if estate == "prd-data-flowsnake" then
-            "3"
+            "2-prd-data"
+        else if kingdom == "frf" then
+            "2-frf"
+        else if kingdom == "cdu" then
+            "2-cdu"
         else if (kingdom == "iad" || kingdom == "ord") then
-            "4-iad-ord"
+            "3-iad-ord"
         else if flowsnakeconfig.is_public_cloud then
-            "4-pcl"
+            "3-pcl"
         else
-            "4"
+            "3"
         ),
 
     # These are the images used by the templates
