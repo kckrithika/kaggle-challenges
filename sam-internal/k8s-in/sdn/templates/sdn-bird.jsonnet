@@ -74,7 +74,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
         [if sdnimages.phase == "1" || sdnimages.phase == "2" then "updateStrategy"]: {
             type: "RollingUpdate",
             rollingUpdate: {
-            maxUnavailable: "15%",
+            maxUnavailable: "10%",
             },
         },
     },
