@@ -46,12 +46,22 @@ system:
        - name: SFDC_ENVIRONMENT
          value: redis
        - name: NO_ENV_FOR_RESTART
-         value: new7
+         value: new8
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
+    - name: redis-metrics-publisher
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpragada/caas-metrics-publisher:2
+      args:
+      - -port=12081
+      - -clustername=caas-cluster-1
+      livenessProbe:
+        exec:
+          command: ["true"]
+        initialDelaySeconds: 120
+        periodSeconds: 5
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
+      image: sfci/servicelibs/sherpa-envoy:59b23bf8962436361c252f7cadcf4fed20216b62
       ports:
       - containerPort: 15373
       env:
