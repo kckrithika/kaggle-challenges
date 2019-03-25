@@ -99,7 +99,7 @@ system:
           - name: server-certs
             mountPath: /server-certs
       - name: beacon
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/beacon:a4b2343
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/beacon:f804d14
         env:
         - name: SFDC_ENVIRONMENT
           value: mesh
@@ -110,4 +110,4 @@ system:
             initialDelaySeconds: 5
             exec:
                 command:
-                - "/home/scone/is-alive.sh"            
+                - "/opt/beacon/is-alive.sh"
