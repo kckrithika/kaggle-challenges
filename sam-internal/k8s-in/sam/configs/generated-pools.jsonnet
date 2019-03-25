@@ -2592,11 +2592,13 @@
     {
       "namespaces": [
         "test-release",
-        "firefly"
+        "firefly",
+        "sfcd"
       ],
       "access": [
         "team/Test_Release",
-        "team/firefly"
+        "team/firefly",
+        "team/sfcd"
       ],
       "controlEstate": "prd-samtwo",
       "estate": "prd-sam_tnrp_signer",
