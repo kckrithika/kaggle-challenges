@@ -12,8 +12,8 @@ system:
       image: dva/gateway:10-64fe57a4501b3f37bb8af5505e8193d2265be845
       livenessProbe:
         httpGet:
-          path: /manage/health
-          port: 15372
+          path: /rest/deployments/all/Steam/220
+          port: 8080
         initialDelaySeconds: 60 
         timeoutSeconds: 10
       ports:
