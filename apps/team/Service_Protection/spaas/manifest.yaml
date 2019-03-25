@@ -24,11 +24,11 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sconex
       - name: PKI_SERVERCA_DIR
-        value: /servercerts
+        value: /servercerts/ca
       - name: PKI_SERVERMONITORDIR
         value: /servercerts/server
       - name: PKI_CLIENTCA_DIR
-        value: /clientcerts
+        value: /clientcerts/ca
       - name: PKI_CLIENTMONITORDIR
         value: /clientcerts/client       
       # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
