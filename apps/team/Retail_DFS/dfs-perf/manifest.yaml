@@ -22,7 +22,7 @@ system:
     containers:
     - name: dfs
       # Please update https://salesforce.quip.com/A9HVAFytGaqG with any changes.
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.17.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.18.1
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -62,7 +62,6 @@ system:
                 -Dcom.sun.management.jmxremote.rmi.port=8898
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
-                -DincludeAllStackTraces=true
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       resources:
         limits: { cpu: "4", memory: "4Gi" }
@@ -84,10 +83,10 @@ system:
       - --server-ca
       - /server-certs/ca_test/cacerts.pem
       volumeMounts:
-      - name: dfs-server-cert
-        mountPath: /server-certs
-      - name: dfs-client-cert
-        mountPath: /client-certs
+        - name: dfs-server-cert
+          mountPath: /server-certs
+        - name: dfs-client-cert
+          mountPath: /client-certs
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
