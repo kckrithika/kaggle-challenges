@@ -80,9 +80,9 @@ system:
             type: server
 
   loadbalancers:
-    - lbname: content-image-transform
+    - lbname: content-image-transform-secure
       nodeExposed: true
-      function: content-image-transform
+      function: content-image-transform-secure
       slbEnabled: true
       ports:
         - lbtype: tcp
