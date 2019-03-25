@@ -30,7 +30,7 @@ system:
         value: "test_dataset"
       - name: HOST_NAME
         value: "rtandon-wsl.internal.salesforce.com"
-      - name: PLSQL_FILE_PATH
+      - name: REMOTE_FILE_PATH
         value: "/home/rtandon/Development/scripts/airstream-app/test_data.pls"
       - name: KRB5_KTNAME
         value: "/var/secrets/krb5_keytab/gov-analytics-test.keytab"
