@@ -28,6 +28,8 @@ system:
       - --metrics.funnelTimeOut=100000
       - --healthIndicator.maxThreadCount=1300
       - --authz.dest=demo-authz.service-mesh.localhost.mesh.force.com:5443
+      # 3/25/2019: there's an ongoing issue with ZK in PRD. this is a hack to bypass it.
+      - --zookeeper.seedHosts=ops-deploydata1-1-crd.eng.sfdc.net
       ports:
       - containerPort: 15372
       env:
