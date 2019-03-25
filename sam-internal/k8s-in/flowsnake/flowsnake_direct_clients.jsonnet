@@ -122,6 +122,14 @@ local wave_elt_production = {
             pki_namespace: "flowsnake_test",  # https://git.soma.salesforce.com/Infrastructure-Security/GlobalRegistry/blob/82cdcf28a5c12df73f5d73cb6f214d516b9dd348/conf/namespace.json#L1940-L1947
             users: ["flowsnake_test.flowsnake-watchdog"],  # For watchdogs that want to test impersonation proxy (i.e. want to use a cert rather than a service account token to create resources in flowsnake-watchdog namespace)
         },
+    ] else []) +
+    (if flowsnake_config.ci_resources_enabled then [
+        {
+            owner_name: "Flowsnake Team - Strata CI Integration",
+            namespace: "flowsnake-ci-tests",
+            pki_namespace: "flowsnake_test",
+            users: [],  # No users; CI tests are run via special process. See: templates/test/strata-integration-tests.jsonnet.
+        },
     ] else []),
 
     clients: (if std.objectHas(self.clients_per_estate, estate) then self.clients_per_estate[estate] else []) + self.clients_additional,
