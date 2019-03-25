@@ -95,6 +95,6 @@ system:
           port: 15575
           targetPort: 7020
         - lbtype: http
-          port: 43
+          port: 443
           targetport: 7020
           tls: true
