@@ -44,7 +44,7 @@ system:
             port: 8983
           initialDelaySeconds: 120
           periodSeconds: 5
-      lbname: searchservers
+      lbname: searchserver0
       terminationGracePeriodSeconds: 10
       volumeClaimTemplates:
       - name: solr-data-volume
@@ -99,7 +99,7 @@ system:
             port: 8983
           initialDelaySeconds: 120
           periodSeconds: 5
-      lbname: searchservers
+      lbname: searchserver1
       terminationGracePeriodSeconds: 10
       volumeClaimTemplates:
       - name: solr-data-volume
