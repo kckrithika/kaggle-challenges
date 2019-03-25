@@ -13,6 +13,17 @@ local configs = import "config.jsonnet";
   rules: [
     {
       apiGroups: [
+        "mesh.sfdc.net",
+      ],
+      resources: [
+        "*",
+      ],
+      verbs: [
+        "*",
+      ],
+    },
+    {
+      apiGroups: [
         "networking.istio.io",
       ],
       resources: [
