@@ -7,6 +7,12 @@ metadata:
   namespace: mesh-control-plane
 rules:
 - apiGroups:
+  - mesh.sfdc.net
+  resources:
+  - '*'
+  verbs:
+  - '*'
+- apiGroups:
   - networking.istio.io
   resources:
   - '*'
