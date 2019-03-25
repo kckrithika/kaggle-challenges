@@ -3,6 +3,7 @@ system:
   notifications:
     email:
       - jiaqi.wu@salesforce.com
+      - aditya.sureshkumar@salesforce.com
   functions:
   - name: zones-intake-backend
     count: 2
