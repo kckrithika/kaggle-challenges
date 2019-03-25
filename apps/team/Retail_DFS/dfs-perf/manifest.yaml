@@ -31,7 +31,7 @@ system:
         mountPath: /client-certs
       env:
       - name: SFDC_ENVIRONMENT
-        value: mist
+        value: stmfa
       - name: LOAD_CC_CERT
         value: false
       - name: MDS_DESTINATION
