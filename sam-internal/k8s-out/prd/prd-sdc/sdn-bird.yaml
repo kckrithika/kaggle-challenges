@@ -6,7 +6,7 @@ metadata:
   name: sdn-bird
   namespace: sam-system
 spec:
-  minReadySeconds: 90
+  minReadySeconds: 300
   selector:
     matchLabels:
       apptype: control
