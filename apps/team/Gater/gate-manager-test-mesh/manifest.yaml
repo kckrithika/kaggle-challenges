@@ -9,7 +9,7 @@ system:
     hostnetwork: true
     containers:
     - name: gater1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/gater-mesh:dmachak-20190321A
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/gater-mesh:dmachak-20190222A
       args:
       - --server.port=9090
       - --logging.evaluator.level=ERRORS_ONLY
@@ -18,13 +18,11 @@ system:
       - --gater.thrift.metadata.endpoint=gater-mesh-metadata
       - --gater.thrift.admin.endpoint=gater-mesh-admin
       - --metrics.collectionInterval=60
-      - --scone.detectsidecars=false
       ports:
       - containerPort: 7020
       - containerPort: 9522
       - containerPort: 9523
       - containerPort: 9090
-      - containerPort: 10001
       - containerPort: 15372
       env:
       - name: SFDC_ENVIRONMENT
@@ -34,8 +32,6 @@ system:
         name: logvol
       - mountPath: /fastdata/gater
         name: dbvol
-      - mountPath: /home/sfdc/automation
-        name: perf-automation-volume
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -89,6 +85,7 @@ system:
           command:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
+
     volumes:
     - name: logvol
       hostPath:
@@ -102,8 +99,6 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-    - emptyDir: {}
-      name: perf-automation-volume    # Shared volume with all the automation tools
 
     strategy:
       type: RollingUpdate
