@@ -24,9 +24,13 @@ local name = "crd-watcher";
                                 configs.sfdchosts_arg,
                                 "--etcdSetDisabled=true",
                                 "--etcdGetDisabled=true",
-                                "--crdSetEnabled=true",
-                                "--crdGetEnabled=true",
-                            ]),
+                            ]) + (
+                                if configs.estate == "prd-samtest" then
+                                [] else [
+                                   "--crdSetEnabled=true",
+                                   "--crdGetEnabled=true",
+                                ]
+                            ),
                             volumeMounts+: configs.filter_empty([
                                 configs.sfdchosts_volume_mount,
                                 configs.config_volume_mount,
