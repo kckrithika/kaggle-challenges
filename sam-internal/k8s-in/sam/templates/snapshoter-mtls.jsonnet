@@ -31,18 +31,17 @@ if samfeatureflags.kafkaProducer then {
                 } + configs.ownerLabel.sam,
                 namespace: "sam-system",
                 annotations: {
-                    "madkub.sam.sfdc.net/allcerts":
-                    std.manifestJsonEx(
-                {
-                    certreqs:
-                        [
-                            { role: "sam-system.snapshot-producer" } + certReq
-                            for certReq in madkub.madkubSamCertsAnnotation(certDirs).certreqs
-                        ],
-                }, " "
-),
+                    "madkub.sam.sfdc.net/allcerts": std.manifestJsonEx({
+                        certreqs: [
+{
+                                role: "sam-system.snapshot-producer",
+} + certReq
+                                    for certReq in madkub.madkubSamCertsAnnotation(certDirs).certreqs
+                                ],
+},
+                        " "),
             },
-            },
+        },
             spec: configs.specWithKubeConfigAndMadDog {
                 containers: [
 configs.containerWithKubeConfigAndMadDog {
@@ -57,7 +56,8 @@ configs.containerWithKubeConfigAndMadDog {
                         configs.config_volume_mount,
                         configs.cert_volume_mount,
                         configs.sfdchosts_volume_mount,
-] + madkub.madkubSamCertVolumeMounts(certDirs)),
+                        ] + madkub.madkubSamCertVolumeMounts(certDirs)
+                          + if utils.is_pcn(configs.kingdom) then [{ mountPath: "/etc/pki_service/", name: "maddog-certs" }] else []),
                     image: samimages.hypersam,
                     name: "snapshot-producer",
                 } + if configs.estate == "prd-sam" then {
@@ -77,7 +77,7 @@ configs.containerWithKubeConfigAndMadDog {
                     },
                 } + configs.containerInPCN,
                 ] + [madkub.madkubRefreshContainer(certDirs)],
-                volumes+: configs.filter_empty([configs.config_volume("snapshoter-mtls"), configs.cert_volume, configs.sfdchosts_volume] + madkub.madkubSamCertVolumes(certDirs) + madkub.madkubSamMadkubVolumes()),
+                volumes+: configs.filter_empty([configs.config_volume("snapshoter-mtls"), configs.cert_volume, configs.sfdchosts_volume, if utils.is_pcn(configs.kingdom) then { hostPath: { path: "/etc/pki_service" }, name: "maddog-certs" } else {}] + madkub.madkubSamCertVolumes(certDirs) + madkub.madkubSamMadkubVolumes()),
                 initContainers+: (if !utils.is_pcn(configs.kingdom) then [
                     madkub.madkubInitContainer(certDirs),
 {
@@ -109,7 +109,7 @@ configs.containerWithKubeConfigAndMadDog {
                               } else {
                                   pool: configs.estate,
                               },
-            },
+            } + configs.serviceAccount,
         },
     },
 } else "SKIP"
