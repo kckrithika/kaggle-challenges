@@ -1,4 +1,4 @@
-color: blue
+color: oreapp
 db:
   connectionCount: 25
   hostName: gkr1ice3-db1-1-prd-vip.eng.sfdc.net
@@ -23,6 +23,6 @@ images:
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:d48544
 name: na45
-nonce: 1553549944276980525
+nonce: 1553550663704185073
 replicaCount: 1
 settingsSuperPod: sp2
