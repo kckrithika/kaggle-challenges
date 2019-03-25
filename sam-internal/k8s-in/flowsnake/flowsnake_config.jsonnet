@@ -197,6 +197,10 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     impersonation_proxy_enabled: self.madkub_enabled,
     impersonation_proxy_replicas: if self.is_test then 1 else 2,
 
+    ci_resources_enabled: (
+        estate == "prd-data-flowsnake" && self.kubernetes_create_user_auth
+    ),
+
 
     ## Some utility functions for internal consistency checking
 
