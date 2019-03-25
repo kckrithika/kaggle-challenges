@@ -20,7 +20,6 @@ system:
         - -m
         - -a 127.0.0.1:12082
         - -x 120
-        - -l
       livenessProbe:
         exec:
           command: ["true"]
