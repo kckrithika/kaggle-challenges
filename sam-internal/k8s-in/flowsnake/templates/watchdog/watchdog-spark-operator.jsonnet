@@ -119,7 +119,7 @@ else
                         # Watchdogs run as user sfdc (7337) per https://git.soma.salesforce.com/sam/sam/blob/master/docker/hypersam/Dockerfile
                         initContainers: [ madkub_common.init_container(cert_name, user=7337), ],
                         restartPolicy: "Always",
-                        hostNetwork: true,
+                        hostNetwork: if flowsnakeconfig.is_public_cloud then false else true,
                         containers: [
                             {
                                 image: flowsnake_images.watchdog,

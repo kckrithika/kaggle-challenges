@@ -299,7 +299,7 @@ items:
           - mountPath: /etc/pki_service/platform/platform-client/keys
             name: client-key
             readOnly: true
-        hostNetwork: true
+        hostNetwork: false
         initContainers:
         - args:
           - /sam/madkub-client
