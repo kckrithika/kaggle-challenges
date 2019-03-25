@@ -31,9 +31,9 @@ system:
         mountPath: /client-certs
       env:
       - name: SFDC_ENVIRONMENT
-        value: stmfa
+        value: mist
       - name: LOAD_CC_CERT
-        value: false
+        value: true
       - name: MDS_DESTINATION
         value: metadata-service.retail-mds.localhost.mesh.force.com:5443
       - name: GDOT_USER
