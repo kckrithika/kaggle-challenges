@@ -19,6 +19,12 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         istio: "sidecar-injector",
       },
     },
+    strategy: {
+      rollingUpdate: {
+        maxSurge: 1,
+        maxUnavailable: 0,
+      },
+    },
     template: {
       metadata: {
         annotations: {
@@ -27,7 +33,11 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           "sidecar.istio.io/inject": "false",
         },
         labels: {
+          app: "sidecarInjectorWebhook",
+          chart: "sidecarInjectorWebhook",
+          heritage: "Tiller",
           istio: "sidecar-injector",
+          release: "istio",
         },
       },
       spec: {

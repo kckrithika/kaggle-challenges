@@ -1,8 +1,9 @@
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   labels:
-    app: istio-sidecar-injector
+    app: sidecarInjectorWebhook
+    istio: sidecar-injector
     release: istio
   name: istio-sidecar-injector-admin-role-binding-mesh-control-plane
 roleRef:

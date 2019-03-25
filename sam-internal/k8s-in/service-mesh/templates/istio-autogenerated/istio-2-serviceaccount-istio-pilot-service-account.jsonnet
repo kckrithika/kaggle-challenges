@@ -8,7 +8,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
     },
     labels: {
-      app: "istio-pilot",
+      app: "pilot",
       release: "istio",
     },
     name: "istio-pilot-service-account",

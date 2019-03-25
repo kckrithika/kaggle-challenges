@@ -1,11 +1,14 @@
 # Auto-generated file. Do not modify manually. Check README.md.
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 {
-  apiVersion: "rbac.authorization.k8s.io/v1beta1",
+  apiVersion: "rbac.authorization.k8s.io/v1",
   kind: "ClusterRole",
   metadata: {
+    annotations: {
+      "manifestctl.sam.data.sfdc.net/swagger": "disable",
+    },
     labels: {
-      app: "istio-pilot",
+      app: "pilot",
       release: "istio",
     },
     name: "istio-pilot-mesh-control-plane",
@@ -73,8 +76,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         "extensions",
       ],
       resources: [
-        "thirdpartyresources",
-        "thirdpartyresources.extensions",
         "ingresses",
         "ingresses/status",
       ],
@@ -105,18 +106,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         "endpoints",
         "pods",
         "services",
-      ],
-      verbs: [
-        "get",
-        "list",
-        "watch",
-      ],
-    },
-    {
-      apiGroups: [
-        "",
-      ],
-      resources: [
         "namespaces",
         "nodes",
         "secrets",

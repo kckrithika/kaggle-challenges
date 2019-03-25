@@ -2,7 +2,7 @@ apiVersion: admissionregistration.k8s.io/v1beta1
 kind: MutatingWebhookConfiguration
 metadata:
   labels:
-    app: istio-sidecar-injector
+    app: sidecarInjectorWebhook
     release: istio
   name: istio-sidecar-injector
   namespace: mesh-control-plane

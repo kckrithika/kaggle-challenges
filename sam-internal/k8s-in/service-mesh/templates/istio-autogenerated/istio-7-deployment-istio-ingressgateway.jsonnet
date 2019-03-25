@@ -13,7 +13,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     namespace: "mesh-control-plane",
   },
   spec: {
-    replicas: 1,
     selector: {
       matchLabels: {
         app: "istio-ingressgateway",
@@ -29,7 +28,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         },
         labels: {
           app: "istio-ingressgateway",
+          chart: "gateways",
+          heritage: "Tiller",
           istio: "ingressgateway",
+          release: "istio",
         },
       },
       spec: {
@@ -156,9 +158,22 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 name: "ISTIO_META_POD_NAME",
                 valueFrom: {
                   fieldRef: {
+                    apiVersion: "v1",
                     fieldPath: "metadata.name",
                   },
                 },
+              },
+              {
+                name: "ISTIO_META_CONFIG_NAMESPACE",
+                valueFrom: {
+                  fieldRef: {
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
+              {
+                name: "ISTIO_META_ROUTER_MODE",
+                value: "sni-dnat",
               },
             ],
             image: mcpIstioConfig.proxyImage,
@@ -172,15 +187,35 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 containerPort: 443,
               },
               {
-                containerPort: 15011,
+                containerPort: 15029,
               },
               {
-                containerPort: 8060,
+                containerPort: 15032,
               },
               {
-                containerPort: 853,
+                containerPort: 15443,
+              },
+              {
+                containerPort: 15020,
+              },
+              {
+                containerPort: 15090,
+                name: "http-envoy-prom",
+                protocol: "TCP",
               },
             ],
+            readinessProbe: {
+              failureThreshold: 30,
+              httpGet: {
+                path: "/healthz/ready",
+                port: 15020,
+                scheme: "HTTP",
+              },
+              initialDelaySeconds: 1,
+              periodSeconds: 2,
+              successThreshold: 1,
+              timeoutSeconds: 1,
+            },
             resources: {
               requests: {
                 cpu: "10m",

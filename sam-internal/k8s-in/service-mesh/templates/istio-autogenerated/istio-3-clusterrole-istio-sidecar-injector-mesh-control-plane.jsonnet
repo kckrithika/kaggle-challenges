@@ -1,11 +1,15 @@
 # Auto-generated file. Do not modify manually. Check README.md.
 local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
 {
-  apiVersion: "rbac.authorization.k8s.io/v1beta1",
+  apiVersion: "rbac.authorization.k8s.io/v1",
   kind: "ClusterRole",
   metadata: {
+    annotations: {
+      "manifestctl.sam.data.sfdc.net/swagger": "disable",
+    },
     labels: {
-      app: "istio-sidecar-injector",
+      app: "sidecarInjectorWebhook",
+      istio: "sidecar-injector",
       release: "istio",
     },
     name: "istio-sidecar-injector-mesh-control-plane",
@@ -13,7 +17,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   rules: [
     {
       apiGroups: [
-        "*",
+        "",
       ],
       resources: [
         "configmaps",

@@ -3,40 +3,38 @@ data:
   config: |-
     policy: disabled
     template: |-
-      initContainers:
+      rewriteAppHTTPProbe: false
+      initContainers: []
+      [[ if ne (annotation .ObjectMeta `sidecar.istio.io/interceptionMode` .ProxyConfig.InterceptionMode) "NONE" ]]
       - name: istio-init
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:50d25caed2638ed29259a2be55ba2dc0ceb49b00
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxy_init:1.1.0
         args:
         - "-p"
         - [[ .MeshConfig.ProxyListenPort ]]
         - "-u"
         - 1337
         - "-m"
-        - [[ or (index .ObjectMeta.Annotations "sidecar.istio.io/interceptionMode") .ProxyConfig.InterceptionMode.String ]]
+        - [[ annotation .ObjectMeta `sidecar.istio.io/interceptionMode` .ProxyConfig.InterceptionMode ]]
         - "-i"
-        [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeOutboundIPRanges") -]]
-        - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeOutboundIPRanges"  ]]"
-        [[ else -]]
-        - "127.1.2.3/32"
-        [[ end -]]
+        - "[[ annotation .ObjectMeta `traffic.sidecar.istio.io/includeOutboundIPRanges`  "127.1.2.3/32"  ]]"
         - "-x"
-        [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeOutboundIPRanges") -]]
-        - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeOutboundIPRanges"  ]]"
-        [[ else -]]
-        - ""
-        [[ end -]]
+        - "[[ annotation .ObjectMeta `traffic.sidecar.istio.io/excludeOutboundIPRanges`  ""  ]]"
         - "-b"
-        [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeInboundPorts") -]]
-        - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/includeInboundPorts"  ]]"
-        [[ else -]]
-        - [[ range .Spec.Containers -]][[ range .Ports -]][[ .ContainerPort -]], [[ end -]][[ end -]][[ end]]
+        - "[[ annotation .ObjectMeta `traffic.sidecar.istio.io/includeInboundPorts` (includeInboundPorts .Spec.Containers) ]]"
         - "-d"
-        [[ if (isset .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeInboundPorts") -]]
-        - "[[ index .ObjectMeta.Annotations "traffic.sidecar.istio.io/excludeInboundPorts" ]]"
-        [[ else -]]
-        - ""
+        - "[[ excludeInboundPort (annotation .ObjectMeta `status.sidecar.istio.io/port`  15020 ) (annotation .ObjectMeta `traffic.sidecar.istio.io/excludeInboundPorts`  "" ) ]]"
+        [[ if (isset .ObjectMeta.Annotations `traffic.sidecar.istio.io/kubevirtInterfaces`) -]]
+        - "-k"
+        - "[[ index .ObjectMeta.Annotations `traffic.sidecar.istio.io/kubevirtInterfaces` ]]"
         [[ end -]]
         imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 10m
+            memory: 10Mi
+          limits:
+            cpu: 100m
+            memory: 50Mi
         securityContext:
           runAsNonRoot: false
           runAsUser: 0
@@ -44,36 +42,33 @@ data:
             add:
             - NET_ADMIN
           restartPolicy: Always
+      [[ end -]]
       containers:
       - name: istio-proxy
-        image: [[ if (isset .ObjectMeta.Annotations "sidecar.istio.io/proxyImage") -]]
-        "[[ index .ObjectMeta.Annotations "sidecar.istio.io/proxyImage" ]]"
-        [[ else -]]
-        ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:50d25caed2638ed29259a2be55ba2dc0ceb49b00
-        [[ end -]]
+        image: [[ annotation .ObjectMeta `sidecar.istio.io/proxyImage`  "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxyv2:1.1.0"  ]]
         args:
         - proxy
         - sidecar
+        - --domain
+        - $(POD_NAMESPACE).svc.cluster.local
         - --configPath
         - [[ .ProxyConfig.ConfigPath ]]
         - --binaryPath
         - [[ .ProxyConfig.BinaryPath ]]
         - --serviceCluster
         [[ if ne "" (index .ObjectMeta.Labels "app") -]]
-        - [[ index .ObjectMeta.Labels "app" ]]
+        - [[ index .ObjectMeta.Labels "app" ]].$(POD_NAMESPACE)
         [[ else -]]
-        - "istio-proxy"
+        - [[ valueOrDefault .DeploymentMeta.Name "istio-proxy" ]].[[ valueOrDefault .DeploymentMeta.Namespace "default" ]]
         [[ end -]]
         - --drainDuration
         - [[ formatDuration .ProxyConfig.DrainDuration ]]
         - --parentShutdownDuration
         - [[ formatDuration .ProxyConfig.ParentShutdownDuration ]]
         - --discoveryAddress
-        - [[ .ProxyConfig.DiscoveryAddress ]]
-        - --discoveryRefreshDelay
-        - [[ formatDuration .ProxyConfig.DiscoveryRefreshDelay ]]
+        - [[ annotation .ObjectMeta `sidecar.istio.io/discoveryAddress` .ProxyConfig.DiscoveryAddress ]]
         - --zipkinAddress
-        - [[ .ProxyConfig.ZipkinAddress ]]
+        - [[ .ProxyConfig.GetTracing.GetZipkin.GetAddress ]]
         - --connectTimeout
         - [[ formatDuration .ProxyConfig.ConnectTimeout ]]
         - --proxyAdminPort
@@ -83,7 +78,13 @@ data:
         - [[ .ProxyConfig.Concurrency ]]
         [[ end -]]
         - --controlPlaneAuthPolicy
-        - [[ or (index .ObjectMeta.Annotations "sidecar.istio.io/controlPlaneAuthPolicy") .ProxyConfig.ControlPlaneAuthPolicy ]]
+        - [[ annotation .ObjectMeta `sidecar.istio.io/controlPlaneAuthPolicy` .ProxyConfig.ControlPlaneAuthPolicy ]]
+      [[- if (ne (annotation .ObjectMeta `status.sidecar.istio.io/port`  15020 ) "0") ]]
+        - --statusPort
+        - [[ annotation .ObjectMeta `status.sidecar.istio.io/port`  15020  ]]
+        - --applicationPorts
+        - "[[ annotation .ObjectMeta `readiness.status.sidecar.istio.io/applicationPorts` (applicationPorts .Spec.Containers) ]]"
+      [[- end ]]
         env:
         - name: POD_NAME
           valueFrom:
@@ -101,12 +102,39 @@ data:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
+        - name: ISTIO_META_CONFIG_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
         - name: ISTIO_META_INTERCEPTION_MODE
           value: [[ or (index .ObjectMeta.Annotations "sidecar.istio.io/interceptionMode") .ProxyConfig.InterceptionMode.String ]]
+        [[ if .ObjectMeta.Annotations ]]
+        - name: ISTIO_METAJSON_ANNOTATIONS
+          value: |
+                 [[ toJSON .ObjectMeta.Annotations ]]
+        [[ end ]]
+        [[ if .ObjectMeta.Labels ]]
+        - name: ISTIO_METAJSON_LABELS
+          value: |
+                 [[ toJSON .ObjectMeta.Labels ]]
+        [[ end ]]
+        [[- if (isset .ObjectMeta.Annotations `sidecar.istio.io/bootstrapOverride`) ]]
+        - name: ISTIO_BOOTSTRAP_OVERRIDE
+          value: "/etc/istio/custom-bootstrap/custom_bootstrap.json"
+        [[- end ]]
         imagePullPolicy: IfNotPresent
+        [[ if (ne (annotation .ObjectMeta `status.sidecar.istio.io/port`  15020 ) "0") ]]
+        readinessProbe:
+          httpGet:
+            path: /healthz/ready
+            port: [[ annotation .ObjectMeta `status.sidecar.istio.io/port`  15020  ]]
+          initialDelaySeconds: [[ annotation .ObjectMeta `readiness.status.sidecar.istio.io/initialDelaySeconds`  1  ]]
+          periodSeconds: [[ annotation .ObjectMeta `readiness.status.sidecar.istio.io/periodSeconds`  2  ]]
+          failureThreshold: [[ annotation .ObjectMeta `readiness.status.sidecar.istio.io/failureThreshold`  30  ]]
+        [[ end -]]
         securityContext:
           readOnlyRootFilesystem: true
-          [[ if eq (or (index .ObjectMeta.Annotations "sidecar.istio.io/interceptionMode") .ProxyConfig.InterceptionMode.String) "TPROXY" -]]
+          [[ if eq (annotation .ObjectMeta `sidecar.istio.io/interceptionMode` .ProxyConfig.InterceptionMode) "TPROXY" -]]
           capabilities:
             add:
             - NET_ADMIN
@@ -116,15 +144,27 @@ data:
           [[ end -]]
         restartPolicy: Always
         resources:
-          [[ if (isset .ObjectMeta.Annotations "sidecar.istio.io/proxyCPU") -]]
+          [[ if or (isset .ObjectMeta.Annotations `sidecar.istio.io/proxyCPU`) (isset .ObjectMeta.Annotations `sidecar.istio.io/proxyMemory`) -]]
           requests:
-            cpu: "[[ index .ObjectMeta.Annotations "sidecar.istio.io/proxyCPU" ]]"
-            memory: "[[ index .ObjectMeta.Annotations "sidecar.istio.io/proxyMemory" ]]"
+            [[ if (isset .ObjectMeta.Annotations `sidecar.istio.io/proxyCPU`) -]]
+            cpu: "[[ index .ObjectMeta.Annotations `sidecar.istio.io/proxyCPU` ]]"
+            [[ end ]]
+            [[ if (isset .ObjectMeta.Annotations `sidecar.istio.io/proxyMemory`) -]]
+            memory: "[[ index .ObjectMeta.Annotations `sidecar.istio.io/proxyMemory` ]]"
+            [[ end ]]
         [[ else -]]
+          limits:
+            cpu: 2000m
+            memory: 128Mi
           requests:
-            cpu: 10m
+            cpu: 100m
+            memory: 128Mi
         [[ end -]]
         volumeMounts:
+        [[- if (isset .ObjectMeta.Annotations `sidecar.istio.io/bootstrapOverride`) ]]
+        - mountPath: /etc/istio/custom-bootstrap
+          name: custom-bootstrap-volume
+        [[- end ]]
         - mountPath: /etc/istio/proxy
           name: istio-envoy
         - mountPath: /etc/certs/root-cert.pem # Maddog certs mapped to istio certs default locations.
@@ -142,7 +182,12 @@ data:
         - mountPath: /etc/certs/client-key.pem
           name: tls-client-cert
           subPath: client/keys/client-key.pem
-      volumes:
+      volumes: []
+      [[- if (isset .ObjectMeta.Annotations `sidecar.istio.io/bootstrapOverride`) ]]
+      - name: custom-bootstrap-volume
+        configMap:
+          name: [[ annotation .ObjectMeta `sidecar.istio.io/bootstrapOverride` `` ]]
+      [[- end ]]
       - emptyDir:
           medium: Memory
         name: istio-envoy
@@ -151,8 +196,6 @@ metadata:
   creationTimestamp: null
   labels:
     app: istio
-    chart: istio-1.0.1
-    heritage: Tiller
     istio: sidecar-injector
     release: istio
   name: istio-sidecar-injector

@@ -8,7 +8,8 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
     },
     labels: {
-      app: "istio-sidecar-injector",
+      app: "sidecarInjectorWebhook",
+      istio: "sidecar-injector",
       release: "istio",
     },
     name: "istio-sidecar-injector-service-account",

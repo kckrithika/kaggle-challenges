@@ -5,7 +5,8 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   kind: "Service",
   metadata: {
     labels: {
-      app: "istio-pilot",
+      app: "pilot",
+      istio: "pilot",
       release: "istio",
     },
     name: "istio-pilot",
@@ -27,7 +28,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       },
       {
         name: "http-monitoring",
-        port: 9093,
+        port: 15014,
       },
     ],
     selector: {

@@ -29,10 +29,12 @@ local kingdom = std.extVar("kingdom");
 
     ### Release Phase 0 - prd-sam and prd-samtest
     "0": $.per_phase["1"] {
-       pilot: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:d021a6b1dd4db59fe1a82f07a7e5457830190e40",
-       proxy: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:50d25caed2638ed29259a2be55ba2dc0ceb49b00",
-       proxyinit: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:50d25caed2638ed29259a2be55ba2dc0ceb49b00",
-       sidecarinjector: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:a0383b6d85b9e2742777611a33ac778020220ab8",
+       # TODO Change to ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging after binaries are built.
+       kubectl: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/kubectl:1.1.0",
+       pilot: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/pilot:1.1.0",
+       proxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxyv2:1.1.0",
+       proxyinit: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxy_init:1.1.0",
+       sidecarinjector: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.1.0",
        metricsscraper: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev",
      },
 
@@ -71,6 +73,7 @@ local kingdom = std.extVar("kingdom");
       "4"
   ),
 
+  kubectl: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].kubectl),
   pilot: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].pilot),
   proxy: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].proxy),
   proxyinit: imageFunc.do_override_for_non_pipeline_image($.overrides, "pilot", $.per_phase[$.phase].proxyinit),
