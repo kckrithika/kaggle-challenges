@@ -90,6 +90,8 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      nodeSelector:
+        pool: prd-samtest
       serviceAccountName: route-update-service-service-account
       volumes:
       - hostPath:
