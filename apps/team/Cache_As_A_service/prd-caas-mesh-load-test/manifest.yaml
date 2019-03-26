@@ -18,10 +18,6 @@ system:
         - -v 256,1024,10240
         - -o 0,1,9
         - -x 120
-      volumeMounts:
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
       livenessProbe:
         exec:
           command: ["true"]
@@ -32,46 +28,3 @@ system:
          value: newton9
        - name: PYTHONUNBUFFERED
          value: 1
-    - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:59b23bf8962436361c252f7cadcf4fed20216b62
-      ports:
-      - containerPort: 15373
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: redis
-      - name: SFDC_POD
-        value: mist66
-      resources:
-        limits:
-          cpu: "1"
-          memory: 1Gi
-        requests:
-          cpu: "1"
-          memory: 1Gi
-      volumeMounts:
-      - mountPath: /client-certs
-        name: tls-client-cert
-      - mountPath: /server-certs
-        name: tls-server-cert
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-        initialDelaySeconds: 20
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-        initialDelaySeconds: 15
-        periodSeconds: 5
-    volumes:
-    - name: tls-client-cert
-      maddogCert:
-        type: client
-    - name: tls-server-cert
-      maddogCert:
-        type: server
-    - name: secretvol
-      secret:
-        secretName: caas-secret-sp-c1
