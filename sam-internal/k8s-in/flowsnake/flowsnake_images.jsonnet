@@ -14,8 +14,7 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
     },
 
-    ### Flowsnake alternate structure for representing data in each phase
-    flowsnake_phases: {
+    per_phase: {
         # Promotion order is opposite of inheritance order. The final phase is the root of the inheritance, with
         # earlier phases inheriting from it and adding overrides to deploy experimental new releases.
 
@@ -44,8 +43,10 @@ local utils = import "util_functions.jsonnet";
                 spark_op_metrics: "enabled",
                 spark_op_watchdog_improve_logging: "enabled",
             },
-            version_mapping: $.flowsnake_phases["2-prd-data"].version_mapping {
-                "spark-2.3-test": 672,
+            # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
+            # Start with 2-prd-dev (which also have legacy version mappings),
+            # and then any cusomizations just for this fleet.
+            version_mapping: $.per_phase["2-prd-dev"].version_mapping {
                 "sla-metrics-test": "jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest",
                 branch_name_truncation: "jenkins-dva-transformation-flowsnake-platform-PR-680-5-itest",
                 khtest: "jenkins-dva-transformation-flowsnake-platform-PR-646-25-itest",
@@ -62,9 +63,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags+: {
             },
             version_mapping+: {
-                # TODO: Wave is done with v1, and 0.12.5 is stable. Get the same tag everywhere
-                "0.12.5": 10011,
-                "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
+                "0.12.5": 10011,  # TODO: Why is this different from production?
             },
         },
         # prd-dev: Exceptions vs the rest of phase 2 only
@@ -74,7 +73,12 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",  # Was promoted to prd-dev before phasing refactor
                 spark_op_metrics: "enabled",  # Was promoted to prd-dev before phasing refactor
             },
-            version_mapping: $.flowsnake_phases["2-prd-data"].version_mapping {
+            # prd-dev offers legacy version mappings. Phase 3 does not, so cannot inherit from there.
+            # Start with 3-iad-ord (which also have legacy version mappings),
+            # then apply overrides from generic phase 2, and then any customizations just for this fleet.
+            version_mapping: $.per_phase["3-iad-ord"].version_mapping + super.version_mapping + {
+                "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
+                "0.11.0.sluice_fix": 691,  # TODO: is this still in use?
                 "spark-2.3-test": 672,  # TODO: is this still in use?
             },
         },
@@ -84,12 +88,16 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 spark_op_metrics: "enabled",  # Was promoted to prd-data before phasing refactor
             },
-            version_mapping+: {
+            # prd-data offers legacy version mappings. Phase 3 does not, so cannot inherit from there.
+            # Start with 3-iad-ord (which also have legacy version mappings),
+            # then apply overrides from generic phase 2, and then any cusomizations just for this fleet.
+            # TODO: tidy up all these exceptions.
+            version_mapping: $.per_phase["3-iad-ord"].version_mapping + super.version_mapping + {
                 # TODO: Are these all still in use?
                 "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                 "0.10.0": 662,
                 "0.11.0": 681,
-                "0.11.0.sluice_fix": 691,
+                "0.11.0.sluice_fix": 691,  # TODO: is this still in use?
                 "0.12.0": 696,
                 "0.12.1": 10001,
                 "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
@@ -99,17 +107,17 @@ local utils = import "util_functions.jsonnet";
         "2-frf": self["2"] {
             # FRF was in sync the rest of phase 3 before the phasing refactor.
             # TODO: Let it begin canarying what the rest of phase 2 is doing.
-            image_tags: $.flowsnake_phases["3"].image_tags,
-            version_mapping: $.flowsnake_phases["3"].version_mapping,
+            image_tags: $.per_phase["3"].image_tags,
+            version_mapping: $.per_phase["3"].version_mapping,
         },
         # cdu: Exceptions vs. the rest of phase 2 only
         "2-cdu": self["2"] {
             # CDU was in sync the rest of 3-pcl before the phasing refactor.
             # TODO: Let it begin canarying what the rest of phase 2 is doing.
-            image_tags: $.flowsnake_phases["3-pcl"].image_tags,
-            version_mapping: $.flowsnake_phases["3-pcl"].version_mapping,
+            image_tags: $.per_phase["3-pcl"].image_tags,
+            version_mapping: $.per_phase["3-pcl"].version_mapping,  # Public cloud has different version mappings
         },
-        # Phase 2: Remaining production fleets.
+        # Phase 3: Remaining production fleets.
         # This is the defacto "default" set of items.
         "3": {
             image_tags: {
@@ -210,19 +218,6 @@ local utils = import "util_functions.jsonnet";
         },
     },
 
-    ### Phase settings converted to SAM format.
-    per_phase: {
-        [phase]: $.flowsnake_phases[phase].image_tags {
-            feature_flags: $.flowsnake_phases[phase].feature_flags,
-            version_mapping: {
-                main: $.flowsnake_phases[phase].version_mapping,
-                sections: {},
-            },
-        }
-for phase in std.objectFields($.flowsnake_phases)
-    },
-
-
     ### Phase kingdom/estate mapping
     phase: (
         if flowsnakeconfig.is_minikube then
@@ -247,45 +242,49 @@ for phase in std.objectFields($.flowsnake_phases)
 
     # These are the images used by the templates
     # Only change when image name change from https://git.soma.salesforce.com/dva-transformation/flowsnake-platform
-    cert_secretizer: flowsnakeconfig.strata_registry + "/flowsnake-cert-secretizer:" + $.per_phase[$.phase].cert_secretizer_image_tag,
-    es: flowsnakeconfig.strata_registry + "/flowsnake-elasticsearch:" + $.per_phase[$.phase].es_image_tag,
-    fleet_service: flowsnakeconfig.strata_registry + "/flowsnake-fleet-service:" + $.per_phase[$.phase].fleetService_image_tag,
-    event_exporter: flowsnakeconfig.strata_registry + "/flowsnake-event-exporter:" + $.per_phase[$.phase].eventExporter_image_tag,
-    test_data: flowsnakeconfig.strata_registry + "/flowsnake-test-data:" + $.per_phase[$.phase].testData_image_tag,
-    glok: flowsnakeconfig.strata_registry + "/flowsnake-kafka:" + $.per_phase[$.phase].glok_image_tag,
-    impersonation_proxy: flowsnakeconfig.strata_registry + "/flowsnake-kubernetes-impersonation-proxy:" + $.per_phase[$.phase].impersonation_proxy_image_tag,
-    ingress_controller_nginx: flowsnakeconfig.strata_registry + "/flowsnake-ingress-controller-nginx:" + $.per_phase[$.phase].ingressControllerNginx_image_tag,
-    ingress_default_backend: flowsnakeconfig.strata_registry + "/flowsnake-ingress-default-backend:" + $.per_phase[$.phase].ingressDefaultBackend_image_tag,
-    kibana: flowsnakeconfig.strata_registry + "/flowsnake-kibana:" + $.per_phase[$.phase].kibana_image_tag,
-    logloader: flowsnakeconfig.strata_registry + "/flowsnake-logloader:" + $.per_phase[$.phase].logloader_image_tag,
-    logstash: flowsnakeconfig.strata_registry + "/flowsnake-logstash:" + $.per_phase[$.phase].logstash_image_tag,
-    node_monitor: flowsnakeconfig.strata_registry + "/flowsnake-node-monitor:" + $.per_phase[$.phase].nodeMonitor_image_tag,
-    watchdog_canary: flowsnakeconfig.strata_registry + "/watchdog-canary:" + $.per_phase[$.phase].watchdog_canary_image_tag,
-    watchdog_spark_operator: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].watchdog_spark_operator_image_tag,
-    docker_daemon_watchdog: flowsnakeconfig.strata_registry + "/docker-daemon-watchdog:" + $.per_phase[$.phase].docker_daemon_watchdog_image_tag,
-    zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
-    madkub_injector: flowsnakeconfig.strata_registry + "/flowsnake-madkub-injector-webhook:" + $.per_phase[$.phase].madkub_injector_image_tag,
-    spark_operator: flowsnakeconfig.strata_registry + "/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:" + $.per_phase[$.phase].spark_operator_image_tag,
+    cert_secretizer: flowsnakeconfig.strata_registry + "/flowsnake-cert-secretizer:" + $.per_phase[$.phase].image_tags.cert_secretizer_image_tag,
+    es: flowsnakeconfig.strata_registry + "/flowsnake-elasticsearch:" + $.per_phase[$.phase].image_tags.es_image_tag,
+    fleet_service: flowsnakeconfig.strata_registry + "/flowsnake-fleet-service:" + $.per_phase[$.phase].image_tags.fleetService_image_tag,
+    event_exporter: flowsnakeconfig.strata_registry + "/flowsnake-event-exporter:" + $.per_phase[$.phase].image_tags.eventExporter_image_tag,
+    test_data: flowsnakeconfig.strata_registry + "/flowsnake-test-data:" + $.per_phase[$.phase].image_tags.testData_image_tag,
+    glok: flowsnakeconfig.strata_registry + "/flowsnake-kafka:" + $.per_phase[$.phase].image_tags.glok_image_tag,
+    impersonation_proxy: flowsnakeconfig.strata_registry + "/flowsnake-kubernetes-impersonation-proxy:" + $.per_phase[$.phase].image_tags.impersonation_proxy_image_tag,
+    ingress_controller_nginx: flowsnakeconfig.strata_registry + "/flowsnake-ingress-controller-nginx:" + $.per_phase[$.phase].image_tags.ingressControllerNginx_image_tag,
+    ingress_default_backend: flowsnakeconfig.strata_registry + "/flowsnake-ingress-default-backend:" + $.per_phase[$.phase].image_tags.ingressDefaultBackend_image_tag,
+    kibana: flowsnakeconfig.strata_registry + "/flowsnake-kibana:" + $.per_phase[$.phase].image_tags.kibana_image_tag,
+    logloader: flowsnakeconfig.strata_registry + "/flowsnake-logloader:" + $.per_phase[$.phase].image_tags.logloader_image_tag,
+    logstash: flowsnakeconfig.strata_registry + "/flowsnake-logstash:" + $.per_phase[$.phase].image_tags.logstash_image_tag,
+    node_monitor: flowsnakeconfig.strata_registry + "/flowsnake-node-monitor:" + $.per_phase[$.phase].image_tags.nodeMonitor_image_tag,
+    watchdog_canary: flowsnakeconfig.strata_registry + "/watchdog-canary:" + $.per_phase[$.phase].image_tags.watchdog_canary_image_tag,
+    watchdog_spark_operator: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].image_tags.watchdog_spark_operator_image_tag,
+    docker_daemon_watchdog: flowsnakeconfig.strata_registry + "/docker-daemon-watchdog:" + $.per_phase[$.phase].image_tags.docker_daemon_watchdog_image_tag,
+    zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].image_tags.zookeeper_image_tag,
+    madkub_injector: flowsnakeconfig.strata_registry + "/flowsnake-madkub-injector-webhook:" + $.per_phase[$.phase].image_tags.madkub_injector_image_tag,
+    spark_operator: flowsnakeconfig.strata_registry + "/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.spark_operator_image_tag,
 
     feature_flags: $.per_phase[$.phase].feature_flags,
-    version_mapping: $.per_phase[$.phase].version_mapping,
+    # Convert to the format expected by std.manifestIni for generating Windows-style .ini files
+    version_mapping: {
+        main: $.per_phase[$.phase].version_mapping,
+        sections: {},
+    },
 
     # Non-Flowsnake images
-    snapshoter: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].snapshoter_image_tag),
-    snapshot_consumer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].snapshot_consumer_image_tag),
-    deployer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].deployer_image_tag),
-    watchdog: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].watchdog_image_tag),
-    node_controller: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].node_controller_image_tag),
-    madkub: if flowsnakeconfig.is_minikube then flowsnakeconfig.strata_registry + "/madkub:" + $.per_phase[$.phase].madkub_image_tag else imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub_image_tag),
-    beacon: flowsnakeconfig.registry + "/sfci/servicelibs/beacon:" + $.per_phase[$.phase].beacon_image_tag,
-    kubedns: flowsnakeconfig.strata_registry + "/k8s-dns-kube-dns:" + $.per_phase[$.phase].kubedns_image_tag,
-    kubednsmasq: flowsnakeconfig.strata_registry + "/k8s-dns-dnsmasq-nanny:" + $.per_phase[$.phase].kubedns_image_tag,
-    kubednssidecar: flowsnakeconfig.strata_registry + "/k8s-dns-sidecar:" + $.per_phase[$.phase].kubedns_image_tag,
+    snapshoter: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.snapshoter_image_tag),
+    snapshot_consumer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.snapshot_consumer_image_tag),
+    deployer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.deployer_image_tag),
+    watchdog: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.watchdog_image_tag),
+    node_controller: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.node_controller_image_tag),
+    madkub: if flowsnakeconfig.is_minikube then flowsnakeconfig.strata_registry + "/madkub:" + $.per_phase[$.phase].image_tags.madkub_image_tag else imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].image_tags.madkub_image_tag),
+    beacon: flowsnakeconfig.registry + "/sfci/servicelibs/beacon:" + $.per_phase[$.phase].image_tags.beacon_image_tag,
+    kubedns: flowsnakeconfig.strata_registry + "/k8s-dns-kube-dns:" + $.per_phase[$.phase].image_tags.kubedns_image_tag,
+    kubednsmasq: flowsnakeconfig.strata_registry + "/k8s-dns-dnsmasq-nanny:" + $.per_phase[$.phase].image_tags.kubedns_image_tag,
+    kubednssidecar: flowsnakeconfig.strata_registry + "/k8s-dns-sidecar:" + $.per_phase[$.phase].image_tags.kubedns_image_tag,
     # Used by synthetic-dns-check; possible future use for other config-map-script-based helper-pods
-    jdk8_base: flowsnakeconfig.strata_registry + "/sfdc_centos7_jdk8:" + $.per_phase[$.phase].jdk8_base_tag,
+    jdk8_base: flowsnakeconfig.strata_registry + "/sfdc_centos7_jdk8:" + $.per_phase[$.phase].image_tags.jdk8_base_tag,
 
-    prometheus_scraper: flowsnakeconfig.strata_registry + "/prome_for_k8s:" + $.per_phase[$.phase].prometheus_funnel_image_tag,
-    funnel_writer: flowsnakeconfig.strata_registry + "/funnel_writer:" + $.per_phase[$.phase].prometheus_funnel_image_tag,
+    prometheus_scraper: flowsnakeconfig.strata_registry + "/prome_for_k8s:" + $.per_phase[$.phase].image_tags.prometheus_funnel_image_tag,
+    funnel_writer: flowsnakeconfig.strata_registry + "/funnel_writer:" + $.per_phase[$.phase].image_tags.prometheus_funnel_image_tag,
 
     # image function logic borrowed from samimages.jsonnet. We currently do not use the override functionality,
     # but benefit from the automatic DC-correct determination of which artifactrepo to use.
