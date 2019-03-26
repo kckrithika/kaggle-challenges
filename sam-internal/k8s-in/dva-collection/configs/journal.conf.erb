@@ -3,10 +3,11 @@ module(load="imjournal" StateFile="/var/spool/rsyslog/imjournal.state")
 <%# syslog related schema annotations %>
 template(name = "syslog_annotation" type="list") {
   constant(value="{\"schema_type\":\"json-schema\",\"schema_id\":\"syslog-base:1\",\"data\":{")
-  constant(value="\"uuid\": \"%uuid%\"")
+  property(name="uuid" outname="uuid" format="jsonfr")
   constant(value=",\"environment\": \"TechOps\"")
-  constant(value=",\"source\": \"%programname%\"")
-  constant(value=",\"source_type\": \"%source_type%\"")
+  constant(value=",")
+  property(name="programname" outname="source" format="jsonfr")
+  constant(value=",\"source_type\": \"syslog\"")
   constant(value=",\"index\": \"true\"")
   constant(value=",")
   property(name="$!datacenter" outname="dc" format="jsonfr")
@@ -16,7 +17,7 @@ template(name = "syslog_annotation" type="list") {
   property(name="$!account" outname="account" format="jsonfr")
   constant(value=",\"region\": \"<%=config.region%>\"")
   constant(value=",\"zone\": \"<%=config.zone%>\"")
-  constant(value="}\n")
+  constant(value="}}\n")
 }
 
 <%# Universal schema for stdout and stderr streaming  %>

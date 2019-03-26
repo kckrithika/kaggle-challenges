@@ -85,6 +85,8 @@ ruleset(name="ruleset_core") {
   # filename - mist61.sfdc.debug-perf-core-6b86b5c8b7-7r6f7.app.20180907.214.gmt.log
   set $!filename = field($!metadata!filename, 47, 5);
   set $!datacenter = "<%=config.include?(:kingdom) ? config.kingdom : 'mvp'%>";
+  set $!substrate = "<%=config.include?(:substrate) ? config.substrate : 'gcp' %>";
+  set $!account = "<%=config.include?(:account_name) ? config.account_name : config.project_id %>";
   set $!host = field($!filename, 46, 3);
   set $!pod = field($!host, 45, 1);
   set $!apptype = field($!filename, 46, 2);

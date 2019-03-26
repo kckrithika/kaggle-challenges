@@ -160,26 +160,6 @@ spec:
             configMapKeyRef:
               key: general_topic
               name: kafka-cm
-        - name: DATACENTER
-          valueFrom:
-            configMapKeyRef:
-              key: datacenter
-              name: rsyslog-metadata-cm
-        - name: SUBSTRATE
-          valueFrom:
-            configMapKeyRef:
-              key: substrate
-              name: rsyslog-metadata-cm
-        - name: REGION
-          valueFrom:
-            configMapKeyRef:
-              key: region
-              name: rsyslog-metadata-cm
-        - name: ZONE
-          valueFrom:
-            configMapKeyRef:
-              key: zone
-              name: rsyslog-metadata-cm
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9
         name: config-gen-default
         volumeMounts:
@@ -205,26 +185,6 @@ spec:
             configMapKeyRef:
               key: casam_topic
               name: kafka-cm
-        - name: DATACENTER
-          valueFrom:
-            configMapKeyRef:
-              key: datacenter
-              name: rsyslog-metadata-cm
-        - name: SUBSTRATE
-          valueFrom:
-            configMapKeyRef:
-              key: substrate
-              name: rsyslog-metadata-cm
-        - name: REGION
-          valueFrom:
-            configMapKeyRef:
-              key: region
-              name: rsyslog-metadata-cm
-        - name: ZONE
-          valueFrom:
-            configMapKeyRef:
-              key: zone
-              name: rsyslog-metadata-cm
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9
         name: config-gen-casam
         volumeMounts:
@@ -250,26 +210,6 @@ spec:
             configMapKeyRef:
               key: solr_topic
               name: kafka-cm
-        - name: DATACENTER
-          valueFrom:
-            configMapKeyRef:
-              key: datacenter
-              name: rsyslog-metadata-cm
-        - name: SUBSTRATE
-          valueFrom:
-            configMapKeyRef:
-              key: substrate
-              name: rsyslog-metadata-cm
-        - name: REGION
-          valueFrom:
-            configMapKeyRef:
-              key: region
-              name: rsyslog-metadata-cm
-        - name: ZONE
-          valueFrom:
-            configMapKeyRef:
-              key: zone
-              name: rsyslog-metadata-cm
         - name: LOG_TYPE
           value: solr
         - name: FILE_PATH
@@ -303,26 +243,6 @@ spec:
             configMapKeyRef:
               key: solr_topic
               name: kafka-cm
-        - name: DATACENTER
-          valueFrom:
-            configMapKeyRef:
-              key: datacenter
-              name: rsyslog-metadata-cm
-        - name: SUBSTRATE
-          valueFrom:
-            configMapKeyRef:
-              key: substrate
-              name: rsyslog-metadata-cm
-        - name: REGION
-          valueFrom:
-            configMapKeyRef:
-              key: region
-              name: rsyslog-metadata-cm
-        - name: ZONE
-          valueFrom:
-            configMapKeyRef:
-              key: zone
-              name: rsyslog-metadata-cm
         - name: LOG_TYPE
           value: solr-jetty
         - name: FILE_PATH
@@ -356,26 +276,6 @@ spec:
             configMapKeyRef:
               key: general_topic
               name: kafka-cm
-        - name: DATACENTER
-          valueFrom:
-            configMapKeyRef:
-              key: datacenter
-              name: rsyslog-metadata-cm
-        - name: SUBSTRATE
-          valueFrom:
-            configMapKeyRef:
-              key: substrate
-              name: rsyslog-metadata-cm
-        - name: REGION
-          valueFrom:
-            configMapKeyRef:
-              key: region
-              name: rsyslog-metadata-cm
-        - name: ZONE
-          valueFrom:
-            configMapKeyRef:
-              key: zone
-              name: rsyslog-metadata-cm
         - name: LOG_TYPE
           value: casam-jvm
         - name: FILE_PATH
@@ -407,26 +307,6 @@ spec:
             configMapKeyRef:
               key: general_topic
               name: kafka-cm
-        - name: DATACENTER
-          valueFrom:
-            configMapKeyRef:
-              key: datacenter
-              name: rsyslog-metadata-cm
-        - name: SUBSTRATE
-          valueFrom:
-            configMapKeyRef:
-              key: substrate
-              name: rsyslog-metadata-cm
-        - name: REGION
-          valueFrom:
-            configMapKeyRef:
-              key: region
-              name: rsyslog-metadata-cm
-        - name: ZONE
-          valueFrom:
-            configMapKeyRef:
-              key: zone
-              name: rsyslog-metadata-cm
         - name: LOG_TYPE
           value: casam-jvmgc
         - name: FILE_PATH

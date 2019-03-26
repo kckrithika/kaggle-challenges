@@ -1,4 +1,3 @@
----
 apiVersion: v1
 data:
   container.conf.erb: "<%# INPUT DEFINITIONS %>\n<%# Collect log files in /var/log/container
@@ -24,7 +23,7 @@ data:
     outname=\"dc\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!substrate\"
     outname=\"substrate\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!account\"
     outname=\"account\" format=\"jsonfr\")\n  constant(value=\",\\\"region\\\": \\\"<%=config.region%>\\\"\")\n
-    \ constant(value=\",\\\"zone\\\": \\\"<%=config.zone%>\\\"\")\n  constant(value=\"}\\n\")\n}\n\n<%#
+    \ constant(value=\",\\\"zone\\\": \\\"<%=config.zone%>\\\"\")\n  constant(value=\"}}\\n\")\n}\n\n<%#
     container logs anotations %>\ntemplate(name = \"kubernetes_annotation_kubernetes_container\"
     type=\"list\") {\n  constant(value = \"{\\\"schema_type\\\":\\\"json-schema\\\",\\\"schema_id\\\":\\\"kubernetes-container:1\\\",\\\"data\\\":\")\n
     \ property(name = \"$!kubernetes_container_data\")\n  constant(value = \"}\")\n}\n\nruleset(name
@@ -102,18 +101,21 @@ data:
     $!ts_raw = field($msg, 96, 2);\n  set $!ts = exec_template(\"tpl_origin_ts\");\n
     \ set $!ts_generated = exec_template(\"tpl_generated_ts\");\n  # filename - mist61.sfdc.debug-perf-core-6b86b5c8b7-7r6f7.app.20180907.214.gmt.log\n
     \ set $!filename = field($!metadata!filename, 47, 5);\n  set $!datacenter = \"<%=config.include?(:kingdom)
-    ? config.kingdom : 'mvp'%>\";\n  set $!host = field($!filename, 46, 3);\n  set
-    $!pod = field($!host, 45, 1);\n  set $!apptype = field($!filename, 46, 2);\n  set
-    $!role = field($!filename, 46, 4);\n  set $!filedate = field($!filename, 46, 5);\n
-    \ set $!appversion = field($!filename, 46, 6);\n  set $!uuid = $!ts_raw & field($msg,
-    96, 16) & field($!host, 45, 4) & \"-\" & field($!host, 45, 5);\n  \n  <%# Output
-    action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_core\"\n    broker=\"<%=config.broker_vip%>\"\n
-    \   template=\"tpl_core\"\n    topic=\"<%=config.kafka_topic%>\"\n    partitions.auto=\"on\"\n
-    \   resubmitOnFailure=\"on\"\n    reopenonhup=\"on\"\n    action.resumeRetryCount=\"-1\"\n
-    \   confParam=[\n      \"batch.num.messages=10000\",\n      \"compression.codec=gzip\",\n
-    \     \"max.in.flight.requests.per.connection=2\",\n      \"message.max.bytes=1000000\",\n
-    \     \"queue.buffering.max.ms=5000\",\n      \"retries=86400\",\n      \"retry.backoff.ms=1000\",\n
-    \     \"socket.keepalive.enable=true\",\n      \"security.protocol=ssl\",\n      \"ssl.ca.location=/cert1/ca/cacerts.pem\",\n
+    ? config.kingdom : 'mvp'%>\";\n  set $!substrate = \"<%=config.include?(:substrate)
+    ? config.substrate : 'gcp' %>\";\n  set $!account = \"<%=config.include?(:account_name)
+    ? config.account_name : config.project_id %>\";\n  set $!host = field($!filename,
+    46, 3);\n  set $!pod = field($!host, 45, 1);\n  set $!apptype = field($!filename,
+    46, 2);\n  set $!role = field($!filename, 46, 4);\n  set $!filedate = field($!filename,
+    46, 5);\n  set $!appversion = field($!filename, 46, 6);\n  set $!uuid = $!ts_raw
+    & field($msg, 96, 16) & field($!host, 45, 4) & \"-\" & field($!host, 45, 5);\n
+    \ \n  <%# Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_core\"\n
+    \   broker=\"<%=config.broker_vip%>\"\n    template=\"tpl_core\"\n    topic=\"<%=config.kafka_topic%>\"\n
+    \   partitions.auto=\"on\"\n    resubmitOnFailure=\"on\"\n    reopenonhup=\"on\"\n
+    \   action.resumeRetryCount=\"-1\"\n    confParam=[\n      \"batch.num.messages=10000\",\n
+    \     \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
+    \     \"message.max.bytes=1000000\",\n      \"queue.buffering.max.ms=5000\",\n
+    \     \"retries=86400\",\n      \"retry.backoff.ms=1000\",\n      \"socket.keepalive.enable=true\",\n
+    \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/cert1/ca/cacerts.pem\",\n
     \     \"ssl.certificate.location=/cert1/client/certificates/client.pem\",\n      \"ssl.key.location=/cert1/client/keys/client-key.pem\"\n
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n\n<%# END OF FILE
     %>"
@@ -207,16 +209,16 @@ data:
   journal.conf.erb: "module(load=\"imjournal\" StateFile=\"/var/spool/rsyslog/imjournal.state\")\n\n<%#
     syslog related schema annotations %>\ntemplate(name = \"syslog_annotation\" type=\"list\")
     {\n  constant(value=\"{\\\"schema_type\\\":\\\"json-schema\\\",\\\"schema_id\\\":\\\"syslog-base:1\\\",\\\"data\\\":{\")\n
-    \ constant(value=\"\\\"uuid\\\": \\\"%uuid%\\\"\")\n  constant(value=\",\\\"environment\\\":
-    \\\"TechOps\\\"\")\n  constant(value=\",\\\"source\\\": \\\"%programname%\\\"\")\n
-    \ constant(value=\",\\\"source_type\\\": \\\"%source_type%\\\"\")\n  constant(value=\",\\\"index\\\":
-    \\\"true\\\"\")\n  constant(value=\",\")\n  property(name=\"$!datacenter\" outname=\"dc\"
-    format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!substrate\" outname=\"substrate\"
-    format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!account\" outname=\"account\"
-    format=\"jsonfr\")\n  constant(value=\",\\\"region\\\": \\\"<%=config.region%>\\\"\")\n
-    \ constant(value=\",\\\"zone\\\": \\\"<%=config.zone%>\\\"\")\n  constant(value=\"}\\n\")\n}\n\n<%#
-    Universal schema for stdout and stderr streaming  %>\ntemplate(name=\"tpl_syslog\"
-    type=\"list\") {\n  constant(value=\"{\\\"schema_type\\\":\\\"json-schema\\\",\\\"schema_id\\\":\\\"event-envelope:1\\\",\\\"data\\\":{\")\n
+    \ property(name=\"uuid\" outname=\"uuid\" format=\"jsonfr\")\n  constant(value=\",\\\"environment\\\":
+    \\\"TechOps\\\"\")\n  constant(value=\",\")\n  property(name=\"programname\" outname=\"source\"
+    format=\"jsonfr\")\n  constant(value=\",\\\"source_type\\\": \\\"syslog\\\"\")\n
+    \ constant(value=\",\\\"index\\\": \\\"true\\\"\")\n  constant(value=\",\")\n
+    \ property(name=\"$!datacenter\" outname=\"dc\" format=\"jsonfr\")\n  constant(value=\",\")\n
+    \ property(name=\"$!substrate\" outname=\"substrate\" format=\"jsonfr\")\n  constant(value=\",\")\n
+    \ property(name=\"$!account\" outname=\"account\" format=\"jsonfr\")\n  constant(value=\",\\\"region\\\":
+    \\\"<%=config.region%>\\\"\")\n  constant(value=\",\\\"zone\\\": \\\"<%=config.zone%>\\\"\")\n
+    \ constant(value=\"}}\\n\")\n}\n\n<%# Universal schema for stdout and stderr streaming
+    \ %>\ntemplate(name=\"tpl_syslog\" type=\"list\") {\n  constant(value=\"{\\\"schema_type\\\":\\\"json-schema\\\",\\\"schema_id\\\":\\\"event-envelope:1\\\",\\\"data\\\":{\")\n
     \ constant(value=\"\\\"event\\\":\")\n  property(name=\"$!event\")\n  constant(value=\",\")\n
     \ property(name=\"$!hostname\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"timegenerated\"
     outname=\"event_timestamp\" dateFormat=\"rfc3339\" date.inUTC=\"on\" format=\"jsonfr\")\n
@@ -254,13 +256,6 @@ data:
         output: /etc/rsyslog.d/40-container.conf
       - input: journal.conf.erb
         output: /etc/rsyslog.d/30-journal.conf
-    data:
-      datacenter: "<%=config.datacenter%>"
-      substrate: "<%=config.substrate%>"
-      region: "<%=config.substrate%>"
-      zone: "<%=config.substrate%>"
-      broker_vip: "<%=config.broker_vip%>"
-      kafka_topic: "<%=config.general_topic%>"
   rsyslog.conf: "global (\n  workdirectory = \"/var/spool/rsyslog\"\n  maxMessageSize
     = \"900k\"\n)\n\nmodule(load = \"imfile\")\nmodule(load = \"omkafka\")\nmodule(load
     = \"omprog\")\nmodule(load = \"mmexternal\")\nmodule(load = \"mmjsonparse\")\nmodule(load
@@ -273,6 +268,7 @@ data:
     {  \n  action(type=\"omstdout\")\n}\n\n$IncludeConfig /etc/rsyslog.d/*.conf"
 kind: ConfigMap
 metadata:
+  creationTimestamp: null
   labels:
     pcn: deploy
   name: rsyslog-configmap

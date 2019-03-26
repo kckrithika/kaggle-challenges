@@ -53,7 +53,7 @@ template(name = "kubernetes_annotation_rsyslog_base" type="list") {
   property(name="$!account" outname="account" format="jsonfr")
   constant(value=",\"region\": \"<%=config.region%>\"")
   constant(value=",\"zone\": \"<%=config.zone%>\"")
-  constant(value="}\n")
+  constant(value="}}\n")
 }
 
 <%# container logs anotations %>

@@ -129,7 +129,7 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
                         key: topic,
                      },
                 },
-            }
+            },
         ],
     },
 
