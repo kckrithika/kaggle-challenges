@@ -6,6 +6,9 @@ system:
       - rpragada@salesforce.com
   functions:
   - name: prd-caas-load-test
+    identity:
+      serviceName: caas
+      pod: mist66
     count: 1
     containers:
     - name: caas-load
