@@ -12,10 +12,8 @@ system:
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
-            - name: GRPC_SERVER_BIND_ENDPOINT
-              value: tcp://0.0.0.0:7020
-            - name: JVM_HEAP_MAX
-              value: 4G
+            - name: JAVA_OPTS
+              value: "-Dscone.service.name=content-tika-svc-funnel -Dmanagement.server.port=15374 -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442"
           resources:
             limits:
               cpu: "8"
@@ -36,6 +34,21 @@ system:
             initialDelaySeconds: 15
             periodSeconds: 5
           terminationMessagePolicy: FallbackToLogsOnError
+        - name: beacon
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:f804d14
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+          args:
+            - -endpoint
+            - service-mesh/content-tika-svc-funnel:DATACENTER:7443
+            - -endpoint
+            - content-tika-svc-funnel:DATACENTER:7012
+          livenessProbe:
+            initialDelaySeconds: 5
+            exec:
+              command:
+                - "/opt/beacon/is-alive.sh"
         - name: sherpa
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
           args:
