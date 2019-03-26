@@ -114,7 +114,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - retail-cre/cre-sp-cre-test:DATACENTER_ALLENV:7442
+      - retail-cre/cre-sp-cre-test:DATACENTER_ALLENV:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
