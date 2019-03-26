@@ -17,9 +17,11 @@ system:
         - -t 1,20
         - -v 256,1024,10240
         - -o 0,1,9
-        - -m
-        - -a 127.0.0.1:12082
         - -x 120
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       livenessProbe:
         exec:
           command: ["true"]
@@ -70,3 +72,6 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-c1
