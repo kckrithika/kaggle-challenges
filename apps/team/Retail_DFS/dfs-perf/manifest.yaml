@@ -4,7 +4,7 @@ system:
   - name: dfs-perf
     count: 3
     identity:
-      serviceName: dfs-perf
+      serviceName: dfs
     # maps the dfslogvol volumnMount to a directory on the host machine
     volumes:
     - name: logvol
@@ -33,13 +33,13 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mist
       - name: LOAD_CC_CERT
-        value: true
+        value: false
       - name: MDS_DESTINATION
         value: metadata-service.retail-mds.localhost.mesh.force.com:5443
       - name: GDOT_USER
         value: datafederationservice
       - name: SCONE_SERVER_SECURITY_MUTUALAUTH
-        value: false
+        value: true
       - name: GDOT_BASEPATHOVERRIDE
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: INCLUDE_ALL_STACK_TRACES
@@ -62,7 +62,8 @@ system:
                 -Dcom.sun.management.jmxremote.rmi.port=8898
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
-                -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+                -Xmx2G -Xms2G -XX:ParallelGCThreads=8
+                -Dlogging.level.org.springframework=DEBUG"
       resources:
         limits: { cpu: "4", memory: "4Gi" }
         requests: { cpu: "4", memory: "3Gi" }
