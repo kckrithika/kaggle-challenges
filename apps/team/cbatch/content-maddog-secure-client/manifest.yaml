@@ -5,7 +5,7 @@ system:
       count: 1
       containers:
         - name: content-image-transform-secure
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform:v2
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform-client:v1
           ports:
             - containerPort: 7020
             - containerPort: 15374
@@ -71,18 +71,6 @@ system:
             initialDelaySeconds: 15
             periodSeconds: 5
           terminationMessagePolicy: FallbackToLogsOnError
-        - name: beacon
-          image: sfci/servicelibs/beacon:751f26c012069c92f2b3aec3f5f8f5d7b4191ee3
-          args:
-            - -endpoint
-            - $(FUNCTION):DATACENTER_ALLENV:HTTP2
-            - -endpoint
-            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
-          livenessProbe:
-            exec:
-              command:
-                - /home/scone/is-alive.sh
-            initialDelaySeconds: 5
       volumes:
         - name: envoy-config-volume
           emptyDir: {}
