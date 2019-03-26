@@ -44,7 +44,7 @@ system:
         initialDelaySeconds: 110
         timeoutSeconds: 10
     - name: beacon
-      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      image: sfci/services/sfdc-bazel/beacon:9afa12e
       args:
       - -endpoint
       - search-scale-safely/search-model-executor:DATACENTER_ALLENV:7443
@@ -52,10 +52,10 @@ system:
       - mountPath: /home/scone/logs
         name: beacon-log-volume
       livenessProbe:
+        initialDelaySeconds: 5
         exec:
           command:
-          - /home/scone/is-alive.sh
-        initialDelaySeconds: 5
+          - /opt/beacon/is-alive.sh
     - name: sherpa-b
       image: sfci/servicelibs/sherpa-envoy:1.0.6
       ports:
