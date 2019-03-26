@@ -21,15 +21,14 @@ system:
           type: server
       containers:
       - name: test-app-devmvp
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gsf-mgmt-devmvp-zipkin/sleeper-test-app:devmvp03262019v1
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gsf-mgmt-devmvp-zipkin/sleeper-test-app:devmvp03262019v2
         env:
         - name: PROXY_ENDPOINT
           value: zipkin-kafka-proxy-devmvp.distributed-tracing.localhost.mesh.force.com
         livenessProbe:
-            httpGet:
-                port: 8080
-            initialDelaySeconds: 15
-            periodSeconds: 15
+          exec:
+            command:
+            - /bin/true
       - name: sherpa
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
         args:
