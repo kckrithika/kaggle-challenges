@@ -1478,6 +1478,8 @@ spec:
         - mountPath: /etc/istio/crd-10
           name: crd-10
           readOnly: true
+      nodeSelector:
+        pool: mcpIstioConfig.istioEstate
       restartPolicy: OnFailure
       serviceAccountName: istio-init-service-account
       volumes:
@@ -1511,6 +1513,8 @@ spec:
         - mountPath: /etc/istio/crd-11
           name: crd-11
           readOnly: true
+      nodeSelector:
+        pool: mcpIstioConfig.istioEstate
       restartPolicy: OnFailure
       serviceAccountName: istio-init-service-account
       volumes:
