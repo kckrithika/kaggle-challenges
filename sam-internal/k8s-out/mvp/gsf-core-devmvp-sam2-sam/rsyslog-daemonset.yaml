@@ -30,7 +30,7 @@ spec:
     spec:
       automountServiceAccountToken: false
       containers:
-      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:8.38-135-2-CERTS
+      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc_rsyslog_gcp:12-8e9921811d4c5a6c0e48ea8f1ca306f42b922e51
         imagePullPolicy: Always
         name: rsyslog-daemonset
         resources:
@@ -327,7 +327,7 @@ spec:
         - -N1
         - -f
         - /etc/rsyslog.conf
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:8.38-135-2-CERTS
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc_rsyslog_gcp:12-8e9921811d4c5a6c0e48ea8f1ca306f42b922e51
         name: config-check
         volumeMounts:
         - mountPath: /etc/rsyslog.conf
