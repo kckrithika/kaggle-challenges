@@ -8,12 +8,12 @@ system:
       serviceName: sfcd-onboarding
     containers:
     - name: sfcd-onboarding
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:1
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:3
       ports:
       - containerPort: 5000
       livenessProbe:
         httpGet:
-          path: /api/health
+          path: /api/health/
           port: 5000
         initialDelaySeconds: 3
         # Keeping this high due to latencies accessing Spinnaker from SAMTWO
@@ -23,6 +23,8 @@ system:
         value: "sfcd-onboarding"
       - name: GCP_SERVICE_KEY_JSON
         value: '/etc/sfcd-onboarding/.gcp_service_key.json'
+      - name: FLASK_ENV
+        value: 'production'
       volumeMounts:
         - name: client-certs
           mountPath: /certs
