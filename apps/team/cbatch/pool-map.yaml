@@ -1,5 +1,7 @@
 apps:
-  gcp-devmvp:
+  content-image-transform-gcp-devmvp:
+    - mvp/gsf-core-devmvp-sam2-sam
+  content-tika-svc-gcp-devmvp:
     - mvp/gsf-core-devmvp-sam2-sam
   content-jmagick:
     - prd/prd-sam
