@@ -37,6 +37,8 @@ system:
           value: http://ajna0-funnel1-0-prd.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
           value: cre-control-plane-cre-test-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8072/streamprocessing
+        - name: SPRING_PROFILES_ACTIVE
+          value: integration
         - name: JVM_ARGS_TEST
           value: "-Xloggc:/opt/cre/$(FUNCTION)/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:HeapDumpPath=/opt/cre/$(FUNCTION)
