@@ -207,7 +207,7 @@ items:
         - command:
           - /sam/watchdog
           - -role=CLI
-          - -emailFrequency=10m
+          - -emailFrequency=72h
           - -timeout=2s
           - -funnelEndpoint=ajna0-funnel1-0-ia2.data.sfdc.net:80
           - --config=/config/watchdog.json
