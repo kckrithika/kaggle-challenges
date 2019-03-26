@@ -51,8 +51,10 @@ template(name = "kubernetes_annotation_rsyslog_base" type="list") {
   property(name="$!substrate" outname="substrate" format="jsonfr")
   constant(value=",")
   property(name="$!account" outname="account" format="jsonfr")
-  constant(value=",\"region\": \"<%=config.region%>\"")
-  constant(value=",\"zone\": \"<%=config.zone%>\"")
+  constant(value=",")
+  property(name="$!region" outname="region" format="jsonfr")
+  constant(value=",")
+  property(name="$!zone" outname="zone" format="jsonfr")
   constant(value="}}\n")
 }
 
@@ -104,6 +106,8 @@ ruleset(name = "kubernetes_dockercontainers_ruleset") {
   set $!datacenter = "<%=config.include?(:kingdom) ? config.kingdom : 'mvp'%>";
   set $!substrate = "<%=config.include?(:substrate) ? config.substrate : 'gcp' %>";
   set $!account = "<%=config.include?(:account_name) ? config.account_name : config.project_id %>";
+  set $!region = "<%=config.region%>";
+  set $!zone = "<%=config.zone%>";
   set $!annotations = "[" & exec_template("kubernetes_annotation_kubernetes_container") & ", " & exec_template("kubernetes_annotation_rsyslog_base") & "]";
 
   <%# action(

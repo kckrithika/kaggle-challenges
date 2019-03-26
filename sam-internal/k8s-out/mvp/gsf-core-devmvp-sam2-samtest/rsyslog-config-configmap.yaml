@@ -22,9 +22,10 @@ data:
     \\\"container_app_log\\\"\")\n  constant(value=\",\")\n  property(name=\"$!datacenter\"
     outname=\"dc\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!substrate\"
     outname=\"substrate\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!account\"
-    outname=\"account\" format=\"jsonfr\")\n  constant(value=\",\\\"region\\\": \\\"<%=config.region%>\\\"\")\n
-    \ constant(value=\",\\\"zone\\\": \\\"<%=config.zone%>\\\"\")\n  constant(value=\"}}\\n\")\n}\n\n<%#
-    container logs anotations %>\ntemplate(name = \"kubernetes_annotation_kubernetes_container\"
+    outname=\"account\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!region\"
+    outname=\"region\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!zone\"
+    outname=\"zone\" format=\"jsonfr\")\n  constant(value=\"}}\\n\")\n}\n\n<%# container
+    logs anotations %>\ntemplate(name = \"kubernetes_annotation_kubernetes_container\"
     type=\"list\") {\n  constant(value = \"{\\\"schema_type\\\":\\\"json-schema\\\",\\\"schema_id\\\":\\\"kubernetes-container:1\\\",\\\"data\\\":\")\n
     \ property(name = \"$!kubernetes_container_data\")\n  constant(value = \"}\")\n}\n\nruleset(name
     = \"kubernetes_dockercontainers_ruleset\") {\n  <%# mmjsonparse to parse log message
@@ -48,13 +49,14 @@ data:
     \ <%# kubernetes app log annotation array %>\n  set $!datacenter = \"<%=config.include?(:kingdom)
     ? config.kingdom : 'mvp'%>\";\n  set $!substrate = \"<%=config.include?(:substrate)
     ? config.substrate : 'gcp' %>\";\n  set $!account = \"<%=config.include?(:account_name)
-    ? config.account_name : config.project_id %>\";\n  set $!annotations = \"[\" &
-    exec_template(\"kubernetes_annotation_kubernetes_container\") & \", \" & exec_template(\"kubernetes_annotation_rsyslog_base\")
-    & \"]\";\n\n  <%# action(\n    name=\"syslog_file_action\"\n    type=\"omfile\"\n
-    \   file=\"/var/log/kubernetes_dockercontainers_ruleset.log\"\n    template=\"tpl_containers_log\"\n
-    \ ) %>\n\n  <%# Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_kubernetes_kafka_action\"\n
-    \   broker=\"<%= config.broker_vip %>\"\n    template=\"tpl_containers_log\"\n
-    \   topic= \"<%= config.kafka_topic %>\"\n    keepFailedMessages=\"on\"\n    partitions.auto=\"on\"\n
+    ? config.account_name : config.project_id %>\";\n  set $!region = \"<%=config.region%>\";\n
+    \ set $!zone = \"<%=config.zone%>\";\n  set $!annotations = \"[\" & exec_template(\"kubernetes_annotation_kubernetes_container\")
+    & \", \" & exec_template(\"kubernetes_annotation_rsyslog_base\") & \"]\";\n\n
+    \ <%# action(\n    name=\"syslog_file_action\"\n    type=\"omfile\"\n    file=\"/var/log/kubernetes_dockercontainers_ruleset.log\"\n
+    \   template=\"tpl_containers_log\"\n  ) %>\n\n  <%# Output action %>\n  action(\n
+    \   type=\"omkafka\"\n    name=\"kafka_kubernetes_kafka_action\"\n    broker=\"<%=
+    config.broker_vip %>\"\n    template=\"tpl_containers_log\"\n    topic= \"<%=
+    config.kafka_topic %>\"\n    keepFailedMessages=\"on\"\n    partitions.auto=\"on\"\n
     \   resubmitOnFailure=\"off\"\n    reopenonhup=\"on\"\n    action.resumeRetryCount=\"-1\"\n
     \   confParam=[\n      \"batch.num.messages=10000\",\n      \"client.id=collections.rsyslog.syslog\",\n
     \     \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
@@ -85,9 +87,10 @@ data:
     outname=\"filedate\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!role\"
     outname=\"role\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!substrate\"
     outname=\"dc\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!account\"
-    outname=\"dc\" format=\"jsonfr\")\n  constant(value=\",\\\"region\\\": \\\"<%=config.region%>\\\"\")\n
-    \ constant(value=\",\\\"zone\\\": \\\"<%=config.zone%>\\\"\")\n  constant(value=\",
-    \\\"latency\\\": 0}\\n\")\n}\n\n# 20171103184919.875 --> 2017-11-03T18:49:19.875Z\ntemplate(name=\"tpl_origin_ts\"
+    outname=\"dc\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!region\"
+    outname=\"region\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!zone\"
+    outname=\"zone\" format=\"jsonfr\")\n  constant(value=\", \\\"latency\\\": 0}\\n\")\n}\n\n#
+    20171103184919.875 --> 2017-11-03T18:49:19.875Z\ntemplate(name=\"tpl_origin_ts\"
     type=\"list\") {\n  property(name=\"$!ts_raw\" position.from=\"1\" position.to=\"4\")\n
     \ constant(value=\"-\")\n  property(name=\"$!ts_raw\" position.from=\"5\" position.to=\"6\")\n
     \ constant(value=\"-\")\n  property(name=\"$!ts_raw\" position.from=\"7\" position.to=\"8\")\n
@@ -158,8 +161,10 @@ data:
       property(name="$!substrate" outname="substrate" format="jsonfr")
       constant(value=",")
       property(name="$!account" outname="account" format="jsonfr")
-      constant(value=",\"region\": \"<%=config.region%>\"")
-      constant(value=",\"zone\": \"<%=config.zone%>\"")
+      constant(value=",")
+      property(name="$!region" outname="region" format="jsonfr")
+      constant(value=",")
+      property(name="$!zone" outname="zone" format="jsonfr")
       constant(value="}}\n")
     }
 
@@ -169,9 +174,11 @@ data:
       set $!datacenter = "<%=config.include?(:kingdom) ? config.kingdom : 'mvp'%>";
       set $!substrate = "<%=config.include?(:substrate) ? config.substrate : 'gcp' %>";
       set $!account = "<%=config.include?(:account_name) ? config.account_name : config.project_id %>";
+      set $!region = "<%=config.region%>";
+      set $!zone = "<%=config.zone%>";
       set $!superpod = "NONE";
       set $!owner = "<%= config.owner %>";
-      set $!source_type = "<%= config.owner %>" + ":" + "<%= config.log_type %>";
+      set $!source_type = "<%= [config.owner, config.log_type].join(':') %>";
       set $!hostname = "<%=config.node%>";
 
       <%# Output action %>
@@ -215,10 +222,11 @@ data:
     \ constant(value=\",\\\"index\\\": \\\"true\\\"\")\n  constant(value=\",\")\n
     \ property(name=\"$!datacenter\" outname=\"dc\" format=\"jsonfr\")\n  constant(value=\",\")\n
     \ property(name=\"$!substrate\" outname=\"substrate\" format=\"jsonfr\")\n  constant(value=\",\")\n
-    \ property(name=\"$!account\" outname=\"account\" format=\"jsonfr\")\n  constant(value=\",\\\"region\\\":
-    \\\"<%=config.region%>\\\"\")\n  constant(value=\",\\\"zone\\\": \\\"<%=config.zone%>\\\"\")\n
-    \ constant(value=\"}}\\n\")\n}\n\n<%# Universal schema for stdout and stderr streaming
-    \ %>\ntemplate(name=\"tpl_syslog\" type=\"list\") {\n  constant(value=\"{\\\"schema_type\\\":\\\"json-schema\\\",\\\"schema_id\\\":\\\"event-envelope:1\\\",\\\"data\\\":{\")\n
+    \ property(name=\"$!account\" outname=\"account\" format=\"jsonfr\")\n  constant(value=\",\")\n
+    \ property(name=\"$!region\" outname=\"region\" format=\"jsonfr\")\n  constant(value=\",\")\n
+    \ property(name=\"$!zone\" outname=\"zone\" format=\"jsonfr\")\n  constant(value=\"}}\\n\")\n}\n\n<%#
+    Universal schema for stdout and stderr streaming  %>\ntemplate(name=\"tpl_syslog\"
+    type=\"list\") {\n  constant(value=\"{\\\"schema_type\\\":\\\"json-schema\\\",\\\"schema_id\\\":\\\"event-envelope:1\\\",\\\"data\\\":{\")\n
     \ constant(value=\"\\\"event\\\":\")\n  property(name=\"$!event\")\n  constant(value=\",\")\n
     \ property(name=\"$!hostname\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"timegenerated\"
     outname=\"event_timestamp\" dateFormat=\"rfc3339\" date.inUTC=\"on\" format=\"jsonfr\")\n
@@ -236,10 +244,11 @@ data:
     = $syslogpriority-text;\n  \n  set $!datacenter = \"<%=config.include?(:kingdom)
     ? config.kingdom : 'mvp'%>\";\n  set $!substrate = \"<%=config.include?(:substrate)
     ? config.substrate : 'gcp' %>\";\n  set $!account = \"<%=config.include?(:account_name)
-    ? config.account_name : config.project_id %>\";\n  set $!annotations = \"[\" &
-    exec_template(\"syslog_annotation\") & \"]\";\n\n  <%# debugging %>\n  <%# action(name=\"imjournal_syslog\"\n
-    \   type=\"omfile\"\n    template=\"tpl_syslog\"\n    File=\"/var/log/imjournal_syslog.log\"\n
-    \ ) %>\n\n  <%# # Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_imjournal_syslog\"\n
+    ? config.account_name : config.project_id %>\";\n  set $!region = \"<%=config.region%>\";\n
+    \ set $!zone = \"<%=config.zone%>\";\n  set $!annotations = \"[\" & exec_template(\"syslog_annotation\")
+    & \"]\";\n\n  <%# debugging %>\n  <%# action(name=\"imjournal_syslog\"\n    type=\"omfile\"\n
+    \   template=\"tpl_syslog\"\n    File=\"/var/log/imjournal_syslog.log\"\n  ) %>\n\n
+    \ <%# # Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_imjournal_syslog\"\n
     \   broker=\"<%=config.broker_vip%>\"\n    template=\"tpl_syslog\"\n    topic=\"<%=config.kafka_topic%>\"\n
     \   partitions.auto=\"on\"\n    resubmitOnFailure=\"off\"\n    reopenonhup=\"on\"\n
     \   action.resumeRetryCount=\"0\"\n    confParam=[\n      \"batch.num.messages=10000\",\n

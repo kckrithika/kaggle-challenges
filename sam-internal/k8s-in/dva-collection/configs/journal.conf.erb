@@ -15,8 +15,10 @@ template(name = "syslog_annotation" type="list") {
   property(name="$!substrate" outname="substrate" format="jsonfr")
   constant(value=",")
   property(name="$!account" outname="account" format="jsonfr")
-  constant(value=",\"region\": \"<%=config.region%>\"")
-  constant(value=",\"zone\": \"<%=config.zone%>\"")
+  constant(value=",")
+  property(name="$!region" outname="region" format="jsonfr")
+  constant(value=",")
+  property(name="$!zone" outname="zone" format="jsonfr")
   constant(value="}}\n")
 }
 
@@ -55,6 +57,8 @@ ruleset(name="ruleset_imjounal_syslog" queue.type="LinkedList" queue.size="10000
   set $!datacenter = "<%=config.include?(:kingdom) ? config.kingdom : 'mvp'%>";
   set $!substrate = "<%=config.include?(:substrate) ? config.substrate : 'gcp' %>";
   set $!account = "<%=config.include?(:account_name) ? config.account_name : config.project_id %>";
+  set $!region = "<%=config.region%>";
+  set $!zone = "<%=config.zone%>";
   set $!annotations = "[" & exec_template("syslog_annotation") & "]";
 
   <%# debugging %>
