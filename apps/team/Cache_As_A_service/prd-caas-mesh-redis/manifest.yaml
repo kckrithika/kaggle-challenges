@@ -20,6 +20,7 @@ system:
         - --port=12081
         - --maxMemoryMB=4096
         - --noAuth
+        - --disableProtectedMode
       livenessProbe:
         exec:
           command:
