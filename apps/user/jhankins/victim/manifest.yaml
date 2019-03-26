@@ -4,6 +4,7 @@ system:
   - name: victim
     labels:
       chaos.sfdc.net/podDelete: true
+      chaos.sfdc.net/podDeletePeriod: 30s
     count: 2
     containers:
     - name: victim
