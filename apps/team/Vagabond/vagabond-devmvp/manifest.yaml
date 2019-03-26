@@ -8,7 +8,7 @@ system:
     - name: acs  
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:1
       args:
-        - --servers=acs-0.acs-stateful-ilb.vagabond.svc,acs-1.acs-stateful-ilb.vagabond.svc,acs-2.acs-stateful-ilb.vagabond.svc,acs-3.acs-stateful-ilb.vagabond.svc 
+        - --servers=acs-0.acs-stateful-ilb.vagabond.svc.cluster.local:8085,acs-1.acs-stateful-ilb.vagabond.svc.cluster.local:8085,acs-2.acs-stateful-ilb.vagabond.svc.cluster.local:8085,acs-3.acs-stateful-ilb.vagabond.svc.cluster.local:8085
       ports:
       - containerPort: 8085
         name: http
