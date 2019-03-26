@@ -35,6 +35,7 @@ local ingressGatewayCertConfigs = [ingressGatewayClientCertConfig, ingressGatewa
   metricsScraperImage: istioImages.metricsscraper,
   madkubImage: samimages.madkub,
   permissionInitContainer: samimages.permissionInitContainer,
+  kubectlImage: istioImages.kubectl,
 
   ## Istio Config Objects. Represented as `"mcpIstioConfig.<name>"` in template.
   sidecarInjectorMadkubAnnotations: std.manifestJsonEx(

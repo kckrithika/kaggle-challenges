@@ -5,7 +5,9 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   kind: "Service",
   metadata: {
     labels: {
+      app: "sidecarInjectorWebhook",
       istio: "sidecar-injector",
+      release: "istio",
     },
     name: "istio-sidecar-injector",
     namespace: "mesh-control-plane",

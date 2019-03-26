@@ -8,7 +8,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       "checksum/config-volume": "f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9",
     },
     labels: {
-      app: "istio-pilot",
+      app: "pilot",
       istio: "pilot",
       release: "istio",
     },
@@ -16,11 +16,16 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     namespace: "mesh-control-plane",
   },
   spec: {
-    replicas: 1,
     selector: {
       matchLabels: {
         app: "pilot",
         istio: "pilot",
+      },
+    },
+    strategy: {
+      rollingUpdate: {
+        maxSurge: 1,
+        maxUnavailable: 0,
       },
     },
     template: {
@@ -31,7 +36,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         },
         labels: {
           app: "pilot",
+          chart: "pilot",
+          heritage: "Tiller",
           istio: "pilot",
+          release: "istio",
         },
       },
       spec: {
@@ -104,8 +112,13 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           {
             args: [
               "discovery",
+              "--monitoringAddr=:15014",
+              "--domain",
+              "cluster.local",
               "--secureGrpcAddr",
-              ":15011",
+              "",
+              "--keepaliveMaxServerConnectionAge",
+              "30m",
               "--appNamespace",
               "service-mesh",
               "--log_output_level",
@@ -131,20 +144,20 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 },
               },
               {
-                name: "PILOT_CACHE_SQUASH",
-                value: "5",
-              },
-              {
                 name: "GODEBUG",
-                value: "gctrace=2",
+                value: "gctrace=1",
               },
               {
-                name: "PILOT_PUSH_THROTTLE_COUNT",
+                name: "PILOT_PUSH_THROTTLE",
                 value: "100",
               },
               {
                 name: "PILOT_TRACE_SAMPLING",
-                value: "100",
+                value: "1",
+              },
+              {
+                name: "PILOT_DISABLE_XDS_MARSHALING_TO_ANY",
+                value: "1",
               },
             ],
             image: mcpIstioConfig.pilotImage,

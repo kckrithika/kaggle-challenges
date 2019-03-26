@@ -1,0 +1,10 @@
+kind: ""
+apiversion: ""
+resources:
+- clusterrole.yaml
+- clusterrolebinding.yaml
+- configmap-crd-10.yaml
+- configmap-crd-11.yaml
+- job-crd-10.yaml
+- job-crd-11.yaml
+- serviceaccount.yaml

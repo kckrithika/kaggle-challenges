@@ -4,12 +4,21 @@
 #   would prevent bugs due to lack of readability in k8s-out for ConfigMap.
 apiVersion: v1
 data:
-  mesh:  |-
+  mesh: |-
     disablePolicyChecks: false
     enableTracing: true
     accessLogFile: "/dev/stdout"
-    sdsUdsPath: ""
-    sdsRefreshDelay: 15s
+    accessLogFormat: ""
+    accessLogEncoding: 'TEXT'
+    ingressService: istio-ingressgateway
+    dnsRefreshRate: 5s
+    sdsUdsPath:
+    enableSdsTokenMount: false
+    sdsUseK8sSaJwt: false
+    trustDomain:
+    outboundTrafficPolicy:
+      mode: ALLOW_ANY
+    rootNamespace: mesh-control-plane
     defaultConfig:
       connectTimeout: 10s
       configPath: "/etc/istio/proxy"
@@ -19,16 +28,15 @@ data:
       parentShutdownDuration: 1m0s
       interceptionMode: REDIRECT
       proxyAdminPort: 15000
-      concurrency: 0
-      zipkinAddress: zipkin.service-mesh:9411
+      concurrency: 2
+      tracing:
+        zipkin:
+          address: zipkin.service-mesh:9411
       controlPlaneAuthPolicy: NONE
       discoveryAddress: istio-pilot.mesh-control-plane:15010
+  meshNetworks: |-
+    networks: {}
 kind: ConfigMap
 metadata:
-  labels:
-    app: istio
-    chart: istio-1.0.1
-    heritage: Tiller
-    release: istio
   name: istio
   namespace: mesh-control-plane

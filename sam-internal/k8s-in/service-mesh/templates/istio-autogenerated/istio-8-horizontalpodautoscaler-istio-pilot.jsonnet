@@ -7,7 +7,12 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
     },
+    labels: {
+      app: "pilot",
+      release: "istio",
+    },
     name: "istio-pilot",
+    namespace: "mesh-control-plane",
   },
   spec: {
     maxReplicas: 5,

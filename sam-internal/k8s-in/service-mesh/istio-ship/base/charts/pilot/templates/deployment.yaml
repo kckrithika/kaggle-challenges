@@ -4,13 +4,19 @@ metadata:
   annotations:
     checksum/config-volume: f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9
   labels:
-    app: istio-pilot
+    app: pilot
     istio: pilot
     release: istio
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
-  replicas: 1
+  selector:
+    matchLabels:
+      istio: pilot
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       annotations:
@@ -18,7 +24,10 @@ spec:
         sidecar.istio.io/inject: "false"
       labels:
         app: pilot
+        chart: pilot
+        heritage: Tiller
         istio: pilot
+        release: istio
     spec:
       affinity:
         nodeAffinity:
@@ -56,6 +65,13 @@ spec:
       containers:
       - args:
         - discovery
+        - --monitoringAddr=:15014
+        - --domain
+        - cluster.local
+        - --secureGrpcAddr
+        - ""
+        - --keepaliveMaxServerConnectionAge
+        - 30m
         env:
         - name: POD_NAME
           valueFrom:
@@ -67,15 +83,15 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        - name: PILOT_CACHE_SQUASH
-          value: "5"
         - name: GODEBUG
-          value: gctrace=2
-        - name: PILOT_PUSH_THROTTLE_COUNT
+          value: gctrace=1
+        - name: PILOT_PUSH_THROTTLE
           value: "100"
         - name: PILOT_TRACE_SAMPLING
-          value: "100"
-        image: gcr.io/istio-release/pilot:release-1.0-latest-daily
+          value: "1"
+        - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
+          value: "1"
+        image: gcr.io/istio-release/pilot:release-1.1-latest-daily
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
@@ -100,6 +116,8 @@ spec:
           readOnly: true
       - args:
         - proxy
+        - --domain
+        - $(POD_NAMESPACE).svc.cluster.local
         - --serviceCluster
         - istio-pilot
         - --templateFile
@@ -122,7 +140,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: status.podIP
-        image: gcr.io/istio-release/proxyv2:release-1.0-latest-daily
+        image: gcr.io/istio-release/proxyv2:release-1.1-latest-daily
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
@@ -131,8 +149,12 @@ spec:
         - containerPort: 15007
         - containerPort: 15011
         resources:
+          limits:
+            cpu: 2000m
+            memory: 128Mi
           requests:
-            cpu: 10m
+            cpu: 100m
+            memory: 128Mi
         volumeMounts:
         - mountPath: /etc/certs
           name: istio-certs

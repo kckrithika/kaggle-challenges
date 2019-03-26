@@ -1,15 +1,14 @@
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
-    app: gateways
+    app: ingressgateway
     release: istio
   name: istio-ingressgateway-mesh-control-plane
 rules:
 - apiGroups:
-  - extensions
+  - networking.istio.io
   resources:
-  - thirdpartyresources
   - virtualservices
   - destinationrules
   - gateways

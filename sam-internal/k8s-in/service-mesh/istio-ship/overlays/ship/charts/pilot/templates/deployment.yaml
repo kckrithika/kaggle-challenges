@@ -15,8 +15,13 @@ spec:
         name: istio-proxy
       - args:
         - discovery
+        - --monitoringAddr=:15014
+        - --domain
+        - cluster.local
         - --secureGrpcAddr
-        - :15011
+        - ""
+        - --keepaliveMaxServerConnectionAge
+        - "30m"
         - --appNamespace
         - service-mesh
         - --log_output_level

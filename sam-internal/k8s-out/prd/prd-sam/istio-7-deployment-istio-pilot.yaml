@@ -4,17 +4,20 @@ metadata:
   annotations:
     checksum/config-volume: f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9
   labels:
-    app: istio-pilot
+    app: pilot
     istio: pilot
     release: istio
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: pilot
       istio: pilot
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       annotations:
@@ -22,7 +25,10 @@ spec:
         sidecar.istio.io/inject: "false"
       labels:
         app: pilot
+        chart: pilot
+        heritage: Tiller
         istio: pilot
+        release: istio
     spec:
       affinity:
         nodeAffinity:
@@ -60,8 +66,13 @@ spec:
       containers:
       - args:
         - discovery
+        - --monitoringAddr=:15014
+        - --domain
+        - cluster.local
         - --secureGrpcAddr
-        - :15011
+        - ""
+        - --keepaliveMaxServerConnectionAge
+        - 30m
         - --appNamespace
         - service-mesh
         - --log_output_level
@@ -77,15 +88,15 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        - name: PILOT_CACHE_SQUASH
-          value: "5"
         - name: GODEBUG
-          value: gctrace=2
-        - name: PILOT_PUSH_THROTTLE_COUNT
+          value: gctrace=1
+        - name: PILOT_PUSH_THROTTLE
           value: "100"
         - name: PILOT_TRACE_SAMPLING
-          value: "100"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:d021a6b1dd4db59fe1a82f07a7e5457830190e40
+          value: "1"
+        - name: PILOT_DISABLE_XDS_MARSHALING_TO_ANY
+          value: "1"
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/pilot:1.1.0
         imagePullPolicy: IfNotPresent
         name: discovery
         ports:
