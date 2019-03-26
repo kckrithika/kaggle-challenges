@@ -99,10 +99,6 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-    volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-caas/logs
     - name: secretvol
       secret:
          secretName: caas-secret-sp-mist30-c1
