@@ -21,7 +21,7 @@ system:
         - -v 256,1024,10240
         - -o 0,1,9
         - -x 120
-        - -p mist66
+        - -s mist66
       livenessProbe:
         exec:
           command: ["true"]
@@ -32,3 +32,7 @@ system:
          value: newton9
        - name: PYTHONUNBUFFERED
          value: 1
+       - name: SFDC_ENVIRONMENT
+         value: redis
+       - name: SFDC_POD
+         value: mist66
