@@ -12,9 +12,12 @@ system:
       ports:
       - containerPort: 5000
       livenessProbe:
-        httpGet:
-          path: /api/health/
-          port: 5000
+        #httpGet:
+        #  path: /api/health/
+        #  port: 5000
+        exec:
+          command:
+          - "true"
         initialDelaySeconds: 3
         # Keeping this high due to latencies accessing Spinnaker from SAMTWO
         periodSeconds: 20
