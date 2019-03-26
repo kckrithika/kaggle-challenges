@@ -24,6 +24,8 @@ spec:
         - mountPath: /etc/istio/crd-10
           name: crd-10
           readOnly: true
+      nodeSelector:
+        pool: prd-samtest
       restartPolicy: OnFailure
       serviceAccountName: istio-init-service-account
       volumes:

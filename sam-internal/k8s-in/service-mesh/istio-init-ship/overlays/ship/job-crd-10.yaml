@@ -11,3 +11,5 @@ spec:
       containers:
       - name: istio-init-crd-10
         image: mcpIstioConfig.kubectlImage
+      nodeSelector:
+        pool: mcpIstioConfig.istioEstate

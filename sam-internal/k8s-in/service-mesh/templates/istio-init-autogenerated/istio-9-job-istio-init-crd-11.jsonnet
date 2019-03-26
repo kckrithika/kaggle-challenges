@@ -38,6 +38,9 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             ],
           },
         ],
+        nodeSelector: {
+          pool: mcpIstioConfig.istioEstate,
+        },
         restartPolicy: "OnFailure",
         serviceAccountName: "istio-init-service-account",
         volumes: [

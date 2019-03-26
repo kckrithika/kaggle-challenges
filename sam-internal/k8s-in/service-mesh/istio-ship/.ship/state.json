@@ -45,16 +45,6 @@
       "releaseNotes": "Disable the \"xDS marshaling to Any\" feature by default (#12537)\n\nInitial plan was to keep the feature enabled by default and provide\r\na way to disable it by explicitly setting an env variable. Due to\r\na last-minute found regression this needs to be disabled by default.\r\n\r\nWe cannot disable it on a code level as tests won't pass (they assume\r\nthis feature is \"on\"). So this needs to be done on the installer level.",
       "version": "1.1.0"
     },
-    "contentSHA": "ccbca8e315304668cd0e36613f5a80310cbeb6710d730dd14a72ce0f6e0d2236",
-    "lifecycle": {
-      "stepsCompleted": {
-        "intro": true,
-        "kustomize": true,
-        "kustomize-intro": true,
-        "outro": true,
-        "render": true,
-        "values": true
-      }
-    }
+    "contentSHA": "ccbca8e315304668cd0e36613f5a80310cbeb6710d730dd14a72ce0f6e0d2236"
   }
 }
