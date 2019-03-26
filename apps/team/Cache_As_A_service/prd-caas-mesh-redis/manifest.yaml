@@ -31,10 +31,6 @@ system:
         timeoutSeconds: 10
       ports:
       - containerPort: 12081
-      volumeMounts:
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
     - name: redis-announcer
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       args:
