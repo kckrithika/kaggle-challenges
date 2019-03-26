@@ -1,21 +1,10 @@
-<%# General file based logs %>
-<%# Needed env variables:
-  - log_type
-  - file_path
-  - start_regex (optional)
-  - pod (TBD)
-  - owner
-  - broker_vip
-  - kafka_topic %>
-<%# ------------------------------------------------- %>
-<%# INPUT DEFINITIONS %>
 input(
   type="imfile"
   File="<%=config.file_path%>"
   PersistStateInterval="50000"
-<%- if config.include? :start_regex -%>  
+<%- if config.include? :start_regex -%>
   startmsg.regex="<%=config.start_regex%>"
-  readTimeout = "5"
+  readTimeout="5"
 <%- else -%>
   readMode="0"
 <%- end -%>
@@ -26,7 +15,6 @@ input(
   discardTruncatedMsg="on"
 )
 
-<%# Output Template%>
 template(name="tpl_<%=config.log_type%>" type="list") {
   constant(value="{\"schema_type\":\"json-schema\",\"schema_id\":\"event-flatten:1\",\"data\":{")
   property(name="msg" outname="message" format="jsonf")
@@ -37,31 +25,36 @@ template(name="tpl_<%=config.log_type%>" type="list") {
   constant(value=",")
   property(name="$!superpod" outname="superpod" format="jsonfr")
   constant(value=",")
-  property(name="$!pod" outname="pod" format="jsonfr")
-  constant(value=",")
   property(name="$!metadata!filename" outname="source" format="jsonfr")
   constant(value=",")
   property(name="$!hostname" format="jsonfr")
   constant(value=",")
-  property(name="$!node" format="jsonfr")  
-  constant(value=",")
   property(name="timegenerated" outname="agent_timestamp" dateFormat="rfc3339" date.inUTC="on" format="jsonfr")
   constant(value=",")
   property(name="$!owner" outname="owner" format="jsonfr")
+  constant(value=",")
+  property(name="$!substrate" outname="substrate" format="jsonfr")
+  constant(value=",")
+  property(name="$!account" outname="account" format="jsonfr")
+  constant(value=",")
+  property(name="$!region" outname="region" format="jsonfr")
+  constant(value=",")
+  property(name="$!zone" outname="zone" format="jsonfr")
   constant(value="}}\n")
 }
 
-<%# RULESET DEFINITION %>
 ruleset(name="ruleset_<%=config.log_type%>") {
 
   <%# Template Spec %>
-  set $!datacenter = "<%=config.cluster%>";
+  set $!datacenter = "<%=config.include?(:kingdom) ? config.kingdom : 'mvp'%>";
+  set $!substrate = "<%=config.include?(:substrate) ? config.substrate : 'gcp' %>";
+  set $!account = "<%=config.include?(:account_name) ? config.account_name : config.project_id %>";
+  set $!region = "<%=config.region%>";
+  set $!zone = "<%=config.zone%>";
   set $!superpod = "NONE";
-  <%# TODO pod - sfdc-pod or k8s pod %>
-  set $!pod = "<%= config.pod %>";
   set $!owner = "<%= config.owner %>";
-  set $!source_type = "<%= config.owner %>" + ":" + ""<%= config.log_type %>"";
-  set $!node = "<%=config.node%>";
+  set $!source_type = "<%= [config.owner, config.log_type].join(':') %>";
+  set $!hostname = "<%=config.node%>";
 
   <%# Output action %>
   action(

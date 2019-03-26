@@ -9,61 +9,49 @@ local certDirs = ["cert1"];
 
 local initContainers = [
     madkub.madkubInitContainer(certDirs),
+    # default container and journal configs
     rsyslogutils.config_gen_init_container(
-        "journal",
-        rsyslogimages.config_gen,
-        "/templates/journal.conf.erb",
+        "default",
         "",
-        "/etc/rsyslog.d/30-journal.conf",
+        "/templates/manifests.yaml",
+        "",
         "general_topic"
-    ),
-    rsyslogutils.config_gen_init_container(
-        "container",
-        rsyslogimages.config_gen,
-        "/templates/container.conf.erb",
-        "",
-        "/etc/rsyslog.d/40-container.conf",
-        "general_topic"
-    ),
-    rsyslogutils.config_gen_init_container(
-        "solr",
-        rsyslogimages.config_gen,
-        "/templates/solr.conf.erb",
-        "",
-        "/etc/rsyslog.d/50-solr.conf",
-        "solr_topic"
-    ),
-    rsyslogutils.config_gen_init_container(
-        "jetty",
-        rsyslogimages.config_gen,
-        "/templates/jetty.conf.erb",
-        "",
-        "/etc/rsyslog.d/50-solr_jetty.conf",
-        "solr_topic"
     ),
     rsyslogutils.config_gen_init_container(
         "casam",
-        rsyslogimages.config_gen,
         "/templates/core.conf.erb",
         "",
         "/etc/rsyslog.d/50-casam.conf",
         "casam_topic"
     ),
-    rsyslogutils.config_gen_init_container(
-        "casam-jvm",
-        rsyslogimages.config_gen,
-        "/templates/jvm.conf.erb",
-        "",
-        "/etc/rsyslog.d/50-casam_jvm.conf",
-        "general_topic"
+    # general file based configs
+    rsyslogutils.config_gen_file_based_init_container(
+        "solr_topic",
+        "solr",
+        "/home/sfdc/logs/solr/solr/*.gmt.log",
+        "Search",
+        "^([[:alnum:]]{1,})`[[:digit:]]{14}.[[:digit:]]{3}`",
     ),
-    rsyslogutils.config_gen_init_container(
-        "casam-jvmgc",
-        rsyslogimages.config_gen,
-        "/templates/jvmgc.conf.erb",
+    rsyslogutils.config_gen_file_based_init_container(
+        "solr_topic",
+        "solr-jetty",
+        "/home/sfdc/logs/solr/jetty/*.jvmgc.log_*",
+        "Search",
+        "^([[:digit:]]{4}-(0[1-9]|1[0-2])-(0?[1-9]|[12][[:digit:]]|3[01]))([[:space:]]|T)(([01][[:digit:]]|2[0-3]):[0-5][[:digit:]]:([0-5][[:digit:]]|6[01]))[,|\\\\.][[:digit:]]{3}",
+    ),
+    rsyslogutils.config_gen_file_based_init_container(
+        "general_topic",
+        "casam-jvm",
+        "/home/sfdc/logs/jvm/*.jvm.log_*",
+        "casam",
         "",
-        "/etc/rsyslog.d/50-casam_jvmgc.conf",
-        "general_topic"
+    ),
+    rsyslogutils.config_gen_file_based_init_container(
+        "general_topic",
+        "casam-jvmgc",
+        "/home/sfdc/logs/jvm/*.jvmgc.log_*",
+        "casam",
+        "^([[:digit:]]{4}-(0[1-9]|1[0-2])-(0?[1-9]|[12][[:digit:]]|3[01]))([[:space:]]|T)(([01][[:digit:]]|2[0-3]):[0-5][[:digit:]]:([0-5][[:digit:]]|6[01]))[,|\\\\.][[:digit:]]{3}",
     ),
     rsyslogutils.config_check_init_container(rsyslogimages.rsyslog),
 ];

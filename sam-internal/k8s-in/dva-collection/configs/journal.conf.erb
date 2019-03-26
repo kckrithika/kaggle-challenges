@@ -1,6 +1,26 @@
-<%# syslog related schema annotations %>
-template(name="syslog_annotation" type="string" string="{\"schema_type\":\"json-schema\",\"schema_id\":\"rsyslog-base:1\",\"uuid\":\"%uuid%\",\"environment\":\"TechOps\",\"data\":{\"dc\":\"<%= config.cluster %>\",\"node\":\"<%= config.node %>\",\"superpod\":\"NONE\",\"source\":\"%programname%\",\"source_type\":\"syslog\",\"index\":\"true\"}}")
+module(load="imjournal" StateFile="/var/spool/rsyslog/imjournal.state")
 
+<%# syslog related schema annotations %>
+template(name = "syslog_annotation" type="list") {
+  constant(value="{\"schema_type\":\"json-schema\",\"schema_id\":\"syslog-base:1\",\"data\":{")
+  property(name="uuid" outname="uuid" format="jsonfr")
+  constant(value=",\"environment\": \"TechOps\"")
+  constant(value=",")
+  property(name="programname" outname="source" format="jsonfr")
+  constant(value=",\"source_type\": \"syslog\"")
+  constant(value=",\"index\": \"true\"")
+  constant(value=",")
+  property(name="$!datacenter" outname="dc" format="jsonfr")
+  constant(value=",")
+  property(name="$!substrate" outname="substrate" format="jsonfr")
+  constant(value=",")
+  property(name="$!account" outname="account" format="jsonfr")
+  constant(value=",")
+  property(name="$!region" outname="region" format="jsonfr")
+  constant(value=",")
+  property(name="$!zone" outname="zone" format="jsonfr")
+  constant(value="}}\n")
+}
 
 <%# Universal schema for stdout and stderr streaming  %>
 template(name="tpl_syslog" type="list") {
@@ -8,7 +28,7 @@ template(name="tpl_syslog" type="list") {
   constant(value="\"event\":")
   property(name="$!event")
   constant(value=",")
-  property(name="hostname" format="jsonfr")
+  property(name="$!hostname" format="jsonfr")
   constant(value=",")
   property(name="timegenerated" outname="event_timestamp" dateFormat="rfc3339" date.inUTC="on" format="jsonfr")
   constant(value=",")
@@ -25,6 +45,7 @@ template(name="tpl_syslog" type="list") {
 ruleset(name="ruleset_imjounal_syslog" queue.type="LinkedList" queue.size="10000" queue.discardmark="9000" queue.lightdelaymark="10000" queue.fulldelaymark="10000" queue.discardseverity="5") {
 
   <%# # Template Spec %>
+  set $!hostname = "<%=config.node%>";
   set $!event!schema_type = "json-schema";
   set $!event!schema_id = "syslog:1";
   set $!event!data!message = $msg;
@@ -32,6 +53,12 @@ ruleset(name="ruleset_imjounal_syslog" queue.type="LinkedList" queue.size="10000
   set $!event!data!facility = $syslogfacility-text;
   set $!event!data!severity = $syslogseverity-text;
   set $!event!data!priority = $syslogpriority-text;
+  
+  set $!datacenter = "<%=config.include?(:kingdom) ? config.kingdom : 'mvp'%>";
+  set $!substrate = "<%=config.include?(:substrate) ? config.substrate : 'gcp' %>";
+  set $!account = "<%=config.include?(:account_name) ? config.account_name : config.project_id %>";
+  set $!region = "<%=config.region%>";
+  set $!zone = "<%=config.zone%>";
   set $!annotations = "[" & exec_template("syslog_annotation") & "]";
 
   <%# debugging %>
