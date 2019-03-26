@@ -89,7 +89,7 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
 
     ### Init containers Definitions
     ## config gen container
-    config_gen_init_container(config_name, image_name, template, manifest, output_path, topic):: {
+    config_gen_init_container(config_name, template, manifest, output_path, topic):: {
         local cmdline = if manifest == "" then
         [
             "/usr/bin/ruby",
@@ -105,12 +105,47 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
             "/app/config_gen.rb",
             "-m",
             manifest,
-            "-o",
-            output_path,
         ],
         command: cmdline,
         name: "config-gen-" + config_name,
-        image: image_name,
+        image: rsyslogimages.config_gen,
+        volumeMounts: $.rsyslog_config_volume_mounts() + $.config_gen_tpl_volume_mounts(),
+        env: [
+            {
+                name: "BROKER_VIP",
+                valueFrom: {
+                     configMapKeyRef: {
+                        name: "kafka-cm",
+                        key: "broker_vip",
+                     },
+                },
+
+            },
+            {
+                name: "KAFKA_TOPIC",
+                valueFrom: {
+                     configMapKeyRef: {
+                        name: "kafka-cm",
+                        key: topic,
+                     },
+                },
+            }
+        ],
+    },
+
+    config_gen_file_based_init_container(topic, log_type, file_path, owner, start_regex):: {
+        local cmdline =
+        [
+            "/usr/bin/ruby",
+            "/app/config_gen.rb",
+            "-t",
+            "/templates/general.conf.erb",
+            "-o",
+            "/etc/rsyslog.d/50-" + log_type + ".conf",
+        ],
+        command: cmdline,
+        name: "config-gen-" + log_type,
+        image: rsyslogimages.config_gen,
         volumeMounts: $.rsyslog_config_volume_mounts() + $.config_gen_tpl_volume_mounts(),
         env: [
             {
@@ -132,7 +167,24 @@ local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: 
                      },
                 },
             },
-        ],
+            {
+                name: "LOG_TYPE",
+                value: log_type,
+            },
+            {
+                name: "FILE_PATH",
+                value: file_path,
+            },
+            {
+                name: "OWNER",
+                value: owner,
+            },
+        ] + if start_regex != "" then [
+            {
+                name: "START_REGEX",
+                value: start_regex,
+            },
+        ] else [],
     },
 
     ## Config check container

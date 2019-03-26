@@ -25,7 +25,7 @@ local configs = import "config.jsonnet";
     ### Release Phase 0 - for sam and samtest
     "0": $.per_phase["1"] {
        rsyslog: "8.38-135-2-CERTS",
-       config_gen: "v0.1alpha2",
+       config_gen: "13-47abdb612473a43f78d0cb438f83851aba538af9",
        logarchive: "2",
      },
 
@@ -71,7 +71,7 @@ local configs = import "config.jsonnet";
 
     # These are the images used by the templates
     rsyslog: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_rsyslog_gcp:" + $.per_phase[$.phase].rsyslog,
-    config_gen: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-erb-config-gen:" + $.per_phase[$.phase].config_gen,
+    config_gen: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:" + $.per_phase[$.phase].config_gen,
     logarchive: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_log_archiver:" + $.per_phase[$.phase].logarchive,
 
 }

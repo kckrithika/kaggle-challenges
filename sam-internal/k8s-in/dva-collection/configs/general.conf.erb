@@ -1,21 +1,10 @@
-<%# General file based logs %>
-<%# Needed env variables:
-  - log_type
-  - file_path
-  - start_regex (optional)
-  - pod (TBD)
-  - owner
-  - broker_vip
-  - kafka_topic %>
-<%# ------------------------------------------------- %>
-<%# INPUT DEFINITIONS %>
 input(
   type="imfile"
   File="<%=config.file_path%>"
   PersistStateInterval="50000"
-<%- if config.include? :start_regex -%>  
+<%- if config.include? :start_regex -%>
   startmsg.regex="<%=config.start_regex%>"
-  readTimeout = "5"
+  readTimeout="5"
 <%- else -%>
   readMode="0"
 <%- end -%>
@@ -26,7 +15,6 @@ input(
   discardTruncatedMsg="on"
 )
 
-<%# Output Template%>
 template(name="tpl_<%=config.log_type%>" type="list") {
   constant(value="{\"schema_type\":\"json-schema\",\"schema_id\":\"event-flatten:1\",\"data\":{")
   property(name="msg" outname="message" format="jsonf")
@@ -44,21 +32,24 @@ template(name="tpl_<%=config.log_type%>" type="list") {
   property(name="timegenerated" outname="agent_timestamp" dateFormat="rfc3339" date.inUTC="on" format="jsonfr")
   constant(value=",")
   property(name="$!owner" outname="owner" format="jsonfr")
-  constant(value=",\"substrate\": \"<%=config.substrate%>\"")
+  constant(value=",")
+  property(name="$!substrate" outname="substrate" format="jsonfr")
+  constant(value=",")
+  property(name="$!account" outname="account" format="jsonfr")
   constant(value=",\"region\": \"<%=config.region%>\"")
   constant(value=",\"zone\": \"<%=config.zone%>\"")
-  constant(value=",\"account\": \"<%=config.cluster%>\"")
   constant(value="}}\n")
 }
 
-<%# RULESET DEFINITION %>
 ruleset(name="ruleset_<%=config.log_type%>") {
 
   <%# Template Spec %>
-  set $!datacenter = "<%=config.datacenter%>";
+  set $!datacenter = "<%=config.include?(:kingdom) ? config.kingdom : 'mvp'%>";
+  set $!substrate = "<%=config.include?(:substrate) ? config.substrate : 'gcp' %>";
+  set $!account = "<%=config.include?(:account_name) ? config.account_name : config.project_id %>";
   set $!superpod = "NONE";
   set $!owner = "<%= config.owner %>";
-  set $!source_type = "<%= config.owner %>" + ":" + ""<%= config.log_type %>"";
+  set $!source_type = "<%= config.owner %>" + ":" + "<%= config.log_type %>";
   set $!hostname = "<%=config.node%>";
 
   <%# Output action %>

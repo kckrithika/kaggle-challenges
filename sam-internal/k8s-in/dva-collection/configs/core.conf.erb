@@ -20,7 +20,8 @@ template(name = "tpl_core" type="list") {
   property(name="$!host" outname="host" format="jsonfr")
   constant(value=",")
   property(name="$!pod" outname="pod" format="jsonfr")
-  constant(value=",\"datacenter\": \"<%=config.datacenter%>\"")
+  constant(value=",")
+  property(name="$!datacenter" outname="dc" format="jsonfr")
   constant(value=",\"superpod\": \"NONE\"")
   constant(value=",")
   property(name="msg" outname="message" format="jsonf")
@@ -42,10 +43,12 @@ template(name = "tpl_core" type="list") {
   property(name="$!filedate" outname="filedate" format="jsonfr")
   constant(value=",")
   property(name="$!role" outname="role" format="jsonfr")
-  constant(value=",\"substrate\": \"<%=config.substrate%>\"")
+  constant(value=",")
+  property(name="$!substrate" outname="dc" format="jsonfr")
+  constant(value=",")
+  property(name="$!account" outname="dc" format="jsonfr")
   constant(value=",\"region\": \"<%=config.region%>\"")
   constant(value=",\"zone\": \"<%=config.zone%>\"")
-  constant(value=",\"account\": \"<%=config.cluster%>\"")
   constant(value=", \"latency\": 0}\n")
 }
 
@@ -81,6 +84,7 @@ ruleset(name="ruleset_core") {
   set $!ts_generated = exec_template("tpl_generated_ts");
   # filename - mist61.sfdc.debug-perf-core-6b86b5c8b7-7r6f7.app.20180907.214.gmt.log
   set $!filename = field($!metadata!filename, 47, 5);
+  set $!datacenter = "<%=config.include?(:kingdom) ? config.kingdom : 'mvp'%>";
   set $!host = field($!filename, 46, 3);
   set $!pod = field($!host, 45, 1);
   set $!apptype = field($!filename, 46, 2);

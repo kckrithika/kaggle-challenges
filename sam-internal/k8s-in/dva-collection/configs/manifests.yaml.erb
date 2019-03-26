@@ -1,0 +1,12 @@
+templates:
+  - input: container.conf.erb
+    output: /etc/rsyslog.d/40-container.conf
+  - input: journal.conf.erb
+    output: /etc/rsyslog.d/30-journal.conf
+data:
+  datacenter: "<%=config.datacenter%>"
+  substrate: "<%=config.substrate%>"
+  region: "<%=config.substrate%>"
+  zone: "<%=config.substrate%>"
+  broker_vip: "<%=config.broker_vip%>"
+  kafka_topic: "<%=config.general_topic%>"

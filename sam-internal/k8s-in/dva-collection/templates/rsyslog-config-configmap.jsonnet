@@ -3,11 +3,8 @@ local rsyslogConf = importstr "configs/rsyslog.conf";
 local generalConf = importstr "configs/general.conf.erb";
 local containerConf = importstr "configs/container.conf.erb";
 local journalConf = importstr "configs/journal.conf.erb";
-local solrConf = importstr "configs/solr/solr.conf.erb";
-local jettyConf = importstr "configs/solr/jetty.conf.erb";
-local casamConf = importstr "configs/casam/core.conf.erb";
-local casamjvmConf = importstr "configs/casam/jvm.conf.erb";
-local casamjvmgcConf = importstr "configs/casam/jvmgc.conf.erb";
+local casamConf = importstr "configs/core.conf.erb";
+local manifestsYaml = importstr "configs/manifests.yaml.erb";
 
 if configs.kingdom == "mvp" then {
     kind: "ConfigMap",
@@ -22,10 +19,11 @@ if configs.kingdom == "mvp" then {
         "general.conf.erb": generalConf,
         "container.conf.erb": containerConf,
         "journal.conf.erb": journalConf,
-        "solr.conf.erb": solrConf,
-        "jetty.conf.erb": jettyConf,
+        // "solr.conf.erb": solrConf,
+        // "jetty.conf.erb": jettyConf,
         "core.conf.erb": casamConf,
-        "jvm.conf.erb": casamjvmConf,
-        "jvmgc.conf.erb": casamjvmgcConf,
+        // "jvm.conf.erb": casamjvmConf,
+        // "jvmgc.conf.erb": casamjvmgcConf,
+        "manifests.yaml": manifestsYaml,
     },
 } else "SKIP"
