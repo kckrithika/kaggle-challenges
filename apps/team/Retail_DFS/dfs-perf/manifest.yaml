@@ -50,6 +50,8 @@ system:
         value: 50
       - name: DFS_MAXCONNECTIONTOTAL
         value: 100
+      - name: LOG_LINES_ENVIRONMENTS
+        value: mist
       - name: JVM_ARGS
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=100
                 -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
@@ -62,8 +64,7 @@ system:
                 -Dcom.sun.management.jmxremote.rmi.port=8898
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
-                -Xmx2G -Xms2G -XX:ParallelGCThreads=8
-                -Dlogging.level.org.springframework=DEBUG"
+                -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       resources:
         limits: { cpu: "4", memory: "4Gi" }
         requests: { cpu: "4", memory: "3Gi" }
