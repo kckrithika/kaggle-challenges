@@ -1,0 +1,41 @@
+metric_filters:
+  - cpu.usage.system
+  - cpu.usage.total
+  - cpu.usage.user
+  - cpu.load_average
+  - network.tx_dropped
+  - network.rx_errors
+  - network.rx_bytes
+  - network.tx_errors
+  - network.rx_packets
+  - network.tx_bytes
+  - network.rx_dropped
+  - network.tx_packets
+  - memory.cache
+  - memory.container_data.pgfault
+  - memory.rss
+  - memory.failcnt
+  - memory.working_set
+  - memory.usage
+  - memory.container_data.pgmajfault
+
+# Optionally specify tag_name
+# Format: <label_name>=<tag_name>
+# Extract label_name and forward as tag_name
+label_filters:
+  - io.kubernetes.container.name
+  - io.kubernetes.pod.name
+  - io.kubernetes.pod.namespace
+
+substrate: <%= config.include?(:substrate) ? config.substrate : 'gcp' %>
+region: <%= config.region %>
+zone: <%= config.zone %>
+kingdom: <%= config.include?(:kingdom) ? config.kingdom : 'mvp' %>
+superpod: NONE
+cluster: <%= config.cluster %>
+account_name: <%= config.include?(:account_name) ? config.account_name : config.project_id %>
+scrape_interval: 120
+forward_host: 127.0.0.1
+forward_port: <%= config.forward_port %>
+cadvisor_base_url: <%= config.cadvisor_host.empty? ? config.node : config.cadvisor_host %>:<%= config.cadvisor_port %>
+node: <%= config.node %>

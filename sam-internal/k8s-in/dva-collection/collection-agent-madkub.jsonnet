@@ -3,8 +3,8 @@
     local configs = import "config.jsonnet",
     local utils = import "util_functions.jsonnet",
     local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile },
-    local rsyslogimages = (import "rsyslogimages.jsonnet") + { dirSuffix:: $.dirSuffix },
-    local rsyslogutils = (import "rsyslogutils.jsonnet") + { dirSuffix:: $.dirSuffix },
+    local rsyslogimages = (import "collection-agent-images.jsonnet") + { dirSuffix:: $.dirSuffix },
+    local rsyslogutils = (import "collection-agent-utils.jsonnet") + { dirSuffix:: $.dirSuffix },
     local maddogEndpoint = "https://10.168.195.227:8443",
 
     local certDirLookup = {

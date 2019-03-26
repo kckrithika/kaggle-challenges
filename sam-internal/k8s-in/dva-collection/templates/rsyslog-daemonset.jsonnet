@@ -1,28 +1,64 @@
 local configs = import "config.jsonnet";
 local appNamespace = "sam-system";
 // local rsyslogimages = import "rsyslogimages.libsonnet";
-local rsyslogimages = (import "rsyslogimages.libsonnet") + { templateFilename:: std.thisFile };
-local rsyslogutils = import "rsyslogutils.jsonnet";
-local madkub = (import "rsyslogmadkub.jsonnet") + { templateFilename:: std.thisFile };
+local rsyslogimages = (import "collection-agent-images.libsonnet") + { templateFilename:: std.thisFile };
+local rsyslogutils = import "collection-agent-utils.jsonnet";
+local madkub = (import "collection-agent-madkub.jsonnet") + { templateFilename:: std.thisFile };
 
 local certDirs = ["cert1"];
+
+local baseEnv = [
+    {
+        name: "BROKER_VIP",
+        valueFrom: {
+            configMapKeyRef: {
+                name: "kafka-cm",
+                key: "broker_vip",
+            },
+        },
+    }
+];
+
+local defaultEnv = baseEnv + [
+    {
+        name: "KAFKA_TOPIC",
+        valueFrom: {
+            configMapKeyRef: {
+                name: "kafka-cm",
+                key: "general_topic",
+            },
+        },
+    }
+];
+
+local casamEnv = baseEnv + [
+    {
+        name: "KAFKA_TOPIC",
+        valueFrom: {
+            configMapKeyRef: {
+                name: "kafka-cm",
+                key: "casam_topic",
+            },
+        },
+    }
+];
 
 local initContainers = [
     madkub.madkubInitContainer(certDirs),
     # default container and journal configs
-    rsyslogutils.config_gen_init_container(
+    rsyslogutils.config_gen_rsyslog_init_container(
         "default",
         "",
-        "/templates/manifests.yaml",
+        "/templates/rsyslog/manifests.yaml",
         "",
-        "general_topic"
+        defaultEnv
     ),
-    rsyslogutils.config_gen_init_container(
+    rsyslogutils.config_gen_rsyslog_init_container(
         "casam",
-        "/templates/core.conf.erb",
+        "/templates/rsyslog/core.conf.erb",
         "",
         "/etc/rsyslog.d/50-casam.conf",
-        "casam_topic"
+        casamEnv
     ),
     # general file based configs
     rsyslogutils.config_gen_file_based_init_container(
@@ -138,7 +174,7 @@ for certReq in madkub.madkubRsyslogCertsAnnotation(certDirs).certreqs
                 volumes+: [
                     configs.maddog_cert_volume,
                 ] + rsyslogutils.rsyslog_config_volume()
-                  + rsyslogutils.config_gen_tpl_volume()
+                  + rsyslogutils.rsyslog_config_gen_tpl_volume()
                   + rsyslogutils.rsyslog_volume()
                   + madkub.madkubRsyslogCertVolumes(certDirs)
                   + madkub.madkubRsyslogMadkubVolumes(),
