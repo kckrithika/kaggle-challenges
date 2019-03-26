@@ -18,7 +18,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
         - name: SETTINGS_PATH
-          value: .-.prd.emp-aqueduct_func_aqueduct.emp-aqueduct 
+          value: ".-.prd.emp-aqueduct_func_aqueduct.emp-aqueduct"
         ports:
         - containerPort: 8080
           name: ext-port
