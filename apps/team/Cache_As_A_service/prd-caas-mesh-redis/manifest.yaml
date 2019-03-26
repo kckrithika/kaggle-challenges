@@ -24,7 +24,6 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12081
-           - --noAuth
         initialDelaySeconds: 15
         timeoutSeconds: 10
       ports:
