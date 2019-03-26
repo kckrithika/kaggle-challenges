@@ -39,8 +39,10 @@ system:
         - name: sherpa
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
           ports:
-            - containerPort: 15001
+            - containerPort: 7443
+              name: http2-tls-in
             - containerPort: 15373
+              name: sherpa-adm
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -78,23 +80,3 @@ system:
         - name: tls-server-cert
           maddogCert:
             type: server
-
-  loadbalancers:
-    - lbname: content-image-transform-secure
-      nodeExposed: true
-      function: content-image-transform-secure
-      slbEnabled: true
-      ports:
-        - lbtype: tcp
-          port: 15501
-          targetPort: 15001
-        - lbtype: tcp
-          port: 15574
-          targetPort: 15374
-        - lbtype: tcp
-          port: 15575
-          targetPort: 7020
-        - lbtype: http
-          port: 443
-          targetport: 7020
-          tls: true
