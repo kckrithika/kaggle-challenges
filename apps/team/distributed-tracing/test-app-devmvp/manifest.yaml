@@ -1,0 +1,69 @@
+apiVersion: v1
+
+system:
+    notifications:
+        email:
+        - distributedtracing@salesforce.com
+    functions:
+    - name: test-app-devmvp
+      count: 3
+      strategy:
+          type: RollingUpdate
+          rollingUpdate:
+              maxSurge: 0
+              maxUnavailable: 1
+      volumes:
+      - name: client-certs
+        maddogCert:
+          type: client
+      - name: server-certs
+        maddogCert:
+          type: server
+      containers:
+      - name: test-app-devmvp
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gsf-mgmt-devmvp-zipkin/sleeper-test-app:devmvp03262019
+        env:
+        - name: PROXY_ENDPOINT
+          value: zipkin-kafka-proxy-devmvp.distributed-tracing.localhost.mesh.force.com
+        livenessProbe:
+            httpGet:
+                port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 15
+      - name: sherpa
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+        args:
+        # 2018-02-08: Direct Connection to the switchboard for now
+        - --switchboard=switchboard.service-mesh.svc:15001
+        env:
+        - name: SFDC_ENVIRONMENT
+          value: "sam"
+        resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+        ports:
+        # Temporary: Eventually we will only allow tls
+        - containerPort: 7014
+          hostPort: 7014
+          name: sherpa-http1-in
+        - containerPort: 7442
+          hostPort: 7442
+        - containerPort: 15373
+          name: sherpa-adm
+        livenessProbe:
+            exec:
+                command:
+                - "./bin/is-alive"
+            initialDelaySeconds: 60
+            periodSeconds: 5
+        readinessProbe:
+            exec:
+                command:
+                - "./bin/is-ready"
+            initialDelaySeconds: 50
+            periodSeconds: 5
+        volumeMounts:
+          - name: client-certs
+            mountPath: /client-certs
+          - name: server-certs
+            mountPath: /server-certs
