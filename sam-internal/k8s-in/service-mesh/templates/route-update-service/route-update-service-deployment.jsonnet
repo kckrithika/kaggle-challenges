@@ -4,6 +4,7 @@
 #       "MountVolume.SetUp failed for volume "route-update-service-service-account-token-bmbgz" : secrets "route-update-service-service-account-token-bmbgz" is forbidden: User "test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net" cannot get secrets in the namespace "service-mesh"
 # 2. Eventually we will want certs for envoy on this app so we're leaving them here for now.
 local configs = import "config.jsonnet";
+local mcpIstioConfig = import "service-mesh/istio-config.jsonnet";
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 
@@ -69,6 +70,9 @@ configs.deploymentBase("service-mesh") {
           },
           madkub.madkubRefreshContainer(certConfigs)
         ],
+        nodeSelector: {
+          pool: mcpIstioConfig.istioEstate,
+        },
         volumes+: madkub.madkubSamCertVolumes(certConfigs) + madkub.madkubSamMadkubVolumes(),
       }
     }
