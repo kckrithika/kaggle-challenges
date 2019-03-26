@@ -127,7 +127,9 @@ else
                                 command: [
                                     "/sam/watchdog",
                                     "-role=CLI",
-                                    "-emailFrequency=" + watchdog.watchdog_email_frequency,
+                                    # Dial down these emails until false positives reduced.
+                                    # "-emailFrequency=" + watchdog.watchdog_email_frequency,
+                                    "-emailFrequency=72h",
                                     "-timeout=2s",
                                     "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
                                     "--config=/config/watchdog.json",
