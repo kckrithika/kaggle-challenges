@@ -1,3 +1,4 @@
+#This is a client which we need to test the image transformation service till we have the changes in casam
 apiVersion: v1
 system:
   functions:
@@ -23,6 +24,7 @@ system:
             requests:
               cpu: "8"
               memory: 6Gi
+          #We need liveness and readiness probe to verify if the service is up or not
           livenessProbe:
             httpGet:
               path: /manage/health
@@ -36,6 +38,7 @@ system:
             initialDelaySeconds: 15
             periodSeconds: 5
           terminationMessagePolicy: FallbackToLogsOnError
+        #Service mesh is needed to do the tls communication. TODO: Need to refactor this section
         - name: sherpa
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
           ports:
@@ -71,6 +74,7 @@ system:
             initialDelaySeconds: 15
             periodSeconds: 5
           terminationMessagePolicy: FallbackToLogsOnError
+      #Certificate required to communicate over tls
       volumes:
         - name: envoy-config-volume
           emptyDir: {}
