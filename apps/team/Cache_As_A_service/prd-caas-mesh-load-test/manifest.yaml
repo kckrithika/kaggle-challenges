@@ -21,6 +21,7 @@ system:
         - -v 256,1024,10240
         - -o 0,1,9
         - -x 120
+        - -p mist66
       livenessProbe:
         exec:
           command: ["true"]
