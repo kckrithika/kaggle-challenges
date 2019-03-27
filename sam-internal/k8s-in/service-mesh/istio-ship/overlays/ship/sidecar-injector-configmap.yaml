@@ -8,7 +8,7 @@ data:
     policy: disabled
     template: |-
       rewriteAppHTTPProbe: false
-      initContainers: []
+      initContainers:
       [[ if ne (annotation .ObjectMeta `sidecar.istio.io/interceptionMode` .ProxyConfig.InterceptionMode) "NONE" ]]
       - name: istio-init
         image: %(proxyInitImage)s
@@ -186,7 +186,7 @@ data:
         - mountPath: /etc/certs/client-key.pem
           name: tls-client-cert
           subPath: client/keys/client-key.pem
-      volumes: []
+      volumes:
       [[- if (isset .ObjectMeta.Annotations `sidecar.istio.io/bootstrapOverride`) ]]
       - name: custom-bootstrap-volume
         configMap:

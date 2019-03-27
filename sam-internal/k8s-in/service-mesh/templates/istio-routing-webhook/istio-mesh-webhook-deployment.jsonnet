@@ -17,7 +17,7 @@ configs.deploymentBase("service-mesh") {
     namespace: "mesh-control-plane",
   },
   spec+: {
-    replicas: 3,
+    replicas: 1,
     template: {
       metadata: {
         annotations+: {
