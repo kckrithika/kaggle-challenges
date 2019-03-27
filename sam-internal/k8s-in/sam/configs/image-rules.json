@@ -19,8 +19,8 @@
       "skip_image_exist_check": true
     },
     {
-      "match": "^(ops[0]?-artifactrepo1-0-([a-z0-9]{3}).(?:slb|data).sfdc.net)",
-      "note": "Long-form production artifactory instances.  We can conver this to the PRD artifactory for image check",
+      "match": "^(ops[0]?-artifactrepo1-0-([a-z0-9]{3}).(?:slb|data).sfdc.net)/dva/datapool-engine:",
+      "note": "Long-form production artifactory instances for datapool-engine. This is a special case we made for datapool-engine, the long formed image needs to be used by flowsnake team which does not accept short formed image.",
       "image_check_replacement_host": "ops0-artifactrepo2-0-prd.data.sfdc.net"
     },
     {
