@@ -8,6 +8,9 @@ if estate == "prd-data-flowsnake_test" then ({
       annotations: {
         "manifestctl.sam.data.sfdc.net/swagger": "disable",
       },
+      labels: {
+        flowsnakeOwner: "dva-transform",
+      }
     },
     spec: {
       group: "samcrd.salesforce.com",
