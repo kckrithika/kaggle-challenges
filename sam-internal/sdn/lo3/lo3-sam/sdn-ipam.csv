@@ -1,4 +1,12 @@
 Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate,RemoteAs
+samcaas1-caasminion1-1-lo3.ops.sfdc.net,10.162.154.10/29,10.177.144.160/27,h04-01,lo3-sp1-sam_caas,4204031208
+samcaas1-caasminion1-2-lo3.ops.sfdc.net,10.162.154.11/29,10.177.144.192/27,h04-01,lo3-sp1-sam_caas,4204031208
+samcaas1-caasminion1-3-lo3.ops.sfdc.net,10.162.154.12/29,10.177.144.224/27,h04-01,lo3-sp1-sam_caas,4204031208
+samcaas1-caasminion2-1-lo3.ops.sfdc.net,10.162.154.2/29,10.177.144.0/27,g04-01,lo3-sp1-sam_caas,4204031207
+samcaas1-caasminion2-2-lo3.ops.sfdc.net,10.162.154.3/29,10.177.144.32/27,g04-01,lo3-sp1-sam_caas,4204031207
+samcaas1-caasminion2-3-lo3.ops.sfdc.net,10.162.154.4/29,10.177.144.64/27,g04-01,lo3-sp1-sam_caas,4204031207
+samcaas1-caasminion3-1-lo3.ops.sfdc.net,10.162.154.18/29,10.177.144.96/27,g05-01,lo3-sp1-sam_caas,4204031209
+samcaas1-caasminion3-2-lo3.ops.sfdc.net,10.162.154.19/29,10.177.144.128/27,g05-01,lo3-sp1-sam_caas,4204031209
 samkingdomcaas0-caasminion1-1-lo3.ops.sfdc.net,10.162.224.106/29,10.177.134.0/27,a04-01,lo3-sam_kingdom_caas,4204061207
 samkingdomcaas0-caasminion1-2-lo3.ops.sfdc.net,10.162.224.98/29,10.177.134.96/27,h05-01,lo3-sam_kingdom_caas,4204031210
 samkingdomcaas0-caasminion2-1-lo3.ops.sfdc.net,10.162.224.114/29,10.177.134.64/27,h02-01,lo3-sam_kingdom_caas,4204031204
@@ -24,6 +32,9 @@ shared0-samminiongwc1-1-lo3.ops.sfdc.net,10.162.192.2/29,10.177.132.64/27,h06-01
 shared0-samminiongwc1-2-lo3.ops.sfdc.net,10.162.192.10/29,10.177.132.32/27,h03-01,lo3-sam_gatewayconfig,4204031206
 shared0-samminiongwc2-1-lo3.ops.sfdc.net,10.162.192.3/29,10.177.132.96/27,h06-01,lo3-sam_gatewayconfig,4204031212
 shared0-samminiongwc2-2-lo3.ops.sfdc.net,10.162.192.18/29,10.177.132.0/27,b15-01,lo3-sam_gatewayconfig,4204061228
+shared0-samminionreportcollector1-1-lo3.ops.sfdc.net,10.162.147.2/29,10.177.133.0/27,h06-01,lo3-sam_report_collector,4204031212
+shared0-samminionreportcollector2-1-lo3.ops.sfdc.net,10.162.147.3/29,10.177.133.32/27,h06-01,lo3-sam_report_collector,4204031212
+shared0-samminionreportcollector3-1-lo3.ops.sfdc.net,10.162.147.4/29,10.177.133.64/27,h06-01,lo3-sam_report_collector,4204031212
 shared0-slbminion1-1-lo3.ops.sfdc.net,10.162.192.84/28,10.177.136.96/27,e06-01,lo3-slb,4204041211
 shared0-slbminion1-10-lo3.ops.sfdc.net,10.162.192.88/28,10.177.136.128/27,e06-01,lo3-slb,4204041211
 shared0-slbminion1-2-lo3.ops.sfdc.net,10.162.192.98/29,10.177.136.0/27,a15-01,lo3-slb,4204061227
