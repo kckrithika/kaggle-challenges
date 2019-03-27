@@ -24,7 +24,7 @@ system:
          secretName: jkspassdevmvp
       containers:
       - name: zipkin-kafka-proxy-devmvp
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gsf-mgmt-devmvp-zipkin/zipkin-proxy:devmvp03252019v1
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gsf-mgmt-devmvp-zipkin/zipkin-proxy:devmvp03272019
         env:
         - name: ZIPKIN_KAFKA_PROXY_HOST
           value: zipkin-kafka-proxy-devmvp
