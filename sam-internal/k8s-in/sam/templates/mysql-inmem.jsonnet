@@ -50,25 +50,13 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                         },
                     },
                   spec: {
-                      affinity: {
-                          nodeAffinity: {
-                              requiredDuringSchedulingIgnoredDuringExecution: {
-                                  nodeSelectorTerms: [
-                                        {
-                                          matchExpressions: [
-                                                {
-                                                  key: "pool",
-                                                  operator: "In",
-                                                  values: [
-                                                      configs.estate,
-                                                    ],
-                                                },
-                                            ],
-                                        },
-                                    ],
-                                },
-                            },
-                        },
+                nodeSelector: {
+                              } +
+                              if configs.estate == "prd-samdev" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
                       containers: [
                             {
                               env: [
@@ -317,6 +305,8 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                                   do 
                                     if [[ -f ./restore-me ]]; then
                                       mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS < ./restore-me || exit 24
+                                      echo "FLUSH PRIVILEGES;" | mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
+                                      mysql_upgrade -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
                                       rm ./restore-me
                                     fi 
                                     echo "Backing up mysql offline db"    
