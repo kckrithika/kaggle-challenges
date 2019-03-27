@@ -33,7 +33,7 @@ spec:
         - -funnelEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - -timeout=120s
+        - -timeout=2s
         - -recipient=sam-alerts@salesforce.com,csc-sam-business-hours-only@salesforce.pagerduty.com
         env:
         - name: KUBECONFIG
