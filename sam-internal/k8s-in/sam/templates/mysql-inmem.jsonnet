@@ -298,15 +298,14 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
 |||
                                   set -e
                                   cd /var/lib/mysql-backups
-
                                   [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
                                   ordinal=${BASH_REMATCH[1]}
                                   while :
                                   do 
                                     if [[ -f ./restore-me ]]; then
                                       mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS < ./restore-me || exit 24
-                                      echo "FLUSH PRIVILEGES;" | mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
-                                      mysql_upgrade -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
+                                      mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS sys -e "FLUSH PRIVILEGES;" || exit 25
+                                      mysql_upgrade -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS || exit 26
                                       rm ./restore-me
                                     fi 
                                     echo "Backing up mysql offline db"    
