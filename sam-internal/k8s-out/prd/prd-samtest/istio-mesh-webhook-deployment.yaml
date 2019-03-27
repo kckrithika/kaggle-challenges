@@ -4,7 +4,7 @@ metadata:
   name: istio-mesh-webhook
   namespace: mesh-control-plane
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: istio-mesh-webhook
