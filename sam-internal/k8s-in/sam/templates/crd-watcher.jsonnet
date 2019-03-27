@@ -25,7 +25,7 @@ local name = "crd-watcher";
                                 "--etcdSetDisabled=true",
                                 "--etcdGetDisabled=true",
                             ]) + (
-                                if configs.estate == "prd-samtest" then
+                                if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-sdc" || configs.estate == "xrd-sam" then
                                 [] else [
                                    "--crdSetEnabled=true",
                                    "--crdGetEnabled=true",
