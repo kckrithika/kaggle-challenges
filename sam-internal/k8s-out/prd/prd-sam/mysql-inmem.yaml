@@ -36,15 +36,6 @@ spec:
         sam_function: mysql-inmem
         sam_loadbalancer: mysql-inmem
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: pool
-                operator: In
-                values:
-                - prd-sam
       containers:
       - env:
         - name: HOST_TYPE
@@ -204,8 +195,10 @@ spec:
         - "set -e\ncd /var/lib/mysql-backups\n\n[[ `hostname` =~ -([0-9]+)$ ]] ||
           exit 1\nordinal=${BASH_REMATCH[1]}\nwhile :\ndo \n  if [[ -f ./restore-me
           ]]; then\n    mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS <
-          ./restore-me || exit 24\n    rm ./restore-me\n  fi \n  echo \"Backing up
-          mysql offline db\"    \n  mysqldump -h 127.0.0.1 --all-databases -u$MYSQL_ROOT_USER
+          ./restore-me || exit 24\n    echo \"FLUSH PRIVILEGES;\" | mysql -h 127.0.0.1
+          -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS\n    mysql_upgrade -h 127.0.0.1 -u$MYSQL_ROOT_USER
+          -p$MYSQL_ROOT_PASS\n    rm ./restore-me\n  fi \n  echo \"Backing up mysql
+          offline db\"    \n  mysqldump -h 127.0.0.1 --all-databases -u$MYSQL_ROOT_USER
           -p$MYSQL_ROOT_PASS > mysql-backup-$(date +%d).bkup  \n  echo \"Backup successful\\n
           Purging old logs\"\n  mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
           <<EOF\n  PURGE BINARY LOGS BEFORE NOW() - INTERVAL $BACKUP_INTERVAL_SECONDS
@@ -325,6 +318,8 @@ spec:
           name: conf
         - mountPath: /var/lib/mysql-backups
           name: mysql-backup
+      nodeSelector:
+        pool: prd-sam
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
