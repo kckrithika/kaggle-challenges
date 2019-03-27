@@ -11,10 +11,18 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     namespace: "mesh-control-plane",
   },
   spec: {
+    selector: {
+      matchLabels: {
+        app: "istio-init-crd-10",
+      },
+    },
     template: {
       metadata: {
         annotations: {
           "sidecar.istio.io/inject": "false",
+        },
+        labels: {
+          app: "istio-init-crd-10",
         },
       },
       spec: {
