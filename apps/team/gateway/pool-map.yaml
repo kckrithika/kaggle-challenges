@@ -3,4 +3,4 @@ apps:
    - dfw/dfw-sam_gatewayconfig
    - phx/phx-sam_gatewayconfig
  gatewayconfig-gcp:
-   - mvp/gsf-core-devmvp-gatewayconfig
+   - mvp/gsf-core-devmvp-sam2-sam
