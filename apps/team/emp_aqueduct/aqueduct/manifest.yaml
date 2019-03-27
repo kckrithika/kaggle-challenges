@@ -13,16 +13,22 @@ system:
           type: client
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:4e4a47c
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:5c2e1e4
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
-        - name: SETTINGS_PATH
-          value: ".-.prd.emp-aqueduct_func_aqueduct.emp-aqueduct"
         - name: PKI_TRUSTSTORE_DIR
           value: /etc/pki_service/ca
         - name: PKI_KEYSTORE_DIR
           value: /etc/pki_service/sfdc-aqueduct/client 
+        - name: LOGGING_JSON_STDOUT_LEVEL
+          value: ALL
+        - name: LOGGING_STDERR_LEVEL
+          value: ALL
+        - name: SFDC_POD
+          value: emp-aqueduct_func_aqueduct
+        - name: SCONE_SERVICE_NAME
+          value: emp-aqueduct
         ports:
         - containerPort: 8080
           name: ext-port
