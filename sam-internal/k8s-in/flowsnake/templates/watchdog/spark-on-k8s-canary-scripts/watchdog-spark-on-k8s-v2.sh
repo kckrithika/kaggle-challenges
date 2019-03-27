@@ -86,11 +86,11 @@ log "Waiting for SparkApplication $APP_NAME to terminate."
 # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
 i=0
 state() {
-    kcfw_log get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'
+    kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'
 }
 STATE=$(state)
 while ! $(echo $STATE | grep -P '(COMPLETED|FAILED)' > /dev/null); do
-    if ((i % 180 == 0)); then
+    if ((i % 180 == 0 & i > 0)); then
         log "...still waiting for terminal state (currently $STATE) after $i seconds. Events so far:";
         events;
     fi;
