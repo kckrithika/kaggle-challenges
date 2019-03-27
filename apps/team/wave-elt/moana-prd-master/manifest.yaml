@@ -2,14 +2,14 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-03-26 23:59:30.835242
+# generated: 2019-03-27 05:31:58.462844
 # from:  
-# by: afield
+# by: mbyne
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-9-itest
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-10-itest
       livenessProbe:
         exec:
           command: [ls]
@@ -58,11 +58,20 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-9-itest'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-10-itest'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-master}
+      - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
+          "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:+UseG1GC
+          -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails", "spark.hadoop.fs.s3a.access.key":
+          "AKIAIWPWVTTJYP6J7UMQ", "spark.hadoop.fs.s3a.connection.ssl.enabled": "true",
+          "spark.hadoop.fs.s3a.endpoint": "s3-us-west-2.amazonaws.com", "spark.hadoop.fs.s3a.proxy.host":
+          "public0-proxy1-0-prd.data.sfdc.net", "spark.hadoop.fs.s3a.proxy.port":
+          "8080", "spark.hadoop.fs.s3a.server-side-encryption-algorithm": "SSE-KMS",
+          "spark.hadoop.fs.s3a.server-side-encryption.key": "ea96b117-8eee-4314-b214-8a125eb5242e",
+          "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/jobcontroller:master-222-0546fbb
+      image: sfci/insights/jobcontroller:master-223-622b81a
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
