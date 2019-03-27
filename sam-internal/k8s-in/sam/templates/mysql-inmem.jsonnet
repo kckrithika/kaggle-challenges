@@ -298,15 +298,14 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
 |||
                                   set -e
                                   cd /var/lib/mysql-backups
-
                                   [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
                                   ordinal=${BASH_REMATCH[1]}
                                   while :
                                   do 
                                     if [[ -f ./restore-me ]]; then
                                       mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS < ./restore-me || exit 24
-                                      echo "FLUSH PRIVILEGES;" | mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
-                                      mysql_upgrade -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
+                                      mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS sys -e "FLUSH PRIVILEGES;" || exit 25
+                                      mysql_upgrade -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS || exit 26
                                       rm ./restore-me
                                     fi 
                                     echo "Backing up mysql offline db"    
@@ -453,7 +452,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                                       else
                                         cd /var/lib/mysql-backups
                                         fn=$(ls -t | head -n1)
-                                        mv -f -- "$fn" ./restore-me
+                                        mv -f -- "$fn" ./restore-me || echo "file already exists"
                                       fi
                                     fi
                                   else
@@ -542,7 +541,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                                   secretName: "mysql-pwd",
                                 },
                             },
-                        ],
+                        ] + if (configs.estate == "prd-samdev") then [{ hostPath: { path: "/var/mysql-backup" }, name: "mysql-backup" }] else [],
                     },
                 },
               updateStrategy: {
@@ -551,27 +550,28 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                     },
                   type: "RollingUpdate",
                 },
-                volumeClaimTemplates: [
-                    {
-                      metadata: {
-                          annotations: {
-                              "volume.beta.kubernetes.io/storage-class": "standard-ceph0-hdd-pool",
-                            },
-                          creationTimestamp: null,
-                          name: "mysql-backup",
+                volumeClaimTemplates: if configs.estate == "prd-sam" then [
+                      {
+                        metadata: {
+                            annotations: {
+                                "volume.beta.kubernetes.io/storage-class": "standard-ceph0-hdd-pool",
+                              },
+                            creationTimestamp: null,
+                            name: "mysql-backup",
+                          },
+                        spec: {
+                            accessModes: [
+                                "ReadWriteOnce",
+                              ],
+                            resources: {
+                                requests: {
+                                    storage: "100Gi",
+                                  },
+                              },
+                          },
                         },
-                      spec: {
-                          accessModes: [
-                              "ReadWriteOnce",
-                            ],
-                          resources: {
-                              requests: {
-                                  storage: "100Gi",
-                                },
-                            },
-                        },
-                    },
-                ],
-            },
+                  ] else [],
+                },
+
 
 } else "SKIP"
