@@ -2,9 +2,9 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-03-22 21:26:33.478134
+# generated: 2019-03-27 00:15:51.558648
 # from:  
-# by: agitelman
+# by: afield
 apiVersion: v1
 system:
   functions:
@@ -64,7 +64,7 @@ system:
       - {name: DEPLOYMENT_ID, value: release}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/datapoolservice:release-99-bf4a982
+      image: sfci/insights/jobcontroller:release-100-bf4a982
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90

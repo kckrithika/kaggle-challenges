@@ -2,9 +2,9 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-03-26 19:13:14.777033
+# generated: 2019-03-26 23:59:30.835242
 # from:  
-# by: mbyne
+# by: afield
 apiVersion: v1
 system:
   functions:
@@ -62,7 +62,7 @@ system:
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-master}
       - {name: DEPLOYMENT_ID, value: master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/jobcontroller:master-221-72b5664
+      image: sfci/insights/jobcontroller:master-222-0546fbb
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
