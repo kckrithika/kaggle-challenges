@@ -47,41 +47,46 @@ log() {
     fi
 }
 
-# Run kubectl in namespace, plus prefix output to disambiguate interleaving later
+# Run kubectl in namespace. Prefer kcfw_log when possible
 kcfw() {
+  kubectl -n flowsnake-watchdog "$@"
+}
+
+# Run kubectl in namespace, plus prefix output to disambiguate interleaving later
+kcfw_log() {
   # pipefail is set, so sed won't lose any failure exit code returned by kubectl
-  kubectl -n flowsnake-watchdog "$@" 2>&1 | format
+  kcfw "$@" 2>&1 | format
 }
 
 events() {
     # awk magic prints lines after search term found: https://stackoverflow.com/a/17988834
-    kcfw describe sparkapplication $APP_NAME | awk '/Events:/{flag=1;next}flag'
+    kcfw_log describe sparkapplication $APP_NAME | awk '/Events:/{flag=1;next}flag'
 }
 
 log "Beginning $APP_NAME test"
 # Sanity-check kubeapi connectivity
-kcfw cluster-info
+kcfw_log cluster-info
 
 # ------ Clean up ---------
 log "Cleaning up $APP_NAME resources from prior runs"
 # || true because exit code 1 if spark application can't be found.
-kcfw delete sparkapplication $APP_NAME || true
+kcfw_log delete sparkapplication $APP_NAME || true
 # kubectl returns success even if no pods match the label selector. But it seems you get an
 # error if you match a pod and then that pod exits on its own at just the wrong time. So || true here too.
-kcfw delete pod -l $SELECTOR || true
+kcfw_log delete pod -l $SELECTOR || true
 # Wait for pods from prior runs to delete.
-while ! $(kcfw get pod -l $SELECTOR | grep "No resources" > /dev/null); do sleep 1; done;
+while ! $(kcfw_log get pod -l $SELECTOR | grep "No resources" > /dev/null); do sleep 1; done;
 
 # ------ Run ---------
 log "Creating SparkApplication $APP_NAME"
-kcfw create -f $SPEC
+kcfw_log create -f $SPEC
 START_TIME=$(epoch)
 
 log "Waiting for SparkApplication $APP_NAME to terminate."
 # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
 i=0
 state() {
-    kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'
+    kcfw_log get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'
 }
 STATE=$(state)
 while ! $(echo $STATE | grep -P '(COMPLETED|FAILED)' > /dev/null); do
