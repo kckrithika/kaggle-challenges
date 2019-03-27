@@ -29,6 +29,8 @@ system:
           value: emp-aqueduct_func_aqueduct
         - name: SCONE_SERVICE_NAME
           value: emp-aqueduct
+        - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
+          value: /etc/pki/ca-trust/extracted/java/cacerts
         ports:
         - containerPort: 8080
           name: ext-port
