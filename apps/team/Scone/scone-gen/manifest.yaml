@@ -33,10 +33,9 @@ system:
           path: /manage/health
           port: 15372
       readinessProbe:
-        initialDelaySeconds: 500
         timeoutSeconds: 10
         httpGet:
-          path: /manage/health
+          path: /manage/ready
           port: 15372
       terminationMessagePolicy: FallbackToLogsOnError
     volumes:
