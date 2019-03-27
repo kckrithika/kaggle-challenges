@@ -30,7 +30,7 @@ system:
           readOnly: true
         livenessProbe:
           httpGet:
-            path: /
+            path: /swagger.json?liveness-check
             port: 5000
           initialDelaySeconds: 120
       volumes:
