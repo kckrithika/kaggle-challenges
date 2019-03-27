@@ -19,6 +19,10 @@ system:
           value: "prod" # Use whatever environment your kpod uses
         - name: SETTINGS_PATH
           value: ".-.prd.emp-aqueduct_func_aqueduct.emp-aqueduct"
+        - name: PKI_TRUSTSTORE_DIR
+          value: /etc/pki_service/ca
+        - name: PKI_KEYSTORE_DIR
+          value: /etc/pki_service/sfdc-aqueduct/client 
         ports:
         - containerPort: 8080
           name: ext-port
