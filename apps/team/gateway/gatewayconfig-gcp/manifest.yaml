@@ -15,8 +15,6 @@ system:
     - name: server-cert
       maddogCert:
         type: server
-        lbnames:
-        - gatewayconfiglb
     - name: logvol
       hostPath:
         path: /home/sfdc-gatewayconfig/logs
