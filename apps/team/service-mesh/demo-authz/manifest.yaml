@@ -21,7 +21,7 @@ system:
       livenessProbe:
         exec:
           command: ["/bin/true"]
-        initialDelaySeconds: 20
+        initialDelaySeconds: 30
     - name: beacon
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
@@ -33,7 +33,7 @@ system:
         exec:
           command:
           - /home/scone/is-alive.sh
-        initialDelaySeconds: 5
+        initialDelaySeconds: 10
     volumes:
     - name: tls-client-cert
       maddogCert:
