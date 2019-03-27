@@ -1,4 +1,4 @@
-color: green
+color: blue
 db:
   connectionCount: 25
   hostName: gkr1ice3-db1-1-prd-vip.eng.sfdc.net
@@ -23,6 +23,6 @@ images:
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:d48544
 name: na45
-nonce: 1553709546561961040
+nonce: 1553715470631384967
 replicaCount: 1
 settingsSuperPod: sp2
