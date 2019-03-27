@@ -238,9 +238,9 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
         env: env,
     },
 
-    config_gen_cadvisor_init_container(config_name, template, manifest, output_path, env):: 
+    config_gen_cadvisor_init_container(config_name, template, manifest, output_path, env)::
         $.config_gen_rsyslog_init_container(config_name, template, manifest, output_path, env) {
-            volumeMounts: $.cadvisor_yaml_volume_mounts() + $.cadvisor_config_gen_tpl_volume_mounts()
+            volumeMounts: $.cadvisor_yaml_volume_mounts() + $.cadvisor_config_gen_tpl_volume_mounts(),
         },
 
     ## file based specific config gen
@@ -354,7 +354,7 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
                 containerPort: 15373,
             },
         ],
-        livenessProbe:{
+        livenessProbe: {
           exec: {
             command: [
                 './bin/is-alive',
@@ -363,7 +363,7 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
           initialDelaySeconds: 20,
           periodSeconds: 5,
         },
-        readinessProbe:{
+        readinessProbe: {
           exec: {
             command: [
                 './bin/is-ready',

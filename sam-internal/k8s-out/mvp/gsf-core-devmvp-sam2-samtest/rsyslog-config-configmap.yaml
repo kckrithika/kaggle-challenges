@@ -106,9 +106,10 @@ data:
     \ set $!filename = field($!metadata!filename, 47, 5);\n  set $!datacenter = \"<%=config.include?(:kingdom)
     ? config.kingdom : 'mvp'%>\";\n  set $!substrate = \"<%=config.include?(:substrate)
     ? config.substrate : 'gcp' %>\";\n  set $!account = \"<%=config.include?(:account_name)
-    ? config.account_name : config.project_id %>\";\n  set $!host = field($!filename,
-    46, 3);\n  set $!pod = field($!host, 45, 1);\n  set $!apptype = field($!filename,
-    46, 2);\n  set $!role = field($!filename, 46, 4);\n  set $!filedate = field($!filename,
+    ? config.account_name : config.project_id %>\";\n  set $!region = \"<%=config.region%>\";\n
+    \ set $!zone = \"<%=config.zone%>\";\n  set $!host = field($!filename, 46, 3);\n
+    \ set $!pod = field($!host, 45, 1);\n  set $!apptype = field($!filename, 46, 2);\n
+    \ set $!role = field($!filename, 46, 4);\n  set $!filedate = field($!filename,
     46, 5);\n  set $!appversion = field($!filename, 46, 6);\n  set $!uuid = $!ts_raw
     & field($msg, 96, 16) & field($!host, 45, 4) & \"-\" & field($!host, 45, 5);\n
     \ \n  <%# Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_core\"\n

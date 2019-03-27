@@ -1,0 +1,202 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  annotations:
+    seccomp.security.alpha.kubernetes.io/pod: docker/default
+  labels:
+    pcn: deploy
+  name: cadvisor-exporter-daemonset
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      name: cadvisor-exporter-daemonset
+  template:
+    metadata:
+      labels:
+        name: cadvisor-exporter-daemonset
+    spec:
+      automountServiceAccountToken: false
+      containers:
+      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc_rsyslog_gcp:12-8e9921811d4c5a6c0e48ea8f1ca306f42b922e51
+        name: rsyslog-funnel-forwarder
+        ports:
+        - containerPort: 2003
+          protocol: UDP
+        resources:
+          limits:
+            cpu: 300m
+            memory: 1024Mi
+          requests:
+            cpu: 150m
+            memory: 200Mi
+        volumeMounts:
+        - mountPath: /etc/rsyslog.conf
+          name: cadvisor-config-tpl
+          subPath: rsyslog.conf
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+      - command:
+        - /app/cadvisor_scraper.py
+        - -f
+        - /etc/cadvisor/scraper.yaml
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-cadvisor-scraper:v0.1alpha3
+        name: cadvisor-scraper
+        resources:
+          limits:
+            cpu: 300m
+            memory: 1024Mi
+          requests:
+            cpu: 150m
+            memory: 200Mi
+        volumeMounts:
+        - mountPath: /etc/cadvisor
+          name: cadvisor-yaml
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+      - image: k8s.gcr.io/cadvisor:v0.30.2
+        name: sfdc-cadvisor
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 300m
+            memory: 1024Mi
+          requests:
+            cpu: 150m
+            memory: 200Mi
+        volumeMounts:
+        - mountPath: /rootfs
+          name: rootfs
+        - mountPath: /var/run
+          name: var-run
+        - mountPath: /sys
+          name: sys
+        - mountPath: /var/lib/docker
+          name: docker
+        - mountPath: /dev/disk
+          name: disk
+      - args:
+        - --switchboard=switchboard.service-mesh.svc:15001
+        env:
+        - name: SFDC_ENVIRONMENT
+          value: mesh
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+        livenessProbe:
+          exec:
+            command:
+            - ./bin/is-alive
+          initialDelaySeconds: 20
+          periodSeconds: 5
+        name: sherpa
+        ports:
+        - containerPort: 7012
+          name: grpc-in
+        - containerPort: 7443
+          name: grpc-tls-in
+        - containerPort: 15373
+          name: sherpa-adm
+        readinessProbe:
+          exec:
+            command:
+            - ./bin/is-ready
+          initialDelaySeconds: 15
+          periodSeconds: 5
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: "1"
+            memory: 1Gi
+        volumeMounts:
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
+      initContainers:
+      - command:
+        - /usr/bin/ruby
+        - /app/config_gen.rb
+        - -t
+        - /templates/cadvisor/scraper.yaml.erb
+        - -o
+        - /etc/cadvisor/scraper.yaml
+        env:
+        - name: FORWARD_PORT
+          value: "2003"
+        - name: CADVISOR_PORT
+          value: "8080"
+        - name: CADVISOR_HOST
+          value: localhost
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9
+        name: config-gen-scraper
+        volumeMounts:
+        - mountPath: /etc/cadvisor
+          name: cadvisor-yaml
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+        - mountPath: /templates/cadvisor
+          name: cadvisor-config-tpl
+      - command:
+        - /usr/bin/ruby
+        - /app/config_gen.rb
+        - -t
+        - /templates/cadvisor/forwarder.conf.erb
+        - -o
+        - /etc/rsyslog.d/30-forwarder.conf
+        env:
+        - name: LISTEN_PORT
+          value: "2003"
+        - name: FUNNEL_VIP
+          value: ajnafunneldirecttls.funnel.localhost.mesh.force.com
+        - name: FUNNEL_PORT
+          value: "5442"
+        - name: FUNNEL_HTTPS
+          value: "off"
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9
+        name: config-gen-forwarder
+        volumeMounts:
+        - mountPath: /etc/cadvisor
+          name: cadvisor-yaml
+        - mountPath: /etc/rsyslog.d
+          name: rsyslog-config
+        - mountPath: /templates/cadvisor
+          name: cadvisor-config-tpl
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: rsyslog-config
+      - emptyDir: {}
+        name: cadvisor-yaml
+      - configMap:
+          name: cadvisor-configmap
+        name: cadvisor-config-tpl
+      - hostPath:
+          path: /
+        name: rootfs
+      - hostPath:
+          path: /var/run
+        name: var-run
+      - hostPath:
+          path: /sys
+        name: sys
+      - hostPath:
+          path: /var/lib/docker
+        name: docker
+      - hostPath:
+          path: /dev/disk
+        name: disk
+      - maddogCert:
+          type: client
+        name: tls-client-cert
+      - maddogCert:
+          type: server
+        name: tls-server-cert
+  templateGeneration: 2
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate

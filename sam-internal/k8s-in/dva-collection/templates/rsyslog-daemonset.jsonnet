@@ -16,7 +16,7 @@ local baseEnv = [
                 key: "broker_vip",
             },
         },
-    }
+    },
 ];
 
 local defaultEnv = baseEnv + [
@@ -28,7 +28,7 @@ local defaultEnv = baseEnv + [
                 key: "general_topic",
             },
         },
-    }
+    },
 ];
 
 local casamEnv = baseEnv + [
@@ -40,7 +40,7 @@ local casamEnv = baseEnv + [
                 key: "casam_topic",
             },
         },
-    }
+    },
 ];
 
 local initContainers = [

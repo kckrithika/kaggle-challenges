@@ -148,7 +148,7 @@ spec:
         - /usr/bin/ruby
         - /app/config_gen.rb
         - -m
-        - /templates/manifests.yaml
+        - /templates/rsyslog/manifests.yaml
         env:
         - name: BROKER_VIP
           valueFrom:
@@ -165,13 +165,13 @@ spec:
         volumeMounts:
         - mountPath: /etc/rsyslog.d
           name: rsyslog-config
-        - mountPath: /templates
+        - mountPath: /templates/rsyslog
           name: rsyslog-config-tpl
       - command:
         - /usr/bin/ruby
         - /app/config_gen.rb
         - -t
-        - /templates/core.conf.erb
+        - /templates/rsyslog/core.conf.erb
         - -o
         - /etc/rsyslog.d/50-casam.conf
         env:
@@ -190,13 +190,13 @@ spec:
         volumeMounts:
         - mountPath: /etc/rsyslog.d
           name: rsyslog-config
-        - mountPath: /templates
+        - mountPath: /templates/rsyslog
           name: rsyslog-config-tpl
       - command:
         - /usr/bin/ruby
         - /app/config_gen.rb
         - -t
-        - /templates/general.conf.erb
+        - /templates/rsyslog/general.conf.erb
         - -o
         - /etc/rsyslog.d/50-solr.conf
         env:
@@ -223,13 +223,13 @@ spec:
         volumeMounts:
         - mountPath: /etc/rsyslog.d
           name: rsyslog-config
-        - mountPath: /templates
+        - mountPath: /templates/rsyslog
           name: rsyslog-config-tpl
       - command:
         - /usr/bin/ruby
         - /app/config_gen.rb
         - -t
-        - /templates/general.conf.erb
+        - /templates/rsyslog/general.conf.erb
         - -o
         - /etc/rsyslog.d/50-solr-jetty.conf
         env:
@@ -256,13 +256,13 @@ spec:
         volumeMounts:
         - mountPath: /etc/rsyslog.d
           name: rsyslog-config
-        - mountPath: /templates
+        - mountPath: /templates/rsyslog
           name: rsyslog-config-tpl
       - command:
         - /usr/bin/ruby
         - /app/config_gen.rb
         - -t
-        - /templates/general.conf.erb
+        - /templates/rsyslog/general.conf.erb
         - -o
         - /etc/rsyslog.d/50-casam-jvm.conf
         env:
@@ -287,13 +287,13 @@ spec:
         volumeMounts:
         - mountPath: /etc/rsyslog.d
           name: rsyslog-config
-        - mountPath: /templates
+        - mountPath: /templates/rsyslog
           name: rsyslog-config-tpl
       - command:
         - /usr/bin/ruby
         - /app/config_gen.rb
         - -t
-        - /templates/general.conf.erb
+        - /templates/rsyslog/general.conf.erb
         - -o
         - /etc/rsyslog.d/50-casam-jvmgc.conf
         env:
@@ -320,7 +320,7 @@ spec:
         volumeMounts:
         - mountPath: /etc/rsyslog.d
           name: rsyslog-config
-        - mountPath: /templates
+        - mountPath: /templates/rsyslog
           name: rsyslog-config-tpl
       - command:
         - /usr/sbin/rsyslogd

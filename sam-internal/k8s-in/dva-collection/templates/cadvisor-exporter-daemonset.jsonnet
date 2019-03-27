@@ -18,7 +18,7 @@ local scraperInitEnv = [
         name: "CADVISOR_HOST",
         value: "localhost",
 
-    }
+    },
 ];
 
 local forwarderInitEnv = [
@@ -68,7 +68,7 @@ if configs.kingdom == "mvp" then {
         name: "cadvisor-exporter-daemonset",
         namespace: appNamespace,
         annotations: {
-            "seccomp.security.alpha.kubernetes.io/pod": "docker/default"
+            "seccomp.security.alpha.kubernetes.io/pod": "docker/default",
         },
         labels: {} + configs.pcnEnableLabel,
     },
@@ -162,10 +162,9 @@ if configs.kingdom == "mvp" then {
                     },
                     cadvisorutils.service_discovery_container(),
                 ],
-                volumes+: cadvisorutils.rsyslog_config_volume() +
-                          cadvisorutils.cadvisor_yaml_volume() +
+                volumes+: cadvisorutils.cadvisor_yaml_volume() +
                           cadvisorutils.cadvisor_config_gen_tpl_volume() +
-                          cadvisorutils.sfdc_scraper_volume() + 
+                          cadvisorutils.sfdc_scraper_volume() +
                           cadvisorutils.sherpa_volume(),
             },
         },
