@@ -2,6 +2,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local configs = import "config.jsonnet";
 local kingdom = std.extVar("kingdom");
+local estate = std.extVar("estate");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
@@ -119,6 +120,7 @@ else
                         # Watchdogs run as user sfdc (7337) per https://git.soma.salesforce.com/sam/sam/blob/master/docker/hypersam/Dockerfile
                         initContainers: [ madkub_common.init_container(cert_name, user=7337), ],
                         restartPolicy: "Always",
+                        # In PCL, Madkub server runs on flannel network and replies 403 (forbidden) to pod running on host network
                         hostNetwork: if flowsnakeconfig.is_public_cloud then false else true,
                         containers: [
                             {
@@ -141,7 +143,12 @@ else
                                     "-alertThreshold=1m",
                                     # Kill and fail test if it runs for longer than this.
                                     "-cliCheckerTimeout=15m",
-                                ],
+                                ] + (if flowsnakeconfig.is_public_cloud then [
+                                # In PCL, watchdog runs on flannel network and host name becomes pod name, so need to explicitly pass in kingdom
+                                # and estate to tag metrics.
+                                    "-kingdom="+kingdom,
+                                    "-estate="+estate,
+                                ] else []),
                                 name: "watchdog",
                                 resources: {
                                     requests: {
