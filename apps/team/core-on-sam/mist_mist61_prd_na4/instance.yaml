@@ -1,4 +1,4 @@
-color: green
+color: blue
 db:
   connectionCount: 25
   hostName: mist61ice1-db1-1-prd.eng.sfdc.net
@@ -19,11 +19,11 @@ images:
   coreAppOverrides: sfci/casam/coreapp_overrides:ef1a7d
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
-  sequencer: sfci/casam/sequencer:b4749d
+  sequencer: sfci/casam/sequencer:9ee1ca
   sfProxy: sfci/frontend-gateway/sfproxy:659513c
   switchboard: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na4
-nonce: 1553807837805659320
+nonce: 1553809736446533535
 replicaCount: 1
 settingsSuperPod: sp2
