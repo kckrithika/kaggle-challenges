@@ -94,7 +94,7 @@ spec:
         - name: SFDC_ENVIRONMENT
           value: mesh
         - name: SETTINGS_SERVICENAME
-          value: cadvisor-exporter-daemonset
+          value: collection-agent
         - name: FUNCTION_NAMESPACE
           valueFrom:
             fieldRef:
@@ -111,7 +111,7 @@ spec:
               apiVersion: v1
               fieldPath: status.podIP
         - name: FUNCTION
-          value: cadvisor-exporter-daemonset
+          value: collection-agent
         - name: KINGDOM
           value: mvp
         - name: ESTATE
@@ -121,9 +121,9 @@ spec:
         - name: SETTINGS_SUPERPOD
           value: '-'
         - name: SETTINGS_PATH
-          value: mesh.-.mvp.-.cadvisor-exporter-daemonset
+          value: mesh.-.mvp.-.collection-agent
         - name: SFDC_SETTINGS_PATH
-          value: mesh.-.mvp.-.cadvisor-exporter-daemonset
+          value: mesh.-.mvp.-.collection-agent
         - name: SFDC_METRICS_SERVICE_HOST
           value: funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net
         - name: SFDC_METRICS_SERVICE_PORT

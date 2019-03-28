@@ -336,7 +336,7 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
             },
             {
                 name: "SETTINGS_SERVICENAME",
-                value: "cadvisor-exporter-daemonset",
+                value: "collection-agent",
             },
             {
                 name: "FUNCTION_NAMESPACE",
@@ -367,7 +367,7 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
             },
             {
                 name: "FUNCTION",
-                value: "cadvisor-exporter-daemonset",
+                value: "collection-agent",
             },
             {
                 name: "KINGDOM",
@@ -387,11 +387,11 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
             },
             {
                 name: "SETTINGS_PATH",
-                value: 'mesh.-.mvp.-.cadvisor-exporter-daemonset',
+                value: 'mesh.-.mvp.-.collection-agent',
             },
             {
                 name: "SFDC_SETTINGS_PATH",
-                value: 'mesh.-.mvp.-.cadvisor-exporter-daemonset',
+                value: 'mesh.-.mvp.-.collection-agent',
             },
             {
                 name: "SFDC_METRICS_SERVICE_HOST",
