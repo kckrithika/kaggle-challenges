@@ -29,7 +29,7 @@ system:
         medium: Memory
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/kbotha/gatewayconfig:2019-03-26-gcp
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/kbotha/gatewayconfig:2019-03-27-gcp
       env:
       - name: PKI_CA_DIR
         value: /server-certs
