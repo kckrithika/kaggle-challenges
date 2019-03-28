@@ -63,7 +63,7 @@ system:
           path: /manage/health
           port: 15372
     - name: sherpa
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
       ports:
       - containerPort: 7442
         name: http1-tls-in
@@ -89,7 +89,7 @@ system:
           command:
           - ./bin/is-ready
     - name: beacon
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:f804d14
       args:
       - -endpoint
       - gateway/gateway-service:DATACENTER_ALLENV:7442
