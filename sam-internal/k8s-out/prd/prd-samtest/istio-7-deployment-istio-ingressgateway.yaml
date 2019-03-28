@@ -84,8 +84,6 @@ spec:
       - args:
         - proxy
         - router
-        - --discoveryRefreshDelay
-        - 1s
         - --drainDuration
         - 45s
         - --parentShutdownDuration

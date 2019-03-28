@@ -105,8 +105,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             args: [
               "proxy",
               "router",
-              "--discoveryRefreshDelay",
-              "1s",
               "--drainDuration",
               "45s",
               "--parentShutdownDuration",
