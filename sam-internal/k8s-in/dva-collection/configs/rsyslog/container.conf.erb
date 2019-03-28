@@ -39,7 +39,7 @@ template(name="kubernetes_event" type="list") {
   property(name="$!logdata!log" outname="message" format="jsonf")
   constant(value=",")
   property(name="$!severity" outname="severity" format="jsonfr")
-  constant(value="}}\n")
+  constant(value="}}")
 }
 
 <%# rsyslog base annotations %>
@@ -57,7 +57,7 @@ template(name = "kubernetes_annotation_rsyslog_base" type="list") {
   property(name="$!region" outname="region" format="jsonfr")
   constant(value=",")
   property(name="$!zone" outname="zone" format="jsonfr")
-  constant(value="}}\n")
+  constant(value="}}")
 }
 
 <%# container logs anotations %>
@@ -72,7 +72,8 @@ ruleset(name = "kubernetes_dockercontainers_ruleset") {
   action(type="mmjsonparse" cookie="" container="$!logdata")
   
   set $!hostname = "<%=config.node%>";
-
+  set $!owner = "none";
+  
   if $!logdata!stream == 'stderr' then {
     set $!severity = "error";
   } else {
