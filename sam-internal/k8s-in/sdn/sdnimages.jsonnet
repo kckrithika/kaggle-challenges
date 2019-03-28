@@ -45,8 +45,8 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 4 - Canary sites in Prod
         "4": {
-            hypersdn: "v-0001009-1b641ae3",
-            bird: "v-0000014-b0a5951d",
+            hypersdn: "2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d",
+            bird: "503-94b968cf67a338280f71a5c932f0956d13e982bb",
             hyperelk: "v-0000102-91c9122c",
             },
 
@@ -66,7 +66,7 @@ local kingdom = std.extVar("kingdom");
             "2"
         else if (kingdom == "prd") then
             "3"
-        else if (kingdom == "frf") then
+        else if (kingdom == "frf") || (kingdom == "fra") then
             "4"
         else
             "5"
