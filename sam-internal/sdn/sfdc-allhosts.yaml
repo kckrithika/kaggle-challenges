@@ -138,6 +138,42 @@ hosts:
   controlestate: cdg-sam
   devicerole: samcompute
   estate: cdg-sam_gater
+  hostname: shared0-samminiongater1-4-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  rack: a12-dh14
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
+  hostname: shared0-samminiongater1-5-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  rack: a12-dh14
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
+  hostname: shared0-samminiongater1-6-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  rack: a12-dh14
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
+  hostname: shared0-samminiongater1-7-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  rack: e31-dh14
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
   hostname: shared0-samminiongater2-1-cdg.ops.sfdc.net
   kingdom: cdg
   pod: none
@@ -148,6 +184,42 @@ hosts:
   devicerole: samcompute
   estate: cdg-sam_gater
   hostname: shared0-samminiongater2-2-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  rack: z15-dh14
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
+  hostname: shared0-samminiongater2-3-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  rack: z15-dh14
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
+  hostname: shared0-samminiongater2-4-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  rack: z15-dh14
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
+  hostname: shared0-samminiongater2-5-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  rack: z15-dh14
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
+  hostname: shared0-samminiongater2-6-cdg.ops.sfdc.net
   kingdom: cdg
   pod: none
   rack: z15-dh14
@@ -3666,6 +3738,42 @@ hosts:
   controlestate: dfw-sam
   devicerole: samcompute
   estate: dfw-sam_gater
+  hostname: shared0-samminiongater1-4-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: a02-dh2
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sam_gater
+  hostname: shared0-samminiongater1-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: a02-dh2
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sam_gater
+  hostname: shared0-samminiongater1-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: a02-dh2
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sam_gater
+  hostname: shared0-samminiongater1-7-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: a02-dh2
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sam_gater
   hostname: shared0-samminiongater2-1-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
@@ -3679,6 +3787,42 @@ hosts:
   kingdom: dfw
   pod: none
   rack: j10-dh4
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sam_gater
+  hostname: shared0-samminiongater2-3-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: f33-dh4
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sam_gater
+  hostname: shared0-samminiongater2-4-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: f33-dh4
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sam_gater
+  hostname: shared0-samminiongater2-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: f33-dh4
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sam_gater
+  hostname: shared0-samminiongater2-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: f33-dh4
   superpod: none
 - bomrolename: sam_minion_gatewayconfig
   controlestate: dfw-sam
@@ -7590,6 +7734,42 @@ hosts:
   controlestate: frf-sam
   devicerole: samcompute
   estate: frf-sam_gater
+  hostname: shared0-samminiongater1-4-frf.ops.sfdc.net
+  kingdom: frf
+  pod: none
+  rack: d16-m306
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: frf-sam
+  devicerole: samcompute
+  estate: frf-sam_gater
+  hostname: shared0-samminiongater1-5-frf.ops.sfdc.net
+  kingdom: frf
+  pod: none
+  rack: a21-m306
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: frf-sam
+  devicerole: samcompute
+  estate: frf-sam_gater
+  hostname: shared0-samminiongater1-6-frf.ops.sfdc.net
+  kingdom: frf
+  pod: none
+  rack: a21-m306
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: frf-sam
+  devicerole: samcompute
+  estate: frf-sam_gater
+  hostname: shared0-samminiongater1-7-frf.ops.sfdc.net
+  kingdom: frf
+  pod: none
+  rack: a21-m306
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: frf-sam
+  devicerole: samcompute
+  estate: frf-sam_gater
   hostname: shared0-samminiongater2-1-frf.ops.sfdc.net
   kingdom: frf
   pod: none
@@ -7603,6 +7783,42 @@ hosts:
   kingdom: frf
   pod: none
   rack: a19-m306
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: frf-sam
+  devicerole: samcompute
+  estate: frf-sam_gater
+  hostname: shared0-samminiongater2-3-frf.ops.sfdc.net
+  kingdom: frf
+  pod: none
+  rack: d04-m305
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: frf-sam
+  devicerole: samcompute
+  estate: frf-sam_gater
+  hostname: shared0-samminiongater2-4-frf.ops.sfdc.net
+  kingdom: frf
+  pod: none
+  rack: d04-m305
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: frf-sam
+  devicerole: samcompute
+  estate: frf-sam_gater
+  hostname: shared0-samminiongater2-5-frf.ops.sfdc.net
+  kingdom: frf
+  pod: none
+  rack: d04-m305
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: frf-sam
+  devicerole: samcompute
+  estate: frf-sam_gater
+  hostname: shared0-samminiongater2-6-frf.ops.sfdc.net
+  kingdom: frf
+  pod: none
+  rack: d04-m305
   superpod: none
 - bomrolename: sam_minion_iot
   controlestate: frf-sam
@@ -15636,6 +15852,42 @@ hosts:
   controlestate: iad-sam
   devicerole: samcompute
   estate: iad-sam_gater
+  hostname: shared0-samminiongater1-5-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  rack: g17-10b
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_gater
+  hostname: shared0-samminiongater1-6-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  rack: g17-10b
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_gater
+  hostname: shared0-samminiongater1-7-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  rack: g17-10b
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_gater
+  hostname: shared0-samminiongater1-8-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  rack: g17-10b
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_gater
   hostname: shared0-samminiongater2-1-iad.ops.sfdc.net
   kingdom: iad
   pod: none
@@ -15667,6 +15919,42 @@ hosts:
   kingdom: iad
   pod: none
   rack: d05-9a
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_gater
+  hostname: shared0-samminiongater2-5-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  rack: a09-9a
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_gater
+  hostname: shared0-samminiongater2-6-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  rack: d09-9a
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_gater
+  hostname: shared0-samminiongater2-7-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  rack: c13-9b
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_gater
+  hostname: shared0-samminiongater2-8-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  rack: c13-9b
   superpod: none
 - bomrolename: sam_minion_iot
   controlestate: iad-sam
@@ -25131,6 +25419,42 @@ hosts:
   controlestate: par-sam
   devicerole: samcompute
   estate: par-sam_gater
+  hostname: shared0-samminiongater1-4-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: b02-1r111
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_gater
+  hostname: shared0-samminiongater1-5-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: b02-1r111
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_gater
+  hostname: shared0-samminiongater1-6-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: b02-1r111
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_gater
+  hostname: shared0-samminiongater1-7-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: b02-1r111
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_gater
   hostname: shared0-samminiongater2-1-par.ops.sfdc.net
   kingdom: par
   pod: none
@@ -25144,6 +25468,42 @@ hosts:
   kingdom: par
   pod: none
   rack: e15-1r113
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_gater
+  hostname: shared0-samminiongater2-3-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: b03-1r111
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_gater
+  hostname: shared0-samminiongater2-4-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: b03-1r111
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_gater
+  hostname: shared0-samminiongater2-5-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: b03-1r111
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: par-sam
+  devicerole: samcompute
+  estate: par-sam_gater
+  hostname: shared0-samminiongater2-6-par.ops.sfdc.net
+  kingdom: par
+  pod: none
+  rack: b03-1r111
   superpod: none
 - bomrolename: sam_minion_iot
   controlestate: par-sam
@@ -29991,6 +30351,42 @@ hosts:
   controlestate: phx-sam
   devicerole: samcompute
   estate: phx-sam_gater
+  hostname: shared0-samminiongater1-4-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: p31-40
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_gater
+  hostname: shared0-samminiongater1-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: s35-40
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_gater
+  hostname: shared0-samminiongater1-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: f26-40
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_gater
+  hostname: shared0-samminiongater1-7-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: k53-40
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_gater
   hostname: shared0-samminiongater2-1-phx.ops.sfdc.net
   kingdom: phx
   pod: none
@@ -30004,6 +30400,42 @@ hosts:
   kingdom: phx
   pod: none
   rack: w42-40
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_gater
+  hostname: shared0-samminiongater2-3-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: p33-40
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_gater
+  hostname: shared0-samminiongater2-4-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: h32-40
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_gater
+  hostname: shared0-samminiongater2-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: j54-40
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sam_gater
+  hostname: shared0-samminiongater2-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: j52-40
   superpod: none
 - bomrolename: sam_minion_gatewayconfig
   controlestate: phx-sam
@@ -39756,6 +40188,42 @@ hosts:
   controlestate: ukb-sam
   devicerole: samcompute
   estate: ukb-sam_gater
+  hostname: shared0-samminiongater1-4-ukb.ops.sfdc.net
+  kingdom: ukb
+  pod: none
+  rack: n01-ks31
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: ukb-sam
+  devicerole: samcompute
+  estate: ukb-sam_gater
+  hostname: shared0-samminiongater1-5-ukb.ops.sfdc.net
+  kingdom: ukb
+  pod: none
+  rack: n01-ks31
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: ukb-sam
+  devicerole: samcompute
+  estate: ukb-sam_gater
+  hostname: shared0-samminiongater1-6-ukb.ops.sfdc.net
+  kingdom: ukb
+  pod: none
+  rack: n01-ks31
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: ukb-sam
+  devicerole: samcompute
+  estate: ukb-sam_gater
+  hostname: shared0-samminiongater1-7-ukb.ops.sfdc.net
+  kingdom: ukb
+  pod: none
+  rack: n01-ks31
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: ukb-sam
+  devicerole: samcompute
+  estate: ukb-sam_gater
   hostname: shared0-samminiongater2-1-ukb.ops.sfdc.net
   kingdom: ukb
   pod: none
@@ -39769,6 +40237,42 @@ hosts:
   kingdom: ukb
   pod: none
   rack: m08-ks31
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: ukb-sam
+  devicerole: samcompute
+  estate: ukb-sam_gater
+  hostname: shared0-samminiongater2-3-ukb.ops.sfdc.net
+  kingdom: ukb
+  pod: none
+  rack: q02-ks31
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: ukb-sam
+  devicerole: samcompute
+  estate: ukb-sam_gater
+  hostname: shared0-samminiongater2-4-ukb.ops.sfdc.net
+  kingdom: ukb
+  pod: none
+  rack: q02-ks31
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: ukb-sam
+  devicerole: samcompute
+  estate: ukb-sam_gater
+  hostname: shared0-samminiongater2-5-ukb.ops.sfdc.net
+  kingdom: ukb
+  pod: none
+  rack: q02-ks31
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: ukb-sam
+  devicerole: samcompute
+  estate: ukb-sam_gater
+  hostname: shared0-samminiongater2-6-ukb.ops.sfdc.net
+  kingdom: ukb
+  pod: none
+  rack: q02-ks31
   superpod: none
 - bomrolename: sam_minion_kingdom_caas
   controlestate: ukb-sam
