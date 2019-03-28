@@ -13,10 +13,14 @@ system:
           type: client
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:a3a6962 
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:516a249 
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
+        - name: SETTINGS_SERVICENAME
+          value: emp-aqueduct
+        - name: SFDC_POD 
+          value: emp-aqueduct_func_aqueduct 
         ports:
         - containerPort: 8080
           name: ext-port
