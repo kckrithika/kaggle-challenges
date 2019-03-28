@@ -22,6 +22,10 @@ system:
         - -o 0,1,9
         - -x 120
         - -s mist66
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       livenessProbe:
         exec:
           command: ["true"]
@@ -36,3 +40,7 @@ system:
          value: redis
        - name: SFDC_POD
          value: mist66
+    volumes:
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-c1
