@@ -5,7 +5,9 @@ system:
       count: 1
       containers: 
         - name: content-tika-svc-funnel
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-tika-svc:v1
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-tika-svc:v2
+          args:
+            - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
             - containerPort: 15374
@@ -25,13 +27,13 @@ system:
             httpGet:
               path: /manage/health
               port: 15374
-            initialDelaySeconds: 20
+            initialDelaySeconds: 120
             periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /manage/ready
               port: 15374
-            initialDelaySeconds: 15
+            initialDelaySeconds: 120
             periodSeconds: 5
           terminationMessagePolicy: FallbackToLogsOnError
         - name: beacon
