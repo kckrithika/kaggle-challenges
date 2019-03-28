@@ -41,7 +41,7 @@ spec:
         - --runAsServer
         - --servicePort=9118
         - --log_dir=/host/data/slb/logs/
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2101-6bb968e89c03342b50d918340863c6082d7094dd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2104-4535070d0823ef232d79f8af4ef7eaf3bb7b3997
         name: slb-echo-server
         resources:
           limits:
