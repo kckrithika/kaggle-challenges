@@ -9,7 +9,7 @@ system:
     count: 8
     containers:
     - name: caas-redis-12020
-      image: docker-all/dva/caas/caas-redis-mtls:10
+      image: dva/caas/caas-redis-mtls:10
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -32,7 +32,7 @@ system:
       ports:
       - containerPort: 12020
     - name: caas-sherpa-envoy
-      image: docker-all/dva/caas/caas-sherpa-envoy:22
+      image: dva/caas/caas-sherpa-envoy:22
       livenessProbe:
         exec:
           command:
