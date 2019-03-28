@@ -13,18 +13,10 @@ system:
           type: client
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun/aqueduct:aqueduct0.2_DEBUG_scone4.1.2 
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun/aqueduct:aqueduct0.2_DEBUG_scone4.1.2 # Use the latest version, see below
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
-        - name: LOGGING_JSON_STDOUT_LEVEL
-          value: ALL
-        - name: LOGGING_STDERR_LEVEL
-          value: ALL
-        - name: SFDC_POD
-          value: emp-aqueduct_func_aqueduct
-        - name: SCONE_SERVICE_NAME
-          value: emp-aqueduct
         ports:
         - containerPort: 8080
           name: ext-port
@@ -43,7 +35,7 @@ system:
             scheme: HTTP
         volumeMounts:
           - name: kafkaclientcerts
-            mountPath: /etc/pki_service
+            mountPath: /etc/pki_service/sfdc-aqueduct
   loadbalancers:
     - lbname: aqueduct
       function: aqueduct
