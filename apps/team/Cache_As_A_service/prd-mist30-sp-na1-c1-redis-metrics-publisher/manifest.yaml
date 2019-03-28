@@ -10,7 +10,7 @@ system:
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run
-      image: docker-all/dva/caas/release/caas-metrics-publisher-2.6.4:1
+      image: dva/caas/release/caas-metrics-publisher-2.6.4:1
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
