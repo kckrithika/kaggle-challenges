@@ -148,7 +148,7 @@ local utils = import "util_functions.jsonnet";
                 jdk8_base_tag: "33",
                 madkub_injector_image_tag: "11",
                 spark_operator_image_tag: "11",
-                prometheus_funnel_image_tag: "31",
+                prometheus_funnel_image_tag: "34",
                 cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
                 fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
                 eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
