@@ -21,7 +21,7 @@ images:
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/sequencer:sathish-1232
   sfProxy: sfci/frontend-gateway/sfproxy:659513c
-  switchboard: sfci/servicelibs/switchboard:a6729b3a765d262943bb20f9921b4343784dccef
+  switchboard: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na4
 nonce: 1553627456100752224
