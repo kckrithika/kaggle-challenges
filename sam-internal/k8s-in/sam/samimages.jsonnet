@@ -63,6 +63,7 @@ local samreleases = import "samreleases.json";
             "5"
         ),
 
+    phaseNum: std.parseInt($.phase),
     # Static images that do not go in phases
     # [Important Note]: When you are changing images in for initContainers/sidecars  they are not promoted to prod by default. This need to be
     # fixed in the image promotion logic in SMB. For now the workaround is to update the image of a watchdog in one prod DC so that the image is promoted
