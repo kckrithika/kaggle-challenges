@@ -41,7 +41,7 @@ system:
               value: mesh
           args:
             - -endpoint
-            - service-mesh/content-tika-svc-funnel:DATACENTER:7443
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
             - -endpoint
             - content-tika-svc-funnel:DATACENTER:7012
           livenessProbe:
