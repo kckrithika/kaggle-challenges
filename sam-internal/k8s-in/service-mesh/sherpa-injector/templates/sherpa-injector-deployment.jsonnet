@@ -65,7 +65,7 @@ configs.deploymentBase("service-mesh") {
         containers: [
           {
             name: "injector",
-            image: versions.injectorImage,
+            image: if configs.estate == "prd-samtest" then versions.canaryInjectorImage else versions.injectorImage,
             imagePullPolicy: "IfNotPresent",
             args: [
               "--template=sherpa-container.yaml.template",
