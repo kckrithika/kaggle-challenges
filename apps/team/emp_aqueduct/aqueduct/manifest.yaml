@@ -35,7 +35,7 @@ system:
             scheme: HTTP
         volumeMounts:
           - name: kafkaclientcerts
-            mountPath: /etc/pki_service/sfdc-aqueduct
+            mountPath: /etc/pki_service
   loadbalancers:
     - lbname: aqueduct
       function: aqueduct
