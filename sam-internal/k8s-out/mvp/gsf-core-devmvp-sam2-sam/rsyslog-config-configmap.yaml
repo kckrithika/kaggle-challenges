@@ -80,13 +80,11 @@ data:
     \             set $!metric_tags!io.kubernetes.container.name = \"rsyslog\";\n
     \           }\n\n            # set metric value\n            set $!metric_value
     = $.s!value;\n            \n            # send it!\n            action(\n                name=\"action_funnel_omhttp\"\n
-    \               type=\"omhttp\"\n                template=\"tpl_funnel\"\n                server=\"funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net\"\n
-    \               serverport=\"443\"\n                restpath=\"funnel/v1/publishBatch?avroSchemaFingerprint=AVG7NnlcHNdk4t_zn2JBnQ\"\n
-    \               usehttps=\"on\"\n                tls.cacert=\"/cert1/ca/cacerts.pem\"\n
-    \               tls.mycert=\"/cert1/client/certificates/client.pem\"\n                tls.myprivkey=\"/cert1/client/keys/client-key.pem\"\n
-    \               batch=\"on\"\n                batch.maxsize=\"300\"\n                batch.maxbytes=\"1000000\"
-    # ~1Mb\n                batch.format=\"jsonarray\"\n                compress=\"on\"\n
-    \           )\n        }\n    }\n}\n"
+    \               type=\"omhttp\"\n                template=\"tpl_funnel\"\n                server=\"ajnafunneldirecttls.funnel.localhost.mesh.force.com\"\n
+    \               serverport=\"5442\"\n                restpath=\"funnel/v1/publishBatch?avroSchemaFingerprint=AVG7NnlcHNdk4t_zn2JBnQ\"\n
+    \               usehttps=\"off\"\n                batch=\"on\"\n                batch.maxsize=\"300\"\n
+    \               batch.maxbytes=\"1000000\" # ~1Mb\n                batch.format=\"jsonarray\"\n
+    \               compress=\"on\"\n            )\n        }\n    }\n}\n"
   container.conf.erb: "<%# INPUT DEFINITIONS %>\n<%# Collect log files in /var/log/container
     %>\ninput(\n  type=\"imfile\"\n  File=\"/var/log/containers/*.log\"\n  PersistStateInterval=\"500\"\n
     \ Tag=\"kubernetes\"\n  ruleset=\"kubernetes_dockercontainers_ruleset\"\n  addmetadata=\"on\"\n

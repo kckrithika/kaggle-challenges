@@ -345,7 +345,7 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
                         apiVersion: "v1",
                         fieldPath: "metadata.namespace",
                     },
-                }
+                },
             },
             {
                 name: "FUNCTION_INSTANCE_NAME",
@@ -354,7 +354,7 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
                         apiVersion: "v1",
                         fieldPath: "metadata.name",
                     },
-                }
+                },
             },
             {
                 name: "FUNCTION_INSTANCE_IP",
@@ -363,7 +363,7 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
                         apiVersion: "v1",
                         fieldPath: "status.podIP",
                     },
-                }
+                },
             },
             {
                 name: "FUNCTION",

@@ -22,6 +22,22 @@ spec:
              "role": "rsyslog_agent",
              "san": null,
              "superpod": null
+            },
+            {
+             "cert-type": "client",
+             "kingdom": "mvp",
+             "name": "client-certs",
+             "role": "sam-system.cadvisor-exporter-daemonset",
+             "san": null,
+             "superpod": null
+            },
+            {
+             "cert-type": "server",
+             "kingdom": "mvp",
+             "name": "server-certs",
+             "role": "sam-system.cadvisor-exporter-daemonset",
+             "san": null,
+             "superpod": null
             }
            ]
           }
@@ -58,6 +74,10 @@ spec:
           name: rsyslog-imjournal
         - mountPath: /cert1
           name: cert1
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
       - command:
         - /usr/local/bin/sfdc_log_archiver
         - -dir
@@ -69,12 +89,87 @@ spec:
         - mountPath: /home/sfdc/logs
           name: logs-vol
       - args:
+        - --switchboard=switchboard.service-mesh.svc:15001
+        env:
+        - name: SFDC_ENVIRONMENT
+          value: mesh
+        - name: SETTINGS_SERVICENAME
+          value: cadvisor-exporter-daemonset
+        - name: FUNCTION_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: FUNCTION_INSTANCE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: FUNCTION_INSTANCE_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: FUNCTION
+          value: cadvisor-exporter-daemonset
+        - name: KINGDOM
+          value: mvp
+        - name: ESTATE
+          value: gsf-core-devmvp-sam2-sam
+        - name: SUPERPOD
+          value: '-'
+        - name: SETTINGS_SUPERPOD
+          value: '-'
+        - name: SETTINGS_PATH
+          value: mesh.-.mvp.-.cadvisor-exporter-daemonset
+        - name: SFDC_SETTINGS_PATH
+          value: mesh.-.mvp.-.cadvisor-exporter-daemonset
+        - name: SFDC_METRICS_SERVICE_HOST
+          value: funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net
+        - name: SFDC_METRICS_SERVICE_PORT
+          value: "443"
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+        livenessProbe:
+          exec:
+            command:
+            - ./bin/is-alive
+          initialDelaySeconds: 20
+          periodSeconds: 5
+        name: sherpa
+        ports:
+        - containerPort: 7012
+          name: grpc-in
+        - containerPort: 7443
+          name: grpc-tls-in
+        - containerPort: 15373
+          name: sherpa-adm
+        readinessProbe:
+          exec:
+            command:
+            - ./bin/is-ready
+          initialDelaySeconds: 15
+          periodSeconds: 5
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: "1"
+            memory: 1Gi
+        volumeMounts:
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
+      - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
         - --maddog-endpoint=https://10.168.195.227:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
+        - --cert-folders=client-certs:/client-certs/
+        - --cert-folders=server-certs:/server-certs/
         - --token-folder=/tokens/
         - --ca-folder=/maddog-certs/ca
         - --refresher
@@ -102,6 +197,10 @@ spec:
         volumeMounts:
         - mountPath: /cert1
           name: cert1
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -114,6 +213,8 @@ spec:
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
+        - --cert-folders=client-certs:/client-certs/
+        - --cert-folders=server-certs:/server-certs/
         - --token-folder=/tokens/
         - --ca-folder=/maddog-certs/ca
         env:
@@ -138,6 +239,10 @@ spec:
         volumeMounts:
         - mountPath: /cert1
           name: cert1
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -337,6 +442,24 @@ spec:
         - mountPath: /templates/rsyslog
           name: rsyslog-config-tpl
       - command:
+        - bash
+        - -c
+        - |
+          set -ex
+          chmod 775 -R /client-certs && chown -R 7447:7447 /client-certs
+          chmod 775 -R /server-certs && chown -R 7447:7447 /server-certs
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76
+        imagePullPolicy: IfNotPresent
+        name: permissionsetterinitcontainer
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
+      - command:
         - /usr/sbin/rsyslogd
         - -N1
         - -f
@@ -387,6 +510,12 @@ spec:
       - emptyDir:
           medium: Memory
         name: cert1
+      - emptyDir:
+          medium: Memory
+        name: tls-client-cert
+      - emptyDir:
+          medium: Memory
+        name: tls-server-cert
       - emptyDir:
           medium: Memory
         name: tokens
