@@ -15,7 +15,7 @@ system:
           type: server 
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:a3a6962 
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun/aqueduct:aqueduct0.2_DEBUG_scone4.1.2 
         ports:
         - containerPort: 8080
           name: ext-port
