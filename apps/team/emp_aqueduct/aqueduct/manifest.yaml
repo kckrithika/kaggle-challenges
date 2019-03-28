@@ -8,14 +8,15 @@ system:
         emptyServiceName: true
         namespace: emp_aqueduct
       volumes:
-      - name: pkicerts
+      - name: kafkaclientcerts
         maddogCert:
           type: client
-        maddogCert:
-          type: server 
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun/aqueduct:aqueduct0.2_DEBUG_scone4.1.2 
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/varun/aqueduct:aqueduct0.2_DEBUG_scone4.1.2 # Use the latest version, see below
+        env:
+        - name: SFDC_ENVIRONMENT
+          value: "prod" # Use whatever environment your kpod uses
         ports:
         - containerPort: 8080
           name: ext-port
@@ -33,7 +34,7 @@ system:
             port: 15372
             scheme: HTTP
         volumeMounts:
-          - name: pkicerts
+          - name: kafkaclientcerts
             mountPath: /etc/pki_service/sfdc-aqueduct
   loadbalancers:
     - lbname: aqueduct
