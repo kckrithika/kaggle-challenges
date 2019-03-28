@@ -23,12 +23,12 @@ system:
             - name: AMQP_PORT
               value: 5672
             - name: QPID_JAVA_HEAPSZ
-              value: 32g
+              value: 24g
             - name: QPID_JAVA_DIRECT_MEMORYSZ
-              value: 12g 
+              value: 8g 
           resources:
-            limits: { cpu: "24", memory: "48Gi" }
-            requests: { cpu: "24", memory: "48Gi" }
+            limits: { cpu: "12", memory: "36Gi" }
+            requests: { cpu: "12", memory: "36Gi" }
           livenessProbe:
             exec:
               command: ["/bin/true"]
