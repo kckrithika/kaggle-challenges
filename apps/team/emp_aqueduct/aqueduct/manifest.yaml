@@ -17,10 +17,6 @@ system:
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
-        - name: PKI_TRUSTSTORE_DIR
-          value: /etc/pki_service/ca
-        - name: PKI_KEYSTORE_DIR
-          value: /etc/pki_service/sfdc-aqueduct/client 
         - name: LOGGING_JSON_STDOUT_LEVEL
           value: ALL
         - name: LOGGING_STDERR_LEVEL
@@ -29,8 +25,6 @@ system:
           value: emp-aqueduct_func_aqueduct
         - name: SCONE_SERVICE_NAME
           value: emp-aqueduct
-        - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
-          value: /etc/pki/ca-trust/extracted/java/cacerts
         ports:
         - containerPort: 8080
           name: ext-port
@@ -49,7 +43,7 @@ system:
             scheme: HTTP
         volumeMounts:
           - name: kafkaclientcerts
-            mountPath: /etc/pki_service/sfdc-aqueduct
+            mountPath: /etc/pki_service
   loadbalancers:
     - lbname: aqueduct
       function: aqueduct
