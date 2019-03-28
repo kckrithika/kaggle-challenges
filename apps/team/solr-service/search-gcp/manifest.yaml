@@ -17,7 +17,7 @@ system:
         - name: ENABLE_METRICS
           value: "true"
         - name: LBNAME
-          value: "searchservers"
+          value: "searchserver0"
         - name: DNS_SUFFIX
           value: "svc.sam.core.test.us-central1.gcp.sfdc.net"
         - name: DNS_PODNAME
@@ -74,7 +74,7 @@ system:
         - name: ENABLE_METRICS
           value: "true"
         - name: LBNAME
-          value: "searchservers"
+          value: "searchserver1"
         - name: DNS_SUFFIX
           value: "svc.sam.core.test.us-central1.gcp.sfdc.net"
         - name: DNS_PODNAME
