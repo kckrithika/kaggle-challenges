@@ -6,6 +6,8 @@ system:
       containers: 
         - name: content-image-transform
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform:v2
+          args:
+            - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
             - containerPort: 15374
