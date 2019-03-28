@@ -1447,12 +1447,14 @@
       "namespaces": [
         "csc-sam",
         "dva-collection",
-        "slb"
+        "slb",
+        "service-mesh"
       ],
       "access": [
         "team/CSC_Sam",
         "team/dva-collection",
-        "team/slb"
+        "team/slb",
+        "team/service-mesh"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-samtest",
       "estate": "gsf-core-devmvp-sam2-samtest",
