@@ -37,6 +37,9 @@ apps:
     - mvp/gsf-core-devmvp-sam2-sam
   envoy-canary:
     - prd/prd-sam_gater
+    # Deploy canary to prd-samtest to test the injector there
+    - prd/prd-samtest 
+
   envoy-canary-prod:
     - cdg/cdg-sam_gater
     - dfw/dfw-sam_gater
