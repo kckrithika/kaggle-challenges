@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 local name = "crd-watcher";
+local samreleases = import "samreleases.json";
 
 {
         kind: "Deployment",
@@ -25,7 +26,7 @@ local name = "crd-watcher";
                                 "--etcdSetDisabled=true",
                                 "--etcdGetDisabled=true",
                             ]) + (
-                                if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-sdc" || configs.estate == "xrd-sam" then
+                                if samimages.phaseNum <= 4 && configs.kingdom != "mvp" then
                                 [] else [
                                    "--crdSetEnabled=true",
                                    "--crdGetEnabled=true",

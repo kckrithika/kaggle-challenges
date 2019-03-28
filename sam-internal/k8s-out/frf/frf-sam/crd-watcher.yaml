@@ -29,8 +29,6 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --etcdSetDisabled=true
         - --etcdGetDisabled=true
-        - --crdSetEnabled=true
-        - --crdGetEnabled=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
