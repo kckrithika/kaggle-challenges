@@ -47,9 +47,6 @@ local utils = import "util_functions.jsonnet";
             # Start with 2-prd-dev (which also have legacy version mappings),
             # and then any cusomizations just for this fleet.
             version_mapping: $.per_phase["2-prd-dev"].version_mapping {
-                "sla-metrics-test": "jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest",
-                branch_name_truncation: "jenkins-dva-transformation-flowsnake-platform-PR-680-5-itest",
-                khtest: "jenkins-dva-transformation-flowsnake-platform-PR-646-25-itest",
             },
         },
         # Phase 2: Remaining PRD fleets and production canary fleets.
@@ -78,9 +75,6 @@ local utils = import "util_functions.jsonnet";
             # Start with 3-iad-ord (which also have legacy version mappings),
             # then apply overrides from generic phase 2, and then any customizations just for this fleet.
             version_mapping: $.per_phase["3-iad-ord"].version_mapping + super.version_mapping + {
-                "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
-                "0.11.0.sluice_fix": 691,  # TODO: is this still in use?
-                "spark-2.3-test": 672,  # TODO: is this still in use?
             },
         },
         # prd-data: Exceptions vs. the rest of phase 2 only
@@ -94,14 +88,9 @@ local utils = import "util_functions.jsonnet";
             # then apply overrides from generic phase 2, and then any cusomizations just for this fleet.
             # TODO: tidy up all these exceptions.
             version_mapping: $.per_phase["3-iad-ord"].version_mapping + super.version_mapping + {
-                # TODO: Are these all still in use?
-                "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                 "0.10.0": 662,
-                "0.11.0": 681,
-                "0.11.0.sluice_fix": 691,  # TODO: is this still in use?
                 "0.12.0": 696,
                 "0.12.1": 10001,
-                "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
             },
         },
         # frf: Exceptions vs. the rest of phase 2 only
@@ -158,7 +147,6 @@ local utils = import "util_functions.jsonnet";
             },
             version_mapping: {
                 "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-                "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
             },
         },
         # Public Cloud ("MoFo") exceptions to the rest of phase 3.
@@ -177,7 +165,6 @@ local utils = import "util_functions.jsonnet";
             version_mapping+: {
                 # TODO: Get in sync with the rest of phase 3
                 "0.12.5": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-                "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
             },
         },
         ### A very special phase 3 for IAD and ORD that preserves access to old versions used by CRE.
@@ -185,12 +172,9 @@ local utils = import "util_functions.jsonnet";
         "3-iad-ord": self["3"] {
             version_mapping+: {
                 "0.10.0": 662,
-                "0.11.0": 681,
                 "0.12.0": 696,
                 "0.12.1": 10001,
-                "0.12.2": "jenkins-dva-transformation-flowsnake-platform-0.12.2-1-itest",  # see note in phase 1
                 "0.12.5": 10011,
-                "0.12.5-wave": "jenkins-dva-transformation-flowsnake-platform-PR-820-2-itest",
             },
         },
 
