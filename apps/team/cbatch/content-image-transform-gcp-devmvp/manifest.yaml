@@ -6,12 +6,14 @@ system:
       containers: 
         - name: content-image-transform
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform:v2
+          args:
+            - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
             - containerPort: 15374
           env:
             - name: SFDC_ENVIRONMENT
-              value: stm
+              value: mesh
             - name: GRPC_SERVER_BIND_ENDPOINT
               value: tcp://0.0.0.0:7020
             - name: JVM_HEAP_MAX
@@ -27,20 +29,42 @@ system:
             httpGet:
               path: /manage/health
               port: 15374
-            initialDelaySeconds: 20
+            initialDelaySeconds: 120
             periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /manage/ready
               port: 15374
-            initialDelaySeconds: 15
+            initialDelaySeconds: 120
             periodSeconds: 5
           terminationMessagePolicy: FallbackToLogsOnError
+        - name: beacon
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:f804d14
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: mesh
+          args:
+            - -endpoint
+            - service-mesh/content-image-transform:DATACENTER:7443
+            - -endpoint
+            - content-image-transform:DATACENTER:7012
+          livenessProbe:
+            initialDelaySeconds: 5
+            exec:
+              command:
+                - "/opt/beacon/is-alive.sh"
         - name: sherpa
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
+          args:
+            # 2018-02-08: Direct Connection to the switchboard for now
+            - --switchboard=switchboard.service-mesh.svc:15001
           ports:
-            - containerPort: 15001
+            - containerPort: 7012
+              name: grpc-in
+            - containerPort: 7443
+              name: grpc-tls-in
             - containerPort: 15373
+              name: sherpa-adm
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -84,9 +108,6 @@ system:
     nodeExposed: true
     function: content-image-transform
     ports:
-      - lbtype: tcp
-        port: 15501
-        targetPort: 15001
       - lbtype: tcp
         port: 15574
         targetPort: 15374
