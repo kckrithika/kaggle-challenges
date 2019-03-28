@@ -11,6 +11,8 @@ input(
   discardTruncatedMsg="on"
 )
 
+dyn_stats(name="container_events_total" resettable="off")
+
 <%# ------- Start of definition of schema templates ------- %>
 
 <%# Align universal schema envelope %>
@@ -37,7 +39,7 @@ template(name="kubernetes_event" type="list") {
   property(name="$!logdata!log" outname="message" format="jsonf")
   constant(value=",")
   property(name="$!severity" outname="severity" format="jsonfr")
-  constant(value="}}\n")
+  constant(value="}}")
 }
 
 <%# rsyslog base annotations %>
@@ -55,7 +57,7 @@ template(name = "kubernetes_annotation_rsyslog_base" type="list") {
   property(name="$!region" outname="region" format="jsonfr")
   constant(value=",")
   property(name="$!zone" outname="zone" format="jsonfr")
-  constant(value="}}\n")
+  constant(value="}}")
 }
 
 <%# container logs anotations %>
@@ -70,7 +72,8 @@ ruleset(name = "kubernetes_dockercontainers_ruleset") {
   action(type="mmjsonparse" cookie="" container="$!logdata")
   
   set $!hostname = "<%=config.node%>";
-
+  set $!owner = "none";
+  
   if $!logdata!stream == 'stderr' then {
     set $!severity = "error";
   } else {
@@ -108,8 +111,12 @@ ruleset(name = "kubernetes_dockercontainers_ruleset") {
   set $!account = "<%=config.include?(:account_name) ? config.account_name : config.project_id %>";
   set $!region = "<%=config.region%>";
   set $!zone = "<%=config.zone%>";
+  
   set $!annotations = "[" & exec_template("kubernetes_annotation_kubernetes_container") & ", " & exec_template("kubernetes_annotation_rsyslog_base") & "]";
 
+  <%# increase event count %>
+  set $.inc = dyn_inc("container_events_total", $!kubernetes_container_data!pod & "_" & $!kubernetes_container_data!namespace & "_" & $!kubernetes_container_data!container_name);
+  
   <%# action(
     name="syslog_file_action"
     type="omfile"

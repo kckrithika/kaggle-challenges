@@ -27,6 +27,9 @@ local configs = import "config.jsonnet";
        rsyslog: "12-8e9921811d4c5a6c0e48ea8f1ca306f42b922e51",
        config_gen: "13-47abdb612473a43f78d0cb438f83851aba538af9",
        logarchive: "2",
+       cadvisor: "v0.30.2",
+       cadvisor_scraper: "v0.1alpha3",
+       sherpa: "eeb8e3bfc9d7912299ed28658895aca9523f348f",
      },
 
     ### Release Phase 1 - TBD
@@ -73,5 +76,7 @@ local configs = import "config.jsonnet";
     rsyslog: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc_rsyslog_gcp:" + $.per_phase[$.phase].rsyslog,
     config_gen: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:" + $.per_phase[$.phase].config_gen,
     logarchive: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_log_archiver:" + $.per_phase[$.phase].logarchive,
-
+    cadvisor: "k8s.gcr.io/cadvisor:" + $.per_phase[$.phase].cadvisor,
+    cadvisor_scraper: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-cadvisor-scraper:" + $.per_phase[$.phase].cadvisor_scraper,
+    sherpa: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:" + $.per_phase[$.phase].sherpa,
 }

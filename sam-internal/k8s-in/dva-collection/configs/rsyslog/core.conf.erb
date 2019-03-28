@@ -89,6 +89,8 @@ ruleset(name="ruleset_core") {
   set $!datacenter = "<%=config.include?(:kingdom) ? config.kingdom : 'mvp'%>";
   set $!substrate = "<%=config.include?(:substrate) ? config.substrate : 'gcp' %>";
   set $!account = "<%=config.include?(:account_name) ? config.account_name : config.project_id %>";
+  set $!region = "<%=config.region%>";
+  set $!zone = "<%=config.zone%>";
   set $!host = field($!filename, 46, 3);
   set $!pod = field($!host, 45, 1);
   set $!apptype = field($!filename, 46, 2);
