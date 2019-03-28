@@ -6,7 +6,7 @@ system:
       count: 1
       containers:
         - name: content-image-transform-secure-client
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform-client:v7
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform-client:v8
           ports:
             - containerPort: 7020
             - containerPort: 15374
