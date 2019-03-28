@@ -2,14 +2,14 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-03-22 21:28:13.656857
+# generated: 2019-03-28 16:35:39.157319
 # from:  
-# by: agitelman
+# by: mbyne
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/moana-engine:516-530b5b532ec6629474fc18e55f204fbbcb9eac00
+    - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/moana-engine:520-4a8c13f8ae22218b4cba1c4c5cdabfc75dd30e36
       livenessProbe:
         exec:
           command: [ls]
@@ -56,9 +56,12 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-ord.data.sfdc.net/dva/moana-engine:516-530b5b532ec6629474fc18e55f204fbbcb9eac00'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-ord.data.sfdc.net/dva/moana-engine:520-4a8c13f8ae22218b4cba1c4c5cdabfc75dd30e36'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-primary}
-      image: sfci/insights/datapoolservice:release-99-bf4a982
+      - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
+          "-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails", "spark.ui.enabled":
+          "false"}'}
+      image: sfci/insights/jobcontroller:release-101-f35570f
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90

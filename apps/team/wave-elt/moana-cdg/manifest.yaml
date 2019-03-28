@@ -2,7 +2,7 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-03-21 22:41:07.375509
+# generated: 2019-03-28 16:35:39.157319
 # from:  
 # by: mbyne
 apiVersion: v1
@@ -47,10 +47,13 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/dva/moana-engine:515-0def4d674d1eb04ffe27cbfb13a94cfcec4244ff'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/dva/moana-engine:520-4a8c13f8ae22218b4cba1c4c5cdabfc75dd30e36'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-primary}
+      - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
+          "-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails", "spark.ui.enabled":
+          "false"}'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-par.slb.sfdc.net'}
-      image: sfci/insights/datapoolservice:release-99-bf4a982
+      image: sfci/insights/jobcontroller:release-101-f35570f
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
