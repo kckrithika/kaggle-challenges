@@ -76,7 +76,6 @@ spec:
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
         - --token-folder=/tokens/
-        - --requested-cert-type=client
         - --ca-folder=/maddog-certs/ca
         - --refresher
         - --run-init-for-refresher-mode
@@ -116,7 +115,6 @@ spec:
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
         - --token-folder=/tokens/
-        - --requested-cert-type=client
         - --ca-folder=/maddog-certs/ca
         env:
         - name: MADKUB_NODENAME
@@ -155,6 +153,14 @@ spec:
             configMapKeyRef:
               key: broker_vip
               name: kafka-cm
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
         - name: KAFKA_TOPIC
           valueFrom:
             configMapKeyRef:
@@ -180,6 +186,14 @@ spec:
             configMapKeyRef:
               key: broker_vip
               name: kafka-cm
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
         - name: KAFKA_TOPIC
           valueFrom:
             configMapKeyRef:

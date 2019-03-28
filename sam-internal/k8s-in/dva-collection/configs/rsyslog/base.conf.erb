@@ -1,0 +1,172 @@
+module(load = "imfile")
+module(load = "omkafka")
+module(load = "omhttp")
+module(load = "omprog")
+module(load = "mmexternal")
+module(load = "mmjsonparse")
+module(load = "omstdout")
+
+# load statistics
+module(load="impstats" interval="120" format="cee" ruleset="rs_impstats2funnel")
+
+ruleset(name="ruleset_stdout") {  
+  action(type="omstdout")
+}
+
+# funnel json format
+template(name="tpl_funnel" type="list") {
+    constant(value="{")   
+    constant(value="\"service\": \"system\"")
+    constant(value=",")   
+    constant(value="\"metricName\":")   
+    property(name="$!metric_array")
+    constant(value=",")   
+    constant(value="\"tags\":")         
+    property(name="$!metric_tags")
+    # format as "json" to convert to numeric value 
+    constant(value=",")   
+    constant(value="\"metricValue\":")  
+    property(name="$!metric_value" format="json")
+    constant(value=",")   
+    constant(value="\"timestamp\":")    
+    property(name="timereported" dateFormat="unixtimestamp" format="json")
+    constant(value="}\n")
+}
+
+# parsed stats for debugging to file, for example
+template(name="tpl_echo" type="list") {
+    property(name="$.stats")
+    constant(value="\n")
+}
+
+# keep track of the number of metrics processed 
+dyn_stats(name="metrics" resettable="off")
+
+ruleset(name="rs_impstats2funnel") {
+    # hack to refresh pki certs
+    action(type="omprog"
+       name="pki_monitor"
+       binary="/usr/local/bin/pki_cert_monitor.py /cert1/client"
+       queue.type="LinkedList"
+       queue.saveOnShutdown="off"
+       queue.workerThreads="1"
+       action.execOnlyOnceEveryInterval="1800"
+       action.resumeInterval="5"
+       killUnresponsive="on"
+       forceSingleInstance="on")
+    # task to clean up statefiles
+    action(type="omprog"
+       name="statefile_monitor"
+       binary="/usr/local/bin/clean_statefiles.py"
+       queue.type="LinkedList"
+       queue.saveOnShutdown="off"
+       queue.workerThreads="1"
+       action.execOnlyOnceEveryInterval="1800"
+       action.resumeInterval="5"
+       killUnresponsive="on"
+       forceSingleInstance="on")       
+    
+    # write to stdout
+    call ruleset_stdout   
+    
+    # parse the cee formatted impstats input
+    action(type="mmjsonparse" container="$.stats")
+    
+    # after mmjsonparse, "name", "origin", and "values" are special fields
+    # "values" may not be present depending on the source of the stat
+    # the message looks like this for normal builtin stats counter
+    #   { "name": "main Q", "origin": "core.queue", "size": 5, "enqueued": 11, "full": 0, "discarded.full": 0, "discarded.nf": 0, "maxqsize": 6  }
+    # if dynamic counters are used (dyn_stats/dyn_inc), then there will be a values field with metrics
+    #   { "name": "global", "origin": "dynstats", "values": { "metrics.ops_overflow": 0, "metrics.new_metric_add": 0, "metrics.no_metric": 0, "metrics.metrics_purged": 0, "metrics.ops_ignored": 0, "metrics.purge_triggered": 0  }  }
+
+    # replace/normalize characters, "main Q" -> "main_Q", "resource-usage" -> "resource_usage"
+    set $.source = replace(replace(replace($.stats!name, " ", "_"), "-", "_"), ":", "_");
+    
+    # whitelist metric sources
+    if (not (
+        $.source == "omhttp" or 
+        $.source == "omkafka" or 
+        $.source == "main_Q" or 
+        $.source == "resource_usage" or 
+        $.source == "metrics" or 
+        $.source == "container_events_total" or 
+        $.source == "imdocker" or
+        $.source == "imudp"
+    )) then {
+        stop
+    }
+    set $.metric_prefix = "rsyslog.impstats" & "." & $.source;
+
+    # handle "values" case by looping through appropriate json object
+    # strlen seems to be the best way of checking if the field exists
+    if (strlen($.stats!values) > 0) then {
+        set $.stats_loop = $.stats!values;
+    } else {
+        set $.stats_loop = $.stats;
+    }
+
+    # build common tags 
+    set $!metric_tags!device= "<%=config.node%>";
+    set $!metric_tags!datacenter = "<%=config.include?(:kingdom) ? config.kingdom : 'mvp'%>";
+    set $!metric_tags!superpod = "NONE";
+    set $!metric_tags!region = "<%=config.region%>";
+    set $!metric_tags!zone = "<%=config.zone%>";
+    set $!metric_tags!substrate = "<%=config.include?(:substrate) ? config.substrate : 'gcp' %>";
+    set $!metric_tags!account = "<%=config.include?(:account_name) ? config.account_name : config.project_id %>";
+    set $!metric_tags!io.kubernetes.cluster.name = "<%=config.cluster%>";
+
+    foreach ($.s in $.stats_loop) do {
+        # $.s looks like {"key" : <k>, "value" : <v>} when using foreach loop 
+        # ignore special values that are not metric identifiers
+        if ($.s!key == "name" or $.s!key == "origin") then {
+            # continue does not skip the rest of the loop, just a nop
+            continue
+        } else {
+            # bookkeeping
+            set $.inc = dyn_inc("metrics", "count");
+            if ($.source == "container_events_total") then {
+              # use a fixed metrics name
+              set $.metric_full = $.metric_prefix;
+              set $!metric_array = "[" & wrap(replace($.metric_full, ".", "\",\""), "\"") & "]";
+              # set tags for contaienr event count metrics
+              set $!metric_tags!io.kubernetes.pod.name = field($.s!key, 95, 1);
+              set $!metric_tags!io.kubernetes.pod.namespace = field($.s!key, 95, 2);
+              set $!metric_tags!io.kubernetes.container.name = field($.s!key, 95, 3);               
+            } else {
+              # convert "-", " ", ":" to "_"
+              set $.metric = replace(replace(replace($.s!key, " ", "_"), "-", "_"), ":", "_");
+              # build dot deliminated metric string
+              set $.metric_full = $.metric_prefix & "." & $.metric;
+              # build array
+              # 1. replace "." with "\",\"", "my.metric" -> "my\",\"metric"
+              # 2. wrap result in escaped quotes, "my\",\"metric" -> "\"my\",\"metric\""
+              # 3. wrap in square brackets, "\"my\",\"metric\"" -> "[\"my\",\"metric\"]"
+              set $!metric_array = "[" & wrap(replace($.metric_full, ".", "\",\""), "\"") & "]";
+
+              # set tags for rsyslog metrics
+              set $!metric_tags!io.kubernetes.pod.name = "<%=config.pod_name%>";
+              set $!metric_tags!io.kubernetes.pod.namespace = "<%=config.pod_namespace%>";
+              set $!metric_tags!io.kubernetes.container.name = "rsyslog";
+            }
+
+            # set metric value
+            set $!metric_value = $.s!value;
+            
+            # send it!
+            action(
+                name="action_funnel_omhttp"
+                type="omhttp"
+                template="tpl_funnel"
+                server="ajnafunneldirecttls.funnel.localhost.mesh.force.com"
+                serverport="5442"
+                restpath="funnel/v1/publishBatch?avroSchemaFingerprint=AVG7NnlcHNdk4t_zn2JBnQ"
+                usehttps="off"
+                batch="on"
+                batch.maxsize="300"
+                batch.maxbytes="1000000" # ~1Mb
+                batch.format="jsonarray"
+                compress="on"
+            )
+        }
+    }
+}

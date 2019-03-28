@@ -1,0 +1,578 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "DaemonSet",
+   "metadata": {
+      "annotations": {
+         "seccomp.security.alpha.kubernetes.io/pod": "docker/default"
+      },
+      "labels": {
+         "pcn": "deploy"
+      },
+      "name": "cadvisor-exporter-daemonset",
+      "namespace": "sam-system"
+   },
+   "spec": {
+      "selector": {
+         "matchLabels": {
+            "name": "cadvisor-exporter-daemonset"
+         }
+      },
+      "template": {
+         "metadata": {
+            "annotations": {
+               "madkub.sam.sfdc.net/allcerts": "{\n \"certreqs\": [\n  {\n   \"cert-type\": \"client\",\n   \"kingdom\": \"mvp\",\n   \"name\": \"client-certs\",\n   \"role\": \"sam-system.cadvisor-exporter-daemonset\",\n   \"san\": null,\n   \"superpod\": null\n  },\n  {\n   \"cert-type\": \"server\",\n   \"kingdom\": \"mvp\",\n   \"name\": \"server-certs\",\n   \"role\": \"sam-system.cadvisor-exporter-daemonset\",\n   \"san\": null,\n   \"superpod\": null\n  }\n ]\n}"
+            },
+            "labels": {
+               "name": "cadvisor-exporter-daemonset"
+            }
+         },
+         "spec": {
+            "automountServiceAccountToken": false,
+            "containers": [
+               {
+                  "image": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc_rsyslog_gcp:12-8e9921811d4c5a6c0e48ea8f1ca306f42b922e51",
+                  "name": "rsyslog-funnel-forwarder",
+                  "ports": [
+                     {
+                        "containerPort": 2003,
+                        "protocol": "UDP"
+                     }
+                  ],
+                  "resources": {
+                     "limits": {
+                        "cpu": "300m",
+                        "memory": "1024Mi"
+                     },
+                     "requests": {
+                        "cpu": "150m",
+                        "memory": "200Mi"
+                     }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/etc/rsyslog.conf",
+                        "name": "cadvisor-config-tpl",
+                        "subPath": "rsyslog.conf"
+                     },
+                     {
+                        "mountPath": "/etc/rsyslog.d",
+                        "name": "rsyslog-config"
+                     }
+                  ]
+               },
+               {
+                  "command": [
+                     "/app/cadvisor_scraper.py",
+                     "-f",
+                     "/etc/cadvisor/scraper.yaml"
+                  ],
+                  "image": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-cadvisor-scraper:v0.1alpha3",
+                  "name": "cadvisor-scraper",
+                  "resources": {
+                     "limits": {
+                        "cpu": "300m",
+                        "memory": "1024Mi"
+                     },
+                     "requests": {
+                        "cpu": "150m",
+                        "memory": "200Mi"
+                     }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/etc/cadvisor",
+                        "name": "cadvisor-yaml"
+                     },
+                     {
+                        "mountPath": "/etc/rsyslog.d",
+                        "name": "rsyslog-config"
+                     }
+                  ]
+               },
+               {
+                  "image": "k8s.gcr.io/cadvisor:v0.30.2",
+                  "name": "sfdc-cadvisor",
+                  "ports": [
+                     {
+                        "containerPort": 8080,
+                        "name": "http",
+                        "protocol": "TCP"
+                     }
+                  ],
+                  "resources": {
+                     "limits": {
+                        "cpu": "300m",
+                        "memory": "1024Mi"
+                     },
+                     "requests": {
+                        "cpu": "150m",
+                        "memory": "200Mi"
+                     }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/var/run",
+                        "name": "var-run"
+                     },
+                     {
+                        "mountPath": "/sys",
+                        "name": "sys"
+                     },
+                     {
+                        "mountPath": "/var/lib/docker",
+                        "name": "docker"
+                     },
+                     {
+                        "mountPath": "/dev/disk",
+                        "name": "disk"
+                     }
+                  ]
+               },
+               {
+                  "args": [
+                     "--switchboard=switchboard.service-mesh.svc:15001"
+                  ],
+                  "env": [
+                     {
+                        "name": "SFDC_ENVIRONMENT",
+                        "value": "mesh"
+                     },
+                     {
+                        "name": "SETTINGS_SERVICENAME",
+                        "value": "cadvisor-exporter-daemonset"
+                     },
+                     {
+                        "name": "FUNCTION_NAMESPACE",
+                        "valueFrom": {
+                           "fieldRef": {
+                              "apiVersion": "v1",
+                              "fieldPath": "metadata.namespace"
+                           }
+                        }
+                     },
+                     {
+                        "name": "FUNCTION_INSTANCE_NAME",
+                        "valueFrom": {
+                           "fieldRef": {
+                              "apiVersion": "v1",
+                              "fieldPath": "metadata.name"
+                           }
+                        }
+                     },
+                     {
+                        "name": "FUNCTION_INSTANCE_IP",
+                        "valueFrom": {
+                           "fieldRef": {
+                              "apiVersion": "v1",
+                              "fieldPath": "status.podIP"
+                           }
+                        }
+                     },
+                     {
+                        "name": "FUNCTION",
+                        "value": "cadvisor-exporter-daemonset"
+                     },
+                     {
+                        "name": "KINGDOM",
+                        "value": "mvp"
+                     },
+                     {
+                        "name": "ESTATE",
+                        "value": "gsf-core-devmvp-sam2-sam"
+                     },
+                     {
+                        "name": "SUPERPOD",
+                        "value": "-"
+                     },
+                     {
+                        "name": "SETTINGS_SUPERPOD",
+                        "value": "-"
+                     },
+                     {
+                        "name": "SETTINGS_PATH",
+                        "value": "mesh.-.mvp.-.cadvisor-exporter-daemonset"
+                     },
+                     {
+                        "name": "SFDC_SETTINGS_PATH",
+                        "value": "mesh.-.mvp.-.cadvisor-exporter-daemonset"
+                     },
+                     {
+                        "name": "SFDC_METRICS_SERVICE_HOST",
+                        "value": "funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net"
+                     },
+                     {
+                        "name": "SFDC_METRICS_SERVICE_PORT",
+                        "value": "443"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f",
+                  "livenessProbe": {
+                     "exec": {
+                        "command": [
+                           "./bin/is-alive"
+                        ]
+                     },
+                     "initialDelaySeconds": 20,
+                     "periodSeconds": 5
+                  },
+                  "name": "sherpa",
+                  "ports": [
+                     {
+                        "containerPort": 7012,
+                        "name": "grpc-in"
+                     },
+                     {
+                        "containerPort": 7443,
+                        "name": "grpc-tls-in"
+                     },
+                     {
+                        "containerPort": 15373,
+                        "name": "sherpa-adm"
+                     }
+                  ],
+                  "readinessProbe": {
+                     "exec": {
+                        "command": [
+                           "./bin/is-ready"
+                        ]
+                     },
+                     "initialDelaySeconds": 15,
+                     "periodSeconds": 5
+                  },
+                  "resources": {
+                     "limits": {
+                        "cpu": "1",
+                        "memory": "1Gi"
+                     },
+                     "requests": {
+                        "cpu": "1",
+                        "memory": "1Gi"
+                     }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/client-certs",
+                        "name": "tls-client-cert"
+                     },
+                     {
+                        "mountPath": "/server-certs",
+                        "name": "tls-server-cert"
+                     }
+                  ]
+               },
+               {
+                  "args": [
+                     "/sam/madkub-client",
+                     "--madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007",
+                     "--maddog-endpoint=https://10.168.195.227:8443",
+                     "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
+                     "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
+                     "--cert-folders=client-certs:/client-certs/",
+                     "--cert-folders=server-certs:/server-certs/",
+                     "--token-folder=/tokens/",
+                     "--ca-folder=/maddog-certs/ca",
+                     "--refresher",
+                     "--run-init-for-refresher-mode"
+                  ],
+                  "env": [
+                     {
+                        "name": "MADKUB_NODENAME",
+                        "valueFrom": {
+                           "fieldRef": {
+                              "apiVersion": "v1",
+                              "fieldPath": "spec.nodeName"
+                           }
+                        }
+                     },
+                     {
+                        "name": "MADKUB_NAME",
+                        "valueFrom": {
+                           "fieldRef": {
+                              "apiVersion": "v1",
+                              "fieldPath": "metadata.name"
+                           }
+                        }
+                     },
+                     {
+                        "name": "MADKUB_NAMESPACE",
+                        "valueFrom": {
+                           "fieldRef": {
+                              "apiVersion": "v1",
+                              "fieldPath": "metadata.namespace"
+                           }
+                        }
+                     }
+                  ],
+                  "image": "gcr.io/gsf-core-devmvp-sam2/thargrove/madkubserver:1.0.0-0000080-8a8659dd",
+                  "imagePullPolicy": "IfNotPresent",
+                  "name": "madkub-refresher",
+                  "resources": { },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/client-certs",
+                        "name": "tls-client-cert"
+                     },
+                     {
+                        "mountPath": "/server-certs",
+                        "name": "tls-server-cert"
+                     },
+                     {
+                        "mountPath": "/maddog-certs/",
+                        "name": "maddog-certs"
+                     },
+                     {
+                        "mountPath": "/tokens",
+                        "name": "tokens"
+                     }
+                  ]
+               }
+            ],
+            "initContainers": [
+               {
+                  "args": [
+                     "/sam/madkub-client",
+                     "--madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007",
+                     "--maddog-endpoint=https://10.168.195.227:8443",
+                     "--maddog-server-ca=/maddog-certs/ca/security-ca.pem",
+                     "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
+                     "--cert-folders=client-certs:/client-certs/",
+                     "--cert-folders=server-certs:/server-certs/",
+                     "--token-folder=/tokens/",
+                     "--ca-folder=/maddog-certs/ca"
+                  ],
+                  "env": [
+                     {
+                        "name": "MADKUB_NODENAME",
+                        "valueFrom": {
+                           "fieldRef": {
+                              "apiVersion": "v1",
+                              "fieldPath": "spec.nodeName"
+                           }
+                        }
+                     },
+                     {
+                        "name": "MADKUB_NAME",
+                        "valueFrom": {
+                           "fieldRef": {
+                              "apiVersion": "v1",
+                              "fieldPath": "metadata.name"
+                           }
+                        }
+                     },
+                     {
+                        "name": "MADKUB_NAMESPACE",
+                        "valueFrom": {
+                           "fieldRef": {
+                              "apiVersion": "v1",
+                              "fieldPath": "metadata.namespace"
+                           }
+                        }
+                     }
+                  ],
+                  "image": "gcr.io/gsf-core-devmvp-sam2/thargrove/madkubserver:1.0.0-0000080-8a8659dd",
+                  "imagePullPolicy": "IfNotPresent",
+                  "name": "madkub-init",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/client-certs",
+                        "name": "tls-client-cert"
+                     },
+                     {
+                        "mountPath": "/server-certs",
+                        "name": "tls-server-cert"
+                     },
+                     {
+                        "mountPath": "/maddog-certs/",
+                        "name": "maddog-certs"
+                     },
+                     {
+                        "mountPath": "/tokens",
+                        "name": "tokens"
+                     }
+                  ]
+               },
+               {
+                  "command": [
+                     "/usr/bin/ruby",
+                     "/app/config_gen.rb",
+                     "-t",
+                     "/templates/cadvisor/scraper.yaml.erb",
+                     "-o",
+                     "/etc/cadvisor/scraper.yaml"
+                  ],
+                  "env": [
+                     {
+                        "name": "FORWARD_PORT",
+                        "value": "2003"
+                     },
+                     {
+                        "name": "CADVISOR_PORT",
+                        "value": "8080"
+                     },
+                     {
+                        "name": "CADVISOR_HOST",
+                        "value": "localhost"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9",
+                  "name": "config-gen-scraper",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/etc/cadvisor",
+                        "name": "cadvisor-yaml"
+                     },
+                     {
+                        "mountPath": "/etc/rsyslog.d",
+                        "name": "rsyslog-config"
+                     },
+                     {
+                        "mountPath": "/templates/cadvisor",
+                        "name": "cadvisor-config-tpl"
+                     }
+                  ]
+               },
+               {
+                  "command": [
+                     "/usr/bin/ruby",
+                     "/app/config_gen.rb",
+                     "-t",
+                     "/templates/cadvisor/forwarder.conf.erb",
+                     "-o",
+                     "/etc/rsyslog.d/30-forwarder.conf"
+                  ],
+                  "env": [
+                     {
+                        "name": "LISTEN_PORT",
+                        "value": "2003"
+                     },
+                     {
+                        "name": "FUNNEL_VIP",
+                        "value": "ajnafunneldirecttls.funnel.localhost.mesh.force.com"
+                     },
+                     {
+                        "name": "FUNNEL_PORT",
+                        "value": "5442"
+                     },
+                     {
+                        "name": "FUNNEL_HTTPS",
+                        "value": "off"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9",
+                  "name": "config-gen-forwarder",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/etc/cadvisor",
+                        "name": "cadvisor-yaml"
+                     },
+                     {
+                        "mountPath": "/etc/rsyslog.d",
+                        "name": "rsyslog-config"
+                     },
+                     {
+                        "mountPath": "/templates/cadvisor",
+                        "name": "cadvisor-config-tpl"
+                     }
+                  ]
+               },
+               {
+                  "command": [
+                     "bash",
+                     "-c",
+                     "set -ex\nchmod 775 -R /client-certs && chown -R 7447:7447 /client-certs\nchmod 775 -R /server-certs && chown -R 7447:7447 /server-certs\n"
+                  ],
+                  "image": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
+                  "imagePullPolicy": "IfNotPresent",
+                  "name": "permissionsetterinitcontainer",
+                  "securityContext": {
+                     "runAsNonRoot": false,
+                     "runAsUser": 0
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/client-certs",
+                        "name": "tls-client-cert"
+                     },
+                     {
+                        "mountPath": "/server-certs",
+                        "name": "tls-server-cert"
+                     }
+                  ]
+               }
+            ],
+            "terminationGracePeriodSeconds": 30,
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/etc/pki_service"
+                  },
+                  "name": "maddog-certs"
+               },
+               {
+                  "emptyDir": { },
+                  "name": "cadvisor-yaml"
+               },
+               {
+                  "emptyDir": { },
+                  "name": "rsyslog-config"
+               },
+               {
+                  "configMap": {
+                     "name": "cadvisor-configmap"
+                  },
+                  "name": "cadvisor-config-tpl"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/run"
+                  },
+                  "name": "var-run"
+               },
+               {
+                  "hostPath": {
+                     "path": "/sys"
+                  },
+                  "name": "sys"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/lib/docker"
+                  },
+                  "name": "docker"
+               },
+               {
+                  "hostPath": {
+                     "path": "/dev/disk"
+                  },
+                  "name": "disk"
+               },
+               {
+                  "emptyDir": {
+                     "medium": "Memory"
+                  },
+                  "name": "tls-client-cert"
+               },
+               {
+                  "emptyDir": {
+                     "medium": "Memory"
+                  },
+                  "name": "tls-server-cert"
+               },
+               {
+                  "emptyDir": {
+                     "medium": "Memory"
+                  },
+                  "name": "tokens"
+               }
+            ]
+         }
+      },
+      "templateGeneration": 2,
+      "updateStrategy": {
+         "rollingUpdate": {
+            "maxUnavailable": 1
+         },
+         "type": "RollingUpdate"
+      }
+   }
+}

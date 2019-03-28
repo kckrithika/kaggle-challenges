@@ -2,6 +2,10 @@ local configs = import "config.jsonnet";
 local appNamespace = "sam-system";
 local cadvisorimages = (import "collection-agent-images.libsonnet") + { templateFilename:: std.thisFile };
 local cadvisorutils = import "collection-agent-utils.jsonnet";
+local madkub = (import "collection-agent-madkub.jsonnet") + { templateFilename:: std.thisFile };
+
+
+local certDirs = ["client-certs", "server-certs"];
 
 local scraperInitEnv = [
     {
@@ -45,6 +49,7 @@ local forwarderInitEnv = [
 
 ];
 local initContainers = [
+    madkub.madkubInitContainer(certDirs),
     cadvisorutils.config_gen_cadvisor_init_container(
         "scraper",
         "/templates/cadvisor/scraper.yaml.erb",
@@ -59,6 +64,7 @@ local initContainers = [
         "/etc/rsyslog.d/30-forwarder.conf",
         forwarderInitEnv
     ),
+    madkub.permissionSetterInitContainer,
 ];
 
 if configs.kingdom == "mvp" then {
@@ -82,6 +88,18 @@ if configs.kingdom == "mvp" then {
             metadata: {
                 labels: {
                     name: "cadvisor-exporter-daemonset",
+                },
+                annotations: {
+                    "madkub.sam.sfdc.net/allcerts":
+                    std.manifestJsonEx(
+                    {
+                        certreqs:
+                            [
+                                certReq
+for certReq in madkub.madkubRsyslogCertsAnnotation(certDirs).certreqs
+                            ],
+                    }, " "
+),
                 },
             },
             spec: {
@@ -161,11 +179,15 @@ if configs.kingdom == "mvp" then {
                         volumeMounts: cadvisorutils.sfdc_scraper_volume_mounts(),
                     },
                     cadvisorutils.service_discovery_container(),
+                    madkub.madkubRefreshContainer(certDirs),
                 ],
-                volumes+: cadvisorutils.cadvisor_yaml_volume() +
-                          cadvisorutils.cadvisor_config_gen_tpl_volume() +
-                          cadvisorutils.sfdc_scraper_volume() +
-                          cadvisorutils.sherpa_volume(),
+                volumes+: [
+                    configs.maddog_cert_volume,
+                ] + cadvisorutils.cadvisor_yaml_volume() +
+                    cadvisorutils.cadvisor_config_gen_tpl_volume() +
+                    cadvisorutils.sfdc_scraper_volume() +
+                    madkub.madkubRsyslogCertVolumes(certDirs) +
+                    madkub.madkubRsyslogMadkubVolumes(),
             },
         },
         templateGeneration: 2,

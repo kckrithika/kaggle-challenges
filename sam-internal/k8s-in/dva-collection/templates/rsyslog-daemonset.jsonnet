@@ -5,21 +5,9 @@ local rsyslogimages = (import "collection-agent-images.libsonnet") + { templateF
 local rsyslogutils = import "collection-agent-utils.jsonnet";
 local madkub = (import "collection-agent-madkub.jsonnet") + { templateFilename:: std.thisFile };
 
-local certDirs = ["cert1"];
+local certDirs = ["cert1", "client-certs", "server-certs"];
 
-local baseEnv = [
-    {
-        name: "BROKER_VIP",
-        valueFrom: {
-            configMapKeyRef: {
-                name: "kafka-cm",
-                key: "broker_vip",
-            },
-        },
-    },
-];
-
-local defaultEnv = baseEnv + [
+local defaultEnv = rsyslogutils.baseEnv + [
     {
         name: "KAFKA_TOPIC",
         valueFrom: {
@@ -31,7 +19,7 @@ local defaultEnv = baseEnv + [
     },
 ];
 
-local casamEnv = baseEnv + [
+local casamEnv = rsyslogutils.baseEnv + [
     {
         name: "KAFKA_TOPIC",
         valueFrom: {
@@ -89,6 +77,7 @@ local initContainers = [
         "casam",
         "^([[:digit:]]{4}-(0[1-9]|1[0-2])-(0?[1-9]|[12][[:digit:]]|3[01]))([[:space:]]|T)(([01][[:digit:]]|2[0-3]):[0-5][[:digit:]]:([0-5][[:digit:]]|6[01]))[,|\\\\.][[:digit:]]{3}",
     ),
+    madkub.permissionSetterInitContainer,
     rsyslogutils.config_check_init_container(rsyslogimages.rsyslog),
 ];
 
@@ -169,6 +158,7 @@ for certReq in madkub.madkubRsyslogCertsAnnotation(certDirs).certreqs
                             },
                         ],
                     },
+                    rsyslogutils.service_discovery_container(),
                     madkub.madkubRefreshContainer(certDirs),
                 ],
                 volumes+: [

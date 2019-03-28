@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local rsyslogConf = importstr "configs/rsyslog/rsyslog.conf";
+local baseConf = importstr "configs/rsyslog/base.conf.erb";
 local generalConf = importstr "configs/rsyslog/general.conf.erb";
 local containerConf = importstr "configs/rsyslog/container.conf.erb";
 local journalConf = importstr "configs/rsyslog/journal.conf.erb";
@@ -16,6 +17,7 @@ if configs.kingdom == "mvp" then {
     },
     data: {
         "rsyslog.conf": rsyslogConf,
+        "base.conf.erb": baseConf,
         "general.conf.erb": generalConf,
         "container.conf.erb": containerConf,
         "journal.conf.erb": journalConf,

@@ -1,4 +1,6 @@
 templates:
+  - input: base.conf.erb
+    output: /etc/rsyslog.d/00-base.conf
   - input: container.conf.erb
     output: /etc/rsyslog.d/40-container.conf
   - input: journal.conf.erb

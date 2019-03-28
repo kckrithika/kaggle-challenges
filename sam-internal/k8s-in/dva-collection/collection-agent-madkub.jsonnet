@@ -28,6 +28,46 @@
                 san: null,
             },
         },
+        "client-certs": {
+            mount: {
+                mountPath: "/client-certs",
+                name: "tls-client-cert",
+            },
+            volume: {
+                emptyDir: {
+                    medium: "Memory",
+                },
+                name: "tls-client-cert",
+            },
+            annotation: {
+                name: "client-certs",
+                kingdom: configs.kingdom,
+                "cert-type": "client",
+                superpod: null,
+                role: "sam-system.cadvisor-exporter-daemonset",
+                san: null,
+            },
+        },
+        "server-certs": {
+            mount: {
+                mountPath: "/server-certs",
+                name: "tls-server-cert",
+            },
+            volume: {
+                emptyDir: {
+                    medium: "Memory",
+                },
+                name: "tls-server-cert",
+            },
+            annotation: {
+                name: "server-certs",
+                kingdom: configs.kingdom,
+                "cert-type": "server",
+                superpod: null,
+                role: "sam-system.cadvisor-exporter-daemonset",
+                san: null,
+            },
+        },
     },
 
     madkubRsyslogCertFolders(certDirs):: [
@@ -82,7 +122,6 @@
             "--madkub-server-ca=/maddog-certs/ca/cacerts.pem",
         ] + $.madkubRsyslogCertFolders(certDirs) + [
             "--token-folder=/tokens/",
-            "--requested-cert-type=client",
             "--ca-folder=/maddog-certs/ca",
         ],
         name: "madkub-init",
@@ -122,6 +161,33 @@
         resources: {},
     },
 
+    permissionSetterInitContainer:: {
+        command: [
+            "bash",
+            "-c",
+            "set -ex\nchmod 775 -R /client-certs && chown -R 7447:7447 /client-certs\nchmod 775 -R /server-certs && chown -R 7447:7447 /server-certs\n",
+        ],
+        image: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
+        imagePullPolicy: "IfNotPresent",
+        name: "permissionsetterinitcontainer",
+        securityContext: {
+            runAsNonRoot: false,
+            runAsUser: 0,
+        },
+        volumeMounts: [
+          {
+            # Server certs
+            mountPath: "/client-certs",
+            name: "tls-client-cert",
+          },
+          {
+            # Client certs
+            mountPath: "/server-certs",
+            name: "tls-server-cert",
+          },
+        ],
+
+    },
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:
     #

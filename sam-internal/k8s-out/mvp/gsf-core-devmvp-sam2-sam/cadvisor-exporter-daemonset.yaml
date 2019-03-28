@@ -13,6 +13,28 @@ spec:
       name: cadvisor-exporter-daemonset
   template:
     metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: |-
+          {
+           "certreqs": [
+            {
+             "cert-type": "client",
+             "kingdom": "mvp",
+             "name": "client-certs",
+             "role": "sam-system.cadvisor-exporter-daemonset",
+             "san": null,
+             "superpod": null
+            },
+            {
+             "cert-type": "server",
+             "kingdom": "mvp",
+             "name": "server-certs",
+             "role": "sam-system.cadvisor-exporter-daemonset",
+             "san": null,
+             "superpod": null
+            }
+           ]
+          }
       labels:
         name: cadvisor-exporter-daemonset
     spec:
@@ -68,8 +90,6 @@ spec:
             cpu: 150m
             memory: 200Mi
         volumeMounts:
-        - mountPath: /rootfs
-          name: rootfs
         - mountPath: /var/run
           name: var-run
         - mountPath: /sys
@@ -116,7 +136,86 @@ spec:
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --maddog-endpoint=https://10.168.195.227:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=client-certs:/client-certs/
+        - --cert-folders=server-certs:/server-certs/
+        - --token-folder=/tokens/
+        - --ca-folder=/maddog-certs/ca
+        - --refresher
+        - --run-init-for-refresher-mode
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: gcr.io/gsf-core-devmvp-sam2/thargrove/madkubserver:1.0.0-0000080-8a8659dd
+        imagePullPolicy: IfNotPresent
+        name: madkub-refresher
+        resources: {}
+        volumeMounts:
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
       initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --maddog-endpoint=https://10.168.195.227:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=client-certs:/client-certs/
+        - --cert-folders=server-certs:/server-certs/
+        - --token-folder=/tokens/
+        - --ca-folder=/maddog-certs/ca
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: gcr.io/gsf-core-devmvp-sam2/thargrove/madkubserver:1.0.0-0000080-8a8659dd
+        imagePullPolicy: IfNotPresent
+        name: madkub-init
+        volumeMounts:
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
       - command:
         - /usr/bin/ruby
         - /app/config_gen.rb
@@ -165,18 +264,36 @@ spec:
           name: rsyslog-config
         - mountPath: /templates/cadvisor
           name: cadvisor-config-tpl
+      - command:
+        - bash
+        - -c
+        - |
+          set -ex
+          chmod 775 -R /client-certs && chown -R 7447:7447 /client-certs
+          chmod 775 -R /server-certs && chown -R 7447:7447 /server-certs
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76
+        imagePullPolicy: IfNotPresent
+        name: permissionsetterinitcontainer
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
       terminationGracePeriodSeconds: 30
       volumes:
-      - emptyDir: {}
-        name: rsyslog-config
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - emptyDir: {}
         name: cadvisor-yaml
+      - emptyDir: {}
+        name: rsyslog-config
       - configMap:
           name: cadvisor-configmap
         name: cadvisor-config-tpl
-      - hostPath:
-          path: /
-        name: rootfs
       - hostPath:
           path: /var/run
         name: var-run
@@ -189,12 +306,15 @@ spec:
       - hostPath:
           path: /dev/disk
         name: disk
-      - maddogCert:
-          type: client
+      - emptyDir:
+          medium: Memory
         name: tls-client-cert
-      - maddogCert:
-          type: server
+      - emptyDir:
+          medium: Memory
         name: tls-server-cert
+      - emptyDir:
+          medium: Memory
+        name: tokens
   templateGeneration: 2
   updateStrategy:
     rollingUpdate:

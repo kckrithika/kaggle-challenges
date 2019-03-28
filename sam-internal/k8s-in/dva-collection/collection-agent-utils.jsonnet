@@ -3,6 +3,34 @@ local utils = import "util_functions.jsonnet";
 local images = (import "collection-agent-images.libsonnet") + { templateFilename:: std.thisFile };
 
 {
+    baseEnv: [
+        {
+            name: "BROKER_VIP",
+            valueFrom: {
+                configMapKeyRef: {
+                    name: "kafka-cm",
+                    key: "broker_vip",
+                },
+            },
+        },
+        {
+            name: "POD_NAME",
+            valueFrom: {
+                fieldRef: {
+                    fieldPath: "metadata.name",
+                },
+            },
+        },
+        {
+            name: "POD_NAMESPACE",
+            valueFrom: {
+                fieldRef: {
+                    fieldPath: "metadata.namespace",
+                },
+            },
+        },
+    ],
+
     ## generated rsyslog config files for rsyslog daemonset
     rsyslog_config_volume():: [
         {
@@ -132,12 +160,6 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
     ## sfdc-scraper specific volumes
     sfdc_scraper_volume():: [
         {
-            name: "rootfs",
-            hostPath: {
-                path: "/",
-            },
-        },
-        {
             name: "var-run",
             hostPath: {
                 path: "/var/run",
@@ -164,10 +186,6 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
     ],
     sfdc_scraper_volume_mounts():: [
         {
-            mountPath: "/rootfs",
-            name: "rootfs",
-        },
-        {
             mountPath: "/var/run",
             name: "var-run",
         },
@@ -187,20 +205,6 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
     ],
 
     ## Service mesh volumes
-    sherpa_volume():: [
-        {
-            name: "tls-client-cert",
-            maddogCert: {
-                type: "client",
-            },
-        },
-        {
-            name: "tls-server-cert",
-            maddogCert: {
-                type: "server",
-            },
-        },
-    ],
     sherpa_volume_mounts():: [
         {
             mountPath: "/client-certs",
@@ -321,13 +325,81 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
     service_discovery_container():: {
         name: "sherpa",
         image: images.sherpa,
-        args: [
-            "--switchboard=switchboard.service-mesh.svc:15001",
-        ],
+        args+: [] +
+            if configs.estate == "gsf-core-devmvp-sam2-sam" then ["--switchboard=switchboard.service-mesh.svc:15001"]
+            else if configs.estate == "gsf-core-devmvp-sam2-samtest" then ["--switchboard=switchboard-test.service-mesh.svc.sam.core.test.us-central1.gcp.sfdc.net:15001"]
+            else [],
         env: [
             {
                 name: "SFDC_ENVIRONMENT",
                 value: "mesh",
+            },
+            {
+                name: "SETTINGS_SERVICENAME",
+                value: "cadvisor-exporter-daemonset",
+            },
+            {
+                name: "FUNCTION_NAMESPACE",
+                valueFrom: {
+                    fieldRef: {
+                        apiVersion: "v1",
+                        fieldPath: "metadata.namespace",
+                    },
+                }
+            },
+            {
+                name: "FUNCTION_INSTANCE_NAME",
+                valueFrom: {
+                    fieldRef: {
+                        apiVersion: "v1",
+                        fieldPath: "metadata.name",
+                    },
+                }
+            },
+            {
+                name: "FUNCTION_INSTANCE_IP",
+                valueFrom: {
+                    fieldRef: {
+                        apiVersion: "v1",
+                        fieldPath: "status.podIP",
+                    },
+                }
+            },
+            {
+                name: "FUNCTION",
+                value: "cadvisor-exporter-daemonset",
+            },
+            {
+                name: "KINGDOM",
+                value: configs.kingdom,
+            },
+            {
+                name: "ESTATE",
+                value: configs.estate,
+            },
+            {
+                name: "SUPERPOD",
+                value: '-',
+            },
+            {
+                name: "SETTINGS_SUPERPOD",
+                value: '-',
+            },
+            {
+                name: "SETTINGS_PATH",
+                value: 'mesh.-.mvp.-.cadvisor-exporter-daemonset',
+            },
+            {
+                name: "SFDC_SETTINGS_PATH",
+                value: 'mesh.-.mvp.-.cadvisor-exporter-daemonset',
+            },
+            {
+                name: "SFDC_METRICS_SERVICE_HOST",
+                value: 'funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net',
+            },
+            {
+                name: "SFDC_METRICS_SERVICE_PORT",
+                value: '443',
             },
         ],
         resources: {
