@@ -19,6 +19,10 @@ system:
       args:
         - --port=12081
         - --maxMemoryMB=4096
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       livenessProbe:
         exec:
           command:
@@ -46,3 +50,7 @@ system:
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
+    volumes:
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-c1
