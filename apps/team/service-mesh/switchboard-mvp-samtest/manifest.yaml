@@ -38,16 +38,9 @@ system:
       - name: GRPC_SERVER_BIND_ENDPOINT
         value: tcp://0.0.0.0:7020
       - name: JVM_HEAP_MAX
-        value: 4G
+        value: 1G
       - name: FAKE_ENV_VAR_INCREMENT_TO_TRIGGER_SAM_DEPLOY
         value: "2"
-      resources:
-        limits:
-          cpu: "2"
-          memory: 2Gi
-        requests:
-          cpu: "2"
-          memory: 2Gi
       volumeMounts:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
@@ -92,13 +85,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
-      resources:
-        limits:
-          cpu: "1"
-          memory: 1Gi
-        requests:
-          cpu: "1"
-          memory: 1Gi
       volumeMounts:
       - mountPath: /switchboard-config
         name: envoy-config-volume
