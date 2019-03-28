@@ -5,6 +5,7 @@ apps:
 
   switchboard-mvp:
     - mvp/gsf-core-devmvp-sam2-sam
+  switchboard-mvp-samtest:
     - mvp/gsf-core-devmvp-sam2-samtest
   switchboard:
     - prd/prd-sam_gater
