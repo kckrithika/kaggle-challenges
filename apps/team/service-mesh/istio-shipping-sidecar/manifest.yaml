@@ -48,11 +48,11 @@ system:
       maddogCert:
         type: server
 
-  loadbalancers:
-    - lbname: istio-shipping-sidecar
-      function: istio-shipping-sidecar
-      ports:
-        - lbtype: dsr
-          port: 7443
-          targetport: 7020
-          name: grpc-shipping
+#  loadbalancers:
+#    - lbname: istio-shipping-sidecar
+#      function: istio-shipping-sidecar
+#      ports:
+#        - lbtype: dsr
+#          port: 7443
+#          targetport: 7020
+#          name: grpc-shipping

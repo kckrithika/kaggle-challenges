@@ -50,11 +50,11 @@ system:
       maddogCert:
         type: server
 
-  loadbalancers:
-    - lbname: istio-ordering-sidecar
-      function: istio-ordering-sidecar
-      ports:
-        - lbtype: dsr
-          port: 7443
-          targetport: 7020
-          name: grpc-ordering
+#  loadbalancers:
+#    - lbname: istio-ordering-sidecar
+#      function: istio-ordering-sidecar
+#      ports:
+#        - lbtype: dsr
+#          port: 7443
+#          targetport: 7020
+#          name: grpc-ordering
