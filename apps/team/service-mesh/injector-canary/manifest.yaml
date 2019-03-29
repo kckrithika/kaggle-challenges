@@ -9,6 +9,8 @@ system:
     count: 1
     labels:
       "sherpa-injector.service-mesh/inject": "enabled"
+      chaos.sfdc.net/podDelete: true
+      chaos.sfdc.net/podDeletePeriod: 4h
     containers:
     - name: beacon
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822

@@ -7,6 +7,9 @@ system:
   functions:
   - name: envoy-canary
     count: 1
+    labels:
+      chaos.sfdc.net/podDelete: true
+      chaos.sfdc.net/podDeletePeriod: 4h
     containers:
     - name: beacon
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
