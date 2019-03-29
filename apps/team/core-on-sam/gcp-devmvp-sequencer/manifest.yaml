@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: sequencer
-      image: sfci/casam/sequencer:9ee1ca
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:4cf724
       env:
       - name: NONCE
         value: 1551221682919725056
