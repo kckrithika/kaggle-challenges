@@ -1,19 +1,36 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  annotations:
+    checksum/config-volume: f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9
+  labels:
+    app: pilot
+    istio: pilot
+    release: istio
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
   selector:
     matchLabels:
       app: pilot
-      istio: pilot
   template:
+    metadata:
+      labels:
+        name: istio-pilot
     spec:
+      $setElementOrder/containers:
+      - name: discovery
+      - name: metrics-scraper
+      $setElementOrder/volumes:
+      - name: config-volume
       containers:
-      - $patch: delete
-        name: istio-proxy
-      - args:
+      - $setElementOrder/ports:
+        - containerPort: 15011
+        - containerPort: 8080
+        - containerPort: 15010
+        $setElementOrder/volumeMounts:
+        - mountPath: /etc/istio/config
+        args:
         - discovery
         - --monitoringAddr=:15014
         - --domain
@@ -21,7 +38,7 @@ spec:
         - --secureGrpcAddr
         - ""
         - --keepaliveMaxServerConnectionAge
-        - "30m"
+        - 30m
         - --appNamespace
         - service-mesh
         - --log_output_level
@@ -60,6 +77,8 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 30
           timeoutSeconds: 5
+      - $patch: delete
+        name: istio-proxy
       nodeSelector:
         pool: mcpIstioConfig.istioEstate
       volumes:

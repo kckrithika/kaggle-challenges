@@ -28,6 +28,7 @@ spec:
         chart: pilot
         heritage: Tiller
         istio: pilot
+        name: istio-pilot
         release: istio
     spec:
       affinity:

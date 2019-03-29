@@ -43,6 +43,7 @@ spec:
         chart: sidecarInjectorWebhook
         heritage: Tiller
         istio: sidecar-injector
+        name: istio-sidecar-injector
         release: istio
     spec:
       affinity:

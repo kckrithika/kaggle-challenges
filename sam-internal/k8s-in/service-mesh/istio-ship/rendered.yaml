@@ -643,6 +643,7 @@ spec:
         chart: gateways
         heritage: Tiller
         istio: ingressgateway
+        name: istio-ingressgateway
         release: istio
     spec:
       affinity:
@@ -918,6 +919,7 @@ spec:
         chart: pilot
         heritage: Tiller
         istio: pilot
+        name: istio-pilot
         release: istio
     spec:
       affinity:
@@ -1071,6 +1073,7 @@ spec:
         chart: sidecarInjectorWebhook
         heritage: Tiller
         istio: sidecar-injector
+        name: istio-sidecar-injector
         release: istio
     spec:
       affinity:

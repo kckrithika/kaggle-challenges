@@ -37,6 +37,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           chart: "sidecarInjectorWebhook",
           heritage: "Tiller",
           istio: "sidecar-injector",
+          name: "istio-sidecar-injector",
           release: "istio",
         },
       },

@@ -45,6 +45,7 @@ spec:
         chart: gateways
         heritage: Tiller
         istio: ingressgateway
+        name: istio-ingressgateway
         release: istio
     spec:
       affinity:

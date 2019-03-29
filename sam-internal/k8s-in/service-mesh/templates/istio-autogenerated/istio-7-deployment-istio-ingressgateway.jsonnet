@@ -31,6 +31,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           chart: "gateways",
           heritage: "Tiller",
           istio: "ingressgateway",
+          name: "istio-ingressgateway",
           release: "istio",
         },
       },
