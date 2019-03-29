@@ -6,6 +6,7 @@ system:
       count: 3
       type: stateful-set
       identity:
+        emptyServiceName: true
         namespace: emp_aqueduct
       lbname: aqueduct-headless-lb
       volumes:
