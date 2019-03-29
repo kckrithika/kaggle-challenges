@@ -37,12 +37,10 @@ system:
 
     containers:
     - name: rsui-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.6.70
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.7.101
       ports:
       - containerPort: 7022
         name: rsui-in-http1
-      - containerPort: 15372
-        name: rsui-in-admin
       - containerPort: 7020
         name: rsui-in-http2
       resources:
@@ -101,6 +99,8 @@ system:
         value: secrets/encryption-key1/rsui-encryption-key1.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
         value: secrets/encryption-key2/rsui-encryption-key1.key
+      - name: RSUI_HOST
+        value: mist60.stm.salesforce-hub.com
       - name: GATER_EMBEDDED_MODE
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
@@ -120,6 +120,31 @@ system:
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8 -Daura.production=true"
       - name: LOGGING_JSON_STDOUT_LEVEL
         value: ALL
+      # Disable all management endpoints except for health
+      - name: ENDPOINTS_HEALTH_ENABLED
+        value: true
+      - name: ENDPOINTS_INFO_ENABLED
+        value: false
+      - name: ENDPOINTS_DUMP_ENABLED
+        value: false
+      - name: ENDPOINTS_APPMETRICS_ENABLED
+        value: false
+      - name: ENDPOINTS_LINT_ENABLED
+        value: false
+      - name: ENDPOINTS_CONFIGPROPS_ENABLED
+        value: false
+      - name: ENDPOINTS_ENV_ENABLED
+        value: false
+      - name: ENDPOINTS_SHUTDOWN_ENABLED
+        value: false
+      - name: ENDPOINTS_SHUTDOWN_SENSITIVE
+        value: false
+      - name: ENDPOINTS_BINDINGS_ENABLED
+        value: false
+      - name: ENDPOINTS_DTABS_ENABLED
+        value: false
+      - name: ENDPOINTS_JVM_ENABLED
+        value: false
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
@@ -167,14 +192,8 @@ system:
       - name: retailservercert
         mountPath: /server-certs
       ports:
-      - containerPort: 7014 # http1 in port non tls
-        name: sherpa-in-http1
-      - containerPort: 7012 # http2 in port for grpc
-        name: sherpa-in-http2
       - containerPort: 7443 # http2 in port for grpc
         name: sher-in-htp2tls
-      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
-        name: sherpa-in-admin
       livenessProbe:
         exec:
           command:
@@ -210,14 +229,8 @@ system:
     function: rsui-perf
     slbEnabled: true
     ports:
-      - port: 8080
-        targetport: 7022
       - port: 443
         targetport: 7022
         tls: true
         lbtype: http
         reencrypt: true
-      - port: 15372
-        targetport: 15372
-      - port: 7020
-        targetport: 7020
