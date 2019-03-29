@@ -40,11 +40,10 @@ apps:
     - mvp/gsf-core-devmvp-sam2-samtest
   envoy-canary:
     - prd/prd-sam_gater
-
-  injector-canary:
-    # Deploy injector-canary to prd-samtest to test the injector there
+    # Deploy envoy-canary to prd-samtest and prd-samdev to test the injector there
     # TODO: we should also periodically kill it there
-    - prd/prd-samtest 
+    - prd/prd-samtest
+    - prd/prd-samdev
 
   envoy-canary-prod:
     - cdg/cdg-sam_gater
