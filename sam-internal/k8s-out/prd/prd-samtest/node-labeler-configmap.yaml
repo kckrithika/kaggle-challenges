@@ -3,7 +3,7 @@ data:
   node-labeler-config.json: |-
     {
       "commands": {
-        "patch": "cat /etc/sfdc-release | grep -oP '(?\u003c=INSTALL ).*'"
+        "patchVersion": "cat /etc/sfdc-release | grep -oP '(?\u003c=INSTALL ).*'"
       },
       "resync": "30m",
       "runFreq": "10m",

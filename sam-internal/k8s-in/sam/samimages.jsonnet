@@ -22,6 +22,10 @@ local samreleases = import "samreleases.json";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        #[a.mitra] Enable node labeler in prd samtest and samdev
+        "prd,prd-samdev,node-labeler,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/a.mitra/hypersam:20190328_182019.ca63d453.dirty.amitra-ltm2",
+        "prd,prd-samtest,node-labeler,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/a.mitra/hypersam:20190328_182019.ca63d453.dirty.amitra-ltm2",
+
         #[thargrove] Needed only until Artifactory adds a docker-all alias to docker-gcp in XRD 2-0
         "mvp,gsf-core-devmvp-sam2-sam,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
         "mvp,gsf-core-devmvp-sam2-samtest,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
