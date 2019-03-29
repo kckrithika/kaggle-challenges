@@ -10,7 +10,7 @@ local configs = import "config.jsonnet";
       app: "switchboard-test",
     } +
     // samlabelfilter.json requires this label to be present on GCP deployments
-    if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.pcnEnableLabel else {},
+    if configs.estate == "gsf-core-devmvp-sam2-sam" || configs.estate == "gsf-core-devmvp-sam2-samtest" then configs.pcnEnableLabel else {},
   },
   spec: {
     type: "ClusterIP",
