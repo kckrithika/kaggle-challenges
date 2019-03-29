@@ -22,7 +22,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - samapp/user-daeki-cho/ml-spaas:DATACENTER_ALLENV:7443
+      - samapp/user-daeki-cho/ml-spaas:DATACENTER:7442
       volumeMounts:
       - mountPath: /home/scone/logs
         name: beacon-log-volume
@@ -35,7 +35,7 @@ system:
       image: sfci/servicelibs/sherpa-envoy:1.0.4
       ports:
       - name: sherpa-b-tls
-        containerPort: 7443
+        containerPort: 7442
       - name: sherpa-b-adm
         containerPort: 15373
       env:
