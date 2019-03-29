@@ -18,7 +18,7 @@ configs.deploymentBase("service-mesh") {
     if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.pcnEnableLabel else {},
   },
   spec+: {
-    replicas: if configs.estate == "prd-samtest" then 1 else 3,
+    replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else 3,
     template: {
       metadata: {
         labels: {
@@ -65,7 +65,7 @@ configs.deploymentBase("service-mesh") {
         containers: [
           {
             name: "injector",
-            image: if configs.estate == "prd-samtest" then versions.canaryInjectorImage else versions.injectorImage,
+            image: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then versions.canaryInjectorImage else versions.injectorImage,
             imagePullPolicy: "IfNotPresent",
             args: [
               "--template=sherpa-container.yaml.template",
@@ -315,7 +315,7 @@ configs.deploymentBase("service-mesh") {
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
-          if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
+          if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
               master: "true",
           } else {
               pool: configs.estate,
