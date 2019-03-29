@@ -14,6 +14,20 @@ system:
         httpGet:
           path: /health
           port: 8080
+      env:
+      - name: HTTP_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: HTTPS_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      volumeMounts:
+      - mountPath: /secrets/
+        name: hubot-secrets
+        readOnly: true
+    volumes:
+    - name: hubot-secrets
+      k4aSecret:
+        secretName: hubot
+
   loadbalancers:
   - lbname: pcg-hubot
     function: pcg-hubot
