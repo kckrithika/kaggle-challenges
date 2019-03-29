@@ -5,3 +5,5 @@ apps:
         - prd/prd-sam
     prd-qpid-test-client:
         - prd/prd-sam
+    prd-qpid-test-new-client:
+        - prd/prd-sam
