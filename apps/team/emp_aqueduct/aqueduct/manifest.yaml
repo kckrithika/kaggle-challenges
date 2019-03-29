@@ -62,7 +62,7 @@ system:
           requests: { cpu: "1", memory: "1Gi" }
         args:
         - -endpoint
-        - emp_aqueduct/emp-aqueduct:DATACENTER:7443
+        - emp_aqueduct/aqueduct:DATACENTER:7443
         - -logging.dir
         - /log
         livenessProbe:
