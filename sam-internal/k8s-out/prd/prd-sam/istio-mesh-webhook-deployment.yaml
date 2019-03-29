@@ -8,6 +8,7 @@ spec:
   selector:
     matchLabels:
       app: istio-mesh-webhook
+      name: istio-mesh-webhook
   template:
     metadata:
       annotations:
@@ -32,6 +33,7 @@ spec:
         sidecar.istio.io/inject: "false"
       labels:
         app: istio-mesh-webhook
+        name: istio-mesh-webhook
     spec:
       containers:
       - args:
