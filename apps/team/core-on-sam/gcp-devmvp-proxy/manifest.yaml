@@ -179,3 +179,16 @@ system:
       targetport: 12060
     - port: 18443
       targetport: 12060
+  - lbname: na3app-gcp-int-lb
+    function: na3-sfproxy-phx
+    nodeExposed: false
+    slbEnabled: true
+    ports:
+    # HTTPS listen ports of Envoy.
+    - port: 443
+      targetport: 12060
+      lbtype: tcp
+    - port: 8443
+      targetport: 12060
+      lbtype: tcp
+
