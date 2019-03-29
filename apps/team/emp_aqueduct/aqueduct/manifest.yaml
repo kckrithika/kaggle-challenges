@@ -4,8 +4,8 @@ system:
   functions:
     - name: aqueduct
       count: 3
+      type: stateful-set
       identity:
-        emptyServiceName: true
         namespace: emp_aqueduct
       volumes:
       - name: kafkaclientcerts
