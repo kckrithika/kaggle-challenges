@@ -1,6 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  labels:
+    app: istio-ingressgateway
+    istio: ingressgateway
+    release: istio
   name: istio-ingressgateway
   namespace: mesh-control-plane
 spec:
@@ -12,9 +16,36 @@ spec:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: mcpIstioConfig.ingressGatewayMadkubAnnotations
+      labels:
+        name: istio-ingressgateway
     spec:
+      $setElementOrder/containers:
+      - name: istio-proxy
+      - name: madkub-refresher
+      $setElementOrder/volumes:
+      - name: maddog-certs
+      - name: tls-client-cert
+      - name: tls-server-cert
+      - name: tokens
       containers:
-      - args:
+      - $setElementOrder/ports:
+        - containerPort: 80
+        - containerPort: 443
+        - containerPort: 15029
+        - containerPort: 15032
+        - containerPort: 15443
+        - containerPort: 15020
+        - containerPort: 15090
+        $setElementOrder/volumeMounts:
+        - mountPath: /etc/pki_service
+        - mountPath: /etc/certs/root-cert.pem
+        - mountPath: /etc/certs/cert-chain.pem
+        - mountPath: /etc/certs/key.pem
+        - mountPath: /etc/certs/client.pem
+        - mountPath: /etc/certs/client-key.pem
+        - mountPath: /client-cert
+        - mountPath: /server-cert
+        args:
         - proxy
         - router
         - --drainDuration
@@ -171,12 +202,6 @@ spec:
       nodeSelector:
         pool: mcpIstioConfig.istioEstate
       volumes:
-      - $patch: delete
-        name: istio-certs
-      - $patch: delete
-        name: ingressgateway-certs
-      - $patch: delete
-        name: ingressgateway-ca-certs
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
@@ -189,3 +214,9 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
+      - $patch: delete
+        name: ingressgateway-ca-certs
+      - $patch: delete
+        name: ingressgateway-certs
+      - $patch: delete
+        name: istio-certs

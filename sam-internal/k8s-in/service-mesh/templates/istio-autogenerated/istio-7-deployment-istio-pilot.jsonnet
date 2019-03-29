@@ -39,6 +39,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
           chart: "pilot",
           heritage: "Tiller",
           istio: "pilot",
+          name: "istio-pilot",
           release: "istio",
         },
       },
