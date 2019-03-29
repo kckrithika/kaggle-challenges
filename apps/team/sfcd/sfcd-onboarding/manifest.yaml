@@ -8,7 +8,7 @@ system:
       serviceName: sfcd-onboarding
     containers:
     - name: sfcd-onboarding
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:3
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:8
       command: [ "/bin/bash", "-c", "--" ]
       args: [ "while true; do sleep 30; done;" ]
       ports:
