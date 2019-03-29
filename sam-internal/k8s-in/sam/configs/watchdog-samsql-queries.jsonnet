@@ -34,6 +34,7 @@
     (import "watchdog-samsql-alerts/sqlkubeapinode.libsonnet").sqlkubeapi("pagerduty", "dist=0"),
     (import "watchdog-samsql-alerts/sqlkubeapinode.libsonnet").sqlkubeapi("businesshours_pagerduty", "dist>0"),
     (import "watchdog-samsql-alerts/sqlsamcontrol-deployer.libsonnet"),
+    (import "watchdog-samsql-alerts/toomanypodsinnamespace.libsonnet"),
   ],
 
 
