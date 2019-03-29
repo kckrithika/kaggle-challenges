@@ -7,6 +7,7 @@ system:
       type: stateful-set
       identity:
         namespace: emp_aqueduct
+      lbname: aqueduct-headless-lb
       volumes:
       - name: kafkaclientcerts
         maddogCert:
