@@ -7,7 +7,7 @@ system:
     count: 1
     containers:
     - name: pcg-hubot
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kmancuso/pcg-hubot:test
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kmancuso/pcg-hubot:1553903494
       ports:
         - containerPort: 8080
       livenessProbe:
