@@ -75,7 +75,7 @@ else
                 namespace: "flowsnake",
             },
             data: {
-                "check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",
+                "check-spark-operator.sh": if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging") then importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-v2.sh" else importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",
                 "check-impersonation.sh": importstr "spark-on-k8s-canary-scripts/check-impersonation.sh",
             }
         },
