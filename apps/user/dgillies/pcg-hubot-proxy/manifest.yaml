@@ -1,10 +1,9 @@
 ---
 apiVersion: v1
-
 system:
   functions:
   - name: pcg-hubot-forwarder
-    count: 2
+    count: 1
     containers:
     - name: pcg-hubot-forwarder
       image: dva/moe/reverse-proxy:2077-b9a67a61e7ec6ef1fdc95e3fe46496c11170cfe8
