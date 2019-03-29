@@ -155,17 +155,13 @@ local utils = import "util_functions.jsonnet";
                 # TODO: Get in sync with the rest of phase 3
                 # In PCL, Madkub server needs to use host IP for token IP to get server token.
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",
-                cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
                 eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
                 watchdog_image_tag: "sam-0002530-db32f9dc",  # Adds cli-checker stderr logging
             },
             feature_flags+: {
             },
-            version_mapping+: {
-                # TODO: Get in sync with the rest of phase 3
-                "0.12.5": "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-            },
+            # No legacy Flowsnake in Public Cloud
+            version_mapping: {},
         },
         ### A very special phase 3 for IAD and ORD that preserves access to old versions used by CRE.
         ### TODO:  Remove when CRE is migrated to 0.12.2+
