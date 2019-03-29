@@ -8,7 +8,7 @@ system:
       serviceName: sfcd-onboarding
     containers:
     - name: sfcd-onboarding
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:8
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:9
       command: [ "/bin/bash", "-c", "--" ]
       args: [ "while true; do sleep 30; done;" ]
       ports:
@@ -42,8 +42,14 @@ system:
     function: sfcd-onboarding
     slbenabled: true
     ports:
-      - port: 443
+      # Insecure 80 will be disabled before release
+      - port: 80
         targetport: 5000
         lbtype: http
         tls: false
+        sticky: 300
+      - port: 443
+        targetport: 5000
+        lbtype: http
+        tls: true
         sticky: 300
