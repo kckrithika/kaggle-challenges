@@ -166,25 +166,26 @@ items:
       log "Creating SparkApplication $APP_NAME"
       kcfw_log create -f $SPEC
       START_TIME=$(epoch)
+      LAST_LOGGED=$START_TIME
 
-      log "Waiting for SparkApplication $APP_NAME to terminate."
       # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
-      i=0
       state() {
           kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'
       }
+      log "Waiting for SparkApplication $APP_NAME to terminate."
       STATE=$(state)
       while ! $(echo $STATE | grep -P '(COMPLETED|FAILED)' > /dev/null); do
-          if ((i % 180 == 0 & i > 0)); then
-              log "...still waiting for terminal state (currently $STATE) after $i seconds. Events so far:";
-              events;
-          fi;
           EPOCH=$(epoch)
           if (( EPOCH - START_TIME >= TIMEOUT_SECS )); then
               log "Timeout reached. Aborting wait even though in non-terminal state $STATE."
+              events;
               break
           fi
-          ((i = i + 1))
+          if (( EPOCH - LAST_LOGGED > 180 )); then
+              log "...still waiting for terminal state (currently $STATE) after $((EPOCH-START_TIME)) seconds. Events so far:";
+              events;
+              LAST_LOGGED=${EPOCH}
+          fi;
           sleep 1;
           STATE=$(state)
       done;
