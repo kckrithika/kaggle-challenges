@@ -7,9 +7,9 @@ system:
   - containers:
     - env:
       - name: DB_SID
-        value: mist61b218utf
+        value: mist61c220utf
       - name: DB_INSTANCE_NAME
-        value: mist61b218utf-1
+        value: mist61c220utf-1
       - name: DB_USER
         value: sleepy
       - name: DB_STATS_USER
@@ -56,13 +56,11 @@ system:
         value: na5
       - name: DEPLOYMENT
         value: B
-      - name: USE_CONFIG_SIDECAR
-        value: 1
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17489896
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_main_17487231
       livenessProbe:
         exec:
           command:
@@ -80,7 +78,7 @@ system:
       readinessProbe:
         exec:
           command:
-          - /home/sfdc/salesforce/build/ready_probe.sh
+          - /home/sfdc/salesforce/casam/bin/ready_probe.sh
         failureThreshold: 99999
         initialDelaySeconds: 120
         periodSeconds: 5
@@ -92,15 +90,15 @@ system:
         name: log-volume-jvm
       - mountPath: /etc/pki_service
         name: tls-client-cert
-      - mountPath: /home/sfdc/config_override
-        name: coreapp-config-volume
+      - mountPath: /home/sfdc/salesforce/casam
+        name: coreapp-casam-volume
       - mountPath: /home/sfdc/salesforce/config/settings/overrides/caas-cluster-casam-sp2
         name: secretvol
         readOnly: true
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na5.app
-      image: sfci/casam/coreapp_config_overrides:241254
+      image: sfci/casam/coreapp_overrides:ef1a7d
       livenessProbe:
         exec:
           command:
@@ -108,7 +106,7 @@ system:
           - /tmp/live
         initialDelaySeconds: 10
         periodSeconds: 5
-      name: config-sidecar
+      name: casam-sidecar
       readinessProbe:
         exec:
           command:
@@ -117,8 +115,8 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
       volumeMounts:
-      - mountPath: /home/sfdc/config_override
-        name: coreapp-config-volume
+      - mountPath: /home/sfdc/salesforce/casam
+        name: coreapp-casam-volume
     - args:
       - --template
       - /cyan-config/tls-terminator-config.yaml.template
@@ -187,7 +185,7 @@ system:
     - emptyDir: {}
       name: envoy-config-volume
     - emptyDir: {}
-      name: coreapp-config-volume
+      name: coreapp-casam-volume
     - maddogCert:
         type: client
       name: tls-client-cert
@@ -203,106 +201,6 @@ system:
     - k4aSecret:
         secretName: caas-k4a-secret-prd
       name: secretvol
-  - containers:
-    - env:
-      - name: NONCE
-        value: 1550623873992246016
-      - name: DRY_RUN
-        value: 0
-      - name: CHATTER_GROUP_NAME
-        value: casam-alpha
-      - name: CYAN
-        value: https://us5-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
-      - name: SWITCH_BOARD_ADDRESS
-        value: na5-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
-      - name: RELEASE_VESION
-        value: ""
-      - name: RELEASE_TYPE
-        value: MINOR
-      - name: MAJOR_RELEASE_NUMBER
-        value: 218
-      - name: MINOR_RELEASE_NUMBER
-        value: 0
-      - name: PATCH_RELEASE_NUMBER
-        value: 0
-      - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
-        value: blue
-      - name: READY_SERVER_COUNT
-        value: 1
-      - name: DB_SID
-        value: mist61b218utf
-      - name: ENABLE_DB_SCHEMA_UPGRADE
-        value: 0
-      - name: SET_DEFAULT_ORACLE_EDITION
-        value: 0
-      - name: OLD_DWARF
-        value: sneezy
-      - name: KILL_DWARF
-        value: 0
-      - name: LOCK_DWARF
-        value: 0
-      - name: TRIGGER_CAFFEINE
-        value: 0
-      - name: UNLOCK_DWARF
-        value: 0
-      - name: SNOWWHITE_PWD
-        value: rotate
-      - name: MADDOG_CLIENT
-        value: /certs
-      - name: SFPROXY_SETTINGS_PATH
-        value: mist61.-.prd.na5.sfproxy
-      - name: CASAM_SUPERPOD
-        value: sp2
-      - name: HTTP_PROXY
-        value: public0-proxy1-0-prd.data.sfdc.net:8080
-      - name: SKIP_KAIJU
-        value: 0
-      image: sfci/casam/sequencer:ca008f
-      livenessProbe:
-        exec:
-          command:
-          - /usr/local/bin/ready_probe.sh
-        failureThreshold: 10
-        initialDelaySeconds: 60
-        periodSeconds: 1
-      name: sequencer
-      ports:
-      - containerPort: 12062
-      readinessProbe:
-        exec:
-          command:
-          - /usr/local/bin/ready_probe.sh
-        failureThreshold: 10
-        initialDelaySeconds: 60
-        periodSeconds: 1
-      volumeMounts:
-      - mountPath: /certs
-        name: cert
-      - mountPath: /secrets/
-        name: secretvol
-        readOnly: true
-      - mountPath: /kaiju-secrets/
-        name: kaiju-secret-vol
-        readOnly: true
-    count: 1
-    identity:
-      pod: na5
-      serviceName: sequencer
-    name: na5-mist61sequencer-prd
-    progressDeadlineSeconds: 300
-    terminationGracePeriodSeconds: 500
-    volumes:
-    - maddogCert:
-        type: client
-      name: cert
-    - k4aSecret:
-        secretName: sequencer-gus
-      name: secretvol
-    - k4aSecret:
-        secretName: sequencer-kaiju
-      name: kaiju-secret-vol
   - containers:
     - args:
       - --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template
