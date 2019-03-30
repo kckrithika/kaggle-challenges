@@ -107,7 +107,7 @@ system:
       - spaas:DATACENTER_ALLENV:7033
        # Namespaced, TLS terminated at sherpa
       - -endpoint
-      - service-protection/spaas:DATACENTER_ALLENV:7443 
+      - samapp/user-daeki-cho/spaas:DATACENTER_ALLENV:7443 
       - -logging.dir
       - /log
       livenessProbe:

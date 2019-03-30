@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: ml-spaas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/daeki.cho/ml-spaas:cho-20190328
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/daeki.cho/ml-spaas:cho-20190329
       ports:
       - containerPort: 7020
       livenessProbe:
@@ -25,7 +25,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - samapp/user-daeki-cho/ml-spaas:DATACENTER:7443
+      - samapp/user-daeki-cho/ml-spaas:DATACENTER_ALLENV:7443
       volumeMounts:
       - mountPath: /home/scone/logs
         name: beacon-log-volume
