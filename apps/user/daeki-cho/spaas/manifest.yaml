@@ -8,11 +8,9 @@ system:
   functions:
   # service name
   - name: spaas
-    
     # number of instances ("kpods") to deploy and run
     # recommended min: 3 for availability
     count: 3
-    
     # Docker image(s) that make up one instance of the service
     containers:
     - name: spaas
