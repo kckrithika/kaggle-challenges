@@ -8,7 +8,7 @@ system:
       identity:
         emptyServiceName: true
         namespace: emp_aqueduct
-      lbname: aqueduct-headless-lb
+      lbname: aqueduct-lb
       volumes:
       - name: kafkaclientcerts
         maddogCert:
@@ -26,7 +26,7 @@ system:
         hostPath:
           path: /home/sfdc-scone-shipping-beacon/logs
       containers:
-      - name: aqueduct
+      - name: aqueduct-host
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:848b85b 
         env:
         - name: SFDC_ENVIRONMENT
@@ -106,14 +106,3 @@ system:
           name: server-cert
         - mountPath: /log
           name: sherpa-log-volume
-  loadbalancers:
-    - lbname: aqueduct
-      function: aqueduct
-      slbEnabled: true
-      ports:
-        - port: 443
-          targetport: 8082
-          lbtype: http
-        - port: 15372
-          targetport: 15372
-          lbtype: http
