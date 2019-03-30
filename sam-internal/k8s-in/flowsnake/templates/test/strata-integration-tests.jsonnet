@@ -1,20 +1,36 @@
 
+# Strata integration testing of Spark-on-Kubernetes
+#
+# The flow is as follows:
+# - Strata build creates docker images, including a "test runner" image based on cliChecker.
+# - Strata build script pokes a key-value into a special configmap "ci-test-requests" in the
+#   flowsnake-ci-tests namespace
+# - Test Agent monitors the configmap; when a new entry appears it creates a test-runner pod using the k+v
+#   as name and docker image tag, respectively.
+# - Strata build script monitors the runner pod for completion and success, then writes its logs into the
+#   Strata build logs.
+#
+# This file creates some miscellaneous resources needed for this process
+#
+# Resources created here:
+# - Role for perms to get/list pods, logs, sparkapplications, and configmaps + patch the test requests configmap
+# - Rolebinding of all users (including anonymous) to the preceding
+# - Configmap containing scripts and the runner pod template used by the test agent
+#
+# Resources created via configuration in ../../flowsnake_direct_clients.jsonnet:
+# - flowsnake-ci-tests namespace
+# - role for client/sparkdriver to access anything in that NS
+# - service account for sparkdriver (reused for the agent so it can schedule pods)
+# - rolebinding for preceeding role to preceeding SA, plus flowsnake_test.flowsnake-ci-test user
+#
+# Other related resources:
+# - The spec for the test agent's deployment, in strata-test-agent-deployment.jsonnet
+# - a copy of the watchdog test-runner scripts in the flowsnake-ci-tests namespace, produced by
+#   logic in ../watchdog/watchdog-spark-operator-scripts.libsonnet
+# - the ci-test-requests configmap, created dynamically by the agent when it is missing.
+
 
 local flowsnake_config = import "flowsnake_config.jsonnet";
-
-## Resources created via flowsnake_direct_clients:
-# - ns
-# - role for spark driver
-# - SA  for driver (must be same name as integration tests)
-# - rolebinding for SA
-
-## Resources that must be created here:
-# - role for anonymous perms
-# - rolebinding for anonymous to configmap ci-test-requests
-# - runner configmap w/ script
-# - runner deployment (podcount: 1) w/ pod def that runs script
-# - copy of the cliChecker's scripts configmap
-
 
 # limit to CI target fleet
 if !flowsnake_config.ci_resources_enabled then
@@ -92,6 +108,18 @@ else
                     apiGroup: "rbac.authorization.k8s.io"
                 }
             ]
-        }
+        },
+        {
+            kind: "ConfigMap",
+            apiVersion: "v1",
+            metadata: {
+                name: "strata-test-agent-scripts",
+                namespace: "flowsnake-ci-tests"
+            },
+            data: {
+                "strata-test-agent.py": importstr "strata-test-agent.py",
+                "runner_spec_template.json": std.toString(import "strata-runner-spec.libsonnet"),
+            }
+        },
     ]
 }

@@ -294,6 +294,33 @@ items:
     verbs:
     - get
     - list
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-flowsnake-ci-tests-ClusterRoleBinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: client-cluster-role
+  subjects:
+  - kind: User
+    name: flowsnake_test.flowsnake-ci-test
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: flowsnake-client-flowsnake-ci-tests-RoleBinding
+    namespace: flowsnake-ci-tests
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: flowsnake-client-flowsnake-ci-tests-Role
+  subjects:
+  - kind: User
+    name: flowsnake_test.flowsnake-ci-test
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount

@@ -65,23 +65,9 @@ else
                 "watchdog-spark-impersonation.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-impersonation.libsonnet"),
                 "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-specs/kubeconfig-impersonation-proxy.libsonnet"),
             }
-        },
-        # ConfigMap containing the logic of the watchdog
-        {
-            kind: "ConfigMap",
-            apiVersion: "v1",
-            metadata: {
-                name: "watchdog-spark-on-k8s-script-configmap",
-                namespace: "flowsnake",
-            },
-            data: {
-                "check-spark-operator.sh":
-                    if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging") then
-                        importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-v2.sh"
-                    else importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",
-                "check-impersonation.sh": importstr "spark-on-k8s-canary-scripts/check-impersonation.sh",
-            }
-        },
+        }]
+        + (import "watchdog-spark-operator-scripts.libsonnet")
+        + [
         configs.deploymentBase("flowsnake") {
             local label_node = self.spec.template.metadata.labels,
             metadata: {
