@@ -37,9 +37,9 @@ system:
       image: sfci/servicelibs/beacon:0078716f45375dc0b114849e13d9b1dbf83177a9
       args:
       - -endpoint
-      - caas/cluster/$(HOSTNAME):SUPERPOD:12011
+      - caas/cluster/$(FUNCTION_INSTANCE_NAME):SUPERPOD:12011
       - -logdir
-      - /home/sfdc-caas/logs/$(HOSTNAME)-12011
+      - /home/sfdc-caas/logs/$(FUNCTION_INSTANCE_NAME)-12011
       livenessProbe:
         initialDelaySeconds: 5
         exec:
