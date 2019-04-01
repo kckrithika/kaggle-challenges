@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: vagabond-test-client
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond/vagabond-load-test:2
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond/vagabond-load-test:3
       resources:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
