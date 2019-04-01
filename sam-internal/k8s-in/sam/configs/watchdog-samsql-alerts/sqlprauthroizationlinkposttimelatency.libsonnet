@@ -5,7 +5,7 @@
       alertFrequency: "24h",
       watchdogFrequency: "10m",
       alertProfile: "sam",
-      alertAction: "pagerDuty",
+      alertAction: "pagerduty",
       sql: "SELECT
           * 
         FROM (SELECT 
