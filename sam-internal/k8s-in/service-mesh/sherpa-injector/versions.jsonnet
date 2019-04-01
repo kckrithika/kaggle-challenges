@@ -14,14 +14,14 @@ local configs = import "config.jsonnet";
     ),
     canaryInjectorImage: (
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
-        // https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-injector/job/master/128
-        "%s/sfci/servicelibs/sherpa-injector:ae6a9e43391b9135ec87d3a1914ccd7c2be37eea" % 
+        // https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-injector/job/master/133
+        "%s/sfci/servicelibs/sherpa-injector:2ec3aac4e5627d385f949341e18fffc0ec58e0f1" % 
         if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.registry + "/docker-gcp" else configs.registry
     ),
     injectorImage: (
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
-        // https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-injector/job/master/128
-        "%s/sfci/servicelibs/sherpa-injector:ae6a9e43391b9135ec87d3a1914ccd7c2be37eea" % 
+        // https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-injector/job/master/133
+        "%s/sfci/servicelibs/sherpa-injector:2ec3aac4e5627d385f949341e18fffc0ec58e0f1" % 
         if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.registry + "/docker-gcp" else configs.registry
     ),
 }
