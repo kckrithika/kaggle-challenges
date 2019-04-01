@@ -3,8 +3,6 @@ apps:
     - mvp/gsf-core-devmvp-sam2-sam
   content-tika-svc-gcp-devmvp:
     - mvp/gsf-core-devmvp-sam2-sam
-  content-tika-svc-gcp-devmvp-funnel:
-    - mvp/gsf-core-devmvp-sam2-sam
   content-aspose-svc-gcp-devmvp:
     - mvp/gsf-core-devmvp-sam2-sam
   content-jmagick:
