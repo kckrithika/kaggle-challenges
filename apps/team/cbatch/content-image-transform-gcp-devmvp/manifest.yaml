@@ -45,9 +45,9 @@ system:
               value: mesh
           args:
             - -endpoint
-            - service-mesh/content-image-transform:DATACENTER:7443
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
             - -endpoint
-            - content-image-transform:DATACENTER:7012
+            - $(FUNCTION):DATACENTER_ALLENV:HTTP2
           livenessProbe:
             initialDelaySeconds: 5
             exec:
