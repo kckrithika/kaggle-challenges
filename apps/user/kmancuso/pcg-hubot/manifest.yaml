@@ -21,12 +21,12 @@ system:
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       volumeMounts:
       - mountPath: /secrets/
-        name: hubot-secrets
+        name: hubot
         readOnly: true
     volumes:
-    - name: hubot-secrets
+    - name: hubot
       k4aSecret:
-        secretName: hubot-secrets
+        secretName: hubot
 
   loadbalancers:
   - lbname: pcg-hubot
