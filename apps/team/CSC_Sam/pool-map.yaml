@@ -68,14 +68,17 @@ apps:
   - prd/prd-sam
  pseudo-api:
   - prd/prd-sam
+  - prd/prd-samtwo
  kubernetes-dashboard:
   - prd/prd-sam
+  - prd/prd-samtwo
  kubernetes-dashboard-test:
   - prd/prd-samdev
  TnrpMonitor:
   - prd/prd-sam
  SamDeploymentPortalV2:
   - prd/prd-sam
+  - prd/prd-samtwo
  snapshot-producer: 
   - frf/frf-sam
   - cdu/cdu-sam
