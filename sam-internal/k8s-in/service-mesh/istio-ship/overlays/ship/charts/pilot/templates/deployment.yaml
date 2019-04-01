@@ -24,13 +24,7 @@ spec:
       $setElementOrder/volumes:
       - name: config-volume
       containers:
-      - $setElementOrder/ports:
-        - containerPort: 15011
-        - containerPort: 8080
-        - containerPort: 15010
-        $setElementOrder/volumeMounts:
-        - mountPath: /etc/istio/config
-        args:
+      - args:
         - discovery
         - --monitoringAddr=:15014
         - --domain

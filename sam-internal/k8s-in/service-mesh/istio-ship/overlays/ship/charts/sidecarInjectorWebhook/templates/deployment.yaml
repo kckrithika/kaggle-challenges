@@ -18,22 +18,8 @@ spec:
       labels:
         name: istio-sidecar-injector
     spec:
-      $setElementOrder/containers:
-      - name: sidecar-injector-webhook
-      - name: madkub-refresher
-      $setElementOrder/volumes:
-      - name: maddog-certs
-      - name: tls-server-cert
-      - name: tokens
-      - name: config-volume
-      - name: inject-config
       containers:
-      - $setElementOrder/volumeMounts:
-        - mountPath: /etc/pki_service
-        - mountPath: /server-cert
-        - mountPath: /etc/istio/config
-        - mountPath: /etc/istio/inject
-        args:
+      - args:
         - --caCertFile=/server-cert/ca.pem
         - --tlsCertFile=/server-cert/server/certificates/server.pem
         - --tlsKeyFile=/server-cert/server/keys/server-key.pem
