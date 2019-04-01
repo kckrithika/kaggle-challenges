@@ -9,13 +9,13 @@ system:
     count: 1
     containers:
     - name: vagabond-test-client
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond/vagabond-load-test:1
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond/vagabond-load-test:2
       resources:
         limits: { memory: "6G" }
         requests: { memory: "6G" }
       args:
-        - --type=BIGTABLE
-        - --url=gsf-core-devmvp-vagabond:vagabond-dev-instance
+        - --type=VAGABOND
+        - --url=acs-0.acs-stateful-ilb.vagabond.svc.cluster.local:8085,acs-1.acs-stateful-ilb.vagabond.svc.cluster.local:8085,acs-2.acs-stateful-ilb.vagabond.svc.cluster.local:8085,acs-3.acs-stateful-ilb.vagabond.svc.cluster.local:8085
       livenessProbe:
         exec:
           command: ["true"]
