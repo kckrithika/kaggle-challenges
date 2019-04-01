@@ -47,6 +47,9 @@ spec:
         - NONE
         - --discoveryAddress
         - istio-pilot:8080
+`        env:
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
         image: mcpIstioConfig.proxyImage
         name: istio-proxy
         ports:
@@ -112,6 +115,8 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate      
         image: mcpIstioConfig.madkubImage
         imagePullPolicy: IfNotPresent
         name: madkub-refresher

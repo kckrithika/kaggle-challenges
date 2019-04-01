@@ -125,6 +125,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             ],
             env: [
               {
+                name: "ESTATE",
+                value: mcpIstioConfig.istioEstate,
+              },
+              {
                 name: "POD_NAME",
                 valueFrom: {
                   fieldRef: {
@@ -299,6 +303,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                     fieldPath: "metadata.namespace",
                   },
                 },
+              },
+              {
+                name: "ESTATE",
+                value: mcpIstioConfig.istioEstate,
               },
             ],
             image: mcpIstioConfig.madkubImage,
