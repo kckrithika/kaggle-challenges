@@ -26,7 +26,7 @@ local samreleases = import "samreleases.json";
                                 "--etcdSetDisabled=true",
                                 "--etcdGetDisabled=true",
                             ]) + (
-                                if samimages.phaseNum <= 4 && configs.kingdom != "mvp" then
+                                if configs.kingdom != "mvp" then
                                 [] else [
                                    "--crdSetEnabled=true",
                                    "--crdGetEnabled=true",
