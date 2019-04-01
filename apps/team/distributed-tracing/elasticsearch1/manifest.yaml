@@ -19,8 +19,6 @@ system:
         name: myclientcert
       - mountPath: /myservercert
         name: myservercert
-      - mountPath: /mypeercert
-        name: mypeercert
 
       #- mountPath: /certs
       #  name: certs
@@ -50,9 +48,6 @@ system:
     - name: myservercert
       maddogCert:
         type: server
-    - name: mypeercert
-      maddogCert:
-        type: peer
     terminationGracePeriodSeconds: 20
 
     lbname: elasticsearch-stateful-lb1
