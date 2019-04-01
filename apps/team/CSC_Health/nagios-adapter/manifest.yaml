@@ -6,8 +6,8 @@ system:
     count: 1
     volumes:
     - name: nagiosauthvol
-      secret:
-        secretName: csc-nagios-auth-stanpass
+      k4aSecret:
+        secretName: csc-nagios-auth
     containers:
     - name: nagios-adapter
       image: dva/csc-health/nagios-adapter:7
@@ -26,7 +26,7 @@ system:
       - name: nagiosadapter_estates_estates_root_path
         value: /nagios-adapter/estates-edl/
       - name: nagiosadapter_nagios_nagios_username
-        value: stanfield.chu
+        value: csc.health.serviceuser
       - name: nagiosadapter_nagios_nagios_password_path
         value: /var/secrets/nagios-auth/auth
       - name: nagiosadapter_logger_log_file
