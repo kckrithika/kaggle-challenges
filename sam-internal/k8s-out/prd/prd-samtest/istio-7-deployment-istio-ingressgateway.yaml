@@ -102,6 +102,8 @@ spec:
         - --discoveryAddress
         - istio-pilot:8080
         env:
+        - name: ESTATE
+          value: prd-samtest
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -204,6 +206,8 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
+        - name: ESTATE
+          value: prd-samtest
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher

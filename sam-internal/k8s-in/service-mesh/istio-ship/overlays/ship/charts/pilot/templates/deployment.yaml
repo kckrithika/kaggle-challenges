@@ -37,6 +37,9 @@ spec:
         - service-mesh
         - --log_output_level
         - debug
+        env:
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
         image: mcpIstioConfig.pilotImage
         name: discovery
         ports:
@@ -61,6 +64,8 @@ spec:
           value: mcpIstioConfig.funnelHost
         - name: SFDC_METRICS_SERVICE_PORT
           value: mcpIstioConfig.funnelPort
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
         image: mcpIstioConfig.metricsScraperImage
         imagePullPolicy: Always
         name: metrics-scraper

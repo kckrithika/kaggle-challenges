@@ -28,6 +28,9 @@ spec:
         - --healthCheckInterval=2s
         - --healthCheckFile=/health
         - --port=15009
+        env:
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
         image: mcpIstioConfig.sidecarInjectorImage
         name: sidecar-injector-webhook
         ports:
@@ -67,6 +70,8 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
+        - name: ESTATE
+          value: mcpIstioConfig.istioEstate
         image: mcpIstioConfig.madkubImage
         imagePullPolicy: IfNotPresent
         name: madkub-refresher

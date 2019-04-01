@@ -119,6 +119,12 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "--healthCheckFile=/health",
               "--port=15009",
             ],
+            env: [
+              {
+                name: "ESTATE",
+                value: mcpIstioConfig.istioEstate,
+              },
+            ],
             image: mcpIstioConfig.sidecarInjectorImage,
             imagePullPolicy: "IfNotPresent",
             livenessProbe: {
@@ -218,6 +224,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                     fieldPath: "metadata.namespace",
                   },
                 },
+              },
+              {
+                name: "ESTATE",
+                value: mcpIstioConfig.istioEstate,
               },
             ],
             image: mcpIstioConfig.madkubImage,

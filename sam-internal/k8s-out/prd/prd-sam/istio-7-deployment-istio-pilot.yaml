@@ -79,6 +79,8 @@ spec:
         - --log_output_level
         - debug
         env:
+        - name: ESTATE
+          value: prd-sam_gater
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -135,6 +137,8 @@ spec:
           value: ajna0-funnel1-0-prd.data.sfdc.net
         - name: SFDC_METRICS_SERVICE_PORT
           value: "80"
+        - name: ESTATE
+          value: prd-sam_gater
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev
         imagePullPolicy: Always
         name: metrics-scraper

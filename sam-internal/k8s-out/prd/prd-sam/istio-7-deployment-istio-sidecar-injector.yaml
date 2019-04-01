@@ -89,6 +89,9 @@ spec:
         - --healthCheckInterval=2s
         - --healthCheckFile=/health
         - --port=15009
+        env:
+        - name: ESTATE
+          value: prd-sam_gater
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.1.1
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -154,6 +157,8 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
+        - name: ESTATE
+          value: prd-sam_gater
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
