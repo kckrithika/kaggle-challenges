@@ -1,0 +1,169 @@
+# This is experimental app for Sidecar resource testing.
+
+apiVersion: v1
+
+system:
+  functions:
+  - name: istio-ordering-sidecar
+    count: 1
+    labels:
+      app: istio-ordering-sidecar
+      sidecar: test
+    annotations:
+      sidecar.istio.io/inject: "false"
+    containers:
+    - name: ordering
+      # Ordering App
+      #    https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/services/ordering/ordering-scone
+      # Ordering Config
+      #    https://git.soma.salesforce.com/services/sfdc-bazel/blob/master/projects/services/ordering/ordering-scone/src/main/resources/config/application.properties
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: istio
+      - name: GRPC_PORT
+        value: 7020
+      - name: JAVA_OPTS
+        value: "-Dscone.service.name=istio-ordering-sidecar -Dshipping.dest=istio-shipping-sidecar.service-mesh.svc.mesh.sfdc.net:7443 -Dmanagement.server.port=15372"
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      - name: SCONE_SHIPPING_DEST
+        value: istio-shipping-sidecar.service-mesh.svc.mesh.sfdc.net:7443
+      ports:
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /manage/health
+          port: 15372
+    - args:
+        - proxy
+        - sidecar
+        - --domain
+        - service-mesh.svc.cluster.local
+        - --configPath
+        - /etc/istio/proxy
+        - --binaryPath
+        - /usr/local/bin/envoy
+        - --serviceCluster
+        - istio-ordering-sidecar.service-mesh
+        - --drainDuration
+        - 45s
+        - --parentShutdownDuration
+        - 1m0s
+        - --discoveryAddress
+        - istio-pilot.mesh-control-plane:15010
+        - --zipkinAddress
+        - zipkin.service-mesh:9411
+        - --connectTimeout
+        - 10s
+        - --proxyAdminPort
+        - "15000"
+        - --concurrency
+        - "2"
+        - --controlPlaneAuthPolicy
+        - NONE
+        - --statusPort
+        - "15020"
+        - --applicationPorts
+        - "7443"
+      env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: INSTANCE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: ISTIO_META_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: ISTIO_META_CONFIG_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: ISTIO_META_INTERCEPTION_MODE
+          value: NONE
+        - name: ISTIO_METAJSON_LABELS
+          value: |
+            {"app":"istio-ordering-sidecar","version":"v1"}
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/proxyv2:1.1.1
+      imagePullPolicy: IfNotPresent
+      name: istio-proxy
+      ports:
+        - containerPort: 15090
+          name: http-envoy-prom
+          protocol: TCP
+      readinessProbe:
+        failureThreshold: 30
+        httpGet:
+          path: /healthz/ready
+          port: 15020
+        initialDelaySeconds: 1
+        periodSeconds: 2
+      livenessProbe: # Additional for SAM.
+        failureThreshold: 30
+        httpGet:
+          path: /healthz/ready
+          port: 15020
+        initialDelaySeconds: 1
+        periodSeconds: 2
+      resources:
+        limits:
+          cpu: "2"
+          memory: 128Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+#      securityContext: # Not supported in SAM.
+#        readOnlyRootFilesystem: true
+#        runAsUser: 1337
+      volumeMounts:
+        - mountPath: /etc/istio/proxy
+          name: istio-envoy
+#        - mountPath: /etc/certs/root-cert.pem # Maddog certs mapped to istio certs default locations.
+#          name: tls-server-cert               # Volume should be defined in Manifest file.
+#          subPath: ca.pem
+#        - mountPath: /etc/certs/cert-chain.pem
+#          name: tls-server-cert
+#          subPath: server/certificates/server.pem
+#        - mountPath: /etc/certs/key.pem
+#          name: tls-server-cert
+#          subPath: server/keys/server-key.pem
+#        - mountPath: /etc/certs/client.pem
+#          name: tls-client-cert
+#          subPath: client/certificates/client.pem
+#        - mountPath: /etc/certs/client-key.pem
+#          name: tls-client-cert
+#          subPath: client/keys/client-key.pem
+
+    volumes:
+    - emptyDir:
+        medium: Memory
+      name: istio-envoy
+# Certificate subPath is not supported in SAM.
+#    - name: tls-client-cert
+#      maddogCert:
+#        type: client
+#    - name: tls-server-cert
+#      maddogCert:
+#        type: server
+
+#  SAM validates that the targetPort of Service is set to one of the container ports.
+#  loadbalancers:
+#    - lbname: istio-ordering-sidecar
+#      function: istio-ordering-sidecar
+#      ports:
+#        - lbtype: dsr
+#          port: 7443
+#          targetport: 7020
+#          name: grpc-ordering

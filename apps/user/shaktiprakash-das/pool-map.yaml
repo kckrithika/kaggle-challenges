@@ -1,3 +1,9 @@
 apps:
 #  service-mesh-einstein:
 #    - prd/prd-sam
+
+  # Istio -> Istio with Sidecar resource.
+#  istio-ordering-sidecar:
+#    - prd/prd-sam
+#  istio-shipping-sidecar:
+#    - prd/prd-sam
