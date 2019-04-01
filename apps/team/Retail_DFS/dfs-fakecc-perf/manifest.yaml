@@ -50,7 +50,7 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-        - containerPort: 7013
+        - containerPort: 7014
       livenessProbe:
         exec:
           command:
@@ -73,7 +73,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
-      - retail-dfs/dfs-fakecc-perf:DATACENTER:7013
+      - retail-dfs/dfs-fakecc-perf:DATACENTER:7014
       livenessProbe:
         initialDelaySeconds: 5
         exec:
