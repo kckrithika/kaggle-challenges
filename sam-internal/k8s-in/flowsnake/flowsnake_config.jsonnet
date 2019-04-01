@@ -30,6 +30,9 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
         "ph2-flowsnake_prod": "flowsnake-ph2.data.sfdc.net",
         "hnd-flowsnake_prod": "flowsnake-hnd.data.sfdc.net",
         "ukb-flowsnake_prod": "flowsnake-ukb.data.sfdc.net",
+        // MoFo estates do not have Flowsnake v1; no ingress-controller, no VIP in front of it.
+        // However, they have Event Exporter, and the current implementation of that requires Fleet Config,
+        // and that requires a VIP. So, for now, we keep these bogus entries.
         "yul-flowsnake_prod": "flowsnake-yul.data.sfdc.net",
         "yhu-flowsnake_prod": "flowsnake-yhu.data.sfdc.net",
         "syd-flowsnake_prod": "flowsnake-syd.data.sfdc.net",
@@ -53,7 +56,9 @@ local flowsnake_all_kes = (import "flowsnakeEstates.json").kingdomEstates + ["pr
     # Standard SLB vip name is: <lbname>-<team-<kingdom>.slb.sfdc.net
     # Presume lbname is derived from role munged the same way as for ServiceMesh.
     # (Some munging required to distinguish between multiple instances in a single kingdom)
-    slb_fqdn(role):: $.role_munge_for_estate(role) + "-flowsnake-" + kingdom + ".slb.sfdc.net",
+    # MoFo estates have differnt naming pattern. (Because technically no SLB, must use F5s).
+    slb_fqdn(role):: $.role_munge_for_estate(role) + "-flowsnake-" + kingdom +
+        (if (self.is_public_cloud) then ".data.sfdc.net" else ".slb.sfdc.net"),
 
     # api_public_name is combined with other coordinates (team, datacenter) to produce
     # publicly visible endpoints. Intentionaly not named impersonation-proxy, because that's an implementation detail

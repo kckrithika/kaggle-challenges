@@ -28,7 +28,7 @@ items:
       clusters:
       - cluster:
           certificate-authority: /certs/ca.pem
-          server: https://kubernetes-api-flowsnake-syd.slb.sfdc.net
+          server: https://kubernetes-api-flowsnake-syd.data.sfdc.net
         name: kubernetes
       contexts:
       - context:
