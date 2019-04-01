@@ -5,7 +5,7 @@ system:
       count: 1
       containers: 
         - name: content-tika-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-tika-svc:v1
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-tika-svc:v2
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
