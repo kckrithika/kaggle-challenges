@@ -5,6 +5,7 @@ data:
       "commands": {
         "patchVersion": "cat /etc/sfdc-release | grep -oP '(?<=INSTALL ).*'"
       },
+      "livenessProbePort": "21690",
       "resync": "30m",
       "runFreq": "10m",
       "timeout": "1m"
