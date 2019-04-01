@@ -1,0 +1,66 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: node-labeler
+    sam.data.sfdc.net/owner: sam
+  name: node-labeler
+  namespace: sam-system
+spec:
+  selector:
+    matchLabels:
+      app: node-labeler
+      apptype: monitoring
+      daemonset: "true"
+      sam.data.sfdc.net/owner: sam
+  template:
+    metadata:
+      labels:
+        app: node-labeler
+        apptype: monitoring
+        daemonset: "true"
+        sam.data.sfdc.net/owner: sam
+    spec:
+      containers:
+      - command:
+        - /sam/node-labeler
+        - --config=/config/node-labeler-config.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/a.mitra/hypersam:20190328_182019.ca63d453.dirty.amitra-ltm2
+        name: node-labeler
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: node-labeler
+        name: config
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate
