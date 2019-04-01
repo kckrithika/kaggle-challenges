@@ -4,16 +4,18 @@ system:
   functions:
     - name: aqueduct
       count: 3
+      type: stateful-set
       identity:
         emptyServiceName: true
         namespace: emp_aqueduct
+      lbname: aqueduct-lb
       volumes:
       - name: kafkaclientcerts
         maddogCert:
           type: client
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:test4
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:test5
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
