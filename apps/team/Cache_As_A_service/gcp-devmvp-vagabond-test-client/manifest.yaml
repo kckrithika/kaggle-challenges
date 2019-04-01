@@ -15,6 +15,8 @@ system:
         requests: { memory: "6G" }
       args:
         - --type=VAGABOND
+        - --testTime=1800
+        - --reportInterval=300
         - --url=acs-mesh-0.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:8085,acs-mesh-1.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:8085,acs-mesh-2.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:8085,acs-mesh-3.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:8085
       livenessProbe:
         exec:
