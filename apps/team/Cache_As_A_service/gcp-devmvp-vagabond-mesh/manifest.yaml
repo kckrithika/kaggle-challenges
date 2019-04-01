@@ -11,7 +11,7 @@ system:
     - name: acs  
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:1
       args:
-        - --servers=acs-mesh-0.acs-stateful-ilb.vagabond.svc.cluster.local:8085,acs-mesh-1.acs-stateful-ilb.vagabond.svc.cluster.local:8085,acs-mesh-2.acs-stateful-ilb.vagabond.svc.cluster.local:8085,acs-mesh-3.acs-stateful-ilb.vagabond.svc.cluster.local:8085
+        - --servers=acs-mesh-0.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:8085,acs-mesh-1.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:8085,acs-mesh-2.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:8085,acs-mesh-3.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:8085
         - --dataroot=/home/sfdc-acs/data
       ports:
       - containerPort: 8085
