@@ -11,14 +11,12 @@ system:
     
     # number of instances ("kpods") to deploy and run
     # recommended min: 3 for availability
-    count: 3
+    count: 4
     
     # Docker image(s) that make up one instance of the service
     containers:
-    - name: spaas
-      #Prod image cannot be used directly in sam sandbox?
-      image: sfci/service-protection/sps:0.0.5.17
-      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.22
+    - name: spaas 
+      image: sfci/service-protection/sps:0.0.5.21
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
