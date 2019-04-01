@@ -14,6 +14,9 @@ system:
       - containerPort: 8085
         name: http
       - containerPort: 15372
+      env:
+       - name: TORESTART
+         value: 1
       volumeMounts:
       - name: acs-data-volume
         mountPath: /home/sfdc-acs/data
