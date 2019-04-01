@@ -3,12 +3,11 @@ local debugusers = import "configs/pcn-debug-user-list.json";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 
 local functions = {
-    createDebugRole(namespace):: {
-        kind: "Role",
+    createDebugClusterRole():: {
+        kind: "ClusterRole",
         apiVersion: rbac_utils.rbac_api_version,
         metadata: {
           name: "debug",
-          namespace: namespace,
         },
         rules: [
             {
@@ -44,7 +43,7 @@ local functions = {
 for user in users
       ],
       roleRef: {
-        kind: "Role",
+        kind: "ClusterRole",
         name: "debug",
         apiGroup: "rbac.authorization.k8s.io",
       },
@@ -59,7 +58,7 @@ if (configs.estate == "gsf-core-devmvp-sam2-sam") then
     labels: {} + configs.pcnEnableLabel,
   },
   items: (
-    [functions.createDebugRole(entry.namespace) for entry in debugusers] +
+    [functions.createDebugClusterRole()] +
     [functions.createUserRoleBinding(entry.namespace, entry.users) for entry in debugusers]
   ),
 } else "SKIP"
