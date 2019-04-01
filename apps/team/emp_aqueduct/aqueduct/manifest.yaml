@@ -26,8 +26,8 @@ system:
         hostPath:
           path: /home/sfdc-scone-shipping-beacon/logs
       containers:
-      - name: aqueduct-host
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:848b85b 
+      - name: aqueduct
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:0613646
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
