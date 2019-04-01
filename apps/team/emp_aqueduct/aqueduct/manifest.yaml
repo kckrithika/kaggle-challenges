@@ -4,30 +4,16 @@ system:
   functions:
     - name: aqueduct
       count: 3
-      type: stateful-set
       identity:
         emptyServiceName: true
         namespace: emp_aqueduct
-      lbname: aqueduct-lb
       volumes:
       - name: kafkaclientcerts
         maddogCert:
           type: client
-      - name: client-cert
-        maddogCert:
-          type: client
-      - name: server-cert
-        maddogCert:
-          type: server
-      - name: sherpa-log-volume
-        hostPath:
-          path: /home/sfdc-sherpa/logs
-      - name: logvolbeacon
-        hostPath:
-          path: /home/sfdc-scone-shipping-beacon/logs
       containers:
       - name: aqueduct
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:0613646
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/messagingplatform/aqueduct:test
         env:
         - name: SFDC_ENVIRONMENT
           value: "prod" # Use whatever environment your kpod uses
@@ -54,55 +40,3 @@ system:
         volumeMounts:
           - name: kafkaclientcerts
             mountPath: /etc/pki_service/sfdc-aqueduct
-      - name: beacon-aqueduct
-        image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
-        env:
-        - name: SFDC_ENVIRONMENT
-          value: prod
-        resources:
-          limits: { cpu: "1", memory: "1Gi" }
-          requests: { cpu: "1", memory: "1Gi" }
-        args:
-        - -endpoint
-        - emp_aqueduct/aqueduct:DATACENTER:7443
-        - -logging.dir
-        - /log
-        livenessProbe:
-          initialDelaySeconds: 30
-          exec:
-            command:
-            - "/home/scone/is-alive.sh"
-        # Need to mount to a volume so that logs can be shipped to splunk
-        volumeMounts:
-        - mountPath: /log
-          name: logvolbeacon
-      - name: sherpa-aqueduct
-        image: sfci/servicelibs/sherpa-envoy:1.0.3
-        env:
-        - name: SFDC_ENVIRONMENT
-          value: prod
-        ports:
-        - containerPort: 15373
-          name: sherpa-adm
-        - containerPort: 7443
-          name: h2-tls-in
-        - containerPort: 7012
-          name: grpc-in
-        livenessProbe:
-          exec:
-            command:
-            - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 60
-        readinessProbe:
-          exec:
-            command:
-            - "/home/sfdc-sherpa/bin/is-ready"
-          initialDelaySeconds: 60
-          periodSeconds: 120
-        volumeMounts:
-        - mountPath: /client-certs
-          name: client-cert
-        - mountPath: /server-certs
-          name: server-cert
-        - mountPath: /log
-          name: sherpa-log-volume
