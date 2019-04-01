@@ -31,7 +31,7 @@ spec:
         - --log_dir=/var/logs/sdn/
         - --logtostderr=false
         - --alsologtostderr=true
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0001009-1b641ae3
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/sdn/hypersdn:2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d
         name: sdn-cleanup
         securityContext:
           privileged: true
@@ -42,3 +42,7 @@ spec:
       - hostPath:
           path: /var/logs/sdn/
         name: sdnlogs
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate

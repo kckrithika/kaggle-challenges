@@ -6,7 +6,7 @@ local utils = import "util_functions.jsonnet";
 
 if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then configs.daemonSetBase("sdn") {
     spec+: {
-        [if sdnimages.phase != "5" then "minReadySeconds"]: 300,
+        minReadySeconds: 300,
         template: {
             spec: {
                 hostNetwork: true,
@@ -71,7 +71,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                 namespace: "sam-system",
             },
         },
-        [if sdnimages.phase != "5" then "updateStrategy"]: {
+        updateStrategy: {
             type: "RollingUpdate",
             rollingUpdate: {
             maxUnavailable: "15%",
