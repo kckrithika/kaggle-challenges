@@ -21,6 +21,8 @@ apps:
     - samcaas2-caasminion2-4-prd.eng.sfdc.net
     - samcaas2-caasminion2-7-prd.eng.sfdc.net
     - samcaas2-caasminion2-8-prd.eng.sfdc.net
+ prd-sp2-redis-dynamic:
+  - name: prd/prd-sp2-sam_caas
  prd-caas-redis-12078:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
