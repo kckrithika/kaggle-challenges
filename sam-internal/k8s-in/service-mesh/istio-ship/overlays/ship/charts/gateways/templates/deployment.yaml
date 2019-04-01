@@ -28,24 +28,7 @@ spec:
       - name: tls-server-cert
       - name: tokens
       containers:
-      - $setElementOrder/ports:
-        - containerPort: 80
-        - containerPort: 443
-        - containerPort: 15029
-        - containerPort: 15032
-        - containerPort: 15443
-        - containerPort: 15020
-        - containerPort: 15090
-        $setElementOrder/volumeMounts:
-        - mountPath: /etc/pki_service
-        - mountPath: /etc/certs/root-cert.pem
-        - mountPath: /etc/certs/cert-chain.pem
-        - mountPath: /etc/certs/key.pem
-        - mountPath: /etc/certs/client.pem
-        - mountPath: /etc/certs/client-key.pem
-        - mountPath: /client-cert
-        - mountPath: /server-cert
-        args:
+      - args:
         - proxy
         - router
         - --drainDuration
