@@ -107,12 +107,6 @@ apps:
   istio-fake-casam-na35:
     - prd/prd-sam_gater
 
-  # Istio -> Istio with Sidecar resource.
-  istio-ordering-sidecar:
-    - prd/prd-sam_gater
-  istio-shipping-sidecar:
-    - prd/prd-sam_gater
-
 # Enable as needed:
 #  geoipnk:
 #    - prd/prd-sam_gater
