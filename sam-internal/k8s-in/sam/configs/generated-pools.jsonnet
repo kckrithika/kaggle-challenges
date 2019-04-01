@@ -45,6 +45,18 @@
     },
     {
       "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_gatewayconfig",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service"
       ],
       "access": [
@@ -480,6 +492,18 @@
       ],
       "controlEstate": "fra-sam",
       "estate": "fra-sam_gater",
+      "kingdom": "fra",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-sam_gatewayconfig",
       "kingdom": "fra",
       "superPod": "None"
     },
@@ -969,6 +993,18 @@
     },
     {
       "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-sam_gatewayconfig",
+      "kingdom": "ia2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service"
       ],
       "access": [
@@ -1331,6 +1367,18 @@
     },
     {
       "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "lo2-sam",
+      "estate": "lo2-sam_gatewayconfig",
+      "kingdom": "lo2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -1368,6 +1416,18 @@
       ],
       "controlEstate": "lo3-sam",
       "estate": "lo3-sam_gater",
+      "kingdom": "lo3",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "lo3-sam",
+      "estate": "lo3-sam_gatewayconfig",
       "kingdom": "lo3",
       "superPod": "None"
     },
@@ -1984,6 +2044,18 @@
       ],
       "controlEstate": "ph2-sam",
       "estate": "ph2-sam_gater",
+      "kingdom": "ph2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-sam_gatewayconfig",
       "kingdom": "ph2",
       "superPod": "None"
     },
