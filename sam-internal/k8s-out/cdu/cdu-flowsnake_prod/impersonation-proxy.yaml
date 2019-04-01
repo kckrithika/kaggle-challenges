@@ -18,7 +18,7 @@ spec:
       annotations:
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
           "cdu", "name": "impersonation-proxy", "role": "flowsnake.impersonation-proxy",
-          "san": ["kubernetes-api-flowsnake-cdu.slb.sfdc.net", "kubernetes-api.flowsnake.localhost.mesh.force.com"]}]}'
+          "san": ["kubernetes-api-flowsnake-cdu.data.sfdc.net", "kubernetes-api.flowsnake.localhost.mesh.force.com"]}]}'
       labels:
         apptype: control
         flowsnakeOwner: dva-transform
