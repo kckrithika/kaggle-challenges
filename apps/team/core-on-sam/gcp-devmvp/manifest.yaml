@@ -181,6 +181,9 @@ system:
           name: secretvol-db
           readOnly: true
 
+      resources:
+        requests: { memory: "32Gi" }
+
     - name: envoy-sidecar-config
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/cyan-config:208cc2
       env:
