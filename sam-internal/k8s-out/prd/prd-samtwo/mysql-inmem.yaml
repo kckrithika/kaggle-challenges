@@ -320,7 +320,7 @@ spec:
         - mountPath: /var/lib/mysql-backups
           name: mysql-backup
       nodeSelector:
-        master: "true"
+        pool: prd-samtwo
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
@@ -348,11 +348,19 @@ spec:
         secret:
           defaultMode: 420
           secretName: mysql-pwd
-      - hostPath:
-          path: /var/mysql-backup
-        name: mysql-backup
   updateStrategy:
     rollingUpdate:
       partition: 0
     type: RollingUpdate
-  volumeClaimTemplates: []
+  volumeClaimTemplates:
+  - metadata:
+      annotations:
+        volume.beta.kubernetes.io/storage-class: standard-ceph0-hdd-pool
+      creationTimestamp: null
+      name: mysql-backup
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 100Gi

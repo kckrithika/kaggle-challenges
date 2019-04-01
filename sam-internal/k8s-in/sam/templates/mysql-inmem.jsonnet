@@ -5,7 +5,7 @@ local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile 
 
 local certDirs = ["cert1"];
 
-if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
+if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtwo" then {
             apiVersion: "apps/v1beta1",
             kind: "StatefulSet",
             metadata: {
@@ -20,7 +20,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
             },
             spec: {
               podManagementPolicy: "OrderedReady",
-              replicas: 3,
+              replicas: 1,
               revisionHistoryLimit: 3,
               selector: {
                   matchLabels: {
@@ -300,6 +300,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                                   cd /var/lib/mysql-backups
                                   [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
                                   ordinal=${BASH_REMATCH[1]}
+                                  until mysql -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS -h 127.0.0.1 sys -e "SELECT 1"; do sleep 1; done
                                   while :
                                   do 
                                     if [[ -f ./restore-me ]]; then
@@ -550,7 +551,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
                     },
                   type: "RollingUpdate",
                 },
-                volumeClaimTemplates: if configs.estate == "prd-sam" then [
+                volumeClaimTemplates: if configs.estate == "prd-sam" || configs.estate == "prd-samtwo" then [
                       {
                         metadata: {
                             annotations: {

@@ -10,7 +10,7 @@ metadata:
   namespace: sam-system
 spec:
   podManagementPolicy: OrderedReady
-  replicas: 3
+  replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -193,9 +193,10 @@ spec:
         - bash
         - -c
         - "set -e\ncd /var/lib/mysql-backups\n[[ `hostname` =~ -([0-9]+)$ ]] || exit
-          1\nordinal=${BASH_REMATCH[1]}\nwhile :\ndo \n  if [[ -f ./restore-me ]];
-          then\n    mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS < ./restore-me
-          || exit 24\n    mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
+          1\nordinal=${BASH_REMATCH[1]}\nuntil mysql -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
+          -h 127.0.0.1 sys -e \"SELECT 1\"; do sleep 1; done\nwhile :\ndo \n  if [[
+          -f ./restore-me ]]; then\n    mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
+          < ./restore-me || exit 24\n    mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS
           sys -e \"FLUSH PRIVILEGES;\" || exit 25\n    mysql_upgrade -h 127.0.0.1
           -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS || exit 26\n    rm ./restore-me\n
           \ fi \n  echo \"Backing up mysql offline db\"    \n  mysqldump -h 127.0.0.1
