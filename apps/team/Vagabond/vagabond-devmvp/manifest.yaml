@@ -9,7 +9,6 @@ system:
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:1
       args:
         - --servers=acs-0.acs-stateful-ilb.vagabond.svc.cluster.local:8085,acs-1.acs-stateful-ilb.vagabond.svc.cluster.local:8085,acs-2.acs-stateful-ilb.vagabond.svc.cluster.local:8085,acs-3.acs-stateful-ilb.vagabond.svc.cluster.local:8085
-        - --dataroot=/home/sfdc-acs/data
       ports:
       - containerPort: 8085
         name: http
@@ -17,19 +16,12 @@ system:
       env:
        - name: TORESTART
          value: 1
-      volumeMounts:
-      - name: acs-data-volume
-        mountPath: /home/sfdc-acs/data
       livenessProbe:
         exec:
           command: ["true"]
         initialDelaySeconds: 120
         periodSeconds: 5
     lbname: acs-stateful-ilb
-    volumeClaimTemplates:
-    - name: acs-data-volume
-      storageClassName: faster
-      storageSizeRequest: 10Gi
   loadbalancers:
   - lbname: acs-lb
     function: acs
