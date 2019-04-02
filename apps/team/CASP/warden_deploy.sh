@@ -1,10 +1,7 @@
 #!/bin/sh
-ARGS=("$@")
 
-NEWVERSION=${ARGS[-1]}
-
-#remove the last passed in param as it is the new version
-unset ARGS[${#ARGS[@]}-1]
+NEWVERSION=$1
+shift
 
 prd() {
     sed -i "s/image: dva\/casp\/warden_strata:[0-9]*/image: dva\/casp\/warden_strata:$NEWVERSION/g" prd-warden/manifest.yaml
@@ -26,7 +23,15 @@ prod() {
 
 set -e
 
-for env in ${ARGS[*]}
+if [ "$#" = 0 ]
+then
+    prd
+    staging
+    prod
+    exit
+fi
+
+for env in "$@"
 do
     $env
 done
