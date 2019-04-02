@@ -4,5 +4,7 @@ apps:
   #                # you can also specify other pools
   # zones-bot:
   #  - prd/prd-sam
+  zones-client:
+  - prd/prd-sam
   zones-intake-backend:
   - prd/prd-sam
