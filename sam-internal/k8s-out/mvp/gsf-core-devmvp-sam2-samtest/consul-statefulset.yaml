@@ -73,6 +73,9 @@ spec:
         securityContext:
           runAsNonRoot: true
           runAsUser: 7447
+        volumeMounts:
+        - mountPath: /consul/data
+          name: consulstore
       dnsPolicy: ClusterFirstWithHostNet
       restartPolicy: Always
       securityContext:
@@ -82,3 +85,13 @@ spec:
       terminationGracePeriodSeconds: 10
   updateStrategy:
     type: RollingUpdate
+  volumeClaimTemplates:
+  - metadata:
+      name: consulstore
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 2Gi
+      storageClassName: faster

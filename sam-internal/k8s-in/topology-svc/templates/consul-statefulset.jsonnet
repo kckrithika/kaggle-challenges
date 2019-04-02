@@ -55,6 +55,24 @@ if configs.kingdom == 'mvp' then {
     updateStrategy: {
         type: 'RollingUpdate',
     },
+    volumeClaimTemplates: [
+            {
+                metadata: {
+                   name: "consulstore",
+                },
+                spec: {
+                   accessModes: [
+                      "ReadWriteOnce",
+                   ],
+                   storageClassName: "faster",
+                   resources: {
+                      requests: {
+                         storage: "2Gi",
+                      },
+                   },
+                },
+            },
+        ],
     replicas: 3,
     selector: {
       matchLabels: {
@@ -126,6 +144,12 @@ if configs.kingdom == 'mvp' then {
                 runAsNonRoot: true,
                 runAsUser: 7447,
             },
+            volumeMounts: [
+            {
+              name: "consulstore",
+              mountPath: "/consul/data",
+            },
+],
           },
         ],
       },
