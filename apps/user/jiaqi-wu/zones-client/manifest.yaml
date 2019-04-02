@@ -1,0 +1,18 @@
+apiVersion: v1
+system:
+  functions:
+  - name: zones-client
+    count: 1
+    volumes:
+      - name: servercert
+        maddogCert:
+          type: server
+      - name: clientcert
+        maddogCert:
+          type: client
+    containers:
+    - name: zones-client
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/zones_client:2
+      env:
+      - name: BACKEND_ENDPOINT
+        value: "https://zones-intake-backend.user-jiaqi-wu.samapp.localhost.mesh.force.com/zones/v1/roles"
