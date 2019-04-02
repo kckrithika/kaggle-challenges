@@ -10,6 +10,12 @@ system:
     containers:
     - name: sequencer
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:4cf724
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export SNOWWHITE_PWD=$(cat /secrets/gcp-mvp-1az-db-pw/dbpw.txt) ;
+      /usr/local/bin/run.sh
+      "]
+
       env:
       - name: NONCE
         value: 1551221682919725056
