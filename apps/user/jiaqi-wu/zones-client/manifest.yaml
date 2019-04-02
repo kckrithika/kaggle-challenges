@@ -12,7 +12,11 @@ system:
           type: client
     containers:
     - name: zones-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/zones_client:2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/zones_client:3
       env:
       - name: BACKEND_ENDPOINT
         value: "https://zones-intake-backend.user-jiaqi-wu.samapp.localhost.mesh.force.com/zones/v1/roles"
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
