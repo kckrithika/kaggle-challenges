@@ -2,7 +2,7 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-03-27 21:20:55.126451
+# generated: 2019-03-29 22:47:19.117222
 # from:  
 # by: mbyne
 apiVersion: v1
@@ -60,16 +60,14 @@ system:
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-primary}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:+UseG1GC
-          -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails", "spark.hadoop.fs.s3a.access.key":
-          "AKIAIWPWVTTJYP6J7UMQ", "spark.hadoop.fs.s3a.connection.ssl.enabled": "true",
-          "spark.hadoop.fs.s3a.endpoint": "s3-us-west-2.amazonaws.com", "spark.hadoop.fs.s3a.proxy.host":
+          -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops",
+          "spark.hadoop.fs.s3a.access.key": "AKIAIWPWVTTJYP6J7UMQ", "spark.hadoop.fs.s3a.connection.ssl.enabled":
+          "true", "spark.hadoop.fs.s3a.endpoint": "s3-us-west-2.amazonaws.com", "spark.hadoop.fs.s3a.proxy.host":
           "public0-proxy1-0-ukb.data.sfdc.net", "spark.hadoop.fs.s3a.proxy.port":
           "8080", "spark.hadoop.fs.s3a.server-side-encryption-algorithm": "SSE-KMS",
           "spark.hadoop.fs.s3a.server-side-encryption.key": "ea96b117-8eee-4314-b214-8a125eb5242e",
-          "spark.ui.enabled": "false",
-          "spark.shuffle.io.preferDirectBufs": "false",
-          "spark.shuffle.accurateBlockThreshold": "10485760"}'}
-      image: sfci/insights/jobcontroller:release-101-f35570f
+          "spark.ui.enabled": "false"}'}
+      image: sfci/insights/jobcontroller:release-102-a4a7fae
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
