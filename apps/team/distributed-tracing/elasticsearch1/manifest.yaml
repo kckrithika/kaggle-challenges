@@ -48,6 +48,8 @@ system:
     - name: myservercert
       maddogCert:
         type: server
+        lbnames:
+        - es-rest1
     terminationGracePeriodSeconds: 20
 
     lbname: elasticsearch-stateful-lb1
