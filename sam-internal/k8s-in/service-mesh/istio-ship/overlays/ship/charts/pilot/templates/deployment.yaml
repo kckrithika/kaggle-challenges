@@ -1,12 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    checksum/config-volume: f8da08b6b8c170dde721efd680270b2901e750d4aa186ebb6c22bef5b78a43f9
-  labels:
-    app: pilot
-    istio: pilot
-    release: istio
   name: istio-pilot
   namespace: mesh-control-plane
 spec:
@@ -18,11 +12,6 @@ spec:
       labels:
         name: istio-pilot
     spec:
-      $setElementOrder/containers:
-      - name: discovery
-      - name: metrics-scraper
-      $setElementOrder/volumes:
-      - name: config-volume
       containers:
       - args:
         - discovery
@@ -33,8 +22,6 @@ spec:
         - ""
         - --keepaliveMaxServerConnectionAge
         - 30m
-        - --appNamespace
-        - service-mesh
         - --log_output_level
         - debug
         env:

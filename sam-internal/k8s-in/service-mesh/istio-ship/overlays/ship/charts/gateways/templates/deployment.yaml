@@ -1,10 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  labels:
-    app: istio-ingressgateway
-    istio: ingressgateway
-    release: istio
   name: istio-ingressgateway
   namespace: mesh-control-plane
 spec:
@@ -19,14 +15,6 @@ spec:
       labels:
         name: istio-ingressgateway
     spec:
-      $setElementOrder/containers:
-      - name: istio-proxy
-      - name: madkub-refresher
-      $setElementOrder/volumes:
-      - name: maddog-certs
-      - name: tls-client-cert
-      - name: tls-server-cert
-      - name: tokens
       containers:
       - args:
         - proxy
@@ -47,7 +35,7 @@ spec:
         - NONE
         - --discoveryAddress
         - istio-pilot:8080
-`        env:
+        env:
         - name: ESTATE
           value: mcpIstioConfig.istioEstate
         image: mcpIstioConfig.proxyImage
