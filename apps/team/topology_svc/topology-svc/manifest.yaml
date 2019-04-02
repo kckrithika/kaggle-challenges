@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: topology-svc-service
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:ameesala-20190319-780c6c9
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:ameesala-20190402-acd1c75
       env:
         - name: JVM_ARGS
           value: "-Dspring.profiles.active=gcp"
