@@ -29,7 +29,7 @@ spec:
         - --dbUsername=reporter
         command:
         - /sam/sam-sql-reporter
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2667-075cea4c23e13fd2cc9bc603a4b98a306ec292f5
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2672-c8d290854a9428536a7914a524e30d8e5dfa13f5
         livenessProbe:
           httpGet:
             path: /
