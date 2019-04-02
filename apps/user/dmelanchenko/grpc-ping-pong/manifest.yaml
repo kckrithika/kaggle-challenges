@@ -21,9 +21,9 @@ system:
         periodSeconds: 120      
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.3
-      args:
-      - --server-ca
-      - /server-certs/ca_test/cacerts.pem
+      # args:
+      # - --server-ca
+      # - /server-certs/ca_test/cacerts.pem
       ports:
       - name: sherpa-h1-tls
         containerPort: 7442
