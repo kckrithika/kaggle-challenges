@@ -19,7 +19,7 @@ spec:
         name: default-http-backend
     spec:
       containers:
-      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-ingress-default-backend:662
+      - image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-ingress-default-backend:jenkins-dva-transformation-flowsnake-platform-master-781-itest
         livenessProbe:
           httpGet:
             path: /healthz

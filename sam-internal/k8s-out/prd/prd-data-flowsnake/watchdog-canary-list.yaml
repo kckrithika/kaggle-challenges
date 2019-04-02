@@ -36,7 +36,7 @@ items:
           - -watchdogFrequency=15m
           - -alertThreshold=45m
           - -cliCheckerTimeout=15m
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-698-itest
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-781-itest
           imagePullPolicy: IfNotPresent
           name: watchdog-canary
           resources:
@@ -107,7 +107,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           name: sam-madkub-integration-refresher
           resources: {}
           volumeMounts:
@@ -169,7 +169,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           name: sam-madkub-integration-init
           resources: {}
           volumeMounts:
@@ -251,7 +251,7 @@ items:
           - -watchdogFrequency=15m
           - -alertThreshold=45m
           - -cliCheckerTimeout=15m
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-698-itest
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-781-itest
           imagePullPolicy: IfNotPresent
           name: watchdog-canary
           resources:
@@ -322,7 +322,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           name: sam-madkub-integration-refresher
           resources: {}
           volumeMounts:
@@ -384,7 +384,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           name: sam-madkub-integration-init
           resources: {}
           volumeMounts:
@@ -466,7 +466,7 @@ items:
           - -watchdogFrequency=15m
           - -alertThreshold=45m
           - -cliCheckerTimeout=15m
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-698-itest
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-781-itest
           imagePullPolicy: IfNotPresent
           name: watchdog-canary
           resources:
@@ -537,7 +537,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           name: sam-madkub-integration-refresher
           resources: {}
           volumeMounts:
@@ -599,7 +599,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6
           name: sam-madkub-integration-init
           resources: {}
           volumeMounts:
