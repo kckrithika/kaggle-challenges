@@ -32,6 +32,9 @@ system:
         timeoutSeconds: 10
       ports:
       - containerPort: 12001
+      env:
+       - name: PYTHONUNBUFFERED
+         value: 1
     - name: caas-redis-announcer
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/beacon:853c4db9f14805018be6f5e7607ffe65b5648822-201902081500
       args:
