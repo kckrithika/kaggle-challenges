@@ -333,17 +333,19 @@ data:
     deployment.ownerRef IS NULL AND deployment.name IS NULL AND deployment.namespace
     IS NULL\n              \n              AND NOT\n              (bundle.controlEstate
     like ''frf-sam'' AND now() < STR_TO_DATE(''2019-01-21'', ''%Y-%m-%d''))", "watchdogFrequency":
-    "5m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
-    "alertThreshold": "10m", "instructions": "Following PRs have failed to get deployed
-    within 45 minutes of getting authorized.", "name": "SqlPRLatency", "sql": "SELECT\n   *   \nFROM\n    (   \n    SELECT\n        prs.pr_num,\n        crds.PoolName,\n        crds.ControlEstate,\n        TIMESTAMPDIFF(MINUTE,prs.most_recent_authorized_time,
-    STR_TO_DATE( \n            JSON_UNQUOTE(payload -> ''$.status.endTime''),''%Y-%m-%dT%H:%i:%s''
-    )) latency\nFROM\n    PullRequests prs \nLEFT  JOIN\n        (   \n        SELECT
-    *\n        FROM\n        crd_history\n        WHERE ApiKind = ''Bundle'') crds\n    ON
-    crds.PRNum = prs.pr_num\nWHERE  prs.merged_time > now() - INTERVAL 24 hour\nORDER
-    BY prs.pr_num\n) prLatency\nWHERE latency > 45", "watchdogFrequency": "10m"},
-    {"alertAction": "pagerduty", "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold":
-    "10m", "instructions": "Following PRs haven''t run evaluatePR more than 30 mins
-    after getting authorized.", "name": "SqlPRFailedToRunEvalPR", "sql": "SELECT \n         *   \n        FROM\n        (SELECT
+    "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
+    "sam", "alertThreshold": "10m", "instructions": "Following PRs have failed to
+    get deployed within 45 minutes of getting authorized.", "name": "SqlPRLatency",
+    "sql": "SELECT * FROM(\n      SELECT\n        prs.pr_url,\n        prs.merged_time,\n        crds.PoolName,\n        crds.ControlEstate,\n        TIMESTAMPDIFF(MINUTE,prs.most_recent_authorized_time,
+    STR_TO_DATE(JSON_UNQUOTE(payload -> ''$.status.endTime''),''%Y-%m-%dT%H:%i:%s''
+    )) latency\n      FROM PullRequests prs LEFT  JOIN\n        (   \n        SELECT
+    *\n        FROM\n        crd_history\n        WHERE ApiKind = ''Bundle'') crds
+    ON crds.PRNum = prs.pr_num\n        WHERE  prs.merged_time > now() - INTERVAL
+    24 hour\n        ORDER BY prs.pr_num\n        ) prLatency\n      WHERE latency
+    > 45", "watchdogFrequency": "10m"}, {"alertAction": "pagerduty", "alertFrequency":
+    "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "Following
+    PRs haven''t run evaluatePR more than 30 mins after getting authorized.", "name":
+    "SqlPRFailedToRunEvalPR", "sql": "SELECT \n         *   \n        FROM\n        (SELECT
     \n          pr_num,\n          created_time,\n          evaluate_pr_status,\n          authorized_by,\n          most_recent_authorized_time,\n          TIMESTAMPDIFF(MINUTE,  most_recent_authorized_time,
     now()) latency\n        FROM PullRequests\n        WHERE created_time IS NOT NULL
     AND created_time  > NOW() - Interval 10 day AND authorized_by IS NOT NULL AND
