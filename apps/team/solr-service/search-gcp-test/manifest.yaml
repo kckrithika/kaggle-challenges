@@ -17,7 +17,7 @@ system:
         - name: ENABLE_METRICS
           value: "true"
         - name: LBNAME
-          value: "searchservers"
+          value: "searchtest"
         - name: DNS_PODNAME
           valueFrom:
             fieldRef:
