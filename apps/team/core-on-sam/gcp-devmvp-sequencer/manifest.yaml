@@ -109,10 +109,10 @@ system:
         type: client
       name: cert
     - k4aSecret:
-        secretName: sequencer-gus
+        secretName: gcp-mvp-sequencer-gus
       name: secretvol
     - k4aSecret:
-        secretName: sequencer-kaiju
+        secretName: gcp-mvp-sequencer-kaiju
       name: kaiju-secret-vol
     - name: secretvol-db
       k4aSecret:
