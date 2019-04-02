@@ -61,15 +61,15 @@ items:
       "dva-transform", "flowsnakeRole": "StrataTestRunner"}, "name": "{{NAME}}", "namespace":
       "flowsnake-ci-tests"}, "spec": {"containers": [{"command": ["/bin/sh", "-c",
       "/scripts/runalltests.sh"], "env": [{"name": "DOCKER_TAG", "value": "{{TAG}}"},
-      {"name": "S3_PROXY_HOST", "value": "public0-proxy1-0-prd.data.sfdc.net"}, {"name":
-      "DRIVER_SERVICE_ACCOUNT", "value": "spark-driver-flowsnake-ci-tests"}], "image":
-      "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:{{TAG}}",
+      {"name": "TEST_RUNNER_ID", "value": "{{NAME}}"}, {"name": "S3_PROXY_HOST", "value":
+      "public0-proxy1-0-prd.data.sfdc.net"}, {"name": "DRIVER_SERVICE_ACCOUNT", "value":
+      "spark-driver-flowsnake-ci-tests"}], "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:{{TAG}}",
       "imagePullPolicy": "Always", "name": "{{NAME}}", "resources": {"limits": {"cpu":
-      "1", "memory": "500Mi"}, "requests": {"cpu": "1", "memory": "500Mi"}}, "volumeMounts":
-      [{"mountPath": "/watchdog-spark-scripts", "name": "watchdog-spark-scripts",
-      "readOnly": true}]}], "hostNetwork": false, "initContainers": [ ], "restartPolicy":
-      "Never", "serviceAccountName": "spark-driver-flowsnake-ci-tests", "volumes":
-      [{"configMap": {"defaultMode": 493, "name": "strata-test-spark-on-k8s-script-configmap"},
+      "1", "memory": "500Mi"}, "requests": {"cpu": "1", "memory": "500Mi"}}, "securityContext":
+      {"runAsUser": 0}, "volumeMounts": [{"mountPath": "/watchdog-spark-scripts",
+      "name": "watchdog-spark-scripts", "readOnly": true}]}], "hostNetwork": false,
+      "initContainers": [ ], "restartPolicy": "Never", "serviceAccountName": "spark-driver-flowsnake-ci-tests",
+      "volumes": [{"configMap": {"defaultMode": 493, "name": "strata-test-spark-on-k8s-script-configmap"},
       "name": "watchdog-spark-scripts"}]}}'
     strata-test-agent.py: |+
       #! /usr/bin/env python
@@ -200,6 +200,17 @@ items:
               raw_template = "".join(template_file.readlines())
               return raw_template.replace("{{TAG}}", tag).replace("{{NAME}}", name)
 
+      def check_k8s_status(status_string, **kwargs):
+          try:
+              parsed_status = json.loads(status_string)
+              for k, v in kwargs.items():
+                  if unicode(parsed_status[unicode(k)]) != unicode(v):
+                      return False
+              return True
+          except ValueError:  # JSON parse error
+              return False
+          except KeyError:  # Key/Value not in map
+              return False
 
       def schedule_pod(name, tag):
           """
@@ -213,11 +224,11 @@ items:
               s, b = k8s_request(pod_path, verb="POST", data=podspec)
               if s < 300:
                   return True
-              elif s == 409:
-                  logmsg("Warning: scheduling pod %s returned status 409; assuming pod is already running", name)
+              elif check_k8s_status(b, code=409, reason="AlreadyExists"):
+                  logmsg("Warning: scheduling pod %s returned status: AlreadyExists.", name)
                   return True
               else:
-                  print_http_error("scheduling test runner pod for tag %s" % tag, "POST", pod_path, s, b)
+                  print_http_error("scheduling test runner pod %s for tag %s" % (name, tag), "POST", pod_path, s, b)
                   return False
           except httplib.HTTPException as x:
               logmsg("Error communicating with kubernetes API server: %s", x)

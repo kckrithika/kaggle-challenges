@@ -126,6 +126,17 @@ def runner_podspec(name, tag):
         raw_template = "".join(template_file.readlines())
         return raw_template.replace("{{TAG}}", tag).replace("{{NAME}}", name)
 
+def check_k8s_status(status_string, **kwargs):
+    try:
+        parsed_status = json.loads(status_string)
+        for k, v in kwargs.items():
+            if unicode(parsed_status[unicode(k)]) != unicode(v):
+                return False
+        return True
+    except ValueError:  # JSON parse error
+        return False
+    except KeyError:  # Key/Value not in map
+        return False
 
 def schedule_pod(name, tag):
     """
@@ -139,11 +150,11 @@ def schedule_pod(name, tag):
         s, b = k8s_request(pod_path, verb="POST", data=podspec)
         if s < 300:
             return True
-        elif s == 409:
-            logmsg("Warning: scheduling pod %s returned status 409; assuming pod is already running", name)
+        elif check_k8s_status(b, code=409, reason="AlreadyExists"):
+            logmsg("Warning: scheduling pod %s returned status: AlreadyExists.", name)
             return True
         else:
-            print_http_error("scheduling test runner pod for tag %s" % tag, "POST", pod_path, s, b)
+            print_http_error("scheduling test runner pod %s for tag %s" % (name, tag), "POST", pod_path, s, b)
             return False
     except httplib.HTTPException as x:
         logmsg("Error communicating with kubernetes API server: %s", x)

@@ -52,9 +52,13 @@ local runner_image = flowsnake_config.strata_registry  + "/flowsnake-spark-on-k8
                 command: ["/bin/sh", "-c", "/scripts/runalltests.sh"],
                 env: [
                     { name: "DOCKER_TAG", value: "{{TAG}}" },
+                    { name: "TEST_RUNNER_ID", value: "{{NAME}}" },
                     { name: "S3_PROXY_HOST", value: flowsnake_config.s3_public_proxy_host },
                     { name: "DRIVER_SERVICE_ACCOUNT", value: "spark-driver-flowsnake-ci-tests" },
                 ],
+                securityContext: {
+                    runAsUser: 0,   # root
+                },
                 resources: {
                     requests: {
                         cpu: "1",
