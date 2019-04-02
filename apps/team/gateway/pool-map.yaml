@@ -2,11 +2,11 @@ apps:
  gatewayconfig:
    - dfw/dfw-sam_gatewayconfig
    - phx/phx-sam_gatewayconfig
-   - phx/cdg-sam_gatewayconfig
-   - phx/fra-sam_gatewayconfig
-   - phx/lo2-sam_gatewayconfig
-   - phx/lo3-sam_gatewayconfig
-   - phx/ph2-sam_gatewayconfig
-   - phx/ia2-sam_gatewayconfig
+   - cdg/cdg-sam_gatewayconfig
+   - fra/fra-sam_gatewayconfig
+   - lo2/lo2-sam_gatewayconfig
+   - lo3/lo3-sam_gatewayconfig
+   - ph2/ph2-sam_gatewayconfig
+   - ia2/ia2-sam_gatewayconfig
  gatewayconfig-gcp:
    - mvp/gsf-core-devmvp-sam2-sam
