@@ -19,6 +19,8 @@ system:
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: HTTPS_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: PLACEBO
+        value: 0001
       volumeMounts:
       - mountPath: /secrets/
         name: hubot
@@ -37,4 +39,3 @@ system:
         targetport: 8080
         lbtype: http
         tls: true
-
