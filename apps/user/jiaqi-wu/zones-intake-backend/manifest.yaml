@@ -7,8 +7,8 @@ system:
   functions:
   - name: zones-intake-backend
     count: 2
-    labels:
-      "sherpa-injector.service-mesh/inject": "enabled"
+    # labels:
+    #   "sherpa-injector.service-mesh/inject": "enabled"
     volumes:
       - name: servercert
         maddogCert:
@@ -37,29 +37,29 @@ system:
       - name: clientcert
         mountPath: /clientcerts
 
-    - name: beacon
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: sam
-      args:
-      - -endpoint
-      # 7442 - http1 tls
-      - samapp/user-jiaqi-wu/zones-intake-backend:DATACENTER_ALLENV:7442
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-    - name: debug-tools
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug-tools:latest
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: sam
-      livenessProbe:
-        exec:
-          command: ["/bin/true"]
-        initialDelaySeconds: 20   
+    # - name: beacon
+    #   image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+    #   env:
+    #   - name: SFDC_ENVIRONMENT
+    #     value: sam
+    #   args:
+    #   - -endpoint
+    #   # 7442 - http1 tls
+    #   - samapp/user-jiaqi-wu/zones-intake-backend:DATACENTER_ALLENV:7442
+    #   livenessProbe:
+    #     initialDelaySeconds: 5
+    #     exec:
+    #       command:
+    #         - "/home/scone/is-alive.sh"
+    # - name: debug-tools
+    #   image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug-tools:latest
+    #   env:
+    #   - name: SFDC_ENVIRONMENT
+    #     value: sam
+    #   livenessProbe:
+    #     exec:
+    #       command: ["/bin/true"]
+    #     initialDelaySeconds: 20   
 
   loadbalancers:
   - lbname: zones-intake-backend-lb
