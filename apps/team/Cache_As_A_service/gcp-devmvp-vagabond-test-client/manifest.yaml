@@ -15,8 +15,8 @@ system:
         requests: { memory: "6G" }
       args:
         - --type=VAGABOND
-        - --testTime=1800
-        - --reportInterval=300
+        - --testTime=120
+        - --reportInterval=15
         - --url=acs-mesh-0.service-mesh.localhost.mesh.force.com:7014,acs-mesh-1.service-mesh.localhost.mesh.force.com:7014,acs-mesh-2.service-mesh.localhost.mesh.force.com:7014,acs-mesh-3.service-mesh.localhost.mesh.force.com:7014
       livenessProbe:
         exec:
