@@ -24,7 +24,7 @@ system:
               apiVersion: v1
               fieldPath: metadata.name
         resources:
-          limits: { cpu: "6", memory: "10Gi" }
+          limits: { cpu: "6", memory: "16Gi" }
           requests: { cpu: "4", memory: "12Gi" }
         ports:
         - containerPort: 8983
