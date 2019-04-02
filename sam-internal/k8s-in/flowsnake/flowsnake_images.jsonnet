@@ -22,15 +22,16 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "1": self["2"] {
             image_tags+: {
-                cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-                testData_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-                ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-                ingressDefaultBackend_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-                nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-                watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
-                eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-810-9-itest",
+                # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
+                cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                testData_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                ingressDefaultBackend_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
                 watchdog_image_tag: "2671-deba20971de93f4f374e1f4e980d339b44e4215b",  # Adds cli-checker stderr and exit code logging
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
                 deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
@@ -47,6 +48,7 @@ local utils = import "util_functions.jsonnet";
             # Start with 2-prd-dev (which also have legacy version mappings),
             # and then any cusomizations just for this fleet.
             version_mapping: $.per_phase["2-prd-dev"].version_mapping {
+                "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
             },
         },
         # Phase 2: Remaining PRD fleets and production canary fleets.
