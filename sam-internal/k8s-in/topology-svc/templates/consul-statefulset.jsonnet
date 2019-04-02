@@ -20,6 +20,10 @@ local consulEnvParams = [
       },
     },
   },
+  {
+    name: 'RANDVAL',
+    value: '42',
+  },
 ];
 
 local ports = [
