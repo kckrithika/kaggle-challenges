@@ -54,13 +54,6 @@ system:
         - name: solr-log-volume
           hostPath:
             path: /mnt/disks/ssd0/data/logs/solr
-        - name: certs
-          maddogCert:
-            type: client
-      volumes:
-        - name: solr-log-volume
-          hostPath:
-            path: /mnt/disks/ssd0/data/logs/solr
         - name: certs-client
           maddogCert:
             type: client
