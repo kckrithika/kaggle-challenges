@@ -58,7 +58,11 @@ if configs.kingdom == 'mvp' then {
     volumeClaimTemplates: [
             {
                 metadata: {
-                   name: "consulstore",
+                   name: "consul-data-volume",
+                   annotations:
+                   {
+                       "volume.beta.kubernetes.io/storage-class": "faster",
+                   },
                 },
                 spec: {
                    accessModes: [
@@ -146,7 +150,7 @@ if configs.kingdom == 'mvp' then {
             },
             volumeMounts: [
             {
-              name: "consulstore",
+              name: "consul-data-volume",
               mountPath: "/consul/data",
             },
 ],
