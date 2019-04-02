@@ -23,6 +23,7 @@ configs.deploymentBase("service-mesh") {
       metadata: {
         labels: {
           app: "sherpa-injector",
+          name: "sherpa-injector",
           "sherpa-injector.service-mesh/inject": "disabled",
         },
         annotations: {
