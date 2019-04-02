@@ -74,3 +74,20 @@
       healthport: 25514
       healthpath: /
       healthprotocol: http
+- lbname: ops0-netevents-0-prd
+  customlbname: ops0-netevents-0-prd
+  servers:
+    - ops0-netevents1-1-prd.eng.sfdc.net
+    - ops0-netevents1-2-prd.eng.sfdc.net
+    - ops0-netevents2-1-prd.eng.sfdc.net
+    - ops0-netevents2-2-prd.eng.sfdc.net
+    - ops0-netevents2-3-prd.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 8080
+      lbtype: http
+      tls: true
+      reencrypt: false
+      healthport: 8080
+      healthpath: /images/spinner.gif
+      healthprotocol: http
