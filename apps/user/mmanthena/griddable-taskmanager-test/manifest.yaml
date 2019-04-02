@@ -1,0 +1,121 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: acds-taskmanager
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: acds-taskmanager
+    spec:
+      dnsPolicy: "ClusterFirst"
+      imagePullSecrets:
+      - name: griddable-image
+      containers:
+      - name: acds-taskmanager
+        image: 
+        command: ['bash', '-c', '/acds/bin/start-acds.sh']
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1536Mi
+          requests:
+            cpu: 200m
+            memory: 300Mi
+        envFrom:
+        - configMapRef:
+            name: mgmt-env
+        env:
+        - name: SHELL
+          value: "/bin/bash"
+        - name: UP_STRING
+          value: "ACDS TaskManager Started. Blocking."
+        - name: ACDS_APISERVER_HOST
+          value: $GUI_URL
+        - name: ACDS_START_TASKMANAGER
+          value: "yes"
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: zk-data-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: zk-0
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zk
+        node: node0
+    spec:
+      hostname: zk-0
+      volumes:
+      - name: zk-data
+        persistentVolumeClaim:
+          claimName: zk-data-claim
+      containers:
+      - name: zk-0
+        image: zookeeper
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: zk-data
+          readOnly: false
+          mountPath: "/data"
+        ports:
+        - containerPort: 2181
+        - containerPort: 2888
+        - containerPort: 3888
+        #command: ['tail', '-f', '/etc/hosts']  
+        env:
+        - name: ZOO_MY_ID
+          value: '0'
+        - name: ZOO_SERVERS
+          value: server.0=0.0.0.0:2888:3888 
+        - name: ZOO_DATA_DIR
+          value: '/data'
+        - name: ZOO_DATA_LOG_DIR
+          value: '/data'  
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: zk-0
+  labels:
+    app: zk
+    node: node0
+spec:
+  type: LoadBalancer
+  ports:
+  - name: port-2181
+    nodePort: 32000
+    port: 2181
+    protocol: TCP
+    targetPort: 2181
+  - name: port-2888
+    nodePort: 32001
+    port: 2888
+    protocol: TCP
+    targetPort: 2888
+  - name: port-3888
+    nodePort: 32002
+    protocol: TCP
+    targetPort: 2188
+    port: 3888
+  selector:
+    app: zk
+    node: node0
+
