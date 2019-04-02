@@ -61,6 +61,10 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
                     fieldRef: { fieldPath: "metadata.namespace", apiVersion: "v1" },
                   },
               },
+              {
+                name: "ESTATE",
+                value: configs.estate,
+              },
             ],
           },
 }

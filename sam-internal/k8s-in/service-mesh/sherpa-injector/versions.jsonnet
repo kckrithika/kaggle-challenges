@@ -3,13 +3,13 @@ local configs = import "config.jsonnet";
 {
     canarySherpaImage: (
         // https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master
-        "%s/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f" % 
+        "%s/sfci/servicelibs/sherpa-envoy:bd9e582c021457a87412cd9a03742ad95eda0cd7" % 
         if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.registry + "/docker-gcp" else configs.registry
     ),
     sherpaImage: (
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
         // https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-        "%s/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f" % 
+        "%s/sfci/servicelibs/sherpa-envoy:bd9e582c021457a87412cd9a03742ad95eda0cd7" % 
         if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.registry + "/docker-gcp" else configs.registry
     ),
     canaryInjectorImage: (

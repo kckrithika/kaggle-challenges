@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       app: sherpa-injector
+      name: sherpa-injector
       sherpa-injector.service-mesh/inject: disabled
   template:
     metadata:
@@ -46,17 +47,18 @@ spec:
         scheduler.alpha.kubernetes.io/critical-pod: ""
       labels:
         app: sherpa-injector
+        name: sherpa-injector
         sherpa-injector.service-mesh/inject: disabled
     spec:
       containers:
       - args:
         - --template=sherpa-container.yaml.template
-        - --image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
+        - --image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:bd9e582c021457a87412cd9a03742ad95eda0cd7
         - --log-level=debug
         - --port=17442
         - --cert=/server-certs/server/certificates/server.pem
         - --key=/server-certs/server/keys/server-key.pem
-        - --canary-image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
+        - --canary-image=ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:bd9e582c021457a87412cd9a03742ad95eda0cd7
         env:
         - name: SFDC_ENVIRONMENT
           value: mesh
@@ -152,6 +154,8 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
+        - name: ESTATE
+          value: prd-sam
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
@@ -203,7 +207,7 @@ spec:
           value: ajna0-funnel1-0-prd.data.sfdc.net
         - name: SFDC_METRICS_SERVICE_PORT
           value: "80"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:3b72dddee5c16c66043662b5ec6205dfdef08e2f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-envoy:bd9e582c021457a87412cd9a03742ad95eda0cd7
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -259,6 +263,8 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
+        - name: ESTATE
+          value: prd-sam
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
         imagePullPolicy: IfNotPresent
         name: madkub-init
