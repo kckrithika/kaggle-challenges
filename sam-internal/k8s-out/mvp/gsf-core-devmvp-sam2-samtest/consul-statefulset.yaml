@@ -73,6 +73,9 @@ spec:
         securityContext:
           runAsNonRoot: true
           runAsUser: 7447
+        volumeMounts:
+        - mountPath: /consul/data
+          name: consul-data-volume
       dnsPolicy: ClusterFirstWithHostNet
       restartPolicy: Always
       securityContext:
@@ -82,3 +85,15 @@ spec:
       terminationGracePeriodSeconds: 10
   updateStrategy:
     type: RollingUpdate
+  volumeClaimTemplates:
+  - metadata:
+      annotations:
+        volume.beta.kubernetes.io/storage-class: faster
+      name: consul-data-volume
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 2Gi
+      storageClassName: faster

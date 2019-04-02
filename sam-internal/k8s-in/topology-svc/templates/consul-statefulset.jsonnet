@@ -55,6 +55,28 @@ if configs.kingdom == 'mvp' then {
     updateStrategy: {
         type: 'RollingUpdate',
     },
+    volumeClaimTemplates: [
+            {
+                metadata: {
+                   name: "consul-data-volume",
+                   annotations:
+                   {
+                       "volume.beta.kubernetes.io/storage-class": "faster",
+                   },
+                },
+                spec: {
+                   accessModes: [
+                      "ReadWriteOnce",
+                   ],
+                   storageClassName: "faster",
+                   resources: {
+                      requests: {
+                         storage: "2Gi",
+                      },
+                   },
+                },
+            },
+        ],
     replicas: 3,
     selector: {
       matchLabels: {
@@ -126,6 +148,12 @@ if configs.kingdom == 'mvp' then {
                 runAsNonRoot: true,
                 runAsUser: 7447,
             },
+            volumeMounts: [
+            {
+              name: "consul-data-volume",
+              mountPath: "/consul/data",
+            },
+],
           },
         ],
       },
