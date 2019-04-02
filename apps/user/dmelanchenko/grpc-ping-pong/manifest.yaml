@@ -142,9 +142,6 @@ system:
       args:
       - -endpoint
       - samapp/user-dmelanchenko/grpc-ping-pong-service:DATACENTER:7443:grpc-ping-pong-prd-lb.user-dmelanchenko.prd-sam.prd.slb.sfdc.net
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: stmfa
       resources:
         limits:
           cpu: "1"
