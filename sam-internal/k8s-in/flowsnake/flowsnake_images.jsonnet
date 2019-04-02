@@ -58,6 +58,7 @@ local utils = import "util_functions.jsonnet";
                 fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",  # TODO: This is _older_ than phase 3. Fix.
             },
             feature_flags+: {
+                spark_op_watchdog_improve_logging: "enabled",
             },
             version_mapping+: {
                 "0.12.5": 10011,  # TODO: Why is this different from production?
