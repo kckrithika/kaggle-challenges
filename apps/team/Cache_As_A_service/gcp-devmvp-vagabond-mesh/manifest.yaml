@@ -11,10 +11,11 @@ system:
     - name: acs  
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:1
       args:
-        - --servers=acs-mesh-0.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:8085,acs-mesh-1.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:8085,acs-mesh-2.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:8085,acs-mesh-3.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:8085
+        - --servers=acs-mesh-0.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:7022,acs-mesh-1.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:7022,acs-mesh-2.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:7022,acs-mesh-3.acs-stateful-ilb.cache-as-a-service.svc.cluster.local:7022
         - --dataroot=/home/sfdc-acs/data
+        - --servicePort=7022
       ports:
-      - containerPort: 8085
+      - containerPort: 7022
         name: http
       - containerPort: 15372
       env:
@@ -32,7 +33,7 @@ system:
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/beacon:853c4db9f14805018be6f5e7607ffe65b5648822-201902081500
       args:
       - -endpoint
-      - acs/$(FUNCTION_INSTANCE_NAME):POD:8085
+      - acs/$(FUNCTION_INSTANCE_NAME):POD:7442
       - -zk
       - 10.168.160.76
       livenessProbe:
@@ -48,17 +49,58 @@ system:
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
+    - name: sherpa
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/sherpa-envoy:1.0.4-201902081120
+      args:
+      # 2018-02-08: Direct Connection to the switchboard for now
+      - --switchboard=switchboard.service-mesh.svc:15001
+      ports:
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
     lbname: acs-stateful-ilb
     volumeClaimTemplates:
     - name: acs-data-volume
       storageClassName: faster
       storageSizeRequest: 10Gi
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - lbname: acs-lb
     function: acs-mesh
     slbEnabled: true
     ports:
-      - port: 8085
-        targetport: 8085
+      - port: 7022
+        targetport: 7022
       - port: 15372
         targetport: 15372
