@@ -51,7 +51,7 @@ spec:
         - --client.serverInterface=lo
         - --restrictedSubnets=161.71.44.0/23,
         - --maxDeleteEntries=10
-        - --vipLimit=1000
+        - --vipLimit=998
         - --client.socketDir=/host/data/slb/config/slb-dns-register
         - --client.dialSocket=true
         image: ops0-artifactrepo1-0-lo2.data.sfdc.net/dva/slb/hyperslb:2101-6bb968e89c03342b50d918340863c6082d7094dd
