@@ -56,6 +56,12 @@ configs.deploymentBase("service-mesh") {
               "--port",
               "10443",
             ],
+            env: [
+              {
+                name: "ESTATE",
+                value: configs.estate,
+              },
+            ],
             ports: [
               {
                 containerPort: 10443,

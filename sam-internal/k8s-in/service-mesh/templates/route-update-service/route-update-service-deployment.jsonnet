@@ -53,6 +53,12 @@ configs.deploymentBase("service-mesh") {
             image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/route-update-service:5b22f90645d766fb1e6cbc35012215678cbd539f",
             imagePullPolicy: "IfNotPresent",
             args: [],
+            env: [
+              {
+                name: "ESTATE",
+                value: mcpIstioConfig.istioEstate,
+              },
+            ],
             ports: [
               {
                 containerPort: 7020,

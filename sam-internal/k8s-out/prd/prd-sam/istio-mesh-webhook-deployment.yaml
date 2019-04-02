@@ -44,6 +44,9 @@ spec:
         - /server-cert/server/keys/server-key.pem
         - --port
         - "10443"
+        env:
+        - name: ESTATE
+          value: prd-sam
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:9b30f6bd3306ad4e9aa6f38d1b3b51c9a1ff15d3
         imagePullPolicy: IfNotPresent
         name: istio-mesh-webhook
