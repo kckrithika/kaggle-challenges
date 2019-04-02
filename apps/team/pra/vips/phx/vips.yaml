@@ -1,0 +1,71 @@
+- lbname: pra-mariadb-phx
+  customlbname: pra-mariadb-phx
+  servers:
+  - ops0-praccn1-1-phx.ops.sfdc.net
+  ports:
+  - port: 3306
+    targetport: 3306
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-neutron-phx
+  customlbname: pra-neutron-phx
+  servers:
+  - ops0-praccn1-1-phx.ops.sfdc.net
+  - ops0-praccn2-1-phx.ops.sfdc.net
+  - ops0-praccn1-2-phx.ops.sfdc.net
+  ports:
+  - port: 9696
+    targetport: 9696
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-keystone-apache-phx
+  customlbname: pra-keystone-apache-phx
+  servers:
+  - ops0-praccn1-1-phx.ops.sfdc.net
+  - ops0-praccn2-1-phx.ops.sfdc.net
+  - ops0-praccn1-2-phx.ops.sfdc.net
+  ports:
+  - port: 5000
+    targetport: 5000
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-keystone-admin-phx
+  customlbname: pra-keystone-admin-phx
+  servers:
+  - ops0-praccn1-1-phx.ops.sfdc.net
+  - ops0-praccn2-1-phx.ops.sfdc.net
+  - ops0-praccn1-2-phx.ops.sfdc.net
+  ports:
+  - port: 35357
+    targetport: 35357
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-glance-api-phx
+  customlbname: pra-glance-api-phx
+  servers:
+  - ops0-praccn1-1-phx.ops.sfdc.net
+  - ops0-praccn2-1-phx.ops.sfdc.net
+  - ops0-praccn1-2-phx.ops.sfdc.net
+  ports:
+  - port: 9292
+    targetport: 9292
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+- lbname: pra-nova-phx
+  customlbname: pra-nova-phx
+  servers:
+  - ops0-praccn1-1-phx.ops.sfdc.net
+  - ops0-praccn2-1-phx.ops.sfdc.net
+  - ops0-praccn1-2-phx.ops.sfdc.net
+  ports:
+  - port: 8774
+    targetport: 8774
+    lbtype: tcp
+    healthport: 80
+    healthprotocol: tcp
+
