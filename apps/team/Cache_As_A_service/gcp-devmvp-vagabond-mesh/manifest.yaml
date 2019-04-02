@@ -9,7 +9,7 @@ system:
       pod: devmvp
     containers:
     - name: acs  
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:2
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:3
       args:
         - --servers=acs-mesh-0.service-mesh.localhost.mesh.force.com:7014,acs-mesh-1.service-mesh.localhost.mesh.force.com:7014,acs-mesh-2.service-mesh.localhost.mesh.force.com:7014,acs-mesh-3.service-mesh.localhost.mesh.force.com:7014
         - --dataroot=/home/sfdc-acs/data
