@@ -9,3 +9,5 @@ apps:
   - prd/prd-sam_search
  search-gcp:
   - mvp/gsf-core-devmvp-sam2-sam
+ search-gcp-test:
+  - mvp/gsf-core-devmvp-sam2-sam
