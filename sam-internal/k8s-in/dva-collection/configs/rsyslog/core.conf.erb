@@ -1,7 +1,8 @@
 <%# INPUT DEFINITIONS %>
 input(
   type="imfile"
-  File="/home/sfdc/logs/sfdc/*.gmt.log"
+  <%# File="/home/sfdc/logs/sfdc/*.gmt.log" %>
+  File="<%=config.file_path%>"
   PersistStateInterval="50000"
   startmsg.regex="^([[:alnum:]]{1,})`[[:digit:]]{14}.[[:digit:]]{3}`"
   readTimeout = "5"
@@ -85,7 +86,7 @@ ruleset(name="ruleset_core") {
   set $!ts = exec_template("tpl_origin_ts");
   set $!ts_generated = exec_template("tpl_generated_ts");
   # filename - mist61.sfdc.debug-perf-core-6b86b5c8b7-7r6f7.app.20180907.214.gmt.log
-  set $!filename = field($!metadata!filename, 47, 5);
+  set $!filename = field($!metadata!filename, 47, <%=config.file_path.split('/').size%>);
   set $!datacenter = "<%=config.include?(:kingdom) ? config.kingdom : 'mvp'%>";
   set $!substrate = "<%=config.include?(:substrate) ? config.substrate : 'gcp' %>";
   set $!account = "<%=config.include?(:account_name) ? config.account_name : config.project_id %>";

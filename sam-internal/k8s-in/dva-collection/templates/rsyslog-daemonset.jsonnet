@@ -29,6 +29,10 @@ local casamEnv = rsyslogutils.baseEnv + [
             },
         },
     },
+    {
+        name: "FILE_PATH",
+        value: "/home/sfdc/logs/sfdc/*.gmt.log",
+    },
 ];
 
 local initContainers = [
