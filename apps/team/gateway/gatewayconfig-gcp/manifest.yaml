@@ -106,7 +106,7 @@ system:
         initialDelaySeconds: 5
         exec:
           command:
-          - /home/scone/is-alive.sh
+          - /opt/beacon/is-alive.sh
   loadbalancers:
   - lbname: gatewayconfiglb
     function: gateway-service
