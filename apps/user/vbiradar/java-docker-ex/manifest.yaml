@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: java-docker-ex
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vbiradar/java-docker-ex:vrb1 # java app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vbiradar/java-docker-ex:vrb-1 # java app
       ports:
       - containerPort: 9090
       livenessProbe:
