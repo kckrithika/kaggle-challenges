@@ -14,7 +14,7 @@ system:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-      - name: prod-warden
+      - name: prod-warden-ord
         image: dva/casp/warden_strata:132
         ports:
         - name: warden
