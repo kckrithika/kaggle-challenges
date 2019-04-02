@@ -36,6 +36,9 @@ spec:
     spec:
       containers:
       - args: []
+        env:
+        - name: ESTATE
+          value: prd-sam_gater
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/route-update-service:5b22f90645d766fb1e6cbc35012215678cbd539f
         imagePullPolicy: IfNotPresent
         name: route-update-service
