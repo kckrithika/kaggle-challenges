@@ -21,7 +21,9 @@ system:
         periodSeconds: 120      
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.6
-      # args:
+      args:
+        - -log-level
+        - debug
       # - --server-ca
       # - /server-certs/ca_test/cacerts.pem
       ports:
@@ -48,6 +50,27 @@ system:
           - /home/sfdc-sherpa/bin/is-ready
         initialDelaySeconds: 60
         periodSeconds: 120
+    - name: beacon
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
+      args:
+      - -endpoint
+      - samapp/user-dmelanchenko/grpc-ping-pong-server:DATACENTER:7443
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfa
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+
     volumes:
     - name: server-cert
       maddogCert:
@@ -78,6 +101,9 @@ system:
         periodSeconds: 120      
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.6
+      args:
+        - -log-level
+        - debug
       ports:
       - name: sherpa-h1-tls
         containerPort: 7442
@@ -130,7 +156,7 @@ system:
         exec:
           command:
           - /home/scone/is-alive.sh
-        initialDelaySeconds: 5    
+        initialDelaySeconds: 5
 
   loadbalancers:
   - lbname: grpc-ping-pong-prd-lb
