@@ -71,8 +71,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--maxDeleteEntries=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
                                                    ]
                                                    + (if slbflights.vipLimit then [
-                                                   "--vipLimit=" + slbconfigs.perCluster.prefixLimit[configs.estate],
-] else [])
+                                                     // We can't use the full prefix limit space because sdn can also advertise IPs for docker. We subtract 2 as a safety margin.
+                                                     "--vipLimit=" + (slbconfigs.perCluster.prefixLimit[configs.estate] - 2),
+                                                   ] else [])
                                                    + slbconfigs.getNodeApiClientSocketSettings(),
                                           volumeMounts: configs.filter_empty([
                                               configs.maddog_cert_volume_mount,

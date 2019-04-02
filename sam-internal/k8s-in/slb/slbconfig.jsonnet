@@ -133,7 +133,7 @@
 
         prefixLimit:
             set_value_to_all_in_list(60, $.testEstates)
-            + set_value_to_all_in_list(60, $.prodEstates)
+            + set_value_to_all_in_list(200, $.prodEstates)
             + {
                 "prd-sam": 1000,
                 "lo2-sam": 1000,

@@ -30,7 +30,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     # we can serve before everything blows up. Disable canary VIPs (and downstream components like fred/george)
     # in XRD until we can increase the prefix limits and thus advertise more VIPs.
     # See https://computecloud.slack.com/archives/G340CE86R/p1551987919271500.
-    disableCanaryVIPs: (configs.kingdom == "xrd" || configs.estate == "prd-samtwo"),
+    disableCanaryVIPs: false,
 
     # 2019/01/16 - this didn't work as expected so I disabled it (Pablo)
     # See: https://computecloud.slack.com/archives/G340CE86R/p1550291706553800
