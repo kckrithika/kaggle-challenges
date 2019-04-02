@@ -184,7 +184,7 @@ items:
           done;
 
           # ${!MY_MAP[@]} yields the keys of the associative array
-          # See https://unix.stackexchange.com/a/104848
+          # Bash array set operations: See https://unix.stackexchange.com/a/104848
           REMOVED_POD_NAMES=$(comm -23 <(echo ${!PREVIOUS_POD_PHASES[@]} | xargs -n1 | sort) <(echo ${!POD_PHASES[@]} | xargs -n1 | sort))
           NEW_POD_NAMES=$(comm -13 <(echo ${!PREVIOUS_POD_PHASES[@]} | xargs -n1 | sort) <(echo ${!POD_PHASES[@]} | xargs -n1 | sort))
           EXISTING_POD_NAMES=$(comm -12 <(echo ${!PREVIOUS_POD_PHASES[@]} | xargs -n1 | sort) <(echo ${!POD_PHASES[@]} | xargs -n1 | sort))
@@ -203,7 +203,7 @@ items:
               NEW_STATUS="${POD_PHASES[${POD_NAME}]}"
               if [[ "${OLD_STATUS}" != "${NEW_STATUS}" ]]; then
                   log "Pod ${POD_NAME} phase changed to ${NEW_STATUS} (previously ${OLD_STATUS})."
-                  PREVIOUS_POD_PHASES["$POD_NAME"]="${NEW_STATUS}"]
+                  PREVIOUS_POD_PHASES["$POD_NAME"]="${NEW_STATUS}"
               fi
           done;
       }
