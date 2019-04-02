@@ -35,8 +35,8 @@ local samreleases = import "samreleases.json";
         "mvp,gsf-core-devmvp-sam2-samtest,*,madkub": "102-5201f60ec3458206b47cc7c1b03944e2e47aa9c7",
 
         #[hsuanyu-chen] Enable Internal Load Balancer in PCN
-        "mvp,gsf-core-devmvp-sam2-sam,samapp-controller,hypersam": "2624-bee71f3d174816e59a880f0e94d79e3479846842",
-        "mvp,gsf-core-devmvp-sam2-samtest,samapp-controller,hypersam": "2624-bee71f3d174816e59a880f0e94d79e3479846842",
+        "mvp,gsf-core-devmvp-sam2-sam,samapp-controller,hypersam": "2673-a202210d35f7e2080008c9dc7d86c82520c374bd",
+        "mvp,gsf-core-devmvp-sam2-samtest,samapp-controller,hypersam": "2673-a202210d35f7e2080008c9dc7d86c82520c374bd",
 
         #[prabh-singh] Fix AutoDeployer error/override in GIA
         "ttd,ttd-sam,samcontrol-deployer,hypersam": "sam-0002532-de840aef",
