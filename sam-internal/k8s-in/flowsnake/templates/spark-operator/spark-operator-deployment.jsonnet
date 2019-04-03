@@ -62,7 +62,7 @@ local cert_name = "spark-webhook";
                         + (if quota_enforcement then [
                             "-enable-webhook=true",
                             "-enable-resource-quota-enforcement=true",
-                            "-webhook-service-namespace=flowsnake",
+                            "-webhook-svc-namespace=flowsnake",
                             "-webhook-port=8443",
                             "-webhook-server-cert=/etc/pki_service/spark-webhook/certificates/spark-webhook.pem",
                             "-webhook-server-cert-key=/etc/pki_service/spark-webhook/keys/spark-webhook-key.pem",
