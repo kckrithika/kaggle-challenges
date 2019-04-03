@@ -76,7 +76,7 @@ if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/sam-internal/hypersam.sh"
 
 #Remove next line after the SMB release. This is just to use the updated hypersam image
-HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/dva/sam/hypersam:2670-cabbb1c6eea6c6b8d93bb045ceb6314c2471d6ad
+HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2676-2c0df88d1c01d550d3a49e0a45125453e451ad1a
 
 docker run \
   --rm \
