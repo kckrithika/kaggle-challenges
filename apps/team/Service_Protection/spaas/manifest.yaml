@@ -116,7 +116,7 @@ system:
         initialDelaySeconds: 5
         exec:
           command:
-          - "/home/scone/is-alive.sh"
+          - "/opt/beacon/is-alive.sh"
       volumeMounts:
       - mountPath: /log
         name: logvol
