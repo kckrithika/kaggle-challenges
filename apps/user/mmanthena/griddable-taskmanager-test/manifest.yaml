@@ -93,5 +93,4 @@ system:
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
     - name: datadir
-      storageClassName: standard
       storageSizeRequest: 5Gi
