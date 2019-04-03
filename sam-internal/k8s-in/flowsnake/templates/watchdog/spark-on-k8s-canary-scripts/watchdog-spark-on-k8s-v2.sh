@@ -33,14 +33,17 @@ SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
 # Exit after 12 minutes to ensure we exit before cliChecker kills us (15 mins) so that all output can be logged.
 TIMEOUT_SECS=$((60*12))
 
+# output Unix time
 epoch() {
     date '+%s'
 }
 
+# Format string for log output by decorating with date, time, app name
 format() {
     sed -e "s/^/$(date +'%m%d %H:%M:%S') [$(epoch)] $APP_NAME - /"
 }
 
+# Format and output provided string
 log() {
     if [[ "$@" != "" ]]; then
         echo "${@}" | format
@@ -58,16 +61,70 @@ kcfw_log() {
   kcfw "$@" 2>&1 | format
 }
 
+# Extract the "Events" section from a kubectl description of a resource.
 events() {
     # awk magic prints lines after search term found: https://stackoverflow.com/a/17988834
     kcfw_log describe sparkapplication $APP_NAME | awk '/Events:/{flag=1;next}flag'
 }
 
+# Return the state of the Spark application.
+# Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
+state() {
+    kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'
+}
+
+# Log changes to pods spawned for SparkApplication
+declare -A PREVIOUS_POD_REPORTS # pod name -> "<pod_status> on host <nodeName>"
+report_pod_changes() {
+    unset POD_REPORTS
+    declare -A POD_REPORTS # pod name -> "<pod_name> <pod_status> on host <nodeName>"
+    # Fetch pod names and their status for this SparkApplication
+    # Note that the status from kubectl get contains a more informative single-term status than is available in the JSON.
+    # The JSON contains the phase (Pending -> Running -> Completed), which does not mention Init, and the detailed
+    # conditions and containerStatuses lists, which are difficult to summarize.
+    # Relevant pods for our spark application have label metadata.labels.spark-app-selector=$APP_ID
+    # Reading command ouptut line by line: https://unix.stackexchange.com/a/52027
+    while read POD_REPORT; do
+        POD=$(echo $POD_REPORT | cut -d' ' -f1)
+        REPORT=$(echo $POD_REPORT | cut -d' ' -f1 --complement)
+        POD_REPORTS["$POD"]="${REPORT}"
+    done < <(kcfw get pods -l${SELECTOR} --show-all -o wide --no-headers | awk '{print $1, $3, "on host", $7}')
+
+    # ${!MY_MAP[@]} yields the keys of the associative array
+    # Bash array set operations: See https://unix.stackexchange.com/a/104848
+    REMOVED_POD_NAMES=$(comm -23 <(echo ${!PREVIOUS_POD_REPORTS[@]} | xargs -n1 | sort) <(echo ${!POD_REPORTS[@]} | xargs -n1 | sort))
+    NEW_POD_NAMES=$(comm -13 <(echo ${!PREVIOUS_POD_REPORTS[@]} | xargs -n1 | sort) <(echo ${!POD_REPORTS[@]} | xargs -n1 | sort))
+    EXISTING_POD_NAMES=$(comm -12 <(echo ${!PREVIOUS_POD_REPORTS[@]} | xargs -n1 | sort) <(echo ${!POD_REPORTS[@]} | xargs -n1 | sort))
+
+    # Can't simply copy associative arrays in bash, so perform maintenance on PREVIOUS_POD_REPORTS as we go.
+    for POD_NAME in ${REMOVED_POD_NAMES}; do
+        log "Pod ${POD_NAME} removed."
+        unset PREVIOUS_POD_REPORTS["$POD_NAME"]
+    done
+    for POD_NAME in ${NEW_POD_NAMES}; do
+        log "Pod ${POD_NAME}: ${POD_REPORTS["${POD_NAME}"]}.";
+        PREVIOUS_POD_REPORTS["$POD_NAME"]=${POD_REPORTS["${POD_NAME}"]}
+    done;
+    for POD_NAME in ${EXISTING_POD_NAMES}; do
+        # The hostname won't change, so only report the pod status. ${VAR%% *} means delete everything after the first space
+        # space. Thus "<pod_name> <pod_status> on host <nodeName>" becomes "<pod_name>"
+        # http://tldp.org/LDP/abs/html/string-manipulation.html
+        OLD_REPORT="${PREVIOUS_POD_REPORTS[${POD_NAME}]}"
+        NEW_REPORT="${POD_REPORTS[${POD_NAME}]}"
+        if [[ "${OLD_REPORT}" != "${NEW_REPORT}" ]]; then
+            log "Pod ${POD_NAME} changed to ${NEW_REPORT%% *} (previously ${OLD_REPORT%% *})."
+            PREVIOUS_POD_REPORTS["$POD_NAME"]="${NEW_REPORT}"
+        fi
+    done;
+}
+
+
+# ------ Initialize ---------
 log "Beginning $APP_NAME test"
 # Sanity-check kubeapi connectivity
 kcfw_log cluster-info
 
-# ------ Clean up ---------
+# ------ Clean up prior runs ---------
 log "Cleaning up $APP_NAME resources from prior runs"
 # || true because exit code 1 if spark application can't be found.
 kcfw_log delete sparkapplication $APP_NAME || true
@@ -81,47 +138,6 @@ while ! $(kcfw_log get pod -l $SELECTOR | grep "No resources" > /dev/null); do s
 log "Creating SparkApplication $APP_NAME"
 kcfw_log create -f $SPEC
 START_TIME=$(epoch)
-
-# Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
-state() {
-    kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'
-}
-
-declare -A PREVIOUS_POD_PHASES # pod name -> pod phase
-report_pod_changes() {
-    unset POD_PHASES
-    declare -A POD_PHASES # pod name -> pod phase
-    # Fetch pod names and their status for this SparkApplication in format <pod_name>:<pod_status> ...
-    # Relevant pods for our spark application have label metadata.labels.spark-app-selector=$APP_ID
-    for POD_AND_PHASE in $(kcfw get pods -l${SELECTOR} --show-all -o template --template '{{ range .items }}{{ .metadata.name }}{{":"}}{{ .status.phase }}{{" "}}{{ end }}' | xargs -n1); do
-        # crack pod:phase into key,value and add to map
-        POD_PHASES["$(echo ${POD_AND_PHASE} | cut -d: -f1)"]="$(echo ${POD_AND_PHASE} | cut -d: -f2)"
-    done;
-
-    # ${!MY_MAP[@]} yields the keys of the associative array
-    # Bash array set operations: See https://unix.stackexchange.com/a/104848
-    REMOVED_POD_NAMES=$(comm -23 <(echo ${!PREVIOUS_POD_PHASES[@]} | xargs -n1 | sort) <(echo ${!POD_PHASES[@]} | xargs -n1 | sort))
-    NEW_POD_NAMES=$(comm -13 <(echo ${!PREVIOUS_POD_PHASES[@]} | xargs -n1 | sort) <(echo ${!POD_PHASES[@]} | xargs -n1 | sort))
-    EXISTING_POD_NAMES=$(comm -12 <(echo ${!PREVIOUS_POD_PHASES[@]} | xargs -n1 | sort) <(echo ${!POD_PHASES[@]} | xargs -n1 | sort))
-
-    # Can't simply copy associative arrays in bash, so perform maintenance on PREVIOUS_POD_PHASES as we go.
-    for POD_NAME in ${REMOVED_POD_NAMES}; do
-        log "Pod ${POD_NAME} removed."
-        unset PREVIOUS_POD_PHASES["$POD_NAME"]
-    done
-    for POD_NAME in ${NEW_POD_NAMES}; do
-        log "Pod ${POD_NAME} created: ${POD_PHASES["${POD_NAME}"]}.";
-        PREVIOUS_POD_PHASES["$POD_NAME"]=${POD_PHASES["${POD_NAME}"]}
-    done;
-    for POD_NAME in ${EXISTING_POD_NAMES}; do
-        OLD_STATUS="${PREVIOUS_POD_PHASES[${POD_NAME}]}"
-        NEW_STATUS="${POD_PHASES[${POD_NAME}]}"
-        if [[ "${OLD_STATUS}" != "${NEW_STATUS}" ]]; then
-            log "Pod ${POD_NAME} phase changed to ${NEW_STATUS} (previously ${OLD_STATUS})."
-            PREVIOUS_POD_PHASES["$POD_NAME"]="${NEW_STATUS}"
-        fi
-    done;
-}
 
 LAST_LOGGED=$(epoch)
 log "Waiting for SparkApplication $APP_NAME to terminate."
@@ -142,7 +158,7 @@ while ! $(echo ${STATE} | grep -P '(COMPLETED|FAILED)' > /dev/null); do
     sleep 1;
     STATE=$(state)
 done;
-report_pod_changes
+report_pod_changes # Report final status of spawned pods
 
 # ------ Report Results ---------
 END_TIME=$(epoch)
