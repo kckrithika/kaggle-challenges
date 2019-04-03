@@ -1,4 +1,5 @@
 - lbname: sec0-magister1-0-phx
+  customlbname: sec0-magister1-0-phx
   cnames:
    - cname: sec0-magister1-0-phx.data.sfdc.net
   servers:
