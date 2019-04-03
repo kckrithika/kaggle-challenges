@@ -1,6 +1,12 @@
+local estate = std.extVar("estate");
+local kingdom = std.extVar("kingdom");
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
+local enabled = std.objectHas(flowsnake_images.feature_flags, "spark_operator");
+local quota_enforcement = std.objectHas(flowsnake_images.feature_flags, "spark_application_quota_enforcement");
 local spark_op_metrics = std.objectHas(flowsnake_images.feature_flags, "spark_op_metrics");
+local madkub_common = import "madkub_common.jsonnet";
+local cert_name = "spark-webhook";
 
 {
     apiVersion: "extensions/v1beta1",
@@ -29,8 +35,16 @@ local spark_op_metrics = std.objectHas(flowsnake_images.feature_flags, "spark_op
                 labels: {
                     "app.kubernetes.io/name": "spark-operator",
                     "app.kubernetes.io/version": "v2.4.0-v1beta1",
-                },
-            },
+                }
+            } + (if quota_enforcement then {annotations: {
+                    "madkub.sam.sfdc.net/allcerts": std.toString({"certreqs": [{
+                        "cert-type": "server",
+                        "kingdom": kingdom,
+                        "name": cert_name,
+                        "role": "flowsnake.spark-operator",
+                        "san": ["spark-webhook.flowsnake", "spark-webhook.flowsnake.svc", "spark-webhook.flowsnake.svc.cluster.local"]
+                    }]})
+                }} else {}),
             spec: {
                 serviceAccountName: "spark-operator-serviceaccount",
                 containers: [
@@ -39,25 +53,40 @@ local spark_op_metrics = std.objectHas(flowsnake_images.feature_flags, "spark_op
                         image: flowsnake_images.spark_operator,
                         imagePullPolicy: "Always",
                         command: ["/usr/bin/spark-operator"],
-                    } +
-                    (if spark_op_metrics then {
-                        args: [
-                            "-logtostderr",
-                            "-v=2",
+                        args: ["-logtostderr", "-v=2"]
+                        + (if spark_op_metrics then [
                             "-enable-metrics=true",
                             "-metrics-endpoint=/metrics",
                             "-metrics-port=10254",
-                        ],
+                        ] else [])
+                        + (if quota_enforcement then [
+                            "-enable-webhook=true",
+                            "-enable-resource-quota-enforcement=true",
+                            "-webhook-service-namespace=flowsnake",
+                            "-webhook-port=8443",
+                            "-webhook-server-cert=/etc/pki_service/spark-webhook/certificates/spark-webhook.pem",
+                            "-webhook-server-cert-key=/etc/pki_service/spark-webhook/keys/spark-webhook-key.pem",
+                            "-webhook-ca-cert=/etc/pki_service/ca/cabundle.pem",
+                        ] else []),
+                    } + (if spark_op_metrics then {
                         ports: [{
                             containerPort: 10254,
                             name: "metrics",
                             protocol: "TCP",
                         }]
-                    } else {
-                        args: ["-logtostderr", "-v", "2"],
-                    }),
-                ]
-            },
+                    } else {}) + (if quota_enforcement then {
+                        ports: [{
+                            containerPort: 8443,
+                            name: "webhook",
+                            protocol: "TCP",
+                        }],
+                        volumeMounts: madkub_common.cert_mounts(cert_name),
+                    } else {}),
+                ] + (if quota_enforcement then [madkub_common.refresher_container(cert_name)] else []),
+            } + (if quota_enforcement then {
+                volumes: madkub_common.cert_volumes(cert_name),
+                initContainers: [madkub_common.init_container(cert_name)],
+            } else {}),
         },
     },
 }
