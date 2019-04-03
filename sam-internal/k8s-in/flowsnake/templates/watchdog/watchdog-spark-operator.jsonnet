@@ -75,7 +75,12 @@ else
                 namespace: "flowsnake",
             },
             data: {
-                "check-spark-operator.sh": if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging") then importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-v2.sh" else importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",
+                "check-spark-operator.sh":
+                    if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging_more") then
+                        importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-v3.sh"
+                    else if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging") then
+                        importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-v2.sh"
+                    else importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",
                 "check-impersonation.sh": importstr "spark-on-k8s-canary-scripts/check-impersonation.sh",
             }
         },
@@ -150,14 +155,17 @@ else
                                     "-estate="+estate,
                                 ] else []),
                                 name: "watchdog",
+                                # runtime: failed to create new OS thread (have 6 already; errno=12) means more RAM needed
+                                # (see https://stackoverflow.com/questions/46484627/golang-runtime-failed-to-create-new-os-thread-have-2049-already-errno-12)
+                                # Last seen with 500M and running 3 commands 2019-04-02.
                                 resources: {
                                     requests: {
                                         cpu: "1",
-                                        memory: "500Mi",
+                                        memory: if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging_more") then "1Gi" else "500Mi",
                                     },
                                     limits: {
                                         cpu: "1",
-                                        memory: "500Mi",
+                                        memory: if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging_more") then "1Gi" else "500Mi",
                                     },
                                 },
                                 volumeMounts: [
