@@ -3,8 +3,6 @@ system:
   functions:
   - name: zones-client
     count: 1
-    labels:
-      "sherpa-injector.service-mesh/inject": "enabled"
     volumes:
       - name: servercert
         maddogCert:
@@ -22,12 +20,3 @@ system:
         httpGet:
           path: /
           port: 8000
-    - name: debug-tools
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug-tools:latest
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: sam
-      livenessProbe:
-        exec:
-          command: ["/bin/true"]
-        initialDelaySeconds: 20
