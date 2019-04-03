@@ -18,9 +18,9 @@ system:
         httpGet:
           path: /api/health/system
           port: 5000
-        exec:
-          command:
-          - "true"
+        #exec:
+        #  command:
+        #  - "true"
         initialDelaySeconds: 3
         # Keeping this high due to latencies accessing Spinnaker from SAMTWO
         periodSeconds: 20
