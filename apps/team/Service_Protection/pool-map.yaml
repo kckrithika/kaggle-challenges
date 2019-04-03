@@ -17,3 +17,6 @@ apps:
   - ukb/ukb-sam_gater
   - ph2/ph2-sam_gater
   - ia2/ia2-sam_gater
+ ml-spaas:
+  - prd/prd-sam_serviceprotection
+  
