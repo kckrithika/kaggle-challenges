@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-stage
-      image: sfci/cre/cre-control-plane:1.6.0.2.master.85fb662.123
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.7.0-freeze-001.0.release-1.7.344cf71.1
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,cre-api@salesforce.com"
