@@ -87,7 +87,7 @@ report_pod_changes() {
     while read POD_REPORT; do
         POD=$(echo $POD_REPORT | cut -d' ' -f1)
         REPORT=$(echo $POD_REPORT | cut -d' ' -f1 --complement)
-        POD_REPORTS["$POD"]="${POD_REPORT}"
+        POD_REPORTS["$POD"]="${REPORT}"
     done < <(kcfw get pods -l${SELECTOR} --show-all -o wide --no-headers | awk '{print $1, $3, "on host", $7}')
 
     # ${!MY_MAP[@]} yields the keys of the associative array
@@ -102,14 +102,17 @@ report_pod_changes() {
         unset PREVIOUS_POD_REPORTS["$POD_NAME"]
     done
     for POD_NAME in ${NEW_POD_NAMES}; do
-        log "Pod ${POD_NAME} created: ${POD_REPORTS["${POD_NAME}"]}.";
+        log "Pod ${POD_NAME}: ${POD_REPORTS["${POD_NAME}"]}.";
         PREVIOUS_POD_REPORTS["$POD_NAME"]=${POD_REPORTS["${POD_NAME}"]}
     done;
     for POD_NAME in ${EXISTING_POD_NAMES}; do
+        # The hostname won't change, so only report the pod status. ${VAR%% *} means delete everything after the first space
+        # space. Thus "<pod_name> <pod_status> on host <nodeName>" becomes "<pod_name>"
+        # http://tldp.org/LDP/abs/html/string-manipulation.html
         OLD_REPORT="${PREVIOUS_POD_REPORTS[${POD_NAME}]}"
         NEW_REPORT="${POD_REPORTS[${POD_NAME}]}"
         if [[ "${OLD_REPORT}" != "${NEW_REPORT}" ]]; then
-            log "Pod ${POD_NAME} changed to ${NEW_REPORT} (previously ${OLD_REPORT})."
+            log "Pod ${POD_NAME} changed to ${NEW_REPORT%% *} (previously ${OLD_REPORT%% *})."
             PREVIOUS_POD_REPORTS["$POD_NAME"]="${NEW_REPORT}"
         fi
     done;
