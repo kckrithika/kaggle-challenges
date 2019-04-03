@@ -64,8 +64,8 @@ local cert_name = "spark-webhook";
                             "-enable-resource-quota-enforcement=true",
                             "-webhook-svc-namespace=flowsnake",
                             "-webhook-port=8443",
-                            "-webhook-server-cert=/etc/pki_service/spark-webhook/certificates/spark-webhook.pem",
-                            "-webhook-server-cert-key=/etc/pki_service/spark-webhook/keys/spark-webhook-key.pem",
+                            "-webhook-server-cert=/certs/server/certificates/server.pem",
+                            "-webhook-server-cert-key=/certs/server/keys/server-key.pem",
                             "-webhook-ca-cert=/etc/pki_service/ca/cabundle.pem",
                         ] else []),
                     } + (if spark_op_metrics then {
