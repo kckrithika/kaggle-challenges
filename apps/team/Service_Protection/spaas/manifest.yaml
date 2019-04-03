@@ -16,7 +16,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: spaas 
-      image: sfci/service-protection/sps:0.0.5.21
+      image: sfci/service-protection/sps:0.0.5.22
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
@@ -96,8 +96,10 @@ system:
       terminationMessagePolicy: FallbackToLogsOnError
 
     - name: beacon-spaas
+      #https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
-      image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
+      #image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
