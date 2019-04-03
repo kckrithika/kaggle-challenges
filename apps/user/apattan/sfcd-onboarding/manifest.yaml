@@ -1,0 +1,57 @@
+apiVersion: v2
+
+system:
+  functions:
+  - name: sfcd-onboarding
+    count: 1
+    identity:
+      serviceName: sfcd-onboarding
+    containers:
+    - name: sfcd-onboarding-app
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/apattan/testing/app:latest
+      command: [ "/bin/bash", "-c", "--" ]
+      args: [ "while true; do sleep 30; done;" ]
+      ports:
+      - containerPort: 5000
+      livenessProbe:
+        #httpGet:
+        #  path: /api/health/system
+        #  port: 5000
+        exec:
+          command:
+          - "true"
+        initialDelaySeconds: 3
+        # Keeping this high due to latencies accessing Spinnaker from SAMTWO
+        periodSeconds: 20
+    - name: sfcd-onboarding-nginx
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/apattan/testing/nginx:latest
+      command: [ "/bin/bash", "-c", "--" ]
+      args: [ "while true; do sleep 30; done;" ]
+      ports:
+      - containerPort: 7000
+      livenessProbe:
+        #httpGet:
+        #  path: /api/health/system
+        #  port: 5000
+        exec:
+          command:
+          - "true"
+        initialDelaySeconds: 3
+        # Keeping this high due to latencies accessing Spinnaker from SAMTWO
+        periodSeconds: 20
+  loadbalancers:
+  - lbname: sfcd-onboarding-lb
+    function: sfcd-onboarding
+    slbenabled: true
+    ports:
+      # Insecure 80 will be disabled before release
+      - port: 80
+        targetport: 5000
+        lbtype: http
+        tls: false
+        sticky: 300
+      - port: 443
+        targetport: 5000
+        lbtype: http
+        tls: true
+        sticky: 300
