@@ -6,7 +6,7 @@ system:
       - sam@salesforce.com
   functions:
   - name: samtestsecretfn
-    count: 3
+    count: 2
     progressDeadlineSeconds: 600
     containers:
     - name: samtestsecretapp
