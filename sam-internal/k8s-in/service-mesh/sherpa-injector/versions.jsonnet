@@ -1,6 +1,10 @@
 local configs = import "config.jsonnet";
 
 {
+    injectorNamespace: (
+        // k8s namespace to which the injector should be deployed
+        "mesh-control-plane"
+    ),
     canarySherpaImage: (
         // https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master
         "%s/sfci/servicelibs/sherpa-envoy:bd9e582c021457a87412cd9a03742ad95eda0cd7" % 
