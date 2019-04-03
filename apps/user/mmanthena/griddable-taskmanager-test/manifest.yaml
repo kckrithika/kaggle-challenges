@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: acds-taskmanager
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/mmanthena/griddable-taskmanager:v0.0.1
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mmanthena/griddable-taskmanager:v0.0.1
       command:
       - /bin/bash
       - -c
@@ -22,7 +22,7 @@ system:
       - name : ACDS_APISERVER_HTTPS
         value:
       - name : ACDS_APISERVER_ZKCONN
-        value:
+        value: "griddable-zk-lb:2181"
       - name : SERVICE_USER_EMAIL
         value:
 #      - name : SERVICE_USER_PASSWORD
@@ -35,7 +35,7 @@ system:
     count: 3
     containers:
     - name: griddable-zk-cont
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/mmanthena/zookeeper:v0.0.1 
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mmanthena/zookeeper:v0.0.1 
       resources:
         requests:
           memory: "2Gi"
