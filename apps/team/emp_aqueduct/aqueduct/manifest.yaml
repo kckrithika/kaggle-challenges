@@ -23,7 +23,9 @@ system:
         - name: SETTINGS_SERVICENAME
           value: emp-aqueduct
         - name: SFDC_POD 
-          value: emp-aqueduct_func_aqueduct 
+          value: emp-aqueduct_sam_aqueduct 
+        - name: SETTINGS_SUPERPOD 
+          value: "NONE" 
         ports:
         - containerPort: 8080
           name: ext-port
