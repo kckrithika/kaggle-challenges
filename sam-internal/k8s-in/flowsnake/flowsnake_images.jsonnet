@@ -42,7 +42,6 @@ local utils = import "util_functions.jsonnet";
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
                 spark_op_metrics: "enabled",
-                spark_op_watchdog_improve_logging_more: "enabled",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),

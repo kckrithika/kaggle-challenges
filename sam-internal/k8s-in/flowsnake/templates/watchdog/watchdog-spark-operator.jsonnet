@@ -76,9 +76,7 @@ else
             },
             data: {
                 "check-spark-operator.sh":
-                    if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging_more") then
-                        importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-v3.sh"
-                    else if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging") then
+                    if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging") then
                         importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-v2.sh"
                     else importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",
                 "check-impersonation.sh": importstr "spark-on-k8s-canary-scripts/check-impersonation.sh",
@@ -161,11 +159,11 @@ else
                                 resources: {
                                     requests: {
                                         cpu: "1",
-                                        memory: if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging_more") then "1Gi" else "500Mi",
+                                        memory: if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging") then "1Gi" else "500Mi",
                                     },
                                     limits: {
                                         cpu: "1",
-                                        memory: if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging_more") then "1Gi" else "500Mi",
+                                        memory: if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging") then "1Gi" else "500Mi",
                                     },
                                 },
                                 volumeMounts: [
