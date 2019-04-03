@@ -3,6 +3,8 @@ system:
   functions:
   - name: zones-client
     count: 1
+    labels:
+      "sherpa-injector.service-mesh/inject": "enabled"
     volumes:
       - name: servercert
         maddogCert:
@@ -12,7 +14,7 @@ system:
           type: client
     containers:
     - name: zones-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/zones_client:3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/zones_client:4
       env:
       - name: BACKEND_ENDPOINT
         value: "https://zones-intake-backend.user-jiaqi-wu.samapp.localhost.mesh.force.com/zones/v1/roles"
@@ -20,3 +22,13 @@ system:
         httpGet:
           path: /
           port: 8000
+
+    - name: debug-tools
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug-tools:latest
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 20
