@@ -29,8 +29,10 @@ system:
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
       args:
-      # 2018-02-08: Direct Connection to the switchboard for now
-      - --switchboard=switchboard.service-mesh.svc:15001
+      # 2019-02-08: Direct Connection to the switchboard for now
+      #- --switchboard=switchboard.service-mesh.svc:15001
+      # 2019-04-03: Testing connection via "CNAME"
+      - --switchboard=switchboard.svc.local.sfdc.net:15001
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
