@@ -17,7 +17,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/zones_client:4
       env:
       - name: BACKEND_ENDPOINT
-        value: "https://zones-intake-backend.user-jiaqi-wu.samapp.localhost.mesh.force.com/zones/v1/roles"
+        value: "zones-intake-backend-lb.user-jiaqi-wu.svc.prd-sam.prd.sam.sfdc.net:7022/zones/v1/roles"
       livenessProbe:
         httpGet:
           path: /
