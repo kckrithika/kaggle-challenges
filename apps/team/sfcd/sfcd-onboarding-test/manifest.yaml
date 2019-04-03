@@ -7,12 +7,12 @@ system:
     identity:
       serviceName: sfcd-onboarding-test
     containers:
-    - name: sfcd-onboarding
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:13
+    - name: sfcd-onboarding-app
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:jenkins-sfcd-sfcd-onboarding-add_nginx_layer_for_SAMTWO-6-itest
       command: [ "/bin/bash", "-c", "--" ]
       args: [ "while true; do sleep 30; done;" ]
       ports:
-      - containerPort: 5000
+      - containerPort: 7000
       livenessProbe:
         #httpGet:
         #  path: /api/health/system
@@ -35,6 +35,22 @@ system:
       volumeMounts:
         - name: client-certs
           mountPath: /certs
+    - name: sfcd-onboarding-nginx
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding-nginx:jenkins-sfcd-sfcd-onboarding-add_nginx_layer_for_SAMTWO-6-itest
+      command: [ "/bin/bash", "-c", "--" ]
+      args: [ "while true; do sleep 30; done;" ]
+      ports:
+      - containerPort: 5000
+      livenessProbe:
+        #httpGet:
+        #  path: /api/health/system
+        #  port: 5000
+        exec:
+          command:
+          - "true"
+        initialDelaySeconds: 3
+        # Keeping this high due to latencies accessing Spinnaker from SAMTWO
+        periodSeconds: 20
     volumes:
     - name: client-certs
       maddogCert:
