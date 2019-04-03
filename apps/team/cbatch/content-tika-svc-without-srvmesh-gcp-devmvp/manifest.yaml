@@ -37,15 +37,6 @@ system:
             initialDelaySeconds: 10
             timeoutSeconds: 10
           terminationMessagePolicy: FallbackToLogsOnError
-      volumes:
-        - name: envoy-config-volume
-          emptyDir: {}
-        - name: tls-client-cert
-          maddogCert:
-            type: client
-        - name: tls-server-cert
-          maddogCert:
-            type: server
 
   loadbalancers:
   - lbname: content-tika-svc-without-srvmesh
