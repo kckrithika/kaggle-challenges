@@ -1,3 +1,5 @@
 apps:
   sfcd-onboarding:
     - prd/prd-sam_tnrp_signer
+  sfcd-onboarding-test:
+    - prd/prd-sam_tnrp_signer

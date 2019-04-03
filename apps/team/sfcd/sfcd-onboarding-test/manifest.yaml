@@ -2,22 +2,21 @@ apiVersion: v2
 
 system:
   functions:
-  - name: sfcd-onboarding
+  - name: sfcd-onboarding-test
     count: 1
     identity:
-      serviceName: sfcd-onboarding
+      serviceName: sfcd-onboarding-test
     containers:
     - name: sfcd-onboarding
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:13
-      command: [ "/etc/sfcd-onboarding/run_app.sh" ]
-      # command: [ "/bin/bash", "-c", "--" ]
-      # args: [ "while true; do sleep 30; done;" ]
+      command: [ "/bin/bash", "-c", "--" ]
+      args: [ "while true; do sleep 30; done;" ]
       ports:
       - containerPort: 5000
       livenessProbe:
-        httpGet:
-          path: /api/health/system
-          port: 5000
+        #httpGet:
+        #  path: /api/health/system
+        #  port: 5000
         exec:
           command:
           - "true"
@@ -41,8 +40,8 @@ system:
       maddogCert:
         type: client
   loadbalancers:
-  - lbname: sfcd-onboarding-lb
-    function: sfcd-onboarding
+  - lbname: sfcd-onboarding-test-lb
+    function: sfcd-onboarding-test
     slbenabled: true
     ports:
       # Insecure 80 will be disabled before release
