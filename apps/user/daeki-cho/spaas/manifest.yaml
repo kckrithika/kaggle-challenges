@@ -15,7 +15,7 @@ system:
     containers:
     - name: spaas
       #Prod image cannot be used directly in sam sandbox?
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/daeki.cho/spaas:cho-20190403v1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/daeki.cho/spaas:cho-20190403v2
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.22
       # set container environment variables
       env:
@@ -104,10 +104,10 @@ system:
       args:
       # Non-namespaced, mTLS terminated at service
       - -endpoint
-      - spaas:DATACENTER_ALLENV:7033
+      - samapp/$(FUNCTION):DATACENTER_ALLENV:7033
        # Namespaced, TLS terminated at sherpa
       - -endpoint
-      - samapp/user-daeki-cho/spaas:DATACENTER_ALLENV:7443 
+      - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443 
       - -logging.dir
       - /log
       livenessProbe:
