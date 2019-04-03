@@ -5,29 +5,23 @@
       alertFrequency: "24h",
       watchdogFrequency: "10m",
       alertProfile: "sam",
-      alertAction: "email",
-      sql: "SELECT
-   *   
-FROM
-    (   
-    SELECT
-        prs.pr_num,
+      alertAction: "businesshours_pagerduty",
+      sql: "SELECT * FROM(
+      SELECT
+        prs.pr_url,
+        prs.merged_time,
         crds.PoolName,
         crds.ControlEstate,
-        TIMESTAMPDIFF(MINUTE,prs.most_recent_authorized_time, STR_TO_DATE( 
-            JSON_UNQUOTE(payload -> '$.status.endTime'),'%Y-%m-%dT%H:%i:%s' )) latency
-FROM
-    PullRequests prs 
-LEFT  JOIN
+        TIMESTAMPDIFF(MINUTE,prs.merged_time, STR_TO_DATE(JSON_UNQUOTE(payload -> '$.status.endTime'),'%Y-%m-%dT%H:%i:%s' )) latency
+      FROM PullRequests prs LEFT  JOIN
         (   
         SELECT *
         FROM
         crd_history
-        WHERE ApiKind = 'Bundle') crds
-    ON crds.PRNum = prs.pr_num
-WHERE  prs.merged_time > now() - INTERVAL 24 hour
-ORDER BY prs.pr_num
-) prLatency
-WHERE latency > 45",
-    }
+        WHERE ApiKind = 'Bundle') crds ON crds.PRNum = prs.pr_num
+        WHERE  prs.merged_time > now() - INTERVAL 24 hour
+        ORDER BY prs.pr_num
+        ) prLatency
+      WHERE latency > 45",
+}
 
