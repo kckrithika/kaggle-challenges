@@ -40,5 +40,5 @@ std.prune({
   enableIdentityEnvVar: (if samfeatureflags.enableIdentityEnvVar then true else false),
 
   #imagePullPolicy
-  imagePullPolicy: "Always",
+  imagePullPolicy: (if configs.kingdom == "prd" then "Always" else "IfNotPresent"),
 })
