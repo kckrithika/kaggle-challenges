@@ -24,4 +24,9 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+      readinessProbe:
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/ready
+          port: 15372
       terminationMessagePolicy: FallbackToLogsOnError

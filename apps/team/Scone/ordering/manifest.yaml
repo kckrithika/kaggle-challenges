@@ -30,6 +30,11 @@ system:
         httpGet:
           path: /manage/health
           port: 15374
+      readinessProbe:
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/ready
+          port: 15374
       terminationMessagePolicy: FallbackToLogsOnError
 
     - name: beacon
