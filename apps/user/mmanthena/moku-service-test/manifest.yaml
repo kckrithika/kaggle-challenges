@@ -22,7 +22,7 @@ system:
       - name : ACDS_APISERVER_HTTPS
         value:
       - name : ACDS_APISERVER_ZKCONN
-        value: "griddable-zk-lb:2181"
+        value: "moku-zk-lb:2181"
       - name : SERVICE_USER_EMAIL
         value:
 #      - name : SERVICE_USER_PASSWORD
@@ -30,11 +30,11 @@ system:
 #      - name : TOKEN_SECRET
 #        value:
   functions: 
-  - name: griddable-zk
+  - name: moku-zk
     type: stateful-set
     count: 3
     containers:
-    - name: griddable-zk-cont
+    - name: moku-zk-cont
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-zk:v0.0.1 
       resources:
         requests:
@@ -86,12 +86,11 @@ system:
           - "zkOk.sh"
         initialDelaySeconds: 10
         timeoutSeconds: 5
-      volumeMounts:
-      - name: datadir
-        mountPath: /var/lib/zookeeper
-    lbname: griddable-zk-lb
+#      volumeMounts:
+#      - name: datadir
+#        mountPath: /var/lib/zookeeper
+    lbname: moku-zk-lb
     terminationGracePeriodSeconds: 33
-    volumeClaimTemplates:
-    - name: datadir
-      storageClassName: standard
-      storageSizeRequest: 5Gi
+#    volumeClaimTemplates:
+#    - name: datadir
+#      storageClassName: standard
