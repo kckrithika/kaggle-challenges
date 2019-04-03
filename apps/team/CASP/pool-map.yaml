@@ -3,6 +3,8 @@ apps:
   - prd/prd-sam_warden
  prd-cantor:
   - prd/prd-sam_warden
+ prd-maiev-receiver:
+  - prd/prd-sam_warden
  prd-warden:
   - prd/prd-sam_warden
  prd-warden-stage:
