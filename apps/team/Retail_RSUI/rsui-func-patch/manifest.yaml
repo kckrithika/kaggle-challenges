@@ -15,6 +15,7 @@ system:
         type: server
         lbnames:
         - rsui-func-patch-lb
+        - rsui-func-patch-test-lb
     - name: retailclientcert
       maddogCert:
         type: client
@@ -31,7 +32,7 @@ system:
 
     containers:
     - name: retail-setup
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.6.70
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.7.112
       ports:
       # Jetty http1 ports for incoming public traffic via SLB
       - containerPort: 7022
@@ -55,6 +56,8 @@ system:
         value: 7022
       - name: GRPC_SERVICE_PORT
         value: 7020
+      - name: SERVER_ADDITIONALPORTS_SANDBOXLOGIN
+        value: 7023
       - name: SECURITY_CLIENT_DYNAMICKEYSTORE_MONITOREDDIRECTORY
         value: /clientcerts/client
       - name: SECURITY_CLIENT_DYNAMICKEYSTORE_CADIR
@@ -81,6 +84,8 @@ system:
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
       - name: CORE_OAUTH_URL
         value: https://login.stmfb.stm.salesforce.com
+      - name: CORE_OAUTH_SANDBOXURL
+        value: https://test.stmfb.stm.salesforce.com
       - name: RSUI_OAUTH_CALLBACK
         value: https://rsui-func-patch-lb.retail-rsui.prd-sam.prd.slb.sfdc.net/service/oauth/callback
       - name: OAUTH_CONSUMER_KEY
@@ -89,12 +94,12 @@ system:
         value: DC988C015B06E91C7BE93CCF64F1F620C7B4383CCDE69536C56F33B9CA4F758C
       - name: SECURITY_REQUIRE_SECRETS
         value: false
-      - name: RSUI_HOST
-        value: stmfb.stm.salesforce-hub.com
       - name: SECURITY_ENCRYPTION_KEY1_PATH
         value: secrets/encryption-key1/rsui-encryption-key1.key
       - name: SECURITY_ENCRYPTION_KEY2_PATH
         value: secrets/encryption-key2/rsui-encryption-key1.key
+      - name: RSUI_HOST
+        value: stmfb.stm.salesforce-hub.com
       - name: GATER_EMBEDDED_MODE
         value: false
       - name: TRANSFORMATIONLIB_MDS_MODE
@@ -215,6 +220,15 @@ system:
     ports:
       - port: 443
         targetport: 7022
+        tls: true
+        lbtype: http
+        reencrypt: true
+  - lbname: rsui-func-patch-test-lb
+    function: rsui-func-patch
+    slbEnabled: true
+    ports:
+      - port: 443
+        targetport: 7023
         tls: true
         lbtype: http
         reencrypt: true
