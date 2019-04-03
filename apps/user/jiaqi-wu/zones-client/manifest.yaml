@@ -12,7 +12,7 @@ system:
           type: client
     containers:
     - name: zones-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/zones_client:4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/zones_client:5
       env:
       - name: BACKEND_ENDPOINT
         value: "http://zones-intake-backend-lb.user-jiaqi-wu.svc.prd-sam.prd.sam.sfdc.net:3000/zones/v1/roles"
