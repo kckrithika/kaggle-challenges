@@ -245,6 +245,9 @@ shared0-samminionchatbotrt2-9-dfw.ops.sfdc.net,10.247.196.251/29,10.214.156.32/2
 shared0-samminiondatapool1-1-dfw.ops.sfdc.net,10.220.240.162/29,10.165.131.0/27,a01-01,dfw-sam_datapool,65009
 shared0-samminiondatapool1-2-dfw.ops.sfdc.net,10.220.240.170/29,10.165.131.64/27,n26-02,dfw-sam_datapool,65009
 shared0-samminiondatapool2-1-dfw.ops.sfdc.net,10.220.240.163/29,10.165.131.32/27,a01-01,dfw-sam_datapool,65009
+shared0-samminiondp1-1-dfw.ops.sfdc.net,10.220.131.114/29,10.165.136.32/27,z02-01,dfw-sam_dp,65009
+shared0-samminiondp1-2-dfw.ops.sfdc.net,10.220.131.122/29,10.165.136.0/27,f33-02,dfw-sam_dp,65009
+shared0-samminiondp2-1-dfw.ops.sfdc.net,10.220.131.115/29,10.165.136.64/27,z02-01,dfw-sam_dp,65009
 shared0-samminioneaas1-1-dfw.ops.sfdc.net,10.220.202.2/29,10.214.182.96/27,g30-02,dfw-sam_eaas,65009
 shared0-samminioneaas1-2-dfw.ops.sfdc.net,10.220.202.10/29,10.214.182.64/27,d22-01,dfw-sam_eaas,65009
 shared0-samminioneaas1-3-dfw.ops.sfdc.net,10.220.202.18/29,10.214.182.32/27,c02-01,dfw-sam_eaas,65009
@@ -253,8 +256,16 @@ shared0-samminioneaas2-2-dfw.ops.sfdc.net,10.220.202.34/29,10.214.182.0/27,c01-0
 shared0-samminiongater1-1-dfw.ops.sfdc.net,10.247.113.2/29,10.214.130.32/27,k03-02,dfw-sam_gater,65009
 shared0-samminiongater1-2-dfw.ops.sfdc.net,10.247.113.26/29,10.214.130.64/27,k10-02,dfw-sam_gater,65009
 shared0-samminiongater1-3-dfw.ops.sfdc.net,10.247.113.18/29,10.214.130.128/27,t18-01,dfw-sam_gater,65009
+shared0-samminiongater1-4-dfw.ops.sfdc.net,10.247.113.42/29,10.214.130.160/27,a02-01,dfw-sam_gater,65009
+shared0-samminiongater1-5-dfw.ops.sfdc.net,10.247.113.43/29,10.214.130.192/27,a02-01,dfw-sam_gater,65009
+shared0-samminiongater1-6-dfw.ops.sfdc.net,10.247.113.44/29,10.214.130.224/27,a02-01,dfw-sam_gater,65009
+shared0-samminiongater1-7-dfw.ops.sfdc.net,10.247.113.45/29,10.214.131.0/27,a02-01,dfw-sam_gater,65009
 shared0-samminiongater2-1-dfw.ops.sfdc.net,10.247.113.10/29,10.214.130.96/27,l25-02,dfw-sam_gater,65009
 shared0-samminiongater2-2-dfw.ops.sfdc.net,10.247.113.34/29,10.214.130.0/27,j10-02,dfw-sam_gater,65009
+shared0-samminiongater2-3-dfw.ops.sfdc.net,10.247.113.50/29,10.214.131.32/27,f33-02,dfw-sam_gater,65009
+shared0-samminiongater2-4-dfw.ops.sfdc.net,10.247.113.51/29,10.214.131.64/27,f33-02,dfw-sam_gater,65009
+shared0-samminiongater2-5-dfw.ops.sfdc.net,10.247.113.52/29,10.214.131.96/27,f33-02,dfw-sam_gater,65009
+shared0-samminiongater2-6-dfw.ops.sfdc.net,10.247.113.53/29,10.214.131.128/27,f33-02,dfw-sam_gater,65009
 shared0-samminiongwc1-1-dfw.ops.sfdc.net,10.220.225.18/29,10.165.130.96/27,v32-01,dfw-sam_gatewayconfig,65009
 shared0-samminiongwc1-2-dfw.ops.sfdc.net,10.220.225.3/29,10.165.130.0/27,c20-01,dfw-sam_gatewayconfig,65009
 shared0-samminiongwc2-1-dfw.ops.sfdc.net,10.220.225.2/29,10.165.130.32/27,c20-01,dfw-sam_gatewayconfig,65009

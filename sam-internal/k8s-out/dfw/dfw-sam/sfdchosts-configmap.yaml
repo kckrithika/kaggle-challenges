@@ -1713,6 +1713,50 @@ data:
           "controlestate": "dfw-sam",
           "devicerole": "samcompute",
           "estate": "dfw-sam_gater",
+          "hostname": "shared0-samminiongater1-4-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "a02-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_gater",
+          "hostname": "shared0-samminiongater1-5-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "a02-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_gater",
+          "hostname": "shared0-samminiongater1-6-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "a02-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_gater",
+          "hostname": "shared0-samminiongater1-7-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "a02-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_gater",
           "hostname": "shared0-samminiongater2-1-dfw.ops.sfdc.net",
           "kingdom": "dfw",
           "pod": "none",
@@ -1728,6 +1772,50 @@ data:
           "kingdom": "dfw",
           "pod": "none",
           "rack": "j10-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_gater",
+          "hostname": "shared0-samminiongater2-3-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "f33-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_gater",
+          "hostname": "shared0-samminiongater2-4-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "f33-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_gater",
+          "hostname": "shared0-samminiongater2-5-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "f33-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_gater",
+          "hostname": "shared0-samminiongater2-6-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "f33-dh4",
           "superpod": "none"
         },
         {
