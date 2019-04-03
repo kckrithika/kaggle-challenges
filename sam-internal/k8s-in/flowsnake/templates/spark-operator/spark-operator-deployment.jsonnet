@@ -66,7 +66,7 @@ local cert_name = "spark-webhook";
                             "-webhook-port=8443",
                             "-webhook-server-cert=/certs/server/certificates/server.pem",
                             "-webhook-server-cert-key=/certs/server/keys/server-key.pem",
-                            "-webhook-ca-cert=/etc/pki_service/ca/cabundle.pem",
+                            "-webhook-ca-cert=/certs/ca/cabundle.pem",
                         ] else []),
                     } + (if spark_op_metrics then {
                         ports: [{
