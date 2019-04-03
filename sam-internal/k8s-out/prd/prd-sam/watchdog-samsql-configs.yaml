@@ -336,7 +336,7 @@ data:
     "5m"}, {"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
     "sam", "alertThreshold": "10m", "instructions": "Following PRs have failed to
     get deployed within 45 minutes of getting authorized.", "name": "SqlPRLatency",
-    "sql": "SELECT * FROM(\n      SELECT\n        prs.pr_url,\n        prs.merged_time,\n        crds.PoolName,\n        crds.ControlEstate,\n        TIMESTAMPDIFF(MINUTE,prs.most_recent_authorized_time,
+    "sql": "SELECT * FROM(\n      SELECT\n        prs.pr_url,\n        prs.merged_time,\n        crds.PoolName,\n        crds.ControlEstate,\n        TIMESTAMPDIFF(MINUTE,prs.merged_time,
     STR_TO_DATE(JSON_UNQUOTE(payload -> ''$.status.endTime''),''%Y-%m-%dT%H:%i:%s''
     )) latency\n      FROM PullRequests prs LEFT  JOIN\n        (   \n        SELECT
     *\n        FROM\n        crd_history\n        WHERE ApiKind = ''Bundle'') crds

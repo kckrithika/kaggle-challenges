@@ -12,7 +12,7 @@
         prs.merged_time,
         crds.PoolName,
         crds.ControlEstate,
-        TIMESTAMPDIFF(MINUTE,prs.most_recent_authorized_time, STR_TO_DATE(JSON_UNQUOTE(payload -> '$.status.endTime'),'%Y-%m-%dT%H:%i:%s' )) latency
+        TIMESTAMPDIFF(MINUTE,prs.merged_time, STR_TO_DATE(JSON_UNQUOTE(payload -> '$.status.endTime'),'%Y-%m-%dT%H:%i:%s' )) latency
       FROM PullRequests prs LEFT  JOIN
         (   
         SELECT *
