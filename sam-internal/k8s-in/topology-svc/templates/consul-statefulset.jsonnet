@@ -72,7 +72,6 @@ if configs.kingdom == 'mvp' then {
                    accessModes: [
                       "ReadWriteOnce",
                    ],
-                   storageClassName: "faster",
                    resources: {
                       requests: {
                          storage: "2Gi",
