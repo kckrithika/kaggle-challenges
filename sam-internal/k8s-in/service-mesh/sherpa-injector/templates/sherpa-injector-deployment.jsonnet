@@ -6,11 +6,12 @@ local maddogPermissions = import "service-mesh/sherpa-injector/maddog/_init-perm
 local maddogRefresher = import "service-mesh/sherpa-injector/maddog/_cert-refresher-container.jsonnet";
 local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
 local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
+local namespace = "mesh-control-plane";
 
 configs.deploymentBase("service-mesh") {
   metadata+: {
     name: "sherpa-injector",
-    namespace: "service-mesh",
+    namespace: namespace,
     labels: {
       app: "sherpa-injector",
     } +
@@ -40,9 +41,9 @@ configs.deploymentBase("service-mesh") {
                     role: "sherpa-injector",
                     san: [
                       "sherpa-injector",
-                      "sherpa-injector.service-mesh",
-                      "sherpa-injector.service-mesh.svc",
-                      "sherpa-injector.service-mesh.svc.%s" % configs.dnsdomain,
+                      "sherpa-injector.%s" % namespace,
+                      "sherpa-injector.%s.svc" % namespace,
+                      "sherpa-injector.%s.svc.%s" % [namespace, configs.dnsdomain],
                     ],
                   },
                   {
@@ -52,9 +53,9 @@ configs.deploymentBase("service-mesh") {
                     role: "sherpa-injector",
                     san: [
                       "sherpa-injector",
-                      "sherpa-injector.service-mesh",
-                      "sherpa-injector.service-mesh.svc",
-                      "sherpa-injector.service-mesh.svc.%s" % configs.dnsdomain,
+                      "sherpa-injector.%s" % namespace,
+                      "sherpa-injector.%s.svc" % namespace,
+                      "sherpa-injector.%s.svc.%s" % [namespace, configs.dnsdomain],
                     ],
                   },
                 ],

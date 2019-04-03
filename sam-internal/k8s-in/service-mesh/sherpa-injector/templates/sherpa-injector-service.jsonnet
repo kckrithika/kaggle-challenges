@@ -1,11 +1,12 @@
 local configs = import "config.jsonnet";
+local namespace = "mesh-control-plane";
 
 {
   apiVersion: "v1",
   kind: "Service",
   metadata: {
     name: "sherpa-injector",
-    namespace: "service-mesh",
+    namespace: namespace,
     labels: {
       app: "sherpa-injector",
     } +

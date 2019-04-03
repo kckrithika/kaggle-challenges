@@ -4,7 +4,7 @@ metadata:
   labels:
     app: sherpa-injector
   name: sherpa-injector
-  namespace: service-mesh
+  namespace: mesh-control-plane
 spec:
   ports:
   - name: h1-tls-in-port
