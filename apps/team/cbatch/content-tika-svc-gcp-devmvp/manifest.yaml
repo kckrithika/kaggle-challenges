@@ -31,6 +31,11 @@ system:
               port: 15374
             initialDelaySeconds: 20
             periodSeconds: 5
+          readinessProbe:
+            exec:
+              command: ["/bin/true"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
           terminationMessagePolicy: FallbackToLogsOnError
         - name: beacon
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:f804d14
