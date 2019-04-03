@@ -8,7 +8,7 @@
     labels: {
       app: "route-update-service",
     },
-    name: "routingcontext.mesh.sfdc.net",
+    name: "routingcontexts.mesh.sfdc.net",
   },
   spec: {
     group: "mesh.sfdc.net",
