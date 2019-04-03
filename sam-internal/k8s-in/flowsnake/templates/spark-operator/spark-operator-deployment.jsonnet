@@ -3,8 +3,7 @@ local kingdom = std.extVar("kingdom");
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
 local enabled = std.objectHas(flowsnake_images.feature_flags, "spark_operator");
-local quota_enforcement = std.objectHas(flowsnake_images.feature_flags,
-"spark_application_quota_enforcement");
+local quota_enforcement = std.objectHas(flowsnake_images.feature_flags, "spark_application_quota_enforcement");
 local spark_op_metrics = std.objectHas(flowsnake_images.feature_flags, "spark_op_metrics");
 local madkub_common = import "madkub_common.jsonnet";
 local cert_name = "spark-webhook";

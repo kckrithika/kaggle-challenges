@@ -29,14 +29,6 @@ items:
   - apiGroups:
     - ""
     resources:
-    - resourcequotas
-    verbs:
-    - get
-    - watch
-    - list
-  - apiGroups:
-    - ""
-    resources:
     - nodes
     verbs:
     - get
@@ -82,6 +74,14 @@ items:
     - scheduledsparkapplications
     verbs:
     - '*'
+  - apiGroups:
+    - ""
+    resources:
+    - resourcequotas
+    verbs:
+    - get
+    - watch
+    - list
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:

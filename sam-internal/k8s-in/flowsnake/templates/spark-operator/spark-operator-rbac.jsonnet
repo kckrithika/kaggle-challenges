@@ -1,4 +1,5 @@
 local flowsnake_images = import "flowsnake_images.jsonnet";
+local quota_enforcement = std.objectHas(flowsnake_images.feature_flags, "spark_application_quota_enforcement");
 
 {
     apiVersion: "v1",
@@ -31,11 +32,6 @@ local flowsnake_images = import "flowsnake_images.jsonnet";
                 },
                 {
                     apiGroups: [""],
-                    resources: ["resourcequotas"],
-                    verbs: ["get", "watch", "list"],
-                },
-                {
-                    apiGroups: [""],
                     resources: ["nodes"],
                     verbs: ["get"],
                 },
@@ -64,7 +60,13 @@ local flowsnake_images = import "flowsnake_images.jsonnet";
                     resources: ["sparkapplications", "scheduledsparkapplications"],
                     verbs: ["*"],
                 },
-            ],
+            ] + (if quota_enforcement then [
+                {
+                    apiGroups: [""],
+                    resources: ["resourcequotas"],
+                    verbs: ["get", "watch", "list"],
+                },
+            ] else []),
         },
         {
             apiVersion: "rbac.authorization.k8s.io/v1beta1",
