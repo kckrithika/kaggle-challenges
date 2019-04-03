@@ -80,7 +80,7 @@ system:
         - name: SECRET_KEY_FILE
           value: /keys-kube/cre-aes.key
         - name: SCONE_SERVER_SECURITY_MUTUALAUTH
-          value: false
+          value: true
         - name: SPRING_PROFILES_ACTIVE
           value: integration
         - name: JVM_ARGS
