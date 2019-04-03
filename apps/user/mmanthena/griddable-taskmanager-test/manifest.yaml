@@ -86,12 +86,12 @@ system:
           - "zkOk.sh"
         initialDelaySeconds: 10
         timeoutSeconds: 5
-      volumeMounts:
-      - name: datadir
-        mountPath: /var/lib/zookeeper
+#      volumeMounts:
+#      - name: datadir
+#        mountPath: /var/lib/zookeeper
     lbname: griddable-zk-lb
     terminationGracePeriodSeconds: 33
-    volumeClaimTemplates:
-    - name: datadir
-      storageClassName: standard
-      storageSizeRequest: 5Gi
+#    volumeClaimTemplates:
+#    - name: datadir
+#      storageClassName: standard
+#      storageSizeRequest: 5Gi
