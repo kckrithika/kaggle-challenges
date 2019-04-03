@@ -760,6 +760,14 @@ items:
   - kind: User
     name: shared0-samminiongater1-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater1-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-8-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater2-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-ord.ops.sfdc.net
@@ -767,6 +775,14 @@ items:
     name: shared0-samminiongater2-3-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-8-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -786,6 +802,14 @@ items:
   - kind: User
     name: shared0-samminiongater1-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater1-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-8-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater2-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-ord.ops.sfdc.net
@@ -793,6 +817,14 @@ items:
     name: shared0-samminiongater2-3-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-8-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -812,6 +844,14 @@ items:
   - kind: User
     name: shared0-samminiongater1-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminiongater1-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-8-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminiongater2-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-ord.ops.sfdc.net
@@ -819,6 +859,14 @@ items:
     name: shared0-samminiongater2-3-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-8-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
