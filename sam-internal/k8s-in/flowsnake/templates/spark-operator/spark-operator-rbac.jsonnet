@@ -31,6 +31,11 @@ local flowsnake_images = import "flowsnake_images.jsonnet";
                 },
                 {
                     apiGroups: [""],
+                    resources: ["resourcequotas"],
+                    verbs: ["get", "watch", "list"],
+                },
+                {
+                    apiGroups: [""],
                     resources: ["nodes"],
                     verbs: ["get"],
                 },

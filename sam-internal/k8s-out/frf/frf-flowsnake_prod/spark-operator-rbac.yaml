@@ -29,6 +29,14 @@ items:
   - apiGroups:
     - ""
     resources:
+    - resourcequotas
+    verbs:
+    - get
+    - watch
+    - list
+  - apiGroups:
+    - ""
+    resources:
     - nodes
     verbs:
     - get
