@@ -5,7 +5,7 @@ system:
       count: 1
       containers:
         - name: content-pdf-transform
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-pdf-transform:v3
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-pdf-transform:v5
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
@@ -28,12 +28,6 @@ system:
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 15374
-            initialDelaySeconds: 120
-            periodSeconds: 5
-          readinessProbe:
-            httpGet:
-              path: /manage/ready
               port: 15374
             initialDelaySeconds: 120
             periodSeconds: 5
