@@ -8,7 +8,7 @@
     labels: {
       app: "route-update-service",
     },
-    name: "routeupdates.mesh.sfdc.net",
+    name: "routingcontext.mesh.sfdc.net",
   },
   spec: {
     group: "mesh.sfdc.net",
@@ -18,10 +18,10 @@
         "istio",
         "casam",
       ],
-      kind: "RouteUpdate",
-      listKind: "RouteUpdateList",
-      plural: "routeupdates",
-      singular: "routeupdate",
+      kind: "RoutingContext",
+      listKind: "RoutingContextList",
+      plural: "routingcontexts",
+      singular: "routingcontext",
     },
     scope: "Namespaced",
     version: "v1",
