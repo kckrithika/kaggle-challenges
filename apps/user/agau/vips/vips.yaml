@@ -1,7 +1,11 @@
-- lbname: agau-magister-test-prd
+- lbname: agau-magistertest-prd
+  customlbname: vir408-magistertest1-0-prd
+  cnames:
+   - cname: vir408-magistertest1-0-prd.data.sfdc.net
   servers:
    - 10.252.130.138
   ports:
    - port: 443
      targetport: 443
      lbtype: tcp
+     proxyprotocol: true
