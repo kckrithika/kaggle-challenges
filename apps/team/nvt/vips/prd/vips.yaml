@@ -74,8 +74,8 @@
       healthport: 25514
       healthpath: /
       healthprotocol: http
-- lbname: ops0-netevents-0-prd
-  customlbname: ops0-netevents-0-prd
+- lbname: ops0-netevents1-0-prd
+  customlbname: ops0-netevents1-0-prd
   servers:
     - ops0-netevents1-1-prd.eng.sfdc.net
     - ops0-netevents1-2-prd.eng.sfdc.net
