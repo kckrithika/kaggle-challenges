@@ -5,31 +5,31 @@ system:
     email:
       - cthirunavukkarasu@salesforce.com
   functions:
-  - name: griddable-services
+  - name: griddable-services-test
     type: stateful-set
     count: 2
     containers:
-    - name: griddable-relay
+    - name: griddable-relay-test
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cthirunavukkarasu/griddable-relay:latest
       command: ["/acds/bin/start-acds.sh"]
       ports:
       - containerPort: 10234
       volumeMounts:
-      - name: vol-relay-server
+      - name: vol-relay-server-test
         mountPath: /acds/state
       livenessProbe:
         httpGet:
           path: /
           port: 10234
-    lbname: griddalbe-relay-lbs-number11
+    lbname: griddalbe-relay-lbs-number12
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
-    - name: vol-relay-server
+    - name: vol-relay-server-test
       storageClassName: faster 
       storageSizeRequest: 30Gi
   loadbalancers:
-  - lbname: griddable-relay
-    function: griddable-services
+  - lbname: griddable-relay-test
+    function: griddable-services-test
     slbenabled: true
     ports:
       - port: 10234
