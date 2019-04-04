@@ -23,5 +23,6 @@ if configs.kingdom == "mvp" then {
         "journal.conf.erb": journalConf,
         "core.conf.erb": casamConf,
         "manifests.yaml": manifestsYaml,
+        hostname_parse: "false",
     },
 } else "SKIP"
