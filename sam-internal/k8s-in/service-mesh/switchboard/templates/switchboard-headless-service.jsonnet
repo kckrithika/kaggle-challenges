@@ -4,10 +4,10 @@ local configs = import "config.jsonnet";
   apiVersion: "v1",
   kind: "Service",
   metadata: {
-    name: "switchboard-test",
+    name: "switchboard",
     namespace: "service-mesh",
     labels: {
-      app: "switchboard-test",
+      app: "switchboard",
     } +
     // samlabelfilter.json requires this label to be present on GCP deployments
     if configs.estate == "gsf-core-devmvp-sam2-sam" || configs.estate == "gsf-core-devmvp-sam2-samtest" then configs.pcnEnableLabel else {},
