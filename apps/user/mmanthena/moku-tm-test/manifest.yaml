@@ -35,12 +35,12 @@ system:
 #        value:
 #      - name : TOKEN_SECRET
 #        value:
-       livenessProbe:
+      livenessProbe:
         exec:
           command:
-          - "tkOk.sh"
+          - "zkOk.sh"
         initialDelaySeconds: 10
-        timeoutSeconds: 5
+        timeoutSeconds: 5 
   - name: griddable-zk
     type: stateful-set
     count: 3
