@@ -25,7 +25,7 @@ system:
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
     - name: vol-relay-server
-      storageClassName: sharktank-hdd-pool
+      storageClassName: faster 
       storageSizeRequest: 30Gi
   loadbalancers:
   - lbname: griddable-relay
