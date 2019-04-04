@@ -1,5 +1,3 @@
 apps:
- griddable-taskmanager-test:    # this must match the name of your application. It must be lower case.
-  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
- moku-service-test:
-  - prd/prd-sam                # you can also specify other pools
+ moku-tm-test: 
+  - prd/prd-sam 
