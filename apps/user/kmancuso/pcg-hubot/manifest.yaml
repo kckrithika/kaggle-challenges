@@ -12,6 +12,8 @@ system:
       ports:
         - containerPort: 8080
       livenessProbe:
+        initialDelaySeconds: 60
+        periodSeconds: 5
         httpGet:
           path: /health
           port: 8080
