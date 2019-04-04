@@ -1,11 +1,12 @@
 local configs = import "config.jsonnet";
+local versions = import "service-mesh/sherpa-injector/versions.jsonnet";
 
 {
   apiVersion: "v1",
   kind: "Service",
   metadata: {
     name: "sherpa-injector",
-    namespace: "service-mesh",
+    namespace: versions.injectorNamespace,
     labels: {
       app: "sherpa-injector",
     } +

@@ -4,7 +4,7 @@ metadata:
   labels:
     app: sherpa-injector
   name: sherpa-injector
-  namespace: service-mesh
+  namespace: mesh-control-plane
 spec:
   replicas: 3
   selector:
@@ -25,9 +25,9 @@ spec:
              "role": "sherpa-injector",
              "san": [
               "sherpa-injector",
-              "sherpa-injector.service-mesh",
-              "sherpa-injector.service-mesh.svc",
-              "sherpa-injector.service-mesh.svc.prd-sam.prd.sam.sfdc.net"
+              "sherpa-injector.mesh-control-plane",
+              "sherpa-injector.mesh-control-plane.svc",
+              "sherpa-injector.mesh-control-plane.svc.prd-sam.prd.sam.sfdc.net"
              ]
             },
             {
@@ -37,9 +37,9 @@ spec:
              "role": "sherpa-injector",
              "san": [
               "sherpa-injector",
-              "sherpa-injector.service-mesh",
-              "sherpa-injector.service-mesh.svc",
-              "sherpa-injector.service-mesh.svc.prd-sam.prd.sam.sfdc.net"
+              "sherpa-injector.mesh-control-plane",
+              "sherpa-injector.mesh-control-plane.svc",
+              "sherpa-injector.mesh-control-plane.svc.prd-sam.prd.sam.sfdc.net"
              ]
             }
            ]

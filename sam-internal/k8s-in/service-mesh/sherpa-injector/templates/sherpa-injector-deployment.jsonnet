@@ -10,7 +10,7 @@ local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
 configs.deploymentBase("service-mesh") {
   metadata+: {
     name: "sherpa-injector",
-    namespace: "service-mesh",
+    namespace: versions.injectorNamespace,
     labels: {
       app: "sherpa-injector",
     } +
@@ -40,9 +40,9 @@ configs.deploymentBase("service-mesh") {
                     role: "sherpa-injector",
                     san: [
                       "sherpa-injector",
-                      "sherpa-injector.service-mesh",
-                      "sherpa-injector.service-mesh.svc",
-                      "sherpa-injector.service-mesh.svc.%s" % configs.dnsdomain,
+                      "sherpa-injector.%s" % versions.injectorNamespace,
+                      "sherpa-injector.%s.svc" % versions.injectorNamespace,
+                      "sherpa-injector.%s.svc.%s" % [versions.injectorNamespace, configs.dnsdomain],
                     ],
                   },
                   {
@@ -52,9 +52,9 @@ configs.deploymentBase("service-mesh") {
                     role: "sherpa-injector",
                     san: [
                       "sherpa-injector",
-                      "sherpa-injector.service-mesh",
-                      "sherpa-injector.service-mesh.svc",
-                      "sherpa-injector.service-mesh.svc.%s" % configs.dnsdomain,
+                      "sherpa-injector.%s" % versions.injectorNamespace,
+                      "sherpa-injector.%s.svc" % versions.injectorNamespace,
+                      "sherpa-injector.%s.svc.%s" % [versions.injectorNamespace, configs.dnsdomain],
                     ],
                   },
                 ],
