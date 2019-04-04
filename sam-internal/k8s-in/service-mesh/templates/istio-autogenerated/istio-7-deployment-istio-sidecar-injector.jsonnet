@@ -310,6 +310,20 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               },
             ],
           },
+          {
+            command: [
+              "bash",
+              "-c",
+              "set -ex\nchmod 775 -R /client-cert \u0026\u0026 chown -R 7447:7447 /client-cert\nchmod 775 -R /server-cert \u0026\u0026 chown -R 7447:7447 /server-cert\n",
+            ],
+            image: mcpIstioConfig.permissionInitContainer,
+            imagePullPolicy: "Always",
+            name: "permissionsetterinitcontainer",
+            securityContext: {
+              runAsNonRoot: false,
+              runAsUser: 0,
+            },
+          },
         ],
         nodeSelector: {
           master: "true",

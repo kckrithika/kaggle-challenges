@@ -1243,6 +1243,19 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      - command:
+        - bash
+        - -c
+        - |
+          set -ex
+          chmod 775 -R /client-cert && chown -R 7447:7447 /client-cert
+          chmod 775 -R /server-cert && chown -R 7447:7447 /server-cert
+        image: mcpIstioConfig.permissionInitContainer
+        imagePullPolicy: Always
+        name: permissionsetterinitcontainer
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
       nodeSelector:
         master: "true"
       serviceAccountName: istio-sidecar-injector-service-account
