@@ -134,7 +134,7 @@ system:
       volumes:
         - name: codecov-config
           k4aSecret:
-            secretName: codecov-el
+            secretName: codecov
 
     - name: core
       count: 1
@@ -217,7 +217,7 @@ system:
               - codecov
         - name: codecov-config
           k4aSecret:
-            secretName: codecov-el
+            secretName: codecov
 
   loadbalancers:
     - lbname: postgres
