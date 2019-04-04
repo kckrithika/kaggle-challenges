@@ -33,7 +33,7 @@ system:
           mountPath: /certs
     - name: sfcd-onboarding-nginx
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfcd/sfcd-onboarding-nginx:latest
-      command: [ "nginx", "-g", "daemon off;" ]
+      command: [ "nginx" ]
       ports:
       - containerPort: 5000
       livenessProbe:

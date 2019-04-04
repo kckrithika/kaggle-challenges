@@ -5,9 +5,9 @@ system:
   - name: sfcd-onboarding
     count: 1
     identity:
-      serviceName: sfcd-onboarding-app
+      serviceName: sfcd-onboarding
     containers:
-    - name: sfcd-onboarding
+    - name: sfcd-onboarding-app
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding:17
       command: [ "/etc/sfcd-onboarding/run_app.sh" ]
       ports:
@@ -33,7 +33,7 @@ system:
           mountPath: /certs
     - name: sfcd-onboarding-nginx
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfcd-onboarding-nginx:17
-      command: [ "nginx", "-g", "daemon off;" ]
+      command: [ "nginx" ]
       ports:
       - containerPort: 5000
       livenessProbe:
