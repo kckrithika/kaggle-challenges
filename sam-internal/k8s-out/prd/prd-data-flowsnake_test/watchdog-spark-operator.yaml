@@ -305,7 +305,7 @@ items:
           - -watchdogFrequency=1m
           - -alertThreshold=1m
           - -cliCheckerTimeout=15m
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2671-deba20971de93f4f374e1f4e980d339b44e4215b
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2677-299d4f888e346e593008066db59ed5badc5777c8
           imagePullPolicy: IfNotPresent
           name: watchdog
           resources:
