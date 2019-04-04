@@ -110,7 +110,7 @@ if flowsnake_config.madkub_enabled then
     },
 } + (if quota_enforcement then {
     data: {
-        "spec2.jaysawn": std.toString(containerspec("usercerts"))
+        "spec.jaysawn": std.toString(containerspec("usercerts"))
     }
 } else {
     data: {

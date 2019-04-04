@@ -11,6 +11,7 @@ spec:
   template:
     metadata:
       annotations:
+        annotation_to_force_restart: "1"
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
           "prd", "name": "madkubinjector", "role": "flowsnake.madkub-injector", "san":
           ["madkub-injector.flowsnake", "madkub-injector.flowsnake.svc", "madkub-injector.flowsnake.svc.cluster.local"]}]}'
@@ -22,7 +23,7 @@ spec:
         - -madkubVolumesFile
         - /etc/madkub-required-volumes/volumes.jaysawn
         - -madkubContainerSpecFile
-        - /etc/madkub-container-spec/spec2.jaysawn
+        - /etc/madkub-container-spec/spec.jaysawn
         - -kingdom
         - prd
         - -v
