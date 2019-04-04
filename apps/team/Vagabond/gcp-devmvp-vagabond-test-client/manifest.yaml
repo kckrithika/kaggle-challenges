@@ -20,7 +20,7 @@ system:
         - --type=VAGABOND
         - --testTime=120
         - --reportInterval=15
-        - --url=acs-mesh-0.cache-as-a-service.localhost.mesh.force.com:7013,acs-mesh-1.cache-as-a-service.localhost.mesh.force.com:7013,acs-mesh-2.cache-as-a-service.localhost.mesh.force.com:7013,acs-mesh-3.cache-as-a-service.localhost.mesh.force.com:7013
+        - --url=acs-mesh-0.vagabond.localhost.mesh.force.com:7013,acs-mesh-1.vagabond.localhost.mesh.force.com:7013,acs-mesh-2.vagabond.localhost.mesh.force.com:7013,acs-mesh-3.vagabond.localhost.mesh.force.com:7013
       livenessProbe:
         exec:
           command: ["true"]
