@@ -1,0 +1,69 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - azeem.mohammad@salesforce.com
+  functions:
+  - name: devmvp-vagabond-test-client-gcp
+    count: 1
+    containers:
+    - name: vagabond-test-client
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond/vagabond-load-test:3
+      resources:
+        limits: { memory: "6G" }
+        requests: { memory: "6G" }
+      args:
+        - --type=VAGABOND
+        - --testTime=120
+        - --reportInterval=15
+        - --url=acs-mesh-0.cache-as-a-service.localhost.mesh.force.com:7013,acs-mesh-1.cache-as-a-service.localhost.mesh.force.com:7013,acs-mesh-2.cache-as-a-service.localhost.mesh.force.com:7013,acs-mesh-3.cache-as-a-service.localhost.mesh.force.com:7013
+      livenessProbe:
+        exec:
+          command: ["true"]
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      env:
+       - name: NOT_REQUIRED
+         value: newton1
+    - name: sherpa
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/sherpa-envoy:1.0.4-201902081120
+      args:
+      # 2018-02-08: Direct Connection to the switchboard for now
+      - --switchboard=switchboard.service-mesh.svc:15001
+      ports:
+      - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
