@@ -9,9 +9,9 @@ system:
       pod: devmvp
     containers:
     - name: acs  
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:3
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:4
       args:
-        - --servers=acs-mesh-0.acs.localhost.mesh.force.com:7013,acs-mesh-1.acs.localhost.mesh.force.com:7013,acs-mesh-2.acs.localhost.mesh.force.com:7013,acs-mesh-3.acs.localhost.mesh.force.com:7013
+        - --servers=$(FUNCTION)-0.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-1.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-2.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-3.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013
         - --dataroot=/home/sfdc-acs/data
         - --servicePort=7022
         - --mesh
@@ -34,7 +34,7 @@ system:
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/beacon:853c4db9f14805018be6f5e7607ffe65b5648822-201902081500
       args:
       - -endpoint
-      - acs/$(FUNCTION_INSTANCE_NAME):POD:7014
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION_INSTANCE_NAME):POD:7014
       - -zk
       - 10.168.160.76
       livenessProbe:
