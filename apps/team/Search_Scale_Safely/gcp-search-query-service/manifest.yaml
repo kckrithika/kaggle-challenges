@@ -20,11 +20,11 @@ system:
         value: sam
       resources:
         limits:
-          cpu: "12"
-          memory: 10Gi
+          cpu: "4"
+          memory: 6Gi
         requests:
-          cpu: "12"
-          memory: 10Gi
+          cpu: "4"
+          memory: 6Gi
       volumeMounts:
       - mountPath: /home/sfdc-search-query-service/logs
         name: logvol
