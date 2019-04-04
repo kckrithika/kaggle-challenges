@@ -5,7 +5,7 @@ system:
     - metadataservice@salesforce.com
   functions:
   - name: metadata-service
-    count: 2
+    count: 3
     containers:
     - name: metadata-service
       image: docker-sfci-dev/sfci/metadata-cannon/metadata-service:0.7.64
