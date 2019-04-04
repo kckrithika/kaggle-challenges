@@ -350,6 +350,12 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             emptyDir: {
               medium: "Memory",
             },
+            name: "tls-client-cert",
+          },
+          {
+            emptyDir: {
+              medium: "Memory",
+            },
             name: "tls-server-cert",
           },
           {

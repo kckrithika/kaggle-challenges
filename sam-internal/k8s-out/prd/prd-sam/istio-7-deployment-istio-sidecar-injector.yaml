@@ -234,6 +234,9 @@ spec:
         name: maddog-certs
       - emptyDir:
           medium: Memory
+        name: tls-client-cert
+      - emptyDir:
+          medium: Memory
         name: tls-server-cert
       - emptyDir:
           medium: Memory
