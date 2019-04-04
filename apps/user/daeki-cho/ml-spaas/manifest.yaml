@@ -88,12 +88,3 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-  loadbalancers:
-  - lbname: ml-spaaslb
-    function: ml-spaas
-    slbenabled: true
-    nodeExposed: true
-    ports:
-      - port: 7020
-        targetport: 7020
-        lbtype: tcp
