@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: ml-spaas
-      image: dva/ml-spaas-service-docker:3
+      image: dva/ml-spaas-service-docker:5
       ports:
       - containerPort: 7020
       livenessProbe:
@@ -25,7 +25,9 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - service-protection/ml-spaas:DATACENTER_ALLENV:7443 
+      - $(FUNCTION):DATACENTER_ALLENV:HTTP2
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       volumeMounts:
       - mountPath: /home/scone/logs
         name: beacon-log-volume
@@ -34,65 +36,43 @@ system:
           command:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
-    - name: sherpa-b
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
-      - name: sherpa-b-tls
+      - name: http2-in
+        containerPort: 7012
+      - name: http2-tls-in
         containerPort: 7443
-      - name: sherpa-b-adm
+      - name: sherpa-adm
         containerPort: 15373
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: sam
-      resources:
-        limits:
-          cpu: "1"
-          memory: 1Gi
-        requests:
-          cpu: "1"
-          memory: 1Gi
       volumeMounts:
-      - mountPath: /log
-        name: sherpa-log-volume
-      - mountPath: /server-certs
-        name: tls-server-cert
       - mountPath: /client-certs
         name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
       livenessProbe:
         exec:
           command:
           - ./bin/is-alive
-        initialDelaySeconds: 120
+        initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - ./bin/is-ready
-        initialDelaySeconds: 110
+        initialDelaySeconds: 15
         periodSeconds: 5
+      terminationMessagePolicy: FallbackToLogsOnError
     volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-ml-spaas-service/logs
-    - name: sherpa-log-volume
-      hostPath:
-        path: /home/sfdc-sherpa/logs
-    - name: beacon-log-volume
-      hostPath:
-        path: /home/sfdc-beacon/logs
     - name: tls-client-cert
       maddogCert:
         type: client
     - name: tls-server-cert
       maddogCert:
         type: server
-  loadbalancers:
-  - lbname: ml-spaaslb
-    function: ml-spaas
-    slbenabled: true
-    ports:
-      - port: 7020
-        targetport: 7020
-        lbtype: tcp
-
-
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-ml-spaas-service/logs
+    - name: beacon-log-volume
+      hostPath:
+        path: /home/sfdc-beacon/logs
