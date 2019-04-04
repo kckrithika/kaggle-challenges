@@ -29,9 +29,9 @@ system:
       - name: WAVE_ACCOUNT_ID_DS
         value: "test_dataset"
       - name: HOST_NAME
-        value: "ops0-bastion1-1-sfm.ops.sfdc.net"
+        value: "mist12-app1-3-crd.eng.sfdc.net"
       - name: REMOTE_FILE_PATH
-        value: "/home/rtandon/gov-analytics-test/test_data.pls"
+        value: "/home/rtandon/test/test_data.pls"
       - name: KRB5_KTNAME
         value: "/var/secrets/krb5_keytab/gov-analytics-test.keytab"
       - name: KRB5_CONFIG
