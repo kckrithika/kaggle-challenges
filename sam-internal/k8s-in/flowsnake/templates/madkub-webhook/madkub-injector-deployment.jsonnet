@@ -4,6 +4,7 @@ local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local cert_name = "madkubinjector";
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
+local quota_enforcement = std.objectHas(flowsnake_images.feature_flags, "spark_application_quota_enforcement");
 
 if flowsnake_config.madkub_enabled then
 {
@@ -71,7 +72,7 @@ if flowsnake_config.madkub_enabled then
                             "-madkubVolumesFile",
                             "/etc/madkub-required-volumes/volumes.jaysawn",
                             "-madkubContainerSpecFile",
-                            "/etc/madkub-container-spec/spec2.jaysawn",
+                            "/etc/madkub-container-spec/" + ( if quota_enforcement then "spec2" else "spec" ) + ".jaysawn",
                             "-kingdom",
                             kingdom,
                             "-v",

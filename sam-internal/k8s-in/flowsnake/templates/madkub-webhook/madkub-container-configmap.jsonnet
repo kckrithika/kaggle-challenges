@@ -4,6 +4,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local quota_enforcement = std.objectHas(flowsnake_images.feature_flags, "spark_application_quota_enforcement");
 
 # Copied from madkub_common  
 local containerspec(cert_names, user=0) = {
@@ -107,7 +108,12 @@ if flowsnake_config.madkub_enabled then
         name: "madkub-container-spec",
         namespace: "flowsnake",
     },
+} + (if quota_enforcement then {
     data: {
         "spec2.jaysawn": std.toString(containerspec("usercerts"))
     }
-} else "SKIP"
+} else {
+    data: {
+        "spec.jaysawn": std.toString(madkub_common.init_container("usercerts"))
+    }
+}) else "SKIP"
