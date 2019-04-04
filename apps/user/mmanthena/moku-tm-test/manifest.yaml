@@ -38,7 +38,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - "tkOk.sh"
+          - "/acds/bin/tkOk.sh"
         initialDelaySeconds: 10
         timeoutSeconds: 5 
   - name: griddable-zk
