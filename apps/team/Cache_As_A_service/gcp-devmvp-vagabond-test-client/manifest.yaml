@@ -7,6 +7,9 @@ system:
   functions:
   - name: devmvp-vagabond-test-client-gcp
     count: 1
+    identity:
+      serviceName: acs
+      pod: devmvp
     containers:
     - name: vagabond-test-client
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond/vagabond-load-test:3
