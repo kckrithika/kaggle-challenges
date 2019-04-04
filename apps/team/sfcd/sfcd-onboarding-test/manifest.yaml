@@ -8,18 +8,14 @@ system:
       serviceName: sfcd-onboarding-test
     containers:
     - name: sfcd-onboarding-app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/apattan/sfcd/sfcd-onboarding-app:latest
-      command: [ "/bin/bash", "-c", "--" ]
-      args: [ "while true; do sleep 30; done;" ]
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfcd/sfcd-onboarding-app:latest
+      command: [ "/etc/sfcd-onboarding/run_app.sh" ]
       ports:
       - containerPort: 7000
       livenessProbe:
-        #httpGet:
-        #  path: /api/health/system
-        #  port: 5000
-        exec:
-          command:
-          - "true"
+        httpGet:
+          path: /api/health/system
+          port: 7000
         initialDelaySeconds: 3
         # Keeping this high due to latencies accessing Spinnaker from SAMTWO
         periodSeconds: 20
@@ -29,28 +25,23 @@ system:
       - name: GCP_SERVICE_KEY_JSON
         value: '/etc/sfcd-onboarding/.gcp_service_key.json'
       - name: FLASK_ENV
-        value: 'production'
+        value: 'development'
       - name: USE_PROXY_FOR_GCLOUD_AUTH
         value: 'True'
       volumeMounts:
         - name: client-certs
           mountPath: /certs
     - name: sfcd-onboarding-nginx
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/apattan/sfcd/sfcd-onboarding-nginx:latest
-      command: [ "/bin/bash", "-c", "--" ]
-      args: [ "while true; do sleep 30; done;" ]
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfcd/sfcd-onboarding-nginx:latest
+      command: [ "nginx", "-g", "daemon off;" ]
       ports:
       - containerPort: 5000
       livenessProbe:
-        #httpGet:
-        #  path: /api/health/system
-        #  port: 5000
         exec:
           command:
-          - "true"
+          - "pgrep nginx"
         initialDelaySeconds: 3
-        # Keeping this high due to latencies accessing Spinnaker from SAMTWO
-        periodSeconds: 20
+        periodSeconds: 10
     volumes:
     - name: client-certs
       maddogCert:
@@ -60,12 +51,6 @@ system:
     function: sfcd-onboarding-test
     slbenabled: true
     ports:
-      # Insecure 80 will be disabled before release
-      - port: 80
-        targetport: 5000
-        lbtype: http
-        tls: false
-        sticky: 300
       - port: 443
         targetport: 5000
         lbtype: http
