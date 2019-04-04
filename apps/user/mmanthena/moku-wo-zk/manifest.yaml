@@ -1,10 +1,10 @@
 apiVersion: v1
 system:
   functions:
-  - name: acds-taskmanager
+  - name: acds-tm
     count: 1
     containers:
-    - name: acds-taskmanager
+    - name: acds-tm-cont
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-taskmanager:v0.0.2 
       command:
       - /bin/bash
