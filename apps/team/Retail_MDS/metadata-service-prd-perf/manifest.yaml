@@ -7,7 +7,7 @@ system:
   - name: metadata-service-prd-perf
     identity:
       serviceName: metadata-service
-    count: 2
+    count: 3
     containers:
     - name: metadata-service
       image: sfci/metadata-cannon/metadata-service:0.7.76
