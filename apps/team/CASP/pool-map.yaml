@@ -27,6 +27,8 @@ apps:
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
   - frf/frf-sam_warden
+ prod-maiev-receiver:
+  - phx/phx-sam_warden
  prod-warden-dfw:
   - dfw/dfw-sam_warden
  prod-warden-iad:
