@@ -27,6 +27,7 @@ spec:
         - -watchdogFrequency=10s
         - -alertThreshold=45m
         - -cliCheckerTimeout=5m
+        - -includeCommandOutput=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2677-299d4f888e346e593008066db59ed5badc5777c8
         imagePullPolicy: IfNotPresent
         name: watchdog-btrfs
