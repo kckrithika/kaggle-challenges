@@ -1,3 +1,5 @@
 apps:
- moku-tm-test: 
+ moku-test: 
   - prd/prd-sam 
+ moku-wo-zk:
+  - prd/prd-sam
