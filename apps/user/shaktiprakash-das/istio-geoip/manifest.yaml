@@ -1,0 +1,83 @@
+apiVersion: v1
+
+system:
+  functions:
+    - name: istio-geoip
+      count: 1
+      labels:
+        app: istio-geoip
+      annotations:
+        sidecar.istio.io/inject: "true"
+      containers:
+        - name: geoip-database
+          image: tnrp/ccait/geoip2-database:20170918
+          args:
+            - -d
+          volumeMounts:
+            - mountPath: /database
+              name: maxmind-volume
+          livenessProbe:
+            exec:
+              command:
+                - ls
+                - /database/GeoIP2-City.mmdb
+            initialDelaySeconds: 10
+            periodSeconds: 5
+        - name: geoip
+          image: sfci/services/sfdc-bazel/geoip:51e8676 # monorepo build
+          env:
+            - name: COM_MAXMIND_DATABASE_FILE
+              value: /dw/data/GeoIP2-City.mmdb
+            - name: SFDC_ENVIRONMENT
+              value: istio
+            - name: GRPC_SERVER_PORT
+              value: 7443
+            - name: JAVA_OPTS
+              value: "-Dscone.service.name=istio-geoip -Dmanagement.server.port=15372"
+            - name: JAVA_HEAP_OPTS
+              value: -Xms1g -Xmx1g
+          resources:
+            limits:
+              cpu: "4"
+              memory: 2Gi
+            requests:
+              cpu: "4"
+              memory: 2Gi
+          volumeMounts:
+            - mountPath: /dw/data
+              name: maxmind-volume
+          ports:
+            - containerPort: 7443
+              name: grpc-svc
+            - containerPort: 15372
+              name: scone-mgmt
+          livenessProbe:
+            httpGet:
+              path: /manage/health
+              port: 15372
+            initialDelaySeconds: 130
+          readinessProbe:
+            httpGet:
+              path: /manage/health
+              port: 15372
+            initialDelaySeconds: 115
+
+      # Cert volumes used by auto-injected istio-proxy.
+      volumes:
+        - name: maxmind-volume
+          emptyDir: {}
+        - name: tls-client-cert
+          maddogCert:
+            type: client
+        - name: tls-server-cert
+          maddogCert:
+            type: server
+
+  loadbalancers:
+    - lbname: istio-geoip
+      function: istio-geoip
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-geoip
