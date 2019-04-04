@@ -12,10 +12,6 @@ local kingdom = std.extVar("kingdom");
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
         # override sam-storage temporarily
-
-        # [agajjala] Rolling out latest image of hypersdn to CDU with sdn-aws-controller
-        "cdu,cdu-sam,sdn-aws-controller,hypersdn": "v-0001341-0280343e",
-        "frf,frf-sam,sdn-vault-agent,hypersdn": "v-0000979-ead575b6",
     },
 
     ### Per-phase image tags
@@ -52,8 +48,8 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 5 - All Prod
         "5": {
-            hypersdn: "v-0001009-1b641ae3",
-            bird: "v-0000014-b0a5951d",
+            hypersdn: "2098-05c0a7dbc2f01f9013a085a721e0d264e95b573d",
+            bird: "503-94b968cf67a338280f71a5c932f0956d13e982bb",
             hyperelk: "v-0000102-91c9122c",
             },
     },
