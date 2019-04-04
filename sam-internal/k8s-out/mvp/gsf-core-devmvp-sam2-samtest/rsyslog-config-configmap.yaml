@@ -155,8 +155,8 @@ data:
     \     \"ssl.certificate.location=/cert1/client/certificates/client.pem\",\n      \"ssl.key.location=/cert1/client/keys/client-key.pem\"\n
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  ) & stop\n\n}\n<%# ----
     / End of definition for docker containers tenant ---- %>\n"
-  core.conf.erb: "<%# INPUT DEFINITIONS %>\ninput(\n  type=\"imfile\"\n  <%# File=\"/home/sfdc/logs/sfdc/*.gmt.log\"
-    %>\n  File=\"<%=config.file_path%>\"\n  PersistStateInterval=\"50000\"\n  startmsg.regex=\"^([[:alnum:]]{1,})`[[:digit:]]{14}.[[:digit:]]{3}`\"\n
+  core.conf.erb: "<%# INPUT DEFINITIONS %>\ninput(\n  type=\"imfile\"\n  File=\"<%=config.file_path%>\"\n
+    \ PersistStateInterval=\"50000\"\n  startmsg.regex=\"^([[:alnum:]]{1,})`[[:digit:]]{14}.[[:digit:]]{3}`\"\n
     \ readTimeout = \"5\"\n  Tag=\"core\"\n  ruleset=\"ruleset_core\"\n  addmetadata=\"on\"\n
     \ escapelf=\"off\"\n  discardTruncatedMsg=\"on\"\n)\n\n<%# Output Template%>\ntemplate(name
     = \"tpl_core\" type=\"list\") {\n  constant(value=\"{\\\"@version\\\": \\\"20\\\"\")\n
@@ -175,8 +175,8 @@ data:
     outname=\"apptype\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!filedate\"
     outname=\"filedate\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!role\"
     outname=\"role\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!substrate\"
-    outname=\"dc\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!account\"
-    outname=\"dc\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!region\"
+    outname=\"substrate\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!account\"
+    outname=\"account\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!region\"
     outname=\"region\" format=\"jsonfr\")\n  constant(value=\",\")\n  property(name=\"$!zone\"
     outname=\"zone\" format=\"jsonfr\")\n  constant(value=\", \\\"latency\\\": 0}\\n\")\n}\n\n#
     20171103184919.875 --> 2017-11-03T18:49:19.875Z\ntemplate(name=\"tpl_origin_ts\"
