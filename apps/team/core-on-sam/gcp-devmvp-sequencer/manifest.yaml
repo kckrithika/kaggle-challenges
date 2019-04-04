@@ -89,22 +89,22 @@ system:
         periodSeconds: 1
       ports:
       - containerPort: 12062
-#      resources:
-#        limits:
-#          cpu: 4
-#          memory: 10Gi
-#        requests:
-#          cpu: 4
-#          memory: 4Gi
+      resources:
+        limits:
+          cpu: 4
+          memory: 10Gi
+        requests:
+          cpu: 2
+          memory: 4Gi
       volumeMounts:
       - mountPath: /certs
         name: cert
 #      - mountPath: /secrets/
 #        name: secretvol
 #        readOnly: true
-#      - mountPath: /kaiju-secrets/
-#        name: kaiju-secret-vol
-#        readOnly: true
+      - mountPath: /kaiju-secrets/
+        name: kaiju-secret-vol
+        readOnly: true
       - mountPath: /secrets/gcp-mvp-1az-db-pw
         name: secretvol-db
         readOnly: true
@@ -117,9 +117,9 @@ system:
 #    - k4aSecret:
 #        secretName: gcp-mvp-sequencer-gus
 #      name: secretvol
-#    - k4aSecret:
-#        secretName: gcp-mvp-sequencer-kaiju
-#      name: kaiju-secret-vol
+    - k4aSecret:
+        secretName: gcp-mvp-sequencer-kaiju
+      name: kaiju-secret-vol
     - name: secretvol-db
       k4aSecret:
         secretName: gcp-mvp-1az-db-pw
