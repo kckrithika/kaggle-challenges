@@ -34,7 +34,9 @@ if flowsnake_config.madkub_enabled then
                         "role": "flowsnake.madkub-injector",
                         "san": ["madkub-injector.flowsnake", "madkub-injector.flowsnake.svc", "madkub-injector.flowsnake.svc.cluster.local"]
                     }]})
-                }
+                } + (if quota_enforcement then {
+                    "annotation_to_force_restart": "1"
+                } else {})
             },
             spec: {
                 serviceAccountName: "madkub-injector-serviceaccount",
@@ -72,7 +74,7 @@ if flowsnake_config.madkub_enabled then
                             "-madkubVolumesFile",
                             "/etc/madkub-required-volumes/volumes.jaysawn",
                             "-madkubContainerSpecFile",
-                            "/etc/madkub-container-spec/" + ( if quota_enforcement then "spec2" else "spec" ) + ".jaysawn",
+                            "/etc/madkub-container-spec/spec.jaysawn",
                             "-kingdom",
                             kingdom,
                             "-v",
