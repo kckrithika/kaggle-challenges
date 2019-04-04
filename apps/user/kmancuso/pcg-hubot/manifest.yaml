@@ -7,7 +7,7 @@ system:
     count: 1
     containers:
     - name: pcg-hubot
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kmancuso/pcg-hubot:1554399574
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kmancuso/pcg-hubot:1554401180
       ports:
         - containerPort: 8080
       livenessProbe:
@@ -20,7 +20,7 @@ system:
       - name: HTTPS_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: PLACEBO
-        value: 0003
+        value: 0004
       volumeMounts:
       - mountPath: /secrets/
         name: hubot
