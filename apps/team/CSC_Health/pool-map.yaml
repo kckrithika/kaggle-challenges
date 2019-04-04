@@ -157,6 +157,7 @@ apps:
   nagios-adapter-prd:
     - prd/prd-sam_report_collector
   nagios-adapter:
+    - prd/prd-sam_report_collector
     - par/par-sam_report_collector
     - dfw/dfw-sam_report_collector
     - phx/phx-sam_report_collector
