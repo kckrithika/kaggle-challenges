@@ -1,0 +1,37 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cthirunavukkarasu@salesforce.com
+  functions:
+  - name: griddable-services
+    type: stateful-set
+    count: 1
+    containers:
+    - name: griddable-relay
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cthirunavukkarasu/griddable-relay:latest
+      command: ["/acds/bin/start-acds.sh"]
+      ports:
+      - containerPort: 10234
+      volumeMounts:
+      - name: vol-relay-server
+        mountPath: /acds/state
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 10234
+    lbname: griddalbe-relay-lbs-number11
+    terminationGracePeriodSeconds: 33
+    volumeClaimTemplates:
+    - name: vol-relay-server
+      storageClassName: sharktank-hdd-pool
+      storageSizeRequest: 30Gi
+  loadbalancers:
+  - lbname: griddable-relay
+    function: griddable-services
+    slbenabled: true
+    ports:
+      - port: 10234
+        targetport: 10234
+        lbtype: tcp
