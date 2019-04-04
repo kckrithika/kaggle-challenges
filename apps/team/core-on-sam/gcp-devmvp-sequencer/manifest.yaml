@@ -12,7 +12,7 @@ system:
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:f2bceb
       command: ["/bin/sh", "-c"]
       args: ["
-      export SNOWWHITE_PWD=$(cat /secrets/gcp-mvp-1az-db-pw/dbpw.txt) ;
+      export SNOWWHITE_PWD=$(cat /db-secrets/gcp-mvp-1az-db-pw/dbpw.txt) ;
       /usr/local/bin/run.sh
       "]
 
@@ -105,7 +105,7 @@ system:
       - mountPath: /kaiju-secrets/
         name: kaiju-secret-vol
         readOnly: true
-      - mountPath: /secrets/gcp-mvp-1az-db-pw
+      - mountPath: /db-secrets/gcp-mvp-1az-db-pw
         name: secretvol-db
         readOnly: true
     progressDeadlineSeconds: 300
