@@ -323,6 +323,16 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               runAsNonRoot: false,
               runAsUser: 0,
             },
+            volumeMounts: [
+              {
+                mountPath: "/client-cert",
+                name: "tls-client-cert",
+              },
+              {
+                mountPath: "/server-cert",
+                name: "tls-server-cert",
+              },
+            ],
           },
         ],
         nodeSelector: {
