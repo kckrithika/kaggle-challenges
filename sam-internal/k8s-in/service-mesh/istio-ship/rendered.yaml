@@ -970,7 +970,7 @@ spec:
         - --keepaliveMaxServerConnectionAge
         - 30m
         - --log_output_level
-        - debug
+        - info
         env:
         - name: ESTATE
           value: mcpIstioConfig.istioEstate
