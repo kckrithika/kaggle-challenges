@@ -39,7 +39,8 @@ system:
       livenessProbe:
         exec:
           command:
-          - "pgrep nginx"
+          # TODO: make this legit
+          - "true"
         initialDelaySeconds: 3
         periodSeconds: 10
     volumes:
