@@ -12,11 +12,10 @@ system:
       ports:
         - containerPort: 8080
       livenessProbe:
+        exec:
+          command: ["true"]
         initialDelaySeconds: 60
         periodSeconds: 5
-        httpGet:
-          path: /health
-          port: 8080
       env:
       - name: HTTP_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
