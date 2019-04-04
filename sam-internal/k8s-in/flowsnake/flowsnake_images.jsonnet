@@ -32,7 +32,7 @@ local utils = import "util_functions.jsonnet";
                 watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
                 docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
                 eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                watchdog_image_tag: "2671-deba20971de93f4f374e1f4e980d339b44e4215b",  # Adds cli-checker stderr and exit code logging
+                watchdog_image_tag: "2677-299d4f888e346e593008066db59ed5badc5777c8",  # Adds cli-checker stdout/stderr to watchdog report email
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
                 deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-3-itest",
