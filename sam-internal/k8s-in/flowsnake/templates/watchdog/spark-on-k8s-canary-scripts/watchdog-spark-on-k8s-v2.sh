@@ -6,6 +6,8 @@ set -o pipefail
 # Disable use of SAM's custom kubeconfig, restore default Kubernetes behavior (this cluster's kubeapi using service account token)
 unset KUBECONFIG
 
+NAMESPACE=flowsnake-watchdog
+
 # Parse command line arguments. https://stackoverflow.com/a/14203146
 POSITIONAL=()
 while [[ $# -gt 0 ]]
@@ -19,6 +21,12 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    --namespace)
+    # Use a custom namespace (default is flowsnake-watchdog)
+    export NAMESPACE="$2"
+    shift # past argument
+    shift # past value
+    ;;
     *)    # unknown option
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
@@ -27,7 +35,22 @@ esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-SPEC=$1
+# Check if spec is a jsonnet template
+if [[ ".jsonnet" == "${1: -8}" ]] ; then
+    jsonnet -V jenkinsId=${TEST_RUNNER_ID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} -m /strata-test-specs-out
+    SPEC_INPUT=$(basename "$1")
+    SPEC_NAME=${SPEC_INPUT%%.*}
+    if [ -f "/strata-test-specs-out/${SPEC_NAME}.json" ]; then
+        SPEC="/strata-test-specs-out/${SPEC_NAME}.json"
+    else
+        echo "spec /strata-test-specs-out/${SPEC_NAME}.json doesnt exist."
+        exit 1
+    fi
+else
+    # regular spec
+    SPEC=$1
+fi
+
 APP_NAME=$(python -c 'import json,sys; print json.load(sys.stdin)["metadata"]["name"]' < $SPEC)
 SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
 # Exit after 12 minutes to ensure we exit before cliChecker kills us (15 mins) so that all output can be logged.
@@ -52,7 +75,7 @@ log() {
 
 # Run kubectl in namespace. Prefer kcfw_log when possible
 kcfw() {
-  kubectl -n flowsnake-watchdog "$@"
+  kubectl -n ${NAMESPACE} "$@"
 }
 
 # Run kubectl in namespace, plus prefix output to disambiguate interleaving later

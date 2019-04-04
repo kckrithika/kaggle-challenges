@@ -124,11 +124,13 @@ local wave_elt_production = {
         },
     ] else []) +
     (if flowsnake_config.ci_resources_enabled then [
+        # For CI integration testing during Strata builds
+        # See explanatory documentation in templates/test/strata-integration-tests.jsonnet
         {
             owner_name: "Flowsnake Team - Strata CI Integration",
             namespace: "flowsnake-ci-tests",
             pki_namespace: "flowsnake_test",
-            users: [],  # No users; CI tests are run via special process. See: templates/test/strata-integration-tests.jsonnet.
+            users: ["flowsnake_test.flowsnake-ci-test"],
         },
     ] else []),
 
