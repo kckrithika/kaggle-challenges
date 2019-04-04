@@ -27,6 +27,7 @@ if configs.estate == "prd-samtwo" then
        local appConfig = packageConfig.config("firefly-package") + {
          appconfig+: {
             gcs: {
+                enabled: true,
                 "service-account-key": "${gcsUploaderKey#FromSecretService}",
             },
             "multi-repo-supported": true,

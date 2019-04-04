@@ -3,6 +3,7 @@ local packagesvcsingleton = import "firefly-package-singleton-svc.jsonnet.TEMPLA
 local pullrequestsvc = import "firefly-pullrequest-svc.jsonnet.TEMPLATE";
 local configs = import "config.jsonnet";
 local promotionsvc = import "firefly-promotion-svc.jsonnet.TEMPLATE";
+local packageConfig = import "configs/firefly-package.jsonnet";
 
 if configs.estate == "prd-samtwo" then
 {
@@ -29,7 +30,18 @@ if configs.estate == "prd-samtwo" then
                 value: "sam-manifests.latestfile",
             },
        ],
-
+       data:: {
+         local appConfig = packageConfig.config("firefly-package") + {
+           appconfig+: {
+              gcs: {
+                enabled: false,
+                "service-account-key": "${gcsUploaderKey#FromSecretService}",
+              },
+              "gcs-bucket": "fcp_archive",
+            },
+          },
+         "application.yml": std.manifestJson(appConfig),
+       },
     },
     local packagesingleton = packagesvcsingleton {
         serviceConf:: super.serviceConf {
@@ -54,6 +66,18 @@ if configs.estate == "prd-samtwo" then
                 value: "sam-manifests.latestfile",
             },
        ],
+       data:: {
+         local appConfig = packageConfig.config("firefly-package") + {
+           appconfig+: {
+              gcs: {
+                enabled: false,
+                "service-account-key": "${gcsUploaderKey#FromSecretService}",
+              },
+              "gcs-bucket": "fcp_archive",
+            },
+          },
+         "application.yml": std.manifestJson(appConfig),
+       },
     },
     local pullrequest = pullrequestsvc {
         serviceConf:: super.serviceConf {

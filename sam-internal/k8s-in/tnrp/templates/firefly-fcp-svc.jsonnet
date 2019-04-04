@@ -12,7 +12,7 @@ if configs.estate == "prd-samtwo" then
       serviceConf:: super.serviceConf {
           repoName: "fcp",
       },
-      replicas:: 2,
+      replicas:: 5,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -34,6 +34,11 @@ if configs.estate == "prd-samtwo" then
             docker+: {
               "force-create-container": true,
             },
+            gcs: {
+              enabled: true,
+              "service-account-key": "${gcsUploaderKey#FromSecretService}",
+            },
+            "gcs-bucket": "fcp_archive",
           },
         },
        "application.yml": std.manifestJson(appConfig),
@@ -61,6 +66,14 @@ if configs.estate == "prd-samtwo" then
         local appConfig = packageConfig.config("firefly-package") + {
          appconfig+: {
             "multi-repo-supported": true,
+            docker+: {
+              "force-create-container": true,
+            },
+            gcs: {
+              enabled: true,
+              "service-account-key": "${gcsUploaderKey#FromSecretService}",
+            },
+            "gcs-bucket": "fcp_archive",
           },
         },
         "application.yml": std.manifestJson(appConfig),
@@ -70,7 +83,7 @@ if configs.estate == "prd-samtwo" then
       serviceConf:: super.serviceConf {
           repoName: "fcp",
       },
-      replicas:: 2,
+      replicas:: 5,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
