@@ -198,11 +198,23 @@ items:
               POD_REPORTS["$POD"]="${REPORT}"
           done < <(kcfw get pods -l${SELECTOR} --show-all -o wide --no-headers | awk '{print $1, $3, "on host", $7}')
 
-          # ${!MY_MAP[@]} yields the keys of the associative array
+          # Note: Initially used process substitution (as in FOO=$(comm <(...) <(...) )here, but that left defunct grandchild
+          # processes behind. Switch to temp files instead.
+          # (Not totally clear on why. Something like: process substitution never collects the exit status of the invoked
+          # process. Thus when the Bash script exits, the process gets re-parented to the cliChecker. But the cliChecker
+          # does not collect it either, so zombie process entries pile up.)
+          PREVIOUS_POD_NAMES_FILE=$(mktemp /tmp/$(basename $0)-previous-pods.XXXXXX)
+          CURRENT_POD_NAMES_FILE=$(mktemp /tmp/$(basename $0)-current-pods.XXXXXX)
+          # Write out the names of the pods. ${!MY_MAP[@]} yields the keys of the associative array
+          echo ${!PREVIOUS_POD_REPORTS[@]} | xargs -n1 | sort > "$PREVIOUS_POD_NAMES_FILE"
+          echo ${!POD_REPORTS[@]} | xargs -n1 | sort > "$CURRENT_POD_NAMES_FILE"
+          # Compare pod names from before with ones present now.
           # Bash array set operations: See https://unix.stackexchange.com/a/104848
-          REMOVED_POD_NAMES=$(comm -23 <(echo ${!PREVIOUS_POD_REPORTS[@]} | xargs -n1 | sort) <(echo ${!POD_REPORTS[@]} | xargs -n1 | sort))
-          NEW_POD_NAMES=$(comm -13 <(echo ${!PREVIOUS_POD_REPORTS[@]} | xargs -n1 | sort) <(echo ${!POD_REPORTS[@]} | xargs -n1 | sort))
-          EXISTING_POD_NAMES=$(comm -12 <(echo ${!PREVIOUS_POD_REPORTS[@]} | xargs -n1 | sort) <(echo ${!POD_REPORTS[@]} | xargs -n1 | sort))
+          REMOVED_POD_NAMES=$(comm -23 "$PREVIOUS_POD_NAMES_FILE" "$CURRENT_POD_NAMES_FILE")
+          NEW_POD_NAMES=$(comm -13 "$PREVIOUS_POD_NAMES_FILE" "$CURRENT_POD_NAMES_FILE")
+          EXISTING_POD_NAMES=$(comm -12 "$PREVIOUS_POD_NAMES_FILE" "$CURRENT_POD_NAMES_FILE")
+          rm "$PREVIOUS_POD_NAMES_FILE"
+          rm "$CURRENT_POD_NAMES_FILE"
 
           # Can't simply copy associative arrays in bash, so perform maintenance on PREVIOUS_POD_REPORTS as we go.
           for POD_NAME in ${REMOVED_POD_NAMES}; do
@@ -443,11 +455,23 @@ items:
               POD_REPORTS["$POD"]="${REPORT}"
           done < <(kcfw get pods -l${SELECTOR} --show-all -o wide --no-headers | awk '{print $1, $3, "on host", $7}')
 
-          # ${!MY_MAP[@]} yields the keys of the associative array
+          # Note: Initially used process substitution (as in FOO=$(comm <(...) <(...) )here, but that left defunct grandchild
+          # processes behind. Switch to temp files instead.
+          # (Not totally clear on why. Something like: process substitution never collects the exit status of the invoked
+          # process. Thus when the Bash script exits, the process gets re-parented to the cliChecker. But the cliChecker
+          # does not collect it either, so zombie process entries pile up.)
+          PREVIOUS_POD_NAMES_FILE=$(mktemp /tmp/$(basename $0)-previous-pods.XXXXXX)
+          CURRENT_POD_NAMES_FILE=$(mktemp /tmp/$(basename $0)-current-pods.XXXXXX)
+          # Write out the names of the pods. ${!MY_MAP[@]} yields the keys of the associative array
+          echo ${!PREVIOUS_POD_REPORTS[@]} | xargs -n1 | sort > "$PREVIOUS_POD_NAMES_FILE"
+          echo ${!POD_REPORTS[@]} | xargs -n1 | sort > "$CURRENT_POD_NAMES_FILE"
+          # Compare pod names from before with ones present now.
           # Bash array set operations: See https://unix.stackexchange.com/a/104848
-          REMOVED_POD_NAMES=$(comm -23 <(echo ${!PREVIOUS_POD_REPORTS[@]} | xargs -n1 | sort) <(echo ${!POD_REPORTS[@]} | xargs -n1 | sort))
-          NEW_POD_NAMES=$(comm -13 <(echo ${!PREVIOUS_POD_REPORTS[@]} | xargs -n1 | sort) <(echo ${!POD_REPORTS[@]} | xargs -n1 | sort))
-          EXISTING_POD_NAMES=$(comm -12 <(echo ${!PREVIOUS_POD_REPORTS[@]} | xargs -n1 | sort) <(echo ${!POD_REPORTS[@]} | xargs -n1 | sort))
+          REMOVED_POD_NAMES=$(comm -23 "$PREVIOUS_POD_NAMES_FILE" "$CURRENT_POD_NAMES_FILE")
+          NEW_POD_NAMES=$(comm -13 "$PREVIOUS_POD_NAMES_FILE" "$CURRENT_POD_NAMES_FILE")
+          EXISTING_POD_NAMES=$(comm -12 "$PREVIOUS_POD_NAMES_FILE" "$CURRENT_POD_NAMES_FILE")
+          rm "$PREVIOUS_POD_NAMES_FILE"
+          rm "$CURRENT_POD_NAMES_FILE"
 
           # Can't simply copy associative arrays in bash, so perform maintenance on PREVIOUS_POD_REPORTS as we go.
           for POD_NAME in ${REMOVED_POD_NAMES}; do
