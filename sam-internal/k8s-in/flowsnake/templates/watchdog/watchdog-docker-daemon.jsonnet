@@ -51,7 +51,7 @@ configs.daemonSetBase("flowsnake") {
                             "-watchdogFrequency=1m",
                             "-alertThreshold=45m",
                             "-cliCheckerTimeout=5m",
-                        ],
+                        ] + (if flowsnakeconfig.is_test then ["-includeCommandOutput=true"] else []),
                         name: "watchdog-docker-daemon",
                         resources: {
                             requests: {
