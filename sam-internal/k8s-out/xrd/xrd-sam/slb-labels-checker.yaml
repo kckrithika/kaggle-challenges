@@ -39,7 +39,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2101-6bb968e89c03342b50d918340863c6082d7094dd
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2105-d804be810524ab2b7ccaef326192985d86c0fc10
         name: slb-labels-checker
         volumeMounts:
         - mountPath: /host/data/slb
@@ -65,7 +65,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2101-6bb968e89c03342b50d918340863c6082d7094dd
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2105-d804be810524ab2b7ccaef326192985d86c0fc10
         name: slb-cleanup
         securityContext:
           privileged: true
