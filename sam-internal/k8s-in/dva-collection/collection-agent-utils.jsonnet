@@ -248,7 +248,7 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
         },
 
     ## file based specific config gen
-    config_gen_file_based_init_container(topic, log_type, file_path, owner, start_regex):: {
+    config_gen_file_based_init_container(topic, log_type, file_path, owner, start_regex, hostname_parse="false"):: {
         local cmdline =
         [
             "/usr/bin/ruby",
@@ -280,6 +280,10 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
                         key: topic,
                      },
                 },
+            },
+            {
+                name: "HOSTNAME_PARSE",
+                value: hostname_parse,
             },
             {
                 name: "LOG_TYPE",

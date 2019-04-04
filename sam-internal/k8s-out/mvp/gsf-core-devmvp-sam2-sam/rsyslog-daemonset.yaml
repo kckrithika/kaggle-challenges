@@ -304,6 +304,8 @@ spec:
             configMapKeyRef:
               key: casam_topic
               name: kafka-cm
+        - name: FILE_PATH
+          value: /home/sfdc/logs/sfdc/*.gmt.log
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9
         name: config-gen-casam
         volumeMounts:
@@ -329,6 +331,8 @@ spec:
             configMapKeyRef:
               key: solr_topic
               name: kafka-cm
+        - name: HOSTNAME_PARSE
+          value: "true"
         - name: LOG_TYPE
           value: solr
         - name: FILE_PATH
@@ -362,6 +366,8 @@ spec:
             configMapKeyRef:
               key: solr_topic
               name: kafka-cm
+        - name: HOSTNAME_PARSE
+          value: "true"
         - name: LOG_TYPE
           value: solr-jetty
         - name: FILE_PATH
@@ -395,6 +401,8 @@ spec:
             configMapKeyRef:
               key: general_topic
               name: kafka-cm
+        - name: HOSTNAME_PARSE
+          value: "false"
         - name: LOG_TYPE
           value: casam-jvm
         - name: FILE_PATH
@@ -426,6 +434,8 @@ spec:
             configMapKeyRef:
               key: general_topic
               name: kafka-cm
+        - name: HOSTNAME_PARSE
+          value: "false"
         - name: LOG_TYPE
           value: casam-jvmgc
         - name: FILE_PATH

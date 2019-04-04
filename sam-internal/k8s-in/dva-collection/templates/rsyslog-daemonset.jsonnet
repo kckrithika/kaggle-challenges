@@ -29,6 +29,10 @@ local casamEnv = rsyslogutils.baseEnv + [
             },
         },
     },
+    {
+        name: "FILE_PATH",
+        value: "/home/sfdc/logs/sfdc/*.gmt.log",
+    },
 ];
 
 local initContainers = [
@@ -55,6 +59,7 @@ local initContainers = [
         "/home/sfdc/logs/solr/solr/*.gmt.log",
         "Search",
         "^([[:alnum:]]{1,})`[[:digit:]]{14}.[[:digit:]]{3}`",
+        "true",
     ),
     rsyslogutils.config_gen_file_based_init_container(
         "solr_topic",
@@ -62,6 +67,7 @@ local initContainers = [
         "/home/sfdc/logs/solr/jetty/*.jvmgc.log_*",
         "Search",
         "^([[:digit:]]{4}-(0[1-9]|1[0-2])-(0?[1-9]|[12][[:digit:]]|3[01]))([[:space:]]|T)(([01][[:digit:]]|2[0-3]):[0-5][[:digit:]]:([0-5][[:digit:]]|6[01]))[,|\\\\.][[:digit:]]{3}",
+        "true",
     ),
     rsyslogutils.config_gen_file_based_init_container(
         "general_topic",

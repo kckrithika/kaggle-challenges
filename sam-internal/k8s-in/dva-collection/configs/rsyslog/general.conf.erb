@@ -54,7 +54,12 @@ ruleset(name="ruleset_<%=config.log_type%>") {
   set $!superpod = "NONE";
   set $!owner = "<%= config.owner %>";
   set $!source_type = "<%= [config.owner, config.log_type].join(':') %>";
+  <%- if config.hostname_parse == "true" -%>
+  set $!filename = field($!metadata!filename, 47, <%=config.file_path.split('/').size%>);
+  set $!hostname = field($!filename, 46, 3);
+  <%- else -%>
   set $!hostname = "<%=config.node%>";
+  <%- end -%>
 
   <%# Output action %>
   action(
