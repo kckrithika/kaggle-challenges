@@ -99,9 +99,9 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: cert
-#      - mountPath: /secrets/
-#        name: secretvol
-#        readOnly: true
+      - mountPath: /secrets/
+        name: secretvol
+        readOnly: true
       - mountPath: /kaiju-secrets/
         name: kaiju-secret-vol
         readOnly: true
@@ -114,9 +114,9 @@ system:
     - maddogCert:
         type: client
       name: cert
-#    - k4aSecret:
-#        secretName: gcp-mvp-sequencer-gus
-#      name: secretvol
+    - k4aSecret:
+        secretName: gcp-mvp-sequencer-gus
+      name: secretvol
     - k4aSecret:
         secretName: gcp-mvp-sequencer-kaiju
       name: kaiju-secret-vol
