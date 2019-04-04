@@ -15,7 +15,7 @@ system:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-      - name: prd-maiev-receiver
+      - name: prod-maiev-receiver
         image: dva/maiev-receiver:5
         ports:
         - name: receiver-grpc
@@ -29,7 +29,7 @@ system:
         - name: MASTER_GRPC_PORT
           value: "7444"
         - name: CANTOR_GRPC_TARGET
-          value: "cantor.casp.prd-sam.prd.slb.sfdc.net:11983"
+          value: "cantor.casp.$KINGDOM-sam.$KINGDOM.slb.sfdc.net:11983"
     loadbalancers:
     - lbname: maiev-receiver
       function: maiev-receiver-func
