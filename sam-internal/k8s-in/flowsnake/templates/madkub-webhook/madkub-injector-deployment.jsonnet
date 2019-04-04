@@ -71,7 +71,7 @@ if flowsnake_config.madkub_enabled then
                             "-madkubVolumesFile",
                             "/etc/madkub-required-volumes/volumes.jaysawn",
                             "-madkubContainerSpecFile",
-                            "/etc/madkub-container-spec/spec.jaysawn",
+                            "/etc/madkub-container-spec/spec2.jaysawn",
                             "-kingdom",
                             kingdom,
                             "-v",
