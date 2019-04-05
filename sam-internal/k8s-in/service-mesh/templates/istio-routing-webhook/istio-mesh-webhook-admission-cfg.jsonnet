@@ -27,6 +27,12 @@ local configs = import "config.jsonnet";
           apiGroups: [""],
           apiVersions: ["v1"],
           resources: ["pods"],
+        },
+        {
+          operations: ["CREATE","UPDATE"],
+          apiGroups: [""],
+          apiVersions: ["v1"],
+          resources: ["routingcontexts"],
         }
       ],
       failurePolicy: "Fail",
