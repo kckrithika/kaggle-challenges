@@ -6,6 +6,8 @@ system:
     count: 1
     labels:
       "sherpa-injector.service-mesh/inject": "enabled"
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: demo-geoip
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rama.rao/demo-geoip:dev

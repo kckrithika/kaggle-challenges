@@ -8,6 +8,8 @@ system:
       "sherpa-injector.service-mesh/inject": "enabled"
       app: ordering-envoy-tls
       prat-test: true
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo
