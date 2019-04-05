@@ -56,3 +56,6 @@ system:
       - port: 443
         targetport: 8082
         lbtype: http
+      - port: 15372
+        targetport: 15372
+        lbtype: http
