@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: samsdbzookeeper
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev/tnrp/sdb/zookeeper
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kj/zookeeper:version1
       ports:
       - containerPort: 2181
         name: client
@@ -57,39 +57,19 @@ system:
           value: "2888"
         - name: ZK_ELECTION_PORT
           value: "3888"
-        command:
+      command:
         - sh
         - -c
         - zkGenConfig.sh && zkServer.sh start-foreground
-        readinessProbe:
-          exec:
-            command:
-            - "zkOk.sh"
-          initialDelaySeconds: 10
-          timeoutSeconds: 5
-        livenessProbe:
-          exec:
-            command:
-            - "zkOk.sh"
-          initialDelaySeconds: 10
-          timeoutSeconds: 5
-        volumeMounts:
-        - name: datadir
-          mountPath: /var/lib/zookeeper
-      securityContext:
-        runAsUser: 1000
-        fsGroup: 1000
-
+      readinessProbe:
+        exec:
+         command:
+          - "zkOk.sh"
+        initialDelaySeconds: 10
+        timeoutSeconds: 5
       livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
-  loadbalancers:
-  - lbname: samhellolb
-    function: default
-    slbenabled: true
-    ports:
-      - port: 9090
-        targetport: 9090
-        lbtype: tcp
-
+        exec:
+         command:
+          - "zkOk.sh"
+        initialDelaySeconds: 10
+        timeoutSeconds: 5
