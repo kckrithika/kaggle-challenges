@@ -7,7 +7,7 @@ system:
     count: 1
     containers:
     - name: pcg-hubot
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kmancuso/pcg-hubot:1554411519
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kmancuso/pcg-hubot:1554422121
       command: ["/opt/hubot/bin/hubot", "-a", "slack"]
       ports:
         - containerPort: 8080
