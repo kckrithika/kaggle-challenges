@@ -1,3 +1,5 @@
 apps:
+  sdb: 
+    - prd/prd-sam
   samhello:
     - prd/prd-sam
