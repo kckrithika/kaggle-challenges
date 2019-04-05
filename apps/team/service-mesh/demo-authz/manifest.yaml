@@ -9,6 +9,8 @@ system:
     count: 1
     labels:
       "sherpa-injector.service-mesh/inject": "enabled"
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: demo-authz
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aman.gulati/strauz2:prd-test-0.3

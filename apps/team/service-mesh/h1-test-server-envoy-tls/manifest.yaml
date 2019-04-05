@@ -6,6 +6,8 @@ system:
     count: 1
     labels:
       "sherpa-injector.service-mesh/inject": "enabled"
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
 
     - name: h1-test-server

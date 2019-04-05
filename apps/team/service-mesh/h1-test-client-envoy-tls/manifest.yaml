@@ -6,6 +6,8 @@ system:
     count: 1
     labels:
       "sherpa-injector.service-mesh/inject": "enabled"
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: h1-test-client
       # Code lives here: https://git.soma.salesforce.com/npshenichnyy/sherpa-http1-test

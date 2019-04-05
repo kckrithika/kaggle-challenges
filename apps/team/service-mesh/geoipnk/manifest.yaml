@@ -11,6 +11,8 @@ system:
     count: 1
     labels:
       "sherpa-injector.service-mesh/inject": "enabled"
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
     containers:
     - name: geoipnk
       image: sfci/servicelibs/geoip-nk:1.0.2
