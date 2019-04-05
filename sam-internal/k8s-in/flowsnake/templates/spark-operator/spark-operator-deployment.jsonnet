@@ -64,6 +64,7 @@ local cert_name = "spark-webhook";
                             "-enable-resource-quota-enforcement=true",
                             "-webhook-svc-namespace=flowsnake",
                             "-webhook-port=8443",
+                            "-webhook-fail-on-error=true",
                             "-webhook-server-cert=/certs/server/certificates/server.pem",
                             "-webhook-server-cert-key=/certs/server/keys/server-key.pem",
                             "-webhook-ca-cert=/certs/ca/cabundle.pem",
