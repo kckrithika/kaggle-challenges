@@ -48,7 +48,7 @@ system:
       maddogCert:
         type: client
   loadbalancers:
-  - lbname: sfcd-onboarding-test-lb
+  - lbname: sfcd-onboarding-test
     function: sfcd-onboarding-test
     slbenabled: true
     ports:
