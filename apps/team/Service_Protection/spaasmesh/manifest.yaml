@@ -18,20 +18,31 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: spaas
-      image: sfci/service-protection/sps:0.0.5.11
+      image: sfci/service-protection/sps:0.0.5.24
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
-      resources:
-        limits: { cpu: "4", memory: "4Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+      - name: PKI_SERVERCA_DIR
+        value: /servercerts/ca
+      - name: PKI_SERVERMONITORDIR
+        value: /servercerts/server
+      - name: PKI_CLIENTCA_DIR
+        value: /clientcerts/ca
+      - name: PKI_CLIENTMONITORDIR
+        value: /clientcerts/client       
       # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
       ports:
       - name: management-port
         containerPort: 15400
       - name: grpc-port 
         containerPort: 7020
+      - name: grpc-mtls-port 
+        containerPort: 7033
+      resources:
+        limits: { cpu: "4", memory: "4Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
 
      # In your startup script, set logging.dir to this location
       # /log is mapped outside the container to the host's filesystem
@@ -98,7 +109,7 @@ system:
       #see also https://git.soma.salesforce.com/servicelibs/sherpa#ports
       # Non-namespaced, plaintext
       - -endpoint
-      - spaasmesh:DATACENTER_ALLENV:7020
+      - spaasmesh:DATACENTER_ALLENV:7033
        # Namespaced, TLS
       - -endpoint
       - service-protection/spaasmesh:DATACENTER_ALLENV:7443 
