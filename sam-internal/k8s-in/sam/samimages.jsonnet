@@ -31,8 +31,8 @@ local samreleases = import "samreleases.json";
         "mvp,gsf-core-devmvp-sam2-samtest,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
 
         #[cdebains] Override with strata that's ready
-        "mvp,gsf-core-devmvp-sam2-sam,*,madkub": "102-5201f60ec3458206b47cc7c1b03944e2e47aa9c7",
-        "mvp,gsf-core-devmvp-sam2-samtest,*,madkub": "102-5201f60ec3458206b47cc7c1b03944e2e47aa9c7",
+        "mvp,gsf-core-devmvp-sam2-sam,*,madkub": "gcr.io/gsf-core-devmvp-sam2/cdebains/madkub:largetimeout2",
+        "mvp,gsf-core-devmvp-sam2-samtest,*,madkub": "gcr.io/gsf-core-devmvp-sam2/cdebains/madkub:largetimeout2",
 
         #[hsuanyu-chen] Enable Internal Load Balancer in PCN
         "mvp,gsf-core-devmvp-sam2-sam,samapp-controller,hypersam": "2673-a202210d35f7e2080008c9dc7d86c82520c374bd",
