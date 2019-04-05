@@ -23,6 +23,9 @@ system:
         initialDelaySeconds: 3
         # Keeping this high due to latencies accessing Spinnaker from SAMTWO
         periodSeconds: 20
+      volumeMounts:
+      - name: servercerts
+        mountPath: /servercerts
     - name: sfcd-onboarding-nginx
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/apattan/testing/nginx:latest
       command: [ "/bin/bash", "-c", "--" ]
@@ -39,6 +42,12 @@ system:
         initialDelaySeconds: 3
         # Keeping this high due to latencies accessing Spinnaker from SAMTWO
         periodSeconds: 20
+    volumes:
+    - name: servercerts
+      maddogCert:
+        type: server
+        lbnames:
+        - sfcd-onboarding-lb
   loadbalancers:
   - lbname: sfcd-onboarding-lb
     function: sfcd-onboarding
