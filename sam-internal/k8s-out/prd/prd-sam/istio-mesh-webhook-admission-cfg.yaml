@@ -27,7 +27,7 @@ webhooks:
     resources:
     - pods
   - apiGroups:
-    - ""
+    - mesh.sfdc.net
     apiVersions:
     - v1
     operations:
