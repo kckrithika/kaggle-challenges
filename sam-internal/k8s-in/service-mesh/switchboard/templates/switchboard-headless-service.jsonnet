@@ -25,7 +25,7 @@ local configs = import "config.jsonnet";
     ],
     # Reference the main Switchboard App
     selector: {
-      sam_app: "switchboard-mvp",
+      sam_app: if configs.estate == "gsf-core-devmvp-sam2-sam" then "switchboard-mvp" else if configs.estate == "gsf-core-devmvp-sam2-samtest" then "switchboard-mvp-samtest" else "switchboard",
       sam_function: "switchboard",
     },
   },
