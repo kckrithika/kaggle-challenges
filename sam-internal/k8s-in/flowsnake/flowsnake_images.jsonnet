@@ -35,7 +35,7 @@ local utils = import "util_functions.jsonnet";
                 watchdog_image_tag: "2671-deba20971de93f4f374e1f4e980d339b44e4215b",  # Adds cli-checker stderr and exit code logging
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
                 deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-7-itest",
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-8-itest",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
