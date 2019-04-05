@@ -14,6 +14,6 @@ spec:
     protocol: TCP
     targetPort: 15001
   selector:
-    sam_app: switchboard-mvp
+    sam_app: switchboard-mvp-samtest
     sam_function: switchboard
   type: ClusterIP
