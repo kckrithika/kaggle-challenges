@@ -91,7 +91,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/madkub:102-5201f60ec3458206b47cc7c1b03944e2e47aa9c7
+        image: gcr.io/gsf-core-devmvp-sam2/cdebains/madkub:largetimeout2
         imagePullPolicy: IfNotPresent
         name: madkub-refresher
         resources: {}
