@@ -7,7 +7,7 @@ local configs = import "config.jsonnet";
     name: "switchboard",
     namespace: "service-mesh",
     labels: {
-      some_fake_label: "1",
+      some_fake_label: "2",
       app: "switchboard",
     } +
     // samlabelfilter.json requires this label to be present on GCP deployments
