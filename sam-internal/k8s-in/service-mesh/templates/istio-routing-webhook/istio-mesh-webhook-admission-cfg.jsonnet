@@ -30,7 +30,7 @@ local configs = import "config.jsonnet";
         },
         {
           operations: ["CREATE","UPDATE"],
-          apiGroups: [""],
+          apiGroups: ["mesh.sfdc.net"],
           apiVersions: ["v1"],
           resources: ["routingcontexts"],
         }
