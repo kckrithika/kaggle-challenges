@@ -8,7 +8,7 @@ system:
       containers:
       - name: searchserver
         # image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17808707.458
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17833788.459
         env:
         - name: INSTANCE_URL
           value: "https://casam.devmvp.gcp.sfdcsvc.net"
@@ -36,8 +36,10 @@ system:
           mountPath: /home/sfdc/local-data/data
         - name: solr-log-volume
           mountPath: /home/sfdc-searchserver/logs/solr
-        - name: certs
-          mountPath: /certs
+        - name: certs-client
+          mountPath: /certs/client
+        - name: certs-server
+          mountPath: /certs/server
         livenessProbe:
           httpGet:
             path: /ping.jsp
@@ -54,16 +56,19 @@ system:
         - name: solr-log-volume
           hostPath:
             path: /mnt/disks/ssd0/data/logs/solr
-        - name: certs
+        - name: certs-client
           maddogCert:
             type: client
+        - name: certs-server
+          maddogCert:
+            type: server
     - name: search-gcp1
       type: stateful-set
       count: 3
       containers:
       - name: searchserver
         # image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17808707.458
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17833788.459
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
@@ -93,8 +98,10 @@ system:
           mountPath: /home/sfdc/local-data/data
         - name: solr-log-volume
           mountPath: /home/sfdc-searchserver/logs/solr
-        - name: certs
-          mountPath: /certs
+        - name: certs-client
+          mountPath: /certs/client
+        - name: certs-server
+          mountPath: /certs/server
         livenessProbe:
           httpGet:
             path: /ping.jsp
@@ -111,6 +118,9 @@ system:
         - name: solr-log-volume
           hostPath:
             path: /mnt/disks/ssd0/data/logs/solr
-        - name: certs
+        - name: certs-client
           maddogCert:
             type: client
+        - name: certs-server
+          maddogCert:
+            type: server
