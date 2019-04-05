@@ -50,7 +50,7 @@ spec:
         - --log_dir=/host/data/slb/logs/
         - --ports=9115,8081
         - --proxyProtocolPorts=8081
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2108-b483d07cc28a2f67a46366f87c2e37c73b424117
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2110-56bbfeb5af375f245d0f552dc6c397ca4b61d0c5
         livenessProbe:
           httpGet:
             path: /
