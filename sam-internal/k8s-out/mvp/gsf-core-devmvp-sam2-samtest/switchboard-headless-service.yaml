@@ -4,6 +4,7 @@ metadata:
   labels:
     app: switchboard
     pcn: deploy
+    some_fake_label: "1"
   name: switchboard
   namespace: service-mesh
 spec:
