@@ -3,6 +3,7 @@ system:
   notifications:
     email:
     - dmelanchenko@salesforce.com  
+    - rpolishchuk@salesforce.com
   functions:
   - name: grpc-ping-pong-server
     count: 3
@@ -155,4 +156,6 @@ system:
     ports:
     - port: 7012
       targetport: 7012
-      lbtype: tcp
+      lbtype: http
+      lbalgorithm: roundrobin
+
