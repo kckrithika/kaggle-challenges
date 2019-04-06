@@ -1,0 +1,21 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: mysql
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kj/mysql:v1.0
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: pass
+      ports:
+        - containerPort: 3306
+          name: mysql
+      livenessProbe:
+       exec:
+        command:
+        - cat
+        - /tmp/healthy
+       initialDelaySeconds: 5
+       periodSeconds: 5
