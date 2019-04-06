@@ -71,6 +71,10 @@ local vipwdConfig = {
       // backends.
       // TODO: it's possible that the steam VIPs are no longer symptomatic. Confirm whether https://gus.lightning.force.com/a07B0000004j96jIAA resolved.
       "*-prd-steam-prd*",
+      // 2019/04/06 - mgrass: This VIP sporadically times out on VIP watchdog requests, leading to alert noise.
+      // See discussion in https://computecloud.slack.com/archives/G340CE86R/p1554570646338100?thread_ts=1554495337.333600&cid=G340CE86R,
+      // and W-5834420, which would allow VIP watchdog to look at paths other than `/` (which may be load-sensitive).
+      "shared1-argustsdbw1-0-prd.slb.sfdc.net:*",
     ],
     vivips: [
        // There are 3 sledge VIPs that listen on these ports:
