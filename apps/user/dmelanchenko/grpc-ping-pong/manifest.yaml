@@ -3,6 +3,7 @@ system:
   notifications:
     email:
     - dmelanchenko@salesforce.com  
+    - rpolishchuk@salesforce.com
   functions:
   - name: grpc-ping-pong-server
     count: 3
@@ -53,9 +54,6 @@ system:
       args:
       - -endpoint
       - samapp/user-dmelanchenko/grpc-ping-pong-server:DATACENTER:7012
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: stmfa
       resources:
         limits:
           cpu: "1"
@@ -158,4 +156,6 @@ system:
     ports:
     - port: 7012
       targetport: 7012
-      lbtype: tcp
+      lbtype: http
+      lbalgorithm: roundrobin
+
