@@ -307,10 +307,11 @@
       "--hostnameOverride=$(NODE_NAME)",
       "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
       "--iprange.InternalIpRange=" + slbconfigs.perCluster.internalIpRange[configs.estate],
+    ] + (if waitForRealsvrCfg then [
       "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
       "--control.sentinelExpiration=60s",
       "--featureflagWaitForRealsvrCfg=true",
-    ]
+    ] else [])
     + slbconfigs.getNodeApiClientSocketSettings()
     + [
       slbconfigs.nginx.reloadSentinelParam,
