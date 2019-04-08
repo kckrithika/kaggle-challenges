@@ -195,7 +195,7 @@
               slbconfigs.nginx.target_config_volume,
               slbconfigs.nginx.customer_certs_volume,
               slbconfigs.nginx.tlsparams_volume,
-              configs.config_volume(proxyName)
+              configs.config_volume(proxyName),
             ],
           ),
           initContainers: std.prune([
