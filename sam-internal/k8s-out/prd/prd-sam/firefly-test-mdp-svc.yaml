@@ -945,7 +945,7 @@ items:
               },
               "instance-type": "${INSTANCE_TYPE}",
               "multi-repo-supported": true,
-              "self-auth-allowed": false,
+              "self-auth-allowed": true,
               "workspace-config": {
                   "root-dir": "/firefly"
               }

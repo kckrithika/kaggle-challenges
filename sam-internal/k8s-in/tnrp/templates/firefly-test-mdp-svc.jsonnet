@@ -91,7 +91,7 @@ if configs.estate == "prd-sam" then
         local appConfig = prConfig.config("firefly-pullrequest") + {
           appconfig+: {
             "multi-repo-supported": true,
-            "self-auth-allowed": false,
+            "self-auth-allowed": true,
             docker+: {
               "force-create-container": true,
             },
