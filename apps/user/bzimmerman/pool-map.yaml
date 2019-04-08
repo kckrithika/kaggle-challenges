@@ -1,12 +1,12 @@
-apps:
-    disco-ping:
-        - prd/prd-sam
-    disco-pong:
-        - prd/prd-sam
-    nozk-test-srv:
-        - prd/prd-sam
-    nozk-test-one:
-        - prd/prd-sam
-    nozk-test-impatient:
-        - prd/prd-sam
+#apps:
+#    disco-ping:
+#        - prd/prd-sam
+#    disco-pong:
+#        - prd/prd-sam
+#    nozk-test-srv:
+#        - prd/prd-sam
+#    nozk-test-one:
+#        - prd/prd-sam
+#    nozk-test-impatient:
+#        - prd/prd-sam
 
