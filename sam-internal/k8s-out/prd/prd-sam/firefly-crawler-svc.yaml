@@ -10,7 +10,7 @@ items:
                   "job-interval-in-milliseconds": 300000,
                   "max-commit-retry": 3,
                   "max-prr-retry": 3,
-                  "repositories": "tnrpfirefly/test_sam_manifests,sam/test-firefly-manifests",
+                  "repositories": "tnrpfirefly/test_sam_manifests,sam/test-firefly-manifests,tnrpfirefly/test_manifest_driven_promotions",
                   "since-commit-time-in-minutes": 45,
                   "since-prr-time-in-minutes": 45,
                   "until-commit-status-time-in-minutes": 15,

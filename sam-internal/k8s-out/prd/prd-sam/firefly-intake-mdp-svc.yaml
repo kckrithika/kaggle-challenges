@@ -12,7 +12,7 @@ items:
                   "webhook-secret-token-validation": false
               },
               "intake": {
-                  "instance-type": "firefly-fcp",
+                  "instance-type": "firefly-mdp",
                   "repo-config-map": {
                       "manifests": {
                           "handle-only-latest-commit": true,
@@ -166,22 +166,22 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-fcp-configmap
+    name: firefly-intake-mdp-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-intake-fcp
+      slb.sfdc.net/name: firefly-intake-mdp
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}, {"lbtype": "http",
         "port": 8080, "reencrypt": false, "sticky": 0, "targetPort": 8080, "tls":
         false}, {"lbtype": "http", "port": 8443, "reencrypt": false, "sticky": 0,
         "targetPort": 8080, "tls": true}]'
     labels:
-      app: firefly-intake-fcp
+      app: firefly-intake-mdp
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-fcp-service
+    name: firefly-intake-mdp-service
     namespace: firefly
   spec:
     ports:
@@ -198,21 +198,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-intake-fcp
+      name: firefly-intake-mdp
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-intake-fcp
+      name: firefly-intake-mdp
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-intake-fcp-deployment
+    name: firefly-intake-mdp-deployment
     namespace: firefly
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-intake-fcp
+        name: firefly-intake-mdp
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -234,9 +234,9 @@ items:
                 ]
             }
         labels:
-          name: firefly-intake-fcp
+          name: firefly-intake-mdp
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-intake-fcp-deployment
+        name: firefly-intake-mdp-deployment
         namespace: firefly
       spec:
         containers:
@@ -330,7 +330,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-intake-fcp
+          name: firefly-intake-mdp
           ports:
           - containerPort: 8081
             name: admin-port
@@ -406,7 +406,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-intake-fcp-configmap
+                name: firefly-intake-mdp-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
