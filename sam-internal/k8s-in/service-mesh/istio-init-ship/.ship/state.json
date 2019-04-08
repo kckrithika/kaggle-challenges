@@ -23,7 +23,7 @@
       "applicationType": "helm",
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio-init",
-      "releaseNotes": "Add helm resource-policy to CRDs to prevent deletion (#12484)\n\n* Add helm resource-policy to CRDs to prevent deletion\r\n\r\n* Remove crd-install - add keep\r\n\r\nBased upon Stono's suggestion, cleaning up his PR a bit.",
+      "releaseNotes": "",
       "version": "1.1.0"
     },
     "contentSHA": "7c4941c21c9b1a2c7ded31b4553435433b18278fe55e5bd9221b3a4606777aed",
