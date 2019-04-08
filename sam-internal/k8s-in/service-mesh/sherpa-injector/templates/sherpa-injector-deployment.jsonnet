@@ -27,6 +27,7 @@ configs.deploymentBase("service-mesh") {
           "sherpa-injector.service-mesh/inject": "disabled",
         },
         annotations: {
+          "sherpa-injector.service-mesh/inject": "disabled",
           "scheduler.alpha.kubernetes.io/critical-pod": "",
           "madkub.sam.sfdc.net/allcerts":
           std.manifestJsonEx(
@@ -191,6 +192,10 @@ configs.deploymentBase("service-mesh") {
             },
             resources: {},
           },
+          ] +
+          // Temporary for GCP debugging
+          if configs.estate != "gsf-core-devmvp-sam2-sam" then
+          [
           maddogRefresher.madkubRefresherContainer,
           {
             name: "sherpa",
@@ -312,7 +317,7 @@ configs.deploymentBase("service-mesh") {
               },
             },
         },
-],
+        ] else [],
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
@@ -341,10 +346,13 @@ configs.deploymentBase("service-mesh") {
             name: "tokens",
           },
         ],
-        initContainers+: [
+        initContainers+:
+          // Temporary for GCP debugging
+        if configs.estate != "gsf-core-devmvp-sam2-sam" then
+        [
           maddogInit.madkubInitContainer,
           maddogPermissions.permissionSetterInitContainer,
-        ],
+        ] else [],
       },
     },
   },
