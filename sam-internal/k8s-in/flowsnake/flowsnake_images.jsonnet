@@ -62,6 +62,7 @@ local utils = import "util_functions.jsonnet";
             },
             feature_flags+: {
                 spark_op_watchdog_improve_logging: "enabled",
+                spark_application_quota_enforcement: "enabled",
             },
             version_mapping+: {
                 "0.12.5": 10011,  # TODO: Why is this different from production?
