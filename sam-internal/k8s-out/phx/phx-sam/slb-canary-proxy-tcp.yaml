@@ -29,7 +29,7 @@ spec:
         - --log_dir=/host/data/slb/logs/
         - --ports=9115,8081
         - --proxyProtocolPorts=8081
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/slb/hyperslb:2101-6bb968e89c03342b50d918340863c6082d7094dd
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/slb/hyperslb:2105-d804be810524ab2b7ccaef326192985d86c0fc10
         name: slb-canary-proxy-tcp
         volumeMounts:
         - mountPath: /host/data/slb/logs/

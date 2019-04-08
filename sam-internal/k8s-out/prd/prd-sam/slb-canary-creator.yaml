@@ -28,7 +28,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-canary-creator
-        - --canaryImage=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2107-590ae3667e4198eadce6a2af065473f64e2670d2
+        - --canaryImage=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2110-56bbfeb5af375f245d0f552dc6c397ca4b61d0c5
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-canary-creator
         - --maxParallelism=2
@@ -41,7 +41,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2107-590ae3667e4198eadce6a2af065473f64e2670d2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2110-56bbfeb5af375f245d0f552dc6c397ca4b61d0c5
         name: slb-canary-creator
         resources:
           limits:
@@ -70,7 +70,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2107-590ae3667e4198eadce6a2af065473f64e2670d2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2110-56bbfeb5af375f245d0f552dc6c397ca4b61d0c5
         name: slb-cleanup
         securityContext:
           privileged: true
