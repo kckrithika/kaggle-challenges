@@ -71,7 +71,6 @@ system:
           value: cre-control-plane-ccp-dev
         - name: SPRING_PROFILES_ACTIVE
           value: default,production
-          SPRING_PROFILES_ACTIVE
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
