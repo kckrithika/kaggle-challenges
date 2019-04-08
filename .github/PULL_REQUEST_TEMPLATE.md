@@ -1,5 +1,6 @@
 <!-- Instructions for submitting a PR to sam/manifests:
-Remember to run validate.sh before creating a PR to catch changes early.
+Remember to run validate.sh before creating a PR to catch issues early.
 
-A few seconds after the PR is created or updated a comment will show up with a link "I approve these changes".  For changes to PRD, the PR author can click this link and start the validation+merge process.  For Prod changes, another person in access.yaml will need to approve.
+After creating the PR, a comment from the Firefly service will show up with instructions for validating and merging your change.
+See https://confluence.internal.salesforce.com/pages/viewpage.action?spaceKey=PSD&title=Firefly+Home for details.
 -->
