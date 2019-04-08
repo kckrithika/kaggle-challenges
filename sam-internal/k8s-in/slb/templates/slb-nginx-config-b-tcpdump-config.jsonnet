@@ -8,6 +8,6 @@ local Command = "-i eth0";
 local Duration = "1m";
 local Packetcapture = false;
 
-if slbconfigs.isSlbEstate && slbflights.slbTCPdumpEnabled then
+if slbconfigs.isSlbEstate then
     tcpdumpbaseservice.slbtcpdumpService(Command, Duration, Packetcapture, slbconfigs.nginxProxyName) {
 } else "SKIP"

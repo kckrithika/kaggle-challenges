@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if slbconfigs.isSlbEstate && slbflights.slbTCPdumpEnabled then configs.daemonSetBase("slb") {
+if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
     spec+: {
         template: {
             spec: {

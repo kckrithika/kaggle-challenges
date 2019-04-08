@@ -55,13 +55,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--path=" + slbconfigs.configDir,
                                                        "--ddi=" + slbconfigs.ddiService,
                                                    ] + roleBasedSecretArgs
-                                                   + (if slbflights.commonOpts then [
-                                                        "--commonoptions.hostname=$(NODE_NAME)",
-                                                        "--commonoptions.metricsendpoint=" + configs.funnelVIP,
-                                                   ] else [
-                                                        "--metricsEndpoint=" + configs.funnelVIP,
-                                                   ])
                                                    + [
+                                                       "--commonoptions.hostname=$(NODE_NAME)",
+                                                       "--commonoptions.metricsendpoint=" + configs.funnelVIP,
                                                        "--log_dir=" + slbconfigs.logsDir,
                                                        configs.sfdchosts_arg,
                                                        "--subnet=" + slbconfigs.subnet,
@@ -69,11 +65,9 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                        "--client.serverInterface=lo",
                                                        "--restrictedSubnets=" + slbconfigs.publicSubnet + "," + slbconfigs.reservedIps,
                                                        "--maxDeleteEntries=" + slbconfigs.perCluster.maxDeleteCount[configs.estate],
+                                                       // We can't use the full prefix limit space because sdn can also advertise IPs for docker. We subtract 2 as a safety margin.
+                                                       "--vipLimit=" + (slbconfigs.perCluster.prefixLimit[configs.estate] - 2),
                                                    ]
-                                                   + (if slbflights.vipLimit then [
-                                                     // We can't use the full prefix limit space because sdn can also advertise IPs for docker. We subtract 2 as a safety margin.
-                                                     "--vipLimit=" + (slbconfigs.perCluster.prefixLimit[configs.estate] - 2),
-                                                   ] else [])
                                                    + slbconfigs.getNodeApiClientSocketSettings(),
                                           volumeMounts: configs.filter_empty([
                                               configs.maddog_cert_volume_mount,
