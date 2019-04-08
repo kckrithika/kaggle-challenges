@@ -65,6 +65,10 @@ local internal = {
         local buildInfo = $.get_build_info_from_image_tag(tag);
         if (kingdom == "prd") then
             std.join("/", [configs.registry, buildInfo.rcRegistry, buildInfo.registryPath, repo, image_name]) + ":" + tag
+        else if (kingdom == "xrd" && repo == "slb") then
+            # Artifactory in XRD is currently broken -- see https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000006SAJiIAO/view.
+            # Configure slb images to pull from prd artifactory. We can open this up to other SAM images should the issue persist.
+            std.join("/", ["ops0-artifactrepo2-0-prd.data.sfdc.net", buildInfo.rcRegistry, buildInfo.registryPath, repo, image_name]) + ":" + tag
         else
             std.join("/", [configs.registry, buildInfo.registryPath, repo, image_name]) + ":" + tag
         ),
