@@ -140,9 +140,8 @@
       "--log_dir=" + slbconfigs.logsDir,
       "--client.serverPort=" + nodeApiPort,
       "--client.serverInterface=lo",
-    ] + (if slbflights.featureflagWaitForRealsvrCfg then [
       "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
-    ] else [])
+    ]
     + (if $.dirSuffix == "slb-nginx-config-b" then [
       "--control.sentinelExpiration=1200s",
     ] else [])
@@ -308,11 +307,10 @@
       "--hostnameOverride=$(NODE_NAME)",
       "--httpconfig.trustedProxies=" + slbconfigs.perCluster.trustedProxies[configs.estate],
       "--iprange.InternalIpRange=" + slbconfigs.perCluster.internalIpRange[configs.estate],
-    ] + (if waitForRealsvrCfg && slbflights.featureflagWaitForRealsvrCfg then [
       "--control.realsvrCfgSentinel=" + realsvrCfgSentinel,
       "--control.sentinelExpiration=60s",
       "--featureflagWaitForRealsvrCfg=true",
-    ] else [])
+    ]
     + slbconfigs.getNodeApiClientSocketSettings()
     + [
       slbconfigs.nginx.reloadSentinelParam,

@@ -9,6 +9,6 @@ local Duration = "1m";
 local Packetcapture = false;
 local ProxyName = "slb-tcpdump-ipvs";
 
-if slbconfigs.isSlbEstate && slbflights.slbTCPdumpEnabled then
+if slbconfigs.isSlbEstate then
     tcpdumpbaseservice.slbtcpdumpService(Command, Duration, Packetcapture, ProxyName) {
 } else "SKIP"
