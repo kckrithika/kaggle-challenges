@@ -19,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: docker-all/dva/report-collector:8
+      image: dva/report-collector:8
       ports:
       - name: admin
         containerPort: 8082
@@ -96,7 +96,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: docker-all/dva/report-collector:8
+      image: dva/report-collector:8
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
@@ -137,7 +137,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: redis
-      image: docker-all/dva/csc-health-redis-auth:1
+      image: dva/csc-health-redis-auth:1
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
