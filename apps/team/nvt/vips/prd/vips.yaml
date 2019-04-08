@@ -56,6 +56,14 @@
       healthport: 29000
       healthpath: /
       healthprotocol: http
+    - port: 9200
+      targetport: 9200
+      lbtype: http
+      tls: false
+      reencrypt: false
+      healthport: 9200
+      healthpath: /
+      healthprotocol: http
     - port: 12201
       targetport: 12201
       lbtype: tcp
