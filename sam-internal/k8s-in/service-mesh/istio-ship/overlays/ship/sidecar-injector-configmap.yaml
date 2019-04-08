@@ -89,7 +89,8 @@ data:
         - --applicationPorts
         - "[[ annotation .ObjectMeta `readiness.status.sidecar.istio.io/applicationPorts` (applicationPorts .Spec.Containers) ]]"
       [[- end ]]
-        - --envoyMetricsServiceAddress switchboard.service-mesh:15001
+        - --envoyMetricsServiceAddress
+        - switchboard.service-mesh:15001
         env:
         - name: POD_NAME
           valueFrom:
