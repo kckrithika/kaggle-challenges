@@ -4,62 +4,42 @@ items:
   data:
     application.yml: |-
       {
-          "appconfig": {
-              "artifactory": {
-                  "artifact-manifest-time-property-key": "snd_artifact_promotion_time",
-                  "artifactory-content-repo-gcp": "content_repo_gcp",
-                  "artifactory-content-repo-password": "${artifactoryContentRepoPassword#FromSecretService}",
-                  "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
-                  "artifactory-content-repo-prod": "content_repo_prod",
-                  "artifactory-content-repo-rc": "content_repo_rc",
-                  "artifactory-content-repo-user-name": "svc_tnrp_ci",
-                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd",
-                  "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
-                  "artifactory-dev-host": "ops0-artifactrepo1-0-prd.data.sfdc.net",
-                  "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
-                  "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
-                  "artifactory-p2p-host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
-                  "artifactory-password": "${artifactoryPassword#FromSecretService}",
-                  "artifactory-user-name": "svc_tnrp_artifactory",
-                  "backoff-time": "1000ms",
-                  "connection-timeout": "20000ms",
-                  "max-retry": 3,
-                  "socket-timeout": "30000ms"
+          "firefly": {
+              "dark-launch": "${DARKLAUNCH}",
+              "ghe": {
+                  "commit-signing": false,
+                  "context-prefix": "",
+                  "webhook-secret-token-validation": false
               },
-              "back-off-period": "2000ms",
-              "context-prefix": "",
-              "deliver-to-gcp": "true",
-              "docker": {
-                  "connect-timeout": "480000ms",
-                  "docker-cert-path": "/etc/docker/certs.d",
-                  "force-create-container": "false",
-                  "read-timeout": "480000ms",
-                  "remote-docker-host": "http://localhost:2375"
-              },
-              "gcs": {
-                  "enabled": true,
-                  "service-account-key": "${gcsUploaderKey#FromSecretService}"
-              },
-              "image-promotion-yaml": "image-promotion.yaml",
-              "instance-type": "${INSTANCE_TYPE}",
-              "max-attempts": 4,
-              "max-latency": "600000ms",
-              "multi-repo-supported": true,
-              "repo-config": {
-                  "manifest_driven_promotions": {
-                      "type": "artifacts"
-                  },
-                  "manifests": {
-                      "type": "content_and_artifacts"
+              "intake": {
+                  "instance-type": "firefly-fcp-test",
+                  "repo-config-map": {
+                      "manifests": {
+                          "handle-only-latest-commit": true,
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
+                      "sam-test-firefly-manifests": {
+                          "handle-only-latest-commit": true,
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
+                      "sam-test-manifests": {
+                          "handle-only-latest-commit": true,
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
+                      "test-manifests": {
+                          "handle-only-latest-commit": true,
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
+                      "tnrpfirefly-test_manifest_driven_promotions": {
+                          "handle-only-latest-commit": false,
+                          "webhook-secret-token": "feature_not_enabled"
+                      },
+                      "tnrpfirefly-test_sam_manifests": {
+                          "handle-only-latest-commit": true,
+                          "webhook-secret-token": "feature_not_enabled"
+                      }
                   }
               },
-              "root-dir": "/tmp",
-              "security": {
-                  "secret-service-url": "secretservice.dmz.salesforce.com"
-              },
-              "service-mode": "${SERVICE_MODE}"
-          },
-          "firefly": {
               "monitoring": {
                   "enable-funnel-publisher": true,
                   "enable-metrics-logging": false,
@@ -78,17 +58,20 @@ items:
                   "metric-fields": {
                       "common-tags": {
                           "k8.namespace": "${MY_POD_NAMESPACE}",
-                          "k8.node.name": "${MY_NODE_NAME}",
-                          "repo": "${INSTANCE_TYPE}"
+                          "k8.node.name": "${MY_NODE_NAME}"
                       },
                       "datacenter": "prd",
-                      "pod": "firefly-package",
+                      "pod": "firefly-intake",
                       "service": "firefly",
                       "subservice": "${MY_APP_NAME}",
                       "superpod": "prd-samtwo"
                   },
                   "report-frequency": 1,
                   "system-exception-threshold": 5
+              },
+              "rabbitmq": {
+                  "exchange-name": "firefly.delivery",
+                  "routing-key-format": "%s.%s"
               }
           },
           "logging": {
@@ -99,7 +82,7 @@ items:
                   "org": "INFO"
               },
               "pattern": {
-                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
+                  "console": "%d{yyyy-MM-dd HH:mm:ss} - %C:%L[%thread gua=%X{userAgent} ghd=%X{gitHubDelivery}] %-5level - e=%X{eventType} sha=%X{sha} repo=%X{repo} pr=%X{pr} c=%X{committer} - details=[%msg]  %n"
               }
           },
           "management": {
@@ -124,13 +107,6 @@ items:
                   "port": 8081
               }
           },
-          "rabbitmq": {
-              "exchange-name": "firefly.delivery",
-              "latestfile-q": "${LATEST_FILE_QUEUE}",
-              "package-q": "${PACKAGE_QUEUE}",
-              "promotion-q": "${PROMOTION_QUEUE}",
-              "service-mode": "${SERVICE_MODE}"
-          },
           "scm": {
               "ghe": {
                   "api-url": "https://git.soma.salesforce.com/api/v3/",
@@ -149,7 +125,7 @@ items:
               }
           },
           "server": {
-              "port": -1
+              "port": 8080
           },
           "spring": {
               "rabbitmq": {
@@ -190,42 +166,53 @@ items:
   metadata:
     labels:
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-templates-configmap
+    name: firefly-intake-fcp-test-configmap
     namespace: firefly
 - apiVersion: v1
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-package
+      slb.sfdc.net/name: firefly-intake-fcp-test
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
-        false, "sticky": 0, "targetPort": 8081, "tls": false}]'
+        false, "sticky": 0, "targetPort": 8081, "tls": false}, {"lbtype": "http",
+        "port": 8080, "reencrypt": false, "sticky": 0, "targetPort": 8080, "tls":
+        false}, {"lbtype": "http", "port": 8443, "reencrypt": false, "sticky": 0,
+        "targetPort": 8080, "tls": true}]'
     labels:
-      app: firefly-package
+      app: firefly-intake-fcp-test
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-templates-service
+    name: firefly-intake-fcp-test-service
     namespace: firefly
   spec:
     ports:
+    - name: intake-http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: intake-https
+      port: 8443
+      protocol: TCP
+      targetPort: 8080
     - name: admin-port
       port: 8081
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package
+      name: firefly-intake-fcp-test
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package
+      name: firefly-intake-fcp-test
       sam.data.sfdc.net/owner: tnrp
-    name: firefly-package-templates-deployment
+    name: firefly-intake-fcp-test-deployment
     namespace: firefly
   spec:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-package
+        name: firefly-intake-fcp-test
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -243,19 +230,13 @@ items:
                         "kingdom": "prd",
                         "name": "certs",
                         "role": "firefly"
-                    },
-                    {
-                        "cert-type": "client",
-                        "kingdom": "prd",
-                        "name": "customer-certs",
-                        "role": "firefly.customer"
                     }
                 ]
             }
         labels:
-          name: firefly-package
+          name: firefly-intake-fcp-test
           sam.data.sfdc.net/owner: tnrp
-        name: firefly-package-templates-deployment
+        name: firefly-intake-fcp-test-deployment
         namespace: firefly
       spec:
         containers:
@@ -279,8 +260,6 @@ items:
           - --run-init-for-refresher-mode
           - --ca-folder
           - /maddog-certs/ca
-          - --cert-folders
-          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -304,12 +283,10 @@ items:
             name: tokens
           - mountPath: /maddog-certs/
             name: maddog-certs
-          - mountPath: /customer-certs/
-            name: customer-certs
         - command:
           - java
           - -jar
-          - /package-svc.jar
+          - /intake-svc.jar
           - --spring.profiles.active=prd-samtwo
           - --spring.config.location=/etc/firefly/config/
           env:
@@ -338,19 +315,11 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
-          - name: SERVICE_MODE
-            value: multi
           - name: CONFIG_VERSION
-            value: "19"
+            value: "15"
           - name: DARKLAUNCH
             value: "false"
-          - name: INSTANCE_TYPE
-            value: firefly-templates
-          - name: PACKAGE_QUEUE
-            value: firefly-templates.package
-          - name: LATEST_FILE_QUEUE
-            value: firefly-templates.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:372
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-intake:372
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -361,10 +330,13 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-package
+          name: firefly-intake-fcp-test
           ports:
           - containerPort: 8081
             name: admin-port
+            protocol: TCP
+          - containerPort: 8080
+            name: intake-http
             protocol: TCP
           volumeMounts:
           - mountPath: /certs
@@ -373,8 +345,6 @@ items:
             name: git-ssh-keys
           - mountPath: /etc/firefly/config
             name: app-config-volume
-          - mountPath: /tmp
-            name: docker-build-dir
         initContainers:
         - args:
           - /sam/madkub-client
@@ -394,8 +364,6 @@ items:
           - client
           - --ca-folder
           - /maddog-certs/ca
-          - --cert-folders
-          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -422,10 +390,8 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: tokens
-          - mountPath: /customer-certs/
-            name: customer-certs
         nodeSelector:
-          pool: prd-sam_tnrp_merger
+          pool: prd-sam_tnrp_signer
         terminationGracePeriodSeconds: 10
         volumes:
         - name: app-config-volume
@@ -435,7 +401,7 @@ items:
                 items:
                 - key: application.yml
                   path: application.yml
-                name: firefly-package-templates-configmap
+                name: firefly-intake-fcp-test-configmap
         - emptyDir: {}
           name: docker-graph-storage
         - emptyDir: {}
@@ -454,7 +420,4 @@ items:
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
-        - emptyDir:
-            medium: Memory
-          name: customer-certs
 kind: List
