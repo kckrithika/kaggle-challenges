@@ -23,8 +23,9 @@ system:
         secretName: dev-eventbusajna-ens-v1
     containers:
     - name: dev-event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.9
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:W-5819704_sub_consumer_race_condition.3
+#      image: sfci/mc-eventing/event-notification:1.0.9
+      #      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:W-5819704_sub_consumer_race_condition.3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:W-5901573_kafka_offset_commit_issue
       ports:
       - containerPort: 15372
       env:
@@ -38,6 +39,8 @@ system:
         value: eventing-notification
       - name: JAVA_OPTS
         value: -Xms1G -Xmx3G -XX:+UseG1GC
+      - name: SESSION_TIMEOUT_MS
+        value: 6000
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
