@@ -4,6 +4,7 @@ local portConfig = import "portconfig.jsonnet";
 {
     common:: {
         intakeEndpoint:: "http://firefly-intake.firefly." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net:" + portConfig.firefly.intake_http,
+        intakeEndpointMDP:: "http://firefly-intake-mdp.firefly." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net:" + portConfig.firefly.intake_http,
         exchangeName:: 'firefly.delivery',
         webHookSecretTokenValidationEnabled:: false,
         dockerHost:: "http://localhost:2375",
@@ -39,6 +40,7 @@ local portConfig = import "portconfig.jsonnet";
         rabbitMqEndpoint:: 'firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net',
         rabbitMqPort:: '5672',
         repositories:: 'tnrpfirefly/test_sam_manifests,sam/test-firefly-manifests',
+        repositoriesMDP:: 'tnrpfirefly/test_manifest_driven_promotions',
     },
     prdsamdev:: $.dev {
         rabbitMqEndpoint:: 'shared0-samdevkubeapi1-1-prd.eng.sfdc.net',
@@ -52,6 +54,7 @@ local portConfig = import "portconfig.jsonnet";
         rabbitMqEndpoint:: 'firefly-rabbitmq.firefly.prd-samtwo.prd.slb.sfdc.net',
         rabbitMqPort:: '5672',
         repositories:: 'sam/test-manifests,sam/manifests',
+        repositoriesMDP:: 'tnrpfirefly/test_manifest_driven_promotions',
     },
     environmentMapping:: {
         "prd-sam": $.prdsam,
