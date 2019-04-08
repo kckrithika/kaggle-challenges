@@ -13,6 +13,14 @@ local script = [
     "60",
 ];
 
+local hostNetwork = if slbflights.hostNetworkForArtifactoryBootstrap then {
+    hostNetwork: true,
+} else {};
+
+local ipAddressResourceRequest = if !slbflights.hostNetworkForArtifactoryBootstrap then
+    configs.ipAddressResourceRequest
+else {};
+
 if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
     spec+: {
         template: {
@@ -48,7 +56,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                                 value: "1",
                             },
                         ],
-                    } + configs.ipAddressResourceRequest,
+                    } + ipAddressResourceRequest,
                 ],
                 volumes: [
                     {
@@ -64,7 +72,8 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                     "slb-service": "slb-ipvs",
                 },
             } + slbconfigs.getGracePeriod()
-              + slbconfigs.getDnsPolicy(),
+              + slbconfigs.getDnsPolicy()
+              + hostNetwork,
             metadata: {
                 labels: {
                     name: "slb-ipvs-artifactory-bootstrap",
