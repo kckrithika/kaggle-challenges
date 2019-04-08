@@ -68,7 +68,7 @@ system:
         - name: SECRET_KEY_FILE
           value: /keys-kube/cre-aes.key
         - name: DATABASE_NAMESPACE
-          value: crecontrolplaneccpdev
+          value: crecontrolplaneccpdev1
         - name: SPRING_PROFILES_ACTIVE
           value: default,production
         - name: JVM_ARGS
