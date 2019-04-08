@@ -1,0 +1,12 @@
+apiVersion: v1
+system:
+  functions:
+  - name: acds-nginx
+    count: 1
+    containers:
+      - name: nginx
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kj/nginx:v1
+        livenessProbe:
+          initialDelaySeconds: 15
+          timeoutSeconds: 5
+
