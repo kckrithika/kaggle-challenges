@@ -6,7 +6,7 @@ system:
 
     containers:
     - name: zoobernetes
-      image: sfci/services/sfdc-bazel/disco/zoobernetes:b9c9114
+      image: sfci/services/sfdc-bazel/disco/zoobernetes:1530c6b
 
       ports:
       - containerPort: 7020
