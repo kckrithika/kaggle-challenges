@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cname-repcollavailwd
-      image: docker-all/dva/report-collector-availability-watchdog:2
+      image: dva/report-collector-availability-watchdog:2
       ports:
       - name: liveness
         containerPort: 8089
