@@ -12,7 +12,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:1.7.0-freeze-001.0.release-1.7.344cf71.1
       env:
         - name: AUTHORIZED_USERS
-          value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,cre-api@salesforce.com"
+          value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,cre-api@salesforce.com,admin@bt9.salesforce.com,adminqa@bt9.salesforce.com"
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Stage
         - name: METRICS_KAFKA_SERVER
