@@ -32,17 +32,16 @@ spec:
           limits:
             cpu: "0.5"
             memory: 300Mi
-            sam.sfdc.net/ip-address: "1"
           requests:
             cpu: "0.5"
             memory: 300Mi
-            sam.sfdc.net/ip-address: "1"
         volumeMounts:
         - mountPath: /host-etc
           name: host-etc-volume
         - mountPath: /config
           name: config
       dnsPolicy: Default
+      hostNetwork: true
       nodeSelector:
         slb-service: slb-ipvs
       terminationGracePeriodSeconds: 5
