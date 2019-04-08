@@ -31,7 +31,7 @@ system:
         medium: Memory
     containers:
     - name: gatewayconfig
-      image: sfci/gateway/gateway-service:2019-04-05-162818
+      image: sfci/gateway/gateway-service:2019-04-08-095814
       env:
       - name: PKI_CA_DIR
         value: /server-certs
