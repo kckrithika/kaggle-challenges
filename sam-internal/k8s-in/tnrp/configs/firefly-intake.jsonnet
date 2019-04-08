@@ -37,7 +37,7 @@ local gheConfig = import "configs/firefly-ghe.jsonnet";
             'webhook-secret-token': 'feature_not_enabled',
           },
           'tnrpfirefly-test_manifest_driven_promotions': {
-            'handle-only-latest-commit': true,
+            'handle-only-latest-commit': false,
             'webhook-secret-token': 'feature_not_enabled',
           },
           'sam-test-firefly-manifests': {
