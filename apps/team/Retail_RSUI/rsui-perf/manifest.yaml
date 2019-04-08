@@ -6,6 +6,9 @@ system:
     count: 2
     identity:
      serviceName: retail-setup
+    labels:
+      chaos.sfdc.net/podDelete: true
+      chaos.sfdc.net/podDeletePeriod: 30m
     volumes:
     - name: sherpa-log-volume
       hostPath:
