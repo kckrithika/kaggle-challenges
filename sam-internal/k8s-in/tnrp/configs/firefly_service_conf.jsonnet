@@ -38,7 +38,7 @@ local portConfig = import "portconfig.jsonnet";
         rabbitMqPassword:: '${rabbitMqAdmin#FromSecretService}',
         rabbitMqEndpoint:: 'firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net',
         rabbitMqPort:: '5672',
-        repositories:: 'tnrpfirefly/test_sam_manifests,sam/test-firefly-manifests,tnrpfirefly/test_manifest_driven_promotions',
+        repositories:: 'tnrpfirefly/test_sam_manifests,sam/test-firefly-manifests',
     },
     prdsamdev:: $.dev {
         rabbitMqEndpoint:: 'shared0-samdevkubeapi1-1-prd.eng.sfdc.net',
