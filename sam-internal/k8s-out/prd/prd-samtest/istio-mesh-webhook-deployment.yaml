@@ -47,7 +47,7 @@ spec:
         env:
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:5e1bcdc1fe44602ca0b9930ad86c427e9399d37b
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:b817daada3298bf9b1c337fb383f67949615b342
         imagePullPolicy: IfNotPresent
         name: istio-mesh-webhook
         ports:
