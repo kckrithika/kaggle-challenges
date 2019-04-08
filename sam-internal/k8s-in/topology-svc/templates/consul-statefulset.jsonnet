@@ -1,7 +1,16 @@
 // StatefulSet to run the actual Consul server cluster.
 local configs = import 'config.jsonnet';
 local topologysvcimages = (import 'topology-svc-images.jsonnet') + { templateFilename:: std.thisFile };
+local topologysvcutils = import 'topology-svc-utils.jsonnet';
+local madkub = (import 'topology-svc-madkub.jsonnet') + { templateFilename:: std.thisFile };
 local topologysvcNamespace = 'topology-svc';
+
+local certDirs = ['cert1', 'client-certs', 'server-certs'];
+
+local initContainers = [
+  madkub.madkubInitContainer(certDirs),
+  madkub.permissionSetterInitContainer,
+];
 
 local consulEnvParams = [
   {
@@ -28,7 +37,7 @@ local consulEnvParams = [
 
 local ports = [
   {
-    containerPort: 8500,
+    containerPort: 7022,
     name: 'http',
   },
   {
@@ -57,29 +66,29 @@ if configs.kingdom == 'mvp' then {
     serviceName: 'consul-headless',
     podManagementPolicy: 'Parallel',
     updateStrategy: {
-        type: 'RollingUpdate',
+      type: 'RollingUpdate',
     },
     volumeClaimTemplates: [
+      {
+        metadata: {
+          name: 'consul-data-volume',
+          annotations:
             {
-                metadata: {
-                   name: "consul-data-volume",
-                   annotations:
-                   {
-                       "volume.beta.kubernetes.io/storage-class": "faster",
-                   },
-                },
-                spec: {
-                   accessModes: [
-                      "ReadWriteOnce",
-                   ],
-                   resources: {
-                      requests: {
-                         storage: "2Gi",
-                      },
-                   },
-                },
+              'volume.beta.kubernetes.io/storage-class': 'faster',
             },
-        ],
+        },
+        spec: {
+          accessModes: [
+            'ReadWriteOnce',
+          ],
+          resources: {
+            requests: {
+              storage: '2Gi',
+            },
+          },
+        },
+      },
+    ],
     replicas: 3,
     selector: {
       matchLabels: {
@@ -91,16 +100,30 @@ if configs.kingdom == 'mvp' then {
         labels: {
           app: 'consul-server',
         },
+
+        annotations: {
+          'madkub.sam.sfdc.net/allcerts':
+            std.manifestJsonEx(
+              {
+                certreqs:
+                  [
+                    certReq
+                    for certReq in madkub.madkubTopologySvcCertsAnnotation(certDirs).certreqs
+                  ],
+              }, ' '
+            ),
+        },
       },
       spec: {
         terminationGracePeriodSeconds: 10,
         securityContext: {
-            fsGroup: 7447,
-            runAsNonRoot: true,
-            runAsUser: 7447,
+          fsGroup: 7447,
+          runAsNonRoot: true,
+          runAsUser: 7447,
         },
         dnsPolicy: 'ClusterFirstWithHostNet',
         restartPolicy: 'Always',
+        initContainers: initContainers,
         containers: [
           {
             name: 'consul',
@@ -113,6 +136,7 @@ if configs.kingdom == 'mvp' then {
               '-bootstrap-expect=3',
               '-datacenter=gcp-uscentral1',
               '-data-dir=/consul/data',
+              '--http-port=7022',
               '-domain=cluster.local',
               '-server',
               '-disable-host-node-id',
@@ -138,7 +162,7 @@ if configs.kingdom == 'mvp' then {
                 command: [
                   '/bin/sh',
                   '-ec',
-                  'curl "http://$POD_IP:8500/v1/status/leader" 2> /dev/null | grep -E \'".+"\'',
+                  'curl "http://$POD_IP:7022/v1/status/leader" 2> /dev/null | grep -E \'".+"\'',
                 ],
               },
               failureThreshold: 2,
@@ -148,17 +172,23 @@ if configs.kingdom == 'mvp' then {
               timeoutSeconds: 5,
             },
             securityContext: {
-                runAsNonRoot: true,
-                runAsUser: 7447,
+              runAsNonRoot: true,
+              runAsUser: 7447,
             },
             volumeMounts: [
-            {
-              name: "consul-data-volume",
-              mountPath: "/consul/data",
-            },
-],
+              {
+                name: 'consul-data-volume',
+                mountPath: '/consul/data',
+              },
+            ] + madkub.madkubTopologySvcCertVolumeMounts(certDirs),
           },
+          topologysvcutils.service_discovery_container(),
+          madkub.madkubRefreshContainer(certDirs),
         ],
+        volumes+: [
+            configs.maddog_cert_volume,
+        ] + madkub.madkubTopologySvcCertVolumes(certDirs)
+                              + madkub.madkubTopologySvcMadkubVolumes(),
       },
     },
   },
