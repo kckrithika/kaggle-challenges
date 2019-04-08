@@ -69,6 +69,8 @@ system:
           value: /keys-kube/cre-aes.key
         - name: DATABASE_NAMESPACE
           value: cre-control-plane-ccp-dev
+        - name: SPRING_PROFILES_ACTIVE
+          value: default,production
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
