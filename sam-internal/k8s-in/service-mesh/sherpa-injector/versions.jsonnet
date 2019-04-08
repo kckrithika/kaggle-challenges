@@ -32,8 +32,12 @@ local configs = import "config.jsonnet";
     ),
     injectorImage: (
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
-        // https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-sherpa-injector/job/sherpa-injector/job/master/3
-        "%s/sfci/servicelibs/sherpa-injector:492713b1b7635dccc41345d6920e24c8b2ddd09d" % 
-        if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.registry + "/docker-gcp" else configs.registry
+
+        if configs.estate == "gsf-core-devmvp-sam2-sam" then 
+            // https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-sherpa-injector/job/sherpa-injector/job/master/9
+            "%s/docker-gcp/sfci/servicelibs/sherpa-injector:a29668190cb744cb60dceff0b40e401b677fd49e" % configs.registry
+        else
+            // https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-sherpa-injector/job/sherpa-injector/job/master/3
+            "%s/sfci/servicelibs/sherpa-injector:492713b1b7635dccc41345d6920e24c8b2ddd09d" % configs.registry
     ),
 }
