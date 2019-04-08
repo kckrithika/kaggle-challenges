@@ -11,6 +11,11 @@ local slbconfigs = import "slbconfig.jsonnet";
     hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
 
+    # Running artifactory-bootstrap on host network allows this service to function even when there
+    # are issues communicating from a node's docker subnet.
+    # See https://computecloud.slack.com/archives/G340CE86R/p1554742975378400?thread_ts=1554741913.377900&cid=G340CE86R
+    hostNetworkForArtifactoryBootstrap: (slbimages.phaseNum <= 1),
+
     # slb-nginx-accesslogs can sometimes fill up disk -- see investigation at
     # https://computecloud.slack.com/archives/G340CE86R/p1552882461719300?thread_ts=1552870275.718300&cid=G340CE86R.
     nginxAccesslogsEnabled: (slbimages.phaseNum <= 1),
