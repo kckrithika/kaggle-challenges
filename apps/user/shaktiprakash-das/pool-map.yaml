@@ -1,6 +1,6 @@
 apps:
-  istio-geoip:
-    - prd/prd-sam
+#  istio-geoip:
+#    - prd/prd-sam
 
 #  service-mesh-einstein:
 #    - prd/prd-sam
