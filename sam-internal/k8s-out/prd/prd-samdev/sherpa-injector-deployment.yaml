@@ -45,6 +45,7 @@ spec:
            ]
           }
         scheduler.alpha.kubernetes.io/critical-pod: ""
+        sherpa-injector.service-mesh/inject: disabled
       labels:
         app: sherpa-injector
         name: sherpa-injector
