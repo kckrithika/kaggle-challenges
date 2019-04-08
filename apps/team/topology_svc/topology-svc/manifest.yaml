@@ -8,7 +8,7 @@ system:
     - name: topology-svc-service
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:ameesala-20190402-acd1c75
       args:
-    	- --server.port=7022	
+        - --server.port=7022	
       env:
         - name: JVM_ARGS
           value: "-Dspring.profiles.active=gcp"
@@ -59,13 +59,13 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
-      volumes:
-      - name: tls-client-cert
-        maddogCert:
-          type: client
-      - name: tls-server-cert
-        maddogCert:
-          type: server
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - lbname: topology-svc-lb
     function: topology-svc
@@ -74,4 +74,4 @@ system:
       - port: 80
         targetport: 7022
       - port: 443
-	    targetport: 7442
+        targetport: 7442
