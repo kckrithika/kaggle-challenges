@@ -1,5 +1,5 @@
 apps:
  moku-ceph-test: 
   - prd/prd-sam 
- moku-wo-zk:
+ tm-wo-zk:
   - prd/prd-sam
