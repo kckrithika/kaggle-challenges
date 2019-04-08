@@ -22,11 +22,6 @@ system:
         periodSeconds: 120      
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.6
-      args:
-        - -log-level
-        - debug
-      # - --server-ca
-      # - /server-certs/ca_test/cacerts.pem
       ports:
       - name: sherpa-h2
         containerPort: 7012
@@ -127,6 +122,55 @@ system:
     - name: logvol
       hostPath:
         path: /data/sam/dmelanchenko/log/grpc-ping-pong-client
+
+  - name: grpc-ping-pong-client-server
+    count: 1
+    containers:
+    - name: grpc-ping-pong-client
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmelanchenko/grpc-ping-pong:v0
+      args:
+        - /client
+        - "--address=grpc-ping-pong-service.user-dmelanchenko.samapp.localhost.mesh.force.com:7011"
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - "OK"
+        initialDelaySeconds: 60
+        periodSeconds: 120      
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      args:
+        - -log-level
+        - debug
+      ports:
+      - name: sherpa-h2
+        containerPort: 7012
+      - containerPort: 15373
+        name: sherpa-mgmt
+      volumeMounts:
+      - mountPath: /client-certs
+        name: client-cert
+      livenessProbe:
+        exec:
+          command:
+          - /home/sfdc-sherpa/bin/is-alive
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - /home/sfdc-sherpa/bin/is-ready
+        initialDelaySeconds: 60
+        periodSeconds: 120
+    volumes:
+    - name: client-cert
+      maddogCert:
+        type: client
+    - name: logvol
+      hostPath:
+        path: /data/sam/dmelanchenko/log/grpc-ping-pong-client
+
 
   - name: grpc-ping-pong-beacon
     count: 1
