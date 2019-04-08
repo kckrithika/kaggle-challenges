@@ -7,11 +7,13 @@ system:
     containers:
     - name: topology-svc-service
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:ameesala-20190402-acd1c75
+      args:
+        - --server.port=7022	
       env:
         - name: JVM_ARGS
           value: "-Dspring.profiles.active=gcp"
       ports:
-      - containerPort: 8080
+      - containerPort: 7022
         name: scone-http
       - containerPort: 15372
         name: scone-mgmt
@@ -20,10 +22,56 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+    - name: sherpa
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/sherpa-envoy:1.0.4-201902081120
+      args:
+      # 2018-02-08: Direct Connection to the switchboard for now
+      - --switchboard=switchboard.service-mesh.svc:15001
+      ports:
+      - name: http1-tls-in
+        containerPort: 7442
+      - name: sherpa-adm
+        containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 15
+        periodSeconds: 5
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - lbname: topology-svc-lb
     function: topology-svc
     slbEnabled: true
     ports:
       - port: 80
-        targetport: 8080
+        targetport: 7022
+      - port: 443
+        targetport: 7442
