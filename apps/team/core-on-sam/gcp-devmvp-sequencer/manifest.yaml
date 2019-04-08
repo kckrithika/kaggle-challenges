@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: sequencer
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:f2bceb
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:196ff5
       command: ["/bin/sh", "-c"]
       args: ["
       export SNOWWHITE_PWD=$(cat /db-secrets/gcp-mvp-1az-db-pw/dbpw.txt) ;
@@ -73,6 +73,8 @@ system:
         value: https://refocus.hk.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 30000
+      - name: dns_override_enabled
+        value: true
       livenessProbe:
         exec:
           command:
