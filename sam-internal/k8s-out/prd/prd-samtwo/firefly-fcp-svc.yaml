@@ -197,11 +197,11 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-package
+      slb.sfdc.net/name: firefly-package-fcp
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-package
+      app: firefly-package-fcp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-fcp-service
     namespace: firefly
@@ -212,13 +212,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package
+      name: firefly-package-fcp
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package
+      name: firefly-package-fcp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-fcp-deployment
     namespace: firefly
@@ -226,7 +226,7 @@ items:
     replicas: 5
     selector:
       matchLabels:
-        name: firefly-package
+        name: firefly-package-fcp
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -254,7 +254,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-package
+          name: firefly-package-fcp
           sam.data.sfdc.net/owner: tnrp
         name: firefly-package-fcp-deployment
         namespace: firefly
@@ -342,7 +342,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "18"
+            value: "19"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -362,7 +362,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-package
+          name: firefly-package-fcp
           ports:
           - containerPort: 8081
             name: admin-port
@@ -670,11 +670,11 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-package-singleton
+      slb.sfdc.net/name: firefly-package-singleton-fcp
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-package-singleton
+      app: firefly-package-singleton-fcp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-singleton-fcp-service
     namespace: firefly
@@ -685,13 +685,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package-singleton
+      name: firefly-package-singleton-fcp
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package-singleton
+      name: firefly-package-singleton-fcp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-singleton-fcp-deployment
     namespace: firefly
@@ -699,7 +699,7 @@ items:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-package-singleton
+        name: firefly-package-singleton-fcp
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -721,7 +721,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-package-singleton
+          name: firefly-package-singleton-fcp
           sam.data.sfdc.net/owner: tnrp
         name: firefly-package-singleton-fcp-deployment
         namespace: firefly
@@ -805,7 +805,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "16"
+            value: "17"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -825,7 +825,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-package-singleton
+          name: firefly-package-singleton-fcp
           ports:
           - containerPort: 8081
             name: admin-port
@@ -1080,11 +1080,11 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-pullrequest
+      slb.sfdc.net/name: firefly-pullrequest-fcp
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-pullrequest
+      app: firefly-pullrequest-fcp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-pullrequest-fcp-service
     namespace: firefly
@@ -1095,13 +1095,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-pullrequest
+      name: firefly-pullrequest-fcp
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-pullrequest
+      name: firefly-pullrequest-fcp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-pullrequest-fcp-deployment
     namespace: firefly
@@ -1109,7 +1109,7 @@ items:
     replicas: 5
     selector:
       matchLabels:
-        name: firefly-pullrequest
+        name: firefly-pullrequest-fcp
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -1137,7 +1137,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-pullrequest
+          name: firefly-pullrequest-fcp
           sam.data.sfdc.net/owner: tnrp
         name: firefly-pullrequest-fcp-deployment
         namespace: firefly
@@ -1223,7 +1223,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "18"
+            value: "19"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -1241,7 +1241,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-pullrequest
+          name: firefly-pullrequest-fcp
           ports:
           - containerPort: 8081
             name: admin-port

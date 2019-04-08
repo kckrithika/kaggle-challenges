@@ -368,7 +368,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "18"
+            value: "19"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -828,7 +828,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "16"
+            value: "17"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -1248,7 +1248,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "18"
+            value: "19"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE

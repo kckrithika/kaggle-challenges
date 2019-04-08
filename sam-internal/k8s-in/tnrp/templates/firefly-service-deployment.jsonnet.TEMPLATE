@@ -19,8 +19,12 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
   local firefly_feature_flags = import "firefly_feature_flags.jsonnet",
 
   // Only generate certs for customer vaults for PR and Package services
-  local is_customer_certs_enabled = ($['serviceName'] == "firefly-pullrequest"
-    || $['serviceName'] == "firefly-package"),
+  local is_customer_certs_enabled = ($['serviceName'] == "firefly-pullrequest" ||
+    $['serviceName'] == "firefly-package" ||
+    $['serviceName'] == "firefly-pullrequest-fcp" ||
+    $['serviceName'] == "firefly-pullrequest-fcp-test" ||
+    $['serviceName'] == "firefly-package-fcp"||
+    $['serviceName'] == "firefly-package-fcp-test"),
 
   serviceConf:: {},
   commonVolMounts:: [

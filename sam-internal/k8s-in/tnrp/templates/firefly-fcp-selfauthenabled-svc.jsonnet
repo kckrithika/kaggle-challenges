@@ -9,20 +9,20 @@ local prConfig = import "configs/firefly-pullrequest.jsonnet";
 if configs.estate == "prd-samtwo" then
 {
   local package = packagesvc {
-      serviceName:: "firefly-package-fcp",
-      replicas:: 5,
+      serviceName:: "firefly-package-fcp-test",
+      replicas:: 1,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "firefly-fcp",
+              value: "firefly-fcp-test",
           },
           {
               name: "PACKAGE_QUEUE",
-              value: "firefly-fcp.package",
+              value: "firefly-fcp-test.package",
           },
           {
               name: "LATEST_FILE_QUEUE",
-              value: "firefly-fcp.latestfile",
+              value: "firefly-fcp-test.latestfile",
           },
      ],
      data:: {
@@ -43,19 +43,19 @@ if configs.estate == "prd-samtwo" then
      },
   },
   local packagesingleton = packagesvcsingleton {
-      serviceName:: "firefly-package-singleton-fcp",
+      serviceName:: "firefly-package-singleton-fcp-test",
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "firefly-fcp",
+              value: "firefly-fcp-test",
           },
           {
               name: "PACKAGE_QUEUE",
-              value: "firefly-fcp.package",
+              value: "firefly-fcp-test.package",
           },
           {
               name: "LATEST_FILE_QUEUE",
-              value: "firefly-fcp.latestfile",
+              value: "firefly-fcp-test.latestfile",
           },
       ],
       data:: {
@@ -76,23 +76,23 @@ if configs.estate == "prd-samtwo" then
       },
   },
   local pullrequest = pullrequestsvc {
-      serviceName:: "firefly-pullrequest-fcp",
-      replicas:: 5,
+      serviceName:: "firefly-pullrequest-fcp-test",
+      replicas:: 1,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
-              value: "firefly-fcp",
+              value: "firefly-fcp-test",
           },
           {
               name: "RABBIT_MQ_QUEUE_NAME",
-              value: "firefly-fcp.pr",
+              value: "firefly-fcp-test.pr",
           },
       ],
       data:: {
         local appConfig = prConfig.config("firefly-pullrequest") + {
           appconfig+: {
             "multi-repo-supported": true,
-            "self-auth-allowed": false,
+            "self-auth-allowed": true,
             docker+: {
               "force-create-container": true,
             },
@@ -101,8 +101,10 @@ if configs.estate == "prd-samtwo" then
         "application.yml": std.manifestJson(appConfig),
       },
   },
+
   apiVersion: "v1",
   kind: "List",
   items: std.flattenArrays([package.items, packagesingleton.items, pullrequest.items]),
+
 }
 else "SKIP"
