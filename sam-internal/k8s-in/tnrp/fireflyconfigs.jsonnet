@@ -41,10 +41,10 @@ local kingdom = std.extVar("kingdom");
         "3": $.per_phase["4"] {
              fireflyintake: "15",
              fireflycrawler: "14",
-             fireflypackage: "19",
-             fireflypackagesingleton: "17",
+             fireflypackage: "20",
+             fireflypackagesingleton: "18",
              fireflypromotion: "11",
-             fireflypullrequest: "19",
+             fireflypullrequest: "20",
              fireflyevalresultmonitor: "8",
              fireflyrabbitmq: "2",
              fireflyrabbitmqmonitor: "4",
