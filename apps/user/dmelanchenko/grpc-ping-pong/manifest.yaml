@@ -130,7 +130,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmelanchenko/grpc-ping-pong:v0
       args:
         - /client
-        - "--address=grpc-ping-pong-service.user-dmelanchenko.samapp.localhost.mesh.force.com:7011"
+        - "--address=grpc-ping-pong-server.user-dmelanchenko.samapp.localhost.mesh.force.com:7011"
       livenessProbe:
         exec:
           command:
