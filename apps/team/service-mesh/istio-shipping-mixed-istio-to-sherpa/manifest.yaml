@@ -15,7 +15,6 @@ system:
       disco_pod: ""
       disco_sp: ""
       disco_role: istio-shipping-mixed-istio-to-sherpa
-      "sherpa-injector.service-mesh/inject": "enabled"
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
