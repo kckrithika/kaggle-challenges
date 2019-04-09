@@ -6,6 +6,7 @@ if configs.estate == "prd-samtest" then configs.daemonSetBase("sam") {
         template: {
             spec: configs.specWithKubeConfigAndMadDog {
                 hostNetwork: true,
+                serviceAccountName: "node-labeler-sa",
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         image: samimages.hypersam,
