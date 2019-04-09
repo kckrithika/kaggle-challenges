@@ -4,7 +4,7 @@ local portConfig = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
 local firefly_feature_flags = import "firefly_feature_flags.jsonnet";
 local envConfig = import "configs/firefly_service_conf.jsonnet";
-local crawlerConfig = import "configs/firefly-crawler-mdp.jsonnet";
+local crawlerConfig = import "configs/firefly-crawler.jsonnet";
 local fireflyConfigs = import "fireflyconfigs.jsonnet";
 
 if firefly_feature_flags.is_firefly_svc_enabled then
@@ -44,7 +44,17 @@ if firefly_feature_flags.is_firefly_svc_enabled then
     ],
     volumeMounts:: super.commonVolMounts,
     data:: {
-      "application.yml": std.manifestJson(crawlerConfig.config("firefly-crawler-mdp")),
+      local appConfig = crawlerConfig.config("firefly-crawler-mdp") + {
+        firefly+: {
+          crawler+: {
+            repositories: envConfig.environmentMapping[configs.estate].repositoriesMDP,
+          },
+          intake+: {
+            'api-url': envConfig.environmentMapping[configs.estate].intakeEndpointMDP,
+          },
+        },
+      },
+      "application.yml": std.manifestJson(appConfig),
     },
  },
 
