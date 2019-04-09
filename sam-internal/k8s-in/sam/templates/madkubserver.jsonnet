@@ -52,11 +52,15 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                             configs.kingdom,
                             "--estate",
                             configs.estate,
-
                         ] + if configs.kingdom == "prd" then
                             [
                                 "--retry-max-elapsed-time",
                                 "20s",
+                            ] else []
+                          + if utils.is_pcn(configs.kingdom) then
+                            [
+                              "--dns-domain",
+                              configs.dnsdomain,
                             ] else [],
                         image: if utils.is_pcn(configs.kingdom) then samimages.static.madkubPCN else samimages.madkub,
                         name: "madkubserver",
