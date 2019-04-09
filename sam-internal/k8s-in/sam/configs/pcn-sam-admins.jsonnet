@@ -24,6 +24,7 @@
     "paverbuj@salesforce.com",
     "vyjayanthi.raja@salesforce.com",
     "hsuanyu.chen@salesforce.com",
+    "pperger@salesforce.com",
     # Service-Mesh Team
     "npshenichnyy@salesforce.com",
 ]
