@@ -15,13 +15,11 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-warden-frf
-        image: dva/casp/warden_strata:154
+        image: dva/casp/warden_strata:162
         ports:
         - name: warden
           containerPort: 8889
           hostPort: 18889
-        - name: grpc
-          containerPort: 7442
         env:
         - name: BRANCH
           value: "ops_production"
@@ -59,5 +57,3 @@ system:
       ports:
         - port: 8889
           targetport: 8889
-        - port: 7442
-          targetport: 7442
