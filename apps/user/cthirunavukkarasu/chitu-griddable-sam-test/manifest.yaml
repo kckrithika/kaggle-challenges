@@ -6,6 +6,7 @@ system:
       - cthirunavukkarasu@salesforce.com
   functions:
   - name: griddable-services-test
+    type: stateful-set
     count: 1
     containers:
     - name: griddable-relay-test
