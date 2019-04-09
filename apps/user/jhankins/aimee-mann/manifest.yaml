@@ -6,7 +6,7 @@ system:
       chaos.sfdc.net/charmer: true
       chaos.sfdc.net/charmerPeriod: 30s
       chaos.sfdc.net/podDelete: true
-      chaos.sfdc.net/podDeletePeriod: 1m
+      chaos.sfdc.net/podDeletePeriod: 13m
     count: 2
     containers:
     - name: aimee-mann
