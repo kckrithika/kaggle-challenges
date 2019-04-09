@@ -19,7 +19,7 @@ system:
       - --scone.detectsidecars=false
       - --synctask.enabled=true
       - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
-      - --dt.tnrp-piperepo=ops0-artifactrepo2-0-xrd.slb.sfdc.net
+      - --dt.tnrp-piperepo=ops0-artifactrepo2-0-xrd.slb.sfdc.net:443
       - --logging.sfdc.stderr.level=ALL
       ports:
       - containerPort: 7020
