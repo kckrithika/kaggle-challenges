@@ -5,7 +5,7 @@ system:
     email:
     - servicemesh@salesforce.com
   functions:
-  - name: geoip-mvp
+  - name: geoip
     count: 3
     containers:
     - name: geoip-database
