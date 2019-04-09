@@ -77,7 +77,7 @@ spec:
       - args:
         - /sam/madkub-client
         - --madkub-endpoint
-        - ""
+        - UNUSED
         - --maddog-endpoint
         - https://10.168.192.190:8443
         - --maddog-server-ca
