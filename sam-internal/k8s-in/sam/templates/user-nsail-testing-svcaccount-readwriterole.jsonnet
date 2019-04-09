@@ -4,7 +4,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
   kind: "Role",
   metadata: {
     name: "serviceentries-readwrite",
-    namespace: "user-nsail",
+    namespace: "z9s-default",
   },
   rules: [
   {
