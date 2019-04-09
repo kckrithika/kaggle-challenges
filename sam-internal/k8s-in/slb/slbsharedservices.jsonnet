@@ -18,6 +18,7 @@
     servicesNotToLbOverride="illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc",
     supportedProxies=[],
     includeProxyConfigurationVolume=true,
+    includeSlbPortalOverride=false,
   ): {
     name: "slb-config-processor",
     image: slbimages.hyperslb,
@@ -54,6 +55,10 @@
     ] else [])
     + (if configs.estate == "vpod" then [
       "--vipdnsoptions.slbdomain=t.force.com",
+    ] else [])
+    + (if includeSlbPortalOverride then [
+      "--portalEndpointOverride=ord.ord-sam.slb.sfdc.net",
+      "--k8sapiserver=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ord-sam",
     ] else []),
     volumeMounts: std.prune([
       configs.maddog_cert_volume_mount,

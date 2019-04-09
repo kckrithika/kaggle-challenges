@@ -94,7 +94,10 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                   },
                               ],
                           } + configs.ipAddressResourceRequest,
-                          slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
+                          (if slbflights.slbPortalEndpointOverride then
+                                slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort, includeSlbPortalOverride=true)
+                                else
+                                slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort)),
                           slbshared.slbCleanupConfig,
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                           slbshared.slbLogCleanup,
