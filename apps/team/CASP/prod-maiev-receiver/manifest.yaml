@@ -33,6 +33,8 @@ system:
     loadbalancers:
     - lbname: maiev-receiver
       function: maiev-receiver-func
+      slbEnabled: true
+      nodeExposed: true
       ports:
         - port: 7442
           targetport: 7442
