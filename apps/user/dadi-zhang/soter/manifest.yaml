@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: soter
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dadi-zhang/dadi-soter-test:master-20190409-2
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:jenkins-Infrastructure-Security-soter-PR-27-1-itest
       ports:
       - containerPort: 8080
       livenessProbe:
