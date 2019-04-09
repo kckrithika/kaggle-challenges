@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: acds-tm-cont
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-taskmanager:v0.0.5 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-taskmanager:v0.0.6 
       command:
       - /bin/bash
       - -c
