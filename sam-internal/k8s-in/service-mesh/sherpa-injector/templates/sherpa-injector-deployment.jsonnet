@@ -18,7 +18,7 @@ configs.deploymentBase("service-mesh") {
     if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.pcnEnableLabel else {},
   },
   spec+: {
-    replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else 3,
+    replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "gsf-core-devmvp-sam2-sam" then 1 else 3,
     template: {
       metadata: {
         labels: {
