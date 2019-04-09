@@ -16,14 +16,28 @@ system:
           type: client
     containers:
     - name: zones-intake-backend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:40
+      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:40
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:mtls2
       ports:
       - containerPort: 7022
+      - containerPort: 8443
       env:
       - name: HOST
         value: "0.0.0.0"
       - name: PORT
         value: 7022
+      - name: TLS_HOST
+        value: "0.0.0.0"
+      - name: TLS_PORT
+        value: 8443
+      - name: TLS_CERTIFICATE
+        value: /servercerts/server/certificates/server.pem
+      - name: TLS_PRIVATE_KEY
+        value: /servercerts/server/keys/server-key.pem
+      - name: TLS_CA_CERTIFICATE
+        value: /servercerts/ca.pem
+      - name: FRONTEND_MADDOG_ID
+        value: samapp.user-jiaqi-wu.zones-client
       livenessProbe:
         httpGet:
           path: /zones/v1/healthcheck
@@ -41,5 +55,13 @@ system:
     ports:
       - port: 3000
         targetport: 7022
+        lbtype: http
+        tls: false
+  - lbname: zones-intake-backend-secure
+    function: zones-intake-backend
+    slbenabled: false
+    ports:
+      - port: 4443
+        targetport: 8443
         lbtype: http
         tls: false
