@@ -130,8 +130,8 @@ spec:
           name: cert2
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://10.131.35.30:32007
-        - --maddog-endpoint=https//10.168.195.227:8443
+        - --madkub-endpoint=https://madkubserver.sam-system.svc:32007
+        - --maddog-endpoint=https://10.168.192.190:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
@@ -242,8 +242,8 @@ spec:
       initContainers:
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://10.131.35.30:32007
-        - --maddog-endpoint=https//10.168.195.227:8443
+        - --madkub-endpoint=https://madkubserver.sam-system.svc:32007
+        - --maddog-endpoint=https://10.168.192.190:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
         - --cert-folders=cert1:/cert1/
