@@ -11,7 +11,7 @@ system:
       count: 1
       containers:
         - name: qpid-broker-runtime
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/jason-woods/qpid-broker-runtime:v0
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/qpid/qpid-broker-runtime:26a8a7e.6
           ports:
             - name: amqp-port
               containerPort: 5672
