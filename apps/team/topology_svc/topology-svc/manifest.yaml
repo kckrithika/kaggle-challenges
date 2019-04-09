@@ -11,7 +11,7 @@ system:
         - --server.port=7022	
       env:
         - name: JVM_ARGS
-          value: "-Dspring.profiles.active=gcp"
+          value: "-Dspring.profiles.active=gcp -Dserver.port=7022"
       ports:
       - containerPort: 7022
         name: scone-http
