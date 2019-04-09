@@ -8,12 +8,12 @@ system:
     type: stateful-set
     containers:
     - name: elasticsearch1
-      image: docker-dva-rc/dva/elasticsearch-server:25
+      image: docker-dva-rc/dva/elasticsearch-server:26
       env:
       - name: ES_JAVA_OPTS
         value: '-Xms30g -Xmx30g'
       - name: ES_REST_PROTOCAL
-        value: http 
+        value: https 
       volumeMounts:
       - mountPath: /var/lib/elasticsearch
         name: elasticsearch-persistent-storage
