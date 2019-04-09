@@ -341,7 +341,17 @@ configs.deploymentBase("service-mesh") {
             },
             name: "tokens",
           },
-        ],
+        ] +
+        if configs.estate == "gsf-core-devmvp-sam2-sam" then
+        [
+          {
+            hostPath: {
+              path: "/etc/pki_service",
+            },
+            name: "maddog-certs",
+          },
+        ]
+        else [],
         initContainers+: [
           maddogInit.madkubInitContainer,
           maddogPermissions.permissionSetterInitContainer,
