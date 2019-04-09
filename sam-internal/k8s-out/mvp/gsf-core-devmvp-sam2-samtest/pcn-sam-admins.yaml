@@ -74,4 +74,7 @@ subjects:
   name: hsuanyu.chen@salesforce.com
 - apiGroup: rbac.authorization.k8s.io
   kind: User
+  name: pperger@salesforce.com
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
   name: npshenichnyy@salesforce.com
