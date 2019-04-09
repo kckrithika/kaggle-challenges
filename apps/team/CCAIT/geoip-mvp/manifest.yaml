@@ -7,6 +7,8 @@ system:
   functions:
   - name: geoip-mvp
     count: 3
+    identity:
+      serviceName: geoip
     containers:
     - name: geoip-database
       # TODO(sness) - Update this when we push automatically from the Jenkinsfile
