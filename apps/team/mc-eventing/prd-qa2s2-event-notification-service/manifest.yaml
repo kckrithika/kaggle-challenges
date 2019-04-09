@@ -23,7 +23,7 @@ system:
         secretName: eventbusajna-ens-v1
     containers:
     - name: qa2s2-event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.6
+      image: sfci/mc-eventing/event-notification:1.0.10
       ports:
       - containerPort: 15372
       env:
@@ -35,6 +35,8 @@ system:
         value: mc.test.mceventbusqa2s2
       - name: EVENTCONSUMER_GROUP_ID
         value: eventing-notification-qa2s2
+      - name: SESSION_TIMEOUT_MS
+        value: 6000
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
