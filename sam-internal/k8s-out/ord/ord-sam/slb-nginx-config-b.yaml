@@ -134,7 +134,7 @@ spec:
         env:
         - name: KINGDOM
           value: ord
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/slb/nginx:119-31e5c368e56942a60be71c57bc60fc0c6c0d9fe1
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/slb/nginx:120-1e2e939e95dde2a3266dbb9c55e6f3753c1d1905
         livenessProbe:
           httpGet:
             path: /
