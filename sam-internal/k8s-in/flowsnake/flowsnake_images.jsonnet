@@ -35,7 +35,7 @@ local utils = import "util_functions.jsonnet";
                 watchdog_image_tag: "2677-299d4f888e346e593008066db59ed5badc5777c8",  # Adds cli-checker stdout/stderr to watchdog report email
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
                 deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-11-itest",
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-12-itest",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -59,6 +59,7 @@ local utils = import "util_functions.jsonnet";
                 cert_secretizer_image_tag: "716",  # TODO: This is _older_ than phase 3. Fix.
                 eventExporter_image_tag: "726",  # TODO: This is _older_ than phase 3. Fix.
                 fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",  # TODO: This is _older_ than phase 3. Fix.
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-12-itest",
             },
             feature_flags+: {
                 spark_op_watchdog_improve_logging: "enabled",
