@@ -8,7 +8,7 @@ system:
         - akouthoofd@salesforce.com
     functions:
     - name: maiev-receiver-func
-      count: 1
+      count: 3
       strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -16,10 +16,10 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-maiev-receiver
-        image: dva/maiev-receiver:6
+        image: dva/maiev-receiver:7
         ports:
         - name: receiver-grpc
-          containerPort: 7444
+          containerPort: 7442
           hostPort: 17444
         livenessProbe:
           exec:
@@ -27,7 +27,7 @@ system:
             - /usr/bin/true
         env:
         - name: MASTER_GRPC_PORT
-          value: "7444"
+          value: "7442"
         - name: CANTOR_GRPC_TARGET
           value: "cantor.casp.$KINGDOM-sam.$KINGDOM.slb.sfdc.net:11983"
     loadbalancers:
@@ -35,5 +35,5 @@ system:
       function: maiev-receiver-func
       slbEnabled: true
       ports:
-        - port: 11984
-          targetport: 7444
+        - port: 7442
+          targetport: 7442
