@@ -47,6 +47,8 @@ spec:
         - mvp
         - --estate
         - gsf-core-devmvp-sam2-sam
+        - --dns-domain
+        - gsf-core-devmvp-sam2-sam.mvp.sam.sfdc.net
         env:
         - name: SFDCLOC_PCN_KINGDOM
           value: mvp
