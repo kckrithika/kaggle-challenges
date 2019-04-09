@@ -88,7 +88,7 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                         args: [
                                   "/sam/madkub-client",
                                   "--madkub-endpoint",
-                                  "",
+                                  if utils.is_pcn(configs.kingdom) then "UNUSED" else "",
                                   "--maddog-endpoint",
                                   if utils.is_pcn(configs.kingdom) then configs.maddogGCPEndpoint else configs.maddogEndpoint,
                                   "--maddog-server-ca",
