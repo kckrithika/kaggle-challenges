@@ -1,0 +1,129 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: na4-sequencer-phx
+    identity:
+      serviceName: sequencer
+      pod: na4
+    count: 1
+    containers:
+    - name: sequencer
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:23ae6f
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export SNOWWHITE_PWD=$(cat /db-secrets/gcp-mvp-1az-db-pw/dbpw.txt) ;
+      /usr/local/bin/run.sh
+      "]
+
+      env:
+      - name: NONCE
+        value: 1551221682919725056
+      - name: DRY_RUN
+        value: 1
+      - name: CHATTER_GROUP_NAME
+        value: casam-alpha
+      - name: SFPROXY_VIP
+        value: https://devmvpapp-lb.core-on-sam-sp1.gcp-sam.gcp.slb.sfdc.net:8443
+      - name: SWITCH_BOARD_ADDRESS
+        value: na3-switchboard-lb:16001
+      - name: RELEASE_VESION
+        value: ""
+      - name: RELEASE_TYPE
+        value: MINOR
+      - name: MAJOR_RELEASE_NUMBER
+        value: 220
+      - name: MINOR_RELEASE_NUMBER
+        value: 0
+      - name: PATCH_RELEASE_NUMBER
+        value: 0
+      - name: CURRENT_RELEASE_VERSION
+        value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
+      - name: READY_SERVER_COUNT
+        value: 3
+      - name: DB_SID
+        value: CSDB6
+      - name: ENABLE_DB_SCHEMA_UPGRADE
+        value: 0
+      - name: SET_DEFAULT_ORACLE_EDITION
+        value: 0
+      - name: OLD_DWARF
+        value: sneezy
+      - name: KILL_DWARF
+        value: 0
+      - name: LOCK_DWARF
+        value: 0
+      - name: TRIGGER_CAFFEINE
+        value: 0
+      - name: UNLOCK_DWARF
+        value: 0
+      - name: MADDOG_CLIENT
+        value: /certs
+      - name: SFPROXY_SETTINGS_PATH
+        value: prod.-.phx.na3.sfproxy-envoy
+      - name: CASAM_SUPERPOD
+        value: sp1
+      - name: HTTP_PROXY
+        value: localhost:3128      
+      - name: SUBSTRATE
+        value: public
+      - name: SKIP_KAIJU
+        value: 1
+      - name: KAIJU_REFOCUS_GETRESULT_URL
+        value: https://refocus.hk.salesforce.com/v1/samples/
+      - name: KAIJU_RUNTIME_TIMEOUT_MS
+        value: 30000
+      - name: dns_override_enabled
+        value: true
+      livenessProbe:
+        exec:
+          command:
+          - /usr/local/bin/ready_probe.sh
+        failureThreshold: 10
+        initialDelaySeconds: 60
+        periodSeconds: 1
+      readinessProbe:
+        exec:
+          command:
+          - /usr/local/bin/ready_probe.sh
+        failureThreshold: 10
+        initialDelaySeconds: 60
+        periodSeconds: 1
+      ports:
+      - containerPort: 12062
+      resources:
+        limits:
+          cpu: 4
+          memory: 10Gi
+        requests:
+          cpu: 2
+          memory: 4Gi
+      volumeMounts:
+      - mountPath: /certs
+        name: cert
+      - mountPath: /secrets/
+        name: secretvol
+        readOnly: true
+      - mountPath: /kaiju-secrets/
+        name: kaiju-secret-vol
+        readOnly: true
+      - mountPath: /db-secrets/gcp-mvp-1az-db-pw
+        name: secretvol-db
+        readOnly: true
+    progressDeadlineSeconds: 300
+    terminationGracePeriodSeconds: 500
+    volumes:
+    - maddogCert:
+        type: client
+      name: cert
+    - k4aSecret:
+        secretName: gcp-mvp-sequencer-gus
+      name: secretvol
+    - k4aSecret:
+        secretName: gcp-mvp-sequencer-kaiju
+      name: kaiju-secret-vol
+    - name: secretvol-db
+      k4aSecret:
+        secretName: gcp-mvp-1az-db-pw
