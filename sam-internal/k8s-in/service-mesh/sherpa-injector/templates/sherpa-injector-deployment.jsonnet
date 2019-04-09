@@ -192,10 +192,6 @@ configs.deploymentBase("service-mesh") {
             },
             resources: {},
           },
-          ] +
-          // Temporary for GCP debugging
-          if configs.estate != "gsf-core-devmvp-sam2-sam" then
-          [
           maddogRefresher.madkubRefresherContainer,
           {
             name: "sherpa",
@@ -317,7 +313,7 @@ configs.deploymentBase("service-mesh") {
               },
             },
         },
-        ] else [],
+        ],
         # In PRD only kubeapi (master) nodes get cluster-admin permission
         # In production, SAM control estate nodes get cluster-admin permission
         nodeSelector: {} +
@@ -346,13 +342,10 @@ configs.deploymentBase("service-mesh") {
             name: "tokens",
           },
         ],
-        initContainers+:
-          // Temporary for GCP debugging
-        if configs.estate != "gsf-core-devmvp-sam2-sam" then
-        [
+        initContainers+: [
           maddogInit.madkubInitContainer,
           maddogPermissions.permissionSetterInitContainer,
-        ] else [],
+        ],
       },
     },
   },
