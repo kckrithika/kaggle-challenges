@@ -324,6 +324,49 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: sortiz@salesforce.com
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: debug
+    namespace: emailinfra
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: debug
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: awaterman@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: dkarbivnychyy@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: jhumphreys@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: ksheth@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: ngolding@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: nshekhawat@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: ominaiev@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: pkonieczny@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rkimble@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rstevens@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: mark.wasserman@salesforce.com
 kind: List
 metadata:
   labels:
