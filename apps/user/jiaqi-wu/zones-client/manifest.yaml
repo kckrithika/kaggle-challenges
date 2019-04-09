@@ -16,7 +16,18 @@ system:
       env:
       - name: BACKEND_ENDPOINT
         value: "http://zones-intake-backend-lb.user-jiaqi-wu.svc.prd-sam.prd.sam.sfdc.net:3000/zones/v1/roles"
+      - name: CLIENT_CERT_PATH
+        value: "/clientcerts/client/certificates/client.pem"
+      - name: CLIENT_KEY_PATH
+        value: "/clientcerts/client/keys/client-key.pem"
+      - name: CA_CERT_PATH
+        value: "/servercerts/ca.pem"
       livenessProbe:
         httpGet:
           path: /
           port: 8000
+      volumeMounts:
+      - name: servercert
+        mountPath: /servercerts
+      - name: clientcert
+        mountPath: /clientcerts
