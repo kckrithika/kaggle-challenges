@@ -71,9 +71,92 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: rmichela@salesforce.com
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: debug
+    namespace: mesh-control-plane
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: debug
+  subjects:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
-    name: rpulle@salesforce.com
+    name: npshenichnyy@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: sness@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: drichelson@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: bhoyt@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: shaktiprakash.das@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: devesh.kandpal@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: jbratton@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: lgestrin@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: pnambiar@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rama.rao@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rmichela@salesforce.com
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: debug
+    namespace: ccait
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: debug
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: npshenichnyy@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: sness@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: drichelson@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: bhoyt@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: shaktiprakash.das@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: devesh.kandpal@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: jbratton@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: lgestrin@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: pnambiar@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rama.rao@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rmichela@salesforce.com
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
