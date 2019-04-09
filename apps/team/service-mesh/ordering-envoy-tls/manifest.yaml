@@ -5,7 +5,6 @@ system:
   - name: ordering-envoy-tls
     count: 1
     labels:
-      "sherpa-injector.service-mesh/inject": "enabled"
       app: ordering-envoy-tls
       prat-test: true
     annotations:

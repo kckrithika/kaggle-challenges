@@ -8,7 +8,6 @@ system:
   - name: istio-ordering-mixed-sherpa-to-istio
     count: 1
     labels:
-      "sherpa-injector.service-mesh/inject": "enabled"
       app: istio-ordering-mixed-sherpa-to-istio
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"
