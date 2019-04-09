@@ -9,6 +9,8 @@ system:
       ports:
       - containerPort: 9090
       livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
+        exec:
+          command:
+          - ls
+        initialDelaySeconds: 5
+        periodSeconds: 5
