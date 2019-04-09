@@ -8,7 +8,7 @@ system:
       containers:
       - name: searchserver
         # image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17833788.459
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17855128.460
         env:
         - name: INSTANCE_URL
           value: "https://casam.devmvp.gcp.sfdcsvc.net"
@@ -41,9 +41,9 @@ system:
         - name: certs-server
           mountPath: /certs/server
         livenessProbe:
-          httpGet:
-            path: /ping.jsp
-            port: 8983
+          exec:
+            command:
+            - "true"
           initialDelaySeconds: 120
           periodSeconds: 5
       lbname: searchserver0
@@ -68,7 +68,7 @@ system:
       containers:
       - name: searchserver
         # image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17833788.459
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17855128.460
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
@@ -103,9 +103,9 @@ system:
         - name: certs-server
           mountPath: /certs/server
         livenessProbe:
-          httpGet:
-            path: /ping.jsp
-            port: 8983
+          exec:
+            command:
+            - "true"
           initialDelaySeconds: 120
           periodSeconds: 5
       lbname: searchserver1
