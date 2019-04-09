@@ -5,7 +5,7 @@ system:
     email:
       - cthirunavukkarasu@salesforce.com
   functions:
-  - name: griddable-relay
+  - name: griddable-services
     count: 1
     containers:
     - name: griddable-relay
@@ -21,7 +21,7 @@ system:
     terminationGracePeriodSeconds: 33
   loadbalancers:
   - lbname: griddable-relay
-    function: griddable-relay
+    function: griddable-services
     slbenabled: true
     ports:
       - port: 10234
