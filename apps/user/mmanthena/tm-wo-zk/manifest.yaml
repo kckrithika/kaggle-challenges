@@ -13,7 +13,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - "/acds/bin/tkOk.sh"
+          - "/acds/bin/tmOk.sh"
         initialDelaySeconds: 10
         timeoutSeconds: 5
       env:
