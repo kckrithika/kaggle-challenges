@@ -9,7 +9,7 @@ system:
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ksheth/emailinfrastructure/eaas:ksheth-20181219
+      image: docker-sfci-dev/sfci/eaas/emailservice:2.0.44-2b75a75b6b5ff6116b159922daa790312f4d7a7f
       ports:
       - name: grpc
         containerPort: 7020
@@ -34,6 +34,9 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
+      # mount pki client certs (and CA cert) for SMTP connection Eaas -> MTA
+      - mountPath: /etc/pki_service
+        name: eaas-client-cert
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -72,7 +75,7 @@ system:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
     - name: sherpa-eaas
-      image: sfci/servicelibs/sherpa-envoy:1.0.3
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
       # plain-text HTTP2 GRPC port
       - name: sherpa-eaas-grp
