@@ -121,3 +121,5 @@ apps:
 
   demo-authz:
     - prd/prd-sam_gater
+  demo-authz-mvp:
+    - mvp/gsf-core-devmvp-sam2-sam
