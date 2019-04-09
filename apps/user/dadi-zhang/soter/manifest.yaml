@@ -1,0 +1,14 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: soter
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:jenkins-Infrastructure-Security-soter-PR-24-1-itest
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
