@@ -5,12 +5,20 @@ system:
     count: 1
     containers:
     - name: soter
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dadi-zhang/dadi-soter:test
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dadi-zhang/dadi-soter-test:master-20190409-2
       ports:
-      - containerPort: 9090
+      - containerPort: 8080
       livenessProbe:
         exec:
           command:
           - ls
         initialDelaySeconds: 5
         periodSeconds: 5
+  loadbalancers:
+  - lbname: soterlb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: tcp
