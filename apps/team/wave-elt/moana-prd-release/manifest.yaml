@@ -2,14 +2,14 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-04-10 20:25:24.116478
+# generated: 2019-04-10 22:29:06.767759
 # from:  
 # by: afield
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:521-96ffec86ddd5bd5bc5e11d5fdd594737a01ea0b4
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:522-61448862bcc9bc00a4d884087defa83b8d13ec24
       livenessProbe:
         exec:
           command: [ls]
@@ -59,7 +59,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:521-96ffec86ddd5bd5bc5e11d5fdd594737a01ea0b4'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:522-61448862bcc9bc00a4d884087defa83b8d13ec24'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-release}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:+UseG1GC
