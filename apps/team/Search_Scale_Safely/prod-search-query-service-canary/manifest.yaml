@@ -14,7 +14,7 @@ system:
         maxUnavailable: 25%
     containers:
     - name: search-query-service
-      image: sfci/searchdev/smt-search-model-executor:QS-4.8
+      image: sfci/searchdev/search-query-execution-platform:QS-5.0
       ports:
       - name: service-port
         containerPort: 7020
@@ -38,18 +38,18 @@ system:
       - mountPath: /home/sfdc-search-query-service/logs
         name: logvol
     - name: beacon
-      image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
+      image: sfci/services/sfdc-bazel/disco/beacon:488bf42
       args:
-      # mTLS port
       - -endpoint
       - search-scale-safely/search-query-service:DATACENTER_ALLENV:7443
-      livenessProbe:
-        exec:
-          command: ["/home/scone/is-alive.sh"]
-        initialDelaySeconds: 5
       volumeMounts:
-      - name: beacon-log-volume
-        mountPath: /home/scone/logs
+      - mountPath: /home/scone/logs
+        name: beacon-log-volume
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - /opt/beacon/is-alive.sh
     - name: sherpa-b
       image: sfci/servicelibs/sherpa-envoy:1.0.6
       env:
