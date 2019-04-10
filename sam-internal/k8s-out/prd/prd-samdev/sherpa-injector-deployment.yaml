@@ -27,6 +27,7 @@ spec:
               "sherpa-injector",
               "sherpa-injector.mesh-control-plane",
               "sherpa-injector.mesh-control-plane.svc",
+              "sherpa-injector.mesh-control-plane.svc.cluster.local",
               "sherpa-injector.mesh-control-plane.svc.prd-samdev.prd.sam.sfdc.net"
              ]
             },
@@ -39,6 +40,7 @@ spec:
               "sherpa-injector",
               "sherpa-injector.mesh-control-plane",
               "sherpa-injector.mesh-control-plane.svc",
+              "sherpa-injector.mesh-control-plane.svc.cluster.local",
               "sherpa-injector.mesh-control-plane.svc.prd-samdev.prd.sam.sfdc.net"
              ]
             }
