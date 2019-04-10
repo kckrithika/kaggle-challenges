@@ -18,6 +18,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: prd
+      - name: HBASE_ENV
+        value: kingdom-test
       - name: SCONE_SERVICE_NAME
         value: eaas
       - name: SFDC_POD
