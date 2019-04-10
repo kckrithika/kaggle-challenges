@@ -37,7 +37,7 @@ system:
       - name: TLS_CA_CERTIFICATE
         value: /servercerts/ca.pem
       - name: FRONTEND_MADDOG_ID
-        value: samapp.user-jiaqi-wu.zones-client
+        value: samapp.user-juppala.zones-ui
       livenessProbe:
         httpGet:
           path: /zones/v1/healthcheck
