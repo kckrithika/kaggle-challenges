@@ -132,7 +132,7 @@ spec:
           name: cert2
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --madkub-endpoint=https://10.131.35.30:32007
         - --maddog-endpoint=https://10.168.192.190:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
@@ -244,7 +244,7 @@ spec:
       initContainers:
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --madkub-endpoint=https://10.131.35.30:32007
         - --maddog-endpoint=https://10.168.192.190:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
