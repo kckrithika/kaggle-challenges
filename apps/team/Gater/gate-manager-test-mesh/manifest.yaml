@@ -47,7 +47,7 @@ system:
         periodSeconds: 5
     - name: sherpa
       # latest release:  https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
       ports:
       - name: http2-in
         containerPort: 7012
