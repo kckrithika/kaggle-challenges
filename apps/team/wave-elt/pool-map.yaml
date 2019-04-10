@@ -1,4 +1,6 @@
 apps:
+  moana-ukb-group1:
+  - ukb/ukb-sam_datapool
   moana-engine-lo3-frf-group1:
   - frf/frf-sam_datapool
   moana-lo3-group1:
@@ -33,8 +35,6 @@ apps:
   - dfw/dfw-sam_datapool
   moana-ord:
   - ord/ord-sam_datapool
-  moana-ukb:
-  - ukb/ukb-sam_datapool
 
 
   moana-prd-release:
