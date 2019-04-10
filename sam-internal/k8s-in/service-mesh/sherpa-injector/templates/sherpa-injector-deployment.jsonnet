@@ -148,7 +148,15 @@ configs.deploymentBase("service-mesh") {
                 // use `value: funnelEndpointPort,` if direct link to ajna is needed
                 value: "7013",
               },
-            ],
+            ] +
+            if configs.estate == "gsf-core-devmvp-sam2-sam" then
+            [
+              {
+                name: "FAKE_REDEPLOY_VAR",
+                value: "1",
+              },
+            ]
+            else [],
             volumeMounts+: [
               {
                 name: "cert1",

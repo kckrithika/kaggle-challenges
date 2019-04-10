@@ -99,6 +99,8 @@ spec:
           value: ajnafunneldirect.localhost.mesh.force.com
         - name: SFDC_METRICS_SERVICE_PORT
           value: "7013"
+        - name: FAKE_REDEPLOY_VAR
+          value: "1"
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-injector:a29668190cb744cb60dceff0b40e401b677fd49e
         imagePullPolicy: IfNotPresent
         livenessProbe:
