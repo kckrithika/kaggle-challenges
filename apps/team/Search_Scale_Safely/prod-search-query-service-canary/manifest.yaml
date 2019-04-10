@@ -38,18 +38,18 @@ system:
       - mountPath: /home/sfdc-search-query-service/logs
         name: logvol
     - name: beacon
-      image: sfci/servicelibs/beacon:488bf42
+      image: sfci/services/sfdc-bazel/disco/beacon:488bf42
       args:
-      # mTLS port
       - -endpoint
       - search-scale-safely/search-query-service:DATACENTER_ALLENV:7443
-      livenessProbe:
-        exec:
-          command: ["/home/scone/is-alive.sh"]
-        initialDelaySeconds: 5
       volumeMounts:
-      - name: beacon-log-volume
-        mountPath: /home/scone/logs
+      - mountPath: /home/scone/logs
+        name: beacon-log-volume
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - /opt/beacon/is-alive.sh
     - name: sherpa-b
       image: sfci/servicelibs/sherpa-envoy:1.0.6
       env:
