@@ -1,10 +1,7 @@
 #
 # Generated manifest
-# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
+# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release-scripts
 #
-# generated: 2019-04-04 20:30:33.749629
-# from:  
-# by: afield
 apiVersion: v1
 system:
   functions:
@@ -16,6 +13,6 @@ system:
         initialDelaySeconds: 5
       name: moana-engine
     count: 0
-    name: moana-engine-cdg-par
+    name: moana-engine-lo2-par-group1
   notifications:
     email: [moanaserviceseng@salesforce.com]
