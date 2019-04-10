@@ -1,7 +1,19 @@
 apps:
-  moana-engine-cdg-par:
+  moana-engine-lo3-frf-group1:
+  - frf/frf-sam_datapool
+  moana-lo3-group1:
+  - lo3/lo3-sam_datapool
+  moana-engine-lo2-par-group1:
   - par/par-sam_datapool
-  moana-cdg:
+  moana-lo2-group1:
+  - lo2/lo2-sam_datapool
+  moana-engine-fra-frf-group1:
+  - frf/frf-sam_datapool
+  moana-fra-group1:
+  - fra/fra-sam_datapool
+  moana-engine-cdg-par-group1:
+  - par/par-sam_datapool
+  moana-cdg-group1:
   - cdg/cdg-sam_datapool
   moana-ph2:
   - ph2/ph2-sam_datapool

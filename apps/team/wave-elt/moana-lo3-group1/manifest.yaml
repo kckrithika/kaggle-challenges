@@ -1,10 +1,7 @@
 #
 # Generated manifest
-# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
+# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release-scripts
 #
-# generated: 2019-04-04 20:30:33.749629
-# from:  
-# by: afield
 apiVersion: v1
 system:
   functions:
@@ -12,7 +9,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: TEST_POD, value: moana-driver}
+      - {name: TEST_POD, value: moana-driver-group1}
       - {name: PKI_TRUSTSTORE_DIR, value: /home/scone/client-certs}
       - {name: PKI_KEYSTORE_DIR, value: /home/scone/client-certs/client}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=256m -Xmx1024m -Xms1024m'}
@@ -20,6 +17,7 @@ system:
       - {name: TESTRECIPE_TIMEOUT, value: 240s}
       - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
+      - {name: DEPLOYMENT_ID, value: lo3-group1}
       image: sfci/insights/moana-driver:release-7-6cc9a0f
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
@@ -37,7 +35,7 @@ system:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
     count: 1
     identity: {serviceName: moana-driver}
-    name: moana-driver
+    name: moana-driver-group1
     volumes:
     - maddogCert: {type: server}
       name: tls-server-certs
@@ -47,12 +45,13 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/dva/moana-engine:521-96ffec86ddd5bd5bc5e11d5fdd594737a01ea0b4'}
-      - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-primary}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-frf.data.sfdc.net/dva/moana-engine:521-96ffec86ddd5bd5bc5e11d5fdd594737a01ea0b4'}
+      - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
           "-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops",
           "spark.ui.enabled": "false"}'}
-      - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-par.slb.sfdc.net'}
+      - {name: DEPLOYMENT_ID, value: lo3-group1}
+      - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-frf.slb.sfdc.net'}
       image: sfci/insights/jobcontroller:release-103-b5d1371
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
@@ -100,7 +99,7 @@ system:
       - {mountPath: /log, name: sherpa-log-volume}
     count: 1
     identity: {serviceName: datapool}
-    name: jobcontroller
+    name: jobcontroller-group1
     volumes:
     - hostPath: {path: /data/sam/wave/log/datapool}
       name: logvol
