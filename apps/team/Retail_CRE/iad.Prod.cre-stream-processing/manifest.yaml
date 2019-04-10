@@ -47,14 +47,14 @@ system:
                   -Xloggc:/opt/cre/cre-sp-prod/verbosegc_$(FUNCTION_INSTANCE_NAME).log
                   -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=20M
                   -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/cre/cre-sp-prod
-                  -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
+                  -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 8080
       - containerPort: 7020
       - containerPort: 15372
       resources:
-        limits: { cpu: "2", memory: "4Gi" }
-        requests: { cpu: "2", memory: "3Gi" }
+        limits: { cpu: "2", memory: "6Gi" }
+        requests: { cpu: "2", memory: "5Gi" }
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
