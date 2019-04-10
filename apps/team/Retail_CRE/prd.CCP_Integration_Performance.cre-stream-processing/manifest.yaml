@@ -8,7 +8,7 @@ system:
   - name: cre-sp-ccp-perf
     count: 2
     labels:
-      chaos.sfdc.net/podDelete: true
+      chaos.sfdc.net/podDelete: false
       chaos.sfdc.net/podDeletePeriod: 30m
     containers:
     - name: cre-sp-ccp-perf
