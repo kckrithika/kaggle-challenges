@@ -4,13 +4,13 @@ system:
   - name: syncmaster
     count: 1
     containers:
-    - name: dds
+    - name: syncmaster
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/j-zoch/winterfell-syncmaster:rest-ticket-api
       env:
       - name: SPRING_CONFIG_NAME
         value: "prod"
       - name: DC
-        value: DATACENTER
+        value: ${KINGDOM}
       ports:
       - containerPort: 7020
       - containerPort: 15372
