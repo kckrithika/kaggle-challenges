@@ -9,10 +9,8 @@ system:
     count: 1
     containers:
     - name: cre-sp
-      image: sfci/cre/cre-stream-processing:1.5.0.0.master.529c936.168
+      image: sfci/cre/cre-stream-processing:1.7.0.0.master.6aebf8e.4
       env:
-        - name: DUMMY_VARIABLE
-          value: 1
         - name: PUBLISHING_TOPIC
           value: sfdc.prod.cre__ord.ajna_local__cre_outbound
         - name: PUBLISHING_GROUP_ID
