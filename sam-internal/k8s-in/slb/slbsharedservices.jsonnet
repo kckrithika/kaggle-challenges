@@ -57,7 +57,7 @@
       "--vipdnsoptions.slbdomain=t.force.com",
     ] else [])
     + (if includeSlbPortalOverride then [
-      "--portalEndpointOverride=ord.ord-sam.slb.sfdc.net",
+      "--vipdnsoptions.viplocation=ord-sam.ord",
       "--k8sapiserver=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ord-sam",
     ] else []),
     volumeMounts: std.prune([

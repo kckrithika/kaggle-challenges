@@ -36,5 +36,5 @@ local slbconfigs = import "slbconfig.jsonnet";
     alertOnlyOnProxyErrorCode: (slbimages.phaseNum < 1),
 
     # Feature flag for slb-portal to display all VIPs
-    slbPortalEndpointOverride: (false && slbimages.phaseNum <= 1),
+    slbPortalEndpointOverride: (slbimages.phaseNum <= 1),
 }
