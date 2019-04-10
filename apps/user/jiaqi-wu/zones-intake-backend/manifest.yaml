@@ -11,6 +11,8 @@ system:
       - name: servercert
         maddogCert:
           type: server
+          lbnames:
+            - zones-intake-backend-secure
       - name: clientcert
         maddogCert:
           type: client
@@ -59,9 +61,9 @@ system:
         tls: false
   - lbname: zones-intake-backend-secure
     function: zones-intake-backend
-    slbenabled: false
+    slbenabled: true
     ports:
       - port: 4443
         targetport: 8443
-        lbtype: http
+        lbtype: tcp
         tls: false
