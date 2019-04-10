@@ -2,14 +2,14 @@
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
 #
-# generated: 2019-04-09 20:31:50.488515
+# generated: 2019-04-10 20:25:01.250284
 # from:  
-# by: mbyne
+# by: afield
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-22-itest
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-23-itest
       livenessProbe:
         exec:
           command: [ls]
@@ -31,7 +31,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/moana-driver:master-20-09d5e48
+      image: sfci/insights/moana-driver:master-22-079784c
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -58,7 +58,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-22-itest'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-23-itest'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-master}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:+UseG1GC
@@ -71,7 +71,7 @@ system:
           "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/jobcontroller:master-238-bf57f2f
+      image: sfci/insights/jobcontroller:master-240-2856e3a
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
