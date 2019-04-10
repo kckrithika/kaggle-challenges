@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
 metadata:
   name: serviceentries-readwrite
-  namespace: user-nsail
+  namespace: z9s-default
 rules:
 - apiGroups:
   - networking.istio.io
