@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: demo-authz
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/strauz/sam-test:0.2
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/strauz/sam-test:0.3
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
