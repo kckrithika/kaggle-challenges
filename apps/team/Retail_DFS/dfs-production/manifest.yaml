@@ -22,7 +22,7 @@ system:
     containers:
     - name: dfs
       # Please update https://salesforce.quip.com/A9HVAFytGaqG with any changes.
-      image: sfci/enterprise-api/sfdc-platform-dfs:0.16.0
+      image: sfci/enterprise-api/sfdc-platform-dfs:0.18.3
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -34,8 +34,6 @@ system:
         value: prod
       - name: LOAD_CC_CERT
         value: false
-      - name: MDS_CANONICALMETADATA_SOURCETENANTKEY
-        value: mds/prod/ST0000000000001
       - name: MDS_DESTINATION
         value: metadata-service.retail-mds.localhost.mesh.force.com:5443
       - name: GDOT_USER
