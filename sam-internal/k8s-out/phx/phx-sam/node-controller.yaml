@@ -30,7 +30,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/sam/hypersam:2683-be4e381240848a019ad9892077351dbde724371c
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/sam/hypersam:2667-075cea4c23e13fd2cc9bc603a4b98a306ec292f5
         name: node-controller
         volumeMounts:
         - mountPath: /etc/pki_service
