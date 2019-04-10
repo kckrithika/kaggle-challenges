@@ -1,3 +1,5 @@
 apps:
   zones-intake-backend:
   - xrd/xrd-sdstools
+  zones-ui:
+  - xrd/xrd-sdstools
