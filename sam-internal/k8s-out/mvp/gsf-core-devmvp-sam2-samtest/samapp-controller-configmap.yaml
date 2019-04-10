@@ -3,6 +3,7 @@ data:
   samapp-controller-config.json: |-
     {
       "dnsEnabledPoolNamesRegex": ".*",
+      "dnsNamingSuffix": "vip.core.test.us-central1.gcp.sfdc.net.",
       "dockerRegistry": "",
       "enableDNS": true,
       "enableIdentityEnvVar": false,
