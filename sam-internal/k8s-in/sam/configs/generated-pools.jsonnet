@@ -27,6 +27,18 @@
     },
     {
       "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_dataprotection",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh",
@@ -481,6 +493,18 @@
     },
     {
       "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-sam_dataprotection",
+      "kingdom": "fra",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh",
         "service-protection"
@@ -640,6 +664,18 @@
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-sam_datapool",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-sam_dataprotection",
       "kingdom": "frf",
       "superPod": "None"
     },
@@ -861,6 +897,18 @@
     },
     {
       "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "hnd-sam",
+      "estate": "hnd-sam_dataprotection",
+      "kingdom": "hnd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh",
         "service-protection"
@@ -970,6 +1018,18 @@
       ],
       "controlEstate": "ia2-sam",
       "estate": "ia2-sam_datapool",
+      "kingdom": "ia2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "ia2-sam",
+      "estate": "ia2-sam_dataprotection",
       "kingdom": "ia2",
       "superPod": "None"
     },
@@ -1156,6 +1216,18 @@
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam_datapool",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_dataprotection",
       "kingdom": "iad",
       "superPod": "None"
     },
@@ -1349,6 +1421,18 @@
     },
     {
       "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "lo2-sam",
+      "estate": "lo2-sam_dataprotection",
+      "kingdom": "lo2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh",
@@ -1398,6 +1482,18 @@
       ],
       "controlEstate": "lo3-sam",
       "estate": "lo3-sam_datapool",
+      "kingdom": "lo3",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "lo3-sam",
+      "estate": "lo3-sam_dataprotection",
       "kingdom": "lo3",
       "superPod": "None"
     },
@@ -1638,6 +1734,18 @@
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_datapool",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_dataprotection",
       "kingdom": "ord",
       "superPod": "None"
     },
@@ -1893,6 +2001,18 @@
     },
     {
       "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-sam_dataprotection",
+      "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh"
@@ -2026,6 +2146,18 @@
       ],
       "controlEstate": "ph2-sam",
       "estate": "ph2-sam_datapool",
+      "kingdom": "ph2",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "ph2-sam",
+      "estate": "ph2-sam_dataprotection",
       "kingdom": "ph2",
       "superPod": "None"
     },
@@ -2178,6 +2310,18 @@
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_datapool",
+      "kingdom": "phx",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "phx-sam",
+      "estate": "phx-sam_dataprotection",
       "kingdom": "phx",
       "superPod": "None"
     },
@@ -3110,6 +3254,18 @@
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_datapool",
+      "kingdom": "ukb",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "ukb-sam",
+      "estate": "ukb-sam_dataprotection",
       "kingdom": "ukb",
       "superPod": "None"
     },
