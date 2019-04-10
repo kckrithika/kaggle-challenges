@@ -41,6 +41,7 @@ spec:
         - mountPath: /config
           name: config
       dnsPolicy: Default
+      hostNetwork: true
       nodeSelector:
         slb-service: slb-ipvs
       terminationGracePeriodSeconds: 5
