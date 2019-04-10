@@ -13,7 +13,7 @@ system:
       - name: ES_JAVA_OPTS
         value: '-Xms30g -Xmx30g'
       - name: ES_REST_PROTOCAL
-        value: https 
+        value: http 
       volumeMounts:
       - mountPath: /var/lib/elasticsearch
         name: elasticsearch-persistent-storage
