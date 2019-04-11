@@ -56,7 +56,7 @@ spec:
     spec:
       containers:
       - args:
-        - --template=sherpa-container.yaml.template
+        - --template=/config-data/sherpa-container.yaml.template
         - --image=ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:b985afe5636e65db57ebef3e5ba67657c769d93d
         - --log-level=debug
         - --port=17442
