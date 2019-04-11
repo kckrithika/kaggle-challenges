@@ -174,7 +174,15 @@ configs.deploymentBase("service-mesh") {
                 name: "cert2",
                 mountPath: "/client-certs",
               },
-            ],
+            ] +
+            if configs.estate == "gsf-core-devmvp-sam2-sam" then
+            [
+              {
+                name: "sherpa-injector-configs-data-volume",
+                mountPath: "/config-data",
+              },
+            ]
+            else [],
             ports+: [
               {
                 containerPort: 17442,
@@ -365,6 +373,12 @@ configs.deploymentBase("service-mesh") {
               path: "/etc/pki_service",
             },
             name: "maddog-certs",
+          },
+          {
+            configMap: {
+              name: "sherpa-injector-configs-data",
+            },
+            name: "sherpa-injector-configs-data-volume",
           },
         ]
         else [],
