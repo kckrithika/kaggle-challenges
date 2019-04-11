@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local samfeatureflags = import "sam-feature-flags.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 # This is the maddog watchdog for services used by SAM apps using maddog
 
@@ -41,7 +42,7 @@ if samfeatureflags.maddogforsamapps then {
                 ],
                 nodeSelector: {
                               } +
-                              if configs.kingdom == "prd" then {
+                              if !utils.is_production(configs.kingdom) then {
                                   master: "true",
                               } else {
                                   pool: configs.estate,

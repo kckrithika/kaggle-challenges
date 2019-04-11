@@ -44,7 +44,7 @@ spec:
         - containerPort: 9090
           name: estate-server
       nodeSelector:
-        pool: xrd-sam
+        master: "true"
       securityContext:
         fsGroup: 0
         runAsUser: 0

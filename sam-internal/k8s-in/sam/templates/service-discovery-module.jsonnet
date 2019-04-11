@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
+local utils = import "util_functions.jsonnet";
 
 if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
     kind: "Deployment",
@@ -30,7 +31,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
                 ],
                 nodeSelector: {
                               } +
-                              if configs.kingdom == "prd" then {
+                              if !utils.is_production(configs.kingdom) then {
                                   master: "true",
                               } else {
                                   pool: configs.estate,

@@ -64,7 +64,7 @@ configs.deploymentBase("sam") {
                   ] else []),
                   nodeSelector: {
                                 } +
-                                if configs.kingdom == "prd" || configs.kingdom == "xrd" then {
+                                if !utils.is_production(configs.kingdom) || configs.kingdom == "xrd" then {
                                     master: "true",
                                 } else {
                                     pool: configs.estate,

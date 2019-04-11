@@ -162,7 +162,7 @@ spec:
         - mountPath: /cert1
           name: cert1
       nodeSelector:
-        pool: xrd-sam
+        master: "true"
       volumes:
       - hostPath:
           path: /etc/pki_service

@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local madkub = (import "sammadkub.jsonnet") + { templateFilename:: std.thisFile };
 local samfeatureflags = import "sam-feature-flags.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 local certDirs = ["cert1"];
 
@@ -110,7 +111,7 @@ if samfeatureflags.kafkaConsumer then {
                         ] + madkub.madkubSamCertVolumeMounts(certDirs),
                     },
                 ],
-                        nodeSelector: if configs.kingdom == "prd" then {
+                        nodeSelector: if !utils.is_production(configs.kingdom) then {
                           master: "true",
                       } else {
                           pool: configs.estate,

@@ -3,6 +3,7 @@ local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 local samreleases = import "samreleases.json";
+local utils = import "util_functions.jsonnet";
 
 {
     apiVersion: "extensions/v1beta1",
@@ -74,7 +75,7 @@ local samreleases = import "samreleases.json";
                 hostNetwork: true,
                 nodeSelector: {
                               } +
-                              if configs.kingdom == "prd" then {
+                              if !utils.is_production(configs.kingdom) then {
                                   master: "true",
                               } else {
                                   pool: configs.estate,
