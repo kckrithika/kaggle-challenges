@@ -49,7 +49,6 @@ system:
         mountPath: /servercerts
       - name: clientcert
         mountPath: /clientcerts
-
   loadbalancers:
   - lbname: zones-intake-backend-lb
     function: zones-intake-backend
