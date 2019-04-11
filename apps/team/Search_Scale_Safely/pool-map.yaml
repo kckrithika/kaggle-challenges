@@ -9,8 +9,6 @@ apps:
   - mvp/gsf-core-devmvp-sam2-sam
  prod-search-query-service-canary:
   - ord/ord-search_model_executor
- prod-search_model_executor-1:
-  - ord/ord-search_model_executor
  prod-search-query-service:
   - phx/phx-search_model_executor
   - dfw/dfw-search_model_executor
