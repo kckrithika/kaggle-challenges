@@ -57,6 +57,7 @@ local utils = import "util_functions.jsonnet";
                 cert_secretizer_image_tag: "716",  # TODO: This is _older_ than phase 3. Fix.
                 eventExporter_image_tag: "726",  # TODO: This is _older_ than phase 3. Fix.
                 fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",  # TODO: This is _older_ than phase 3. Fix.
+                watchdog_image_tag: "2687-6c147b04d2d506c9fd591d50f400bd86c485b155",  # Slight formatting fix for cli-checker stdout/stderr to watchdog report email
             },
             feature_flags+: {
                 #spark_application_quota_enforcement: "enabled",

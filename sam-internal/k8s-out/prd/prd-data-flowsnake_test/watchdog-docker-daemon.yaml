@@ -29,7 +29,6 @@ spec:
         - -watchdogFrequency=1m
         - -alertThreshold=45m
         - -cliCheckerTimeout=5m
-        - -includeCommandOutput=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/docker-daemon-watchdog:jenkins-dva-transformation-flowsnake-platform-master-781-itest
         imagePullPolicy: IfNotPresent
         name: watchdog-docker-daemon

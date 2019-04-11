@@ -36,7 +36,6 @@ items:
           - -watchdogFrequency=15m
           - -alertThreshold=45m
           - -cliCheckerTimeout=15m
-          - -includeCommandOutput=true
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-781-itest
           imagePullPolicy: IfNotPresent
           name: watchdog-canary
@@ -240,7 +239,6 @@ items:
           - -watchdogFrequency=15m
           - -alertThreshold=45m
           - -cliCheckerTimeout=15m
-          - -includeCommandOutput=true
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-781-itest
           imagePullPolicy: IfNotPresent
           name: watchdog-canary
@@ -444,7 +442,6 @@ items:
           - -watchdogFrequency=15m
           - -alertThreshold=45m
           - -cliCheckerTimeout=15m
-          - -includeCommandOutput=true
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:jenkins-dva-transformation-flowsnake-platform-master-781-itest
           imagePullPolicy: IfNotPresent
           name: watchdog-canary
