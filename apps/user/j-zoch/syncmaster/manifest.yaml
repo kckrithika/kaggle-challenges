@@ -15,6 +15,7 @@ system:
         value: dc.prd,h2
       ports:
       - containerPort: 7020
+      - containerPort: 8080
       - containerPort: 15372
 
       livenessProbe:
@@ -40,6 +41,8 @@ system:
       ports:
       - name: http2-tls-in
         containerPort: 7443
+      - name: http1-tls-in
+        containerPort: 7442
       - name: sherpa-adm
         containerPort: 15373
       livenessProbe:
@@ -68,7 +71,7 @@ system:
       - -endpoint
       - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
       - -endpoint
-      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP1_TLS
 
       livenessProbe:
         exec:
