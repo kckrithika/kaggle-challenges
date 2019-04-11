@@ -92,7 +92,7 @@ spec:
         env:
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.1.1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:04a809d2cd57b47c2a26757f6b09fbacf9bafc29
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
