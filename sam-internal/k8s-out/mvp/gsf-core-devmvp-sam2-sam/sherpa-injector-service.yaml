@@ -13,4 +13,3 @@ spec:
     targetPort: 17442
   selector:
     app: sherpa-injector
-  type: NodePort

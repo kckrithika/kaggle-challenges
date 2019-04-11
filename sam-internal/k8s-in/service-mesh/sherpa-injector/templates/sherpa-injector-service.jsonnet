@@ -24,6 +24,5 @@ local versions = import "service-mesh/sherpa-injector/versions.jsonnet";
     selector: {
       app: "sherpa-injector",
     },
-    type: "NodePort",
   },
 }
