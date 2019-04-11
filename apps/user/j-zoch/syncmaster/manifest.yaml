@@ -12,7 +12,9 @@ system:
       - name: DC
         value: ${KINGDOM}
       - name: SPRING_PROFILES_ACTIVE 
-        value: dc.prd,h2
+        value: dc.prd,h2,sam
+      - name: JAVA_OPTS
+        value: "-Dscone.srpc.announcing-enabled=false"
       ports:
       - containerPort: 7020
       - containerPort: 8080
