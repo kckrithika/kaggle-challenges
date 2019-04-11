@@ -146,11 +146,11 @@ else
                                 resources: {
                                     requests: {
                                         cpu: "1",
-                                        memory: if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging") then "1Gi" else "500Mi",
+                                        memory: "1Gi",
                                     },
                                     limits: {
                                         cpu: "1",
-                                        memory: if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging") then "1Gi" else "500Mi",
+                                        memory: "1Gi",
                                     },
                                 },
                                 volumeMounts: [

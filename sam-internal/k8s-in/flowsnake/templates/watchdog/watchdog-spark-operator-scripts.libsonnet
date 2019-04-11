@@ -9,18 +9,11 @@ local flowsnake_images = import "flowsnake_images.jsonnet";
 # namespace, add an item to the list of configmap specs with the new name and namespace.
 
 local configmap_data =
-(if std.objectHas(flowsnake_images.feature_flags, "spark_op_watchdog_improve_logging") then
-    {
-        "check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-v2.sh",
-        "check-impersonation.sh": importstr "spark-on-k8s-canary-scripts/check-impersonation-v2.sh",
-        "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-specs/kubeconfig-impersonation-proxy.libsonnet")
-    }
-else
     {
         "check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",
         "check-impersonation.sh": importstr "spark-on-k8s-canary-scripts/check-impersonation.sh",
-    }
-);
+        "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-specs/kubeconfig-impersonation-proxy.libsonnet"),
+    };
 
 (if watchdog.watchdog_enabled then [
     {
