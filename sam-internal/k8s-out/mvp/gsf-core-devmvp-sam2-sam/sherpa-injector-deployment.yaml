@@ -132,6 +132,8 @@ spec:
           name: cert1
         - mountPath: /client-certs
           name: cert2
+        - mountPath: /config-data
+          name: sherpa-injector-configs-data-volume
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.131.35.30:32007
@@ -317,3 +319,6 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - configMap:
+          name: sherpa-injector-configs-data
+        name: sherpa-injector-configs-data-volume
