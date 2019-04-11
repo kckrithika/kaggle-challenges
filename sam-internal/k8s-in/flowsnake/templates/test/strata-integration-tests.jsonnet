@@ -117,7 +117,9 @@ else
                 namespace: "flowsnake-ci-tests"
             },
             data: {
+                "k8scommon.py": importstr "k8scommon.py",
                 "strata-test-agent.py": importstr "strata-test-agent.py",
+                "strata-test-janitor.py": importstr "strata-test-janitor.py",
                 "runner_spec_template.json": std.toString(import "strata-runner-spec.libsonnet"),
             }
         },
