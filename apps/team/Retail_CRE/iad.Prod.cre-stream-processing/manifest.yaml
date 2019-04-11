@@ -37,6 +37,8 @@ system:
           value: http://ajna0-funnel1-0-iad.data.sfdc.net
         - name: CONTROLPLANE_ENDPOINT
           value: cre-control-plane.retail-cre.localhost.mesh.force.com:5443
+        - name: GDOT_ENVIRONMENT
+          value: production
         - name: OU_NAME
           value: retail-cre.cre-control-plane
         - name: JVM_ARGS
