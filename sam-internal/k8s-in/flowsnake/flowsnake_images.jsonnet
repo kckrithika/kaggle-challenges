@@ -60,7 +60,6 @@ local utils = import "util_functions.jsonnet";
                 fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",  # TODO: This is _older_ than phase 3. Fix.
             },
             feature_flags+: {
-                spark_op_watchdog_improve_logging: "enabled",
                 #spark_application_quota_enforcement: "enabled",
             },
             version_mapping+: {
@@ -148,6 +147,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 spark_op_metrics: "enabled",
+                spark_op_watchdog_improve_logging: "enabled",
             },
             version_mapping: {
                 "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
