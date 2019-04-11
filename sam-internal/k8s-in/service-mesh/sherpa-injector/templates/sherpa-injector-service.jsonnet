@@ -17,7 +17,7 @@ local versions = import "service-mesh/sherpa-injector/versions.jsonnet";
     ports: [
       {
         name: "h1-tls-in-port",
-        port: 17442,
+        port: if configs.estate == "gsf-core-devmvp-sam2-sam" then 443 else 17442,
         targetPort: 17442,
       },
     ],

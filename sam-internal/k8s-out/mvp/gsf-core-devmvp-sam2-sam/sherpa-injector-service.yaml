@@ -9,7 +9,7 @@ metadata:
 spec:
   ports:
   - name: h1-tls-in-port
-    port: 17442
+    port: 443
     targetPort: 17442
   selector:
     app: sherpa-injector
