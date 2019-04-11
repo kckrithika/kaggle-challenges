@@ -8,8 +8,8 @@ system:
   - name: envoy-canary
     count: 1
     annotations:
-      "sherpa-injector.service-mesh/inject": "enabled"      
-      "sherpa-injector.service-mesh/canary": "enabled"    
+      "sherpa-injector.service-mesh/inject": "enabled"
+      "sherpa-injector.service-mesh/canary": "enabled"
     containers:
     - name: beacon
       # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
