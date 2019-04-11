@@ -216,7 +216,7 @@
       privileged: true,
     },
   },
-  slbManifestWatcher(supportedProxies=[], deleteLimitOverride=0): {
+  slbManifestWatcher(supportedProxies=[], deleteLimitOverride=0, includeSlbPortalOverride=false,): {
     name: "slb-manifest-watcher",
     image: slbimages.hyperslb,
     command: [
@@ -238,6 +238,9 @@
       "--control.manifestWatcherSentinel=" + mwSentinel,
     ] + (if std.length(supportedProxies) > 0 then [
       "--pipeline.supportedProxies=" + std.join(",", supportedProxies),
+    ] else [])
+    + (if includeSlbPortalOverride then [
+      "--vipdnsoptions.viplocation=ord-sam.ord",
     ] else []),
     volumeMounts: std.prune([
       slbconfigs.slb_volume_mount,

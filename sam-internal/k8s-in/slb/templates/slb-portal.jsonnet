@@ -102,7 +102,10 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                           slbshared.slbLogCleanup,
                           madkub.madkubRefreshContainer(certDirs),
-                          slbshared.slbManifestWatcher(),
+                          (if slbflights.slbPortalEndpointOverride then
+                                slbshared.slbManifestWatcher(includeSlbPortalOverride=true)
+                                else
+                                slbshared.slbManifestWatcher()),
                       ],
                       nodeSelector: { pool: slbconfigs.slbEstate },
                       initContainers: [

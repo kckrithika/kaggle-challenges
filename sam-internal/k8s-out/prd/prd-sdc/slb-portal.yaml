@@ -278,6 +278,7 @@ spec:
         - --vcioptions.strict=true
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal/slb-manifest-watcher.sentinel
+        - --vipdnsoptions.viplocation=ord-sam.ord
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
