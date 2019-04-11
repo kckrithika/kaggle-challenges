@@ -18,14 +18,14 @@ if configs.estate == "prd-samtest" then {
             kind: "ClusterRoleBinding",
             apiVersion: "rbac.authorization.k8s.io/v1",
             metadata: {
-                name: "node-labeler-admin",
+                name: "node-labeler-update",
                 annotations: {
                      "manifestctl.sam.data.sfdc.net/swagger": "disable",
                 },
             },
             roleRef: {
                 kind: "ClusterRole",
-                name: "cluster-admmin",
+                name: "node-labeler-update",
                 apiGroup: "rbac.authorization.k8s.io",
             },
             subjects: [
