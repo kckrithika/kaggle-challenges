@@ -33,7 +33,7 @@ local kingdom = std.extVar("kingdom");
        pilot: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:04a809d2cd57b47c2a26757f6b09fbacf9bafc29",
        proxy: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:04a809d2cd57b47c2a26757f6b09fbacf9bafc29",
        proxyinit: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:04a809d2cd57b47c2a26757f6b09fbacf9bafc29",
-       sidecarinjector: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/sidecar_injector:1.1.1",
+       sidecarinjector: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:04a809d2cd57b47c2a26757f6b09fbacf9bafc29",
        metricsscraper: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev",
      },
 
