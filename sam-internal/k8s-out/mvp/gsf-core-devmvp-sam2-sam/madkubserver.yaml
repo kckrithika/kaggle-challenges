@@ -50,7 +50,7 @@ spec:
         - --dns-domain
         - gsf-core-devmvp-sam2-sam.mvp.sam.sfdc.net
         - --service-hostname
-        - 'madkubserver.sam-system.svc'
+        - madkubserver.sam-system.svc
         env:
         - name: SFDCLOC_PCN_KINGDOM
           value: mvp
