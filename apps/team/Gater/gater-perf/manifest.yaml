@@ -20,6 +20,7 @@ system:
       - --gater.grpc.deadline-ms=1000
       - --gater.timeout-in-millis=1000
       - --gater.perf.should-log=false
+      - --metrics.funnelEndPointURL=http://ajna0-funnel1-0-prd.data.sfdc.net:80
       
       ports:
       - containerPort: 8081
