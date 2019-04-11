@@ -9,7 +9,7 @@ system:
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pkonieczny/email:041020192
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pkonieczny/email:04112019
       ports:
       - name: grpc
         containerPort: 7020
@@ -18,8 +18,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: prd
-      - name: HBASE_ENV
-        value: kingdom-test
       - name: SCONE_SERVICE_NAME
         value: eaas
       - name: SFDC_POD
