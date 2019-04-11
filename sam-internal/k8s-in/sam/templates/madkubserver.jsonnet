@@ -61,6 +61,8 @@ if samfeatureflags.maddogforsamapps then configs.deploymentBase("sam") {
                             [
                               "--dns-domain",
                               configs.dnsdomain,
+                              "--service-hostname",
+                              "madkubserver.sam-system.svc",
                             ] else [],
                         image: if utils.is_pcn(configs.kingdom) then samimages.static.madkubPCN else samimages.madkub,
                         name: "madkubserver",

@@ -49,6 +49,8 @@ spec:
         - gsf-core-devmvp-sam2-sam
         - --dns-domain
         - gsf-core-devmvp-sam2-sam.mvp.sam.sfdc.net
+        - --service-hostname
+        - madkubserver.sam-system.svc
         env:
         - name: SFDCLOC_PCN_KINGDOM
           value: mvp
@@ -56,7 +58,7 @@ spec:
           value: gsf-core-devmvp-sam2-sam
         - name: KUBECONFIG
           value: ""
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/madkub:105-93f66ec3114a4a5f805ac2bc889903f7fc63c32e
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/madkub:108-f011ff42f384e0d22ea5b916ee2f3c2146850b2f
         livenessProbe:
           httpGet:
             path: /healthz
@@ -112,7 +114,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/madkub:105-93f66ec3114a4a5f805ac2bc889903f7fc63c32e
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/madkub:108-f011ff42f384e0d22ea5b916ee2f3c2146850b2f
         name: madkub-refresher
         resources: {}
         volumeMounts:

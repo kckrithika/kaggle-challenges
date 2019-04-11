@@ -88,7 +88,7 @@ local samreleases = import "samreleases.json";
         kubedns: strata_registry + "/k8s-dns-kube-dns:" + kubedns_image_tag,
         kubednsmasq: strata_registry + "/k8s-dns-dnsmasq-nanny:" + kubedns_image_tag,
         kubednssidecar: strata_registry + "/k8s-dns-sidecar:" + kubedns_image_tag,
-        madkubPCN: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/madkub:105-93f66ec3114a4a5f805ac2bc889903f7fc63c32e",
+        madkubPCN: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/madkub:108-f011ff42f384e0d22ea5b916ee2f3c2146850b2f",
     },
 
     # ====== DO NOT EDIT BELOW HERE ======
