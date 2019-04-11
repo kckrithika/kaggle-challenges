@@ -1,6 +1,27 @@
 apps:
+
+
+  moana-hnd-group1:
+  - hnd/hnd-sam_datapool
+  moana-frf-group1:
+  - frf/frf-sam_datapool
+  moana-par-group1:
+  - par/par-sam_datapool
+  moana-ph2-group1:
+  - ph2/ph2-sam_datapool
+  moana-ia2-group1:
+  - ia2/ia2-sam_datapool
+  moana-phx-group1:
+  - phx/phx-sam_datapool
+  moana-dfw-group1:
+  - dfw/dfw-sam_datapool
+  moana-ord-group1:
+  - ord/ord-sam_datapool
+  moana-iad-group1:
+  - iad/iad-sam_datapool
   moana-ukb-group1:
   - ukb/ukb-sam_datapool
+
   moana-engine-lo3-frf-group1:
   - frf/frf-sam_datapool
   moana-lo3-group1:
@@ -17,24 +38,7 @@ apps:
   - par/par-sam_datapool
   moana-cdg-group1:
   - cdg/cdg-sam_datapool
-  moana-ph2:
-  - ph2/ph2-sam_datapool
-  moana-phx:
-  - phx/phx-sam_datapool
-  moana-iad:
-  - iad/iad-sam_datapool
-  moana-hnd:
-  - hnd/hnd-sam_datapool
-  moana-frf:
-  - frf/frf-sam_datapool
-  moana-par:
-  - par/par-sam_datapool
-  moana-ia2:
-  - ia2/ia2-sam_datapool
-  moana-dfw:
-  - dfw/dfw-sam_datapool
-  moana-ord:
-  - ord/ord-sam_datapool
+
 
 
   moana-prd-release:
