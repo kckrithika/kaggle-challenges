@@ -11,29 +11,59 @@ system:
       - name: servercert
         maddogCert:
           type: server
+          lbnames:
+            - zones-intake-backend-secure
       - name: clientcert
         maddogCert:
           type: client
     containers:
     - name: zones-intake-backend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:40
+      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:45
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:mtls4
       ports:
-      - containerPort: 30300
+      - containerPort: 7022
+      - containerPort: 8443
+      env:
+      - name: HOST
+        value: "0.0.0.0"
+      - name: PORT
+        value: 7022
+      - name: TLS_HOST
+        value: "0.0.0.0"
+      - name: TLS_PORT
+        value: 8443
+      - name: TLS_CERTIFICATE
+        value: /servercerts/server/certificates/server.pem
+      - name: TLS_PRIVATE_KEY
+        value: /servercerts/server/keys/server-key.pem
+      - name: TLS_CA_CERTIFICATE
+        value: /servercerts/ca.pem
+      - name: FRONTEND_MADDOG_ID
+        value: samapp.user-juppala.zones-ui
       livenessProbe:
         httpGet:
           path: /zones/v1/healthcheck
-          port: 30300
+          port: 7022
       volumeMounts:
       - name: servercert
         mountPath: /servercerts
       - name: clientcert
         mountPath: /clientcerts
+
   loadbalancers:
   - lbname: zones-intake-backend-lb
     function: zones-intake-backend
     slbenabled: true
     ports:
       - port: 3000
-        targetport: 30300
+        targetport: 7022
         lbtype: http
+        tls: false
+  - lbname: zones-intake-backend-secure
+    function: zones-intake-backend
+    slbenabled: true
+    ports:
+      - port: 4443
+        targetport: 8443
+        lbtype: tcp
         tls: false
