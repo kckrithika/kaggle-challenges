@@ -62,6 +62,10 @@ data: {
       initialDelaySeconds: 15
       periodSeconds: 5
     terminationMessagePolicy: FallbackToLogsOnError
-',
+%s
+' % if configs.estate == "gsf-core-devmvp-sam2-sam" then '
+    args:
+    - --switchboard=switchboard.service-mesh.svc:15001'
+else '',
 },
 }

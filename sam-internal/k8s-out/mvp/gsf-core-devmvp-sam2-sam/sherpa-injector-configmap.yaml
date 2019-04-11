@@ -48,6 +48,9 @@ data:
           initialDelaySeconds: 15
           periodSeconds: 5
         terminationMessagePolicy: FallbackToLogsOnError
+
+        args:
+        - --switchboard=switchboard.service-mesh.svc:15001
 kind: ConfigMap
 metadata:
   creationTimestamp: null
