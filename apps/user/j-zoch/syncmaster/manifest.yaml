@@ -11,6 +11,8 @@ system:
         value: "prod"
       - name: DC
         value: ${KINGDOM}
+      - name: SPRING_ACTIVE_PROFILES
+        value: dc.prd,h2
       ports:
       - containerPort: 7020
       - containerPort: 15372
