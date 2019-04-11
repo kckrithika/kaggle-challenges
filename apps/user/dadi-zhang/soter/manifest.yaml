@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: soter
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dadi-zhang/soter-demo:dadi-demo
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dadi-zhang/soter-demo:20190411-dadi
       ports:
       - containerPort: 8080
       livenessProbe:
