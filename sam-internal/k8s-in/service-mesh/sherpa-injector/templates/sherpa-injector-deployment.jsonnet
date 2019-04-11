@@ -44,7 +44,10 @@ configs.deploymentBase("service-mesh") {
                       "sherpa-injector.%s" % versions.injectorNamespace,
                       "sherpa-injector.%s.svc" % versions.injectorNamespace,
                       "sherpa-injector.%s.svc.cluster.local" % versions.injectorNamespace,
-                      "sherpa-injector.%s.svc.%s" % [versions.injectorNamespace, configs.dnsdomain],
+                      "sherpa-injector.%s.svc.%s" % [
+                        versions.injectorNamespace,
+                        (if configs.estate == "gsf-core-devmvp-sam2-sam" then "sam.core.test.us-central1.gcp.sfdc.net" else configs.dnsdomain),
+                      ],
                     ],
                   },
                   {
@@ -57,7 +60,10 @@ configs.deploymentBase("service-mesh") {
                       "sherpa-injector.%s" % versions.injectorNamespace,
                       "sherpa-injector.%s.svc" % versions.injectorNamespace,
                       "sherpa-injector.%s.svc.cluster.local" % versions.injectorNamespace,
-                      "sherpa-injector.%s.svc.%s" % [versions.injectorNamespace, configs.dnsdomain],
+                      "sherpa-injector.%s.svc.%s" % [
+                        versions.injectorNamespace,
+                        (if configs.estate == "gsf-core-devmvp-sam2-sam" then "sam.core.test.us-central1.gcp.sfdc.net" else configs.dnsdomain),
+                      ],
                     ],
                   },
                 ],
