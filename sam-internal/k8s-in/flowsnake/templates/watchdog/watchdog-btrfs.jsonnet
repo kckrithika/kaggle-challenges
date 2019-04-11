@@ -40,7 +40,7 @@ configs.daemonSetBase("flowsnake") {
                             "-watchdogFrequency=10s",
                             "-alertThreshold=45m",
                             "-cliCheckerTimeout=5m",
-                            ] + (if flowsnakeconfig.is_test then ["-includeCommandOutput=true"] else []),
+                            ] + (if flowsnakeconfig.is_r_and_d then ["-includeCommandOutput=true"] else []),
                         name: "watchdog-btrfs",
                         resources: {
                             requests: {

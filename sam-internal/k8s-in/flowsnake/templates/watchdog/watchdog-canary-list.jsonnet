@@ -74,7 +74,7 @@ else
                                     "-watchdogFrequency=15m",
                                     "-alertThreshold=45m",
                                     "-cliCheckerTimeout=15m",
-                                ] + (if flowsnakeconfig.is_test then ["-includeCommandOutput=true"] else []),
+                                ],
                                 name: "watchdog-canary",
                                 resources: {
                                     requests: {

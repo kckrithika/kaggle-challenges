@@ -132,7 +132,7 @@ else
                                     "-alertThreshold=1m",
                                     # Kill and fail test if it runs for longer than this.
                                     "-cliCheckerTimeout=15m",
-                                ]  + (if flowsnakeconfig.is_test then ["-includeCommandOutput=true"] else [])
+                                ]  + (if flowsnakeconfig.is_r_and_d then ["-includeCommandOutput=true"] else [])
                                 + (if flowsnakeconfig.is_public_cloud then [
                                 # In PCL, watchdog runs on flannel network and host name becomes pod name, so need to explicitly pass in kingdom
                                 # and estate to tag metrics.
