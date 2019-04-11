@@ -60,7 +60,7 @@ else
                 ],
                 containers: [
                     {
-                        name: "strata-test-agent",
+                        name: "agent",
                         image: flowsnake_images.jdk8_base,
                         command: [ "/usr/bin/env", "python", "/scripts/strata-test-agent.py" ],
                         env: [
@@ -69,7 +69,7 @@ else
                         volumeMounts: [
                             {
                                 name: "host-cacerts",
-                                mountPath: "/cacerts",
+                                mountPath: "/certs/ca",
                                 readOnly: true,
                             },
                             {
@@ -78,7 +78,41 @@ else
                                 readOnly: true,
                             }
                         ],
+                        resources: {
+                            requests: {
+                                cpu: "50m",
+                                memory: "1Mi",
+                            }
+                        }
+                    },
+                    {
+                        name: "janitor",
+                        image: flowsnake_images.jdk8_base,
+                        command: [ "/usr/bin/env", "python", "/scripts/strata-test-janitor.py" ],
+                        env: [
+                            { name: "POLL_INTERVAL_MIN", value: "30" },
+                            { name: "MAX_AGE_MIN", value: "180" },
+                        ],
+                        volumeMounts: [
+                            {
+                                name: "host-cacerts",
+                                mountPath: "/certs/ca",
+                                readOnly: true,
+                            },
+                            {
+                                name: "agent-scripts",
+                                mountPath: "/scripts",
+                                readOnly: true,
+                            }
+                        ],
+                        resources: {
+                            requests: {
+                                cpu: "50m",
+                                memory: "1Mi",
+                            }
+                        }
                     }
+
                 ],
             }
         }
