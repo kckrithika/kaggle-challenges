@@ -4,9 +4,6 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 
-if !std.objectHas(flowsnake_images.feature_flags, "spark_op_metrics") then
-"SKIP"
-else
 configs.deploymentBase("flowsnake") {
   local label_node = self.spec.template.metadata.labels,
   metadata: {
@@ -41,9 +38,8 @@ configs.deploymentBase("flowsnake") {
               "--config.file=/etc/config/prometheus.json",
               "--storage.tsdb.path=/prometheus-storage",
               "--web.external-url=http://localhost/",
-            ] + if std.objectHas(flowsnake_images.feature_flags, "spark_op_metrics") then [
               "--web.enable-lifecycle",
-            ] else [],
+            ],
             image: flowsnake_images.prometheus_scraper,
             name: "prometheus",
             ports: [

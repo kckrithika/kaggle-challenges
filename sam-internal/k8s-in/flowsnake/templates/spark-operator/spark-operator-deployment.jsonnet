@@ -4,7 +4,6 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
 local enabled = std.objectHas(flowsnake_images.feature_flags, "spark_operator");
 local quota_enforcement = std.objectHas(flowsnake_images.feature_flags, "spark_application_quota_enforcement");
-local spark_op_metrics = std.objectHas(flowsnake_images.feature_flags, "spark_op_metrics");
 local madkub_common = import "madkub_common.jsonnet";
 local cert_name = "spark-webhook";
 
@@ -53,12 +52,11 @@ local cert_name = "spark-webhook";
                         image: flowsnake_images.spark_operator,
                         imagePullPolicy: "Always",
                         command: ["/usr/bin/spark-operator"],
-                        args: ["-logtostderr", "-v=2"]
-                        + (if spark_op_metrics then [
+                        args: ["-logtostderr", "-v=2",
                             "-enable-metrics=true",
                             "-metrics-endpoint=/metrics",
                             "-metrics-port=10254",
-                        ] else [])
+                        ]
                         + (if quota_enforcement then [
                             "-enable-webhook=true",
                             "-enable-resource-quota-enforcement=true",
@@ -69,13 +67,12 @@ local cert_name = "spark-webhook";
                             "-webhook-server-cert-key=/certs/server/keys/server-key.pem",
                             "-webhook-ca-cert=/certs/ca/cabundle.pem",
                         ] else []),
-                    } + (if spark_op_metrics then {
                         ports: [{
                             containerPort: 10254,
                             name: "metrics",
                             protocol: "TCP",
                         }]
-                    } else {}) + (if quota_enforcement then {
+                    } + (if quota_enforcement then {
                         ports: [{
                             containerPort: 8443,
                             name: "webhook",
