@@ -14,7 +14,7 @@ system:
       - name: SPRING_ACTIVE_PROFILES
         value: dc.prd,h2
       ports:
-      - containerPort: 7443
+      - containerPort: 7020
       - containerPort: 15372
 
       livenessProbe:
