@@ -49,6 +49,11 @@ local samreleases = import "samreleases.json";
 
         #[thargrove] Override SDPv1 so we can point to v1.  Remove after next phase release
         "prd,prd-sam,sam-deployment-portal,hypersam": "2661-a493a755679c30705e7667661204bc9e9b8ef77e",
+
+        #[xiao.zhou] Override Synthetic watchdog so the alert won't go off
+        "prd,prd-samtest,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
+        "prd,prd-samdev,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
+        "prd,prd-sam,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
