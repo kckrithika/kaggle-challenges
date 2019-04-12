@@ -27,7 +27,7 @@ system:
 
     - name: beacon
       # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:f804d14
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:d7f1640
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
