@@ -93,7 +93,7 @@ system:
 
   loadbalancers:
   - lbname: syncmaster-lb
-    function: default
+    function: syncmaster
     slbenabled: true
 
 
