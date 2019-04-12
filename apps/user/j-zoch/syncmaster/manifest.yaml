@@ -67,7 +67,7 @@ system:
 
      # Announces services
     - name: beacon
-      image: sfci/servicelibs/beacon:4378550
+      image: docker-sfci-dev/sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -endpoint
       - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
