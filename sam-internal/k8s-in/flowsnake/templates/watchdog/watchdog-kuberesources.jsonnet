@@ -2,6 +2,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 
 // Disable everywhere for now because too noisy, because at any given time we have failed customer pods.

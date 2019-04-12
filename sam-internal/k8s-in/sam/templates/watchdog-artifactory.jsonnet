@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
+local utils = import "util_functions.jsonnet";
 
 if configs.estate == "prd-samtest" then {
     kind: "Deployment",
@@ -36,7 +37,7 @@ if configs.estate == "prd-samtest" then {
                     configs.config_volume("watchdog"),
                     configs.cert_volume,
                 ],
-                nodeSelector: {} + if configs.kingdom == "prd" then { master: "true" } else { pool: configs.estate },
+                nodeSelector: {} + if !utils.is_production(configs.kingdom) then { master: "true" } else { pool: configs.estate },
 
             },
             metadata: {

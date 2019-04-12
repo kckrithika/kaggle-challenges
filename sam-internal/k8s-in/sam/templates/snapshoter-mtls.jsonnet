@@ -104,7 +104,7 @@ configs.containerWithKubeConfigAndMadDog {
                 hostNetwork: true,
                 nodeSelector: {
                               } +
-                              if configs.kingdom == "prd" then {
+                              if !utils.is_production(configs.kingdom) then {
                                   master: "true",
                               } else {
                                   pool: configs.estate,
