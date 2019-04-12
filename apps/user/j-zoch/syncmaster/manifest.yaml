@@ -19,6 +19,7 @@ system:
       - containerPort: 7020
       - containerPort: 8080
       - containerPort: 15372
+      - containerPort: 2181
 
       livenessProbe:
         httpGet:
@@ -89,5 +90,10 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+
+  loadbalancers:
+  - lbname: syncmaster-lb
+    function: syncmaster
+    slbenabled: true
 
 
