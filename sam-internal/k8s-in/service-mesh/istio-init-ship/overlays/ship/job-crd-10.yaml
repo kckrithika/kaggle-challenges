@@ -6,13 +6,7 @@ metadata:
   name: istio-init-crd-10
   namespace: mesh-control-plane
 spec:
-  selector:
-    matchLabels:
-      app: istio-init-crd-10
   template:
-    metadata:
-      labels:
-        app: istio-init-crd-10
     spec:
       containers:
       - name: istio-init-crd-10
