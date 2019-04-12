@@ -6,7 +6,7 @@ system:
       count: 1
       containers:
       - name: searchserver
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17781638.454
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17882120.463
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
@@ -29,6 +29,8 @@ system:
         ports:
         - containerPort: 8983
           name: solr-port
+        - containerPort: 8000
+          name: solr-debug-port
         volumeMounts:
         - name: solr-data-volume
           mountPath: /home/sfdc/local-data/data
