@@ -18,7 +18,8 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 20
     - name: time-beacon
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      # https://git.soma.salesforce.com/services/sfdc-bazel/tree/master/projects/sidecars/beacon#docker-image
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -29,7 +30,7 @@ system:
         initialDelaySeconds: 5
         exec:
           command:
-            - "/home/scone/is-alive.sh"
+            - "/opt/beacon/is-alive.sh"
 
     volumes:
     - name: tls-client-cert
