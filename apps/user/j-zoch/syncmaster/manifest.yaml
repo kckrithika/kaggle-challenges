@@ -96,5 +96,7 @@ system:
     ports:
       - port: 80
         targetport: 8080
+      - port: 15372
+        targetport: 15372
 
 
