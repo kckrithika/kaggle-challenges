@@ -93,5 +93,8 @@ system:
   - lbname: syncmaster-lb
     function: syncmaster
     slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 8080
 
 
