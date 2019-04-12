@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-    - name: search-gcp-test
+    - name: search-gcp-test0
       type: stateful-set
       count: 1
       containers:
@@ -62,3 +62,64 @@ system:
         - name: certs-server
           maddogCert:
             type: server
+    - name: search-gcp-test1
+      type: stateful-set
+      count: 1
+      containers:
+      - name: searchserver
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17882120.463
+        env:
+        - name: SFDC_ENVIRONMENT
+          value: "sam"
+        - name: INSTANCE_URL
+          value: "DISABLED"
+        - name: ENCRYPTION_URL
+          value: "DISABLED"
+        - name: ENABLE_METRICS
+          value: "true"
+        - name: LBNAME
+          value: "searchtest"
+        - name: DNS_PODNAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        resources:
+          limits: { cpu: "6", memory: "16Gi" }
+          requests: { cpu: "4", memory: "12Gi" }
+        ports:
+        - containerPort: 8983
+          name: solr-port
+        - containerPort: 8000
+          name: solr-debug-port
+        volumeMounts:
+        - name: solr-data-volume
+          mountPath: /home/sfdc/local-data/data
+        - name: solr-log-volume
+          mountPath: /home/sfdc-searchserver/logs/solr
+        - name: certs-client
+          mountPath: /certs/client
+        - name: certs-server
+          mountPath: /certs/server
+        livenessProbe:
+          exec:
+            command:
+            - "true"
+          initialDelaySeconds: 120
+          periodSeconds: 5
+      lbname: searchtest
+      terminationGracePeriodSeconds: 10
+      volumeClaimTemplates:
+      - name: solr-data-volume
+        storageClassName: faster
+        storageSizeRequest: 10Gi
+      volumes:
+        - name: solr-log-volume
+          hostPath:
+            path: /mnt/disks/ssd0/data/logs/solr
+        - name: certs-client
+          maddogCert:
+            type: client
+        - name: certs-server
+          maddogCert:
+            type: server      
