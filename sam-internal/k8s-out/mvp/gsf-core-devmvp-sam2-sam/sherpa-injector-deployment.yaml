@@ -136,7 +136,7 @@ spec:
           name: sherpa-injector-configs-data-volume
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://10.131.35.30:32007
+        - --madkub-endpoint=https://madkubserver.sam-system.svc:32007
         - --maddog-endpoint=https://10.168.192.190:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
@@ -248,7 +248,7 @@ spec:
       initContainers:
       - args:
         - /sam/madkub-client
-        - --madkub-endpoint=https://10.131.35.30:32007
+        - --madkub-endpoint=https://madkubserver.sam-system.svc:32007
         - --maddog-endpoint=https://10.168.192.190:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
