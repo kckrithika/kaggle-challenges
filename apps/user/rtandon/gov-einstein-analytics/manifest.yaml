@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: airstream
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rtandon/airstream:0f94959ef252
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rtandon/airstream:0f8b64cee765
       command: ["python3"]
       args: ["sam.py", "--test"]
       livenessProbe:
@@ -30,8 +30,10 @@ system:
         value: "test_dataset"
       - name: HOST_NAME
         value: "mist12-app1-3-crd.eng.sfdc.net"
-      - name: REMOTE_FILE_PATH
+      - name: ORACLE_FILE_PATH
         value: "/home/rtandon/test/test_data.pls"
+      - name: METRICS_DIR
+        value: "/home/rtandon/test/metrics/"
       - name: KRB5_KTNAME
         value: "/var/secrets/krb5_keytab/gov-analytics-test.keytab"
       - name: KRB5_CONFIG
