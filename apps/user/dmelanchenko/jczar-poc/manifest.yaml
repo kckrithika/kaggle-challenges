@@ -1,0 +1,27 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - dmelanchenko@salesforce.com  
+  functions:
+  - name: jczar-poc
+    count: 1
+    containers:
+    - name: poc
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmelanchenko/jczar:v0
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - "OK"
+        initialDelaySeconds: 60
+        periodSeconds: 120      
+      volumeMounts:
+      - mountPath: /clientcert
+        name: client-cert
+
+    volumes:
+    - name: client-cert
+      maddogCert:
+        type: client
+
