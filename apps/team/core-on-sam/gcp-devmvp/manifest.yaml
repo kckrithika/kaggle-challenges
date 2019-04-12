@@ -44,6 +44,8 @@ system:
       export DB_PASSWORD=$(cat /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-1az-db-pw/dbpw.txt) ;
       cp /home/sfdc/salesforce/casam/lib/caaspatch.jar.optional /home/sfdc/salesforce/casam/lib/caaspatch.jar ;
       cp /home/sfdc/salesforce/casam/lib/vagabond_patch.jar.optional /home/sfdc/salesforce/casam/lib/vagabond_patch.jar ;
+      cp /home/sfdc/salesforce/casam/lib/metrics-publishing_patch.jar.optional /home/sfdc/salesforce/casam/lib/metrics-publishing.jar ;
+      cp /home/sfdc/salesforce/casam/lib/allorgpatch.jar.optional /home/sfdc/salesforce/casam/lib/allorgpatch.jar ;
       mkdir -p /home/sfdc/salesforce/sfdc-test/func/mockk4avault ;
       unzip /home/sfdc/salesforce/casam/lib/k4a.zip.testkeys -d /home/sfdc/salesforce/sfdc-test/func/mockk4avault ;
       /home/sfdc/salesforce/casam/bin/startup.sh
@@ -247,7 +249,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: casam-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:8c2570
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:31b50b
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
