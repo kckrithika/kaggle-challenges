@@ -6,15 +6,10 @@ metadata:
   name: istio-init-crd-11
   namespace: mesh-control-plane
 spec:
-  selector:
-    matchLabels:
-      app: istio-init-crd-11
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
-      labels:
-        app: istio-init-crd-11
     spec:
       containers:
       - command:

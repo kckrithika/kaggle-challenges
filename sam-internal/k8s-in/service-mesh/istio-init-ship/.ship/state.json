@@ -11,8 +11,8 @@
           "patches": {
             "/clusterrole.yaml": "apiVersion: rbac.authorization.k8s.io/v1\nkind: ClusterRole\nmetadata:\n  annotations:\n    manifestctl.sam.data.sfdc.net/swagger: disable\n  name: istio-init-mesh-control-plane",
             "/clusterrolebinding.yaml": "apiVersion: rbac.authorization.k8s.io/v1\nkind: ClusterRoleBinding\nmetadata:\n  annotations:\n    manifestctl.sam.data.sfdc.net/swagger: disable\n  name: istio-init-admin-role-binding-mesh-control-plane",
-            "/job-crd-10.yaml": "apiVersion: batch/v1\nkind: Job\nmetadata:\n  annotations:\n    manifestctl.sam.data.sfdc.net/swagger: disable\n  name: istio-init-crd-10\n  namespace: mesh-control-plane\nspec:\n  selector:\n    matchLabels:\n      app: istio-init-crd-10\n  template:\n    metadata:\n      labels:\n        app: istio-init-crd-10\n    spec:\n      containers:\n      - name: istio-init-crd-10\n        image: mcpIstioConfig.kubectlImage\n      nodeSelector:\n        pool: mcpIstioConfig.istioEstate",
-            "/job-crd-11.yaml": "apiVersion: batch/v1\nkind: Job\nmetadata:\n  annotations:\n    manifestctl.sam.data.sfdc.net/swagger: disable\n  name: istio-init-crd-11\n  namespace: mesh-control-plane\nspec:\n  selector:\n    matchLabels:\n      app: istio-init-crd-11\n  template:\n    metadata:\n      labels:\n        app: istio-init-crd-11\n    spec:\n      containers:\n      - name: istio-init-crd-11\n        image: mcpIstioConfig.kubectlImage\n      nodeSelector:\n        pool: mcpIstioConfig.istioEstate",
+            "/job-crd-10.yaml": "apiVersion: batch/v1\nkind: Job\nmetadata:\n  annotations:\n    manifestctl.sam.data.sfdc.net/swagger: disable\n  name: istio-init-crd-10\n  namespace: mesh-control-plane\nspec:\n  template:\n    spec:\n      containers:\n      - name: istio-init-crd-10\n        image: mcpIstioConfig.kubectlImage\n      nodeSelector:\n        pool: mcpIstioConfig.istioEstate",
+            "/job-crd-11.yaml": "apiVersion: batch/v1\nkind: Job\nmetadata:\n  annotations:\n    manifestctl.sam.data.sfdc.net/swagger: disable\n  name: istio-init-crd-11\n  namespace: mesh-control-plane\nspec:\n  template:\n    spec:\n      containers:\n      - name: istio-init-crd-11\n        image: mcpIstioConfig.kubectlImage\n      nodeSelector:\n        pool: mcpIstioConfig.istioEstate",
             "/serviceaccount.yaml": "apiVersion: v1\nkind: ServiceAccount\nmetadata:\n  annotations:\n    manifestctl.sam.data.sfdc.net/swagger: disable\n  name: istio-init-service-account\n  namespace: mesh-control-plane"
           }
         }
@@ -23,7 +23,7 @@
       "applicationType": "helm",
       "icon": "https://istio.io/favicons/android-192x192.png",
       "name": "istio-init",
-      "releaseNotes": "",
+      "releaseNotes": "Add helm resource-policy to CRDs to prevent deletion (#12484)\n\n* Add helm resource-policy to CRDs to prevent deletion\r\n\r\n* Remove crd-install - add keep\r\n\r\nBased upon Stono's suggestion, cleaning up his PR a bit.",
       "version": "1.1.0"
     },
     "contentSHA": "7c4941c21c9b1a2c7ded31b4553435433b18278fe55e5bd9221b3a4606777aed",
