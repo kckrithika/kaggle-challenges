@@ -18,7 +18,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # slb-nginx-accesslogs can sometimes fill up disk -- see investigation at
     # https://computecloud.slack.com/archives/G340CE86R/p1552882461719300?thread_ts=1552870275.718300&cid=G340CE86R.
-    nginxAccesslogsEnabled: (slbimages.phaseNum <= 1),
+    nginxAccesslogsEnabled: (slbimages.phaseNum <= 2),
 
     # HSM nginx currently serves too few VIPs for the upstream status reporter to provide a good signal about
     # the health of upstream servers. Disable the container for now.
