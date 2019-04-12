@@ -13,8 +13,6 @@ system:
         value: ${KINGDOM}
       - name: SPRING_PROFILES_ACTIVE 
         value: dc.prd,h2,sam
-      - name: JAVA_OPTS
-        value: "-Dscone.srpc.announcing-enabled=false"
       ports:
       - containerPort: 7020
       - containerPort: 8080
@@ -94,6 +92,6 @@ system:
   loadbalancers:
   - lbname: syncmaster-lb
     function: syncmaster
-    slbenabled: true
+    slbEnabled: true
 
 
