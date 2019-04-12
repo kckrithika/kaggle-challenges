@@ -38,6 +38,7 @@ system:
         value: /servercerts/server/keys/server-key.pem
       # - name: TLS_CA_CERTIFICATE
       #   value: /servercerts/ca.pem
+
       - name: FRONTEND_MADDOG_ID
         value: samapp.user-juppala.zones-ui
       livenessProbe:
