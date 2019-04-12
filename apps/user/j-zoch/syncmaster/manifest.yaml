@@ -67,7 +67,7 @@ system:
 
      # Announces services
     - name: beacon
-      image: docker-sfci-dev/sfci/services/sfdc-bazel/disco/beacon:d7f1640
+      image: sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       - -endpoint
       - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
@@ -98,5 +98,7 @@ system:
         targetport: 8080
       - port: 15372
         targetport: 15372
+      - port: 7443
+        targetport: 7020
 
 
