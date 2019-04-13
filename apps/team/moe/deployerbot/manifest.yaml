@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2119-8b584d6c5ce93db8065ee09c41dd26f2967b1f86
+      image: dva/moe/deployerbot:jenkins-sdn-sdn-PR-1755-1-itest
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
