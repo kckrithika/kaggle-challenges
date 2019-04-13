@@ -54,6 +54,9 @@ local samreleases = import "samreleases.json";
         "prd,prd-samtest,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
         "prd,prd-samdev,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
         "prd,prd-sam,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
+
+        #[xiao.zhou] Override crd watcher for team "secrets"
+        "xrd,xrd-sam,crd-watcher,hypersam": "2690-3c76e4d1bc7bebf17bfa304fd309dc9332acd196",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
