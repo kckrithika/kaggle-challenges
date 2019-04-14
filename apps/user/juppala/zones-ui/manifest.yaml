@@ -7,15 +7,18 @@ system:
   - name: zones-ui
     count: 2
     volumes:
-      - name: ui-servercert
+      - name: uiservercert
         maddogCert:
           type: server
-      - name: ui-clientcert
+          lbnames:
+            - zones-ui-lb
+            - zones-ui-secure
+      - name: uiclientcert
         maddogCert:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:master-20190407-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:master-20190414-1
       env:
       - name: ZONES_ENVIRONMENT
         value: "dev"
@@ -34,23 +37,35 @@ system:
           path: /zones/v1/healthCheck
           port: 8445
       volumeMounts:
-      - name: ui-servercert
+      - name: uiservercert
         mountPath: /servercerts
-      - name: ui-clientcert
+      - name: uiclientcert
         mountPath: /clientcerts
   loadbalancers:
   - lbname: zones-ui-lb
     function: zones-ui
     slbenabled: true
     ports:
-      - port: 443
-        targetport: 8445
-        lbtype: http
-        tls: true
-      - port: 8445
-        targetport: 8445
-        lbtype: http
-        tls: true
+      # - port: 443
+      #   targetport: 8445
+      #   lbtype: http
+      #   tls: true
+      # - port: 8445
+      #   targetport: 8445
+      #   lbtype: http
+      #   tls: true
       - port: 8080
         targetport: 8445
         lbtype: http
+  - lbname: zones-ui-secure
+    function: zones-ui
+    slbenabled: true
+    ports:
+      # - port: 443
+      #   targetport: 8445
+      #   lbtype: tcp
+      #   tls: false
+      - port: 8445
+        targetport: 8445
+        lbtype: tcp
+        tls: false
