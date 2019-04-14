@@ -17,7 +17,7 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:master-20190414-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:master-20190414-3
       env:
       - name: ZONES_ENVIRONMENT
         value: "dev"
@@ -66,5 +66,5 @@ system:
       #   tls: false
       - port: 8445
         targetport: 8445
-        lbtype: tcp
-        tls: false
+        lbtype: http
+        tls: true
