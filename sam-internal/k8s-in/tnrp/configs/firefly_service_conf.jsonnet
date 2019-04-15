@@ -56,7 +56,7 @@ local portConfig = import "portconfig.jsonnet";
         rabbitMqEndpoint:: 'firefly-rabbitmq.firefly.prd-samtwo.prd.slb.sfdc.net',
         rabbitMqPort:: '5672',
         repositories:: 'sam/test-manifests,sam/manifests',
-        repositoriesMDP:: 'tnrpfirefly/test_manifest_driven_promotions',
+        repositoriesMDP:: 'tnrpfirefly/test_manifest_driven_promotions,tnrp/manifest_driven_promotions',
         repositoriesFCP:: 'Infrastructure-Security/infrasec-secrets-config,gate-definitions/gate-definitions',
     },
     environmentMapping:: {
