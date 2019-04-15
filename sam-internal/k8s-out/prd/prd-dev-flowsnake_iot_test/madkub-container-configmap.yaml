@@ -10,7 +10,7 @@ data:
     "valueFrom": {"fieldRef": {"apiVersion": "v1", "fieldPath": "spec.nodeName"}}},
     {"name": "MADKUB_NAME", "valueFrom": {"fieldRef": {"apiVersion": "v1", "fieldPath":
     "metadata.name"}}}, {"name": "MADKUB_NAMESPACE", "valueFrom": {"fieldRef": {"apiVersion":
-    "v1", "fieldPath": "metadata.namespace"}}}], "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288",
+    "v1", "fieldPath": "metadata.namespace"}}}], "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000084-9f4a6ca6",
     "name": "sam-madkub-integration-init", "resources": { }, "volumeMounts": [{"mountPath":
     "/certs", "name": "datacerts"}, {"mountPath": "/tokens", "name": "tokens"}, {"mountPath":
     "/etc/pki_service/ca", "name": "certificate-authority", "readOnly": true}, {"mountPath":

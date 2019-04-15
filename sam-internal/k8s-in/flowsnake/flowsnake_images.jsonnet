@@ -22,19 +22,6 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "1": self["2"] {
             image_tags+: {
-                # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
-                cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                testData_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                ingressDefaultBackend_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
-                deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-12-itest",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -48,22 +35,30 @@ local utils = import "util_functions.jsonnet";
             # Start with 2-prd-dev (which also have legacy version mappings),
             # and then any cusomizations just for this fleet.
             version_mapping: $.per_phase["2-prd-dev"].version_mapping {
-                "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
             },
         },
         # Phase 2: Remaining PRD fleets and production canary fleets.
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
-                cert_secretizer_image_tag: "716",  # TODO: This is _older_ than phase 3. Fix.
-                eventExporter_image_tag: "726",  # TODO: This is _older_ than phase 3. Fix.
-                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",  # TODO: This is _older_ than phase 3. Fix.
+                # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
+                cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                testData_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                ingressDefaultBackend_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
+                deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
             },
             feature_flags+: {
                 #spark_application_quota_enforcement: "enabled",
             },
             version_mapping+: {
-                "0.12.5": 10011,  # TODO: Why is this different from production?
+                "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
             },
         },
         # prd-dev: Exceptions vs the rest of phase 2 only
@@ -72,7 +67,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 btrfs_watchdog_hard_reset: "",  # Was promoted to prd-dev before phasing refactor
             },
-            # prd-dev offers legacy version mappings. Phase 3 does not, so cannot inherit from there.
+            # prd-dev offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 3-iad-ord (which also have legacy version mappings),
             # then apply overrides from generic phase 2, and then any customizations just for this fleet.
             version_mapping: $.per_phase["3-iad-ord"].version_mapping + super.version_mapping + {
@@ -83,29 +78,18 @@ local utils = import "util_functions.jsonnet";
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
             },
-            # prd-data offers legacy version mappings. Phase 3 does not, so cannot inherit from there.
+            # prd-data offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 3-iad-ord (which also have legacy version mappings),
             # then apply overrides from generic phase 2, and then any cusomizations just for this fleet.
-            # TODO: tidy up all these exceptions.
             version_mapping: $.per_phase["3-iad-ord"].version_mapping + super.version_mapping + {
-                "0.10.0": 662,
-                "0.12.0": 696,
-                "0.12.1": 10001,
             },
         },
         # frf: Exceptions vs. the rest of phase 2 only
         "2-frf": self["2"] {
-            # FRF was in sync the rest of phase 3 before the phasing refactor.
-            # TODO: Let it begin canarying what the rest of phase 2 is doing.
-            image_tags: $.per_phase["3"].image_tags,
-            version_mapping: $.per_phase["3"].version_mapping,
         },
         # cdu: Exceptions vs. the rest of phase 2 only
         "2-cdu": self["2"] {
-            # CDU was in sync the rest of 3-pcl before the phasing refactor.
-            # TODO: Let it begin canarying what the rest of phase 2 is doing.
-            image_tags: $.per_phase["3-pcl"].image_tags,
-            version_mapping: $.per_phase["3-pcl"].version_mapping,  # Public cloud has different version mappings
+            version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
         },
         # Phase 3: Remaining production fleets.
         # This is the defacto "default" set of items.
