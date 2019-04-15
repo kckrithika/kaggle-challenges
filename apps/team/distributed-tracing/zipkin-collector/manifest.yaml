@@ -21,8 +21,10 @@ system:
        secretName: jkspass
     containers:
     - name: zipkin-collector
-      image: docker-dva-rc/dva/zipkin-collector:53
+      image: docker-dva-rc/dva/zipkin-collector:54
       env:
+      - name: ES_INDEX_REPLICAS
+        value: 0
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
       - name: KAFKA_ACCEPT_BATCH_SIZE
