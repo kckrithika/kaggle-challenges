@@ -1,14 +1,15 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-samtest" then configs.daemonSetBase("sam") {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then configs.daemonSetBase("sam") {
     spec+: {
         template: {
-            spec: configs.specWithKubeConfigAndMadDog {
+            spec: {
                 hostNetwork: true,
                 serviceAccountName: "node-labeler-sa",
+                serviceAccount: "node-labeler-sa",
                 containers: [
-                    configs.containerWithKubeConfigAndMadDog {
+                    {
                         image: samimages.hypersam,
                         name: "node-labeler",
                         command: configs.filter_empty([
@@ -16,7 +17,6 @@ if configs.estate == "prd-samtest" then configs.daemonSetBase("sam") {
                                      "--config=/config/node-labeler-config.json",
                                  ]),
                         volumeMounts+: configs.filter_empty([
-                            configs.cert_volume_mount,
                             configs.config_volume_mount,
                         ]),
                         resources: {
@@ -32,7 +32,6 @@ if configs.estate == "prd-samtest" then configs.daemonSetBase("sam") {
                     },
                 ],
                 volumes+: configs.filter_empty([
-                    configs.cert_volume,
                     configs.config_volume("node-labeler"),
                 ]),
             },
