@@ -21,7 +21,7 @@ if configs.estate == "prd-samtest" then {
                                     "--watchdogFrequency=30m",
                                     "--alertThreshold=1h",
                                     "--enableEmailPerCheckerInstance=true",
-                                    "--recipient=sam@salesforce.com",
+                                    "--recipient=",
                                     "--sender=sam@salesforce.com",
                                  ]
                                  + samwdconfig.shared_args,
