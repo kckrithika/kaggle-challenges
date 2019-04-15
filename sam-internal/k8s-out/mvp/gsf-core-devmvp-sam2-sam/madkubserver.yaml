@@ -48,7 +48,7 @@ spec:
         - --estate
         - gsf-core-devmvp-sam2-sam
         - --dns-domain
-        - gsf-core-devmvp-sam2-sam.mvp.sam.sfdc.net
+        - sam.core.test.us-central1.gcp.sfdc.net
         - --service-hostname
         - madkubserver.sam-system.svc
         env:
