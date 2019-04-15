@@ -33,6 +33,7 @@ system:
       - containerPort: 8445
       livenessProbe:
         httpGet:
+          scheme: HTTPS
           path: /zones/v1/healthCheck
           port: 8445
       volumeMounts:
