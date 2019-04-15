@@ -142,6 +142,15 @@ data:
         ###
         # End metadata fields used by switchboard for building metric tags.
         ###
+        ###
+        # Start metadata fields for configuring sidecar metrics.
+        ###
+        # We currently want to include all envoy metrics, so the inclusion list includes all known prefixes.
+        - name: ISTIO_METAJSON_METRICS_INCLUSIONS
+          value: "{\"sidecar.istio.io/statsInclusionPrefixes\": \"access_log_file,cluster,cluster_manager,control_plane,http,http2,http_mixer_filter,listener,listener_manager,redis,runtime,server,stats,tcp,tcp_mixer_filter,tracing\"}"
+        ###
+        # End metadata fields for configuring sidecar metrics.
+        ###
         imagePullPolicy: IfNotPresent
         [[ if (ne (annotation .ObjectMeta `status.sidecar.istio.io/port`  15020 ) "0") ]]
         readinessProbe:
