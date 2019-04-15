@@ -98,6 +98,18 @@ local vipwdConfig = {
        "ingress-flowsnake-prd.slb.sfdc.net:443",
     ],
   },
+  "prd-samtwo":
+  {
+    slaOptOutVips:
+    [
+      // 2019/04/15 - mgrass: The backends for this VIP periodically throw 502s,
+      // which confuses our monitoring. See
+      // https://computecloud.slack.com/archives/G340CE86R/p1554402693285500?thread_ts=1554399030.275100&cid=G340CE86R
+      // W-5369186 is the user story in our backlog for addressing this.
+      // https://gus.my.salesforce.com/one/one.app#/alohaRedirect/a07B0000005YHAjIAO
+      "sfcd-onboarding-test.sfcd.prd-samtwo.prd.slb.sfdc.net:443",
+    ],
+  },
   "xrd-sam":
   {
     slaOptOutVips:
