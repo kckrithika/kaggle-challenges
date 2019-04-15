@@ -1,6 +1,4 @@
 #
-# !!!MANUAL EDIT FOR HOST NETWORKING EXPERIMENT - MB!!
-#
 # Generated manifest
 # DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release-scripts
 #
@@ -8,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-27-itest
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-31-itest
       livenessProbe:
         exec:
           command: [ls]
@@ -39,7 +37,7 @@ system:
         timeoutSeconds: 30
       name: moana-driver
       ports:
-      #- {containerPort: 8080, name: http}
+      - {containerPort: 8080, name: http}
       - {containerPort: 15372, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 2G}
@@ -47,7 +45,7 @@ system:
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
     count: 1
-    hostnetwork: true
+    hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-master
     volumes:
@@ -59,7 +57,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-27-itest'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-31-itest'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-master}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:+UseG1GC
@@ -72,7 +70,7 @@ system:
           "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/jobcontroller:master-241-cf4fd65
+      image: sfci/insights/jobcontroller:master-248-ce2f6c8
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
@@ -118,7 +116,7 @@ system:
       - {mountPath: /client-certs, name: tls-client-certs}
       - {mountPath: /log, name: sherpa-log-volume}
     count: 1
-    hostnetwork: true
+    hostnetwork: false
     identity: {serviceName: datapool}
     name: jobcontroller-master
     volumes:
