@@ -9,9 +9,8 @@ local prConfig = import "configs/firefly-pullrequest.jsonnet";
 if configs.estate == "prd-samtwo" then
 {
   local package = packagesvc {
-      serviceConf:: super.serviceConf {
-          repoName: "mdp",
-      },
+      serviceName:: "firefly-package-mdp",
+      replicas:: 2,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -43,9 +42,7 @@ if configs.estate == "prd-samtwo" then
      },
   },
   local packagesingleton = packagesvcsingleton {
-      serviceConf:: super.serviceConf {
-          repoName: "mdp",
-      },
+      serviceName:: "firefly-package-singleton-mdp",
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -74,9 +71,8 @@ if configs.estate == "prd-samtwo" then
       },
   },
   local pullrequest = pullrequestsvc {
-      serviceConf:: super.serviceConf {
-          repoName: "mdp",
-      },
+      serviceName:: "firefly-pullrequest-mdp",
+      replicas:: 2,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",
@@ -101,9 +97,8 @@ if configs.estate == "prd-samtwo" then
       },
   },
   local promotion = promotionsvc {
-      serviceConf:: super.serviceConf {
-          repoName: "mdp",
-      },
+      serviceName:: "firefly-promotion-mdp",
+      replicas:: 2,
       env:: super.env + [
           {
               name: "INSTANCE_TYPE",

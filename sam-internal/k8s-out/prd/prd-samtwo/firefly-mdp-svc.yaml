@@ -192,11 +192,11 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-package
+      slb.sfdc.net/name: firefly-package-mdp
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-package
+      app: firefly-package-mdp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-mdp-service
     namespace: firefly
@@ -207,21 +207,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package
+      name: firefly-package-mdp
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package
+      name: firefly-package-mdp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-mdp-deployment
     namespace: firefly
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
-        name: firefly-package
+        name: firefly-package-mdp
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -239,17 +239,11 @@ items:
                         "kingdom": "prd",
                         "name": "certs",
                         "role": "firefly"
-                    },
-                    {
-                        "cert-type": "client",
-                        "kingdom": "prd",
-                        "name": "customer-certs",
-                        "role": "firefly.customer"
                     }
                 ]
             }
         labels:
-          name: firefly-package
+          name: firefly-package-mdp
           sam.data.sfdc.net/owner: tnrp
         name: firefly-package-mdp-deployment
         namespace: firefly
@@ -275,8 +269,6 @@ items:
           - --run-init-for-refresher-mode
           - --ca-folder
           - /maddog-certs/ca
-          - --cert-folders
-          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -300,8 +292,6 @@ items:
             name: tokens
           - mountPath: /maddog-certs/
             name: maddog-certs
-          - mountPath: /customer-certs/
-            name: customer-certs
         - command:
           - java
           - -jar
@@ -359,7 +349,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-package
+          name: firefly-package-mdp
           ports:
           - containerPort: 8081
             name: admin-port
@@ -407,8 +397,6 @@ items:
           - client
           - --ca-folder
           - /maddog-certs/ca
-          - --cert-folders
-          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -435,8 +423,6 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: tokens
-          - mountPath: /customer-certs/
-            name: customer-certs
         nodeSelector:
           pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
@@ -467,9 +453,6 @@ items:
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
-        - emptyDir:
-            medium: Memory
-          name: customer-certs
 - apiVersion: v1
   data:
     application.yml: |-
@@ -662,11 +645,11 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-package-singleton
+      slb.sfdc.net/name: firefly-package-singleton-mdp
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-package-singleton
+      app: firefly-package-singleton-mdp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-singleton-mdp-service
     namespace: firefly
@@ -677,13 +660,13 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-package-singleton
+      name: firefly-package-singleton-mdp
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-package-singleton
+      name: firefly-package-singleton-mdp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-package-singleton-mdp-deployment
     namespace: firefly
@@ -691,7 +674,7 @@ items:
     replicas: 1
     selector:
       matchLabels:
-        name: firefly-package-singleton
+        name: firefly-package-singleton-mdp
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -713,7 +696,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-package-singleton
+          name: firefly-package-singleton-mdp
           sam.data.sfdc.net/owner: tnrp
         name: firefly-package-singleton-mdp-deployment
         namespace: firefly
@@ -819,7 +802,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-package-singleton
+          name: firefly-package-singleton-mdp
           ports:
           - containerPort: 8081
             name: admin-port
@@ -1074,11 +1057,11 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-pullrequest
+      slb.sfdc.net/name: firefly-pullrequest-mdp
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-pullrequest
+      app: firefly-pullrequest-mdp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-pullrequest-mdp-service
     namespace: firefly
@@ -1089,21 +1072,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-pullrequest
+      name: firefly-pullrequest-mdp
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-pullrequest
+      name: firefly-pullrequest-mdp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-pullrequest-mdp-deployment
     namespace: firefly
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
-        name: firefly-pullrequest
+        name: firefly-pullrequest-mdp
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -1121,17 +1104,11 @@ items:
                         "kingdom": "prd",
                         "name": "certs",
                         "role": "firefly"
-                    },
-                    {
-                        "cert-type": "client",
-                        "kingdom": "prd",
-                        "name": "customer-certs",
-                        "role": "firefly.customer"
                     }
                 ]
             }
         labels:
-          name: firefly-pullrequest
+          name: firefly-pullrequest-mdp
           sam.data.sfdc.net/owner: tnrp
         name: firefly-pullrequest-mdp-deployment
         namespace: firefly
@@ -1157,8 +1134,6 @@ items:
           - --run-init-for-refresher-mode
           - --ca-folder
           - /maddog-certs/ca
-          - --cert-folders
-          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -1182,8 +1157,6 @@ items:
             name: tokens
           - mountPath: /maddog-certs/
             name: maddog-certs
-          - mountPath: /customer-certs/
-            name: customer-certs
         - command:
           - java
           - -jar
@@ -1235,7 +1208,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-pullrequest
+          name: firefly-pullrequest-mdp
           ports:
           - containerPort: 8081
             name: admin-port
@@ -1285,8 +1258,6 @@ items:
           - client
           - --ca-folder
           - /maddog-certs/ca
-          - --cert-folders
-          - customer-certs:/customer-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -1313,8 +1284,6 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: tokens
-          - mountPath: /customer-certs/
-            name: customer-certs
         nodeSelector:
           pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
@@ -1345,9 +1314,6 @@ items:
         - hostPath:
             path: /etc/pki_service
           name: maddog-certs
-        - emptyDir:
-            medium: Memory
-          name: customer-certs
 - apiVersion: v1
   data:
     application.yml: |-
@@ -1521,11 +1487,11 @@ items:
   kind: Service
   metadata:
     annotations:
-      slb.sfdc.net/name: firefly-promotion
+      slb.sfdc.net/name: firefly-promotion-mdp
       slb.sfdc.net/portconfigurations: '[{"lbtype": "http", "port": 8081, "reencrypt":
         false, "sticky": 0, "targetPort": 8081, "tls": false}]'
     labels:
-      app: firefly-promotion
+      app: firefly-promotion-mdp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-promotion-mdp-service
     namespace: firefly
@@ -1536,21 +1502,21 @@ items:
       protocol: TCP
       targetPort: 8081
     selector:
-      name: firefly-promotion
+      name: firefly-promotion-mdp
     type: NodePort
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
     labels:
-      name: firefly-promotion
+      name: firefly-promotion-mdp
       sam.data.sfdc.net/owner: tnrp
     name: firefly-promotion-mdp-deployment
     namespace: firefly
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       matchLabels:
-        name: firefly-promotion
+        name: firefly-promotion-mdp
         sam.data.sfdc.net/owner: tnrp
     strategy:
       rollingUpdate:
@@ -1572,7 +1538,7 @@ items:
                 ]
             }
         labels:
-          name: firefly-promotion
+          name: firefly-promotion-mdp
           sam.data.sfdc.net/owner: tnrp
         name: firefly-promotion-mdp-deployment
         namespace: firefly
@@ -1672,7 +1638,7 @@ items:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 30
-          name: firefly-promotion
+          name: firefly-promotion-mdp
           ports:
           - containerPort: 8081
             name: admin-port
