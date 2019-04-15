@@ -18,7 +18,6 @@ system:
       - containerPort: 8080
       - containerPort: 15372
       - containerPort: 2181
-
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -73,7 +72,6 @@ system:
       - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
       - -endpoint
       - samapp/$(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7442
-
       livenessProbe:
         exec:
           command:
