@@ -24,7 +24,7 @@ system:
       - name: CHATTER_GROUP_NAME
         value: casam-alpha
       - name: SFPROXY_VIP
-        value: https://devmvpapp-lb.core-on-sam-sp1.gcp-sam.gcp.slb.sfdc.net:8443
+        value: https://casam.devmvp.gcp.sfdcsvc.net
       - name: SWITCH_BOARD_ADDRESS
         value: na3-switchboard-lb:16001
       - name: RELEASE_VESION
