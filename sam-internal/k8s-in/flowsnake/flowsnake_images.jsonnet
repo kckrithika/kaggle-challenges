@@ -32,7 +32,6 @@ local utils = import "util_functions.jsonnet";
                 watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
                 docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
                 eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                watchdog_image_tag: "2687-6c147b04d2d506c9fd591d50f400bd86c485b155",  # Slight formatting fix for cli-checker stdout/stderr to watchdog report email
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
                 deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-12-itest",
@@ -58,7 +57,6 @@ local utils = import "util_functions.jsonnet";
                 cert_secretizer_image_tag: "716",  # TODO: This is _older_ than phase 3. Fix.
                 eventExporter_image_tag: "726",  # TODO: This is _older_ than phase 3. Fix.
                 fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-788-3-itest",  # TODO: This is _older_ than phase 3. Fix.
-                watchdog_image_tag: "2687-6c147b04d2d506c9fd591d50f400bd86c485b155",  # Slight formatting fix for cli-checker stdout/stderr to watchdog report email
             },
             feature_flags+: {
                 #spark_application_quota_enforcement: "enabled",
@@ -125,7 +123,7 @@ local utils = import "util_functions.jsonnet";
                 logstash_image_tag: "468",
                 madkub_image_tag: "1.0.0-0000081-ddcaa288",
                 nodeMonitor_image_tag: 662,
-                watchdog_image_tag: "sam-0002015-fdb18963",
+                watchdog_image_tag: "2687-6c147b04d2d506c9fd591d50f400bd86c485b155",  # Add stdout/stderr to watchdog report email for cli-checker
                 watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
                 docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-706-itest",
@@ -157,7 +155,6 @@ local utils = import "util_functions.jsonnet";
                 # In PCL, Madkub server needs to use host IP for token IP to get server token.
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",
                 eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-                watchdog_image_tag: "sam-0002530-db32f9dc",  # Adds cli-checker stderr logging
             },
             feature_flags+: {
             },

@@ -360,9 +360,10 @@ items:
           - -watchdogFrequency=1m
           - -alertThreshold=1m
           - -cliCheckerTimeout=15m
+          - -includeCommandOutput=true
           - -kingdom=cdu
           - -estate=cdu-flowsnake_prod
-          image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0002530-db32f9dc
+          image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/sam/hypersam:2687-6c147b04d2d506c9fd591d50f400bd86c485b155
           imagePullPolicy: IfNotPresent
           name: watchdog
           resources:
