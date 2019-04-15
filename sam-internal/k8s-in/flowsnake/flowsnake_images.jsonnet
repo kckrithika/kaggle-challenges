@@ -42,6 +42,7 @@ local utils = import "util_functions.jsonnet";
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
                 spark_application_quota_enforcement: "enabled",
+                watchdog_integration_merge: "",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
@@ -140,6 +141,7 @@ local utils = import "util_functions.jsonnet";
                 cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
                 fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
                 eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+                integration_test_runner: "1",
             },
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -240,6 +242,10 @@ local utils = import "util_functions.jsonnet";
     zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].image_tags.zookeeper_image_tag,
     madkub_injector: flowsnakeconfig.strata_registry + "/flowsnake-madkub-injector-webhook:" + $.per_phase[$.phase].image_tags.madkub_injector_image_tag,
     spark_operator: flowsnakeconfig.strata_registry + "/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.spark_operator_image_tag,
+    spark_operator_watchdog_canary: (
+    if std.objectHas(self.feature_flags, "watchdog_integration_merge") then flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_runner
+    else imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.watchdog_image_tag)
+    ),
 
     feature_flags: $.per_phase[$.phase].feature_flags,
     # Convert to the format expected by std.manifestIni for generating Windows-style .ini files
