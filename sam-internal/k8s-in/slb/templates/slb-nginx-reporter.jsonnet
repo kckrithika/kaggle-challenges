@@ -47,6 +47,11 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             slbconfigs.node_name_env,
                             configs.kube_config_env,
                         ],
+                        resources: {
+                            limits: {
+                                memory: "10Gi"
+                            },
+                        },
                     } + configs.ipAddressResourceRequest,
                 ],
             } + slbconfigs.getGracePeriod()
