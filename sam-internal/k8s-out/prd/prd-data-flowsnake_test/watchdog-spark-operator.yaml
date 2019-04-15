@@ -315,6 +315,15 @@ items:
           - -alertThreshold=1m
           - -cliCheckerTimeout=15m
           - -includeCommandOutput=true
+          env:
+          - name: DOCKER_TAG
+            value: "1"
+          - name: TEST_RUNNER_ID
+            value: canary
+          - name: S3_PROXY_HOST
+            value: public0-proxy1-0-prd.data.sfdc.net
+          - name: DRIVER_SERVICE_ACCOUNT
+            value: spark-driver-flowsnake-watchdog
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:1
           imagePullPolicy: IfNotPresent
           name: watchdog
@@ -332,8 +341,6 @@ items:
             name: sfdchosts
           - mountPath: /watchdog-spark-scripts
             name: watchdog-spark-scripts
-          - mountPath: /watchdog-spark-specs
-            name: watchdog-spark-specs
           - mountPath: /certs
             name: datacerts
         - args:
