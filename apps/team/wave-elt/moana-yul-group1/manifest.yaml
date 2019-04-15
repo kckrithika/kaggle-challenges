@@ -61,6 +61,7 @@ system:
           "-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops",
           "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: yul-group1}
+      - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-yul.data.sfdc.net'}
       image: sfci/insights/jobcontroller:release-103-b5d1371
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
