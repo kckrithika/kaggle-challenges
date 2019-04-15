@@ -24,7 +24,9 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
     $['serviceName'] == "firefly-pullrequest-fcp" ||
     $['serviceName'] == "firefly-pullrequest-fcp-test" ||
     $['serviceName'] == "firefly-package-fcp"||
-    $['serviceName'] == "firefly-package-fcp-test"),
+    $['serviceName'] == "firefly-package-fcp-test" ||
+    $['serviceName'] == "firefly-pullrequest-mdp" ||
+    $['serviceName'] == "firefly-package-mdp"),
 
   serviceConf:: {},
   commonVolMounts:: [
