@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-samtest" then
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
 ({
   commands: {
     patchVersion: "cat /etc/sfdc-release | grep -oP '(?<=INSTALL ).*'",
