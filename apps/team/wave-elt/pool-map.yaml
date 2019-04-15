@@ -1,6 +1,14 @@
 apps:
 
 
+  moana-syd-group1:
+  - syd/syd-sam_datapool
+  moana-cdu-group1:
+  - cdu/cdu-sam_datapool
+  moana-yul-group1:
+  - yul/yul-sam_datapool
+  moana-yhu-group1:
+  - yhu/yhu-sam_datapool
   moana-hnd-group1:
   - hnd/hnd-sam_datapool
   moana-frf-group1:
