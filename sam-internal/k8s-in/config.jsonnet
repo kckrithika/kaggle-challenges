@@ -453,6 +453,9 @@ local utils = import "util_functions.jsonnet",
         },
     },
     dnsdomain: (
+if utils.is_pcn(kingdom) then
+            std.split(estate, "-")[4] + ".core.test.us-central1.gcp.sfdc.net"
+        else
             estate + "." + kingdom + ".sam.sfdc.net"
     ),
 
