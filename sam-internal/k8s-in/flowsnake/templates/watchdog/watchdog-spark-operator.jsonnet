@@ -50,10 +50,10 @@ else
                     namespace: "flowsnake",
                 }
             ]
-        },
-
+        }] +
         # ConfigMap containing the resources of the watchdog
-        {
+        (if std.objectHas(flowsnake_images.feature_flags, "watchdog_integration_merge") then []
+        else [{
             kind: "ConfigMap",
             apiVersion: "v1",
             metadata: {
@@ -65,7 +65,7 @@ else
                 "watchdog-spark-impersonation.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-impersonation.libsonnet"),
                 "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-specs/kubeconfig-impersonation-proxy.libsonnet"),
             }
-        }]
+        }])
         + (import "watchdog-spark-operator-scripts.libsonnet")
         + [
         configs.deploymentBase("flowsnake") {
@@ -113,7 +113,7 @@ else
                         hostNetwork: if flowsnakeconfig.is_public_cloud then false else true,
                         containers: [
                             {
-                                image: flowsnake_images.watchdog,
+                                image: flowsnake_images.spark_operator_watchdog_canary,
                                 imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
                                 command: [
                                     "/sam/watchdog",
@@ -173,22 +173,36 @@ else
                         serviceAccountName: "watchdog-spark-operator-serviceaccount",
                         volumes: [
                             configs.config_volume("watchdog"),
-                            {
-                                configMap: {
-                                    name: "watchdog-spark-on-k8s-spec-configmap",
-                                },
-                                name: "watchdog-spark-specs",
+                        ]
+                        + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_integration_merge") then 
+                        [{
+                            configMap: {
+                                name: "watchdog-spark-on-k8s-script-configmap",
+                                # rwxr-xr-x 755 octal, 493 decimal
+                                defaultMode: 493,
                             },
-                            {
-                                configMap: {
-                                    name: "watchdog-spark-on-k8s-script-configmap",
-                                    # rwxr-xr-x 755 octal, 493 decimal
-                                    defaultMode: 493,
-                                },
-                                name: "watchdog-spark-scripts",
+                            name: "watchdog-spark-scripts",
+                        },
+                        watchdog.sfdchosts_volume
+                        ]
+                        else  
+                        [{
+                            configMap: {
+                                name: "watchdog-spark-on-k8s-spec-configmap",
                             },
-                            watchdog.sfdchosts_volume
-                        ] + madkub_common.cert_volumes(cert_name),
+                            name: "watchdog-spark-specs",
+                        },
+                        {
+                            configMap: {
+                                name: "watchdog-spark-on-k8s-script-configmap",
+                                # rwxr-xr-x 755 octal, 493 decimal
+                                defaultMode: 493,
+                            },
+                            name: "watchdog-spark-scripts",
+                        },
+                        watchdog.sfdchosts_volume
+                        ])
+                        + madkub_common.cert_volumes(cert_name),
                     },
                 }
             }

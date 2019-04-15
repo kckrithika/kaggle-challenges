@@ -76,15 +76,22 @@ local build_btrfs_test_commands = if std.objectHas(flowsnake_images.feature_flag
 } else {};
 
 local build_spark_operator_test_commands =
-    {
-        SparkOperatorTest: {
-            SparkOperatorTest: "/watchdog-spark-scripts/check-spark-operator.sh /watchdog-spark-specs/watchdog-spark-operator.json",
-            # Verify impersonation works at all
-            ImpersonationProxyMinimalTest: "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-specs/kubeconfig-impersonation-proxy",
-            # Run a Spark Application via the impersonation proxy
-            ImpersonationProxySparkTest: "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-specs/kubeconfig-impersonation-proxy /watchdog-spark-specs/watchdog-spark-impersonation.json",
-        },
-    };
+if std.objectHas(flowsnake_images.feature_flags, "watchdog_integration_merge") then
+{ SparkOperatorTest: {
+    SparkOperatorTest: "/watchdog-spark-scripts/check-spark-operator.sh --namespace flowsnake-ci-tests /strata-test-specs-in/basic-spark-pi.jsonnet",
+    # Verify impersonation works at all
+    ImpersonationProxyMinimalTest: "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-scripts/kubeconfig-impersonation-proxy flowsnake-ci-tests",
+    # Run a Spark Application via the impersonation proxy
+    ImpersonationProxySparkTest: "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy --namespace flowsnake-ci-tests /strata-test-specs-in/basic-spark-impersonation.jsonnet",
+} }
+else
+{ SparkOperatorTest: {
+    SparkOperatorTest: "/watchdog-spark-scripts/check-spark-operator.sh /watchdog-spark-specs/watchdog-spark-operator.json",
+    # Verify impersonation works at all
+    ImpersonationProxyMinimalTest: "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-specs/kubeconfig-impersonation-proxy",
+    # Run a Spark Application via the impersonation proxy
+    ImpersonationProxySparkTest: "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-specs/kubeconfig-impersonation-proxy /watchdog-spark-specs/watchdog-spark-impersonation.json",
+} };
 {
     command_sets:: build_canary_commands + build_docker_test_commands + build_btrfs_test_commands + build_spark_operator_test_commands,
 }
