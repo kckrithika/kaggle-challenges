@@ -6,7 +6,7 @@ local promotionsvc = import "firefly-promotion-svc.jsonnet.TEMPLATE";
 local packageConfig = import "configs/firefly-package.jsonnet";
 local prConfig = import "configs/firefly-pullrequest.jsonnet";
 
-if configs.estate == "prd-sam" then
+if configs.estate == "prd-samtwo" then
 {
   local package = packagesvc {
       serviceConf:: super.serviceConf {

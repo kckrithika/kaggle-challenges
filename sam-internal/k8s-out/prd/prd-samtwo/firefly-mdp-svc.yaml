@@ -12,13 +12,13 @@ items:
                   "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
                   "artifactory-content-repo-prod": "content_repo_prod",
                   "artifactory-content-repo-rc": "content_repo_rc",
-                  "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
-                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd_test",
+                  "artifactory-content-repo-user-name": "svc_tnrp_ci",
+                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd",
                   "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
-                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-dev-host": "ops0-artifactrepo1-0-prd.data.sfdc.net",
                   "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
                   "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
-                  "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
+                  "artifactory-p2p-host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
                   "artifactory-password": "${artifactoryPassword#FromSecretService}",
                   "artifactory-user-name": "svc_tnrp_artifactory",
                   "backoff-time": "1000ms",
@@ -81,7 +81,7 @@ items:
                       "pod": "firefly-package",
                       "service": "firefly",
                       "subservice": "${MY_APP_NAME}",
-                      "superpod": "prd-sam"
+                      "superpod": "prd-samtwo"
                   },
                   "report-frequency": 1,
                   "system-exception-threshold": 5
@@ -137,10 +137,10 @@ items:
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
-                  "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
+                  "oauth-token": "${gitRWPassword#FromSecretService}",
                   "read-timeout": "60s",
                   "url": "https://git.soma.salesforce.com",
-                  "user": "tok-firefly-git-test",
+                  "user": "svc-tnrp-git-rw",
                   "write-timeout": "60s"
               }
           },
@@ -150,7 +150,7 @@ items:
           "spring": {
               "rabbitmq": {
                   "connection-timeout": "10000ms",
-                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "host": "firefly-rabbitmq.firefly.prd-samtwo.prd.slb.sfdc.net",
                   "listener": {
                       "simple": {
                           "retry": {
@@ -290,7 +290,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: madkub-refresher
           resources: {}
           volumeMounts:
@@ -306,7 +306,7 @@ items:
           - java
           - -jar
           - /package-svc.jar
-          - --spring.profiles.active=prd-sam
+          - --spring.profiles.active=prd-samtwo
           - --spring.config.location=/etc/firefly/config/
           env:
           - name: MY_NODE_NAME
@@ -337,7 +337,7 @@ items:
           - name: SERVICE_MODE
             value: multi
           - name: CONFIG_VERSION
-            value: "24"
+            value: "20"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -348,7 +348,7 @@ items:
             value: firefly-mdp.promotion
           - name: LATEST_FILE_QUEUE
             value: firefly-mdp.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:387
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:372
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -364,11 +364,6 @@ items:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -430,7 +425,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           imagePullPolicy: IfNotPresent
           name: madkub-init
           volumeMounts:
@@ -443,7 +438,7 @@ items:
           - mountPath: /customer-certs/
             name: customer-certs
         nodeSelector:
-          pool: prd-sam
+          pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
         volumes:
         - name: app-config-volume
@@ -487,13 +482,13 @@ items:
                   "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
                   "artifactory-content-repo-prod": "content_repo_prod",
                   "artifactory-content-repo-rc": "content_repo_rc",
-                  "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
-                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd_test",
+                  "artifactory-content-repo-user-name": "svc_tnrp_ci",
+                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd",
                   "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
-                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-dev-host": "ops0-artifactrepo1-0-prd.data.sfdc.net",
                   "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
                   "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
-                  "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
+                  "artifactory-p2p-host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
                   "artifactory-password": "${artifactoryPassword#FromSecretService}",
                   "artifactory-user-name": "svc_tnrp_artifactory",
                   "backoff-time": "1000ms",
@@ -556,7 +551,7 @@ items:
                       "pod": "firefly-package",
                       "service": "firefly",
                       "subservice": "${MY_APP_NAME}",
-                      "superpod": "prd-sam"
+                      "superpod": "prd-samtwo"
                   },
                   "report-frequency": 1,
                   "system-exception-threshold": 5
@@ -612,10 +607,10 @@ items:
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
-                  "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
+                  "oauth-token": "${gitRWPassword#FromSecretService}",
                   "read-timeout": "60s",
                   "url": "https://git.soma.salesforce.com",
-                  "user": "tok-firefly-git-test",
+                  "user": "svc-tnrp-git-rw",
                   "write-timeout": "60s"
               }
           },
@@ -625,7 +620,7 @@ items:
           "spring": {
               "rabbitmq": {
                   "connection-timeout": "10000ms",
-                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "host": "firefly-rabbitmq.firefly.prd-samtwo.prd.slb.sfdc.net",
                   "listener": {
                       "simple": {
                           "retry": {
@@ -757,7 +752,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: madkub-refresher
           resources: {}
           volumeMounts:
@@ -771,7 +766,7 @@ items:
           - java
           - -jar
           - /package-svc.jar
-          - --spring.profiles.active=prd-sam
+          - --spring.profiles.active=prd-samtwo
           - --spring.config.location=/etc/firefly/config/
           env:
           - name: MY_NODE_NAME
@@ -802,7 +797,7 @@ items:
           - name: SERVICE_MODE
             value: singleton
           - name: CONFIG_VERSION
-            value: "22"
+            value: "18"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
@@ -813,7 +808,7 @@ items:
             value: firefly-mdp.promotion
           - name: LATEST_FILE_QUEUE
             value: firefly-mdp.latestfile
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:387
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-package:372
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -829,11 +824,6 @@ items:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -876,7 +866,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           imagePullPolicy: IfNotPresent
           name: madkub-init
           volumeMounts:
@@ -887,7 +877,7 @@ items:
           - mountPath: /tokens
             name: tokens
         nodeSelector:
-          pool: prd-sam
+          pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
         volumes:
         - name: app-config-volume
@@ -926,8 +916,8 @@ items:
                   "artifactory-content-repo-gcp": "content_repo_gcp",
                   "artifactory-content-repo-prod": "content_repo_prod",
                   "artifactory-content-repo-rc": "content_repo_rc",
-                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
-                  "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
+                  "artifactory-dev-host": "ops0-artifactrepo1-0-prd.data.sfdc.net",
+                  "artifactory-p2p-host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
                   "artifactory-password": "${artifactoryPassword#FromSecretService}",
                   "artifactory-user-name": "svc_tnrp_artifactory"
               },
@@ -976,7 +966,7 @@ items:
                       "pod": "firefly-pullrequest",
                       "service": "firefly",
                       "subservice": "${MY_APP_NAME}",
-                      "superpod": "prd-sam"
+                      "superpod": "prd-samtwo"
                   },
                   "report-frequency": 1,
                   "system-exception-threshold": 5
@@ -1029,10 +1019,10 @@ items:
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
-                  "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
+                  "oauth-token": "${gitRWPassword#FromSecretService}",
                   "read-timeout": "60s",
                   "url": "https://git.soma.salesforce.com",
-                  "user": "tok-firefly-git-test",
+                  "user": "svc-tnrp-git-rw",
                   "write-timeout": "60s"
               }
           },
@@ -1042,7 +1032,7 @@ items:
           "spring": {
               "rabbitmq": {
                   "connection-timeout": "10000ms",
-                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "host": "firefly-rabbitmq.firefly.prd-samtwo.prd.slb.sfdc.net",
                   "listener": {
                       "simple": {
                           "retry": {
@@ -1182,7 +1172,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: madkub-refresher
           resources: {}
           volumeMounts:
@@ -1198,7 +1188,7 @@ items:
           - java
           - -jar
           - /pullrequest-svc.jar
-          - --spring.profiles.active=prd-sam
+          - --spring.profiles.active=prd-samtwo
           - --spring.config.location=/etc/firefly/config/
           env:
           - name: MY_NODE_NAME
@@ -1227,14 +1217,14 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "25"
+            value: "20"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
             value: firefly-mdp
           - name: RABBIT_MQ_QUEUE_NAME
             value: firefly-mdp.pr
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:387
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-pullrequest:372
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1250,11 +1240,6 @@ items:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -1318,7 +1303,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           imagePullPolicy: IfNotPresent
           name: madkub-init
           volumeMounts:
@@ -1331,7 +1316,7 @@ items:
           - mountPath: /customer-certs/
             name: customer-certs
         nodeSelector:
-          pool: prd-sam
+          pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
         volumes:
         - name: app-config-volume
@@ -1375,13 +1360,13 @@ items:
                   "artifactory-content-repo-password-prod": "${artifactoryContentRepoPasswordProd#FromSecretService}",
                   "artifactory-content-repo-prod": "content_repo_prod",
                   "artifactory-content-repo-rc": "content_repo_rc",
-                  "artifactory-content-repo-user-name": "svc_tnrp_ci_test",
-                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd_test",
+                  "artifactory-content-repo-user-name": "svc_tnrp_ci",
+                  "artifactory-content-repo-user-name-prod": "svc_tnrp_cd",
                   "artifactory-dev-endpoint": "https://${appconfig.artifactory.artifactory-dev-host}/",
-                  "artifactory-dev-host": "testrepo1-0-prd.data.sfdc.net",
+                  "artifactory-dev-host": "ops0-artifactrepo1-0-prd.data.sfdc.net",
                   "artifactory-p2p-api-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/artifactory/",
                   "artifactory-p2p-endpoint": "https://${appconfig.artifactory.artifactory-p2p-host}/",
-                  "artifactory-p2p-host": "testrepo2-0-prd.data.sfdc.net",
+                  "artifactory-p2p-host": "ops0-artifactrepo2-0-prd.data.sfdc.net",
                   "artifactory-password": "${artifactoryPassword#FromSecretService}",
                   "artifactory-user-name": "svc_tnrp_artifactory",
                   "backoff-time": "1000ms",
@@ -1427,7 +1412,7 @@ items:
                       "pod": "firefly-promotion",
                       "service": "firefly",
                       "subservice": "${MY_APP_NAME}",
-                      "superpod": "prd-sam"
+                      "superpod": "prd-samtwo"
                   },
                   "report-frequency": 1,
                   "system-exception-threshold": 5
@@ -1481,10 +1466,10 @@ items:
                   "keep-alive-duration": "60000ms",
                   "max-attempts": 3,
                   "max-idle-connections": 10,
-                  "oauth-token": "${gitFireflyTestOauthToken#FromSecretService}",
+                  "oauth-token": "${gitRWPassword#FromSecretService}",
                   "read-timeout": "60s",
                   "url": "https://git.soma.salesforce.com",
-                  "user": "tok-firefly-git-test",
+                  "user": "svc-tnrp-git-rw",
                   "write-timeout": "60s"
               }
           },
@@ -1494,7 +1479,7 @@ items:
           "spring": {
               "rabbitmq": {
                   "connection-timeout": "10000ms",
-                  "host": "firefly-rabbitmq.firefly.prd-sam.prd.slb.sfdc.net",
+                  "host": "firefly-rabbitmq.firefly.prd-samtwo.prd.slb.sfdc.net",
                   "listener": {
                       "simple": {
                           "retry": {
@@ -1626,7 +1611,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           name: madkub-refresher
           resources: {}
           volumeMounts:
@@ -1640,7 +1625,7 @@ items:
           - java
           - -jar
           - /promotion-svc.jar
-          - --spring.profiles.active=prd-sam
+          - --spring.profiles.active=prd-samtwo
           - --spring.config.location=/etc/firefly/config/
           env:
           - name: MY_NODE_NAME
@@ -1669,14 +1654,14 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "17"
+            value: "11"
           - name: DARKLAUNCH
             value: "false"
           - name: INSTANCE_TYPE
             value: firefly-mdp
           - name: RABBIT_MQ_QUEUE_NAME
             value: firefly-mdp.promotion
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:387
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-promotion:372
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 10
@@ -1692,11 +1677,6 @@ items:
           - containerPort: 8081
             name: admin-port
             protocol: TCP
-          resources:
-            limits:
-              sam.sfdc.net/ip-address: "1"
-            requests:
-              sam.sfdc.net/ip-address: "1"
           volumeMounts:
           - mountPath: /certs
             name: certs
@@ -1739,7 +1719,7 @@ items:
               fieldRef:
                 apiVersion: v1
                 fieldPath: metadata.namespace
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000081-ddcaa288
           imagePullPolicy: IfNotPresent
           name: madkub-init
           volumeMounts:
@@ -1750,7 +1730,7 @@ items:
           - mountPath: /tokens
             name: tokens
         nodeSelector:
-          pool: prd-sam
+          pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
         volumes:
         - name: app-config-volume
