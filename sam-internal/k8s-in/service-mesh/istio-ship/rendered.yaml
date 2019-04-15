@@ -422,11 +422,20 @@ data:
         - name: ISTIO_BOOTSTRAP_OVERRIDE
           value: "/etc/istio/custom-bootstrap/custom_bootstrap.json"
         [[- end ]]
-        # The "hostname" metadata field (case sensitive) is used by switchboard for building the metric tags.
+        ###
+        # Start metadata fields used by switchboard for building metric tags.
+        ###
         - name: ISTIO_META_hostname
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
+        - name: ISTIO_META_namespace
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        ###
+        # End metadata fields used by switchboard for building metric tags.
+        ###
         imagePullPolicy: IfNotPresent
         [[ if (ne (annotation .ObjectMeta `status.sidecar.istio.io/port`  15020 ) "0") ]]
         readinessProbe:
