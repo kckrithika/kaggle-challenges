@@ -61,17 +61,14 @@
      targetport: 443
      lbtype: tcp
      healthport: 443
-     healthpath: "/ping.jsp"
-     healthprotocol: "https"
+     healthprotocol: "tcp"
    - port: 8443
      targetport: 8443
      lbtype: tcp
-     healthport: 443
-     healthpath: "/ping.jsp"
-     healthprotocol: "https"
+     healthport: 8443
+     healthprotocol: "tcp"
    - port: 2379
      targetport: 2379
      lbtype: tcp
-     healthport: 443
-     healthpath: "/ping.jsp"
-     healthprotocol: "https"
+     healthport: 2379
+     healthprotocol: "tcp"
