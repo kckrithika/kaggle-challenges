@@ -37,4 +37,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # Feature flag for slb-portal to display all VIPs
     slbPortalEndpointOverride: (slbimages.phaseNum <= 1),
+
+    # restrict memory usage in slb-nginx-reporter to 10G
+    ngnixReporterMemoryCap: (slbimages.phaseNum <= 1),
 }

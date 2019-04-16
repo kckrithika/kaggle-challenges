@@ -2,6 +2,13 @@ local configs = import "config.jsonnet";
 local serviceName = "slb-nginx-reporter";
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: serviceName };
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-portal" };
+
+local resourceLimit = if slbflights.ngnixReporterMemoryCap then {
+    resources: {
+        limits+: { memory: "10Gi" },
+    } + configs.ipAddressResource,
+} else configs.ipAddressResourceRequest;
 
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
@@ -47,12 +54,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             slbconfigs.node_name_env,
                             configs.kube_config_env,
                         ],
-                        resources: {
-                            limits: {
-                                memory: "10Gi"
-                            },
-                        },
-                    } + configs.ipAddressResourceRequest,
+                    } + resourceLimit,
                 ],
             } + slbconfigs.getGracePeriod()
               + slbconfigs.slbEstateNodeSelector,
