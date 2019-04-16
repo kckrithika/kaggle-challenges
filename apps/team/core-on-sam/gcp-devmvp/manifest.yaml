@@ -33,10 +33,13 @@ system:
     - name: secretvol-db
       k4aSecret:
         secretName: gcp-mvp-1az-db-pw
+    - name: gcp-svc-creds
+      secret:
+        secretName: casam-gcs-gcpsa
 
     containers:
     - name: coreapp
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17898952
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17909777
 
       command: ["/bin/sh", "-c"]
       args: ["
@@ -51,7 +54,7 @@ system:
       env:
         - name: REDEPLOY
           value: 1
-          
+
         # db pw extracted from k4a at startup
         - name: DB_USER
           value: sleepy
@@ -63,10 +66,10 @@ system:
           value: 10.168.160.73
         - name: SERVER_ID
           value: 5
-          
+
         - name: INTERNAL_ENV
           value: true
-          
+
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
           value: 443
@@ -133,6 +136,10 @@ system:
             fieldRef:
               fieldPath: spec.nodeName
 
+        # GCS creds used by FFX - this is a k8s secret, not a k4a secret
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/secrets/google/gsf-core-devmvp-sam2-dd7bedce4ba4.json
+
       livenessProbe:
         exec:
           command:
@@ -180,6 +187,9 @@ system:
         - mountPath: /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-1az-db-pw
           name: secretvol-db
           readOnly: true
+        - name: gcp-svc-creds
+          mountPath: /var/secrets/google
+          readOnly: true
 
       resources:
         requests: { memory: "32Gi" }
@@ -214,7 +224,7 @@ system:
         value: envoy-sidecar
       command: ["/bin/sh", "-c"]
       args: ["
-      cp /cyan-config/tls-terminator-config.yaml.template /home/sfdc-sherpa/tls-terminator-config.yaml ; 
+      cp /cyan-config/tls-terminator-config.yaml.template /home/sfdc-sherpa/tls-terminator-config.yaml ;
       /home/sfdc-sherpa/hot_restarter /home/sfdc-sherpa/envoy -c /home/sfdc-sherpa/tls-terminator-config.yaml --restart-epoch 0 --allow-unknown-fields --max-stats 32768 --drain-time-s 60 --parent-shutdown-time-s 90 --base-id 1
       "]
       ports:
@@ -246,7 +256,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: casam-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:8c2570
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:3d048e
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
@@ -267,7 +277,7 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc/salesforce/casam
         name: coreapp-casam-volume
-        
+
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
       args:
