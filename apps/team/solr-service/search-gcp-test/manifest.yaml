@@ -78,7 +78,7 @@ system:
         - name: ENABLE_METRICS
           value: "true"
         - name: LBNAME
-          value: "searchtest"
+          value: "searchtest1"
         - name: DNS_PODNAME
           valueFrom:
             fieldRef:
@@ -107,7 +107,7 @@ system:
             - "true"
           initialDelaySeconds: 120
           periodSeconds: 5
-      lbname: searchtest
+      lbname: searchtest1
       terminationGracePeriodSeconds: 10
       volumeClaimTemplates:
       - name: solr-data-volume
