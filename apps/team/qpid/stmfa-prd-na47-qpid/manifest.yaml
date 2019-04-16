@@ -16,10 +16,10 @@ system:
             - name: amqp-port
               containerPort: 5672
             - name: http-port
-              containerPort: 5673
+              containerPort: 9099
           env:
             - name: HTTP_PORT
-              value: 5673
+              value: 9099
             - name: AMQP_PORT
               value: 5672
             - name: QPID_JAVA_HEAPSZ
