@@ -13,8 +13,8 @@ system:
               fieldPath: metadata.namespace
         - name: CONSUL_HOST
           value: "consul-server-0.consul-headless.$(POD_NAMESPACE).svc"
-        - name: DUMMY_ENV_VAR
-          value: 42
+        - name: CONSUL_PORT
+          value: "8500"
       ports:
       - containerPort: 8000
       livenessProbe:
