@@ -2,8 +2,8 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
   labels:
-    app: istio-mesh-webhook
-  name: istio-mesh-webhook
+    app: istio-routing-webhook
+  name: istio-routing-webhook
   namespace: mesh-control-plane
 rules:
 - apiGroups:

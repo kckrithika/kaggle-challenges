@@ -4,7 +4,7 @@ local configs = import "config.jsonnet";
   apiVersion: "v1",
   kind: "Service",
   metadata: {
-    name: "istio-mesh-webhook",
+    name: "istio-routing-webhook",
     namespace: "mesh-control-plane",
   },
   spec: {
@@ -16,7 +16,7 @@ local configs = import "config.jsonnet";
       },
     ],
     selector: {
-      app: "istio-mesh-webhook",
+      app: "istio-routing-webhook",
     },
   },
 }

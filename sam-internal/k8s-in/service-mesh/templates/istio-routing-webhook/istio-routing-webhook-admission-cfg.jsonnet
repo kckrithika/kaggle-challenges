@@ -4,7 +4,7 @@ local configs = import "config.jsonnet";
   apiVersion: "admissionregistration.k8s.io/v1beta1",
   kind: "ValidatingWebhookConfiguration",
   metadata: {
-    name: "istio-mesh-webhook-cfg",
+    name: "istio-routing-webhook",
     namespace: "mesh-control-plane",
     annotations: {
       "manifestctl.sam.data.sfdc.net/swagger": "disable",
@@ -12,10 +12,10 @@ local configs = import "config.jsonnet";
   },
   webhooks: [
     {
-      name: "istio-mesh-webhook.sfdc.internal",
+      name: "istio-routing-webhook.sfdc.internal",
       clientConfig: {
         service: {
-          name: "istio-mesh-webhook",
+          name: "istio-routing-webhook",
           namespace: "mesh-control-plane",
           path: "/validate",
         },
