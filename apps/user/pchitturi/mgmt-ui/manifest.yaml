@@ -7,7 +7,7 @@ system:
     - name: mgmt-ui
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pchitturi/geocloud.io/mgmt-platform-ui:mgmt-ui-19416
       ports:
-      - containerPort: 9090 
+      - containerPort: 9090
       livenessProbe:
         httpGet:
           path: /
