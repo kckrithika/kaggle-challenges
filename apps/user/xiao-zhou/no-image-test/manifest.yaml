@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: noimage-fn
-    count: 1
+    count: 0
     progressDeadlineSeconds: 120
     containers:
     - name: samhello
