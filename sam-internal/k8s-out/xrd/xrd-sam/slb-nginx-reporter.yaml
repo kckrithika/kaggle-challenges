@@ -44,9 +44,6 @@ spec:
         resources:
           limits:
             memory: 10Gi
-            sam.sfdc.net/ip-address: "1"
-          requests:
-            sam.sfdc.net/ip-address: "1"
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs

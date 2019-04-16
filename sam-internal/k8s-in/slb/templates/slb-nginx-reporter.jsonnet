@@ -7,8 +7,8 @@ local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-portal" };
 local resourceLimit = if slbflights.ngnixReporterMemoryCap then {
     resources: {
         limits+: { memory: "10Gi" },
-    } + configs.ipAddressResource,
-} else configs.ipAddressResourceRequest;
+    },
+} else {};
 
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {
@@ -54,7 +54,7 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                             slbconfigs.node_name_env,
                             configs.kube_config_env,
                         ],
-                    } + resourceLimit,
+                    } + resourceLimit + configs.ipAddressResourceRequest,
                 ],
             } + slbconfigs.getGracePeriod()
               + slbconfigs.slbEstateNodeSelector,
