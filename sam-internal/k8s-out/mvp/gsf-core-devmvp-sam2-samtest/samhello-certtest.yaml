@@ -46,7 +46,7 @@ spec:
         app: samhello-ns1
     spec:
       containers:
-      - image: ops0-artifactrepo1-0-xrd.data.sfdc.net/docker-devmvp/nishant.sinha/samhello:nisinha-20190415
+      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/samhellonew:ameesala-20160416
         name: samhello
         ports:
         - containerPort: 9090
