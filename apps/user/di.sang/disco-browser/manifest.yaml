@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: disco-browser
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/configurator/disco-browser/disco-backend:disang-20190325
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/configurator/disco-browser/disco-backend:disang-20190416
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -13,3 +13,11 @@ system:
           command:
           - echo
           - HEALTHY
+  loadbalancers:
+  - lbname: disco-browser-lb
+    function: disco-browser
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: http
