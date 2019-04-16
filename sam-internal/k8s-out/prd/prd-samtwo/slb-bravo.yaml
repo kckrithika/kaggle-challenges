@@ -43,7 +43,7 @@ spec:
         - --tlsPorts=9443
         - --privateKey=/canarycert/server/keys/server-key.pem
         - --publicKey=/canarycert/server/certificates/server.pem
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2113-6a1b93e73df52a6cc2fcc502cab100e65b883058
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2115-c45af88f18d15d5ae8e8d936a04bffefa2c0cf0b
         name: slb-bravo
         volumeMounts:
         - mountPath: /host/data/slb/logs/
