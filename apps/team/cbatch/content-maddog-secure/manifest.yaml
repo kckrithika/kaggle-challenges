@@ -5,7 +5,7 @@ system:
       count: 1
       containers:
         - name: content-image-transform-secure
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform-secure:v4
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform-secure:v5
           ports:
             - containerPort: 7020
             - containerPort: 15374
@@ -38,7 +38,7 @@ system:
           terminationMessagePolicy: FallbackToLogsOnError
         - name: sherpa
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
-          args:
+          args:`
             # 2018-02-08: Direct Connection to the switchboard for now
             - --switchboard=switchboard.service-mesh.svc:15001
           ports:
