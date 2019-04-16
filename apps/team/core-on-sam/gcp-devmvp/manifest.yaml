@@ -36,16 +36,15 @@ system:
 
     containers:
     - name: coreapp
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17541162
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17898952
 
       command: ["/bin/sh", "-c"]
       args: ["
       while [ ! -f '/home/sfdc/salesforce/casam/.overrides_sidecar_done' ]; do echo -ne 'Waiting for coverride sidecar to complete its job\n' ;  sleep 1 ; done ;
       export DB_PASSWORD=$(cat /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-1az-db-pw/dbpw.txt) ;
-      cp /home/sfdc/salesforce/casam/lib/caaspatch.jar.optional /home/sfdc/salesforce/casam/lib/caaspatch.jar ;
-      cp /home/sfdc/salesforce/casam/lib/vagabond_patch.jar.optional /home/sfdc/salesforce/casam/lib/vagabond_patch.jar ;
       mkdir -p /home/sfdc/salesforce/sfdc-test/func/mockk4avault ;
       unzip /home/sfdc/salesforce/casam/lib/k4a.zip.testkeys -d /home/sfdc/salesforce/sfdc-test/func/mockk4avault ;
+      cp -fr /home/sfdc/salesforce/sfdc/config/keyrepo-goldfiles/dev/. /home/sfdc/salesforce/sfdc/config/keyrepo-goldfiles/prod ;
       /home/sfdc/salesforce/casam/bin/startup.sh
       "]
 
