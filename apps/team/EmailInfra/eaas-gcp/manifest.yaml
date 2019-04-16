@@ -53,7 +53,7 @@ system:
         periodSeconds: 60
         timeoutSeconds: 30
     - name: beacon-eaas
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:f804d14
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:d7f1640
       args:
       # Namespaced, mTLS HTTP2 GRPC
       - -endpoint
