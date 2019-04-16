@@ -8,7 +8,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     envoyProxyEnabled: (slbimages.phaseNum <= 1 || configs.estate == "prd-sam"),
     roleEnabled: (slbimages.phaseNum <= 1),
-    hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam") && slbimages.phaseNum <= 3),
+    hsmCanaryEnabled: ((configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam" || configs.estate == "prd-samtwo") && slbimages.phaseNum <= 3),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
 
     # Running artifactory-bootstrap on host network allows this service to function even when there
