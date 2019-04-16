@@ -41,7 +41,7 @@ configs.deploymentBase("service-mesh") {
         }
       },
       spec: configs.specWithMadDog {
-        serviceAccountName: "istio-routing-webhook",
+        serviceAccountName: "istio-routing-webhook-service-account",
         containers: [
           configs.containerWithMadDog {
             name: "istio-routing-webhook",

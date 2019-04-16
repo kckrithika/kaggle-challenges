@@ -18,7 +18,7 @@ local configs = import "config.jsonnet";
   subjects: [
     {
       kind: "ServiceAccount",
-      name: "istio-routing-webhook",
+      name: "istio-routing-webhook-service-account",
       namespace: "mesh-control-plane",
     },
   ],
