@@ -728,6 +728,16 @@ items:
   - kind: User
     name: shared0-samminionuniversalsearchmt1-2-frf.ops.sfdc.net
   - kind: User
+    name: shared0-samminionuniversalsearchmt1-3-frf.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-4-frf.ops.sfdc.net
+  - kind: User
     name: shared0-samminionuniversalsearchmt2-1-frf.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-2-frf.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-3-frf.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-4-frf.ops.sfdc.net
 kind: List
 metadata: {}

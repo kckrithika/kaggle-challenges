@@ -149,6 +149,10 @@ shared0-samminionsme2-5-ukb.ops.sfdc.net,10.218.159.174/29,10.213.13.32/27,n03-0
 shared0-samminionwarden1-1-ukb.ops.sfdc.net,10.218.151.66/29,10.213.0.32/27,f07-02,ukb-sam_warden,65009
 shared0-samminionwarden1-2-ukb.ops.sfdc.net,10.218.151.82/29,10.213.0.0/27,d07-02,ukb-sam_warden,65009
 shared0-samminionwarden2-1-ukb.ops.sfdc.net,10.218.151.74/29,10.213.0.64/27,m08-02,ukb-sam_warden,65009
+shared0-searchidx2-12-ukb.ops.sfdc.net,10.218.189.106/29,10.213.25.0/27,b02-02,ukb-universalsearch_svc,65009
+shared0-searchidx2-16-ukb.ops.sfdc.net,10.218.189.130/29,10.213.25.96/27,b10-02,ukb-universalsearch_svc,65009
+shared0-searchidx2-6-ukb.ops.sfdc.net,10.218.189.122/29,10.213.25.64/27,b08-02,ukb-universalsearch_svc,65009
+shared0-searchidx2-7-ukb.ops.sfdc.net,10.218.189.114/29,10.213.25.32/27,b05-02,ukb-universalsearch_svc,65009
 shared0-slbminion1-1-ukb.ops.sfdc.net,10.218.143.74/28,10.213.33.64/27,n03-02,ukb-slb,65009
 shared0-slbminion1-10-ukb.ops.sfdc.net,10.218.132.235/29,10.213.33.96/27,c08-02,ukb-slb,65009
 shared0-slbminion1-2-ukb.ops.sfdc.net,10.218.143.72/28,10.213.33.128/27,n03-02,ukb-slb,65009
