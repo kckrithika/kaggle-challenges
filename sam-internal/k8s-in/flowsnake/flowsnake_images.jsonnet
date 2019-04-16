@@ -22,7 +22,6 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "1": self["2"] {
             image_tags+: {
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-16-itest",
                 integration_test_runner: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-6-5-itest",
             },
             feature_flags+: {
