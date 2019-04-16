@@ -11,7 +11,7 @@ system:
       livenessProbe:
         httpGet:
           path: /
-          port: 3000
+          port: 9090
   loadbalancers:
   - lbname: mgmt-ui
     function: default
