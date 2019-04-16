@@ -61,10 +61,10 @@ system:
     function: zones-ui
     slbenabled: true
     ports:
-      # - port: 443
-      #   targetport: 8445
-      #   lbtype: tcp
-      #   tls: false
+      - port: 443
+        targetport: 8445
+        lbtype: tcp
+        tls: false
       - port: 8445
         targetport: 8445
         lbtype: tcp
