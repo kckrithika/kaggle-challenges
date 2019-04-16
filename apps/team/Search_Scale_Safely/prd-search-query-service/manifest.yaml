@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: search-query-service
-    count: 4
+    count: 8
     containers:
     - name: search-query-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/search-query-execution-platform:QS-5.0-RC.1
