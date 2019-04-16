@@ -33,7 +33,7 @@ system:
         containerPort: 15372
       resources:
         limits:
-          cpu: "24"
+          cpu: "6"
           memory: "16Gi"
       env:
       - name: KRB5_CONF
