@@ -3,8 +3,6 @@ apps:
   - prd/prd-search_model_executor
  prd-search_model_executor_xlt:
   - prd/prd-sam
- prd-search-model-executor:
-  - prd/prd-search_model_executor
  gcp-search-query-service:
   - mvp/gsf-core-devmvp-sam2-sam
  prod-search-query-service-canary:
