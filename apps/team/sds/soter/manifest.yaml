@@ -3,12 +3,13 @@ system:
   notifications:
     email:
     - dadi.zhang@salesforce.com
+    - sriram.srinivasan@salesforce.com
   functions:
   - name: soter
     count: 1
     containers:
     - name: soter
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dadi-zhang/soter-demo:20190411-dadi
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dadi-zhang/soter:20190416-master-1
       ports:
       - containerPort: 8080
       livenessProbe:
