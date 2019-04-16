@@ -46,13 +46,13 @@ system:
       - --thrift.server.port=9622
       - --thrift.admin.server.port=9623
       - --thrift.metadata.server.port=9624
-      - --management.port=15374
+      - --management.port=15479
       ports:
       - containerPort: 9622
       - containerPort: 9623
       - containerPort: 9624
       - containerPort: 9091
-      - containerPort: 15374
+      - containerPort: 15479
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
@@ -64,7 +64,7 @@ system:
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15373
+          port: 15479
         initialDelaySeconds: 60
         timeoutSeconds: 10
     - name: sherpa
@@ -113,10 +113,10 @@ system:
         path: /home/sfdc-gater/db
     - name: logvol2
       hostPath:
-        path: /home/sfdc-gater/logs2
+        path: /home/sfdc-gater/logss
     - name: dbvol2
       hostPath:
-        path: /home/sfdc-gater/db2
+        path: /home/sfdc-gater/dbs
     - name: tls-client-cert
       maddogCert:
         type: client
