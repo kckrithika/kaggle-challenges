@@ -13,11 +13,6 @@ apps:
     - mvp/gsf-core-devmvp-sam2-sam
   content-maddog-secure-client:
     - mvp/gsf-core-devmvp-sam2-sam
-  content-image-transform-without-srvmesh-gcp-devmvp:
+  content-ms-pv-gcp-devmvp:
     - mvp/gsf-core-devmvp-sam2-sam
-  content-tika-svc-without-srvmesh-gcp-devmvp:
-    - mvp/gsf-core-devmvp-sam2-sam
-  content-aspose-svc-without-srvmesh-gcp-devmvp:
-    - mvp/gsf-core-devmvp-sam2-sam
-  content-poppler-without-srvmesh:
-    - mvp/gsf-core-devmvp-sam2-sam
+
