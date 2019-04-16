@@ -224,9 +224,9 @@ data:
     as Healthy,\n    TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>''$.spec.startTime'',''%Y-%m-%dT%H:%i:%s''),
     NOW())/60.0/24.0 as ageInDays\n  from k8s_resource\n  where ApiKind = ''HostRepair''\n  )
     as ss\nwhere ageInDays < 7\ngroup by Healthy", "watchdogFrequency": "15m"}], "sql_alerts":
-    [{"alertAction": "pagerduty", "alertFrequency": "24h", "alertProfile": "sam",
-    "alertThreshold": "10m", "instructions": "The following deployments are reported
-    as bad customer deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
+    [{"alertAction": "businesshours_pagerduty", "alertFrequency": "24h", "alertProfile":
+    "sam", "alertThreshold": "10m", "instructions": "The following deployments are
+    reported as bad customer deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
     "name": "SqlSlaDepl", "sql": "SELECT * FROM\n                        (\n                          SELECT\n                            ControlEstate,\n                            Namespace,\n                            Name,\n                            JSON_EXTRACT(Payload,
     ''$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"'') AS email,\n                            CASE
     WHEN JSON_EXTRACT(Payload, ''$.metadata.labels.sam_app'') is NULL then False\n                                 ELSE
@@ -342,10 +342,10 @@ data:
     *\n        FROM\n        crd_history\n        WHERE ApiKind = ''Bundle'') crds
     ON crds.PRNum = prs.pr_num\n        WHERE  prs.merged_time > now() - INTERVAL
     24 hour\n        ORDER BY prs.pr_num\n        ) prLatency\n      WHERE latency
-    > 45", "watchdogFrequency": "10m"}, {"alertAction": "pagerduty", "alertFrequency":
-    "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "Following
-    PRs haven''t run evaluatePR more than 30 mins after getting authorized.", "name":
-    "SqlPRFailedToRunEvalPR", "sql": "SELECT \n         *   \n        FROM\n        (SELECT
+    > 45", "watchdogFrequency": "10m"}, {"alertAction": "businesshours_pagerduty",
+    "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions":
+    "Following PRs haven''t run evaluatePR more than 30 mins after getting authorized.",
+    "name": "SqlPRFailedToRunEvalPR", "sql": "SELECT \n         *   \n        FROM\n        (SELECT
     \n          pr_num,\n          created_time,\n          evaluate_pr_status,\n          authorized_by,\n          most_recent_authorized_time,\n          TIMESTAMPDIFF(MINUTE,  most_recent_authorized_time,
     now()) latency\n        FROM PullRequests\n        WHERE created_time IS NOT NULL
     AND created_time  > NOW() - Interval 10 day AND authorized_by IS NOT NULL AND
