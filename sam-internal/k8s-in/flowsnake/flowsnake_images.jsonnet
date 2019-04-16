@@ -42,25 +42,12 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
-                # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
-                cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                testData_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                ingressDefaultBackend_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
-                deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-16-itest",
             },
             feature_flags+: {
                 spark_application_quota_enforcement: "enabled",
             },
             version_mapping+: {
-                "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
             },
         },
         # prd-dev: Exceptions vs the rest of phase 2 only
@@ -97,57 +84,52 @@ local utils = import "util_functions.jsonnet";
         # This is the defacto "default" set of items.
         "3": {
             image_tags: {
-                es_image_tag: "503",
-                testData_image_tag: "681",
-                # TODO: Why are still still deploying Glok at all?
-                glok_image_tag: "472",  # NOTE: THIS MUST NOT CHANGE. As of Aug 2018, this image is no longer built by the flowsnake-platform project.
-                ingressControllerNginx_image_tag: 662,
-                ingressDefaultBackend_image_tag: 662,
+                # Flowsnake v1 images
                 beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
+                cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                es_image_tag: "503",
+                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                glok_image_tag: "472",  # NOTE: THIS MUST NOT CHANGE. As of Aug 2018, this image is no longer built by the flowsnake-platform project.
+                ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                ingressDefaultBackend_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                jdk8_base_tag: "33",
                 kibana_image_tag: "345",
-                impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
                 logloader_image_tag: "468",
                 logstash_image_tag: "468",
-                madkub_image_tag: "1.0.0-0000081-ddcaa288",
-                nodeMonitor_image_tag: 662,
-                watchdog_image_tag: "2687-6c147b04d2d506c9fd591d50f400bd86c485b155",  # Add stdout/stderr to watchdog report email for cli-checker
-                watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-698-itest",
-                watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
-                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-706-itest",
-                node_controller_image_tag: "sam-0001970-a296421d",
+                testData_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
                 zookeeper_image_tag: "345",
-                deployer_image_tag: "sam-0002470-52e6c77a",
-                snapshoter_image_tag: "sam-0002052-bc0d9ea5",
-                snapshot_consumer_image_tag: "sam-0002052-bc0d9ea5",
-                kubedns_image_tag: "1.14.9",
-                jdk8_base_tag: "33",
-                madkub_injector_image_tag: "11",
-                spark_operator_image_tag: "11",
-                prometheus_funnel_image_tag: "34",
-                cert_secretizer_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-                fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
-                eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+
+                # Flowsnake v2 images
+                impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
                 integration_test_runner: "1",
+                spark_operator_image_tag: "11",
+                watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
+
+                # Fleet components including SAM components
+                deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
+                docker_daemon_watchdog_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                kubedns_image_tag: "1.14.9",
+                madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
+                madkub_injector_image_tag: "11",
+                node_controller_image_tag: "sam-0001970-a296421d",
+                nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
+                prometheus_funnel_image_tag: "34",
+                snapshot_consumer_image_tag: "sam-0002052-bc0d9ea5",
+                snapshoter_image_tag: "sam-0002052-bc0d9ea5",
+                watchdog_image_tag: "2687-6c147b04d2d506c9fd591d50f400bd86c485b155",  # Add stdout/stderr to watchdog report email for cli-checker
             },
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
             },
             version_mapping: {
-                "0.12.5": "jenkins-dva-transformation-flowsnake-platform-release-0_12_5-with-new-fleets-12-itest",
+                "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
             },
         },
         # Public Cloud ("MoFo") exceptions to the rest of phase 3.
         "3-pcl": self["3"] {
-            image_tags+: {
-                # TODO: Get in sync with the rest of phase 3
-                # In PCL, Madkub server needs to use host IP for token IP to get server token.
-                madkub_image_tag: "1.0.0-0000084-9f4a6ca6",
-                eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-819-3-itest",
-            },
-            feature_flags+: {
-            },
-            # No legacy Flowsnake in Public Cloud
-            version_mapping: {},
+            version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
         },
         ### A very special phase 3 for IAD and ORD that preserves access to old versions used by CRE.
         ### TODO:  Remove when CRE is migrated to 0.12.2+
