@@ -68,7 +68,7 @@ local configs = import "config.jsonnet";
              fireflyintake: "387",
              fireflycrawler: "387",
              fireflypackage: "387",
-             fireflypromotion: "387",
+             fireflypromotion: "393",
              fireflypullrequest: "387",
              fireflyevalresultmonitor: "325",
              fireflydind: "238",
