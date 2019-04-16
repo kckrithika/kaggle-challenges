@@ -116,7 +116,7 @@
     image: if utils.is_pcn(configs.kingdom) then samimages.static.madkubPCN else samimages.madkub,
     args: [
       '/sam/madkub-client',
-      '--madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007',
+      '--madkub-endpoint=https://madkubserver.sam-system.svc:32007',
       '--maddog-endpoint=' + if utils.is_pcn(configs.kingdom) then configs.maddogGCPEndpoint else configs.maddogEndpoint + '',
       '--maddog-server-ca=/maddog-certs/ca/security-ca.pem',
       '--madkub-server-ca=/maddog-certs/ca/cacerts.pem',
