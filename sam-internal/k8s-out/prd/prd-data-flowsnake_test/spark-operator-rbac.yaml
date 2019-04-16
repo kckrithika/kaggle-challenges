@@ -77,6 +77,14 @@ items:
   - apiGroups:
     - ""
     resources:
+    - namespaces
+    verbs:
+    - get
+    - watch
+    - list
+  - apiGroups:
+    - ""
+    resources:
     - resourcequotas
     verbs:
     - get
