@@ -59,6 +59,8 @@ items:
   subjects:
   - kind: User
     name: flowsnake_test.lorrin.nelson
+  - kind: User
+    name: flowsnake_test.s.sun
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
@@ -73,6 +75,8 @@ items:
   subjects:
   - kind: User
     name: flowsnake_test.lorrin.nelson
+  - kind: User
+    name: flowsnake_test.s.sun
 - apiVersion: v1
   automountServiceAccountToken: true
   kind: ServiceAccount
