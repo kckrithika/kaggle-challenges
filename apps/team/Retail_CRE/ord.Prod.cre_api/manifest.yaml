@@ -29,6 +29,8 @@ system:
           value: ord
         - name: CONTROL_PLANE_URL
           value: cre-control-plane.retail-cre.localhost.mesh.force.com:5443
+        - name: GDOT_ENVIRONMENT
+          value: production
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintHeapAtGC
