@@ -38,7 +38,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops-artifactrepo1-0-chx.data.sfdc.net/dva/docker-daemon-watchdog:jenkins-dva-transformation-flowsnake-platform-master-706-itest
+        image: ops-artifactrepo1-0-chx.data.sfdc.net/dva/docker-daemon-watchdog:jenkins-dva-transformation-flowsnake-platform-master-781-itest
         name: watchdog-docker-daemon
         resources:
           limits:
