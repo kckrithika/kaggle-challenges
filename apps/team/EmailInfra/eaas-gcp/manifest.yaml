@@ -17,7 +17,7 @@ system:
         containerPort: 7022
       env:
       - name: SFDC_ENVIRONMENT
-        value: mesh
+        value: sam
       - name: SCONE_SERVICE_NAME
         value: eaas
       - name: JAVA_OPTIONS
@@ -64,13 +64,13 @@ system:
       # Non namespaced, plain-text HTTP1 for Chaos endpoint
       - -endpoint
       - eaas-chaos:DATACENTER_ALLENV:7014
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: beacon-log-volume
       livenessProbe:
         exec:
           command:
-          - /home/scone/is-alive.sh
+          - /opt/beacon/is-alive.sh
         initialDelaySeconds: 5
     - name: sherpa-eaas
       # updated based on https://gus.lightning.force.com/lightning/r/CollaborationGroup/0F9B0000000LejfKAC/view
@@ -134,6 +134,9 @@ system:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
+    - name: beacon-log-volume
+      hostPath:
+        path: /home/sfdc-beacon/logs
     strategy:
       type: RollingUpdate
   # Enable a load balancer in PRD so we have a stable FQDN to hit from the dev desktops or anywhere without Sherpa/Zookeeper
