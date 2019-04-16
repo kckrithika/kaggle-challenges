@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: mgmt-ui
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pchitturi/geocloud.io/mgmt-platform-ui:mgmt-ui-19416
+      ports:
+      - containerPort: 3000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 3000
+  loadbalancers:
+  - lbname: mgmt-ui
+    function: default
+    slbenabled: true
+    ports:
+      - port: 3000
+        targetport: 3000
+        lbtype: tcp
