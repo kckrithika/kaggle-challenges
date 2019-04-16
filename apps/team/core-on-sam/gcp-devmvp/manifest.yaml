@@ -39,7 +39,7 @@ system:
 
     containers:
     - name: coreapp
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17898952
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17909777
 
       command: ["/bin/sh", "-c"]
       args: ["
@@ -138,7 +138,7 @@ system:
 
         # GCS creds used by FFX - this is a k8s secret, not a k4a secret
         - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /var/secrets/google/key.json
+          value: /var/secrets/google/gsf-core-devmvp-sam2-dd7bedce4ba4.json
 
       livenessProbe:
         exec:
@@ -256,7 +256,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: casam-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:8c2570
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp_overrides:3d048e
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
