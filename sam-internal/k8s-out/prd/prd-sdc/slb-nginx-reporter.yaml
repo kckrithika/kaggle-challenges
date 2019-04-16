@@ -43,6 +43,7 @@ spec:
         name: slb-nginx-reporter
         resources:
           limits:
+            memory: 10Gi
             sam.sfdc.net/ip-address: "1"
           requests:
             sam.sfdc.net/ip-address: "1"
