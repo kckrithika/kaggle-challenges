@@ -36,7 +36,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/sam/hypersam:2683-be4e381240848a019ad9892077351dbde724371c
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/sam/hypersam:2690-3c76e4d1bc7bebf17bfa304fd309dc9332acd196
         name: watchdog
         resources:
           limits:
