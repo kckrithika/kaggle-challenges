@@ -5,7 +5,7 @@ system:
       count: 1
       containers:
         - name: content-image-transform-secure
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform-secure:v4
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/content-image-transform-secure:v5
           ports:
             - containerPort: 7020
             - containerPort: 15374
