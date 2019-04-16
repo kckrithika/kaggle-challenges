@@ -4,16 +4,16 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
 
 configs.deploymentBase("service-mesh") {
   local serverCertSans = [
-    "istio-mesh-webhook",
-    "istio-mesh-webhook.mesh-control-plane",
-    "istio-mesh-webhook.mesh-control-plane.svc",
-    "istio-mesh-webhook.mesh-control-plane.svc.%s" % configs.dnsdomain,
+    "istio-routing-webhook",
+    "istio-routing-webhook.mesh-control-plane",
+    "istio-routing-webhook.mesh-control-plane.svc",
+    "istio-routing-webhook.mesh-control-plane.svc.%s" % configs.dnsdomain,
   ],
-  local serverCertConfig = madkub.serverCertConfig("server-cert", "/server-cert", "istio-mesh-webhook", "mesh-control-plane", serverCertSans),
+  local serverCertConfig = madkub.serverCertConfig("server-cert", "/server-cert", "istio-routing-webhook", "mesh-control-plane", serverCertSans),
   local certConfigs = [serverCertConfig],
 
   metadata+: {
-    name: "istio-mesh-webhook",
+    name: "istio-routing-webhook",
     namespace: "mesh-control-plane",
   },
   spec+: {
@@ -35,16 +35,16 @@ configs.deploymentBase("service-mesh") {
           "scheduler.alpha.kubernetes.io/critical-pod": "",
         },
         labels: {
-          app: "istio-mesh-webhook",
+          app: "istio-routing-webhook",
           // This name label is required for SAM's pod.* metrics to properly work: https://git.soma.salesforce.com/sam/sam/blob/master/pkg/watchdog/internal/checkers/kuberesourceschecker/internal/pod/podhealthchecker.go#L203
-          name: "istio-mesh-webhook",
+          name: "istio-routing-webhook",
         }
       },
       spec: configs.specWithMadDog {
-        serviceAccountName: "istio-mesh-webhook-service-account",
+        serviceAccountName: "istio-routing-webhook",
         containers: [
           configs.containerWithMadDog {
-            name: "istio-mesh-webhook",
+            name: "istio-routing-webhook",
             image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:b817daada3298bf9b1c337fb383f67949615b342",
             imagePullPolicy: "IfNotPresent",
             args: [

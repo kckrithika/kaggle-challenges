@@ -1,14 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: istio-mesh-webhook
+  name: istio-routing-webhook
   namespace: mesh-control-plane
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: istio-mesh-webhook
-      name: istio-mesh-webhook
+      app: istio-routing-webhook
+      name: istio-routing-webhook
   template:
     metadata:
       annotations:
@@ -19,12 +19,12 @@ spec:
              "cert-type": "server",
              "kingdom": "prd",
              "name": "server-cert",
-             "role": "istio-mesh-webhook.mesh-control-plane",
+             "role": "istio-routing-webhook.mesh-control-plane",
              "san": [
-              "istio-mesh-webhook",
-              "istio-mesh-webhook.mesh-control-plane",
-              "istio-mesh-webhook.mesh-control-plane.svc",
-              "istio-mesh-webhook.mesh-control-plane.svc.prd-samtest.prd.sam.sfdc.net"
+              "istio-routing-webhook",
+              "istio-routing-webhook.mesh-control-plane",
+              "istio-routing-webhook.mesh-control-plane.svc",
+              "istio-routing-webhook.mesh-control-plane.svc.prd-samtest.prd.sam.sfdc.net"
              ]
             }
            ]
@@ -32,8 +32,8 @@ spec:
         scheduler.alpha.kubernetes.io/critical-pod: ""
         sidecar.istio.io/inject: "false"
       labels:
-        app: istio-mesh-webhook
-        name: istio-mesh-webhook
+        app: istio-routing-webhook
+        name: istio-routing-webhook
     spec:
       containers:
       - args:
@@ -49,7 +49,7 @@ spec:
           value: prd-samtest
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicemesh/servicemesh/istio-routing-webhook:b817daada3298bf9b1c337fb383f67949615b342
         imagePullPolicy: IfNotPresent
-        name: istio-mesh-webhook
+        name: istio-routing-webhook
         ports:
         - containerPort: 10443
         readinessProbe:
@@ -156,7 +156,7 @@ spec:
           name: server-cert
       nodeSelector:
         master: "true"
-      serviceAccountName: istio-mesh-webhook-service-account
+      serviceAccountName: istio-routing-webhook
       volumes:
       - hostPath:
           path: /etc/pki_service

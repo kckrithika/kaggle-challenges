@@ -47,9 +47,9 @@ Switched to context "prd-sam".
 $ kubectl -n mesh-control-plane get pods -o wide
 NAME                                     READY     STATUS    RESTARTS   AGE       IP               NODE
 istio-ingressgateway-584b455c6b-q27cw    2/2       Running   0          1d        10.251.130.103   shared0-samminiongater1-1-prd.eng.sfdc.net
-istio-mesh-webhook-58db4957fb-cv8bj      2/2       Running   2          3d        10.251.161.41    shared0-samkubeapi1-1-prd.eng.sfdc.net
-istio-mesh-webhook-58db4957fb-qksm8      2/2       Running   0          3d        10.251.163.174   shared0-samkubeapi2-1-prd.eng.sfdc.net
-istio-mesh-webhook-58db4957fb-tdw4n      2/2       Running   0          3d        10.251.161.202   shared0-samkubeapi3-1-prd.eng.sfdc.net
+istio-routing-webhook-58db4957fb-cv8bj      2/2       Running   2          3d        10.251.161.41    shared0-samkubeapi1-1-prd.eng.sfdc.net
+istio-routing-webhook-58db4957fb-qksm8      2/2       Running   0          3d        10.251.163.174   shared0-samkubeapi2-1-prd.eng.sfdc.net
+istio-routing-webhook-58db4957fb-tdw4n      2/2       Running   0          3d        10.251.161.202   shared0-samkubeapi3-1-prd.eng.sfdc.net
 istio-pilot-7b6946ff78-6447v             2/2       Running   0          18h       10.251.131.38    shared0-samminiongater2-4-prd.eng.sfdc.net
 istio-sidecar-injector-f59875c8c-7kpm6   2/2       Running   0          1h        10.251.161.195   shared0-samkubeapi3-1-prd.eng.sfdc.net
 istio-sidecar-injector-f59875c8c-st84v   2/2       Running   0          1h        10.251.163.165   shared0-samkubeapi2-1-prd.eng.sfdc.net
