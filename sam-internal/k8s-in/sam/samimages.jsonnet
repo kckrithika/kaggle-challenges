@@ -57,6 +57,9 @@ local samreleases = import "samreleases.json";
 
         #[xiao.zhou] Override crd watcher for team "secrets"
         "xrd,xrd-sam,crd-watcher,hypersam": "2690-3c76e4d1bc7bebf17bfa304fd309dc9332acd196",
+
+        #[xiao.zhou] Override samapp controller for a bug showed in elastic search in prd-sam
+        "prd,prd-sam,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20190415_152129.1843c9f94.clean.xiaozhou-ltm2",
         },
 
     ### Per-phase image tags have been moved to samreleases.json
