@@ -113,6 +113,12 @@ local wave_elt_production = {
             pki_namespace: "flowsnake_test",  # https://git.soma.salesforce.com/Infrastructure-Security/GlobalRegistry/blob/82cdcf28a5c12df73f5d73cb6f214d516b9dd348/conf/namespace.json#L1940-L1947
             users: ["flowsnake_test.lorrin.nelson"],  # Get yourself a workstation cert and add it here. https://salesforce.quip.com/TkvaAbgSpYF4
         },
+        {
+            owner_name: "Flowsnake",
+            namespace: "flowsnake-test",  # Kubernetes namespaces cannot contain '_' characters
+            pki_namespace: "flowsnake_test",
+            users: ["flowsnake_test.s.sun"],
+        },
     ] else []) +
     (if watchdog.watchdog_enabled then [
         # Flowsnake watchdog continuous synthetic testing of Spark operator
