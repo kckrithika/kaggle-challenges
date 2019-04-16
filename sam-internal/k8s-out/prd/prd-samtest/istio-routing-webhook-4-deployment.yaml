@@ -156,7 +156,7 @@ spec:
           name: server-cert
       nodeSelector:
         master: "true"
-      serviceAccountName: istio-routing-webhook
+      serviceAccountName: istio-routing-webhook-service-account
       volumes:
       - hostPath:
           path: /etc/pki_service

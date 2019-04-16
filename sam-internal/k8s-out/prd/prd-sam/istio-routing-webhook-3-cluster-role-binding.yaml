@@ -11,5 +11,5 @@ roleRef:
   name: istio-routing-webhook
 subjects:
 - kind: ServiceAccount
-  name: istio-routing-webhook
+  name: istio-routing-webhook-service-account
   namespace: mesh-control-plane
