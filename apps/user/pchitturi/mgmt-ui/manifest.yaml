@@ -6,6 +6,13 @@ system:
     containers:
     - name: mgmt-ui
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pchitturi/geocloud.io/mgmt-platform-ui:mgmt-ui-19416
+      resources:
+        requests:
+          cpu: 2
+          memory: 3Gi
+        limits:
+          cpu: 3
+          memory: 4Gi
       ports:
       - containerPort: 3000
       livenessProbe:
