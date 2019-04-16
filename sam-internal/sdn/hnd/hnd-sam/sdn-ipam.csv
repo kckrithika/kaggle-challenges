@@ -86,6 +86,10 @@ shared0-samminionsme2-5-hnd.ops.sfdc.net,10.219.187.206/29,10.213.89.32/27,b09-0
 shared0-samminionwarden1-1-hnd.ops.sfdc.net,10.219.177.210/29,10.213.64.64/27,d16-02,hnd-sam_warden,65009
 shared0-samminionwarden1-2-hnd.ops.sfdc.net,10.219.177.202/29,10.213.64.32/27,b09-02,hnd-sam_warden,65009
 shared0-samminionwarden2-1-hnd.ops.sfdc.net,10.219.177.194/29,10.213.64.0/27,a09-02,hnd-sam_warden,65009
+shared0-searchidx1-13-hnd.ops.sfdc.net,10.219.230.250/29,10.213.83.96/27,b01-01,hnd-universalsearch_svc,65009
+shared0-searchidx1-14-hnd.ops.sfdc.net,10.219.175.90/29,10.213.83.64/27,a08-01,hnd-universalsearch_svc,65009
+shared0-searchidx1-18-hnd.ops.sfdc.net,10.219.185.10/29,10.213.83.0/27,a02-02,hnd-universalsearch_svc,65009
+shared0-searchidx1-2-hnd.ops.sfdc.net,10.219.185.11/29,10.213.83.32/27,a02-02,hnd-universalsearch_svc,65009
 shared0-slbminion1-1-hnd.ops.sfdc.net,10.219.188.18/29,10.213.92.224/27,d13-02,hnd-slb,65009
 shared0-slbminion1-10-hnd.ops.sfdc.net,10.219.188.19/29,10.213.93.0/27,d13-02,hnd-slb,65009
 shared0-slbminion1-2-hnd.ops.sfdc.net,10.219.188.10/29,10.213.93.64/27,d16-02,hnd-slb,65009
