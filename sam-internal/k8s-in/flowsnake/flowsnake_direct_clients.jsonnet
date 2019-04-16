@@ -99,6 +99,27 @@ local wave_elt_production = {
         # ---------- UKB fleet ----------
         # -------------------------------
         "ukb-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- YUL fleet (PCL) ----
+        # -------------------------------
+        "yul-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- YHU fleet (PCL) ----
+        # -------------------------------
+        "yhu-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- SYD fleet (PCL) ----
+        # -------------------------------
+        "syd-flowsnake_prod": [wave_elt_production],
+
+        # -------------------------------
+        # ---------- CDU fleet (PCL) ----
+        # -------------------------------
+        "cdu-flowsnake_prod": [wave_elt_production],
+
     },
 
     # Every estate gets flowsnake-watchdog for continuous synthetic testing
