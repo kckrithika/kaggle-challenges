@@ -28,6 +28,16 @@ system:
       env:
       - name: SHELL
         value: "/bin/bash"
+      - name: MYSQL_ROOT_PASSWORD
+        value: "rootPassword"
+      - name: MYSQL_ROOT
+        value: "root"
+      - name: MYSQL_USER
+        value: "ddnuser"
+      - name: MYSQL_DATABASE
+        value: "ddnprod"
+      - name: MYSQL_PASSWORD
+        value: "ddnpassword"
       - name: max_allowed_packet
         value: "1073741824"
         
