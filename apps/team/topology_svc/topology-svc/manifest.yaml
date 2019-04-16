@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: topology-svc-service
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:ameesala-20190402-acd1c75
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:hmittal-20190416-c0eb8f0
       args:
         - --server.port=7022	
       env:
