@@ -62,6 +62,7 @@ system:
           "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: cdu-group1}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-cdu.data.sfdc.net'}
+      - {name: MAESTRO_ENDPOINT, value: 'https://insights-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
       image: sfci/insights/jobcontroller:release-103-b5d1371
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
