@@ -71,13 +71,12 @@ local cert_name = "spark-webhook";
                             containerPort: 10254,
                             name: "metrics",
                             protocol: "TCP",
-                        }]
-                    } + (if quota_enforcement then {
-                        ports: [{
+                        }] + (if quota_enforcement then [{
                             containerPort: 8443,
                             name: "webhook",
                             protocol: "TCP",
-                        }],
+                        }] else [])
+                    } + (if quota_enforcement then {
                         volumeMounts: madkub_common.cert_mounts(cert_name),
                     } else {}),
                 ] + (if quota_enforcement then [madkub_common.refresher_container(cert_name)] else []),
