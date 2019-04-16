@@ -55,9 +55,10 @@ local utils = import "util_functions.jsonnet";
                 eventExporter_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
                 madkub_image_tag: "1.0.0-0000084-9f4a6ca6",  # Madkub server gets token for itself using host IP
                 deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-16-itest",
             },
             feature_flags+: {
-                #spark_application_quota_enforcement: "enabled",
+                spark_application_quota_enforcement: "enabled",
             },
             version_mapping+: {
                 "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
