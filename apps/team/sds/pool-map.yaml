@@ -3,3 +3,5 @@ apps:
   - xrd/xrd-sdstools
   zones-ui:
   - xrd/xrd-sdstools
+  soter:
+  - prd/prd-sam

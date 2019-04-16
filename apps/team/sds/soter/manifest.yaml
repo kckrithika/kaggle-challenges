@@ -1,5 +1,8 @@
 apiVersion: v1
 system:
+  notifications:
+    email:
+    - dadi.zhang@salesforce.com
   functions:
   - name: soter
     count: 1
@@ -16,7 +19,7 @@ system:
         periodSeconds: 5
   loadbalancers:
   - lbname: soterlb
-    function: default
+    function: soter
     slbenabled: true
     ports:
       - port: 8080
