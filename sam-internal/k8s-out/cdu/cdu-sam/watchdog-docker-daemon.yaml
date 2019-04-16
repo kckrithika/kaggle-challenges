@@ -29,6 +29,7 @@ spec:
         - -cliCheckerCommandTarget=DockerDaemon
         - -alertThreshold=30m
         - -watchDogKind=DaemonSet
+        - --recipient=
         - -cliCheckerTimeout=5m
         - -funnelEndpoint=ajna0-funnel1-0-cdu.data.sfdc.net:80
         - --config=/config/watchdog.json

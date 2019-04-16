@@ -28,6 +28,7 @@ configs.daemonSetBase("sam") {
                             "-cliCheckerCommandTarget=DockerDaemon",
                             "-alertThreshold=30m",
                             "-watchDogKind=" + $.kind,
+                            "--recipient=",
                             "-cliCheckerTimeout=5m",
                         ] + samwdconfig.shared_args,
                         name: "watchdog-docker-daemon",
