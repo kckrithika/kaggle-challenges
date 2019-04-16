@@ -6,22 +6,20 @@ system:
   functions:
   - name: gater
     count: 5
+    hostnetwork: true
     containers:
     - name: gater1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.14.1-SNAPSHOT_20190403_160_e5b4a66
+      image: sfci/gater/gate-manager:1.14.0
       args:
       - --server.port=9090
-      - --logging.level.com.zaxxer.hikari=debug
-      - --spring.datasource.hikari.maximumPoolSize=6
-      - --spring.datasource.hikari.minimumIdle=5
-      - --spring.datasource.hikari.leakDetectionThreshold=10000
       - --gater-service.thread.pool.max-size=0
       - --scone.detectsidecars=false
-      - --synctask.host-affinity=false
+      - --synctask.host-affinity=true
       ports:
       - containerPort: 7020
       - containerPort: 9522
       - containerPort: 9523
+      - containerPort: 9524
       - containerPort: 9090
       - containerPort: 15372
       env:
@@ -36,6 +34,37 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+    - name: gater2
+      image: sfci/gater/gate-manager:1.14.0
+      args:
+      - --server.port=9091
+      - --gater-service.thread.pool.max-size=0
+      - --scone.detectsidecars=false
+      - --synctask.host-affinity=true
+      - --thrift.server.port=9622
+      - --thrift.admin.server.port=9623
+      - --thrift.metadata.server.port=9624
+      - --management.port=15479
+      ports:
+      - containerPort: 9622
+      - containerPort: 9623
+      - containerPort: 9624
+      - containerPort: 9091
+      - containerPort: 15479
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: blitz
+      volumeMounts:
+      - mountPath: /log
+        name: logvol2
+      - mountPath: /fastdata/gater
+        name: dbvol2
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15479
         initialDelaySeconds: 60
         timeoutSeconds: 10
     - name: sherpa
@@ -82,6 +111,12 @@ system:
     - name: dbvol
       hostPath:
         path: /home/sfdc-gater/db
+    - name: logvol2
+      hostPath:
+        path: /home/sfdc-gater/logss
+    - name: dbvol2
+      hostPath:
+        path: /home/sfdc-gater/dbs
     - name: tls-client-cert
       maddogCert:
         type: client
