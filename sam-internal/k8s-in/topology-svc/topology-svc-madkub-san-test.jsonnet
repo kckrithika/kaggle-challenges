@@ -24,7 +24,7 @@
         kingdom: configs.kingdom,
         superpod: null,
         role: 'topology-svc.consul',
-        san: "consul-0.consul-stateful-ilb.topology-svc.svc",
+        san: ["consul-0.consul-stateful-ilb.topology-svc.svc"],
       },
     },
     'client-certs': {
@@ -44,7 +44,7 @@
         'cert-type': 'client',
         superpod: null,
         role: 'topology-svc.consul',
-        san: "consul-0.consul-stateful-ilb.topology-svc.svc",
+        san: ["consul-0.consul-stateful-ilb.topology-svc.svc"],
       },
     },
     'server-certs': {
@@ -64,7 +64,7 @@
         'cert-type': 'server',
         superpod: null,
         role: 'topology-svc.consul',
-        san: "consul-0.consul-stateful-ilb.topology-svc.svc",
+        san: ["consul-0.consul-stateful-ilb.topology-svc.svc"],
       },
     },
   },
