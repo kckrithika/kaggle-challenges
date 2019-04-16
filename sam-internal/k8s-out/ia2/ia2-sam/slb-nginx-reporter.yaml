@@ -39,7 +39,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2107-590ae3667e4198eadce6a2af065473f64e2670d2
+        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2110-56bbfeb5af375f245d0f552dc6c397ca4b61d0c5
         name: slb-nginx-reporter
         volumeMounts:
         - mountPath: /etc/pki_service
