@@ -101,9 +101,6 @@ system:
     - name: secretsvol
       secret:
         secretName: passwd
-    - name: k4a-secrets
-      k4asecret:
-        secretName: ca-secrets
     - name: logvolsherpa
       hostPath:
         path: /home/sfdc-scone-hellodiscovery-sherpa/logs
