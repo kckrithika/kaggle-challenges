@@ -22,7 +22,7 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "1": self["2"] {
             image_tags+: {
-                integration_test_runner: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-6-5-itest",
+                integration_test_runner: "2",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -103,7 +103,7 @@ local utils = import "util_functions.jsonnet";
 
                 # Flowsnake v2 images
                 impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
-                integration_test_runner: "1",
+                integration_test_runner: "2",
                 spark_operator_image_tag: "11",
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
 
