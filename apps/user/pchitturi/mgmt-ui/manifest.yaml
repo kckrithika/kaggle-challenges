@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: mgmt-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pchitturi/geocloud.io/mgmt-platform-ui:mgmt-ui-19416
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pchitturi/geocloud.io/mgmt-platform-ui:mgmt-ui-19417
       resources:
         requests:
           cpu: 2
