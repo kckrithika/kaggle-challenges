@@ -9,7 +9,6 @@ if dnsRegisterInGkeEnabled then configs.deploymentBase("slb") {
       metadata: {
           labels: {
             name: "slb-external-dns",
-            sam_app: "devmvp-dns-register",
           } + configs.pcnEnableLabel,
           name: "slb-external-dns",
           namespace: "sam-system",
@@ -27,7 +26,7 @@ if dnsRegisterInGkeEnabled then configs.deploymentBase("slb") {
                 containers: [
                     configs.containerWithKubeConfigAndMadDog {
                         name: "slb-external-dns",
-                        image: "gcr.io/gsf-core-devmvp-sam2/rgade/external-dns@sha256:f395ba72e53d9c1e8851461af82da3bd215240bacddde3e7843058dc5cea76c2",
+                        image: "gcr.io/gsf-core-devmvp-sam2/rgade/external-dns:v0.5.12",
                         args: [
                                  "--source=service",
                                  "--google-project=netsec-222617",

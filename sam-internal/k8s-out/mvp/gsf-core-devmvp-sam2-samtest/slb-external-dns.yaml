@@ -4,7 +4,6 @@ metadata:
   labels:
     name: slb-external-dns
     pcn: deploy
-    sam_app: devmvp-dns-register
   name: slb-external-dns
   namespace: sam-system
 spec:
@@ -44,7 +43,7 @@ spec:
           value: gsf-core-devmvp-sam2-samtest
         - name: KUBECONFIG
           value: ""
-        image: gcr.io/gsf-core-devmvp-sam2/rgade/external-dns@sha256:f395ba72e53d9c1e8851461af82da3bd215240bacddde3e7843058dc5cea76c2
+        image: gcr.io/gsf-core-devmvp-sam2/rgade/external-dns:v0.5.12
         name: slb-external-dns
         volumeMounts:
         - mountPath: /var/secrets/google
