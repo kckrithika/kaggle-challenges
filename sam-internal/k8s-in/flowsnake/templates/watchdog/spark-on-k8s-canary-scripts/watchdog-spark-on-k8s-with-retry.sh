@@ -99,7 +99,7 @@ kcfw() {
     ATTEMPT=1
     while true; do
         tmpfile=$(mktemp /tmp/$(basename $0)-stderr.XXXXXX)
-        timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} $@ 2>$tmpfile
+        timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} $@ 2>$tmpfile
         RESULT=$?
         # Format captured stderr for logging and output it to stderr
         cat $tmpfile | format >&2
@@ -205,7 +205,9 @@ kcfw_log cluster-info
 # ------ Clean up prior runs ---------
 log "Cleaning up $APP_NAME resources from prior runs."
 # Disable retries and use || true because exit code 1 if spark application can't be found.
-KUBECTL_ATTEMPTS_BACKUP=${KUBECTL_ATTEMPTS} KUBECTL_ATTEMPTS=1 kcfw_log delete sparkapplication $APP_NAME || true
+KUBECTL_ATTEMPTS_BACKUP=${KUBECTL_ATTEMPTS}
+KUBECTL_ATTEMPTS=1
+kcfw_log delete sparkapplication $APP_NAME || true
 KUBECTL_ATTEMPTS=${KUBECTL_ATTEMPTS_BACKUP}
 
 # kubectl returns success even if no pods match the label selector. But it seems you get an
