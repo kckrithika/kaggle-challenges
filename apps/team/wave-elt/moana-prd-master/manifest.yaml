@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-31-itest
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-39-itest
       livenessProbe:
         exec:
           command: [ls]
@@ -27,7 +27,6 @@ system:
       - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: prd-master}
-      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'true'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       image: sfci/insights/moana-driver:master-22-079784c
       livenessProbe:
@@ -57,7 +56,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-31-itest'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:jenkins-insights-MoanaEngine-master-39-itest'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-master}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:+UseG1GC
@@ -69,8 +68,9 @@ system:
           "spark.hadoop.fs.s3a.server-side-encryption.key": "ea96b117-8eee-4314-b214-8a125eb5242e",
           "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: prd-master}
+      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'true'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/jobcontroller:master-248-ce2f6c8
+      image: sfci/insights/jobcontroller:master-252-61f1b12
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
