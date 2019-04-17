@@ -1,15 +1,12 @@
 #
 # Generated manifest
-# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release
+# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release-scripts
 #
-# generated: 2019-04-10 22:29:06.767759
-# from:  
-# by: afield
 apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:522-61448862bcc9bc00a4d884087defa83b8d13ec24
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:523-c6b6210a357adba9d0399d636b6290ae9447da54
       livenessProbe:
         exec:
           command: [ls]
@@ -29,7 +26,7 @@ system:
       - {name: TESTRECIPE_TIMEOUT, value: 240s}
       - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
-      - {name: DEPLOYMENT_ID, value: release}
+      - {name: DEPLOYMENT_ID, value: prd-release}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
       image: sfci/insights/moana-driver:release-11-6c8f20c
@@ -48,6 +45,7 @@ system:
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
     count: 1
+    hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-release
     volumes:
@@ -59,7 +57,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:522-61448862bcc9bc00a4d884087defa83b8d13ec24'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:523-c6b6210a357adba9d0399d636b6290ae9447da54'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-release}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:+UseG1GC
@@ -70,10 +68,11 @@ system:
           "8080", "spark.hadoop.fs.s3a.server-side-encryption-algorithm": "SSE-KMS",
           "spark.hadoop.fs.s3a.server-side-encryption.key": "ea96b117-8eee-4314-b214-8a125eb5242e",
           "spark.ui.enabled": "false"}'}
-      - {name: DEPLOYMENT_ID, value: release}
+      - {name: DEPLOYMENT_ID, value: prd-release}
+      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'true'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       - {name: HANDLED_PODS_INVERT_MATCH, value: 'true'}
-      image: sfci/insights/jobcontroller:release-103-b5d1371
+      image: sfci/insights/jobcontroller:release-104-3e64c29
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
@@ -119,6 +118,7 @@ system:
       - {mountPath: /client-certs, name: tls-client-certs}
       - {mountPath: /log, name: sherpa-log-volume}
     count: 1
+    hostnetwork: false
     identity: {serviceName: datapool}
     name: jobcontroller-release
     volumes:
