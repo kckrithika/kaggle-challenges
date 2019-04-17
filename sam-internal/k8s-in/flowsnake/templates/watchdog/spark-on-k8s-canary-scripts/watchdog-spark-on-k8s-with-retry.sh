@@ -259,7 +259,26 @@ else
     log ---- Begin $POD Log ----
     kcfw logs $POD || true
     log ---- End $POD Log ----
+
+    log ---- Begin $POD Events ----
+    kcfw describe $POD | awk '/Events:/{flag=1;next}flag' || true
+    log ---- End $POD Events ----
 fi
+
+log ------------------
+EXECUTORPOD = $(kcfw get pod -l ${SELECTOR},spark-role=executor -o name)
+if [[ -z $EXECUTORPOD ]]; then
+    log "Cannot locate executor pod. Maybe it never started? No logs to display."
+else
+    log ---- Begin $EXECUTORPOD Log ----
+    kcfw logs $EXECUTORPOD || true
+    log ---- End $EXECUTORPOD Log ----
+
+    log ---- Begin $EXECUTORPOD Events ----
+    kcfw describe $EXECUTORPOD | awk '/Events:/{flag=1;next}flag' || true
+    log ---- End $EXECUTORPOD Events ----
+fi
+
 # Alternatively, generate a Splunk link? Not sure there's a good way to filter for this particular execution, since the driver pod
 # has the same name on every invocation on every fleet.
 
