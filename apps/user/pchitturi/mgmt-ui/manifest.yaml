@@ -16,9 +16,10 @@ system:
       ports:
       - containerPort: 3000
       livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
+        exec:
+          command: ["curl", "127.0.0.1", ":", "3000"]
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
   loadbalancers:
   - lbname: mgmt-ui
     function: default
