@@ -64,7 +64,7 @@ system:
       - name: SFPROXY_SETTINGS_PATH
         value: prod.-.phx.na3.sfproxy-envoy
       - name: CASAM_SUPERPOD
-        value: -
+        value: "-"
       - name: HTTP_PROXY
         value: localhost:3128
       - name: PUBLIC_PROXY
