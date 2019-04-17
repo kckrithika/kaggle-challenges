@@ -6,7 +6,7 @@ system:
       type: stateful-set
       containers:
         - name: mgmtserver-api
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtapi:1.0
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtapi:2.0
           livenessProbe:
             exec:
               command: ["curl", "http://127.0.0.1:5004/"]
@@ -35,7 +35,17 @@ system:
             - name: INSTALLATION_TYPE
               value: CLUSTER
             - name: MYSQL_SERVER
-              value: guiapi-db-lb
+              value: 10.254.213.9
+            - name: MYSQL_USER
+              value: "ddnuser"
+            - name: MYSQL_ROOT_PASSWORD
+              value: "rootPassword"
+            - name: MYSQL_ROOT
+              value: "root"
+            - name: MYSQL_DATABASE
+              value: "ddnprod"
+            - name: MYSQL_PASSWORD
+              value: "ddnpassword"
             - name: JWT_SECRET_KEY
               value: "geocloudDDNApiPlatformKey"
       lbname: mgmtserver-api-lb
