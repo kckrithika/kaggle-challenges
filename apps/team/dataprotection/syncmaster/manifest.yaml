@@ -5,14 +5,14 @@ system:
     count: 1
     containers:
     - name: syncmaster
-      image: dva-registry.internal.salesforce.com/dva/winterfell-syncmaster:latest
+      image: docker-all/dva/winterfell-syncmaster
       env:
       - name: SPRING_CONFIG_NAME
         value: prod
       - name: DC
         value: ${KINGDOM}
       - name: SPRING_PROFILES_ACTIVE 
-        value: dc.{KINGDOM},h2,sam
+        value: dc.${KINGDOM},sam
       ports:
       - containerPort: 7020
       - containerPort: 8080
@@ -92,7 +92,7 @@ system:
     function: syncmaster
     slbEnabled: true
     ports:
-      - port: 80
+      - port: 8080
         targetport: 8080
       - port: 15372
         targetport: 15372
