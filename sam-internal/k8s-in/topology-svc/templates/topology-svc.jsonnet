@@ -12,7 +12,7 @@ local initContainers = [
 
 local ports = [
   {
-    containerPort: 8080,  #7022 after mesh integration.
+    containerPort: 8080,  #add port 7022 and 7422 after mesh integration.
     name: 'scone-http',
   },
   {
@@ -24,7 +24,7 @@ local ports = [
 local topologyEnv = [
   {
     name: "JVM_ARGS",
-    value: "-Dspring.profiles.active=gcp -Dserver.port=7022",
+    value: "-Dspring.profiles.active=gcp",  #add -Dserver.port=7022 after mesh integration
   },
 ];
 
@@ -77,9 +77,10 @@ if configs.kingdom == 'mvp' then {
                   runAsNonRoot: true,
                   runAsUser: 7447,
                 },
-                args: [
-                    "--server.port=7022",
-                ],
+                #add args after mesh integration.
+                #args: [
+                   # "--server.port=7022",
+                #],
                 env: topologyEnv,
                 readinessProbe: {
                   failureThreshold: 3,
