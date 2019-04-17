@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/moana-engine:521-96ffec86ddd5bd5bc5e11d5fdd594737a01ea0b4
+    - image: ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/moana-engine:523-c6b6210a357adba9d0399d636b6290ae9447da54
       livenessProbe:
         exec:
           command: [ls]
@@ -27,8 +27,7 @@ system:
       - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: ukb-group1}
-      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'false'}
-      image: sfci/insights/moana-driver:release-7-6cc9a0f
+      image: sfci/insights/moana-driver:release-11-6c8f20c
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -55,7 +54,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/moana-engine:521-96ffec86ddd5bd5bc5e11d5fdd594737a01ea0b4'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-ukb.data.sfdc.net/dva/moana-engine:523-c6b6210a357adba9d0399d636b6290ae9447da54'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:+UseG1GC
@@ -67,7 +66,8 @@ system:
           "spark.hadoop.fs.s3a.server-side-encryption.key": "ea96b117-8eee-4314-b214-8a125eb5242e",
           "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: ukb-group1}
-      image: sfci/insights/jobcontroller:release-103-b5d1371
+      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'false'}
+      image: sfci/insights/jobcontroller:release-104-3e64c29
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
