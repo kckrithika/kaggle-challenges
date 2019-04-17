@@ -98,7 +98,13 @@
         Payload->>'$.status.report.CheckerName' as CheckerName,
         case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
         case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount,
-        case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else Payload->>'$.status.report.ErrorMessage' end as Error,
+        case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else
+          case when Payload->>'$.status.report.CheckerName' = 'cliChecker.DockerDaemon' then
+            concat(Payload->>'$.status.report.Hostname', ': ', Payload->>'$.status.report.ErrorMessage')
+          else
+            Payload->>'$.status.report.ErrorMessage'
+          end
+        end as Error,
         TIMESTAMPDIFF(MINUTE, STR_TO_DATE(Payload->>'$.status.report.ReportCreatedAt', '%Y-%m-%dT%H:%i:%s.'), UTC_TIMESTAMP()) as ReportAgeInMinutes
       from k8s_resource
       where ApiKind = 'WatchDog'
