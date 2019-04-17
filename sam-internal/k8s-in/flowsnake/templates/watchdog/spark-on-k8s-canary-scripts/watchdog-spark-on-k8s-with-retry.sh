@@ -109,7 +109,7 @@ kcfw() {
             return $RESULT;
         fi;
         MSG="Invocation ($ATTEMPT/$KUBECTL_ATTEMPTS) of [$@] failed ($(if (( $RESULT == 124 || $RESULT == 137 )); then echo "timed out (${KUBECTL_TIMEOUT_SECS}s)"; else echo $RESULT; fi))."
-        if (( $ATTEMPT <= $KUBECTL_ATTEMPTS )); then
+        if (( $ATTEMPT < $KUBECTL_ATTEMPTS )); then
             log "$MSG Will sleep $KUBECTL_TIMEOUT_SECS seconds and then try again." >&2
             sleep ${KUBECTL_TIMEOUT_SECS}
         else
