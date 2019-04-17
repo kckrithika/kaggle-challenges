@@ -26,6 +26,7 @@ local configs = import 'config.jsonnet';
       consul: '142-20190416-2',
       sherpa: "eeb8e3bfc9d7912299ed28658895aca9523f348f",
       samhello: "ameesala-20160416",
+      topologysvc: "hmittal-20190416-c0eb8f0",
     },
 
     //## Release Phase 1 - TBD
@@ -66,7 +67,7 @@ local configs = import 'config.jsonnet';
 
   consul: 'ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-ts:' + $.per_phase[$.phase].consul,
   samhello: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/samhellonew:" + $.per_phase[$.phase].samhello, 
-
+  topologysvc: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:" + $.per_phase[$.phase].topologysvc, 
 
   templateFilename:: error 'templateFilename must be passed at time of import',
   //TODO: use imageFunc.do_override_* once pipelines are setup
