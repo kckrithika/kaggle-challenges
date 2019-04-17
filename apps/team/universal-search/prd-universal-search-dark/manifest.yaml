@@ -5,8 +5,8 @@ system:
     email:
     - universalsearch@salesforce.com
   functions:
-  - name: universal-search-perf
-    count: 6
+  - name: universal-search-dark
+    count: 4
     volumes:
     - name: client-cert-vol
       maddogCert:
@@ -25,21 +25,28 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: universal-search
-      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.10.3
-      # psalagnac TODO: this image does not foreward to Solr.
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hkhiri/universal-search:dropwizard_
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:1.1.3
       ports:
       - name: service-port
         containerPort: 7020
       - name: admin-port
         containerPort: 15372
+      resources:
+        limits:
+          cpu: "6"
+          memory: "16Gi"
       env:
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
       - name: JAAS_CONF
         value: /home/sfdc-usmt/krb-config/jaas-prd.conf
-      - name: ZK_CHROOT
-        value: /search/universal/solr-cloud/cre
+      # DO NOT COPY THIS TO PRODUCTION - FOR TESTING ONLY
+      # Enable monitoring to test reindexing and schema deployment
+      - name: CONTROLPLANE_MONITORING_ENABLE
+        value: 'true'
+      # Monitor for schema changes every 5 minutes
+      - name: CONTROLPLANE_MONITORING_FIXEDDELAYMS
+        value: '300000'
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
@@ -66,6 +73,10 @@ system:
         name: sherpa-tls
       - containerPort: 15373
         name: sherpa-adm
+      resources:
+        limits:
+          cpu: "1"
+          memory: "1Gi"
       volumeMounts:
       - name: server-cert-vol
         mountPath: /server-certs
@@ -89,17 +100,17 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - universal-search-perf/universal-search:DATACENTER_ALLENV:7443
+      - universal-search-dark/universal-search:DATACENTER_ALLENV:7443
       - -endpoint
-      - universal-search-perf-notls/universal-search:DATACENTER_ALLENV:7012
+      - universal-search-dark-notls/universal-search:DATACENTER_ALLENV:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
           - "/home/scone/is-alive.sh"
   loadbalancers:
-  - function: universal-search-perf
-    lbname: universal-search-perf-slb
+  - function: universal-search-dark
+    lbname: universal-search-dark-slb
     ports:
     - port: 7020
       targetport: 7012
