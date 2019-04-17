@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: sequencer
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sequencer:ce5c52
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/casam/sequencer:ce5c52
       command: ["/bin/sh", "-c"]
       args: ["
       export SNOWWHITE_PWD=$(cat /db-secrets/gcp-mvp-1az-db-pw/dbpw.txt) ;
@@ -64,7 +64,7 @@ system:
       - name: SFPROXY_SETTINGS_PATH
         value: prod.-.phx.na3.sfproxy-envoy
       - name: CASAM_SUPERPOD
-        value: sp1
+        value: -
       - name: HTTP_PROXY
         value: localhost:3128
       - name: PUBLIC_PROXY
