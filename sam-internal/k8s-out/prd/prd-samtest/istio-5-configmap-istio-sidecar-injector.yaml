@@ -7,7 +7,7 @@ data:
       initContainers:
       [[ if ne (annotation .ObjectMeta `sidecar.istio.io/interceptionMode` .ProxyConfig.InterceptionMode) "NONE" ]]
       - name: istio-init
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:7efc9fcad6c38a139a01ef5d5f0e3cc1f86015d8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:fb53c1e25a0c870fb2d22f2943ba8c0d05cda962
         args:
         - "-p"
         - [[ .MeshConfig.ProxyListenPort ]]
@@ -45,7 +45,7 @@ data:
       [[ end -]]
       containers:
       - name: istio-proxy
-        image: [[ annotation .ObjectMeta `sidecar.istio.io/proxyImage`  "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:7efc9fcad6c38a139a01ef5d5f0e3cc1f86015d8"  ]]
+        image: [[ annotation .ObjectMeta `sidecar.istio.io/proxyImage`  "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:fb53c1e25a0c870fb2d22f2943ba8c0d05cda962"  ]]
         args:
         - proxy
         - sidecar
