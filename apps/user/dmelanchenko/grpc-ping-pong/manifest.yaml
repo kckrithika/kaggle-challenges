@@ -75,6 +75,62 @@ system:
       hostPath:
         path: /data/sam/dmelanchenko/log/grpc-ping-pong-server
 
+  - name: grpc-ping-pong-proxy
+    count: 1
+    containers:
+    - name: proxy 
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      ports:
+      - name: sherpa-h2
+        containerPort: 7012
+      - containerPort: 15373
+        name: sherpa-mgmt
+      volumeMounts:
+      - mountPath: /client-certs
+        name: client-cert
+      - mountPath: /server-certs
+        name: server-cert
+      livenessProbe:
+        exec:
+          command:
+          - /home/sfdc-sherpa/bin/is-alive
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - /home/sfdc-sherpa/bin/is-ready
+        initialDelaySeconds: 60
+        periodSeconds: 120
+    - name: beacon
+      image: sfci/servicelibs/beacon:ce3b9722faf59dc7550a1df2905ecff794fbb2e3
+      args:
+      - -endpoint
+      - samapp/user-dmelanchenko/grpc-ping-pong-proxy:DATACENTER:7012
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+
+    volumes:
+    - name: server-cert
+      maddogCert:
+        type: server
+    - name: client-cert
+      maddogCert:
+        type: client
+    - name: logvol
+      hostPath:
+        path: /data/sam/dmelanchenko/log/grpc-ping-pong-proxy
+
   - name: grpc-ping-pong-client-service
     count: 1
     containers:
@@ -83,6 +139,54 @@ system:
       args:
         - /client
         - "--address=grpc-ping-pong-service.user-dmelanchenko.samapp.localhost.mesh.force.com:7011"
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - "OK"
+        initialDelaySeconds: 60
+        periodSeconds: 120      
+    - name: sherpa
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      args:
+        - -log-level
+        - debug
+      ports:
+      - name: sherpa-h2
+        containerPort: 7012
+      - containerPort: 15373
+        name: sherpa-mgmt
+      volumeMounts:
+      - mountPath: /client-certs
+        name: client-cert
+      livenessProbe:
+        exec:
+          command:
+          - /home/sfdc-sherpa/bin/is-alive
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - /home/sfdc-sherpa/bin/is-ready
+        initialDelaySeconds: 60
+        periodSeconds: 120
+    volumes:
+    - name: client-cert
+      maddogCert:
+        type: client
+    - name: logvol
+      hostPath:
+        path: /data/sam/dmelanchenko/log/grpc-ping-pong-client
+
+  - name: grpc-ping-pong-client-proxy
+    count: 1
+    containers:
+    - name: grpc-ping-pong-client
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmelanchenko/grpc-ping-pong:v0
+      args:
+        - /client
+        - "--address=grpc-ping-pong-proxy.user-dmelanchenko.samapp.localhost.mesh.force.com:7011"
       livenessProbe:
         exec:
           command:
@@ -170,7 +274,6 @@ system:
     - name: logvol
       hostPath:
         path: /data/sam/dmelanchenko/log/grpc-ping-pong-client
-
 
   - name: grpc-ping-pong-beacon
     count: 1
