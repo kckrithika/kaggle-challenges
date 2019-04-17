@@ -6,7 +6,7 @@ system:
       - distributedtracing@salesforce.com
   functions:
   - name: zipkin-beta
-    count: 0
+    count: 1
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -35,7 +35,7 @@ system:
       - name: ZIPKIN_SERVER
         value: localhost
       - name: ES_HOSTS
-        value: es-rest1.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200
+        value: shared0-samminionzipkin1-10-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-12-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-13-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-2-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-5-prd.eng.sfdc.net:9200
       - name: AUTH_ENABLED
         value: false
       volumeMounts:

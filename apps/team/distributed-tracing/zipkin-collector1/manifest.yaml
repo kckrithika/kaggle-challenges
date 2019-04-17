@@ -6,7 +6,7 @@ system:
       - distributedtracing@salesforce.com
   functions:
   - name: zipkin-collector1
-    count: 0
+    count: 3
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -26,7 +26,7 @@ system:
       image: docker-dva-rc/dva/zipkin-collector:52
       env:
       - name: ES_HOSTS
-        value: es-rest1.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200
+        value: shared0-samminionzipkin1-10-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-12-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-13-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-2-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-5-prd.eng.sfdc.net:9200
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
       - name: KAFKA_ACCEPT_BATCH_SIZE
