@@ -16,6 +16,15 @@ system:
           - "/acds/bin/tmOk.sh"
         initialDelaySeconds: 10
         timeoutSeconds: 5
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+        - name: logvolsherpa
+          mountPath: /logsherpa
+        - name: logvolbeacon
+          mountPath: /logbeacon
       env:
       - name : UP_STRING
         value: "ACDS TaskManager Started. Blocking."
@@ -35,3 +44,16 @@ system:
 #        value:
 #      - name : TOKEN_SECRET
 #        value:
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    - name: logvolsherpa
+      hostPath:
+        path: /home/sfdc-scone-hellodiscovery-sherpa/logs
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-scone-hellodiscovery-beacon/logs 
