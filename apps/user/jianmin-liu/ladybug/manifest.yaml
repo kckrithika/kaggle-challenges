@@ -5,7 +5,7 @@ apiVersion: v1
 system:
   functions:
   - name: ladybug
-    count: 1
+    count: 0
     containers:
     - name: ladybug-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jianmin.liu/ladybug:jianmin.liu-20190131-3-ae7beac
