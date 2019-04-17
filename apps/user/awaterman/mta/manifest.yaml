@@ -27,7 +27,7 @@ system:
             - -c
             - echo ^C | nc 127.0.0.1 25
           initialDelaySeconds: 20 
-          periodSeconds: 2
+          periodSeconds: 10
       readinessProbe:
         exec:
           command:
@@ -35,15 +35,38 @@ system:
             - -c
             - echo ^C | nc 127.0.0.1 25
           initialDelaySeconds: 20 
-          periodSeconds: 2
+          periodSeconds: 10 
+    - name: demo-mta-client
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dva-rc/dva/sfdc-mta-demo:latest
+      ports:
+      - name: http 
+        containerPort: 80
+      volumeMounts:
+      - mountPath: /var/log/ecelerity
+        name: logvol
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 120
+        periodSeconds: 60
+        timeoutSeconds: 30
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 110
+        periodSeconds: 60
+        timeoutSeconds: 30
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/mta/logs
   loadbalancers:
   - lbname: emailinfra-mta-awaterman-lb
     function: mta
     slbEnabled: true
     ports:
     - lbtype: tcp
-      port: 25
-      targetport: 25
-    - lbtype: tcp
-      port: 25
-      targetport: 25
+      port: 80 
+      targetport: 80
