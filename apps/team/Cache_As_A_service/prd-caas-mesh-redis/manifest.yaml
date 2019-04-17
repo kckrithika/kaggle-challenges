@@ -59,11 +59,16 @@ system:
       - --clusterName=caas-cluster-1
       - --publishingIntervalInSecs=30
       - --redisPort=12081
+      - --secretFile=/var/secrets/caas-client-secure.yaml
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
             - "/home/caas/is-alive.sh"
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       env:
        - name: SFDC_ENVIRONMENT
          value: redis
