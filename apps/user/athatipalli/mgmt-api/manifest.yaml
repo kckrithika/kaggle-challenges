@@ -13,12 +13,12 @@ system:
             initialDelaySeconds: 60
             timeoutSeconds: 10
           ports:
-          - containerPort: 3306
+          - containerPort: 5004
           resources:
             requests:
               cpu: 2
               memory: 3Gi
-          limits:
+            limits:
               cpu: 3
               memory: 4Gi
           env:
@@ -38,12 +38,4 @@ system:
               value: guiapi-db-lb
             - name: JWT_SECRET_KEY
               value: "geocloudDDNApiPlatformKey"
-  loadbalancers:
-  - lbname: mgmtserver-api-lb
-    function: mgmtserver-api
-    nodeExposed: true
-    ports:
-      - port: 5004
-        name: mgmt-api-server-port
-        targetport: 5004
-        lbtype: tcp
+      lbname: mgmtserver-api-lb
