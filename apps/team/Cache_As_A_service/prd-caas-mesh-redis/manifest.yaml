@@ -52,6 +52,28 @@ system:
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
+    - name: caas-metrics-publisher
+      image: sfci/cache-as-a-service/caas-metrics-publisher:212d0a99a3c633b3f8ac41b3465fee26188d71f7
+      args:
+      - --ajnaFunnelVip=ajna0-funnel1-0-prd.data.sfdc.net:80
+      - --clusterName=caas-cluster-1
+      - --publishingIntervalInSecs=30
+      - --redisPort=12081
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/caas/is-alive.sh"
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: redis
+       - name: NO_ENV_FOR_RESTART
+         value: new8
+       - name: SFDC_POD
+         value: mist66
+      resources:
+        limits: { memory: "20M" }
+        requests: { memory: "20M" }
     volumes:
     - name: secretvol
       secret:
