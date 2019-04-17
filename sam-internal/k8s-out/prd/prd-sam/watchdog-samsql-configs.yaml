@@ -281,10 +281,10 @@ data:
     NOT\n              (minionpool like ''phx-sam_mgmt_hub'' AND now() < STR_TO_DATE(''2019-01-22'',
     ''%Y-%m-%d''))\n              AND NOT\n              (minionpool like ''ph2-sam_gater''
     AND NotReadyPerc < 0.5 AND now() < STR_TO_DATE(''2019-01-30'', ''%Y-%m-%d''))",
-    "watchdogFrequency": "5m"}, { }, {"alertAction": "", "alertFrequency": "24h",
-    "alertProfile": "sam", "alertThreshold": "20m", "instructions": "The following
-    SAM control stack components dont have even 1 healhty pod", "name": "SqlSamControl",
-    "sql": "SELECT * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
+    "watchdogFrequency": "5m"}, {"alertAction": "", "alertFrequency": "24h", "alertProfile":
+    "sam", "alertThreshold": "20m", "instructions": "The following SAM control stack
+    components dont have even 1 healhty pod", "name": "SqlSamControl", "sql": "SELECT
+    * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
     ''$.metadata.labels.\"sam.data.sfdc.net/owner\"'') AS ownerlabel,\n                      JSON_EXTRACT(Payload,
     ''$.spec.replicas'') AS desiredReplicas,\n                      JSON_EXTRACT(Payload,
     ''$.status.availableReplicas'') AS availableReplicas,\n                      JSON_EXTRACT(Payload,
