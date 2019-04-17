@@ -1,9 +1,8 @@
 apiVersion: v1
 data:
   watchdog-samsql-profiles.jsonnet: '{"alertProfiles": [{"businesshours_pagerduty":
-    "csc-sam-business-hours-only@salesforce.pagerduty.com", "email": "sam-test-alerts@salesforce.com",
-    "name": "sam", "pagerDuty": "sam-pagerduty@salesforce.com"}, {"name": "tnrp",
-    "pagerDuty": "tnrp_pd_svc@salesforce.pagerduty.com"}]}'
+    "csc-sam-business-hours-only@salesforce.pagerduty.com", "email": "", "name": "sam",
+    "pagerDuty": "sam-pagerduty@salesforce.com"}, {"name": "tnrp", "pagerDuty": "tnrp_pd_svc@salesforce.pagerduty.com"}]}'
   watchdog-samsql-queries.jsonnet: '{"argus_metrics": [{"name": "MachineCountByKernelVersion",
     "sql": "select ''GLOBAL'' as Kingdom, ''NONE'' as SuperPod, ''global'' as Estate,
     ''sql.machineCountByKernelVersion'' as Metric, COUNT(*) as Value, CONCAT(''KernelVersion='',KernelVersion)

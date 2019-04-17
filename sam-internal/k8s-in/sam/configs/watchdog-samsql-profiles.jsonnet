@@ -2,7 +2,7 @@
   alertProfiles: [
     {
       name: "sam",
-      email: "sam-test-alerts@salesforce.com",
+      email: "",
       pagerDuty: "sam-pagerduty@salesforce.com",
       businesshours_pagerduty: "csc-sam-business-hours-only@salesforce.pagerduty.com",
     },
