@@ -9,7 +9,7 @@ system:
       args:
       - --gater.grpc.endpoint=gater-mesh.gater.localhost.mesh.force.com
       - --gater.grpc.port=5443
-      - --gater.client-mode=GRPC
+      - --gater.client-mode=THRIFT
       - --endpoints.bindings.names=/s/gater-mesh,/s/gater-mesh-metadata
       - --gater.thrift.service.destination=/s/gater-mesh
       - --gater.thrift.metadata.destination=/s/gater-mesh-metadata
