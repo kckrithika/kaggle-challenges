@@ -27,7 +27,7 @@ spec:
         - -alertThreshold=900s
         - -maxUptimeSampleSize=5
         - -watchDogKind=DaemonSet
-        - -recipient=sam-alerts@salesforce.com,make@salesforce.com
+        - -recipient=make@salesforce.com
         - -funnelEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
