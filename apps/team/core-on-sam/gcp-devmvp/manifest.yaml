@@ -20,7 +20,7 @@ system:
       - name: NONCE
         value: 1551221682919725056
       - name: DRY_RUN
-        value: 1
+        value: 0
       - name: CHATTER_GROUP_NAME
         value: casam-alpha
       - name: SFPROXY_VIP
