@@ -335,11 +335,12 @@ data:
     "watchdogFrequency": "10m"}, {"alertAction": "pagerduty", "alertFrequency": "24h",
     "alertProfile": "sam", "alertThreshold": "10m", "instructions": "Following PRs
     have failed to produce corresponding manifest.zip file after 30 minutes of getting  merged.",
-    "name": "SqlPRFailedToProduceManifestZip", "sql": "SELECT\n             *\n            FROM\n            (SELECT\n              p.pr_num,\n              t.manifest_zip_time,\n              p.merged_time,\n              TIMESTAMPDIFF(MINUTE,
+    "name": "SqlPRFailedToProduceManifestZip", "sql": "SELECT\n                 *\n                FROM\n                (SELECT\n                  p.pr_num,\n                  t.manifest_zip_time,\n                  p.merged_time,\n                  TIMESTAMPDIFF(MINUTE,
     merged_time, CASE WHEN t.manifest_zip_time IS NULL THEN now() ELSE t.manifest_zip_time
-    END) latency\n            FROM PullRequests p\n            LEFT OUTER JOIN TNRPManifestData
-    t\n            ON p.git_hash = t.git_hash\n            WHERE p.state =''merged''   AND
-    p.`merged_time` > NOW() - INTERVAL 10 DAY\n            ) manifestZip\n            WHERE
+    END) latency\n                FROM PullRequests p\n                LEFT OUTER
+    JOIN TNRPManifestData t\n                ON p.git_hash = t.git_hash\n\n                WHERE
+    p.state =''merged''   AND p.`merged_time` > NOW() - INTERVAL 10 DAY AND manifest_zip_time
+    IS NULL order by p.merged_time desc)\n                 manifestZip\n                WHERE
     manifestZip.latency > 30", "watchdogFrequency": "10m"}, {"alertAction": "email",
     "alertFrequency": "24h", "alertProfile": "sam", "alertThreshold": "0m", "instructions":
     "Following PRs have at least one image that''s not available after 20 minutes
