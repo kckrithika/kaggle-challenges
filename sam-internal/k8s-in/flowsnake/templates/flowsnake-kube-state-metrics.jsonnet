@@ -172,7 +172,7 @@ if std.objectHas(flowsnake_images.feature_flags, "kube_state_metrics_release") t
                         containers: [
                             {
                                 name: "kube-state-metrics",
-                                image: "quay.io/coreos/kube-state-metrics:v1.5.0",
+                                image: flowsnake_images.kube_state_metrics,
                                 ports: [
                                     {
                                         name: "http-metrics",
@@ -191,48 +191,15 @@ if std.objectHas(flowsnake_images.feature_flags, "kube_state_metrics_release") t
                                     initialDelaySeconds: 5,
                                     timeoutSeconds: 5,
                                 },
-                            },
-                            {
-                                name: "addon-resizer",
-                                image: "k8s.gcr.io/addon-resizer:1.8.3",
                                 resources: {
                                     limits: {
-                                        cpu: "150m",
-                                        memory: "50Mi",
+                                        memory: "2000Mi",
                                     },
                                     requests: {
-                                        cpu: "150m",
-                                        memory: "50Mi",
+                                        cpu: "0.5",
+                                        memory: "2000Mi",
                                     },
                                 },
-                                env: [
-                                    {
-                                        name: "MY_POD_NAME",
-                                        valueFrom: {
-                                            fieldRef: {
-                                                fieldPath: "metadata.name",
-                                            },
-                                        },
-                                    },
-                                    {
-                                        name: "MY_POD_NAMESPACE",
-                                        valueFrom: {
-                                            fieldRef: {
-                                                fieldPath: "metadata.namespace",
-                                            },
-                                        },
-                                    },
-                                ],
-                                command: [
-                                    "/pod_nanny",
-                                    "--container=kube-state-metrics",
-                                    "--cpu=100m",
-                                    "--extra-cpu=1m",
-                                    "--memory=100Mi",
-                                    "--extra-memory=2Mi",
-                                    "--threshold=5",
-                                    "--deployment=kube-state-metrics",
-                                ],
                             },
                         ],
                     },
