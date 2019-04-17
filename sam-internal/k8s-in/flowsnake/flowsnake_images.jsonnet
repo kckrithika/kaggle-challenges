@@ -32,6 +32,7 @@ local utils = import "util_functions.jsonnet";
                 spark_application_quota_enforcement: "enabled",
                 watchdog_integration_merge: "",
                 spark_operator_watchdog_kubectl_retries: "unverified",
+                kube_state_metrics_release: ""
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
