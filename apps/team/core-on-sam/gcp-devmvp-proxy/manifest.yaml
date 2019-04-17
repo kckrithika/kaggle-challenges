@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: sfproxy-switchboard-server
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:0c4c543cd166bcb2e5516795a30989bc89165d60
       command: ["/bin/sh", "-c"]
       args: ["
       export SETTINGS_PATH=prod.-.phx.na3.sfproxy-switchboard ;
@@ -57,7 +57,7 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sfproxy-switchboard-sherpa
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sfproxy:6b9f1df
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/frontend-gateway/sfproxy:5deb946
       command: ["/bin/sh", "-c"]
       args: ["
       export SETTINGS_PATH=prod.-.phx.na3.sfproxy-switchboard-sherpa ;
@@ -116,7 +116,7 @@ system:
     count: 3
     containers:
     - name: sfproxy-envoy
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/sfproxy:6b9f1df
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/frontend-gateway/sfproxy:5deb946
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
