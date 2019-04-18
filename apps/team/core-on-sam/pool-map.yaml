@@ -8,7 +8,7 @@
 # As of 4-18-19:
 # 2 of the above 15 hosts are dedicated to GateKeeper (GK) and Steam env testing - (hosts 3-4 and 3-5).
 # GK uses CI API to deploy to SAM
-# Limit the CARE team's deployments to 1 hosts - 3-2 & 3-3 (NA5 and NA6)
+# Limit the CARE team's deployments to 2 hosts - 3-2 & 3-3 (NA5 and NA6)
 # Limit GDC testing to one host - 3-1 (NA8)
 # Use the remaining hosts among the rest of the deployments
 

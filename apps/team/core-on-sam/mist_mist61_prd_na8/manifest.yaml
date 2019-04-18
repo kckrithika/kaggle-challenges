@@ -211,9 +211,9 @@ system:
       - name: CHATTER_GROUP_NAME
         value: casam-alpha
       - name: SFPROXY_VIP
-        value: << Missing SFProxy Coreapp VIP >>
+        value: https://us3-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
       - name: SWITCH_BOARD_ADDRESS
-        value: << Missing >>
+        value: na8-switchboard-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8088
       - name: RELEASE_VESION
         value: ""
       - name: RELEASE_TYPE
