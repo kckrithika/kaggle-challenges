@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   labels:
     pcn: deploy
-  name: samhello-ns1
+  name: topology-svc
   namespace: topology-svc
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: samhello-ns1
+      app: topology-svc
   template:
     metadata:
       annotations:
@@ -20,9 +20,9 @@ spec:
              "cert-type": "client",
              "kingdom": "mvp",
              "name": "cert1",
-             "role": "topology-svc.consul",
+             "role": "topology-svc",
              "san": [
-              "consul-0.consul-stateful-ilb.topology-svc.svc"
+              ""
              ],
              "superpod": null
             },
@@ -30,9 +30,9 @@ spec:
              "cert-type": "client",
              "kingdom": "mvp",
              "name": "client-certs",
-             "role": "topology-svc.consul",
+             "role": "topology-svc",
              "san": [
-              "consul-0.consul-stateful-ilb.topology-svc.svc"
+              ""
              ],
              "superpod": null
             },
@@ -42,21 +42,36 @@ spec:
              "name": "server-certs",
              "role": "topology-svc.consul",
              "san": [
-              "consul-0.consul-stateful-ilb.topology-svc.svc"
+              ""
              ],
              "superpod": null
             }
            ]
           }
       labels:
-        app: samhello-ns1
+        app: topology-svc
     spec:
       containers:
-      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/samhellonew:ameesala-20160416
-        name: samhello
+      - env:
+        - name: JVM_ARGS
+          value: -Dspring.profiles.active=gcp
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:hmittal-20190416-c0eb8f0
+        name: topology-svc-service
         ports:
-        - containerPort: 9090
-          name: server
+        - containerPort: 8080
+          name: scone-http
+        - containerPort: 15372
+          name: scone-mgmt
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /manage/health
+            port: 15372
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
         securityContext:
           runAsNonRoot: true
           runAsUser: 7447
