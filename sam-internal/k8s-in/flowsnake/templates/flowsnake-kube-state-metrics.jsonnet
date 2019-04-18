@@ -11,7 +11,7 @@ if std.objectHas(flowsnake_images.feature_flags, "kube_state_metrics_release") t
             # kubernetes versions before 1.8.0 should use rbac.authorization.k8s.io/v1beta1
             kind: "ClusterRoleBinding",
             metadata: {
-                name: "kube-state-metrics",
+                name: "kube-state-metrics-clusterrolebinding",
                 annotations: {
                     "manifestctl.sam.data.sfdc.net/swagger": "disable",
                 },
@@ -19,12 +19,12 @@ if std.objectHas(flowsnake_images.feature_flags, "kube_state_metrics_release") t
             roleRef: {
                 apiGroup: "rbac.authorization.k8s.io",
                 kind: "ClusterRole",
-                name: "kube-state-metrics",
+                name: "kube-state-metrics-clusterrole",
             },
             subjects: [
                 {
                     kind: "ServiceAccount",
-                    name: "kube-state-metrics",
+                    name: "kube-state-metrics-serviceaccount",
                     namespace: "kube-system",
                 },
             ],
@@ -34,7 +34,7 @@ if std.objectHas(flowsnake_images.feature_flags, "kube_state_metrics_release") t
             # kubernetes versions before 1.8.0 should use rbac.authorization.k8s.io/v1beta1
             kind: "ClusterRole",
             metadata: {
-                name: "kube-state-metrics",
+                name: "kube-state-metrics-clusterrole",
                 annotations: {
                     "manifestctl.sam.data.sfdc.net/swagger": "disable",
                 },
@@ -168,7 +168,7 @@ if std.objectHas(flowsnake_images.feature_flags, "kube_state_metrics_release") t
                         },
                     },
                     spec: {
-                        serviceAccountName: "kube-state-metrics",
+                        serviceAccountName: "kube-state-metrics-serviceaccount",
                         containers: [
                             {
                                 name: "kube-state-metrics",
@@ -207,87 +207,10 @@ if std.objectHas(flowsnake_images.feature_flags, "kube_state_metrics_release") t
             },
         },
         {
-            apiVersion: "rbac.authorization.k8s.io/v1",
-            kind: "RoleBinding",
-            metadata: {
-                name: "kube-state-metrics",
-                namespace: "kube-system",
-                annotations: {
-                    "manifestctl.sam.data.sfdc.net/swagger": "disable",
-                },
-            },
-            roleRef: {
-                apiGroup: "rbac.authorization.k8s.io",
-                kind: "Role",
-                name: "kube-state-metrics-resizer",
-            },
-            subjects: [
-                {
-                    kind: "ServiceAccount",
-                    name: "kube-state-metrics",
-                    namespace: "kube-system",
-                },
-            ],
-        },
-        {
-            apiVersion: "rbac.authorization.k8s.io/v1",
-            kind: "Role",
-            metadata: {
-                namespace: "kube-system",
-                name: "kube-state-metrics-resizer",
-                annotations: {
-                    "manifestctl.sam.data.sfdc.net/swagger": "disable",
-                },
-            },
-            rules: [
-                {
-                    apiGroups: [
-                        "",
-                    ],
-                    resources: [
-                        "pods",
-                    ],
-                    verbs: [
-                        "get",
-                    ],
-                },
-                {
-                    apiGroups: [
-                        "apps",
-                    ],
-                    resources: [
-                        "deployments",
-                    ],
-                    resourceNames: [
-                        "kube-state-metrics",
-                    ],
-                    verbs: [
-                        "get",
-                        "update",
-                    ],
-                },
-                {
-                    apiGroups: [
-                        "extensions",
-                    ],
-                    resources: [
-                        "deployments",
-                    ],
-                    resourceNames: [
-                        "kube-state-metrics",
-                    ],
-                    verbs: [
-                        "get",
-                        "update",
-                    ],
-                },
-            ],
-        },
-        {
             apiVersion: "v1",
             kind: "ServiceAccount",
             metadata: {
-                name: "kube-state-metrics",
+                name: "kube-state-metrics-serviceaccount",
                 namespace: "kube-system",
             },
         },
@@ -295,7 +218,7 @@ if std.objectHas(flowsnake_images.feature_flags, "kube_state_metrics_release") t
             apiVersion: "v1",
             kind: "Service",
             metadata: {
-                name: "kube-state-metrics",
+                name: "kube-state-metrics-service",
                 namespace: "kube-system",
                 labels: {
                     "k8s-app": "kube-state-metrics",
