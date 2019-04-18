@@ -4,7 +4,6 @@ local pullrequestsvc = import "firefly-pullrequest-svc.jsonnet.TEMPLATE";
 local configs = import "config.jsonnet";
 local pullrequestsvc = import "firefly-pullrequest-svc.jsonnet.TEMPLATE";
 local promotionsvc = import "firefly-promotion-svc.jsonnet.TEMPLATE";
-local packageConfig = import "configs/firefly-package.jsonnet";
 
 if configs.estate == "prd-sam" then
 {

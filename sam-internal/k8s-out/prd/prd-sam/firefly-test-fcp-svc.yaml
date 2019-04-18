@@ -32,7 +32,7 @@ items:
               "docker": {
                   "connect-timeout": "480000ms",
                   "docker-cert-path": "/etc/docker/certs.d",
-                  "force-create-container": "false",
+                  "force-create-container": true,
                   "read-timeout": "480000ms",
                   "remote-docker-host": "http://localhost:2375"
               },
@@ -40,7 +40,7 @@ items:
               "instance-type": "${INSTANCE_TYPE}",
               "max-attempts": 4,
               "max-latency": "600000ms",
-              "multi-repo-supported": false,
+              "multi-repo-supported": true,
               "repo-config": {
                   "manifest_driven_promotions": {
                       "type": "artifacts"

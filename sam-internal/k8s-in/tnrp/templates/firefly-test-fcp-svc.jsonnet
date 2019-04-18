@@ -26,6 +26,17 @@ if configs.estate == "prd-sam" then
               value: "firefly-fcp.latestfile",
           },
      ],
+     data:: {
+       local appConfig = packageConfig.config("firefly-package") + {
+         appconfig+: {
+            "multi-repo-supported": true,
+            docker+: {
+              "force-create-container": true,
+            },
+          },
+        },
+       "application.yml": std.manifestJson(appConfig),
+     },
   },
   local packagesingleton = packagesvcsingleton {
       serviceConf:: super.serviceConf {
