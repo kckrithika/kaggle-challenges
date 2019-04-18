@@ -6,7 +6,7 @@ metadata:
   labels:
     app: topology-svc-internal-lb
     pcn: deploy
-  name: ttopology-svc-internal-lb
+  name: topology-svc-internal-lb
   namespace: topology-svc
 spec:
   externalTrafficPolicy: Cluster
