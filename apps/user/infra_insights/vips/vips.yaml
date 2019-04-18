@@ -1,4 +1,5 @@
 - lbname: horizon-postgres
+  customlbname: horizon-postgres-test
   servers:
    - shared0-slbminion1-3-prd.eng.sfdc.net
   ports:
