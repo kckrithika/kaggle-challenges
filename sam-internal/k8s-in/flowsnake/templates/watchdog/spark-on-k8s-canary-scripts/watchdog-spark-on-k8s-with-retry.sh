@@ -131,6 +131,13 @@ kcfw_log() {
 events() {
     # awk magic prints only lines that occur after the search term is found: https://stackoverflow.com/a/17988834
     kcfw_log describe sparkapplication $APP_NAME | awk '/Events:/{flag=1;next}flag'
+
+    DRIVERPOD=$(kcfw get pod -l ${SELECTOR},spark-role=driver -o name)
+    if [[ -n $DRIVERPOD ]]; then
+        log ---- Begin $DRIVERPOD Events ----
+        kcfw describe $DRIVERPOD | awk '/Events:/{flag=1;next}flag' || true
+        log ---- End $DRIVERPOD Events ----
+    fi
 }
 
 # Return the state of the Spark application.
@@ -260,6 +267,7 @@ else
     kcfw logs $POD || true
     log ---- End $POD Log ----
 fi
+
 # Alternatively, generate a Splunk link? Not sure there's a good way to filter for this particular execution, since the driver pod
 # has the same name on every invocation on every fleet.
 
