@@ -169,9 +169,9 @@ items:
       # Extract the "Events" section from a kubectl description of a resource.
       events() {
           # awk magic prints only the Name: line and the Events lines (terminated by a blank line).
-          kcfw_log describe sparkapplication $APP_NAME | awk '/Events:/{flag=1}/^$/{flag=0;next}(flag||/^Name:/)'
-          kcfw_log describe pod -l ${SELECTOR},spark-role=driver | awk '/Events:/{flag=1}/^$/{flag=0;next}(flag||/^Name:/)'
-          kcfw_log describe pod -l ${SELECTOR},spark-role=executor | awk '/Events:/{flag=1}/^$/{flag=0;next}(flag||/^Name:/)'
+          kcfw_log describe sparkapplication $APP_NAME | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)'
+          kcfw_log describe pod -l ${SELECTOR},spark-role=driver | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)'
+          kcfw_log describe pod -l ${SELECTOR},spark-role=executor | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)'
       }
 
       # Return the state of the Spark application.
