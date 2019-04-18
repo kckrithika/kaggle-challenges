@@ -6,7 +6,7 @@ if configs.kingdom == 'mvp' then {
     apiVersion: 'v1',
     kind: 'Service',
     metadata: {
-        name: 'ttopology-svc-internal-lb',
+        name: 'topology-svc-internal-lb',
         namespace: topologysvcNamespace,
         labels: {
             app: 'topology-svc-internal-lb',
