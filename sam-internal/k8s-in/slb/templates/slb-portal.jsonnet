@@ -94,15 +94,12 @@ if slbconfigs.isSlbEstate && configs.estate != "prd-samtest" then configs.deploy
                                   },
                               ],
                           } + configs.ipAddressResourceRequest,
-                          slbshared.slbManifestWatcher(includeSlbPortalOverride=slbflights.slbPortalEndpointOverride),
+                          slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort, includeSlbPortalOverride=slbflights.slbPortalEndpointOverride),
                           slbshared.slbCleanupConfig,
                           slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                           slbshared.slbLogCleanup,
                           madkub.madkubRefreshContainer(certDirs),
-                          (if slbflights.slbPortalEndpointOverride then
-                                slbshared.slbManifestWatcher(includeSlbPortalOverride=true)
-                                else
-                                slbshared.slbManifestWatcher()),
+                          slbshared.slbManifestWatcher(includeSlbPortalOverride=slbflights.slbPortalEndpointOverride),
                       ],
                       nodeSelector: { pool: slbconfigs.slbEstate },
                       initContainers: [
