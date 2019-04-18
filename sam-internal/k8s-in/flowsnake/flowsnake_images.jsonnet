@@ -28,6 +28,11 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
+<<<<<<< HEAD
+=======
+                spark_application_quota_enforcement: "enabled",
+                spark_operator_watchdog_kubectl_retries: "unverified",
+>>>>>>> comments added. remove unneed flags.
                 kube_state_metrics_release: "",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
@@ -103,7 +108,6 @@ local utils = import "util_functions.jsonnet";
 
                 # Flowsnake v2 images
                 impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
-                integration_test_runner_tag: "2",
                 spark_operator_image_tag: "11",
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
 
