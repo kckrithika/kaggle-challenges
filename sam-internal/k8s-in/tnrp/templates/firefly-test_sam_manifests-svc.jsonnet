@@ -31,19 +31,6 @@ if configs.estate == "prd-sam" then
         value: "tnrpfirefly-test_sam_manifests.latestfile",
       },
    ],
-   data:: {
-          local appConfig = packageConfig.config("firefly-package") + {
-            appconfig+: {
-              s3: {
-              enabled: true,
-              "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
-              "s3-secret-access-key": "${s3SecretAccessKey#FromSecretService}",
-            },
-            "s3-bucket": "fcparchive",
-          },
-        },
-        "application.yml": std.manifestJson(appConfig),
-      },
   },
   local packagesingleton = packagesvcsingleton {
      serviceConf:: super.serviceConf {
