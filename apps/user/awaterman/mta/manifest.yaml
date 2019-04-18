@@ -57,7 +57,7 @@ system:
         periodSeconds: 5
   loadbalancers:
   - lbname: emailinfra-mta-awaterman-lb
-    function: mta-client
+    function: mta
     slbEnabled: true
     ports:
     - lbtype: tcp
