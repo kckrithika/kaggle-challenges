@@ -43,7 +43,7 @@ system:
         livenessProbe:
           exec:
             command:
-            - ./livelinessCheck.sh
+            - "true"
           initialDelaySeconds: 120
           periodSeconds: 5
       lbname: searchserver0
@@ -105,7 +105,7 @@ system:
         livenessProbe:
           exec:
             command:
-            - ./livelinessCheck.sh
+            - "true"
           initialDelaySeconds: 120
           periodSeconds: 5
       lbname: searchserver1
