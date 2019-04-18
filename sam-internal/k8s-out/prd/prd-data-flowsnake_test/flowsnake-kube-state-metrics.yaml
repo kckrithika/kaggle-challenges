@@ -5,21 +5,21 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: kube-state-metrics
+    name: kube-state-metrics-clusterrolebinding
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: kube-state-metrics
+    name: kube-state-metrics-clusterrole
   subjects:
   - kind: ServiceAccount
-    name: kube-state-metrics
+    name: kube-state-metrics-serviceaccount
     namespace: kube-system
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRole
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: kube-state-metrics
+    name: kube-state-metrics-clusterrole
   rules:
   - apiGroups:
     - ""
@@ -125,58 +125,11 @@ items:
             requests:
               cpu: "0.5"
               memory: 2000Mi
-        serviceAccountName: kube-state-metrics
-- apiVersion: rbac.authorization.k8s.io/v1
-  kind: RoleBinding
-  metadata:
-    annotations:
-      manifestctl.sam.data.sfdc.net/swagger: disable
-    name: kube-state-metrics
-    namespace: kube-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: Role
-    name: kube-state-metrics-resizer
-  subjects:
-  - kind: ServiceAccount
-    name: kube-state-metrics
-    namespace: kube-system
-- apiVersion: rbac.authorization.k8s.io/v1
-  kind: Role
-  metadata:
-    annotations:
-      manifestctl.sam.data.sfdc.net/swagger: disable
-    name: kube-state-metrics-resizer
-    namespace: kube-system
-  rules:
-  - apiGroups:
-    - ""
-    resources:
-    - pods
-    verbs:
-    - get
-  - apiGroups:
-    - apps
-    resourceNames:
-    - kube-state-metrics
-    resources:
-    - deployments
-    verbs:
-    - get
-    - update
-  - apiGroups:
-    - extensions
-    resourceNames:
-    - kube-state-metrics
-    resources:
-    - deployments
-    verbs:
-    - get
-    - update
+        serviceAccountName: kube-state-metrics-serviceaccount
 - apiVersion: v1
   kind: ServiceAccount
   metadata:
-    name: kube-state-metrics
+    name: kube-state-metrics-serviceaccount
     namespace: kube-system
 - apiVersion: v1
   kind: Service
@@ -185,7 +138,7 @@ items:
       prometheus.io/scrape: "true"
     labels:
       k8s-app: kube-state-metrics
-    name: kube-state-metrics
+    name: kube-state-metrics-service
     namespace: kube-system
   spec:
     ports:
