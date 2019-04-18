@@ -28,11 +28,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
-<<<<<<< HEAD
-=======
-                spark_application_quota_enforcement: "enabled",
-                spark_operator_watchdog_kubectl_retries: "unverified",
->>>>>>> comments added. remove unneed flags.
                 kube_state_metrics_release: "",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
