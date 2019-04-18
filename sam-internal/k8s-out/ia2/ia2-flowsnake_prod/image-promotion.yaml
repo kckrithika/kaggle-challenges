@@ -42,6 +42,8 @@ spec:
         name: flowsnake-spark-master-2-1-0
       - image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:jenkins-dva-transformation-flowsnake-platform-master-781-itest
         name: flowsnake-spark-master-2-3-0
+      - image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:jenkins-dva-transformation-flowsnake-platform-master-781-itest
+        name: flowsnake-spark-on-k8s-integration-test-runner
       - image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-secret-updater:jenkins-dva-transformation-flowsnake-platform-master-781-itest
         name: flowsnake-spark-secret-updater
       - image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/flowsnake-spark-token-renewer:jenkins-dva-transformation-flowsnake-platform-master-781-itest

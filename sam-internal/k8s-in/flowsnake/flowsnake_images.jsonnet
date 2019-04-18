@@ -299,6 +299,7 @@ local utils = import "util_functions.jsonnet";
        "flowsnake-job-flowsnake-spark-local-mode-demo-job",
        "flowsnake-zookeeper",
        "flowsnake-logstash",
+       "flowsnake-spark-on-k8s-integration-test-runner",
     ],
 
     # Use this to manage the release of versions that change the set of images we build.

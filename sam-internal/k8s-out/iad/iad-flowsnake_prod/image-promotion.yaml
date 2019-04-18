@@ -162,6 +162,12 @@ spec:
         name: flowsnake-spark-master-2-3-0
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:696
         name: flowsnake-spark-master-2-3-0
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:10001
+        name: flowsnake-spark-on-k8s-integration-test-runner
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:10011
+        name: flowsnake-spark-on-k8s-integration-test-runner
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:696
+        name: flowsnake-spark-on-k8s-integration-test-runner
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-secret-updater:10001
         name: flowsnake-spark-secret-updater
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-secret-updater:10011
