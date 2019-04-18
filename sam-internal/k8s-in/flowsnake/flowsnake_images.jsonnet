@@ -28,9 +28,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
-                spark_application_quota_enforcement: "enabled",
-                watchdog_integration_merge: "",
-                spark_operator_watchdog_kubectl_retries: "unverified",
                 kube_state_metrics_release: "",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
@@ -49,6 +46,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags+: {
                 spark_application_quota_enforcement: "enabled",
                 watchdog_integration_merge: "",
+                spark_operator_watchdog_kubectl_retries: "enabled",
             },
             version_mapping+: {
             },
@@ -134,8 +132,8 @@ local utils = import "util_functions.jsonnet";
         "3-pcl": self["3"] {
             version_mapping: {},  # No legacy Flowsnake in Public Cloud; therefore force empty verson_mapping
         },
-        ### A very special phase 3 for IAD and ORD that preserves access to old versions used by CRE.
-        ### TODO:  Remove when CRE is migrated to 0.12.2+
+        ### Preserves access to old versions used by CRE. Also inherited by prd-data and prd-dev fleets.
+        ### TODO: Remove when CRE is migrated to 0.12.2+ or Spark Operator
         "3-iad-ord": self["3"] {
             version_mapping+: {
                 "0.10.0": 662,

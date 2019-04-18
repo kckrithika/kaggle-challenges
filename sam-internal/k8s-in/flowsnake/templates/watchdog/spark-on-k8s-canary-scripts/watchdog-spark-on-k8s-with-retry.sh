@@ -7,7 +7,7 @@ set -o pipefail
 unset KUBECONFIG
 
 NAMESPACE=flowsnake-watchdog
-KUBECTL_TIMEOUT_SECS=5
+KUBECTL_TIMEOUT_SECS=10
 KUBECTL_ATTEMPTS=3
 
 # Parse command line arguments. https://stackoverflow.com/a/14203146
@@ -57,7 +57,7 @@ if [[ ".jsonnet" == "${1: -8}" ]] ; then
     if [ -f "/strata-test-specs-out/${SPEC_NAME}.json" ]; then
         SPEC="/strata-test-specs-out/${SPEC_NAME}.json"
     else
-        echo "spec /strata-test-specs-out/${SPEC_NAME}.json doesnt exist."
+        echo "spec /strata-test-specs-out/${SPEC_NAME}.json doesn't exist."
         exit 1
     fi
 else
@@ -67,8 +67,8 @@ fi
 
 APP_NAME=$(python -c 'import json,sys; print json.load(sys.stdin)["metadata"]["name"]' < $SPEC)
 SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
-# Exit after 12 minutes to ensure we exit before cliChecker kills us (15 mins) so that all output can be logged.
-TIMEOUT_SECS=$((60*12))
+# Exit after 9 minutes to ensure we exit before cliChecker kills us (10 mins) so that all output can be logged.
+TIMEOUT_SECS=$((60*9))
 
 # output Unix time to stdout
 epoch() {
@@ -212,6 +212,7 @@ report_pod_changes() {
 
 
 # ------ Initialize ---------
+START_TIME=$(epoch)
 log "Beginning $APP_NAME test"
 # Sanity-check kubeapi connectivity
 kcfw_log cluster-info
@@ -236,20 +237,21 @@ while ! $(kcfw_log get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null);
 # ------ Run ---------
 log "Creating SparkApplication $APP_NAME"
 kcfw_log create -f $SPEC
-START_TIME=$(epoch)
+SPARK_APP_START_TIME=$(epoch)
 
 LAST_LOGGED=$(epoch)
 log "Waiting for SparkApplication $APP_NAME to terminate."
 STATE=$(state)
 while ! $(echo ${STATE} | grep -P '(COMPLETED|FAILED)' > /dev/null); do
     EPOCH=$(epoch)
+    # Use start time of script for timeout computation in order to still exit in timely fashion even if setup was slow
     if (( EPOCH - START_TIME >= TIMEOUT_SECS )); then
         log "Timeout reached. Aborting wait for SparkApplication $APP_NAME even though in non-terminal state $STATE."
         events;
         break
     fi
     if (( EPOCH - LAST_LOGGED > 180 )); then
-        log "...still waiting for terminal state (currently $STATE) after $((EPOCH-START_TIME)) seconds. SparkApplication $APP_NAME Events so far:";
+        log "...still waiting for terminal state (currently $STATE) after $((EPOCH-SPARK_APP_START_TIME)) seconds. SparkApplication $APP_NAME Events so far:";
         events;
         LAST_LOGGED=${EPOCH}
     fi;
@@ -261,7 +263,7 @@ report_pod_changes # Report final status of spawned pods
 
 # ------ Report Results ---------
 END_TIME=$(epoch)
-ELAPSED_SECS=$(($END_TIME - $START_TIME))
+ELAPSED_SECS=$(($END_TIME - $SPARK_APP_START_TIME))
 EXIT_CODE=$(echo $STATE | grep COMPLETED > /dev/null; echo $?)
 log "SparkApplication $APP_NAME has terminated after $ELAPSED_SECS seconds. State is $STATE. Events:"
 events

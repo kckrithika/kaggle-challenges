@@ -131,7 +131,7 @@ else
                                     # Alert if last success was longer ago than this.
                                     "-alertThreshold=1m",
                                     # Kill and fail test if it runs for longer than this.
-                                    "-cliCheckerTimeout=15m",
+                                    "-cliCheckerTimeout=" + (if std.objectHas(flowsnake_images.feature_flags, "spark_operator_watchdog_kubectl_retries") then "10m" else "15m"),
                                     "-includeCommandOutput=true",
                                 ] + (if flowsnakeconfig.is_public_cloud then [
                                 # In PCL, watchdog runs on flannel network and host name becomes pod name, so need to explicitly pass in kingdom
