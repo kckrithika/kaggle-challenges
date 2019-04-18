@@ -38,9 +38,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 3
       - name: DB_SID
@@ -72,7 +72,7 @@ system:
       - name: SUBSTRATE
         value: public
       - name: SKIP_KAIJU
-        value: 1
+        value: 0
       - name: KAIJU_REFOCUS_GETRESULT_URL
         value: https://refocus.hk.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
@@ -271,7 +271,7 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: blue
+          value: green
 
         # Override port being announced in SD by coreapp - use the Envoy side car's listen port
         - name: SD_PORT_OVERRIDE
