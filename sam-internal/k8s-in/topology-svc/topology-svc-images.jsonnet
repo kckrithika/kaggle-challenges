@@ -65,6 +65,7 @@ local configs = import 'config.jsonnet';
   ),
 
   consul: 'ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-ts:' + $.per_phase[$.phase].consul,
+  sherpa: 'ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:' + $.per_phase[$.phase].sherpa,
   topologysvc: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:" + $.per_phase[$.phase].topologysvc, 
 
   templateFilename:: error 'templateFilename must be passed at time of import',
