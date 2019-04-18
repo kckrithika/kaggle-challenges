@@ -23,6 +23,7 @@ local utils = import "util_functions.jsonnet";
         "1": self["2"] {
             image_tags+: {
                 integration_test_runner: "2",
+                kube_state_metrics_image_tag: "3",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -32,6 +33,7 @@ local utils = import "util_functions.jsonnet";
                 spark_application_quota_enforcement: "enabled",
                 watchdog_integration_merge: "",
                 spark_operator_watchdog_kubectl_retries: "unverified",
+                kube_state_metrics_release: "",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
@@ -215,6 +217,7 @@ local utils = import "util_functions.jsonnet";
     if std.objectHas(self.feature_flags, "watchdog_integration_merge") then flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_runner
     else imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.watchdog_image_tag)
     ),
+    kube_state_metrics: flowsnakeconfig.strata_registry + "/kube-state-metrics-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.kube_state_metrics_image_tag,
 
     feature_flags: $.per_phase[$.phase].feature_flags,
     # Convert to the format expected by std.manifestIni for generating Windows-style .ini files
