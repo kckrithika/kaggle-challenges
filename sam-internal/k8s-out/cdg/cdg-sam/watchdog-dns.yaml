@@ -32,7 +32,7 @@ spec:
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -timeout=2s
-        - -recipient=sam-alerts@salesforce.com,sam-pagerduty@salesforce.com
+        - -recipient=,sam-pagerduty@salesforce.com
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

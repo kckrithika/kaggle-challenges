@@ -15,9 +15,9 @@ recipient: (
         else if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam_storagedev" then "storagefoundation@salesforce.com"
         else if configs.estate == "prd-samdev" then ""
         else if configs.estate == "prd-samtest" then ""
-        else if configs.estate == "prd-samtwo" then "sam-alerts@salesforce.com"
+        else if configs.estate == "prd-samtwo" then ""
         else if configs.kingdom == "prd" then ""
-        else "sam-alerts@salesforce.com"
+        else ""
 ),
 laddr: (if configs.estate == "prd-sam" then "0.0.0.0:8063" else "0.0.0.0:8083"),
 syntheticPort: (if configs.estate == "prd-sam" then 8063 else 8083),
