@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:523-c6b6210a357adba9d0399d636b6290ae9447da54
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:524-f498aa3fb56bcfe2e40e9ae23405e2f359d27275
       livenessProbe:
         exec:
           command: [ls]
@@ -57,7 +57,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:523-c6b6210a357adba9d0399d636b6290ae9447da54'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/dva/moana-engine:524-f498aa3fb56bcfe2e40e9ae23405e2f359d27275'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-release}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:+UseG1GC
