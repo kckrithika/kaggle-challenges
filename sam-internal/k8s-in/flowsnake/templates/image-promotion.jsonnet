@@ -36,13 +36,12 @@ local environment_images_to_promote = std.uniq(std.sort(std.flattenArrays(
 )));
 
 
+# SAM won't pick up images if they're deployed via k8s List files, so add those here.
 local extra_images_to_promote =
 (if watchdog.watchdog_enabled then
 [
-    # SAM won't pick up images if they're deployed via k8s List files, so add those here.
     flowsnake_images.watchdog_canary,
     flowsnake_images.watchdog_spark_operator,
-    # SAM won't pick up images, the image was used in a configmap.
     flowsnake_images.spark_operator_watchdog_canary,
     ]
 else []);
