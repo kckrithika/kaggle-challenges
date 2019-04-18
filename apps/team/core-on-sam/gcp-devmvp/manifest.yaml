@@ -72,7 +72,7 @@ system:
       - name: SUBSTRATE
         value: public
       - name: SKIP_KAIJU
-        value: 0
+        value: 1
       - name: KAIJU_REFOCUS_GETRESULT_URL
         value: https://refocus.hk.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
