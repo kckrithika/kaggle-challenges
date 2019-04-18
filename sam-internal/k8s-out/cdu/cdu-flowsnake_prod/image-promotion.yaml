@@ -8,3 +8,5 @@ spec:
         name: extra-image-0
       - image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest
         name: extra-image-1
+      - image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:2
+        name: extra-image-2

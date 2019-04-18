@@ -42,6 +42,7 @@ local utils = import "util_functions.jsonnet";
             image_tags+: {
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-19-itest",
                 kube_state_metrics_image_tag: "3",
+                integration_test_runner_tag: "2",
             },
             feature_flags+: {
                 spark_application_quota_enforcement: "enabled",
@@ -102,7 +103,7 @@ local utils = import "util_functions.jsonnet";
 
                 # Flowsnake v2 images
                 impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
-                integration_test_runner: "2",
+                integration_test_runner_tag: "2",
                 spark_operator_image_tag: "11",
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
 
@@ -213,7 +214,7 @@ local utils = import "util_functions.jsonnet";
     madkub_injector: flowsnakeconfig.strata_registry + "/flowsnake-madkub-injector-webhook:" + $.per_phase[$.phase].image_tags.madkub_injector_image_tag,
     spark_operator: flowsnakeconfig.strata_registry + "/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.spark_operator_image_tag,
     spark_operator_watchdog_canary: (
-    if std.objectHas(self.feature_flags, "watchdog_integration_merge") then flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_runner
+    if std.objectHas(self.feature_flags, "watchdog_integration_merge") then flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_runner_tag
     else imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].image_tags.watchdog_image_tag)
     ),
     kube_state_metrics: flowsnakeconfig.strata_registry + "/kube-state-metrics-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.kube_state_metrics_image_tag,
@@ -299,7 +300,6 @@ local utils = import "util_functions.jsonnet";
        "flowsnake-job-flowsnake-spark-local-mode-demo-job",
        "flowsnake-zookeeper",
        "flowsnake-logstash",
-       "flowsnake-spark-on-k8s-integration-test-runner",
     ],
 
     # Use this to manage the release of versions that change the set of images we build.
