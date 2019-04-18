@@ -267,7 +267,7 @@ else
 fi
 
 log -------- Executor Pods ----------
-EXECUTORPODS = $(kcfw get pod -l ${SELECTOR},spark-role=executor -o name)
+EXECUTORPODS=$(kcfw get pod -l ${SELECTOR},spark-role=executor -o name)
 for POD_NAME in ${EXECUTORPODS}; do
     log ---- Begin $POD_NAME Log ----
     kcfw logs $POD_NAME || true
