@@ -65,7 +65,11 @@ std.prune({
     "docker-containerd.*docker-containerd.sock": "age.dockercontainerd",
     "docker-containerd.*docker-bootstrap": "age.dockercontainerdbootstrap",
     "name=etcd": "age.etcd",
-  },
+  } + (
+    if configs.estate == "prd-sdc" then
+      { "illumio_ven/.*AgentMonitor": "age.illumio.AgentMonitor" }  # eg. /opt/illumio_ven/bin/AgentMonitor
+    else {}
+  ),
 
   m_tnrpEndpoint: (if configs.kingdom == "prd" then configs.tnrpEndpoint),
 
