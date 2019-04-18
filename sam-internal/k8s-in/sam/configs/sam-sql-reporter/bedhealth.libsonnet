@@ -99,7 +99,7 @@
         case when Payload->>'$.status.report.Success' = 'true' then 1 else 0 end as SuccessCount,
         case when Payload->>'$.status.report.Success' = 'false' then 1 else 0 end as FailureCount,
         case when Payload->>'$.status.report.ErrorMessage' = 'null' then null else
-          case when Payload->>'$.status.report.CheckerName' = 'cliChecker.DockerDaemon' then
+          case when Payload->>'$.status.report.CheckerName' like 'cliChecker%' then
             concat(Payload->>'$.status.report.Hostname', ': ', Payload->>'$.status.report.ErrorMessage')
           else
             Payload->>'$.status.report.ErrorMessage'
