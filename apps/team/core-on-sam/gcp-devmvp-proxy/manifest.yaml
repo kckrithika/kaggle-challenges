@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: sfproxy-switchboard-server
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:0c4c543cd166bcb2e5516795a30989bc89165d60
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
       command: ["/bin/sh", "-c"]
       args: ["
       export SETTINGS_PATH=prod.-.phx.na3.sfproxy-switchboard ;
