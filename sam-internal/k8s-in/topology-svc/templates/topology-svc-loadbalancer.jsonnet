@@ -6,10 +6,10 @@ if configs.kingdom == 'mvp' then {
     apiVersion: 'v1',
     kind: 'Service',
     metadata: {
-        name: 'topology-svc-lb',
+        name: 'ttopology-svc-internal-lb',
         namespace: topologysvcNamespace,
         labels: {
-            app: 'topology-svc-lb',
+            app: 'topology-svc-internal-lb',
         } + configs.pcnEnableLabel,
         annotations: {
             "cloud.google.com/load-balancer-type": "Internal",
@@ -20,7 +20,7 @@ if configs.kingdom == 'mvp' then {
         externalTrafficPolicy: 'Cluster',
         sessionAffinity: 'None',
         selector: {
-            app: 'topology-svc',
+            app: 'topology-svc-internal',
         },
         ports: [
           {
