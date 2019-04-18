@@ -318,7 +318,7 @@ system:
       readinessProbe:
        exec:
          command:
-          - /home/sfdc/salesforce/build/ready_probe.sh
+          - /home/sfdc/salesforce/casam/bin/ready_probe.sh
        initialDelaySeconds: 120
        periodSeconds: 5
        timeoutSeconds: 5
