@@ -4,7 +4,7 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-configs.daemonSetBase("sdn") {
+if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then configs.daemonSetBase("sdn") {
     spec+: {
         template: {
             spec: {
@@ -65,4 +65,4 @@ configs.daemonSetBase("sdn") {
         name: "sdn-hairpin-setter",
         namespace: "sam-system",
     },
-}
+} else "SKIP"
