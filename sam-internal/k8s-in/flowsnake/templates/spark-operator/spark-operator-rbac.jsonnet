@@ -63,11 +63,6 @@ local quota_enforcement = std.objectHas(flowsnake_images.feature_flags, "spark_a
             ] + (if quota_enforcement then [
                 {
                     apiGroups: [""],
-                    resources: ["namespaces"],
-                    verbs: ["get", "watch", "list"],
-                },
-                {
-                    apiGroups: [""],
                     resources: ["resourcequotas"],
                     verbs: ["get", "watch", "list"],
                 },
