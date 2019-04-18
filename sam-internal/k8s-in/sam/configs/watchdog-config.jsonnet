@@ -67,7 +67,7 @@ std.prune({
     "name=etcd": "age.etcd",
   } + (
     if configs.estate == "prd-sdc" then
-      { "illumio_ven/.*AgentMonitor": "age.illumio.AgentMonitor" }  # eg. /opt/illumio_ven/bin/AgentMonitor
+      { "illumio_ven/.*Agent": "age.illumio.AgentMonitor" }  # eg. /opt/illumio_ven/bin/AgentMonitor
     else {}
   ),
 
