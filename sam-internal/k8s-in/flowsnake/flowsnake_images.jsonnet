@@ -46,7 +46,6 @@ local utils = import "util_functions.jsonnet";
             feature_flags+: {
                 spark_application_quota_enforcement: "enabled",
                 watchdog_integration_merge: "",
-                spark_operator_watchdog_kubectl_retries: "enabled",
             },
             version_mapping+: {
             },
@@ -122,7 +121,9 @@ local utils = import "util_functions.jsonnet";
                 watchdog_image_tag: "2687-6c147b04d2d506c9fd591d50f400bd86c485b155",  # Add stdout/stderr to watchdog report email for cli-checker
             },
             feature_flags: {
-                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                # After promoting a feature-flag to phase 3, please submit a follow-on PR to remove the flag and
+                # associated conditional logic. That PR will not affect k8s-out, so you can self-approve it.
+                spark_operator_watchdog_kubectl_retries: "enabled",
             },
             version_mapping: {
                 "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
