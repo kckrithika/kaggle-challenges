@@ -39,8 +39,11 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2115-c45af88f18d15d5ae8e8d936a04bffefa2c0cf0b
+        image: ops0-artifactrepo1-0-ia2.data.sfdc.net/dva/slb/hyperslb:2122-7efc0c84502265c8bb614d1ac2b5802f5b51b9de
         name: slb-nginx-reporter
+        resources:
+          limits:
+            memory: 10Gi
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
