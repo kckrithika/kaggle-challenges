@@ -8,7 +8,8 @@ unset KUBECONFIG
 
 NAMESPACE=flowsnake-watchdog
 KUBECTL_TIMEOUT_SECS=10
-KUBECTL_ATTEMPTS=3
+# Give kubeapi 1 minute to recover. 10 second timeout, 7th request begins 60s after 1st.
+KUBECTL_ATTEMPTS=7
 
 # Parse command line arguments. https://stackoverflow.com/a/14203146
 POSITIONAL=()
@@ -67,8 +68,8 @@ fi
 
 APP_NAME=$(python -c 'import json,sys; print json.load(sys.stdin)["metadata"]["name"]' < $SPEC)
 SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
-# Exit after 9 minutes to ensure we exit before cliChecker kills us (10 mins) so that all output can be logged.
-TIMEOUT_SECS=$((60*9))
+# Exit after 5 minutes to ensure we exit before cliChecker kills us (10 mins) so that all output can be logged.
+TIMEOUT_SECS=$((60*5))
 
 # output Unix time to stdout
 epoch() {
