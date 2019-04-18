@@ -65,6 +65,7 @@ items:
                   }
               },
               "gcs": {
+                  "enabled": true,
                   "service-account-key": "${gcsUploaderKey#FromSecretService}"
               },
               "image-promotion-yaml": "image-promotion.yaml",
