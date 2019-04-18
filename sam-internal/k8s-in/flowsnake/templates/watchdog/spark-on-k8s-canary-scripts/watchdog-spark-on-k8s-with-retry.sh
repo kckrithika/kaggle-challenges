@@ -138,6 +138,13 @@ events() {
         kcfw describe $DRIVERPOD | awk '/Events:/{flag=1;next}flag' || true
         log ---- End $DRIVERPOD Events ----
     fi
+
+    EXECUTORPODS = $(kcfw get pod -l ${SELECTOR},spark-role=executor -o name)
+    for POD_NAME in ${EXECUTORPODS}; do
+        log ---- Begin $POD_NAME Events ----
+        kcfw describe $POD_NAME | awk '/Events:/{flag=1;next}flag' || true
+        log ---- End $POD_NAME Events ----
+    done;
 }
 
 # Return the state of the Spark application.
@@ -267,6 +274,14 @@ else
     kcfw logs $POD || true
     log ---- End $POD Log ----
 fi
+
+log -------- Executor Pods ----------
+EXECUTORPODS = $(kcfw get pod -l ${SELECTOR},spark-role=executor -o name)
+for POD_NAME in ${EXECUTORPODS}; do
+    log ---- Begin $POD_NAME Log ----
+    kcfw logs $POD_NAME || true
+    log ---- End $POD_NAME Log ----
+done;
 
 # Alternatively, generate a Splunk link? Not sure there's a good way to filter for this particular execution, since the driver pod
 # has the same name on every invocation on every fleet.
