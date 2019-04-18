@@ -32,7 +32,7 @@ if configs.kingdom == 'mvp' then {
     apiVersion: 'apps/v1beta1',
     kind: 'Deployment',
     metadata: {
-      name: 'topology-svc',
+      name: 'topology-svc-internal',
       namespace: topologysvcNamespace,
       labels: {} + configs.pcnEnableLabel,
     },
@@ -40,13 +40,13 @@ if configs.kingdom == 'mvp' then {
         replicas: 3,
         selector: {
           matchLabels: {
-            app: 'topology-svc',
+            app: 'topology-svc-internal',
           },
         },
         template: {
           metadata: {
             labels: {
-              app: 'topology-svc',
+              app: 'topology-svc-internal',
             },
             annotations: {
               'madkub.sam.sfdc.net/allcerts':
@@ -70,7 +70,7 @@ if configs.kingdom == 'mvp' then {
             },
             containers: [
               {
-                name: 'topology-svc-service',
+                name: 'topology-svc-internal-service',
                 image: topologysvcimages.topologysvc,
                 ports: ports,
                 securityContext: {
