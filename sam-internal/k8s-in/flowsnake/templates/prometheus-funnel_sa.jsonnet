@@ -51,7 +51,7 @@ else
             rules: [
                 {
                     apiGroups: [""],
-                    resources: ["pods", "nodes", "nodes/proxy", "customresourcedefinitions"],
+                    resources: ["pods", "nodes", "nodes/proxy", "services", "customresourcedefinitions"],
                     verbs: ["get", "list", "watch"],
                 },
                 {
