@@ -24,6 +24,7 @@ local utils = import "util_functions.jsonnet";
             image_tags+: {
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-20-itest",
                 prometheus_funnel_image_tag: "35",
+                integration_test_runner_tag: "3",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
