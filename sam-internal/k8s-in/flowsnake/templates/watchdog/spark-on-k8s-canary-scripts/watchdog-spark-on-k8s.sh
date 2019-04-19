@@ -7,6 +7,9 @@ set -o pipefail
 unset KUBECONFIG
 
 NAMESPACE=flowsnake-watchdog
+KUBECTL_TIMEOUT_SECS=10
+# Give kubeapi 1 minute to recover. 10 second timeout, 7th request begins 60s after 1st.
+KUBECTL_ATTEMPTS=7
 
 # Parse command line arguments. https://stackoverflow.com/a/14203146
 POSITIONAL=()
@@ -27,6 +30,18 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    --kubectl-timeout)
+    # Specify timeout (seconds) for individual kubectl invocations (default is 5)
+    export KUBECTL_TIMEOUT_SECS="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    --kubectl-attempts)
+    # Specify number of attempts for individual kubectl invocations (default is 3)
+    export KUBECTL_ATTEMPTS="$2"
+    shift # past argument
+    shift # past value
+    ;;
     *)    # unknown option
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
@@ -43,7 +58,7 @@ if [[ ".jsonnet" == "${1: -8}" ]] ; then
     if [ -f "/strata-test-specs-out/${SPEC_NAME}.json" ]; then
         SPEC="/strata-test-specs-out/${SPEC_NAME}.json"
     else
-        echo "spec /strata-test-specs-out/${SPEC_NAME}.json doesnt exist."
+        echo "spec /strata-test-specs-out/${SPEC_NAME}.json doesn't exist."
         exit 1
     fi
 else
@@ -53,10 +68,10 @@ fi
 
 APP_NAME=$(python -c 'import json,sys; print json.load(sys.stdin)["metadata"]["name"]' < $SPEC)
 SELECTOR="sparkoperator.k8s.io/app-name=$APP_NAME"
-# Exit after 12 minutes to ensure we exit before cliChecker kills us (15 mins) so that all output can be logged.
-TIMEOUT_SECS=$((60*12))
+# Exit after 5 minutes to ensure we exit before cliChecker kills us (10 mins) so that all output can be logged.
+TIMEOUT_SECS=$((60*5))
 
-# output Unix time
+# output Unix time to stdout
 epoch() {
     date '+%s'
 }
@@ -66,28 +81,59 @@ format() {
     sed -e "s/^/$(date +'%m%d %H:%M:%S') [$(epoch)] $APP_NAME - /"
 }
 
-# Format and output provided string
+# Format and output provided string to stdout
 log() {
     if [[ "$@" != "" ]]; then
         echo "${@}" | format
     fi
 }
 
-# Run kubectl in namespace. Prefer kcfw_log when possible
+# Run kubectl in namespace.
+# Use for extracting programatic values; otherwise prefer kcfw_log for formatted output.
+#
+# stdout is printed without change.
+# stderr is log-formatted and printed.
+#
+# Operations are timed out after KUBECTL_TIMEOUT_SECS and retried KUBECTL_ATTEMPTS times upon timeout or non-zero exit
+# Timeout and retry events are printed to stderr
 kcfw() {
-  kubectl -n ${NAMESPACE} "$@"
+    ATTEMPT=1
+    while true; do
+        tmpfile=$(mktemp /tmp/$(basename $0)-stderr.XXXXXX)
+        timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} $@ 2>$tmpfile
+        RESULT=$?
+        # Format captured stderr for logging and output it to stderr
+        cat $tmpfile | format >&2
+        rm $tmpfile
+        if [[ $RESULT == 0 ]]; then
+            # Success! We're done.
+            return $RESULT;
+        fi;
+        MSG="Invocation ($ATTEMPT/$KUBECTL_ATTEMPTS) of [$@] failed ($(if (( $RESULT == 124 || $RESULT == 137 )); then echo "timed out (${KUBECTL_TIMEOUT_SECS}s)"; else echo $RESULT; fi))."
+        if (( $ATTEMPT < $KUBECTL_ATTEMPTS )); then
+            log "$MSG Will sleep $KUBECTL_TIMEOUT_SECS seconds and then try again." >&2
+            sleep ${KUBECTL_TIMEOUT_SECS}
+        else
+            log "$MSG Giving up." >&2
+            return ${RESULT}
+        fi;
+        ATTEMPT=$(($ATTEMPT + 1))
+    done;
 }
 
-# Run kubectl in namespace, plus prefix output to disambiguate interleaving later
+# Like kcfw, plus apply log formatting to stdout.
 kcfw_log() {
   # pipefail is set, so sed won't lose any failure exit code returned by kubectl
-  kcfw "$@" 2>&1 | format
+  # stderr is already formatted by kcfw, so only need to add formatting to stdout
+  kcfw "$@" | format
 }
 
 # Extract the "Events" section from a kubectl description of a resource.
 events() {
-    # awk magic prints lines after search term found: https://stackoverflow.com/a/17988834
-    kcfw_log describe sparkapplication $APP_NAME | awk '/Events:/{flag=1;next}flag'
+    # awk magic prints only the Name: line and the Events lines (terminated by a blank line).
+    kcfw_log describe sparkapplication $APP_NAME | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)'
+    kcfw_log describe pod -l ${SELECTOR},spark-role=driver | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)'
+    kcfw_log describe pod -l ${SELECTOR},spark-role=executor | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)'
 }
 
 # Return the state of the Spark application.
@@ -133,11 +179,11 @@ report_pod_changes() {
 
     # Can't simply copy associative arrays in bash, so perform maintenance on PREVIOUS_POD_REPORTS as we go.
     for POD_NAME in ${REMOVED_POD_NAMES}; do
-        log "Pod ${POD_NAME} removed."
+        log "Pod change detected: ${POD_NAME} removed."
         unset PREVIOUS_POD_REPORTS["$POD_NAME"]
     done
     for POD_NAME in ${NEW_POD_NAMES}; do
-        log "Pod ${POD_NAME}: ${POD_REPORTS["${POD_NAME}"]}.";
+        log "Pod change detected: ${POD_NAME}: ${POD_REPORTS["${POD_NAME}"]}.";
         PREVIOUS_POD_REPORTS["$POD_NAME"]=${POD_REPORTS["${POD_NAME}"]}
     done;
     for POD_NAME in ${EXISTING_POD_NAMES}; do
@@ -147,7 +193,7 @@ report_pod_changes() {
         OLD_REPORT="${PREVIOUS_POD_REPORTS[${POD_NAME}]}"
         NEW_REPORT="${POD_REPORTS[${POD_NAME}]}"
         if [[ "${OLD_REPORT}" != "${NEW_REPORT}" ]]; then
-            log "Pod ${POD_NAME} changed to ${NEW_REPORT%% *} (previously ${OLD_REPORT%% *})."
+            log "Pod change detected: ${POD_NAME} changed to ${NEW_REPORT%% *} (previously ${OLD_REPORT%% *})."
             PREVIOUS_POD_REPORTS["$POD_NAME"]="${NEW_REPORT}"
         fi
     done;
@@ -155,37 +201,46 @@ report_pod_changes() {
 
 
 # ------ Initialize ---------
+START_TIME=$(epoch)
 log "Beginning $APP_NAME test"
 # Sanity-check kubeapi connectivity
 kcfw_log cluster-info
 
 # ------ Clean up prior runs ---------
-log "Cleaning up $APP_NAME resources from prior runs"
-# || true because exit code 1 if spark application can't be found.
+log "Cleaning up $APP_NAME resources from prior runs."
+# Disable retries and use || true because exit code 1 if spark application can't be found.
+KUBECTL_ATTEMPTS_BACKUP=${KUBECTL_ATTEMPTS}
+KUBECTL_ATTEMPTS=1
 kcfw_log delete sparkapplication $APP_NAME || true
+KUBECTL_ATTEMPTS=${KUBECTL_ATTEMPTS_BACKUP}
+
 # kubectl returns success even if no pods match the label selector. But it seems you get an
-# error if you match a pod and then that pod exits on its own at just the wrong time. So || true here too.
-kcfw_log delete pod -l $SELECTOR || true
-# Wait for pods from prior runs to delete.
-while ! $(kcfw_log get pod -l $SELECTOR | grep "No resources" > /dev/null); do sleep 1; done;
+# error if you match a pod and then that pod exits on its own at just the wrong time. Retry harmless in that case.
+# Need || true anyway because grep to filter out the unwanted "No resources found." message will fail if no such message
+# because there actually was something to delete.
+kcfw_log delete pod -l $SELECTOR 2>&1 | grep -v "No resources" || true
+
+# Wait for pods from prior runs to delete by looping until we get No resources result.
+while ! $(kcfw_log get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
 
 # ------ Run ---------
 log "Creating SparkApplication $APP_NAME"
 kcfw_log create -f $SPEC
-START_TIME=$(epoch)
+SPARK_APP_START_TIME=$(epoch)
 
 LAST_LOGGED=$(epoch)
 log "Waiting for SparkApplication $APP_NAME to terminate."
 STATE=$(state)
 while ! $(echo ${STATE} | grep -P '(COMPLETED|FAILED)' > /dev/null); do
     EPOCH=$(epoch)
+    # Use start time of script for timeout computation in order to still exit in timely fashion even if setup was slow
     if (( EPOCH - START_TIME >= TIMEOUT_SECS )); then
-        log "Timeout reached. Aborting wait even though in non-terminal state $STATE."
+        log "Timeout reached. Aborting wait for SparkApplication $APP_NAME even though in non-terminal state $STATE."
         events;
         break
     fi
     if (( EPOCH - LAST_LOGGED > 180 )); then
-        log "...still waiting for terminal state (currently $STATE) after $((EPOCH-START_TIME)) seconds. SparkApplication Events so far:";
+        log "...still waiting for terminal state (currently $STATE) after $((EPOCH-SPARK_APP_START_TIME)) seconds. SparkApplication $APP_NAME Events so far:";
         events;
         LAST_LOGGED=${EPOCH}
     fi;
@@ -197,7 +252,7 @@ report_pod_changes # Report final status of spawned pods
 
 # ------ Report Results ---------
 END_TIME=$(epoch)
-ELAPSED_SECS=$(($END_TIME - $START_TIME))
+ELAPSED_SECS=$(($END_TIME - $SPARK_APP_START_TIME))
 EXIT_CODE=$(echo $STATE | grep COMPLETED > /dev/null; echo $?)
 log "SparkApplication $APP_NAME has terminated after $ELAPSED_SECS seconds. State is $STATE. Events:"
 events
@@ -210,6 +265,15 @@ else
     kcfw logs $POD || true
     log ---- End $POD Log ----
 fi
+
+log -------- Executor Pods ----------
+EXECUTORPODS=$(kcfw get pod -l ${SELECTOR},spark-role=executor -o name)
+for POD_NAME in ${EXECUTORPODS}; do
+    log ---- Begin $POD_NAME Log ----
+    kcfw logs $POD_NAME || true
+    log ---- End $POD_NAME Log ----
+done;
+
 # Alternatively, generate a Splunk link? Not sure there's a good way to filter for this particular execution, since the driver pod
 # has the same name on every invocation on every fleet.
 
