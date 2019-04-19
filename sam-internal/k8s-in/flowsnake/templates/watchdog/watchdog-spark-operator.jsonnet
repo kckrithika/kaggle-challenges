@@ -170,7 +170,7 @@ else
                                  + madkub_common.cert_mounts(cert_name),
                             } + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_integration_merge") then
                             {env: [
-                                { name: "DOCKER_TAG", value: flowsnake_images.per_phase[flowsnake_images.phase].image_tags.integration_test_runner },
+                                { name: "DOCKER_TAG", value: flowsnake_images.per_phase[flowsnake_images.phase].image_tags.integration_test_runner_tag },
                                 { name: "TEST_RUNNER_ID", value: "canary" },
                                 { name: "S3_PROXY_HOST", value: flowsnakeconfig.s3_public_proxy_host },
                                 { name: "DRIVER_SERVICE_ACCOUNT", value: "spark-driver-flowsnake-watchdog" },
