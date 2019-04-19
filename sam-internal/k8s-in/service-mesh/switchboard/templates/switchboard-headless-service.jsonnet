@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 {
   apiVersion: "v1",
@@ -11,7 +12,7 @@ local configs = import "config.jsonnet";
       app: "switchboard",
     } +
     // samlabelfilter.json requires this label to be present on GCP deployments
-    if configs.estate == "gsf-core-devmvp-sam2-sam" || configs.estate == "gsf-core-devmvp-sam2-samtest" then configs.pcnEnableLabel else {},
+    if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
   },
   spec: {
     type: "ClusterIP",

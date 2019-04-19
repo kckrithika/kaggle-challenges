@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local versions = import "service-mesh/sherpa-injector/versions.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 {
 apiVersion: "v1",
@@ -11,7 +12,7 @@ metadata: {
     app: "sherpa-injector",
   } +
   // samlabelfilter.json requires this label to be present on GCP deployments
-  if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.pcnEnableLabel else {},
+  if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
 },
 data: {
   "sherpa-container.yaml.template":
@@ -63,7 +64,7 @@ data: {
       periodSeconds: 5
     terminationMessagePolicy: FallbackToLogsOnError
 %s
-' % if configs.estate == "gsf-core-devmvp-sam2-sam" then '
+' % if utils.is_pcn(configs.kingdom) then '
     args:
     - --switchboard=switchboard.service-mesh.svc:15001'
 else '',

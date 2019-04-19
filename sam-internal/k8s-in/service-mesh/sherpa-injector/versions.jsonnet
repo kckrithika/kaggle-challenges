@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 {
     injectorNamespace: (
@@ -12,13 +13,13 @@ local configs = import "config.jsonnet";
     canarySherpaImage: (
         // https://git.soma.salesforce.com/servicelibs/sherpa-envoy/commits/master
         "%s/sfci/servicelibs/sherpa-envoy:b985afe5636e65db57ebef3e5ba67657c769d93d" % 
-        if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.registry + "/docker-gcp" else configs.registry
+        if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry
     ),
     sherpaImage: (
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
         // https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
         "%s/sfci/servicelibs/sherpa-envoy:b985afe5636e65db57ebef3e5ba67657c769d93d" % 
-        if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.registry + "/docker-gcp" else configs.registry
+        if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry
     ),
 
     // ========
@@ -28,12 +29,12 @@ local configs = import "config.jsonnet";
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
         // https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-sherpa-injector/job/sherpa-injector/job/master/3
         "%s/sfci/servicelibs/sherpa-injector:492713b1b7635dccc41345d6920e24c8b2ddd09d" % 
-        if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.registry + "/docker-gcp" else configs.registry
+        if utils.is_pcn(configs.kingdom) then configs.registry + "/docker-gcp" else configs.registry
     ),
     injectorImage: (
         // need to use a full image path. relative paths like 'sfci/servicelibs/sherpa-injector' won't work here.
 
-        if configs.estate == "gsf-core-devmvp-sam2-sam" then 
+        if utils.is_pcn(configs.kingdom) then 
             // https://sfcirelease.dop.sfdc.net/job/servicelibs/job/servicelibs-sherpa-injector/job/sherpa-injector/job/master/9
             "%s/docker-gcp/sfci/servicelibs/sherpa-injector:a29668190cb744cb60dceff0b40e401b677fd49e" % configs.registry
         else

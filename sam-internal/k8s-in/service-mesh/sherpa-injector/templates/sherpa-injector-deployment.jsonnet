@@ -4,6 +4,7 @@ local versions = import "service-mesh/sherpa-injector/versions.jsonnet";
 local maddogInit = import "service-mesh/sherpa-injector/maddog/_init-cert-container.jsonnet";
 local maddogPermissions = import "service-mesh/sherpa-injector/maddog/_init-permissions-container.jsonnet";
 local maddogRefresher = import "service-mesh/sherpa-injector/maddog/_cert-refresher-container.jsonnet";
+local utils = import "util_functions.jsonnet";
 local funnelEndpointHost = std.split(configs.funnelVIP, ":")[0];
 local funnelEndpointPort = std.split(configs.funnelVIP, ":")[1];
 
@@ -15,10 +16,10 @@ configs.deploymentBase("service-mesh") {
       app: "sherpa-injector",
     } +
     // samlabelfilter.json requires this label to be present on GCP deployments
-    if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.pcnEnableLabel else {},
+    if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
   },
   spec+: {
-    replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "gsf-core-devmvp-sam2-sam" then 1 else 3,
+    replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || utils.is_pcn(configs.kingdom) then 1 else 3,
     template: {
       metadata: {
         labels: {
@@ -46,6 +47,7 @@ configs.deploymentBase("service-mesh") {
                       "sherpa-injector.%s.svc.cluster.local" % versions.injectorNamespace,
                       "sherpa-injector.%s.svc.%s" % [
                         versions.injectorNamespace,
+                        //TODO: updated this for gke-samtest
                         (if configs.estate == "gsf-core-devmvp-sam2-sam" then "gsf-core-devmvp-sam2-samtest.mvp.sam.sfdc.net" else configs.dnsdomain),
                       ],
                     ],
@@ -62,6 +64,7 @@ configs.deploymentBase("service-mesh") {
                       "sherpa-injector.%s.svc.cluster.local" % versions.injectorNamespace,
                       "sherpa-injector.%s.svc.%s" % [
                         versions.injectorNamespace,
+                        //TODO: updated this for gke-samtest
                         (if configs.estate == "gsf-core-devmvp-sam2-sam" then "gsf-core-devmvp-sam2-samtest.mvp.sam.sfdc.net" else configs.dnsdomain),
                       ],
                     ],
@@ -78,7 +81,7 @@ configs.deploymentBase("service-mesh") {
             image: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then versions.canaryInjectorImage else versions.injectorImage,
             imagePullPolicy: "IfNotPresent",
             args: [
-              "--template=%s" % if configs.estate == "gsf-core-devmvp-sam2-sam" then "/config-data/sherpa-container.yaml.template" else "sherpa-container.yaml.template",
+              "--template=%s" % if utils.is_pcn(configs.kingdom) || configs.estate == "prd-samtest" then "/config-data/sherpa-container.yaml.template" else "sherpa-container.yaml.template",
               "--image=%s" % versions.sherpaImage,
               "--log-level=debug",
               "--port=17442",  // Similar to Sherpa (h1 TLS IN), but +10000, since we don't want to clash with sherpa ports
@@ -156,15 +159,11 @@ configs.deploymentBase("service-mesh") {
                 // use `value: funnelEndpointPort,` if direct link to ajna is needed
                 value: "7013",
               },
-            ] +
-            if configs.estate == "gsf-core-devmvp-sam2-sam" then
-            [
               {
                 name: "FAKE_REDEPLOY_VAR",
                 value: "1",
               },
-            ]
-            else [],
+            ],
             volumeMounts+: [
               {
                 name: "cert1",
@@ -174,15 +173,11 @@ configs.deploymentBase("service-mesh") {
                 name: "cert2",
                 mountPath: "/client-certs",
               },
-            ] +
-            if configs.estate == "gsf-core-devmvp-sam2-sam" then
-            [
               {
                 name: "sherpa-injector-configs-data-volume",
                 mountPath: "/config-data",
               },
-            ]
-            else [],
+            ],
             ports+: [
               {
                 containerPort: 17442,
@@ -222,7 +217,7 @@ configs.deploymentBase("service-mesh") {
             image: versions.sherpaImage,
             imagePullPolicy: "IfNotPresent",
             args+: [] +
-            if configs.estate == "gsf-core-devmvp-sam2-sam" then ["--switchboard=switchboard.service-mesh.svc:15001"] else [],
+            if utils.is_pcn(configs.kingdom) then ["--switchboard=switchboard.service-mesh.svc:15001"] else [],
             env+: [
               {
                 name: "SFDC_ENVIRONMENT",
@@ -366,7 +361,7 @@ configs.deploymentBase("service-mesh") {
             name: "tokens",
           },
         ] +
-        if configs.estate == "gsf-core-devmvp-sam2-sam" then
+        if utils.is_pcn(configs.kingdom) then
         [
           {
             hostPath: {

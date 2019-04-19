@@ -1,5 +1,7 @@
 local configs = import "config.jsonnet";
 local versions = import "service-mesh/sherpa-injector/versions.jsonnet";
+local utils = import "util_functions.jsonnet";
+
 {
   apiVersion: "v1",
   kind: "Namespace",
@@ -9,6 +11,6 @@ local versions = import "service-mesh/sherpa-injector/versions.jsonnet";
           "sherpa-injector.service-mesh/inject": "disabled",
     } +
     // samlabelfilter.json requires this label to be present on GCP deployments
-    if configs.estate == "gsf-core-devmvp-sam2-sam" then configs.pcnEnableLabel else {},
+    if utils.is_pcn(configs.kingdom) then configs.pcnEnableLabel else {},
   },
 }
