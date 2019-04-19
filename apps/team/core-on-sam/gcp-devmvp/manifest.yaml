@@ -5,7 +5,7 @@ system:
   - name: devmvp-sequencer-gcp
     identity:
       serviceName: sequencer
-      pod: na3
+      pod: devmvp
     count: 1
     containers:
     - name: sequencer
@@ -18,7 +18,7 @@ system:
 
       env:
       - name: NONCE
-        value: 15512215438919725056
+        value: 1555695385508926545
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -201,7 +201,7 @@ system:
 
     containers:
     - name: coreapp
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17934436
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17944236
 
       command: ["/bin/sh", "-c"]
       args: ["
@@ -294,7 +294,7 @@ system:
           value: 1
 
         - name: NONCE
-          value: 1551287658919725056
+          value: 1555695408380356801
 
         # SAM host name - used in metrics publishing lib
         - name: CASAM_HOST_NAME
