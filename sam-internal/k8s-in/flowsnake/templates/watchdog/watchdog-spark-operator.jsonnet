@@ -50,22 +50,7 @@ else
                     namespace: "flowsnake",
                 }
             ]
-        }] +
-        # ConfigMap containing the resources of the watchdog
-        (if std.objectHas(flowsnake_images.feature_flags, "watchdog_integration_merge") then []
-        else [{
-            kind: "ConfigMap",
-            apiVersion: "v1",
-            metadata: {
-                name: "watchdog-spark-on-k8s-spec-configmap",
-                namespace: "flowsnake",
-            },
-            data: {
-                "watchdog-spark-operator.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-operator.libsonnet"),
-                "watchdog-spark-impersonation.json": std.toString(import "spark-on-k8s-canary-specs/watchdog-spark-impersonation.libsonnet"),
-                "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-specs/kubeconfig-impersonation-proxy.libsonnet"),
-            }
-        }])
+        }]
         + (import "watchdog-spark-operator-scripts.libsonnet")
         + [
         configs.deploymentBase("flowsnake") {
@@ -160,22 +145,15 @@ else
                                         mountPath: "/watchdog-spark-scripts",
                                         name: "watchdog-spark-scripts",
                                     },
-                                ] + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_integration_merge") then
-                                []
-                                else
-                                [{
-                                    mountPath: "/watchdog-spark-specs",
-                                    name: "watchdog-spark-specs",
-                                }])
+                                ]
                                  + madkub_common.cert_mounts(cert_name),
-                            } + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_integration_merge") then
-                            {env: [
-                                { name: "DOCKER_TAG", value: flowsnake_images.per_phase[flowsnake_images.phase].image_tags.integration_test_runner_tag },
-                                { name: "TEST_RUNNER_ID", value: "canary" },
-                                { name: "S3_PROXY_HOST", value: flowsnakeconfig.s3_public_proxy_host },
-                                { name: "DRIVER_SERVICE_ACCOUNT", value: "spark-driver-flowsnake-watchdog" },
-                            ],}
-                            else {}),
+                                env: [
+                                    { name: "DOCKER_TAG", value: flowsnake_images.per_phase[flowsnake_images.phase].image_tags.integration_test_runner_tag },
+                                    { name: "TEST_RUNNER_ID", value: "canary" },
+                                    { name: "S3_PROXY_HOST", value: flowsnakeconfig.s3_public_proxy_host },
+                                    { name: "DRIVER_SERVICE_ACCOUNT", value: "spark-driver-flowsnake-watchdog" },
+                                ],
+                            },
                             # Watchdogs run as user sfdc (7337) per https://git.soma.salesforce.com/sam/sam/blob/master/docker/hypersam/Dockerfile
                             madkub_common.refresher_container(cert_name, user=7337)
                         ],
@@ -183,35 +161,16 @@ else
                         serviceAccountName: "watchdog-spark-operator-serviceaccount",
                         volumes: [
                             configs.config_volume("watchdog"),
+                            {
+                                configMap: {
+                                    name: "watchdog-spark-on-k8s-script-configmap",
+                                    # rwxr-xr-x 755 octal, 493 decimal
+                                    defaultMode: 493,
+                                },
+                                name: "watchdog-spark-scripts",
+                            },
+                            watchdog.sfdchosts_volume
                         ]
-                        + (if std.objectHas(flowsnake_images.feature_flags, "watchdog_integration_merge") then
-                        [{
-                            configMap: {
-                                name: "watchdog-spark-on-k8s-script-configmap",
-                                # rwxr-xr-x 755 octal, 493 decimal
-                                defaultMode: 493,
-                            },
-                            name: "watchdog-spark-scripts",
-                        },
-                        watchdog.sfdchosts_volume
-                        ]
-                        else
-                        [{
-                            configMap: {
-                                name: "watchdog-spark-on-k8s-spec-configmap",
-                            },
-                            name: "watchdog-spark-specs",
-                        },
-                        {
-                            configMap: {
-                                name: "watchdog-spark-on-k8s-script-configmap",
-                                # rwxr-xr-x 755 octal, 493 decimal
-                                defaultMode: 493,
-                            },
-                            name: "watchdog-spark-scripts",
-                        },
-                        watchdog.sfdchosts_volume
-                        ])
                         + madkub_common.cert_volumes(cert_name),
                     },
                 }
