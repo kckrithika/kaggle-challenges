@@ -21,7 +21,7 @@ system:
        secretName: jkspass
     containers:
     - name: zipkin-collector
-      image: docker-dva-rc/dva/zipkin-collector:55
+      image: docker-dva-rc/dva/zipkin-collector:56
       env:
       - name: ES_INDEX_REPLICAS
         value: 0
