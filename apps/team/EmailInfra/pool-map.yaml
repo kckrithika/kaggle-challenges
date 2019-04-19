@@ -2,11 +2,13 @@ apps:
   eaas: # pod to handle STEAM and development traffic. DO NOT use this environment for testing.
     - prd/prd-sam
   eaas-gcp: # pod for GCP devMVP deployment
-  - mvp/gsf-core-devmvp-sam2-sam
+    - mvp/gsf-core-devmvp-sam2-sam
   eaas-prod: #- Prod configuration
     - dfw/dfw-sam_eaas
     - phx/phx-sam_eaas
   grpc-client:
     - prd/prd-sam
   grpc-client-gcp: # pod for GCP devMVP deployment
-  - mvp/gsf-core-devmvp-sam2-sam
+    - mvp/gsf-core-devmvp-sam2-sam
+  mta: # MTA on SAM in GCP
+    - mvp/gsf-core-devmvp-sam2-sam
