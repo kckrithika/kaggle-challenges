@@ -36,6 +36,11 @@ if configs.estate == "prd-samtwo" then
                 enabled: true,
                 "service-account-key": "${gcsUploaderKey#FromSecretService}",
               },
+              s3: {
+                enabled: true,
+                "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
+                "s3-secret-access-key": "${s3SecretAccessKey#FromSecretService}",
+              },
               "gcp-syncers": {
                 config: {
                   "thread-pool-size": 1,
@@ -62,6 +67,7 @@ if configs.estate == "prd-samtwo" then
                     },
                   },
                   "gcs-bucket": "rpm-gcp",
+                  "s3-bucket": "fcparchive",
                 },
               },
             },
