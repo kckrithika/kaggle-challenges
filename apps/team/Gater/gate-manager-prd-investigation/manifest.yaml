@@ -39,7 +39,20 @@ system:
           port: 15372
         initialDelaySeconds: 60
         timeoutSeconds: 10
-ß    strategy:
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-gater/logs
+    - name: dbvol
+      hostPath:
+        path: /home/sfdc-gater/db
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    strategy:
       type: RollingUpdate
       rollingUpdate:
         maxUnavailable: 1
