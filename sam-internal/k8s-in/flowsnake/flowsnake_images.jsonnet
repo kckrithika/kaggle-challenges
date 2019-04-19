@@ -25,7 +25,6 @@ local utils = import "util_functions.jsonnet";
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-20-itest",
                 prometheus_funnel_image_tag: "35",
                 kube_state_metrics_image_tag: "3",
-                integration_test_runner_tag: "4",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -46,6 +45,7 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
+              integration_test_runner_tag: "4",
             },
             feature_flags+: {
               fix_canary_registry: "",
