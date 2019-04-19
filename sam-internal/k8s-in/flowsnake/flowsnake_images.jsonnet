@@ -32,7 +32,6 @@ local utils = import "util_functions.jsonnet";
                 kube_state_metrics_release: "",
                 spark_application_quota_enforcement: "enabled",
                 ksm_to_prometheus: "",
-                spark_application_quota_enforcement: "enabled",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
