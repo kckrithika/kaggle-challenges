@@ -320,3 +320,6 @@ spec:
       - emptyDir:
           medium: Memory
         name: tokens
+      - configMap:
+          name: sherpa-injector-configs-data
+        name: sherpa-injector-configs-data-volume

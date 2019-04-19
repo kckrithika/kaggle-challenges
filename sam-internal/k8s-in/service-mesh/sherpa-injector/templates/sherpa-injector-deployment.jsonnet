@@ -360,6 +360,12 @@ configs.deploymentBase("service-mesh") {
             },
             name: "tokens",
           },
+          {
+            configMap: {
+              name: "sherpa-injector-configs-data",
+            },
+            name: "sherpa-injector-configs-data-volume",
+          },
         ] +
         if utils.is_pcn(configs.kingdom) then
         [
@@ -368,12 +374,6 @@ configs.deploymentBase("service-mesh") {
               path: "/etc/pki_service",
             },
             name: "maddog-certs",
-          },
-          {
-            configMap: {
-              name: "sherpa-injector-configs-data",
-            },
-            name: "sherpa-injector-configs-data-volume",
           },
         ]
         else [],
