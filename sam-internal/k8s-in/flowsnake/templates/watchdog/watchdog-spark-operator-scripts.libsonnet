@@ -12,7 +12,7 @@ local configmap_data =
     {
         "check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",
         "check-impersonation.sh": importstr "spark-on-k8s-canary-scripts/check-impersonation.sh",
-        "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-specs/kubeconfig-impersonation-proxy.libsonnet"),
+        "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-scripts/kubeconfig-impersonation-proxy.libsonnet"),
     };
 
 (if watchdog.watchdog_enabled then [
