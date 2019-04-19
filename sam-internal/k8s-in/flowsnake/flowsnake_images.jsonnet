@@ -33,7 +33,7 @@ local utils = import "util_functions.jsonnet";
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
             # and then any cusomizations just for this fleet.
-            version_mapping: $.per_phase["2-prd-dev"].version_mapping + {
+            version_mapping: $.per_phase["2-prd-dev"].version_mapping {
             },
         },
         # Phase 2: Remaining PRD fleets and production canary fleets.
@@ -215,7 +215,12 @@ local utils = import "util_functions.jsonnet";
     spark_operator: flowsnakeconfig.strata_registry + "/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.spark_operator_image_tag,
     spark_operator_watchdog_canary: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_tag,
     spark_on_k8s_sample_apps: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].image_tags.integration_test_tag,
-    kube_state_metrics: flowsnakeconfig.strata_registry + "/kube-state-metrics-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.kube_state_metrics_image_tag,
+
+    kube_state_metrics: (if std.objectHas($.per_phase[$.phase].image_tags, "kube_state_metrics_image_tag") then
+        flowsnakeconfig.strata_registry + "/kube-state-metrics-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.kube_state_metrics_image_tag
+    else
+        null)
+    ,
 
     feature_flags: $.per_phase[$.phase].feature_flags,
     # Convert to the format expected by std.manifestIni for generating Windows-style .ini files
