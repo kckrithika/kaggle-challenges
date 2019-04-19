@@ -7,6 +7,7 @@
 #  {{TAG}} = the tag of the images to test
 #  {{NAME}} = the name of this runner pod
 
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local kingdom = std.extVar("kingdom");
 local runner_image = flowsnake_config.strata_registry  + "/flowsnake-spark-on-k8s-integration-test-runner";
@@ -55,7 +56,9 @@ local runner_image = flowsnake_config.strata_registry  + "/flowsnake-spark-on-k8
                     { name: "TEST_RUNNER_ID", value: "{{NAME}}" },
                     { name: "S3_PROXY_HOST", value: flowsnake_config.s3_public_proxy_host },
                     { name: "DRIVER_SERVICE_ACCOUNT", value: "spark-driver-flowsnake-ci-tests" },
-                ],
+                ]
+                + (if std.objectHas(flowsnake_images.feature_flags, "fix_canary_registry") then
+                [ { name: "DOCKER_REGISTRY", value: flowsnake_config.registry }, ] else []),
                 securityContext: {
                     runAsUser: 0,   # root
                 },
