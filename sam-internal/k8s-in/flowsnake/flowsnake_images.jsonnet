@@ -25,7 +25,6 @@ local utils = import "util_functions.jsonnet";
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-20-itest",
                 prometheus_funnel_image_tag: "35",
                 kube_state_metrics_image_tag: "3",
-                integration_test_runner_tag: "4",
             },
             feature_flags+: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -49,6 +48,7 @@ local utils = import "util_functions.jsonnet";
             },
             feature_flags+: {
               fix_canary_registry: "",
+              integration_test_runner_tag: "4",
             },
             version_mapping+: {
             },
