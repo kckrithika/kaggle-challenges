@@ -381,7 +381,7 @@ items:
           - -includeCommandOutput=true
           env:
           - name: DOCKER_TAG
-            value: "2"
+            value: "3"
           - name: TEST_RUNNER_ID
             value: canary
           - name: S3_PROXY_HOST
@@ -389,8 +389,8 @@ items:
           - name: DRIVER_SERVICE_ACCOUNT
             value: spark-driver-flowsnake-watchdog
           - name: DOCKER_REGISTRY
-            value: ops0-artifactrepo2-0-prd.data.sfdc.net/dva
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:2
+            value: ops0-artifactrepo2-0-prd.data.sfdc.net
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:3
           imagePullPolicy: IfNotPresent
           name: watchdog
           resources:

@@ -58,7 +58,7 @@ local runner_image = flowsnake_config.strata_registry  + "/flowsnake-spark-on-k8
                     { name: "DRIVER_SERVICE_ACCOUNT", value: "spark-driver-flowsnake-ci-tests" },
                 ]
                 + (if std.objectHas(flowsnake_images.feature_flags, "fix_canary_registry") then
-                [ { name: "DOCKER_REGISTRY", value: flowsnake_config.registry + "/dva" }, ] else []),
+                [ { name: "DOCKER_REGISTRY", value: flowsnake_config.registry }, ] else []),
                 securityContext: {
                     runAsUser: 0,   # root
                 },
