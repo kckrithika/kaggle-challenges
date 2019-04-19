@@ -52,7 +52,8 @@ else
             rules: [
                 {
                     apiGroups: [""],
-                    resources: (if std.objectHas(flowsnake_images.feature_flags, "ksm_to_prometheus") then
+                    resources: (
+if std.objectHas(flowsnake_images.feature_flags, "ksm_to_prometheus") then
                                     ["pods", "nodes", "nodes/proxy", "services", "customresourcedefinitions"]
                                 else ["pods", "nodes", "nodes/proxy", "customresourcedefinitions"]
                     ),
