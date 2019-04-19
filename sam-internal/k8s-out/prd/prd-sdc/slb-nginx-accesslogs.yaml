@@ -34,7 +34,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2125-11476792b7a8f4caa86fb01b32028eb2dcca6534
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2126-c58a91b63299a9bdd71719da3ff47def82b5ef0b
         name: slb-nginx-accesslogs
         resources:
           limits:
