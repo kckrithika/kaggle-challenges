@@ -6,6 +6,8 @@
 # See https://docs.docker.com/docker-for-mac/osxfs-caching/ for more info.
 if [[ "$(uname)" == "Darwin" ]]; then
     BIND_MOUNT_OPTIONS=":delegated"
+    CACHE_DIR="${HOME}/Library/Caches"
 else
     BIND_MOUNT_OPTIONS=""
+    CACHE_DIR="${HOME}/.cache"
 fi

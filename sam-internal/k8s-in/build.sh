@@ -28,15 +28,31 @@ else
    SAMBINDIR=/sam
 fi
 
+# Populate dir to cache jsonnet executable if not present
+JSONNET_EXEC_CACHE_DIR="${CACHE_DIR}/jsonnet_exec"
+JSONNET_EXEC_DIR="jsonnet"
+
+if [ ! -d ${JSONNET_EXEC_CACHE_DIR} ]; then
+    mkdir -p ${JSONNET_EXEC_CACHE_DIR}
+fi
+
+# Look for jsonnet in exec cache if not found here, copy over to avoid need to recompile
+if [ ! -f ${JSONNET_EXEC_DIR}/jsonnet ] && [ -f "${JSONNET_EXEC_CACHE_DIR}/jsonnet" ]; then
+    if [ ! -f ${JSONNET_EXEC_DIR} ]; then
+        mkdir -p ${JSONNET_EXEC_DIR}
+    fi
+    cp ${JSONNET_EXEC_CACHE_DIR}/jsonnet ${JSONNET_EXEC_DIR}/jsonnet
+fi
+
 # Make sure we are on the right version of jsonnet (0.9.5 needed for fmt)
 # If we use an older verion of jsonnet the script will fail.
 EXPECTED_JSONNET_VER="Jsonnet commandline interpreter v0.9.5"
-if [ -f jsonnet/jsonnet ]; then
-  ACTUAL_JSONNET_VER=$(jsonnet/jsonnet -version || true)
+if [ -f ${JSONNET_EXEC_DIR}/jsonnet ]; then
+  ACTUAL_JSONNET_VER=$(${JSONNET_EXEC_DIR}/jsonnet -version || true)
   echo "Running jsonnet version '$ACTUAL_JSONNET_VER'."
   if [[ "$EXPECTED_JSONNET_VER" != "$ACTUAL_JSONNET_VER" ]]; then
     echo "Local jsonnet is not expected version '$EXPECTED_JSONNET_VER'.  Deleting folder."
-    rm -rf jsonnet/
+    rm -rf ${JSONNET_EXEC_DIR}
   fi
 fi
 
@@ -48,6 +64,7 @@ if [ ! -f jsonnet/jsonnet ]; then
     # Pin to version 0.95 so we can update the repo and have stable build while we test the new version
     git checkout 6b7f64c136156ca67371be6089d2b89d5f0dab9e
     make
+    cp jsonnet ${JSONNET_EXEC_CACHE_DIR}/jsonnet
     popd
 fi
 
