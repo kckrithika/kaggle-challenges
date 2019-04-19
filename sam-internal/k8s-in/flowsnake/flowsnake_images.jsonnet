@@ -45,10 +45,10 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
+              integration_test_runner_tag: "4",
             },
             feature_flags+: {
               fix_canary_registry: "",
-              integration_test_runner_tag: "4",
             },
             version_mapping+: {
             },
