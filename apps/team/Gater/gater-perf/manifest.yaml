@@ -19,8 +19,7 @@ system:
       - --metrics.collectionInterval=60
       - --gater.grpc.deadline-ms=1000
       - --gater.timeout-in-millis=1000
-      - --gater.perf.should-log=false
-      
+      - --gater.perf.should-log=false      
       ports:
       - containerPort: 8081
       - containerPort: 15375
