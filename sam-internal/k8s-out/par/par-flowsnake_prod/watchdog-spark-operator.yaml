@@ -23,52 +23,6 @@ items:
     namespace: flowsnake
 - apiVersion: v1
   data:
-    kubeconfig-impersonation-proxy: |
-      apiVersion: v1
-      clusters:
-      - cluster:
-          certificate-authority: /certs/ca.pem
-          server: https://kubernetes-api-flowsnake-par.slb.sfdc.net
-        name: kubernetes
-      contexts:
-      - context:
-          cluster: kubernetes
-          user: kubernetes
-        name: default-context
-      current-context: default-context
-      kind: Config
-      preferences: {}
-      users:
-      - name: kubernetes
-        user:
-          client-certificate: /certs/client/certificates/client.pem
-          client-key: /certs/client/keys/client-key.pem
-    watchdog-spark-impersonation.json: '{"apiVersion": "sparkoperator.k8s.io/v1beta1",
-      "kind": "SparkApplication", "metadata": {"name": "watchdog-spark-impersonation",
-      "namespace": "flowsnake-watchdog"}, "spec": {"deps": {"jars": ["local:///sample-apps/sample-spark-operator/extra-jars/*"]},
-      "driver": {"coreLimit": "200m", "cores": 0.10000000000000001, "labels": {"version":
-      "2.4.0"}, "memory": "512m", "serviceAccount": "spark-driver-flowsnake-watchdog"},
-      "executor": {"cores": 1, "instances": 1, "labels": {"version": "2.4.0"}, "memory":
-      "512m"}, "image": "ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
-      "imagePullPolicy": "Always", "mainApplicationFile": "local:///sample-apps/sample-spark-operator/sample-spark-operator.jar",
-      "mainClass": "org.apache.spark.examples.SparkPi", "mode": "cluster", "restartPolicy":
-      {"type": "Never"}, "sparkVersion": "", "type": "Scala"}}'
-    watchdog-spark-operator.json: '{"apiVersion": "sparkoperator.k8s.io/v1beta1",
-      "kind": "SparkApplication", "metadata": {"name": "watchdog-spark-operator",
-      "namespace": "flowsnake-watchdog"}, "spec": {"deps": {"jars": ["local:///sample-apps/sample-spark-operator/extra-jars/*"]},
-      "driver": {"coreLimit": "200m", "cores": 0.10000000000000001, "labels": {"version":
-      "2.4.0"}, "memory": "512m", "serviceAccount": "spark-driver-flowsnake-watchdog"},
-      "executor": {"cores": 1, "instances": 1, "labels": {"version": "2.4.0"}, "memory":
-      "512m"}, "image": "ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-sample-apps:jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
-      "imagePullPolicy": "Always", "mainApplicationFile": "local:///sample-apps/sample-spark-operator/sample-spark-operator.jar",
-      "mainClass": "org.apache.spark.examples.SparkPi", "mode": "cluster", "restartPolicy":
-      {"type": "Never"}, "sparkVersion": "", "type": "Scala"}}'
-  kind: ConfigMap
-  metadata:
-    name: watchdog-spark-on-k8s-spec-configmap
-    namespace: flowsnake
-- apiVersion: v1
-  data:
     check-impersonation.sh: |
       #!/usr/bin/bash
 
@@ -425,7 +379,16 @@ items:
           - -alertThreshold=1m
           - -cliCheckerTimeout=6m
           - -includeCommandOutput=true
-          image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/sam/hypersam:2687-6c147b04d2d506c9fd591d50f400bd86c485b155
+          env:
+          - name: DOCKER_TAG
+            value: "2"
+          - name: TEST_RUNNER_ID
+            value: canary
+          - name: S3_PROXY_HOST
+            value: public0-proxy1-0-par.data.sfdc.net
+          - name: DRIVER_SERVICE_ACCOUNT
+            value: spark-driver-flowsnake-watchdog
+          image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:2
           imagePullPolicy: IfNotPresent
           name: watchdog
           resources:
@@ -442,8 +405,6 @@ items:
             name: sfdchosts
           - mountPath: /watchdog-spark-scripts
             name: watchdog-spark-scripts
-          - mountPath: /watchdog-spark-specs
-            name: watchdog-spark-specs
           - mountPath: /certs
             name: datacerts
         - args:
@@ -577,9 +538,6 @@ items:
         - configMap:
             name: watchdog
           name: config
-        - configMap:
-            name: watchdog-spark-on-k8s-spec-configmap
-          name: watchdog-spark-specs
         - configMap:
             defaultMode: 493
             name: watchdog-spark-on-k8s-script-configmap
