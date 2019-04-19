@@ -18,6 +18,9 @@ cd $DIR
 # Script to generate yaml files for all our apps in all estates
 # ./build.sh
 
+# Get docker vars
+. "$DIR/../docker-vars.sh"
+
 if [ -z "$FIREFLY" ]; then
    SAMBINDIR=/opt/sam
 else
@@ -84,7 +87,7 @@ fi
 # This tool converts everything to yaml, and for configMaps it pretty prints the inner config entries
 
 if [ -z "$GO_PIPELINE_LABEL" ]; then
-  docker run -u 0 --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl kube-json-to-yaml --in /repo/sam-internal/k8s-out/ --rm
+  docker run -u 0 --rm -v ${PWD}/../../:/repo${BIND_MOUNT_OPTIONS} ${HYPERSAM} /sam/manifestctl kube-json-to-yaml --in /repo/sam-internal/k8s-out/ --rm
 else
   ${SAMBINDIR}/manifestctl kube-json-to-yaml --in ../k8s-out/ --rm
 fi
@@ -92,7 +95,7 @@ fi
 # Validate configMaps
 
 if [ -z "$GO_PIPELINE_LABEL" ]; then
-  docker run -u 0 --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl validate-k8s -per-kingdom-dir-list /repo/sam-internal/k8s-out/ -verbose
+  docker run -u 0 --rm -v ${PWD}/../../:/repo${BIND_MOUNT_OPTIONS} ${HYPERSAM} /sam/manifestctl validate-k8s -per-kingdom-dir-list /repo/sam-internal/k8s-out/ -verbose
 else
   ${SAMBINDIR}/manifestctl validate-k8s -per-kingdom-dir-list ../k8s-out/ -verbose
 fi
