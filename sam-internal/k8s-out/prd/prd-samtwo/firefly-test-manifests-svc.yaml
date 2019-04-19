@@ -50,7 +50,6 @@ items:
                               "product-name-regex": ".*"
                           }
                       },
-                      "s3-bucket": "fcparchive",
                       "sync-rate": 120000
                   },
                   "rps": {
@@ -88,6 +87,7 @@ items:
                   "s3-access-key-id": "${s3AccessKeyId#FromSecretService}",
                   "s3-secret-access-key": "${s3SecretAccessKey#FromSecretService}"
               },
+              "s3-bucket": "fcparchive",
               "security": {
                   "secret-service-url": "secretservice.dmz.salesforce.com"
               },
