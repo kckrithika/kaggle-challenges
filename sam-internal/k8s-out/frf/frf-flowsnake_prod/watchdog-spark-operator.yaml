@@ -389,7 +389,7 @@ items:
           - name: DRIVER_SERVICE_ACCOUNT
             value: spark-driver-flowsnake-watchdog
           - name: DOCKER_REGISTRY
-            value: ops0-artifactrepo1-0-frf.data.sfdc.net
+            value: ops0-artifactrepo1-0-frf.data.sfdc.net/dva
           image: ops0-artifactrepo1-0-frf.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:2
           imagePullPolicy: IfNotPresent
           name: watchdog
