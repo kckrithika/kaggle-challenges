@@ -5,7 +5,7 @@
    - shared0-sdcsamcompute1-11-prd.eng.sfdc.net
   ports:
    - port: 80
-     targetport: 80
+     targetport: 12087
      lbtype: http
      addheaders:
      - name: "SFDC-LOGIN-LOAD-BALANCER"
@@ -16,7 +16,7 @@
      - "X-Forwarded-For"
      - "X-Real-IP"
    - port: 443
-     targetport: 443
+     targetport: 12087
      lbtype: http
      healthport: 12087
      healthpath: "/liveness-probe"
