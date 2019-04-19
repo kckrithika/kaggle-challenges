@@ -47,7 +47,6 @@ configs.deploymentBase("service-mesh") {
                       "sherpa-injector.%s.svc.cluster.local" % versions.injectorNamespace,
                       "sherpa-injector.%s.svc.%s" % [
                         versions.injectorNamespace,
-                        //TODO: updated this for gke-samtest
                         (if configs.estate == "gsf-core-devmvp-sam2-sam" then "gsf-core-devmvp-sam2-samtest.mvp.sam.sfdc.net" else configs.dnsdomain),
                       ],
                     ],
@@ -64,7 +63,6 @@ configs.deploymentBase("service-mesh") {
                       "sherpa-injector.%s.svc.cluster.local" % versions.injectorNamespace,
                       "sherpa-injector.%s.svc.%s" % [
                         versions.injectorNamespace,
-                        //TODO: updated this for gke-samtest
                         (if configs.estate == "gsf-core-devmvp-sam2-sam" then "gsf-core-devmvp-sam2-samtest.mvp.sam.sfdc.net" else configs.dnsdomain),
                       ],
                     ],
@@ -81,7 +79,7 @@ configs.deploymentBase("service-mesh") {
             image: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then versions.canaryInjectorImage else versions.injectorImage,
             imagePullPolicy: "IfNotPresent",
             args: [
-              "--template=%s" % if utils.is_pcn(configs.kingdom) || configs.estate == "prd-samtest" then "/config-data/sherpa-container.yaml.template" else "sherpa-container.yaml.template",
+              "--template=%s" % "/config-data/sherpa-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
               "--image=%s" % versions.sherpaImage,
               "--log-level=debug",
               "--port=17442",  // Similar to Sherpa (h1 TLS IN), but +10000, since we don't want to clash with sherpa ports
