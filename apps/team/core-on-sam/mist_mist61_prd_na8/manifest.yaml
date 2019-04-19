@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: green
+        value: blue
       - name: SD_PORT_OVERRIDE
         value: 13065
       - name: CASAM_SETTINGS_PATH
@@ -55,7 +55,7 @@ system:
       - name: CLUSTER_NAME
         value: na8
       - name: DEPLOYMENT
-        value: G
+        value: B
       - name: ZDT
         value: true
       - name: CASAM_HOST_NAME
@@ -101,7 +101,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na8.app
-      image: sfci/casam/coreapp_overrides:b68730
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:40d086
       livenessProbe:
         exec:
           command:
@@ -207,7 +207,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1555705327860262912
+        value: 1555714974389618944
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -229,9 +229,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: blue
-      - name: NEW_RELEASE_VERSION
         value: green
+      - name: NEW_RELEASE_VERSION
+        value: blue
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -266,7 +266,7 @@ system:
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 360000
-      image: sfci/casam/sequencer:4cf724
+      image: sfci/casam/sequencer:807cd1
       livenessProbe:
         exec:
           command:
@@ -320,7 +320,7 @@ system:
         value: --log-path /home/sfdc-sherpa/envoy.log
       - name: SFDC_ENVIRONMENT
         value: mist61
-      image: sfci/frontend-gateway/sfproxy:bc7e1fa
+      image: sfci/frontend-gateway/sfproxy:5deb946
       livenessProbe:
         exec:
           command:
@@ -370,7 +370,7 @@ system:
         value: 7020
       - name: JVM_HEAP_MAX
         value: 4G
-      image: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
+      image: sfci/servicelibs/switchboard:0c4c543cd166bcb2e5516795a30989bc89165d60
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -400,7 +400,7 @@ system:
         value: mist61
       - name: ENVOY_DEBUG_OPTIONS
         value: --log-path /home/sfdc-sherpa/envoy.log
-      image: sfci/frontend-gateway/sfproxy:bc7e1fa
+      image: sfci/frontend-gateway/sfproxy:5deb946
       livenessProbe:
         exec:
           command:
