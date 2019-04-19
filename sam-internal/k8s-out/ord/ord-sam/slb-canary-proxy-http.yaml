@@ -44,7 +44,7 @@ spec:
         - --privateKey=/canarycert/server/keys/server-key.pem
         - --publicKey=/canarycert/server/certificates/server.pem
         - --verbose=false
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/slb/hyperslb:2122-7efc0c84502265c8bb614d1ac2b5802f5b51b9de
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/slb/hyperslb:2124-eb05220dc4d65de58e145c5edb4b7a067acf66a9
         name: slb-canary-proxy-http
         volumeMounts:
         - mountPath: /host/data/slb/logs/
