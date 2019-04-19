@@ -13,9 +13,9 @@ data:
           "DockerDaemon": "/test-docker.sh"
         },
         "SparkOperatorTest": {
-          "ImpersonationProxyMinimalTest": "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-specs/kubeconfig-impersonation-proxy",
-          "ImpersonationProxySparkTest": "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-specs/kubeconfig-impersonation-proxy /watchdog-spark-specs/watchdog-spark-impersonation.json",
-          "SparkOperatorTest": "/watchdog-spark-scripts/check-spark-operator.sh /watchdog-spark-specs/watchdog-spark-operator.json"
+          "ImpersonationProxyMinimalTest": "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-scripts/kubeconfig-impersonation-proxy",
+          "ImpersonationProxySparkTest": "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet",
+          "SparkOperatorTest": "/watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet"
         }
       },
       "deployer-funnelEndpoint": "ajna0-funnel1-0-ph2.data.sfdc.net:80",
