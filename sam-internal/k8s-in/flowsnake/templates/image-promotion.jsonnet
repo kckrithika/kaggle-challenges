@@ -44,8 +44,8 @@ local extra_images_to_promote =
     flowsnake_images.watchdog_spark_operator,
     flowsnake_images.spark_operator_watchdog_canary,
     flowsnake_images.watchdog,
-    ] + (if std.objectHas(flowsnake_images.feature_flags, "fix_canary_registry") then
-    [flowsnake_images.spark_on_k8s_sample_apps] else [])
+    flowsnake_images.spark_on_k8s_sample_apps,
+]
 else []);
 
 if util.is_production(kingdom) then
