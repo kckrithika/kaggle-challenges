@@ -45,10 +45,8 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
-              integration_test_runner_tag: "4",
             },
             feature_flags+: {
-              fix_canary_registry: "",
             },
             version_mapping+: {
             },
@@ -107,7 +105,7 @@ local utils = import "util_functions.jsonnet";
                 impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
                 spark_operator_image_tag: "11",
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
-                integration_test_runner_tag: "2",
+                integration_test_tag: "4",
 
                 # Fleet components including SAM components
                 deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
@@ -126,6 +124,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # After promoting a feature-flag to phase 3, please submit a follow-on PR to remove the flag and
                 # associated conditional logic. That PR will not affect k8s-out, so you can self-approve it.
+                fix_canary_registry: "",
             },
             version_mapping: {
                 "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
@@ -214,8 +213,8 @@ local utils = import "util_functions.jsonnet";
     zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].image_tags.zookeeper_image_tag,
     madkub_injector: flowsnakeconfig.strata_registry + "/flowsnake-madkub-injector-webhook:" + $.per_phase[$.phase].image_tags.madkub_injector_image_tag,
     spark_operator: flowsnakeconfig.strata_registry + "/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.spark_operator_image_tag,
-    spark_operator_watchdog_canary: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_runner_tag,
-    spark_on_k8s_sample_apps: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].image_tags.integration_test_runner_tag,
+    spark_operator_watchdog_canary: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_tag,
+    spark_on_k8s_sample_apps: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].image_tags.integration_test_tag,
     kube_state_metrics: flowsnakeconfig.strata_registry + "/kube-state-metrics-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.kube_state_metrics_image_tag,
 
     feature_flags: $.per_phase[$.phase].feature_flags,

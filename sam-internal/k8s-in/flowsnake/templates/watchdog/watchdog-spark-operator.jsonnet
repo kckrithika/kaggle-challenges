@@ -148,7 +148,7 @@ else
                                 ]
                                  + madkub_common.cert_mounts(cert_name),
                                 env: [
-                                    { name: "DOCKER_TAG", value: flowsnake_images.per_phase[flowsnake_images.phase].image_tags.integration_test_runner_tag },
+                                    { name: "DOCKER_TAG", value: flowsnake_images.per_phase[flowsnake_images.phase].image_tags.integration_test_tag },
                                     { name: "TEST_RUNNER_ID", value: "canary" },
                                     { name: "S3_PROXY_HOST", value: flowsnakeconfig.s3_public_proxy_host },
                                     { name: "DRIVER_SERVICE_ACCOUNT", value: "spark-driver-flowsnake-watchdog" },
