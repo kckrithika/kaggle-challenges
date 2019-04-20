@@ -193,10 +193,10 @@ items:
           # Relevant pods for our spark application have label metadata.labels.spark-app-selector=$APP_ID
           # Reading command ouptut line by line: https://unix.stackexchange.com/a/52027
           while read POD_REPORT; do
-              POD=$(echo $POD_REPORT | cut -d' ' -f1)
+              POD_NAME=$(echo $POD_REPORT | cut -d' ' -f1)
               REPORT=$(echo $POD_REPORT | cut -d' ' -f1 --complement)
-              POD_REPORTS["$POD"]="${REPORT}"
-          done < <(kcfw get pods -l${SELECTOR} --show-all -o wide --no-headers | awk '{print $1, $3, "on host", $7}')
+              POD_REPORTS["$POD_NAME"]="${REPORT}"
+          done < <(kcfw get pods -l${SELECTOR} --show-all -o wide --no-headers 2>&1 | grep -v 'No resources' | awk '{print $1, $3, "on host", $7}')
 
           # Note: Initially used process substitution (as in FOO=$(comm <(...) <(...) )here, but that left defunct grandchild
           # processes behind. Switch to temp files instead.
@@ -270,12 +270,15 @@ items:
       LAST_LOGGED=$(epoch)
       log "Waiting for SparkApplication $APP_NAME to terminate."
       STATE=$(state)
-      while ! $(echo ${STATE} | grep -P '(COMPLETED|FAILED)' > /dev/null); do
+      while true; do
           EPOCH=$(epoch)
+          if $(echo ${STATE} | grep -P '(COMPLETED|FAILED)' > /dev/null); then
+              log "SparkApplication $APP_NAME has terminated after $(($EPOCH - $SPARK_APP_START_TIME)) seconds. State is $STATE."
+              break
+          fi
           # Use start time of script for timeout computation in order to still exit in timely fashion even if setup was slow
           if (( EPOCH - START_TIME >= TIMEOUT_SECS )); then
               log "Timeout reached. Aborting wait for SparkApplication $APP_NAME even though in non-terminal state $STATE."
-              events;
               break
           fi
           if (( EPOCH - LAST_LOGGED > 180 )); then
@@ -287,37 +290,36 @@ items:
           sleep 1;
           STATE=$(state)
       done;
-      report_pod_changes # Report final status of spawned pods
+      EXIT_CODE=$(echo ${STATE} | grep COMPLETED > /dev/null; echo $?)
 
       # ------ Report Results ---------
-      END_TIME=$(epoch)
-      ELAPSED_SECS=$(($END_TIME - $SPARK_APP_START_TIME))
-      EXIT_CODE=$(echo $STATE | grep COMPLETED > /dev/null; echo $?)
-      log "SparkApplication $APP_NAME has terminated after $ELAPSED_SECS seconds. State is $STATE. Events:"
+      report_pod_changes
       events
 
-      POD=$(kcfw get pod -l ${SELECTOR},spark-role=driver -o name)
-      if [[ -z $POD ]]; then
+      pod_log() {
+          log ---- Begin $1 Log ----
+          kcfw logs $1 || true
+          log ---- End $1 Log ----
+      }
+
+      POD_NAME=$(kcfw get pod -l ${SELECTOR},spark-role=driver -o name)
+      if [[ -z ${POD_NAME} ]]; then
           log "Cannot locate driver pod. Maybe it never started? No logs to display."
       else
-          log ---- Begin $POD Log ----
-          kcfw logs $POD || true
-          log ---- End $POD Log ----
+          pod_log ${POD_NAME}
       fi
 
       log -------- Executor Pods ----------
-      EXECUTORPODS=$(kcfw get pod -l ${SELECTOR},spark-role=executor -o name)
-      for POD_NAME in ${EXECUTORPODS}; do
-          log ---- Begin $POD_NAME Log ----
-          kcfw logs $POD_NAME || true
-          log ---- End $POD_NAME Log ----
+      EXECUTOR_PODS=$(kcfw get pod -l ${SELECTOR},spark-role=executor -o name)
+      for POD_NAME in ${EXECUTOR_PODS}; do
+          pod_log ${POD_NAME}
       done;
 
       # Alternatively, generate a Splunk link? Not sure there's a good way to filter for this particular execution, since the driver pod
       # has the same name on every invocation on every fleet.
 
       log "Completion of $APP_NAME test, returning $EXIT_CODE"
-      exit $EXIT_CODE
+      exit ${EXIT_CODE}
     kubeconfig-impersonation-proxy: |
       apiVersion: v1
       clusters:
