@@ -40,4 +40,11 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # restrict memory usage in slb-nginx-reporter to 10G
     ngnixReporterMemoryCap: (slbimages.hyperslb_build >= 2122),
+
+    # The rollout of slb-realsvrcfg sometimes gets stuck waiting for pod termination.
+    # When this happens, we observe issues with canary DSR VIP availability.
+    # See discussion at https://computecloud.slack.com/archives/G340CE86R/p1555707096410000?thread_ts=1555702827.408500&cid=G340CE86R
+    # Reduce the maxUnavailable for realsvrcfg from 20% to 1, so that at most one daemonset
+    # pod is offline at a time.
+    realsvrCfgRolloutMaxUnavailable: (if slbimages.phaseNum <= 1 then 1 else "20%")
 }
