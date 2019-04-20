@@ -8,7 +8,7 @@ system:
     count: 5
     containers:
     - name: gater1
-      image: sfci/gater/gate-manager:1.14.0
+      image: sfci/gater/gate-manager:1.14.0.2
       args:
       - --server.port=9090
       - --logging.level.com.zaxxer.hikari=debug
