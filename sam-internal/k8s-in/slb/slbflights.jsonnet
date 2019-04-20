@@ -46,5 +46,5 @@ local slbconfigs = import "slbconfig.jsonnet";
     # See discussion at https://computecloud.slack.com/archives/G340CE86R/p1555707096410000?thread_ts=1555702827.408500&cid=G340CE86R
     # Reduce the maxUnavailable for realsvrcfg from 20% to 1, so that at most one daemonset
     # pod is offline at a time.
-    realsvrCfgRolloutMaxUnavailable: (if slbimages.phaseNum <= 1 then 1 else "20%")
+    realsvrCfgRolloutMaxUnavailable: (if slbimages.phaseNum <= 1 then 1 else "20%"),
 }
