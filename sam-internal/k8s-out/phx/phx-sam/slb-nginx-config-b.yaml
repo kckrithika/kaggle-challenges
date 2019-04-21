@@ -284,6 +284,7 @@ spec:
         - /sdn/slb-upstream-status-reporter
         - --nginxStatusPublishingAddress=$(POD_IP):9999
         - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --minHealthPercentageForReadiness=20
         env:
         - name: POD_IP
           valueFrom:

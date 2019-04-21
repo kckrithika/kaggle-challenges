@@ -70,7 +70,9 @@
       "/sdn/slb-upstream-status-reporter",
         "--nginxStatusPublishingAddress=$(POD_IP):9999",
         "--log_dir=" + slbconfigs.logsDir,
-    ],
+    ] + (if (slbconfigs.perCluster.upstreamStatusReporterMinPercent[configs.estate] != "") then
+        ["--minHealthPercentageForReadiness=" + slbconfigs.perCluster.upstreamStatusReporterMinPercent[configs.estate]]
+        else []),
     volumeMounts: std.prune([
       slbconfigs.logs_volume_mount,
     ]),

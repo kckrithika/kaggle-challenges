@@ -294,6 +294,13 @@
         vipsToAcl:
             set_value_to_all_in_list("", $.slbEstates)
             + { vpod: "" },
+
+        upstreamStatusReporterMinPercent:
+            set_value_to_all_in_list("", $.slbEstates)
+            + { vpod: "" }
+            + {
+              "phx-sam": 20,
+            },
     },
 
 
