@@ -131,9 +131,10 @@ kcfw_log() {
 # Extract the "Events" section from a kubectl description of a resource.
 events() {
     # awk magic prints only the Name: line and the Events lines (terminated by a blank line).
-    kcfw_log describe sparkapplication $APP_NAME | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)'
-    kcfw_log describe pod -l ${SELECTOR},spark-role=driver | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)'
-    kcfw_log describe pod -l ${SELECTOR},spark-role=executor | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)'
+    # Use kcfw and explicitly call format after so Awk can look for start-of-line.
+    kcfw describe sparkapplication $APP_NAME | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)' | format
+    kcfw describe pod -l ${SELECTOR},spark-role=driver | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)' | format
+    kcfw describe pod -l ${SELECTOR},spark-role=executor | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)' | format
 }
 
 # Return the state of the Spark application.
@@ -242,7 +243,7 @@ while true; do
         log "Timeout reached. Aborting wait for SparkApplication $APP_NAME even though in non-terminal state $STATE."
         break
     fi
-    if (( EPOCH - LAST_LOGGED > 180 )); then
+    if (( EPOCH - LAST_LOGGED > 60 )); then
         log "...still waiting for terminal state (currently $STATE) after $((EPOCH-SPARK_APP_START_TIME)) seconds. SparkApplication $APP_NAME Events so far:";
         events;
         LAST_LOGGED=${EPOCH}
