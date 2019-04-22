@@ -1,2 +1,3 @@
-version: v2
 apps:
+ gatekeeper-dashboard:
+  - prd/prd-sam
