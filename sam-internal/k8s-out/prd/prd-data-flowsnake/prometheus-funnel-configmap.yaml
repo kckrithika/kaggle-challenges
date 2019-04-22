@@ -7,6 +7,9 @@ data:
       },
       "remote_write": [
         {
+          "queue_config": {
+            "capacity": 100000
+          },
           "url": "http://localhost:8000"
         }
       ],
