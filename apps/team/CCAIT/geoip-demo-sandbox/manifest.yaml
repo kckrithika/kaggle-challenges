@@ -40,8 +40,7 @@ system:
         initialDelaySeconds: 115
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/75
-      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
       ports:
       - containerPort: 15373
       env:
