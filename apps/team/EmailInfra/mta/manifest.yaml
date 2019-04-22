@@ -9,7 +9,7 @@ system:
     terminationGracePeriodSeconds: 35
     containers:
     - name: mta
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sfdc-mta:6
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc-mta:6
       ports:
       - name: smtp 
         containerPort: 25
@@ -37,7 +37,7 @@ system:
         initialDelaySeconds: 120
         periodSeconds: 5        
     - name: mta-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sfdc-mta-demo:4
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc-mta-demo:4
       ports:
       - name: http 
         containerPort: 8080
