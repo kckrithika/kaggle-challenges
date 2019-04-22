@@ -1,14 +1,13 @@
 apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: serviceentries-readwrite-binding
-  namespace: z9s-default
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: serviceentries-readwrite
+  kind: ClusterRole
+  name: zoobernetes-serviceentries-readwrite
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: ServiceAccount
-  name: zoobernetes
-  namespace: z9s-default
+  name: zoobernetes-service-account
+  namespace: zoobernetes

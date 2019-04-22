@@ -1,22 +1,21 @@
 local configs = import "config.jsonnet";
 if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
-  kind: "RoleBinding",
+  kind: "ClusterRoleBinding",
   metadata: {
     name: "serviceentries-readwrite-binding",
-    namespace: "z9s-default",
   },
   subjects: [
         {
           kind: "ServiceAccount",
-          name: "zoobernetes",
-          namespace: "z9s-default",
+          name: "zoobernetes-service-account",
+          namespace: "zoobernetes",
           apiGroup: "rbac.authorization.k8s.io",
          },
    ],
    roleRef: {
-            kind: "Role",
-            name: "serviceentries-readwrite",
+            kind: "ClusterRole",
+            name: "zoobernetes-serviceentries-readwrite",
             apiGroup: "rbac.authorization.k8s.io",
         },
 } else "SKIP"
