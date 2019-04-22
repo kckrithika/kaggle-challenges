@@ -109,7 +109,7 @@ system:
     slbEnabled: true
     ports:
       - port: 80
-        targetport: 9411
+        targetport: 9422
         lbtype: http
       - port: 443
         targetport: 8443
