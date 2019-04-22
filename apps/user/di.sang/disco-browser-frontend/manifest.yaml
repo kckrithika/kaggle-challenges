@@ -1,0 +1,23 @@
+apiVersion: v1
+system:
+  functions:
+  - name: disco-browser-frontend
+    count: 1
+    containers:
+    - name: disco-browser-frontend
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/configurator/disco-browser/disco-frontend:disang-20190422
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - HEALTHY
+  loadbalancers:
+  - lbname: disco-browser-frontend-lb
+    function: disco-browser-frontend
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: http
