@@ -242,7 +242,7 @@ system:
       - name: HTTP_PROXY
         value: public0-proxy1-0-fra.data.sfdc.net:8080
       - name: SKIP_KAIJU
-        value: 0
+        value: 1
       - name: ZDT
         value: true
       - name: KAIJU_REFOCUS_GETRESULT_URL
