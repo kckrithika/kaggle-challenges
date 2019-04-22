@@ -16,10 +16,6 @@ local ports = [
     name: 'scone-http',
   },
   {
-    containerPort: 7442,
-    name: 'scone-http1-tls',
-  },
-  {
     containerPort: 15372,
     name: 'scone-mgmt',
   },

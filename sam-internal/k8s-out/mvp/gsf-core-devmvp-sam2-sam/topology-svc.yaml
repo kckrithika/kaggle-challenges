@@ -62,8 +62,6 @@ spec:
         ports:
         - containerPort: 7022
           name: scone-http
-        - containerPort: 7442
-          name: scone-http1-tls
         - containerPort: 15372
           name: scone-mgmt
         readinessProbe:
@@ -101,10 +99,8 @@ spec:
         name: topology-svc-internal-sherpa
         ports:
         - containerPort: 7442
-          hostPort: 7442
           name: http1-tls-in
         - containerPort: 7014
-          hostPort: 7014
           name: http1
         - containerPort: 15373
           name: sherpa-adm

@@ -43,12 +43,10 @@ local topologysvcimages = (import 'topology-svc-images.jsonnet') + { templateFil
             {
                 name: "http1-tls-in",
                 containerPort: 7442,
-                hostPort: 7442
             },
             {
                 name: 'http1',
                 containerPort: 7014,
-                hostPort: 7014
             },
             {
                 name: "sherpa-adm",
