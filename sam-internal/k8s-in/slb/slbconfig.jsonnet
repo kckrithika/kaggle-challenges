@@ -279,6 +279,7 @@
               "prd-sdc": ["slb-canary-hsm.sam-system.prd-sdc.prd.slb.sfdc.net"],
               "prd-sam": ["slb-canary-hsm.sam-system.prd-sam.prd.slb.sfdc.net", "mist51-app-hsm-prd.slb.sfdc.net", "mist51-app-prd.slb.sfdc.net"],
               "xrd-sam": ["slb-canary-hsm.sam-system.xrd-sam.xrd.slb.sfdc.net"],
+              "prd-samtwo": ["slb-canary-hsm.sam-system.prd-samtwo.prd.slb.sfdc.net"],
             },
 
         envoyEnabledVips:
