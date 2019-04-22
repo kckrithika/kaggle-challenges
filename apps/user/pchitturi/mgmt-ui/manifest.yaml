@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: mgmt-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pchitturi/geocloud.io/mgmt-platform-ui:mgmt-ui-19417
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pchitturi/geocloud.io/mgmt-platform-ui:042219
       resources:
         requests:
           cpu: 2
@@ -18,7 +18,7 @@ system:
       livenessProbe:
         exec:
           command: ["curl", "127.0.0.1", ":", "3000"]
-        initialDelaySeconds: 60
+        initialDelaySeconds: 120
         timeoutSeconds: 10
   loadbalancers:
   - lbname: mgmt-ui
