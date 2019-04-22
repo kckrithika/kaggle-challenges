@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: sam-deployment-portal
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20190419_111858.86f3a7444.dirty.xiaozhou-ltm2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/sam-deployment-portal-v2:20190419_114124.86f3a7444.dirty.xiaozhou-ltm2
       command:
       - "/sam/sam-deployment-portal-v2"
       - --port=64123
