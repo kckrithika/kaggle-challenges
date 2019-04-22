@@ -1,6 +1,7 @@
 apps:
   zones-intake-backend:
   - xrd/xrd-sdstools
+  zones-intake-backend-staging:
   - xrd/xrd-sdstoolsdev
   zones-ui:
   - xrd/xrd-sdstools
