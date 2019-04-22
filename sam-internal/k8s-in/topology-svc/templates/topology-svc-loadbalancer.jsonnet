@@ -26,7 +26,12 @@ if configs.kingdom == 'mvp' then {
           {
              name: 'http',
              port: 8080,
-             targetPort: 8080,  # replace with 7022 after mesh integration
+             targetPort: 7022,
+          },
+          {
+              name: 'http1-tls',
+              port: 443,
+              targetPort: 7442,
           },
         ],
     },
