@@ -21,6 +21,8 @@ apps:
     - prd/prd-sam_zipkin
     elasticsearch1:
     - prd/prd-sam_zipkin
+    zipkin-es-beta:
+    - prd/prd-sam_zipkin    
     zipkin-kafka-proxy-test:
     - prd/prd-sam_report_collector
     zipkin-kafka-proxy:
