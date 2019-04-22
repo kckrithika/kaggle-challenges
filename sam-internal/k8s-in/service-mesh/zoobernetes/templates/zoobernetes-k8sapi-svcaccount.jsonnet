@@ -3,7 +3,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
   apiVersion: "v1",
   kind: "ServiceAccount",
   metadata: {
-    name: "zoobernetes",
-    namespace: "z9s-default",
+    name: "zoobernetes-service-account",
+    namespace: "zoobernetes",
   },
 } else "SKIP"
