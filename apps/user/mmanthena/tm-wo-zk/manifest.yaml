@@ -38,8 +38,8 @@ system:
 #        value:
       - name : ACDS_APISERVER_ZKCONN
         value: "shared0-discovery1-0-crd.data.sfdc.net:2181"
-#      - name : SERVICE_USER_EMAIL
-#        value:
+      - name : SERVICE_USER_EMAIL
+        value: mmanthena@salesforce.com
 #      - name : SERVICE_USER_PASSWORD
 #        value:
 #      - name : TOKEN_SECRET
