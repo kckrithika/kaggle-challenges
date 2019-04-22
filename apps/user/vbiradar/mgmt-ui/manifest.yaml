@@ -9,11 +9,11 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtapi:1.0
           livenessProbe:
             exec:
-              command: ["curl", "http://127.0.0.1:5005/"]
+              command: ["curl", "http://127.0.0.1:5004/"]
             initialDelaySeconds: 60
             timeoutSeconds: 10
           ports:
-          - containerPort: 5005
+          - containerPort: 5004
           resources:
             requests:
               cpu: 2
