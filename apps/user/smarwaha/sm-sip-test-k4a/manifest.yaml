@@ -1,0 +1,26 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: sip-em
+    count: 1
+    volumes:
+    - name: heroku-secret
+      k4aSecret:
+        secretName: heroku-api
+    - name: blacktab-secret
+      k4asecret:
+        secretName: blacktab-credentials
+    containers:
+    - name: sm-sip-test-k4a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/smarwaha/sm:test-k4a
+      livenessProbe:
+        exec:
+          command: ["true"]
+      volumeMounts:
+      - mountPath: /secrets/heroku/
+        name: heroku-secret
+        readOnly: true
+      - mountPath: /secrets/blacktab/
+        name: blacktab-secret
+        readOnly: true
