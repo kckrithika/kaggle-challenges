@@ -41,7 +41,7 @@ if configs.kingdom == 'mvp' then {
       labels: {} + configs.pcnEnableLabel,
     },
     spec: {
-        replicas: 3,
+        replicas: 1,
         selector: {
           matchLabels: {
             app: 'topology-svc-internal',
