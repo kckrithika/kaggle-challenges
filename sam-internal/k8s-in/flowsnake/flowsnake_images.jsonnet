@@ -22,7 +22,6 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "1": self["2"] {
             image_tags+: {
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-20-itest",
                 prometheus_funnel_image_tag: "35",
                 kube_state_metrics_image_tag: "3",
             },
@@ -32,7 +31,6 @@ local utils = import "util_functions.jsonnet";
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
                 kube_state_metrics_release: "",
-                spark_application_quota_enforcement: "enabled",
                 ksm_to_prometheus: "",
                 spark_operator_watchdog_kubectl_cleanup: "enabled",
             },
@@ -46,8 +44,10 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-20-itest",
             },
             feature_flags+: {
+                spark_application_quota_enforcement: "enabled",
             },
             version_mapping+: {
             },
