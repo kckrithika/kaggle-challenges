@@ -45,7 +45,8 @@ local extra_images_to_promote =
     flowsnake_images.spark_operator_watchdog_canary,
     flowsnake_images.watchdog,
     flowsnake_images.spark_on_k8s_sample_apps,
-]
+    flowsnake_images.kube_state_metrics,
+    ]
 else []);
 
 if util.is_production(kingdom) then
@@ -67,6 +68,7 @@ if util.is_production(kingdom) then
         [
           { name: "extra-image-" + ix, image: extra_images_to_promote[ix] }
 for ix in std.range(0, std.length(extra_images_to_promote) - 1)
+if extra_images_to_promote[ix] != null
         ],
       },
     },

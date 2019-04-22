@@ -8,8 +8,14 @@ local kingdom = std.extVar("kingdom");
     },
     "remote_write": [
         {
-            "url": "http://localhost:8000"
-        },
+            "url": "http://localhost:8000",
+        } + (if std.objectHas(flowsnake_images.feature_flags, "ksm_to_prometheus") then
+        {
+            "queue_config": {
+                "capacity": 100000
+            }
+        } else {}
+        ),
     ],
     "scrape_configs": [
         {
