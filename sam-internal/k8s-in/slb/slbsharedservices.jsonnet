@@ -19,6 +19,8 @@
     supportedProxies=[],
     includeProxyConfigurationVolume=true,
     includeSlbPortalOverride=false,
+    vipLocationName="",
+    pseudoApiServer="",
   ): {
     name: "slb-config-processor",
     image: slbimages.hyperslb,
@@ -57,8 +59,8 @@
       "--vipdnsoptions.slbdomain=t.force.com",
     ] else [])
     + (if includeSlbPortalOverride then [
-      "--vipdnsoptions.viplocation=ord-sam.ord",
-      "--k8sapiserver=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ord-sam",
+      "--vipdnsoptions.viplocation=" + vipLocationName,
+      "--k8sapiserver=" + pseudoApiServer,
     ] else []),
     volumeMounts: std.prune([
       configs.maddog_cert_volume_mount,
@@ -216,7 +218,7 @@
       privileged: true,
     },
   },
-  slbManifestWatcher(supportedProxies=[], deleteLimitOverride=0, includeSlbPortalOverride=false,): {
+  slbManifestWatcher(supportedProxies=[], deleteLimitOverride=0, includeSlbPortalOverride=false, vipLocationName=""): {
     name: "slb-manifest-watcher",
     image: slbimages.hyperslb,
     command: [
@@ -240,7 +242,7 @@
       "--pipeline.supportedProxies=" + std.join(",", supportedProxies),
     ] else [])
     + (if includeSlbPortalOverride then [
-      "--vipdnsoptions.viplocation=ord-sam.ord",
+      "--vipdnsoptions.viplocation=" + vipLocationName,
     ] else []),
     volumeMounts: std.prune([
       slbconfigs.slb_volume_mount,

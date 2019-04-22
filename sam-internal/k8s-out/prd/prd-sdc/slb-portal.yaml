@@ -110,8 +110,8 @@ spec:
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
         - --control.configProcSentinel=/host/data/slb/config/slb-portal/slb-config-proc.sentinel
-        - --vipdnsoptions.viplocation=ord-sam.ord
-        - --k8sapiserver=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ord-sam
+        - --vipdnsoptions.viplocation=
+        - --k8sapiserver=
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -278,7 +278,7 @@ spec:
         - --vcioptions.strict=true
         - --client.allowStale=true
         - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal/slb-manifest-watcher.sentinel
-        - --vipdnsoptions.viplocation=ord-sam.ord
+        - --vipdnsoptions.viplocation=
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

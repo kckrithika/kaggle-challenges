@@ -1,0 +1,82 @@
+apiVersion: v1
+data:
+  slbportallinks.json: |-
+    {
+      "links": [
+        {
+          "href": "http://slb-portal-frf.prd-sam.prd.slb.sfdc.net",
+          "name": "frf"
+        },
+        {
+          "href": "http://slb-portal-phx.prd-sam.prd.slb.sfdc.net",
+          "name": "phx"
+        },
+        {
+          "href": "http://slb-portal-iad.prd-sam.prd.slb.sfdc.net",
+          "name": "iad"
+        },
+        {
+          "href": "http://slb-portal-ord.prd-sam.prd.slb.sfdc.net",
+          "name": "ord"
+        },
+        {
+          "href": "http://slb-portal-dfw.prd-sam.prd.slb.sfdc.net",
+          "name": "dfw"
+        },
+        {
+          "href": "http://slb-portal-hnd.prd-sam.prd.slb.sfdc.net",
+          "name": "hnd"
+        },
+        {
+          "href": "http://slb-portal-xrd.prd-sam.prd.slb.sfdc.net",
+          "name": "xrd"
+        },
+        {
+          "href": "http://slb-portal-cdg.prd-sam.prd.slb.sfdc.net",
+          "name": "cdg"
+        },
+        {
+          "href": "http://slb-portal-fra.prd-sam.prd.slb.sfdc.net",
+          "name": "fra"
+        },
+        {
+          "href": "http://slb-portal-ia2.prd-sam.prd.slb.sfdc.net",
+          "name": "ia2"
+        },
+        {
+          "href": "http://slb-portal-ph2.prd-sam.prd.slb.sfdc.net",
+          "name": "ph2"
+        },
+        {
+          "href": "http://slb-portal-par.prd-sam.prd.slb.sfdc.net",
+          "name": "par"
+        },
+        {
+          "href": "http://slb-portal-ukb.prd-sam.prd.slb.sfdc.net",
+          "name": "ukb"
+        },
+        {
+          "href": "http://slb-portal-lo2.prd-sam.prd.slb.sfdc.net",
+          "name": "lo2"
+        },
+        {
+          "href": "http://slb-portal-lo3.prd-sam.prd.slb.sfdc.net",
+          "name": "lo3"
+        },
+        {
+          "href": "http://slb-portal-service.sam-system.prd-sdc.prd.slb.sfdc.net:9112/",
+          "name": "prd-sam"
+        },
+        {
+          "href": "http://slb-portal-service.sam-system.prd-samtwo.prd.slb.sfdc.net:9112/",
+          "name": "prd-samtwo"
+        }
+      ]
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: slb
+  name: slb-portal-links
+  namespace: sam-system
