@@ -143,6 +143,70 @@ data:
           "tls_config": {
             "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
           }
+        },
+        {
+          "bearer_token_file": "/var/run/secrets/kubernetes.io/serviceaccount/token",
+          "job_name": "kube_state_metrics",
+          "kubernetes_sd_configs": [
+            {
+              "namespaces": {
+                "names": [
+                  "kube-system"
+                ]
+              },
+              "role": "pod"
+            }
+          ],
+          "metric_relabel_configs": [
+            {
+              "action": "labeldrop",
+              "regex": "instance"
+            },
+            {
+              "source_labels": [
+                "pod"
+              ],
+              "target_label": "pod_name"
+            },
+            {
+              "action": "labeldrop",
+              "regex": "pod"
+            },
+            {
+              "source_labels": [
+                "node"
+              ],
+              "target_label": "device"
+            },
+            {
+              "action": "labeldrop",
+              "regex": "node"
+            },
+            {
+              "source_labels": [
+                "service"
+              ],
+              "target_label": "spark_service"
+            },
+            {
+              "action": "labeldrop",
+              "regex": "service"
+            }
+          ],
+          "relabel_configs": [
+            {
+              "action": "keep",
+              "regex": "kube-state-metrics;8080",
+              "source_labels": [
+                "__meta_kubernetes_pod_container_name",
+                "__meta_kubernetes_pod_container_port_number"
+              ]
+            }
+          ],
+          "scrape_interval": "60s",
+          "tls_config": {
+            "ca_file": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+          }
         }
       ]
     }
