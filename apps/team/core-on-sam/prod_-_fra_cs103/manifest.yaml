@@ -192,7 +192,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1555717202103887104
+        value: 1555952970498202880
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -242,7 +242,7 @@ system:
       - name: HTTP_PROXY
         value: public0-proxy1-0-fra.data.sfdc.net:8080
       - name: SKIP_KAIJU
-        value: 0
+        value: 1
       - name: ZDT
         value: true
       - name: KAIJU_REFOCUS_GETRESULT_URL
