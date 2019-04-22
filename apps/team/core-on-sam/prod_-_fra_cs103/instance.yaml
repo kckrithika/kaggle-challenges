@@ -15,11 +15,11 @@ env:
   subEnvName: '-'
 images:
   coreApp: sfci/casam/coreapp:release_218-patch_17808850
-  coreAppOverrides: sfci/casam/coreapp_overrides:43c5ad
+  coreAppOverrides: sfci/casam/coreapp_overrides:476eb5
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:ce5c52
 name: cs103
-nonce: 1555968327456612000
+nonce: 1555974884456997000
 replicaCount: 5
 settingsSuperPod: sp1

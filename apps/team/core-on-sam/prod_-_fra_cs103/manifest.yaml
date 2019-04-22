@@ -84,7 +84,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.fra.cs103.app
-      image: sfci/casam/coreapp_overrides:43c5ad
+      image: sfci/casam/coreapp_overrides:476eb5
       livenessProbe:
         exec:
           command:
@@ -193,7 +193,7 @@ system:
   - containers:
     - env:
       - name: NONCE
-        value: 1555968327456612096
+        value: 1555974884456997120
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
