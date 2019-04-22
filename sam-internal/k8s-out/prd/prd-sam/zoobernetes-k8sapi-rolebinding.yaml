@@ -8,6 +8,7 @@ roleRef:
   kind: Role
   name: serviceentries-readwrite
 subjects:
-- kind: ServiceAccount
+- apiGroup: rbac.authorization.k8s.io
+  kind: ServiceAccount
   name: zoobernetes
   namespace: z9s-default
