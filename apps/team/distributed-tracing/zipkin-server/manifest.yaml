@@ -68,6 +68,8 @@ system:
         value: zipkin-server
       - name: ZIPKIN_SERVER
         value: localhost
+      - name: ZIPKIN_SERVER_PORT
+        value: 9422
       - name: ZIPKIN_ENDPOINT
         value: https://zipkin.eng.sfdc.net
       - name: AUTH_ENABLED
@@ -89,13 +91,16 @@ system:
          # forcing the pods to different hosts (each has 56 CPU)
         limits: { cpu: "30", memory: "12Gi" }
         requests: { cpu: "30", memory: "12Gi" }
+      env:
+      - name: QUERY_PORT
+        value: 9422
       ports:
       - name: zipkin
-        containerPort: 9411
+        containerPort: 9422
       livenessProbe:
         httpGet:
           path: /health
-          port: 9411
+          port: 9422
         initialDelaySeconds: 120
 
   loadbalancers:
@@ -104,7 +109,7 @@ system:
     slbEnabled: true
     ports:
       - port: 80
-        targetport: 9411
+        targetport: 9422
         lbtype: http
       - port: 443
         targetport: 8443
