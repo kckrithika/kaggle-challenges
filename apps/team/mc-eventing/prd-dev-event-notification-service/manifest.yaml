@@ -3,12 +3,8 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - gogden@salesforce.com
-    - afranken@salesforce.com
-    - gmercer@salesforce.com
-    - mhowald@salesforce.com
-    - bryan.barnard@salesforce.com
-    - pruthvi.patel@salesforce.com
+    - mc-devbigdata@salesforce.com
+    - MC-MessagingInboundTeam@salesforce.com
   functions:
   - name: dev-event-notification-service
     identity:

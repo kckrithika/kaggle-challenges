@@ -3,11 +3,8 @@ apiVersion: v1
 system:
   notifications:
     email:
-    - gogden@salesforce.com
-    - afranken@salesforce.com
-    - gmercer@salesforce.com
-    - mhowald@salesforce.com
-    - bryan.barnard@salesforce.com
+    - mc-devbigdata@salesforce.com
+    - MC-MessagingInboundTeam@salesforce.com
   functions:
   - name: event-notification-service
     identity:
@@ -22,7 +19,7 @@ system:
         secretName: eventbusajna-ens-v1
     containers:
     - name: event-notification-service
-      image: sfci/mc-eventing/event-notification:1.0.8
+      image: sfci/mc-eventing/event-notification:1.0.10
       ports:
       - containerPort: 15372
       env:
