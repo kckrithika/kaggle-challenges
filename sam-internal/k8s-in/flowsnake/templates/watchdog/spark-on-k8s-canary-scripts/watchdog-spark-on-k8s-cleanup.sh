@@ -75,6 +75,7 @@ TIMEOUT_SECS=$((60*5))
 epoch() {
     date '+%s'
 }
+START_TIME=$(epoch)
 
 # Format string for log output by decorating with date, time, app name
 format() {
@@ -88,6 +89,16 @@ log() {
     fi
 }
 
+# Format (with heading marker) and output provided string to stdout
+log_heading() {
+    log "======== $@ ========"
+}
+
+# Format (with sub-heading marker) and output provided string to stdout
+log_sub_heading() {
+    log "---- $@ ----"
+}
+
 # Run kubectl in namespace.
 # Use for extracting programatic values; otherwise prefer kcfw_log for formatted output.
 #
@@ -99,6 +110,13 @@ log() {
 kcfw() {
     ATTEMPT=1
     while true; do
+        # In addition to the timeout for this specific kubectl command, we need to check that the script hasn't
+        # passed its overall timeout.
+        EPOCH=$(epoch)
+        if (( EPOCH - START_TIME >= TIMEOUT_SECS )); then
+            log "Test timeout reached. Aborting attempt to execute [kubectl -n ${NAMESPACE} $@]."
+            return 124
+        fi
         tmpfile=$(mktemp /tmp/$(basename $0)-stderr.XXXXXX)
         timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} $@ 2>$tmpfile
         RESULT=$?
@@ -109,7 +127,7 @@ kcfw() {
             # Success! We're done.
             return $RESULT;
         fi;
-        MSG="Invocation ($ATTEMPT/$KUBECTL_ATTEMPTS) of [$@] failed ($(if (( $RESULT == 124 || $RESULT == 137 )); then echo "timed out (${KUBECTL_TIMEOUT_SECS}s)"; else echo $RESULT; fi))."
+        MSG="Invocation ($ATTEMPT/$KUBECTL_ATTEMPTS) of [kubectl -n ${NAMESPACE} $@] failed ($(if (( $RESULT == 124 || $RESULT == 137 )); then echo "timed out (${KUBECTL_TIMEOUT_SECS}s)"; else echo $RESULT; fi))."
         if (( $ATTEMPT < $KUBECTL_ATTEMPTS )); then
             log "$MSG Will sleep $KUBECTL_TIMEOUT_SECS seconds and then try again." >&2
             sleep ${KUBECTL_TIMEOUT_SECS}
@@ -121,7 +139,7 @@ kcfw() {
     done;
 }
 
-# Like kcfw, plus apply log formatting to stdout.
+# Like kcfw, plus also apply log formatting to stdout.
 kcfw_log() {
   # pipefail is set, so sed won't lose any failure exit code returned by kubectl
   # stderr is already formatted by kcfw, so only need to add formatting to stdout
@@ -130,17 +148,27 @@ kcfw_log() {
 
 # Extract the "Events" section from a kubectl description of a resource.
 events() {
+    log_sub_heading "Begin Events"
     # awk magic prints only the Name: line and the Events lines (terminated by a blank line).
     # Use kcfw and explicitly call format after so Awk can look for start-of-line.
     kcfw describe sparkapplication $APP_NAME | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)' | format
     kcfw describe pod -l ${SELECTOR},spark-role=driver | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)' | format
     kcfw describe pod -l ${SELECTOR},spark-role=executor | awk '/Events:/{flag=1}/^$/{flag=0}(flag||/^Name:/)' | format
+    log_sub_heading "End Events"
 }
 
 # Return the state of the Spark application.
 # Terminal values are COMPLETED and FAILED https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/design.md#the-crd-controller
 state() {
     kcfw get sparkapplication $APP_NAME -o jsonpath='{.status.applicationState.state}'
+}
+
+# Output logs for specified pod to stdout
+pod_log() {
+    log_sub_heading "Begin $1 Log"
+    # || true to avoid failing script if pod has gone away.
+    kcfw logs $1 || true
+    log_sub_heading "End $1 Log"
 }
 
 # Log changes to pods spawned for SparkApplication
@@ -202,8 +230,7 @@ report_pod_changes() {
 
 
 # ------ Initialize ---------
-START_TIME=$(epoch)
-log "Beginning $APP_NAME test"
+log_heading "Beginning $APP_NAME test"
 # Sanity-check kubeapi connectivity
 kcfw_log cluster-info
 
@@ -221,8 +248,33 @@ KUBECTL_ATTEMPTS=${KUBECTL_ATTEMPTS_BACKUP}
 # because there actually was something to delete.
 kcfw_log delete pod -l $SELECTOR 2>&1 | grep -v "No resources" || true
 
-# Wait for pods from prior runs to delete by looping until we get No resources result.
-while ! $(kcfw_log get pod -l $SELECTOR 2>&1 | grep "No resources" > /dev/null); do sleep 1; done;
+# Wait for SparkApplication from prior run to delete.
+LAST_LOGGED=$(epoch)
+while true; do
+    EPOCH=$(epoch)
+    if ! kcfw get sparkapplication $APP_NAME > /dev/null; then
+        break
+    fi
+    if (( EPOCH - LAST_LOGGED > 60 )); then
+        log "...still waiting for previous run's sparkapplication $APP_NAME to delete.";
+        events
+        LAST_LOGGED=${EPOCH}
+    fi;
+    sleep 1
+done
+while true; do
+    EPOCH=$(epoch)
+    # No output matching selector means no more pods are running
+    if ! kcfw get pod -l $SELECTOR | grep -P '.+' > /dev/null; then
+        break
+    fi
+    if (( EPOCH - LAST_LOGGED > 60 )); then
+        log "...still waiting for previous run's pods to delete.";
+        events
+        LAST_LOGGED=${EPOCH}
+    fi;
+    sleep 1
+done
 
 # ------ Run ---------
 log "Creating SparkApplication $APP_NAME"
@@ -230,7 +282,7 @@ kcfw_log create -f $SPEC
 SPARK_APP_START_TIME=$(epoch)
 
 LAST_LOGGED=$(epoch)
-log "Waiting for SparkApplication $APP_NAME to terminate."
+log "Waiting for SparkApplication $APP_NAME to reach a terminal state."
 STATE=$(state)
 while true; do
     EPOCH=$(epoch)
@@ -244,7 +296,7 @@ while true; do
         break
     fi
     if (( EPOCH - LAST_LOGGED > 60 )); then
-        log "...still waiting for terminal state (currently $STATE) after $((EPOCH-SPARK_APP_START_TIME)) seconds. SparkApplication $APP_NAME Events so far:";
+        log "...still waiting for terminal state (currently $STATE) after $((EPOCH-SPARK_APP_START_TIME)) seconds.";
         events;
         LAST_LOGGED=${EPOCH}
     fi;
@@ -257,12 +309,6 @@ EXIT_CODE=$(echo ${STATE} | grep COMPLETED > /dev/null; echo $?)
 # ------ Report Results ---------
 report_pod_changes
 events
-
-pod_log() {
-    log ---- Begin $1 Log ----
-    kcfw logs $1 || true
-    log ---- End $1 Log ----
-}
 
 POD_NAME=$(kcfw get pod -l ${SELECTOR},spark-role=driver -o name)
 if [[ -z ${POD_NAME} ]]; then
@@ -280,5 +326,5 @@ done;
 # Alternatively, generate a Splunk link? Not sure there's a good way to filter for this particular execution, since the driver pod
 # has the same name on every invocation on every fleet.
 
-log "Completion of $APP_NAME test, returning $EXIT_CODE"
+log_heading "Completion of $APP_NAME test, returning $EXIT_CODE"
 exit ${EXIT_CODE}
