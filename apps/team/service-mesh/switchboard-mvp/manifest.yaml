@@ -11,7 +11,7 @@ system:
         maxUnavailable: 2
     containers:
     - name: switchboard
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:47c7b14df8c2c6dde94e874b5ca07861299effc5
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:003a3b281d74f458a3c60c674bdf099170851908
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
