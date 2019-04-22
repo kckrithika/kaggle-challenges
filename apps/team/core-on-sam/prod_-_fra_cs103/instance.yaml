@@ -1,4 +1,4 @@
-color: green
+color: blue
 db:
   lockUser: "true"
   sid: CSDB103
@@ -14,12 +14,12 @@ env:
   region: fra
   subEnvName: '-'
 images:
-  configOverrides: sfci/casam/coreapp_config_overrides:d73742
-  coreApp: sfci/casam/coreapp:release_216-patch_17497816
+  coreApp: sfci/casam/coreapp:release_218-patch_17808850
+  coreAppOverrides: sfci/casam/coreapp_overrides:43c5ad
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:ce5c52
 name: cs103
-nonce: 1555952970498203000
+nonce: 1555968327456612000
 replicaCount: 5
 settingsSuperPod: sp1
