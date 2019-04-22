@@ -243,6 +243,8 @@ system:
         value: public0-proxy1-0-fra.data.sfdc.net:8080
       - name: SKIP_KAIJU
         value: 0
+      - name: ZDT
+        value: true
       - name: KAIJU_REFOCUS_GETRESULT_URL
         value: https://refocus.hk.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
