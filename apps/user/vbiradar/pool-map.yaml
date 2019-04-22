@@ -1,5 +1,5 @@
 apps:
- java-docker-ex:    # this must match the name of your application. It must be lower case.
+ sam-hello-world:    # this must match the name of your application. It must be lower case.
   - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
  mgmt-db:
   - prd/prd-sam
