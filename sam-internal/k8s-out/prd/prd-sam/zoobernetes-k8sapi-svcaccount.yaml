@@ -2,4 +2,4 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: zoobernetes
-  namespace: user-nsail
+  namespace: z9s-default

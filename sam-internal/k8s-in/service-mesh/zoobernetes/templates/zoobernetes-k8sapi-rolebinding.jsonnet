@@ -3,14 +3,15 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
   apiVersion: "rbac.authorization.k8s.io/v1beta1",
   kind: "RoleBinding",
   metadata: {
-    name: "nsail-binding",
-    namespace: "user-nsail",
+    name: "serviceentries-readwrite-binding",
+    namespace: "z9s-default",
   },
   subjects: [
         {
           kind: "ServiceAccount",
           name: "zoobernetes",
-          namespace: "user-nsail",
+          namespace: "z9s-default",
+          apiGroup: "rbac.authorization.k8s.io",
          },
    ],
    roleRef: {
