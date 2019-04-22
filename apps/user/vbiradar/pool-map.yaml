@@ -5,4 +5,8 @@ apps:
   - prd/prd-sam
  mgmt-api:
   - prd/prd-sam
+ mgmt-ui:
+  - prd/prd-sam
+ mgmt-pd:
+  - prd/prd-sam
 
