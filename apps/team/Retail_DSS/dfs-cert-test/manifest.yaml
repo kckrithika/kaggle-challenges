@@ -1,0 +1,31 @@
+apiVersion: v1
+ 
+system:
+  notifications:
+    email:
+    - dmelanchenko@salesforce.com  
+    - rpolishchuk@salesforce.com
+  functions:
+    - name: dfs-cert-test
+      count: 1
+      containers:
+      - name: cert-server
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/sfdc_centos7:40
+        args:
+        - sleep
+        - 84000
+        livenessProbe:
+          exec:
+            command:
+            - echo
+            - "OK"
+          initialDelaySeconds: 60
+          periodSeconds: 120      
+        volumeMounts:
+        - name: certs 
+          mountPath: /server-certs
+      volumes:
+      - name: certs 
+        maddogCert:
+          type: server 
+
