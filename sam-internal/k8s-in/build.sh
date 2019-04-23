@@ -13,13 +13,14 @@ fi
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/../hypersam.sh"
+
+# Get docker vars
+. "$DIR/../docker-vars.sh"
+
 cd $DIR
 
 # Script to generate yaml files for all our apps in all estates
 # ./build.sh
-
-# Get docker vars
-. "$DIR/../docker-vars.sh"
 
 if [ -z "$FIREFLY" ]; then
    SAMBINDIR=/opt/sam
