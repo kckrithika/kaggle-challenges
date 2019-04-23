@@ -11,13 +11,16 @@ if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/hypersam.sh"
 . "$DIR/slbmb.sh"
 
+# Get docker-specific vars
+. "$DIR/docker-vars.sh"
+
 echo "NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)"
 
 docker run \
   --rm \
   -it \
   -u 0 \
-  -v ${PWD}:/repo \
+  -v ${PWD}:/repo${BIND_MOUNT_OPTIONS} \
   ${HYPERSAM} \
   aclrepo -validateDir /repo/
 
@@ -25,7 +28,7 @@ docker run \
   --rm \
   -it \
   -u 0 \
-  -v ${PWD}:/repo \
+  -v ${PWD}:/repo${BIND_MOUNT_OPTIONS} \
   ${HYPERSAM} \
   manifestctl validate-manifests \
   --inputDir='/repo/' \
@@ -37,7 +40,7 @@ docker run \
   --rm \
   -it \
   -u 0 \
-  -v ${PWD}:/repo \
+  -v ${PWD}:/repo${BIND_MOUNT_OPTIONS} \
   --entrypoint /sdn/slb-manifest-builder \
   ${SLBMB} \
   --root='/repo/' \
