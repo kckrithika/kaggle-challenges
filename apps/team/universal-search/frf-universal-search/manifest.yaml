@@ -121,14 +121,14 @@ system:
       livenessProbe:
         exec:
           command: ["true"]
-      readinessProbe:
-        exec:
-          command:
-          - "/home/sfdc-usmt/run.sh"
-        initialDelaySeconds: 120
-        timeoutSeconds: 30
-        periodSeconds: 900
-        failureThreshold: 1
+#       readinessProbe:
+#         exec:
+#           command:
+#           - "/home/sfdc-usmt/run.sh"
+#         initialDelaySeconds: 120
+#         timeoutSeconds: 30
+#         periodSeconds: 900
+#         failureThreshold: 1
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
