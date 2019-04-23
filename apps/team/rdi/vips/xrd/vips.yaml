@@ -1420,7 +1420,8 @@
     - port: 5000
       targetport: 5000
       lbtype: http
-      sticky: 300
+      lbalgorithm: leastconn
+      sticky: 0
       reencrypt: true
       tls: true
       healthport: 25843
@@ -1429,7 +1430,8 @@
     - port: 35357
       targetport: 35357
       lbtype: http
-      sticky: 300
+      lbalgorithm: leastconn
+      sticky: 0
       reencrypt: true
       tls: true
       healthport: 25843
