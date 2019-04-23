@@ -61,6 +61,7 @@ system:
           "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: ia2-group1}
       image: sfci/insights/jobcontroller:release-103-b5d1371
+      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'true'}
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
