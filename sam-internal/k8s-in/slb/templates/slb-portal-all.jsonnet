@@ -13,13 +13,14 @@ local deployments = [
         local certDirs = ["cert3"],
         local vipLocation = kingdomName + "-sam." + kingdomName,
         local pseudoApiServerLink = "http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/" + kingdomName + '-sam',
+        local deploymentName = "slb-portal-" + kingdomName,
 
         deployment: configs.deploymentBase("slb") {
             metadata: {
                 labels: {
-                    name: "slb-portal-" + kingdomName,
+                    name: deploymentName,
                 } + configs.ownerLabel.slb,
-                name: "slb-portal-" + kingdomName,
+                name: deploymentName,
                 namespace: "sam-system",
             },
             spec+: {
@@ -27,7 +28,7 @@ local deployments = [
                 template: {
                     metadata: {
                         labels: {
-                            name: "slb-portal-" + kingdomName,
+                            name: deploymentName,
                         } + configs.ownerLabel.slb,
                         namespace: "sam-system",
                         annotations: {
@@ -49,7 +50,7 @@ local deployments = [
                             ] + madkub.madkubSlbCertVolumes(certDirs) + madkub.madkubSlbMadkubVolumes()),
                             containers: [
                                 {
-                                    name: "slb-portal-" + kingdomName,
+                                    name: deploymentName,
                                     image: slbimages.hyperslb,
                                     command: [
                                                 "/sdn/slb-portal",
@@ -59,7 +60,7 @@ local deployments = [
                                                 "--client.serverInterface=lo",
                                                 "--keyfile=/cert3/client/keys/client-key.pem",
                                                 "--certfile=/cert3/client/certificates/client.pem",
-                                                "--log_dir=/host/data/slb/logs/slb-portal-" + kingdomName,
+                                                "--log_dir=/host/data/slb/logs/" + deploymentName,
                                                 "--cafile=/cert3/ca/cabundle.pem",
                                                 "--aggregatedPortal=true",
                                                 configs.sfdchosts_arg,
@@ -102,10 +103,12 @@ local deployments = [
                                         },
                                     ],
                                 } + configs.ipAddressResourceRequest,
-                                slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort,
-                                includeSlbPortalOverride=slbflights.slbPortalEndpointOverride,
-                                vipLocationName=vipLocation,
-                                pseudoApiServer=pseudoApiServerLink),
+                                slbshared.slbConfigProcessor(
+                                    slbports.slb.slbConfigProcessorLivenessProbePort,
+                                    includeSlbPortalOverride=slbflights.slbPortalEndpointOverride,
+                                    vipLocationName=vipLocation,
+                                    pseudoApiServer=pseudoApiServerLink
+                                ),
                                 slbshared.slbCleanupConfig,
                                 slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                                 slbshared.slbLogCleanup,
@@ -154,7 +157,7 @@ for kingdomName in ["ord", "iad"]
 
 local slbflights = import "slbflights.jsonnet";
 
-if slbconfigs.isSlbEstate && configs.estate == "prd-sdc" then {
+if slbconfigs.isSlbEstate && slbconfigs.isSlbAggregatedPortalEstate then {
     apiVersion: "v1",
     kind: "List",
     metadata: {},

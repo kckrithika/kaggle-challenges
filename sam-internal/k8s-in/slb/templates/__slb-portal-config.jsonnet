@@ -5,7 +5,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local arr = [
     ({
         name: kingdomName,
-        href: "http://slb-portal-%s.%s.%s.slb.sfdc.net" % [kingdomName, configs.estate, configs.kingdom],
+        href: "https://slb-portal-%s.%s.%s.slb.sfdc.net" % [kingdomName, configs.estate, configs.kingdom],
     })
 for kingdomName in slbconfigs.prodKingdoms
 ];
@@ -14,7 +14,7 @@ local perKingdomConfig = {
     links: arr + [
     {
         name: "prd-sam",
-        href: "http://slb-portal-service.sam-system.prd-sdc.prd.slb.sfdc.net:9112/",
+        href: "http://slb-portal-service.sam-system.prd-sam.prd.slb.sfdc.net:9112/",
     },
     {
         name: "prd-samtwo",
@@ -23,7 +23,7 @@ local perKingdomConfig = {
 ],
 };
 
-if slbconfigs.isSlbEstate && configs.estate == "prd-sam" then {
+if slbconfigs.isSlbEstate && slbconfigs.isSlbAggregatedPortalEstate then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

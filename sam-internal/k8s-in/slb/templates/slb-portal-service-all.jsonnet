@@ -29,14 +29,14 @@ local services = [
             },
         ],
 
-        local cname = { cname: "slb-portal-" + kingdomName + ".slb.sfdc.net" },
+        local cname = { cname: deploymentName + ".slb.sfdc.net" },
 
         service: slbbaseservice.slbCanaryBaseService(deploymentName, portalPortConfig, serviceName, vipName, cnames=[cname]),
     }
 for kingdomName in slbconfigs.prodKingdoms
 ];
 
-if slbconfigs.isSlbEstate && configs.estate == "prd-sdc" then {
+if slbconfigs.isSlbEstate && slbconfigs.isSlbAggregatedPortalEstate then {
     apiVersion: "v1",
     kind: "List",
     metadata: {},
