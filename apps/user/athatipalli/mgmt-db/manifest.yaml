@@ -10,7 +10,7 @@ system:
     containers:
     - name: guiapi-db
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtapi:maria10.3.11
-      command: ["docker-entrypoint.sh"]
+      command: ["/docker-entrypoint.sh"]
       resources:
         requests:
           memory: 1.5Gi
