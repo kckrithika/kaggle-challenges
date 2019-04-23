@@ -20,7 +20,9 @@ data:
       "proxyvipmappings": [
         {
           "proxyname": "slb-hsm-nginx",
-          "vips": []
+          "vips": [
+            "login-cloudforce-phx.slb.sfdc.net"
+          ]
         }
       ]
     }
