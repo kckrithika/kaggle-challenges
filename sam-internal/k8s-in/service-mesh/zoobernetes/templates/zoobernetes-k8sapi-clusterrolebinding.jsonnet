@@ -9,7 +9,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
         {
           kind: "ServiceAccount",
           name: "zoobernetes-service-account",
-          namespace: "zoobernetes",
+          namespace: "service-discovery",
           apiGroup: "rbac.authorization.k8s.io",
          },
    ],
