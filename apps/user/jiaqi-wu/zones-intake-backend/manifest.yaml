@@ -37,7 +37,7 @@ system:
       - name: TLS_PRIVATE_KEY
         value: /servercerts/server/keys/server-key.pem
       - name: TLS_CA_CERTIFICATE
-        value: /clientcerts/ca_test/cacerts.pem
+        value: /clientcerts/ca.pam
       - name: FRONTEND_MADDOG_ID
         value: samapp.user-juppala.zones-ui
       livenessProbe:
