@@ -15,8 +15,11 @@ system:
       disco_pod: ""
       disco_sp: ""
       disco_role: istio-shipping-mixed-sherpa-to-istio
+      settings_path: stm.-.prd.-.istio-shipping
+      superpod: NONE
     annotations:
       sidecar.istio.io/inject: "true"
+      routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: shipping
       # Shipping App

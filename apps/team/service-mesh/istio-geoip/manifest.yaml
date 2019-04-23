@@ -12,8 +12,11 @@ system:
       disco_pod: ""
       disco_sp: ""
       disco_role: istio-geoip
+      settings_path: stm.-.prd.-.istio-geoip
+      superpod: NONE
     annotations:
       sidecar.istio.io/inject: "true"
+      routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: geoip-database
       image: tnrp/ccait/geoip2-database:20170918

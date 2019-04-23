@@ -15,8 +15,11 @@ system:
       disco_sp: "SP1"
       disco_role: app
       app: app
+      settings_path: stm.-.prd.na34.app
+      superpod: SP1
     annotations:
       sidecar.istio.io/inject: "true"
+      routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: fake-casam
       # Shipping App
