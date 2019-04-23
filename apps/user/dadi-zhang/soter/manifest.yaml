@@ -14,7 +14,7 @@ system:
           type: client
     containers:
     - name: soter
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dadi-zhang/soter:20190422-dadi-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dadi-zhang/soter:20190422-dadi-2
       ports:
       - containerPort: 8080
       env:
