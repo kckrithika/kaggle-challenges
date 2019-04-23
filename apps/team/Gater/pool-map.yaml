@@ -28,6 +28,7 @@ apps:
  gate-manager-3instances:
  gate-manager-4instances:
   - cdg/cdg-sam_gater
+ gate-manager-ph2:
   - ph2/ph2-sam_gater
  gate-manager-test:
   - prd/prd-sam_gater
