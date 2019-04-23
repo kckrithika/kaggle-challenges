@@ -4,6 +4,8 @@ system:
   functions:
   - name: shipping-envoy-tls
     count: 1
+    labels:
+      app: shipping-envoy-tls
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"      
       "routing.mesh.sfdc.net/enabled": "true"
@@ -17,6 +19,8 @@ system:
       - name: JAVA_OPTS
         value: "-Dscone.service.name=shipping-service-envoy-tls -Dmanagement.server.port=15372"
       ports:
+      - containerPort: 7443
+        name: grpc-sherpa
       - containerPort: 7020
         name: grpc-svc
       - containerPort: 15372
@@ -50,3 +54,11 @@ system:
       maddogCert:
         type: server
 
+  loadbalancers:
+    - lbname: shipping-envoy-tls
+      function: shipping-envoy-tls
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-shipping
