@@ -75,7 +75,7 @@ system:
       - name: ZIPKIN_SERVER_PORT
         value: 9422
       - name: ZIPKIN_ENDPOINT
-        value: https://zipkin.eng.sfdc.net
+        value: https://zipkin-server.distributed-tracing.prd-sam.prd.slb.sfdc.net/
       - name: AUTH_ENABLED
         value: false
       volumeMounts:
