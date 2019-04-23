@@ -19,6 +19,7 @@ system:
       superpod: NONE
     annotations:
       sidecar.istio.io/inject: "true"
+      routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: shipping
       # Shipping App
