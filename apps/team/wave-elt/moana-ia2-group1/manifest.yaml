@@ -60,6 +60,7 @@ system:
           "-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops",
           "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: ia2-group1}
+      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'true'}
       image: sfci/insights/jobcontroller:release-103-b5d1371
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
