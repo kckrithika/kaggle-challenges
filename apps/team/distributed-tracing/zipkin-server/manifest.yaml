@@ -43,6 +43,8 @@ system:
         value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
       - name: KAFKA_TOPIC
         value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy__prd.ajna_local__tracing,sfdc.prod.distributed-tracing.zipkin-kafka-proxy__ord.ajna_local__tracing,sfdc.prod.distributed-tracing.zipkin-kafka-proxy__iad.ajna_local__tracing
+      - name: KAFKA_GROUP_ID
+        value: dt-zk-beta
       - name: ZIPKIN_ARGS
         value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
       - name: datacenter
