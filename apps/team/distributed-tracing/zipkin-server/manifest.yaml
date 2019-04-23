@@ -20,7 +20,7 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - zipkin-server
+        - zipkin-beta
     - name: secretvol
       k4aSecret:
         secretName: jkspassprd
@@ -69,13 +69,13 @@ system:
         containerPort: 8443
       env:
       - name: ZIPKIN_HOST
-        value: zipkin-server
+        value: zipkin-beta
       - name: ZIPKIN_SERVER
         value: localhost
       - name: ZIPKIN_SERVER_PORT
         value: 9422
       - name: ZIPKIN_ENDPOINT
-        value: https://zipkin-server.distributed-tracing.prd-sam.prd.slb.sfdc.net/
+        value: https://zipkin-beta.distributed-tracing.prd-sam.prd.slb.sfdc.net/
       - name: AUTH_ENABLED
         value: false
       volumeMounts:
@@ -89,7 +89,7 @@ system:
           # TODO: Check if process is running?
           command:
           - /bin/true
-    - name: zipkin-server
+    - name: zipkin-beta
       image: docker-dva-rc/dva/zipkin-server:35
       resources:
          # forcing the pods to different hosts (each has 56 CPU)
@@ -110,7 +110,7 @@ system:
         initialDelaySeconds: 120
 
   loadbalancers:
-  - lbname: zipkin-server
+  - lbname: zipkin-beta
     function: zipkin-server
     slbEnabled: true
     ports:
