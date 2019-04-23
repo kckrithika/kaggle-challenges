@@ -222,6 +222,9 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: vmanickam@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: prabhdeep.gill@salesforce.com
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
