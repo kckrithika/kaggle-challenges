@@ -25,7 +25,7 @@ system:
         name: logvolservice
 
     #Using service account for z9s: https://git.soma.salesforce.com/sam/manifests/pull/25075
-    serviceAccountName: zoobernetes-service-account
+    serviceAccountName: zoobernetes.zoobernetes-service-account
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
