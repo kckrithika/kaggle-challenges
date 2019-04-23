@@ -24,6 +24,9 @@ system:
       - mountPath: /home/scone/logs
         name: logvolservice
 
+    #Using test service account created by SAM: https://git.soma.salesforce.com/sam/manifests/pull/22520
+    serviceAccountName: zoobernetes-service-account
+
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
