@@ -27,6 +27,8 @@ system:
       env:
       - name: ES_HOSTS
         value: shared0-samminionzipkin1-10-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-12-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-13-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-2-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-5-prd.eng.sfdc.net:9200
+      - name: ES_INDEX_REPLICAS
+        value: 2 	
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
       - name: KAFKA_ACCEPT_BATCH_SIZE
