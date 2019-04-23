@@ -17,7 +17,7 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - zipkin-beta
+        - zipkin-beta-test
     - name: oauth2-proxy-secrets
       k4aSecret:
         secretName: oauth2-proxy
@@ -62,3 +62,15 @@ system:
           path: /health
           port: 9411
         initialDelaySeconds: 120
+
+  loadbalancers:
+  - lbname: zipkin-beta-test
+    function: zipkin-beta
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9411
+        lbtype: http
+      - port: 443
+        targetport: 8443
+        lbtype: tcp
