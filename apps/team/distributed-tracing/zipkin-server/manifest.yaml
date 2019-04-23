@@ -20,10 +20,10 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - zipkin-server
+        - zipkin-beta
     - name: secretvol
-      secret:
-       secretName: jkspass
+      k4aSecret:
+        secretName: jkspassprd
     - name: oauth2-proxy-secrets
       k4aSecret:
         secretName: oauth2-proxy
@@ -32,7 +32,9 @@ system:
       image: docker-dva-rc/dva/zipkin-collector:56
       env:
       - name: ES_INDEX_REPLICAS
-        value: 0
+        value: 2
+      - name: ES_HOSTS
+        value: shared0-samminionzipkin1-10-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-12-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-13-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-2-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-5-prd.eng.sfdc.net:9200
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
       - name: KAFKA_ACCEPT_BATCH_SIZE
@@ -41,6 +43,8 @@ system:
         value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
       - name: KAFKA_TOPIC
         value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy__prd.ajna_local__tracing,sfdc.prod.distributed-tracing.zipkin-kafka-proxy__ord.ajna_local__tracing,sfdc.prod.distributed-tracing.zipkin-kafka-proxy__iad.ajna_local__tracing
+      - name: KAFKA_GROUP_ID
+        value: dt-zk-beta
       - name: ZIPKIN_ARGS
         value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
       - name: datacenter
@@ -65,13 +69,13 @@ system:
         containerPort: 8443
       env:
       - name: ZIPKIN_HOST
-        value: zipkin-server
+        value: zipkin-beta
       - name: ZIPKIN_SERVER
         value: localhost
       - name: ZIPKIN_SERVER_PORT
         value: 9422
       - name: ZIPKIN_ENDPOINT
-        value: https://zipkin.eng.sfdc.net
+        value: https://zipkin-beta.distributed-tracing.prd-sam.prd.slb.sfdc.net/
       - name: AUTH_ENABLED
         value: false
       volumeMounts:
@@ -85,13 +89,15 @@ system:
           # TODO: Check if process is running?
           command:
           - /bin/true
-    - name: zipkin-server
+    - name: zipkin-beta
       image: docker-dva-rc/dva/zipkin-server:35
       resources:
          # forcing the pods to different hosts (each has 56 CPU)
         limits: { cpu: "30", memory: "12Gi" }
         requests: { cpu: "30", memory: "12Gi" }
       env:
+      - name: ES_HOSTS
+        value: shared0-samminionzipkin1-10-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-12-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-13-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-2-prd.eng.sfdc.net:9200,shared0-samminionzipkin1-5-prd.eng.sfdc.net:9200
       - name: QUERY_PORT
         value: 9422
       ports:
@@ -104,7 +110,7 @@ system:
         initialDelaySeconds: 120
 
   loadbalancers:
-  - lbname: zipkin-server
+  - lbname: zipkin-beta
     function: zipkin-server
     slbEnabled: true
     ports:
