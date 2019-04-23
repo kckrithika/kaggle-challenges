@@ -27,4 +27,6 @@
     "pperger@salesforce.com",
     # Service-Mesh Team
     "npshenichnyy@salesforce.com",
+    # DVA Team
+    "gjiang@salesforce.com",
 ]
