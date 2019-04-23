@@ -11,7 +11,7 @@ system:
             maxSurge: 0
             maxUnavailable: 1
     containers:
-    - name: spark-beta
+    - name: zipkin-spark-beta
       image: docker-dva-rc/dva/zipkin-dependencies-spark-standalone:13
       resources:
          # To make sure no other apps are deployed on spark host (each has 56 CPU)
