@@ -10,4 +10,4 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: ServiceAccount
   name: zoobernetes-service-account
-  namespace: service-discovery
+  namespace: user-nsail
