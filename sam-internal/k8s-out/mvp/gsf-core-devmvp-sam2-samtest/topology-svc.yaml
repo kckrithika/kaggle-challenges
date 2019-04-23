@@ -22,7 +22,8 @@ spec:
              "name": "cert1",
              "role": "topology-svc-internal",
              "san": [
-              "topology.vip.core.test.us-central1.gcp.sfdc.net"
+              "topology.vip.core.test.us-central1.gcp.sfdc.net",
+              "10.130.2.66"
              ],
              "superpod": null
             },
@@ -32,7 +33,8 @@ spec:
              "name": "client-certs",
              "role": "topology-svc-internal",
              "san": [
-              "topology.vip.core.test.us-central1.gcp.sfdc.net"
+              "topology.vip.core.test.us-central1.gcp.sfdc.net",
+              "10.130.2.66"
              ],
              "superpod": null
             },
@@ -42,7 +44,8 @@ spec:
              "name": "server-certs",
              "role": "topology-svc-internal",
              "san": [
-              "topology.vip.core.test.us-central1.gcp.sfdc.net"
+              "topology.vip.core.test.us-central1.gcp.sfdc.net",
+              "10.130.2.66"
              ],
              "superpod": null
             }
