@@ -1,4 +1,4 @@
-color: blue
+color: green
 db:
   connectionCount: 25
   hostName: mist61ice1-db1-1-prd.eng.sfdc.net
@@ -6,7 +6,7 @@ db:
   lockUser: sneezy
   sid: mist61b218utf
   statsUser: snowwhite
-  user: sleepy
+  user: happy
 endpoints:
   httpProxy: public0-proxy1-0-prd.data.sfdc.net:8080
   publicDNSSuffix: core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
@@ -25,6 +25,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:0c4c543cd166bcb2e5516795a30989bc89165d60
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:5deb946
 name: na8
-nonce: 1555804217268254000
+nonce: 1556044065729944000
 replicaCount: 1
 settingsSuperPod: sp2
