@@ -37,7 +37,7 @@ system:
       - name: TLS_PRIVATE_KEY
         value: /servercerts/server/keys/server-key.pem
       - name: TLS_CA_CERTIFICATE
-        value: /servercerts/ca.pem
+        value: /clientcerts/ca_test/cacerts.pem
       - name: FRONTEND_MADDOG_ID
         value: samapp.user-juppala.zones-ui
       livenessProbe:
@@ -66,4 +66,3 @@ system:
       - port: 4443
         targetport: 8443
         lbtype: tcp
-        tls: false
