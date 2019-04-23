@@ -41,13 +41,9 @@ local utils = import "util_functions.jsonnet";
         "2": self["3"] {
             image_tags+: {
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resource-quota-sfdc-20-itest",
-                kube_state_metrics_image_tag: "3",
-                prometheus_funnel_image_tag: "35",
             },
             feature_flags+: {
                 spark_application_quota_enforcement: "enabled",
-                kube_state_metrics_release: "",
-                ksm_to_prometheus: "",
             },
             version_mapping+: {
             },
@@ -107,6 +103,8 @@ local utils = import "util_functions.jsonnet";
                 spark_operator_image_tag: "11",
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
                 integration_test_tag: "4",
+                kube_state_metrics_image_tag: "3",
+                prometheus_funnel_image_tag: "35",
 
                 # Fleet components including SAM components
                 deployer_image_tag: "2653-de840aef94cedaeb0b971120b108b3570db4eb59",
@@ -117,7 +115,6 @@ local utils = import "util_functions.jsonnet";
                 madkub_injector_image_tag: "11",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 nodeMonitor_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-781-itest",
-                prometheus_funnel_image_tag: "34",
                 snapshot_consumer_image_tag: "sam-0002052-bc0d9ea5",
                 snapshoter_image_tag: "sam-0002052-bc0d9ea5",
                 watchdog_image_tag: "2687-6c147b04d2d506c9fd591d50f400bd86c485b155",  # Add stdout/stderr to watchdog report email for cli-checker
@@ -215,12 +212,7 @@ local utils = import "util_functions.jsonnet";
     spark_operator: flowsnakeconfig.strata_registry + "/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.spark_operator_image_tag,
     spark_operator_watchdog_canary: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-integration-test-runner:" + $.per_phase[$.phase].image_tags.integration_test_tag,
     spark_on_k8s_sample_apps: flowsnakeconfig.strata_registry + "/flowsnake-spark-on-k8s-sample-apps:" + $.per_phase[$.phase].image_tags.integration_test_tag,
-
-    kube_state_metrics: (if std.objectHas($.per_phase[$.phase].image_tags, "kube_state_metrics_image_tag") then
-        flowsnakeconfig.strata_registry + "/kube-state-metrics-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.kube_state_metrics_image_tag
-    else
-        null)
-    ,
+    kube_state_metrics: flowsnakeconfig.strata_registry + "/kube-state-metrics-sfdc-0.0.1:" + $.per_phase[$.phase].image_tags.kube_state_metrics_image_tag,
 
     feature_flags: $.per_phase[$.phase].feature_flags,
     # Convert to the format expected by std.manifestIni for generating Windows-style .ini files
