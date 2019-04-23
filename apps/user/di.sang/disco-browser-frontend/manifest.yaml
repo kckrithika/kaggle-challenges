@@ -14,7 +14,7 @@ system:
           - echo
           - HEALTHY
   loadbalancers:
-  - lbname: disco-browser-frontend-lb
+  - lbname: disco-browser
     function: disco-browser-frontend
     slbenabled: true
     ports:
