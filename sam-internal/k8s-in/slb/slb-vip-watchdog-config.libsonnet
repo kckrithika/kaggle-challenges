@@ -108,6 +108,8 @@ local vipwdConfig = {
       // W-5369186 is the user story in our backlog for addressing this.
       // https://gus.my.salesforce.com/one/one.app#/alohaRedirect/a07B0000005YHAjIAO
       "sfcd-onboarding-test.sfcd.prd-samtwo.prd.slb.sfdc.net:443",
+      "*firefly*test*",
+      "*test*firefly*",
     ],
   },
   "xrd-sam":
