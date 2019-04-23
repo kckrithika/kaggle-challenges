@@ -6,6 +6,7 @@ system:
     count: 1
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"      
+      "routing.mesh.sfdc.net/enabled": "true"
     containers:
 
     - name: shipping

@@ -17,6 +17,7 @@ system:
       disco_role: istio-ordering
     annotations:
       sidecar.istio.io/inject: "true"
+      routing.mesh.sfdc.net/enabled: "true"
     containers:
     - name: ordering
       # Ordering App
