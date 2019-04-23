@@ -18,7 +18,6 @@ system:
           memory: 1.75Gi
           cpu: 1
       args:
-        - "--ignore-db-dir=lost+found"
         - "--character-set-server=utf8mb4"
         - "--collation-server=utf8mb4_bin"
         - "--max_allowed_packet=250M"
