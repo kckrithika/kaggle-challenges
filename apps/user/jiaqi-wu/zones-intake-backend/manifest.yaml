@@ -66,4 +66,4 @@ system:
       - port: 4443
         targetport: 8443
         lbtype: tcp
-        tls: false
+        tls: true
