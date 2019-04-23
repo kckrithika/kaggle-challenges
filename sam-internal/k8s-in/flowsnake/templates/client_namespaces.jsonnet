@@ -21,6 +21,18 @@ if std.length(flowsnake_clients.clients) > 0 then (
             },
         }
         for client in flowsnake_clients.clients
-    ],
+    ] + std.join([], [(if std.objectHas(client, "quota") then
+            [{
+                kind: "ResourceQuota",
+                apiVersion: "v1",
+                metadata: {
+                    name: "quota",
+                    namespace: client.namespace,
+                },
+                spec: {
+                    hard: client.quota,
+                },
+            }]
+         else []) for client in flowsnake_clients.clients]),
 }
 ) else "SKIP"
