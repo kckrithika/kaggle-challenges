@@ -201,7 +201,7 @@ system:
 
     containers:
     - name: coreapp
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17952836
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17959653
 
       command: ["/bin/sh", "-c"]
       args: ["
