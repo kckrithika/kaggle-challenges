@@ -51,6 +51,9 @@ system:
           - /bin/true
     - name: zipkin-alpha
       image: docker-dva-rc/dva/zipkin-server:35
+      env:
+      - name: ZIPKIN_ARGS
+        value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
       resources:
          # forcing the pods to different hosts (each has 56 CPU)
         limits: { cpu: "30", memory: "12Gi" }
