@@ -15,6 +15,8 @@ system:
       disco_pod: ""
       disco_sp: ""
       disco_role: istio-ordering
+      settings_path: stm.-.prd.-.istio-ordering
+      superpod: NONE
     annotations:
       sidecar.istio.io/inject: "true"
       routing.mesh.sfdc.net/enabled: "true"
