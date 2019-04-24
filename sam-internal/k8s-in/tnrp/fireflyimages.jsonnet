@@ -52,11 +52,11 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 2 - prd-sam (Canary)
         "2": $.per_phase["3"] {
-             fireflyintake: "403",
-             fireflycrawler: "403",
-             fireflypackage: "403",
-             fireflypromotion: "403",
-             fireflypullrequest: "403",
+             fireflyintake: "410",
+             fireflycrawler: "410",
+             fireflypackage: "410",
+             fireflypromotion: "410",
+             fireflypullrequest: "410",
              fireflyevalresultmonitor: "327",
              fireflydind: "238",
              rabbitmq: "140",
@@ -65,11 +65,11 @@ local configs = import "config.jsonnet";
 
         ### Release Phase 3 - prd-samtwo (production)
         "3": $.per_phase["4"] {
-             fireflyintake: "403",
-             fireflycrawler: "403",
-             fireflypackage: "403",
-             fireflypromotion: "403",
-             fireflypullrequest: "403",
+             fireflyintake: "410",
+             fireflycrawler: "410",
+             fireflypackage: "410",
+             fireflypromotion: "410",
+             fireflypullrequest: "410",
              fireflyevalresultmonitor: "325",
              fireflydind: "238",
              rabbitmq: "140",
