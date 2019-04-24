@@ -40,7 +40,10 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                                  "--monitorFrequency=10s",
                                                  "--nginxWDmetricsEndpoint=" + configs.funnelVIP,
                                                  "--nginxWDhostnameOverride=$(NODE_NAME)",
-                                             ],
+                                             ] + (if slbflights.fixNginxDataLogging then [
+                                               "--log_dir=" + slbconfigs.logsDir,
+                                               ] else []),
+
                                     volumeMounts: configs.filter_empty(
                                         [
                                             configs.maddog_cert_volume_mount,

@@ -47,4 +47,8 @@ local slbconfigs = import "slbconfig.jsonnet";
     # Reduce the maxUnavailable for realsvrcfg from 20% to 1, so that at most one daemonset
     # pod is offline at a time.
     realsvrCfgRolloutMaxUnavailable: (if slbimages.phaseNum <= 1 then 1 else "20%"),
+
+
+    # Fix logging for slb-nginx-data-watchdog and slb-nginx-data pods
+    fixNginxDataLogging: (slbimages.phaseNum <= 1),
 }

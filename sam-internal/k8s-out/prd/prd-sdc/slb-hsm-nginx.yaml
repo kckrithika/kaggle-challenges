@@ -175,6 +175,7 @@ spec:
         - /sdn/slb-nginx-data
         - --target=/host/data/slb/slb-hsm-nginx/config
         - --connPort=9125
+        - --log_dir=/host/data/slb/logs/slb-hsm-nginx
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2128-ee945b7709daf08d513d8d62d272b81b14ade8ae
         livenessProbe:
           httpGet:
