@@ -17,6 +17,9 @@ spec:
   - name: http1-tls
     port: 443
     targetPort: 7442
+  - name: http-mgmt
+    port: 15372
+    targetPort: 15372
   selector:
     app: topology-svc-internal
   sessionAffinity: None

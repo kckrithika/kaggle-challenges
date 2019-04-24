@@ -4,23 +4,29 @@ metadata:
   annotations:
     cloud.google.com/load-balancer-type: Internal
   labels:
-    app: topology-svc-internal-lb
+    app: consul-internal-lb
     pcn: deploy
-  name: topology-svc-internal-lb
+  name: consul-internal-lb
   namespace: topology-svc
 spec:
   externalTrafficPolicy: Cluster
   ports:
   - name: http
-    port: 8080
-    targetPort: 7022
-  - name: http1-tls
+    port: 8500
+    targetPort: 7014
+  - name: http-tls
     port: 443
     targetPort: 7442
-  - name: http-mgmt
-    port: 15372
-    targetPort: 15372
+  - name: serflan-tcp
+    port: 8301
+    targetPort: 8301
+  - name: serfwan-tcp
+    port: 8302
+    targetPort: 8302
+  - name: server
+    port: 8300
+    targetPort: 8300
   selector:
-    app: topology-svc-internal
+    app: consul-server
   sessionAffinity: None
   type: LoadBalancer
