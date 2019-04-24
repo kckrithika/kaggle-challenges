@@ -49,17 +49,11 @@ system:
             - name: JWT_SECRET_KEY
               value: "geocloudDDNApiPlatformKey"
           volumeMounts:
-            - mountPath: /mysql-secrets/
-              name: mysql-credentials
-              readOnly: true
-            - mountPath: /jwt-secrets/
-              name: jwt-credentials
+            - mountPath: /mgmt-server-secrets/
+              name: mgmt-server-secrets-vol
               readOnly: true
       volumes:
-        - name: mysql-credentials
+        - name: mgmt-server-secrets-vol
           k4aSecret:
-            secretName: mysql-secrets
-        - name: jwt-credentials
-          k4aSecret:
-            secretName: jwt-secrets
+            secretName: mgmt-server-secrets
       lbname: mgmtserver-api-lb

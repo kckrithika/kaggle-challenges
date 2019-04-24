@@ -51,16 +51,16 @@ system:
       volumeMounts:
       - mountPath: /var/lib/mysql
         name: mgmtdbservice
-      - mountPath: /mysql-secrets/
-        name: mysql-credentials
+      - mountPath: /mgmt-server-secrets/
+        name: mgmt-server-secrets-vol
         readOnly: true
     volumes:
     - name: mgmtdbservice
       hostPath:
         path: /home/sfdc-guiapi-db/guiapi/data
-    - name: mysql-credentials
+    - name: mgmt-server-secrets-vol
       k4aSecret:
-        secretName: mysql-secrets
+        secretName: mgmt-server-secrets
   loadbalancers:
   - lbname: guiapi-db-lb
     function: guiapi-db
