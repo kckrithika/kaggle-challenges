@@ -46462,7 +46462,7 @@
       hostname: "shared0-samminionzipkin1-14-prd.eng.sfdc.net",
       kingdom: "prd",
       pod: "none",
-      rack: "aa38-45",
+      rack: "h38-45",
       superpod: "none",
     },
     {
@@ -46583,7 +46583,7 @@
       hostname: "shared0-samminionzipkin2-10-prd.eng.sfdc.net",
       kingdom: "prd",
       pod: "none",
-      rack: "w06-45",
+      rack: "n11-45",
       superpod: "none",
     },
     {
