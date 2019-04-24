@@ -1,4 +1,3 @@
-local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnake_config = import "flowsnake_config.jsonnet";
 
 if flowsnake_config.is_minikube then
@@ -52,11 +51,7 @@ else
             rules: [
                 {
                     apiGroups: [""],
-                    resources: (
-if std.objectHas(flowsnake_images.feature_flags, "ksm_to_prometheus") then
-                                    ["pods", "nodes", "nodes/proxy", "services", "customresourcedefinitions"]
-                                else ["pods", "nodes", "nodes/proxy", "customresourcedefinitions"]
-                    ),
+                    resources: ["pods", "nodes", "nodes/proxy", "services", "customresourcedefinitions"],
                     verbs: ["get", "list", "watch"],
                 },
                 {

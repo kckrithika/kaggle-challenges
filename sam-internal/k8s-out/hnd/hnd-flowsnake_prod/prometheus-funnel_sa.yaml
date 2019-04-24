@@ -33,6 +33,7 @@ items:
     - pods
     - nodes
     - nodes/proxy
+    - services
     - customresourcedefinitions
     verbs:
     - get

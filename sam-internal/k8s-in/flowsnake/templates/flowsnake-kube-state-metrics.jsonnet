@@ -1,6 +1,5 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 
-if std.objectHas(flowsnake_images.feature_flags, "kube_state_metrics_release") then
 {
     apiVersion: "v1",
     kind: "List",
@@ -248,5 +247,4 @@ if std.objectHas(flowsnake_images.feature_flags, "kube_state_metrics_release") t
             },
         },
     ],
-} else
-"SKIP"
+}
