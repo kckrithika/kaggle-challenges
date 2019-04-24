@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: syncmaster
-      image: dva-registry.internal.salesforce.com/dva/winterfell-syncmaster:latest
+      image: docker-dva-rc/dva/winterfell-syncmaster:3-31d1fb5f18edcff094e2a920f03ad836ab1511e7
       env:
       - name: SPRING_CONFIG_NAME
         value: prod
