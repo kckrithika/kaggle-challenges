@@ -61,7 +61,7 @@ system:
       - name : SERVICE_USER_PASSWORD
         value: "6LmQ8ZlrL6hR6WAXJ7uezndKuObPsD4E"
       - name : ACDS_APISERVER_HOST
-        value: "10.251.163.150"
+        value: "10.251.163.71"
       - name : ACDS_APISERVER_PORT
         value: "5004"
       - name : ACDS_APISERVER_HTTPS
