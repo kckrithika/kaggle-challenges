@@ -8,7 +8,7 @@ system:
       app: shipping-envoy-tls
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"      
-      "routing.mesh.sfdc.net/enabled": "true"
+      "routing.mesh.sfdc.net/enabled": "false"
     containers:
 
     - name: shipping
