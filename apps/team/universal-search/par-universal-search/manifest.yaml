@@ -6,7 +6,7 @@ system:
     - universalsearch@salesforce.com
   functions:
   - name: universal-search
-    count: 3
+    count: 4
     volumes:
     - name: client-cert-vol
       maddogCert:
@@ -25,15 +25,16 @@ system:
         secretName: solrcloudcli-keytab-private
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:0.7.5
+      image: sfci/searchdev/universal-search:1.1.7
       ports:
       - name: service-port
         containerPort: 7020
       - name: admin-port
         containerPort: 15372
       resources:
-        limits: { cpu: "4", memory: "8Gi" }
-        requests: { cpu: "4", memory: "8Gi" }
+        limits:
+          cpu: "20"
+          memory: "16Gi"
       env:
       - name: KRB5_CONF
         value: /home/sfdc-usmt/krb-config/krb5_searchzk_par.conf
@@ -51,7 +52,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 120
+        initialDelaySeconds: 60
         timeoutSeconds: 10
         periodSeconds: 120
         failureThreshold: 1
@@ -66,8 +67,9 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits:
+          cpu: "1"
+          memory: "1Gi"
       volumeMounts:
         - name: server-cert-vol
           mountPath: /server-certs
@@ -111,24 +113,23 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search-synthetics
-      image: sfci/searchdev/universal-search-synthetics:0.0.3
-      resources:
-        limits: { cpu: "1", memory: "2Gi" }
-        requests: { cpu: "1", memory: "2Gi" }
+      image: sfci/searchdev/universal-search-synthetics:0.1.0
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
       livenessProbe:
         exec:
           command: ["true"]
-      readinessProbe:
-        exec:
-          command:
-          - "/home/sfdc-usmt/run.sh"
-        initialDelaySeconds: 120
-        timeoutSeconds: 30
-        periodSeconds: 900
-        failureThreshold: 1
+#       readinessProbe:
+#         exec:
+#           command:
+#           - "/home/sfdc-usmt/run.sh"
+#           - "--domain"
+#           - "synthetics-shared"
+#         initialDelaySeconds: 120
+#         timeoutSeconds: 30
+#         periodSeconds: 900
+#         failureThreshold: 1
     - name: sherpa
       image: sfci/servicelibs/sherpa-envoy:1.0.5
       ports:
@@ -138,8 +139,9 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits:
+          cpu: "1"
+          memory: "1Gi"
       volumeMounts:
       - name: client-cert-vol
         mountPath: /client-certs
@@ -149,11 +151,11 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-        initialDelaySeconds: 120
+        initialDelaySeconds: 60
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 110
+        initialDelaySeconds: 50
         periodSeconds: 5
