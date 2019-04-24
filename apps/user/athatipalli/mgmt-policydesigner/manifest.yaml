@@ -1,0 +1,51 @@
+apiVersion: v1
+system:
+  functions:
+    - name: mgmt-policydesigner
+      count: 1
+      type: stateful-set
+      containers:
+        - name: mgmt-policydesigner
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmt-policydesigner:1.0
+          livenessProbe:
+            exec:
+              command: ["curl", "http://127.0.0.1:8080/"]
+            initialDelaySeconds: 60
+            timeoutSeconds: 10
+          ports:
+          - containerPort: 8080
+          resources:
+            requests:
+              cpu: 2
+              memory: 3Gi
+            limits:
+              cpu: 3
+              memory: 4Gi
+          env:
+            - name: SHELL
+              value: "/bin/bash"
+            - name: UP_STRING
+              value: "Policydesigner Server Blocking."
+            - name: SERVERNAME
+              value: 10.251.163.132
+            - name: SERVERPORT
+              value: 5004
+            - name: POLICY_DESIGNER_DB_USER
+              value: ddnuser      
+            - name: NODE_ENV
+              value: "production"
+            - name: POLICY_DESIGNER_DB_HOSTNAME
+              value: guiapi-db-lb
+            - name: POLICY_DESIGNER_DB_PORT
+              value: 3306  
+            - name: MYSQL_USER
+              value: "ddnuser"
+            - name: POLICY_DESIGNER_DB_ROOT_PASSWORD
+              value: "rootPassword"
+            - name: MYSQL_ROOT
+              value: "root"
+            - name: POLICY_DESIGNER_DB_NAME
+              value: "griddable"
+            - name: POLICY_DESIGNER_DB_PASSWORD
+              value: "ddnpassword"
+      lbname: mgmt-policydesigner-lb
