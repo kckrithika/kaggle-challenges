@@ -14,9 +14,6 @@ system:
             timeoutSeconds: 10
           ports:
           - containerPort: 5004
-          args:
-            - log.stdout.enabled=true
-            - log.stdout.json=false
           resources:
             requests:
               cpu: 2
