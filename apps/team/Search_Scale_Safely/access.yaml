@@ -6,6 +6,9 @@ users:
   - mezbiderli
   - prahlad.venkatesh
   - vbhandari
-  - svc-universalsearch
   - hyan
   - sunil.kksubramanyam
+
+# Service Accounts
+  - svc-universalsearch
+  - svc-atf-user
