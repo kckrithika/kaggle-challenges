@@ -53,11 +53,11 @@ system:
       - name : HOME
         value: "/root"
       - name : SERVICE_USER_EMAIL
-        value: "admin_acds@local"
+        value: "acds_admin@local"
       - name : TOKEN_SECRET
         value: "jJ5mPbFutWIzGIGvehio1onUctIv5yd3"
       - name : SERVICE_USER_NAME
-        value: "admin_acds"
+        value: "acds_admin"
       - name : SERVICE_USER_PASSWORD
         value: "6LmQ8ZlrL6hR6WAXJ7uezndKuObPsD4E"
       - name : ACDS_APISERVER_HOST
