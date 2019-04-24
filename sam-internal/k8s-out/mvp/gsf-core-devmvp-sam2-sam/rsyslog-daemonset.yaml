@@ -27,7 +27,7 @@ spec:
              "cert-type": "client",
              "kingdom": "mvp",
              "name": "client-certs",
-             "role": "sam-system.cadvisor-exporter-daemonset",
+             "role": "sam-system.collection-agent-daemonset",
              "san": null,
              "superpod": null
             },
@@ -35,7 +35,7 @@ spec:
              "cert-type": "server",
              "kingdom": "mvp",
              "name": "server-certs",
-             "role": "sam-system.cadvisor-exporter-daemonset",
+             "role": "sam-system.collection-agent-daemonset",
              "san": null,
              "superpod": null
             }
@@ -48,7 +48,7 @@ spec:
       containers:
       - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc_rsyslog_gcp:12-8e9921811d4c5a6c0e48ea8f1ca306f42b922e51
         imagePullPolicy: Always
-        name: rsyslog-daemonset
+        name: rsyslog
         resources:
           limits:
             cpu: 300m

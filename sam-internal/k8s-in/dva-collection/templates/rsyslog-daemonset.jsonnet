@@ -126,7 +126,7 @@ for certReq in madkub.madkubRsyslogCertsAnnotation(certDirs).certreqs
                 initContainers: initContainers,
                 containers: [
                     {
-                        name: "rsyslog-daemonset",
+                        name: "rsyslog",
                         imagePullPolicy: "Always",
                         image: rsyslogimages.rsyslog,
                         resources: {
