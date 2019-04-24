@@ -40,6 +40,8 @@ system:
           name: wardenservercert
         - mountPath: /warden-secrets/
           name: splunk-credentials
+        - mountPath: /warden-secrets/argus-secrets/
+          name: argus-secrets
           readOnly: true
         livenessProbe:
           httpGet:
@@ -65,6 +67,9 @@ system:
       - name: splunk-credentials
         k4aSecret:
           secretName: warden-secrets
+      - name: argus-secrets
+        k4aSecret:
+          secretName: argus-secrets
 
     loadbalancers:
     - lbname: warden-stage-node
