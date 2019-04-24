@@ -22,8 +22,8 @@ system:
         lbnames:
         - zipkin-beta
     - name: secretvol
-      k4aSecret:
-        secretName: jkspassprd
+      secret:
+       secretName: jkspass
     - name: oauth2-proxy-secrets
       k4aSecret:
         secretName: oauth2-proxy
