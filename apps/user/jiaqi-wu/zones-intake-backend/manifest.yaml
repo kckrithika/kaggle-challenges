@@ -18,8 +18,8 @@ system:
           type: client
     containers:
     - name: zones-intake-backend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:49
-      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:mtls5
+      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:49
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:mtls6
       ports:
       - containerPort: 7022
       - containerPort: 8443
@@ -36,8 +36,8 @@ system:
         value: /servercerts/server/certificates/server.pem
       - name: TLS_PRIVATE_KEY
         value: /servercerts/server/keys/server-key.pem
-      - name: TLS_CA_CERTIFICATE
-        value: /clientcerts/ca.pem
+      # - name: TLS_CA_CERTIFICATE
+      #   value: /clientcerts/ca.pem
       - name: FRONTEND_MADDOG_ID
         value: samapp.user-juppala.zones-ui
       livenessProbe:
