@@ -26,7 +26,7 @@ if std.length(flowsnake_clients.clients) > 0 then (
                 kind: "ResourceQuota",
                 apiVersion: "v1",
                 metadata: {
-                    name: "quota",
+                    name: "quota-" + client.namespace,
                     namespace: client.namespace,
                 },
                 spec: {
