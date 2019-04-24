@@ -119,6 +119,8 @@ items:
           - --servicesToLbOverride=
           - --servicesNotToLbOverride=illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc
           - --control.configProcSentinel=/host/data/slb/config/slb-portal-ord/slb-config-proc.sentinel
+          - --vipdnsoptions.viplocation=ord-sam.ord
+          - --k8sapiserver=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ord-sam
           env:
           - name: KUBECONFIG
             value: /kubeconfig/kubeconfig-platform
@@ -275,6 +277,7 @@ items:
           - --vcioptions.strict=true
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-ord/slb-manifest-watcher.sentinel
+          - --vipdnsoptions.viplocation=ord-sam.ord
           env:
           - name: KUBECONFIG
             value: /kubeconfig/kubeconfig-platform
@@ -494,6 +497,8 @@ items:
           - --servicesToLbOverride=
           - --servicesNotToLbOverride=illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc
           - --control.configProcSentinel=/host/data/slb/config/slb-portal-iad/slb-config-proc.sentinel
+          - --vipdnsoptions.viplocation=iad-sam.iad
+          - --k8sapiserver=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/iad-sam
           env:
           - name: KUBECONFIG
             value: /kubeconfig/kubeconfig-platform
@@ -650,6 +655,7 @@ items:
           - --vcioptions.strict=true
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-iad/slb-manifest-watcher.sentinel
+          - --vipdnsoptions.viplocation=iad-sam.iad
           env:
           - name: KUBECONFIG
             value: /kubeconfig/kubeconfig-platform
@@ -869,6 +875,8 @@ items:
           - --servicesToLbOverride=
           - --servicesNotToLbOverride=illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc
           - --control.configProcSentinel=/host/data/slb/config/slb-portal-phx/slb-config-proc.sentinel
+          - --vipdnsoptions.viplocation=phx-sam.phx
+          - --k8sapiserver=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/phx-sam
           env:
           - name: KUBECONFIG
             value: /kubeconfig/kubeconfig-platform
@@ -1025,6 +1033,7 @@ items:
           - --vcioptions.strict=true
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-phx/slb-manifest-watcher.sentinel
+          - --vipdnsoptions.viplocation=phx-sam.phx
           env:
           - name: KUBECONFIG
             value: /kubeconfig/kubeconfig-platform
@@ -1244,6 +1253,8 @@ items:
           - --servicesToLbOverride=
           - --servicesNotToLbOverride=illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc
           - --control.configProcSentinel=/host/data/slb/config/slb-portal-dfw/slb-config-proc.sentinel
+          - --vipdnsoptions.viplocation=dfw-sam.dfw
+          - --k8sapiserver=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/dfw-sam
           env:
           - name: KUBECONFIG
             value: /kubeconfig/kubeconfig-platform
@@ -1400,6 +1411,7 @@ items:
           - --vcioptions.strict=true
           - --client.allowStale=true
           - --control.manifestWatcherSentinel=/host/data/slb/config/slb-portal-dfw/slb-manifest-watcher.sentinel
+          - --vipdnsoptions.viplocation=dfw-sam.dfw
           env:
           - name: KUBECONFIG
             value: /kubeconfig/kubeconfig-platform
