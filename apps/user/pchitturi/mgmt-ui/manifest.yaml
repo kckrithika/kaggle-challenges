@@ -12,6 +12,9 @@ system:
               command: ["curl", "http://127.0.0.1:3000/"]
             initialDelaySeconds: 120
             timeoutSeconds: 10
+          args:
+          - log.stdout.enabled=true
+          - log.stdout.json=false
           ports:
           - containerPort: 3000
           resources:
