@@ -5,7 +5,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local arr = [
     ({
         name: kingdomName,
-        href: "https://slb-portal-%s.%s.%s.slb.sfdc.net" % [kingdomName, configs.estate, configs.kingdom],
+        href: "https://slb-portal-%s.slb.sfdc.net" % [kingdomName],
     })
 for kingdomName in slbconfigs.prodKingdoms
 ];
