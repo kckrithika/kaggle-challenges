@@ -14,8 +14,8 @@ system:
             timeoutSeconds: 10
           ports:
           - containerPort: 5004
-          args:
-            - --logDir=/var/log/geocloud/mgmt-platform/mgmt-server
+          # args:
+          #   - --logDir=/var/log/geocloud/mgmt-platform/mgmt-server
           resources:
             requests:
               cpu: 2
