@@ -47,7 +47,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2127-fe77bd248de279f2f1b8475b97e357044a173c63
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2128-ee945b7709daf08d513d8d62d272b81b14ade8ae
         name: slb-fred
         resources:
           limits:
