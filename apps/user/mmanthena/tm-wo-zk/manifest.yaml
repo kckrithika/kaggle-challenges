@@ -28,22 +28,48 @@ system:
       env:
       - name : UP_STRING
         value: "ACDS TaskManager Started. Blocking."
-      - name : UP_STRING
+      - name : ACDS_START_TASKMANAGER
         value: "yes"
-#      - name : ACDS_APISERVER_HOST
-#        value: 
-#      - name : ACDS_APISERVER_PORT
-#        value: 
-#      - name : ACDS_APISERVER_HTTPS
-#        value:
+      - name : TENANT_ADMIN_NAME
+        value: "admin@local"
+      - name : TENANT_ADMIN_PASSWORD
+        value: "synchronize"
+      - name : DD_NAME
+        value: "Target_1"
+      - name : DB_NAME
+        value: "ddnprod"
+      - name : GRID_CONNECTION_ID
+        value: "DS_CONN_DD_1"
+      - name : PATH
+        value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      - name : JAVA_HOME
+        value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64"
+      - name : LANG
+        value: "en_US.UTF-8"
+      - name : GRID_NAME
+        value: "Grid_01"
+      - name : GRID_CONNECTION_NAME
+        value: "DS_CONN_DD_1"
+      - name : HOME
+        value: "/root"
+      - name : SERVICE_USER_EMAIL
+        value: "admin_acds@local"
+      - name : TOKEN_SECRET
+        value: "jJ5mPbFutWIzGIGvehio1onUctIv5yd3"
+      - name : SERVICE_USER_NAME
+        value: "admin_acds"
+      - name : SERVICE_USER_PASSWORD
+        value: "6LmQ8ZlrL6hR6WAXJ7uezndKuObPsD4E"
+      - name : ACDS_APISERVER_HOST
+        value: "10.251.163.150"
+      - name : ACDS_APISERVER_PORT
+        value: "443"
+      - name : ACDS_APISERVER_HTTPS
+        value: "true"
       - name : ACDS_APISERVER_ZKCONN
         value: "shared0-discovery1-0-crd.data.sfdc.net:2181"
       - name : SERVICE_USER_EMAIL
         value: mmanoj@salesforce.com
-#      - name : SERVICE_USER_PASSWORD
-#        value:
-#      - name : TOKEN_SECRET
-#        value:
     volumes:
     - name: tls-client-cert
       maddogCert:
