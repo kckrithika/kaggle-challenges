@@ -12,7 +12,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
   subjects: [
         {
           kind: "ServiceAccount",
-          name: "zoobernetes-service-account",
+          name: "zoobernetessvcaccount",
           namespace: "user-nsail",
          },
    ],

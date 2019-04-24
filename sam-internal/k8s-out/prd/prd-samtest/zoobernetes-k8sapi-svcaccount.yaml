@@ -3,5 +3,5 @@ kind: ServiceAccount
 metadata:
   labels:
     app: zoobernetes
-  name: zoobernetes-service-account
+  name: zoobernetessvcaccount
   namespace: user-nsail

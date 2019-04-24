@@ -11,5 +11,5 @@ roleRef:
   name: zoobernetes-serviceentries-readwrite
 subjects:
 - kind: ServiceAccount
-  name: zoobernetes-service-account
+  name: zoobernetessvcaccount
   namespace: user-nsail
