@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/moana-engine:521-96ffec86ddd5bd5bc5e11d5fdd594737a01ea0b4
+    - image: ops0-artifactrepo1-0-cdu.data.sfdc.net/sfci/insights/moanaengine:release-4-36e3fdf
       livenessProbe:
         exec:
           command: [ls]
@@ -27,8 +27,7 @@ system:
       - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: cdu-group1}
-      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'false'}
-      image: sfci/insights/moana-driver:release-7-6cc9a0f
+      image: sfci/insights/moana-driver:release-12-2319d24
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -55,15 +54,16 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-cdu.data.sfdc.net/dva/moana-engine:521-96ffec86ddd5bd5bc5e11d5fdd594737a01ea0b4'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-cdu.data.sfdc.net/sfci/insights/moanaengine:release-4-36e3fdf'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
           "-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops",
           "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: cdu-group1}
+      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'false'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-cdu.data.sfdc.net'}
-      - {name: MAESTRO_ENDPOINT, value: 'https://insights-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
-      image: sfci/insights/jobcontroller:release-103-b5d1371
+      - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
+      image: sfci/insights/jobcontroller:release-105-c9b9445
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90

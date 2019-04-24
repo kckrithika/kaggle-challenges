@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/moana-engine:521-96ffec86ddd5bd5bc5e11d5fdd594737a01ea0b4
+    - image: ops0-artifactrepo1-0-phx.data.sfdc.net/sfci/insights/moanaengine:release-4-36e3fdf
       livenessProbe:
         exec:
           command: [ls]
@@ -27,7 +27,7 @@ system:
       - {name: TESTRECIPE_LASTSUCCESSTARGET, value: 360s}
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: phx-group1}
-      image: sfci/insights/moana-driver:release-7-6cc9a0f
+      image: sfci/insights/moana-driver:release-12-2319d24
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -35,7 +35,6 @@ system:
         timeoutSeconds: 30
       name: moana-driver
       ports:
-      - {containerPort: 8080, name: http}
       - {containerPort: 15372, name: mgmt}
       resources:
         limits: {cpu: 2, memory: 2G}
@@ -43,6 +42,7 @@ system:
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
     count: 1
+    hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-group1
     volumes:
@@ -54,13 +54,14 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-phx.data.sfdc.net/dva/moana-engine:521-96ffec86ddd5bd5bc5e11d5fdd594737a01ea0b4'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-phx.data.sfdc.net/sfci/insights/moanaengine:release-4-36e3fdf'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
           "-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops",
           "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: phx-group1}
-      image: sfci/insights/jobcontroller:release-103-b5d1371
+      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'false'}
+      image: sfci/insights/jobcontroller:release-105-c9b9445
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
@@ -106,6 +107,7 @@ system:
       - {mountPath: /client-certs, name: tls-client-certs}
       - {mountPath: /log, name: sherpa-log-volume}
     count: 1
+    hostnetwork: false
     identity: {serviceName: datapool}
     name: jobcontroller-group1
     volumes:
