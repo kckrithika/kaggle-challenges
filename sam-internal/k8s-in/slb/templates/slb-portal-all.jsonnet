@@ -152,7 +152,7 @@ local deployments = [
             },
         },
     }
-for kingdomName in ["ord", "iad"]
+for kingdomName in ["ord", "iad", "phx", "dfw"]
 ];
 
 local slbflights = import "slbflights.jsonnet";
