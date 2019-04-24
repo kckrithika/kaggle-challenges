@@ -50,6 +50,10 @@ system:
               value: "ddnpassword"
             - name: JWT_SECRET_KEY
               value: "geocloudDDNApiPlatformKey"
+            - name: LOGGING_JSON_STDOUT_LEVEL
+              value: all
+            - name: LOGGING_STDERR_LEVEL
+              value: all
           volumeMounts:
             - mountPath: /var/log/geocloud/mgmt-platform/mgmt-server
               name: logvol
