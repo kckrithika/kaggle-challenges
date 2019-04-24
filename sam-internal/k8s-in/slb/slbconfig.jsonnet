@@ -29,7 +29,7 @@
     hsmNginxProxyName: "slb-hsm-nginx",
     envoyProxyName: "slb-envoy",
     # The aggregated portal only makes sense to deploy in prd, where we have access and can link to the pseudo-api servers.
-    isSlbAggregatedPortalEstate: (estate == "prd-sdc"),
+    isSlbAggregatedPortalEstate: (estate == false),
 
     slbEstate: (
         if $.isTestEstate then
