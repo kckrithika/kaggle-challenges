@@ -29,6 +29,7 @@ local configs = import "config.jsonnet";
        logarchive: "2",
        cadvisor: "v0.30.2",
        cadvisor_scraper: "v0.1alpha3",
+       ocagent: "dfc627d96678135648799bc2969f2fe0ce1cc317",
        sherpa: "eeb8e3bfc9d7912299ed28658895aca9523f348f",
      },
 
@@ -78,5 +79,6 @@ local configs = import "config.jsonnet";
     logarchive: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_log_archiver:" + $.per_phase[$.phase].logarchive,
     cadvisor: "k8s.gcr.io/cadvisor:" + $.per_phase[$.phase].cadvisor,
     cadvisor_scraper: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/collection-cadvisor-scraper:" + $.per_phase[$.phase].cadvisor_scraper,
+    ocagent: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/opencensus-service:" + $.per_phase[$.phase].ocagent,
     sherpa: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:" + $.per_phase[$.phase].sherpa,
 }

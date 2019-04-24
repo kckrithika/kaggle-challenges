@@ -45,25 +45,17 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
         },
     ],
 
-    ## generated cadvisor yaml file and rsyslog config file for cadvisor-rsyslog daemonset
-    cadvisor_yaml_volume():: [
+    ## generated ocagent config file ocagent daemonset
+    ocagent_config_volume():: [
         {
-            name: "cadvisor-yaml",
-            emptyDir: {},
-        },
-        {
-            name: "rsyslog-config",
+            name: "ocagent-config",
             emptyDir: {},
         },
     ],
-    cadvisor_yaml_volume_mounts():: [
+    ocagent_config_volume_mounts():: [
         {
-            mountPath: "/etc/cadvisor",
-            name: "cadvisor-yaml",
-        },
-        {
-            mountPath: "/etc/rsyslog.d",
-            name: "rsyslog-config",
+            mountPath: "/etc/opencensus",
+            name: "ocagent-config",
         },
     ],
 
@@ -83,18 +75,18 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
         },
     ],
 
-    ## cadvisor-rsyslog config-gen templates
-    cadvisor_config_gen_tpl_volume_mounts():: [
+    ## ocagent config-gen templates
+    ocagent_config_gen_tpl_volume_mounts():: [
         {
-            mountPath: "/templates/cadvisor",
-            name: "cadvisor-config-tpl",
+            mountPath: "/templates/ocagent",
+            name: "ocagent-config-tpl",
         },
     ],
-    cadvisor_config_gen_tpl_volume():: [
+    ocagent_config_gen_tpl_volume():: [
         {
-            name: "cadvisor-config-tpl",
+            name: "ocagent-config-tpl",
             configMap: {
-                name: "cadvisor-configmap",
+                name: "ocagent-configmap",
             },
         },
     ],
@@ -157,53 +149,6 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
 
     ],
 
-    ## sfdc-scraper specific volumes
-    sfdc_scraper_volume():: [
-        {
-            name: "var-run",
-            hostPath: {
-                path: "/var/run",
-            },
-        },
-        {
-            name: "sys",
-            hostPath: {
-                path: "/sys",
-            },
-        },
-        {
-            name: "docker",
-            hostPath: {
-                path: "/var/lib/docker",
-            },
-        },
-        {
-            name: "disk",
-            hostPath: {
-                path: "/dev/disk",
-            },
-        },
-    ],
-    sfdc_scraper_volume_mounts():: [
-        {
-            mountPath: "/var/run",
-            name: "var-run",
-        },
-        {
-            name: "sys",
-            mountPath: "/sys",
-        },
-        {
-            mountPath: "/var/lib/docker",
-            name: "docker",
-        },
-        {
-            mountPath: "/dev/disk",
-            name: "disk",
-        },
-
-    ],
-
     ## Service mesh volumes
     sherpa_volume_mounts():: [
         {
@@ -242,9 +187,9 @@ local images = (import "collection-agent-images.libsonnet") + { templateFilename
         env: env,
     },
 
-    config_gen_cadvisor_init_container(config_name, template, manifest, output_path, env)::
+    config_gen_ocagent_init_container(config_name, template, manifest, output_path, env)::
         $.config_gen_rsyslog_init_container(config_name, template, manifest, output_path, env) {
-            volumeMounts: $.cadvisor_yaml_volume_mounts() + $.cadvisor_config_gen_tpl_volume_mounts(),
+            volumeMounts: $.ocagent_config_volume_mounts() + $.ocagent_config_gen_tpl_volume_mounts(),
         },
 
     ## file based specific config gen
