@@ -271,6 +271,7 @@
             + {
                 "prd-sam": 50,
                 "xrd-sam": 20,
+                "prd-sdc": 16,
                 vpod: $.maxDeleteDefault,
             },
 
