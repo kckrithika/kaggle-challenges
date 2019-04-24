@@ -18,9 +18,8 @@ local wave_elt_production = {
         #     namespace: "some_client_namespace", # Kubernetes namespace
         #     pki-namespace: "some_pki_namespace", # Used to generate OU fields on client certs per https://git.soma.salesforce.com/dva-transformation/madkub-injector-webhook/#behavior-and-user-configuration
         #     users: ["clientrole.client_app1", "clientrole.client_app2"], # client OUs which may access namespace
-        #     quota: { # Quota support not yet implemented
+        #     quota: {
         #         cpu: 1000,
-        #         pods: 200,
         #         memory: "20Gi"
         #         [...etc]
         #     }
@@ -35,6 +34,10 @@ local wave_elt_production = {
                 namespace: "wave-elt",
                 pki_namespace: "wave-elt",
                 users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
+                quota: {
+                    memory: "100Gi",
+                    cpu: "40",
+                },
             },
         ],
 
