@@ -39,7 +39,7 @@ system:
             - name: POLICY_DESIGNER_DB_PORT
               value: 3306  
             - name: MYSQL_USER
-              value: "ddnuser"
+              value: "pduser"
             - name: POLICY_DESIGNER_DB_ROOT_PASSWORD
               value: "rootPassword"
             - name: MYSQL_ROOT
@@ -47,5 +47,5 @@ system:
             - name: POLICY_DESIGNER_DB_NAME
               value: "griddable"
             - name: POLICY_DESIGNER_DB_PASSWORD
-              value: "ddnpassword"
+              value: "pdpassword"
       lbname: mgmt-policydesigner-lb
