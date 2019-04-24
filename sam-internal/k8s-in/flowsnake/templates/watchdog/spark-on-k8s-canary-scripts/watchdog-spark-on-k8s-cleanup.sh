@@ -113,16 +113,10 @@ kcfw() {
         # In addition to the timeout for this specific kubectl command, we need to check that the script hasn't
         # passed its overall timeout.
         EPOCH=$(epoch)
-        if (( EPOCH - START_TIME >= TIMEOUT_SECS )); then
-            log "Test timeout reached. Aborting attempt to execute [kubectl -n ${NAMESPACE} $@]."
-            return 124
-        fi
         stdout=$(mktemp /tmp/$(basename $0)-stdout.XXXXXX)
         stderr=$(mktemp /tmp/$(basename $0)-stderr.XXXXXX)
-        set +o errexit
-        timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} $@ 2>${stderr} >${stdout}
-        RESULT=$?
-        set -o errexit
+        # Capture result code, don't trigger errexit. https://stackoverflow.com/a/15844901
+        timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} $@ 2>${stderr} >${stdout} && RESULT=$? || RESULT=$?
         # Hack to simplify scripting: if you try to delete something and get back a NotFound, treat that as a success.
         if [[ $(echo "$@" | grep -P '\bdelete\b') && $(grep -P '\(NotFound\).* not found' ${stderr}) ]]; then
             return 0
@@ -141,7 +135,10 @@ kcfw() {
             return $RESULT;
         fi;
         MSG="Invocation ($ATTEMPT/$KUBECTL_ATTEMPTS) of [kubectl -n ${NAMESPACE} $@] failed ($(if (( $RESULT == 124 || $RESULT == 137 )); then echo "timed out (${KUBECTL_TIMEOUT_SECS}s)"; else echo $RESULT; fi))."
-        if (( $ATTEMPT < $KUBECTL_ATTEMPTS )); then
+        if (( EPOCH - START_TIME >= TIMEOUT_SECS )); then
+            log "$MSG Out of time. Giving up." >&2
+            return ${RESULT}
+        elif (( $ATTEMPT < $KUBECTL_ATTEMPTS )); then
             log "$MSG Will sleep $KUBECTL_TIMEOUT_SECS seconds and then try again." >&2
             sleep ${KUBECTL_TIMEOUT_SECS}
         else
@@ -177,6 +174,7 @@ state() {
 }
 
 # Output logs for specified pod to stdout
+# Future: Alternatively, generate a Splunk link?
 pod_log() {
     log_sub_heading "Begin $1 Log"
     # || true to avoid failing script if pod has gone away.
@@ -288,6 +286,9 @@ log "Creating SparkApplication $APP_NAME"
 kcfw_log create -f $SPEC
 SPARK_APP_START_TIME=$(epoch)
 
+# If we've gotten this far, we'd like to collect as much forensic data as possible
+set +o errexit
+
 LAST_LOGGED=$(epoch)
 log "Waiting for SparkApplication $APP_NAME to reach a terminal state."
 STATE=$(state)
@@ -300,9 +301,6 @@ while true; do
     # Use start time of script for timeout computation in order to still exit in timely fashion even if setup was slow
     if (( EPOCH - START_TIME >= TIMEOUT_SECS )); then
         log "Timeout reached. Aborting wait for SparkApplication $APP_NAME even though in non-terminal state $STATE."
-        # Fire-and-forget delete so that Kubernetes is in a cleaner state when the next test execution starts
-        kubectl -n ${NAMESPACE} delete sparkapplication $APP_NAME 2>&1 > /dev/null || true
-        kubectl -n ${NAMESPACE} delete pod -l $SELECTOR 2>&1 > /dev/null || true
         break
     fi
     if (( EPOCH - LAST_LOGGED > 60 )); then
@@ -333,8 +331,12 @@ for POD_NAME in ${EXECUTOR_PODS}; do
     pod_log ${POD_NAME}
 done;
 
-# Alternatively, generate a Splunk link? Not sure there's a good way to filter for this particular execution, since the driver pod
-# has the same name on every invocation on every fleet.
+if ! $(echo ${STATE} | grep -P '(COMPLETED|FAILED)' > /dev/null); then
+    # Delete so that Kubernetes is in a cleaner state when the next test execution starts
+    log "Cleaning up anything still running."
+    kcfw_log delete sparkapplication ${APP_NAME}
+    kcfw_log delete pod -l ${SELECTOR}
+fi
 
 log_heading "Completion of $APP_NAME test, returning $EXIT_CODE"
 exit ${EXIT_CODE}
