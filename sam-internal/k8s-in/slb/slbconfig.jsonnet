@@ -148,11 +148,27 @@
             set_value_to_all_in_list([], $.testEstates)
             + set_value_to_all_in_list([], $.prodEstates)
             + {
-                "dfw-sam": ["10.214.188.141/32"],
-                "frf-sam": ["10.214.36.129/32"],
-                "par-sam": ["10.214.112.129/32"],
-                "phx-sam": ["10.208.208.144/32"],
-                "prd-sam": ["10.251.196.91/32", "10.251.196.42/32", "10.251.196.111/32", "10.251.196.44/32", "10.251.197.44/32", "10.251.196.212/32"],
+                "dfw-sam": [
+                  "10.214.188.141/32",  # sec0-magister1-0-dfw.slb.sfdc.net
+                ],
+                "frf-sam": [
+                  "10.214.36.129/32",  # kubernetes-api-flowsnake-frf.slb.sfdc.net
+                ],
+                "par-sam": [
+                  "10.214.112.129/32",  # kubernetes-api-flowsnake-par.slb.sfdc.net
+                ],
+                "phx-sam": [
+                  "10.208.208.144/32",  # sec0-magister1-0-phx.slb.sfdc.net.
+                ],
+                "prd-sam": [
+                  "10.251.196.91/32",  # jtuley-rsui-lb.user-jtuley.prd-sam.prd.slb.sfdc.net
+                  "10.251.196.42/32",  # rsui-func-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+                  "10.251.196.111/32",  # rsui-integ-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+                  "10.251.196.44/32",  # rsui-perf-lb.retail-rsui.prd-sam.prd.slb.sfdc.net
+                  "10.251.197.44/32",  # ops0-dvaregistryssl1-0-prd.slb.sfdc.net
+                  "10.251.196.212/32",  # gatekeeper-dashboardlb.gatekeeper.prd-sam.prd.slb.sfdc.net - Peijun Wu - https://computecloud.slack.com/archives/C42SAQVS9/p1556063807120000?thread_ts=1556038442.093300&cid=C42SAQVS9
+                  "10.251.196.113/32",  # ops0-netlog1-0-prd.slb.sfdc.net - Zack Mady - https://computecloud.slack.com/archives/C42SAQVS9/p1556121900123900
+                ],
             },
 
         trustedProxies:
