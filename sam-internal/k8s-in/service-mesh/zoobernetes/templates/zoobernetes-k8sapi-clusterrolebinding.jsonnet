@@ -4,13 +4,16 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
   kind: "ClusterRoleBinding",
   metadata: {
     name: "serviceentries-readwrite-binding",
+    namespace: "user-nsail",
+    labels: {
+      app: "zoobernetes",
+    },
   },
   subjects: [
         {
           kind: "ServiceAccount",
           name: "zoobernetes-service-account",
           namespace: "user-nsail",
-          apiGroup: "rbac.authorization.k8s.io",
          },
    ],
    roleRef: {

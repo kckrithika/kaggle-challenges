@@ -4,6 +4,10 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
   kind: "ClusterRole",
   metadata: {
     name: "zoobernetes-serviceentries-readwrite",
+    namespace: "user-nsail",
+    labels: {
+      app: "zoobernetes",
+    },
   },
   rules: [
   {
