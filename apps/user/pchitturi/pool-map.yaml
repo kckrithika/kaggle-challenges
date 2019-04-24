@@ -1,7 +1,3 @@
 apps:
  mgmt-ui:
   - prd/prd-sam
- mgmt-db:
-  - prd/prd-sam
- mgmt-api:
-  - prd/prd-sam
