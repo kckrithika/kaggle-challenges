@@ -1,9 +1,9 @@
 apiVersion: v1
 data:
-  base.conf.erb: "module(load = \"imfile\")\nmodule(load = \"omkafka\")\nmodule(load
-    = \"omhttp\")\nmodule(load = \"omprog\")\nmodule(load = \"mmexternal\")\nmodule(load
-    = \"mmjsonparse\")\nmodule(load = \"omstdout\")\n\n# load statistics\nmodule(load=\"impstats\"
-    interval=\"120\" format=\"cee\" ruleset=\"rs_impstats2funnel\")\n\nruleset(name=\"ruleset_stdout\")
+  base.conf.erb: "module(load = \"imfile\" mode=\"polling\" PollingInterval=\"5\")\nmodule(load
+    = \"omkafka\")\nmodule(load = \"omhttp\")\nmodule(load = \"omprog\")\nmodule(load
+    = \"mmexternal\")\nmodule(load = \"mmjsonparse\")\nmodule(load = \"omstdout\")\n\n#
+    load statistics\nmodule(load=\"impstats\" interval=\"120\" format=\"cee\" ruleset=\"rs_impstats2funnel\")\n\nruleset(name=\"ruleset_stdout\")
     {  \n  action(type=\"omstdout\")\n}\n\n# funnel json format\ntemplate(name=\"tpl_funnel\"
     type=\"list\") {\n    constant(value=\"{\")   \n    constant(value=\"\\\"service\\\":
     \\\"system\\\"\")\n    constant(value=\",\")   \n    constant(value=\"\\\"metricName\\\":\")
