@@ -33,6 +33,11 @@ if configs.kingdom == 'mvp' then {
               port: 443,
               targetPort: 7442,
           },
+          {
+             name: 'http-mgmt',
+             port: 15372,
+             targetPort: 15372,
+          },
         ],
     },
 } else 'SKIP'
