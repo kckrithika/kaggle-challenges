@@ -2,4 +2,4 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: zoobernetes-service-account
-  namespace: zoobernetes
+  namespace: user-nsail
