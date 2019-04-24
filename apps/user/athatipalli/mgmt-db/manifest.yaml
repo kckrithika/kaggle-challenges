@@ -24,6 +24,8 @@ system:
         - "--character-set-server=utf8mb4"
         - "--collation-server=utf8mb4_bin"
         - "--max_allowed_packet=250M"
+        - log.stdout.enabled=true
+        - log.stdout.json=false
       # set container environment variables
       env:
       - name: SHELL
