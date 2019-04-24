@@ -307,6 +307,16 @@ system:
         # GCS creds used by FFX - this is a k8s secret, not a k4a secret
         - name: GOOGLE_APPLICATION_CREDENTIALS
           value: /var/secrets/google/gsf-core-devmvp-sam2-dd7bedce4ba4.json
+          
+        # Additional parameters to set the system user as needed for core app cron scheduler to work
+        ## for 1az db
+        - name: SU_USERNAME
+          value: admin@newbt.org
+        - name: SU_ORGID
+          value: 00D500000008aNu
+        - name: SU_USERID
+          value: 00550000000He3t
+        ## for 3az db: TBD
 
       livenessProbe:
         exec:
@@ -422,7 +432,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: casam-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:6e58f7
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:e0d509
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
