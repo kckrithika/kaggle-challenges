@@ -69,7 +69,7 @@ system:
       - name : ACDS_APISERVER_ZKCONN
         value: "shared0-discovery1-0-crd.data.sfdc.net:2181"
       - name : SERVICE_USER_EMAIL
-        value: mmanoj@salesforce.com
+        value: "admin_acds@local" 
     volumes:
     - name: tls-client-cert
       maddogCert:
