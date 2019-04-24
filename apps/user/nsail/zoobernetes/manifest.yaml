@@ -24,8 +24,6 @@ system:
       - mountPath: /home/scone/logs
         name: logvolservice
 
-    serviceAccountName: zoobernetes-service-account
-
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:

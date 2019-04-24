@@ -5,5 +5,8 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
   metadata: {
     name: "zoobernetes-service-account",
     namespace: "user-nsail",
+    labels: {
+      app: "zoobernetes",
+    },
   },
 } else "SKIP"
