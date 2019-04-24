@@ -1,0 +1,4 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate,RemoteAs
+shared0-samminionreportcollector1-1-syd.ops.sfdc.net,10.221.117.4/28,10.221.127.224/27,NONE,syd-sam_report_collector,65009
+shared0-samminionreportcollector2-1-syd.ops.sfdc.net,10.221.117.5/28,10.221.127.192/27,NONE,syd-sam_report_collector,65009
+shared0-samminionreportcollector3-1-syd.ops.sfdc.net,10.221.117.6/28,10.221.127.160/27,NONE,syd-sam_report_collector,65009
