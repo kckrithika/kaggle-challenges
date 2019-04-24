@@ -15,7 +15,7 @@ system:
           ports:
           - containerPort: 5004
           args:
-            - --logDir=/var/log/geocloud/mgmt-platform/mgmt-server/ddn-api.log
+            - --logDir=/var/log/geocloud/mgmt-platform/mgmt-server
           resources:
             requests:
               cpu: 2
