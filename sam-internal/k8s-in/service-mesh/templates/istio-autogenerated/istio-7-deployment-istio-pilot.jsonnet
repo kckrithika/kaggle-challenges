@@ -120,8 +120,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "",
               "--keepaliveMaxServerConnectionAge",
               "30m",
-              "--appNamespace",
-              "service-mesh",
               "--log_output_level",
               "info",
             ],

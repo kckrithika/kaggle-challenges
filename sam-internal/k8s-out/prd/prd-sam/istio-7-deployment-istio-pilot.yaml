@@ -74,8 +74,6 @@ spec:
         - ""
         - --keepaliveMaxServerConnectionAge
         - 30m
-        - --appNamespace
-        - service-mesh
         - --log_output_level
         - info
         env:
