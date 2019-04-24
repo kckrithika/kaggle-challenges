@@ -102,7 +102,7 @@ spec:
           value: "7013"
         - name: FAKE_REDEPLOY_VAR
           value: "1"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:492713b1b7635dccc41345d6920e24c8b2ddd09d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa-injector:fb94972c5eb38ce818ff5bd2d7287e4c379ebe3d
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
