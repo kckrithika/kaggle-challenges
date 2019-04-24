@@ -24,7 +24,7 @@ if configs.kingdom == 'mvp' then {
         externalTrafficPolicy: 'Cluster',
         sessionAffinity: 'None',
         selector: {
-            app: 'consul-server',
+            app: 'consul-internal-server',
         },
         ports: [
             {

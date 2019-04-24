@@ -127,7 +127,7 @@ if configs.kingdom == 'mvp' then {
         containers: [
           {
             name: 'consul-internal',
-            image: topologysvcimages.consul,
+            image: topologysvcimages.consulgcp,
             args: [
               'agent',
               '-advertise=$(POD_IP)',

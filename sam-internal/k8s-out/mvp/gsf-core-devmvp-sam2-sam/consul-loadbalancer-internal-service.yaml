@@ -27,6 +27,6 @@ spec:
     port: 8300
     targetPort: 8300
   selector:
-    app: consul-server
+    app: consul-internal-server
   sessionAffinity: None
   type: LoadBalancer
