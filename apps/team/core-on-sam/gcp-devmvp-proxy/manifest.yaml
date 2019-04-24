@@ -9,11 +9,18 @@ system:
     count: 1
     containers:
     - name: sfproxy-switchboard-server
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:0c4c543cd166bcb2e5516795a30989bc89165d60
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:db4c69eded9a83a094ddc8a851a61bee177f52e9
       command: ["/bin/sh", "-c"]
       args: ["
       export SETTINGS_PATH=prod.-.phx.na3.sfproxy-switchboard ;
-      ./launcher.sh switchboard-exec.jar --clusters.external-clusters[0]=ajnafunneldirect:HTTP1 --clusters.external-clusters[1]=spaasmesh:HTTP2 --metrics.maxNumberOfCollectedMetrics=100000 --metrics.funnelTimeOut=90000 --zookeeper.seedHosts=10.168.160.76:2181 --scone.dev-mode=true
+      ./launcher.sh switchboard-exec.jar
+        --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
+        --clusters.external-clusters[1]=spaasmesh:HTTP2
+        --metrics.maxNumberOfCollectedMetrics=100000
+        --metrics.funnelTimeOut=90000
+        --zookeeper.seedHosts=10.168.160.76:2181
+        --scone.dev-mode=true
+        --routes.frontProxyAddClientIpHeader=true
       "]
       env:
       - name: SFDC_ENVIRONMENT
