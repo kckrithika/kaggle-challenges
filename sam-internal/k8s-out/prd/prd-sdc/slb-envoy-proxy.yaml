@@ -280,7 +280,7 @@ spec:
         - --nginxPodMode=true
         - --client.socketDir=/host/data/slb/config/slb-envoy
         - --client.dialSocket=true
-        - --maxDeleteVipCount=16
+        - --maxDeleteVipCount=10
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2127-fe77bd248de279f2f1b8475b97e357044a173c63
         name: slb-realsvrcfg
         securityContext:
@@ -336,7 +336,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.socketDir=/host/data/slb/config/slb-envoy
         - --client.dialSocket=true
-        - --maxDeleteLimit=16
+        - --maxDeleteLimit=10
         - --isRoleUsed=true
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --vcioptions.strict=true
