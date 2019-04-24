@@ -31,7 +31,7 @@ system:
             - name: SERVERPORT
               value: 5004
             - name: POLICY_DESIGNER_DB_USER
-              value: ddnuser      
+              value: "ddnuser"
             - name: NODE_ENV
               value: "production"
             - name: POLICY_DESIGNER_DB_HOSTNAME
