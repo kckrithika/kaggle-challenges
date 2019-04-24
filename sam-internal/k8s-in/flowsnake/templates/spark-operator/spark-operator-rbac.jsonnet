@@ -52,7 +52,7 @@ local quota_enforcement = std.objectHas(flowsnake_images.feature_flags, "spark_a
                 },
                 {
                     apiGroups: ["admissionregistration.k8s.io"],
-                    resources: ["mutatingwebhookconfigurations"],
+                    resources: ["mutatingwebhookconfigurations", "validatingwebhookconfigurations"],
                     verbs: ["create", "get", "update", "delete"],
                 },
                 {
