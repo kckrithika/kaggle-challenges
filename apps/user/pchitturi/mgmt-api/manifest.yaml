@@ -14,6 +14,8 @@ system:
             timeoutSeconds: 10
           ports:
           - containerPort: 5004
+          args:
+            - --logDir=/var/log/geocloud/mgmt-platform/mgmt-server/ddn-api.log
           resources:
             requests:
               cpu: 2
@@ -49,11 +51,16 @@ system:
             - name: JWT_SECRET_KEY
               value: "geocloudDDNApiPlatformKey"
           volumeMounts:
-            - mountPath: /mgmt-server-secrets/
-              name: mgmt-server-secrets-vol
-              readOnly: true
+            - mountPath: /var/log/geocloud/mgmt-platform/mgmt-server
+              name: logvol
+            # - mountPath: /mgmt-server-secrets/
+            #   name: mgmt-server-secrets-vol
+            #   readOnly: true
       volumes:
-        - name: mgmt-server-secrets-vol
-          k4aSecret:
-            secretName: mgmt-server-secrets
+        - name: logvol
+          hostPath:
+            path: /var/log/geocloud/mgmt-platform/mgmt-server
+        # - name: mgmt-server-secrets-vol
+        #   k4aSecret:
+        #     secretName: mgmt-server-secrets
       lbname: mgmtserver-api-lb
