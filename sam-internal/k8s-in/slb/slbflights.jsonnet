@@ -35,9 +35,6 @@ local slbconfigs = import "slbconfig.jsonnet";
     # See: https://computecloud.slack.com/archives/G340CE86R/p1550291706553800
     alertOnlyOnProxyErrorCode: (slbimages.phaseNum < 1),
 
-    # Feature flag for slb-portal to display all VIPs
-    slbPortalEndpointOverride: (slbimages.phaseNum <= 1),
-
     # restrict memory usage in slb-nginx-reporter to 10G
     ngnixReporterMemoryCap: (slbimages.hyperslb_build >= 2122),
 

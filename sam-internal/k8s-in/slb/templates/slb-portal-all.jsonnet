@@ -105,7 +105,7 @@ local deployments = [
                                 } + configs.ipAddressResourceRequest,
                                 slbshared.slbConfigProcessor(
                                     slbports.slb.slbConfigProcessorLivenessProbePort,
-                                    includeSlbPortalOverride=slbflights.slbPortalEndpointOverride,
+                                    includeSlbPortalOverride=slbconfigs.isSlbAggregatedPortalEstate,
                                     vipLocationName=vipLocation,
                                     pseudoApiServer=pseudoApiServerLink
                                 ),
@@ -113,7 +113,7 @@ local deployments = [
                                 slbshared.slbNodeApi(slbports.slb.slbNodeApiPort, true),
                                 slbshared.slbLogCleanup,
                                 madkub.madkubRefreshContainer(certDirs),
-                                slbshared.slbManifestWatcher(includeSlbPortalOverride=slbflights.slbPortalEndpointOverride, vipLocationName=vipLocation),
+                                slbshared.slbManifestWatcher(includeSlbPortalOverride=slbconfigs.isSlbAggregatedPortalEstate, vipLocationName=vipLocation),
                             ],
                             nodeSelector: { pool: slbconfigs.slbEstate },
                             initContainers: [
