@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2120-b7a982fc45a9fe7ee151e7a1b03d3f50264ce9a3
+      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -15,6 +15,7 @@ system:
       - "-gheTokenPath=/secrets/ghe_pat"
       - "-pgpkeypath=/gpgsecrets/moe-signing-key.asc"
       - "-samInternalTeamName=SLB"
+      - "-slackWebhookURL=@/slack-secrets/slb-private-slack-notification.url"
       - "-slackChannelToNotify=#slb-private"
       - "-releaseFile=sam-internal/k8s-in/slb/slbreleases.json"
       - "-promotion.image="
@@ -35,8 +36,11 @@ system:
       - mountPath: /gpgsecrets
         name: moe-gpg-signing-key
         readOnly: true
+      - mountPath: /slack-secrets
+        name: slb-private-slack-notification
+        readOnly: true
     - name: imagedeployer-hyperslb
-      image: dva/moe/deployerbot:2120-b7a982fc45a9fe7ee151e7a1b03d3f50264ce9a3
+      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -54,7 +58,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 60
     - name: imagedeployer-nginx
-      image: dva/moe/deployerbot:2120-b7a982fc45a9fe7ee151e7a1b03d3f50264ce9a3
+      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -72,7 +76,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 60
     - name: imagedeployer-nginx-kms
-      image: dva/moe/deployerbot:2120-b7a982fc45a9fe7ee151e7a1b03d3f50264ce9a3
+      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -96,11 +100,14 @@ system:
     - name: moe-gpg-signing-key
       k4aSecret:
         secretName: moe-gpg-signing-key
+    - name: slb-private-slack-notification
+      k4aSecret:
+        secretName: slb-private-slack-notification
   - name: deployerbot-sam
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2120-b7a982fc45a9fe7ee151e7a1b03d3f50264ce9a3
+      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -109,7 +116,7 @@ system:
       - "-gheTokenPath=/secrets/ghe_pat"
       - "-pgpkeypath=/gpgsecrets/moe-signing-key.asc"
       - "-samInternalTeamName=SAM"
-      - "-slackWebhookURL=https://hooks.slack.com/services/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"
+      - "-slackWebhookURL=@/slack-secrets/sam-slack-notification.url"
       - "-slackChannelToNotify=#phase_release"
       - "-releaseFile=sam-internal/k8s-in/sam/samreleases.json"
       - "-promotion.image="
@@ -130,8 +137,11 @@ system:
       - mountPath: /gpgsecrets
         name: moe-gpg-signing-key
         readOnly: true
+      - mountPath: /slack-secrets
+        name: sam-slack-notification
+        readOnly: true
     - name: imagedeployer-hypersam
-      image: dva/moe/deployerbot:2120-b7a982fc45a9fe7ee151e7a1b03d3f50264ce9a3
+      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -149,7 +159,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 60
     - name: imagedeployer-madkub
-      image: dva/moe/deployerbot:2120-b7a982fc45a9fe7ee151e7a1b03d3f50264ce9a3
+      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -167,7 +177,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 60
     - name: imagedeployer-madkub-sidecar
-      image: dva/moe/deployerbot:2120-b7a982fc45a9fe7ee151e7a1b03d3f50264ce9a3
+      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -191,6 +201,9 @@ system:
     - name: moe-gpg-signing-key
       k4aSecret:
         secretName: moe-gpg-signing-key
+    - name: sam-slack-notification
+      k4aSecret:
+        secretName: sam-slack-notification
   loadbalancers:
   - lbname: deployerbot
     function: deployerbot
