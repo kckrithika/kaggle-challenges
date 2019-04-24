@@ -31,15 +31,13 @@ system:
             - name: SERVERPORT
               value: 5004
             - name: POLICY_DESIGNER_DB_USER
-              value: "ddnuser"
+              value: "pduser"
             - name: NODE_ENV
               value: "production"
             - name: POLICY_DESIGNER_DB_HOSTNAME
               value: guiapi-db-lb
             - name: POLICY_DESIGNER_DB_PORT
-              value: 3306  
-            - name: MYSQL_USER
-              value: "pduser"
+              value: 3306
             - name: POLICY_DESIGNER_DB_ROOT_PASSWORD
               value: "rootPassword"
             - name: MYSQL_ROOT
