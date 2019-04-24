@@ -1,2 +1,5 @@
-version: v2
 apps:
+  syncmaster:
+  - prd/prd-sam
+  - dfw/dfw-sam_dataprotection
+
