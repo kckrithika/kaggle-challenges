@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: syncmaster
-      image: docker-dva-rc/dva/winterfell-syncmaster:3-31d1fb5f18edcff094e2a920f03ad836ab1511e7
+      image: docker-dva-rc/dva/winterfell-syncmaster:4-7014c7c60fdde95584af4b0a6916ce93fb728f63
       env:
       - name: SPRING_CONFIG_NAME
         value: prod
@@ -96,7 +96,7 @@ system:
         targetport: 8080
       - port: 15372
         targetport: 15372
-      - port: 7443
+      - port: 7020
         targetport: 7443
 
 
