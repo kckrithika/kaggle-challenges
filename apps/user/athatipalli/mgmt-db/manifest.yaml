@@ -29,15 +29,15 @@ system:
       - name: SHELL
         value: "/bin/bash"
       - name: MYSQL_ROOT_PASSWORD
-        value: /mysql-secrets/mysql-root-password
+        value: /mgmt-server-secrets/mysql-root-password
       - name: MYSQL_ROOT
-        value: /mysql-secrets/mysql-root
+        value: /mgmt-server-secrets/mysql-root
       - name: MYSQL_USER
-        value: /mysql-secrets/mysql-user
+        value: /mgmt-server-secrets/mysql-user
       - name: MYSQL_DATABASE
-        value: /mysql-secrets/mysql-database
+        value: /mgmt-server-secrets/mysql-database
       - name: MYSQL_PASSWORD
-        value: /mysql-secrets/mysql-user-password
+        value: /mgmt-server-secrets/mysql-user-password
       - name: max_allowed_packet
         value: "1073741824"
         
