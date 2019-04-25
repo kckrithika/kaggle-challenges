@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.8.0.0.develop.ce7f309.18
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre-fusion/services/control-plane:1.8.0.0.develop.daa439f.19
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,adminqa@bt9.salesforce.com,cre-api@salesforce.com"
@@ -28,7 +28,7 @@ system:
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets-kube/cre-gdot-private-key.json
         - name: GRPC_PORT
-          value: 7020
+          value: 7022
         - name: FLOWSNAKE_ENDPOINT
           value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
         - name: ENGINE_PKI_NAME_OVERRIDE
@@ -81,7 +81,7 @@ system:
         requests: { cpu: "2", memory: "5Gi" }
       ports:
       - containerPort: 8080
-      - containerPort: 7020
+      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         exec:
@@ -119,7 +119,7 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7443
+      - containerPort: 7442
         name: sh-in-http2-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
@@ -139,7 +139,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - retail-cre/cre-control-plane-ccp-func:DATACENTER_ALLENV:7443
+      - retail-cre/cre-control-plane-ccp-func:DATACENTER_ALLENV:7442
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
