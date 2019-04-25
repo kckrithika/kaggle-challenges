@@ -84,7 +84,7 @@ system:
         - name: SPRING_PROFILES_ACTIVE
           value: integration
         - name: DATABASE_NAMESPACE
-          value: crecontrolplanecretest
+          value: crecontrolplaneccptest
         - name: JVM_ARGS
           value: "-Djava.util.concurrent.ForkJoinPool.common.parallelism=8
                   -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
