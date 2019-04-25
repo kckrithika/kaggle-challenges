@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
                                      "-alertThreshold=1h",
                                      "-maxUptimeSampleSize=5",
                                      "-shouldBatchMetrics=true",
-                                     "-watchDogKind=" + $.kind,
+                                     "-watchDogKind=" + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then "DaemonSet" else $.kind),
                                      "-recipient=\"\"",
                                  ]
                                  + samwdconfig.shared_args
