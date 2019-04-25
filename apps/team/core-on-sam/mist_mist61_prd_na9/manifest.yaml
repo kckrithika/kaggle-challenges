@@ -47,7 +47,7 @@ system:
       - name: DISABLE_AUTH_RELEASE_CHECK
         value: true
       - name: CASAM_APP_COLOR
-        value: blue
+        value: green
       - name: SD_PORT_OVERRIDE
         value: 7442
       - name: CASAM_SETTINGS_PATH
@@ -204,9 +204,9 @@ system:
       - name: PATCH_RELEASE_NUMBER
         value: 0
       - name: CURRENT_RELEASE_VERSION
-        value: green
-      - name: NEW_RELEASE_VERSION
         value: blue
+      - name: NEW_RELEASE_VERSION
+        value: green
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
@@ -241,7 +241,7 @@ system:
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 360000
-      image: sfci/casam/sequencer:2b8d19
+      image: sfci/casam/sequencer:b919c6
       livenessProbe:
         exec:
           command:
@@ -261,13 +261,37 @@ system:
         periodSeconds: 1
       volumeMounts:
       - mountPath: /certs
-        name: cert
+        name: client-cert
       - mountPath: /secrets/
         name: secretvol
         readOnly: true
       - mountPath: /kaiju-secrets/
         name: kaiju-secret-vol
         readOnly: true
+    - name: sherpa
+      # Use the latest release version from https://git.soma.salesforce.com/servicelibs/sherpa-envoy/releases
+      image: sfci/servicelibs/sherpa-envoy:1.0.6
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 50
+        periodSeconds: 5
+      volumeMounts:
+      - name: client-cert
+        mountPath: /client-certs
+      - name: server-cert
+        mountPath: /server-certs
     count: 1
     identity:
       pod: na9
@@ -278,7 +302,10 @@ system:
     volumes:
     - maddogCert:
         type: client
-      name: cert
+      name: client-cert
+    - maddogCert:
+        type: server
+      name: server-cert
     - k4aSecret:
         secretName: sequencer-gus
       name: secretvol
