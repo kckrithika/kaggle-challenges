@@ -82,7 +82,7 @@ spec:
               fieldPath: metadata.namespace
         - name: RANDVAL
           value: "43"
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/topology-svc/consul-docker:f463f7f
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-ts:142-20190416-2
         lifecycle:
           preStop:
             exec:
@@ -272,6 +272,22 @@ spec:
         runAsNonRoot: true
         runAsUser: 7447
       terminationGracePeriodSeconds: 10
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - emptyDir:
+          medium: Memory
+        name: cert1
+      - emptyDir:
+          medium: Memory
+        name: tls-client-cert
+      - emptyDir:
+          medium: Memory
+        name: tls-server-cert
+      - emptyDir:
+          medium: Memory
+        name: tokens
   updateStrategy:
     type: RollingUpdate
   volumeClaimTemplates:
