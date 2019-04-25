@@ -45,6 +45,7 @@ std.prune({
     "filesystemChecker",
     "kubeletChecker",
     "cliChecker.DockerDaemon",
+    "kubeResourcesChecker.NodeHealth",
     "procUpTime",
   ],
   funnelEndpoint: configs.funnelVIP,
