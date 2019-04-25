@@ -51,8 +51,6 @@ local samreleases = import "samreleases.json";
         "prd,prd-sam,sam-deployment-portal,hypersam": "2661-a493a755679c30705e7667661204bc9e9b8ef77e",
 
         #[xiao.zhou] Override Synthetic watchdog so the alert won't go off
-        "prd,prd-samtest,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
-        "prd,prd-samdev,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
         "prd,prd-sam,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
         "frf,frf-sam,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
 
