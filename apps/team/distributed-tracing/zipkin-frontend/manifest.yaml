@@ -3,10 +3,10 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - distributedtracing@salesforce.com
+      - zipkin-scrum-team@salesforce.com
   functions:
   - name: zipkin-alpha
-    count: 3
+    count: 2
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -52,6 +52,8 @@ system:
     - name: zipkin-alpha
       image: docker-dva-rc/dva/zipkin-server:36
       env:
+      - name: ES_HOSTS
+        value: es-rest.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200
       - name: ZIPKIN_ARGS
         value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
       resources:
