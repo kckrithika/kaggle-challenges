@@ -4,7 +4,6 @@ local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local cert_name = "madkubinjector";
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
-local quota_enforcement = std.objectHas(flowsnake_images.feature_flags, "spark_application_quota_enforcement");
 
 if flowsnake_config.madkub_enabled then
 {
@@ -33,10 +32,9 @@ if flowsnake_config.madkub_enabled then
                         "name": cert_name,
                         "role": "flowsnake.madkub-injector",
                         "san": ["madkub-injector.flowsnake", "madkub-injector.flowsnake.svc", "madkub-injector.flowsnake.svc.cluster.local"]
-                    }]})
-                } + (if quota_enforcement then {
+                    }]}),
                     "annotation_to_force_restart": "1"
-                } else {})
+                }
             },
             spec: {
                 serviceAccountName: "madkub-injector-serviceaccount",
