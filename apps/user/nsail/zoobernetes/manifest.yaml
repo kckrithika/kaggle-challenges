@@ -6,10 +6,10 @@ system:
 
     containers:
     - name: zoobernetes
-      image: sfci/services/sfdc-bazel/disco/zoobernetes:8215448
+      image: sfci/services/sfdc-bazel/disco/zoobernetes:2a86453
       env:
       - name: JAVA_OPTS
-        value: "-Dsync.k8s.debug=true "
+        value: "-Dsync.k8s.debug=true"
 
       ports:
       - containerPort: 7020
