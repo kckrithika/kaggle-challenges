@@ -33,7 +33,7 @@ system:
             - name: NODE_ENV
               value: "production"
             - name: INSTALLATION_TYPE
-              value: CLUSTER
+              value: "CLUSTER"
             - name: MYSQL_SERVER
               value: guiapi-db-lb
             - name: POLICY_DESIGNER_SERVER_IP
