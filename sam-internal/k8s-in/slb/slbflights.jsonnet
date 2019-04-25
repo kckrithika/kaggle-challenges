@@ -48,4 +48,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # Fix logging for slb-nginx-data-watchdog and slb-nginx-data pods
     fixNginxDataLogging: (slbimages.phaseNum <= 1),
+
+    # Enable kms config map to fix placement of kingdom json files in nginx-proxy container within the hsm nginx pods
+    kmsConfigMap: (slbimages.phaseNum <= 1),
 }
