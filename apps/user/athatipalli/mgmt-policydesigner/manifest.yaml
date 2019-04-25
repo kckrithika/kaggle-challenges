@@ -46,4 +46,8 @@ system:
               value: "griddable"
             - name: POLICY_DESIGNER_DB_PASSWORD
               value: "pdpassword"
+            - name: LOGGING_JSON_STDOUT_LEVEL
+              value: all
+            - name: LOGGING_STDERR_LEVEL
+              value: all
       lbname: mgmt-policydesigner-lb
