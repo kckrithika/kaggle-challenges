@@ -27,7 +27,7 @@ local configs = import 'config.jsonnet';
       consulgcp: 'f463f7f',
       sherpa: "eeb8e3bfc9d7912299ed28658895aca9523f348f",
       topologysvc: "hmittal-20190416-c0eb8f0",
-      topologyClient: "topo-client-20190424",
+      topologyClient: "topo-client-20190425",
     },
 
     //## Release Phase 1 - TBD
