@@ -2,7 +2,7 @@ apiVersion: v1
  
 system:
   functions:
-  - name: guiapi-db
+  - name: gui-api-db
     # number of instances ("kpods") to deploy and run
     count: 1
     

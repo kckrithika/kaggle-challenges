@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-    - name: mgmtserver-api
+    - name: mgmt-server-api
       count: 1
       type: stateful-set
       containers:
@@ -64,4 +64,4 @@ system:
         - name: mgmt-server-secrets-vol
           k4aSecret:
             secretName: mgmt-server-secrets
-      lbname: mgmtserver-api-lb
+      lbname: mgmt-server-api-lb
