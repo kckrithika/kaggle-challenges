@@ -28,7 +28,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
-                spark_operator_watchdog_kubectl_cleanup: "enabled",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
@@ -44,6 +43,7 @@ local utils = import "util_functions.jsonnet";
             },
             feature_flags+: {
                 spark_application_quota_enforcement: "enabled",
+                spark_operator_watchdog_kubectl_cleanup: "enabled",
             },
             version_mapping+: {
             },
