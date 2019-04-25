@@ -1,6 +1,4 @@
 apps:
-  mgmtdb:
-  - prd/prd-sam
   mgmt-api:
   - prd/prd-sam
 # tm-wo-zk:
