@@ -81,8 +81,8 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: RANDVAL
-          value: "43"
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-ts:142-20190416-2
+          value: "45"
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/topology-svc/consul-docker:f463f7f
         lifecycle:
           preStop:
             exec:
