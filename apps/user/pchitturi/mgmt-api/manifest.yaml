@@ -54,17 +54,4 @@ system:
               value: all
             - name: LOGGING_STDERR_LEVEL
               value: all
-          volumeMounts:
-            - mountPath: /var/log/geocloud/mgmt-platform/mgmt-server
-              name: logvol
-            # - mountPath: /mgmt-server-secrets/
-            #   name: mgmt-server-secrets-vol
-            #   readOnly: true
-      volumes:
-        - name: logvol
-          hostPath:
-            path: /var/log/geocloud/mgmt-platform/mgmt-server
-        # - name: mgmt-server-secrets-vol
-        #   k4aSecret:
-        #     secretName: mgmt-server-secrets
       lbname: mgmtserver-api-lb
