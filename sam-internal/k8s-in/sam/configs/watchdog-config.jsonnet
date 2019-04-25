@@ -66,7 +66,7 @@ std.prune({
     "docker-containerd.*docker-bootstrap": "age.dockercontainerdbootstrap",
     "name=etcd": "age.etcd",
   } + (
-    if configs.estate == "prd-sdc" then
+    if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then
       { "illumio_ven/.*Agent": "age.illumio.Agent" }  # eg. /opt/illumio_ven/bin/AgentMonitor
     else {}
   ),
