@@ -126,6 +126,7 @@ spec:
           initialDelaySeconds: 4
           periodSeconds: 3
         resources: {}
+        terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         - mountPath: /server-certs
           name: cert1
@@ -238,6 +239,7 @@ spec:
           requests:
             cpu: "1"
             memory: 1Gi
+        terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         - mountPath: /server-certs
           name: cert1
