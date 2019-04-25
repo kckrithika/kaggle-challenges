@@ -3,10 +3,10 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - distributedtracing@salesforce.com
+      - zipkin-scrum-team@salesforce.com
   functions:
   - name: zipkin-collector
-    count: 3
+    count: 2
     strategy:
       type: RollingUpdate
       rollingUpdate:
