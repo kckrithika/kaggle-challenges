@@ -35,19 +35,7 @@ system:
             - name: INSTALLATION_TYPE
               value: CLUSTER
             - name: MYSQL_SERVER
-              value: 10.254.213.9
-            - name: MYSQL_USER
-              value: "ddnuser"
-            - name: MYSQL_ROOT_PASSWORD
-              value: "rootPassword"
-            - name: MYSQL_ROOT
-              value: "root"
-            - name: MYSQL_DATABASE
-              value: "ddnprod"
-            - name: MYSQL_PASSWORD
-              value: "ddnpassword"
-            - name: JWT_SECRET_KEY
-              value: "geocloudDDNApiPlatformKey"
+              value: guiapi-db-lb
             - name: POLICY_DESIGNER_SERVER_IP
               value: "mgmt-policydesigner-lb"
             - name: POLICY_DESIGNER_SERVER_PORT
@@ -56,8 +44,10 @@ system:
               value: all
             - name: LOGGING_STDERR_LEVEL
               value: all
+            - name: SECRETS_PATH
+              value: /var/mgmt-server-secrets/
           volumeMounts:
-            - mountPath: /mgmt-server-secrets/
+            - mountPath: /var/mgmt-server-secrets/
               name: mgmt-server-secrets-vol
               readOnly: true
       volumes:
