@@ -1,5 +1,5 @@
 apps:
-  mgmt-db:
+  mgmtdb:
   - prd/prd-sam
   mgmt-api:
   - prd/prd-sam
