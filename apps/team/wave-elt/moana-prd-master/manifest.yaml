@@ -70,7 +70,7 @@ system:
       - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'true'}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/jobcontroller:master-263-4311849
+      image: sfci/insights/jobcontroller:master-264-ecef83a
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
