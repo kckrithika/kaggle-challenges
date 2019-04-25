@@ -271,7 +271,7 @@ spec:
             configMapKeyRef:
               key: general_topic
               name: kafka-cm
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9
+        image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/collection-erb-config-gen:15-14ece1b939b13a42d74ae9fc1ad34d4e674dab73
         name: config-gen-default
         volumeMounts:
         - mountPath: /etc/rsyslog.d
@@ -306,7 +306,7 @@ spec:
               name: kafka-cm
         - name: FILE_PATH
           value: /home/sfdc/logs/sfdc/*.gmt.log
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9
+        image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/collection-erb-config-gen:15-14ece1b939b13a42d74ae9fc1ad34d4e674dab73
         name: config-gen-casam
         volumeMounts:
         - mountPath: /etc/rsyslog.d
@@ -341,7 +341,7 @@ spec:
           value: Search
         - name: START_REGEX
           value: ^([[:alnum:]]{1,})`[[:digit:]]{14}.[[:digit:]]{3}`
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9
+        image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/collection-erb-config-gen:15-14ece1b939b13a42d74ae9fc1ad34d4e674dab73
         name: config-gen-solr
         volumeMounts:
         - mountPath: /etc/rsyslog.d
@@ -376,7 +376,7 @@ spec:
           value: Search
         - name: START_REGEX
           value: ^([[:digit:]]{4}-(0[1-9]|1[0-2])-(0?[1-9]|[12][[:digit:]]|3[01]))([[:space:]]|T)(([01][[:digit:]]|2[0-3]):[0-5][[:digit:]]:([0-5][[:digit:]]|6[01]))[,|\\.][[:digit:]]{3}
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9
+        image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/collection-erb-config-gen:15-14ece1b939b13a42d74ae9fc1ad34d4e674dab73
         name: config-gen-solr-jetty
         volumeMounts:
         - mountPath: /etc/rsyslog.d
@@ -409,7 +409,7 @@ spec:
           value: /home/sfdc/logs/jvm/*.jvm.log_*
         - name: OWNER
           value: casam
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9
+        image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/collection-erb-config-gen:15-14ece1b939b13a42d74ae9fc1ad34d4e674dab73
         name: config-gen-casam-jvm
         volumeMounts:
         - mountPath: /etc/rsyslog.d
@@ -444,7 +444,7 @@ spec:
           value: casam
         - name: START_REGEX
           value: ^([[:digit:]]{4}-(0[1-9]|1[0-2])-(0?[1-9]|[12][[:digit:]]|3[01]))([[:space:]]|T)(([01][[:digit:]]|2[0-3]):[0-5][[:digit:]]:([0-5][[:digit:]]|6[01]))[,|\\.][[:digit:]]{3}
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9
+        image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/collection-erb-config-gen:15-14ece1b939b13a42d74ae9fc1ad34d4e674dab73
         name: config-gen-casam-jvmgc
         volumeMounts:
         - mountPath: /etc/rsyslog.d

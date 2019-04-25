@@ -230,7 +230,7 @@ spec:
         env:
         - name: KINGDOM
           value: MVP
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/collection-erb-config-gen:13-47abdb612473a43f78d0cb438f83851aba538af9
+        image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/collection-erb-config-gen:15-14ece1b939b13a42d74ae9fc1ad34d4e674dab73
         name: config-gen-ocagent
         volumeMounts:
         - mountPath: /etc/opencensus

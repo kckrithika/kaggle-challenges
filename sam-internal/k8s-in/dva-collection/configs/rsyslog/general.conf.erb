@@ -65,7 +65,7 @@ ruleset(name="ruleset_<%=config.log_type%>") {
   action(
     type="omkafka"
     name="kafka_<%= config.log_type %>"
-    broker="<%= config.broker_vip %>"
+    broker="<%= config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL').nil? ? config.broker_vip : config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL')%>"
     template="tpl_<%= config.log_type %>"
     topic="<%= config.kafka_topic %>"
     partitions.auto="on"

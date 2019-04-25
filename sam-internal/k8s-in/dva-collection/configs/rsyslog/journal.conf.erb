@@ -72,7 +72,7 @@ ruleset(name="ruleset_imjounal_syslog" queue.type="LinkedList" queue.size="10000
   action(
     type="omkafka"
     name="kafka_imjournal_syslog"
-    broker="<%=config.broker_vip%>"
+    broker="<%= config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL').nil? ? config.broker_vip : config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL')%>"
     template="tpl_syslog"
     topic="<%=config.kafka_topic%>"
     partitions.auto="on"

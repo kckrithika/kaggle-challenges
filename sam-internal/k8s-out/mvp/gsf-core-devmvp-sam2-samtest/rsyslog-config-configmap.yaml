@@ -144,10 +144,12 @@ data:
     action(\n    name=\"syslog_file_action\"\n    type=\"omfile\"\n    file=\"/var/log/kubernetes_dockercontainers_ruleset.log\"\n
     \   template=\"tpl_containers_log\"\n  ) %>\n\n  <%# Output action %>\n  action(\n
     \   type=\"omkafka\"\n    name=\"kafka_kubernetes_kafka_action\"\n    broker=\"<%=
-    config.broker_vip %>\"\n    template=\"tpl_containers_log\"\n    topic= \"<%=
-    config.kafka_topic %>\"\n    keepFailedMessages=\"on\"\n    partitions.auto=\"on\"\n
-    \   resubmitOnFailure=\"off\"\n    reopenonhup=\"on\"\n    action.resumeRetryCount=\"-1\"\n
-    \   confParam=[\n      \"batch.num.messages=10000\",\n      \"client.id=collections.rsyslog.syslog\",\n
+    config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL').nil?
+    ? config.broker_vip : config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL')%>\"\n
+    \   template=\"tpl_containers_log\"\n    topic= \"<%= config.kafka_topic %>\"\n
+    \   keepFailedMessages=\"on\"\n    partitions.auto=\"on\"\n    resubmitOnFailure=\"off\"\n
+    \   reopenonhup=\"on\"\n    action.resumeRetryCount=\"-1\"\n    confParam=[\n
+    \     \"batch.num.messages=10000\",\n      \"client.id=collections.rsyslog.syslog\",\n
     \     \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
     \     \"message.max.bytes=1000000\",\n      \"queue.buffering.max.ms=5000\",\n
     \     \"retries=2\",\n      \"retry.backoff.ms=100\",\n      \"socket.keepalive.enable=true\",\n
@@ -202,7 +204,9 @@ data:
     = field($!filename, 46, 4);\n  set $!filedate = field($!filename, 46, 5);\n  set
     $!appversion = field($!filename, 46, 6);\n  set $!uuid = $!ts_raw & field($msg,
     96, 16) & field($!host, 45, 4) & \"-\" & field($!host, 45, 5);\n  \n  <%# Output
-    action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_core\"\n    broker=\"<%=config.broker_vip%>\"\n
+    action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_core\"\n    broker=\"<%=
+    config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL').nil?
+    ? config.broker_vip : config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL')%>\"\n
     \   template=\"tpl_core\"\n    topic=\"<%=config.kafka_topic%>\"\n    partitions.auto=\"on\"\n
     \   resubmitOnFailure=\"on\"\n    reopenonhup=\"on\"\n    action.resumeRetryCount=\"-1\"\n
     \   confParam=[\n      \"batch.num.messages=10000\",\n      \"compression.codec=gzip\",\n
@@ -280,7 +284,7 @@ data:
       action(
         type="omkafka"
         name="kafka_<%= config.log_type %>"
-        broker="<%= config.broker_vip %>"
+        broker="<%= config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL').nil? ? config.broker_vip : config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL')%>"
         template="tpl_<%= config.log_type %>"
         topic="<%= config.kafka_topic %>"
         partitions.auto="on"
@@ -345,13 +349,15 @@ data:
     & \"]\";\n\n  <%# debugging %>\n  <%# action(name=\"imjournal_syslog\"\n    type=\"omfile\"\n
     \   template=\"tpl_syslog\"\n    File=\"/var/log/imjournal_syslog.log\"\n  ) %>\n\n
     \ <%# # Output action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_imjournal_syslog\"\n
-    \   broker=\"<%=config.broker_vip%>\"\n    template=\"tpl_syslog\"\n    topic=\"<%=config.kafka_topic%>\"\n
-    \   partitions.auto=\"on\"\n    resubmitOnFailure=\"off\"\n    reopenonhup=\"on\"\n
-    \   action.resumeRetryCount=\"0\"\n    confParam=[\n      \"batch.num.messages=10000\",\n
-    \     \"client.id=collections.rsyslog.syslog\",\n      \"compression.codec=gzip\",\n
-    \     \"max.in.flight.requests.per.connection=2\",\n      \"message.max.bytes=1000000\",\n
-    \     \"queue.buffering.max.ms=5000\",\n      \"retries=2\",\n      \"retry.backoff.ms=100\",\n
-    \     \"socket.keepalive.enable=true\",\n      \"security.protocol=ssl\",\n      \"ssl.ca.location=/cert1/ca/cacerts.pem\",\n
+    \   broker=\"<%= config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL').nil?
+    ? config.broker_vip : config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL')%>\"\n
+    \   template=\"tpl_syslog\"\n    topic=\"<%=config.kafka_topic%>\"\n    partitions.auto=\"on\"\n
+    \   resubmitOnFailure=\"off\"\n    reopenonhup=\"on\"\n    action.resumeRetryCount=\"0\"\n
+    \   confParam=[\n      \"batch.num.messages=10000\",\n      \"client.id=collections.rsyslog.syslog\",\n
+    \     \"compression.codec=gzip\",\n      \"max.in.flight.requests.per.connection=2\",\n
+    \     \"message.max.bytes=1000000\",\n      \"queue.buffering.max.ms=5000\",\n
+    \     \"retries=2\",\n      \"retry.backoff.ms=100\",\n      \"socket.keepalive.enable=true\",\n
+    \     \"security.protocol=ssl\",\n      \"ssl.ca.location=/cert1/ca/cacerts.pem\",\n
     \     \"ssl.certificate.location=/cert1/client/certificates/client.pem\",\n      \"ssl.key.location=/cert1/client/keys/client-key.pem\"\n
     \   ]\n    topicConfParam=[\n      \"acks=-1\"\n    ]\n  )\n}\n\n<%# process imjournal
     logs %>\nif $inputname == 'imjournal' then {\n    call ruleset_imjounal_syslog\n}\n\n"
