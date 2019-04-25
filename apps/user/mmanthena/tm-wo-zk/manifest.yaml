@@ -74,9 +74,9 @@ system:
       - name : SERVICE_USER_EMAIL
         value: "admin_acds@local" 
     volumes:
-    - name: mgmt-server-secrets-vol
+    - name: taskamanger-secrets-vol
       k4aSecret:
-        secretName: mgmt-server-secrets
+        secretName: taskmanagersecrets
     - name: tls-client-cert
       maddogCert:
         type: client
