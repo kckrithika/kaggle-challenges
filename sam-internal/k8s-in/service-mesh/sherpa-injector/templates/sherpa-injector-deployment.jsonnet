@@ -78,6 +78,7 @@ configs.deploymentBase("service-mesh") {
             name: "injector",
             image: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then versions.canaryInjectorImage else versions.injectorImage,
             imagePullPolicy: "IfNotPresent",
+            terminationMessagePolicy: "FallbackToLogsOnError",
             args: [
               "--template=%s" % "/config-data/sherpa-container.yaml.template",  // This is the template that we have stored in a ConfigMap in k8s
               "--image=%s" % versions.sherpaImage,
@@ -214,6 +215,7 @@ configs.deploymentBase("service-mesh") {
             name: "sherpa",
             image: versions.sherpaImage,
             imagePullPolicy: "IfNotPresent",
+            terminationMessagePolicy: "FallbackToLogsOnError",
             args+: [] +
             if utils.is_pcn(configs.kingdom) then ["--switchboard=switchboard.service-mesh.svc:15001"] else [],
             env+: [
