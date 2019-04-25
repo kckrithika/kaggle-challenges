@@ -139,9 +139,9 @@ if configs.kingdom == 'mvp' then {
               '-domain=cluster.local',
               '-server',
               '-disable-host-node-id',
-              '-retry-join=consul-server-0.consul-headless.$(NAMESPACE).svc',
-              '-retry-join=consul-server-1.consul-headless.$(NAMESPACE).svc',
-              '-retry-join=consul-server-2.consul-headless.$(NAMESPACE).svc',
+              '-retry-join=consul-internal-server-0.consul-headless.$(NAMESPACE).svc',
+              '-retry-join=consul-internal-server-1.consul-headless.$(NAMESPACE).svc',
+              '-retry-join=consul-internal-server-2.consul-headless.$(NAMESPACE).svc',
             ],
             env: consulEnvParams,
             lifecycle: {
