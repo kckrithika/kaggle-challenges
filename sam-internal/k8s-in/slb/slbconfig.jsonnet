@@ -431,6 +431,18 @@
         mountPath: "/proxyconfig",
     },
 
+    kmsconfig_volume: {
+        name: "kmsconfig",
+        configMap: {
+            name: "slb-kms-configuration",
+        },
+    },
+
+    kmsconfig_volume_mount: {
+        name: "kmsconfig",
+        mountPath: "/etc/kms.conf.d/",
+    },
+
     nginx: {
           certDirs: ["cert1", "cert2"],
           customerCertsPath: "/customerCerts",

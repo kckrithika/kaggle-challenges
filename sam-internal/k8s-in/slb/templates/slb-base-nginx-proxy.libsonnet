@@ -200,7 +200,9 @@
               slbconfigs.nginx.customer_certs_volume,
               slbconfigs.nginx.tlsparams_volume,
               configs.config_volume(proxyName),
-            ],
+            ] + (if slbflights.kmsConfigMap then [
+                  slbconfigs.kmsconfig_volume,
+                  ] else []),
           ),
           initContainers: std.prune([
             madkub.madkubInitContainer(slbconfigs.nginx.certDirs),
