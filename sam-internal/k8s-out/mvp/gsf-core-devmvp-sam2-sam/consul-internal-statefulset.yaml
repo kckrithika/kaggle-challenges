@@ -7,7 +7,7 @@ metadata:
   namespace: topology-svc
 spec:
   podManagementPolicy: Parallel
-  replicas: 3
+  replicas: 0
   selector:
     matchLabels:
       app: consul-internal-server
@@ -67,6 +67,7 @@ spec:
         - -data-dir=/consul/data
         - -domain=cluster.local
         - -server
+        - -http-port=7022
         - -disable-host-node-id
         - -retry-join=consul-internal-server-0.consul-internal-headless.$(NAMESPACE).svc
         - -retry-join=consul-internal-server-1.consul-internal-headless.$(NAMESPACE).svc
@@ -100,12 +101,14 @@ spec:
           name: serfwan
         - containerPort: 8300
           name: server
+        - containerPort: 7022
+          name: http1
         readinessProbe:
           exec:
             command:
             - /bin/sh
             - -ec
-            - curl "http://$POD_IP:8500/v1/status/leader" 2> /dev/null | grep -E '".+"'
+            - curl "http://$POD_IP:7022/v1/status/leader" 2> /dev/null | grep -E '".+"'
           failureThreshold: 2
           initialDelaySeconds: 5
           periodSeconds: 3

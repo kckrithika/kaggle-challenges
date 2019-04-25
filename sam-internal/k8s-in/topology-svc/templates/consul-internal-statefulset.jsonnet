@@ -53,6 +53,10 @@ local ports = [
     containerPort: 8300,
     name: 'server',
   },
+  {
+    containerPort: 7022,
+    name: 'http1',
+  },
 ];
 
 if configs.kingdom == 'mvp' then {
@@ -90,7 +94,7 @@ if configs.kingdom == 'mvp' then {
                 },
             },
         ],
-    replicas: 3,
+    replicas: 0,
     selector: {
       matchLabels: {
         app: 'consul-internal-server',
@@ -138,6 +142,7 @@ if configs.kingdom == 'mvp' then {
               '-data-dir=/consul/data',
               '-domain=cluster.local',
               '-server',
+              '-http-port=7022',
               '-disable-host-node-id',
               '-retry-join=consul-internal-server-0.consul-internal-headless.$(NAMESPACE).svc',
               '-retry-join=consul-internal-server-1.consul-internal-headless.$(NAMESPACE).svc',
@@ -161,7 +166,7 @@ if configs.kingdom == 'mvp' then {
                 command: [
                   '/bin/sh',
                   '-ec',
-                  'curl "http://$POD_IP:8500/v1/status/leader" 2> /dev/null | grep -E \'".+"\'',
+                  'curl "http://$POD_IP:7022/v1/status/leader" 2> /dev/null | grep -E \'".+"\'',
                 ],
               },
               failureThreshold: 2,
