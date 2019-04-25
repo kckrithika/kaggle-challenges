@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: disco-browser-frontend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/configurator/disco-browser/disco-frontend:disco-2019042
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/configurator/disco-browser/disco-frontend:disco-20190424
       ports:
       - containerPort: 5000
       livenessProbe:
