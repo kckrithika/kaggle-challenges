@@ -82,7 +82,7 @@ spec:
               fieldPath: metadata.namespace
         - name: RANDVAL
           value: "45"
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/topology-svc/consul-docker:f463f7f
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/topology-svc/consul-docker:c687eda
         lifecycle:
           preStop:
             exec:
