@@ -16,6 +16,10 @@ spec:
     type: Recreate
   template:
     metadata:
+      annotations:
+        madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
+          "prd", "name": "spark-webhook", "role": "flowsnake.spark-operator", "san":
+          ["spark-webhook.flowsnake", "spark-webhook.flowsnake.svc", "spark-webhook.flowsnake.svc.cluster.local"]}]}'
       labels:
         app.kubernetes.io/name: spark-operator
         app.kubernetes.io/version: v2.4.0-v1beta1
@@ -27,6 +31,14 @@ spec:
         - -enable-metrics=true
         - -metrics-endpoint=/metrics
         - -metrics-port=10254
+        - -enable-webhook=true
+        - -enable-resource-quota-enforcement=true
+        - -webhook-svc-namespace=flowsnake
+        - -webhook-port=8443
+        - -webhook-fail-on-error=true
+        - -webhook-server-cert=/certs/server/certificates/server.pem
+        - -webhook-server-cert-key=/certs/server/keys/server-key.pem
+        - -webhook-ca-cert=/certs/ca/cabundle.pem
         command:
         - /usr/bin/spark-operator
         image: minikube/kubernetes-spark-operator-2.4.0-sfdc-0.0.1:minikube
@@ -36,4 +48,120 @@ spec:
         - containerPort: 10254
           name: metrics
           protocol: TCP
+        - containerPort: 8443
+          name: webhook
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /certs
+          name: datacerts
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint
+        - https://madkubserver:32007
+        - --maddog-endpoint
+        - https://maddog-onebox:8443
+        - --maddog-server-ca
+        - /maddog-onebox/ca/security-ca.pem
+        - --madkub-server-ca
+        - /maddog-onebox/ca/ca.pem
+        - --token-folder
+        - /tokens
+        - --kingdom
+        - prd
+        - --superpod
+        - None
+        - --estate
+        - prd-minikube-small-flowsnake
+        - --refresher
+        - --run-init-for-refresher-mode
+        - --cert-folders
+        - spark-webhook:/certs
+        - --ca-folder
+        - /maddog-onebox/ca
+        - --log-level
+        - "7"
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: minikube/madkub:minikube
+        name: sam-madkub-integration-refresher
+        resources: {}
+        volumeMounts:
+        - mountPath: /certs
+          name: datacerts
+        - mountPath: /tokens
+          name: tokens
+        - mountPath: /maddog-onebox
+          name: maddog-onebox-certs
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint
+        - https://madkubserver:32007
+        - --maddog-endpoint
+        - https://maddog-onebox:8443
+        - --maddog-server-ca
+        - /maddog-onebox/ca/security-ca.pem
+        - --madkub-server-ca
+        - /maddog-onebox/ca/ca.pem
+        - --token-folder
+        - /tokens
+        - --kingdom
+        - prd
+        - --superpod
+        - None
+        - --estate
+        - prd-minikube-small-flowsnake
+        - --cert-folders
+        - spark-webhook:/certs
+        - --ca-folder
+        - /maddog-onebox/ca
+        - --log-level
+        - "7"
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: minikube/madkub:minikube
+        name: sam-madkub-integration-init
+        resources: {}
+        volumeMounts:
+        - mountPath: /certs
+          name: datacerts
+        - mountPath: /tokens
+          name: tokens
+        - mountPath: /maddog-onebox
+          name: maddog-onebox-certs
       serviceAccountName: spark-operator-serviceaccount
+      volumes:
+      - emptyDir:
+          medium: Memory
+        name: datacerts
+      - emptyDir:
+          medium: Memory
+        name: tokens

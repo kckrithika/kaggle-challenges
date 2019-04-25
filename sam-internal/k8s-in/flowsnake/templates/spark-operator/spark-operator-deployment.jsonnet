@@ -3,7 +3,6 @@ local kingdom = std.extVar("kingdom");
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local flowsnake_images = import "flowsnake_images.jsonnet";
 local enabled = std.objectHas(flowsnake_images.feature_flags, "spark_operator");
-local quota_enforcement = std.objectHas(flowsnake_images.feature_flags, "spark_application_quota_enforcement");
 local madkub_common = import "madkub_common.jsonnet";
 local cert_name = "spark-webhook";
 
@@ -34,8 +33,8 @@ local cert_name = "spark-webhook";
                 labels: {
                     "app.kubernetes.io/name": "spark-operator",
                     "app.kubernetes.io/version": "v2.4.0-v1beta1",
-                }
-            } + (if quota_enforcement then {annotations: {
+                },
+                annotations: {
                     "madkub.sam.sfdc.net/allcerts": std.toString({"certreqs": [{
                         "cert-type": "server",
                         "kingdom": kingdom,
@@ -43,7 +42,8 @@ local cert_name = "spark-webhook";
                         "role": "flowsnake.spark-operator",
                         "san": ["spark-webhook.flowsnake", "spark-webhook.flowsnake.svc", "spark-webhook.flowsnake.svc.cluster.local"]
                     }]})
-                }} else {}),
+                }
+            },
             spec: {
                 serviceAccountName: "spark-operator-serviceaccount",
                 containers: [
@@ -56,8 +56,6 @@ local cert_name = "spark-webhook";
                             "-enable-metrics=true",
                             "-metrics-endpoint=/metrics",
                             "-metrics-port=10254",
-                        ]
-                        + (if quota_enforcement then [
                             "-enable-webhook=true",
                             "-enable-resource-quota-enforcement=true",
                             "-webhook-svc-namespace=flowsnake",
@@ -66,24 +64,23 @@ local cert_name = "spark-webhook";
                             "-webhook-server-cert=/certs/server/certificates/server.pem",
                             "-webhook-server-cert-key=/certs/server/keys/server-key.pem",
                             "-webhook-ca-cert=/certs/ca/cabundle.pem",
-                        ] else []),
+                        ],
                         ports: [{
                             containerPort: 10254,
                             name: "metrics",
                             protocol: "TCP",
-                        }] + (if quota_enforcement then [{
+                        },{
                             containerPort: 8443,
                             name: "webhook",
                             protocol: "TCP",
-                        }] else [])
-                    } + (if quota_enforcement then {
+                        }],
                         volumeMounts: madkub_common.cert_mounts(cert_name),
-                    } else {}),
-                ] + (if quota_enforcement then [madkub_common.refresher_container(cert_name)] else []),
-            } + (if quota_enforcement then {
+                        },
+                        madkub_common.refresher_container(cert_name)
+                ],
                 volumes: madkub_common.cert_volumes(cert_name),
                 initContainers: [madkub_common.init_container(cert_name)],
-            } else {}),
+            } ,
         },
     },
 }

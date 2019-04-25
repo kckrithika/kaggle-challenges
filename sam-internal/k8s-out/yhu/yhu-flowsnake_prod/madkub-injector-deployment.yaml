@@ -11,6 +11,7 @@ spec:
   template:
     metadata:
       annotations:
+        annotation_to_force_restart: "1"
         madkub.sam.sfdc.net/allcerts: '{"certreqs": [{"cert-type": "server", "kingdom":
           "yhu", "name": "madkubinjector", "role": "flowsnake.madkub-injector", "san":
           ["madkub-injector.flowsnake", "madkub-injector.flowsnake.svc", "madkub-injector.flowsnake.svc.cluster.local"]}]}'
