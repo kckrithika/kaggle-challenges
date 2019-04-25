@@ -48,6 +48,14 @@ system:
               value: "ddnpassword"
             - name: JWT_SECRET_KEY
               value: "geocloudDDNApiPlatformKey"
+            - name: POLICY_DESIGNER_SERVER_IP
+              value: "mgmt-policydesigner-lb"
+            - name: POLICY_DESIGNER_SERVER_PORT
+              value: 8080
+            - name: LOGGING_JSON_STDOUT_LEVEL
+              value: all
+            - name: LOGGING_STDERR_LEVEL
+              value: all
           volumeMounts:
             - mountPath: /mgmt-server-secrets/
               name: mgmt-server-secrets-vol
