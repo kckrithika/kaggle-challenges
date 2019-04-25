@@ -127,7 +127,7 @@ if configs.kingdom == 'mvp' then {
         containers: [
           {
             name: 'consul-internal',
-            image: topologysvcimages.consulgcp,
+            image: topologysvcimages.consul,
             args: [
               'agent',
               '-advertise=$(POD_IP)',
@@ -184,6 +184,10 @@ if configs.kingdom == 'mvp' then {
           serviceMesh.service_discovery_container("topology-client"),
           madkub.madkubRefreshContainer(certDirs),
         ],
+        volumes+: [
+            configs.maddog_cert_volume,
+        ] + madkub.madkubTopologySvcCertVolumes(certDirs)
+                              + madkub.madkubTopologySvcMadkubVolumes(),
       },
     },
   },
