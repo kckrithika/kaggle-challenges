@@ -50,5 +50,5 @@ local slbconfigs = import "slbconfig.jsonnet";
     fixNginxDataLogging: (slbimages.phaseNum <= 1),
 
     # Enable kms config map to fix placement of kingdom json files in nginx-proxy container within the hsm nginx pods
-    kmsConfigMap: (slbimages.phaseNum <= 1),
+    kmsConfigMap: (slbimages.phaseNum <= 1 || configs.estate == "dfw-sam" || configs.estate == "phx-sam"),
 }

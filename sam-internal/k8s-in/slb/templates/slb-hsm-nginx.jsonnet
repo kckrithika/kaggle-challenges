@@ -52,5 +52,15 @@ if slbflights.hsmCanaryEnabled && !slbflights.disableCanaryVIPs then
       slbimages.hsmnginx,
       proxyFlavor="hsm",
       slbUpstreamReporterEnabled=slbflights.slbUpstreamReporterEnabledForHsmNginx,
-) {}
+) {
+      spec+: {
+          template+: {
+              spec+: {
+                  volumes+: (if slbflights.kmsConfigMap then [
+                      slbconfigs.kmsconfig_volume,
+                  ] else []),
+              },
+          },
+      },
+  }
 else "SKIP"
