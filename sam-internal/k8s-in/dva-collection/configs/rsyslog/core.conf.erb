@@ -103,7 +103,7 @@ ruleset(name="ruleset_core") {
   action(
     type="omkafka"
     name="kafka_core"
-    broker="<%=config.broker_vip%>"
+    broker="<%= config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL').nil? ? config.broker_vip : config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL')%>"
     template="tpl_core"
     topic="<%=config.kafka_topic%>"
     partitions.auto="on"

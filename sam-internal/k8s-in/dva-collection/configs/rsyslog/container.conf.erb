@@ -128,7 +128,7 @@ ruleset(name = "kubernetes_dockercontainers_ruleset") {
   action(
     type="omkafka"
     name="kafka_kubernetes_kafka_action"
-    broker="<%= config.broker_vip %>"
+    broker="<%= config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL').nil? ? config.broker_vip : config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL')%>"
     template="tpl_containers_log"
     topic= "<%= config.kafka_topic %>"
     keepFailedMessages="on"
