@@ -27,7 +27,7 @@ system:
     serviceAccountName: zoobernetessvcaccount
 
     # The volumes to mount for shipping logs to splunk
-    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+    # General rule is to use path with pattern: /home/sfdc-*/logs/**/*.json
     volumes:
       - name: logvolservice
         hostPath:
