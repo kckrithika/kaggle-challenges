@@ -17,8 +17,8 @@ system:
         initialDelaySeconds: 10
         timeoutSeconds: 5
       volumeMounts:
-        - mountPath: /taskamanagersecrets/
-          name: taskamanger-secrets-vol
+        - mountPath: /taskmanagersecrets/
+          name: taskmanager-secrets-vol
           readOnly: true
         - name: tls-client-cert
           mountPath: /client-certs
@@ -34,9 +34,9 @@ system:
       - name : ACDS_START_TASKMANAGER
         value: "yes"
       - name : TENANT_ADMIN_NAME
-        value: /taskamanagersecrets/tenant_admin_name
+        value: /taskmanagersecrets/tenant_admin_name
       - name : TENANT_ADMIN_PASSWORD
-        value: /taskamanagersecrets/tenant_admin_password
+        value: /taskmanagersecrets/tenant_admin_password
       - name : DD_NAME
         value: "Target_1"
       - name : DB_NAME
@@ -56,17 +56,17 @@ system:
       - name : HOME
         value: "/root"
       - name : SERVICE_USER_EMAIL
-        value: /taskamanagersecrets/service_user_email
+        value: /taskmanagersecrets/service_user_email
       - name : TOKEN_SECRET
-        value: /taskamanagersecrets/token_secret
+        value: /taskmanagersecrets/token_secret
       - name : SERVICE_USER_NAME
-        value: /taskamanagersecrets/service_user_name
+        value: /taskmanagersecrets/service_user_name
       - name : SERVICE_USER_PASSWORD
-        value: /taskamanagersecrets/service_user_password
+        value: /taskmanagersecrets/service_user_password
       - name : ACDS_APISERVER_HOST
         value: "10.251.163.84"
       - name : ACDS_APISERVER_PORT
-        value: /taskamanagersecrets/acds_apiserver_port
+        value: /taskmanagersecrets/acds_apiserver_port
       - name : ACDS_APISERVER_HTTPS
         value: "false"
       - name : ACDS_APISERVER_ZKCONN
@@ -74,7 +74,7 @@ system:
       - name : SERVICE_USER_EMAIL
         value: "admin_acds@local" 
     volumes:
-    - name: taskamanger-secrets-vol
+    - name: taskmanager-secrets-vol
       k4aSecret:
         secretName: taskmanagersecrets
     - name: tls-client-cert
