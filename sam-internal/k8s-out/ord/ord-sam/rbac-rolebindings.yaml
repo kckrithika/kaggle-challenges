@@ -686,19 +686,33 @@ items:
   - kind: User
     name: shared0-samminioncustomerresolutionengine1-1-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncustomerresolutionengine1-2-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncustomerresolutionengine1-3-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine1-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncustomerresolutionengine1-5-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncustomerresolutionengine2-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-2-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine2-3-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine2-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncustomerresolutionengine2-5-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncustomerresolutionengine3-1-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncustomerresolutionengine3-2-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncustomerresolutionengine3-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-5-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
@@ -712,19 +726,33 @@ items:
   - kind: User
     name: shared0-samminioncustomerresolutionengine1-1-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncustomerresolutionengine1-2-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncustomerresolutionengine1-3-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine1-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncustomerresolutionengine1-5-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncustomerresolutionengine2-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-2-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine2-3-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine2-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncustomerresolutionengine2-5-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncustomerresolutionengine3-1-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncustomerresolutionengine3-2-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncustomerresolutionengine3-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-5-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:

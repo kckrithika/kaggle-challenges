@@ -1460,6 +1460,17 @@ data:
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
           "estate": "ord-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine1-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "k16-cr10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_customerresolutionengine",
           "hostname": "shared0-samminioncustomerresolutionengine1-3-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
@@ -1482,10 +1493,32 @@ data:
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
           "estate": "ord-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine1-5-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "l05-cr10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_customerresolutionengine",
           "hostname": "shared0-samminioncustomerresolutionengine2-1-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
           "rack": "n12-cr02",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine2-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "c02-cr09",
           "superpod": "none"
         },
         {
@@ -1515,6 +1548,17 @@ data:
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
           "estate": "ord-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine2-5-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "l05-cr10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_customerresolutionengine",
           "hostname": "shared0-samminioncustomerresolutionengine3-1-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
@@ -1526,10 +1570,43 @@ data:
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
           "estate": "ord-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine3-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "k16-cr10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_customerresolutionengine",
           "hostname": "shared0-samminioncustomerresolutionengine3-3-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
           "rack": "m16-cr10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine3-4-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "b13-cr09",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine3-5-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "l05-cr10",
           "superpod": "none"
         },
         {
