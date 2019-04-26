@@ -32,6 +32,10 @@ system:
           value: 7022
         - name: datacenter
           value: $(KINGDOM)
+        - name: ZIPKIN_LOGGING_LEVEL
+          value: DEBUG
+        - name: ZIPKIN_ARGS
+        value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG  
         args:
         - ajna0-broker1-0-$(KINGDOM).data.sfdc.net:9093
         - sfdc.prod.distributed-tracing.zipkin-kafka-proxy__$(KINGDOM).ajna_local__tracing
