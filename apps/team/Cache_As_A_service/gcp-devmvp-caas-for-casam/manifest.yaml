@@ -55,6 +55,25 @@ system:
       resources:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
+    - name: caas-metrics-publisher
+      image: gcr.io/gsf-mgmt-devmvp-spinnaker/sfci/cache-as-a-service/caas-metrics-publisher:1188054699bd4cc8e3d55242c4013b419c5fa195
+      args:
+      - --publishMetricsViaMesh
+      - --clusterName=caas-cluster-1
+      - --redisPort=12001
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/caas/is-alive.sh"
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mesh
+       - name: NO_ENV_FOR_RESTART
+         value: new8
+      resources:
+        limits: { memory: "20M" }
+        requests: { memory: "20M" }
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
       args:
