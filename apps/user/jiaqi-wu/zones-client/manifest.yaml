@@ -15,7 +15,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/zones_client:5
       env:
       - name: BACKEND_ENDPOINT
-        value: "http://zones-intake-backend-lb.user-jiaqi-wu.svc.prd-sam.prd.sam.sfdc.net:3000/zones/v1/roles"
+        value: "https://zones-intake-backend-secure.user-jiaqi-wu.prd-sam.prd.slb.sfdc.net:4443/zones/v1/roles"
       - name: CLIENT_CERT_PATH
         value: "/clientcerts/client/certificates/client.pem"
       - name: CLIENT_KEY_PATH
