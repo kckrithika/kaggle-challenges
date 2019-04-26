@@ -7,17 +7,46 @@ system:
   functions:
   - name: soter
     count: 1
+    volumes:
+      - name: servercert
+        maddogCert:
+          type: server
+          lbnames:
+            - soterlb
+      - name: clientcert
+        maddogCert:
+          type: client
     containers:
     - name: soter
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:jenkins-Infrastructure-Security-soter-PR-48-6-itest 
       ports:
       - containerPort: 8080
+      env:
+      - name: HOST
+        value: "0.0.0.0"
+      - name: PORT
+        value: 7022
+      - name: TLS_HOST
+        value: "0.0.0.0"
+      - name: TLS_PORT
+        value: 8443
+      - name: TLS_CERTIFICATE
+        value: /servercerts/server/certificates/server.pem
+      - name: TLS_PRIVATE_KEY
+        value: /servercerts/server/keys/server-key.pem
+      - name: TLS_CA_CERTIFICATE
+        value: /servercerts/ca.pem
       livenessProbe:
         exec:
           command:
           - ls
         initialDelaySeconds: 5
         periodSeconds: 5
+      volumeMounts:
+      - name: servercert
+        mountPath: /servercerts
+      - name: clientcert
+        mountPath: /clientcerts
   loadbalancers:
   - lbname: soterlb
     function: soter
