@@ -41,9 +41,9 @@ system:
             - name: LOGGING_STDERR_LEVEL
               value: all
             - name: SECRETS_PATH
-              value: /var/policy-server-secrets/
+              value: /policy-server-secrets/
           volumeMounts:
-            - mountPath: /var/policy-server-secrets/
+            - mountPath: /policy-server-secrets/
               name: policy-server-secrets-vol
               readOnly: true
       volumes:
