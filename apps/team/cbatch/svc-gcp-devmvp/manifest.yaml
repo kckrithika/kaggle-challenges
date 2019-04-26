@@ -5,7 +5,7 @@ system:
       count: 1
       containers: 
         - name: cbatch-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/cbatch-svc:1.1-snapshot
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/cbatch-svc:1.1
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
@@ -29,13 +29,13 @@ system:
             httpGet:
               path: /manage/health
               port: 15374
-            initialDelaySeconds: 20
+            initialDelaySeconds: 120
             periodSeconds: 5
           readinessProbe:
             exec:
               command: ["/bin/true"]
-            initialDelaySeconds: 10
-            timeoutSeconds: 10
+            initialDelaySeconds: 120
+            timeoutSeconds: 60
           terminationMessagePolicy: FallbackToLogsOnError
         - name: beacon
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/services/sfdc-bazel/disco/beacon:f804d14
@@ -105,7 +105,7 @@ system:
       count: 1
       containers: 
         - name: aspose-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/aspose-svc:1.1-snapshot
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/aspose-svc:1.1
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
@@ -134,7 +134,7 @@ system:
           readinessProbe:
             exec:
               command: ["/bin/true"]
-            initialDelaySeconds: 10
+            initialDelaySeconds: 120
             timeoutSeconds: 10
           terminationMessagePolicy: FallbackToLogsOnError
         - name: beacon
@@ -205,7 +205,7 @@ system:
       count: 1
       containers: 
         - name: image-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/image-svc:1.1-snapshot
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/image-svc:1.1
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
@@ -234,7 +234,7 @@ system:
           readinessProbe:
             exec:
               command: ["/bin/true"]
-            initialDelaySeconds: 10
+            initialDelaySeconds: 120
             timeoutSeconds: 10
           terminationMessagePolicy: FallbackToLogsOnError
         - name: beacon
@@ -305,7 +305,7 @@ system:
       count: 2
       containers: 
         - name: openoffice-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/openoffice-svc:1.1-snapshot
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/openoffice-svc:1.1
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
@@ -334,7 +334,7 @@ system:
           readinessProbe:
             exec:
               command: ["/bin/true"]
-            initialDelaySeconds: 10
+            initialDelaySeconds: 120
             timeoutSeconds: 10
           terminationMessagePolicy: FallbackToLogsOnError
         - name: beacon
@@ -405,7 +405,7 @@ system:
       count: 1
       containers: 
         - name: poppler-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/poppler-svc:1.1-snapshot
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/poppler-svc:1.1
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
@@ -429,12 +429,12 @@ system:
             httpGet:
               path: /manage/health
               port: 15374
-            initialDelaySeconds: 20
+            initialDelaySeconds: 120
             periodSeconds: 5
           readinessProbe:
             exec:
               command: ["/bin/true"]
-            initialDelaySeconds: 10
+            initialDelaySeconds: 120
             timeoutSeconds: 10
           terminationMessagePolicy: FallbackToLogsOnError
         - name: beacon
@@ -505,7 +505,7 @@ system:
       count: 1
       containers: 
         - name: tika-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/tika-svc:1.1-snapshot
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/tika-svc:1.1
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
@@ -529,12 +529,12 @@ system:
             httpGet:
               path: /manage/health
               port: 15374
-            initialDelaySeconds: 20
+            initialDelaySeconds: 120
             periodSeconds: 5
           readinessProbe:
             exec:
               command: ["/bin/true"]
-            initialDelaySeconds: 10
+            initialDelaySeconds: 120
             timeoutSeconds: 10
           terminationMessagePolicy: FallbackToLogsOnError
         - name: beacon
