@@ -57,6 +57,7 @@ data:
         "hyperkube.*kubelet": "age.kubelet",
         "hyperkube.*proxy": "age.kubeproxy",
         "hyperkube.*scheduler": "age.kubescheduler",
+        "illumio_ven/.*Agent": "age.illumio.Agent",
         "name=etcd": "age.etcd"
       },
       "podNamespacePrefixBlacklist": "sam-watchdog",
