@@ -24,7 +24,7 @@
         kingdom: configs.kingdom,
         superpod: null,
         role: 'topology-svc-internal',
-        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66"],
+        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66", "10.130.2.77"],
       },
     },
     'client-certs': {
@@ -44,7 +44,7 @@
         'cert-type': 'client',
         superpod: null,
         role: 'topology-svc-internal',
-        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66"],
+        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66", "10.130.2.77"],
       },
     },
     'server-certs': {
@@ -64,7 +64,7 @@
         'cert-type': 'server',
         superpod: null,
         role: 'topology-svc-internal',
-        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66"],
+        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66", "10.130.2.77"],
       },
     },
   },
