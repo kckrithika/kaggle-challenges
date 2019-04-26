@@ -24,7 +24,7 @@ local configs = import "config.jsonnet";
     per_phase: {
     ### Release Phase 0 - for sam and samtest
     "0": $.per_phase["1"] {
-       rsyslog: "12-8e9921811d4c5a6c0e48ea8f1ca306f42b922e51",
+       rsyslog: "13-1aa2c2bd67f30c4cd1e353ec513b81bbb8da8fe0",
        config_gen: "15-14ece1b939b13a42d74ae9fc1ad34d4e674dab73",
        logarchive: "2",
        cadvisor: "v0.30.2",

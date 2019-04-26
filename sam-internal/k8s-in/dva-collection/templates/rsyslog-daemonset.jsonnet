@@ -139,6 +139,18 @@ for certReq in madkub.madkubRsyslogCertsAnnotation(certDirs).certreqs
                                 cpu: "300m",
                             },
                         },
+                        livenessProbe: {
+                            exec: {
+                                command: [
+                                    "sh",
+                                    "-c",
+                                    "imfile_liveness_check.py --pid $( pgrep -n rsyslogd )",
+                                ],
+                            },
+                            initialDelaySeconds: 60,
+                            periodSeconds: 90,
+                            timeoutSeconds: 5,
+                        },
                         volumeMounts:
                         [
                             {

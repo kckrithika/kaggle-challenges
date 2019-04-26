@@ -46,8 +46,17 @@ spec:
     spec:
       automountServiceAccountToken: false
       containers:
-      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc_rsyslog_gcp:12-8e9921811d4c5a6c0e48ea8f1ca306f42b922e51
+      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc_rsyslog_gcp:13-1aa2c2bd67f30c4cd1e353ec513b81bbb8da8fe0
         imagePullPolicy: Always
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - imfile_liveness_check.py --pid $( pgrep -n rsyslogd )
+          initialDelaySeconds: 60
+          periodSeconds: 90
+          timeoutSeconds: 5
         name: rsyslog
         resources:
           limits:
@@ -474,7 +483,7 @@ spec:
         - -N1
         - -f
         - /etc/rsyslog.conf
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc_rsyslog_gcp:12-8e9921811d4c5a6c0e48ea8f1ca306f42b922e51
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc_rsyslog_gcp:13-1aa2c2bd67f30c4cd1e353ec513b81bbb8da8fe0
         name: config-check
         volumeMounts:
         - mountPath: /etc/rsyslog.conf
