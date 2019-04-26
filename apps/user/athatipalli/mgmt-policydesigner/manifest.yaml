@@ -52,4 +52,12 @@ system:
               value: "pduser"
             - name: SECRETS_PATH
               value: /policy-server-secrets/
+          volumeMounts:
+            - mountPath: /var/policy-server-secrets/
+              name: policy-server-secrets-vol
+              readOnly: true
+      volumes:
+        - name: policy-server-secrets-vol
+          k4aSecret:
+            secretName: policy-server-secrets
       lbname: mgmt-policydesigner-lb
