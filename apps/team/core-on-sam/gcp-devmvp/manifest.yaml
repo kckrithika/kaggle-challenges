@@ -12,7 +12,7 @@ system:
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/sequencer:ca6441
       command: ["/bin/sh", "-c"]
       args: ["
-      export SNOWWHITE_PWD=$(cat /db-secrets/gcp-mvp-1az-db-pw/dbpw.txt) ;
+      export SNOWWHITE_PWD=$(cat /db-secrets/gcp-mvp-3az-db-pw/dbpw3az.txt) ;
       /usr/local/bin/run.sh
       "]
 
@@ -113,7 +113,7 @@ system:
       - mountPath: /kaiju-secrets/
         name: kaiju-secret-vol
         readOnly: true
-      - mountPath: /db-secrets/gcp-mvp-1az-db-pw
+      - mountPath: /db-secrets/gcp-mvp-3az-db-pw
         name: secretvol-db
         readOnly: true
     - name: sherpa
@@ -165,7 +165,7 @@ system:
       name: kaiju-secret-vol
     - name: secretvol-db
       k4aSecret:
-        secretName: gcp-mvp-1az-db-pw
+        secretName: gcp-mvp-3az-db-pw
   - name: devmvp-app-gcp
     count: 3
     identity:
@@ -196,7 +196,7 @@ system:
         secretName: caas-k4a-secret-sp-cs103-pc
     - name: secretvol-db
       k4aSecret:
-        secretName: gcp-mvp-1az-db-pw
+        secretName: gcp-mvp-3az-db-pw
     - name: gcp-svc-creds
       secret:
         secretName: casam-gcs-gcpsa
@@ -208,7 +208,7 @@ system:
       command: ["/bin/sh", "-c"]
       args: ["
       while [ ! -f '/home/sfdc/salesforce/casam/.overrides_sidecar_done' ]; do echo -ne 'Waiting for coverride sidecar to complete its job\n' ;  sleep 1 ; done ;
-      export DB_PASSWORD=$(cat /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-1az-db-pw/dbpw.txt) ;
+      export DB_PASSWORD=$(cat /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-3az-db-pw/dbpw3az.txt) ;
       cp /home/sfdc/salesforce/casam/lib/metrics-publishing.jar.optional /home/sfdc/salesforce/casam/lib/metrics-publishing.jar ;
       mkdir -p /home/sfdc/salesforce/sfdc-test/func/mockk4avault ;
       unzip /home/sfdc/salesforce/casam/lib/k4a.zip.testkeys -d /home/sfdc/salesforce/sfdc-test/func/mockk4avault ;
@@ -224,11 +224,11 @@ system:
         - name: DB_USER
           value: sleepy
         - name: DB_SID
-          value: CSDB6
+          value: NADB11
         - name: DB_INSTANCE_NAME
-          value: CSDB6-1
+          value: NADB11-1
         - name: IP_DB
-          value: 10.168.160.73
+          value: 10.168.160.184
         - name: SERVER_ID
           value: 5
 
@@ -310,19 +310,19 @@ system:
           
         # Additional parameters to set the system user as needed for core app cron scheduler to work
         ## for 1az db:
-        - name: SU_USERNAME
-          value: admin@newbt.org
-        - name: SU_ORGID
-          value: 00D500000008aNu
-        - name: SU_USERID
-          value: 00550000000He3t
+        # - name: SU_USERNAME
+        #   value: admin@newbt.org
+        # - name: SU_ORGID
+        #   value: 00D500000008aNu
+        # - name: SU_USERID
+        #   value: 00550000000He3t
         ## for 3az db:
-        #- name: SU_USERNAME
-        #  value: admin@newbt.org
-        #- name: SU_ORGID
-        #  value: 00D500000008aNu
-        #- name: SU_USERID
-        #  value: 00550000000He3t
+        - name: SU_USERNAME
+          value: oentry@na3.salesforce.com
+        - name: SU_ORGID
+          value: 00D500000008aMD
+        - name: SU_USERID
+          value: 00550000000HgO1
 
       livenessProbe:
         exec:
@@ -366,7 +366,7 @@ system:
         - mountPath: /home/sfdc/salesforce/config/settings/overrides/sp-devmvp-pc
           name: secretvol-pc
           readOnly: true
-        - mountPath: /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-1az-db-pw
+        - mountPath: /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-3az-db-pw
           name: secretvol-db
           readOnly: true
         - name: gcp-svc-creds
