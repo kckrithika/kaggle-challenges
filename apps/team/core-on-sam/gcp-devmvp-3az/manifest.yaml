@@ -143,14 +143,20 @@ system:
           value: /var/secrets/google/gsf-core-devmvp-sam2-dd7bedce4ba4.json
           
         # Additional parameters to set the system user as needed for core app cron scheduler to work
-        ## for 1az db
+        ## for 1az db:
+        # - name: SU_USERNAME
+        #   value: admin@newbt.org
+        # - name: SU_ORGID
+        #   value: 00D500000008aNu
+        # - name: SU_USERID
+        #   value: 00550000000He3t
+        ## for 3az db:
         - name: SU_USERNAME
-          value: admin@newbt.org
+          value: oentry@na3.salesforce.com
         - name: SU_ORGID
-          value: 00D500000008aNu
+          value: 00D500000008aMD
         - name: SU_USERID
-          value: 00550000000He3t
-        ## for 3az db: TBD
+          value: 00550000000HgO1
 
       livenessProbe:
         exec:
