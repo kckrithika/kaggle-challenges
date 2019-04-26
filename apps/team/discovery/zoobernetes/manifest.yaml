@@ -11,7 +11,7 @@ system:
       #Used to trigger redeploy
       env:
       - name: DEMO_GREETING
-        value: "Hello from the environment"
+        value: "Hello from environment"
 
       ports:
       - containerPort: 7020
