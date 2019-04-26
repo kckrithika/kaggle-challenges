@@ -42,12 +42,4 @@ system:
               value: all
             - name: SECRETS_PATH
               value: /policy-server-secrets/
-          volumeMounts:
-            - mountPath: /policy-server-secrets/
-              name: policy-server-secrets-vol
-              readOnly: true
-      volumes:
-        - name: policy-server-secrets-vol
-          k4aSecret:
-            secretName: policy-server-secrets
       lbname: mgmt-policydesigner-lb
