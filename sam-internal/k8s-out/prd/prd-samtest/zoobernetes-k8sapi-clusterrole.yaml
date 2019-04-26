@@ -7,8 +7,10 @@ metadata:
   namespace: user-nsail
 rules:
 - apiGroups:
-  - networking.istio.io
+  - '*'
   resources:
-  - servicentries
+  - namespaces
+  - services
+  - serviceentries
   verbs:
   - '*'

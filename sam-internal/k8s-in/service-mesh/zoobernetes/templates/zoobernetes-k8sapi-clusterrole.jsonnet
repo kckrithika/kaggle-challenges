@@ -11,8 +11,8 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
   },
   rules: [
   {
-    apiGroups: ["networking.istio.io"],
-    resources: ["servicentries"],
+    apiGroups: ["*"],
+    resources: ["namespaces", "services", "serviceentries"],
     verbs: ["*"],
     },
 ],
