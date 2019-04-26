@@ -2167,7 +2167,7 @@ data:
           "hostname": "shared0-samminionzipkin2-12-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "rack": "n12-45",
+          "rack": "e35-45",
           "superpod": "none"
         },
         {
@@ -2189,7 +2189,7 @@ data:
           "hostname": "shared0-samminionzipkin2-14-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "rack": "n11-45",
+          "rack": "a32-45",
           "superpod": "none"
         },
         {
@@ -2244,7 +2244,7 @@ data:
           "hostname": "shared0-samminionzipkin2-5-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "rack": "p32-45",
+          "rack": "a32-45",
           "superpod": "none"
         },
         {
@@ -2255,7 +2255,7 @@ data:
           "hostname": "shared0-samminionzipkin2-6-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "rack": "p32-45",
+          "rack": "n02-45",
           "superpod": "none"
         },
         {
