@@ -53,7 +53,7 @@ if configs.kingdom == 'mvp' then {
                 targetPort: 8300,
             },
             {
-                name: 'server',
+                name: 'server-port',
                 port: 7022,
                 targetPort: 7022,
             },
