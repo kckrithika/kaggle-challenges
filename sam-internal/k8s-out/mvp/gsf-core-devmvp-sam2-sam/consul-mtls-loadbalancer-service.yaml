@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    cloud.google.com/load-balancer-type: mtls
+    cloud.google.com/load-balancer-type: Internal
   labels:
     app: consul-mtls-lb
     pcn: deploy
