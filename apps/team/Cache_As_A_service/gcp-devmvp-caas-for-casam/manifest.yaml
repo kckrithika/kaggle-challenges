@@ -56,7 +56,7 @@ system:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
     - name: caas-metrics-publisher
-      image: gcr.io/gsf-mgmt-devmvp-spinnaker/sfci/cache-as-a-service/caas-metrics-publisher:1188054699bd4cc8e3d55242c4013b419c5fa195
+      image: docker-gcp/sfci/cache-as-a-service/caas-metrics-publisher:1188054699bd4cc8e3d55242c4013b419c5fa195
       args:
       - --publishMetricsViaMesh
       - --clusterName=caas-cluster-1
