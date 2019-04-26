@@ -203,7 +203,7 @@ system:
 
     containers:
     - name: coreapp
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17959653
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17983190
 
       command: ["/bin/sh", "-c"]
       args: ["
@@ -309,14 +309,20 @@ system:
           value: /var/secrets/google/gsf-core-devmvp-sam2-dd7bedce4ba4.json
           
         # Additional parameters to set the system user as needed for core app cron scheduler to work
-        ## for 1az db
+        ## for 1az db:
         - name: SU_USERNAME
           value: admin@newbt.org
         - name: SU_ORGID
           value: 00D500000008aNu
         - name: SU_USERID
           value: 00550000000He3t
-        ## for 3az db: TBD
+        ## for 3az db:
+        #- name: SU_USERNAME
+        #  value: admin@newbt.org
+        #- name: SU_ORGID
+        #  value: 00D500000008aNu
+        #- name: SU_USERID
+        #  value: 00550000000He3t
 
       livenessProbe:
         exec:
