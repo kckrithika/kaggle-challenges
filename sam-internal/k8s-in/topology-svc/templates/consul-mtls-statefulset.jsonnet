@@ -32,7 +32,7 @@ local consulEnvParams = [
   },
   {
     name: 'RANDVAL',
-    value: '45',
+    value: '46',
   },
 ];
 
