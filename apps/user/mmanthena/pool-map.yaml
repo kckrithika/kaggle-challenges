@@ -1,6 +1,6 @@
 apps:
-  mgmt-api:
-  - prd/prd-sam
+#  mgmt-api:
+#  - prd/prd-sam
   tm-wo-zk:
   - prd/prd-sam
 

@@ -64,7 +64,7 @@ system:
       - name : SERVICE_USER_PASSWORD
         value: /taskamanagersecrets/service_user_password
       - name : ACDS_APISERVER_HOST
-        value: "10.251.163.71"
+        value: "10.251.163.84"
       - name : ACDS_APISERVER_PORT
         value: /taskamanagersecrets/acds_apiserver_port
       - name : ACDS_APISERVER_HTTPS
