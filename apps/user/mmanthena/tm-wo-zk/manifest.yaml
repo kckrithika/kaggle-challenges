@@ -18,7 +18,7 @@ system:
         timeoutSeconds: 5
       volumeMounts:
         - mountPath: /taskmanagersecrets/
-          name: taskmanger-secrets-vol
+          name: taskmanager-secrets-vol
           readOnly: true
         - name: tls-client-cert
           mountPath: /client-certs
@@ -74,7 +74,7 @@ system:
       - name : SERVICE_USER_EMAIL
         value: "admin_acds@local" 
     volumes:
-    - name: taskmanger-secrets-vol
+    - name: taskmanager-secrets-vol
       k4aSecret:
         secretName: taskmanagersecrets
     - name: tls-client-cert
