@@ -16,6 +16,10 @@ local ports = [
     containerPort: 8080,
     name: 'server',
   },
+  {
+    containerPort: 8081,
+    name: 'mgmt-server',
+  },
 ];
 
 if configs.kingdom == 'mvp' then {
