@@ -1,20 +1,10 @@
 apps:
-  content-image-transform-gcp-devmvp:
-    - mvp/gsf-core-devmvp-sam2-sam
-  content-tika-svc-gcp-devmvp:
-    - mvp/gsf-core-devmvp-sam2-sam
-  content-aspose-svc-gcp-devmvp:
-    - mvp/gsf-core-devmvp-sam2-sam
-  content-openoffice-svc-gcp-devmvp:
-    - mvp/gsf-core-devmvp-sam2-sam
   content-jmagick:
     - prd/prd-sam
-  content-poppler:
-    - mvp/gsf-core-devmvp-sam2-sam
   content-maddog-secure:
     - mvp/gsf-core-devmvp-sam2-sam
   content-maddog-secure-client:
     - mvp/gsf-core-devmvp-sam2-sam
-  content-ms-pv-gcp-devmvp:
+  svc-gcp-devmvp:
     - mvp/gsf-core-devmvp-sam2-sam
 
