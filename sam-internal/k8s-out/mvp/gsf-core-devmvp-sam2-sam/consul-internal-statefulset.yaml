@@ -25,7 +25,8 @@ spec:
              "role": "topology-svc-internal",
              "san": [
               "topology.vip.core.test.us-central1.gcp.sfdc.net",
-              "10.130.2.66"
+              "10.130.2.66",
+              "10.130.2.77"
              ],
              "superpod": null
             },
@@ -36,7 +37,8 @@ spec:
              "role": "topology-svc-internal",
              "san": [
               "topology.vip.core.test.us-central1.gcp.sfdc.net",
-              "10.130.2.66"
+              "10.130.2.66",
+              "10.130.2.77"
              ],
              "superpod": null
             },
@@ -47,7 +49,8 @@ spec:
              "role": "topology-svc-internal",
              "san": [
               "topology.vip.core.test.us-central1.gcp.sfdc.net",
-              "10.130.2.66"
+              "10.130.2.66",
+              "10.130.2.77"
              ],
              "superpod": null
             }
