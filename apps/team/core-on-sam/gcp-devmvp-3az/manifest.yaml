@@ -33,6 +33,9 @@ system:
     - name: secretvol-db
       k4aSecret:
         secretName: gcp-mvp-3az-db-pw
+    - name: gcp-svc-creds
+      secret:
+        secretName: casam-gcs-gcpsa
 
     containers:
     - name: coreapp
@@ -135,6 +138,10 @@ system:
             fieldRef:
               fieldPath: spec.nodeName
 
+        # GCS creds used by FFX - this is a k8s secret, not a k4a secret
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/secrets/google/gsf-core-devmvp-sam2-dd7bedce4ba4.json
+          
         # Additional parameters to set the system user as needed for core app cron scheduler to work
         ## for 1az db
         - name: SU_USERNAME
@@ -191,6 +198,9 @@ system:
           readOnly: true
         - mountPath: /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-3az-db-pw
           name: secretvol-db
+          readOnly: true
+        - name: gcp-svc-creds
+          mountPath: /var/secrets/google
           readOnly: true
 
       resources:
