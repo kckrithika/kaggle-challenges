@@ -1,0 +1,39 @@
+apiVersion: v1
+system:
+  functions:
+  - name: zoobernetes
+    count: 1
+
+    containers:
+    - name: zoobernetes
+      image: sfci/services/sfdc-bazel/disco/zoobernetes:f7ab534
+
+      #Used to trigger redeploy
+      env:
+      - name: DEMO_GREETING
+        value: "Hello from the environment"
+
+      ports:
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+
+      livenessProbe:
+        initialDelaySeconds: 60
+        httpGet:
+          path: /manage/health
+          port: 15372
+
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvolservice
+
+    serviceAccountName: zoobernetessvcaccount
+
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path with pattern: /home/sfdc-*/logs/**/*.json
+    volumes:
+      - name: logvolservice
+        hostPath:
+          path: /home/sfdc-scone-zoobernetes/logs
