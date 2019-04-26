@@ -16,7 +16,7 @@ if configs.kingdom == 'mvp' then {
             app: 'consul-mtls-lb',
         } + configs.pcnEnableLabel,
         annotations: {
-            "cloud.google.com/load-balancer-type": "mtls",
+            "cloud.google.com/load-balancer-type": "Internal",
         },
     },
     spec: {
