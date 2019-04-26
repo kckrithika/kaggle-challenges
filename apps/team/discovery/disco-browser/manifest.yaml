@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: disco-browser
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/services/sfdc-bazel/disco/announcement-browser/rest-service:a3fc934
+      image: sfci/services/sfdc-bazel/disco/announcement-browser/rest-service:a3fc934
       ports:
       - containerPort: 8080
       livenessProbe:
