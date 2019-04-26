@@ -64,7 +64,7 @@ system:
         periodSeconds: 120
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
       ports:
       # HTTP port for exposing to SLB for IoT
       - containerPort: 7012
@@ -158,7 +158,7 @@ system:
         periodSeconds: 900
         failureThreshold: 1
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.5
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
       ports:
       - containerPort: 15373
         name: sherpa-adm
