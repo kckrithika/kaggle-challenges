@@ -7,6 +7,9 @@ system:
     containers:
     - name: zoobernetes
       image: sfci/services/sfdc-bazel/disco/zoobernetes:f7ab534
+      env:
+      - name: DEMO_GREETING
+        value: "Hello from the environment"
 
       ports:
       - containerPort: 7020
