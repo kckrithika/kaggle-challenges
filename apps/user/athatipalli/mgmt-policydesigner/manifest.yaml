@@ -40,6 +40,16 @@ system:
               value: all
             - name: LOGGING_STDERR_LEVEL
               value: all
+            - name: POLICY_DESIGNER_DB_ROOT_PASSWORD
+              value: "rootPassword"
+            - name: MYSQL_ROOT
+              value: "root"
+            - name: POLICY_DESIGNER_DB_NAME
+              value: "griddable"
+            - name: POLICY_DESIGNER_DB_PASSWORD
+              value: "pdpassword"
+            - name: POLICY_DESIGNER_DB_USER
+              value: "pduser"
             - name: SECRETS_PATH
               value: /policy-server-secrets/
       lbname: mgmt-policydesigner-lb
