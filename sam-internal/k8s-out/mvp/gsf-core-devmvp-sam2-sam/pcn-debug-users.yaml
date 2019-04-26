@@ -225,6 +225,24 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: prabhdeep.gill@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: stephen.ayotte@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: nmuthukrishnan@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: hrizvi@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: nmichael@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: nwyatt@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rramaraju@salesforce.com
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
