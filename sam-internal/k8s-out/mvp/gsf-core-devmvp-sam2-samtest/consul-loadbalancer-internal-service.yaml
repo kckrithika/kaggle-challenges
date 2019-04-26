@@ -13,7 +13,7 @@ spec:
   ports:
   - name: http
     port: 8500
-    targetPort: 7014
+    targetPort: 7022
   - name: http-tls
     port: 443
     targetPort: 7442
@@ -26,6 +26,9 @@ spec:
   - name: server
     port: 8300
     targetPort: 8300
+  - name: server
+    port: 7022
+    targetPort: 7022
   selector:
     app: consul-internal-server
   sessionAffinity: None

@@ -30,7 +30,7 @@ if configs.kingdom == 'mvp' then {
             {
                 name: 'http',
                 port: 8500,
-                targetPort: 7014,
+                targetPort: 7022,
             },
             {
                 name: 'http-tls',
@@ -51,6 +51,11 @@ if configs.kingdom == 'mvp' then {
                 name: 'server',
                 port: 8300,
                 targetPort: 8300,
+            },
+            {
+                name: 'server',
+                port: 7022,
+                targetPort: 7022,
             },
         ],
     },
