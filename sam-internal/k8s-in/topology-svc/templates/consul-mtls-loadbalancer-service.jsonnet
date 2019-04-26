@@ -52,11 +52,6 @@ if configs.kingdom == 'mvp' then {
                 port: 8300,
                 targetPort: 8300,
             },
-            {
-                name: 'server-port',
-                port: 7022,
-                targetPort: 7022,
-            },
         ],
     },
 } else "SKIP"
