@@ -318,11 +318,11 @@ system:
         #   value: 00550000000He3t
         ## for 3az db:
         - name: SU_USERNAME
-          value: oentry@na3.salesforce.com
+          value: admin@newbt.org
         - name: SU_ORGID
-          value: 00D500000008aMD
+          value: 00550000000HgcN
         - name: SU_USERID
-          value: 00550000000HgO1
+          value: 00550000000HgcN
 
       livenessProbe:
         exec:
