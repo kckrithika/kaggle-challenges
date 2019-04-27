@@ -99,12 +99,3 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-  loadbalancers:
-  - lbname: acs-lb
-    function: acs-mesh
-    slbEnabled: true
-    ports:
-      - port: 7022
-        targetport: 7022
-      - port: 15372
-        targetport: 15372
