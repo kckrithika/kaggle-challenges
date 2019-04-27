@@ -87,7 +87,6 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
-    lbname: acs-stateful-ilb
     volumeClaimTemplates:
     - name: acs-data-volume
       storageClassName: faster
