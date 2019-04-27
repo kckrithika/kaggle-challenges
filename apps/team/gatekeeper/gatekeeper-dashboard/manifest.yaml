@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: gatekeeper-dashboard
-      image: dva/gateway:16-26e2f252a45bc4d14a126d5ce34c5e27be787897
+      image: dva/gateway:18-b19ccafc8964ccc02138893975936dfefe4f0433
       livenessProbe:
         httpGet:
           path: /rest/deployments/all/Steam/220
