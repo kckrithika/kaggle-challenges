@@ -119,6 +119,10 @@ local vipwdConfig = {
   {
     slaOptOutVips:
     [
+      // 2019/04/27 - mgrass: The backends for this VIP are throwing 502s, confusing our monitoring.
+      // See https://computecloud.slack.com/archives/G340CE86R/p1556422517300100
+      // Opting this VIP out of SLA eligibility for now.
+      "vir501-1-0-xrd.slb.sfdc.net:9191",
       // 2018/12/27 - mgrass: A known issue in our monitoring is causing these RDI VIPs in XRD to generate false alarms.
       // These should be removed when the underlying issues discussed in https://gus.lightning.force.com/a07B0000004j96jIAA
       // are resolved.
