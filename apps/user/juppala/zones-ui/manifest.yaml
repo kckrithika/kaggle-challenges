@@ -26,7 +26,7 @@ system:
       - name: ZONES_BASE_URL
         value: "https://gus--zonesintk.my.salesforce.com"
       - name: ZONES_SERVICE_URL
-        value: "http://zones-intake-backend-lb.user-jiaqi-wu.prd-sam.prd.slb.sfdc.net:3000"
+        value: "https://zones-intake-backend-secure.user-jiaqi-wu.prd-sam.prd.slb.sfdc.net:4443"
       - name: ZONES_SECRET_SERVICE_URL
         value: "https://secretservice.dmz.salesforce.com:8271/vaultczar/api/1.0/getSecretBySubscriber"
       ports:
