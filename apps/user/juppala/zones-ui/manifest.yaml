@@ -17,11 +17,11 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:master-20190425-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:master-20190429-1
       env:
       - name: ZONES_ENVIRONMENT
         value: "dev"
-      - name: HTTPS_PROXY
+      - name: ZONES_HTTPS_PROXY
         value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
       - name: ZONES_BASE_URL
         value: "https://gus--zonesintk.my.salesforce.com"
