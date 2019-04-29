@@ -1,5 +1,5 @@
-apiVersion: v1
-system:
+ apiVersion: v1
+ system:
    functions:
    - name: acds-tm
      count: 1
@@ -17,6 +17,9 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
+         - mountPath: /taskmanagersecrets/
+           name: taskmanager-secrets-vol
+           readOnly: true
          - name: tls-client-cert
            mountPath: /client-certs
          - name: tls-server-cert
@@ -26,14 +29,18 @@ system:
          - name: logvolbeacon
            mountPath: /logbeacon
        env:
+       - name: LOGGING_JSON_STDOUT_LEVEL
+         value: all
+       - name: LOGGING_STDERR_LEVEL
+         value: all 
        - name : UP_STRING
          value: "ACDS TaskManager Started. Blocking."
        - name : ACDS_START_TASKMANAGER
          value: "yes"
        - name : TENANT_ADMIN_NAME
-         value: "admin@local"
+         value: /taskmanagersecrets/tenant_admin_name
        - name : TENANT_ADMIN_PASSWORD
-         value: "synchronize"
+         value: /taskmanagersecrets/tenant_admin_password
        - name : DD_NAME
          value: "Target_1"
        - name : DB_NAME
@@ -51,24 +58,27 @@ system:
        - name : GRID_CONNECTION_NAME
          value: "DS_CONN_DD_1"
        - name : SERVICE_USER_EMAIL
-         value: "acds_admin@local"
+         value: /taskmanagersecrets/service_user_email
        - name : TOKEN_SECRET
-         value: "jJ5mPbFutWIzGIGvehio1onUctIv5yd3"
+         value: /taskmanagersecrets/token_secret
        - name : SERVICE_USER_NAME
-         value: "acds_admin"
+         value: /taskmanagersecrets/service_user_name
        - name : SERVICE_USER_PASSWORD
-         value: "6LmQ8ZlrL6hR6WAXJ7uezndKuObPsD4E"
+         value: /taskmanagersecrets/service_user_password
        - name : ACDS_APISERVER_HOST
-         value: "10.251.162.136"
+         value: "10.251.161.90"
        - name : ACDS_APISERVER_PORT
-         value: "5004"
+         value: /taskmanagersecrets/acds_apiserver_port
        - name : ACDS_APISERVER_HTTPS
          value: "false"
        - name : ACDS_APISERVER_ZKCONN
          value: "shared0-discovery1-0-crd.data.sfdc.net:2181"
        - name : SERVICE_USER_EMAIL
-         value: "acds_admin@local" 
+         value: "admin_acds@local" 
      volumes:
+     - name: taskmanager-secrets-vol
+       k4aSecret:
+         secretName: taskmanagersecrets
      - name: tls-client-cert
        maddogCert:
          type: client
@@ -81,4 +91,3 @@ system:
      - name: logvolbeacon
        hostPath:
          path: /home/sfdc-scone-hellodiscovery-beacon/logs 
-
