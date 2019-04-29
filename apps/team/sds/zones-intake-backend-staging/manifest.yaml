@@ -6,6 +6,7 @@ system:
       - aditya.sureshkumar@salesforce.com
   functions:
   - name: zones-intake-backend-staging
+    hostNetwork: true
     count: 2
     volumes:
       - name: servercert
@@ -18,7 +19,7 @@ system:
           type: client
     containers:
     - name: zones-intake-backend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:49
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:59
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:mtls4
       ports:
       - containerPort: 7022
@@ -36,9 +37,8 @@ system:
         value: /servercerts/server/certificates/server.pem
       - name: TLS_PRIVATE_KEY
         value: /servercerts/server/keys/server-key.pem
-      # - name: TLS_CA_CERTIFICATE
-      #   value: /servercerts/ca.pem
-
+      - name: TLS_CA_CERTIFICATE
+        value: /clientcerts/ca.pem
       - name: FRONTEND_MADDOG_ID
         value: samapp.user-juppala.zones-ui
       livenessProbe:
@@ -66,4 +66,3 @@ system:
       - port: 4443
         targetport: 8443
         lbtype: tcp
-        tls: false
