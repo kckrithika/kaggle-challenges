@@ -75,7 +75,7 @@ system:
       # See https://github.com/openzipkin/zipkin-dependencies for available ENV options
       env:
       - name: ES_HOSTS
-       value: 'es-rest.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200'
+        value: 'es-rest.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200'
       # TODO: This might be an upstream bug; either way we should enable auth here eventually
       - name: SPARK_USER
         value: ''
