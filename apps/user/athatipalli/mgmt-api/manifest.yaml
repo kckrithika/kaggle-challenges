@@ -45,7 +45,7 @@ system:
             - name: LOGGING_STDERR_LEVEL
               value: all
             - name: SECRETS_PATH
-              value: /var/mgmt-server-secrets/
+              value: "/var/mgmt-server-secrets/"
           volumeMounts:
             - mountPath: /var/mgmt-server-secrets/
               name: mgmt-server-secrets-vol
