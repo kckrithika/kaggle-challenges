@@ -6,7 +6,7 @@ system:
     - strauz@salesforce.com
   functions:
   - name: authz-svc
-    count: 1
+    count: 2
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
