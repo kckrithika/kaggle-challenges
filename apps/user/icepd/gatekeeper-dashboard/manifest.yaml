@@ -6,7 +6,7 @@ system:
       - gk-support@salesforce.com
   functions:
   - name: gatekeeper-dashboard
-    count: 3
+    count: 2
     containers:
     - name: gatekeeper-dashboard
       image: dva/gateway:19-4453b8e97a92f939949b2e1b0a67c6984fa5d2ab
