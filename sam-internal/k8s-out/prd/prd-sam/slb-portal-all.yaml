@@ -62,6 +62,7 @@ items:
           - --cafile=/cert3/ca/cabundle.pem
           - --aggregatedPortal=true
           - --hostsConfigFile=/sfdchosts/hosts.json
+          - --vipdnsoptions.viplocation=ord-sam.ord
           - --client.socketDir=/host/data/slb/config/slb-portal-ord
           - --client.dialSocket=true
           env:
@@ -440,6 +441,7 @@ items:
           - --cafile=/cert3/ca/cabundle.pem
           - --aggregatedPortal=true
           - --hostsConfigFile=/sfdchosts/hosts.json
+          - --vipdnsoptions.viplocation=iad-sam.iad
           - --client.socketDir=/host/data/slb/config/slb-portal-iad
           - --client.dialSocket=true
           env:
@@ -818,6 +820,7 @@ items:
           - --cafile=/cert3/ca/cabundle.pem
           - --aggregatedPortal=true
           - --hostsConfigFile=/sfdchosts/hosts.json
+          - --vipdnsoptions.viplocation=phx-sam.phx
           - --client.socketDir=/host/data/slb/config/slb-portal-phx
           - --client.dialSocket=true
           env:
@@ -1196,6 +1199,7 @@ items:
           - --cafile=/cert3/ca/cabundle.pem
           - --aggregatedPortal=true
           - --hostsConfigFile=/sfdchosts/hosts.json
+          - --vipdnsoptions.viplocation=dfw-sam.dfw
           - --client.socketDir=/host/data/slb/config/slb-portal-dfw
           - --client.dialSocket=true
           env:
