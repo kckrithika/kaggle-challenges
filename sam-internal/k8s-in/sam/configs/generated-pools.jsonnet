@@ -33,7 +33,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "cdg-sam",
-      "estate": "cdg-sam_dataprotection",
+      "estate": "cdg-sam_dp",
       "kingdom": "cdg",
       "superPod": "None"
     },
@@ -287,7 +287,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "dfw-sam",
-      "estate": "dfw-sam_dataprotection",
+      "estate": "dfw-sam_dp",
       "kingdom": "dfw",
       "superPod": "None"
     },
@@ -499,7 +499,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "fra-sam",
-      "estate": "fra-sam_dataprotection",
+      "estate": "fra-sam_dp",
       "kingdom": "fra",
       "superPod": "None"
     },
@@ -675,7 +675,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "frf-sam",
-      "estate": "frf-sam_dataprotection",
+      "estate": "frf-sam_dp",
       "kingdom": "frf",
       "superPod": "None"
     },
@@ -903,7 +903,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "hnd-sam",
-      "estate": "hnd-sam_dataprotection",
+      "estate": "hnd-sam_dp",
       "kingdom": "hnd",
       "superPod": "None"
     },
@@ -1029,7 +1029,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "ia2-sam",
-      "estate": "ia2-sam_dataprotection",
+      "estate": "ia2-sam_dp",
       "kingdom": "ia2",
       "superPod": "None"
     },
@@ -1227,7 +1227,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "iad-sam",
-      "estate": "iad-sam_dataprotection",
+      "estate": "iad-sam_dp",
       "kingdom": "iad",
       "superPod": "None"
     },
@@ -1427,7 +1427,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "lo2-sam",
-      "estate": "lo2-sam_dataprotection",
+      "estate": "lo2-sam_dp",
       "kingdom": "lo2",
       "superPod": "None"
     },
@@ -1493,7 +1493,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "lo3-sam",
-      "estate": "lo3-sam_dataprotection",
+      "estate": "lo3-sam_dp",
       "kingdom": "lo3",
       "superPod": "None"
     },
@@ -1745,7 +1745,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "ord-sam",
-      "estate": "ord-sam_dataprotection",
+      "estate": "ord-sam_dp",
       "kingdom": "ord",
       "superPod": "None"
     },
@@ -2007,7 +2007,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "par-sam",
-      "estate": "par-sam_dataprotection",
+      "estate": "par-sam_dp",
       "kingdom": "par",
       "superPod": "None"
     },
@@ -2157,7 +2157,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "ph2-sam",
-      "estate": "ph2-sam_dataprotection",
+      "estate": "ph2-sam_dp",
       "kingdom": "ph2",
       "superPod": "None"
     },
@@ -2321,7 +2321,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "phx-sam",
-      "estate": "phx-sam_dataprotection",
+      "estate": "phx-sam_dp",
       "kingdom": "phx",
       "superPod": "None"
     },
@@ -3265,7 +3265,7 @@
         "team/dataprotection"
       ],
       "controlEstate": "ukb-sam",
-      "estate": "ukb-sam_dataprotection",
+      "estate": "ukb-sam_dp",
       "kingdom": "ukb",
       "superPod": "None"
     },
