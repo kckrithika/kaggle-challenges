@@ -26,8 +26,6 @@ system:
               value: "/bin/bash"
             - name: UP_STRING
               value: "Policydesigner Server Blocking."
-            - name: SERVERNAME
-              value: 10.251.163.132
             - name: SERVERPORT
               value: 5004
             - name: NODE_ENV
