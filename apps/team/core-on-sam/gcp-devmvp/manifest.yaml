@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: sequencer
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/sequencer:ca6441
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/sequencer:4a4b1b
       command: ["/bin/sh", "-c"]
       args: ["
       export SNOWWHITE_PWD=$(cat /db-secrets/gcp-mvp-3az-db-pw/dbpw3az.txt) ;
