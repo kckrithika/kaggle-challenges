@@ -53,13 +53,11 @@ system:
         limits: { memory: "500M" }
         requests: { memory: "500M" }
     - name: caas-metrics-publisher
-      image: sfci/cache-as-a-service/caas-metrics-publisher:9eebdc088e01bc327feef58d0dad545b7aebe65f
+      image: sfci/cache-as-a-service/caas-metrics-publisher:4211bcd3d65c1c17f6a05e4be07eee67237ac058
       args:
-      - --ajnaFunnelVip=ajna0-funnel1-0-prd.data.sfdc.net:80
       - --clusterName=caas-cluster-1
       - --publishingIntervalInSecs=30
       - --redisPort=12081
-      - --secretFile=/var/secrets/caas-client-secure.yaml
       livenessProbe:
         initialDelaySeconds: 5
         exec:
