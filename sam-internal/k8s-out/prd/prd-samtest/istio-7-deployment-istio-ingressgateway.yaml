@@ -106,7 +106,7 @@ spec:
         - --controlPlaneAuthPolicy
         - NONE
         - --discoveryAddress
-        - istio-pilot:8080
+        - istio-pilot:15010
         env:
         - name: ESTATE
           value: prd-samtest

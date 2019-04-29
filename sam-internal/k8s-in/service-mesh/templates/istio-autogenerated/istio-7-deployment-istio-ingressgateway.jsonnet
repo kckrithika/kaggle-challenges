@@ -127,7 +127,7 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "--controlPlaneAuthPolicy",
               "NONE",
               "--discoveryAddress",
-              "istio-pilot:8080",
+              "istio-pilot:15010",
             ],
             env: [
               {
