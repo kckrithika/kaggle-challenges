@@ -17,8 +17,8 @@
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-         - mountPath: /taskmanagersecrets/
-           name: taskmanager-secrets-vol
+         - name: taskmanager-secrets-vol
+           mountPath: /taskmanagersecrets/
            readOnly: true
          - name: tls-client-cert
            mountPath: /client-certs
@@ -73,8 +73,6 @@
          value: "false"
        - name : ACDS_APISERVER_ZKCONN
          value: "shared0-discovery1-0-crd.data.sfdc.net:2181"
-       - name : SERVICE_USER_EMAIL
-         value: "admin_acds@local" 
      volumes:
      - name: taskmanager-secrets-vol
        k4aSecret:
