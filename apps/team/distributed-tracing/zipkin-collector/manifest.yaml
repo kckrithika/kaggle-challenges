@@ -25,6 +25,8 @@ system:
       env:
       - name: ES_INDEX_REPLICAS
         value: 0
+      - name: ES_INDEX_SHARDS
+        value: 3
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
       - name: KAFKA_ACCEPT_BATCH_SIZE
@@ -38,7 +40,7 @@ system:
       - name: datacenter
         value: $(KINGDOM)
       - name: ES_HOSTS
-        value: es-rest.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200  
+        value: shared0-samminionzipkin2-2-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-4-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-11-prd.eng.sfdc.net:9200
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-collector
         name: client-certs

@@ -4,7 +4,7 @@ system:
       - distributedtracing@salesforce.com
   functions: 
   - name: elasticsearch
-    count: 1
+    count: 0
     type: stateful-set
     containers:
     - name: elasticsearch
@@ -51,7 +51,9 @@ system:
     containers:
     - name: zipkin-es-curator
       image: docker-dva-rc/dva/zipkin-es-curator:4
-      env: 
+      env:
+      - name: ES_HOSTS
+        value: 'shared0-samminionzipkin2-2-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-4-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-11-prd.eng.sfdc.net:9200'
       - name: DELETE_AFTER_DAYS
         value: 7
       livenessProbe:
@@ -75,7 +77,7 @@ system:
       # See https://github.com/openzipkin/zipkin-dependencies for available ENV options
       env:
       - name: ES_HOSTS
-        value: 'es-rest.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200'
+        value: 'shared0-samminionzipkin2-2-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-4-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-11-prd.eng.sfdc.net:9200'
       # TODO: This might be an upstream bug; either way we should enable auth here eventually
       - name: SPARK_USER
         value: ''
