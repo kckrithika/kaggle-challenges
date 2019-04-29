@@ -61,6 +61,8 @@ system:
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:MaxDirectMemorySize=128M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M -XX:+UseG1GC
           -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops",
+          "spark.shuffle.accurateBlockThreshold	": "1048576",
+          "spark.shuffle.io.preferDirectBufs": "false",
           "spark.hadoop.fs.s3a.connection.ssl.enabled": "true", "spark.hadoop.fs.s3a.endpoint":
           "s3-us-west-2.amazonaws.com", "spark.hadoop.fs.s3a.proxy.host": "public0-proxy1-0-prd.data.sfdc.net",
           "spark.hadoop.fs.s3a.proxy.port": "8080", "spark.hadoop.fs.s3a.server-side-encryption-algorithm":
