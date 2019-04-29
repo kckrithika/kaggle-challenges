@@ -64,6 +64,7 @@ local deployments = [
                                                 "--cafile=/cert3/ca/cabundle.pem",
                                                 "--aggregatedPortal=true",
                                                 configs.sfdchosts_arg,
+                                                "--vipdnsoptions.viplocation=" + vipLocation,
                                             ]
                                             + (if slbconfigs.isTestEstate then [
                                                         "--slbEstate=" + configs.estate,
