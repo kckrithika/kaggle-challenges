@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: devmvp-app-gcp-3az
+  - name: devmvp-app-gcp-sdb
     count: 1
     identity:
       serviceName: app
@@ -57,18 +57,33 @@ system:
         - name: REDEPLOY
           value: 1
           
+        - name: SERVER_ID
+          value: 5
+
         # db pw extracted from k4a at startup
         - name: DB_USER
           value: sleepy
+        
+        # Oracle
         - name: DB_SID
           value: NADB11
         - name: DB_INSTANCE_NAME
           value: NADB11-1
         - name: IP_DB
           value: 10.168.160.184
-        - name: SERVER_ID
-          value: 5
-          
+        
+        # SDB
+        - name: SAYONARA_ENABLE
+          value: true 
+        - name: DB_NAME
+          value: devmvp
+        - name: DB_HOST
+          value: 10.211.160.71
+        - name: DB_PORT
+          value: 1521
+        - name: DB_SUPER_USER
+          value: sdb
+
         - name: INTERNAL_ENV
           value: true
           
@@ -85,10 +100,10 @@ system:
         # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
         # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
-          value: devmvp-app-gcp-3az-lb.core-on-sam.svc.cluster.local
+          value: nmuthu-wsl2.internal.salesforce.com
 
         - name: SFPROXY_VIP
-          value: https://devmvp-app-gcp-3az-lb.core-on-sam.svc.cluster.local:8443
+          value: https://nmuthu-wsl2.internal.salesforce.com
         - name: HTTP_PORT
           value: 8085
 #          value: 7022
@@ -142,15 +157,6 @@ system:
         - name: GOOGLE_APPLICATION_CREDENTIALS
           value: /var/secrets/google/gsf-core-devmvp-sam2-dd7bedce4ba4.json
           
-        # Additional parameters to set the system user as needed for core app cron scheduler to work
-        ## for 1az db:
-        # - name: SU_USERNAME
-        #   value: admin@newbt.org
-        # - name: SU_ORGID
-        #   value: 00D500000008aNu
-        # - name: SU_USERID
-        #   value: 00550000000He3t
-        ## for 3az db:
         - name: SU_USERNAME
           value: oentry@na3.salesforce.com
         - name: SU_ORGID
@@ -274,7 +280,7 @@ system:
         mountPath: /certs/cert-server
 
     - name: casam-sidecar
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:e0d509
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:sdb_25d1303
       env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
@@ -339,8 +345,8 @@ system:
         maxUnavailable: 0
 
   loadbalancers:
-  - function: devmvp-app-gcp-3az
-    lbname: devmvp-app-gcp-3az-lb
+  - function: devmvp-app-gcp-sdb
+    lbname: devmvp-app-gcp-sdb-lb
     ports:
     - lbtype: tcp
       port: 443
