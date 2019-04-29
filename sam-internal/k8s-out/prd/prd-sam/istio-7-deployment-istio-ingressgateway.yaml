@@ -85,6 +85,10 @@ spec:
       - args:
         - proxy
         - router
+        - --domain
+        - $(POD_NAMESPACE).svc.cluster.local
+        - --log_output_level
+        - info
         - --drainDuration
         - 45s
         - --parentShutdownDuration
@@ -97,6 +101,8 @@ spec:
         - zipkin.service-mesh:9411
         - --proxyAdminPort
         - "15000"
+        - --statusPort
+        - "15020"
         - --controlPlaneAuthPolicy
         - NONE
         - --discoveryAddress
