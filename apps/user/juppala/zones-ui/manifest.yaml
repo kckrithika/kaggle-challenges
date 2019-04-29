@@ -17,16 +17,16 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:master-20190425-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:master-20190429-1
       env:
       - name: ZONES_ENVIRONMENT
         value: "dev"
-      - name: HTTPS_PROXY
+      - name: ZONES_HTTPS_PROXY
         value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
       - name: ZONES_BASE_URL
         value: "https://gus--zonesintk.my.salesforce.com"
       - name: ZONES_SERVICE_URL
-        value: "http://zones-intake-backend-lb.user-jiaqi-wu.prd-sam.prd.slb.sfdc.net:3000"
+        value: "https://zones-intake-backend-secure.user-jiaqi-wu.prd-sam.prd.slb.sfdc.net:4443"
       - name: ZONES_SECRET_SERVICE_URL
         value: "https://secretservice.dmz.salesforce.com:8271/vaultczar/api/1.0/getSecretBySubscriber"
       ports:
