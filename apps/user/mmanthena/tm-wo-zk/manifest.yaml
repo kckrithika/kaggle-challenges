@@ -29,6 +29,10 @@ system:
         - name: logvolbeacon
           mountPath: /logbeacon
       env:
+      - name: LOGGING_JSON_STDOUT_LEVEL
+        value: all
+      - name: LOGGING_STDERR_LEVEL
+        value: all 
       - name : UP_STRING
         value: "ACDS TaskManager Started. Blocking."
       - name : ACDS_START_TASKMANAGER
