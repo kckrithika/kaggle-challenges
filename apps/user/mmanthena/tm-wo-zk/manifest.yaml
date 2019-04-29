@@ -68,7 +68,7 @@ system:
       - name : SERVICE_USER_PASSWORD
         value: /taskmanagersecrets/service_user_password
       - name : ACDS_APISERVER_HOST
-        value: "10.251.163.84"
+        value: "10.251.162.142"
       - name : ACDS_APISERVER_PORT
         value: /taskmanagersecrets/acds_apiserver_port
       - name : ACDS_APISERVER_HTTPS
