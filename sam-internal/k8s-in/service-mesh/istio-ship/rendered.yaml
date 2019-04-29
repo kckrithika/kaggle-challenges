@@ -478,10 +478,10 @@ data:
         [[ else -]]
           limits:
             cpu: 2000m
-            memory: 128Mi
+            memory: 512Mi
           requests:
             cpu: 100m
-            memory: 128Mi
+            memory: 512Mi
         [[ end -]]
         volumeMounts:
         [[- if (isset .ObjectMeta.Annotations `sidecar.istio.io/bootstrapOverride`) ]]
@@ -708,6 +708,10 @@ spec:
       - args:
         - proxy
         - router
+        - --domain
+        - $(POD_NAMESPACE).svc.cluster.local
+        - --log_output_level
+        - info
         - --drainDuration
         - 45s
         - --parentShutdownDuration
@@ -720,6 +724,8 @@ spec:
         - zipkin.service-mesh:9411
         - --proxyAdminPort
         - "15000"
+        - --statusPort
+        - "15020"
         - --controlPlaneAuthPolicy
         - NONE
         - --discoveryAddress

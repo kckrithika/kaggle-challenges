@@ -184,10 +184,10 @@ data:
         [[ else -]]
           limits:
             cpu: 2000m
-            memory: 128Mi
+            memory: 512Mi
           requests:
             cpu: 100m
-            memory: 128Mi
+            memory: 512Mi
         [[ end -]]
         volumeMounts:
         [[- if (isset .ObjectMeta.Annotations `sidecar.istio.io/bootstrapOverride`) ]]
