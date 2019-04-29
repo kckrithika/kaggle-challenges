@@ -60,7 +60,7 @@ system:
           "-XX:+UseG1GC -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops",
           "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: hnd-group1}
-      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'false'}
+      - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'true'}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
       image: sfci/insights/jobcontroller:release-105-c9b9445
       livenessProbe:
