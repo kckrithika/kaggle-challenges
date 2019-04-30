@@ -1455,8 +1455,6 @@ metadata:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  annotations:
-    manifestctl.sam.data.sfdc.net/swagger: disable
   name: istio-init-crd-10
   namespace: mesh-control-plane
 spec:
@@ -1490,8 +1488,6 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  annotations:
-    manifestctl.sam.data.sfdc.net/swagger: disable
   name: istio-init-crd-11
   namespace: mesh-control-plane
 spec:
