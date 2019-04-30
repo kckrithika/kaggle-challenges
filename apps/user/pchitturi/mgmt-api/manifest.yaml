@@ -35,7 +35,7 @@ system:
             - name: INSTALLATION_TYPE
               value: "CLUSTER"
             - name: MYSQL_SERVER
-              value: guiapi-db-lb
+              value: guiapi-db-lb.user-athatipalli
             - name: POLICY_DESIGNER_SERVER_IP
               value: "mgmt-policydesigner-lb"
             - name: POLICY_DESIGNER_SERVER_PORT
