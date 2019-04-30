@@ -132,7 +132,7 @@ if configs.kingdom == 'mvp' then {
         containers: [
           {
             name: 'consul-mtls',
-            image: topologysvcimages.consul,
+            image: topologysvcimages.consulgcp,
             args: [
               'agent',
               '-advertise=$(POD_IP)',
@@ -143,7 +143,7 @@ if configs.kingdom == 'mvp' then {
               '-data-dir=/consul/data',
               '-domain=cluster.local',
               '-server',
-              '-http-port=7022',
+              '-config-dir=/config/consulencrypt.json',
               '-disable-host-node-id',
               '-retry-join=consul-mtls-server-0.consul-mtls-headless.$(NAMESPACE).svc',
               '-retry-join=consul-mtls-server-1.consul-mtls-headless.$(NAMESPACE).svc',

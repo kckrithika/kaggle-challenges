@@ -27,7 +27,8 @@ spec:
               "topology.vip.core.test.us-central1.gcp.sfdc.net",
               "10.130.2.66",
               "10.130.2.77",
-              "topology.vip.core.test2.us-central1.gcp.sfdc.net"
+              "topology.vip.core.test2.us-central1.gcp.sfdc.net",
+              "server.gcp-uscentral1.cluster.local"
              ],
              "superpod": null
             },
@@ -40,7 +41,8 @@ spec:
               "topology.vip.core.test.us-central1.gcp.sfdc.net",
               "10.130.2.66",
               "10.130.2.77",
-              "topology.vip.core.test2.us-central1.gcp.sfdc.net"
+              "topology.vip.core.test2.us-central1.gcp.sfdc.net",
+              "server.gcp-uscentral1.cluster.local"
              ],
              "superpod": null
             },
@@ -53,7 +55,8 @@ spec:
               "topology.vip.core.test.us-central1.gcp.sfdc.net",
               "10.130.2.66",
               "10.130.2.77",
-              "topology.vip.core.test2.us-central1.gcp.sfdc.net"
+              "topology.vip.core.test2.us-central1.gcp.sfdc.net",
+              "server.gcp-uscentral1.cluster.local"
              ],
              "superpod": null
             }
@@ -73,7 +76,7 @@ spec:
         - -data-dir=/consul/data
         - -domain=cluster.local
         - -server
-        - -http-port=7022
+        - -config-dir=/config/consulencrypt.json
         - -disable-host-node-id
         - -retry-join=consul-mtls-server-0.consul-mtls-headless.$(NAMESPACE).svc
         - -retry-join=consul-mtls-server-1.consul-mtls-headless.$(NAMESPACE).svc
@@ -89,7 +92,7 @@ spec:
               fieldPath: metadata.namespace
         - name: RANDVAL
           value: "46"
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-ts:142-20190416-2
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:consul-20190430-1
         lifecycle:
           preStop:
             exec:
