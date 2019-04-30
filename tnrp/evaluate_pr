@@ -2,6 +2,8 @@
 #exit on error
 set -e
 
+source tnrp/versions
+
 REPO_OWNER=sam
 
 if [ -z "$FIREFLY" ]; then
@@ -10,7 +12,10 @@ else
    echo "*** EXECUTING IN $FIREFLY ENVIRONMENT"
    SAMBINDIR=/sam
    # This is required for SAM to run json consistency tests for sam-internal files
-   SMBPACKAGE="slb-manifest-builder-20190423_185401.ee945b7.clean-1.x86_64"
+   if [[ -z "${SMBPACKAGE}" ]]; then
+     echo "SMBPACKAGE variable must be non-empty."
+     exit 1
+   fi
    yum install -y make gcc gcc-c++ "${SMBPACKAGE}"
    echo "Verifying package installed: ${SMBPACKAGE}"
    if ! yum list installed "${SMBPACKAGE}"; then
