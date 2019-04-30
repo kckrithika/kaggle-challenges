@@ -57,7 +57,7 @@ system:
       - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-ukb.data.sfdc.net/sfci/insights/moanaengine:release-5-b39b8dc'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
-          "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:+UseG1GC
+          "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:MaxDirectMemorySize=128M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M -XX:+UseG1GC
           -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops",
           "spark.shuffle.accurateBlockThreshold": "1048576",
           "spark.shuffle.io.preferDirectBufs": "false",
