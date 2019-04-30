@@ -411,6 +411,7 @@ items:
     name: watchdog-spark-operator
     namespace: flowsnake
   spec:
+    replicas: 10
     selector:
       matchLabels:
         app: watchdog-spark-operator
@@ -446,7 +447,9 @@ items:
           - name: DOCKER_TAG
             value: "4"
           - name: TEST_RUNNER_ID
-            value: canary
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
           - name: S3_PROXY_HOST
             value: public0-proxy1-0-cdu.data.sfdc.net
           - name: DRIVER_SERVICE_ACCOUNT
