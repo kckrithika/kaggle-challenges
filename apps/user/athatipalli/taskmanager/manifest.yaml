@@ -1,11 +1,11 @@
- apiVersion: v1
- system:
+apiVersion: v1
+system:
    functions:
    - name: acds-tm
      count: 1
      containers:
      - name: acds-tm-cont
-       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-taskmanager:v0.1.6 
+       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-taskmanager:v0.1.5 
        command:
        - /bin/bash
        - -c
@@ -17,9 +17,6 @@
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-         - name: taskmanager-secrets-vol
-           mountPath: /taskmanagersecrets/
-           readOnly: true
          - name: tls-client-cert
            mountPath: /client-certs
          - name: tls-server-cert
@@ -29,18 +26,14 @@
          - name: logvolbeacon
            mountPath: /logbeacon
        env:
-       - name: LOGGING_JSON_STDOUT_LEVEL
-         value: all
-       - name: LOGGING_STDERR_LEVEL
-         value: all 
        - name : UP_STRING
          value: "ACDS TaskManager Started. Blocking."
        - name : ACDS_START_TASKMANAGER
          value: "yes"
        - name : TENANT_ADMIN_NAME
-         value: /taskmanagersecrets/tenant_admin_name
+         value: "admin@local"
        - name : TENANT_ADMIN_PASSWORD
-         value: /taskmanagersecrets/tenant_admin_password
+         value: "synchronize"
        - name : DD_NAME
          value: "Target_1"
        - name : DB_NAME
@@ -58,25 +51,24 @@
        - name : GRID_CONNECTION_NAME
          value: "DS_CONN_DD_1"
        - name : SERVICE_USER_EMAIL
-         value: /taskmanagersecrets/service_user_email
+         value: "acds_admin@local"
        - name : TOKEN_SECRET
-         value: /taskmanagersecrets/token_secret
+         value: "jJ5mPbFutWIzGIGvehio1onUctIv5yd3"
        - name : SERVICE_USER_NAME
-         value: /taskmanagersecrets/service_user_name
+         value: "acds_admin"
        - name : SERVICE_USER_PASSWORD
-         value: /taskmanagersecrets/service_user_password
+         value: "6LmQ8ZlrL6hR6WAXJ7uezndKuObPsD4E"
        - name : ACDS_APISERVER_HOST
          value: "10.251.161.90"
        - name : ACDS_APISERVER_PORT
-         value: /taskmanagersecrets/acds_apiserver_port
+         value: "5004"
        - name : ACDS_APISERVER_HTTPS
          value: "false"
        - name : ACDS_APISERVER_ZKCONN
          value: "shared0-discovery1-0-crd.data.sfdc.net:2181"
+       - name : SERVICE_USER_EMAIL
+         value: "acds_admin@local" 
      volumes:
-     - name: taskmanager-secrets-vol
-       k4aSecret:
-         secretName: taskmanagersecrets
      - name: tls-client-cert
        maddogCert:
          type: client
