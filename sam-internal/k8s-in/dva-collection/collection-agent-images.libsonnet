@@ -24,7 +24,7 @@ local configs = import "config.jsonnet";
     per_phase: {
     ### Release Phase 0 - for sam and samtest
     "0": $.per_phase["1"] {
-       rsyslog: "13-1aa2c2bd67f30c4cd1e353ec513b81bbb8da8fe0",
+       rsyslog: "14-48abf489cb1e3e36afc9d1d3ce4c14feb2ca07aa",
        config_gen: "15-14ece1b939b13a42d74ae9fc1ad34d4e674dab73",
        logarchive: "2",
        cadvisor: "v0.30.2",
@@ -74,7 +74,7 @@ local configs = import "config.jsonnet";
     ),
 
     # These are the images used by the templates
-    rsyslog: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sfdc_rsyslog_gcp:" + $.per_phase[$.phase].rsyslog,
+    rsyslog: "gcr.io/gsf-mgmt-devmvp-spinnaker/dva/sfdc_rsyslog_gcp:" + $.per_phase[$.phase].rsyslog,
     config_gen: "gcr.io/gsf-mgmt-devmvp-spinnaker/dva/collection-erb-config-gen:" + $.per_phase[$.phase].config_gen,
     logarchive: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/dva/sfdc_log_archiver:" + $.per_phase[$.phase].logarchive,
     cadvisor: "k8s.gcr.io/cadvisor:" + $.per_phase[$.phase].cadvisor,

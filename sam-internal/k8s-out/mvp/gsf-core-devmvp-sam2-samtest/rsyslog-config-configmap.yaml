@@ -84,7 +84,10 @@ data:
     \               serverport=\"5442\"\n                restpath=\"funnel/v1/publishBatch?avroSchemaFingerprint=AVG7NnlcHNdk4t_zn2JBnQ\"\n
     \               usehttps=\"off\"\n                batch=\"on\"\n                batch.maxsize=\"300\"\n
     \               batch.maxbytes=\"1000000\" # ~1Mb\n                batch.format=\"jsonarray\"\n
-    \               compress=\"on\"\n            )\n        }\n    }\n}\n"
+    \               compress=\"on\"\n                queue.type=\"LinkedList\"\n                queue.discardseverity=\"5\"\n
+    \               queue.size=\"1000\"\n                queue.discardmark=\"900\"\n
+    \               queue.lightdelaymark=\"1000\"\n                queue.fulldelaymark=\"1000\"\n
+    \           )\n        }\n    }\n}\n"
   container.conf.erb: "<%# INPUT DEFINITIONS %>\n<%# Collect log files in /var/log/container
     %>\ninput(\n  type=\"imfile\"\n  File=\"/var/log/containers/*.log\"\n  PersistStateInterval=\"500\"\n
     \ Tag=\"kubernetes\"\n  ruleset=\"kubernetes_dockercontainers_ruleset\"\n  addmetadata=\"on\"\n
