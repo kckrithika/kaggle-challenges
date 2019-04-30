@@ -23,7 +23,7 @@ spec:
       - command:
         - /sdn/slb-tcpdump
         - --tcpdump.pollinterval=15m
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2133-526e0ce9262aa8c54d7c96084bf467e6482aa130
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2139-0831c3a2e17ebc56e95f726982e00bc35b25c55e
         name: slb-tcpdump-ipvs
         resources:
           limits:
