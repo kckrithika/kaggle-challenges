@@ -1559,7 +1559,8 @@
         "topology-svc",
         "qpid",
         "einstein-analytics",
-        "vagabond"
+        "vagabond",
+        "pbsgeo"
       ],
       "access": [
         "team/CSC_Sam",
@@ -1592,7 +1593,8 @@
         "team/topology_svc",
         "team/qpid",
         "team/einstein-analytics",
-        "team/Vagabond"
+        "team/Vagabond",
+        "team/pbsgeo"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-sam",
       "estate": "gsf-core-devmvp-sam2-sam",
