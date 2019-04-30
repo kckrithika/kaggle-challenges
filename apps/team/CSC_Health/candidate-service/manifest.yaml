@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-logrotator
-      image: dva/csc-health/candidate-service:9
+      image: dva/csc-health/candidate-service:10
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: candidate-service
-      image: dva/csc-health/candidate-service:9
+      image: dva/csc-health/candidate-service:10
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -88,7 +88,8 @@ system:
         value: 10
       - name: CHS_REPORTCOLLECTOR_WHITELISTUNTRUSTED
         value: nagios-adapter
-
+      - name: CHS_STALENESS_WHITELIST
+        value: LOGICAL_HOST
       livenessProbe:
         httpGet:
           path: /healthz
