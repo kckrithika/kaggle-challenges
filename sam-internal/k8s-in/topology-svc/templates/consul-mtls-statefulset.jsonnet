@@ -32,7 +32,7 @@ local consulEnvParams = [
   },
   {
     name: 'RANDVAL',
-    value: '46',
+    value: '47',
   },
 ];
 
@@ -53,10 +53,6 @@ local ports = [
   {
     containerPort: 8300,
     name: 'server',
-  },
-  {
-    containerPort: 7022,
-    name: 'http1',
   },
 ];
 
