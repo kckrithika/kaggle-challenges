@@ -18,3 +18,4 @@ users:
   # Service Accounts
   - tok-sfci4 # Jenkins user
   - svc-email-infra
+  - svc-atf-user
