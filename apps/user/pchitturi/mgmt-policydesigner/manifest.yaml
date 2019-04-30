@@ -31,7 +31,7 @@ system:
             - name: NODE_ENV
               value: "production"
             - name: POLICY_DESIGNER_DB_HOSTNAME
-              value: guiapi-db-lb
+              value: guiapi-db-lb.user-athatipalli
             - name: POLICY_DESIGNER_DB_PORT
               value: 3306
             - name: LOGGING_JSON_STDOUT_LEVEL
