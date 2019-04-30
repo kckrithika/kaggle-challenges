@@ -4,9 +4,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   apiVersion: "batch/v1",
   kind: "Job",
   metadata: {
-    annotations: {
-      "manifestctl.sam.data.sfdc.net/swagger": "disable",
-    },
     name: "istio-init-crd-10",
     namespace: "mesh-control-plane",
   },
