@@ -12,8 +12,6 @@ system:
     - name: dfs-server-cert
       maddogCert:
         type: server
-        lbnames:
-        - dfs-lbdv
     - name: dfs-client-cert
       maddogCert:
         type: client
@@ -39,6 +37,8 @@ system:
         value: true
       - name: GDOT_BASEPATHOVERRIDE
         value: https://na48.stmfa.stm.salesforce.com/empire/cloudatlas/scim
+      - name: SCONE_SERVER_SECURITY_MUTUALAUTH
+        value: false
       - name: INCLUDE_ALL_STACK_TRACES
         value: true
       - name: JVM_ARGS
@@ -70,9 +70,6 @@ system:
           scheme: HTTP
     - name: sherpa-dfs
       image: sfci/servicelibs/sherpa-envoy:1.0.4
-      args:
-      - --server-ca
-      - /server-certs/ca_test/cacerts.pem
       volumeMounts:
         - name: dfs-server-cert
           mountPath: /server-certs
@@ -123,6 +120,6 @@ system:
     slbEnabled: true
     ports:
     - port: 7024
-      targetport: 7442
+      targetport: 7022
     - port: 15374
       targetport: 15372
