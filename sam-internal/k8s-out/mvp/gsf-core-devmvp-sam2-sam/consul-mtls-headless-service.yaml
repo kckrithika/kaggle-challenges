@@ -16,7 +16,7 @@ spec:
     targetPort: 7022
   - name: http1
     port: 8500
-    targetPort: 7022
+    targetPort: 8500
   - name: serflan-tcp
     port: 8301
     protocol: TCP
