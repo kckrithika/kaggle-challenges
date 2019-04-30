@@ -57,8 +57,6 @@ system:
         value: "Grid_01"
       - name : GRID_CONNECTION_NAME
         value: "DS_CONN_DD_1"
-      - name : HOME
-        value: "/root"
       - name : SERVICE_USER_EMAIL
         value: /taskmanagersecrets/service_user_email
       - name : TOKEN_SECRET
@@ -68,15 +66,13 @@ system:
       - name : SERVICE_USER_PASSWORD
         value: /taskmanagersecrets/service_user_password
       - name : ACDS_APISERVER_HOST
-        value: "10.251.162.142"
+        value: "10.251.161.90"
       - name : ACDS_APISERVER_PORT
         value: /taskmanagersecrets/acds_apiserver_port
       - name : ACDS_APISERVER_HTTPS
         value: "false"
       - name : ACDS_APISERVER_ZKCONN
         value: "shared0-discovery1-0-crd.data.sfdc.net:2181"
-      - name : SERVICE_USER_EMAIL
-        value: "admin_acds@local" 
     volumes:
     - name: taskmanager-secrets-vol
       k4aSecret:
