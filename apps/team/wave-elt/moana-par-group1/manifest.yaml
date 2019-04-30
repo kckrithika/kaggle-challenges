@@ -62,7 +62,7 @@ system:
       - {name: DEPLOYMENT_ID, value: par-group1}
       - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'false'}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
-      image: sfci/insights/jobcontroller:release-105-c9b9445
+      image: sfci/insights/jobcontroller:release-106-9e73c85
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90

@@ -64,7 +64,7 @@ system:
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-syd.data.sfdc.net'}
       - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
-      image: sfci/insights/jobcontroller:release-105-c9b9445
+      image: sfci/insights/jobcontroller:release-106-9e73c85
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
