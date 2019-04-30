@@ -1,6 +1,7 @@
 apps:
- mgmt-ui:
+  mgmt-api:
   - prd/prd-sam
- mgmt-api:
+  mgmt-policydesigner:
   - prd/prd-sam
-
+  mgmt-ui:
+  - prd/prd-sam

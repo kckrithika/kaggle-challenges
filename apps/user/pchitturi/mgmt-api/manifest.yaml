@@ -14,8 +14,6 @@ system:
             timeoutSeconds: 10
           ports:
           - containerPort: 5004
-          # args:
-          #   - --logDir=/var/log/geocloud/mgmt-platform/mgmt-server
           resources:
             requests:
               cpu: 2
@@ -35,23 +33,25 @@ system:
             - name: NODE_ENV
               value: "production"
             - name: INSTALLATION_TYPE
-              value: CLUSTER
+              value: "CLUSTER"
             - name: MYSQL_SERVER
-              value: 10.254.213.9
-            - name: MYSQL_USER
-              value: "ddnuser"
-            - name: MYSQL_ROOT_PASSWORD
-              value: "rootPassword"
-            - name: MYSQL_ROOT
-              value: "root"
-            - name: MYSQL_DATABASE
-              value: "ddnprod"
-            - name: MYSQL_PASSWORD
-              value: "ddnpassword"
-            - name: JWT_SECRET_KEY
-              value: "geocloudDDNApiPlatformKey"
+              value: guiapi-db-lb
+            - name: POLICY_DESIGNER_SERVER_IP
+              value: "mgmt-policydesigner-lb"
+            - name: POLICY_DESIGNER_SERVER_PORT
+              value: 8080
             - name: LOGGING_JSON_STDOUT_LEVEL
               value: all
             - name: LOGGING_STDERR_LEVEL
               value: all
+            - name: SECRETS_PATH
+              value: "/var/mgmt-server-secrets/"
+          volumeMounts:
+            - mountPath: /var/mgmt-server-secrets/
+              name: mgmt-server-secrets-vol
+              readOnly: true
+      volumes:
+        - name: mgmt-server-secrets-vol
+          k4aSecret:
+            secretName: mgmt-server-secrets
       lbname: mgmtserver-api-lb
