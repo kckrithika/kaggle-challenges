@@ -163,7 +163,7 @@ if configs.kingdom == 'mvp' then {
                 command: [
                   '/bin/sh',
                   '-ec',
-                  'curl "http://$POD_IP:7022/v1/status/leader" 2> /dev/null | grep -E \'".+"\'',
+                  'curl "http://$POD_IP:8500/v1/status/leader" 2> /dev/null | grep -E \'".+"\'',
                 ],
               },
               failureThreshold: 2,
