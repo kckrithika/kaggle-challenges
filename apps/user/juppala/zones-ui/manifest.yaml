@@ -17,7 +17,7 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:master-20190429-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:master-20190429-3
       env:
       - name: ZONES_ENVIRONMENT
         value: "dev"
