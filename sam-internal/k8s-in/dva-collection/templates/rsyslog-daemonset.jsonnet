@@ -127,7 +127,6 @@ for certReq in madkub.madkubRsyslogCertsAnnotation(certDirs).certreqs
                 containers: [
                     {
                         name: "rsyslog",
-                        imagePullPolicy: "Always",
                         image: rsyslogimages.rsyslog,
                         resources: {
                             requests: {
@@ -148,7 +147,7 @@ for certReq in madkub.madkubRsyslogCertsAnnotation(certDirs).certreqs
                                 ],
                             },
                             initialDelaySeconds: 60,
-                            periodSeconds: 90,
+                            periodSeconds: 60,
                             timeoutSeconds: 5,
                         },
                         volumeMounts:
@@ -162,7 +161,6 @@ for certReq in madkub.madkubRsyslogCertsAnnotation(certDirs).certreqs
                     },
                     {
                         name: "logarchive",
-                        imagePullPolicy: "Always",
                         image: rsyslogimages.logarchive,
                         command: [
                             '/usr/local/bin/sfdc_log_archiver',
