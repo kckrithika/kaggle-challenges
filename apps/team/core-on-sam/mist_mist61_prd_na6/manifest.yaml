@@ -56,6 +56,10 @@ system:
         value: na6
       - name: DEPLOYMENT
         value: B
+      - name: ZDT
+        value: true
+      - name: IS_DEBUG
+        value: true
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
@@ -64,10 +68,11 @@ system:
       livenessProbe:
         exec:
           command:
-          - echo
-          - HEALTHY
-        initialDelaySeconds: 480
-        periodSeconds: 1
+          - /home/sfdc/salesforce/casam/bin/live_probe.sh
+        failureThreshold: 99999
+        initialDelaySeconds: 120
+        periodSeconds: 5
+        timeoutSeconds: 5
       name: coreapp
       ports:
       - containerPort: 8998
@@ -98,7 +103,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na6.app
-      image: sfci/casam/coreapp_overrides:ef1a7d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:b9a8f0
       livenessProbe:
         exec:
           command:
@@ -123,7 +128,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: envoy-sidecar
-      image: sfci/servicelibs/sherpa-envoy:1.0.4
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
       livenessProbe:
         exec:
           command:
@@ -180,7 +185,7 @@ system:
         maxSurge: 200%
         maxUnavailable: 0
       type: RollingUpdate
-    terminationGracePeriodSeconds: 500
+    terminationGracePeriodSeconds: 120
     volumes:
     - emptyDir: {}
       name: envoy-config-volume
@@ -278,13 +283,6 @@ system:
           port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
-      resources:
-        limits:
-          cpu: 8
-          memory: 6Gi
-        requests:
-          cpu: 8
-          memory: 6Gi
       volumeMounts:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
@@ -315,13 +313,6 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
-      resources:
-        limits:
-          cpu: 1
-          memory: 1Gi
-        requests:
-          cpu: 1
-          memory: 1Gi
       volumeMounts:
       - mountPath: /switchboard-config
         name: envoy-config-volume
