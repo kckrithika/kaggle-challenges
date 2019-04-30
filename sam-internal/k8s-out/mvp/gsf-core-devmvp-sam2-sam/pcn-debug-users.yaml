@@ -471,6 +471,43 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: mark.wasserman@salesforce.com
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: debug
+    namespace: pbsgeo
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: debug
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: cjayaramshankar@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: xu.zhang@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: aaron.chan@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: nitesh.kumar@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: bchhatbar@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: mpadovani@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: sbagul@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: jatin.patel@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: taylor.peet@salesforce.com
 kind: List
 metadata:
   labels:
