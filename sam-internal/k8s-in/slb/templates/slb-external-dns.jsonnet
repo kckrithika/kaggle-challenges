@@ -3,7 +3,7 @@ local slbconfigs = (import "slbconfig.jsonnet");
 local slbflights = import "slbflights.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbports = import "slbports.jsonnet";
-local dnsRegisterInGkeEnabled = (configs.estate == "gsf-core-devmvp-sam2-samtest");
+local dnsRegisterInGkeEnabled = (configs.estate == "gsf-core-devmvp-sam2-samtest" || configs.estate == "gsf-core-devmvp-sam2-sam");
 
 if dnsRegisterInGkeEnabled then configs.deploymentBase("slb") {
       metadata: {
