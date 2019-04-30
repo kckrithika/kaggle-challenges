@@ -4,6 +4,15 @@ items:
   kind: Namespace
   metadata:
     annotations:
+      sfdc.net/flowsnake.owner_name: Carl - Testing
+      sfdc.net/pki-namespace: flowsnake_test
+    labels:
+      madkub-injector: enabled
+    name: carl-spark-test
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    annotations:
       sfdc.net/flowsnake.owner_name: Flowsnake
       sfdc.net/pki-namespace: flowsnake_test
     labels:
