@@ -44,7 +44,7 @@ local replicas = 2;
 
 local certDirs = ["cert1", "cert2"];
 
-if slbflights.hsmCanaryEnabled && !slbflights.disableCanaryVIPs then
+if slbflights.hsmCanaryEnabled then
     slbbasenginxproxy.slbBaseNginxProxyDeployment(
       slbconfigs.hsmNginxProxyName,
       replicas,
