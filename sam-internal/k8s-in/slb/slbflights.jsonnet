@@ -29,11 +29,11 @@ local slbconfigs = import "slbconfig.jsonnet";
     # See discussion at https://computecloud.slack.com/archives/G340CE86R/p1555707096410000?thread_ts=1555702827.408500&cid=G340CE86R
     # Reduce the maxUnavailable for realsvrcfg from 20% to 1, so that at most one daemonset
     # pod is offline at a time.
-    realsvrCfgRolloutMaxUnavailable: (if slbimages.phaseNum <= 1 then 1 else "20%"),
+    realsvrCfgRolloutMaxUnavailable: (if slbimages.phaseNum <= 2 then 1 else "20%"),
 
 
     # Fix logging for slb-nginx-data-watchdog and slb-nginx-data pods
-    fixNginxDataLogging: (slbimages.phaseNum <= 1),
+    fixNginxDataLogging: (slbimages.phaseNum <= 2),
 
     # Enable kms config map to fix placement of kingdom json files in nginx-proxy container within the hsm nginx pods
     kmsConfigMap: (slbimages.phaseNum <= 1 || configs.estate == "dfw-sam" || configs.estate == "phx-sam"),

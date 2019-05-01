@@ -200,6 +200,7 @@ spec:
         - /sdn/slb-nginx-data
         - --target=/host/data/slb/slb-nginx-config-b/config
         - --connPort=9125
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2139-0831c3a2e17ebc56e95f726982e00bc35b25c55e
         livenessProbe:
           httpGet:
