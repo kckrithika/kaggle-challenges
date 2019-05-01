@@ -58,7 +58,7 @@ system:
                   -Xmx4G -Xms4G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 8080
-      - containerPort: 7020
+      - containerPort: 7022
       - containerPort: 15372
       resources:
         limits: { cpu: "2", memory: "6Gi" }
@@ -144,4 +144,4 @@ system:
     slbenabled: true
     ports:
       - port: 8093
-        targetport: 7020
+        targetport: 7022

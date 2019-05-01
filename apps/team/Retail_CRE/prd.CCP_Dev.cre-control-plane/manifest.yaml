@@ -28,7 +28,7 @@ system:
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets-kube/cre-gdot-private-key.json
         - name: GRPC_PORT
-          value: 7020
+          value: 7022
         - name: FLOWSNAKE_ENDPOINT
           value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
         - name: ENGINE_PKI_NAME_OVERRIDE
@@ -89,7 +89,7 @@ system:
         requests: { cpu: "2", memory: "5Gi" }
       ports:
       - containerPort: 8080
-      - containerPort: 7020
+      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         exec:
@@ -184,4 +184,4 @@ system:
     slbEnabled: true
     ports:
       - port: 8091
-        targetport: 7020
+        targetport: 7022
