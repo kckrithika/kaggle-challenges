@@ -1,0 +1,24 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: pbsmatch
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:0c0f2da0e2b297bc3aed25ab475d9aad791d9b50
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /ping.jsp
+          port: 8080
+        initialDelaySeconds: 120 
+        periodSeconds: 5
+  loadbalancers:
+  - lbname: pbsmatchlb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: tcp
