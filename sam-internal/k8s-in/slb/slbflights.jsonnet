@@ -11,11 +11,6 @@ local slbconfigs = import "slbconfig.jsonnet";
     hsmCanaryEnabled: (configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam" || configs.estate == "prd-samtwo" || configs.estate == "phx-sam" || configs.estate == "dfw-sam"),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
 
-    # Running artifactory-bootstrap on host network allows this service to function even when there
-    # are issues communicating from a node's docker subnet.
-    # See https://computecloud.slack.com/archives/G340CE86R/p1554742975378400?thread_ts=1554741913.377900&cid=G340CE86R
-    hostNetworkForArtifactoryBootstrap: (slbimages.phaseNum <= 5),
-
     # slb-nginx-accesslogs can sometimes fill up disk -- see investigation at
     # https://computecloud.slack.com/archives/G340CE86R/p1552882461719300?thread_ts=1552870275.718300&cid=G340CE86R.
     nginxAccesslogsEnabled: (slbimages.phaseNum <= 2),
@@ -25,18 +20,9 @@ local slbconfigs = import "slbconfig.jsonnet";
     # See https://computecloud.slack.com/archives/G340CE86R/p1552359954498500?thread_ts=1552346706.487600&cid=G340CE86R.
     slbUpstreamReporterEnabledForHsmNginx: (false),
 
-    # XRD is currently bumping into peering prefix limits (60) that restrict the number of distinct VIPs
-    # we can serve before everything blows up. Disable canary VIPs (and downstream components like fred/george)
-    # in XRD until we can increase the prefix limits and thus advertise more VIPs.
-    # See https://computecloud.slack.com/archives/G340CE86R/p1551987919271500.
-    disableCanaryVIPs: false,
-
     # 2019/01/16 - this didn't work as expected so I disabled it (Pablo)
     # See: https://computecloud.slack.com/archives/G340CE86R/p1550291706553800
     alertOnlyOnProxyErrorCode: (slbimages.phaseNum < 1),
-
-    # restrict memory usage in slb-nginx-reporter to 10G
-    ngnixReporterMemoryCap: (slbimages.hyperslb_build >= 2122),
 
     # The rollout of slb-realsvrcfg sometimes gets stuck waiting for pod termination.
     # When this happens, we observe issues with canary DSR VIP availability.

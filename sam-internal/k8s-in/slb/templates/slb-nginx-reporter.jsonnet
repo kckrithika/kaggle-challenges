@@ -4,11 +4,11 @@ local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: serviceName };
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbflights = (import "slbflights.jsonnet") + { dirSuffix:: "slb-portal" };
 
-local resourceLimit = if slbflights.ngnixReporterMemoryCap then {
-    resources: {
+local resourceLimit = {
+    resources+: {
         limits+: { memory: "10Gi" },
     },
-} else {};
+};
 
 if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
     metadata: {

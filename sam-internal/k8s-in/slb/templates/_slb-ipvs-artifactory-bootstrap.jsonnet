@@ -13,13 +13,12 @@ local script = [
     "60",
 ];
 
-local hostNetwork = if slbflights.hostNetworkForArtifactoryBootstrap then {
+# Running artifactory-bootstrap on host network allows this service to function even when there
+# are issues communicating from a node's docker subnet.
+# See https://computecloud.slack.com/archives/G340CE86R/p1554742975378400?thread_ts=1554741913.377900&cid=G340CE86R
+local hostNetwork = {
     hostNetwork: true,
-} else {};
-
-local ipAddressResourceRequest = if !slbflights.hostNetworkForArtifactoryBootstrap then
-    configs.ipAddressResourceRequest
-else {};
+};
 
 if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
     spec+: {
@@ -56,7 +55,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                                 value: "1",
                             },
                         ],
-                    } + ipAddressResourceRequest,
+                    },
                 ],
                 volumes: [
                     {

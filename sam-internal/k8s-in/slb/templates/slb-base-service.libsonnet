@@ -8,12 +8,12 @@ local utils = import "util_functions.jsonnet";
 
 {
   slbCanaryBaseService(canaryName, portConfigurations, serviceName=canaryName, vipName=canaryName, cnames=[]):: (
-    local slbAnnotations = if !slbflights.disableCanaryVIPs || serviceName == "slb-portal-service" then {
+    local slbAnnotations = {
         annotations: {
           "slb.sfdc.net/name": vipName,
           "slb.sfdc.net/portconfigurations": slbportconfiguration.portConfigurationToString(portConfigurations),
         } + utils.fieldIfNonEmpty("slb.sfdc.net/cnames", cnames, std.manifestJsonEx(cnames, " ")),
-    } else {};
+    };
 
     // Confirm the format of the cnames field -- it should be an array of objects containing cname: string pairs.
     if std.assertEqual("array", std.type(cnames)) &&
