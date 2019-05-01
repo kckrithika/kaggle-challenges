@@ -13,7 +13,6 @@ local configmap_data =
         "check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",
         "check-impersonation.sh": importstr "spark-on-k8s-canary-scripts/check-impersonation.sh",
         "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-scripts/kubeconfig-impersonation-proxy.libsonnet"),
-        [if flowsnake_config.is_test then "analysis.py"]: importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-analysis.py"
     };
 
 (if watchdog.watchdog_enabled then [
