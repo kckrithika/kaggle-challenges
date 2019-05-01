@@ -28,15 +28,13 @@ system:
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets-kube/cre-gdot-private-key.json
         - name: GRPC_PORT
-          value: 7022
+          value: 7020
         - name: FLOWSNAKE_ENDPOINT
           value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
         - name: ENGINE_PKI_NAME_OVERRIDE
           value: cre-engine-ccp-dev
         - name: ENGINE_IMAGE_TAG
           value: docker-sam/cre/cre-engine:1.6.0.0.develop-1.6.942d067.18
-        - name: FLOWSNAKE_ARTIFACT
-          value: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:1.8.0.0.tt-default_super_tenant.7eb79b6.5
         - name: ENGINE_APPLICATION_NAME
           value: cre-engine-ccp-dev
         - name: ENGINE_HBASE_DATACENTER
@@ -64,7 +62,7 @@ system:
         - name: MAX_FLOWSNAKE_ENVIRONMENTS
           value: 25
         - name: STREAM_PROCESSING_ENDPOINT
-          value: cre-sp-ccp-dev.retail-cre.localhost.mesh.force.com:5442
+          value: cre-sp-ccp-dev.retail-cre.localhost.mesh.force.com:5443
         - name: GDOT_FORCE_PROVISIONING
           value: false
         - name: SECRET_KEY_FILE
@@ -91,7 +89,7 @@ system:
         requests: { cpu: "2", memory: "5Gi" }
       ports:
       - containerPort: 8080
-      - containerPort: 7022
+      - containerPort: 7020
       - containerPort: 15372
       livenessProbe:
         exec:
@@ -129,7 +127,7 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7442
+      - containerPort: 7443
         name: sh-in-http2-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
@@ -149,7 +147,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7442
+      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7443
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -186,4 +184,4 @@ system:
     slbEnabled: true
     ports:
       - port: 8091
-        targetport: 7022
+        targetport: 7020
