@@ -5,14 +5,14 @@ system:
       - jiaqi.wu@salesforce.com
       - aditya.sureshkumar@salesforce.com
   functions:
-  - name: zones-intake-backend
+  - name: zones-intake-backend-staging
     count: 1
     volumes:
       - name: servercert
         maddogCert:
           type: server
           lbnames:
-            - zones-intake-backend-secure
+            - zones-intake-backend-staging-secure
       - name: clientcert
         maddogCert:
           type: client
@@ -51,16 +51,16 @@ system:
         mountPath: /clientcerts
 
   loadbalancers:
-  - lbname: zones-intake-backend-lb
-    function: zones-intake-backend
+  - lbname: zones-intake-backend-staging-lb
+    function: zones-intake-backend-staging
     slbenabled: true
     ports:
       - port: 3000
         targetport: 7022
         lbtype: http
         tls: false
-  - lbname: zones-intake-backend-secure
-    function: zones-intake-backend
+  - lbname: zones-intake-backend-staging-secure
+    function: zones-intake-backend-staging
     slbenabled: true
     ports:
       - port: 4443

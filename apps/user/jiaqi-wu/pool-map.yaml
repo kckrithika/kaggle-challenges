@@ -4,5 +4,7 @@ apps:
   #                # you can also specify other pools
   # zones-client:
   # - prd/prd-sam
+  zones-intake-backend-staging:
+  - prd/prd-sam
   zones-intake-backend:
   - prd/prd-sam
