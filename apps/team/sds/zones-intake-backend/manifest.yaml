@@ -51,14 +51,6 @@ system:
       - name: clientcert
         mountPath: /clientcerts
   loadbalancers:
-  - lbname: zones-intake-backend-lb
-    function: zones-intake-backend
-    slbenabled: true
-    ports:
-      - port: 3000
-        targetport: 7022
-        lbtype: http
-        tls: false
   - lbname: zones-intake-backend-secure
     function: zones-intake-backend
     slbenabled: true
