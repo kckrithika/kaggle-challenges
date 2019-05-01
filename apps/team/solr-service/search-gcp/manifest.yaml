@@ -7,8 +7,7 @@ system:
       count: 3
       containers:
       - name: searchserver
-        # image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17943610.477
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:18002431.483
         env:
         - name: INSTANCE_URL
           value: "https://casam.devmvp.gcp.sfdcsvc.net"
