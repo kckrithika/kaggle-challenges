@@ -28,7 +28,7 @@ system:
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets-kube/cre-gdot-private-key.json
         - name: GRPC_PORT
-          value: 7020
+          value: 7022
         - name: FLOWSNAKE_ENDPOINT
           value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
         - name: ENGINE_PKI_NAME_OVERRIDE
@@ -89,7 +89,7 @@ system:
         requests: { cpu: "2", memory: "5Gi" }
       ports:
       - containerPort: 8080
-      - containerPort: 7020
+      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         exec:
@@ -127,7 +127,7 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7443
+      - containerPort: 7442
         name: sh-in-http2-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
@@ -147,7 +147,7 @@ system:
       image: sfci/servicelibs/beacon:f6445b2b299f232eda1e0be9739b8242153478ea
       args:
       - -endpoint
-      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7443
+      - retail-cre/cre-control-plane-ccp-dev:DATACENTER_ALLENV:7442
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -184,4 +184,4 @@ system:
     slbEnabled: true
     ports:
       - port: 8091
-        targetport: 7020
+        targetport: 7022
