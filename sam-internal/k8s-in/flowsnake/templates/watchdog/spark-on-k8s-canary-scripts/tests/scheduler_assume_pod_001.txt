@@ -1,0 +1,86 @@
+SCHEDULER_ASSUME_POD
+0429 00:45:27 [1556498727] spark-pi-canary - ======== Beginning spark-pi-canary test ========
+0429 00:45:27 [1556498727] spark-pi-canary -  [0;32mKubernetes master [0m is running at  [0;33mhttps://10.254.208.1:443 [0m
+0429 00:45:27 [1556498727] spark-pi-canary -
+0429 00:45:27 [1556498727] spark-pi-canary - To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+0429 00:45:28 [1556498728] spark-pi-canary - Cleaning up spark-pi-canary resources from prior runs.
+0429 00:45:32 [1556498732] spark-pi-canary - Creating SparkApplication spark-pi-canary
+0429 00:45:32 [1556498732] spark-pi-canary - sparkapplication "spark-pi-canary" created
+0429 00:45:33 [1556498733] spark-pi-canary - Waiting for SparkApplication spark-pi-canary to reach a terminal state.
+0429 00:45:41 [1556498741] spark-pi-canary - Pod change detected: spark-pi-canary-driver: Pending on host <none>.
+0429 00:46:36 [1556498796] spark-pi-canary - ...still waiting for terminal state (currently SUBMITTED) after 63 seconds.
+0429 00:46:36 [1556498796] spark-pi-canary - ---- Begin Events ----
+0429 00:46:36 [1556498796] spark-pi-canary - Name:         spark-pi-canary
+0429 00:46:36 [1556498796] spark-pi-canary - Events:
+0429 00:46:36 [1556498796] spark-pi-canary -   Type    Reason                     Age   From            Message
+0429 00:46:36 [1556498796] spark-pi-canary -   ----    ------                     ----  ----            -------
+0429 00:46:36 [1556498796] spark-pi-canary -   Normal  SparkApplicationAdded      1m    spark-operator  SparkApplication spark-pi-canary was added, enqueuing it for submission
+0429 00:46:36 [1556498796] spark-pi-canary -   Normal  SparkApplicationSubmitted  57s   spark-operator  SparkApplication spark-pi-canary was submitted successfully
+0429 00:46:38 [1556498798] spark-pi-canary - Name:           spark-pi-canary-driver
+0429 00:46:38 [1556498798] spark-pi-canary - Events:
+0429 00:46:38 [1556498798] spark-pi-canary -   Type     Reason            Age               From               Message
+0429 00:46:38 [1556498798] spark-pi-canary -   ----     ------            ----              ----               -------
+0429 00:46:38 [1556498798] spark-pi-canary -   Warning  FailedScheduling  29s (x7 over 1m)  default-scheduler  AssumePod failed: pod flowsnake-watchdog/spark-pi-canary-driver state wasn't initial but get assumed
+0429 00:46:42 [1556498802] spark-pi-canary - ---- End Events ----
+0429 00:47:37 [1556498857] spark-pi-canary - ...still waiting for terminal state (currently SUBMITTED) after 124 seconds.
+0429 00:47:37 [1556498857] spark-pi-canary - ---- Begin Events ----
+0429 00:47:37 [1556498857] spark-pi-canary - Name:         spark-pi-canary
+0429 00:47:37 [1556498857] spark-pi-canary - Events:
+0429 00:47:37 [1556498857] spark-pi-canary -   Type    Reason                     Age   From            Message
+0429 00:47:37 [1556498857] spark-pi-canary -   ----    ------                     ----  ----            -------
+0429 00:47:37 [1556498857] spark-pi-canary -   Normal  SparkApplicationAdded      2m    spark-operator  SparkApplication spark-pi-canary was added, enqueuing it for submission
+0429 00:47:37 [1556498857] spark-pi-canary -   Normal  SparkApplicationSubmitted  1m    spark-operator  SparkApplication spark-pi-canary was submitted successfully
+0429 00:47:39 [1556498859] spark-pi-canary - Name:           spark-pi-canary-driver
+0429 00:47:39 [1556498859] spark-pi-canary - Events:
+0429 00:47:39 [1556498859] spark-pi-canary -   Type     Reason            Age               From               Message
+0429 00:47:39 [1556498859] spark-pi-canary -   ----     ------            ----              ----               -------
+0429 00:47:39 [1556498859] spark-pi-canary -   Warning  FailedScheduling  57s (x8 over 2m)  default-scheduler  AssumePod failed: pod flowsnake-watchdog/spark-pi-canary-driver state wasn't initial but get assumed
+0429 00:47:43 [1556498863] spark-pi-canary - ---- End Events ----
+0429 00:48:38 [1556498918] spark-pi-canary - ...still waiting for terminal state (currently SUBMITTED) after 185 seconds.
+0429 00:48:38 [1556498918] spark-pi-canary - ---- Begin Events ----
+0429 00:48:38 [1556498918] spark-pi-canary - Name:         spark-pi-canary
+0429 00:48:38 [1556498918] spark-pi-canary - Events:
+0429 00:48:38 [1556498918] spark-pi-canary -   Type    Reason                     Age   From            Message
+0429 00:48:38 [1556498918] spark-pi-canary -   ----    ------                     ----  ----            -------
+0429 00:48:38 [1556498918] spark-pi-canary -   Normal  SparkApplicationAdded      3m    spark-operator  SparkApplication spark-pi-canary was added, enqueuing it for submission
+0429 00:48:38 [1556498918] spark-pi-canary -   Normal  SparkApplicationSubmitted  2m    spark-operator  SparkApplication spark-pi-canary was submitted successfully
+0429 00:48:40 [1556498920] spark-pi-canary - Name:           spark-pi-canary-driver
+0429 00:48:40 [1556498920] spark-pi-canary - Events:
+0429 00:48:40 [1556498920] spark-pi-canary -   Type     Reason            Age                From               Message
+0429 00:48:40 [1556498920] spark-pi-canary -   ----     ------            ----               ----               -------
+0429 00:48:40 [1556498920] spark-pi-canary -   Warning  FailedScheduling  24s (x14 over 3m)  default-scheduler  AssumePod failed: pod flowsnake-watchdog/spark-pi-canary-driver state wasn't initial but get assumed
+0429 00:48:43 [1556498923] spark-pi-canary - ---- End Events ----
+0429 00:49:40 [1556498980] spark-pi-canary - ...still waiting for terminal state (currently SUBMITTED) after 247 seconds.
+0429 00:49:40 [1556498980] spark-pi-canary - ---- Begin Events ----
+0429 00:49:40 [1556498980] spark-pi-canary - Name:         spark-pi-canary
+0429 00:49:40 [1556498980] spark-pi-canary - Events:
+0429 00:49:40 [1556498980] spark-pi-canary -   Type    Reason                     Age   From            Message
+0429 00:49:40 [1556498980] spark-pi-canary -   ----    ------                     ----  ----            -------
+0429 00:49:40 [1556498980] spark-pi-canary -   Normal  SparkApplicationAdded      4m    spark-operator  SparkApplication spark-pi-canary was added, enqueuing it for submission
+0429 00:49:40 [1556498980] spark-pi-canary -   Normal  SparkApplicationSubmitted  4m    spark-operator  SparkApplication spark-pi-canary was submitted successfully
+0429 00:49:42 [1556498982] spark-pi-canary - Name:           spark-pi-canary-driver
+0429 00:49:42 [1556498982] spark-pi-canary - Events:
+0429 00:49:42 [1556498982] spark-pi-canary -   Type     Reason            Age                From               Message
+0429 00:49:42 [1556498982] spark-pi-canary -   ----     ------            ----               ----               -------
+0429 00:49:42 [1556498982] spark-pi-canary -   Warning  FailedScheduling  54s (x15 over 4m)  default-scheduler  AssumePod failed: pod flowsnake-watchdog/spark-pi-canary-driver state wasn't initial but get assumed
+0429 00:49:45 [1556498985] spark-pi-canary - ---- End Events ----
+0429 00:50:29 [1556499029] spark-pi-canary - Timeout reached. Aborting wait for SparkApplication spark-pi-canary even though in non-terminal state SUBMITTED.
+0429 00:50:30 [1556499030] spark-pi-canary - ---- Begin Events ----
+0429 00:50:30 [1556499030] spark-pi-canary - Name:         spark-pi-canary
+0429 00:50:30 [1556499030] spark-pi-canary - Events:
+0429 00:50:30 [1556499030] spark-pi-canary -   Type    Reason                     Age   From            Message
+0429 00:50:30 [1556499030] spark-pi-canary -   ----    ------                     ----  ----            -------
+0429 00:50:30 [1556499030] spark-pi-canary -   Normal  SparkApplicationAdded      4m    spark-operator  SparkApplication spark-pi-canary was added, enqueuing it for submission
+0429 00:50:30 [1556499030] spark-pi-canary -   Normal  SparkApplicationSubmitted  4m    spark-operator  SparkApplication spark-pi-canary was submitted successfully
+0429 00:50:31 [1556499031] spark-pi-canary - Name:           spark-pi-canary-driver
+0429 00:50:31 [1556499031] spark-pi-canary - Events:
+0429 00:50:31 [1556499031] spark-pi-canary -   Type     Reason            Age                From               Message
+0429 00:50:31 [1556499031] spark-pi-canary -   ----     ------            ----               ----               -------
+0429 00:50:31 [1556499031] spark-pi-canary -   Warning  FailedScheduling  10s (x21 over 4m)  default-scheduler  AssumePod failed: pod flowsnake-watchdog/spark-pi-canary-driver state wasn't initial but get assumed
+0429 00:50:33 [1556499033] spark-pi-canary - ---- End Events ----
+0429 00:50:34 [1556499034] spark-pi-canary - ---- Begin pods/spark-pi-canary-driver Log ----
+0429 00:50:35 [1556499035] spark-pi-canary - ---- End pods/spark-pi-canary-driver Log ----
+0429 00:50:35 [1556499035] spark-pi-canary - -------- Executor Pods ----------
+0429 00:50:36 [1556499036] spark-pi-canary - Cleaning up anything still running.
+0429 00:50:36 [1556499036] spark-pi-canary - sparkapplication "spark-pi-canary" deleted
+0429 00:50:39 [1556499039] spark-pi-canary - ======== Completion of spark-pi-canary test, returning 1 ========

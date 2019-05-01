@@ -1,5 +1,5 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local flowsnake_config = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local image_renames_and_canary_build_tags = std.objectHas(flowsnake_images.feature_flags, "image_renames_and_canary_build_tags");
 
@@ -7,7 +7,7 @@ local image_renames_and_canary_build_tags = std.objectHas(flowsnake_images.featu
 local set_test_target = " -Dintegration.test.target=canary";
 
 ## Sets the vip that the canary should exercise against. Currently canaries will only monitor their own fleets
-local set_vip = " -Dflowsnake.api.host=" + flowsnakeconfig.fleet_vips[estate];
+local set_vip = " -Dflowsnake.api.host=" + flowsnake_config.fleet_vips[estate];
 
 ## Sets the environment version to be validated by the canary tests
 local set_environment_version(version) = " -Dflowsnake.project.version=" + version;
@@ -84,7 +84,10 @@ local build_spark_operator_test_commands = {
     ImpersonationProxyMinimalTest: "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-scripts/kubeconfig-impersonation-proxy",
     # Run a Spark Application via the impersonation proxy
     ImpersonationProxySparkTest: "/watchdog-spark-scripts/check-spark-operator.sh --kubeconfig /watchdog-spark-scripts/kubeconfig-impersonation-proxy /strata-test-specs-in/basic-spark-impersonation.jsonnet",
-  },
+  } + (if flowsnake_config.is_test then {
+    # Testing analysis of errors
+    AnalysisTest: "/watchdog-spark-scripts/analysis.py --command /watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet",
+  } else {}),
 };
 {
     command_sets:: build_canary_commands + build_docker_test_commands + build_btrfs_test_commands + build_spark_operator_test_commands,
