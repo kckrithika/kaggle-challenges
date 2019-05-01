@@ -74,7 +74,7 @@ system:
       - name : ACDS_APISERVER_ZKCONN
         value: "shared0-discovery1-0-crd.data.sfdc.net:2181"
       - name : DUMMY_VARIABLE
-        valueL "dummyvalue"
+        value: "dummyvalue"
     volumes:
     - name: taskmanager-secrets-vol
       k4aSecret:
