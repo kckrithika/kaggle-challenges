@@ -29,7 +29,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
-                spark_operator_watchdog_parallel_run: "enabled",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
@@ -121,6 +120,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # After promoting a feature-flag to phase 3, please submit a follow-on PR to remove the flag and
                 # associated conditional logic. That PR will not affect k8s-out, so you can self-approve it.
+                spark_operator_watchdog_kubectl_cleanup: "enabled",
             },
             version_mapping: {
                 "0.12.5": "jenkins-dva-transformation-flowsnake-platform-master-781-itest",  # jenkins-dva-transformation-flowsnake-platform-master-781-itest contains MoFo estates and Kevin's 5xx fixes
