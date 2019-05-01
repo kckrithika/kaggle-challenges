@@ -10,9 +10,7 @@ local flowsnake_images = import "flowsnake_images.jsonnet";
 
 local configmap_data =
     {
-        "check-spark-operator.sh": if std.objectHas(flowsnake_images.feature_flags, "spark_operator_watchdog_kubectl_cleanup")
-            then importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-cleanup.sh"
-            else importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",
+        "check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",
         "check-impersonation.sh": importstr "spark-on-k8s-canary-scripts/check-impersonation.sh",
         "kubeconfig-impersonation-proxy": std.toString(import "spark-on-k8s-canary-scripts/kubeconfig-impersonation-proxy.libsonnet"),
     };
