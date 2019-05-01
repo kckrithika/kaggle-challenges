@@ -77,7 +77,7 @@ system:
       - name: TEST_ENV_VARIABLE
         value: 1234
       ports:
-      - containerPort: 8080
+      - containerPort: 8081
       livenessProbe:
         exec:
           command:
