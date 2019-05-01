@@ -58,8 +58,6 @@ system:
         value: B
       - name: ZDT
         value: true
-      - name: IS_DEBUG
-        value: true
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
@@ -103,7 +101,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na6.app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:b9a8f0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:5f109c
       livenessProbe:
         exec:
           command:
