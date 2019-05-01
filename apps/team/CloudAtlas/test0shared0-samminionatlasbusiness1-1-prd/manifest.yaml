@@ -11,7 +11,7 @@ system:
     count: 1
     strategy:
       type: Recreate
-    hostnetwork: false
+    hostnetwork: true
     containers:
     - name: sherpa-cloudatlas-client
       image: sfci/servicelibs/sherpa-envoy:1.0.2
@@ -29,13 +29,13 @@ system:
       - mountPath: /log
         name: logvolsherpa
       ports:
-      - containerPort: 7012
+      - containerPort: 7013
         name: sherpa-in
-      - containerPort: 7014
+      - containerPort: 7015
         name: http1-in
-      - containerPort: 7442
+      - containerPort: 7443
         name: http1-tls-in
-      - containerPort: 15373
+      - containerPort: 15374
         name: sherpa-adm
       livenessProbe:
         exec:
