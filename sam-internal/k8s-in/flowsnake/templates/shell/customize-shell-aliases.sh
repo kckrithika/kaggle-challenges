@@ -97,6 +97,24 @@ bashn() {
     kc -n $1 exec -it "${@:2}" env COLUMNS=$COLUMNS LINES=$LINES -- /bin/bash
 }
 
+# -----------------------------------
+# Generate node names
+# Examples
+# shared0-flowsnakeworkerprod1-68-dfw.ops.sfdc.net
+# fs1shared0-flowsnakeworkertest2-1-prd.eng.sfdc.net
+# dev0shared0-flowsnakeworkeriottest1-1-prd.eng.sfdc.net
+# fs1shared0-flowsnakeworker1-1-prd.eng.sfdc.net
+ mn() {
+    host-name master $1
+}
+ wn() {
+    host-name worker $1
+}
+ # Return a hostname with substring 'master' or 'worker' replaced by the first argument and the ID by the second.
+host-name() {
+    echo $HOSTNAME | sed -r "s/^([a-z0-9]*-flowsnake)(worker|master)([a-z]*)[0-9]-[0-9]*-(.*)/\1${1}\3${2}-\4/"
+}
+
 EOF
 fi
 
