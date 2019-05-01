@@ -13,43 +13,6 @@ system:
       type: Recreate
     hostnetwork: true
     containers:
-    - name: sherpa-cloudatlas-client
-      image: sfci/servicelibs/sherpa-envoy:1.0.2
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "stmfa"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      volumeMounts:
-      - name: client-cert
-        mountPath: /client-certs
-      - name: server-cert
-        mountPath: /server-certs
-      - mountPath: /log
-        name: logvolsherpa
-      ports:
-      - containerPort: 7013
-        name: sherpa-in
-      - containerPort: 7015
-        name: http1-in
-      - containerPort: 7443
-        name: http1-tls-in
-      - containerPort: 15374
-        name: sherpa-adm
-      livenessProbe:
-        exec:
-          command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - "/home/sfdc-sherpa/bin/is-ready"
-        initialDelaySeconds: 110
-        periodSeconds: 5
-
     - name: beacon-cloudatlas
       image: sfci/servicelibs/beacon:7ad9e771192cd0b3e43393eea2e1e5c1de81dfda
       env:
