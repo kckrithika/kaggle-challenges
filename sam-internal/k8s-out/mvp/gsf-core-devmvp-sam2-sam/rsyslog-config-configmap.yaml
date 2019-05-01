@@ -206,8 +206,9 @@ data:
     : config.project_id %>\";\n  set $!region = \"<%=config.region%>\";\n  set $!zone
     = \"<%=config.zone%>\";\n  set $!host = field($!filename, 46, 3);\n  set $!pod
     = field($!host, 45, 1);\n  set $!apptype = field($!filename, 46, 2);\n  set $!role
-    = field($!filename, 46, 4);\n  set $!filedate = field($!filename, 46, 5);\n  set
-    $!appversion = field($!filename, 46, 6);\n  set $!uuid = $!ts_raw & field($msg,
+    = field($!filename, 46, 4);\n  set $!filedate = field($!filename, 46, 5);\n  <%#
+    Hardcode appversion to 220 for demo only!!!%>\n  <%# set $!appversion = field($!filename,
+    46, 6); %>\n  set $!appversion = \"220\";\n  set $!uuid = $!ts_raw & field($msg,
     96, 16) & field($!host, 45, 4) & \"-\" & field($!host, 45, 5);\n  \n  <%# Output
     action %>\n  action(\n    type=\"omkafka\"\n    name=\"kafka_core\"\n    broker=\"<%=
     config.topology_lookup('ajnalocal1', 'ajna-kafka', 'BROKER_ENDPOINT_SSL').nil?
