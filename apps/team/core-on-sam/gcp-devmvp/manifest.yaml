@@ -7,7 +7,6 @@ system:
   - containers:
     - args:
       - |
-        "
         while [ ! -f '/home/sfdc/salesforce/casam/.overrides_sidecar_done' ]; do echo -ne 'Waiting for coverride sidecar to complete its job\n' ;  sleep 1 ; done ;
         export DB_PASSWORD=$(cat /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-3az-db-pw/dbpw3az.txt) ;
         cp /home/sfdc/salesforce/casam/lib/metrics-publishing.jar.optional /home/sfdc/salesforce/casam/lib/metrics-publishing.jar ;
@@ -15,7 +14,6 @@ system:
         unzip /home/sfdc/salesforce/casam/lib/k4a.zip.testkeys -d /home/sfdc/salesforce/sfdc-test/func/mockk4avault ;
         cp -fr /home/sfdc/salesforce/sfdc/config/keyrepo-goldfiles/dev/. /home/sfdc/salesforce/sfdc/config/keyrepo-goldfiles/prod ;
         /home/sfdc/salesforce/casam/bin/startup.sh
-        "
       command:
       - /bin/sh
       - -c
@@ -288,16 +286,14 @@ system:
   - containers:
     - args:
       - |
-        "
         export SNOWWHITE_PWD=$(cat /db-secrets/gcp-mvp-3az-db-pw/dbpw3az.txt) ;
         /usr/local/bin/run.sh
-        "
       command:
       - /bin/sh
       - -c
       env:
       - name: NONCE
-        value: 1556737074532731648
+        value: 1556742627108032768
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -362,7 +358,7 @@ system:
         value: 30000
       - name: dns_override_enabled
         value: true
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/sequencer:4a4b1b
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/sequencer:180d92
       livenessProbe:
         exec:
           command:
