@@ -293,7 +293,7 @@ system:
       - -c
       env:
       - name: NONCE
-        value: 1556737074532731648
+        value: 1556742627108032768
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -358,7 +358,7 @@ system:
         value: 30000
       - name: dns_override_enabled
         value: true
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/sequencer:4a4b1b
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/sequencer:180d92
       livenessProbe:
         exec:
           command:
