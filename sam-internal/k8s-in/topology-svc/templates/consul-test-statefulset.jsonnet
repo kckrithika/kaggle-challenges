@@ -158,20 +158,6 @@ if configs.kingdom == 'mvp' then {
               },
             },
             ports: ports,
-            readinessProbe: {
-              exec: {
-                command: [
-                  '/bin/sh',
-                  '-ec',
-                  'curl "http://$POD_IP:8500/v1/status/leader" 2> /dev/null | grep -E \'".+"\'',
-                ],
-              },
-              failureThreshold: 2,
-              initialDelaySeconds: 5,
-              periodSeconds: 3,
-              successThreshold: 1,
-              timeoutSeconds: 5,
-            },
             securityContext: {
                 runAsNonRoot: true,
                 runAsUser: 7447,
