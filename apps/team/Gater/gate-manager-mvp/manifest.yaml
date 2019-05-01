@@ -11,7 +11,6 @@ system:
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/gater/gate-manager:1.14.1-SNAPSHOT_20190429_168_3b875bb
       args:
       - --server.port=9090
-      - --logging.level.com.zaxxer.hikari=debug
       - --spring.datasource.hikari.maximumPoolSize=6
       - --spring.datasource.hikari.minimumIdle=5
       - --spring.datasource.hikari.leakDetectionThreshold=10000
