@@ -39,7 +39,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2133-526e0ce9262aa8c54d7c96084bf467e6482aa130
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/hyperslb:2139-0831c3a2e17ebc56e95f726982e00bc35b25c55e
         name: slb-nginx-reporter
         resources:
           limits:
