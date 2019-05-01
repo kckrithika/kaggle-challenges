@@ -19,3 +19,5 @@ users:
   - tok-sfci4 # Jenkins user
   - svc-email-infra
   - svc-atf-user
+  - svc_atf_user
+  - svc.atf.user
