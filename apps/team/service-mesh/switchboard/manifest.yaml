@@ -8,7 +8,7 @@ system:
     count: 5
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:39520ad69475822d7a3d529109c74cde176cad1f
+      image: sfci/servicelibs/switchboard:2a6f60acdc8a877797e49d84c1d1da1b84f8c501
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -23,7 +23,7 @@ system:
       - --metrics.maxNumberOfCollectedMetrics=400000
       - --metrics.funnelTimeOut=100000
       - --healthIndicator.maxThreadCount=1300
-      - --authz.dest=demo-authz.service-mesh.localhost.mesh.force.com:5443
+      - --authz.dest=authz-svc.service-mesh.localhost.mesh.force.com:5443
       ports:
       - containerPort: 15372
       env:
