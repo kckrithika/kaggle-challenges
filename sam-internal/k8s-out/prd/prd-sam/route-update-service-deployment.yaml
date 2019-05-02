@@ -8,6 +8,8 @@ spec:
   selector:
     matchLabels:
       app: route-update-service
+      settings_path: test.-.prd.-.route-update-service
+      superpod: NONE
   template:
     metadata:
       annotations:
@@ -31,6 +33,8 @@ spec:
         sidecar.istio.io/inject: "true"
       labels:
         app: route-update-service
+        settings_path: test.-.prd.-.route-update-service
+        superpod: NONE
     spec:
       containers:
       - args: []

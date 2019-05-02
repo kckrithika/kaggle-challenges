@@ -41,6 +41,8 @@ configs.deploymentBase("service-mesh") {
         },
         labels: {
           app: "route-update-service",
+          settings_path: "test.-.prd.-.route-update-service",
+          superpod: "NONE",
         }
       },
       spec: configs.specWithMadDog {
