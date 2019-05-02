@@ -1907,6 +1907,61 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer1-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "n03-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer1-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "n03-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer2-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "b21-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer2-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "b21-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer3-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "c04-dh2",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_mgmt_hub",
           "controlestate": "dfw-sam",
           "devicerole": "samcompute",
