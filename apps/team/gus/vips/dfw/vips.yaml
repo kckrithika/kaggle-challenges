@@ -54,7 +54,7 @@
     tls: true
 #    tlscertificate: secret_service:gus_vip:cert
 #    tlskey: secret_service:gus_vip:key
-    reencrpyt: true
+    reencrypt: true
     healthprotocol: http
     healthport: 8085
     healthpath: /ping.jsp?allBusy
