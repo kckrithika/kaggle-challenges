@@ -31,7 +31,7 @@ spec:
              "superpod": null
             },
             {
-             "cert-type": "client,server",
+             "cert-type": "client",
              "kingdom": "mvp",
              "name": "client-certs",
              "role": "topology-svc",
