@@ -11,17 +11,32 @@ git version
 git log -n 1
 # End of standard setup
 
-source tnrp/versions
+# The boilerplate debug information at the top of this script
+# ensures we are one directory up from this script's location.
+# Thus, incorporate a more hard-coded approach to specifying
+# the path to the tnrp/versions script compared to
+# the dynamic process for doing so performed by
+# the tnrp/evaluate_pr script.
+getSMBPackageName() {
+    VERSIONS_SCRIPT="./tnrp/versions"
+    if [[ ! -f "${VERSIONS_SCRIPT}" ]]; then
+      echo "${VERSIONS_SCRIPT} is missing or not a file."
+      exit 1
+    fi
+
+    source "${VERSIONS_SCRIPT}"
+    if [[ -z "${SMBPACKAGE}" ]]; then
+      echo "SMBPACKAGE variable must be non-empty."
+      exit 1
+    fi
+}
 
 if [ -z "$FIREFLY" ]; then
    SAMBINDIR=/opt/sam
 else
    echo "*** EXECUTING IN $FIREFLY ENVIRONMENT"
    SAMBINDIR=/sam
-   if [[ -z "${SMBPACKAGE}" ]]; then
-     echo "SMBPACKAGE variable must be non-empty."
-     exit 1
-   fi
+   getSMBPackageName
    yum install -y "${SMBPACKAGE}"
    echo "Verifying package installed: ${SMBPACKAGE}"
    if ! yum list installed "${SMBPACKAGE}"; then
