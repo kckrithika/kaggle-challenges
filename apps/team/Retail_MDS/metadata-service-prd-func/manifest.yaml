@@ -8,7 +8,7 @@ system:
     count: 3
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.8.47
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.8.50
       ports:
       - containerPort: 9091
       - containerPort: 15523
