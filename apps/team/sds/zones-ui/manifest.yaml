@@ -23,8 +23,8 @@ system:
       env:
       - name: ZONES_ENVIRONMENT
         value: "prod"
-      - name: HTTPS_PROXY
-        value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+      - name: ZONES_HTTPS_PROXY
+        value: "http://public0-proxy1-0-xrd.data.sfdc.net:8080"
       - name: ZONES_BASE_URL
         value: "https://gus.my.salesforce.com"
       - name: ZONES_SERVICE_URL
