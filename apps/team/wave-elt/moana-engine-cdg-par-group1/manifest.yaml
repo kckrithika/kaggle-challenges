@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-5-b39b8dc
+    - image: ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-6-8bfb6ce
       livenessProbe:
         exec:
           command: [ls]
