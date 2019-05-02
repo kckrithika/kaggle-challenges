@@ -28,16 +28,16 @@ system:
       env:
       - name: SHELL
         value: "/bin/bash"
-      - name: MYSQL_ROOT_PASSWORD
-        value: rootPassword
-      - name: MYSQL_ROOT
-        value: root
-      - name: MYSQL_USER
-        value: ddnuser
-      - name: MYSQL_DATABASE
-        value: ddnprod
-      - name: MYSQL_PASSWORD
-        value: ddnpassword
+      - name: MYSQL_ROOT_PASSWORD_FILE
+        value: /var/mgmt-server-secrets/mysql-root-password
+      - name: MYSQL_ROOT_FILE
+        value: /var/mgmt-server-secrets/mysql-root
+      - name: MYSQL_USER_FILE
+        value: /var/mgmt-server-secrets/mysql-user
+      - name: MYSQL_DATABASE_FILE
+        value: /var/mgmt-server-secrets/mysql-database
+      - name: MYSQL_PASSWORD_FILE
+        value: /var/mgmt-server-secrets/mysql-user-password
       - name: max_allowed_packet
         value: "1073741824"
         
@@ -51,7 +51,7 @@ system:
       volumeMounts:
       - mountPath: /var/lib/mysql
         name: mgmtdbservice
-      - mountPath: /mgmt-server-secrets/
+      - mountPath: /var/mgmt-server-secrets/
         name: mgmt-server-secrets-vol
         readOnly: true
     volumes:
