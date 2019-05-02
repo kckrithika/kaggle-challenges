@@ -77,8 +77,8 @@ system:
          value: "acds_admin@local" 
      volumes:
      - name: taskmanager-secrets-vol
-      k4aSecret:
-        secretName: taskmanagersecrets
+       k4aSecret:
+         secretName: taskmanagersecrets
      - name: tls-client-cert
        maddogCert:
          type: client
