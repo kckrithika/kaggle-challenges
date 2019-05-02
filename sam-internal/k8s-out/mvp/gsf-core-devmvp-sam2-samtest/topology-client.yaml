@@ -17,7 +17,7 @@ spec:
           {
            "certreqs": [
             {
-             "cert-type": "client,server",
+             "cert-type": "client",
              "kingdom": "mvp",
              "name": "cert1",
              "role": "topology-svc",
@@ -31,7 +31,7 @@ spec:
              "superpod": null
             },
             {
-             "cert-type": "client, server",
+             "cert-type": "peer",
              "kingdom": "mvp",
              "name": "client-certs",
              "role": "topology-svc",
@@ -39,7 +39,7 @@ spec:
               "topology.vip.core.test.us-central1.gcp.sfdc.net",
               "10.130.2.66",
               "10.130.2.77",
-              "topology.vip.core.test2.us-central1.gcp.sfdc.net",
+              "topology.vip.core.first2.us-central1.gcp.sfdc.net",
               "server.gcp-uscentral1.cluster.local"
              ],
              "superpod": null
