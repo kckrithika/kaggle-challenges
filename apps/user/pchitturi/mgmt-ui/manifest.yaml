@@ -33,4 +33,11 @@ system:
               value: 127.0.0.1
             - name: ENV_MODE
               value: "production"
-      lbname: mgmt-ui-lb
+      lbname: mgmt-ui-dummy-lb
+  loadbalancers:
+  - lbname: mgmt-ui-lb
+    function: mgmt-ui
+    slbEnabled: true
+    ports:
+      - port: 3000
+        targetport: 3000
