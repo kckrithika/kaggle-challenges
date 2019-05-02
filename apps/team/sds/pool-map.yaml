@@ -4,7 +4,8 @@ apps:
   zones-intake-backend-staging:
   - xrd/xrd-sdstoolsdev
   zones-ui:
-  - xrd/xrd-sdstools
+  - prd/prd-sam
+  #- xrd/xrd-sdstools
   soter:
   - prd/prd-sam
 
