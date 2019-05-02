@@ -68,8 +68,8 @@ configs.deploymentBase("service-mesh") {
                   "/bin/true",
                 ],
               },
-              initialDelaySeconds: 10,
-              periodSeconds: 30,
+              initialDelaySeconds: 5,
+              periodSeconds: 10,
               timeoutSeconds: 10,
             },
             volumeMounts+: madkub.madkubSamCertVolumeMounts(certConfigs)
