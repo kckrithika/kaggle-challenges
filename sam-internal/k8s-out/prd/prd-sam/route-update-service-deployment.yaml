@@ -29,7 +29,6 @@ spec:
             }
            ]
           }
-        routing.mesh.sfdc.net/enabled: "true"
         sidecar.istio.io/inject: "true"
       labels:
         app: route-update-service
