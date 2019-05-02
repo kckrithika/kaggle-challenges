@@ -10,9 +10,9 @@ system:
       - name: SPRING_CONFIG_NAME
         value: prod
       - name: DC
-        value: ${KINGDOM}
+        value: $(KINGDOM)
       - name: SPRING_PROFILES_ACTIVE 
-        value: dc.${KINGDOM},sam
+        value: dc.$(KINGDOM),sam
       ports:
       - containerPort: 7020
       - containerPort: 8080
