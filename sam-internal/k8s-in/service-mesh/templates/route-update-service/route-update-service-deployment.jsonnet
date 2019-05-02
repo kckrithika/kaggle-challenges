@@ -37,7 +37,7 @@ configs.deploymentBase("service-mesh") {
                 ],
             }, " "
           ),
-          "sidecar.istio.io/inject": "false",
+          "sidecar.istio.io/inject": "true",
         },
         labels: {
           app: "route-update-service",
