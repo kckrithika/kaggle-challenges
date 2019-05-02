@@ -11,7 +11,7 @@ system:
       count: 1
       containers:
         - name: qpid-broker-runtime
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/qpid/qpid-broker-runtime:26a8a7e.6
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/qpid/qpid-broker-runtime:0.7.0
           ports:
             - name: amqp-port
               containerPort: 5672
@@ -36,12 +36,4 @@ system:
               command: ["/bin/true"]
             initialDelaySeconds: 10
             timeoutSeconds: 10
-          volumeMounts:
-            - mountPath: /var/log/qpid
-              name: logvol
       lbname: qpid-broker
-
-      volumes:
-        - name: logvol
-          hostpath:
-            path: /var/log/qpid
