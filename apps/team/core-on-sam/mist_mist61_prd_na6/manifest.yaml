@@ -58,6 +58,8 @@ system:
         value: B
       - name: ZDT
         value: true
+      - name: IS_DEBUGAPP
+        value: true
       - name: CASAM_HOST_NAME
         valueFrom:
           fieldRef:
@@ -136,6 +138,7 @@ system:
       name: envoy-sidecar
       ports:
       - containerPort: 13065
+      - containerPort: 13066
       - containerPort: 15373
       readinessProbe:
         exec:
@@ -153,7 +156,7 @@ system:
     - env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
-      image: sfci/casam/cyan-config:208cc2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:49d21a
       livenessProbe:
         exec:
           command:
