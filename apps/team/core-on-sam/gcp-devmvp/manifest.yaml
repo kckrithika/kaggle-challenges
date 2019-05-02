@@ -78,7 +78,7 @@ system:
         value: 00D500000008aMD
       - name: SU_USERID
         value: 00550000000HgO1
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17983933
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17989387
       livenessProbe:
         exec:
           command:
@@ -291,7 +291,7 @@ system:
       - -c
       env:
       - name: NONCE
-        value: 1556750341088810240
+        value: 1556757596486939648
       - name: DRY_RUN
         value: 0
       - name: CHATTER_GROUP_NAME
@@ -307,7 +307,7 @@ system:
       - name: MAJOR_RELEASE_NUMBER
         value: 220
       - name: DB_EDITION
-        value: SFDC_220
+        value: 220
       - name: MINOR_RELEASE_NUMBER
         value: 0
       - name: PATCH_RELEASE_NUMBER
