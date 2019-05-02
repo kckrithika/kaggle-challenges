@@ -4,10 +4,10 @@ metadata:
   labels:
     pcn: deploy
   name: consul-test-server
-  namespace: topology-test
+  namespace: topology-svc
 spec:
   podManagementPolicy: Parallel
-  replicas: 4
+  replicas: 0
   selector:
     matchLabels:
       app: consul-test-server
@@ -19,7 +19,7 @@ spec:
           {
            "certreqs": [
             {
-             "cert-type": "peer",
+             "cert-type": "client",
              "kingdom": "mvp",
              "name": "cert1",
              "role": "topology-svc",
@@ -27,6 +27,7 @@ spec:
               "topology.vip.core.test.us-central1.gcp.sfdc.net",
               "10.130.2.66",
               "10.130.2.77",
+              "topology.vip.core.test2.us-central1.gcp.sfdc.net",
               "server.gcp-uscentral1.cluster.local"
              ],
              "superpod": null
@@ -40,7 +41,7 @@ spec:
               "topology.vip.core.test.us-central1.gcp.sfdc.net",
               "10.130.2.66",
               "10.130.2.77",
-              "topology.vip.core.first2.us-central1.gcp.sfdc.net",
+              "topology.vip.core.test2.us-central1.gcp.sfdc.net",
               "server.gcp-uscentral1.cluster.local"
              ],
              "superpod": null
@@ -55,6 +56,20 @@ spec:
               "10.130.2.66",
               "10.130.2.77",
               "topology.vip.core.test2.us-central1.gcp.sfdc.net",
+              "server.gcp-uscentral1.cluster.local"
+             ],
+             "superpod": null
+            },
+            {
+             "cert-type": "peer",
+             "kingdom": "mvp",
+             "name": "peer-certs",
+             "role": "topology-svc",
+             "san": [
+              "topology.vip.core.test.us-central1.gcp.sfdc.net",
+              "10.130.2.66",
+              "10.130.2.77",
+              "topology.vip.core.peer.us-central1.gcp.sfdc.net",
               "server.gcp-uscentral1.cluster.local"
              ],
              "superpod": null
@@ -90,7 +105,7 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: RANDVAL
-          value: "48"
+          value: "49"
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:consul-20190502-4
         lifecycle:
           preStop:
@@ -121,6 +136,8 @@ spec:
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
+        - mountPath: /peer-certs
+          name: tls-peer-cert
       - args:
         - --switchboard=switchboard-test.service-mesh.svc.sam.core.test.us-central1.gcp.sfdc.net:15001
         env:
@@ -168,6 +185,7 @@ spec:
         - --cert-folders=cert1:/cert1/
         - --cert-folders=client-certs:/client-certs/
         - --cert-folders=server-certs:/server-certs/
+        - --cert-folders=peer-certs:/peer-certs/
         - --token-folder=/tokens/
         - --ca-folder=/maddog-certs/ca
         - --refresher
@@ -199,6 +217,8 @@ spec:
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
+        - mountPath: /peer-certs
+          name: tls-peer-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -214,6 +234,7 @@ spec:
         - --cert-folders=cert1:/cert1/
         - --cert-folders=client-certs:/client-certs/
         - --cert-folders=server-certs:/server-certs/
+        - --cert-folders=peer-certs:/peer-certs/
         - --token-folder=/tokens/
         - --ca-folder=/maddog-certs/ca
         env:
@@ -242,6 +263,8 @@ spec:
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
+        - mountPath: /peer-certs
+          name: tls-peer-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -264,6 +287,8 @@ spec:
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
+        - mountPath: /peer-certs
+          name: tls-peer-cert
       restartPolicy: Always
       securityContext:
         fsGroup: 7447
@@ -283,6 +308,9 @@ spec:
       - emptyDir:
           medium: Memory
         name: tls-server-cert
+      - emptyDir:
+          medium: Memory
+        name: tls-peer-cert
       - emptyDir:
           medium: Memory
         name: tokens

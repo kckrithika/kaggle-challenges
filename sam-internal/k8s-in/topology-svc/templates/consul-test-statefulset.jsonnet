@@ -2,10 +2,10 @@
 local configs = import 'config.jsonnet';
 local topologysvcimages = (import 'topology-svc-images.jsonnet') + { templateFilename:: std.thisFile };
 local madkub = (import 'topology-svc-madkub.jsonnet') + { templateFilename:: std.thisFile };
-local topologysvcNamespace = 'topology-test';
+local topologysvcNamespace = 'topology-svc';
 local serviceMesh = (import 'topology-svc-sherpa.jsonnet') + { templateFilename:: std.thisFile };
 
-local certDirs = ['cert1', 'client-certs', 'server-certs'];
+local certDirs = ['cert1', 'client-certs', 'server-certs', 'peer-certs'];
 
 local initContainers = [
   madkub.madkubInitContainer(certDirs),
@@ -32,7 +32,7 @@ local consulEnvParams = [
   },
   {
     name: 'RANDVAL',
-    value: '48',
+    value: '49',
   },
 ];
 
@@ -91,7 +91,7 @@ if configs.kingdom == 'mvp' then {
                 },
             },
         ],
-    replicas: 4,
+    replicas: 0,
     selector: {
       matchLabels: {
         app: 'consul-test-server',

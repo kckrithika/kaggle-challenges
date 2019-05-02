@@ -20,11 +20,11 @@
       },
       annotation: {
         name: 'cert1',
-        'cert-type': 'peer',
+        'cert-type': 'client',
         kingdom: configs.kingdom,
         superpod: null,
         role: 'topology-svc',
-        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66", "10.130.2.77", "server.gcp-uscentral1.cluster.local"],
+        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66", "10.130.2.77", "topology.vip.core.test2.us-central1.gcp.sfdc.net", "server.gcp-uscentral1.cluster.local"],
       },
     },
     'client-certs': {
@@ -44,7 +44,7 @@
         'cert-type': 'peer',
         superpod: null,
         role: 'topology-svc',
-        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66", "10.130.2.77", "topology.vip.core.first2.us-central1.gcp.sfdc.net", "server.gcp-uscentral1.cluster.local"],
+        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66", "10.130.2.77", "topology.vip.core.test2.us-central1.gcp.sfdc.net", "server.gcp-uscentral1.cluster.local"],
       },
     },
     'server-certs': {
@@ -65,6 +65,26 @@
         superpod: null,
         role: 'topology-svc',
         san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66", "10.130.2.77", "topology.vip.core.test2.us-central1.gcp.sfdc.net", "server.gcp-uscentral1.cluster.local"],
+      },
+    },
+    'peer-certs': {
+      mount: {
+        mountPath: '/peer-certs',
+        name: 'tls-peer-cert',
+      },
+      volume: {
+        emptyDir: {
+          medium: 'Memory',
+        },
+        name: 'tls-peer-cert',
+      },
+      annotation: {
+        name: 'peer-certs',
+        kingdom: configs.kingdom,
+        'cert-type': 'peer',
+        superpod: null,
+        role: 'topology-svc',
+        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66", "10.130.2.77", "topology.vip.core.peer.us-central1.gcp.sfdc.net", "server.gcp-uscentral1.cluster.local"],
       },
     },
   },
@@ -183,6 +203,11 @@
         // Client certs
         mountPath: '/server-certs',
         name: 'tls-server-cert',
+      },
+      {
+        // peer certs
+        mountPath: '/peer-certs',
+        name: 'tls-peer-cert',
       },
     ],
   },
