@@ -20,7 +20,7 @@
       },
       annotation: {
         name: 'cert1',
-        'cert-type': 'client,server',
+        'cert-type': 'client',
         kingdom: configs.kingdom,
         superpod: null,
         role: 'topology-svc',
@@ -41,10 +41,10 @@
       annotation: {
         name: 'client-certs',
         kingdom: configs.kingdom,
-        'cert-type': 'client, server',
+        'cert-type': 'peer',
         superpod: null,
         role: 'topology-svc',
-        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66", "10.130.2.77", "topology.vip.core.test2.us-central1.gcp.sfdc.net", "server.gcp-uscentral1.cluster.local"],
+        san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66", "10.130.2.77", "topology.vip.core.first2.us-central1.gcp.sfdc.net", "server.gcp-uscentral1.cluster.local"],
       },
     },
     'server-certs': {
