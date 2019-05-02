@@ -22,10 +22,6 @@ local samreleases = import "samreleases.json";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        #[a.mitra] Enable node labeler in prd samtest and samdev
-        "prd,prd-samdev,node-labeler,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/a.mitra/hypersam:20190328_182019.ca63d453.dirty.amitra-ltm2",
-        "prd,prd-samtest,node-labeler,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/a.mitra/hypersam:20190328_182019.ca63d453.dirty.amitra-ltm2",
-
         #[thargrove] Needed only until Artifactory adds a docker-all alias to docker-gcp in XRD 2-0
         "mvp,gsf-core-devmvp-sam2-sam,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
         "mvp,gsf-core-devmvp-sam2-samtest,*,hypersam": "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/sam/hypersam:2601-1bbc5de4786678763a4e8a71681ee42ada887c76",
@@ -42,13 +38,6 @@ local samreleases = import "samreleases.json";
         "ttd,ttd-sam,samcontrol-deployer,hypersam": "sam-0002532-de840aef",
         "hio,hio-sam,samcontrol-deployer,hypersam": "sam-0002532-de840aef",
 
-        #[lizhang] Enable etcd healthy info persist to a local file in prd-samdev, prd-samtest and prd-sam
-        "prd,prd-samdev,watchdog-etcd,hypersam": "sam-0002535-9d228ded",
-        "prd,prd-samtest,watchdog-etcd,hypersam": "sam-0002535-9d228ded",
-        "prd,prd-sam,watchdog-etcd,hypersam": "sam-0002535-9d228ded",
-
-        #[thargrove] Override SDPv1 so we can point to v1.  Remove after next phase release
-        "prd,prd-sam,sam-deployment-portal,hypersam": "2661-a493a755679c30705e7667661204bc9e9b8ef77e",
 
         #[xiao.zhou] Override Synthetic watchdog so the alert won't go off
         "frf,frf-sam,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
