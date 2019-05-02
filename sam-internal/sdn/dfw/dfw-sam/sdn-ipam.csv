@@ -270,6 +270,11 @@ shared0-samminiongwc1-1-dfw.ops.sfdc.net,10.220.225.18/29,10.165.130.96/27,v32-0
 shared0-samminiongwc1-2-dfw.ops.sfdc.net,10.220.225.3/29,10.165.130.0/27,c20-01,dfw-sam_gatewayconfig,65009
 shared0-samminiongwc2-1-dfw.ops.sfdc.net,10.220.225.2/29,10.165.130.32/27,c20-01,dfw-sam_gatewayconfig,65009
 shared0-samminiongwc2-2-dfw.ops.sfdc.net,10.220.225.10/29,10.165.130.64/27,p32-01,dfw-sam_gatewayconfig,65009
+shared0-samminionmcconsumer1-1-dfw.ops.sfdc.net,10.220.153.202/29,10.165.137.96/27,n03-02,dfw-sam_mc_consumer,65009
+shared0-samminionmcconsumer1-2-dfw.ops.sfdc.net,10.220.153.203/29,10.165.137.128/27,n03-02,dfw-sam_mc_consumer,65009
+shared0-samminionmcconsumer2-1-dfw.ops.sfdc.net,10.220.153.194/29,10.165.137.0/27,b21-01,dfw-sam_mc_consumer,65009
+shared0-samminionmcconsumer2-2-dfw.ops.sfdc.net,10.220.153.195/29,10.165.137.32/27,b21-01,dfw-sam_mc_consumer,65009
+shared0-samminionmcconsumer3-1-dfw.ops.sfdc.net,10.220.153.210/29,10.165.137.64/27,c04-01,dfw-sam_mc_consumer,65009
 shared0-samminionmoderationeinstein1-1-dfw.ops.sfdc.net,10.220.129.146/29,10.214.154.0/27,j03-02,dfw-sam_moderation_einstein,65009
 shared0-samminionmoderationeinstein1-2-dfw.ops.sfdc.net,10.220.129.130/29,10.214.154.64/27,k04-02,dfw-sam_moderation_einstein,65009
 shared0-samminionmoderationeinstein2-1-dfw.ops.sfdc.net,10.220.129.138/29,10.214.154.32/27,k03-02,dfw-sam_moderation_einstein,65009
