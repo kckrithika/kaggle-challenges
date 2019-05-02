@@ -19,7 +19,7 @@ system:
           type: client
     containers:
     - name: soter
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:jenkins-Infrastructure-Security-soter-master-41-itest
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/soter:jenkins-Infrastructure-Security-soter-master-42-itest
       ports:
       - containerPort: 8080
       env:
