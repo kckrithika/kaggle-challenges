@@ -52,7 +52,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 # Check if spec is a jsonnet template
 if [[ ".jsonnet" == "${1: -8}" ]] ; then
-    jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${TEST_RUNNER_ID:-$(cut -c1-8 < /proc/sys/kernel/random/uuid)} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} -m /strata-test-specs-out
+    jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=$(cut -c1-8 < /proc/sys/kernel/random/uuid) -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} -m /strata-test-specs-out
     SPEC_INPUT=$(basename "$1")
     SPEC_NAME=${SPEC_INPUT%%.*}
     if [ -f "/strata-test-specs-out/${SPEC_NAME}.json" ]; then
