@@ -77,6 +77,8 @@ system:
          value: "acds_admin@local"
        - name : SECRETS_FOLDER_NAME
          value: "task-manager-secrets"
+       - name : DUMMY_VARIABLE
+         value: "DUMMY_VARIABLE"
      volumes:
      - name: task-manager-secrets-vol
        k4aSecret:
