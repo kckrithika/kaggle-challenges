@@ -1,0 +1,68 @@
+- lbname: gs0-phx
+  customlbname: gs0-phx
+  servers:
+  - gs0-app1-10-phx.ops.sfdc.net
+  - gs0-app1-1-phx.ops.sfdc.net
+  - gs0-app1-2-phx.ops.sfdc.net
+  - gs0-app1-3-phx.ops.sfdc.net
+  - gs0-app1-4-phx.ops.sfdc.net
+  - gs0-app1-5-phx.ops.sfdc.net
+  - gs0-app1-6-phx.ops.sfdc.net
+  - gs0-app1-7-phx.ops.sfdc.net
+  - gs0-app1-8-phx.ops.sfdc.net
+  - gs0-app1-9-phx.ops.sfdc.net
+  - gs0-app2-10-phx.ops.sfdc.net
+  - gs0-app2-1-phx.ops.sfdc.net
+  - gs0-app2-2-phx.ops.sfdc.net
+  - gs0-app2-3-phx.ops.sfdc.net
+  - gs0-app2-4-phx.ops.sfdc.net
+  - gs0-app2-5-phx.ops.sfdc.net
+  - gs0-app2-6-phx.ops.sfdc.net
+  - gs0-app2-7-phx.ops.sfdc.net
+  - gs0-app2-8-phx.ops.sfdc.net
+  - gs0-app2-9-phx.ops.sfdc.net
+  ports:
+  - port: 80
+    targetport: 8085
+    lbtype: http
+    removeheaders:
+    - "CipherSuite"
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Real-IP"
+  - port: 443
+    targetport: 8090
+    lbtype: http
+    tls: true
+#    tlscertificate: secret_service:gus_vip:cert
+#    tlskey: secret_service:gus_vip:key
+    reencrypt: true
+    healthprotocol: http
+    healthport: 8085
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "SSL_PROTOCOL"
+    - "SSL_CIPHER"
+    - "SSL_SESSION_ID"
+  - port: 8443
+    targetport: 8090
+    lbtype: http
+    tls: true
+#    tlscertificate: secret_service:gus_vip:cert
+#    tlskey: secret_service:gus_vip:key
+    reencrypt: true
+    healthprotocol: http
+    healthport: 8085
+    healthpath: /ping.jsp?allBusy
+    removeheaders:
+    - "X-Forwarded-Proto"
+    - "X-Forwarded-For"
+    - "X-Client-Verify"
+    - "X-Real-IP"
+    - "SSL_PROTOCOL"
+    - "SSL_CIPHER"
+    - "SSL_SESSION_ID"
