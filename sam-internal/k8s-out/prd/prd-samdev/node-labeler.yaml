@@ -25,7 +25,7 @@ spec:
       - command:
         - /sam/node-labeler
         - --config=/config/node-labeler-config.json
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/a.mitra/hypersam:20190328_182019.ca63d453.dirty.amitra-ltm2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2710-f3b16a96a6e53f87ce4ac157a136b9c89d7576b4
         name: node-labeler
         resources:
           limits:
