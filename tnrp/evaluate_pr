@@ -119,4 +119,4 @@ $SAMBINDIR/evaluate-pr \
 --disableDedupFlag=false \
 
 # Validate vips.yaml files for SLB, this does not copy any files to output
-/opt/slb/slb-manifest-builder -root $PWD -output $PWD -validate -v=1
+/opt/slb/slb-manifest-builder -root $PWD -output $PWD -validate --vcioptions.strict -v=1
