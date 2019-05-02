@@ -42,6 +42,7 @@ local utils = import "util_functions.jsonnet";
                 spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resourcequota-enforcement-sfdc-5-itest",
             },
             feature_flags+: {
+                spark_operator_watchdog_parallel_run: "enabled",
             },
             version_mapping+: {
             },

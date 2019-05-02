@@ -78,6 +78,8 @@ local build_btrfs_test_commands = if std.objectHas(flowsnake_images.feature_flag
 local build_spark_operator_test_commands = {
   SparkOperatorTest: {
     SparkOperatorTest: "/watchdog-spark-scripts/check-spark-operator.sh /strata-test-specs-in/basic-spark-pi.jsonnet",
+    [if std.objectHas(flowsnake_images.feature_flags, "spark_operator_watchdog_parallel_run") then "SparkOperatorUniqueNameTest"]:
+        "/watchdog-spark-scripts/check-spark-operator-unique-name.sh /strata-test-specs-in/basic-spark-pi.jsonnet",
     # Verify impersonation works at all
     ImpersonationProxyMinimalTest: "/watchdog-spark-scripts/check-impersonation.sh /watchdog-spark-scripts/kubeconfig-impersonation-proxy",
     # Run a Spark Application via the impersonation proxy
