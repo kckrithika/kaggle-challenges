@@ -5,34 +5,36 @@ system:
       - juppala@salesforce.com
   functions:
   - name: zones-ui
-    count: 2
+    hostNetwork: true
+    count: 1
     volumes:
       - name: uiservercert
         maddogCert:
           type: server
           lbnames:
-            - zones-ui-lb
+            - sfsg
       - name: uiclientcert
         maddogCert:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:master-20190414-3
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:5
       env:
       - name: ZONES_ENVIRONMENT
-        value: "dev"
+        value: "prod"
       - name: HTTPS_PROXY
-        value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
+        value: "http://public0-proxy1-0-xrd.data.sfdc.net:8080"
       - name: ZONES_BASE_URL
-        value: "https://gus--zonesintk.my.salesforce.com"
+        value: "https://gus.my.salesforce.com"
       - name: ZONES_SERVICE_URL
-        value: "http://zones-intake-backend-lb.user-jiaqi-wu.prd-sam.prd.slb.sfdc.net:3000"
+        value: "https://zones-intake-backend-secure.sds.xrd-sam.xrd.slb.sfdc.net:4443"
       - name: ZONES_SECRET_SERVICE_URL
         value: "https://secretservice.dmz.salesforce.com:8271/vaultczar/api/1.0/getSecretBySubscriber"
       ports:
       - containerPort: 8445
       livenessProbe:
         httpGet:
+          scheme: HTTPS
           path: /zones/v1/healthCheck
           port: 8445
       volumeMounts:
@@ -41,7 +43,7 @@ system:
       - name: uiclientcert
         mountPath: /clientcerts
   loadbalancers:
-  - lbname: zones-ui-default
+  - lbname: zones-ui-lb
     function: zones-ui
     slbenabled: true
     ports:
@@ -56,15 +58,15 @@ system:
       - port: 8080
         targetport: 8445
         lbtype: http
-  - lbname: zones-ui-lb
+  - lbname: sfsg
     function: zones-ui
     slbenabled: true
     ports:
-      # - port: 443
-      #   targetport: 8445
-      #   lbtype: tcp
-      #   tls: false
+      - port: 443
+        targetport: 8445
+        lbtype: tcp
+        tls: false
       - port: 8445
         targetport: 8445
-        lbtype: http
-        tls: true
+        lbtype: tcp
+        tls: false
