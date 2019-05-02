@@ -41,8 +41,6 @@ configs.deploymentBase("service-mesh") {
         },
         labels: {
           app: "route-update-service",
-          // This name label is required for SAM's pod.* metrics to properly work: https://git.soma.salesforce.com/sam/sam/blob/master/pkg/watchdog/internal/checkers/kuberesourceschecker/internal/pod/podhealthchecker.go#L203
-          name: "route-update-service",
         }
       },
       spec: configs.specWithMadDog {
