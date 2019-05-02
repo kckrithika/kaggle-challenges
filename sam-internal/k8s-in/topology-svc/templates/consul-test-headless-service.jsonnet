@@ -4,7 +4,7 @@
 
 local configs = import 'config.jsonnet';
 local topologysvcimages = (import 'topology-svc-images.jsonnet') + { templateFilename:: std.thisFile };
-local topologysvcNamespace = 'topology-svc';
+local topologysvcNamespace = 'topology-test';
 
 if configs.kingdom == 'mvp' then {
     apiVersion: 'v1',
