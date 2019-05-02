@@ -155,6 +155,18 @@
     },
     {
       "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "cdu-sam",
+      "estate": "cdu-sam_dp",
+      "kingdom": "cdu",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh"
       ],
@@ -3133,6 +3145,18 @@
     },
     {
       "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "syd-sam",
+      "estate": "syd-sam_dp",
+      "kingdom": "syd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh"
       ],
@@ -3553,6 +3577,18 @@
     },
     {
       "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "yhu-sam",
+      "estate": "yhu-sam_dp",
+      "kingdom": "yhu",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "service-mesh"
       ],
@@ -3610,6 +3646,18 @@
       ],
       "controlEstate": "yul-sam",
       "estate": "yul-sam_datapool",
+      "kingdom": "yul",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "dataprotection"
+      ],
+      "access": [
+        "team/dataprotection"
+      ],
+      "controlEstate": "yul-sam",
+      "estate": "yul-sam_dp",
       "kingdom": "yul",
       "superPod": "None"
     },
