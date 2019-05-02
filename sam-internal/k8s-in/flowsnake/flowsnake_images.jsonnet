@@ -39,7 +39,6 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resourcequota-enforcement-sfdc-5-itest",
             },
             feature_flags+: {
                 spark_operator_watchdog_parallel_run: "enabled",
@@ -99,7 +98,7 @@ local utils = import "util_functions.jsonnet";
 
                 # Flowsnake v2 images
                 impersonation_proxy_image_tag: "8-9ced7803391be70dd7dc41cd3211800cda818f50",  # exec's nginx for signal propagation
-                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resourcequota-enforcement-sfdc-3-itest",
+                spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-operator-resourcequota-enforcement-sfdc-5-itest",
                 watchdog_spark_operator_image_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-2-1-itest",
                 integration_test_tag: "4",
                 kube_state_metrics_image_tag: "3",
