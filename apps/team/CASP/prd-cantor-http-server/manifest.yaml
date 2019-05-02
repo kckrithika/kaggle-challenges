@@ -3,24 +3,20 @@ apiVersion: v1
 system:
     notifications:
       email:
-        - paul.howden@salesforce.com
         - pteyer@salesforce.com
         - akouthoofd@salesforce.com
     functions:
-    - name: cantor-func
-      count: 3
+    - name: cantor-http-server
+      count: 1
       strategy:
         type: RollingUpdate
         rollingUpdate:
           maxSurge: 0
           maxUnavailable: 1
       containers:
-      - name: prd-cantor
-        image: dva/casp/cantor_strata:66
+      - name: prd-cantor-http-server
+        image: dva/casp/cantor_http_strata:2
         ports:
-        - name: cantor-grpc
-          containerPort: 7443
-          hostPort: 17443
         - name: cantor-http
           containerPort: 8084
           hostPort: 18084
@@ -31,12 +27,12 @@ system:
         env:
         - name: SUBDOMAIN
           value: "eng"
+        - name: STORAGE_TYPE
+          value: "grpc"
     loadbalancers:
-    - lbname: cantor
-      function: cantor-func
+    - lbname: cantor-service
+      function: cantor-http-server
       slbEnabled: true
       ports:
-        - port: 11983
-          targetport: 7443
         - port: 80
           targetport: 8084
