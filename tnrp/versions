@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# versions is a script that captures version information
+# for entities such as RPM packages, docker images, and so on.
+# It offers the convenience of specifying version information
+# used by multiple scripts, or even putting version information
+# used by a single script into a "non-noisy" file.
+
+# Used by:
+# - evaluate_pr
+# - package
+export SMBPACKAGE="slb-manifest-builder-20190423_185401.ee945b7.clean-1.x86_64"

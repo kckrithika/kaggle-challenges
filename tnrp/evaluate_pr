@@ -2,6 +2,28 @@
 #exit on error
 set -e
 
+# Determine the path of tnrp/versions relative to the directory
+# from which the tnrp/evaluate_pr script was called.
+getSMBPackageName() {
+    SCRIPT_DIR="${BASH_SOURCE%/*}"
+    if [[ ! -d  "${SCRIPT_DIR}" ]]; then
+      echo "${SCRIPT_DIR} is missing or not a directory."
+      exit 1
+    fi
+
+    VERSIONS_SCRIPT="${SCRIPT_DIR}/versions"
+    if [[ ! -f "${VERSIONS_SCRIPT}" ]]; then
+      echo "${VERSIONS_SCRIPT} is missing or not a file."
+      exit 1
+    fi
+
+    source "${VERSIONS_SCRIPT}"
+    if [[ -z "${SMBPACKAGE}" ]]; then
+      echo "SMBPACKAGE variable must be non-empty."
+      exit 1
+    fi
+}
+
 REPO_OWNER=sam
 
 if [ -z "$FIREFLY" ]; then
@@ -10,7 +32,13 @@ else
    echo "*** EXECUTING IN $FIREFLY ENVIRONMENT"
    SAMBINDIR=/sam
    # This is required for SAM to run json consistency tests for sam-internal files
-   yum install -y make gcc gcc-c++ slb-manifest-builder-20190423_185401.ee945b7.clean-1.x86_64
+   getSMBPackageName
+   yum install -y make gcc gcc-c++ "${SMBPACKAGE}"
+   echo "Verifying package installed: ${SMBPACKAGE}"
+   if ! yum list installed "${SMBPACKAGE}"; then
+     echo "Expected package not installed: ${SMBPACKAGE}"
+     exit 1
+   fi
 fi
 
 
