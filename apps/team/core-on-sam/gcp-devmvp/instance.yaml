@@ -1,4 +1,4 @@
-color: blue
+color: green
 db:
   hostName: 10.168.160.184
   instance: NADB11-1
@@ -15,7 +15,7 @@ env:
   region: phx
   subEnvName: '-'
 images:
-  coreApp: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17989728
+  coreApp: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17983190
   coreAppOverrides: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:e0d509
   envoy: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/cyan-config:208cc2
@@ -24,6 +24,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na3
-nonce: 1556762104788276723
+nonce: 1556765620459299496
 replicaCount: 3
 settingsSuperPod: '-'
