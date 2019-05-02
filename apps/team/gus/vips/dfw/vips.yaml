@@ -33,9 +33,10 @@
   - port: 443
     targetport: 8090
     lbtype: http
-    tls: true
-    tlscertificate: secret_service:gus_vip:cert
-    tlskey: secret_service:gus_vip:key
+#    tls: true
+#    tlscertificate: secret_service:gus_vip:cert
+#    tlskey: secret_service:gus_vip:key
+#    reencrypt: true
     healthprotocol: http
     healthport: 8085
     healthpath: /ping.jsp?allBusy
@@ -50,9 +51,10 @@
   - port: 8443
     targetport: 8090
     lbtype: http
-    tls: true
-    tlscertificate: secret_service:gus_vip:cert
-    tlskey: secret_service:gus_vip:key
+#    tls: true
+#    tlscertificate: secret_service:gus_vip:cert
+#    tlskey: secret_service:gus_vip:key
+#    reencrpyt: true
     healthprotocol: http
     healthport: 8085
     healthpath: /ping.jsp?allBusy
