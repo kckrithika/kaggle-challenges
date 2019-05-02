@@ -19,7 +19,7 @@ spec:
           {
            "certreqs": [
             {
-             "cert-type": "client",
+             "cert-type": "client,server",
              "kingdom": "mvp",
              "name": "cert1",
              "role": "topology-svc",
@@ -33,7 +33,7 @@ spec:
              "superpod": null
             },
             {
-             "cert-type": "client",
+             "cert-type": "client, server",
              "kingdom": "mvp",
              "name": "client-certs",
              "role": "topology-svc",

@@ -19,7 +19,7 @@ spec:
           {
            "certreqs": [
             {
-             "cert-type": "client",
+             "cert-type": "client,server",
              "kingdom": "mvp",
              "name": "cert1",
              "role": "topology-svc",
@@ -33,7 +33,7 @@ spec:
              "superpod": null
             },
             {
-             "cert-type": "client",
+             "cert-type": "client, server",
              "kingdom": "mvp",
              "name": "client-certs",
              "role": "topology-svc",
@@ -92,7 +92,7 @@ spec:
               fieldPath: metadata.namespace
         - name: RANDVAL
           value: "48"
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:consul-20190502-3
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:consul-20190502-2
         lifecycle:
           preStop:
             exec:
