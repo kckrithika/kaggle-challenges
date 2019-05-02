@@ -11,7 +11,7 @@ system:
         maxUnavailable: 2
     containers:
     - name: switchboard
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:a18d6b3cee927f192f9e7b34128477509eaabf96
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/switchboard:2a6f60acdc8a877797e49d84c1d1da1b84f8c501
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -52,34 +52,22 @@ system:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
       livenessProbe:
-        exec:
-          command:
-          - /bin/true
+        httpGet:
+          path: /manage/health
+          port: 15372
         initialDelaySeconds: 20
         periodSeconds: 5
         timeoutSeconds: 4
       readinessProbe:
-        exec:
-          command:
-          - /bin/true
-        initialDelaySeconds: 15
+        httpGet:
+          path: /manage/ready
+          port: 15372
+        # Switchboard won't become Ready until there was a successful scrape.
+        # So we don't want to start touching the readiness probe until then.
+        # Using 60+ seconds here will also allow us to slow down the gradual rollout 
+        initialDelaySeconds: 60
         periodSeconds: 5
         timeoutSeconds: 4
-      # TODO:NIKO: 3/5/2019 hardcoding the probes to figure out health probe failures leading to pod crashes and restarts
-      #livenessProbe:
-      #  httpGet:
-      #    path: /manage/health
-      #    port: 15372
-      #  initialDelaySeconds: 20
-      #  periodSeconds: 5
-      #  timeoutSeconds: 4
-      #readinessProbe:
-      #  httpGet:
-      #    path: /manage/ready
-      #    port: 15372
-      #  initialDelaySeconds: 15
-      #  periodSeconds: 5
-      #  timeoutSeconds: 4
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
