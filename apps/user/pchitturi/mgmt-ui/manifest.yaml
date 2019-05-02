@@ -35,7 +35,7 @@ system:
               value: "production"
       lbname: mgmt-ui-dummy-lb
   loadbalancers:
-  - lbname: mgmt-ui-lb
+  - lbname: mgmt-uione-lb
     function: mgmt-ui
     slbEnabled: true
     ports:
