@@ -7,9 +7,9 @@ system:
   - containers:
     - env:
       - name: DB_SID
-        value: mist61b218utf
+        value: mist61c220utf
       - name: DB_INSTANCE_NAME
-        value: mist61b218utf-1
+        value: mist61c220utf-1
       - name: DB_USER
         value: sleepy
       - name: DB_STATS_USER
@@ -62,7 +62,7 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17562818
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_220-patch_18011946
       livenessProbe:
         exec:
           command:
@@ -101,7 +101,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na7.app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:40d086
+      image: sfci/casam/coreapp_overrides:e0b81b
       livenessProbe:
         exec:
           command:
@@ -221,9 +221,9 @@ system:
       - name: RELEASE_TYPE
         value: MINOR
       - name: MAJOR_RELEASE_NUMBER
-        value: 218
+        value: 220
       - name: DB_EDITION
-        value: 218
+        value: 220
       - name: MINOR_RELEASE_NUMBER
         value: 0
       - name: PATCH_RELEASE_NUMBER
@@ -235,7 +235,7 @@ system:
       - name: READY_SERVER_COUNT
         value: 1
       - name: DB_SID
-        value: mist61b218utf
+        value: mist61c220utf
       - name: ENABLE_DB_SCHEMA_UPGRADE
         value: 0
       - name: OLD_DWARF
@@ -266,7 +266,7 @@ system:
         value: https://refocus.internal.salesforce.com/v1/samples/
       - name: KAIJU_RUNTIME_TIMEOUT_MS
         value: 360000
-      image: sfci/casam/sequencer:2b8d19
+      image: sfci/casam/sequencer:180d92
       livenessProbe:
         exec:
           command:
@@ -370,7 +370,7 @@ system:
         value: 7020
       - name: JVM_HEAP_MAX
         value: 4G
-      image: sfci/servicelibs/switchboard:0c4c543cd166bcb2e5516795a30989bc89165d60
+      image: sfci/servicelibs/switchboard:2a6f60acdc8a877797e49d84c1d1da1b84f8c501
       livenessProbe:
         httpGet:
           path: /manage/health
