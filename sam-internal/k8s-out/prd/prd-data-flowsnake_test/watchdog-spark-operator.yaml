@@ -89,9 +89,15 @@ items:
       done
       set -- "${POSITIONAL[@]}" # restore positional parameters
 
+      if [[ -z "${TEST_RUNNER_ID}" ]]; then
+        UUID=$(cat /proc/sys/kernel/random/uuid)
+      else
+        UUID="${TEST_RUNNER_ID}"
+      fi
+
       # Check if spec is a jsonnet template
       if [[ ".jsonnet" == "${1: -8}" ]] ; then
-          jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${TEST_RUNNER_ID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} -m /strata-test-specs-out
+          jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${UUID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} -m /strata-test-specs-out
           SPEC_INPUT=$(basename "$1")
           SPEC_NAME=${SPEC_INPUT%%.*}
           if [ -f "/strata-test-specs-out/${SPEC_NAME}.json" ]; then
@@ -285,39 +291,13 @@ items:
       kcfw_log cluster-info
 
       # ------ Clean up prior runs ---------
-      log "Cleaning up $APP_NAME resources from prior runs."
-      kcfw_log delete sparkapplication $APP_NAME
-
-      # kubectl returns success even if no pods match the label selector. But it seems you get an
-      # error if you match a pod and then that pod exits on its own at just the wrong time. Harmless, retry will succeed.
-      kcfw_log delete pod -l $SELECTOR
-
-      # Wait for SparkApplication from prior run to delete.
-      LAST_LOGGED=$(epoch)
-      while true; do
-          EPOCH=$(epoch)
-          if ! kcfw get sparkapplications 2>&1 | grep -P "^${APP_NAME}\s" > /dev/null; then
-              break
-          fi
-          if (( EPOCH - LAST_LOGGED > 60 )); then
-              log "...still waiting for previous run's sparkapplication $APP_NAME to delete.";
-              events
-              LAST_LOGGED=${EPOCH}
-          fi;
-          sleep 1
-      done
-      while true; do
-          EPOCH=$(epoch)
-          # No output matching selector means no more pods are running
-          if ! kcfw get pod -l $SELECTOR | grep -P '.+' > /dev/null; then
-              break
-          fi
-          if (( EPOCH - LAST_LOGGED > 60 )); then
-              log "...still waiting for previous run's pods to delete.";
-              events
-              LAST_LOGGED=${EPOCH}
-          fi;
-          sleep 1
+      log "Cleaning up SparkApplication/Pod older than 24 hours from prior runs."
+      # https://stackoverflow.com/questions/48934491/kubernetes-how-to-delete-pods-based-on-age-creation-time
+      APPS=$(kcfw_log get sparkapplication -o go-template='{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d'now-24 hours' -Ins --utc | sed 's/+0000/Z/')'" { print $1 }')
+      for APP in ${APPS}; do
+          PODSELECTOR="sparkoperator.k8s.io/app-name=${APP}"
+          kcfw_log delete sparkapplication ${APP}
+          kcfw_log delete pod -l ${PODSELECTOR}
       done
 
       # ------ Run ---------
@@ -443,8 +423,6 @@ items:
           env:
           - name: DOCKER_TAG
             value: "4"
-          - name: TEST_RUNNER_ID
-            value: canary
           - name: S3_PROXY_HOST
             value: public0-proxy1-0-prd.data.sfdc.net
           - name: DRIVER_SERVICE_ACCOUNT
