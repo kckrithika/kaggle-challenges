@@ -29,7 +29,7 @@ local kingdom = std.extVar("kingdom");
 
     ### Release Phase 0 - prd-sam and prd-samtest
     "0": $.per_phase["1"] {
-       kubectl: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/kubectl:fb53c1e25a0c870fb2d22f2943ba8c0d05cda962",
+       kubectl: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/kubectl:1.1.1",
        pilot: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/istio/pilot:1.1.x.2019_04_24_01",
        proxy: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:fb53c1e25a0c870fb2d22f2943ba8c0d05cda962",
        proxyinit: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:fb53c1e25a0c870fb2d22f2943ba8c0d05cda962",
