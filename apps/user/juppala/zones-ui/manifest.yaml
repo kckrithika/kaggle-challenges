@@ -11,13 +11,14 @@ system:
         maddogCert:
           type: server
           lbnames:
-            - zones-ui-secure
+            - sfsg
       - name: uiclientcert
         maddogCert:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/juppala/zones-ui:master-20190501-1
+      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:5
       env:
       - name: ZONES_ENVIRONMENT
         value: "dev"
@@ -57,7 +58,7 @@ system:
       - port: 8080
         targetport: 8445
         lbtype: http
-  - lbname: zones-ui-secure
+  - lbname: sfsg
     function: zones-ui
     slbenabled: true
     ports:
