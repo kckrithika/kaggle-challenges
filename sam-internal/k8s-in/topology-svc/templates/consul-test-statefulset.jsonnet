@@ -2,7 +2,7 @@
 local configs = import 'config.jsonnet';
 local topologysvcimages = (import 'topology-svc-images.jsonnet') + { templateFilename:: std.thisFile };
 local madkub = (import 'topology-svc-madkub.jsonnet') + { templateFilename:: std.thisFile };
-local topologysvcNamespace = 'topology-svc';
+local topologysvcNamespace = 'topology-test';
 local serviceMesh = (import 'topology-svc-sherpa.jsonnet') + { templateFilename:: std.thisFile };
 
 local certDirs = ['cert1', 'client-certs', 'server-certs'];

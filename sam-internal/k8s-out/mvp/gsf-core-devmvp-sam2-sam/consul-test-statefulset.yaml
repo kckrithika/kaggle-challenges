@@ -4,7 +4,7 @@ metadata:
   labels:
     pcn: deploy
   name: consul-test-server
-  namespace: topology-svc
+  namespace: topology-test
 spec:
   podManagementPolicy: Parallel
   replicas: 4
