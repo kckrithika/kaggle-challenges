@@ -51,21 +51,6 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
-      #livenessProbe:
-      #  exec:
-      #    command:
-      #    - /bin/true
-      #  initialDelaySeconds: 20
-      #  periodSeconds: 5
-      #  timeoutSeconds: 4
-      #readinessProbe:
-      #  exec:
-      #    command:
-      #    - /bin/true
-      #  initialDelaySeconds: 15
-      #  periodSeconds: 5
-      #  timeoutSeconds: 4
-      # TODO:NIKO: 3/5/2019 hardcoding the probes to figure out health probe failures leading to pod crashes and restarts
       livenessProbe:
         httpGet:
           path: /manage/health
