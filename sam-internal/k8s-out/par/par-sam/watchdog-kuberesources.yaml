@@ -26,7 +26,7 @@ spec:
         - -alertThreshold=1h
         - -maxUptimeSampleSize=5
         - -shouldBatchMetrics=true
-        - -watchDogKind=Deployment
+        - -watchDogKind=DaemonSet
         - -recipient=""
         - -funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080
         - --config=/config/watchdog.json
