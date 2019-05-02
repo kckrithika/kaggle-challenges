@@ -1,10 +1,10 @@
-color: green
+color: blue
 db:
   hostName: 10.168.160.184
   instance: NADB11-1
-  lockUser: sneezy
+  lockUser: sleepy
   sid: NADB11
-  user: sleepy
+  user: sneezy
 endpoints:
   httpProxy: localhost:3128
   publicHostName: casam.devmvp.gcp.sfdcsvc.net
@@ -15,7 +15,7 @@ env:
   region: phx
   subEnvName: '-'
 images:
-  coreApp: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17983190
+  coreApp: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17989728
   coreAppOverrides: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:e0d509
   envoy: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/cyan-config:208cc2
@@ -24,6 +24,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na3
-nonce: 1556770501535029694
+nonce: 1556824447183301120
 replicaCount: 3
 settingsSuperPod: '-'
