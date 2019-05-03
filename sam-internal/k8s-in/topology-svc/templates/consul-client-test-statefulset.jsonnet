@@ -5,7 +5,7 @@ local madkub = (import 'topology-svc-madkub.jsonnet') + { templateFilename:: std
 local topologysvcNamespace = 'topology-svc';
 local serviceMesh = (import 'topology-svc-sherpa.jsonnet') + { templateFilename:: std.thisFile };
 
-local certDirs = ['client-certs'];
+local certDirs = ['cert1', 'client-certs', 'server-certs'];
 
 local initContainers = [
   madkub.madkubInitContainer(certDirs),
@@ -128,7 +128,7 @@ if configs.kingdom == 'mvp' then {
         containers: [
           {
             name: 'consul-client-test',
-            image: topologysvcimages.consulgcp,
+            image: topologysvcimages.consulclientgcp,
             args: [
               'agent',
               '-advertise=$(POD_IP)',
@@ -137,7 +137,7 @@ if configs.kingdom == 'mvp' then {
               '-datacenter=gcp-uscentral1',
               '-data-dir=/consul/data',
               '-domain=cluster.local',
-              '-config-dir=/config/consulencrypt.json',
+              '-config-dir=/config/consulclientencrypt.json',
               '-disable-host-node-id',
               '-retry-join=consul-test-server-0.consul-test-headless.$(NAMESPACE).svc',
               '-retry-join=consul-test-server-1.consul-test-headless.$(NAMESPACE).svc',
