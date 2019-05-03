@@ -6,153 +6,123 @@
    - vir501-ccn2-1-xrd.eng.sfdc.net
    - vir501-ccn3-1-xrd.eng.sfdc.net
   ports:
-   - port: 80
-     targetport: 80
-     lbtype: http
-     sticky: 300
-     tls: false
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-   - port: 443
-     targetport: 443
-     lbtype: http
-     sticky: 300
-     reencrypt: true
-     tls: true
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-   - port: 5000
-     targetport: 5000
-     lbtype: http
-     sticky: 30
-     reencrypt: true
-     tls: true
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-     throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     clientmaxrps: 5
-     clientmaxrpsburst: 300
-   - port: 35357
-     targetport: 35357
-     lbtype: http
-     sticky: 30
-     reencrypt: true
-     tls: true
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-     throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     clientmaxrps: 5
-     clientmaxrpsburst: 300
-   - port: 8773
-     targetport: 8773
-     lbtype: http
-     sticky: 300
-     reencrypt: true
-     tls: true
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-     throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     clientmaxrps: 1
-     clientmaxrpsburst: 60
-   - port: 8774
-     targetport: 8774
-     lbtype: http
-     sticky: 300
-     reencrypt: true
-     tls: true
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-     throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     clientmaxrps: 1
-     clientmaxrpsburst: 60
-   - port: 8778
-     targetport: 8778
-     lbtype: http
-     sticky: 300
-     reencrypt: true
-     tls: true
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-     throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     clientmaxrps: 1
-     clientmaxrpsburst: 60
-   - port: 8775
-     targetport: 8775
-     lbtype: http
-     sticky: 300
-     reencrypt: true
-     tls: true
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-     throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     clientmaxrps: 1
-     clientmaxrpsburst: 60
-   - port: 9191
-     targetport: 9191
-     lbtype: http
-     sticky: 300
-     reencrypt: true
-     tls: true
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-   - port: 9292
-     targetport: 9292
-     lbtype: http
-     sticky: 300
-     reencrypt: true
-     tls: true
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-     throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     clientmaxrps: 3
-     clientmaxrpsburst: 160
-   - port: 9696
-     targetport: 9696
-     lbtype: http
-     lbalgorithm: leastconn # neutron behaves more like a long-lived transaction than HTTP
-     sticky: 0
-     reencrypt: true
-     tls: true
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-     throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     clientmaxrps: 3
-     clientmaxrpsburst: 60
-   - port: 8776
-     targetport: 8776
-     lbtype: http
-     sticky: 300
-     reencrypt: true
-     tls: true
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-     throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     clientmaxrps: 1
-     clientmaxrpsburst: 60
-   - port: 10000
-     targetport: 10000
-     lbtype: http
-     sticky: 300
-     reencrypt: true
-     tls: true
-     healthport: 80
-     healthpath: /ping
-     healthprotocol: http
-     throttleswhitelist: ["10.210.128.128/26", "10.210.129.128/26", "10.210.133.0/24"]
-     clientmaxrps: 5
-     clientmaxrpsburst: 300
+    - port: 80
+      targetport: 80
+      lbtype: http
+      sticky: 300
+      tls: false
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 443
+      targetport: 443
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 5000
+      targetport: 5000
+      lbtype: http
+      sticky: 30
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 35357
+      targetport: 35357
+      lbtype: http
+      sticky: 30
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 8773
+      targetport: 8773
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 8774
+      targetport: 8774
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 8778
+      targetport: 8778
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 8775
+      targetport: 8775
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 9191
+      targetport: 9191
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 9292
+      targetport: 9292
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 9696
+      targetport: 9696
+      lbtype: http
+      lbalgorithm: leastconn
+      sticky: 0
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 8776
+      targetport: 8776
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
+    - port: 10000
+      targetport: 10000
+      lbtype: http
+      sticky: 300
+      reencrypt: true
+      tls: true
+      healthport: 25843
+      healthpath: /ping
+      healthprotocol: http
 - lbname: vir502-1-0-xrd
   customlbname: vir502-1-0-xrd
   servers:
@@ -1420,7 +1390,7 @@
     - port: 5000
       targetport: 5000
       lbtype: http
-      sticky: 300
+      sticky: 30
       reencrypt: true
       tls: true
       healthport: 25843
@@ -1429,7 +1399,7 @@
     - port: 35357
       targetport: 35357
       lbtype: http
-      sticky: 300
+      sticky: 30
       reencrypt: true
       tls: true
       healthport: 25843
