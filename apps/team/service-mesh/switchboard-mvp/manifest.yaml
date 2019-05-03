@@ -56,8 +56,8 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 30
-        periodSeconds: 8
-        timeoutSeconds: 7
+        periodSeconds: 7
+        timeoutSeconds: 6
       readinessProbe:
         httpGet:
           path: /manage/ready
@@ -66,8 +66,8 @@ system:
         # So we don't want to start touching the readiness probe until then.
         # Using 60+ seconds here will also allow us to slow down the gradual rollout 
         initialDelaySeconds: 60
-        periodSeconds: 8
-        timeoutSeconds: 7
+        periodSeconds: 7
+        timeoutSeconds: 6
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
