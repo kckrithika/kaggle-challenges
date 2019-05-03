@@ -1,8 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    manifestctl.sam.data.sfdc.net/swagger: disable
   name: route-update-service
   namespace: service-mesh
 spec:
@@ -54,8 +52,8 @@ spec:
             command:
             - /bin/true
           initialDelaySeconds: 5
-          periodSeconds: 10
-          timeoutSeconds: 10
+          periodSeconds: 30
+          timeoutSeconds: 5
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
@@ -110,9 +108,9 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
-      - maddogCert:
-          type: client
-        name: tls-client-cert
-      - maddogCert:
-          type: server
-        name: tls-server-cert
+      - emptyDir:
+          medium: Memory
+        name: server-cert
+      - emptyDir:
+          medium: Memory
+        name: tokens

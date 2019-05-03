@@ -33,11 +33,6 @@ configs.deploymentBase("service-mesh") {
   metadata+: {
     name: "route-update-service",
     namespace: "service-mesh",
-    annotations: {
-      # To skip swagger failure's with error:
-      # found invalid field maddogCert for v1.Volume
-      "manifestctl.sam.data.sfdc.net/swagger": "disable",
-    },
   },
   spec+: {
     replicas: 1,
@@ -89,8 +84,8 @@ configs.deploymentBase("service-mesh") {
                 ],
               },
               initialDelaySeconds: 5,
-              periodSeconds: 10,
-              timeoutSeconds: 10,
+              periodSeconds: 30,
+              timeoutSeconds: 5,
             },
             volumeMounts+: madkub.madkubSamCertVolumeMounts(certConfigs) + $.proxy_volume_mounts()
           },
@@ -99,20 +94,7 @@ configs.deploymentBase("service-mesh") {
         nodeSelector: {
           pool: mcpIstioConfig.istioEstate,
         },
-        volumes+: [
-          {
-            name: "tls-client-cert",
-              maddogCert: {
-                type: "client",
-              },
-          },
-          {
-            name: "tls-server-cert",
-              maddogCert: {
-                type: "server",
-              },
-          },
-        ],
+        volumes+: madkub.madkubSamCertVolumes(certConfigs) + madkub.madkubSamMadkubVolumes(),
       }
     }
   },
