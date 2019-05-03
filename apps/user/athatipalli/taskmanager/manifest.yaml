@@ -25,8 +25,8 @@ system:
            mountPath: /logsherpa
          - name: logvolbeacon
            mountPath: /logbeacon
-         - mountPath: /tasl-manager-secrets/
-           name: task-manager-secrets-vol
+         - mountPath: /taskmanager-secrets/
+           name: taskmanager-secrets-vol
            readOnly: true
        env:
        - name : UP_STRING
@@ -70,9 +70,9 @@ system:
        - name : SERVICE_USER_EMAIL
          value: "acds_admin@local" 
      volumes:
-     - name: task-manager-secrets-vol
+     - name: taskmanager-secrets-vol
        k4aSecret:
-         secretName: task-manager-secrets
+         secretName: taskmanager-secrets
      - name: tls-client-cert
        maddogCert:
          type: client
