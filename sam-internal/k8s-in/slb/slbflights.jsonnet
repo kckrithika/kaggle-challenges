@@ -37,4 +37,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # Enable kms config map to fix placement of kingdom json files in nginx-proxy container within the hsm nginx pods
     kmsConfigMap: (slbimages.phaseNum <= 1 || configs.estate == "dfw-sam" || configs.estate == "phx-sam"),
+
+    # Use new /healthz endpoint with heartbeating for portal liveness probes.
+    portalHealthzProbe: (slbimages.phaseNum <= 1),
 }

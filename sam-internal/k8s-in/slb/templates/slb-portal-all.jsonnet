@@ -15,6 +15,35 @@ local deployments = [
         local pseudoApiServerLink = "http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/" + kingdomName + '-sam',
         local deploymentName = "slb-portal-" + kingdomName,
 
+        local healthProbes = if slbflights.portalHealthzProbe then {
+            livenessProbe: {
+                httpGet: {
+                    path: "/healthz",
+                    port: portconfigs.slb.slbPortalServicePort,
+                },
+                # Attainment data loader takes up to 12 minutes to query argus for SLA attainment.
+                # TODO: Parallelize portal metric queries to speed this up.
+                initialDelaySeconds: 900,
+                periodSeconds: 10,
+                timeoutSeconds: 3,
+            },
+        } else {
+            livenessProbe: {
+                httpGet: {
+                # Portal's root endpoint (`/`) queries DNS for every page load. VIP watchdog (reachability on the target port and VIP availability) and kubelet
+                # (liveness probe) both hit this endpoint every 3 seconds, causing undue stress on DNS lookups. Change the liveness probe endpoint to something
+                # less dependent on external systems. Unfortunately, VIP watchdog's reachability probe can't be similarly configured.
+                # https://gus.lightning.force.com/a07B0000006QrWiIAK (when implemented) should help with portal's page load times.
+                # https://gus.lightning.force.com/a07B0000005jkagIAA (when implemented) should allow us to reduce VIP watchdog's load on the main portal page.
+                    path: "/webfiles/",
+                    port: portconfigs.slb.slbPortalServicePort,
+                },
+                initialDelaySeconds: 30,
+                periodSeconds: 3,
+                timeoutSeconds: 30,
+            },
+        },
+
         deployment: configs.deploymentBase("slb") {
             metadata: {
                 labels: {
@@ -79,31 +108,10 @@ local deployments = [
                                             configs.config_volume_mount,
                                         ] + madkub.madkubSlbCertVolumeMounts(certDirs)
                                     ),
-                                    livenessProbe: {
-                                        httpGet: {
-                                            # Portal's root endpoint (`/`) queries DNS for every page load. VIP watchdog (reachability on the target port and VIP availability) and kubelet
-                                            # (liveness probe) both hit this endpoint every 3 seconds, causing undue stress on DNS lookups. Change the liveness probe endpoint to something
-                                            # less dependent on external systems. Unfortunately, VIP watchdog's reachability probe can't be similarly configured.
-                                            # https://gus.lightning.force.com/a07B0000006QrWiIAK (when implemented) should help with portal's page load times.
-                                            # https://gus.lightning.force.com/a07B0000005jkagIAA (when implemented) should allow us to reduce VIP watchdog's load on the main portal page.
-                                            path: "/webfiles/",
-                                            port: portconfigs.slb.slbPortalServicePort,
-                                        },
-                                        initialDelaySeconds: 30,
-                                        periodSeconds: 3,
-                                        timeoutSeconds: 30,
-                                    },
                                     env: [
-                                        {
-                                            name: "NODE_NAME",
-                                            valueFrom: {
-                                                fieldRef: {
-                                                    fieldPath: "spec.nodeName",
-                                                },
-                                            },
-                                        },
+                                        slbconfigs.node_name_env,
                                     ],
-                                } + configs.ipAddressResourceRequest,
+                                } + configs.ipAddressResourceRequest + healthProbes,
                                 slbshared.slbConfigProcessor(
                                     slbports.slb.slbConfigProcessorLivenessProbePort,
                                     includeSlbPortalOverride=slbconfigs.isSlbAggregatedPortalEstate,
