@@ -61,7 +61,9 @@ local portConfig = import "portconfig.jsonnet";
                             ',gate-definitions/gate-definitions'+
                             ',nvt/mom-data'+
                             ',monitoring/nagios_configs'+
-                            ',SiteReliability/srcore',
+                            ',SiteReliability/srcore'+
+                            ',nvt/routerdb'+
+                            ',sdn/sitebridge-manifests',
     },
     environmentMapping:: {
         "prd-sam": $.prdsam,
