@@ -96,9 +96,7 @@ ruleset(name="ruleset_core") {
   set $!apptype = field($!filename, 46, 2);
   set $!role = field($!filename, 46, 4);
   set $!filedate = field($!filename, 46, 5);
-  <%# Hardcode appversion to 220 for demo only!!!%>
-  <%# set $!appversion = field($!filename, 46, 6); %>
-  set $!appversion = "220";
+  set $!appversion = field($!filename, 46, 6);
   set $!uuid = $!ts_raw & field($msg, 96, 16) & field($!host, 45, 4) & "-" & field($!host, 45, 5);
   
   <%# Output action %>
