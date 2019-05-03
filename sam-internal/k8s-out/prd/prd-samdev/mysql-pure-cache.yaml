@@ -140,11 +140,6 @@ spec:
             secretKeyRef:
               key: root
               name: mysql-passwords
-        - name: MYSQL_ROOT_PASS
-          valueFrom:
-            secretKeyRef:
-              key: root
-              name: mysql-passwords
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/mysql:20180917_111738.0b5255d9.dirty.duncsmith-ltm
         imagePullPolicy: IfNotPresent
         name: schema-applier
@@ -156,13 +151,13 @@ spec:
           name: conf
         - mountPath: /etc/mysql/
           name: config-map
+        - mountPath: /etc/mysql/
+          name: mysql-users
       dnsPolicy: ClusterFirst
       initContainers:
       - args:
         - chmod -R 775 /vols/sam-maddog-cahost
         - chown -R 7447:7447 /vols/sam-maddog-cahost
-        - chmod -R 775 /vols/mysql-backup
-        - chown -R 7447:7447 /vols/mysql-backup
         command:
         - /bin/sh
         - -c
@@ -178,8 +173,6 @@ spec:
         volumeMounts:
         - mountPath: /vols/sam-maddog-cahost
           name: sam-maddog-cahost
-        - mountPath: /vols/mysql-backup
-          name: mysql-backup
       - command:
         - bash
         - -c
@@ -237,13 +230,10 @@ spec:
         secret:
           defaultMode: 420
           secretName: mysql-pwd
-      - name: mysql
+      - name: mysql-users
         secret:
           defaultMode: 420
           secretName: mysql-users
-      - hostPath:
-          path: /var/mysql-backup
-        name: mysql-backup
   updateStrategy:
     rollingUpdate:
       partition: 0
