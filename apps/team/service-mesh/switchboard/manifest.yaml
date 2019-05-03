@@ -8,7 +8,7 @@ system:
     count: 5
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:2a6f60acdc8a877797e49d84c1d1da1b84f8c501
+      image: sfci/servicelibs/switchboard:3edafcb011d85c0c466c388d16a6727cec45888f
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
@@ -19,7 +19,9 @@ system:
       - --listeners.rate-limit-enabled-clusters[2]=metadata-service.retail-mds
       - --listeners.rate-limit-enabled-clusters[3]=cre-api-ccp-perf.retail-cre
       - --listeners.rate-limit-enabled-clusters[4]=retail-setup.retail-rsui
-      # TODO: we need to reduce this number
+      - --listeners.authz-policy-enabled-clusters[0]=ordering-authz-policy.service-mesh
+      - --listeners.authz-policy-enabled-clusters[1]=shipping-authz-policy.service-mesh
+      # TODO: we need to reduce this number 
       - --metrics.maxNumberOfCollectedMetrics=400000
       - --metrics.funnelTimeOut=100000
       - --healthIndicator.maxThreadCount=1300

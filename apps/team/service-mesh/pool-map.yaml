@@ -86,6 +86,11 @@ apps:
   shipping-rate-limited:
     - prd/prd-sam_gater
 
+  ordering-authz-policy:
+    - prd/prd-sam_gater
+  shipping-authz-policy:
+    - prd/prd-sam_gater
+
   # Regular Mode: Istio -> Istio apps
   istio-geoip:
     - prd/prd-sam_gater
