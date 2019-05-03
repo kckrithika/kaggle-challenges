@@ -78,7 +78,7 @@ system:
        - name : SECRETS_FOLDER_NAME
          value: "task-manager-secrets"
        - name : DUMMY_VARIABLE
-         value: "DUMMY_VARIABLE"
+         value: "DUMMY_VARIABLE_1"
      volumes:
      - name: task-manager-secrets-vol
        k4aSecret:
