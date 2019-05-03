@@ -19,7 +19,7 @@ system:
           type: client
     containers:
     - name: zones-intake-backend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:68
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:69
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:mtls15
       ports:
       - containerPort: 7022
@@ -42,18 +42,18 @@ system:
       - name: FRONTEND_MADDOG_ID
         value: sds.zones-ui
             # config overrides
-      - name: ZI_ESTATESREPO.FORKREPOOWNER
+      - name: ZI_ESTATESREPO_FORKREPOOWNER
         value: tok-zones-intake
-      - name: ZI_ESTATESREPO.FORKREPONAME
+      - name: ZI_ESTATESREPO_FORKREPONAME
         value: estates-edl
-      - name: ZI_ESTATESREPO.FORKREPOBRANCH
+      - name: ZI_ESTATESREPO_FORKREPOBRANCH
         value: master
 
-      - name: ZI_ESTATESREPO.UPSTREAMREPOOWNER
+      - name: ZI_ESTATESREPO_UPSTREAMREPOOWNER
         value: aditya-sureshkumar
-      - name: ZI_ESTATESREPO.UPSTREAMREPONAME
+      - name: ZI_ESTATESREPO_UPSTREAMREPONAME
         value: estates-edl
-      - name: ZI_ESTATESREPO.UPSTREAMREPOBRANCH
+      - name: ZI_ESTATESREPO_UPSTREAMREPOBRANCH
         value: master
 
       - name: ZI_VAULTNAME
