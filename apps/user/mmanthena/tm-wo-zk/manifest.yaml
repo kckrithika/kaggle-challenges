@@ -17,9 +17,9 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-         - mountPath: /task-manager-secrets/
-           name: task-manager-secrets-vol
-           readOnly: true
+#         - mountPath: /task-manager-secrets/
+#           name: task-manager-secrets-vol
+#           readOnly: true
          - name: tls-client-cert
            mountPath: /client-certs
          - name: tls-server-cert
@@ -80,9 +80,9 @@ system:
        - name : DUMMY_VARIABLE
          value: "DUMMY_VARIABLE_1"
      volumes:
-     - name: task-manager-secrets-vol
-       k4aSecret:
-         secretName: task-manager-secrets
+#     - name: task-manager-secrets-vol
+#       k4aSecret:
+#         secretName: task-manager-secrets
      - name: tls-client-cert
        maddogCert:
          type: client
