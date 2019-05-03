@@ -32,7 +32,6 @@ spec:
             }
            ]
           }
-        manifestctl.sam.data.sfdc.net/swagger: disable
         sidecar.istio.io/inject: "true"
       labels:
         app: route-update-service

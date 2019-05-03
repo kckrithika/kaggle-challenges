@@ -32,7 +32,6 @@ configs.deploymentBase("service-mesh") {
     template: {
       metadata: {
         annotations+: {
-          "manifestctl.sam.data.sfdc.net/swagger": "disable",
           "madkub.sam.sfdc.net/allcerts":
           std.manifestJsonEx(
             {
