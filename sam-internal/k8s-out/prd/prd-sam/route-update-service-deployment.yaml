@@ -32,7 +32,7 @@ spec:
             }
            ]
           }
-        sidecar.istio.io/inject: "true"
+        sidecar.istio.io/inject: "false"
       labels:
         app: route-update-service
         settings_path: test.-.prd.-.route-update-service
