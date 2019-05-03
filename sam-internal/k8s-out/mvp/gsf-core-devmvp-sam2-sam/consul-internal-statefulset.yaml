@@ -278,8 +278,6 @@ spec:
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
-        - mountPath: /peer-certs
-          name: tls-peer-cert
       restartPolicy: Always
       securityContext:
         fsGroup: 7447
