@@ -25,6 +25,7 @@ local configs = import 'config.jsonnet';
     '0': $.per_phase['1'] {
       consul: '142-20190416-2',
       consulgcp: 'peer-cert-20190503-1',
+      consulclientgcp: 'peer-client-20190503',
       sherpa: "eeb8e3bfc9d7912299ed28658895aca9523f348f",
       topologysvc: "hmittal-20190416-c0eb8f0",
       topologyClient: "topo-client-20190425",
@@ -68,6 +69,7 @@ local configs = import 'config.jsonnet';
 
   consul: 'ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-ts:' + $.per_phase[$.phase].consul,
   consulgcp: 'ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:' + $.per_phase[$.phase].consulgcp,
+  consulclientgcp: 'ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:' + $.per_phase[$.phase].consulclientgcp,
   sherpa: 'ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:' + $.per_phase[$.phase].sherpa,
   topologysvc: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:" + $.per_phase[$.phase].topologysvc,
   topologyClient: "ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-client:" + $.per_phase[$.phase].topologyClient, 

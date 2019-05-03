@@ -128,7 +128,7 @@ if configs.kingdom == 'mvp' then {
         containers: [
           {
             name: 'consul-client-test',
-            image: topologysvcimages.consulgcp,
+            image: topologysvcimages.consulclientgcp,
             args: [
               'agent',
               '-advertise=$(POD_IP)',
@@ -137,7 +137,7 @@ if configs.kingdom == 'mvp' then {
               '-datacenter=gcp-uscentral1',
               '-data-dir=/consul/data',
               '-domain=cluster.local',
-              '-config-dir=/config/consulencrypt.json',
+              '-config-dir=/config/consulclientencrypt.json',
               '-disable-host-node-id',
               '-retry-join=consul-test-server-0.consul-test-headless.$(NAMESPACE).svc',
               '-retry-join=consul-test-server-1.consul-test-headless.$(NAMESPACE).svc',

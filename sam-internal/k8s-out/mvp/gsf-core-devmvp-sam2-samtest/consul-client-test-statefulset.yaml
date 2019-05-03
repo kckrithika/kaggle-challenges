@@ -46,7 +46,7 @@ spec:
         - -datacenter=gcp-uscentral1
         - -data-dir=/consul/data
         - -domain=cluster.local
-        - -config-dir=/config/consulencrypt.json
+        - -config-dir=/config/consulclientencrypt.json
         - -disable-host-node-id
         - -retry-join=consul-test-server-0.consul-test-headless.$(NAMESPACE).svc
         - -retry-join=consul-test-server-1.consul-test-headless.$(NAMESPACE).svc
@@ -62,7 +62,7 @@ spec:
               fieldPath: metadata.namespace
         - name: RANDVAL
           value: "51"
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:peer-cert-20190503-1
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:peer-client-20190503
         lifecycle:
           preStop:
             exec:
