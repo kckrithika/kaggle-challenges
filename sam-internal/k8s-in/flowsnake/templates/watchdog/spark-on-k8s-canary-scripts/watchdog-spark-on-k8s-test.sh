@@ -50,9 +50,14 @@ esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
+# This is temporary hack to make it work for CI.
+if [[ "canary" == "${TEST_RUNNER_ID}" ]] ; then
+    TEST_RUNNER_ID=$(cut -c1-8 < /proc/sys/kernel/random/uuid)
+fi
+
 # Check if spec is a jsonnet template
 if [[ ".jsonnet" == "${1: -8}" ]] ; then
-    jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=$(cut -c1-8 < /proc/sys/kernel/random/uuid) -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} -m /strata-test-specs-out
+    jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${TEST_RUNNER_ID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} -m /strata-test-specs-out
     SPEC_INPUT=$(basename "$1")
     SPEC_NAME=${SPEC_INPUT%%.*}
     if [ -f "/strata-test-specs-out/${SPEC_NAME}.json" ]; then
@@ -116,7 +121,7 @@ kcfw() {
         stdout=$(mktemp /tmp/$(basename $0)-stdout.XXXXXX)
         stderr=$(mktemp /tmp/$(basename $0)-stderr.XXXXXX)
         # Capture result code, don't trigger errexit. https://stackoverflow.com/a/15844901
-        timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} $@ 2>${stderr} >${stdout} && RESULT=$? || RESULT=$?
+        timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} "$@" 2>${stderr} >${stdout} && RESULT=$? || RESULT=$?
         # Hack to simplify scripting: if you try to delete something and get back a NotFound, treat that as a success.
         if [[ $(echo "$@" | grep -P '\bdelete\b') && $(grep -P '\(NotFound\).* not found' ${stderr}) ]]; then
             return 0
@@ -248,7 +253,7 @@ kcfw_log cluster-info
 # ------ Clean up prior runs ---------
 log "Cleaning up SparkApplication/Pod older than 24 hours from prior runs."
 # https://stackoverflow.com/questions/48934491/kubernetes-how-to-delete-pods-based-on-age-creation-time
-APPS=$(kcfw_log get sparkapplication -o go-template='{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d'now-24 hours' -Ins --utc | sed 's/+0000/Z/')'" { print $1 }')
+APPS=$(kcfw get sparkapplication -o go-template='{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d'now-24 hours' -Ins --utc | sed 's/+0000/Z/')'" { print $1 }')
 for APP in ${APPS}; do
     PODSELECTOR="sparkoperator.k8s.io/app-name=${APP}"
     kcfw_log delete sparkapplication ${APP}
