@@ -1,0 +1,21 @@
+- lbname: es-prod
+  servers:
+   - shared0-samminionzipkin1-10-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-12-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-13-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-2-prd.eng.sfdc.net
+   - shared0-samminionzipkin1-5-prd.eng.sfdc.net
+  ports:
+   - port: 9200
+     targetport: 9200
+     lbtype: tcp
+
+- lbname: es-test
+  servers:
+   - shared0-samminionzipkin2-2-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-4-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-11-prd.eng.sfdc.net
+  ports:
+   - port: 9200
+     targetport: 9200
+     lbtype: tcp
