@@ -9,6 +9,18 @@ local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateF
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 
 configs.deploymentBase("service-mesh") {
+
+    proxy_volume_mounts():: [
+      {
+        mountPath: "/client-certs",
+        name: "tls-client-cert",
+      },
+      {
+        mountPath: "/server-certs",
+        name: "tls-server-cert",
+      },
+    ],
+
   local serverCertSans = [
     "route-update-service",
     "route-update-service.service-mesh",
@@ -80,7 +92,7 @@ configs.deploymentBase("service-mesh") {
               periodSeconds: 10,
               timeoutSeconds: 10,
             },
-            volumeMounts+: madkub.madkubSamCertVolumeMounts(certConfigs)
+            volumeMounts+: madkub.madkubSamCertVolumeMounts(certConfigs) + $.proxy_volume_mounts()
           },
           madkub.madkubRefreshContainer(certConfigs)
         ],
