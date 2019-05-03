@@ -78,6 +78,8 @@ local vipwdConfig = {
       // 2019/04/24 - hsuanyu-chen: All of the backend pods are not in running state and is causing noise.
       // See discussion in https://computecloud.slack.com/archives/G340CE86R/p1556125820094800
       "zipkin-alpha.distributed-tracing.prd-sam.prd.slb.sfdc.net:80",
+      // 2019/05/03 - mgrass: Flappy upstreams timing out requests make VIP watchdog sad.
+      "ceph0-dash-prd.slb.sfdc.net:*",
     ],
     vivips: [
        // There are 3 sledge VIPs that listen on these ports:
@@ -128,6 +130,8 @@ local vipwdConfig = {
       // are resolved.
       "vir511-1-0-xrd*",
       "vir512-1-0-xrd*",
+      // 2019/05/03 - mgrass: Flappy upstreams timing out requests make VIP watchdog sad.
+      "ceph0-dash-prd.slb.sfdc.net:*",
     ],
     vivips:
     [
