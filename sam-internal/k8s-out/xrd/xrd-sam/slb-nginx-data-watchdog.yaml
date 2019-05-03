@@ -34,6 +34,7 @@ spec:
         - --monitorFrequency=10s
         - --nginxWDmetricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --nginxWDhostnameOverride=$(NODE_NAME)
+        - --log_dir=/host/data/slb/logs/slb-nginx-data-watchdog
         env:
         - name: NODE_NAME
           valueFrom:
