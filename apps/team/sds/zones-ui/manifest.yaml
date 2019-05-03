@@ -18,7 +18,7 @@ system:
           type: client
     containers:
     - name: zones-ui
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:7
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/zones-ui:8
       env:
       - name: ZONES_ENVIRONMENT
         value: "prod"
