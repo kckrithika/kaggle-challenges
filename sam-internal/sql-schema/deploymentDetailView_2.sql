@@ -51,6 +51,4 @@ ALTER VIEW `deployment_detail_view2` AS
         ON       ((
                     `deployment`.`control_estate` = `crd`.`controlestate`)
                   AND       (
-                    cast(`deployment`.`app_name` AS char(255) charset latin1) = `crd`.`appname`)
-                  AND       (
                     `deployment`.`ownerref` = `crd`.`bundleid`)));
