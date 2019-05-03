@@ -62,7 +62,7 @@ system:
         - name: MAX_FLOWSNAKE_ENVIRONMENTS
           value: 25
         - name: STREAM_PROCESSING_ENDPOINT
-          value: cre-sp-ccp-dev.retail-cre.localhost.mesh.force.com:5443
+          value: cre-sp-ccp-dev.retail-cre.localhost.mesh.force.com:5442
         - name: GDOT_FORCE_PROVISIONING
           value: false
         - name: SECRET_KEY_FILE
