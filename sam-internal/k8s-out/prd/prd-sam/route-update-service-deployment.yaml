@@ -1,6 +1,8 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
   name: route-update-service
   namespace: service-mesh
 spec:
@@ -46,6 +48,7 @@ spec:
         name: route-update-service
         ports:
         - containerPort: 7020
+          name: grpc-svc
         readinessProbe:
           exec:
             command:
@@ -103,9 +106,9 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
-      - emptyDir:
-          medium: Memory
-        name: server-cert
-      - emptyDir:
-          medium: Memory
-        name: tokens
+      - maddogCert:
+          type: client
+        name: tls-client-cert
+      - maddogCert:
+          type: server
+        name: tls-server-cert

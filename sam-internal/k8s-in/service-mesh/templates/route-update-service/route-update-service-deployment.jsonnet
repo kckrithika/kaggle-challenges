@@ -21,6 +21,11 @@ configs.deploymentBase("service-mesh") {
   metadata+: {
     name: "route-update-service",
     namespace: "service-mesh",
+    annotations: {
+      # To skip swagger failure's with error:
+      # found invalid field maddogCert for v1.Volume
+      "manifestctl.sam.data.sfdc.net/swagger": "disable",
+    },
   },
   spec+: {
     replicas: 1,
@@ -62,6 +67,7 @@ configs.deploymentBase("service-mesh") {
             ports: [
               {
                 containerPort: 7020,
+                name: "grpc-svc",
               },
             ],
             readinessProbe: {
@@ -81,7 +87,20 @@ configs.deploymentBase("service-mesh") {
         nodeSelector: {
           pool: mcpIstioConfig.istioEstate,
         },
-        volumes+: madkub.madkubSamCertVolumes(certConfigs) + madkub.madkubSamMadkubVolumes(),
+        volumes+: [
+          {
+            name: "tls-client-cert",
+              maddogCert: {
+                type: "client",
+              },
+          },
+          {
+            name: "tls-server-cert",
+              maddogCert: {
+                type: "server",
+              },
+          },
+        ],
       }
     }
   },
