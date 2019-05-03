@@ -5,7 +5,7 @@ system:
      count: 1
      containers:
      - name: acds-tm-cont
-       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-taskmanager:v0.1.5 
+       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-taskmanager:v0.1.51 
        command:
        - /bin/bash
        - -c
@@ -25,6 +25,9 @@ system:
            mountPath: /logsherpa
          - name: logvolbeacon
            mountPath: /logbeacon
+         - mountPath: /tasl-manager-secrets/
+           name: task-manager-secrets-vol
+           readOnly: true
        env:
        - name : UP_STRING
          value: "ACDS TaskManager Started. Blocking."
@@ -56,8 +59,6 @@ system:
          value: "jJ5mPbFutWIzGIGvehio1onUctIv5yd3"
        - name : SERVICE_USER_NAME
          value: "acds_admin"
-       - name : SERVICE_USER_PASSWORD
-         value: "6LmQ8ZlrL6hR6WAXJ7uezndKuObPsD4E"
        - name : ACDS_APISERVER_HOST
          value: "10.251.161.90"
        - name : ACDS_APISERVER_PORT
@@ -69,6 +70,9 @@ system:
        - name : SERVICE_USER_EMAIL
          value: "acds_admin@local" 
      volumes:
+     - name: task-manager-secrets-vol
+       k4aSecret:
+         secretName: task-manager-secrets
      - name: tls-client-cert
        maddogCert:
          type: client
