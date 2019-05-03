@@ -18,7 +18,7 @@ system:
           type: client
     containers:
     - name: zones-intake-backend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:64
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sds-zonesui-backend:69
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiaqi-wu/sds-zonesui-backend:mtls13
       ports:
       - containerPort: 7022
@@ -40,6 +40,25 @@ system:
         value: /clientcerts/ca.pem
       - name: FRONTEND_MADDOG_ID
         value: samapp.user-juppala.zones-ui
+      # config overrides
+      - name: ZI_ESTATESREPO_FORKREPOOWNER
+        value: tok-zones-intake
+      - name: ZI_ESTATESREPO_FORKREPONAME
+        value: estates-edl
+      - name: ZI_ESTATESREPO_FORKREPOBRANCH
+        value: master
+
+      - name: ZI_ESTATESREPO_UPSTREAMREPOOWNER
+        value: aditya-sureshkumar
+      - name: ZI_ESTATESREPO_UPSTREAMREPONAME
+        value: estates-edl
+      - name: ZI_ESTATESREPO_UPSTREAMREPOBRANCH
+        value: master
+
+      - name: ZI_VAULTNAME
+        value: zones-ui.dev
+      - name: ZI_PIPEREPOHOST
+        value: http://ops0-piperepo1-1-prd.eng.sfdc.net
       livenessProbe:
         httpGet:
           path: /zones/v1/healthcheck
