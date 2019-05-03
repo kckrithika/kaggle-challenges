@@ -1,8 +1,3 @@
-# this deployment specifies certs even though we don't use them yet.
-# This is for 2 reasons:
-# 1. When removed SAM complained about a missing token volume (perhaps related to the service account?) :
-#       "MountVolume.SetUp failed for volume "route-update-service-service-account-token-bmbgz" : secrets "route-update-service-service-account-token-bmbgz" is forbidden: User "test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net" cannot get secrets in the namespace "service-mesh"
-# 2. Eventually we will want certs for envoy on this app so we're leaving them here for now.
 local configs = import "config.jsonnet";
 local mcpIstioConfig = import "service-mesh/istio-config.jsonnet";
 local madkub = (import "service-mesh/istio-madkub-config.jsonnet") + { templateFilename:: std.thisFile };
@@ -85,13 +80,34 @@ configs.deploymentBase("service-mesh") {
               periodSeconds: 30,
               timeoutSeconds: 5,
             },
-            volumeMounts+: madkub.madkubSamCertVolumeMounts(certConfigs)
           },
           madkub.madkubRefreshContainer(certConfigs)
         ],
         nodeSelector: {
           pool: mcpIstioConfig.istioEstate,
         },
+        initContainers: [
+          madkub.madkubInitContainer(certConfigs),
+          {
+            image: samimages.permissionInitContainer,
+            name: "permissionsetterinitcontainer",
+            imagePullPolicy: "Always",
+            command: [
+              "bash",
+              "-c",
+|||
+              set -ex
+              chmod 775 -R /tls-client-cert && chown -R 7447:7447 /tls-client-cert
+              chmod 775 -R /tls-server-cert && chown -R 7447:7447 /tls-server-cert
+|||,
+            ],
+            securityContext: {
+              runAsNonRoot: false,
+              runAsUser: 0,
+            },
+            volumeMounts+: madkub.madkubSamCertVolumeMounts(certConfigs),
+          },
+        ],
         volumes+: madkub.madkubSamCertVolumes(certConfigs) + madkub.madkubSamMadkubVolumes(),
       }
     }
