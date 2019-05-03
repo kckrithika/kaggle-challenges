@@ -72,7 +72,7 @@ $SAMBINDIR/manifestctl build-repo -inputManifestDir . -outputDir ${OUTPUT_DIR} -
 $SAMBINDIR/manifestctl compare-manifests -oldManifestDir=${OUTPUT_DIR}/goal-state -newManifestDir=${OUTPUT_DIR}/goal
 
 # Copy over vips.yaml files for SLB
-/opt/slb/slb-manifest-builder -root . -output ${OUTPUT_DIR} -v=2
+/opt/slb/slb-manifest-builder -root . -output ${OUTPUT_DIR} --vcioptions.strict -v=2
 
 
 cp ./image-promotion.yaml ${OUTPUT_DIR}
