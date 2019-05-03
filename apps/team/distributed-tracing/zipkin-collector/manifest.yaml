@@ -40,7 +40,7 @@ system:
       - name: datacenter
         value: $(KINGDOM)
       - name: ES_HOSTS
-        value: shared0-samminionzipkin2-2-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-4-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-11-prd.eng.sfdc.net:9200
+        value: es-test-distributed-tracing-prd.slb.sfdc.net:9200
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-collector
         name: client-certs

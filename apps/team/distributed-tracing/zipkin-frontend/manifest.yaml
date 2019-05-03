@@ -53,7 +53,7 @@ system:
       image: docker-dva-rc/dva/zipkin-server:36
       env:
       - name: ES_HOSTS
-        value: shared0-samminionzipkin2-2-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-4-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-11-prd.eng.sfdc.net:9200
+        value: es-test-distributed-tracing-prd.slb.sfdc.net:9200
       - name: ZIPKIN_ARGS
         value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
       resources:
