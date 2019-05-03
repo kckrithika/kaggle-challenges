@@ -78,6 +78,22 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: dataprotection:cdu-sam_dp:rolebinding
+    namespace: dataprotection
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiondp1-1-cdu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiondp2-1-cdu.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiondp3-1-cdu.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: gater:cdu-sam_gater:rolebinding
     namespace: gater
   roleRef:
