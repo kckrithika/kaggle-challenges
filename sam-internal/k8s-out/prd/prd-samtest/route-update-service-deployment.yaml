@@ -61,6 +61,10 @@ spec:
           name: maddog-certs
         - mountPath: /server-cert
           name: server-cert
+        - mountPath: /client-certs
+          name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
