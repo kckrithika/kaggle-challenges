@@ -35,7 +35,7 @@ spec:
               "route-update-service",
               "route-update-service.service-mesh",
               "route-update-service.service-mesh.svc",
-              "route-update-service.service-mesh.svc.prd-sam.prd.sam.sfdc.net"
+              "route-update-service.service-mesh.svc.prd-samtest.prd.sam.sfdc.net"
              ]
             }
            ]
@@ -51,7 +51,7 @@ spec:
       - args: []
         env:
         - name: ESTATE
-          value: prd-sam_gater
+          value: prd-samtest
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/route-update-service:b817daada3298bf9b1c337fb383f67949615b342
         imagePullPolicy: IfNotPresent
         name: route-update-service
@@ -68,10 +68,6 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
-        - mountPath: /tls-client-cert
-          name: tls-client-cert
-        - mountPath: /tls-server-cert
-          name: tls-server-cert
       - args:
         - /sam/madkub-client
         - --madkub-endpoint=https://10.254.208.254:32007
@@ -84,6 +80,7 @@ spec:
         - --ca-folder=/maddog-certs/ca
         - --refresher
         - --run-init-for-refresher-mode
+        - "false"
         env:
         - name: MADKUB_NODENAME
           valueFrom:
@@ -113,8 +110,65 @@ spec:
           name: maddog-certs
         - mountPath: /tokens
           name: tokens
+      initContainers:
+      - args:
+        - /sam/madkub-client
+        - --madkub-endpoint=https://10.254.208.254:32007
+        - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
+        - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=tls-client-cert:/tls-client-cert/
+        - --cert-folders=tls-server-cert:/tls-server-cert/
+        - --token-folder=/tokens/
+        - --ca-folder=/maddog-certs/ca
+        env:
+        - name: MADKUB_NODENAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MADKUB_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: MADKUB_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000082-3d5c21b4
+        imagePullPolicy: IfNotPresent
+        name: madkub-init
+        volumeMounts:
+        - mountPath: /tls-client-cert
+          name: tls-client-cert
+        - mountPath: /tls-server-cert
+          name: tls-server-cert
+        - mountPath: /maddog-certs/
+          name: maddog-certs
+        - mountPath: /tokens
+          name: tokens
+      - command:
+        - bash
+        - -c
+        - |
+          set -ex
+          chmod 775 -R /tls-client-cert && chown -R 7447:7447 /tls-client-cert
+          chmod 775 -R /tls-server-cert && chown -R 7447:7447 /tls-server-cert
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673
+        imagePullPolicy: Always
+        name: permissionsetterinitcontainer
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+        volumeMounts:
+        - mountPath: /tls-client-cert
+          name: tls-client-cert
+        - mountPath: /tls-server-cert
+          name: tls-server-cert
       nodeSelector:
-        pool: prd-sam_gater
+        pool: prd-samtest
       serviceAccountName: route-update-service-service-account
       volumes:
       - hostPath:
