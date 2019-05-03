@@ -37,7 +37,7 @@ system:
             - name: MYSQL_SERVER
               value: guiapi-db-lb
             - name: POLICY_DESIGNER_SERVER_IP
-              value: "mgmt-policydesigner-lb"
+              value: "mgmt-pd-lb"
             - name: POLICY_DESIGNER_SERVER_PORT
               value: 8080
             - name: LOGGING_JSON_STDOUT_LEVEL
