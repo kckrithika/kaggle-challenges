@@ -90,7 +90,7 @@ spec:
               fieldPath: metadata.namespace
         - name: RANDVAL
           value: "51"
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:peer-client-20190503-6
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:peer-client-20190503-7
         lifecycle:
           preStop:
             exec:
