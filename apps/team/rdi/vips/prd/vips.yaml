@@ -113,7 +113,7 @@
     - ceph0rdi-mon3-1-prd.eng.sfdc.net
   ports:
     - port: 80
-      targetport: 5000
+      targetport: 7000
       lbtype: http
       tls: false
 - lbname: virdev301-dash-prd
@@ -124,6 +124,6 @@
     - virdev301-openstvmh1-31-prd.eng.sfdc.net
   ports:
     - port: 80
-      targetport: 5000
+      targetport: 7000
       lbtype: http
       tls: false
