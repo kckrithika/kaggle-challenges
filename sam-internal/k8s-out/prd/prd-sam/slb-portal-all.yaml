@@ -73,11 +73,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-frf
           resources:
             limits:
@@ -452,11 +452,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-phx
           resources:
             limits:
@@ -831,11 +831,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-iad
           resources:
             limits:
@@ -1210,11 +1210,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-ord
           resources:
             limits:
@@ -1589,11 +1589,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-dfw
           resources:
             limits:
@@ -1968,11 +1968,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-hnd
           resources:
             limits:
@@ -2347,11 +2347,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-xrd
           resources:
             limits:
@@ -2726,11 +2726,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-cdg
           resources:
             limits:
@@ -3105,11 +3105,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-fra
           resources:
             limits:
@@ -3484,11 +3484,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-ia2
           resources:
             limits:
@@ -3863,11 +3863,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-ph2
           resources:
             limits:
@@ -4242,11 +4242,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-par
           resources:
             limits:
@@ -4621,11 +4621,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-ukb
           resources:
             limits:
@@ -5000,11 +5000,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-lo2
           resources:
             limits:
@@ -5379,11 +5379,11 @@ items:
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
           livenessProbe:
             httpGet:
-              path: /webfiles/
+              path: /healthz
               port: 9112
-            initialDelaySeconds: 30
-            periodSeconds: 3
-            timeoutSeconds: 30
+            initialDelaySeconds: 900
+            periodSeconds: 10
+            timeoutSeconds: 3
           name: slb-portal-lo3
           resources:
             limits:

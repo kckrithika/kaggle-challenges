@@ -223,5 +223,5 @@ spec:
         name: proxyconfig
   updateStrategy:
     rollingUpdate:
-      maxUnavailable: 20%
+      maxUnavailable: 1
     type: RollingUpdate
