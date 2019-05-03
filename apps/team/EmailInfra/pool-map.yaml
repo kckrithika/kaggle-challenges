@@ -13,7 +13,7 @@ apps:
     - prd/prd-sam
   grpc-client-gcp: # pod for GCP devMVP deployment
     - mvp/gsf-core-devmvp-sam2-sam
-
+    
 # MTA deployments on SAM:
   mta: # MTA on SAM in GCP
     - mvp/gsf-core-devmvp-sam2-sam

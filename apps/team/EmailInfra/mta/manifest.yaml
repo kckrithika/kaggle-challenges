@@ -18,14 +18,12 @@ system:
         value: prd
       - name: SCONE_SERVICE_NAME
         value: mta 
-      - name: SFDC_POD
-        value: awaterman
       livenessProbe:
         exec:
           command:
             - /bin/sh
             - -c
-            - echo ^C | nc 127.0.0.1 25
+            - echo QUIT\r\n | nc localhost 25
         initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
@@ -33,7 +31,7 @@ system:
           command:
             - /bin/sh
             - -c
-            - echo ^C | nc 127.0.0.1 25
+            - echo QUIT\r\n | nc localhost 25
         initialDelaySeconds: 120
         periodSeconds: 5        
     - name: mta-client
