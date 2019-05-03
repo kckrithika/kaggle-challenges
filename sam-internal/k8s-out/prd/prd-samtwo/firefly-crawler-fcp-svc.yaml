@@ -10,7 +10,7 @@ items:
                   "job-interval-in-milliseconds": 300000,
                   "max-commit-retry": 3,
                   "max-prr-retry": 3,
-                  "repositories": "Infrastructure-Security/infrasec-secrets-config,gate-definitions/gate-definitions,nvt/mom-data,monitoring/nagios_configs,SiteReliability/srcore",
+                  "repositories": "Infrastructure-Security/infrasec-secrets-config,gate-definitions/gate-definitions,nvt/mom-data,monitoring/nagios_configs,SiteReliability/srcore,nvt/routerdb,sdn/sitebridge-manifests",
                   "since-commit-time-in-minutes": 45,
                   "since-prr-time-in-minutes": 45,
                   "until-commit-status-time-in-minutes": 15,
@@ -260,7 +260,7 @@ items:
                 apiVersion: v1
                 fieldPath: metadata.labels['name']
           - name: CONFIG_VERSION
-            value: "16"
+            value: "17"
           - name: DARKLAUNCH
             value: "false"
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/firefly-crawler:410
