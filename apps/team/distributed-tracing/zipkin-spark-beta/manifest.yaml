@@ -20,7 +20,7 @@ system:
       # See https://github.com/openzipkin/zipkin-dependencies for available ENV options
       env:
       - name: ES_HOSTS
-        value: 'shared0-samminionzipkin1-10-prd.eng.sfdc.net,shared0-samminionzipkin1-12-prd.eng.sfdc.net,shared0-samminionzipkin1-13-prd.eng.sfdc.net,shared0-samminionzipkin1-2-prd.eng.sfdc.net,shared0-samminionzipkin1-5-prd.eng.sfdc.net'
+        value: es-prod-distributed-tracing-prd.slb.sfdc.net:9200
       - name: SPARK_USER
         value: ''
       - name: ES_NODES_WAN_ONLY
