@@ -203,12 +203,7 @@
         // Client certs
         mountPath: '/server-certs',
         name: 'tls-server-cert',
-      },
-      {
-        // peer certs
-        mountPath: '/peer-certs',
-        name: 'tls-peer-cert',
-      },
+      }
     ],
   },
 

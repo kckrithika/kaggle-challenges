@@ -59,20 +59,6 @@ spec:
               "server.gcp-uscentral1.cluster.local"
              ],
              "superpod": null
-            },
-            {
-             "cert-type": "peer",
-             "kingdom": "mvp",
-             "name": "peer-certs",
-             "role": "topology-svc",
-             "san": [
-              "topology.vip.core.test.us-central1.gcp.sfdc.net",
-              "10.130.2.66",
-              "10.130.2.77",
-              "topology.vip.core.peer.us-central1.gcp.sfdc.net",
-              "server.gcp-uscentral1.cluster.local"
-             ],
-             "superpod": null
             }
            ]
           }
@@ -136,8 +122,6 @@ spec:
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
-        - mountPath: /peer-certs
-          name: tls-peer-cert
       - args:
         - --switchboard=switchboard-test.service-mesh.svc.sam.core.test.us-central1.gcp.sfdc.net:15001
         env:
@@ -185,7 +169,6 @@ spec:
         - --cert-folders=cert1:/cert1/
         - --cert-folders=client-certs:/client-certs/
         - --cert-folders=server-certs:/server-certs/
-        - --cert-folders=peer-certs:/peer-certs/
         - --token-folder=/tokens/
         - --ca-folder=/maddog-certs/ca
         - --refresher
@@ -217,8 +200,6 @@ spec:
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
-        - mountPath: /peer-certs
-          name: tls-peer-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -234,7 +215,6 @@ spec:
         - --cert-folders=cert1:/cert1/
         - --cert-folders=client-certs:/client-certs/
         - --cert-folders=server-certs:/server-certs/
-        - --cert-folders=peer-certs:/peer-certs/
         - --token-folder=/tokens/
         - --ca-folder=/maddog-certs/ca
         env:
@@ -263,8 +243,6 @@ spec:
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
-        - mountPath: /peer-certs
-          name: tls-peer-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -287,8 +265,6 @@ spec:
           name: tls-client-cert
         - mountPath: /server-certs
           name: tls-server-cert
-        - mountPath: /peer-certs
-          name: tls-peer-cert
       restartPolicy: Always
       securityContext:
         fsGroup: 7447
@@ -308,9 +284,6 @@ spec:
       - emptyDir:
           medium: Memory
         name: tls-server-cert
-      - emptyDir:
-          medium: Memory
-        name: tls-peer-cert
       - emptyDir:
           medium: Memory
         name: tokens
