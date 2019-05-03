@@ -1,0 +1,37 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: ordering-authz-policy
+    count: 1
+    annotations:
+      "sherpa-injector.service-mesh/inject": "enabled"
+      "sherpa-injector.service-mesh/canary": "enabled"
+    containers:
+    - name: ordering
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/ordering-service:bazel-monorepo
+      args:
+      - --shipping.interval=2000
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      - name: JAVA_OPTS
+        value: "-Dscone.service.name=ordering-service-authz-policy -Dshipping.dest=shipping-authz-policy.service-mesh.localhost.mesh.force.com:5443 -Dshipping.interval=2000 -Dmanagement.server.port=15372"
+      ports:
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /manage/health
+          port: 15372
+
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
