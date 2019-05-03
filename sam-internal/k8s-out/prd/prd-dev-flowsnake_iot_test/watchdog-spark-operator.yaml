@@ -96,13 +96,14 @@ items:
 
       # Check if spec is a jsonnet template
       if [[ ".jsonnet" == "${1: -8}" ]] ; then
-          jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${TEST_RUNNER_ID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} -m /strata-test-specs-out
           SPEC_INPUT=$(basename "$1")
-          SPEC_NAME=${SPEC_INPUT%%.*}
-          if [ -f "/strata-test-specs-out/${SPEC_NAME}.json" ]; then
-              SPEC="/strata-test-specs-out/${SPEC_NAME}.json"
+          # Replace .jsonnet with -<ID>.json to get output filename
+          SPEC_PATH=/strata-test-specs-out/${SPEC_INPUT%%.*}-${TEST_RUNNER_ID}.json
+          jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${TEST_RUNNER_ID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} -o ${SPEC_PATH}
+          if [ -f "${SPEC_PATH}" ]; then
+              SPEC="${SPEC_PATH}"
           else
-              echo "spec /strata-test-specs-out/${SPEC_NAME}.json doesn't exist."
+              echo "spec ${SPEC_PATH} doesn't exist."
               exit 1
           fi
       else
