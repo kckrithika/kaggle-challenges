@@ -232,15 +232,6 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                                             },
                                         },
                                     },
-                                    {
-                                      name: "MYSQL_ROOT_PASS",
-                                      valueFrom: {
-                                          secretKeyRef: {
-                                              key: "root",
-                                              name: "mysql-passwords",
-                                            },
-                                        },
-                                    },
                                   ],
                               image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/mysql:20180917_111738.0b5255d9.dirty.duncsmith-ltm",
                               imagePullPolicy: "IfNotPresent",
@@ -257,6 +248,11 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                                       mountPath: "/etc/mysql/",
                                       name: "config-map",
                                     },
+                                    {
+                                      mountPath: "/etc/mysql/",
+                                      name: "mysql-users",
+                                    },
+
                                 ],
                             },
                         ],
@@ -266,8 +262,6 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                               args: [
                                   "chmod -R 775 /vols/sam-maddog-cahost",
                                   "chown -R 7447:7447 /vols/sam-maddog-cahost",
-                                  "chmod -R 775 /vols/mysql-backup",
-                                  "chown -R 7447:7447 /vols/mysql-backup",
                                 ],
                               command: [
                                   "/bin/sh",
@@ -287,10 +281,6 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                                     {
                                       mountPath: "/vols/sam-maddog-cahost",
                                       name: "sam-maddog-cahost",
-                                    },
-                                    {
-                                      mountPath: "/vols/mysql-backup",
-                                      name: "mysql-backup",
                                     },
                                 ],
                             },
@@ -380,13 +370,13 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                                 },
                             },
                             {
-                              name: "mysql",
+                              name: "mysql-users",
                               secret: {
                                   defaultMode: 420,
                                   secretName: "mysql-users",
                                 },
                             },
-                          ] + if (configs.estate == "prd-samdev") then [{ hostPath: { path: "/var/mysql-backup" }, name: "mysql-backup" }] else [],
+                          ],
                     },
                 },
               updateStrategy: {
