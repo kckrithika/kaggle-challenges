@@ -393,7 +393,7 @@
     + [
       slbconfigs.slb_volume_mount,
       if tlsConfigEnabled then slbconfigs.nginx.tlsparams_volume_mount else {},
-      if slbflights.kmsConfigMap && proxyFlavor == "hsm" then slbconfigs.kmsconfig_volume_mount else {},
+      if proxyFlavor == "hsm" then slbconfigs.kmsconfig_volume_mount else {},
     ]),
     readinessProbe: {
       httpGet: {

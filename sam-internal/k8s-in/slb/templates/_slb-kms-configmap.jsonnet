@@ -9,7 +9,7 @@ local kmsconfig = {
     ClientCertPrivateKeyPath: "/cert2/client/keys/client-key.pem",
 };
 
-if slbconfigs.isSlbEstate && slbflights.kmsConfigMap then {
+if slbconfigs.isSlbEstate && slbconfigs.hsmNginxEnabledEstate then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
