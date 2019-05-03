@@ -10,46 +10,28 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
 
 configs.deploymentBase("service-mesh") {
 
-    proxy_volume_mounts():: [
-      {
-        mountPath: "/client-certs",
-        name: "tls-client-cert",
-      },
-      {
-        mountPath: "/server-certs",
-        name: "tls-server-cert",
-      },
-    ],
-
-    proxy_volumes()::  [
-      {
-        name: "tls-client-cert",
-          emptyDir: {
-            medium: 'Memory',
-          },
-      },
-      {
-        name: "tls-server-cert",
-          emptyDir: {
-            medium: 'Memory',
-          },
-      },
-    ],
-
   local serverCertSans = [
     "route-update-service",
     "route-update-service.service-mesh",
     "route-update-service.service-mesh.svc",
     "route-update-service.service-mesh.svc.%s" % configs.dnsdomain,
   ],
-  local serverCertConfig = madkub.serverCertConfig("server-cert", "/server-cert", "route-update-service", "service-mesh", serverCertSans),
-  local certConfigs = [serverCertConfig],
+
+  local clientCertConfig = madkub.clientCertConfig("tls-client-cert", "/tls-client-cert", "route-update-service", "service-mesh"),
+  local serverCertConfig = madkub.serverCertConfig("tls-server-cert", "/tls-server-cert", "route-update-service", "service-mesh", serverCertSans),
+
+  local certConfigs = [clientCertConfig, serverCertConfig],
 
   metadata+: {
     name: "route-update-service",
     namespace: "service-mesh",
+    annotations: {
+      "sidecar.istio.io/inject": "true",
+      "routing.mesh.sfdc.net/enabled": "true",
+    },
   },
   spec+: {
+    progressDeadlineSeconds: 600,
     replicas: 1,
     template: {
       metadata: {
@@ -64,7 +46,8 @@ configs.deploymentBase("service-mesh") {
                 ],
             }, " "
           ),
-          "sidecar.istio.io/inject": "false",
+          "sidecar.istio.io/inject": "true",
+           "routing.mesh.sfdc.net/enabled": "true",
         },
         labels: {
           app: "route-update-service",
@@ -102,14 +85,14 @@ configs.deploymentBase("service-mesh") {
               periodSeconds: 30,
               timeoutSeconds: 5,
             },
-            volumeMounts+: madkub.madkubSamCertVolumeMounts(certConfigs) + $.proxy_volume_mounts()
+            volumeMounts+: madkub.madkubSamCertVolumeMounts(certConfigs)
           },
           madkub.madkubRefreshContainer(certConfigs)
         ],
         nodeSelector: {
           pool: mcpIstioConfig.istioEstate,
         },
-        volumes+: $.proxy_volumes() +  madkub.madkubSamCertVolumes(certConfigs) + madkub.madkubSamMadkubVolumes(),
+        volumes+: madkub.madkubSamCertVolumes(certConfigs) + madkub.madkubSamMadkubVolumes(),
       }
     }
   },
