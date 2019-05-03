@@ -21,7 +21,35 @@ spec:
             {
              "cert-type": "client",
              "kingdom": "mvp",
+             "name": "cert1",
+             "role": "topology-svc",
+             "san": [
+              "topology.vip.core.test.us-central1.gcp.sfdc.net",
+              "10.130.2.66",
+              "10.130.2.77",
+              "topology.vip.core.test2.us-central1.gcp.sfdc.net",
+              "server.gcp-uscentral1.cluster.local"
+             ],
+             "superpod": null
+            },
+            {
+             "cert-type": "client",
+             "kingdom": "mvp",
              "name": "client-certs",
+             "role": "topology-svc",
+             "san": [
+              "topology.vip.core.test.us-central1.gcp.sfdc.net",
+              "10.130.2.66",
+              "10.130.2.77",
+              "topology.vip.core.test2.us-central1.gcp.sfdc.net",
+              "server.gcp-uscentral1.cluster.local"
+             ],
+             "superpod": null
+            },
+            {
+             "cert-type": "server",
+             "kingdom": "mvp",
+             "name": "server-certs",
              "role": "topology-svc",
              "san": [
               "topology.vip.core.test.us-central1.gcp.sfdc.net",
@@ -86,8 +114,12 @@ spec:
         volumeMounts:
         - mountPath: /consul/data
           name: consul-data-volume
+        - mountPath: /cert1
+          name: cert1
         - mountPath: /client-certs
           name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
       - args:
         - --switchboard=switchboard-test.service-mesh.svc.sam.core.test.us-central1.gcp.sfdc.net:15001
         env:
@@ -132,7 +164,9 @@ spec:
         - --maddog-endpoint=https://10.168.192.190:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=cert1:/cert1/
         - --cert-folders=client-certs:/client-certs/
+        - --cert-folders=server-certs:/server-certs/
         - --token-folder=/tokens/
         - --ca-folder=/maddog-certs/ca
         - --refresher
@@ -158,8 +192,12 @@ spec:
         name: madkub-refresher
         resources: {}
         volumeMounts:
+        - mountPath: /cert1
+          name: cert1
         - mountPath: /client-certs
           name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -172,7 +210,9 @@ spec:
         - --maddog-endpoint=https://10.168.192.190:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=cert1:/cert1/
         - --cert-folders=client-certs:/client-certs/
+        - --cert-folders=server-certs:/server-certs/
         - --token-folder=/tokens/
         - --ca-folder=/maddog-certs/ca
         env:
@@ -195,8 +235,12 @@ spec:
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
+        - mountPath: /cert1
+          name: cert1
         - mountPath: /client-certs
           name: tls-client-cert
+        - mountPath: /server-certs
+          name: tls-server-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -231,7 +275,13 @@ spec:
         name: maddog-certs
       - emptyDir:
           medium: Memory
+        name: cert1
+      - emptyDir:
+          medium: Memory
         name: tls-client-cert
+      - emptyDir:
+          medium: Memory
+        name: tls-server-cert
       - emptyDir:
           medium: Memory
         name: tokens

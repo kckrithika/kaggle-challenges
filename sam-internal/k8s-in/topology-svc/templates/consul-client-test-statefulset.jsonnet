@@ -5,7 +5,7 @@ local madkub = (import 'topology-svc-madkub.jsonnet') + { templateFilename:: std
 local topologysvcNamespace = 'topology-svc';
 local serviceMesh = (import 'topology-svc-sherpa.jsonnet') + { templateFilename:: std.thisFile };
 
-local certDirs = ['client-certs'];
+local certDirs = ['cert1', 'client-certs', 'server-certs'];
 
 local initContainers = [
   madkub.madkubInitContainer(certDirs),
