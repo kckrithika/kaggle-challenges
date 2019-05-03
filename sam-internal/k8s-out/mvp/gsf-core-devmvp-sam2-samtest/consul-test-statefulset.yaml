@@ -7,7 +7,7 @@ metadata:
   namespace: topology-svc
 spec:
   podManagementPolicy: Parallel
-  replicas: 0
+  replicas: 3
   selector:
     matchLabels:
       app: consul-test-server

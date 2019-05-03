@@ -91,7 +91,7 @@ if configs.kingdom == 'mvp' then {
                 },
             },
         ],
-    replicas: 0,
+    replicas: 2,
     selector: {
       matchLabels: {
         app: 'consul-client-test-server',
