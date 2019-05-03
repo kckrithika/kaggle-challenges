@@ -1,9 +1,13 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  annotations:
+    routing.mesh.sfdc.net/enabled: "true"
+    sidecar.istio.io/inject: "true"
   name: route-update-service
   namespace: service-mesh
 spec:
+  progressDeadlineSeconds: 600
   replicas: 1
   selector:
     matchLabels:
@@ -17,9 +21,15 @@ spec:
           {
            "certreqs": [
             {
+             "cert-type": "client",
+             "kingdom": "prd",
+             "name": "tls-client-cert",
+             "role": "route-update-service.service-mesh"
+            },
+            {
              "cert-type": "server",
              "kingdom": "prd",
-             "name": "server-cert",
+             "name": "tls-server-cert",
              "role": "route-update-service.service-mesh",
              "san": [
               "route-update-service",
@@ -30,7 +40,8 @@ spec:
             }
            ]
           }
-        sidecar.istio.io/inject: "false"
+        routing.mesh.sfdc.net/enabled: "true"
+        sidecar.istio.io/inject: "true"
       labels:
         app: route-update-service
         settings_path: test.-.prd.-.route-update-service
@@ -57,11 +68,9 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
-        - mountPath: /server-cert
-          name: server-cert
-        - mountPath: /client-certs
+        - mountPath: /tls-client-cert
           name: tls-client-cert
-        - mountPath: /server-certs
+        - mountPath: /tls-server-cert
           name: tls-server-cert
       - args:
         - /sam/madkub-client
@@ -69,7 +78,8 @@ spec:
         - --maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
-        - --cert-folders=server-cert:/server-cert/
+        - --cert-folders=tls-client-cert:/tls-client-cert/
+        - --cert-folders=tls-server-cert:/tls-server-cert/
         - --token-folder=/tokens/
         - --ca-folder=/maddog-certs/ca
         - --refresher
@@ -95,8 +105,10 @@ spec:
         name: madkub-refresher
         resources: {}
         volumeMounts:
-        - mountPath: /server-cert
-          name: server-cert
+        - mountPath: /tls-client-cert
+          name: tls-client-cert
+        - mountPath: /tls-server-cert
+          name: tls-server-cert
         - mountPath: /maddog-certs/
           name: maddog-certs
         - mountPath: /tokens
@@ -114,9 +126,6 @@ spec:
       - emptyDir:
           medium: Memory
         name: tls-server-cert
-      - emptyDir:
-          medium: Memory
-        name: server-cert
       - emptyDir:
           medium: Memory
         name: tokens
