@@ -27,7 +27,7 @@ local configs = import 'config.jsonnet';
       consulgcp: 'peer-client-20190503-7',
       sherpa: "eeb8e3bfc9d7912299ed28658895aca9523f348f",
       topologysvc: "hmittal-20190416-c0eb8f0",
-      topologyClient: "topology-client-20190504-1",
+      topologyClient: "topology-client-20190504-2",
     },
 
     //## Release Phase 1 - TBD
