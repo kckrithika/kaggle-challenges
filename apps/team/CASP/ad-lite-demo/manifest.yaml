@@ -1,10 +1,10 @@
 apiVersion: v1
 system:
   functions:
-  - name: casp-demo
+  - name: ad-lite-demo
     count: 1
     containers:
-    - name: casp-demo
+    - name: ad-lite-demo
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/casp-demo:latest
       ports:
       - containerPort: 5000
@@ -13,8 +13,8 @@ system:
           path: /
           port: 5000
   loadbalancers:
-  - lbname: casp-demo
-    function: casp-demo
+  - lbname: ad-lite-demo
+    function: ad-lite-demo
     slbenabled: true
     ports:
       - port: 80
