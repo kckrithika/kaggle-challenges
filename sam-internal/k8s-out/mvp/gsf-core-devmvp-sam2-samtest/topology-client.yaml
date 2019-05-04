@@ -64,7 +64,7 @@ spec:
         app: topology-client
     spec:
       containers:
-      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-client:topology-client-20190504-1
+      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-client:topology-client-20190504-2
         name: topology-client
         ports:
         - containerPort: 8080
