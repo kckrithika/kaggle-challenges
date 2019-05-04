@@ -71,7 +71,6 @@ system:
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'true'}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
-      - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
       image: sfci/insights/jobcontroller:master-273-dcff1dd
