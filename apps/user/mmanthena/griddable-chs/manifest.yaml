@@ -19,7 +19,7 @@ system:
            - "/acds/bin/acdsOk.sh"
          initialDelaySeconds: 10
          timeoutSeconds: 5
-       volumeMounts:s
+       volumeMounts:
          - name: tls-client-cert
            mountPath: /client-certs
          - name: tls-server-cert
