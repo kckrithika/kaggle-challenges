@@ -50,6 +50,17 @@ local ports = [
   },
 ];
 
+local sports = [
+  {
+    containerPort: 8080,
+    name: 'server',
+  },
+  {
+    containerPort: 8081,
+    name: 'mgmt-server',
+  },
+];
+
 if configs.kingdom == 'mvp' then {
   apiVersion: 'apps/v1beta1',
   kind: 'StatefulSet',
@@ -120,6 +131,15 @@ if configs.kingdom == 'mvp' then {
         dnsPolicy: 'ClusterFirstWithHostNet',
         restartPolicy: 'Always',
         containers: [
+          {
+            name: 'topology-client',
+                image: topologysvcimages.topologyClient,
+                ports: sports,
+                securityContext: {
+                  runAsNonRoot: true,
+                  runAsUser: 7447,
+                },
+          },
           {
             name: 'consul-client-test',
             image: topologysvcimages.consulgcp,
