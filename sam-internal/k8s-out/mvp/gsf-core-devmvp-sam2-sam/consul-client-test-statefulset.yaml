@@ -66,6 +66,16 @@ spec:
         app: consul-client-test-server
     spec:
       containers:
+      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-client:topology-client-20190504
+        name: topology-client
+        ports:
+        - containerPort: 8080
+          name: scone-server
+        - containerPort: 8081
+          name: mgmt-server
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 7447
       - args:
         - agent
         - -advertise=$(POD_IP)
