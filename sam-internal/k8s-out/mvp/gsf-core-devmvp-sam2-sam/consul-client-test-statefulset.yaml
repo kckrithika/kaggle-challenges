@@ -88,8 +88,6 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        - name: RANDVAL
-          value: "51"
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:peer-client-20190503-7
         lifecycle:
           preStop:
@@ -116,44 +114,6 @@ spec:
           name: consul-data-volume
         - mountPath: /cert1
           name: cert1
-        - mountPath: /client-certs
-          name: tls-client-cert
-        - mountPath: /server-certs
-          name: tls-server-cert
-      - args:
-        - --switchboard=switchboard.service-mesh.svc:15001
-        env:
-        - name: SFDC_ENVIRONMENT
-          value: mesh
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:eeb8e3bfc9d7912299ed28658895aca9523f348f
-        livenessProbe:
-          exec:
-            command:
-            - ./bin/is-alive
-          initialDelaySeconds: 20
-          periodSeconds: 5
-        name: consul-client-test-sherpa
-        ports:
-        - containerPort: 7442
-          name: http1-tls-in
-        - containerPort: 7014
-          name: http1
-        - containerPort: 15373
-          name: sherpa-adm
-        readinessProbe:
-          exec:
-            command:
-            - ./bin/is-ready
-          initialDelaySeconds: 15
-          periodSeconds: 5
-        resources:
-          limits:
-            cpu: "1"
-            memory: 1Gi
-          requests:
-            cpu: "1"
-            memory: 1Gi
-        volumeMounts:
         - mountPath: /client-certs
           name: tls-client-cert
         - mountPath: /server-certs
