@@ -7,5 +7,7 @@ apps:
    - prd/prd-sam
   griddable-chs:
    - prd/prd-sam
+  griddable-consumer:
+   - prd/prd-sam
 #   - xrd/xrd-sampool 
 
