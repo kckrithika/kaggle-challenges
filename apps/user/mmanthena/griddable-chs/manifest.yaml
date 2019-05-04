@@ -1,0 +1,133 @@
+apiVersion: v1
+system:
+   functions:
+   - name: acds-chs
+     count: 1
+     type: stateful-set
+     containers:
+     - name: acds-chs-cont
+       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmanthena/griddable-full:v0.0.1
+       ports:
+          - containerPort: 11111
+       command:
+       - /bin/bash
+       - -c
+       - /acds/bin/start-acds.sh
+       livenessProbe:
+         exec:
+           command:
+           - "/acds/bin/acdsOk.sh"
+         initialDelaySeconds: 10
+         timeoutSeconds: 5
+       volumeMounts:
+         - name: tls-client-cert
+           mountPath: /client-certs
+         - name: tls-server-cert
+           mountPath: /server-certs
+       env:
+       - name : REMOTE_RELAYS
+         value: "acds-relay-lb.user-mmanthena:10234" 
+       - name : LOGGING_JSON_STDOUT_LEVEL
+         value: all
+       - name : LOGGING_STDERR_LEVEL
+         value: all
+       - name : TENANT_ADMIN_NAME
+         value: "admin@local"
+       - name : TENANR_ADMIN_PASSWORD
+         value: "admin@local" 
+       - name : TENANT_ADMIN_PASSWORD
+         value: "synchronize"
+       - name : GRID_NAME
+         value: "Grid_01"
+       - name : GRID_CONNECTION_NAME
+         value: "DS_CONN_DD_1"
+       - name : DD_NAME
+         value: "Target_1"
+       - name : DS_NAME
+         value: "Source_1"
+       - name : DB_NAME
+         value: "ddnprod"
+       - name : GRID_CONNECTION_ID
+         value: "DS_CONN_DD_1"
+       - name : PATH
+         value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+       - name : JAVA_HOME
+         value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64"
+       - name : LANG
+         value: "en_US.UTF-8"
+       - name : SERVICE_USER_EMAIL
+         value: "acds_admin@local"
+       - name : TOKEN_SECRET
+         value: "jJ5mPbFutWIzGIGvehio1onUctIv5yd3"
+       - name : SERVICE_USER_NAME
+         value: "acds_admin"
+       - name : SERVICE_USER_PASSWORD
+         value: "synchronize"
+       - name : ACDS_APISERVER_HOST
+         value: "10.251.161.90"
+       - name : ACDS_APISERVER_PORT
+         value: "5004"
+       - name : ACDS_APISERVER_HTTPS
+         value: "false"
+       - name : ACDS_APISERVER_ZKCONN
+         value: "shared0-discovery1-0-crd.data.sfdc.net:2181"
+       - name : SERVICE_USER_EMAIL
+         value: "acds_admin@local"
+       - name : SECRETS_FOLDER_NAME
+         value: "acds-secrets"
+       - name : POLICY_DESIGNER_SERVER_IP
+         value: "10.10.10.10"
+       - name : RELAY_MEMORY_LIMIT
+         value: "1700m"
+       - name : ACDS_RELAY_EVENT_BUFFER_SIZE
+         value: "50m"
+       - name : CONSUMER_MEMORY_LIMIT
+         value: "900m"
+       - name : ACDS_CONSUMER_EVENT_BUFFER_SIZE
+         value: "20m"
+       - name : CATCHUP_MEMORY_LIMIT
+         value: "900m"
+       - name : ACDS_CHS_EVENT_BUFFER_SIZE
+         value: "20m"
+       - name : ACDS_AUTO_CBC_ENABLED
+         value: "true"
+       - name : DUMMY_VARIABLE
+         value: "DUMMY_VARIABLE_2"
+       - name : ACDS_REPL_CONSUMER_DB_CONFIG
+         value: "bootstrap"
+       - name : ACDS_CONSUMER_POLICY
+         value: "catchup:1"
+       - name : ACDS_CONSUMER_TYPE
+         value: "catchup"
+       - name : DB_ROOT_PASSWORD
+         value: "rootPassword"
+       - name : DB_USER
+         value: "ddnuser"
+       - name : DB_PASSWORD
+         value: "ddnpassword"
+       - name : DB_NAME
+         value: "ddnprod"
+       - name : MYSQL_USER
+         value: "ddnuser"
+       - name : MYSQL_PASSWORD
+         value: "ddnpassword"
+       - name : MYSQL_DATABASE
+         value: "griddable"
+     volumes:
+     - name: chs-persistent
+       hostPath:
+         path: /home/sfdc-acds-chs/persistent
+     - name: tls-client-cert
+       maddogCert:
+         type: client
+     - name: tls-server-cert
+       maddogCert:
+         type: server
+     lbname: chs-stateful-lb  
+   loadbalancers:
+   - lbname: chs-lb
+     function: acds-chs
+     slbEnabled: true
+     ports:
+       - port: 11111
+         targetport: 11111
