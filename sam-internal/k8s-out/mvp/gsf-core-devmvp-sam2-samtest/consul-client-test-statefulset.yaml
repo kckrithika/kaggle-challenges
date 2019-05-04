@@ -70,7 +70,7 @@ spec:
         name: topology-client
         ports:
         - containerPort: 8080
-          name: server
+          name: scone-server
         - containerPort: 8081
           name: mgmt-server
         securityContext:

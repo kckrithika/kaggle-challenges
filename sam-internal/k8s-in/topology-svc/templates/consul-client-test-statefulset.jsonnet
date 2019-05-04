@@ -53,7 +53,7 @@ local ports = [
 local sports = [
   {
     containerPort: 8080,
-    name: 'server',
+    name: 'scone-server',
   },
   {
     containerPort: 8081,
