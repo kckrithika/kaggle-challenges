@@ -51,7 +51,7 @@ system:
        - name : GRID_CONNECTION_ID
          value: "DS_CONN_DD_1"
        - name : PATH
-         value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+         value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
        - name : JAVA_HOME
          value: "/opt/tools/Linux/jdk/openjdk1.8.0_172_x64"
        - name : LANG
