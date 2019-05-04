@@ -3,5 +3,7 @@ apps:
 #  - prd/prd-sam
   tm-wo-zk:
    - prd/prd-sam
+  griddable-relay:
+   - prd/prd-sam
 #   - xrd/xrd-sampool 
 
