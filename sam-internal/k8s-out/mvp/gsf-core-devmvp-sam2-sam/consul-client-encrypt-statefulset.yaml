@@ -3,15 +3,15 @@ kind: StatefulSet
 metadata:
   labels:
     pcn: deploy
-  name: consul-client-test-server
+  name: consul-client-encrypt-server
   namespace: topology-svc
 spec:
   podManagementPolicy: Parallel
   replicas: 0
   selector:
     matchLabels:
-      app: consul-client-test-server
-  serviceName: consul-client-test-headless
+      app: consul-client-encrypt-server
+  serviceName: consul-client-encrypt-headless
   template:
     metadata:
       annotations:
@@ -63,7 +63,7 @@ spec:
            ]
           }
       labels:
-        app: consul-client-test-server
+        app: consul-client-encrypt-server
     spec:
       containers:
       - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-client:topology-client-20190504-3
@@ -86,9 +86,9 @@ spec:
         - -domain=cluster.local
         - -config-dir=/config/consulclientencrypt.json
         - -disable-host-node-id
-        - -retry-join=consul-test-server-0.consul-test-headless.$(NAMESPACE).svc
-        - -retry-join=consul-test-server-1.consul-test-headless.$(NAMESPACE).svc
-        - -retry-join=consul-test-server-2.consul-test-headless.$(NAMESPACE).svc
+        - -retry-join=consul-encrypt-server-0.consul-encrypt-headless.$(NAMESPACE).svc
+        - -retry-join=consul-encrypt-server-1.consul-encrypt-headless.$(NAMESPACE).svc
+        - -retry-join=consul-encrypt-server-2.consul-encrypt-headless.$(NAMESPACE).svc
         env:
         - name: POD_IP
           valueFrom:
@@ -99,7 +99,7 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: CONSUL_HTTP_ADDR
-          value: https://consul-test-headless:8501
+          value: https://consul-encrypt-headless:8501
         - name: CONSUL_CACERT
           value: /config/cacerts.pem
         - name: CONSUL_CLIENT_CERT
@@ -116,7 +116,7 @@ spec:
               - /bin/sh
               - -c
               - consul leave
-        name: consul-client-test
+        name: consul-client-encrypt
         ports:
         - containerPort: 8500
           name: http
