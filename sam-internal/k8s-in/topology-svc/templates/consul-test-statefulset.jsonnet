@@ -33,6 +33,18 @@ local consulEnvParams = [
     name: 'CONSUL_HTTP_ADDR',
     value: 'https://consul-test-headless:8501',
   },
+  {
+    name: 'CONSUL_CACERT',
+    value: '/config/cacerts.pem',
+  },
+  {
+    name: 'CONSUL_CLIENT_CERT',
+    value: '/config/client.pem',
+  },
+  {
+    name: 'CONSUL_CLIENT_KEY',
+    value: '/config/client-key.pem',
+  },
 ];
 
 local ports = [
