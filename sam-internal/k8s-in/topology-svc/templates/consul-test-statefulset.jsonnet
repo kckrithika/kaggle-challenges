@@ -31,7 +31,7 @@ local consulEnvParams = [
   },
   {
     name: 'CONSUL_HTTP_ADDR',
-    value: 'https://127.0.0.1:8501',
+    value: 'https://consul-test-headless:8501',
   },
 ];
 
