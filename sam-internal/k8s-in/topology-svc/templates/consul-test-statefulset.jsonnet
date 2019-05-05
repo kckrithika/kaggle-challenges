@@ -45,6 +45,10 @@ local consulEnvParams = [
     name: 'CONSUL_CLIENT_KEY',
     value: '/config/client-key.pem',
   },
+  {
+    name: 'Rand-val',
+    value: '50',
+  },
 ];
 
 local ports = [

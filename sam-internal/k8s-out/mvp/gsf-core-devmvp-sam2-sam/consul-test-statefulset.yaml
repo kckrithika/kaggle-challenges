@@ -84,6 +84,8 @@ spec:
           value: /config/client.pem
         - name: CONSUL_CLIENT_KEY
           value: /config/client-key.pem
+        - name: Rand-val
+          value: "50"
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:https-20190505-7
         lifecycle:
           preStop:
