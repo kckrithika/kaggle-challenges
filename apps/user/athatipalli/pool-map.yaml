@@ -7,5 +7,5 @@ apps:
   - prd/prd-sam
   mgmt-ui:
   - prd/prd-sam
-  taskmanager:
-  - prd/prd-sam
+#  taskmanager:
+#  - prd/prd-sam
