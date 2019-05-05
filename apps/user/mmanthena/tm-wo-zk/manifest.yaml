@@ -77,6 +77,10 @@ system:
          value: "acds_admin@local"
        - name : SECRETS_FOLDER_NAME
          value: "task-manager-secrets"
+       - name : POLICY_DESIGNER_SERVER_IP
+         value: "10.253.213.26"
+       - name : POLICY_DESIGNER_SERVER_PORT
+         value: "8080"
        - name : DUMMY_VARIABLE
          value: "DUMMY_VARIABLE_2"
      volumes:
