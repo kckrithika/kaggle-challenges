@@ -100,6 +100,12 @@ spec:
               fieldPath: metadata.namespace
         - name: CONSUL_HTTP_ADDR
           value: https://consul-test-headless:8501
+        - name: CONSUL_CACERT
+          value: /config/cacerts.pem
+        - name: CONSUL_CLIENT_CERT
+          value: /config/peer.pem
+        - name: CONSUL_CLIENT_KEY
+          value: /config/peer-key.pem
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:https-20190505-6
         lifecycle:
           preStop:
