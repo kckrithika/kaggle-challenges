@@ -65,7 +65,7 @@ system:
        - name : SERVICE_USER_PASSWORD
          value: "synchronize"
        - name : ACDS_APISERVER_HOST
-         value: "10.251.161.90"
+         value: "10.251.162.140"
        - name : ACDS_APISERVER_PORT
          value: "5004"
        - name : ACDS_APISERVER_HTTPS
@@ -77,7 +77,9 @@ system:
        - name : SECRETS_FOLDER_NAME
          value: "acds-secrets"
        - name : POLICY_DESIGNER_SERVER_IP
-         value: "10.10.10.10"
+         value: "10.253.213.26"
+       - name : POLICY_DESIGNER_SERVER_PORT
+         value: "8080"
        - name : RELAY_MEMORY_LIMIT
          value: "1700m"
        - name : ACDS_RELAY_EVENT_BUFFER_SIZE
