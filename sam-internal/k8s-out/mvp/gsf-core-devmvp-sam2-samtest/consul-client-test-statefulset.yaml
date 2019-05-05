@@ -100,7 +100,7 @@ spec:
               fieldPath: metadata.namespace
         - name: CONSUL_HTTP_ADDR
           value: https://127.0.0.1:8501
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:https-20190505-4
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:https-20190505-5
         lifecycle:
           preStop:
             exec:
