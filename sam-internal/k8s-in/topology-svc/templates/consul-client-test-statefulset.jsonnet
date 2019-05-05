@@ -29,6 +29,10 @@ local consulEnvParams = [
       },
     },
   },
+  {
+    name: 'CONSUL_HTTP_ADDR',
+    value: 'https://127.0.0.1:8501',
+  },
 ];
 
 local ports = [
