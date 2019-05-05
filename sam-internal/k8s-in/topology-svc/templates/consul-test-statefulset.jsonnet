@@ -37,6 +37,10 @@ local ports = [
     name: 'http',
   },
   {
+    containerPort: 8501,
+    name: 'https',
+  },
+  {
     containerPort: 8301,
     name: 'serflan',
   },

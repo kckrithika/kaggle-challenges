@@ -24,7 +24,7 @@ local configs = import 'config.jsonnet';
     //## Release Phase 0 - for sam and samtest
     '0': $.per_phase['1'] {
       consul: '142-20190416-2',
-      consulgcp: 'https-201905005',
+      consulgcp: 'https-20190505',
       sherpa: "eeb8e3bfc9d7912299ed28658895aca9523f348f",
       topologysvc: "hmittal-20190416-c0eb8f0",
       topologyClient: "topology-client-20190504-3",
