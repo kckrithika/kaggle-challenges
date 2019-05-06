@@ -214,8 +214,12 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                                   "-c",
 |||
                                   set -e
-                                  mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS < /etc/mysql/users.sql || exit 24
+                                  while :
+                                  do
+                                  mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS < /etc/mysql-users/users.sql || exit 24
                                   mysql -h 127.0.0.1 -u$MYSQL_ROOT_USER -p$MYSQL_ROOT_PASS < /etc/mysql/schema.sql || exit 25
+                                  sleep 300
+                                  done
 |||,
                                 ],
                               env: [
@@ -249,7 +253,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                                       name: "config-map",
                                     },
                                     {
-                                      mountPath: "/etc/mysql/",
+                                      mountPath: "/etc/mysql-users/",
                                       name: "mysql-users",
                                     },
 
