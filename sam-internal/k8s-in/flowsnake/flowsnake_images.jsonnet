@@ -41,7 +41,7 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
-              madkub_injector_image_tag: "jenkins-dva-transformation-madkub-injector-webhook-PR-8-3-itest",
+              madkub_injector_image_tag: "13",
             },
             feature_flags+: {
                 spark_operator_watchdog_parallel_run: "enabled",
