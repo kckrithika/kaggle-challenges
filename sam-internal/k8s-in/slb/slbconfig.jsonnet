@@ -291,16 +291,25 @@
                 vpod: $.maxDeleteDefault,
             },
 
+        # The set of estates where the hsm-nginx pipeline is enabled.
+        hsmNginxEnabledEstates: std.set([
+            "dfw-sam",
+            "phx-sam",
+            "prd-sam",
+            "prd-samtwo",
+            "prd-sdc",
+            "xrd-sam",
+        ]),
+
+        # The set of VIPs which are served on the hsm pipeline. This is in addition to any VIPs specified in
+        # hsmDefaultEnabledVips below.
         hsmEnabledVips:
             set_value_to_all_in_list([], $.testEstates)
             + set_value_to_all_in_list([], $.prodEstates)
             + {
-              "prd-sdc": ["slb-canary-hsm.sam-system.prd-sdc.prd.slb.sfdc.net"],
-              "prd-sam": ["slb-canary-hsm.sam-system.prd-sam.prd.slb.sfdc.net", "mist51-app-hsm-prd.slb.sfdc.net", "mist51-app-prd.slb.sfdc.net"],
-              "xrd-sam": ["slb-canary-hsm.sam-system.xrd-sam.xrd.slb.sfdc.net"],
-              "prd-samtwo": ["slb-canary-hsm.sam-system.prd-samtwo.prd.slb.sfdc.net"],
-              "phx-sam": ["login-cloudforce-phx.slb.sfdc.net", "slb-canary-hsm.sam-system.phx-sam.phx.slb.sfdc.net"],
-              "dfw-sam": ["login-cloudforce-dfw.slb.sfdc.net", "slb-canary-hsm.sam-system.dfw-sam.dfw.slb.sfdc.net"],
+              "prd-sam": ["mist51-app-hsm-prd.slb.sfdc.net", "mist51-app-prd.slb.sfdc.net"],
+              "phx-sam": ["login-cloudforce-phx.slb.sfdc.net"],
+              "dfw-sam": ["login-cloudforce-dfw.slb.sfdc.net"],
             },
 
         envoyEnabledVips:
@@ -581,7 +590,12 @@
     isSlbEstate: estate in { [e]: 1 for e in $.slbEstates },
     nginxConfigReplicaCount: self.perCluster.nginxConfigReplicaCount[estate],
     ipvsReplicaCount: self.perCluster.ipvsReplicaCount[estate],
-    hsmEnabledVips: self.perCluster.hsmEnabledVips[estate],
+    hsmNginxEnabledEstate: std.setMember(estate, self.perCluster.hsmNginxEnabledEstates),
+    hsmDefaultEnabledVips: if self.hsmNginxEnabledEstate then [
+        # Enable the canary hsm VIP by default for all hsm-enabled estates.
+        "slb-canary-hsm.sam-system.%(estate)s.%(kingdom)s.slb.sfdc.net" % configs,
+    ] else [],
+    hsmEnabledVips: self.perCluster.hsmEnabledVips[estate] + self.hsmDefaultEnabledVips,
     envoyEnabledVips: self.perCluster.envoyEnabledVips[estate],
     envoyVip: self.perCluster.envoyVip[estate],
     envoyVipCIDR: if std.length(self.envoyVip) != 0 then ([self.envoyVip + "/32"]) else [],

@@ -8,7 +8,6 @@ local slbconfigs = import "slbconfig.jsonnet";
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     envoyProxyEnabled: (slbimages.phaseNum <= 1 || configs.estate == "prd-sam"),
     roleEnabled: (slbimages.phaseNum <= 1),
-    hsmCanaryEnabled: (configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "xrd-sam" || configs.estate == "prd-samtwo" || configs.estate == "phx-sam" || configs.estate == "dfw-sam"),
     slbJournaldKillerEnabled: (slbimages.phaseNum <= 5),
 
     # slb-nginx-accesslogs can sometimes fill up disk -- see investigation at
@@ -34,9 +33,6 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # Fix logging for slb-nginx-data-watchdog and slb-nginx-data pods
     fixNginxDataLogging: (slbimages.hyperslb_build >= 2142),
-
-    # Enable kms config map to fix placement of kingdom json files in nginx-proxy container within the hsm nginx pods
-    kmsConfigMap: (slbimages.phaseNum <= 1 || configs.estate == "dfw-sam" || configs.estate == "phx-sam"),
 
     # Use new /healthz endpoint with heartbeating for portal liveness probes.
     portalHealthzProbe: (slbimages.hyperslb_build >= 2142),

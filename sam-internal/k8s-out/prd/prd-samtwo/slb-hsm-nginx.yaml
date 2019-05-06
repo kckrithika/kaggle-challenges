@@ -166,6 +166,8 @@ spec:
           name: var-slb-volume
         - mountPath: /tlsparams
           name: tlsparams-volume
+        - mountPath: /etc/kms.conf.d/
+          name: kmsconfig
       - command:
         - /sdn/slb-nginx-data
         - --target=/host/data/slb/slb-hsm-nginx/config
@@ -624,3 +626,6 @@ spec:
       - configMap:
           name: slb-hsm-nginx
         name: config
+      - configMap:
+          name: slb-kms-configuration
+        name: kmsconfig

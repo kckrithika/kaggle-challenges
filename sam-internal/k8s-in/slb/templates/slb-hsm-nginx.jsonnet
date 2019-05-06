@@ -44,7 +44,7 @@ local replicas = 2;
 
 local certDirs = ["cert1", "cert2"];
 
-if slbflights.hsmCanaryEnabled then
+if slbconfigs.hsmNginxEnabledEstate then
     slbbasenginxproxy.slbBaseNginxProxyDeployment(
       slbconfigs.hsmNginxProxyName,
       replicas,
@@ -56,9 +56,9 @@ if slbflights.hsmCanaryEnabled then
       spec+: {
           template+: {
               spec+: {
-                  volumes+: (if slbflights.kmsConfigMap then [
+                  volumes+: [
                       slbconfigs.kmsconfig_volume,
-                  ] else []),
+                  ],
               },
           },
       },

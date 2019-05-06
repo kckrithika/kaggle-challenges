@@ -26,9 +26,9 @@ data:
         {
           "proxyname": "slb-hsm-nginx",
           "vips": [
-            "slb-canary-hsm.sam-system.prd-sam.prd.slb.sfdc.net",
             "mist51-app-hsm-prd.slb.sfdc.net",
-            "mist51-app-prd.slb.sfdc.net"
+            "mist51-app-prd.slb.sfdc.net",
+            "slb-canary-hsm.sam-system.prd-sam.prd.slb.sfdc.net"
           ]
         },
         {
