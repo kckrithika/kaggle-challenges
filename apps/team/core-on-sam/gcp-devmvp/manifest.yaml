@@ -5,19 +5,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - args:
-      - |
-        while [ ! -f '/home/sfdc/salesforce/casam/.overrides_sidecar_done' ]; do echo -ne 'Waiting for coverride sidecar to complete its job\n' ;  sleep 1 ; done ;
-        export DB_PASSWORD=$(cat /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-3az-db-pw/dbpw3az.txt) ;
-        cp /home/sfdc/salesforce/casam/lib/metrics-publishing.jar.optional /home/sfdc/salesforce/casam/lib/metrics-publishing.jar ;
-        mkdir -p /home/sfdc/salesforce/sfdc-test/func/mockk4avault ;
-        unzip /home/sfdc/salesforce/casam/lib/k4a.zip.testkeys -d /home/sfdc/salesforce/sfdc-test/func/mockk4avault ;
-        cp -fr /home/sfdc/salesforce/sfdc/config/keyrepo-goldfiles/dev/. /home/sfdc/salesforce/sfdc/config/keyrepo-goldfiles/prod ;
-        /home/sfdc/salesforce/casam/bin/startup.sh
-      command:
-      - /bin/sh
-      - -c
-      env:
+    - env:
       - name: DB_SID
         value: NADB11
       - name: DB_INSTANCE_NAME
@@ -26,6 +14,8 @@ system:
         value: sneezy
       - name: IP_DB
         value: 10.168.160.184
+      - name: IP_DB_STANDBY
+        value: 10.168.160.105   
       - name: SERVER_ID
         value: 5
       - name: PUBLIC_PORT
@@ -129,7 +119,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: prod.-.phx.na3.app
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:b3e649
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/casam/coreapp_overrides:a9bbd0
       livenessProbe:
         exec:
           command:
