@@ -21,6 +21,11 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         port: 32400,
       },
       {
+        name: "status-port",
+        port: 15020,
+        targetPort: 15020,
+      },
+      {
         name: "http2",
         nodePort: 32380,
         port: 80,
@@ -45,11 +50,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         name: "tls",
         port: 15443,
         targetPort: 15443,
-      },
-      {
-        name: "status-port",
-        port: 15020,
-        targetPort: 15020,
       },
     ],
     selector: {

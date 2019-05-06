@@ -29,7 +29,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       metadata: {
         annotations: {
           "madkub.sam.sfdc.net/allcerts": mcpIstioConfig.sidecarInjectorMadkubAnnotations,
-          "scheduler.alpha.kubernetes.io/critical-pod": "",
           "sidecar.istio.io/inject": "false",
         },
         labels: {
