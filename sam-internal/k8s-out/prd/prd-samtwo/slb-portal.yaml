@@ -66,11 +66,11 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/slb/hyperslb:2142-cf9466b15d50fd9f824150f2b436b072d1e2581f
         livenessProbe:
           httpGet:
-            path: /webfiles/
+            path: /healthz
             port: 9112
-          initialDelaySeconds: 30
-          periodSeconds: 3
-          timeoutSeconds: 30
+          initialDelaySeconds: 900
+          periodSeconds: 10
+          timeoutSeconds: 3
         name: slb-portal
         volumeMounts:
         - mountPath: /host/data/slb
