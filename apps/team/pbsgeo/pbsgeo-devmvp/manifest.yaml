@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: pbsgeo
-      image: ops0-artifactrepo1-0-prd.slb.sfdc.net/artifactory/docker-gcp/dva/pbspectrum:8bbd4fa91ee5de838337891ca48c5ba42992f625 
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/artifactory/docker-gcp/dva/pbspectrum:8bbd4fa91ee5de838337891ca48c5ba42992f625 
       ports:
       - containerPort: 8080
       livenessProbe:
