@@ -44,9 +44,9 @@ system:
               value: mesh
           args:
             - -endpoint
-            - service-mesh/cbatch-svc:DATACENTER:7443
+            - $(FUNCTION):DATACENTER_ALLENV:HTTP2
             - -endpoint
-            - cbatch-svc:DATACENTER:7012
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -144,9 +144,9 @@ system:
               value: mesh
           args:
             - -endpoint
-            - service-mesh/aspose-svc:DATACENTER:7443
+            - $(FUNCTION):DATACENTER_ALLENV:HTTP2
             - -endpoint
-            - aspose-svc:DATACENTER:7012
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -244,9 +244,9 @@ system:
               value: mesh
           args:
             - -endpoint
-            - service-mesh/image-svc:DATACENTER:7443
+            - $(FUNCTION):DATACENTER_ALLENV:HTTP2
             - -endpoint
-            - image-svc:DATACENTER:7012
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -344,9 +344,9 @@ system:
               value: mesh
           args:
             - -endpoint
-            - service-mesh/openoffice-svc:DATACENTER:7443
+            - $(FUNCTION):DATACENTER_ALLENV:HTTP2
             - -endpoint
-            - openoffice-svc:DATACENTER:7012
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -444,9 +444,9 @@ system:
               value: mesh
           args:
             - -endpoint
-            - service-mesh/poppler-svc:DATACENTER:7443
+            - $(FUNCTION):DATACENTER_ALLENV:HTTP2
             - -endpoint
-            - poppler-svc:DATACENTER:7012
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -544,9 +544,9 @@ system:
               value: mesh
           args:
             - -endpoint
-            - service-mesh/tika-svc:DATACENTER:7443
+            - $(FUNCTION):DATACENTER_ALLENV:HTTP2
             - -endpoint
-            - tika-svc:DATACENTER:7012
+            - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:HTTP2_TLS
           livenessProbe:
             initialDelaySeconds: 5
             exec:
