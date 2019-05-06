@@ -5,7 +5,7 @@ apps:
     - prd/prd-sam_zipkin
     zipkin-frontend:
     - prd/prd-sam_zipkin
-    zipkin-server:
+    zipkin-server-beta:
     - prd/prd-sam_zipkin
     zipkin-beta:
     - prd/prd-sam_zipkin

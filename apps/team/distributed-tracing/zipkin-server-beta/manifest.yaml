@@ -5,8 +5,8 @@ system:
     email:
       - zipkin-scrum-team@salesforce.com
   functions:
-  - name: zipkin-server
-    count: 2
+  - name: zipkin-server-beta
+    count: 4
     strategy:
       type: RollingUpdate
       rollingUpdate:
