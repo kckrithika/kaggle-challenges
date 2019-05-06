@@ -1,0 +1,12 @@
+apiVersion: v1
+system:
+  functions:
+  - name: lshi-sdba-sam-test
+    count: 1
+    containers:
+    - name: lshi-sdba-sam-test-image
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/production_image:jenkins-SayonaraAnalytics-sdba_sam_test-master-1-itest
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
