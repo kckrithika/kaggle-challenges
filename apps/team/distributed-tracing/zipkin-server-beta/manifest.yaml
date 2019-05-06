@@ -113,7 +113,7 @@ system:
 
   loadbalancers:
   - lbname: zipkin-beta
-    function: zipkin-server
+    function: zipkin-server-beta
     slbEnabled: true
     ports:
       - port: 80
