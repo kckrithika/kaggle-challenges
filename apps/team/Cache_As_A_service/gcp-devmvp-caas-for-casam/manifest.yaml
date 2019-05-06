@@ -72,8 +72,8 @@ system:
        - name: NO_ENV_FOR_RESTART
          value: new9
       resources:
-        limits: { memory: "20M" }
-        requests: { memory: "20M" }
+        limits: { memory: "100M" }
+        requests: { memory: "50M" }
     - name: sherpa
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
       args:
