@@ -66,7 +66,7 @@ system:
        - name : SERVICE_USER_PASSWORD
          value: "synchronize"
        - name : ACDS_APISERVER_HOST
-         value: "10.251.161.90"
+         value: "mgmt-api-lb.user-athatipalli.prd-sam.prd.slb.sfdc.net"
        - name : ACDS_APISERVER_PORT
          value: "5004"
        - name : ACDS_APISERVER_HTTPS
@@ -82,7 +82,7 @@ system:
        - name : POLICY_DESIGNER_SERVER_PORT
          value: "8080"
        - name : DUMMY_VARIABLE
-         value: "DUMMY_VARIABLE_2"
+         value: "DUMMY_VARIABLE_3"
      volumes:
 #     - name: task-manager-secrets-vol
 #       k4aSecret:

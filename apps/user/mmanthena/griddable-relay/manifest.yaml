@@ -65,7 +65,7 @@ system:
        - name : SERVICE_USER_PASSWORD
          value: "synchronize"
        - name : ACDS_APISERVER_HOST
-         value: "10.251.162.140"
+         value: "mgmt-api-lb.user-athatipalli.prd-sam.prd.slb.sfdc.net"
        - name : ACDS_APISERVER_PORT
          value: "5004"
        - name : ACDS_APISERVER_HTTPS
