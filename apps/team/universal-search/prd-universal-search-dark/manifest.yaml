@@ -113,7 +113,7 @@ system:
     lbname: universal-search-dark-slb
     ports:
     - port: 7020
-      targetport: 7012
+      targetport: 7020
     - lbtype: http
       port: 15372
       targetport: 15372
