@@ -13,7 +13,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # slb-nginx-accesslogs can sometimes fill up disk -- see investigation at
     # https://computecloud.slack.com/archives/G340CE86R/p1552882461719300?thread_ts=1552870275.718300&cid=G340CE86R.
-    nginxAccesslogsEnabled: (slbimages.phaseNum <= 3),
+    nginxAccesslogsEnabled: (slbimages.hyperslb_build >= 2142),
 
     # HSM nginx currently serves too few VIPs for the upstream status reporter to provide a good signal about
     # the health of upstream servers. Disable the container for now.
@@ -29,15 +29,15 @@ local slbconfigs = import "slbconfig.jsonnet";
     # See discussion at https://computecloud.slack.com/archives/G340CE86R/p1555707096410000?thread_ts=1555702827.408500&cid=G340CE86R
     # Reduce the maxUnavailable for realsvrcfg from 20% to 1, so that at most one daemonset
     # pod is offline at a time.
-    realsvrCfgRolloutMaxUnavailable: (if slbimages.phaseNum <= 3 then 1 else "20%"),
+    realsvrCfgRolloutMaxUnavailable: (if slbimages.hyperslb_build >= 2142 then 1 else "20%"),
 
 
     # Fix logging for slb-nginx-data-watchdog and slb-nginx-data pods
-    fixNginxDataLogging: (slbimages.phaseNum <= 3),
+    fixNginxDataLogging: (slbimages.hyperslb_build >= 2142),
 
     # Enable kms config map to fix placement of kingdom json files in nginx-proxy container within the hsm nginx pods
     kmsConfigMap: (slbimages.phaseNum <= 1 || configs.estate == "dfw-sam" || configs.estate == "phx-sam"),
 
     # Use new /healthz endpoint with heartbeating for portal liveness probes.
-    portalHealthzProbe: (slbimages.phaseNum <= 2),
+    portalHealthzProbe: (slbimages.phaseNum >= 2142),
 }
