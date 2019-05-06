@@ -39,5 +39,5 @@ local slbconfigs = import "slbconfig.jsonnet";
     kmsConfigMap: (slbimages.phaseNum <= 1 || configs.estate == "dfw-sam" || configs.estate == "phx-sam"),
 
     # Use new /healthz endpoint with heartbeating for portal liveness probes.
-    portalHealthzProbe: (slbimages.phaseNum >= 2142),
+    portalHealthzProbe: (slbimages.hyperslb_build >= 2142),
 }
