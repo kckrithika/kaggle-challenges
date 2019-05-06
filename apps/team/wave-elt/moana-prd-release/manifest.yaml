@@ -60,7 +60,7 @@ system:
       - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:release-7-d94cc88'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-release}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
-          "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "\"-XX:MaxDirectMemorySize=256M
+          "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:MaxDirectMemorySize=256M
           -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M -XX:+UseG1GC -verbose:gc
           -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops", "spark.hadoop.fs.s3a.connection.ssl.enabled":
           "true", "spark.hadoop.fs.s3a.endpoint": "s3-us-west-2.amazonaws.com", "spark.hadoop.fs.s3a.proxy.host":
