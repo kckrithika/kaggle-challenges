@@ -11,6 +11,8 @@ system:
     - name: mds-server-cert
       maddogCert:
         type: server
+        lbnames:
+        - metadata-service-lb
     - name: mds-client-cert
       maddogCert:
         type: client
@@ -96,3 +98,10 @@ system:
         exec:
           command:
           - "/home/scone/is-alive.sh"
+  loadbalancers:
+  - lbname: metadata-service-lb
+    function: metadata-service
+    slbEnabled: true
+    ports:
+    - port: 7443
+      targetport: 7443
