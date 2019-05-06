@@ -11,4 +11,4 @@
      tls: true
      # reencrypt indicates if the connection between the load balancer and the backend should be 
      # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
-     reencrypt: true
+     reencrypt: false
