@@ -30,10 +30,10 @@ local kingdom = std.extVar("kingdom");
     ### Release Phase 0 - prd-sam and prd-samtest
     "0": $.per_phase["1"] {
        kubectl: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/istio/kubectl:1.1.1",
-       pilot: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/istio/pilot:1.1.x.2019_04_24_01",
-       proxy: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:fb53c1e25a0c870fb2d22f2943ba8c0d05cda962",
-       proxyinit: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:fb53c1e25a0c870fb2d22f2943ba8c0d05cda962",
-       sidecarinjector: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:fb53c1e25a0c870fb2d22f2943ba8c0d05cda962",
+       pilot: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/pilot:6888b79cd0b7516618de282a96eb580342e0ea5f",
+       proxy: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy:6888b79cd0b7516618de282a96eb580342e0ea5f",
+       proxyinit: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/proxy_init:6888b79cd0b7516618de282a96eb580342e0ea5f",
+       sidecarinjector: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:6888b79cd0b7516618de282a96eb580342e0ea5f",
        metricsscraper: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/metrics-scraper:dev",
      },
 
