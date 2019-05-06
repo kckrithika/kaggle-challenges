@@ -82,7 +82,7 @@ system:
        - name : POLICY_DESIGNER_SERVER_PORT
          value: "8080"
        - name : DUMMY_VARIABLE
-         value: "DUMMY_VARIABLE_3"
+         value: "DUMMY_VARIABLE_2"
      volumes:
 #     - name: task-manager-secrets-vol
 #       k4aSecret:
