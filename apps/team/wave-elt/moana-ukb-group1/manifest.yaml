@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-ukb.data.sfdc.net/sfci/insights/moanaengine:release-6-8bfb6ce
+    - image: ops0-artifactrepo1-0-ukb.data.sfdc.net/sfci/insights/moanaengine:release-7-d94cc88
       livenessProbe:
         exec:
           command: [ls]
@@ -54,23 +54,24 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-ukb.data.sfdc.net/sfci/insights/moanaengine:release-6-8bfb6ce'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-ukb.data.sfdc.net/sfci/insights/moanaengine:release-7-d94cc88'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
-          "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:MaxDirectMemorySize=128M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M -XX:+UseG1GC
-          -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops",
-          "spark.shuffle.accurateBlockThreshold": "1048576",
-          "spark.shuffle.io.preferDirectBufs": "false",
-          "spark.hadoop.fs.s3a.connection.ssl.enabled": "true", "spark.hadoop.fs.s3a.endpoint":
-          "s3-us-west-2.amazonaws.com", "spark.hadoop.fs.s3a.proxy.host": "public0-proxy1-0-ukb.data.sfdc.net",
-          "spark.hadoop.fs.s3a.proxy.port": "8080", "spark.hadoop.fs.s3a.server-side-encryption-algorithm":
-          "SSE-KMS", "spark.hadoop.fs.s3a.server-side-encryption.key": "ea96b117-8eee-4314-b214-8a125eb5242e",
-          "spark.ui.enabled": "false"}'}
-      - {name: SIZING_MEMORY_OVERHEAD_PERCENTAGE, value: '45'}
+          "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:MaxDirectMemorySize=256M
+          -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M -XX:+UseG1GC -verbose:gc
+          -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops", "spark.hadoop.fs.s3a.connection.ssl.enabled":
+          "true", "spark.hadoop.fs.s3a.endpoint": "s3-us-west-2.amazonaws.com", "spark.hadoop.fs.s3a.proxy.host":
+          "public0-proxy1-0-ukb.data.sfdc.net", "spark.hadoop.fs.s3a.proxy.port":
+          "8080", "spark.hadoop.fs.s3a.server-side-encryption-algorithm": "SSE-KMS",
+          "spark.hadoop.fs.s3a.server-side-encryption.key": "ea96b117-8eee-4314-b214-8a125eb5242e",
+          "spark.shuffle.accurateBlockThreshold": "1048576", "spark.shuffle.io.preferDirectBufs":
+          "false", "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: ukb-group1}
       - {name: DARK_LAUNCH_WRITE_TO_M3, value: 'false'}
       - {name: JAVA_OPTS, value: '-server -XX:MaxMetaspaceSize=512m -Xmx2048m -Xms2048m'}
-      image: sfci/insights/jobcontroller:release-106-9e73c85
+      - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
+      - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
+      image: sfci/insights/jobcontroller:release-107-fe7ae4c
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
