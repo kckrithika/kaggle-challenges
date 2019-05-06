@@ -5,12 +5,12 @@ system:
       count: 1
       containers: 
         - name: cbatch-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/cbatch-svc:1.4
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/cbatch-svc:1.5
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
-            - containerPort: 15374
+            - containerPort: 15372
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -28,7 +28,7 @@ system:
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 15374
+              port: 15372
             initialDelaySeconds: 120
             periodSeconds: 5
           readinessProbe:
@@ -105,12 +105,12 @@ system:
       count: 1
       containers: 
         - name: aspose-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/aspose-svc:1.4
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/aspose-svc:1.5
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
-            - containerPort: 15374
+            - containerPort: 15372
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -128,7 +128,7 @@ system:
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 15374
+              port: 15372
             initialDelaySeconds: 120
             periodSeconds: 5
           readinessProbe:
@@ -205,12 +205,12 @@ system:
       count: 1
       containers: 
         - name: image-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/image-svc:1.4
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/image-svc:1.5
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
-            - containerPort: 15374
+            - containerPort: 15372
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -228,7 +228,7 @@ system:
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 15374
+              port: 15372
             initialDelaySeconds: 120
             periodSeconds: 5
           readinessProbe:
@@ -305,12 +305,12 @@ system:
       count: 2
       containers: 
         - name: openoffice-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/openoffice-svc:1.4
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/openoffice-svc:1.5
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
-            - containerPort: 15374
+            - containerPort: 15372
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -328,7 +328,7 @@ system:
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 15374
+              port: 15372
             initialDelaySeconds: 120
             periodSeconds: 5
           readinessProbe:
@@ -405,12 +405,12 @@ system:
       count: 1
       containers: 
         - name: poppler-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/poppler-svc:1.4
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/poppler-svc:1.5
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
-            - containerPort: 15374
+            - containerPort: 15372
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -428,7 +428,7 @@ system:
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 15374
+              port: 15372
             initialDelaySeconds: 120
             periodSeconds: 5
           readinessProbe:
@@ -505,12 +505,12 @@ system:
       count: 1
       containers: 
         - name: tika-svc
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/tika-svc:1.4
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/tika-svc:1.5
           args:
             - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
-            - containerPort: 15374
+            - containerPort: 15372
           env:
             - name: SFDC_ENVIRONMENT
               value: mesh
@@ -528,7 +528,7 @@ system:
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 15374
+              port: 15372
             initialDelaySeconds: 120
             periodSeconds: 5
           readinessProbe:

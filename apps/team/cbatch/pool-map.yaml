@@ -1,10 +1,6 @@
 apps:
   content-jmagick:
     - prd/prd-sam
-  content-maddog-secure:
-    - mvp/gsf-core-devmvp-sam2-sam
-  content-maddog-secure-client:
-    - mvp/gsf-core-devmvp-sam2-sam
   svc-gcp-devmvp:
     - mvp/gsf-core-devmvp-sam2-sam
 
