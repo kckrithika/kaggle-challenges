@@ -36,7 +36,6 @@ spec:
             }
            ]
           }
-        scheduler.alpha.kubernetes.io/critical-pod: ""
         sidecar.istio.io/inject: "false"
       labels:
         app: sidecarInjectorWebhook
@@ -92,7 +91,7 @@ spec:
         env:
         - name: ESTATE
           value: prd-samtest
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:fb53c1e25a0c870fb2d22f2943ba8c0d05cda962
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/istio-packaging/sidecar_injector:6888b79cd0b7516618de282a96eb580342e0ea5f
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:

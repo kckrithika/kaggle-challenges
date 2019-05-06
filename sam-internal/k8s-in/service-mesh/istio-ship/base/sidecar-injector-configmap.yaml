@@ -16,15 +16,16 @@ data:
     \"-k\"\n    - \"[[ index .ObjectMeta.Annotations `traffic.sidecar.istio.io/kubevirtInterfaces`
     ]]\"\n    [[ end -]]\n    imagePullPolicy: IfNotPresent\n    resources:\n      requests:\n
     \       cpu: 10m\n        memory: 10Mi\n      limits:\n        cpu: 100m\n        memory:
-    50Mi\n    securityContext:\n      capabilities:\n        add:\n        - NET_ADMIN\n
-    \   restartPolicy: Always\n  [[ end -]]\n  containers:\n  - name: istio-proxy\n
-    \   image: [[ annotation .ObjectMeta `sidecar.istio.io/proxyImage`  \"gcr.io/istio-release/proxyv2:release-1.1-latest-daily\"
-    \ ]]\n    ports:\n    - containerPort: 15090\n      protocol: TCP\n      name:
-    http-envoy-prom\n    args:\n    - proxy\n    - sidecar\n    - --domain\n    -
-    $(POD_NAMESPACE).svc.cluster.local\n    - --configPath\n    - [[ .ProxyConfig.ConfigPath
-    ]]\n    - --binaryPath\n    - [[ .ProxyConfig.BinaryPath ]]\n    - --serviceCluster\n
-    \   [[ if ne \"\" (index .ObjectMeta.Labels \"app\") -]]\n    - [[ index .ObjectMeta.Labels
-    \"app\" ]].$(POD_NAMESPACE)\n    [[ else -]]\n    - [[ valueOrDefault .DeploymentMeta.Name
+    50Mi\n    securityContext:\n      runAsUser: 0\n      runAsNonRoot: false\n      capabilities:\n
+    \       add:\n        - NET_ADMIN\n    restartPolicy: Always\n  [[ end -]]\n  containers:\n
+    \ - name: istio-proxy\n    image: [[ annotation .ObjectMeta `sidecar.istio.io/proxyImage`
+    \ \"gcr.io/istio-release/proxyv2:release-1.1-latest-daily\"  ]]\n    ports:\n
+    \   - containerPort: 15090\n      protocol: TCP\n      name: http-envoy-prom\n
+    \   args:\n    - proxy\n    - sidecar\n    - --domain\n    - $(POD_NAMESPACE).svc.cluster.local\n
+    \   - --configPath\n    - [[ .ProxyConfig.ConfigPath ]]\n    - --binaryPath\n
+    \   - [[ .ProxyConfig.BinaryPath ]]\n    - --serviceCluster\n    [[ if ne \"\"
+    (index .ObjectMeta.Labels \"app\") -]]\n    - [[ index .ObjectMeta.Labels \"app\"
+    ]].$(POD_NAMESPACE)\n    [[ else -]]\n    - [[ valueOrDefault .DeploymentMeta.Name
     \"istio-proxy\" ]].[[ valueOrDefault .DeploymentMeta.Namespace \"default\" ]]\n
     \   [[ end -]]\n    - --drainDuration\n    - [[ formatDuration .ProxyConfig.DrainDuration
     ]]\n    - --parentShutdownDuration\n    - [[ formatDuration .ProxyConfig.ParentShutdownDuration
@@ -42,7 +43,7 @@ data:
     POD_NAME\n      valueFrom:\n        fieldRef:\n          fieldPath: metadata.name\n
     \   - name: POD_NAMESPACE\n      valueFrom:\n        fieldRef:\n          fieldPath:
     metadata.namespace\n    - name: INSTANCE_IP\n      valueFrom:\n        fieldRef:\n
-    \         fieldPath: status.podIP\n    - name: ISTIO_META_POD_NAME\n      valueFrom:\n
+    \         fieldPath: status.podIP\n    \n    - name: ISTIO_META_POD_NAME\n      valueFrom:\n
     \       fieldRef:\n          fieldPath: metadata.name\n    - name: ISTIO_META_CONFIG_NAMESPACE\n
     \     valueFrom:\n        fieldRef:\n          fieldPath: metadata.namespace\n
     \   - name: ISTIO_META_INTERCEPTION_MODE\n      value: [[ or (index .ObjectMeta.Annotations

@@ -20,7 +20,6 @@ spec:
   template:
     metadata:
       annotations:
-        scheduler.alpha.kubernetes.io/critical-pod: ""
         sidecar.istio.io/inject: "false"
       labels:
         app: pilot
@@ -66,6 +65,7 @@ spec:
       - args:
         - discovery
         - --monitoringAddr=:15014
+        - --log_output_level=default:info
         - --domain
         - cluster.local
         - --secureGrpcAddr

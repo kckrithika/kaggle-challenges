@@ -23,7 +23,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
       metadata: {
         annotations: {
           "madkub.sam.sfdc.net/allcerts": mcpIstioConfig.ingressGatewayMadkubAnnotations,
-          "scheduler.alpha.kubernetes.io/critical-pod": "",
           "sidecar.istio.io/inject": "false",
         },
         labels: {
@@ -162,6 +161,15 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
                 },
               },
               {
+                name: "HOST_IP",
+                valueFrom: {
+                  fieldRef: {
+                    apiVersion: "v1",
+                    fieldPath: "status.hostIP",
+                  },
+                },
+              },
+              {
                 name: "ISTIO_META_POD_NAME",
                 valueFrom: {
                   fieldRef: {
@@ -188,6 +196,9 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             name: "istio-proxy",
             ports: [
               {
+                containerPort: 15020,
+              },
+              {
                 containerPort: 80,
               },
               {
@@ -201,9 +212,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               },
               {
                 containerPort: 15443,
-              },
-              {
-                containerPort: 15020,
               },
               {
                 containerPort: 15090,
@@ -224,8 +232,13 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               timeoutSeconds: 1,
             },
             resources: {
+              limits: {
+                cpu: "2000m",
+                memory: "256Mi",
+              },
               requests: {
-                cpu: "10m",
+                cpu: "100m",
+                memory: "128Mi",
               },
             },
             volumeMounts: [

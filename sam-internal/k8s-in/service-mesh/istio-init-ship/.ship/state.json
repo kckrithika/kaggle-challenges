@@ -18,7 +18,7 @@
         }
       }
     },
-    "upstream": "https://github.com/istio/istio/tree/2b1331886076df103179e3da5dc9077fed59c989/install/kubernetes/helm/istio-init",
+    "upstream": "https://github.com/istio/istio/tree/9b6d31b74d1c0cc9358cc82d395b53f71393326b/install/kubernetes/helm/istio-init",
     "metadata": {
       "applicationType": "helm",
       "icon": "https://istio.io/favicons/android-192x192.png",

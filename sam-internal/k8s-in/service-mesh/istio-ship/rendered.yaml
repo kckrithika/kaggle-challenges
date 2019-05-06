@@ -579,6 +579,9 @@ spec:
   - name: tcp
     nodePort: 32400
     port: 32400
+  - name: status-port
+    port: 15020
+    targetPort: 15020
   - name: http2
     nodePort: 32380
     port: 80
@@ -595,9 +598,6 @@ spec:
   - name: tls
     port: 15443
     targetPort: 15443
-  - name: status-port
-    port: 15020
-    targetPort: 15020
   selector:
     app: istio-ingressgateway
     istio: ingressgateway
@@ -661,7 +661,6 @@ spec:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: mcpIstioConfig.ingressGatewayMadkubAnnotations
-        scheduler.alpha.kubernetes.io/critical-pod: ""
         sidecar.istio.io/inject: "false"
       labels:
         app: istio-ingressgateway
@@ -748,6 +747,11 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: status.podIP
+        - name: HOST_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
         - name: ISTIO_META_POD_NAME
           valueFrom:
             fieldRef:
@@ -763,12 +767,12 @@ spec:
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
+        - containerPort: 15020
         - containerPort: 80
         - containerPort: 443
         - containerPort: 15029
         - containerPort: 15032
         - containerPort: 15443
-        - containerPort: 15020
         - containerPort: 15090
           name: http-envoy-prom
           protocol: TCP
@@ -783,8 +787,12 @@ spec:
           successThreshold: 1
           timeoutSeconds: 1
         resources:
+          limits:
+            cpu: 2000m
+            memory: 256Mi
           requests:
-            cpu: 10m
+            cpu: 100m
+            memory: 128Mi
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
@@ -947,7 +955,6 @@ spec:
   template:
     metadata:
       annotations:
-        scheduler.alpha.kubernetes.io/critical-pod: ""
         sidecar.istio.io/inject: "false"
       labels:
         app: pilot
@@ -1103,7 +1110,6 @@ spec:
     metadata:
       annotations:
         madkub.sam.sfdc.net/allcerts: mcpIstioConfig.sidecarInjectorMadkubAnnotations
-        scheduler.alpha.kubernetes.io/critical-pod: ""
         sidecar.istio.io/inject: "false"
       labels:
         app: sidecarInjectorWebhook

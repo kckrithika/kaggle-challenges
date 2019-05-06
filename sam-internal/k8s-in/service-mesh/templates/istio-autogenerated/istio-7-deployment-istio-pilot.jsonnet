@@ -31,7 +31,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
     template: {
       metadata: {
         annotations: {
-          "scheduler.alpha.kubernetes.io/critical-pod": "",
           "sidecar.istio.io/inject": "false",
         },
         labels: {
