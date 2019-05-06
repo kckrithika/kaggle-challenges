@@ -78,7 +78,7 @@ system:
         value: 00D500000008aMD
       - name: SU_USERID
         value: 00550000000HgO1
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_17989728
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:release_main_18029619
       livenessProbe:
         exec:
           command:
