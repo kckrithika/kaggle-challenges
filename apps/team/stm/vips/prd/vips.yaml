@@ -71,6 +71,7 @@
       value: "FORCE"
 
 - lbname: na44-stmfc1-0-prd
+  customlbname: na44-stmfc1-0-prd
   servers:
   - stmfcna44ice1-app1-1-prd.eng.sfdc.net
   - stmfcna44ice1-app1-2-prd.eng.sfdc.net
