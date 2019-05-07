@@ -90,9 +90,11 @@ items:
       set -- "${POSITIONAL[@]}" # restore positional parameters
 
       # This is temporary hack to make it work for CI.
+      set +u
       if [[ (-z "${TEST_RUNNER_ID}") || ("canary" == "${TEST_RUNNER_ID}") ]] ; then
           TEST_RUNNER_ID=$(cut -c1-8 < /proc/sys/kernel/random/uuid)
       fi
+      set -u
 
       # Check if spec is a jsonnet template
       if [[ ".jsonnet" == "${1: -8}" ]] ; then
@@ -453,9 +455,11 @@ items:
       set -- "${POSITIONAL[@]}" # restore positional parameters
 
       # This is temporary hack to make it work for CI.
+      set +u
       if [[ (-z "${TEST_RUNNER_ID}") || ("canary" == "${TEST_RUNNER_ID}") ]] ; then
           TEST_RUNNER_ID=$(cut -c1-8 < /proc/sys/kernel/random/uuid)
       fi
+      set -u
 
       # Check if spec is a jsonnet template
       if [[ ".jsonnet" == "${1: -8}" ]] ; then
