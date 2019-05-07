@@ -42,7 +42,6 @@ local utils = import "util_functions.jsonnet";
             image_tags+: {
             },
             feature_flags+: {
-                spark_operator_watchdog_parallel_run: "enabled",
             },
             version_mapping+: {
             },
