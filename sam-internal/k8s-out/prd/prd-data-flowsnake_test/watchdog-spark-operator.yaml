@@ -462,6 +462,7 @@ items:
     name: watchdog-spark-operator
     namespace: flowsnake
   spec:
+    replicas: 10
     selector:
       matchLabels:
         app: watchdog-spark-operator
