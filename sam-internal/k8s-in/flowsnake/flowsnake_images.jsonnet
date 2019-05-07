@@ -29,7 +29,6 @@ local utils = import "util_functions.jsonnet";
                 btrfs_watchdog_hard_reset: "",
                 image_renames_and_canary_build_tags: "unverified",
                 slb_ingress: "unverified",
-                interaction_test_script_change: "",
             },
             # prd-test offers legacy version mappings. Phase 2 does not, so cannot inherit from there.
             # Start with 2-prd-dev (which also have legacy version mappings),
@@ -41,9 +40,11 @@ local utils = import "util_functions.jsonnet";
         # Only include new things not yet promoted to next phase. To promote, move line items to next phase.
         "2": self["3"] {
             image_tags+: {
+                integration_test_tag: "jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-12-2-itest",
             },
             feature_flags+: {
                 spark_operator_watchdog_parallel_run: "enabled",
+                interaction_test_script_change: "",
             },
             version_mapping+: {
             },
