@@ -4,7 +4,7 @@ system:
   - name: aimee-mann
     labels:
       chaos.sfdc.net/charmer: true
-      chaos.sfdc.net/charmerPeriod: 30s
+      chaos.sfdc.net/charmerPeriod: 3m
       chaos.sfdc.net/podDelete: true
       chaos.sfdc.net/podDeletePeriod: 13m
     count: 2
