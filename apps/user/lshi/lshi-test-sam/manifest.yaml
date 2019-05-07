@@ -12,3 +12,11 @@ system:
         httpGet:
           path: /
           port: 9090
+  loadbalancers:
+  - lbname: lshi-sdba-sam-test-image-lb
+    function: lshi-sdba-sam-test
+    slbenabled: true
+    ports:
+      - port: 9090
+        targetport: 9090
+        lbtype: tcp
