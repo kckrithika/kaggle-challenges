@@ -5,13 +5,14 @@ system:
     count: 1
     containers:
     - name: lshi-sdba-sam-test-image
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/production_image:jenkins-SayonaraAnalytics-sdba_sam_test-master-3-itest
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/production_image:jenkins-SayonaraAnalytics-sdba_sam_test-master-4-itest
       ports:
       - containerPort: 9090
+      - containerPort: 9091
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 9091
   loadbalancers:
   - lbname: lshi-sdba-sam-test-image-lb
     function: lshi-sdba-sam-test
