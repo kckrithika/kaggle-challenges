@@ -8,7 +8,7 @@ system:
     - name: virtual-api
       command:
         - /sam/virtual-api
-        - --sql-db-host=mysql-inmem-read.sam-system.prd-sam.prd.slb.sfdc.net
+        - --sql-db-host=mysql-inmem-service.sam-system.prd-sam.prd.slb.sfdc.net
         - --sql-db-port=3306
         - --sql-db-name=sam_kube_resource
         - --sql-db-pass-file=/var/secrets/pseudo-api
