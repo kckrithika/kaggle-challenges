@@ -1,9 +1,0 @@
-- lbname: self-service-test
-  customlbname: self-service-test-ord
-  servers:
-   - shared0-sdcsamcompute2-2-ord.ops.sfdc.net
-   - shared0-sdcsamcompute2-3-ord.ops.sfdc.net
-  ports:
-   - port: 80
-     targetport: 12087
-     lbtype: http
