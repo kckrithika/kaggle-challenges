@@ -6,7 +6,7 @@ db:
   lockUser: sneezy
   sid: mist61c220utf
   statsUser: snowwhite
-  user: sleepy
+  user: dopey
 endpoints:
   httpProxy: public0-proxy1-0-prd.data.sfdc.net:8080
   publicDNSSuffix: core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
@@ -24,6 +24,6 @@ images:
   switchboard: sfci/servicelibs/switchboard:26c3cdce981042262b9f0f26c226cab1841bf9fd
   switchboardEnvoy: sfci/frontend-gateway/sfproxy:bc7e1fa
 name: na10
-nonce: 1557248982710019000
+nonce: 1557270449085363883
 replicaCount: 4
 settingsSuperPod: sp2
