@@ -7,8 +7,8 @@ system:
     count: 1
     containers:
     - name: pcg-hubot
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kmancuso/pcg-hubot:1554437375
-      command: ["/opt/hubot/bin/hubot", "-a", "slack"]
+      image: dva-registry.internal.salesforce.com/dva/pcg-mrpotatobot:latest
+      command: ["/opt/mrpotatobot/run.sh"]
       ports:
         - containerPort: 8080
       livenessProbe:
@@ -22,7 +22,7 @@ system:
       - name: HTTPS_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: PLACEBO
-        value: 0004
+        value: 0001
       volumeMounts:
       - mountPath: /secrets/
         name: hubot
