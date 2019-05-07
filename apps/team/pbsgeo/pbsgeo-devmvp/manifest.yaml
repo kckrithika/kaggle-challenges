@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: pbsgeo
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:8bbd4fa91ee5de838337891ca48c5ba42992f625 
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:22d59a5dd1f03ffb8253de0651ffe0e37f3b2d54 
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -14,6 +14,7 @@ system:
           port: 8080
         initialDelaySeconds: 120 
         periodSeconds: 5
+
   loadbalancers:
   - lbname: pbsgeolb
     function: default
