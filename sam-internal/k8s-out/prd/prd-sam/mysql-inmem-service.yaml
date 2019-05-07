@@ -9,7 +9,7 @@ items:
         "reencrypt": false, "sticky": 1, "targetport": 3306}]'
     creationTimestamp: "2018-09-21T22:32:11Z"
     labels:
-      app: mysql-inmem
+      app: mysql-pure-cache
     name: mysql-inmem-read
     namespace: sam-system
   spec:
@@ -19,7 +19,7 @@ items:
       protocol: TCP
       targetPort: 3306
     selector:
-      app: mysql-inmem
+      app: mysql-pure-cache
     sessionAffinity: None
     type: ClusterIP
   status:
@@ -32,10 +32,10 @@ items:
       slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 3306,
         "reencrypt": false, "sticky": 1, "targetport": 3306}]'
     labels:
-      app: mysql-inmem
-      sam_app: mysql-inmem
-      sam_function: mysql-inmem
-      sam_loadbalancer: mysql-inmem
+      app: mysql-pure-cache
+      sam_app: mysql-pure-cache
+      sam_function: mysql-pure-cache
+      sam_loadbalancer: mysql-pure-cache
     name: mysql-inmem-service
     namespace: sam-system
   spec:
@@ -46,9 +46,9 @@ items:
       protocol: TCP
       targetPort: 3306
     selector:
-      app: mysql-inmem
-      sam_app: mysql-inmem
-      sam_function: mysql-inmem
+      app: mysql-pure-cache
+      sam_app: mysql-pure-cache
+      sam_function: mysql-pure-cache
     sessionAffinity: None
     type: ClusterIP
 kind: List
