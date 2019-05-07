@@ -592,7 +592,7 @@ data:
     GRANT ALL PRIVILEGES ON sam_kube_resource.* TO 'watchdog'@'%';
     GRANT ALL PRIVILEGES ON sam_kube_resource.* TO 'ssc-prd'@'%';
     GRANT ALL PRIVILEGES ON sam_kube_resource.* TO 'ssc-prod'@'%';
-    GRANT ALL PRIVILEGES ON sam_kube_resource.* TO 'hostrepair-agg'@'%';
+    GRANT ALL PRIVILEGES ON sam_kube_resource.* TO 'host-repair-agg'@'%';
     GRANT ALL PRIVILEGES ON sam_kube_resource.* TO 'sam_developer'@'%';
   slave.cnf: "# Apply this config only on slaves.\n[mysqld]\n# Configs specific to
     replication slaves\nsuper-read-only\nslave_parallel_workers=128\nslave_pending_jobs_size_max=1GiB\nslave_compressed_protocol=1\nslave_exec_mode=IDEMPOTENT\n#

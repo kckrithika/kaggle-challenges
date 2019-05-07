@@ -639,7 +639,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         GRANT ALL PRIVILEGES ON sam_kube_resource.* TO 'watchdog'@'%';
         GRANT ALL PRIVILEGES ON sam_kube_resource.* TO 'ssc-prd'@'%';
         GRANT ALL PRIVILEGES ON sam_kube_resource.* TO 'ssc-prod'@'%';
-        GRANT ALL PRIVILEGES ON sam_kube_resource.* TO 'hostrepair-agg'@'%';
+        GRANT ALL PRIVILEGES ON sam_kube_resource.* TO 'host-repair-agg'@'%';
         GRANT ALL PRIVILEGES ON sam_kube_resource.* TO 'sam_developer'@'%';
 |||,
 },
