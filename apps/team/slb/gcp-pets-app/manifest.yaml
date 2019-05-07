@@ -14,7 +14,7 @@ system:
               path: /
               port: 5000
         - name: slb-cert-deployer
-          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/slb/hyperslb:2150-0c4500644a8cb64f8f39a29118c3cdb397debcb6
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/slb/hyperslb:2150-0c4500644a8cb64f8f39a29118c3cdb397debcb6
           command:
             - /sdn/slb-pc-cert-deployer
             - --custCertsDir=/sfproxy-certs
