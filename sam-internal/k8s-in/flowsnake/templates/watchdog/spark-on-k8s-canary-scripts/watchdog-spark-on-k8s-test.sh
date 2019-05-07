@@ -51,7 +51,7 @@ done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 # This is temporary hack to make it work for CI.
-if [[ "canary" == "${TEST_RUNNER_ID}" ]] ; then
+if [[ (-z "${TEST_RUNNER_ID}") || ("canary" == "${TEST_RUNNER_ID}") ]] ; then
     TEST_RUNNER_ID=$(cut -c1-8 < /proc/sys/kernel/random/uuid)
 fi
 
@@ -255,7 +255,7 @@ kcfw_log cluster-info
 # ------ Clean up prior runs ---------
 log "Cleaning up SparkApplication/Pod older than 24 hours from prior runs."
 # https://stackoverflow.com/questions/48934491/kubernetes-how-to-delete-pods-based-on-age-creation-time
-APPS=$(kcfw get sparkapplication -o go-template='{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d'now-24 hours' -Ins --utc | sed 's/+0000/Z/')'" { print $1 }')
+APPS=$(kcfw get sparkapplication -o go-template='{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d'now-1 hours' -Ins --utc | sed 's/+0000/Z/')'" { print $1 }')
 for APP in ${APPS}; do
     PODSELECTOR="sparkoperator.k8s.io/app-name=${APP}"
     kcfw_log delete sparkapplication ${APP}
