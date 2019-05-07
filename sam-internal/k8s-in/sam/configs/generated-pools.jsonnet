@@ -1572,7 +1572,8 @@
         "qpid",
         "einstein-analytics",
         "vagabond",
-        "pbsgeo"
+        "pbsgeo",
+        "pbsmatch"
       ],
       "access": [
         "team/CSC_Sam",
@@ -1606,7 +1607,8 @@
         "team/qpid",
         "team/einstein-analytics",
         "team/Vagabond",
-        "team/pbsgeo"
+        "team/pbsgeo",
+        "team/pbsmatch"
       ],
       "controlEstate": "gsf-core-devmvp-sam2-sam",
       "estate": "gsf-core-devmvp-sam2-sam",
