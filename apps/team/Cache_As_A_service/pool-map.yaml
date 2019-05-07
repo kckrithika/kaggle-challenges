@@ -16,6 +16,10 @@ apps:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
     - samcaas2-caasminion1-4-prd.eng.sfdc.net
+ prd-redis-scan:
+  - name: prd/prd-sp2-sam_caas
+    hostSubList:
+    - samcaas2-caasminion1-4-prd.eng.sfdc.net
     - samcaas2-caasminion2-1-prd.eng.sfdc.net
     - samcaas2-caasminion2-3-prd.eng.sfdc.net
     - samcaas2-caasminion2-4-prd.eng.sfdc.net

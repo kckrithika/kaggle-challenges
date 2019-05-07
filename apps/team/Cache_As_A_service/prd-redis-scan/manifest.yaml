@@ -1,0 +1,22 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - sbandi@salesforce.com
+  functions:
+  - name: prd-redis-scan
+    count: 1
+    containers:
+    - name: redis-scan
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sbandi/redis-scan:67ef55d
+      resources:
+        limits: { memory: "2048M" }
+        requests: { memory: "1536M" }
+      command: [ "/bin/bash", "-c", "--" ]
+      args: [ "while true; do sleep 30; done;" ]
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/caas/is-alive.sh"
