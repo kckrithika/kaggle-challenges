@@ -21,6 +21,7 @@ system:
       - --listeners.rate-limit-enabled-clusters[4]=retail-setup.retail-rsui
       - --listeners.authz-policy-enabled-clusters[0]=ordering-authz-policy.service-mesh
       - --listeners.authz-policy-enabled-clusters[1]=shipping-authz-policy.service-mesh
+      - --listeners.authz-policy-enabled-clusters[2]=authz-svc.service-mesh
       # TODO: we need to reduce this number 
       - --metrics.maxNumberOfCollectedMetrics=400000
       - --metrics.funnelTimeOut=100000
