@@ -6,16 +6,31 @@ system:
   functions:
   - containers:
     - env:
+      - name: DB_USER
+        value: sneezy
+
+      # Oracle (not used currently)
       - name: DB_SID
         value: NADB11
       - name: DB_INSTANCE_NAME
         value: NADB11-1
-      - name: DB_USER
-        value: sneezy
       - name: IP_DB
         value: 10.168.160.184
       - name: IP_DB_STANDBY
         value: 10.168.160.105   
+
+      # SDB
+      - name: SAYONARA_ENABLE
+        value: true 
+      - name: DB_NAME
+        value: devmvp
+      - name: DB_HOST
+        value: 10.211.161.137
+      - name: DB_PORT
+        value: 1521
+      - name: DB_SUPER_USER
+        value: sdb
+
       - name: SERVER_ID
         value: 5
       - name: PUBLIC_PORT
