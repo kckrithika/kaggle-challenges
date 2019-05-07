@@ -162,10 +162,16 @@ items:
       done
       set -- "${POSITIONAL[@]}" # restore positional parameters
 
+      # This is temporary hack to make it work for CI.
+      if [[ (-z "${TEST_RUNNER_ID}") || ("canary" == "${TEST_RUNNER_ID}") ]] ; then
+          TEST_RUNNER_ID=$(cut -c1-8 < /proc/sys/kernel/random/uuid)
+      fi
+
       # Check if spec is a jsonnet template
       if [[ ".jsonnet" == "${1: -8}" ]] ; then
           SPEC_INPUT=$(basename "$1")
-          SPEC_PATH=/strata-test-specs-out/${SPEC_INPUT%%.*}.json
+          # Replace .jsonnet with -<ID>.json to get output filename
+          SPEC_PATH=/strata-test-specs-out/${SPEC_INPUT%%.*}-${TEST_RUNNER_ID}.json
           jsonnet -V imageRegistry=${DOCKER_REGISTRY} -V jenkinsId=${TEST_RUNNER_ID} -V dockerTag=${DOCKER_TAG} -V s3ProxyHost=${S3_PROXY_HOST} -V driverServiceAccount=${DRIVER_SERVICE_ACCOUNT} ${1} | \
           python -c 'import json,sys; j=json.load(sys.stdin); j_clean=j if len(j.keys())>1 else j[j.keys()[0]]; print json.dumps(j_clean, indent=4)' > ${SPEC_PATH}
           if [ -f "${SPEC_PATH}" ]; then
@@ -229,7 +235,7 @@ items:
               stdout=$(mktemp /tmp/$(basename $0)-stdout.XXXXXX)
               stderr=$(mktemp /tmp/$(basename $0)-stderr.XXXXXX)
               # Capture result code, don't trigger errexit. https://stackoverflow.com/a/15844901
-              timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} $@ 2>${stderr} >${stdout} && RESULT=$? || RESULT=$?
+              timeout --signal=9 ${KUBECTL_TIMEOUT_SECS} kubectl -n ${NAMESPACE} "$@" 2>${stderr} >${stdout} && RESULT=$? || RESULT=$?
               # Hack to simplify scripting: if you try to delete something and get back a NotFound, treat that as a success.
               if [[ $(echo "$@" | grep -P '\bdelete\b') && $(grep -P '\(NotFound\).* not found' ${stderr}) ]]; then
                   return 0
@@ -359,39 +365,13 @@ items:
       kcfw_log cluster-info
 
       # ------ Clean up prior runs ---------
-      log "Cleaning up $APP_NAME resources from prior runs."
-      kcfw_log delete sparkapplication $APP_NAME
-
-      # kubectl returns success even if no pods match the label selector. But it seems you get an
-      # error if you match a pod and then that pod exits on its own at just the wrong time. Harmless, retry will succeed.
-      kcfw_log delete pod -l $SELECTOR
-
-      # Wait for SparkApplication from prior run to delete.
-      LAST_LOGGED=$(epoch)
-      while true; do
-          EPOCH=$(epoch)
-          if ! kcfw get sparkapplications 2>&1 | grep -P "^${APP_NAME}\s" > /dev/null; then
-              break
-          fi
-          if (( EPOCH - LAST_LOGGED > 60 )); then
-              log "...still waiting for previous run's sparkapplication $APP_NAME to delete.";
-              events
-              LAST_LOGGED=${EPOCH}
-          fi;
-          sleep 1
-      done
-      while true; do
-          EPOCH=$(epoch)
-          # No output matching selector means no more pods are running
-          if ! kcfw get pod -l $SELECTOR | grep -P '.+' > /dev/null; then
-              break
-          fi
-          if (( EPOCH - LAST_LOGGED > 60 )); then
-              log "...still waiting for previous run's pods to delete.";
-              events
-              LAST_LOGGED=${EPOCH}
-          fi;
-          sleep 1
+      log "Cleaning up SparkApplication/Pod older than 24 hours from prior runs."
+      # https://stackoverflow.com/questions/48934491/kubernetes-how-to-delete-pods-based-on-age-creation-time
+      APPS=$(kcfw get sparkapplication -o go-template='{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d'now-1 hours' -Ins --utc | sed 's/+0000/Z/')'" { print $1 }')
+      for APP in ${APPS}; do
+          PODSELECTOR="sparkoperator.k8s.io/app-name=${APP}"
+          kcfw_log delete sparkapplication ${APP}
+          kcfw_log delete pod -l ${PODSELECTOR}
       done
 
       # ------ Run ---------
@@ -516,14 +496,14 @@ items:
           - -includeCommandOutput=true
           env:
           - name: DOCKER_TAG
-            value: jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-12-2-itest
+            value: "4"
           - name: S3_PROXY_HOST
             value: public0-proxy1-0-prd.data.sfdc.net
           - name: DRIVER_SERVICE_ACCOUNT
             value: spark-driver-flowsnake-watchdog
           - name: DOCKER_REGISTRY
             value: ops0-artifactrepo2-0-prd.data.sfdc.net
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:jenkins-dva-transformation-spark-on-k8s-sample-apps-PR-12-2-itest
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-spark-on-k8s-integration-test-runner:4
           imagePullPolicy: IfNotPresent
           name: watchdog
           resources:

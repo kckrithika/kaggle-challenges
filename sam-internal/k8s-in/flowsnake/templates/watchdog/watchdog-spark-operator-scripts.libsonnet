@@ -9,9 +9,7 @@ local flowsnake_images = import "flowsnake_images.jsonnet";
 # namespace, add an item to the list of configmap specs with the new name and namespace.
 
 local configmap_data =
-    (if std.objectHas(flowsnake_images.feature_flags, "interaction_test_script_change") then
-        {"check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-tmp.sh",} 
-    else if std.objectHas(flowsnake_images.feature_flags, "spark_operator_watchdog_parallel_run") then
+    (if std.objectHas(flowsnake_images.feature_flags, "spark_operator_watchdog_parallel_run") then
         {"check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s-test.sh",}
     else
         {"check-spark-operator.sh": importstr "spark-on-k8s-canary-scripts/watchdog-spark-on-k8s.sh",})
