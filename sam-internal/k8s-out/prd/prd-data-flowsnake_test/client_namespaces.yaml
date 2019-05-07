@@ -8,7 +8,18 @@ items:
       sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
+      spark-operator-webhook: enabled
     name: carl-spark-test
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    annotations:
+      sfdc.net/flowsnake.owner_name: Kevin - Testing
+      sfdc.net/pki-namespace: flowsnake_test
+    labels:
+      madkub-injector: enabled
+      spark-operator-webhook: enabled
+    name: kh-spark-test
 - apiVersion: v1
   kind: Namespace
   metadata:
@@ -17,6 +28,7 @@ items:
       sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
+      spark-operator-webhook: enabled
     name: flowsnake-test
 - apiVersion: v1
   kind: Namespace
@@ -26,6 +38,7 @@ items:
       sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
+      spark-operator-webhook: enabled
     name: flowsnake-watchdog
 kind: List
 metadata: {}

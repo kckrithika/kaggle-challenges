@@ -1,5 +1,7 @@
 local flowsnake_clients = import "flowsnake_direct_clients.jsonnet";
+local flowsnake_images = import "flowsnake_images.jsonnet";
 
+local operator_selector = std.objectHas(flowsnake_images.feature_flags, "spark_operator_selector");
 if std.length(flowsnake_clients.clients) > 0 then (
 {
     apiVersion: "v1",
@@ -17,7 +19,9 @@ if std.length(flowsnake_clients.clients) > 0 then (
                  },
                 labels: {
                     "madkub-injector": "enabled",
-                },
+                } + (if operator_selector then {
+                    "spark-operator-webhook": "enabled",
+                } else {}),
             },
         }
         for client in flowsnake_clients.clients

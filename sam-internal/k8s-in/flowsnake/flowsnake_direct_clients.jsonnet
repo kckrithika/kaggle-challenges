@@ -51,6 +51,12 @@ local wave_elt_production = {
                 pki_namespace: "flowsnake_test",
                 users: ["cmeister-ltm.internal.salesforce.com", "flowsnake_test.cmeister"],
             },
+            {
+                owner_name: "Kevin - Testing",
+                namespace: "kh-spark-test",
+                pki_namespace: "flowsnake_test",
+                users: ["khogeland-ltm.internal.salesforce.com", "flowsnake_test.khogeland"],
+            },
         ],
 
         # ------------------------------------
