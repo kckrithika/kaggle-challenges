@@ -41,6 +41,7 @@ system:
         - name: sfproxy-certs
           emptyDir:
             medium: Memory
+      serviceAccountName: slbpccertdeployer
   loadbalancers:
     - lbname: pets
       function: sam-gcp-pets-app
