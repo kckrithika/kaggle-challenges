@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: poetry-gen-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aramnani/poetry-gen:aramnani-20190506-9bc4df8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aramnani/poetry-gen:aramnani-20190507-56bb4fb
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -21,12 +21,12 @@ system:
         initialDelaySeconds: 30
         httpGet:
           path: /rest/phrase
-          port: 8080
+          port: 8181
       readinessProbe:
         timeoutSeconds: 10
         httpGet:
           path: /rest/phrase
-          port: 8080
+          port: 8181
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
