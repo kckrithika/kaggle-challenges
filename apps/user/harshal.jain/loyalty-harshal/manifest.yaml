@@ -1,22 +1,31 @@
 apiVersion: v1
+
 system:
   functions:
-  - name: default
-    count: 1
-    containers:
-    - name: samhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/harshal.jain/loyalty-harshal:harshal.jain-20190506-2b6d7ff
-      ports:
-      - containerPort: 9090
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
-  loadbalancers:
-  - lbname: samhellolb
-    function: default
-    slbenabled: true
-    ports:
-      - port: 9090
-        targetport: 9090
-        lbtype: tcp
+    - name: helloworld
+      count: 1
+      containers:
+        - name: helloworld-service
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/harshal.jain/loyalty-harshal:harshal.jain-20190506-2b6d7ff
+          # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+          ports:
+            - containerPort: 8080
+              name: scone-http
+            - containerPort: 7020
+              name: grpc-svc
+            - containerPort: 15372
+              name: scone-mgmt
+          livenessProbe:
+            initialDelaySeconds: 30
+            httpGet:
+              path: /basicrest
+              port: 8080
+          readinessProbe:
+            timeoutSeconds: 10
+            httpGet:
+              path: /basicrest
+              port: 8080
+
+      # The volumes to mount for shipping logs to splunk
+      # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+      volumes:
