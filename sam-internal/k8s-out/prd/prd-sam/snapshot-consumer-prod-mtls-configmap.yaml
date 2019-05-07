@@ -7,7 +7,7 @@ data:
       "clientCertFile": "/cert1/client/certificates/client.pem",
       "clientKeyFile": "/cert1/client/keys/client-key.pem",
       "consumeTableName": "consume",
-      "dbHostname": "mysql-pure-cache-0.mysql-inmem-service.sam-system",
+      "dbHostname": "mysql-inmem-service.sam-system.prd-sam.prd.slb.sfdc.net",
       "dbPasswordFile": "/var/mysqlPwd/ssc-prod",
       "dbUsername": "ssc-prod",
       "enableKafkaClientAuth": true,

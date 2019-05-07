@@ -36,7 +36,7 @@ if configs.estate == "prd-sam" then configs.deploymentBase("sam") {
                             "--alsologtostderr",
                             "--port=64212",
                             "--queryFile=/var/queries/sam-sql-queries.json",
-                            "--dbHostname=mysql-inmem-read.sam-system",
+                            "--dbHostname=mysql-inmem-service.sam-system.prd-sam.prd.slb.sfdc.net",
                             "--dbUsername=reporter",
                         ],
                         command: [

@@ -6,7 +6,7 @@ data:
       "commenter-test-mode-authors": [
         "benjamin-caldwell"
       ],
-      "db-hostname": "mysql-pure-cache-0.mysql-inmem-service.sam-system",
+      "db-hostname": "mysql-inmem-service.sam-system.prd-sam.prd.slb.sfdc.net",
       "db-name": "sam_kube_resource",
       "db-password-file": "/var/mysqlPwd/mani-repo-watch",
       "db-username": "mani-repo-watch",
