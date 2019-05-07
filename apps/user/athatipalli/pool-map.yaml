@@ -1,6 +1,5 @@
 apps:
   mgmt-db:
-  - prd/prd-sam
   mgmt-api:
   - prd/prd-sam
   mgmt-policydesigner:
