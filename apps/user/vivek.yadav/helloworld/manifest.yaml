@@ -20,13 +20,13 @@ system:
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
-          path: /manage/health
-          port: 15372
+          path: /hello
+          port: 8080
       readinessProbe:
         timeoutSeconds: 10
         httpGet:
-          path: /manage/ready
-          port: 15372
+          path: /hello
+          port: 8080
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
       image: sfci/servicelibs/beacon:cec13ceb9fc5aed0ce462031a01b2dd5ef73d5ee
@@ -89,4 +89,3 @@ system:
     - name: sherpaservercert
       maddogCert:
         type: server
-
