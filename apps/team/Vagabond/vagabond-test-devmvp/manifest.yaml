@@ -24,7 +24,7 @@ system:
        - name: TORESTART
          value: 1
       volumeMounts:
-      - name: acs-data-volume
+      - name: acs-test-data-volume
         mountPath: /home/sfdc-acs/data
       livenessProbe:
         httpGet:
@@ -88,9 +88,9 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
-    lbname: acs-stateful-ilb
+    lbname: acs-test-stateful-ilb
     volumeClaimTemplates:
-    - name: acs-data-volume
+    - name: acs-test-data-volume
       storageClassName: faster
       storageSizeRequest: 10Gi
     volumes:
