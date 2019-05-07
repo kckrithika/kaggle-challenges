@@ -23,7 +23,7 @@ system:
               memory: 4Gi
           env:
             - name: SHELL
-              value: "/bin/bash"
+              value: "/bin/sh"
             - name: UP_STRING
               value: "Policydesigner Server Blocking."
             - name: SERVERPORT
