@@ -101,7 +101,7 @@ system:
     - env:
       - name: CASAM_SETTINGS_PATH
         value: mist.mist61.prd.na7.app
-      image: sfci/casam/coreapp_overrides:e0b81b
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/coreapp_overrides:jbratton
       livenessProbe:
         exec:
           command:
@@ -176,6 +176,13 @@ system:
     identity:
       pod: na7
       serviceName: app
+    labels:
+      app: app
+      settings_path: mist.mist61.prd.na7.app
+      superpod: sp2
+    annotations:
+      sidecar.istio.io/inject: "true"
+      routing.mesh.sfdc.net/enabled: "true"
     name: na7-mist61app-prd
     progressDeadlineSeconds: 300
     strategy:
