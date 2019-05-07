@@ -48,6 +48,9 @@ spec:
             },
             {
              "cert-type": "server",
+             "ip": [
+              "127.0.0.1"
+             ],
              "kingdom": "mvp",
              "name": "server-certs",
              "role": "topology-svc",

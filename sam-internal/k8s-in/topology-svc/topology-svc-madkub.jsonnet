@@ -65,6 +65,7 @@
         superpod: null,
         role: 'topology-svc',
         san: ["topology.vip.core.test.us-central1.gcp.sfdc.net", "10.130.2.66", "10.130.2.77", "topology.vip.core.test2.us-central1.gcp.sfdc.net", "server.gcp-uscentral1.cluster.local"],
+        ip: ["127.0.0.1"],
       },
     },
     'peer-certs': {

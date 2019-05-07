@@ -7,7 +7,7 @@ metadata:
   namespace: topology-svc
 spec:
   podManagementPolicy: Parallel
-  replicas: 0
+  replicas: 3
   selector:
     matchLabels:
       app: consul-test-server
@@ -18,6 +18,20 @@ spec:
         madkub.sam.sfdc.net/allcerts: |-
           {
            "certreqs": [
+            {
+             "cert-type": "client",
+             "kingdom": "mvp",
+             "name": "cert1",
+             "role": "topology-svc",
+             "san": [
+              "topology.vip.core.test.us-central1.gcp.sfdc.net",
+              "10.130.2.66",
+              "10.130.2.77",
+              "topology.vip.core.test2.us-central1.gcp.sfdc.net",
+              "server.gcp-uscentral1.cluster.local"
+             ],
+             "superpod": null
+            },
             {
              "cert-type": "client",
              "kingdom": "mvp",
@@ -34,6 +48,9 @@ spec:
             },
             {
              "cert-type": "server",
+             "ip": [
+              "127.0.0.1"
+             ],
              "kingdom": "mvp",
              "name": "server-certs",
              "role": "topology-svc",
@@ -77,7 +94,7 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: CONSUL_HTTP_ADDR
-          value: https://consul-test-headless:8501
+          value: https://127.0.0.1:8501
         - name: CONSUL_CACERT
           value: /config/cacerts.pem
         - name: CONSUL_CLIENT_CERT
@@ -85,7 +102,7 @@ spec:
         - name: CONSUL_CLIENT_KEY
           value: /config/client-key.pem
         - name: Rand-val
-          value: "50"
+          value: "51"
         image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:https-20190505-8
         lifecycle:
           preStop:
@@ -112,6 +129,8 @@ spec:
         volumeMounts:
         - mountPath: /consul/data
           name: consul-data-volume
+        - mountPath: /cert1
+          name: cert1
         - mountPath: /client-certs
           name: tls-client-cert
         - mountPath: /server-certs
@@ -122,6 +141,7 @@ spec:
         - --maddog-endpoint=https://10.168.192.190:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=cert1:/cert1/
         - --cert-folders=client-certs:/client-certs/
         - --cert-folders=server-certs:/server-certs/
         - --token-folder=/tokens/
@@ -149,6 +169,8 @@ spec:
         name: madkub-refresher
         resources: {}
         volumeMounts:
+        - mountPath: /cert1
+          name: cert1
         - mountPath: /client-certs
           name: tls-client-cert
         - mountPath: /server-certs
@@ -165,6 +187,7 @@ spec:
         - --maddog-endpoint=https://10.168.192.190:8443
         - --maddog-server-ca=/maddog-certs/ca/security-ca.pem
         - --madkub-server-ca=/maddog-certs/ca/cacerts.pem
+        - --cert-folders=cert1:/cert1/
         - --cert-folders=client-certs:/client-certs/
         - --cert-folders=server-certs:/server-certs/
         - --token-folder=/tokens/
@@ -189,6 +212,8 @@ spec:
         imagePullPolicy: IfNotPresent
         name: madkub-init
         volumeMounts:
+        - mountPath: /cert1
+          name: cert1
         - mountPath: /client-certs
           name: tls-client-cert
         - mountPath: /server-certs
@@ -225,6 +250,9 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - emptyDir:
+          medium: Memory
+        name: cert1
       - emptyDir:
           medium: Memory
         name: tls-client-cert
