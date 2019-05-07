@@ -98,5 +98,6 @@ system:
         targetport: 15372
       - port: 7443
         targetport: 7443
+        name: syncmaster
 
 

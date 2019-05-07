@@ -92,6 +92,7 @@ system:
       targetport: 7012
     - port: 7443
       targetport: 7443
+      name: ynagata-ordering
     - port: 8080
       targetport: 8080
     - port: 4444
