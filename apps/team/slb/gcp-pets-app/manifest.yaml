@@ -2,22 +2,50 @@ apiVersion: v1
 
 system:
   functions:
-  - name: sam-gcp-pets-app
-    count: 2
-    containers:
-    - name: pets-app
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tkuznets/docker-pets:toli
-      ports:
-      - containerPort: 5000
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 5000
+    - name: sam-gcp-pets-app
+      count: 2
+      containers:
+        - name: pets-app
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/tkuznets/docker-pets:toli
+          ports:
+          - containerPort: 5000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+        - name: slb-cert-deployer
+          image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/slb/hyperslb:2150-0c4500644a8cb64f8f39a29118c3cdb397debcb6
+          command:
+            - /sdn/slb-pc-cert-deployer
+            - --custCertsDir=/sfproxy-certs
+            - --cafile=/client-certs/ca.pem
+            - --certfile=/client-certs/client/certificates/client.pem
+            - --keyfile=/client-certs/client/keys/client-key.pem
+            - --monitorFrequency=30s
+          livenessProbe:
+            exec:
+              command:
+              - echo 
+              - OK
+            initialDelaySeconds: 900
+            periodSeconds: 60
+          volumeMounts:
+            - name: client-certs
+              mountPath: /client-certs
+            - name: sfproxy-certs
+              mountPath: /sfproxy-certs
+      volumes:
+        - name: client-certs
+          maddogCert:
+            type: client
+        - name: sfproxy-certs
+          emptyDir:
+            medium: Memory
   loadbalancers:
-  - lbname: pets
-    function: sam-gcp-pets-app
-    nodeExposed: true
-    slbenabled: true
-    ports:
-    - port: 50000
-      targetport: 5000
+    - lbname: pets
+      function: sam-gcp-pets-app
+      nodeExposed: true
+      slbenabled: true
+      ports:
+        - port: 50000
+          targetport: 5000
