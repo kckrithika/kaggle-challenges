@@ -105,25 +105,3 @@
     healthport: 80
     healthprotocol: tcp
     lbalgorithm: roundrobin
-- lbname: ceph0-dash-prd
-  customlbname: ceph0-dash-prd
-  servers:
-    - ceph0rdi-mon1-1-prd.eng.sfdc.net
-    - ceph0rdi-mon2-1-prd.eng.sfdc.net
-    - ceph0rdi-mon3-1-prd.eng.sfdc.net
-  ports:
-    - port: 80
-      targetport: 7000
-      lbtype: http
-      tls: false
-- lbname: virdev301-dash-prd
-  customlbname: virdev301-dash-prd
-  servers:
-    - virdev301-openstvmh1-29-prd.eng.sfdc.net
-    - virdev301-openstvmh1-30-prd.eng.sfdc.net
-    - virdev301-openstvmh1-31-prd.eng.sfdc.net
-  ports:
-    - port: 80
-      targetport: 7000
-      lbtype: http
-      tls: false
