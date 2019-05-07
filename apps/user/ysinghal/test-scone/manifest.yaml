@@ -4,14 +4,14 @@ apiVersion: v1
 
 system:
   functions:
-  - name: loyalty-gen
+  - name: test-scone
     count: 1
     containers:
-    - name: loyalty-gen-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ysinghal/test-scone:ys-2
+    - name: test-scone-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ysinghal/test-scone-3:ys-2
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
-      - containerPort: 8080
+      - containerPort: 8181
         name: scone-http
       - containerPort: 7020
         name: grpc-svc
@@ -21,12 +21,12 @@ system:
         initialDelaySeconds: 30
         httpGet:
           path: /
-          port: 8080
+          port: 8181
       readinessProbe:
         timeoutSeconds: 10
         httpGet:
           path: /
-          port: 8080
+          port: 8181
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
