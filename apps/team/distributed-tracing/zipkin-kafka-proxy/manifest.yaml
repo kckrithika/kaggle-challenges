@@ -102,3 +102,12 @@ system:
             exec:
                 command:
                 - "/home/scone/is-alive.sh"            
+
+    loadbalancers:
+    - lbname: zipkin-kafka-proxy
+      function: zipkin-kafka-proxy
+      slbEnabled: true
+      ports:
+        - port: 80
+          targetport: 7014
+          lbtype: http
