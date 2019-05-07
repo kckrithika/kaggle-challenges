@@ -3,3 +3,5 @@ apps:
     - mvp/gsf-core-devmvp-sam2-sam
   gcp-devmvp-vagabond-test-client:
     - mvp/gsf-core-devmvp-sam2-sam
+  vagabond-test-devmvp:
+    - mvp/gsf-core-devmvp-sam2-sam
