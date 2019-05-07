@@ -21,6 +21,8 @@ system:
         --zookeeper.seedHosts=10.168.160.76:2181
         --scone.dev-mode=true
         --routes.frontProxyAddClientIpHeader=true
+        --metrics.funnelEndPointURL=http://funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net
+        --metrics.startPublisher=true
       "]
       env:
       - name: SFDC_ENVIRONMENT
