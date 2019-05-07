@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
+      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -22,13 +22,15 @@ system:
       - "-promotion.intervalTime=1h"
       - "-promotion.minBakeTime=1h"
       - "-promotion.singlephase=false"
+      - "-heartbeat.defaultdecayduration=10m"
       ports:
       - containerPort: 8080
       livenessProbe:
         httpGet:
-          path: /
+          path: /healthz
           port: 8080
-        initialDelaySeconds: 60
+        initialDelaySeconds: 600
+        periodSeconds: 60
       volumeMounts:
       - mountPath: /secrets
         name: deployerbot-ghe-pat
@@ -40,7 +42,7 @@ system:
         name: slb-private-slack-notification
         readOnly: true
     - name: imagedeployer-hyperslb
-      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
+      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -51,14 +53,18 @@ system:
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
       - "-imageRegistryImageSource=dva"
+      - "-heartbeat.defaultdecayduration=3m"
+      - "-livenessProbePort=8081"
+      ports:
+      - containerPort: 8081
       livenessProbe:
-        exec:
-          command: ["ls", "/"]
-        failureThreshold: 3
-        initialDelaySeconds: 5
+        httpGet:
+          path: /liveness-probe
+          port: 8081
+        initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-nginx
-      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
+      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -69,14 +75,18 @@ system:
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
       - "-imageRegistryImageSource=dva"
+      - "-heartbeat.defaultdecayduration=3m"
+      - "-livenessProbePort=8082"
+      ports:
+      - containerPort: 8082
       livenessProbe:
-        exec:
-          command: ["ls", "/"]
-        failureThreshold: 3
-        initialDelaySeconds: 5
+        httpGet:
+          path: /liveness-probe
+          port: 8082
+        initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-nginx-kms
-      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
+      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -87,11 +97,15 @@ system:
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
       - "-imageRegistryImageSource=dva"
+      - "-heartbeat.defaultdecayduration=3m"
+      - "-livenessProbePort=8083"
+      ports:
+      - containerPort: 8083
       livenessProbe:
-        exec:
-          command: ["ls", "/"]
-        failureThreshold: 3
-        initialDelaySeconds: 5
+        httpGet:
+          path: /liveness-probe
+          port: 8083
+        initialDelaySeconds: 180
         periodSeconds: 60
     volumes:
     - name: deployerbot-ghe-pat
@@ -107,7 +121,7 @@ system:
     count: 1
     containers:
     - name: deployerbot
-      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
+      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
       env:
       - name: GO_PIPELINE_LABEL
         value: 1
@@ -123,13 +137,15 @@ system:
       - "-promotion.intervalTime=1h"
       - "-promotion.minBakeTime=12h"
       - "-promotion.singlephase=true"
+      - "-heartbeat.defaultdecayduration=10m"
       ports:
       - containerPort: 8080
       livenessProbe:
         httpGet:
-          path: /
+          path: /healthz
           port: 8080
-        initialDelaySeconds: 60
+        initialDelaySeconds: 600
+        periodSeconds: 60
       volumeMounts:
       - mountPath: /secrets
         name: deployerbot-ghe-pat
@@ -141,7 +157,7 @@ system:
         name: sam-slack-notification
         readOnly: true
     - name: imagedeployer-hypersam
-      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
+      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -152,14 +168,18 @@ system:
       - "-samInternalTeamName=SAM"
       - "-targetPhaseNumber=1"
       - "-imageRegistryImageSource=dva"
+      - "-heartbeat.defaultdecayduration=3m"
+      - "-livenessProbePort=8081"
+      ports:
+      - containerPort: 8081
       livenessProbe:
-        exec:
-          command: ["ls", "/"]
-        failureThreshold: 3
-        initialDelaySeconds: 5
+        httpGet:
+          path: /liveness-probe
+          port: 8081
+        initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-madkub
-      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
+      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -170,14 +190,18 @@ system:
       - "-samInternalTeamName=SAM"
       - "-targetPhaseNumber=1"
       - "-imageRegistryImageSource=tnrp"
+      - "-heartbeat.defaultdecayduration=3m"
+      - "-livenessProbePort=8082"
+      ports:
+      - containerPort: 8082
       livenessProbe:
-        exec:
-          command: ["ls", "/"]
-        failureThreshold: 3
-        initialDelaySeconds: 5
+        httpGet:
+          path: /liveness-probe
+          port: 8082
+        initialDelaySeconds: 180
         periodSeconds: 60
     - name: imagedeployer-madkub-sidecar
-      image: dva/moe/deployerbot:2130-242877bee0a2441120c73f5d5e3cbb9d91577394
+      image: dva/moe/deployerbot:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
       command: ["/moe/imagedeployer"]
       args:
       - "-deployerbotServiceEndpoint=http://localhost:8080/deploy"
@@ -188,11 +212,15 @@ system:
       - "-samInternalTeamName=SAM"
       - "-targetPhaseNumber=1"
       - "-imageRegistryImageSource=tnrp"
+      - "-heartbeat.defaultdecayduration=3m"
+      - "-livenessProbePort=8083"
+      ports:
+      - containerPort: 8083
       livenessProbe:
-        exec:
-          command: ["ls", "/"]
-        failureThreshold: 3
-        initialDelaySeconds: 5
+        httpGet:
+          path: /liveness-probe
+          port: 8083
+        initialDelaySeconds: 180
         periodSeconds: 60
     volumes:
     - name: deployerbot-ghe-pat

@@ -6,23 +6,25 @@ system:
     count: 1
     containers:
     - name: speedometer
-      image: dva/moe/speedometer:2120-b7a982fc45a9fe7ee151e7a1b03d3f50264ce9a3
+      image: dva/moe/speedometer:2153-917f288240dd5ccfdc4ecfc9bef83a3abb8a2e55
       command: ["/moe/speedometer"]
       args:
-      - "-gheTokenPath"
-      - "/secrets/ghe_pat"
-      - "-log_dir"
-      - "/host/data/speedometer/logs"
-      - "-imagePrefixMapPath"
-      - "image_prefixes.yaml"
-      - "-webfilesPath"
-      - "/moe/webfiles"
+      - "-gheTokenPath=/secrets/ghe_pat"
+      - "-log_dir=/host/data/speedometer/logs"
+      - "-imagePrefixMapPath=image_prefixes.yaml"
+      - "-webfilesPath=/moe/webfiles"
+      - "-heartbeat.defaultdecayduration=45m"
       ports:
       - containerPort: 8080
       livenessProbe:
         httpGet:
-          path: /
+          path: /healthz
           port: 8080
+        # Speedometer typically takes 30 - 40 minutes for a single loop:
+        # https://argus-ui.data.sfdc.net/argus/#/viewmetrics?expression=DOWNSAMPLE(-14d:slb.speedometer.PRD.NONE.prd-sam:agingcodevelocity.Deployment.sam-system.slb-ipvs%7Bcontainer%3Dslb-ipvs-processor%7D:avg,%2345m-count%23)
+        # Allow it 45 minutes to pulse the first heartbeat. Check every 60 seconds afterwards (the heartbeat decay is set to 45m above).
+        initialDelaySeconds: 2700
+        periodSeconds: 60
       volumeMounts:
       - mountPath: /host/data/speedometer/logs
         name: logvol
