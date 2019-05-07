@@ -4,7 +4,7 @@ local topologysvcimages = (import 'topology-svc-images.jsonnet') + { templateFil
 local madkub = (import 'topology-svc-madkub.jsonnet') + { templateFilename:: std.thisFile };
 local topologysvcNamespace = 'topology-svc';
 
-local certDirs = ['client-certs', 'server-certs'];
+local certDirs = ['cert1', 'client-certs', 'server-certs'];
 
 local initContainers = [
   madkub.madkubInitContainer(certDirs),
@@ -31,7 +31,7 @@ local consulEnvParams = [
   },
   {
     name: 'CONSUL_HTTP_ADDR',
-    value: 'https://consul-test-headless:8501',
+    value: 'https://127.0.0.1:8501',
   },
   {
     name: 'CONSUL_CACERT',
@@ -47,7 +47,7 @@ local consulEnvParams = [
   },
   {
     name: 'Rand-val',
-    value: '50',
+    value: '51',
   },
 ];
 
@@ -109,7 +109,7 @@ if configs.kingdom == 'mvp' then {
                 },
             },
         ],
-    replicas: 0,
+    replicas: 3,
     selector: {
       matchLabels: {
         app: 'consul-test-server',
