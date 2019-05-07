@@ -1,0 +1,94 @@
+apiVersion: v1
+system:
+  functions:
+    - name: istio-gater
+      count: 1
+      labels:
+        app: istio-gater
+      annotations:
+        "routing.mesh.sfdc.net/enabled": "true"
+      containers:
+        - name: gater1
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gate-manager:1.14.1-SNAPSHOT_20190429_168_3b875bb
+          args:
+            - --server.port=9090
+            - --logging.level.com.zaxxer.hikari=debug
+            - --spring.datasource.hikari.maximumPoolSize=6
+            - --spring.datasource.hikari.minimumIdle=5
+            - --spring.datasource.hikari.leakDetectionThreshold=10000
+            - --gater-service.thread.pool.max-size=0
+            - --scone.detectsidecars=false
+            - --synctask.host-affinity=false
+          ports:
+            - containerPort: 7020
+            - containerPort: 9522
+            - containerPort: 9523
+            - containerPort: 9090
+            - containerPort: 15372
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: blitz
+          volumeMounts:
+            - mountPath: /log
+              name: logvol
+            - mountPath: /fastdata/gater
+              name: dbvol
+          livenessProbe:
+            httpGet:
+              path: /manage/health
+              port: 15372
+            initialDelaySeconds: 60
+            timeoutSeconds: 10
+        - name: sherpa
+          image: sfci/servicelibs/sherpa-envoy:1.0.3
+          ports:
+            - name: http2-in
+              containerPort: 7012
+            - name: http2-tls-in
+              containerPort: 7443
+            - name: sherpa-adm
+              containerPort: 15373
+          volumeMounts:
+            - mountPath: /client-certs
+              name: tls-client-cert
+            - mountPath: /server-certs
+              name: tls-server-cert
+          livenessProbe:
+            exec:
+              command:
+                - ./bin/is-alive
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+                - ./bin/is-ready
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          terminationMessagePolicy: FallbackToLogsOnError
+      volumes:
+        - name: logvol
+          hostPath:
+            path: /home/sfdc-gater/logs
+        - name: dbvol
+          hostPath:
+            path: /home/sfdc-gater/db
+        - name: tls-client-cert
+          maddogCert:
+            type: client
+        - name: tls-server-cert
+          maddogCert:
+            type: server
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxUnavailable: 1
+  loadbalancers:
+    - lbname: istio-gater
+      function: istio-gater
+      ports:
+        - lbtype: dsr
+          port: 7443
+          targetport: 7443
+          name: grpc-gater
+
