@@ -15,6 +15,7 @@ system:
         - --dataroot=/home/sfdc-acs/data
         - --servicePort=7022
         - --mesh
+        - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       ports:
       - containerPort: 7022
         name: http
