@@ -75,8 +75,6 @@ spec:
         - 30m
         - --log_output_level
         - info
-        - --appNamespace
-        - service-mesh
         env:
         - name: ESTATE
           value: prd-sam_gater

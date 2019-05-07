@@ -121,8 +121,6 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
               "30m",
               "--log_output_level",
               "info",
-              "--appNamespace",
-              "service-mesh",
             ],
             env: [
               {
