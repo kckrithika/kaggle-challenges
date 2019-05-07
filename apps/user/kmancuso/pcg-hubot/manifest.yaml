@@ -7,7 +7,7 @@ system:
     count: 1
     containers:
     - name: pcg-hubot
-      image: dva-registry.internal.salesforce.com/dva/pcg-mrpotatobot:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kmancuso/pcg-mrpotatobot:latest
       command: ["/opt/mrpotatobot/run.sh"]
       ports:
         - containerPort: 8080
