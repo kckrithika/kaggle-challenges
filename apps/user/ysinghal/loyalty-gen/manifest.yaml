@@ -20,13 +20,13 @@ system:
       livenessProbe:
         initialDelaySeconds: 30
         httpGet:
-          path: /manage/health
-          port: 15372
+          path: /
+          port: 8080
       readinessProbe:
         timeoutSeconds: 10
         httpGet:
-          path: /manage/ready
-          port: 15372
+          path: /
+          port: 8080
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
