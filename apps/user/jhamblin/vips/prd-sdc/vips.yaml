@@ -1,8 +1,0 @@
-- lbname: slbminion-ssh
-  servers:
-  - 10.253.152.188
-  - 10.253.152.133
-  ports:
-  - port: 22
-    targetport: 22
-    lbtype: tcp
