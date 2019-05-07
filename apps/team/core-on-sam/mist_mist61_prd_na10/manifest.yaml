@@ -67,7 +67,7 @@ system:
         exec:
           command:
           - /home/sfdc/salesforce/casam/bin/live_probe.sh
-        failureThreshold: 60
+        failureThreshold: 180
         initialDelaySeconds: 120
         periodSeconds: 5
         timeoutSeconds: 5
@@ -82,7 +82,7 @@ system:
         exec:
           command:
           - /home/sfdc/salesforce/casam/bin/ready_probe.sh
-        failureThreshold: 60
+        failureThreshold: 180
         initialDelaySeconds: 120
         periodSeconds: 5
         timeoutSeconds: 5
