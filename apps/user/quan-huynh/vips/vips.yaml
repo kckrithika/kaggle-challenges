@@ -1,8 +1,6 @@
 - lbname: es-baremetal-test
   servers:
-   - shared0-samminionzipkin2-2-prd.eng.sfdc.net
-   - shared0-samminionzipkin2-4-prd.eng.sfdc.net
-   - shared0-samminionzipkin2-11-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-5-prd.eng.sfdc.net
   ports:
    - port: 9200
      targetport: 9200
@@ -11,4 +9,4 @@
      tls: true
      # reencrypt indicates if the connection between the load balancer and the backend should be 
      # encrypted. For end-to-end encryption, both tls and reencrypt should be set to true.
-     reencrypt: false
+     reencrypt: true
