@@ -13,8 +13,19 @@ system:
           path: /ping.jsp
           port: 8080
         initialDelaySeconds: 500 
-        periodSeconds: 5
-
+        periodSeconds: 30
+      volumeMounts:
+      - mountPath: /home/sfdc/logs
+        name: logs
+      - mountPath: /home/sdfc/unpackeddata
+        name: unpackeddata      
+    volumes:
+    - name: logs
+      hostPath:
+        path: /var/log/pbsgeo/logs
+    - name: unpackeddata        
+      hostPath:
+        path: /mnt/disks/ssd0/data/pbsgeo/unpackeddata 
   loadbalancers:
   - lbname: pbsgeolb
     function: default
