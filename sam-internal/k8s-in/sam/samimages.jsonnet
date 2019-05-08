@@ -42,6 +42,38 @@ local samreleases = import "samreleases.json";
         #[xiao.zhou] Override Synthetic watchdog so the alert won't go off
         "frf,frf-sam,watchdog-synthetic,hypersam": "2688-26c72ce1be33f92fc7bc5441c0a5ff668c961d78",
 
+        #[d.smith] Override kuberesource checker
+        "prd,prd-sam,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "prd,prd-samdev,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "prd,prd-samtest,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "prd,prd-samtwo,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "prd,prd-sdc,watchdog-kuberesource,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "cdg,cdg-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "cdu,cdu-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "chx,chx-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "dfw,dfw-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "fra,fra-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "frf,frf-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "hio,hio-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "hnd,hnd-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "ia2,ia2-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "iad,iad-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "io2,io2-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "io3,io3-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "mvp,mvp-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "ord,ord-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "par,par-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "ph2,ph2-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "phx,phx-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "prd,prd-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "syd,syd-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "ttd,ttd-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "ukb,ukb-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "wax,wax-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "xrd,xrd-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "yhu,yhu-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+        "yul,yul-sam,watchdog-kuberesources,hypersam": "2712-49c6098a85641d114c3f44b4ed9f3a1be26bb7b5",
+
         #[xiao.zhou] Override crd watcher for team "secrets"
         "xrd,xrd-sam,crd-watcher,hypersam": "2690-3c76e4d1bc7bebf17bfa304fd309dc9332acd196",
 
