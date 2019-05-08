@@ -46,7 +46,7 @@ spec:
     spec:
       automountServiceAccountToken: false
       containers:
-      - image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/sfdc_rsyslog_gcp:14-48abf489cb1e3e36afc9d1d3ce4c14feb2ca07aa
+      - image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/sfdc_rsyslog_gcp:15-c26e7af384d606b4862ac824610530b26b5ac579
         livenessProbe:
           exec:
             command:
@@ -481,7 +481,7 @@ spec:
         - -N1
         - -f
         - /etc/rsyslog.conf
-        image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/sfdc_rsyslog_gcp:14-48abf489cb1e3e36afc9d1d3ce4c14feb2ca07aa
+        image: gcr.io/gsf-mgmt-devmvp-spinnaker/dva/sfdc_rsyslog_gcp:15-c26e7af384d606b4862ac824610530b26b5ac579
         name: config-check
         volumeMounts:
         - mountPath: /etc/rsyslog.conf
