@@ -55,8 +55,6 @@ system:
         value: 100
       - name: LOG_LINES_ENVIRONMENTS
         value: mist
-      - name: ALLOWED_STUB_AUDIENCE
-        value: core/mist60ice1/00Dx00000005SyTEAU$Default Group
       - name: USE_CC_PROXY
         value: false
       - name: JVM_ARGS
