@@ -1,5 +1,3 @@
 version: v2
 
 apps:
-  experiment-manager:
-   - name: prd/prd-sam
