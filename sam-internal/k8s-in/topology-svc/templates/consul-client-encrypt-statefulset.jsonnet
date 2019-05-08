@@ -28,11 +28,7 @@ local consulEnvParams = [
         fieldPath: 'metadata.namespace',
       },
     },
-  },
-  {
-    name: 'CONSUL_HTTP_ADDR',
-    value: 'https://consul-encrypt-headless:8501',
-  },
+  }
   {
     name: 'CONSUL_CACERT',
     value: '/config/cacerts.pem',
