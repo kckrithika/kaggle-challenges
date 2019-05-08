@@ -12,8 +12,8 @@ system:
         httpGet:
           path: /ping.jsp
           port: 8080
-        initialDelaySeconds: 120 
-        periodSeconds: 5
+        initialDelaySeconds: 500 
+        periodSeconds: 30
   loadbalancers:
   - lbname: pbsmatchlb
     function: default
