@@ -486,6 +486,18 @@
       "access": [
         "team/CSC_Sam"
       ],
+      "controlEstate": "eks-us-east2-sam2-samtest",
+      "estate": "eks-us-east2-sam2-samtest",
+      "kingdom": "eks",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
       "controlEstate": "fra-sam",
       "estate": "fra-sam",
       "kingdom": "fra",

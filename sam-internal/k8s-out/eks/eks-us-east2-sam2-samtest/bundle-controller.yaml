@@ -1,0 +1,53 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: bundlecontroller
+    pcn: deploy
+    sam.data.sfdc.net/owner: sam
+  name: bundlecontroller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: bundlecontroller
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: bundlecontroller
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/bundlecontroller
+        - --config=/config/bundle-controller-config.json
+        - --funnelEndpoint=funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443
+        env:
+        - name: SFDCLOC_PCN_KINGDOM
+          value: eks
+        - name: SFDCLOC_PCN_ESTATE
+          value: eks-us-east2-sam2-samtest
+        - name: KUBECONFIG
+          value: ""
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:2709-2c64bef305a811db319b1982738ba42022157744
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 21546
+          initialDelaySeconds: 30
+          periodSeconds: 5
+        name: bundle-controller
+        volumeMounts:
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        pool: eks-us-east2-sam2-samtest
+      serviceAccount: sam-stack-edit
+      serviceAccountName: sam-stack-edit
+      volumes:
+      - configMap:
+          name: bundle-controller
+        name: config
