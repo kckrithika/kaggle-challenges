@@ -6,7 +6,7 @@ system:
   functions:
   - name: eaas
     # See https://salesforce.quip.com/wbjKA0Z8kZk0 for a discussion of the number of pods (8) per node (5)
-    count: 40
+    count: 5
     terminationGracePeriodSeconds: 35
     containers:
     - name: eaas
