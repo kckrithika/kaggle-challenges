@@ -69,13 +69,15 @@ spec:
         app: consul-client-test-server
     spec:
       containers:
-      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-client:topology-client-20190504-3
+      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:consul-client:20190508
         name: topology-client
         ports:
         - containerPort: 8080
           name: scone-server
         - containerPort: 8081
           name: mgmt-server
+        - containerPort: 15372
+          name: scone-mgmt
         securityContext:
           runAsNonRoot: true
           runAsUser: 7447
