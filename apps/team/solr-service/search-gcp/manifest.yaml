@@ -7,7 +7,7 @@ system:
       count: 3
       containers:
       - name: searchserver
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:18002431.483
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:18041073.518
         env:
         - name: INSTANCE_URL
           value: "https://casam.devmvp.gcp.sfdcsvc.net"
@@ -42,7 +42,7 @@ system:
         livenessProbe:
           exec:
             command:
-            - "true"
+            - ./livelinessCheck.sh
           initialDelaySeconds: 120
           periodSeconds: 5
       lbname: searchserver0
@@ -67,7 +67,7 @@ system:
       containers:
       - name: searchserver
         # image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17943610.477
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:18041073.518
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
@@ -104,7 +104,7 @@ system:
         livenessProbe:
           exec:
             command:
-            - "true"
+            - ./livelinessCheck.sh
           initialDelaySeconds: 120
           periodSeconds: 5
       lbname: searchserver1
