@@ -80,7 +80,7 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: CONSUL_HTTP_ADDR
-          value: https://consul-encrypt-headless:8501
+          value: https://127.0.0.1:8501
         - name: CONSUL_CACERT
           value: /config/cacerts.pem
         - name: CONSUL_CLIENT_CERT
@@ -89,7 +89,7 @@ spec:
           value: /config/client-key.pem
         - name: Rand-val
           value: "50"
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:https-20190505-8
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:httpsserver-20190508
         lifecycle:
           preStop:
             exec:

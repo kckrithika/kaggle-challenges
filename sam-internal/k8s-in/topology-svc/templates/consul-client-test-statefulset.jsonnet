@@ -30,10 +30,6 @@ local consulEnvParams = [
     },
   },
   {
-    name: 'CONSUL_HTTP_ADDR',
-    value: 'https://consul-test-headless:8501',
-  },
-  {
     name: 'CONSUL_CACERT',
     value: '/config/cacerts.pem',
   },
@@ -120,7 +116,7 @@ if configs.kingdom == 'mvp' then {
                 },
             },
         ],
-    replicas: 0,
+    replicas: 1,
     selector: {
       matchLabels: {
         app: 'consul-client-test-server',

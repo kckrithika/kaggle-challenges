@@ -97,21 +97,18 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
-        - name: NAMESPACE
+        - name: CONSUL_CACERT
+          value: /config/cacerts.pem
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        - name: CONSUL_HTTP_ADDR
-          value: https://consul-encrypt-headless:8501
-        - name: CONSUL_CACERT
-          value: /config/cacerts.pem
         - name: CONSUL_CLIENT_CERT
           value: /config/peer.pem
         - name: CONSUL_CLIENT_KEY
           value: /config/peer-key.pem
         - name: Rand-val
           value: "50"
-        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:https-20190505-8
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/consul-encrypt:httpsserver-20190508
         lifecycle:
           preStop:
             exec:

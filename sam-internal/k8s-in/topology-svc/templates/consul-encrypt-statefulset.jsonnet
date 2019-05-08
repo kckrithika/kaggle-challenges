@@ -31,7 +31,7 @@ local consulEnvParams = [
   },
   {
     name: 'CONSUL_HTTP_ADDR',
-    value: 'https://consul-encrypt-headless:8501',
+    value: 'https://127.0.0.1:8501',
   },
   {
     name: 'CONSUL_CACERT',
