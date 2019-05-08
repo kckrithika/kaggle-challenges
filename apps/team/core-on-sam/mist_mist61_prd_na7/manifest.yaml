@@ -448,6 +448,13 @@ system:
         type: server
       name: tls-server-cert
   loadbalancers:
+  - function: na7-mist61app-prd
+    lbname: na7-mist61app-prd
+    ports:
+    - lbtype: dsr
+      port: 8443
+      targetport: 8443
+      name: http-core
   - function: na7-mist61sfproxy-prd
     lbname: us7-sfproxy-lb
     nodeExposed: false
