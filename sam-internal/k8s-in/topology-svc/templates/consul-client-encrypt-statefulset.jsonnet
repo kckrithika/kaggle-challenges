@@ -120,7 +120,7 @@ if configs.kingdom == 'mvp' then {
                 },
             },
         ],
-    replicas: 0,
+    replicas: 1,
     selector: {
       matchLabels: {
         app: 'consul-client-encrypt-server',
