@@ -36,4 +36,8 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # Use new /healthz endpoint with heartbeating for portal liveness probes.
     portalHealthzProbe: (slbimages.hyperslb_build >= 2142),
+
+    # slb-nginx-data is generating failures because of k8s probe failures causing the process to get killed
+    # This change decreases the aggressiveness of the slb-nginx-data probe
+    tamerNginxDataProbes: (slbimages.phaseNum <= 2),
 }
