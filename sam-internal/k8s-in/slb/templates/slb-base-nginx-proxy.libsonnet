@@ -38,7 +38,11 @@
         },
         initialDelaySeconds: 5,
         periodSeconds: 3,
-      },
+      } + (if slbflights.tamerNginxDataProbes then {
+        initialDelaySeconds: 15,
+        periodSeconds: 5,
+        timeoutSeconds: 10,
+      } else {}),
     },
     slbshared.slbFileWatcher,
     madkub.madkubRefreshContainer(slbconfigs.nginx.certDirs),
