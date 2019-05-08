@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: helloworld-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/deepak.agrawal/helloworld:deag-1000001 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/deepak.agrawal/helloworld:deag-1000002
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8181
