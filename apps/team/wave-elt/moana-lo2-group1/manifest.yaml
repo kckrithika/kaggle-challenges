@@ -45,7 +45,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-7-d94cc88'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-par.data.sfdc.net/sfci/insights/moanaengine:release-8-01f8876'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
           "-XX:MaxDirectMemorySize=256M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M
