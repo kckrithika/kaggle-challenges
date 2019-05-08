@@ -19,8 +19,10 @@ system:
       - --synctask.enabled=true
       - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
       - --dt.tnrp-piperepo=ops0-artifactrepo2-0-xrd.slb.sfdc.net/443
-      - --logging.sfdc.stderr.level=ALL
+      - --logging.sfdc.stderr.level=OFF
       - --logging.json.stdout.level=DEBUG
+      - --logging.sfdc.level=OFF
+      - --logging.json.level=OFF
       ports:
       - containerPort: 7020
       - containerPort: 9522
