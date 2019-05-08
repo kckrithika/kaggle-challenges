@@ -8,6 +8,7 @@ items:
       sfdc.net/pki-namespace: flowsnake_test
     labels:
       madkub-injector: enabled
+      spark-operator-webhook: enabled
     name: flowsnake-test
 kind: List
 metadata: {}
