@@ -32,6 +32,10 @@ system:
          value: all
        - name : LOGGING_STDERR_LEVEL
          value: all
+       - name : ACDS_POLICY
+         value: "player:{name:\"Steve\",level:30}"
+       - name : ACDS_DB_CONFIG
+         value: "player:{name:\"Steve\",level: 30}"
        - name : TENANT_ADMIN_NAME
          value: "admin@local"
        - name : TENANR_ADMIN_PASSWORD
@@ -94,6 +98,8 @@ system:
          value: "20m"
        - name : ACDS_AUTO_CBC_ENABLED
          value: "true"
+       - name : ACDS_START_RELAY
+         value: "yes"
        - name : DUMMY_VARIABLE
          value: "DUMMY_VARIABLE_2"
      volumes:
