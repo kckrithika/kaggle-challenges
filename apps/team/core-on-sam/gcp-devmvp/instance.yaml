@@ -2,9 +2,9 @@ color: blue
 db:
   hostName: 10.168.160.184
   instance: NADB11-1
-  lockUser: sleepy
+  lockUser: sneezy
   sid: NADB11
-  user: sneezy
+  user: bashful
 endpoints:
   httpProxy: localhost:3128
   publicHostName: casam.devmvp.gcp.sfdcsvc.net
