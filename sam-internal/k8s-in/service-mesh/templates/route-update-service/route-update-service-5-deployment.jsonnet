@@ -42,12 +42,13 @@ configs.deploymentBase("service-mesh") {
             }, " "
           ),
           "sidecar.istio.io/inject": "true",
-           "routing.mesh.sfdc.net/enabled": "true",
+          "routing.mesh.sfdc.net/enabled": "true",
         },
         labels: {
           app: "route-update-service",
           settings_path: "test.-.prd.-.route-update-service",
           superpod: "NONE",
+          sam_function: "route-update-service",
         }
       },
       spec: configs.specWithMadDog {
