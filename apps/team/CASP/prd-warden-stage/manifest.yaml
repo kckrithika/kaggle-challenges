@@ -16,7 +16,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden-stage
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casp-warden/amal.surendran:dev-warden-May08-0506PM
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casp-warden/amal.surendran:dev-warden-May08-1026PM
         ports:
         - name: http
           containerPort: 8889
