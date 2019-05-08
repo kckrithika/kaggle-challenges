@@ -176,8 +176,9 @@ spec:
           httpGet:
             path: /
             port: 9125
-          initialDelaySeconds: 5
-          periodSeconds: 3
+          initialDelaySeconds: 15
+          periodSeconds: 5
+          timeoutSeconds: 10
         name: slb-nginx-data
         volumeMounts:
         - mountPath: /host/data/slb/slb-nginx-config-b/config
