@@ -2,6 +2,7 @@
 local configs = import 'config.jsonnet';
 local topologysvcimages = (import 'topology-svc-images.jsonnet') + { templateFilename:: std.thisFile };
 local madkub = (import 'topology-svc-madkub.jsonnet') + { templateFilename:: std.thisFile };
+local serviceMesh = (import 'topology-svc-sherpa.jsonnet') + { templateFilename:: std.thisFile };
 local topologysvcNamespace = 'topology-svc';
 
 local certDirs = ['cert1', 'client-certs', 'server-certs'];
@@ -47,6 +48,13 @@ local consulEnvParams = [
   },
 ];
 
+local topologyEnv = [
+  {
+    name: "JVM_ARGS",
+    value: "-Dspring.profiles.active=gcp -Dserver.port=7022",
+  },
+];
+
 local ports = [
   {
     containerPort: 8500,
@@ -82,6 +90,10 @@ local sports = [
   {
     containerPort: 15372,
     name: 'scone-mgmt',
+  },
+  {
+    containerPort: 7022,
+    name: 'scone-http',
   },
 ];
 
@@ -157,12 +169,18 @@ if configs.kingdom == 'mvp' then {
         containers: [
           {
             name: 'topology-client',
-                image: topologysvcimages.topologysvclocal,
-                ports: sports,
-                securityContext: {
-                  runAsNonRoot: true,
-                  runAsUser: 7447,
-                },
+            image: topologysvcimages.topologysvclocal,
+            ports: sports,
+            securityContext: {
+              runAsNonRoot: true,
+              runAsUser: 7447,
+            },
+            args: [
+                  "--server.port=7022",
+            ],
+            env: topologyEnv,
+            volumeMounts: [
+            ] + madkub.madkubTopologySvcCertVolumeMounts(certDirs),
           },
           {
             name: 'consul-client-test',
@@ -205,6 +223,7 @@ if configs.kingdom == 'mvp' then {
             },
             ] + madkub.madkubTopologySvcCertVolumeMounts(certDirs),
           },
+          serviceMesh.service_discovery_container("topology-svc"),
           madkub.madkubRefreshContainer(certDirs),
         ],
         volumes+: [
