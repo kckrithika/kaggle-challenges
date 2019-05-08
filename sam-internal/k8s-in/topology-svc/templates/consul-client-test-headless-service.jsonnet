@@ -38,6 +38,11 @@ if configs.kingdom == 'mvp' then {
                 targetPort: 8500,
             },
             {
+                name: 'http-server',
+                port: 7022,
+                targetPort: 7022,
+            },
+            {
                 name: 'serflan-tcp',
                 protocol: 'TCP',
                 port: 8301,
