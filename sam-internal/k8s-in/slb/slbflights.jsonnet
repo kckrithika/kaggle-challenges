@@ -39,5 +39,5 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # slb-nginx-data is generating failures because of k8s probe failures causing the process to get killed
     # This change decreases the aggressiveness of the slb-nginx-data probe
-    tamerNginxDataProbes: (slbimages.phaseNum <= 4),
+    tamerNginxDataProbes: (slbimages.phaseNum <= 5),
 }
