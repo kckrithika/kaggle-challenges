@@ -79,6 +79,10 @@ local sports = [
     containerPort: 8081,
     name: 'mgmt-server',
   },
+  {
+    containerPort: 15372,
+    name: 'scone-mgmt',
+  },
 ];
 
 if configs.kingdom == 'mvp' then {
@@ -153,7 +157,7 @@ if configs.kingdom == 'mvp' then {
         containers: [
           {
             name: 'topology-client',
-                image: topologysvcimages.topologyClient,
+                image: topologysvcimages.topologysvclocal,
                 ports: sports,
                 securityContext: {
                   runAsNonRoot: true,
