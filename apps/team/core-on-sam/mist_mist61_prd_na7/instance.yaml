@@ -18,12 +18,7 @@ env:
 images:
   coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_220-patch_18011946
   coreAppOverrides: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/coreapp_overrides:jbratton
-  envoy: sfci/servicelibs/sherpa-envoy:1.0.4
-  envoyConfig: sfci/casam/cyan-config:208cc2
-  sequencer: sfci/casam/sequencer:180d92
-  sfProxy: sfci/frontend-gateway/sfproxy:5deb946
-  switchboard: sfci/servicelibs/switchboard:2a6f60acdc8a877797e49d84c1d1da1b84f8c501
-  switchboardEnvoy: sfci/frontend-gateway/sfproxy:5deb946
+  sequencer: sfci/casam/sequencer:06c5ff
 name: na7
 nonce: 1555807399529745000
 replicaCount: 1
