@@ -1,0 +1,59 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: samappcontroller
+    pcn: deploy
+    sam.data.sfdc.net/owner: sam
+  name: samappcontroller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: samappcontroller
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: samappcontroller
+        sam.data.sfdc.net/owner: sam
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/samapp-controller
+        - --v=3
+        - --funnelEndpoint=funnel.ajnalocal1.vip.core.test.us-central1.gcp.sfdc.net:443
+        - --logtostderr=true
+        - --config=/config/samapp-controller-config.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --madkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        env:
+        - name: SFDCLOC_PCN_KINGDOM
+          value: eks
+        - name: SFDCLOC_PCN_ESTATE
+          value: eks-us-east2-sam2-samtest
+        - name: KUBECONFIG
+          value: ""
+        image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/dva/sam/hypersam:2709-2c64bef305a811db319b1982738ba42022157744
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 21548
+          initialDelaySeconds: 30
+          periodSeconds: 5
+        name: samapp-controller
+        ports:
+        - containerPort: 21548
+        volumeMounts:
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        pool: eks-us-east2-sam2-samtest
+      serviceAccount: sam-stack-edit
+      serviceAccountName: sam-stack-edit
+      volumes:
+      - configMap:
+          name: samapp-controller
+        name: config

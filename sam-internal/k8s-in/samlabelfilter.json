@@ -6,5 +6,9 @@
   {
     "kingdomEstateMatch": "mvp/*",
     "requiredLabelValues": { "pcn": "deploy" }
+  },
+  {
+    "kingdomEstateMatch": "eks/*",
+    "requiredLabelValues": { "pcn": "deploy" }
   }
 ]
