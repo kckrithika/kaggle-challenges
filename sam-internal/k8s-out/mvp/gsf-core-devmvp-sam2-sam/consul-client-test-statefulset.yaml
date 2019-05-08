@@ -69,7 +69,7 @@ spec:
         app: consul-client-test-server
     spec:
       containers:
-      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:consul-client-20190508
+      - image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/ameesala/topology-svc:consul-client-20190508-1
         name: topology-client
         ports:
         - containerPort: 8080
