@@ -53,7 +53,7 @@ system:
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
       - "-imageRegistryImageSource=dva"
-      - "-heartbeat.defaultdecayduration=3m"
+      - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8081"
       ports:
       - containerPort: 8081
@@ -75,7 +75,7 @@ system:
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
       - "-imageRegistryImageSource=dva"
-      - "-heartbeat.defaultdecayduration=3m"
+      - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8082"
       ports:
       - containerPort: 8082
@@ -97,7 +97,7 @@ system:
       - "-samInternalTeamName=SLB"
       - "-targetPhaseNumber=1"
       - "-imageRegistryImageSource=dva"
-      - "-heartbeat.defaultdecayduration=3m"
+      - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8083"
       ports:
       - containerPort: 8083
@@ -168,7 +168,7 @@ system:
       - "-samInternalTeamName=SAM"
       - "-targetPhaseNumber=1"
       - "-imageRegistryImageSource=dva"
-      - "-heartbeat.defaultdecayduration=3m"
+      - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8081"
       ports:
       - containerPort: 8081
@@ -190,7 +190,7 @@ system:
       - "-samInternalTeamName=SAM"
       - "-targetPhaseNumber=1"
       - "-imageRegistryImageSource=tnrp"
-      - "-heartbeat.defaultdecayduration=3m"
+      - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8082"
       ports:
       - containerPort: 8082
@@ -212,7 +212,7 @@ system:
       - "-samInternalTeamName=SAM"
       - "-targetPhaseNumber=1"
       - "-imageRegistryImageSource=tnrp"
-      - "-heartbeat.defaultdecayduration=3m"
+      - "-heartbeat.defaultdecayduration=15m"
       - "-livenessProbePort=8083"
       ports:
       - containerPort: 8083
