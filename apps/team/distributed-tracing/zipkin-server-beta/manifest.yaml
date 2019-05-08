@@ -34,7 +34,7 @@ system:
       image: docker-dva-rc/dva/zipkin-collector:56
       env:
       - name: ES_INDEX_REPLICAS
-        value: 2
+        value: 3
       - name: ES_HOSTS
         value: es-prod-distributed-tracing-prd.slb.sfdc.net:9200
       - name: ZIPKIN_COLLECTOR_HOST
@@ -64,7 +64,7 @@ system:
           - /bin/true
     - name: zipkin-nginx
       image: docker-dva-rc/dva/zipkin-nginx:21
-      ports: 
+      ports:
       - name: http
         containerPort: 8080
       - name: https
@@ -92,7 +92,7 @@ system:
           command:
           - /bin/true
     - name: zipkin-beta
-      image: docker-dva-rc/dva/zipkin-server:35
+      image: docker-dva-rc/dva/zipkin-server:36
       resources:
          # forcing the pods to different hosts (each has 56 CPU)
         limits: { cpu: "30", memory: "12Gi" }
@@ -100,6 +100,8 @@ system:
       env:
       - name: ES_HOSTS
         value: es-prod-distributed-tracing-prd.slb.sfdc.net:9200
+      - name: JAVA_OPTS
+        value: -Xmx6g
       - name: QUERY_PORT
         value: 9422
       ports:
