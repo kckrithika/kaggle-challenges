@@ -90,6 +90,7 @@ system:
       targetport: 7020
     - port: 7012
       targetport: 7012
+      name: ynagataordering
     - port: 7443
       targetport: 7443
       name: ynagata-ordering
