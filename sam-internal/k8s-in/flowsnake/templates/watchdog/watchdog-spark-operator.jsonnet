@@ -63,7 +63,7 @@ else
                 namespace: "flowsnake",
             },
             spec+: {
-                [if std.objectHas(flowsnake_images.feature_flags, "spark_operator_watchdog_parallel_run") then "replicas"]: if flowsnakeconfig.is_public_cloud then 5 else 10,
+                replicas: if flowsnakeconfig.is_public_cloud then 5 else 10,
                 selector: {
                     matchLabels: {
                         app: label_node.app,
