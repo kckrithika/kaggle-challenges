@@ -2983,10 +2983,12 @@
     },
     {
       "namespaces": [
-        "search-scale-safely"
+        "search-scale-safely",
+        "search-intelligence-platform"
       ],
       "access": [
-        "team/Search_Scale_Safely"
+        "team/Search_Scale_Safely",
+        "team/Search_Intelligence_Platform"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-search_model_executor",
