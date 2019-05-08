@@ -38,6 +38,11 @@ function get_current_branch_name() {
     git rev-parse --abbrev-ref=strict --symbolic HEAD
 }
 
+# get_last_commit_subject gets the "title line"/commit subject of the most recent commit in the local branch.
+function get_last_commit_subject() {
+    git log -1 --pretty=format:%s
+}
+
 # push_local_changes pushes current changes to the origin remote.
 function push_local_changes() {
     git push -f origin HEAD > /dev/null 2>&1
@@ -80,6 +85,10 @@ function main() {
             ;;
         esac
     done
+
+    if [[ -z "$prTitle" ]]; then
+        prTitle=$(get_last_commit_subject)
+    fi
 
     push_local_changes
     send_request_to_deployerbot "${slackChannel}" "${prTitle}"
