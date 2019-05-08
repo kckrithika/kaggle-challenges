@@ -303,7 +303,7 @@ system:
     ports:
     - port: 7012
       targetport: 7012
-      name: ping-pong-server
+      name: ping-pongserver
       lbtype: tcp
       lbalgorithm: roundrobin
 
