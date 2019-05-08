@@ -6,10 +6,10 @@ system:
       - gk-support@salesforce.com 
   functions:
   - name: gateway
-    count: 3
+    count: 1
     containers:
     - name: gateway
-      image: dva/gateway:13-5c202d32a0db4430ef8e01f6281a91aef9b571a1
+      image: dva/gateway:22-b46d307eb0edade48ac6a11394d03dbe7d3c9693
       livenessProbe:
         httpGet:
           path: /rest/deployments/all/Steam/220
