@@ -16,7 +16,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: temp-store
-      image: dva/report-collector:8
+      image: dva/report-collector:10
       ports:
       - name: provider-https
         containerPort: 8443
