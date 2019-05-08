@@ -310,7 +310,7 @@ data:
         - "-p"
         - [[ .MeshConfig.ProxyListenPort ]]
         - "-u"
-        - 1337
+        - 7447
         - "-m"
         - [[ annotation .ObjectMeta `sidecar.istio.io/interceptionMode` .ProxyConfig.InterceptionMode ]]
         - "-i"
@@ -461,9 +461,9 @@ data:
           capabilities:
             add:
             - NET_ADMIN
-          runAsGroup: 1337
+          runAsGroup: 7447
           [[ else -]]
-          runAsUser: 1337
+          runAsUser: 7447
           [[ end -]]
         restartPolicy: Always
         resources:
