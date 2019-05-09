@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:release-8-01f8876
+    - image: ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:release-9-36710b7
       livenessProbe:
         exec:
           command: [ls]
@@ -54,7 +54,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:release-8-01f8876'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-yul.data.sfdc.net/sfci/insights/moanaengine:release-9-36710b7'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
           "-XX:MaxDirectMemorySize=256M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M
@@ -67,8 +67,7 @@ system:
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-yul.data.sfdc.net'}
-      - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
-      image: sfci/insights/jobcontroller:release-107-fe7ae4c
+      image: sfci/insights/jobcontroller:release-108-a2c2aab
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
