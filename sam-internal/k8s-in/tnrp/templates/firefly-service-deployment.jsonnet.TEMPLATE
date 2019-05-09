@@ -27,7 +27,9 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
     $['serviceName'] == "firefly-package-fcp-test"),
 
   local is_mdp_certs_enabled = ($['serviceName'] == "firefly-pullrequest-mdp" ||
-    $['serviceName'] == "firefly-package-mdp"),
+    $['serviceName'] == "firefly-package-mdp" ||
+    $['serviceName'] == "firefly-package-test-mdp" ||
+    $['serviceName'] == "firefly-pullrequest-test-mdp" ),
 
   serviceConf:: {},
   commonVolMounts:: [
