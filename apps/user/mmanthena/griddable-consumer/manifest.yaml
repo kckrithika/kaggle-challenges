@@ -17,6 +17,8 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
+         - mountPath: /acds
+           name: consumer-persistent
 #         - mountPath: /task-manager-secrets/
 #           name: task-manager-secrets-vol
 #           readOnly: true
