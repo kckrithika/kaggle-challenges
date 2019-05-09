@@ -35,9 +35,20 @@ system:
        - name : LOGGING_STDERR_LEVEL
          value: all
        - name : ACDS_POLICY
-         value: "player:{name:\"Steve\",level:30}"
+         value: "io.griddable.policy:{\"KARTHIK\":{}}"
        - name : ACDS_DB_CONFIG
-         value: "player:{name:\"Steve\",level: 30}"
+         value: "{
+    \"additionalParams\" : {
+        \"useServiceName\" : \"AUTO\",
+        \"useStatementBatching\" : false
+    },
+    \"host\" : \"10.215.44.10\",
+    \"id\" : \"src_db\",
+    \"instanceName\" : \"DATABASE\",
+    \"password\" : \"basic:xRdN9n9+Yto2hHDW/sldaA==\",
+    \"port\" : 1521,
+    \"type\" : \"oracle\",
+    \"user\" : \"KARTHIK\"}"
        - name : TENANT_ADMIN_NAME
          value: "admin@local"
        - name : TENANR_ADMIN_PASSWORD
