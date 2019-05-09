@@ -40,4 +40,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     # slb-nginx-data is generating failures because of k8s probe failures causing the process to get killed
     # This change decreases the aggressiveness of the slb-nginx-data probe
     tamerNginxDataProbes: (slbimages.phaseNum <= 5),
+
+    # slb-dns-register's container name was (confusingly) slb-dns-register-processor. Sanitize it.
+    slbDnsRegisterContainerName: (if slbimages.phaseNum <= 1 then "slb-dns-register" else "slb-dns-register-processor"),
 }
