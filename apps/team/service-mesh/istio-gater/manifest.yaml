@@ -89,6 +89,6 @@ system:
       ports:
         - lbtype: dsr
           port: 7443
-          targetport: 7020
+          targetport: 7443
           name: grpc-gater
 
