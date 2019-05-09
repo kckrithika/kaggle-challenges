@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: sherlock-master
+    count: 1
+    containers:
+    - name: sherlock-master
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/sherlock-master:v0
+      ports:
+      - containerPort: 5555
+      - containerPort: 6379
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 5555
+  loadbalancers:
+  - lbname: sherlock-master
+    function: sherlock-master
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 5555
