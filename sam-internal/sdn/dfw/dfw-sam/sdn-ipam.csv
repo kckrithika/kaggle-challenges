@@ -109,6 +109,13 @@ shared0-samkubeapi1-2-dfw.ops.sfdc.net,10.247.104.50/29,10.214.128.192/27,l34-01
 shared0-samkubeapi2-1-dfw.ops.sfdc.net,10.247.104.19/28,10.214.128.32/27,m09-01,dfw-sam,65009
 shared0-samkubeapi2-2-dfw.ops.sfdc.net,10.247.104.58/29,10.214.128.224/27,p13-01,dfw-sam,65009
 shared0-samkubeapi3-1-dfw.ops.sfdc.net,10.247.104.35/28,10.214.128.160/27,u17-01,dfw-sam,65009
+shared0-samminionaqueduct1-1-dfw.ops.sfdc.net,10.220.153.226/29,10.165.138.96/27,n03-02,dfw-sam_eventbus,65009
+shared0-samminionaqueduct1-2-dfw.ops.sfdc.net,10.220.153.227/29,10.165.138.128/27,n03-02,dfw-sam_eventbus,65009
+shared0-samminionaqueduct1-3-dfw.ops.sfdc.net,10.220.153.228/29,10.165.138.160/27,n03-02,dfw-sam_eventbus,65009
+shared0-samminionaqueduct2-1-dfw.ops.sfdc.net,10.220.153.234/29,10.165.138.32/27,c03-01,dfw-sam_eventbus,65009
+shared0-samminionaqueduct2-2-dfw.ops.sfdc.net,10.220.153.235/29,10.165.138.64/27,c03-01,dfw-sam_eventbus,65009
+shared0-samminionaqueduct3-1-dfw.ops.sfdc.net,10.220.153.242/29,10.165.138.0/27,b21-01,dfw-sam_eventbus,65009
+shared0-samminionaqueduct3-2-dfw.ops.sfdc.net,10.220.153.250/29,10.165.138.192/27,x21-01,dfw-sam_eventbus,65009
 shared0-samminionatlasdir1-1-dfw.ops.sfdc.net,10.247.178.50/29,10.214.152.0/27,g26-02,dfw-sam_cloudatlas_dir,65009
 shared0-samminionatlasdir1-2-dfw.ops.sfdc.net,10.247.178.34/29,10.214.152.32/27,l03-02,dfw-sam_cloudatlas_dir,65009
 shared0-samminionatlasdir2-1-dfw.ops.sfdc.net,10.247.178.42/29,10.214.152.64/27,l09-01,dfw-sam_cloudatlas_dir,65009

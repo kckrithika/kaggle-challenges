@@ -184,10 +184,32 @@ data:
           "controlestate": "prd-samtwo",
           "devicerole": "samkubeapi",
           "estate": "prd-samtwo",
+          "hostname": "shared0-samtwokubeapi1-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "n09-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samtwo_kube_api",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samkubeapi",
+          "estate": "prd-samtwo",
           "hostname": "shared0-samtwokubeapi2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
           "rack": "w35-45",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samtwo_kube_api",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samkubeapi",
+          "estate": "prd-samtwo",
+          "hostname": "shared0-samtwokubeapi2-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "rack": "n09-45",
           "superpod": "none"
         },
         {

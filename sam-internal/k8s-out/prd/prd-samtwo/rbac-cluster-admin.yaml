@@ -10,6 +10,10 @@ subjects:
 - kind: User
   name: shared0-samtwokubeapi1-1-prd.eng.sfdc.net
 - kind: User
+  name: shared0-samtwokubeapi1-2-prd.eng.sfdc.net
+- kind: User
   name: shared0-samtwokubeapi2-1-prd.eng.sfdc.net
+- kind: User
+  name: shared0-samtwokubeapi2-2-prd.eng.sfdc.net
 - kind: User
   name: shared0-samtwokubeapi3-1-prd.eng.sfdc.net

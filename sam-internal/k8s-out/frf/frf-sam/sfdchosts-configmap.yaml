@@ -1368,6 +1368,83 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "d01-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "d01-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-3-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "d01-m316",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct2-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "c09-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct2-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "c09-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "c06-m305",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "rack": "c06-m305",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_gater",
           "controlestate": "frf-sam",
           "devicerole": "samcompute",

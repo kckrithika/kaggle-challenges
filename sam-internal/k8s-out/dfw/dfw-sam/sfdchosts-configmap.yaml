@@ -1676,6 +1676,83 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "n03-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "n03-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-3-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "n03-dh4",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct2-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "c03-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct2-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "c03-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "b21-dh2",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "dfw-sam",
+          "devicerole": "samcompute",
+          "estate": "dfw-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "rack": "x21-dh2",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_gater",
           "controlestate": "dfw-sam",
           "devicerole": "samcompute",

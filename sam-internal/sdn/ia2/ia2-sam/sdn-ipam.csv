@@ -31,6 +31,9 @@ shared0-samkubeapi3-2-ia2.ops.sfdc.net,10.227.135.19/29,10.163.0.160/27,l06-01,i
 shared0-samminiondatapool1-1-ia2.ops.sfdc.net,10.227.149.10/29,10.163.6.0/27,l05-01,ia2-sam_datapool,4203041210
 shared0-samminiondatapool1-2-ia2.ops.sfdc.net,10.227.149.2/29,10.163.6.32/27,w44-01,ia2-sam_datapool,4203151208
 shared0-samminiondatapool2-1-ia2.ops.sfdc.net,10.227.149.3/29,10.163.6.64/27,w44-01,ia2-sam_datapool,4203151208
+shared0-samminiondp1-1-ia2.ops.sfdc.net,10.176.28.18/29,10.163.36.64/27,x46-01,ia2-sam_dp,4203151211
+shared0-samminiondp1-2-ia2.ops.sfdc.net,10.176.28.10/29,10.163.36.32/27,l15-01,ia2-sam_dp,4203041228
+shared0-samminiondp2-1-ia2.ops.sfdc.net,10.176.28.2/29,10.163.36.0/27,e15-01,ia2-sam_dp,4203091228
 shared0-samminiongater1-1-ia2.ops.sfdc.net,10.227.137.130/29,10.163.2.64/27,k55-01,ia2-sam_gater,4203061227
 shared0-samminiongater1-2-ia2.ops.sfdc.net,10.227.137.131/29,10.163.2.96/27,k55-01,ia2-sam_gater,4203061227
 shared0-samminiongater1-3-ia2.ops.sfdc.net,10.227.137.132/29,10.163.2.128/27,k55-01,ia2-sam_gater,4203061227
