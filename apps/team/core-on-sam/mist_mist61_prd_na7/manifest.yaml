@@ -168,9 +168,9 @@ system:
       - name: SFPROXY_VIP
         value: http://na7-mist61app-prd.core-on-sam-sp2.svc.mesh.sfdc.net:8085
       - name: SWITCH_BOARD_ADDRESS
-        value: switchboard.service-mesh.svc.cluster.local:15001
+        value: switchboard.service-mesh:15001
       - name: ROUTE_UPDATE_SERVICE
-        value: route-update-service.service-mesh.svc.cluster.local:7020
+        value: route-update-service.service-mesh:7020
       - name: RELEASE_VESION
         value: ""
       - name: RELEASE_TYPE
@@ -283,4 +283,12 @@ system:
       port: 8443
       targetport: 8443
       name: https-core
+    slbEnabled: true
+  - function: na7-mist61sequencer-prd
+    lbname: na7-mist61sequencer-prd
+    ports:
+    - lbtype: dsr
+      port: 12062
+      targetport: 12062
+      name: http
     slbEnabled: true
