@@ -22,7 +22,7 @@ system:
     volumes:
     - name: logs
       hostPath:
-        path: /mnt/disks/ssd0/pbsgeo/logs 
+        path: /mnt/disks/ssd0/var/log/pbsgeo/logs 
     - name: unpackeddata        
       hostPath:
         path: /mnt/disks/ssd0/data/pbsgeo/unpackeddata 
