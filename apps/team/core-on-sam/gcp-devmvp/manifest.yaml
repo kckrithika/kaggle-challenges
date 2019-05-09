@@ -216,7 +216,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/servicelibs/sherpa-envoy:1.0.7
       livenessProbe:
         exec:
           command:
@@ -404,7 +404,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/servicelibs/sherpa-envoy:1.0.7
       livenessProbe:
         exec:
           command:
