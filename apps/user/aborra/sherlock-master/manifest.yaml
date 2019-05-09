@@ -20,5 +20,3 @@ system:
     ports:
       - port: 80
         targetport: 5555
-      - port: 6379
-          targetport: 6379
