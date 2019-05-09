@@ -35,7 +35,7 @@ system:
       - name: PUBLIC_HOST_NAME
         value: us7-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
       - name: SFPROXY_VIP
-        value: https://us7-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:8443
+        value: http://na7-mist61app-prd.core-on-sam-sp2.svc.mesh.sfdc.net:8085
       - name: HTTP_PORT
         value: 8085
       - name: SPORT
