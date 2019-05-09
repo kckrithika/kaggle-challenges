@@ -20,6 +20,10 @@ system:
       volumeMounts:
         - mountPath: /home/sfdc/logs
           name: logs
+      volumes:
+        - name: logs
+        hostPath:
+          path: /mnt/disks/ssd0/var/log/pbsmatch/logs
   loadbalancers:
   - lbname: pbsmatchlb
     function: default
