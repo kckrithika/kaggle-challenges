@@ -28,7 +28,9 @@ data:
             {
               "targets": [
                 "shared0-samkubeapi1-1-prd.eng.sfdc.net:2379",
+                "shared0-samkubeapi1-2-prd.eng.sfdc.net:2379",
                 "shared0-samkubeapi2-1-prd.eng.sfdc.net:2379",
+                "shared0-samkubeapi2-2-prd.eng.sfdc.net:2379",
                 "shared0-samkubeapi3-1-prd.eng.sfdc.net:2379"
               ]
             }
@@ -46,7 +48,9 @@ data:
             {
               "targets": [
                 "shared0-samkubeapi1-1-prd.eng.sfdc.net:6443",
+                "shared0-samkubeapi1-2-prd.eng.sfdc.net:6443",
                 "shared0-samkubeapi2-1-prd.eng.sfdc.net:6443",
+                "shared0-samkubeapi2-2-prd.eng.sfdc.net:6443",
                 "shared0-samkubeapi3-1-prd.eng.sfdc.net:6443"
               ]
             }
@@ -64,7 +68,9 @@ data:
             {
               "targets": [
                 "shared0-samkubeapi1-1-prd.eng.sfdc.net:10252",
+                "shared0-samkubeapi1-2-prd.eng.sfdc.net:10252",
                 "shared0-samkubeapi2-1-prd.eng.sfdc.net:10252",
+                "shared0-samkubeapi2-2-prd.eng.sfdc.net:10252",
                 "shared0-samkubeapi3-1-prd.eng.sfdc.net:10252"
               ]
             }
@@ -77,7 +83,9 @@ data:
             {
               "targets": [
                 "shared0-samkubeapi1-1-prd.eng.sfdc.net:10251",
+                "shared0-samkubeapi1-2-prd.eng.sfdc.net:10251",
                 "shared0-samkubeapi2-1-prd.eng.sfdc.net:10251",
+                "shared0-samkubeapi2-2-prd.eng.sfdc.net:10251",
                 "shared0-samkubeapi3-1-prd.eng.sfdc.net:10251"
               ]
             }
@@ -90,7 +98,9 @@ data:
             {
               "targets": [
                 "shared0-samkubeapi1-1-prd.eng.sfdc.net:10055",
+                "shared0-samkubeapi1-2-prd.eng.sfdc.net:10055",
                 "shared0-samkubeapi2-1-prd.eng.sfdc.net:10055",
+                "shared0-samkubeapi2-2-prd.eng.sfdc.net:10055",
                 "shared0-samkubeapi3-1-prd.eng.sfdc.net:10055"
               ]
             }

@@ -1643,6 +1643,83 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-1-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "g14-cr09",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "g14-cr09",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct1-3-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "g14-cr09",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct2-1-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "p16-cr09",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct2-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "p16-cr09",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-1-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "a13-cr10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_aqueduct",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_eventbus",
+          "hostname": "shared0-samminionaqueduct3-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "rack": "a13-cr10",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_gater",
           "controlestate": "ord-sam",
           "devicerole": "samcompute",

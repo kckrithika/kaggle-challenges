@@ -136,6 +136,39 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "ph2-sam",
+          "devicerole": "samcompute",
+          "estate": "ph2-sam_dp",
+          "hostname": "shared0-samminiondp1-1-ph2.ops.sfdc.net",
+          "kingdom": "ph2",
+          "pod": "none",
+          "rack": "a43-dh10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "ph2-sam",
+          "devicerole": "samcompute",
+          "estate": "ph2-sam_dp",
+          "hostname": "shared0-samminiondp1-2-ph2.ops.sfdc.net",
+          "kingdom": "ph2",
+          "pod": "none",
+          "rack": "a43-dh10",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_dp",
+          "controlestate": "ph2-sam",
+          "devicerole": "samcompute",
+          "estate": "ph2-sam_dp",
+          "hostname": "shared0-samminiondp2-1-ph2.ops.sfdc.net",
+          "kingdom": "ph2",
+          "pod": "none",
+          "rack": "b26-dh10",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_gater",
           "controlestate": "ph2-sam",
           "devicerole": "samcompute",
