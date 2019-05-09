@@ -7,8 +7,6 @@
    - port: 443
      targetport: 8000
      lbtype: tcp
-     tls: true
-     reencrypt: true
      healthport: 8001
      healthpath: "/ping.jsp"
      healthprotocol: http
@@ -30,8 +28,6 @@
    - port: 443
      targetport: 8000
      lbtype: tcp
-     tls: true
-     reencrypt: true
      healthport: 8001
      healthpath: "/ping.jsp"
      healthprotocol: http
