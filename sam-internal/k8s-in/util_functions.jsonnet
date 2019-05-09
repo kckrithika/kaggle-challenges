@@ -14,6 +14,11 @@ local kingdom = std.extVar("kingdom");
         kingdom == "cdu" || kingdom == "syd" || kingdom == "yhu" || kingdom == "yul"
     ),
 
+    # This is for filtering PCL control estates with SDN enabled
+    is_pcl_sdn_enabled(estate):: (
+        estate == "syd-sam"
+    ),
+
     # This is for filtering GIA
     is_gia(kingdom):: (
         kingdom == "chx" || kingdom == "wax" || kingdom == "hio" || kingdom == "ttd"
