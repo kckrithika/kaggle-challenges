@@ -22,12 +22,12 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 130
+        initialDelaySeconds: 230
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 115
+        initialDelaySeconds: 230
 
       volumeMounts:
         - name: tls-client-cert
@@ -49,13 +49,13 @@ system:
         exec:
           command:
           - ./bin/is-alive
-        initialDelaySeconds: 20
+        initialDelaySeconds: 60
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - ./bin/is-ready
-        initialDelaySeconds: 15
+        initialDelaySeconds: 60
         periodSeconds: 5
       terminationMessagePolicy: FallbackToLogsOnError
       volumeMounts:
@@ -76,7 +76,7 @@ system:
         exec:
           command:
           - /home/scone/is-alive.sh
-        initialDelaySeconds: 30
+        initialDelaySeconds: 60
 
     # Add MadDog certificate volumes
     volumes:
