@@ -19,7 +19,7 @@ system:
         requests: {cpu: "2", memory: "32Gi"}
       volumeMounts:
       - mountPath: /home/sfdc/logs
-          name: logs
+        name: logs
     volumes:
     - name: logs
       hostPath:
