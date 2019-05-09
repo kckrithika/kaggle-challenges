@@ -4,7 +4,7 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if !utils.is_public_cloud(configs.kingdom) then configs.deploymentBase("sdn") {
+if (!utils.is_public_cloud(configs.kingdom)) || utils.is_pcl_sdn_enabled(configs.estate) then configs.deploymentBase("sdn") {
     spec+: {
         replicas: 1,
         template: {
