@@ -585,6 +585,46 @@ items:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: jsatonik@salesforce.com
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
+    name: debug
+    namespace: care
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: debug
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: analawade@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: abahl@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: btoal@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: elabouve@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: jluehe@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: larry.lopez@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: mchintalapati@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: opeschansky@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: rshinde@salesforce.com
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: yu.chen@salesforce.com
 kind: List
 metadata:
   labels:
