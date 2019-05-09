@@ -22,3 +22,18 @@
     healthport: 8980
     healthprotocol: tcp
     lbalgorithm: roundrobin
+- lbname: ops0-netevents1-0-xrd
+  customlbname: ops0-netevents1-0-xrd
+  servers:
+    - ops0-netevents1-1-xrd.eng.sfdc.net
+    - ops0-netevents2-1-xrd.eng.sfdc.net
+    - ops0-netevents3-1-xrd.eng.sfdc.net
+  ports:
+    - port: 443
+      targetport: 8080
+      lbtype: http
+      tls: true
+      reencrypt: false
+      healthport: 8080
+      healthpath: /images/spinner.gif
+      healthprotocol: http
