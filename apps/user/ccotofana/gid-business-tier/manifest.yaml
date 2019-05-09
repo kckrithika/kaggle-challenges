@@ -16,14 +16,18 @@
 #
 # If you specify nodeExposed in the loadbalancers section, you cannot specify hostnetwork in the function section.
 #
+# With nodeExposed set to true, make sure if you specify port values between 1025 and 31999.
+# Other ports are reserved for unix (0-1024) and SAM (32000-40000). If you specify a reserved port number, your validation will fail.
+# If for some reason you need port 80, specify 8080 instead.
+#
 apiVersion: v1
 system:
   functions:
-  - name: default
+  - name: revpathproxytestone
     count: 1
 
     # Using host networking like CA (no slb)... but do we need to?
-    hostnetwork: true
+    #hostnetwork: true
 
     containers:
     - name: revpathproxy
@@ -34,8 +38,8 @@ system:
         httpGet:
           path: /
           port: 9090
-          initialDelaySeconds: 15
-          timeoutSeconds: 5
+        initialDelaySeconds: 15
+        timeoutSeconds: 5
 
     - name: appone
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/samhello:one 
@@ -55,4 +59,10 @@ system:
           path: /
           port: 9092
 
+  loadbalancers:
+  - lbname: revpathproxytestonelb
+    function: revpathproxytestone
+    ports:
+      - port: 10090
+        targetport: 9090
 
