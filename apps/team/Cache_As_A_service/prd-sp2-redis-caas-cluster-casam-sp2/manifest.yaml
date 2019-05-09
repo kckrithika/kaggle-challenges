@@ -34,6 +34,8 @@ system:
          value: mist61
        - name: DUMMY_FOR_RESTART
          value: 1
+       - name: PYTHONUNBUFFERED
+         value: 1
       ports:
       - containerPort: 12046
         name: caas-cluster
@@ -67,4 +69,4 @@ system:
         path: /home/caas/logs
     - name: secretvol
       k4aSecret:
-        secretName: caas-k4a-secret-prd
+        secretName: caas-client-test-secret
