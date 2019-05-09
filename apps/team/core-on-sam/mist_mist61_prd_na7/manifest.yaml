@@ -283,4 +283,5 @@ system:
       port: 8443
       targetport: 8443
       name: https-core
-    slbEnabled: true
+    # TODO: SLB seems to be having some issues, related chatter post: https://gus.lightning.force.com/lightning/r/0D5B000000s7dCuKAI/view.
+    #slbEnabled: true
