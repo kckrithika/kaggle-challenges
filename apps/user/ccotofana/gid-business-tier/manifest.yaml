@@ -20,6 +20,10 @@
 # Other ports are reserved for unix (0-1024) and SAM (32000-40000). If you specify a reserved port number, your validation will fail.
 # If for some reason you need port 80, specify 8080 instead.
 #
+# If you do not specify either nodeExposed nor hostnetwork, there is no predictable endpoint. 
+# Kubernetes defines a random node port (between 30000 and 40000) when the service is created.
+# Once created, you can use it to connect to your container. (See How to Find the Endpoint of a SAM-deployed App).
+#
 apiVersion: v1
 system:
   functions:
@@ -62,6 +66,7 @@ system:
   loadbalancers:
   - lbname: revpathproxytestonelb
     function: revpathproxytestone
+    nodeExposed: true
     ports:
       - port: 10090
         targetport: 9090
