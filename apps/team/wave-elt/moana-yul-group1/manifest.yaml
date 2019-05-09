@@ -67,6 +67,7 @@ system:
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: K8S_API_ENDPOINT, value: 'https://kubernetes-api-flowsnake-yul.data.sfdc.net'}
+      - {name: MAESTRO_ENDPOINT, value: 'https://insights1-iworker{{superPodIndex}}-0-${kingdom}.data.sfdc.net:8008'}
       image: sfci/insights/jobcontroller:release-108-a2c2aab
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
