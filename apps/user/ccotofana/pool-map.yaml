@@ -1,4 +1,53 @@
+# File: pool-map.yaml
+#
+# Version 1 format:
+#   apps:
+#     caas-test:
+#       - prd/prd-sam
+#     caas:
+#       - prd/prd-sam
+#
+# Version 2 format:
+#   version: v2
+#   apps:
+#    <app name>:
+#     - name: <pool name>
+#       hostSubList:
+#       - <host name>
+
+## v1 style
+#apps:
+# my-sam-test:    # this must match the name of your application. It must be lower case.
+#  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
+#                 # you can also specify other pools
+
+# v2 style
+version: v2
 apps:
- my-sam-test:    # this must match the name of your application. It must be lower case.
-  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
-                 # you can also specify other pools
+  # SAM onboarding tutorial
+  my-sam-test:
+    - name: prd/prd-sam
+
+  # Single-pod path-based proxy test
+  # PRD-Dev: Fake business-tier SAM/k pod (hosts path-based proxy and two dummy http services)
+  gid-business-tier:
+    - name: prd/prd-sam
+
+   # Multi-pod path-based proxy test
+#  # PRD-Dev: Fake business-tier SAM/k pod (hosts GID service, Entity service, etc.)
+#  gid-business-tier:
+#    - name: prd/prd-sam_cloudatlas_dir
+#      hostSubList:
+#      - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+#
+#  # PRD-Dev: Fake PDM directory service SAM/k pod Topomaster
+#  gid-ds-topopaster:
+#    - prd/prd-sam_cloudatlas_dir
+#    hostSubList:
+#      - test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+#
+#  # PRD-Dev: Fake PDM directory service SAM/k pod DS nodes
+#  #TODO
+
+  
+
