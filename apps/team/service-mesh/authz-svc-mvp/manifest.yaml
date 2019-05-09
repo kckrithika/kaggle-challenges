@@ -5,12 +5,12 @@ system:
     email:
     - strauz@salesforce.com
   functions:
-  - name: demo-authz
+  - name: authz-svc-mvp
     count: 1
     annotations:
       "sherpa-injector.service-mesh/inject": "enabled"
     containers:
-    - name: demo-authz
+    - name: authz-svc-mvp
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/strauz/sam-test:0.6
       env:
       - name: SFDC_ENVIRONMENT
