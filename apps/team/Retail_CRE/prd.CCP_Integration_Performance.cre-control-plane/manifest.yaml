@@ -61,6 +61,8 @@ system:
           value: cre-sp-ccp-perf.retail-cre.localhost.mesh.force.com:5443
         - name: GDOT_FORCE_PROVISIONING
           value: false
+        - name: GDOT_BASE_PATH
+          value: https://login.stmfa.stm.salesforce.com/empire/cloudatlas/scim
         - name: SECRET_KEY_FILE
           value: /keys-kube/cre-aes.key
         - name: DATABASE_NAMESPACE
