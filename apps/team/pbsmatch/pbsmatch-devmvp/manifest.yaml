@@ -14,6 +14,16 @@ system:
           port: 8080
         initialDelaySeconds: 500 
         periodSeconds: 30
+      resources:
+        limits: {cpu: "2", memory: "32Gi"}
+        requests: {cpu: "2", memory: "32Gi"}
+      volumeMounts:
+      - mountPath: /home/sfdc/logs
+        name: logs
+    volumes:
+    - name: logs
+      hostPath:
+        path: /mnt/disks/ssd0/var/log/pbsmatch/logs
   loadbalancers:
   - lbname: pbsmatchlb
     function: default
