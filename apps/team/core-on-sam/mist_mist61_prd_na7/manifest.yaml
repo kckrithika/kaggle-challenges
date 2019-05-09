@@ -29,11 +29,11 @@ system:
       - name: SERVER_ID
         value: x
       - name: PUBLIC_PORT
-        value: 8443
+        value: 8085
       - name: PUBLIC_PORT_IS_SECURE
-        value: true
+        value: false
       - name: PUBLIC_HOST_NAME
-        value: us7-sfproxy-lb.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+        value: na7-mist61app-prd.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
       - name: SFPROXY_VIP
         value: http://na7-mist61app-prd.core-on-sam-sp2.svc.mesh.sfdc.net:8085
       - name: HTTP_PORT
@@ -241,7 +241,7 @@ system:
         periodSeconds: 1
       volumeMounts:
       - mountPath: /certs
-        name: cert
+        name: tls-client-cert
       - mountPath: /secrets/
         name: secretvol
         readOnly: true
@@ -261,7 +261,10 @@ system:
     volumes:
     - maddogCert:
         type: client
-      name: cert
+      name: tls-client-cert
+    - maddogCert:
+        type: server
+      name: tls-server-cert
     - k4aSecret:
         secretName: sequencer-gus
       name: secretvol
@@ -280,3 +283,4 @@ system:
       port: 8443
       targetport: 8443
       name: https-core
+    slbEnabled: true
