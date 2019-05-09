@@ -10,7 +10,7 @@ local configs = import "config.jsonnet";
   spec: {
     ports: [
       {
-        port: 7020,
+        port: 7443,
         targetPort: 7020,
         name: "grpc",
       },
