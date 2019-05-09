@@ -7,7 +7,7 @@ system:
     hostnetwork: true
     containers:
     - name: caas-redis
-      image: tnrp/caas/caas-redis:3.2.10-0000019-15183614
+      image: dva/caas/release/caas-redis-4.0.10:7
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -69,4 +69,4 @@ system:
         path: /home/caas/logs
     - name: secretvol
       k4aSecret:
-        secretName: caas-client-test-secret
+        secretName: caas-k4a-secret-prd-dc
