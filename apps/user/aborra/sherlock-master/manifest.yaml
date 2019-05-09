@@ -1,5 +1,9 @@
 apiVersion: v1
 system:
+  notifications:
+    email:
+      - aborra@salesforce.com
+      - rpothana@salesforce.com
   functions:
   - name: sherlock-master
     count: 1
@@ -7,8 +11,11 @@ system:
     - name: sherlock-master
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/sherlock-master:v0
       ports:
-      - containerPort: 5555
-      - containerPort: 6379
+      - name: http
+        containerPort: 5555
+      - name: tcp
+        containerPort: 6379
+        hostPort: 16379
       livenessProbe:
         httpGet:
           path: /
@@ -20,3 +27,5 @@ system:
     ports:
       - port: 80
         targetport: 5555
+      - port: 6379
+        targetport: 6379
