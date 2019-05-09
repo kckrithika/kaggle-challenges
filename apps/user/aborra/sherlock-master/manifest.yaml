@@ -20,6 +20,9 @@ system:
         httpGet:
           path: /
           port: 5555
+        failureThreshold: 60
+        periodSeconds: 10
+        timeoutSeconds: 10
   loadbalancers:
   - lbname: sherlock-master
     function: sherlock-master
