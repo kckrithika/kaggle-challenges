@@ -9,7 +9,7 @@ system:
       pod: devmvp
     containers:
     - name: acs  
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:5
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/vagabond:6
       args:
         - --servers=$(FUNCTION)-0.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-1.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-2.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013,$(FUNCTION)-3.$(FUNCTION_NAMESPACE).localhost.mesh.force.com:7013
         - --dataroot=/home/sfdc-acs/data
