@@ -24,9 +24,7 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
     $['serviceName'] == "firefly-pullrequest-fcp" ||
     $['serviceName'] == "firefly-pullrequest-fcp-test" ||
     $['serviceName'] == "firefly-package-fcp"||
-    $['serviceName'] == "firefly-package-fcp-test" ||
-    $['serviceName'] == "firefly-pullrequest-mdp" ||
-    $['serviceName'] == "firefly-package-mdp"),
+    $['serviceName'] == "firefly-package-fcp-test"),
 
   local is_mdp_certs_enabled = ($['serviceName'] == "firefly-pullrequest-mdp" ||
     $['serviceName'] == "firefly-package-mdp"),
@@ -259,6 +257,10 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                 {
                   name: "customer-certs",
                   mountPath: "/customer-certs/",
+                },
+                {
+                  name: "mdp-certs",
+                  mountPath: "/mdp-certs/",
                 },
               ],
             },

@@ -243,8 +243,8 @@ items:
                     {
                         "cert-type": "client",
                         "kingdom": "prd",
-                        "name": "customer-certs",
-                        "role": "firefly.customer"
+                        "name": "mdp-certs",
+                        "role": "firefly.mdp"
                     }
                 ]
             }
@@ -276,7 +276,7 @@ items:
           - --ca-folder
           - /maddog-certs/ca
           - --cert-folders
-          - customer-certs:/customer-certs/
+          - mdp-certs:/mdp-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -300,8 +300,8 @@ items:
             name: tokens
           - mountPath: /maddog-certs/
             name: maddog-certs
-          - mountPath: /customer-certs/
-            name: customer-certs
+          - mountPath: /mdp-certs/
+            name: mdp-certs
         - command:
           - java
           - -jar
@@ -386,6 +386,8 @@ items:
             name: firefly-root-dir
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /mdp-certs/
+            name: mdp-certs
         initContainers:
         - args:
           - /sam/madkub-client
@@ -406,7 +408,7 @@ items:
           - --ca-folder
           - /maddog-certs/ca
           - --cert-folders
-          - customer-certs:/customer-certs/
+          - mdp-certs:/mdp-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -433,8 +435,8 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: tokens
-          - mountPath: /customer-certs/
-            name: customer-certs
+          - mountPath: /mdp-certs/
+            name: mdp-certs
         nodeSelector:
           pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
@@ -465,7 +467,7 @@ items:
           name: maddog-certs
         - emptyDir:
             medium: Memory
-          name: customer-certs
+          name: mdp-certs
 - apiVersion: v1
   data:
     application.yml: |-
@@ -1119,8 +1121,8 @@ items:
                     {
                         "cert-type": "client",
                         "kingdom": "prd",
-                        "name": "customer-certs",
-                        "role": "firefly.customer"
+                        "name": "mdp-certs",
+                        "role": "firefly.mdp"
                     }
                 ]
             }
@@ -1152,7 +1154,7 @@ items:
           - --ca-folder
           - /maddog-certs/ca
           - --cert-folders
-          - customer-certs:/customer-certs/
+          - mdp-certs:/mdp-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -1176,8 +1178,8 @@ items:
             name: tokens
           - mountPath: /maddog-certs/
             name: maddog-certs
-          - mountPath: /customer-certs/
-            name: customer-certs
+          - mountPath: /mdp-certs/
+            name: mdp-certs
         - command:
           - java
           - -jar
@@ -1258,6 +1260,8 @@ items:
             name: firefly-root-dir
           - mountPath: /customer-certs/
             name: customer-certs
+          - mountPath: /mdp-certs/
+            name: mdp-certs
         initContainers:
         - args:
           - /sam/madkub-client
@@ -1278,7 +1282,7 @@ items:
           - --ca-folder
           - /maddog-certs/ca
           - --cert-folders
-          - customer-certs:/customer-certs/
+          - mdp-certs:/mdp-certs/
           env:
           - name: MADKUB_NODENAME
             valueFrom:
@@ -1305,8 +1309,8 @@ items:
             name: maddog-certs
           - mountPath: /tokens
             name: tokens
-          - mountPath: /customer-certs/
-            name: customer-certs
+          - mountPath: /mdp-certs/
+            name: mdp-certs
         nodeSelector:
           pool: prd-sam_tnrp_merger
         terminationGracePeriodSeconds: 10
@@ -1337,7 +1341,7 @@ items:
           name: maddog-certs
         - emptyDir:
             medium: Memory
-          name: customer-certs
+          name: mdp-certs
 - apiVersion: v1
   data:
     application.yml: |-
