@@ -18,10 +18,10 @@ system:
         limits: {cpu: "2", memory: "32Gi"}
         requests: {cpu: "2", memory: "32Gi"}
       volumeMounts:
-        - mountPath: /home/sfdc/logs
+      - mountPath: /home/sfdc/logs
           name: logs
     volumes:
-      - name: logs
+    - name: logs
       hostPath:
         path: /mnt/disks/ssd0/var/log/pbsmatch/logs
   loadbalancers:
