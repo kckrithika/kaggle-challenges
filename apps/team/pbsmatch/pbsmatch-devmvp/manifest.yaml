@@ -20,13 +20,13 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc/logs
         name: logs
-      - name: pbsmatchCert
+      - name: pbsmatchcert
         mountPath: /etc/pki_service
     volumes:
     - name: logs
       hostPath:
         path: /mnt/disks/ssd0/var/log/pbsmatch/logs
-    - name: pbsmatchCert
+    - name: pbsmatchcert
       maddogCert:
         type: client
   loadbalancers:
