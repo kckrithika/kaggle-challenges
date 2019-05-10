@@ -40,7 +40,7 @@ spec:
         - --vipName=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net
         - --port=9116
         env:
-        - name: SFDCLOC_NODE_NAME
+        - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
