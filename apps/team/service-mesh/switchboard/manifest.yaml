@@ -136,8 +136,8 @@ system:
     - lbtype: dsr
       port: 15370
       targetport: 15372
-      name: http-app-admin
+      name: http-app
     - lbtype: dsr
       port: 15374
       targetport: 15373
-      name: http-envoy-admin
+      name: http-envoy
