@@ -17,7 +17,7 @@ env:
   subEnvName: mist61
 images:
   coreApp: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_218-patch_17562818
-  coreAppOverrides: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/coreapp_overrides:40d086
+  coreAppOverrides: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/coreapp_overrides_rpulle:1.0
   envoy: sfci/servicelibs/sherpa-envoy:1.0.4
   envoyConfig: sfci/casam/cyan-config:208cc2
   sequencer: sfci/casam/sequencer:2b8d19
