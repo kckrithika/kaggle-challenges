@@ -9,8 +9,7 @@
 # It must be 64 or fewer characters long. Stated as a regular expression, this is [a-z0-9]([-a-z0-9]*[a-z0-9]). 
 # Note that only lower cased alpha characters are permitted, and the name must start with an alphanumeric character.
 #
-# https://confluence.internal.salesforce.com/display/SAM/Set+Up+SAM+Network+Options#SetUpSAMNetworkOptions-LoadBalanced
-#
+# https://confluence.internal.salesforce.com/display/SAM/Set+Up+SAM+Network+Options
 # Because you can have multiple functions specified in your SAM manifest, you need to make sure that you have specified non-conflicting
 # container and lbnames, non-conflicting port numbers for containers, and non-conflicting port numbers between containers and services. 
 #
@@ -36,7 +35,7 @@ system:
 
     containers:
     - name: revpathproxy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:slb_nonroot_20190510
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:slb_nonroot_lh
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -49,6 +48,7 @@ system:
       - mountPath: /var/cache/nginx/client_temp
         name: cache-volume
 
+    # GID service
     - name: appone
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/samhello:one 
       ports:
@@ -58,6 +58,7 @@ system:
           path: /
           port: 9091
 
+    # Entity API
     - name: apptwo
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/samhello:two 
       ports:
@@ -80,8 +81,8 @@ system:
     ports:
       - port: 9090 
         targetport: 9090
-      - port: 9091
-        targetport: 9091
-      - port: 9092
-        targetport: 9092
+     # - port: 9091
+     #   targetport: 9091
+     # - port: 9092
+     #   targetport: 9092
 
