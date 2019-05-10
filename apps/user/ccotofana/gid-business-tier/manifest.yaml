@@ -36,12 +36,15 @@ system:
 
     containers:
     - name: revpathproxy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:slb
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:slb_nonroot
       ports:
       - containerPort: 9090
       livenessProbe:
         initialDelaySeconds: 15
         timeoutSeconds: 5
+      volumeMounts:
+      - mountPath: /var/cache
+        name: cache-volume
 
     - name: appone
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/samhello:one 
@@ -60,6 +63,10 @@ system:
         httpGet:
           path: /
           port: 9092
+
+    volumes:
+    - name: cache-volume
+      emptyDir: {}
 
   loadbalancers:
   - lbname: revpathproxytestonelb
