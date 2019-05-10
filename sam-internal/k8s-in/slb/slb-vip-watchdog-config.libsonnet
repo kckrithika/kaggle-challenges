@@ -80,6 +80,8 @@ local vipwdConfig = {
       "zipkin-alpha.distributed-tracing.prd-sam.prd.slb.sfdc.net:80",
       // 2019/05/03 - mgrass: Flappy upstreams timing out requests make VIP watchdog sad.
       "ceph0-dash-prd.slb.sfdc.net:*",
+      // 2019/05/09 - hsuanyu-chen: Flappy updstreams and was down the next day.
+      "mysql.flowsnake.prd-sam.prd.slb.sfdc.net:*",
     ],
     vivips: [
        // There are 3 sledge VIPs that listen on these ports:
