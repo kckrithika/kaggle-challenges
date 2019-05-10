@@ -59,7 +59,7 @@ system:
       - samapp/user-awaterman/eaas:DATACENTER:7443
       # Non namespaced, plain-text HTTP2 GRPC
       - -endpoint
-      - eaas:DATACENTER_ALLENV:7012
+      - samapp/eaas-awaterman:DATACENTER_ALLENV:7012
       # Non namespaced, plain-text HTTP1 for Chaos endpoint
       - -endpoint
       - eaas-chaos:DATACENTER_ALLENV:7014
