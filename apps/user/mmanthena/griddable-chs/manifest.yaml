@@ -20,8 +20,8 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-#         - mountPath: /acds
-#           name: chs-persistent
+         - name: chs-persistent
+           mountPath: /acds
          - name: tls-client-cert
            mountPath: /client-certs
          - name: tls-server-cert

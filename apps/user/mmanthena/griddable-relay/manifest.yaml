@@ -20,8 +20,8 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-#         - name: relay-persistent
-#           mountPath: /acds
+         - name: relay-persistent
+           mountPath: /acds
 #         - mountPath: /acds-relay-secrets/
 #           name: acds-relay-secrets-vol
 #           readOnly: true
@@ -34,6 +34,8 @@ system:
          value: all
        - name : LOGGING_STDERR_LEVEL
          value: all
+       - name : TRUSTED_CERT
+         value: "cat /client-certs/ca.pem"
        - name : ACDS_POLICY
          value: "io.griddable.policy:{\"KARTHIK\":{}}"
        - name : ACDS_DB_CONFIG
