@@ -60,7 +60,10 @@ configs.deploymentBase("service-mesh") {
             name: "route-update-service",
             image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicemesh/servicemesh/route-update-service:b817daada3298bf9b1c337fb383f67949615b342",
             imagePullPolicy: "IfNotPresent",
-            args: [],
+            args: [
+              "-p",
+              "7443",
+            ],
             env: [
               {
                 name: "ESTATE",
@@ -69,7 +72,7 @@ configs.deploymentBase("service-mesh") {
             ],
             ports: [
               {
-                containerPort: 7020,
+                containerPort: 7443,
                 name: "grpc-svc",
               },
             ],

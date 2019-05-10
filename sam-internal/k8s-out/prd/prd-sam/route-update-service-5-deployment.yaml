@@ -51,7 +51,9 @@ spec:
         superpod: NONE
     spec:
       containers:
-      - args: []
+      - args:
+        - -p
+        - "7443"
         env:
         - name: ESTATE
           value: prd-sam_gater
@@ -59,7 +61,7 @@ spec:
         imagePullPolicy: IfNotPresent
         name: route-update-service
         ports:
-        - containerPort: 7020
+        - containerPort: 7443
           name: grpc-svc
         readinessProbe:
           exec:

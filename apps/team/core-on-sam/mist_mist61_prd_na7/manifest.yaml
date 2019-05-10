@@ -168,9 +168,11 @@ system:
       - name: SFPROXY_VIP
         value: http://na7-mist61app-prd.core-on-sam-sp2.svc.mesh.sfdc.net:8085
       - name: SWITCH_BOARD_ADDRESS
-        value: switchboard.service-mesh:15001
+        value: switchboard.service-mesh.svc.mesh.sfdc.net:15001
       - name: ROUTE_UPDATE_SERVICE
-        value: route-update-service.service-mesh:7020
+        value: route-update-service.service-mesh.svc.mesh.sfdc.net:7443
+      - name: INSECURE_SKIP_TLS_VERIFY
+        value: 1
       - name: RELEASE_VESION
         value: ""
       - name: RELEASE_TYPE
