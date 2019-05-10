@@ -46,7 +46,7 @@ system:
         initialDelaySeconds: 15
         timeoutSeconds: 5
       volumeMounts:
-      - mountPath: /var/cache
+      - mountPath: /var/cache/nginx/client_temp
         name: cache-volume
 
     - name: appone
