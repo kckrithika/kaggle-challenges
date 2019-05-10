@@ -21,12 +21,6 @@ system:
     - name: oauth2-proxy-secrets
       k4aSecret:
         secretName: oauth2-proxy
-    - name: client-certs
-      maddogCert:
-        type: client
-    - name: secretvol
-      secret:
-       secretName: jkspass
     containers:
     - name: zipkin-nginx
       image: docker-dva-rc/dva/zipkin-nginx:21
@@ -58,16 +52,12 @@ system:
     - name: zipkin-alpha
       image: docker-dva-rc/dva/zipkin-collector:58
       env:
+      - name: KAFKA_SECURITY_PROTOCOL
+        value: PLAINTEXT
       - name: ES_HOSTS
         value: es-test-distributed-tracing-prd.slb.sfdc.net:9200
       - name: ZIPKIN_ARGS
         value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
-      volumeMounts:
-      - mountPath: /etc/pki_service/zipkin-collector
-        name: client-certs
-      - mountPath: /var/secrets
-        name: secretvol
-        readOnly: true
       resources:
          # forcing the pods to different hosts (each has 56 CPU)
         limits: { cpu: "30", memory: "12Gi" }
