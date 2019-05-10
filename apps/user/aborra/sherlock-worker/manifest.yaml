@@ -16,9 +16,7 @@ system:
       livenessProbe:
         exec:
           command:
-            - celery
-            - inspect
-            - ping
+            - /opt/sherlock/bin/ping.sh
         failureThreshold: 60
         periodSeconds: 10
         timeoutSeconds: 10
