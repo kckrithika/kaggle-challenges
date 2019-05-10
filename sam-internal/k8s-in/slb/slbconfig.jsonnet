@@ -329,7 +329,7 @@
             set_value_to_all_in_list([configs.estate], $.slbEstates)
             + {
               "prd-sam": [configs.estate, "prd-sp2-sam_coreapp"],
-                        },
+            },
 
         upstreamStatusReporterMinPercent:
             set_value_to_all_in_list("", $.slbEstates)
