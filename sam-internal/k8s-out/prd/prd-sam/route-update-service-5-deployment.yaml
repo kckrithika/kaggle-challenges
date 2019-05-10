@@ -35,6 +35,7 @@ spec:
              "san": [
               "route-update-service",
               "route-update-service.service-mesh",
+              "route-update-service.service-mesh.sfdc-role",
               "route-update-service.service-mesh.svc",
               "route-update-service.service-mesh.svc.prd-sam.prd.sam.sfdc.net"
              ]
