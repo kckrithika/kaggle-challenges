@@ -8,13 +8,14 @@ system:
     count: 5
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:3edafcb011d85c0c466c388d16a6727cec45888f
+      image: sfci/servicelibs/switchboard:183059c16584b14b941d5b094937a7f82d7fb494
       args:
       - --clusters.external-clusters[0]=ajnafunneldirect:HTTP1
       - --clusters.external-clusters[1]=spaasmesh:HTTP2
       - --metrics.maxNumberOfCollectedMetrics=150000
       - --metrics.funnelTimeOut=100000
       - --healthIndicator.maxThreadCount=1300
+      # Standard is 60,000
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
       ports:
@@ -49,15 +50,12 @@ system:
         httpGet:
           path: /manage/ready
           port: 15372
-        # Switchboard won't become Ready until there was a successful scrape.
-        # So we don't want to start touching the readiness probe until then.
-        # Using 60+ seconds here will also allow us to slow down the gradual rollout
-        initialDelaySeconds: 60
+        initialDelaySeconds: 15
         periodSeconds: 5
         timeoutSeconds: 4
       terminationMessagePolicy: FallbackToLogsOnError
     - name: sherpa
-      image: sfci/servicelibs/sherpa-envoy:1.0.7
+      image: sfci/servicelibs/sherpa-envoy:1.0.5
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
