@@ -1,7 +1,2 @@
 apps:
- my-sam-test:    # this must match the name of your application. It must be lower case.
-  - prd/prd-sdc  
-                 # you can also specify other pools
- green-test:
-  - prd/prd-sdc
 
