@@ -30,18 +30,16 @@ system:
   - name: revpathproxytestone
     count: 1
 
-    # Using host networking like CA (no slb)... but do we need to?
+    # Not using host networking like CA.
+    # If this works, maybe we don't need to tie the business-tier kpod to specific hosts 
     #hostnetwork: true
 
     containers:
     - name: revpathproxy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:localhost
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:slb
       ports:
       - containerPort: 9090
       livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
         initialDelaySeconds: 15
         timeoutSeconds: 5
 
@@ -66,8 +64,14 @@ system:
   loadbalancers:
   - lbname: revpathproxytestonelb
     function: revpathproxytestone
-    nodeExposed: true
+    # Don't use regular (hardware?) loadbalancing
+    #nodeExposed: true
+    slbEnabled: true
     ports:
-      - port: 10090
+      - port: 9090 
         targetport: 9090
+      - port: 9091
+        targetport: 9091
+      - port: 9092
+        targetport: 9092
 
