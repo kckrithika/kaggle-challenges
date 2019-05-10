@@ -29,6 +29,7 @@ spec:
                 operator: In
                 values:
                 - prd-sam
+                - prd-sp2-sam_coreapp
             - matchExpressions:
               - key: master
                 operator: In
