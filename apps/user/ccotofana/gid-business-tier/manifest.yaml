@@ -40,6 +40,9 @@ system:
       ports:
       - containerPort: 9090
       livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
         initialDelaySeconds: 15
         timeoutSeconds: 5
       volumeMounts:
