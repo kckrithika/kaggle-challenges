@@ -67,10 +67,10 @@ system:
         exec:
           command:
           - /home/sfdc/salesforce/casam/bin/live_probe.sh
-        failureThreshold: 99999
-        initialDelaySeconds: 120
-        periodSeconds: 5
-        timeoutSeconds: 5
+        failureThreshold: 60
+        initialDelaySeconds: 300
+        periodSeconds: 10
+        timeoutSeconds: 10
       name: coreapp
       ports:
       - containerPort: 8998
