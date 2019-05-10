@@ -34,6 +34,8 @@ system:
          value: all
        - name : LOGGING_STDERR_LEVEL
          value: all
+       - name : TRUSTED_CERT
+         value: "cat /client-certs/ca.pem"
        - name : ACDS_POLICY
          value: "io.griddable.policy:{\"KARTHIK\":{}}"
        - name : ACDS_DB_CONFIG
