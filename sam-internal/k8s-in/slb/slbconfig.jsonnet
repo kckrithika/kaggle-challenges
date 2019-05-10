@@ -513,6 +513,15 @@
         },
     },
 
+    sfdcloc_node_name_env: {
+        name: "SFDCLOC_NODE_NAME",
+        valueFrom: {
+            fieldRef: {
+                fieldPath: "spec.nodeName",
+            },
+        },
+    },
+
     pod_ip_env: {
         name: "POD_IP",
         valueFrom: {

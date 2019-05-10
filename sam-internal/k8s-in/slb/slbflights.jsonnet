@@ -43,4 +43,6 @@ local slbconfigs = import "slbconfig.jsonnet";
 
     # slb-dns-register's container name was (confusingly) slb-dns-register-processor. Sanitize it.
     slbDnsRegisterContainerName: (if slbimages.phaseNum <= 1 then "slb-dns-register" else "slb-dns-register-processor"),
+
+    slbFredNewNodeName: (slbimages.phaseNum <= 1),
 }
