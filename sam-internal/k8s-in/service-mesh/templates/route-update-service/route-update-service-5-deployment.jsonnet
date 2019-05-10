@@ -8,6 +8,8 @@ configs.deploymentBase("service-mesh") {
   local serverCertSans = [
     "route-update-service",
     "route-update-service.service-mesh",
+    # SAM internal pipeline is generating SAN as service-mesh.route-update-service.sam.sfdc-role. So adding this explicitly.
+    "route-update-service.service-mesh.sfdc-role", 
     "route-update-service.service-mesh.svc",
     "route-update-service.service-mesh.svc.%s" % configs.dnsdomain,
   ],
