@@ -56,7 +56,7 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
                                         {
                                             key: "pool",
                                             operator: "In",
-                                            values: [configs.estate],
+                                            values: slbconfigs.perCluster.realsvrcfg_pools[configs.estate],
                                         },
 
                                     ],
