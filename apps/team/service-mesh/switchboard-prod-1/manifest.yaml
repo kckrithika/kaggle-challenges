@@ -15,6 +15,7 @@ system:
       - --metrics.maxNumberOfCollectedMetrics=150000
       - --metrics.funnelTimeOut=100000
       - --healthIndicator.maxThreadCount=1300
+      # Standard is 60,000
       - --clusters.zkScraper.scrapeTimeoutMs=120000
       - --cluster.scraper.delayMs=120000
       ports:
@@ -49,10 +50,7 @@ system:
         httpGet:
           path: /manage/ready
           port: 15372
-        # Switchboard won't become Ready until there was a successful scrape.
-        # So we don't want to start touching the readiness probe until then.
-        # Using 60+ seconds here will also allow us to slow down the gradual rollout
-        initialDelaySeconds: 60
+        initialDelaySeconds: 15
         periodSeconds: 5
         timeoutSeconds: 4
       terminationMessagePolicy: FallbackToLogsOnError
