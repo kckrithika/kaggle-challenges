@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: ad-lite-demo
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/casp-demo-hy84ui:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/casp-demo-nm61ki:latest
       ports:
       - containerPort: 5000
       livenessProbe:
