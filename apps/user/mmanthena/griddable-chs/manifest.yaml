@@ -111,7 +111,7 @@ system:
        - name : ACDS_AUTO_CBC_ENABLED
          value: "true"
        - name : DUMMY_VARIABLE
-         value: "DUMMY_VARIABLE_2"
+         value: "DUMMY_VARIABLE_3"
        - name : ACDS_REPL_CONSUMER_DB_CONFIG
          value: "bootstrap"
        - name : ACDS_CONSUMER_POLICY
