@@ -1,0 +1,11 @@
+- lbname: es-baremetal-test
+  servers:
+   - shared0-samminionzipkin2-5-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-12-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-13-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-14-prd.eng.sfdc.net
+   - shared0-samminionzipkin2-15-prd.eng.sfdc.net
+  ports:
+   - port: 9200
+     targetport: 9200
+     lbtype: http
