@@ -116,7 +116,7 @@ system:
        - name : ACDS_START_RELAY
          value: "yes"
        - name : DUMMY_VARIABLE
-         value: "DUMMY_VARIABLE_3"
+         value: "DUMMY_VARIABLE_4"
      volumes:
 #     - name: acds-relay-secrets-vol
 #       k4aSecret:
