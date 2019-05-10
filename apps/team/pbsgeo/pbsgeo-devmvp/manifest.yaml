@@ -23,11 +23,9 @@ system:
     - name: logs
       hostPath:
         path: /mnt/disks/ssd0/var/log/pbsgeo/logs
-        type: DirectoryOrCreate
     - name: unpackeddata        
       hostPath:
         path: /mnt/disks/ssd0/data/pbsgeo/unpackeddata 
-        type: DirectoryOrCreate
   loadbalancers:
   - lbname: pbsgeolb
     function: default
