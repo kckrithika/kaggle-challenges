@@ -15,15 +15,20 @@ system:
         initialDelaySeconds: 500 
         periodSeconds: 30
       resources:
-        limits: {cpu: "4", memory: "64Gi"}
-        requests: {cpu: "4", memory: "64Gi"}
+        limits: {cpu: "8", memory: "64Gi"}
+        requests: {cpu: "8", memory: "64Gi"}
       volumeMounts:
       - mountPath: /home/sfdc/logs
         name: logs
+      - name: pbsmatchcert
+        mountPath: /etc/pki_service
     volumes:
     - name: logs
       hostPath:
         path: /mnt/disks/ssd0/var/log/pbsmatch/logs
+    - name: pbsmatchcert
+      maddogCert:
+        type: client
   loadbalancers:
   - lbname: pbsmatchlb
     function: default
