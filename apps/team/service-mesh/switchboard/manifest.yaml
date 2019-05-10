@@ -132,9 +132,12 @@ system:
     - lbtype: dsr
       port: 15001
       targetport: 15001
+      name: grpc-xds
     - lbtype: dsr
       port: 15370
       targetport: 15372
+      name: http-app-admin
     - lbtype: dsr
       port: 15374
       targetport: 15373
+      name: http-envoy-admin

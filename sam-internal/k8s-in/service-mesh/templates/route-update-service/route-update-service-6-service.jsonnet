@@ -11,7 +11,7 @@ local configs = import "config.jsonnet";
     ports: [
       {
         port: 7443,
-        targetPort: 7020,
+        targetPort: 7443,
         name: "grpc",
       },
     ],
