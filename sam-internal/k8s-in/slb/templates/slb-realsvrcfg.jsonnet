@@ -79,7 +79,12 @@ if slbconfigs.isSlbEstate then configs.daemonSetBase("slb") {
         updateStrategy: {
             type: "RollingUpdate",
             rollingUpdate: {
-                maxUnavailable: slbflights.realsvrCfgRolloutMaxUnavailable,
+                # The rollout of slb-realsvrcfg sometimes gets stuck waiting for pod termination.
+                # When this happens, we observe issues with canary DSR VIP availability.
+                # See discussion at https://computecloud.slack.com/archives/G340CE86R/p1555707096410000?thread_ts=1555702827.408500&cid=G340CE86R
+                # Reduce the maxUnavailable for realsvrcfg from 20% to 1, so that at most one daemonset
+                # pod is offline at a time.
+                maxUnavailable: 1,
             },
         },
         minReadySeconds: 30,

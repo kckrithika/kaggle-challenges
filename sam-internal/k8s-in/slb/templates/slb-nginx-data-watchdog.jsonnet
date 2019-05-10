@@ -32,17 +32,16 @@ if slbconfigs.isSlbEstate then configs.deploymentBase("slb") {
                                     name: "slb-nginx-data-watchdog",
                                     image: slbimages.hyperslb,
                                     command: [
-                                                 "/sdn/slb-nginx-data-watchdog",
-                                                 "--namespace=sam-system",
-                                                 configs.sfdchosts_arg,
-                                                 "--k8sapiserver=",
-                                                 "--connPort=" + slbports.slb.nginxDataConnPort,
-                                                 "--monitorFrequency=10s",
-                                                 "--nginxWDmetricsEndpoint=" + configs.funnelVIP,
-                                                 "--nginxWDhostnameOverride=$(NODE_NAME)",
-                                             ] + (if slbflights.fixNginxDataLogging then [
-                                               "--log_dir=" + slbconfigs.logsDir,
-                                               ] else []),
+                                        "/sdn/slb-nginx-data-watchdog",
+                                        "--namespace=sam-system",
+                                        configs.sfdchosts_arg,
+                                        "--k8sapiserver=",
+                                        "--connPort=" + slbports.slb.nginxDataConnPort,
+                                        "--monitorFrequency=10s",
+                                        "--nginxWDmetricsEndpoint=" + configs.funnelVIP,
+                                        "--nginxWDhostnameOverride=$(NODE_NAME)",
+                                        "--log_dir=" + slbconfigs.logsDir,
+                                    ],
 
                                     volumeMounts: configs.filter_empty(
                                         [
