@@ -2,7 +2,7 @@ system:
   notifications:
     email:
       - zipkin-scrum-team@salesforce.com
-  functions: 
+  functions:
   - name: zipkin-spark-beta
     count: 1
     strategy:
@@ -20,7 +20,7 @@ system:
       # See https://github.com/openzipkin/zipkin-dependencies for available ENV options
       env:
       - name: ES_HOSTS
-        value: es-prod-distributed-tracing-prd.slb.sfdc.net:9200
+        value: shared0-samminionzipkin2-5-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-12-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-13-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-14-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-15-prd.eng.sfdc.net:9200
       - name: SPARK_USER
         value: ''
       - name: ES_NODES_WAN_ONLY

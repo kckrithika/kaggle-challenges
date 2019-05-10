@@ -36,7 +36,7 @@ system:
       - name: ES_INDEX_REPLICAS
         value: 3
       - name: ES_HOSTS
-        value: es-prod-distributed-tracing-prd.slb.sfdc.net:9200
+        value: shared0-samminionzipkin2-5-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-12-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-13-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-14-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-15-prd.eng.sfdc.net:9200
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
       - name: KAFKA_ACCEPT_BATCH_SIZE
@@ -99,7 +99,7 @@ system:
         requests: { cpu: "30", memory: "12Gi" }
       env:
       - name: ES_HOSTS
-        value: es-prod-distributed-tracing-prd.slb.sfdc.net:9200
+        value: shared0-samminionzipkin2-5-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-12-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-13-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-14-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-15-prd.eng.sfdc.net:9200
       - name: JAVA_OPTS
         value: -Xmx6g
       - name: QUERY_PORT
