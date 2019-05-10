@@ -31,13 +31,13 @@ system:
 
     # Not using host networking like CA.
     # If this works, maybe we don't need to tie the business-tier kpod to specific hosts 
-    #hostnetwork: true
+    hostnetwork: true
 
     containers:
     - name: revpathproxy
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:slb_nonroot_lh
-      ports:
-      - containerPort: 9090
+#      ports:
+#      - containerPort: 9090
       livenessProbe:
         httpGet:
           path: /
@@ -51,8 +51,8 @@ system:
     # GID service
     - name: appone
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/samhello:one 
-      ports:
-      - containerPort: 9091
+#      ports:
+#      - containerPort: 9091
       livenessProbe:
         httpGet:
           path: /
@@ -61,8 +61,8 @@ system:
     # Entity API
     - name: apptwo
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/samhello:two 
-      ports:
-      - containerPort: 9092
+#      ports:
+#      - containerPort: 9092
       livenessProbe:
         httpGet:
           path: /
@@ -72,17 +72,18 @@ system:
     - name: cache-volume
       emptyDir: {}
 
-  loadbalancers:
-  - lbname: revpathproxytestonelb
-    function: revpathproxytestone
-    # Don't use regular (hardware?) loadbalancing
-    #nodeExposed: true
-    slbEnabled: true
-    ports:
-      - port: 9090 
-        targetport: 9090
-     # - port: 9091
-     #   targetport: 9091
-     # - port: 9092
-     #   targetport: 9092
+#  loadbalancers:
+#  - lbname: revpathproxytestonelb
+#    function: revpathproxytestone
+#    # Don't use regular (hardware?) loadbalancing
+#    #nodeExposed: true
+#    slbEnabled: true
+#    # Ports not mentioned here are still forwarded to target container
+#    ports:
+#      - port: 9090 
+#        targetport: 9090
+#     # - port: 9091
+#     #   targetport: 9091
+#     # - port: 9092
+#     #   targetport: 9092
 
