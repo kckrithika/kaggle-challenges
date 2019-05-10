@@ -20,8 +20,8 @@ system:
          initialDelaySeconds: 10
          timeoutSeconds: 5
        volumeMounts:
-         - name: relay-persistent
-           mountPath: /acds
+#         - name: relay-persistent
+#           mountPath: /acds
 #         - mountPath: /acds-relay-secrets/
 #           name: acds-relay-secrets-vol
 #           readOnly: true
