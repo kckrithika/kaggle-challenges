@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: sherlock-master
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/sherlock-master:v0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/sherlock-master:v1
       ports:
       - name: http
         containerPort: 5555
