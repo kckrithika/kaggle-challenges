@@ -9,10 +9,12 @@ system:
     count: 2
     containers:
     - name: sherlock-worker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/sherlock:v0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/sherlock:rc0-s9d7f
       env:
         - name: BROKER_URL
           value: 'sherlock-master.user-aborra.prd-sam.prd.slb.sfdc.net'
+        - name: CELERY_QUEUES
+          value: 'dfw,phx'
       livenessProbe:
         exec:
           command:
