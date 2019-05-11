@@ -18,7 +18,7 @@ system:
       sidecar.istio.io/inject: "true"
       routing.mesh.sfdc.net/enabled: "true"
     containers:
-    - name: geoip-database
+    - name: ggeoip-database
       image: tnrp/ccait/geoip2-database:20170918
       args:
         - -d
