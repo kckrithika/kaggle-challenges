@@ -164,6 +164,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
                     metadata: {
                         labels: {
                             "k8s-app": "kube-state-metrics",
+                            name: "kube-state-metrics",
                         },
                     },
                     spec: {

@@ -28,6 +28,7 @@ configs.deploymentBase("flowsnake") {
           service: "prometheus-scraper",
           flowsnakeOwner: "dva-transform",
           flowsnakeRole: "PrometheusScraper",
+          name: "prometheus-scraper",
         },
       },
       spec: {
