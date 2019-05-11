@@ -19,6 +19,7 @@ data:
     outboundTrafficPolicy:
       mode: ALLOW_ANY
     rootNamespace: mesh-control-plane
+    proxyListenPort: 15006
     defaultConfig:
       connectTimeout: 10s
       configPath: "/etc/istio/proxy"
