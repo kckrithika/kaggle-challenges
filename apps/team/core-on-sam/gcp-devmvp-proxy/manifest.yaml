@@ -136,7 +136,7 @@ system:
       command: ["/bin/sh", "-c"]
       args: ["
       export SETTINGS_PATH=prod.-.phx.na3.sfproxy-envoy ;
-      bin/entrypoint --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-public-cloud-rds.yaml.template --switchboard=na3-switchboard-lb:16001
+      bin/entrypoint --template=/home/sfdc-sherpa/sfproxy/config/core-on-sam/sfproxy-rds.yaml.template --switchboard=na3-switchboard-lb:16001
       "]
       ports:
       - containerPort: 2525
