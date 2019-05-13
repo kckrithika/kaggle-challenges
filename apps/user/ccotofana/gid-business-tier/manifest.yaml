@@ -36,6 +36,17 @@ system:
     containers:
     - name: revpathproxy
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:lh_20190513
+      command: ["/bin/sh"]
+      args: ["/etc/nginx/config_and_restart_nginx.sh"]
+      env:
+      - name: CC_POD_HOST
+        value: ${FUNCTION_INSTANCE_IP}      # SAM environment variable
+      - name: CC_NGINX_PORT
+        value: 10090
+      - name: CC_APP_ONE_PORT
+        value: 10091
+      - name: CC_APP_TWO_PORT
+        value: 10092
       ports:
       - containerPort: 10090
       livenessProbe:
