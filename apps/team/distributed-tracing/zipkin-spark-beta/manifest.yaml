@@ -20,7 +20,7 @@ system:
       # See https://github.com/openzipkin/zipkin-dependencies for available ENV options
       env:
       - name: ES_HOSTS
-        value: shared0-samminionzipkin2-5-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-12-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-13-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-14-prd.eng.sfdc.net:9200,shared0-samminionzipkin2-15-prd.eng.sfdc.net:9200
+        value: es-baremetal-test-klu-prd.slb.sfdc.net:9200
       - name: SPARK_USER
         value: ''
       - name: ES_NODES_WAN_ONLY
