@@ -7,9 +7,14 @@ system:
       containers:
         - name: mgmtserver-api
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtapi:1.0
+          command:
+          - /bin/bash
+          - -c
+          args:
+          - tail -f /dev/null
           livenessProbe:
             exec:
-              command: ["curl", "http://127.0.0.1:5004/"]
+              command: ["ps -ef"]
             initialDelaySeconds: 60
             timeoutSeconds: 10
           volumeMounts:
