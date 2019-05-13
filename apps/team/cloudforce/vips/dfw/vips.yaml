@@ -500,6 +500,8 @@
     - "X-Forwarded-Proto"
     - "X-Forwarded-For"
     - "X-Real-IP"
+    allow:
+    - 204.14.239.17/32
   - port: 443
     targetport: 8085
     lbtype: http
