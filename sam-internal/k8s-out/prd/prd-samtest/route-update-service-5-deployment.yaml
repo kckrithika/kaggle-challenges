@@ -19,7 +19,7 @@ spec:
       disco_sp: ""
       disco_subenv: ""
       sam_function: route-update-service
-      settings_path: -.-.prd.-.route-update-service
+      settings_path: mesh.-.prd.-.route-update-service
       superpod: NONE
   template:
     metadata:
@@ -59,7 +59,7 @@ spec:
         disco_sp: ""
         disco_subenv: ""
         sam_function: route-update-service
-        settings_path: -.-.prd.-.route-update-service
+        settings_path: mesh.-.prd.-.route-update-service
         superpod: NONE
     spec:
       containers:
