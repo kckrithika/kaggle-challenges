@@ -1,5 +1,4 @@
 apps:
-  mgmt-api:
-  - prd/prd-sam
-  griddable-relay: 
-  - prd/prd-sam
+  etcd-pv:
+    - prd/prd-sam
+   
