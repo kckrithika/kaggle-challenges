@@ -37,36 +37,42 @@ system:
     - name: revpathproxy
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:lh_20190513
       ports:
-      - containerPort: 9090
+      - containerPort: 10090
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 10090
         initialDelaySeconds: 15
         timeoutSeconds: 5
       volumeMounts:
       - mountPath: /var/cache/nginx/client_temp
         name: cache-volume
 
-    # GID service
+    # Fake GID service
     - name: appone
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/samhello:one 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/samhello:withargs
+      command: ["/bin/samhello"]
+      args: ["10091", "one"]
+      #TODO Find a way to not expose these ports outside the kpod
       ports:
-      - containerPort: 9091
+      - containerPort: 10091
+      #TODO Replace httpGet liveness probe with shell script in the container (so don't have expose/declare port number)
       livenessProbe:
         httpGet:
           path: /
-          port: 9091
+          port: 10091
 
-    # Entity API
+    # Fake Entity API
     - name: apptwo
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/samhello:two 
-#      ports:
-#      - containerPort: 9092
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/samhello:withargs 
+      command: ["/bin/samhello"]
+      args: ["10092", "two"]
+      ports:
+      - containerPort: 10092
       livenessProbe:
         httpGet:
           path: /
-          port: 9092
+          port: 10092
 
     volumes:
     - name: cache-volume
