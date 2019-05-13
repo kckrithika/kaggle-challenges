@@ -40,6 +40,11 @@
       "skip_image_exist_check": true
     },
     {
+      "match": "^(791719295754.dkr.ecr.us-east-2.amazonaws.com)",
+      "note": "We have no way to check images for ECR in firefly",
+      "skip_image_exist_check": true
+    },
+    {
       "match": "^(minikube)",
       "note": "Minikube is for local testing only, skip",
       "skip_image_exist_check": true
