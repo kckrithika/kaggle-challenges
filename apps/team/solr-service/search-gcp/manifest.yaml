@@ -7,7 +7,7 @@ system:
       count: 3
       containers:
       - name: searchserver
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:18041073.518
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:18073153.529
         env:
         - name: INSTANCE_URL
           value: "https://casam.devmvp.gcp.sfdcsvc.net"
@@ -67,7 +67,7 @@ system:
       containers:
       - name: searchserver
         # image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:17556325.442
-        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:18041073.518
+        image : ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/searchserver:18073153.529
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
