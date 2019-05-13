@@ -37,6 +37,8 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: config
+        - mountPath: /etc/sfdc-release
+          name: etc-data
       hostNetwork: true
       serviceAccount: node-labeler-sa
       serviceAccountName: node-labeler-sa
@@ -44,6 +46,9 @@ spec:
       - configMap:
           name: node-labeler
         name: config
+      - hostPath:
+          path: /etc/sfdc-release
+        name: etc-data
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 25%
