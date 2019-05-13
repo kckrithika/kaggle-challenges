@@ -6,6 +6,10 @@ system:
   functions:
   - name: switchboard
     count: 5
+    annotations:
+      routing.mesh.sfdc.net/enabled: "true"
+    labels:
+      app: switchboard
     containers:
     - name: switchboard
       image: sfci/servicelibs/switchboard:b03f18365f652a408cc84347bb32ab02ba4706e5
