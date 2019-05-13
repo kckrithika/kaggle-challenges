@@ -20,3 +20,6 @@ system:
         exec:
           command:
             - "/home/caas/is-alive.sh"
+      env:
+        - name: NO_ENV_FOR_RESTART
+          value: new1
