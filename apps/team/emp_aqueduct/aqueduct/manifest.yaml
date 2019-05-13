@@ -5,9 +5,11 @@ system:
   functions:
     - name: aqueduct
       count: 3
+      type: stateful-set
       identity:
         emptyServiceName: true
         namespace: emp_aqueduct
+      lbname: aqueduct-lb
       volumes:
       - name: kafkaclientcerts
         maddogCert:
