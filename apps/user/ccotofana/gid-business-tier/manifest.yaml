@@ -40,7 +40,7 @@ system:
       args: ["/etc/nginx/config_and_restart_nginx.sh"]
       env:
       - name: CC_POD_HOST
-        value: ${FUNCTION_INSTANCE_IP}      # SAM environment variable
+        value: $(FUNCTION_INSTANCE_IP)      # SAM environment variable
       - name: CC_NGINX_PORT
         value: 10090
       - name: CC_APP_ONE_PORT
