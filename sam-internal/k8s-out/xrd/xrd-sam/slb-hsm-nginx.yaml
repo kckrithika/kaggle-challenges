@@ -136,7 +136,7 @@ spec:
           value: xrd
         - name: PROXY_FLAVOR
           value: hsm
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/nginx-kms:122-2c073ca06d614038e35d7ea19ed32b497a4a8af8
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/dva/slb/nginx-kms:123-e0e859c05184559e48728c6c3d8bd74634afefbc
         livenessProbe:
           httpGet:
             path: /
