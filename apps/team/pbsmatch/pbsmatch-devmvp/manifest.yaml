@@ -21,7 +21,7 @@ system:
       - mountPath: /home/sfdc/logs
         name: logs
       - name: pbsmatchcert
-        mountPath: /etc/pki_service
+        mountPath: /etc/pki_service/sfdc
     volumes:
     - name: logs
       hostPath:
