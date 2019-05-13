@@ -86,7 +86,7 @@ for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates
 done
 
 if [ -z "$GO_PIPELINE_LABEL" ]; then
-  docker run -u 0 --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl generate-pool-list --in /repo/sam-internal/pools/ --out  /repo/sam-internal/k8s-in/sam/configs/generated-pools.jsonnet
+  docker run -u 0 --rm -v ${PWD}/../../:/repo${BIND_MOUNT_OPTIONS} ${HYPERSAM} /sam/manifestctl generate-pool-list --in /repo/sam-internal/pools/ --out  /repo/sam-internal/k8s-in/sam/configs/generated-pools.jsonnet
 else
   ${SAMBINDIR}/manifestctl generate-pool-list --in ../pools/ --out  ../k8s-in/sam/configs/generated-pools.jsonnet
 fi
