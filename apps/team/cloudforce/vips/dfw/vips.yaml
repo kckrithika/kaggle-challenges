@@ -523,3 +523,5 @@
     - "SSL_PROTOCOL"
     - "SSL_CIPHER"
     - "SSL_SESSION_ID"
+    allow:
+    - 204.14.239.17/32
