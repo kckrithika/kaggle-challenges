@@ -21,6 +21,7 @@ data:
       "num-worker-threads": 5,
       "pool-map-scan-frequency": "900s",
       "pool-map-scan-on": true,
+      "pool-scan-on": true,
       "pr-evaluate-completion-regex": "Regarding pull request authorization by.*on SHA [0-9a-f]+",
       "pr-evaluate-passed-regex": "SUCCESSFUL RUN.",
       "pr-scan-frequency": "1800s",

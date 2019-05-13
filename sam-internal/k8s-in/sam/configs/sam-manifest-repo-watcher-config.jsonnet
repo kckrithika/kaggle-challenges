@@ -17,6 +17,7 @@ std.prune({
         "look-back": "24h",
         "full-scan-on": false,
         "freq-scan-on": true,
+        "pool-scan-on": true,
         "tnrp-scan-on": true,
         "pool-map-scan-on": true,
         "pool-map-scan-frequency": "900s",
