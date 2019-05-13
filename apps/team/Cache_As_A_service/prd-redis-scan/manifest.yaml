@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: redis-scan
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sbandi/redis-scan:9bb4df1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sbandi/redis-scan:a517127
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
