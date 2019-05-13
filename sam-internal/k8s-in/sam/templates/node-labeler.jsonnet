@@ -18,6 +18,10 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                                  ]),
                         volumeMounts+: configs.filter_empty([
                             configs.config_volume_mount,
+                            {
+                                name: "etc-data",
+                                mountPath: "/etc/sfdc-release",
+                            },
                         ]),
                         resources: {
                             requests: {
@@ -33,6 +37,12 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                 ],
                 volumes+: configs.filter_empty([
                     configs.config_volume("node-labeler"),
+                    {
+                        name: "etc-data",
+                        hostPath: {
+                            path: "/etc/sfdc-release",
+                        },
+                    },
                 ]),
             },
             metadata: {
