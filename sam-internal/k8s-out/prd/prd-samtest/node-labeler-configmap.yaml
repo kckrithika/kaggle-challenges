@@ -3,7 +3,7 @@ data:
   node-labeler-config.json: |-
     {
       "commands": {
-        "patchVersion": "cat /etc/sfdc-release | grep -oP '(?\u003c=INSTALL ).*'"
+        "osPatch": "cat /etc/sfdc-release | grep -oP '(?\u003c=INSTALL ).*'"
       },
       "livenessProbePort": "21690",
       "resync": "30m",
