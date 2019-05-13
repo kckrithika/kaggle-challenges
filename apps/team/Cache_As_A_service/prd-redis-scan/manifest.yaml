@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: redis-scan
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sbandi/redis-scan:a517127
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sbandi/redis-scan:508136f
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
@@ -19,7 +19,7 @@ system:
         initialDelaySeconds: 5
         exec:
           command:
-            - "/home/caas/is-alive.sh"
+            - "/opt/caas/is-alive.sh"
       env:
         - name: NO_ENV_FOR_RESTART
           value: new1
