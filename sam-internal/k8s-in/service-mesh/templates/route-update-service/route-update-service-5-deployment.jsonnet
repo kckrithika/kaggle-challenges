@@ -48,7 +48,13 @@ configs.deploymentBase("service-mesh") {
         },
         labels: {
           app: "route-update-service",
-          settings_path: "test.-.prd.-.route-update-service",
+          disco_dc: configs.kingdom,
+          disco_env: "",
+          disco_subenv: "",
+          disco_pod: "",
+          disco_sp: "",
+          disco_role: "route-update-service",
+          settings_path:  "-.-." + configs.kingdom + ".-." + "route-update-service",
           superpod: "NONE",
           sam_function: "route-update-service",
         }
