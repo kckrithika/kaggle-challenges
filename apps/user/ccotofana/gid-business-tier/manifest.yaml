@@ -35,7 +35,7 @@ system:
 
     containers:
     - name: revpathproxy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:slb_nonroot_lh
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccotofana/nginx-revpathproxy:lh_20190513
 #      ports:
 #      - containerPort: 9090
       livenessProbe:
