@@ -57,6 +57,7 @@ system:
         initialDelaySeconds: 900    # 15 min for debug 
         #timeoutSeconds: 5
         timeoutSeconds: 900     # 15 min for debug
+        periodSeconds: 900      # 15 min for debug
       volumeMounts:
       - mountPath: /var/cache/nginx/client_temp
         name: cache-volume
