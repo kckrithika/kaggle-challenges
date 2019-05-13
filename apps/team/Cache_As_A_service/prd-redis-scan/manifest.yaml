@@ -19,4 +19,4 @@ system:
         initialDelaySeconds: 5
         exec:
           command:
-            - "/home/caas/is-alive.sh"
+            - "/opt/caas/is-alive.sh"
