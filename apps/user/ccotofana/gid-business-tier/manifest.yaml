@@ -60,9 +60,6 @@ system:
       volumeMounts:
       - mountPath: /var/cache/nginx/client_temp
         name: cache-volume
-      # Also need /var/run ???
-      - mountPath: /var/run
-        name: run-volume
 
     # Fake GID service
     - name: appone
@@ -92,8 +89,6 @@ system:
 
     volumes:
     - name: cache-volume
-      emptyDir: {}
-    - name: run-volume
       emptyDir: {}
 
 #  loadbalancers:
