@@ -2,12 +2,10 @@ apiVersion: v1
 system:
   functions:
     - name: cbatch-svc
-      count: 1
+      count: 2
       containers: 
         - name: cbatch-svc
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/cbatch-svc:1.6
-          args:
-            - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
             - containerPort: 15372
@@ -16,12 +14,12 @@ system:
               value: mesh
             - name: GRPC_SERVER_BIND_ENDPOINT
               value: tcp://0.0.0.0:7020
-            - name: JVM_HEAP_MAX
-              value: 4G
+            - name: JAVA_OPTS
+              value: "-Xmx6g -Xms2g -Djmagick.systemclassloader=no -Djava.library.path=/usr/lib/jni/ -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442"
           resources:
             limits:
               cpu: "8"
-              memory: 6Gi
+              memory: 8Gi
             requests:
               cpu: "8"
               memory: 6Gi
@@ -106,8 +104,6 @@ system:
       containers: 
         - name: aspose-svc
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/aspose-svc:1.6
-          args:
-            - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
             - containerPort: 15372
@@ -116,8 +112,8 @@ system:
               value: mesh
             - name: GRPC_SERVER_BIND_ENDPOINT
               value: tcp://0.0.0.0:7020
-            - name: JVM_HEAP_MAX
-              value: 4G
+            - name: JAVA_OPTS
+              value: "-Xmx4g -Xms2g -Djmagick.systemclassloader=no -Djava.library.path=/usr/lib/jni/ -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442"
           resources:
             limits:
               cpu: "8"
@@ -206,8 +202,6 @@ system:
       containers: 
         - name: image-svc
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/image-svc:1.6
-          args:
-            - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
             - containerPort: 15372
@@ -216,8 +210,8 @@ system:
               value: mesh
             - name: GRPC_SERVER_BIND_ENDPOINT
               value: tcp://0.0.0.0:7020
-            - name: JVM_HEAP_MAX
-              value: 4G
+            - name: JAVA_OPTS
+              value: "-Xmx4g -Xms2g -Djmagick.systemclassloader=no -Djava.library.path=/usr/lib/jni/ -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442"
           resources:
             limits:
               cpu: "8"
@@ -302,12 +296,10 @@ system:
           maddogCert:
             type: server
     - name: openoffice-svc
-      count: 2
+      count: 1
       containers: 
         - name: openoffice-svc
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/openoffice-svc:1.6
-          args:
-            - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
             - containerPort: 15372
@@ -316,8 +308,8 @@ system:
               value: mesh
             - name: GRPC_SERVER_BIND_ENDPOINT
               value: tcp://0.0.0.0:7020
-            - name: JVM_HEAP_MAX
-              value: 4G
+            - name: JAVA_OPTS
+              value: "-Xmx4g -Xms2g -Djmagick.systemclassloader=no -Djava.library.path=/usr/lib/jni/ -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442"
           resources:
             limits:
               cpu: "8"
@@ -406,8 +398,6 @@ system:
       containers: 
         - name: poppler-svc
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/poppler-svc:1.6
-          args:
-            - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
             - containerPort: 15372
@@ -416,8 +406,8 @@ system:
               value: mesh
             - name: GRPC_SERVER_BIND_ENDPOINT
               value: tcp://0.0.0.0:7020
-            - name: JVM_HEAP_MAX
-              value: 4G
+            - name: JAVA_OPTS
+              value: "-Xmx4g -Xms2g -Djmagick.systemclassloader=no -Djava.library.path=/usr/lib/jni/ -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442"
           resources:
             limits:
               cpu: "8"
@@ -506,8 +496,6 @@ system:
       containers: 
         - name: tika-svc
           image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/cbatch/tika-svc:1.6
-          args:
-            - --metrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442
           ports:
             - containerPort: 7020
             - containerPort: 15372
@@ -516,8 +504,8 @@ system:
               value: mesh
             - name: GRPC_SERVER_BIND_ENDPOINT
               value: tcp://0.0.0.0:7020
-            - name: JVM_HEAP_MAX
-              value: 4G
+            - name: JAVA_OPTS
+              value: "-Xmx4g -Xms2g -Djmagick.systemclassloader=no -Djava.library.path=/usr/lib/jni/ -Dmetrics.funnelEndPointURL=http://ajnafunneldirecttls.funnel.localhost.mesh.force.com:5442"
           resources:
             limits:
               cpu: "8"
