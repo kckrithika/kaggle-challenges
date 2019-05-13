@@ -26,5 +26,5 @@ local slbconfigs = import "slbconfig.jsonnet";
     # slb-dns-register's container name was (confusingly) slb-dns-register-processor. Sanitize it.
     slbDnsRegisterContainerName: (if slbimages.hyperslb_build >= 2155 then "slb-dns-register" else "slb-dns-register-processor"),
 
-    slbFredNewNodeName: (slbimages.phaseNum <= 1),
+    slbFredNewNodeName: (slbimages.hyperslb_build >= 2156),
 }
