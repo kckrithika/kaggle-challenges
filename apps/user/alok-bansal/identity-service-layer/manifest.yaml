@@ -41,6 +41,8 @@ system:
       env:
       - name: c2c_common_gdotBasePath
         value: http://10.233.180.195/scim
+      - name: GDOT_URL
+        value: http://10.233.180.195/scim
       ports:
       - containerPort: 8080
       - containerPort: 15372
