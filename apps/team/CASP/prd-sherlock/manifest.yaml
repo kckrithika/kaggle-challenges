@@ -1,0 +1,28 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - aborra@salesforce.com
+      - rpothana@salesforce.com
+  functions:
+  - name: sherlock
+    count: 2
+    containers:
+    - name: sherlock
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/sherlock:rc0-s9d7f
+      env:
+        - name: BROKER_URL
+          value: 'mycroft.casp.prd-sam.prd.slb.sfdc.net'
+        - name: CELERY_QUEUES
+          value: 'dfw,phx'
+      volumeMounts:
+        - mountPath: /home/sfdc/sherlock/data
+          name: sherlock-data-vol
+      livenessProbe:
+        exec:
+          command:
+            - /opt/sherlock/bin/ping.sh
+        failureThreshold: 60
+        periodSeconds: 10
+        timeoutSeconds: 10
+        initialDelaySeconds: 10
