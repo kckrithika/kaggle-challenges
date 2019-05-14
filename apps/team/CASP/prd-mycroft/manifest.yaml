@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: mycroft
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/sherlock-master:rc0-hk3w2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/mycroft:rc0-a1h2s
       ports:
       - name: http
         containerPort: 5555
