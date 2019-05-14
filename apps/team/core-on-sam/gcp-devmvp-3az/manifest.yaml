@@ -41,18 +41,6 @@ system:
     - name: coreapp
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/casam/coreapp:signal_test
 
-      command: ["/bin/sh", "-c"]
-      args: ["
-      while [ ! -f '/home/sfdc/salesforce/casam/.overrides_sidecar_done' ]; do echo -ne 'Waiting for coverride sidecar to complete its job\n' ;  sleep 1 ; done ;
-      export DB_PASSWORD=$(cat /home/sfdc/salesforce/config/settings/overrides/gcp-mvp-3az-db-pw/dbpw3az.txt) ;
-      cp /home/sfdc/salesforce/casam/lib/metrics-publishing.jar.optional /home/sfdc/salesforce/casam/lib/metrics-publishing.jar ;
-      mkdir -p /home/sfdc/salesforce/sfdc-test/func/mockk4avault ;
-      unzip /home/sfdc/salesforce/casam/lib/k4a.zip.testkeys -d /home/sfdc/salesforce/sfdc-test/func/mockk4avault ;
-      cp -fr /home/sfdc/salesforce/sfdc/config/keyrepo-goldfiles/dev/. /home/sfdc/salesforce/sfdc/config/keyrepo-goldfiles/prod ;
-      echo -e '<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<config>\n <section name=\"MessageQueueSettings\" owner=\"jbuisson\">\n  <boolean name=\"Enabled\">\n   <default>false</default>\n  </boolean>\n </section>\n</config>' > /home/sfdc/salesforce/casam/config/xml/mq.xml ;
-      /home/sfdc/salesforce/casam/bin/startup.sh
-      "]
-
       env:
         - name: REDEPLOY
           value: 1
