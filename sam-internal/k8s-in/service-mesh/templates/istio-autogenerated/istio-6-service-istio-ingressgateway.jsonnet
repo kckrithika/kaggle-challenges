@@ -4,7 +4,10 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
   apiVersion: "v1",
   kind: "Service",
   metadata: {
-    annotations: null,
+    annotations: {
+      "slb.sfdc.net/name": "istio-ingressgateway",
+      "slb.sfdc.net/portconfigurations": "[\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 15008,\n  \"targetport\": 15008\n },\n {\n  \"lbtype\": \"dsr\",\n  \"port\": 15009,\n  \"targetport\": 15009\n }\n]",
+    },
     labels: {
       app: "istio-ingressgateway",
       istio: "ingressgateway",
