@@ -7,7 +7,7 @@ system:
   - name: metadata-service-prd-perf
     identity:
       serviceName: metadata-service
-    count: 0
+    count: 3
     containers:
     - name: metadata-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.8.54
@@ -22,7 +22,7 @@ system:
       - name: MANAGEMENT_PORT
         value: "15523"
       - name: JVM_ARGS
-        value: -Dstartup.upsert.canonical.model=false -Djwt-validation.enabled=false
+        value: -Ddatabase.name=metadataservice_perf_test4 -Dstartup.upsert.canonical.model=false -Djwt-validation.enabled=false
           -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+PrintPromotionFailure
           -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps
           -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime
