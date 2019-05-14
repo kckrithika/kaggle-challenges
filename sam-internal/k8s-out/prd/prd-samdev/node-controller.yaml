@@ -32,7 +32,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2710-f3b16a96a6e53f87ce4ac157a136b9c89d7576b4
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/sam/hypersam:2722-a1231485debac6b17dfa76e7a1af01750e0f4f8b
         name: node-controller
         resources:
           limits:
