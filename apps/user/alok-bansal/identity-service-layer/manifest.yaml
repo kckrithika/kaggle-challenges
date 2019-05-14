@@ -7,11 +7,11 @@ system:
     - name: nginx-rev-proxy
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok-bansal/alok-nginx:latest
       ports:
-      - containerPort: 80
+      - containerPort: 8085
       livenessProbe:
         httpGet:
           path: /health
-          port: 80
+          port: 8085
         initialDelaySeconds: 15
         timeoutSeconds: 10
         periodSeconds: 30
@@ -45,4 +45,4 @@ system:
     slbEnabled: true
     ports:
       - port: 9090 
-        targetport: 80
+        targetport: 8085
