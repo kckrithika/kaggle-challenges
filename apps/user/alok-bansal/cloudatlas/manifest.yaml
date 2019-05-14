@@ -12,7 +12,7 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-baked
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:f22866a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok-bansal/c2c-ca-docker:49be539
       ports:
       - containerPort: 1636
       - containerPort: 8090
