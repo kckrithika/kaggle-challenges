@@ -13,6 +13,10 @@ apps:
   - prd/prd-sam_warden
  prd-tunifai: 
   - prd/prd-sam_warden
+ prd-sherlock:
+  - prd/prd-sam_warden
+ prd-mycroft:
+  - prd/prd-sam_warden
  prod-mysql-shard-a:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
