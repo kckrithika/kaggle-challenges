@@ -42,7 +42,7 @@ system:
         type: client
 
     # C2C service
-    - name: gid-service
+    - name: c2c-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:latest
       ports:
       - containerPort: 8080
