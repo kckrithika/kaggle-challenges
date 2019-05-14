@@ -1,6 +1,48 @@
 apps:
 
 
+  moana-syd-group2:
+  - syd/syd-sam_datapool
+  moana-cdu-group2:
+  - cdu/cdu-sam_datapool
+  moana-yul-group2:
+  - yul/yul-sam_datapool
+  moana-yhu-group2:
+  - yhu/yhu-sam_datapool
+  moana-engine-lo3-frf-group2:
+  - frf/frf-sam_datapool
+  moana-lo3-group2:
+  - lo3/lo3-sam_datapool
+  moana-engine-lo2-par-group2:
+  - par/par-sam_datapool
+  moana-lo2-group2:
+  - lo2/lo2-sam_datapool
+  moana-engine-fra-frf-group2:
+  - frf/frf-sam_datapool
+  moana-fra-group2:
+  - fra/fra-sam_datapool
+  moana-engine-cdg-par-group2:
+  - par/par-sam_datapool
+  moana-cdg-group2:
+  - cdg/cdg-sam_datapool
+  moana-hnd-group2:
+  - hnd/hnd-sam_datapool
+  moana-frf-group2:
+  - frf/frf-sam_datapool
+  moana-par-group2:
+  - par/par-sam_datapool
+  moana-ph2-group2:
+  - ph2/ph2-sam_datapool
+  moana-ia2-group2:
+  - ia2/ia2-sam_datapool
+  moana-phx-group2:
+  - phx/phx-sam_datapool
+  moana-dfw-group2:
+  - dfw/dfw-sam_datapool
+  moana-ord-group2:
+  - ord/ord-sam_datapool
+  moana-iad-group2:
+  - iad/iad-sam_datapool
   moana-ukb-group2:
   - ukb/ukb-sam_datapool
   moana-syd-group1:

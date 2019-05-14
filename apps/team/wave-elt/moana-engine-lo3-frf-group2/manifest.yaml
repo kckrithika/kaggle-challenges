@@ -1,0 +1,18 @@
+#
+# Generated manifest
+# DO NOT MODIFY - See https://git.soma.salesforce.com/insights/DataPoolService/tree/master/release-scripts
+#
+apiVersion: v1
+system:
+  functions:
+  - containers:
+    - image: ops0-artifactrepo1-0-frf.data.sfdc.net/sfci/insights/moanaengine:release-9-36710b7
+      livenessProbe:
+        exec:
+          command: [ls]
+        initialDelaySeconds: 5
+      name: moana-engine
+    count: 0
+    name: moana-engine-lo3-frf-group2
+  notifications:
+    email: [moanaserviceseng@salesforce.com]

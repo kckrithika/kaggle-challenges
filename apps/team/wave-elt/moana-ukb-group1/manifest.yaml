@@ -42,7 +42,7 @@ system:
         requests: {cpu: 1, memory: 2G}
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
-    count: 1
+    count: 3
     hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-group1
@@ -60,11 +60,11 @@ system:
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:MaxDirectMemorySize=256M
           -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M -XX:+UseG1GC -verbose:gc
-          -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops", "spark.hadoop.fs.s3a.connection.ssl.enabled":
-          "true", "spark.hadoop.fs.s3a.endpoint": "s3-us-west-2.amazonaws.com", "spark.hadoop.fs.s3a.proxy.host":
-          "public0-proxy1-0-ukb.data.sfdc.net", "spark.hadoop.fs.s3a.proxy.port":
-          "8080", "spark.hadoop.fs.s3a.server-side-encryption-algorithm": "SSE-KMS",
-          "spark.hadoop.fs.s3a.server-side-encryption.key": "ea96b117-8eee-4314-b214-8a125eb5242e",
+          -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops -Djdk.nio.maxCachedBufferSize=262144",
+          "spark.hadoop.fs.s3a.connection.ssl.enabled": "true", "spark.hadoop.fs.s3a.endpoint":
+          "s3-us-west-2.amazonaws.com", "spark.hadoop.fs.s3a.proxy.host": "public0-proxy1-0-ukb.data.sfdc.net",
+          "spark.hadoop.fs.s3a.proxy.port": "8080", "spark.hadoop.fs.s3a.server-side-encryption-algorithm":
+          "SSE-KMS", "spark.hadoop.fs.s3a.server-side-encryption.key": "ea96b117-8eee-4314-b214-8a125eb5242e",
           "spark.shuffle.accurateBlockThreshold": "1048576", "spark.shuffle.io.preferDirectBufs":
           "false", "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: ukb-group1}
@@ -114,7 +114,7 @@ system:
       - {mountPath: /server-certs, name: tls-server-certs}
       - {mountPath: /client-certs, name: tls-client-certs}
       - {mountPath: /log, name: sherpa-log-volume}
-    count: 1
+    count: 3
     hostnetwork: false
     identity: {serviceName: datapool}
     name: jobcontroller-group1
