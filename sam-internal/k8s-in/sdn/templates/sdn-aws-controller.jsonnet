@@ -3,7 +3,7 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "cdu-sam" || configs.estate == "syd-sam" || configs.estate == "yul-sam" then configs.deploymentBase("sdn") {
+if configs.estate == "cdu-sam" || configs.estate == "syd-sam" || configs.estate == "yul-sam" || configs.estate == "yhu-sam" then configs.deploymentBase("sdn") {
     metadata+: {
         labels: {
             name: "sdn-aws-controller",
