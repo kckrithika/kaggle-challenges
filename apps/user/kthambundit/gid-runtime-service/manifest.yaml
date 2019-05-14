@@ -1,0 +1,23 @@
+apiVersion: v1
+system:
+  functions:
+  - name: gid-runtime-service
+    count: 1
+    containers:
+    - name: gid-runtime-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev/gid/gid-runtime-service:d34b0b9
+      ports:
+      - containerPort: 8090
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 8090
+  loadbalancers:
+  - lbname: gidruntimelb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 8090
+        targetport: 8090
+        lbtype: tcp
+
