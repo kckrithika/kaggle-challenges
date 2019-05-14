@@ -7,6 +7,8 @@ system:
     - name: syncmaster
       image: dva/winterfell-syncmaster:3-a6d9470ef6745897ca21464459c097d56359dddc
       env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
       - name: SPRING_CONFIG_NAME
         value: prod
       - name: DC
