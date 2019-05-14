@@ -7,7 +7,7 @@ system:
   - name: metadata-service-prd-perf
     identity:
       serviceName: metadata-service
-    count: 0
+    count: 3
     containers:
     - name: metadata-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.8.54
