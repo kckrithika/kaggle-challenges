@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: default
-    count: 1
+    count: 4
     containers:
     - name: pbsmatch
       image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:4a26beb324260523455f2bdf5b4cb8d53e10089a
