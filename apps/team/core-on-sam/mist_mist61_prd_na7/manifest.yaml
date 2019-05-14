@@ -62,7 +62,7 @@ system:
         valueFrom:
           fieldRef:
             fieldPath: spec.nodeName
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_220-patch_18011946
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam:release_220-patch_18081735
       livenessProbe:
         exec:
           command:
