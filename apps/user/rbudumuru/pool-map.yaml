@@ -1,4 +1,6 @@
 apps:
   etcd-pv:
     - prd/prd-sam
+  mariadb:
+  - prd/prd-sam
    
