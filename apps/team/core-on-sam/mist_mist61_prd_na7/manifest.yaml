@@ -33,9 +33,9 @@ system:
       - name: PUBLIC_PORT_IS_SECURE
         value: false
       - name: PUBLIC_HOST_NAME
-        value: na7-mist61app-prd.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+        value: us7-mist61app-prd.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
       - name: SFPROXY_VIP
-        value: http://na7-mist61app-prd.core-on-sam-sp2.svc.mesh.sfdc.net:8085
+        value: http://us7-mist61app-prd.core-on-sam-sp2.svc.mesh.sfdc.net:8085
       - name: HTTP_PORT
         value: 8085
       - name: SPORT
@@ -166,7 +166,7 @@ system:
       - name: CHATTER_GROUP_NAME
         value: casam-alpha
       - name: SFPROXY_VIP
-        value: http://na7-mist61app-prd.core-on-sam-sp2.svc.mesh.sfdc.net:8085
+        value: http://us7-mist61app-prd.core-on-sam-sp2.svc.mesh.sfdc.net:8085
       - name: SWITCH_BOARD_ADDRESS
         value: switchboard.service-mesh.svc.mesh.sfdc.net:15001
       - name: ROUTE_UPDATE_SERVICE
@@ -285,6 +285,17 @@ system:
       port: 8443
       targetport: 8443
       name: https-core
+  - function: na7-mist61app-prd
+    lbname: us7-mist61app-prd
+    ports:
+    - lbtype: dsr
+      port: 8085
+      targetport: 8085
+      name: http-core
+    - lbtype: dsr
+      port: 8443
+      targetport: 8443
+      name: https-core
     slbEnabled: true
   - function: na7-mist61sequencer-prd
     lbname: na7-mist61sequencer-prd
@@ -293,4 +304,3 @@ system:
       port: 12062
       targetport: 12062
       name: http
-    slbEnabled: true
