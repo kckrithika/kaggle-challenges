@@ -24,12 +24,9 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
     $['serviceName'] == "firefly-pullrequest-fcp" ||
     $['serviceName'] == "firefly-pullrequest-fcp-test" ||
     $['serviceName'] == "firefly-package-fcp"||
-    $['serviceName'] == "firefly-package-fcp-test"),
-
-  local is_mdp_certs_enabled = ($['serviceName'] == "firefly-pullrequest-mdp" ||
-    $['serviceName'] == "firefly-package-mdp" ||
-    $['serviceName'] == "firefly-package-test-mdp" ||
-    $['serviceName'] == "firefly-pullrequest-test-mdp" ),
+    $['serviceName'] == "firefly-package-fcp-test" ||
+    $['serviceName'] == "firefly-pullrequest-mdp" ||
+    $['serviceName'] == "firefly-package-mdp"),
 
   serviceConf:: {},
   commonVolMounts:: [
@@ -142,8 +139,6 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
             {"name": "certs", "cert-type":"client", "kingdom":"prd", "role": $.role},
           ] + if is_customer_certs_enabled then [
             {"name": "customer-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".customer"},
-          ] else if is_mdp_certs_enabled then [
-            {"name": "mdp-certs", "cert-type":"client", "kingdom":"prd", "role": $.role + ".mdp"},
           ] else [],
           annotations: {
             'madkub.sam.sfdc.net/allcerts': std.manifestJson({"certreqs" : certReqs}),
@@ -162,17 +157,6 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                   name: "customer-certs",
                 },
               ],
-            } else if is_mdp_certs_enabled then {
-              args +: [
-                "--cert-folders",
-                "mdp-certs:/mdp-certs/",
-              ],
-              volumeMounts +: [
-                {
-                  mountPath: "/mdp-certs/",
-                  name: "mdp-certs",
-                },
-              ],
             } else {},
           ],
           containers: [
@@ -185,17 +169,6 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                 {
                   mountPath: "/customer-certs/",
                   name: "customer-certs",
-                },
-              ],
-            } else if is_mdp_certs_enabled then {
-              args +: [
-                "--cert-folders",
-                "mdp-certs:/mdp-certs/",
-              ],
-              volumeMounts +: [         
-                {
-                  mountPath: "/mdp-certs/",
-                  name: "mdp-certs",
                 },
               ],
             } else {},
@@ -260,10 +233,6 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
                   name: "customer-certs",
                   mountPath: "/customer-certs/",
                 },
-                {
-                  name: "mdp-certs",
-                  mountPath: "/mdp-certs/",
-                },
               ],
             },
           ],
@@ -316,13 +285,6 @@ local envConfig = import "configs/firefly_service_conf.jsonnet";
           ] + if is_customer_certs_enabled then [
               {
                 name: "customer-certs",
-                emptyDir: {
-                  medium: "Memory",
-                },
-              },
-          ] else if is_mdp_certs_enabled then [
-              {
-                name: "mdp-certs",
                 emptyDir: {
                   medium: "Memory",
                 },

@@ -395,8 +395,6 @@ items:
             name: firefly-root-dir
           - mountPath: /customer-certs/
             name: customer-certs
-          - mountPath: /mdp-certs/
-            name: mdp-certs
         initContainers:
         - args:
           - /sam/madkub-client
@@ -1278,8 +1276,6 @@ items:
             name: firefly-root-dir
           - mountPath: /customer-certs/
             name: customer-certs
-          - mountPath: /mdp-certs/
-            name: mdp-certs
         initContainers:
         - args:
           - /sam/madkub-client
