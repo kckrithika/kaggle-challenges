@@ -21,8 +21,8 @@ system:
         exec:
           command:
           - /opt/pdm/pdm.customer/bin/is-alive.sh
-        initialDelaySeconds: 60
-        periodSeconds: 30
+        initialDelaySeconds: 300
+        periodSeconds: 60
 # SLB
   loadbalancers:
   - lbname: ca-service-lb
