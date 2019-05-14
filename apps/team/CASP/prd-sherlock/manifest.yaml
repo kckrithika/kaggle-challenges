@@ -29,4 +29,4 @@ system:
     volumes:
       - name: sherlock-data-vol
         hostPath:
-          path: /home/sfdc-casp/sherlock/data
+          path: /data/sherlock
