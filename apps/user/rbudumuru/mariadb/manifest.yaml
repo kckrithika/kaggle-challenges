@@ -12,7 +12,6 @@ system:
     containers:
     - name: mariadbcluster
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtdb:10.3.11
-
       env:
       - name: MYSQL_ROOT_PASSWORD
         value: myrootpassword
@@ -62,8 +61,15 @@ system:
         initialDelaySeconds: 120
         periodSeconds: 1
 
+      volumeMounts:
+      - mountPath: /var/lib/mysql
+        name: mariadbservice
 
     volumes:
+    - name: mariadbservice
+      hostPath:
+        path: /home/sfdc-mariadb/guiapi/data
+
     - name: certs
       maddogCert:
         type: server
