@@ -11,21 +11,12 @@ system:
         maxUnavailable: 1
     hostnetwork: true
     containers:
-    - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:f012c35
-      command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
+    - name: cloudatlas-baked
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:f22866a
       ports:
-      - containerPort: 1389
       - containerPort: 1636
-      - containerPort: 8890
       - containerPort: 8090
-      - containerPort: 8989
-      - containerPort: 15372
-      - containerPort: 7032
       - containerPort: 7030
-      - containerPort: 5050
-      - containerPort: 7022
-      - containerPort: 8445
       livenessProbe:
         exec:
           command:
@@ -35,28 +26,12 @@ system:
 # SLB
   loadbalancers:
   - lbname: ca-service-lb
-    function: ca-service-layer
+    function: cloudatlas-test
     slbEnabled: true
     ports:
-      - port: 1389
-        targetport: 1389
       - port: 1636
         targetport: 1636
-      - port: 8890
-        targetport: 8890
       - port: 8090
         targetport: 8090
-      - port: 8989
-        targetport: 8989
-      - port: 15372
-        targetport: 15372
-      - port: 7032
-        targetport: 7032
       - port: 7030
         targetport: 7030
-      - port: 5050
-        targetport: 5050
-      - port: 7022
-        targetport: 7022
-      - port: 8445
-        targetport: 8445
