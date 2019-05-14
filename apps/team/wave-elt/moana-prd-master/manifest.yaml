@@ -115,7 +115,7 @@ system:
       - {mountPath: /server-certs, name: tls-server-certs}
       - {mountPath: /client-certs, name: tls-client-certs}
       - {mountPath: /log, name: sherpa-log-volume}
-    count: 1
+    count: 3
     hostnetwork: false
     identity: {serviceName: datapool}
     name: jobcontroller-master
