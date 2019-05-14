@@ -2,10 +2,10 @@ apiVersion: v1
 system:
   functions:
   - name: default
-    count: 1
+    count: 4 
     containers:
     - name: pbsgeo
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:a9c69d8056632114a301992f5a14f3941681db32
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:fd1674848d5b824aeb7d8108ccd91c5954df36ea
       ports:
       - containerPort: 8080
       livenessProbe:
