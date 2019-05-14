@@ -14,17 +14,9 @@ system:
     - name: cloudatlas-baked
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:f22866a
       ports:
-      - containerPort: 1389
       - containerPort: 1636
-      - containerPort: 8890
       - containerPort: 8090
-      - containerPort: 8989
-      - containerPort: 15372
-      - containerPort: 7032
       - containerPort: 7030
-      - containerPort: 5050
-      - containerPort: 7022
-      - containerPort: 8445
       livenessProbe:
         exec:
           command:
