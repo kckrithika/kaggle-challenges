@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-32-7e7f74b
+    - image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-1.0.8-70f5755
       livenessProbe:
         exec:
           command: [ls]
@@ -28,7 +28,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: prd-master}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/moana-driver:master-24-e6ab5b3
+      image: sfci/insights/moana-driver:master-26-e5ec99d
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -43,7 +43,7 @@ system:
         requests: {cpu: 1, memory: 2G}
       volumeMounts:
       - {mountPath: /home/scone/client-certs, name: tls-client-certs}
-    count: 1
+    count: 3
     hostnetwork: false
     identity: {serviceName: moana-driver}
     name: moana-driver-master
@@ -56,16 +56,16 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-32-7e7f74b'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/insights/moanaengine:master-1.0.8-70f5755'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-master}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.dir": "s3a://moana-spark-history//",
           "spark.eventLog.enabled": "true", "spark.executor.extraJavaOptions": "-XX:MaxDirectMemorySize=256M
           -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M -XX:+UseG1GC -verbose:gc
-          -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops", "spark.hadoop.fs.s3a.connection.ssl.enabled":
-          "true", "spark.hadoop.fs.s3a.endpoint": "s3-us-west-2.amazonaws.com", "spark.hadoop.fs.s3a.proxy.host":
-          "public0-proxy1-0-prd.data.sfdc.net", "spark.hadoop.fs.s3a.proxy.port":
-          "8080", "spark.hadoop.fs.s3a.server-side-encryption-algorithm": "SSE-KMS",
-          "spark.hadoop.fs.s3a.server-side-encryption.key": "ea96b117-8eee-4314-b214-8a125eb5242e",
+          -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+UseCompressedOops -Djdk.nio.maxCachedBufferSize=262144",
+          "spark.hadoop.fs.s3a.connection.ssl.enabled": "true", "spark.hadoop.fs.s3a.endpoint":
+          "s3-us-west-2.amazonaws.com", "spark.hadoop.fs.s3a.proxy.host": "public0-proxy1-0-prd.data.sfdc.net",
+          "spark.hadoop.fs.s3a.proxy.port": "8080", "spark.hadoop.fs.s3a.server-side-encryption-algorithm":
+          "SSE-KMS", "spark.hadoop.fs.s3a.server-side-encryption.key": "ea96b117-8eee-4314-b214-8a125eb5242e",
           "spark.shuffle.accurateBlockThreshold": "1048576", "spark.shuffle.io.preferDirectBufs":
           "false", "spark.ui.enabled": "false"}'}
       - {name: DEPLOYMENT_ID, value: prd-master}
@@ -74,7 +74,7 @@ system:
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: stmfa\..*|moana-driver-master}
-      image: sfci/insights/jobcontroller:master-1.0.7-8e277d9
+      image: sfci/insights/jobcontroller:master-1.0.8-3776278
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
