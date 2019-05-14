@@ -15,7 +15,7 @@ system:
     hostnetwork: true
     containers:
     - name: sherpa-cloudatlas-client
-      image: sfci/servicelibs/sherpa-envoy:213d5137f0015e81c59afe6f93f6ab775dc4798b
+      image: sfci/servicelibs/sherpa-envoy:1.0.7
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
@@ -73,7 +73,7 @@ system:
         periodSeconds: 5
 
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas:2.21rc1
+      image: sfci/cloud-atlas/cloudatlas:2.22rc2
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
