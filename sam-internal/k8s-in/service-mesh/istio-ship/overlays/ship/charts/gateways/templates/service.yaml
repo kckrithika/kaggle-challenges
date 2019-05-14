@@ -6,6 +6,10 @@ metadata:
 spec:
   ports:
   - $patch: delete
+    port: 80
+  - $patch: delete
+    port: 443
+  - $patch: delete
     port: 15030
   - $patch: delete
     port: 15031
@@ -14,7 +18,9 @@ spec:
   - port: 32400
     nodePort: 32400
     name: tcp
-  - port: 80
+  - name: http2
+    port: 15008
     nodePort: 32380
-  - port: 443
+  - name: https
+    port: 15009
     nodePort: 32390

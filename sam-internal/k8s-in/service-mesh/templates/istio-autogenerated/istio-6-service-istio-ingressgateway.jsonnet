@@ -21,20 +21,19 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
         port: 32400,
       },
       {
-        name: "status-port",
-        port: 15020,
-        targetPort: 15020,
-      },
-      {
         name: "http2",
         nodePort: 32380,
-        port: 80,
-        targetPort: 80,
+        port: 15008,
       },
       {
         name: "https",
         nodePort: 32390,
-        port: 443,
+        port: 15009,
+      },
+      {
+        name: "status-port",
+        port: 15020,
+        targetPort: 15020,
       },
       {
         name: "https-kiali",

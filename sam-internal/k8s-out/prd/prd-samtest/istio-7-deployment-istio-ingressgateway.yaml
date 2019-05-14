@@ -33,7 +33,8 @@ spec:
               "istio-ingressgateway",
               "istio-ingressgateway.mesh-control-plane",
               "istio-ingressgateway.mesh-control-plane.svc",
-              "istio-ingressgateway.mesh-control-plane.svc.prd-samtest.prd.sam.sfdc.net"
+              "istio-ingressgateway.mesh-control-plane.svc.prd-samtest.prd.sam.sfdc.net",
+              "istio-ingressgateway.mesh-control-plane.prd-sam.prd.slb.sfdc.net"
              ]
             }
            ]
@@ -144,9 +145,9 @@ spec:
         imagePullPolicy: IfNotPresent
         name: istio-proxy
         ports:
+        - containerPort: 15008
+        - containerPort: 15009
         - containerPort: 15020
-        - containerPort: 80
-        - containerPort: 443
         - containerPort: 15029
         - containerPort: 15032
         - containerPort: 15443
