@@ -34,10 +34,13 @@ local wave_elt_production = {
                 namespace: "wave-elt",
                 pki_namespace: "wave-elt",
                 users: ["wave-elt.datapool", "wave-elt.datapool-test", "wave-elt.spark-engine"],
-                quota: {
-                    memory: "100Gi",
-                    cpu: "40",
-                },
+                # --------
+                # Don't use quota until we get to k8s 1.14
+                # quota: {
+                #     memory: "100Gi",
+                #     cpu: "40",
+                # },
+                # --------
             },
         ],
 

@@ -40,14 +40,5 @@ items:
       madkub-injector: enabled
       spark-operator-webhook: enabled
     name: flowsnake-ci-tests
-- apiVersion: v1
-  kind: ResourceQuota
-  metadata:
-    name: quota-wave-elt
-    namespace: wave-elt
-  spec:
-    hard:
-      cpu: "40"
-      memory: 100Gi
 kind: List
 metadata: {}
