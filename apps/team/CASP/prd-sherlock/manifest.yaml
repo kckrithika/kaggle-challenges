@@ -16,7 +16,7 @@ system:
         - name: CELERY_QUEUES
           value: 'dfw,phx'
       volumeMounts:
-        - mountPath: /home/sfdc/sherlock/data
+        - mountPath: /home/sfdc-casp/sherlock/data
           name: sherlock-data-vol
       livenessProbe:
         exec:
@@ -26,3 +26,7 @@ system:
         periodSeconds: 10
         timeoutSeconds: 10
         initialDelaySeconds: 10
+    volumes:
+      - name: sherlock-data-vol
+        hostPath:
+          path: /home/sfdc-casp/sherlock/data
