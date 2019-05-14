@@ -359,6 +359,18 @@
     },
     {
       "namespaces": [
+        "mc-eventing"
+      ],
+      "access": [
+        "team/mc-eventing"
+      ],
+      "controlEstate": "dfw-sam",
+      "estate": "dfw-sam_mc_consumer",
+      "kingdom": "dfw",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "hubs"
       ],
       "access": [
