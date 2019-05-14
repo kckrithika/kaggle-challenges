@@ -330,7 +330,7 @@
             + {
               "prd-sam"+: [
                   "prd-sam_gater",
-                  "prd-sp2-sam_coreapp"
+                  "prd-sp2-sam_coreapp",
               ],
             },
 
