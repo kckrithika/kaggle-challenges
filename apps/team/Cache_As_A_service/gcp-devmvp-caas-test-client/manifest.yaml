@@ -34,7 +34,7 @@ system:
        - name: PYTHONUNBUFFERED
          value: 1
     - name: sherpa
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-devmvp/npshenichnyy/sherpa-envoy:1.0.4-201902081120
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/sfci/servicelibs/sherpa-envoy:1.0.7
       args:
       # 2018-02-08: Direct Connection to the switchboard for now
       - --switchboard=switchboard.service-mesh.svc:15001
