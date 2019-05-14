@@ -29,9 +29,9 @@ system:
       - name: SERVER_ID
         value: x
       - name: PUBLIC_PORT
-        value: 8085
+        value: 8443
       - name: PUBLIC_PORT_IS_SECURE
-        value: false
+        value: true
       - name: PUBLIC_HOST_NAME
         value: us7-mist61app-prd.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
       - name: SFPROXY_VIP
