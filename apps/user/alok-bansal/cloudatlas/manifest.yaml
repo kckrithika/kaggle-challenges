@@ -23,6 +23,20 @@ system:
           - /opt/pdm/pdm.customer/bin/is-alive.sh
         initialDelaySeconds: 300
         periodSeconds: 60
+      volumeMounts:
+      - mountPath: /home/sfdc-atlas
+        name: hosthomevol
+      - mountPath: /home/sfdc-atlas/logs/servers/ds
+        name: pinglogvol
+      - mountPath: /log
+        name: logvol
+    volumes:
+    - name: logvol
+      emptyDir: {}
+    - name: hosthomevol
+      emptyDir: {}
+    - name: pinglogvol
+      emptyDir: {}
 # SLB
   loadbalancers:
   - lbname: ca-service-lb
