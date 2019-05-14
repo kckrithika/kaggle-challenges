@@ -9,7 +9,7 @@ system:
       args:
         - --server.port=9191
         - --management.port=15373
-        - --fake.arg=123
+        - --fake.arg=1234
       ports:
       - containerPort: 9191
       - containerPort: 15373
