@@ -15,8 +15,8 @@ system:
           livenessProbe:
             exec:
               command: ["ps -ef"]
-            initialDelaySeconds: 60
-            timeoutSeconds: 10
+            initialDelaySeconds: 600000
+            timeoutSeconds: 10000000
           volumeMounts:
             - name: tls-client-cert
               mountPath: /client-certs
