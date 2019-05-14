@@ -88,7 +88,7 @@ data:
         - --envoyMetricsServiceAddress
         - switchboard.service-mesh:15001
         - --proxyLogLevel
-        - debug
+        - info
         env:
         - name: POD_NAME
           valueFrom:

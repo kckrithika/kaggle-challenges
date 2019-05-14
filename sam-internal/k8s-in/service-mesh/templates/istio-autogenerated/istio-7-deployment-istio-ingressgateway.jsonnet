@@ -196,13 +196,13 @@ local mcpIstioConfig = (import "service-mesh/istio-config.jsonnet");
             name: "istio-proxy",
             ports: [
               {
+                containerPort: 15008,
+              },
+              {
+                containerPort: 15009,
+              },
+              {
                 containerPort: 15020,
-              },
-              {
-                containerPort: 80,
-              },
-              {
-                containerPort: 443,
               },
               {
                 containerPort: 15029,
