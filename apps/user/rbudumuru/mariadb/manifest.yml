@@ -1,0 +1,85 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+    - rbudumuru@salesforce.com
+
+  functions:
+  - name: mariadbcluster
+    type: stateful-set
+    count: 3
+    containers:
+    - name: mariadbcluster
+      image: severalnines/mariadb:10.1
+
+      env:
+      - name: MYSQL_ROOT_PASSWORD
+        value: myrootpassword
+      - name: DISCOVERY_SERVICE
+        value: etcd-pvnc.user-rbudumuru.prd-sam.prd.slb.sfdc.net:2379
+      - name: XTRABACKUP_PASSWORD
+        value: password
+      - name: CLUSTER_NAME
+        value: mariadb_galera
+      - name: MYSQL_DATABASE
+        value: mydatabase
+      - name: MYSQL_USER
+        value: myuser
+      - name: MYSQL_PASSWORD
+        value: myuserpassword
+
+
+
+
+      volumeMounts:
+      - mountPath: /certs
+        name: certs
+
+      ports:
+      - containerPort: 3306
+
+      resources:
+        requests:
+          memory: "4Gi"
+          cpu: "1"
+        limits:
+          memory: "16Gi"
+          cpu: "2"
+
+      readinessProbe:
+        exec:
+          command:
+          - /healthcheck.sh
+          - --readiness
+        initialDelaySeconds: 120
+        periodSeconds: 10
+      livenessProbe:
+        exec:
+          command:
+          - /healthcheck.sh
+          - --liveness
+        initialDelaySeconds: 120
+        periodSeconds: 1
+
+
+    volumes:
+    - name: certs
+      maddogCert:
+        type: server
+
+    lbname: dbaas-headless-lb
+
+  loadbalancers:
+  - lbname: mariadbclusterlb
+    function: mariadbcluster
+    nodeExposed: true
+    ports:
+    - port: 3306
+      targetport: 3306
+  - lbname: dbaas-slb
+    function: dbaas
+    slbEnabled: true
+    ports:
+    - port: 8080
+      targetport: 8080
