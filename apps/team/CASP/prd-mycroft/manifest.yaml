@@ -1,0 +1,33 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - aborra@salesforce.com
+      - rpothana@salesforce.com
+  functions:
+  - name: mycroft
+    count: 1
+    containers:
+    - name: mycroft
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/sherlock-master:rc0-hk3w2
+      ports:
+      - name: http
+        containerPort: 5555
+      - name: tcp
+        containerPort: 6379
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 5555
+        failureThreshold: 60
+        periodSeconds: 10
+        timeoutSeconds: 10
+  loadbalancers:
+  - lbname: mycroft
+    function: mycroft
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 5555
+      - port: 6379
+        targetport: 6379
