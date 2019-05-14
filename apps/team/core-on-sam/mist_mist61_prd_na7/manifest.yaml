@@ -35,7 +35,7 @@ system:
       - name: PUBLIC_HOST_NAME
         value: us7-mist61app-prd.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
       - name: SFPROXY_VIP
-        value: http://us7-mist61app-prd.core-on-sam-sp2.svc.mesh.sfdc.net:8085
+        value: http://na7-mist61app-prd.core-on-sam-sp2.svc.mesh.sfdc.net:8085
       - name: HTTP_PORT
         value: 8085
       - name: SPORT
@@ -167,7 +167,7 @@ system:
       - name: CHATTER_GROUP_NAME
         value: casam-alpha
       - name: SFPROXY_VIP
-        value: http://us7-mist61app-prd.core-on-sam-sp2.svc.mesh.sfdc.net:8085
+        value: http://na7-mist61app-prd.core-on-sam-sp2.svc.mesh.sfdc.net:8085
       - name: SWITCH_BOARD_ADDRESS
         value: switchboard.service-mesh.svc.mesh.sfdc.net:15001
       - name: ROUTE_UPDATE_SERVICE
