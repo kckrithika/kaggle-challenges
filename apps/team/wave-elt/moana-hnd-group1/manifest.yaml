@@ -6,7 +6,7 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: ops0-artifactrepo1-0-hnd.data.sfdc.net/sfci/insights/moanaengine:release-9-36710b7
+    - image: ops0-artifactrepo1-0-hnd.data.sfdc.net/sfci/insights/moanaengine:release-1.0.4-27d617f
       livenessProbe:
         exec:
           command: [ls]
@@ -28,7 +28,7 @@ system:
       - {name: TESTRECIPE_MAESTROPINGTEST, value: 'true'}
       - {name: DEPLOYMENT_ID, value: hnd-group1}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
-      image: sfci/insights/moana-driver:release-12-2319d24
+      image: sfci/insights/moana-driver:release-13-6195303
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 30
@@ -55,7 +55,7 @@ system:
     - env:
       - {name: LOGGING_JSON_STDOUT_LEVEL, value: ALL}
       - {name: LOGGING_STDERR_LEVEL, value: ALL}
-      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-hnd.data.sfdc.net/sfci/insights/moanaengine:release-9-36710b7'}
+      - {name: MOANA_SPARK_ENGINE_IMAGE, value: 'ops0-artifactrepo1-0-hnd.data.sfdc.net/sfci/insights/moanaengine:release-1.0.4-27d617f'}
       - {name: KAFKA_GROUP_ID, value: moana-jobcontroller-group1}
       - {name: K8S_SPARK_OVERRIDES, value: '{"spark.eventLog.enabled": "false", "spark.executor.extraJavaOptions":
           "-XX:MaxDirectMemorySize=256M -XX:ReservedCodeCacheSize=128M -XX:MaxMetaspaceSize=128M
@@ -69,7 +69,7 @@ system:
       - {name: SIZING_MEMORY_OVERHEAD, value: '1024'}
       - {name: K8S_CPU_LIMIT_APPLY, value: 'false'}
       - {name: HANDLED_PODS_PATTERN, value: 'cs[0-9]+\..*|moana-driver-group1'}
-      image: sfci/insights/jobcontroller:release-108-a2c2aab
+      image: sfci/insights/jobcontroller:release-1.0.3-5937af6
       livenessProbe:
         httpGet: {path: /manage/health, port: 15372}
         initialDelaySeconds: 90
