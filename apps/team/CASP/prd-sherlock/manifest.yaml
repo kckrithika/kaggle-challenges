@@ -6,7 +6,7 @@ system:
       - rpothana@salesforce.com
   functions:
   - name: sherlock
-    count: 2
+    count: 1
     containers:
     - name: sherlock
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aborra/sherlock:rc0-s9d7f
