@@ -20,7 +20,7 @@ system:
         name: cache-volume
 
     # GID service
-    - name: appone
+    - name: gid-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok-bansal/gid-service:latest
       ports:
       - containerPort: 8082
@@ -29,9 +29,15 @@ system:
         httpGet:
           path: /manage/health
           port: 15375
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
     volumes:
     - name: cache-volume
       emptyDir: {}
+    - name: cert
+      maddogCert:
+        type: client
 
   loadbalancers:
   - lbname: identity-service-layer-lb
