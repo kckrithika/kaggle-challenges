@@ -34,7 +34,7 @@ system:
 # SLB
   loadbalancers:
   - lbname: ca-service-lb
-    function: ca-service-layer
+    function: cloudatlas-test
     slbEnabled: true
     ports:
       - port: 1389
