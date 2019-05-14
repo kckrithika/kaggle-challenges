@@ -11,7 +11,7 @@ system:
     count: 3
     containers:
     - name: mariadbcluster
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtdb:10.3.11
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anudeept/mgmtdb:10.1-cluster
       env:
       - name: MYSQL_ROOT_PASSWORD
         value: myrootpassword
