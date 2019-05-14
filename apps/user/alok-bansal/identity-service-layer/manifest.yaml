@@ -4,7 +4,6 @@ system:
   - name: identity-service-layer
     count: 1
     containers:
-
     # NGINX Rev Proxy
     - name: nginx-rev-proxy
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok-bansal/alok-nginx:latest
@@ -20,7 +19,6 @@ system:
       volumeMounts:
       - mountPath: /var/cache/nginx/client_temp
         name: cache-volume
-
     # GID service
     - name: gid-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok-bansal/gid-service:latest
@@ -34,13 +32,6 @@ system:
       volumeMounts:
       - name: cert
         mountPath: /certs
-    volumes:
-    - name: cache-volume
-      emptyDir: {}
-    - name: cert
-      maddogCert:
-        type: client
-
     # C2C service
     - name: c2c-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:latest
@@ -54,14 +45,14 @@ system:
       volumeMounts:
       - name: cert
         mountPath: /certs
+    # Volumes Needed  
     volumes:
     - name: cache-volume
       emptyDir: {}
     - name: cert
       maddogCert:
         type: client
-
-
+# SLB
   loadbalancers:
   - lbname: identity-service-layer-lb
     function: identity-service-layer
