@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-{
+if configs.kingdom != "mvp" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -70,4 +70,4 @@ local utils = import "util_functions.jsonnet";
         name: "bundlecontroller",
         [if configs.kingdom == "vpod" then "namespace"]: "sam-system",
     },
-}
+} else "SKIP"

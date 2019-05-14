@@ -3,7 +3,8 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local utils = import "util_functions.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-std.prune({
+  std.prune(
+  if configs.kingdom != "mvp" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -88,4 +89,6 @@ std.prune({
         name: "samappcontroller",
         [if configs.kingdom == "vpod" then "namespace"]: "sam-system",
     },
-})
+}
+else "SKIP"
+)

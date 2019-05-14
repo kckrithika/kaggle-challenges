@@ -5,7 +5,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
 local samreleases = import "samreleases.json";
 local utils = import "util_functions.jsonnet";
 
-{
+if configs.kingdom != "mvp" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -103,4 +103,4 @@ local utils = import "util_functions.jsonnet";
             } + configs.serviceAccount,
         },
     },
-}
+} else "SKIP"
