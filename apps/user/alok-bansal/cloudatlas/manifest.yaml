@@ -37,25 +37,9 @@ system:
     function: cloudatlas-test
     slbEnabled: true
     ports:
-      - port: 1389
-        targetport: 1389
       - port: 1636
         targetport: 1636
-      - port: 8890
-        targetport: 8890
       - port: 8090
         targetport: 8090
-      - port: 8989
-        targetport: 8989
-      - port: 15372
-        targetport: 15372
-      - port: 7032
-        targetport: 7032
       - port: 7030
         targetport: 7030
-      - port: 5050
-        targetport: 5050
-      - port: 7022
-        targetport: 7022
-      - port: 8445
-        targetport: 8445
