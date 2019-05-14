@@ -40,9 +40,9 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:latest
       env:
       - name: c2c_common_gdotBasePath
-        value: http://10.233.180.195/scim
+        value: http://10.233.180.195:8090/scim
       - name: GDOT_URL
-        value: http://10.233.180.195/scim
+        value: http://10.233.180.195:8090/scim
       ports:
       - containerPort: 8080
       - containerPort: 15372
