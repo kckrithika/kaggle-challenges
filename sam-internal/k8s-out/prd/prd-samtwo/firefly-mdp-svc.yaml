@@ -378,8 +378,6 @@ items:
           securityContext:
             privileged: true
           volumeMounts:
-          - mountPath: /var/lib/docker
-            name: docker-graph-storage
           - mountPath: /tmp
             name: docker-build-dir
           - mountPath: /root/.ssh/
@@ -449,8 +447,6 @@ items:
                 - key: application.yml
                   path: application.yml
                 name: firefly-package-mdp-configmap
-        - emptyDir: {}
-          name: docker-graph-storage
         - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
@@ -889,8 +885,6 @@ items:
                   path: application.yml
                 name: firefly-package-singleton-mdp-configmap
         - emptyDir: {}
-          name: docker-graph-storage
-        - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
           name: firefly-root-dir
@@ -1256,8 +1250,6 @@ items:
           securityContext:
             privileged: true
           volumeMounts:
-          - mountPath: /var/lib/docker
-            name: docker-graph-storage
           - mountPath: /tmp
             name: docker-build-dir
           - mountPath: /root/.ssh/
@@ -1327,8 +1319,6 @@ items:
                 - key: application.yml
                   path: application.yml
                 name: firefly-pullrequest-mdp-configmap
-        - emptyDir: {}
-          name: docker-graph-storage
         - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
@@ -1741,8 +1731,6 @@ items:
                 - key: application.yml
                   path: application.yml
                 name: firefly-promotion-mdp-configmap
-        - emptyDir: {}
-          name: docker-graph-storage
         - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
