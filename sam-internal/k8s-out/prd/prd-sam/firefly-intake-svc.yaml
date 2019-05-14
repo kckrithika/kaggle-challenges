@@ -411,8 +411,6 @@ items:
                   path: application.yml
                 name: firefly-intake-configmap
         - emptyDir: {}
-          name: docker-graph-storage
-        - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
           name: firefly-root-dir

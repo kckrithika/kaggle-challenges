@@ -389,8 +389,6 @@ items:
           securityContext:
             privileged: true
           volumeMounts:
-          - mountPath: /var/lib/docker
-            name: docker-graph-storage
           - mountPath: /tmp
             name: docker-build-dir
           - mountPath: /root/.ssh/
@@ -460,8 +458,6 @@ items:
                 - key: application.yml
                   path: application.yml
                 name: firefly-package-manifests-configmap
-        - emptyDir: {}
-          name: docker-graph-storage
         - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
@@ -905,8 +901,6 @@ items:
                   path: application.yml
                 name: firefly-package-singleton-manifests-configmap
         - emptyDir: {}
-          name: docker-graph-storage
-        - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
           name: firefly-root-dir
@@ -1272,8 +1266,6 @@ items:
           securityContext:
             privileged: true
           volumeMounts:
-          - mountPath: /var/lib/docker
-            name: docker-graph-storage
           - mountPath: /tmp
             name: docker-build-dir
           - mountPath: /root/.ssh/
@@ -1343,8 +1335,6 @@ items:
                 - key: application.yml
                   path: application.yml
                 name: firefly-pullrequest-manifests-configmap
-        - emptyDir: {}
-          name: docker-graph-storage
         - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
@@ -1757,8 +1747,6 @@ items:
                 - key: application.yml
                   path: application.yml
                 name: firefly-promotion-manifests-configmap
-        - emptyDir: {}
-          name: docker-graph-storage
         - emptyDir: {}
           name: docker-build-dir
         - emptyDir: {}
