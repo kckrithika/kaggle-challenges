@@ -22,6 +22,9 @@ system:
     # GID service
     - name: gid-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok-bansal/gid-service:latest
+      env:
+      - name: ca.service.host
+        value: 10.233.180.195
       ports:
       - containerPort: 8082
       - containerPort: 15375
@@ -35,6 +38,9 @@ system:
     # C2C service
     - name: c2c-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:latest
+      env:
+      - name: c2c.common.gdotBasePath
+        value: http://10.233.180.195/scim
       ports:
       - containerPort: 8080
       - containerPort: 15372
