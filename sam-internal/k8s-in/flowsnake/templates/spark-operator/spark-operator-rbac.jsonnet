@@ -1,4 +1,5 @@
 local flowsnake_images = import "flowsnake_images.jsonnet";
+local election = std.objectHas(flowsnake_images.feature_flags, "spark_operator_election");
 
 {
     apiVersion: "v1",
@@ -64,7 +65,13 @@ local flowsnake_images = import "flowsnake_images.jsonnet";
                     resources: ["resourcequotas"],
                     verbs: ["get", "watch", "list"],
                 },
-            ],
+            ] + (if election then [
+                {
+                    apiGroups: [""],
+                    resources: ["configmaps"],
+                    verbs: ["*"],
+                },
+            ] else []),
         },
         {
             apiVersion: "rbac.authorization.k8s.io/v1beta1",
