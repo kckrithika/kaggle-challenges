@@ -42,7 +42,7 @@ spec:
         - --downloadSize=1
         - --uploadSize=1
         env:
-        - name: NODE_NAME
+        - name: SFDCLOC_NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
