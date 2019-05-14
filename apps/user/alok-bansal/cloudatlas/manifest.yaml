@@ -30,12 +30,16 @@ system:
         name: pinglogvol
       - mountPath: /log
         name: logvol
+      - mountPath: /opt
+        name: optlogvol
     volumes:
     - name: logvol
       emptyDir: {}
     - name: hosthomevol
       emptyDir: {}
     - name: pinglogvol
+      emptyDir: {}
+    - name: optlogvol
       emptyDir: {}
 # SLB
   loadbalancers:
