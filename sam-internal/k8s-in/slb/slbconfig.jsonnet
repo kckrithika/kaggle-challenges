@@ -328,7 +328,10 @@
         realsvrcfg_pools:
             set_value_to_all_in_list([configs.estate], $.slbEstates)
             + {
-              "prd-sam": [configs.estate, "prd-sp2-sam_coreapp"],
+              "prd-sam"+: [
+                  "prd-sam_gater",
+                  "prd-sp2-sam_coreapp",
+              ],
             },
 
         upstreamStatusReporterMinPercent:
