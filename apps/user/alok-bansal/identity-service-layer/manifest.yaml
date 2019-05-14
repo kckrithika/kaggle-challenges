@@ -4,6 +4,8 @@ system:
   - name: identity-service-layer
     count: 1
     containers:
+
+    # NGINX Rev Proxy
     - name: nginx-rev-proxy
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/alok-bansal/alok-nginx:latest
       ports:
@@ -38,6 +40,27 @@ system:
     - name: cert
       maddogCert:
         type: client
+
+    # C2C service
+    - name: c2c-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gid/c2c-service:latest
+      ports:
+      - containerPort: 8080
+      - containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/info
+          port: 15372
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
+    volumes:
+    - name: cache-volume
+      emptyDir: {}
+    - name: cert
+      maddogCert:
+        type: client
+
 
   loadbalancers:
   - lbname: identity-service-layer-lb
