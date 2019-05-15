@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: gater-perf
-    count: 1
+    count: 32
     containers:
     - name: gater-perf
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gater/gater-perf:dmanoharan-1557857354
