@@ -1,6 +1,4 @@
 version: v2
 apps:
   identity-service-layer:
-    - name: prd/prd-sam
-  cloudatlas:
-    - name: prd/prd-sam
+    - name: xrd/xrd-sampool
