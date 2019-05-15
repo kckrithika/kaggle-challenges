@@ -91,7 +91,7 @@ else
   ${SAMBINDIR}/manifestctl generate-pool-list --in ../pools/ --out  ../k8s-in/sam/configs/generated-pools.jsonnet
 fi
 
-./parallel_build.py --src=sam/templates/,sdn/templates/,slb/templates/,storage/templates/,tnrp/templates,dva-collection/templates,topology-svc/templates,service-mesh/templates,service-mesh/sherpa-injector/templates,service-mesh/switchboard/templates,service-mesh/zoobernetes/templates --out=../k8s-out/ --pools=../pools/ --estatefilter=$1 --labelfilterfile=samlabelfilter.json
+./parallel_build.py --src=sam/templates/,sdn/templates/,slb/templates/,storage/templates/,tnrp/templates,dva-collection/templates,topology-svc/templates,service-mesh/templates,service-mesh/sherpa-injector/templates,service-mesh/switchboard/templates,service-mesh/zoobernetes/templates,casam/sequencer/templates  --out=../k8s-out/ --pools=../pools/ --estatefilter=$1 --labelfilterfile=samlabelfilter.json
 
 ./parallel_build.py --src=flowsnake/templates,sdn/templates --out=../k8s-out/ --pools=flowsnake/flowsnakeEstates.json --estatefilter=$1
 # Skip SDN templates for Minikube
