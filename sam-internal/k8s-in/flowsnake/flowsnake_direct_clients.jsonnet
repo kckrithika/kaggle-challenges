@@ -42,6 +42,16 @@ local wave_elt_production = {
                 # },
                 # --------
             },
+            {
+                owner_name: "Universal Search",
+                namespace: "universal-search",
+                pki_namespace: "universal-search",
+                users: [
+                    "universal-search.universal-search",
+                    "universal-search.athrogmorton",
+                    "universal-search.irahim",
+                ],
+            },
         ],
 
         # ------------------------------------
