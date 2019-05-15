@@ -24,10 +24,6 @@
 # v2 style
 version: v2
 apps:
-  # SAM onboarding tutorial
-  my-sam-test:
-    - name: prd/prd-sam
-
   # Single-pod path-based proxy test
   # PRD-Dev: Fake business-tier SAM/k pod (hosts path-based proxy and two dummy http services)
   gid-business-tier:
