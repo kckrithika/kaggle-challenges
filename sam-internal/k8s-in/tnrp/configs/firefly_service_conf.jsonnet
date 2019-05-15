@@ -63,7 +63,13 @@ local portConfig = import "portconfig.jsonnet";
                             ',monitoring/nagios_configs'+
                             ',SiteReliability/srcore'+
                             ',nvt/routerdb'+
-                            ',sdn/sitebridge-manifests',
+                            ',sdn/sitebridge-manifests' +
+                            ',ddi/ddi-health-config' +
+                            ',ddi/dhcpdata' +
+                            ',ddi/ddi-config' +
+                            ',SiteSwitching/siteswitching' +
+                            ',nqa/nqa-services-data'+
+                            ',nqa/render-manifest',
     },
     environmentMapping:: {
         "prd-sam": $.prdsam,
