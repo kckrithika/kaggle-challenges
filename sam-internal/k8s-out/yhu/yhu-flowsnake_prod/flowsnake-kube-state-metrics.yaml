@@ -104,7 +104,6 @@ items:
       metadata:
         labels:
           k8s-app: kube-state-metrics
-          name: kube-state-metrics
       spec:
         containers:
         - image: ops0-artifactrepo1-0-yhu.data.sfdc.net/dva/kube-state-metrics-sfdc-0.0.1:3
