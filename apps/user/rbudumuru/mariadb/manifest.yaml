@@ -46,20 +46,13 @@ system:
           memory: "16Gi"
           cpu: "2"
 
-      readinessProbe:
-        exec:
-          command:
-          - /healthcheck.sh
-          - --readiness
-        initialDelaySeconds: 120
-        periodSeconds: 10
+
       livenessProbe:
         exec:
-          command:
-          - /healthcheck.sh
-          - --liveness
-        initialDelaySeconds: 120
-        periodSeconds: 1
+          command: ["mysqladmin", "status", "-h", "127.0.0.1", "-u", "$MYSQL_ROOT", "-p","$MYSQL_ROOT_PASSWORD"]
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+
 
       volumeMounts:
       - mountPath: /var/lib/mysql
