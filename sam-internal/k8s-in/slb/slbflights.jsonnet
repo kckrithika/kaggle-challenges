@@ -27,4 +27,7 @@ local slbconfigs = import "slbconfig.jsonnet";
     slbDnsRegisterContainerName: (if slbimages.hyperslb_build >= 2155 then "slb-dns-register" else "slb-dns-register-processor"),
 
     slbFredNewNodeName: (slbimages.hyperslb_build >= 2156),
+
+    # turn on perVip analysis for nginx upstream status reporter
+    slbNginxReadyPerVip: (slbimages.phaseNum <= 1),
 }

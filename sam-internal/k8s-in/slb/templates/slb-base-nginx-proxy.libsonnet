@@ -77,7 +77,8 @@
         "--log_dir=" + slbconfigs.logsDir,
     ] + (if (slbconfigs.perCluster.upstreamStatusReporterMinPercent[configs.estate] != "") then
         ["--minHealthPercentageForReadiness=" + slbconfigs.perCluster.upstreamStatusReporterMinPercent[configs.estate]]
-        else []),
+        else [])
+        + (if slbflights.slbNginxReadyPerVip then ["--perVipReadinessCheck=true"] else []),
     volumeMounts: std.prune([
       slbconfigs.logs_volume_mount,
     ]),
