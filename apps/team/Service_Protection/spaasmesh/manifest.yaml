@@ -18,7 +18,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: spaas
-      image: sfci/service-protection/sps:0.0.5.24
+      image: sfci/service-protection/sps:0.6.3
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
@@ -107,10 +107,10 @@ system:
         value: mesh
       args:
       #see also https://git.soma.salesforce.com/servicelibs/sherpa#ports
-      # Non-namespaced, plaintext
+      # Non-namespaced, mTLS terminated at service
       - -endpoint
       - spaasmesh:DATACENTER_ALLENV:7033
-       # Namespaced, TLS
+      # Namespaced, TLS terminated at sherpa
       - -endpoint
       - service-protection/spaasmesh:DATACENTER_ALLENV:7443 
       - -logging.dir
@@ -141,6 +141,8 @@ system:
     function: spaasmesh
     nodeExposed: true
     ports:
+      - port: 7033
+        targetport: 7033
       - port: 7022
         targetport: 7020
       - lbtype: http
