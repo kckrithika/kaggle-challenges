@@ -68,7 +68,7 @@ system:
     volumes:
     - name: mariadbservice
       hostPath:
-        path: /home/sfdc-mariadb/guiapi/data1
+        path: /home/sfdc-mariadb/guiapi/datagrid
 
     - name: certs
       maddogCert:
