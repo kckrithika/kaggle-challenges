@@ -6,7 +6,7 @@ system:
         - akouthoofd@salesforce.com
     functions:
     - name: cantor-grpc-server
-      count: 3
+      count: 1
       strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-cantor-grpc-server
-        image: dva/casp/cantor_strata:74
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/cantor:service
         ports:
         - name: cantor-grpc
           containerPort: 7443
