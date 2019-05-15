@@ -5,7 +5,7 @@ system:
     count: 4 
     containers:
     - name: pbsgeo
-      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:c980d51b866925b503a548e9279831901bf55d10
+      image: ops0-artifactrepo2-0-xrd.slb.sfdc.net/docker-gcp/dva/pbspectrum:9e6f158954366836aa4417c9a21900adc0ef3175
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -15,8 +15,8 @@ system:
         initialDelaySeconds: 5000 
         periodSeconds: 30
       resources:
-        limits: {cpu: "8", memory: "64Gi"}
-        requests: {cpu: "8", memory: "64Gi"}
+        limits: {cpu: "20", memory: "64Gi"}
+        requests: {cpu: "20", memory: "64Gi"}
       volumeMounts:
       - mountPath: /home/sfdc/logs
         name: logs
