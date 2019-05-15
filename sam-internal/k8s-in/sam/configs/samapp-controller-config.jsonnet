@@ -24,7 +24,7 @@ std.prune({
   [if utils.is_pcn(configs.kingdom) then "dnsNamingSuffix"]: "vip.core.test.us-central1.gcp.sfdc.net.",
 
   #stateful
-  [if !utils.is_production(configs.kingdom) || utils.is_pcn(configs.kingdom) || utils.is_public_cloud(configs.kingdom) then "enableStatefulSet"]: true,
+  enableStatefulSet: true,
 
   # others
     volPermissionInitContainerImage: samimages.permissionInitContainer,
