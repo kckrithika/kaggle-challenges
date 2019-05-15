@@ -6,7 +6,7 @@ system:
       type: stateful-set
       containers:
         - name: mgmtserver-api
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/naga/mgmtapi:1.0
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/naga/mgmtapi:1.1
           command:
           - /bin/bash
           - -c
